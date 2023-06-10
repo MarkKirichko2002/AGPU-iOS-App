@@ -117,12 +117,12 @@ class AGPUTabBarController: UITabBarController {
         
         // закрыть экран
         if text.lowercased().contains("закр") {
-            self.dismiss(animated: true)
             
             speechRecognitionManager.cancelSpeechRecognition()
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 self.speechRecognitionManager.startSpeechRecognition()
+                self.dismiss(animated: true)
             }
         }
         

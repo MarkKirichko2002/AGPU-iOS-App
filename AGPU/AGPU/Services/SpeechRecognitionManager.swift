@@ -38,11 +38,11 @@ class SpeechRecognitionManager {
         }
         
         recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: {
-            [unowned self] (result, error) in
+            [weak self] (result, error) in
             if let res = result?.bestTranscription {
                 DispatchQueue.main.async {
-                    self.text = res.formattedString
-                    self.speechRecognitionHandler?(self.text)
+                    self?.text = res.formattedString
+                    self?.speechRecognitionHandler?(self?.text ?? "")
              }
                 
           } else if let error = error {
