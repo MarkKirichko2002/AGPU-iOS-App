@@ -49,10 +49,10 @@ class AGPUTabBarController: UITabBarController {
     private func setUpTabs() {
         sectionsVC.delegate = self
         
-        favouritesVC.tabBarItem = UITabBarItem(title: "Избранное", image: UIImage(systemName: "star"), selectedImage: UIImage(systemName: "star.fill"))
+        favouritesVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear.fill"))
         sectionsVC.tabBarItem = UITabBarItem(title: "Главное", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         
-        setViewControllers([favouritesVC, middleButton, sectionsVC], animated: true)
+        setViewControllers([sectionsVC, middleButton, favouritesVC], animated: true)
     }
     
     private func createMiddleButton() {
@@ -82,14 +82,15 @@ class AGPUTabBarController: UITabBarController {
     private func checkVoiceCommands(text: String) {
         
         if text.lowercased().contains("раздел") {
-            selectedIndex = 2
+            selectedIndex = 0
         }
         
-        if text != "" && selectedIndex == 2 {
+        if text != "" && selectedIndex == 0 {
             // поиск раздела
             for section in AGPUSections.sections {
                 if text.lowercased().contains(section.voiceCommand) {
-                    sectionsVC.tableView.scrollToRow(at: IndexPath(row: 0, section: section.id), at: .top, animated: true)
+                    
+                    NotificationCenter.default.post(name: Notification.Name("ScrollToSection"), object: section.id)
                     
                     speechRecognitionManager.cancelSpeechRecognition()
                     
@@ -107,7 +108,9 @@ class AGPUTabBarController: UITabBarController {
             for section in AGPUSections.sections {
                 for subsection in section.subsections {
                     if text.lowercased().contains(subsection.voiceCommand) {
-                        self.sectionsVC.GoToWeb(url: subsection.url)
+                        
+                        NotificationCenter.default.post(name: Notification.Name("SubSectionSelected"), object: subsection.url)
+                        
                     } else {
                         print(text)
                     }
@@ -117,12 +120,12 @@ class AGPUTabBarController: UITabBarController {
         
         // закрыть экран
         if text.lowercased().contains("закр") {
-            self.dismiss(animated: true)
             
             speechRecognitionManager.cancelSpeechRecognition()
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 self.speechRecognitionManager.startSpeechRecognition()
+                self.dismiss(animated: true)
             }
         }
         

@@ -18,13 +18,14 @@ class AGPUSectionsViewController: UIViewController {
     private let sections = AGPUSections.sections
     weak var delegate: AGPUSectionsViewControllerDelegate?
     
-    let tableView = UITableView()
-    var vc = SFSafariViewController(url: URL(string: "https://www.apple.com/")!)
+    private let tableView = UITableView()
+    private var vc = SFSafariViewController(url: URL(string: "https://www.apple.com/")!)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "ФГБОУ ВО «АГПУ»"
         SetUpTable()
+        ObserveNotifications()
     }
     
     private func SetUpTable() {
@@ -33,6 +34,18 @@ class AGPUSectionsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: AGPUSubSectionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AGPUSubSectionTableViewCell.identifier)
+    }
+    
+    private func ObserveNotifications() {
+        // Выбор раздела
+        NotificationCenter.default.addObserver(forName: Notification.Name("ScrollToSection"), object: nil, queue: .main) { notification in
+            
+            self.tableView.scrollToRow(at: IndexPath(row: 0, section: notification.object as? Int ?? 0), at: .top, animated: true)
+        }
+        // Выбор подраздела
+        NotificationCenter.default.addObserver(forName: Notification.Name("SubSectionSelected"), object: nil, queue: .main) { notification in
+            self.GoToWeb(url: notification.object as? String ?? "")
+        }
     }
         
     func GoToWeb(url: String) {
