@@ -9,6 +9,9 @@ import Foundation
 
 struct AGPUSubSections {
     static let subsections = [
+        "Главное": [
+            AGPUSubSectionModel(name: "Главное", icon: "", url: "http://test.agpu.net/", voiceCommand: "главное")
+        ],
         "Университет" : [
             AGPUSubSectionModel(name: "Ученый совет", icon: "", url: "http://test.agpu.net/struktura-vuza/uchenyy-sovet/index.php", voiceCommand: "учёный совет"),
             AGPUSubSectionModel(name: "Руководство. Педагогический(научно-педагогический состав) состав", icon: "", url: "http://test.agpu.net/sveden/employees/index.php", voiceCommand: "руководство"),
