@@ -49,7 +49,7 @@ class AGPUTabBarController: UITabBarController {
     private func setUpTabs() {
         sectionsVC.delegate = self
         
-        sectionsVC.tabBarItem = UITabBarItem(title: "Главное", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
+        sectionsVC.tabBarItem = UITabBarItem(title: "Разделы", image: UIImage(systemName: "list.bullet"), selectedImage: UIImage(systemName: "list.bullet"))
         settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear.fill"))
         
         let nav1VC = UINavigationController(rootViewController: sectionsVC)
