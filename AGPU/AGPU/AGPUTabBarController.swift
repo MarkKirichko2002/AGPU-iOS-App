@@ -18,9 +18,9 @@ class AGPUTabBarController: UITabBarController {
         return button
     }()
     
-    let favouritesVC = UIViewController()
-    let middleButton = UIViewController()
     let sectionsVC = AGPUSectionsViewController()
+    let middleButton = UIViewController()
+    let settingsVC = UIViewController()
     
     private var isRecording = false
     private let speechRecognitionManager = SpeechRecognitionManager()
@@ -49,10 +49,13 @@ class AGPUTabBarController: UITabBarController {
     private func setUpTabs() {
         sectionsVC.delegate = self
         
-        favouritesVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear.fill"))
         sectionsVC.tabBarItem = UITabBarItem(title: "Главное", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
+        settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear.fill"))
         
-        setViewControllers([sectionsVC, middleButton, favouritesVC], animated: true)
+        let nav1VC = UINavigationController(rootViewController: sectionsVC)
+        let nav2VC = UINavigationController(rootViewController: settingsVC)
+        
+        setViewControllers([nav1VC, middleButton, nav2VC], animated: true)
     }
     
     private func createMiddleButton() {
