@@ -18,9 +18,9 @@ class AGPUTabBarController: UITabBarController {
         return button
     }()
     
-    let sectionsVC = AGPUSectionsViewController()
+    let mainVC = WebViewController()
     let middleButton = UIViewController()
-    let settingsVC = UIViewController()
+    let sectionsVC = AGPUSectionsViewController()
     
     private var isRecording = false
     private let speechRecognitionManager = SpeechRecognitionManager()
@@ -49,11 +49,12 @@ class AGPUTabBarController: UITabBarController {
     private func setUpTabs() {
         sectionsVC.delegate = self
         
+        mainVC.tabBarItem = UITabBarItem(title: "Главное", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
+        mainVC.url = URL(string: "http://test.agpu.net/")
         sectionsVC.tabBarItem = UITabBarItem(title: "Разделы", image: UIImage(systemName: "list.bullet"), selectedImage: UIImage(systemName: "list.bullet"))
-        settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear.fill"))
         
-        let nav1VC = UINavigationController(rootViewController: sectionsVC)
-        let nav2VC = UINavigationController(rootViewController: settingsVC)
+        let nav1VC = UINavigationController(rootViewController: mainVC)
+        let nav2VC = UINavigationController(rootViewController: sectionsVC)
         
         setViewControllers([nav1VC, middleButton, nav2VC], animated: true)
     }
