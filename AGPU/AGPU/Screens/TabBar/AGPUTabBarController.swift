@@ -100,8 +100,6 @@ class AGPUTabBarController: UITabBarController {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self.speechRecognitionManager.startSpeechRecognition()
                     }
-                } else {
-                    print(text)
                 }
             }
         }
@@ -110,13 +108,18 @@ class AGPUTabBarController: UITabBarController {
             // поиск подраздела
             for section in AGPUSections.sections {
                 for subsection in section.subsections {
+                    
                     if text.lowercased().contains(subsection.voiceCommand) {
                         
                         NotificationCenter.default.post(name: Notification.Name("SubSectionSelected"), object: subsection.url)
                         
-                    } else {
-                        print(text)
-                    }
+                        let size = text.reversed().firstIndex(of: " ") ?? text.count
+                        let startWord = text.index(text.endIndex, offsetBy: -size)
+                        let last = text[startWord...]
+                        
+                        NotificationCenter.default.post(name: Notification.Name("scroll"), object: last)
+
+                    } 
                 }
             }
         }

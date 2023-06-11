@@ -24,6 +24,7 @@
 		82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E9D2A31F2F800DEEB16 /* AGPUSectionModel.swift */; };
 		82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E9F2A31F44500DEEB16 /* AGPUSubSectionModel.swift */; };
 		82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808EA82A32236E00DEEB16 /* AGPUSections.swift */; };
+		828CFA372A35F65700C7542D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA362A35F65700C7542D /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		82808E9D2A31F2F800DEEB16 /* AGPUSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSectionModel.swift; sourceTree = "<group>"; };
 		82808E9F2A31F44500DEEB16 /* AGPUSubSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSectionModel.swift; sourceTree = "<group>"; };
 		82808EA82A32236E00DEEB16 /* AGPUSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSections.swift; sourceTree = "<group>"; };
+		828CFA362A35F65700C7542D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,21 +111,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		826888642A33B6C900434219 /* Tabbar */ = {
-			isa = PBXGroup;
-			children = (
-				826888652A33B6E700434219 /* AGPUTabBarController.swift */,
-			);
-			name = Tabbar;
-			path = ..;
-			sourceTree = "<group>";
-		};
 		826888672A33B87A00434219 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				828CFA342A35F62400C7542D /* TabBar */,
 				826888562A33AB3C00434219 /* Splash Screen */,
-				826888642A33B6C900434219 /* Tabbar */,
 				82808E9C2A31F2D400DEEB16 /* Sections */,
+				828CFA352A35F64700C7542D /* Web */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -187,6 +181,22 @@
 				826888512A33A8FB00434219 /* Cell */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		828CFA342A35F62400C7542D /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				826888652A33B6E700434219 /* AGPUTabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		828CFA352A35F64700C7542D /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				828CFA362A35F65700C7542D /* WebViewController.swift */,
+			);
+			path = Web;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +283,7 @@
 				8268885E2A33ACB700434219 /* RoundedImageView.swift in Sources */,
 				826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */,
 				82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */,
+				828CFA372A35F65700C7542D /* WebViewController.swift in Sources */,
 				826888582A33AB5600434219 /* AGPUSplashScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
