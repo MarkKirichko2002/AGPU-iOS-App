@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SafariServices
 
 // MARK: - AGPUSectionsViewControllerDelegate
 protocol AGPUSectionsViewControllerDelegate: AnyObject {
@@ -19,8 +18,7 @@ class AGPUSectionsViewController: UIViewController {
     weak var delegate: AGPUSectionsViewControllerDelegate?
     
     private let tableView = UITableView()
-    private var vc = SFSafariViewController(url: URL(string: "https://www.apple.com/")!)
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "ФГБОУ ВО «АГПУ»"
@@ -50,8 +48,8 @@ class AGPUSectionsViewController: UIViewController {
         
     func GoToWeb(url: String) {
         guard let url = URL(string: url) else {return}
-        vc = SFSafariViewController(url: url)
-        vc.modalPresentationStyle = .formSheet
+        let vc = WebViewController()
+        vc.url = url
         present(vc, animated: true)
     }
 }
