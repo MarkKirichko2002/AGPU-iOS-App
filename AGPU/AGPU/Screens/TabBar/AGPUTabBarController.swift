@@ -32,13 +32,15 @@ class AGPUTabBarController: UITabBarController {
         UITabBar.appearance().tintColor = UIColor.black
         setUpTabs()
         createMiddleButton()
+        ObserveSubSection()
+        ObserveWebScreen()
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         animation.TabBarItemAnimation(item: item)
     }
     
-
+    
     // Override selectedIndex for Programmatic changes
     override var selectedIndex: Int {
         didSet {
@@ -47,7 +49,6 @@ class AGPUTabBarController: UITabBarController {
     }
     
     private func setUpTabs() {
-        sectionsVC.delegate = self
         
         mainVC.tabBarItem = UITabBarItem(title: "Главное", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         mainVC.url = URL(string: "http://test.agpu.net/")
@@ -112,11 +113,17 @@ class AGPUTabBarController: UITabBarController {
                     
                     if text.lowercased().contains(subsection.voiceCommand) {
                         
-                        NotificationCenter.default.post(name: Notification.Name("SubSectionSelected"), object: subsection.url)
+                        DispatchQueue.main.async {
+                            self.button.setImage(UIImage(named: subsection.icon), for: .normal)
+                            self.animation.SpringAnimation(view: self.button)
+                        }
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            NotificationCenter.default.post(name: Notification.Name("SubSectionSelected"), object: subsection.url)
+                        }
                         
                         NotificationCenter.default.post(name: Notification.Name("scroll"), object: text.lastWord())
-
-                    } 
+                    }
                 }
             }
         }
@@ -126,7 +133,7 @@ class AGPUTabBarController: UITabBarController {
             
             speechRecognitionManager.cancelSpeechRecognition()
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.speechRecognitionManager.startSpeechRecognition()
                 self.dismiss(animated: true)
             }
@@ -137,12 +144,19 @@ class AGPUTabBarController: UITabBarController {
             button.sendActions(for: .touchUpInside)
         }
     }
-}
-
-// MARK: - AGPUSectionsViewControllerDelegate
-extension AGPUTabBarController: AGPUSectionsViewControllerDelegate {
     
-    func subSectionWasSelected(subSection: AGPUSubSectionModel) {
-        animation.SpringAnimation(view: self.button)
+    private func ObserveSubSection() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("subsection"), object: nil, queue: .main) { notification in
+            if let subsection = notification.object as? AGPUSubSectionModel {
+                self.button.setImage(UIImage(named: subsection.icon), for: .normal)
+                self.animation.SpringAnimation(view: self.button)
+            }
+        }
+    }
+    
+    private func ObserveWebScreen() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("WebScreenWasClosed"), object: nil, queue: .main) { _ in
+            self.button.setImage(UIImage(named: "АГПУ"), for: .normal)
+        }
     }
 }

@@ -24,6 +24,11 @@ class WebViewController: UIViewController {
         }
         ObservedScroll()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NotificationCenter.default.post(name: Notification.Name("WebScreenWasClosed"), object: nil)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
