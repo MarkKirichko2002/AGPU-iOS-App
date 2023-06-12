@@ -46,7 +46,7 @@ class AGPUSectionsViewController: UIViewController {
         }
     }
         
-    func GoToWeb(url: String) {
+    private func GoToWeb(url: String) {
         guard let url = URL(string: url) else {return}
         let vc = WebViewController()
         vc.url = url

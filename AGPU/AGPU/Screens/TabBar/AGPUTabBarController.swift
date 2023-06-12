@@ -89,7 +89,7 @@ class AGPUTabBarController: UITabBarController {
             selectedIndex = 0
         }
         
-        if text != "" && selectedIndex == 0 {
+        if text != "" && selectedIndex == 2 {
             // поиск раздела
             for section in AGPUSections.sections {
                 if text.lowercased().contains(section.voiceCommand) {
@@ -114,11 +114,7 @@ class AGPUTabBarController: UITabBarController {
                         
                         NotificationCenter.default.post(name: Notification.Name("SubSectionSelected"), object: subsection.url)
                         
-                        let size = text.reversed().firstIndex(of: " ") ?? text.count
-                        let startWord = text.index(text.endIndex, offsetBy: -size)
-                        let last = text[startWord...]
-                        
-                        NotificationCenter.default.post(name: Notification.Name("scroll"), object: last)
+                        NotificationCenter.default.post(name: Notification.Name("scroll"), object: text.lastWord())
 
                     } 
                 }
