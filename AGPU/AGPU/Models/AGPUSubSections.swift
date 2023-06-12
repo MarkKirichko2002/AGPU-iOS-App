@@ -36,7 +36,7 @@ struct AGPUSubSections {
             AGPUSubSectionModel(name: "Студенческие клубы и организации, спорт и фитнес, культурная жизнь", icon: "", url: "http://test.agpu.net/struktura-vuza/otdel-mpivd/index.php", voiceCommand: "спорт"),
             AGPUSubSectionModel(name: "Дополнительное образование", icon: "", url: "https://niiro-agpu.ru/", voiceCommand: "дополнительное образование"),
             AGPUSubSectionModel(name: "Карьера", icon: "", url: "http://test.agpu.net/struktura-vuza/uapik/sodeystvie-trudoustroystvu/index.php", voiceCommand: "карьера"),
-            AGPUSubSectionModel(name: "Психологическая служба", icon: "", url: "http://test.agpu.net/PsychologicalService/index.php", voiceCommand: "психолог"),
+            AGPUSubSectionModel(name: "Психологическая служба", icon: "", url: "http://test.agpu.net/PsychologicalService/index.php", voiceCommand: "психологическая служба"),
             AGPUSubSectionModel(name: "Профсоюз", icon: "", url: "http://test.agpu.net/profsouz/index.php", voiceCommand: "профсоюз"),
             AGPUSubSectionModel(name: "Платные образовательные услуги", icon: "", url: "http://test.agpu.net/sveden/paid_edu/index.php", voiceCommand: "платные образовательные услуги"),
             AGPUSubSectionModel(name: "Реквизиты", icon: "", url: "http://test.agpu.net/contacts/requisites.php", voiceCommand: "реквизиты")
@@ -50,7 +50,7 @@ struct AGPUSubSections {
             AGPUSubSectionModel(name: "Информация отдела кадровой политики", icon: "", url: "http://test.agpu.net/struktura-vuza/ukppsip/otdel-kadrovoy-politiki/index.php", voiceCommand: "информация отдела кадровой политики"),
             AGPUSubSectionModel(name: "Профсоюз", icon: "", url: "http://test.agpu.net/profsouz/index.php", voiceCommand: "профсоюз"),
             AGPUSubSectionModel(name: "Информационная система мониторинга научных достижений преподавателей", icon: "", url: "https://nir.it-institut.ru/", voiceCommand: "информационная система мониторинга научных достижений преподавателей"),
-            AGPUSubSectionModel(name: "Психологическая служба", icon: "", url: "http://test.agpu.net/PsychologicalService/index.php", voiceCommand: "психолог")
+            AGPUSubSectionModel(name: "Психологическая служба", icon: "", url: "http://test.agpu.net/PsychologicalService/index.php", voiceCommand: "психологическая служба")
         ], "Наука" : [
             AGPUSubSectionModel(name: "Диссертационные советы", icon: "", url: "http://test.agpu.net/nauka/dissertation/index.php", voiceCommand: "диссертационные советы"),
             AGPUSubSectionModel(name: "Управление научно-исследовательской и инновационной деятельности", icon: "", url: "http://test.agpu.net/struktura-vuza/uniind/index.php", voiceCommand: "инноваци"),
@@ -58,12 +58,12 @@ struct AGPUSubSections {
             AGPUSubSectionModel(name: "Научные лаборатории и центры", icon: "", url: "http://test.agpu.net/nauka/NIR/index.php", voiceCommand: "лаборатории"),
             AGPUSubSectionModel(name: "Научные журналы", icon: "", url: "http://test.agpu.net/nauka/Jurnaly/index.php", voiceCommand: "научные журналы"),
             AGPUSubSectionModel(name: "Научные мероприятия", icon: "", url: "http://test.agpu.net/nauka/konf/news.php", voiceCommand: "научные мероприятия"),
-            AGPUSubSectionModel(name: "Совет молодых ученых", icon: "", url: "http://test.agpu.net/nauka/SMU/index.php", voiceCommand: "совет молодых ученых"),
+            AGPUSubSectionModel(name: "Совет молодых ученых", icon: "", url: "http://test.agpu.net/nauka/SMU/index.php", voiceCommand: "совет молодых учёных"),
             AGPUSubSectionModel(name: "Научное студенческое общество", icon: "", url: "http://test.agpu.net/nauka/NSO/index.php", voiceCommand: "научное студенческое общество")
         ], "Партнерам" : [
             AGPUSubSectionModel(name: "Взаимодействие с бизнесом и государством", icon: "", url: "http://test.agpu.net/partneram/vzaimodeystvie-s-biznesom-i-gosudarstvom.php", voiceCommand: "взаимодействие с бизнесом и государством"),
             AGPUSubSectionModel(name: "Научно-технические консультации", icon: "", url: "http://test.agpu.net/partneram/nauchno-tekhnicheskie-konsultatsii.php", voiceCommand: "научно технические консультации"),
-            AGPUSubSectionModel(name: "Услуги для партнеров", icon: "", url: "http://test.agpu.net/partneram/uslugi-dlya-partnerov.php", voiceCommand: "услуги для партнеров")
+            AGPUSubSectionModel(name: "Услуги для партнеров", icon: "", url: "http://test.agpu.net/partneram/uslugi-dlya-partnerov.php", voiceCommand: "услуги для партнёров")
         ], "Международная деятельность" : [
             AGPUSubSectionModel(name: "Отдел международной деятельности", icon: "", url: "http://test.agpu.net/struktura-vuza/otdel-mezhdunarodnoy-deyatelnosti/index.php", voiceCommand: "отдел международной деятельности"),
             AGPUSubSectionModel(name: "Информация для иностранных абитуриентов", icon: "", url: "http://test.agpu.net/mezhdunarodnaya-deyatelnost/abiturient/index.php", voiceCommand: "информация для иностранных абитуриентов"),

@@ -25,6 +25,7 @@
 		82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E9F2A31F44500DEEB16 /* AGPUSubSectionModel.swift */; };
 		82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808EA82A32236E00DEEB16 /* AGPUSections.swift */; };
 		828CFA372A35F65700C7542D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA362A35F65700C7542D /* WebViewController.swift */; };
+		828CFA3C2A3680C700C7542D /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA3B2A3680C700C7542D /* String + Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		82808E9F2A31F44500DEEB16 /* AGPUSubSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSectionModel.swift; sourceTree = "<group>"; };
 		82808EA82A32236E00DEEB16 /* AGPUSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSections.swift; sourceTree = "<group>"; };
 		828CFA362A35F65700C7542D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		828CFA3B2A3680C700C7542D /* String + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				826888602A33ACF500434219 /* UIView + Extensions.swift */,
+				828CFA3B2A3680C700C7542D /* String + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
 				8268885B2A33AC6000434219 /* AnimationClass.swift in Sources */,
 				826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */,
+				828CFA3C2A3680C700C7542D /* String + Extensions.swift in Sources */,
 				82808E8D2A31F12100DEEB16 /* AGPUSectionsViewController.swift in Sources */,
 				82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */,
 				82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */,
