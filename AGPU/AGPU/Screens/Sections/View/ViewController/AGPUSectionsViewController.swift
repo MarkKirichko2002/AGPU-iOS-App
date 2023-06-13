@@ -44,7 +44,8 @@ class AGPUSectionsViewController: UIViewController {
         guard let url = URL(string: url) else {return}
         let vc = WebViewController()
         vc.url = url
-        present(vc, animated: true)
+        let navVC = UINavigationController(rootViewController: vc)
+        present(navVC, animated: true)
     }
 }
 

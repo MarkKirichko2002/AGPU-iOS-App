@@ -150,6 +150,7 @@ class AGPUTabBarController: UITabBarController {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.speechRecognitionManager.startSpeechRecognition()
+                self.button.setImage(UIImage(named: "mic"), for: .normal)
                 self.dismiss(animated: true)
             }
         }

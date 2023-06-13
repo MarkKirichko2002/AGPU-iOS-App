@@ -23,6 +23,7 @@ class WebViewController: UIViewController {
             let request = URLRequest(url: self.url!)
             self.WVWEBview.load(request)
         }
+        SetUpNavigation()
         ObserveScroll()
     }
     
@@ -33,6 +34,33 @@ class WebViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    private func SetUpNavigation() {
+        let backbutton = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
+        backbutton.tintColor = .black
+        let forwardbutton = UIBarButtonItem(image: UIImage(systemName: "arrow.forward"), style: .plain, target: self, action: #selector(forwardButtonTapped))
+        forwardbutton.tintColor = .black
+        let closebutton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeButtonTapped))
+        closebutton.tintColor = .black
+        self.navigationItem.rightBarButtonItems = [forwardbutton, backbutton]
+        self.navigationItem.leftBarButtonItem = closebutton
+    }
+    
+    @objc private func backButtonTapped() {
+        if WVWEBview.canGoBack {
+            WVWEBview.goBack()
+        }
+    }
+    
+    @objc private func forwardButtonTapped() {
+        if WVWEBview.canGoForward {
+            WVWEBview.goForward()
+        }
+    }
+    
+    @objc private func closeButtonTapped() {
+        self.dismiss(animated: true)
     }
     
     private func ObserveScroll() {
