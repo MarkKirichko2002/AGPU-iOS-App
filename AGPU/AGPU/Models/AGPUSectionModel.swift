@@ -10,6 +10,7 @@ import Foundation
 struct AGPUSectionModel {
     let id: Int
     let name: String
+    let icon: String
     let subsections: [AGPUSubSectionModel]
     var voiceCommand: String
 }

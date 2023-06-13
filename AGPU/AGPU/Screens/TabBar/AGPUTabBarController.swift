@@ -102,15 +102,20 @@ class AGPUTabBarController: UITabBarController {
     private func checkVoiceCommands(text: String) {
         
         if text.lowercased().contains("раздел") {
-            selectedIndex = 0
+            selectedIndex = 3
         }
         
-        if text != "" && selectedIndex == 2 {
+        if text != "" && selectedIndex == 3 {
             // поиск раздела
             for section in AGPUSections.sections {
                 if text.lowercased().contains(section.voiceCommand) {
                     
                     NotificationCenter.default.post(name: Notification.Name("ScrollToSection"), object: section.id)
+                    
+                    DispatchQueue.main.async {
+                        self.button.setImage(UIImage(named: section.icon), for: .normal)
+                        self.animation.SpringAnimation(view: self.button)
+                    }
                     
                     speechRecognitionManager.cancelSpeechRecognition()
                     
