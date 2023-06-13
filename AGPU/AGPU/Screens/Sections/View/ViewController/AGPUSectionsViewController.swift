@@ -7,15 +7,9 @@
 
 import UIKit
 
-// MARK: - AGPUSectionsViewControllerDelegate
-protocol AGPUSectionsViewControllerDelegate: AnyObject {
-    func subSectionWasSelected(subSection: AGPUSubSectionModel)
-}
-
 class AGPUSectionsViewController: UIViewController {
 
     private let sections = AGPUSections.sections
-    weak var delegate: AGPUSectionsViewControllerDelegate?
     
     private let tableView = UITableView()
 
@@ -70,8 +64,10 @@ extension AGPUSectionsViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.subSectionWasSelected(subSection: sections[indexPath.section].subsections[indexPath.row])
-        self.GoToWeb(url: self.sections[indexPath.section].subsections[indexPath.row].url)
+        NotificationCenter.default.post(name: Notification.Name("subsection"), object: sections[indexPath.section].subsections[indexPath.row])
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.GoToWeb(url: self.sections[indexPath.section].subsections[indexPath.row].url)
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
