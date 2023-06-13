@@ -18,17 +18,6 @@ class AGPUTabBarController: UITabBarController {
         return button
     }()
     
-    // главное
-    let mainVC = WebViewController()
-    // расписание
-    let timetableVC = WebViewController()
-    // кнопка
-    let middleButton = UIViewController()
-    // разделы
-    let sectionsVC = AGPUSectionsViewController()
-    // настройки
-    let settingsVC = UIViewController()
-    
     private var isRecording = false
     private let speechRecognitionManager = SpeechRecognitionManager()
     private let animation = AnimationClass()
@@ -50,25 +39,38 @@ class AGPUTabBarController: UITabBarController {
     // Override selectedIndex for Programmatic changes
     override var selectedIndex: Int {
         didSet {
-            print("")
+            print(selectedIndex)
         }
     }
     
     private func setUpTabs() {
         // главное
+        let mainVC = WebViewController()
+        // расписание
+        let timetableVC = WebViewController()
+        // кнопка
+        let middleButton = UIViewController()
+        // разделы
+        let sectionsVC = AGPUSectionsViewController()
+        // карта
+        let mapVC = AGPUMapViewController()
+        // главное
         mainVC.tabBarItem = UITabBarItem(title: "Главное", image: UIImage(named: "home"), selectedImage: UIImage(named: "home selected"))
+        mainVC.navigationItem.title = "Главное"
         mainVC.url = URL(string: "http://test.agpu.net/")
         // расписание
         timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: UIImage(named: "schedule"), selectedImage: UIImage(named: "schedule selected"))
+        timetableVC.navigationItem.title = "Расписание"
         timetableVC.url = URL(string: "http://www.it-institut.ru/SearchString/Index/118")
         // разделы
         sectionsVC.tabBarItem = UITabBarItem(title: "Разделы", image: UIImage(named: "sections"), selectedImage: UIImage(named: "sections selected"))
-        // настройки
-        settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear fill"))
+        // карта
+        mapVC.tabBarItem = UITabBarItem(title: "Карта", image: UIImage(systemName: "map"), selectedImage: UIImage(systemName: "map.fill"))
+        mapVC.navigationItem.title = "Найти АГПУ"
         let nav1VC = UINavigationController(rootViewController: mainVC)
         let nav2VC = UINavigationController(rootViewController: timetableVC)
         let nav3VC = UINavigationController(rootViewController: sectionsVC)
-        let nav4VC = UINavigationController(rootViewController: settingsVC)
+        let nav4VC = UINavigationController(rootViewController: mapVC)
         
         setViewControllers([nav1VC, nav2VC, middleButton, nav3VC, nav4VC], animated: true)
     }
