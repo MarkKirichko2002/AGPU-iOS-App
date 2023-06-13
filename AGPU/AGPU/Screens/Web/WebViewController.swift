@@ -18,11 +18,12 @@ class WebViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(WVWEBview)
         view = WVWEBview
+        WVWEBview.allowsBackForwardNavigationGestures = true
         DispatchQueue.main.async {
             let request = URLRequest(url: self.url!)
             self.WVWEBview.load(request)
         }
-        ObservedScroll()
+        ObserveScroll()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -34,7 +35,7 @@ class WebViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    private func ObservedScroll() {
+    private func ObserveScroll() {
         var position = 0
         var scrollPosition = ""
         
