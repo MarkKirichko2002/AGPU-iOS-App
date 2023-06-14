@@ -52,12 +52,31 @@ class AGPUSectionsViewController: UIViewController {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension AGPUSectionsViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
+        header.backgroundColor = .secondarySystemBackground
+        
+        let imageView = UIImageView(image: UIImage(named: sections[section].icon))
+
+        imageView.contentMode = .scaleAspectFit
+        header.addSubview(imageView)
+        imageView.frame = CGRect(x: 5, y: 5, width: 75, height: 75)
+        
+        let label = UILabel(frame: CGRect(x: 10 + imageView.frame.size.width, y: 5,
+                                          width: header.frame.size.width - 15 - imageView.frame.size.width,
+                                          height: header.frame.size.height-10))
+        header.addSubview(label)
+        label.text = sections[section].name
+        label.font = .systemFont(ofSize: 17, weight: .black)
+        return header
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section].name
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 100
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
