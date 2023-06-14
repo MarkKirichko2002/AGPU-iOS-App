@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234B2FF2A3242E10091810F /* SpeechRecognitionManager.swift */; };
 		826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888522A33A91200434219 /* AGPUSubSectionTableViewCell.swift */; };
-		826888552A33A91200434219 /* AGPUSubSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 826888532A33A91200434219 /* AGPUSubSectionTableViewCell.xib */; };
 		826888582A33AB5600434219 /* AGPUSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888572A33AB5600434219 /* AGPUSplashScreenViewController.swift */; };
 		8268885B2A33AC6000434219 /* AnimationClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8268885A2A33AC6000434219 /* AnimationClass.swift */; };
 		8268885E2A33ACB700434219 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8268885D2A33ACB700434219 /* RoundedImageView.swift */; };
@@ -32,7 +31,6 @@
 /* Begin PBXFileReference section */
 		8234B2FF2A3242E10091810F /* SpeechRecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManager.swift; sourceTree = "<group>"; };
 		826888522A33A91200434219 /* AGPUSubSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSectionTableViewCell.swift; sourceTree = "<group>"; };
-		826888532A33A91200434219 /* AGPUSubSectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AGPUSubSectionTableViewCell.xib; sourceTree = "<group>"; };
 		826888572A33AB5600434219 /* AGPUSplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSplashScreenViewController.swift; sourceTree = "<group>"; };
 		8268885A2A33AC6000434219 /* AnimationClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClass.swift; sourceTree = "<group>"; };
 		8268885D2A33ACB700434219 /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
@@ -86,7 +84,6 @@
 			isa = PBXGroup;
 			children = (
 				826888522A33A91200434219 /* AGPUSubSectionTableViewCell.swift */,
-				826888532A33A91200434219 /* AGPUSubSectionTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -273,7 +270,6 @@
 			files = (
 				82808E952A31F12500DEEB16 /* LaunchScreen.storyboard in Resources */,
 				82808E922A31F12500DEEB16 /* Assets.xcassets in Resources */,
-				826888552A33A91200434219 /* AGPUSubSectionTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
