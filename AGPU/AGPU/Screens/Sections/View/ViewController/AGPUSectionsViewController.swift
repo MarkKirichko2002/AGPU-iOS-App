@@ -54,15 +54,15 @@ extension AGPUSectionsViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
-        header.backgroundColor = .secondarySystemBackground
+        header.backgroundColor = .systemBackground
         
         let imageView = UIImageView(image: UIImage(named: sections[section].icon))
 
         imageView.contentMode = .scaleAspectFit
         header.addSubview(imageView)
-        imageView.frame = CGRect(x: 5, y: 5, width: 75, height: 75)
+        imageView.frame = CGRect(x: 20, y: 0, width: 75, height: 75)
         
-        let label = UILabel(frame: CGRect(x: 10 + imageView.frame.size.width, y: 5,
+        let label = UILabel(frame: CGRect(x: 30 + imageView.frame.size.width, y: 0,
                                           width: header.frame.size.width - 15 - imageView.frame.size.width,
                                           height: header.frame.size.height-10))
         header.addSubview(label)
