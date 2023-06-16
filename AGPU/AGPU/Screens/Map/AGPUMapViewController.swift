@@ -5,18 +5,29 @@
 //  Created by Марк Киричко on 13.06.2023.
 //
 
+import CoreLocation
 import UIKit
 import MapKit
 
-class AGPUMapViewController: UIViewController {
+class AGPUMapViewController: UIViewController, CLLocationManagerDelegate {
 
     private let mapView = MKMapView()
+    
+    let manager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(mapView)
         mapView.translatesAutoresizingMaskIntoConstraints = false
         makeConstraints()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.delegate = self
+        manager.requestWhenInUseAuthorization()
+        manager.startUpdatingLocation()
     }
     
     private func makeConstraints() {
@@ -26,5 +37,33 @@ class AGPUMapViewController: UIViewController {
             mapView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            manager.stopUpdatingLocation()
+            
+            render(location)
+        }
+    }
+    
+    func render(_ location: CLLocation) {
+        
+        let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude,
+                                                longitude: location.coordinate.longitude)
+        let AGPUcoordinate = CLLocationCoordinate2D(latitude: 45.001245, longitude: 41.133068)
+        
+        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        
+        let region = MKCoordinateRegion(center: coordinate,
+                                        span: span)
+        
+        mapView.setRegion(region,
+                          animated: true)
+        
+        let pin = MKPointAnnotation()
+        pin.coordinate = AGPUcoordinate
+        pin.title = "АГПУ"
+        mapView.addAnnotation(pin)
     }
 }
