@@ -61,9 +61,15 @@ class AGPUMapViewController: UIViewController, CLLocationManagerDelegate {
         mapView.setRegion(region,
                           animated: true)
         
-        let pin = MKPointAnnotation()
-        pin.coordinate = AGPUcoordinate
-        pin.title = "АГПУ"
-        mapView.addAnnotation(pin)
+        // текущая геопозиция
+        let currentpin = MKPointAnnotation()
+        currentpin.coordinate = coordinate
+        currentpin.title = "текущая геопозиция"
+        
+        // АГПУ
+        let AGPUpin = MKPointAnnotation()
+        AGPUpin.coordinate = AGPUcoordinate
+        AGPUpin.title = "АГПУ"
+        mapView.showAnnotations([currentpin, AGPUpin], animated: true)
     }
 }
