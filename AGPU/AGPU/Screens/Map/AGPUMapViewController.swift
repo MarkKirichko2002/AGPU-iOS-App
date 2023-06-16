@@ -10,9 +10,8 @@ import UIKit
 import MapKit
 
 class AGPUMapViewController: UIViewController, CLLocationManagerDelegate {
-
-    private let mapView = MKMapView()
     
+    private let mapView = MKMapView()
     private let manager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -20,6 +19,7 @@ class AGPUMapViewController: UIViewController, CLLocationManagerDelegate {
         view.addSubview(mapView)
         mapView.translatesAutoresizingMaskIntoConstraints = false
         makeConstraints()
+        mapView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -93,7 +93,7 @@ class AGPUMapViewController: UIViewController, CLLocationManagerDelegate {
         let mainBuildingPin = MKPointAnnotation()
         mainBuildingPin.coordinate = MainBuildingCoordinate
         mainBuildingPin.title = "Главный корпус"
-       
+        
         // Корпус №1
         let building1Pin = MKPointAnnotation()
         building1Pin.coordinate = building1Coordinate
@@ -134,5 +134,53 @@ class AGPUMapViewController: UIViewController, CLLocationManagerDelegate {
             building5Pin,
             building6Pin
         ], animated: true)
+    }
+    
+    func mapThis(destinationCord: CLLocationCoordinate2D) {
+        
+        let sourceCoordinate = (manager.location?.coordinate)!
+        
+        let sourcePlaceMark = MKPlacemark(coordinate: sourceCoordinate)
+        let destPlaceMark = MKPlacemark(coordinate: destinationCord)
+        
+        let sourceItem = MKMapItem(placemark: sourcePlaceMark)
+        let destItem = MKMapItem(placemark: destPlaceMark)
+        
+        let destinationRequest = MKDirections.Request()
+        destinationRequest.source = sourceItem
+        destinationRequest.destination = destItem
+        destinationRequest.transportType = .automobile
+        destinationRequest.requestsAlternateRoutes = true
+        
+        let directions = MKDirections(request: destinationRequest)
+        directions.calculate { (response, error) in
+            guard let response = response else {
+                if let error = error {
+                    print("Ошибка: \(error)")
+                }
+                return
+            }
+            
+            let route = response.routes[0]
+            self.mapView.addOverlay(route.polyline)
+            self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+        }
+    }
+}
+
+// MARK: - MKMapViewDelegate
+extension AGPUMapViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let render = MKPolylineRenderer(overlay: overlay as! MKPolyline)
+        render.strokeColor = .green
+        return render
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let annotation = view.annotation
+        {
+            self.mapThis(destinationCord: annotation.coordinate)
+        }
     }
 }
