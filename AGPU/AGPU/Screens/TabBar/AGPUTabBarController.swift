@@ -65,7 +65,7 @@ class AGPUTabBarController: UITabBarController {
         // разделы
         sectionsVC.tabBarItem = UITabBarItem(title: "Разделы", image: UIImage(named: "sections"), selectedImage: UIImage(named: "sections selected"))
         // карта
-        mapVC.tabBarItem = UITabBarItem(title: "Карта", image: UIImage(systemName: "map"), selectedImage: UIImage(systemName: "map.fill"))
+        mapVC.tabBarItem = UITabBarItem(title: "Карта", image: UIImage(named: "map"), selectedImage: UIImage(named: "map selected"))
         mapVC.navigationItem.title = "Найти АГПУ"
         let nav1VC = UINavigationController(rootViewController: mainVC)
         let nav2VC = UINavigationController(rootViewController: timetableVC)

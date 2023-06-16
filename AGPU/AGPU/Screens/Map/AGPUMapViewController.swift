@@ -13,7 +13,7 @@ class AGPUMapViewController: UIViewController, CLLocationManagerDelegate {
 
     private let mapView = MKMapView()
     
-    let manager = CLLocationManager()
+    private let manager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
