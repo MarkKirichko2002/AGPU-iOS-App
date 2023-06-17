@@ -42,8 +42,7 @@ class AGPUSectionsViewController: UIViewController {
         
     private func GoToWeb(url: String) {
         guard let url = URL(string: url) else {return}
-        let vc = WebViewController()
-        vc.url = url
+        let vc = WebViewController(url: url)
         let navVC = UINavigationController(rootViewController: vc)
         present(navVC, animated: true)
     }
@@ -56,7 +55,7 @@ extension AGPUSectionsViewController: UITableViewDelegate, UITableViewDataSource
         let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
         header.backgroundColor = .systemBackground
         
-        let imageView = UIImageView(image: UIImage(named: sections[section].icon))
+        let imageView = SpringImageView(image: UIImage(named: sections[section].icon))
 
         imageView.contentMode = .scaleAspectFit
         header.addSubview(imageView)

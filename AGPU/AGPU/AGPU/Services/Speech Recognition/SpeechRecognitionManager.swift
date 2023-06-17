@@ -7,7 +7,7 @@
 
 import Speech
 
-class SpeechRecognitionManager {
+class SpeechRecognitionManager: SpeechRecognitionManagerProtocol {
     
     private let audioEngine = AVAudioEngine()
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "ru_RU"))

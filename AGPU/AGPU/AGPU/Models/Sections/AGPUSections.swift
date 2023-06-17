@@ -9,7 +9,7 @@ import Foundation
 
 struct AGPUSections {
     static let sections = [
-        AGPUSectionModel(id: 0, name: "Главное", icon: "home", subsections: AGPUSubSections.subsections["Главное"]!, voiceCommand: "главное"),
+        AGPUSectionModel(id: 0, name: "Главное", icon: "home icon", subsections: AGPUSubSections.subsections["Главное"]!, voiceCommand: "главное"),
         AGPUSectionModel(id: 1, name: "Университет", icon: "university", subsections: AGPUSubSections.subsections["Университет"]!, voiceCommand: "универ"),
         AGPUSectionModel(id: 2, name: "Абитуриенту", icon: "user", subsections: AGPUSubSections.subsections["Абитуриенту"]!, voiceCommand: "абитуриент"),
         AGPUSectionModel(id: 3, name: "Студенту", icon: "student", subsections: AGPUSubSections.subsections["Студенту"]!, voiceCommand: "студент"),
