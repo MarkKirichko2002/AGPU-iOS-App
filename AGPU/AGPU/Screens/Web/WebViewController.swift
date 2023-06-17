@@ -12,15 +12,25 @@ class WebViewController: UIViewController {
 
     private var WVWEBview = WKWebView(frame: .zero)
 
-    var url = URL(string: "http://www.apple.com")
+    var url: URL
 
+    // MARK: - Init
+    init(url: URL) {
+        self.url = url
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(WVWEBview)
         view = WVWEBview
         WVWEBview.allowsBackForwardNavigationGestures = true
         DispatchQueue.main.async {
-            let request = URLRequest(url: self.url!)
+            let request = URLRequest(url: self.url)
             self.WVWEBview.load(request)
         }
         SetUpNavigation()

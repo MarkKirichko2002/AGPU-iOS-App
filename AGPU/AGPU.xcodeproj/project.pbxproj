@@ -26,6 +26,9 @@
 		828CFA372A35F65700C7542D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA362A35F65700C7542D /* WebViewController.swift */; };
 		828CFA3C2A3680C700C7542D /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA3B2A3680C700C7542D /* String + Extensions.swift */; };
 		829522DD2A38AED900329713 /* AGPUMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829522DC2A38AED900329713 /* AGPUMapViewController.swift */; };
+		82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */; };
+		82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */; };
+		82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		828CFA362A35F65700C7542D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		828CFA3B2A3680C700C7542D /* String + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extensions.swift"; sourceTree = "<group>"; };
 		829522DC2A38AED900329713 /* AGPUMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUMapViewController.swift; sourceTree = "<group>"; };
+		82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClassProtocol.swift; sourceTree = "<group>"; };
+		82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManagerProtocol.swift; sourceTree = "<group>"; };
+		82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +72,8 @@
 		8234B2FE2A3242CC0091810F /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				8234B2FF2A3242E10091810F /* SpeechRecognitionManager.swift */,
-				8268885A2A33AC6000434219 /* AnimationClass.swift */,
+				82EF23D02A3DED73004A7B9C /* Speech Recognition */,
+				82EF23D12A3DED7F004A7B9C /* Animation */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -99,7 +105,8 @@
 		8268885C2A33ACA800434219 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				8268885D2A33ACB700434219 /* RoundedImageView.swift */,
+				82EF23DB2A3DF2DD004A7B9C /* Rounded Image */,
+				82EF23DD2A3DF612004A7B9C /* Spring Image */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -128,10 +135,8 @@
 		8268886A2A34866D00434219 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				82808E9D2A31F2F800DEEB16 /* AGPUSectionModel.swift */,
-				82808E9F2A31F44500DEEB16 /* AGPUSubSectionModel.swift */,
-				82808EA82A32236E00DEEB16 /* AGPUSections.swift */,
-				826888682A3482DF00434219 /* AGPUSubSections.swift */,
+				82EF23D22A3DEEA6004A7B9C /* Sections */,
+				82EF23D32A3DEEB8004A7B9C /* Sub Sections */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 			children = (
 				8268886A2A34866D00434219 /* Models */,
 				8268885C2A33ACA800434219 /* CustomViews */,
+				82EF23D42A3DF09F004A7B9C /* Protocols */,
 				8234B2FE2A3242CC0091810F /* Services */,
 				8268885F2A33ACE800434219 /* Extensions */,
 				826888672A33B87A00434219 /* Screens */,
@@ -208,6 +214,81 @@
 				829522DC2A38AED900329713 /* AGPUMapViewController.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		82EF23D02A3DED73004A7B9C /* Speech Recognition */ = {
+			isa = PBXGroup;
+			children = (
+				8234B2FF2A3242E10091810F /* SpeechRecognitionManager.swift */,
+			);
+			path = "Speech Recognition";
+			sourceTree = "<group>";
+		};
+		82EF23D12A3DED7F004A7B9C /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				8268885A2A33AC6000434219 /* AnimationClass.swift */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		82EF23D22A3DEEA6004A7B9C /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				82808E9D2A31F2F800DEEB16 /* AGPUSectionModel.swift */,
+				82808EA82A32236E00DEEB16 /* AGPUSections.swift */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
+		82EF23D32A3DEEB8004A7B9C /* Sub Sections */ = {
+			isa = PBXGroup;
+			children = (
+				82808E9F2A31F44500DEEB16 /* AGPUSubSectionModel.swift */,
+				826888682A3482DF00434219 /* AGPUSubSections.swift */,
+			);
+			path = "Sub Sections";
+			sourceTree = "<group>";
+		};
+		82EF23D42A3DF09F004A7B9C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				82EF23D82A3DF237004A7B9C /* Speech Recognition */,
+				82EF23D52A3DF0A5004A7B9C /* Animation */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		82EF23D52A3DF0A5004A7B9C /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		82EF23D82A3DF237004A7B9C /* Speech Recognition */ = {
+			isa = PBXGroup;
+			children = (
+				82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */,
+			);
+			path = "Speech Recognition";
+			sourceTree = "<group>";
+		};
+		82EF23DB2A3DF2DD004A7B9C /* Rounded Image */ = {
+			isa = PBXGroup;
+			children = (
+				8268885D2A33ACB700434219 /* RoundedImageView.swift */,
+			);
+			path = "Rounded Image";
+			sourceTree = "<group>";
+		};
+		82EF23DD2A3DF612004A7B9C /* Spring Image */ = {
+			isa = PBXGroup;
+			children = (
+				82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */,
+			);
+			path = "Spring Image";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,6 +362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				826888662A33B6E700434219 /* AGPUTabBarController.swift in Sources */,
+				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
@@ -293,8 +375,10 @@
 				82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */,
 				8268885E2A33ACB700434219 /* RoundedImageView.swift in Sources */,
 				826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */,
+				82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */,
 				82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */,
 				829522DD2A38AED900329713 /* AGPUMapViewController.swift in Sources */,
+				82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */,
 				828CFA372A35F65700C7542D /* WebViewController.swift in Sources */,
 				826888582A33AB5600434219 /* AGPUSplashScreenViewController.swift in Sources */,
 			);

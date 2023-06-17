@@ -7,17 +7,6 @@
 
 import UIKit
 
-protocol AnimationClassProtocol {
-    func SpringAnimation<T: UIView>(view: T)
-    func RotateAnimation<T: UIView>(view: T)
-    func StartRotateAnimation<T: UIView>(view: T)
-    func StopRotateAnimation<T: UIView>(view: T)
-    func TabBarItemAnimation(item: UITabBarItem)
-    func FlipAnimation<T: UIView>(view: T)
-}
-
-import UIKit
-
 class AnimationClass: AnimationClassProtocol {
     
     private let rotationAnimation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
@@ -75,4 +64,3 @@ class AnimationClass: AnimationClassProtocol {
         }
     }
 }
-

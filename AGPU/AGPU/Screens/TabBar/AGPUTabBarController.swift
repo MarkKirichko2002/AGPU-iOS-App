@@ -36,7 +36,6 @@ class AGPUTabBarController: UITabBarController {
         animation.TabBarItemAnimation(item: item)
     }
     
-    // Override selectedIndex for Programmatic changes
     override var selectedIndex: Int {
         didSet {
             print(selectedIndex)
@@ -45,9 +44,9 @@ class AGPUTabBarController: UITabBarController {
     
     private func setUpTabs() {
         // главное
-        let mainVC = WebViewController()
+        let mainVC = WebViewController(url: URL(string: "http://test.agpu.net/")!)
         // расписание
-        let timetableVC = WebViewController()
+        let timetableVC = WebViewController(url: URL(string: "http://www.it-institut.ru/SearchString/Index/118")!)
         // кнопка
         let middleButton = UIViewController()
         // разделы
@@ -57,11 +56,9 @@ class AGPUTabBarController: UITabBarController {
         // главное
         mainVC.tabBarItem = UITabBarItem(title: "Главное", image: UIImage(named: "home"), selectedImage: UIImage(named: "home selected"))
         mainVC.navigationItem.title = "Главное"
-        mainVC.url = URL(string: "http://test.agpu.net/")
         // расписание
         timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: UIImage(named: "schedule"), selectedImage: UIImage(named: "schedule selected"))
         timetableVC.navigationItem.title = "Расписание"
-        timetableVC.url = URL(string: "http://www.it-institut.ru/SearchString/Index/118")
         // разделы
         sectionsVC.tabBarItem = UITabBarItem(title: "Разделы", image: UIImage(named: "sections"), selectedImage: UIImage(named: "sections selected"))
         // карта
@@ -100,10 +97,6 @@ class AGPUTabBarController: UITabBarController {
     }
     
     private func checkVoiceCommands(text: String) {
-        
-        if text.lowercased().contains("раздел") {
-            selectedIndex = 3
-        }
         
         if text != "" && selectedIndex == 3 {
             // поиск раздела

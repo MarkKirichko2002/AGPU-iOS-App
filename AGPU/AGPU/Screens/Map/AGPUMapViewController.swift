@@ -53,7 +53,6 @@ class AGPUMapViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             manager.stopUpdatingLocation()
-            
             render(location)
         }
     }
@@ -94,7 +93,8 @@ class AGPUMapViewController: UIViewController, CLLocationManagerDelegate {
         // Корпус №6 (ФОК)
         let building6Coordinate = CLLocationCoordinate2D(latitude: 45.006374, longitude: 41.128629)
         
-        // MARK: - метки
+        // MARK: - АГПУ корпуса метки
+        
         // текущая геопозиция
         let currentpin = MKPointAnnotation()
         currentpin.coordinate = coordinate
