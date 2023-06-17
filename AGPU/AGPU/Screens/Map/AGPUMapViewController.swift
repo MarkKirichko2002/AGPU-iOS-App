@@ -19,6 +19,7 @@ class AGPUMapViewController: UIViewController, CLLocationManagerDelegate {
         view.addSubview(mapView)
         mapView.translatesAutoresizingMaskIntoConstraints = false
         makeConstraints()
+        makeClearPathButton()
         mapView.delegate = self
     }
     
@@ -28,6 +29,16 @@ class AGPUMapViewController: UIViewController, CLLocationManagerDelegate {
         manager.delegate = self
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
+    }
+    
+    private func makeClearPathButton() {
+        let clearButton = UIBarButtonItem(title: "очистить путь", style: .plain, target: self, action: #selector(clearPath))
+        clearButton.tintColor = .black
+        self.navigationItem.rightBarButtonItem = clearButton
+    }
+    
+    @objc private func clearPath() {
+        mapView.removeOverlays(mapView.overlays)
     }
     
     private func makeConstraints() {
