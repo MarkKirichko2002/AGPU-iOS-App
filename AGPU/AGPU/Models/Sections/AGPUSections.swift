@@ -16,7 +16,7 @@ struct AGPUSections {
         AGPUSectionModel(id: 4, name: "Сотрудникам", icon: "people", subsections: AGPUSubSections.subsections["Сотрудникам"]!, voiceCommand: "сотрудник"),
         AGPUSectionModel(id: 5, name: "Наука", icon: "science", subsections: AGPUSubSections.subsections["Наука"]!, voiceCommand: "наук"),
         AGPUSectionModel(id: 6, name: "Партнерам", icon: "paper plane", subsections: AGPUSubSections.subsections["Партнерам"]!, voiceCommand: "партнёр"),
-        AGPUSectionModel(id: 7, name: "Международная деятельность", icon: "world", subsections: AGPUSubSections.subsections["Международная деятельность"]!, voiceCommand: "отдел международной деятельности"),
+        AGPUSectionModel(id: 7, name: "Международная деятельность", icon: "world", subsections: AGPUSubSections.subsections["Международная деятельность"]!, voiceCommand: "международная деятельность"),
         AGPUSectionModel(id: 8, name: "Безопасность", icon: "security", subsections: AGPUSubSections.subsections["Безопасность"]!, voiceCommand: "безопасность")
     ]
 }
