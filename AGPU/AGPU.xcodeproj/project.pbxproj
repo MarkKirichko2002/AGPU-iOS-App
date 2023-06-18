@@ -29,6 +29,8 @@
 		82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */; };
 		82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */; };
 		82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */; };
+		82F4ECFE2A3F82E400F1E5CC /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F4ECFD2A3F82E400F1E5CC /* AudioPlayer.swift */; };
+		82F4ED052A3F83DF00F1E5CC /* spring.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82F4ED042A3F83DF00F1E5CC /* spring.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClassProtocol.swift; sourceTree = "<group>"; };
 		82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManagerProtocol.swift; sourceTree = "<group>"; };
 		82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringImageView.swift; sourceTree = "<group>"; };
+		82F4ECFD2A3F82E400F1E5CC /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		82F4ED042A3F83DF00F1E5CC /* spring.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = spring.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,7 @@
 		8234B2FE2A3242CC0091810F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				82F4ECFC2A3F82CE00F1E5CC /* Audio Player */,
 				82EF23D02A3DED73004A7B9C /* Speech Recognition */,
 				82EF23D12A3DED7F004A7B9C /* Animation */,
 			);
@@ -160,6 +165,7 @@
 		82808E872A31F12100DEEB16 /* AGPU */ = {
 			isa = PBXGroup;
 			children = (
+				82F4ECFF2A3F836500F1E5CC /* sounds */,
 				8268886A2A34866D00434219 /* Models */,
 				8268885C2A33ACA800434219 /* CustomViews */,
 				82EF23D42A3DF09F004A7B9C /* Protocols */,
@@ -291,6 +297,22 @@
 			path = "Spring Image";
 			sourceTree = "<group>";
 		};
+		82F4ECFC2A3F82CE00F1E5CC /* Audio Player */ = {
+			isa = PBXGroup;
+			children = (
+				82F4ECFD2A3F82E400F1E5CC /* AudioPlayer.swift */,
+			);
+			path = "Audio Player";
+			sourceTree = "<group>";
+		};
+		82F4ECFF2A3F836500F1E5CC /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				82F4ED042A3F83DF00F1E5CC /* spring.mp3 */,
+			);
+			path = sounds;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -351,6 +373,7 @@
 			files = (
 				82808E952A31F12500DEEB16 /* LaunchScreen.storyboard in Resources */,
 				82808E922A31F12500DEEB16 /* Assets.xcassets in Resources */,
+				82F4ED052A3F83DF00F1E5CC /* spring.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +404,7 @@
 				82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */,
 				828CFA372A35F65700C7542D /* WebViewController.swift in Sources */,
 				826888582A33AB5600434219 /* AGPUSplashScreenViewController.swift in Sources */,
+				82F4ECFE2A3F82E400F1E5CC /* AudioPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
