@@ -26,6 +26,8 @@
 		828CFA372A35F65700C7542D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA362A35F65700C7542D /* WebViewController.swift */; };
 		828CFA3C2A3680C700C7542D /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA3B2A3680C700C7542D /* String + Extensions.swift */; };
 		829522DD2A38AED900329713 /* AGPUMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829522DC2A38AED900329713 /* AGPUMapViewController.swift */; };
+		82BDFDB02A404BA0002DBB89 /* AGPUSecondMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BDFDAF2A404BA0002DBB89 /* AGPUSecondMapViewController.swift */; };
+		82BDFDB22A404C52002DBB89 /* MapRealisationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BDFDB12A404C52002DBB89 /* MapRealisationsListViewController.swift */; };
 		82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */; };
 		82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */; };
 		82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */; };
@@ -55,6 +57,8 @@
 		828CFA362A35F65700C7542D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		828CFA3B2A3680C700C7542D /* String + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extensions.swift"; sourceTree = "<group>"; };
 		829522DC2A38AED900329713 /* AGPUMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUMapViewController.swift; sourceTree = "<group>"; };
+		82BDFDAF2A404BA0002DBB89 /* AGPUSecondMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSecondMapViewController.swift; sourceTree = "<group>"; };
+		82BDFDB12A404C52002DBB89 /* MapRealisationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRealisationsListViewController.swift; sourceTree = "<group>"; };
 		82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClassProtocol.swift; sourceTree = "<group>"; };
 		82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManagerProtocol.swift; sourceTree = "<group>"; };
 		82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringImageView.swift; sourceTree = "<group>"; };
@@ -217,7 +221,9 @@
 		829522DB2A38AEBE00329713 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				82BDFDB12A404C52002DBB89 /* MapRealisationsListViewController.swift */,
 				829522DC2A38AED900329713 /* AGPUMapViewController.swift */,
+				82BDFDAF2A404BA0002DBB89 /* AGPUSecondMapViewController.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -386,6 +392,7 @@
 			files = (
 				826888662A33B6E700434219 /* AGPUTabBarController.swift in Sources */,
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
+				82BDFDB02A404BA0002DBB89 /* AGPUSecondMapViewController.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
@@ -400,6 +407,7 @@
 				826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */,
 				82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */,
 				82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */,
+				82BDFDB22A404C52002DBB89 /* MapRealisationsListViewController.swift in Sources */,
 				829522DD2A38AED900329713 /* AGPUMapViewController.swift in Sources */,
 				82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */,
 				828CFA372A35F65700C7542D /* WebViewController.swift in Sources */,
