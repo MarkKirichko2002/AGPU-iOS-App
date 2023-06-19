@@ -62,7 +62,7 @@ class AGPUSecondMapViewController: UIViewController, CLLocationManagerDelegate {
         // MARK: - АГПУ корпуса координаты
         
         // Главный корпус
-        let MainBuildingCoordinate = CLLocationCoordinate2D(latitude: 45.001245, longitude: 41.133068)
+        let MainBuildingCoordinate = CLLocationCoordinate2D(latitude: 45.001817, longitude: 41.132393)
         
         // Корпус №1
         let building1Coordinate = CLLocationCoordinate2D(latitude: 45.000517, longitude: 41.126859)

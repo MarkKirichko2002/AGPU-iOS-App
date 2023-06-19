@@ -17,8 +17,7 @@ class SpringImageView: UIImageView {
         self.addGestureRecognizer(tap)
     }
     
-    @IBAction func tapFunction(sender: UITapGestureRecognizer) {
+    @objc private func tapFunction(sender: UITapGestureRecognizer) {
         animation.SpringAnimation(view: self)
-        AudioPlayer.shared.PlaySound(resource: "spring.mp3")
     }
 }
