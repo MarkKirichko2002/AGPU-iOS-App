@@ -131,7 +131,7 @@ class AGPUTabBarController: UITabBarController {
                             self.animation.SpringAnimation(view: self.button)
                         }
                         
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in 
                             NotificationCenter.default.post(name: Notification.Name("SubSectionSelected"), object: subsection.url)
                         }
                         

@@ -11,7 +11,6 @@
 		826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888522A33A91200434219 /* AGPUSubSectionTableViewCell.swift */; };
 		826888582A33AB5600434219 /* AGPUSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888572A33AB5600434219 /* AGPUSplashScreenViewController.swift */; };
 		8268885B2A33AC6000434219 /* AnimationClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8268885A2A33AC6000434219 /* AnimationClass.swift */; };
-		8268885E2A33ACB700434219 /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8268885D2A33ACB700434219 /* RoundedImageView.swift */; };
 		826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888602A33ACF500434219 /* UIView + Extensions.swift */; };
 		826888662A33B6E700434219 /* AGPUTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888652A33B6E700434219 /* AGPUTabBarController.swift */; };
 		826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888682A3482DF00434219 /* AGPUSubSections.swift */; };
@@ -32,7 +31,6 @@
 		82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */; };
 		82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */; };
 		82F4ECFE2A3F82E400F1E5CC /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F4ECFD2A3F82E400F1E5CC /* AudioPlayer.swift */; };
-		82F4ED052A3F83DF00F1E5CC /* spring.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82F4ED042A3F83DF00F1E5CC /* spring.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +38,6 @@
 		826888522A33A91200434219 /* AGPUSubSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSectionTableViewCell.swift; sourceTree = "<group>"; };
 		826888572A33AB5600434219 /* AGPUSplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSplashScreenViewController.swift; sourceTree = "<group>"; };
 		8268885A2A33AC6000434219 /* AnimationClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClass.swift; sourceTree = "<group>"; };
-		8268885D2A33ACB700434219 /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		826888602A33ACF500434219 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		826888652A33B6E700434219 /* AGPUTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUTabBarController.swift; sourceTree = "<group>"; };
 		826888682A3482DF00434219 /* AGPUSubSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSections.swift; sourceTree = "<group>"; };
@@ -63,7 +60,6 @@
 		82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManagerProtocol.swift; sourceTree = "<group>"; };
 		82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringImageView.swift; sourceTree = "<group>"; };
 		82F4ECFD2A3F82E400F1E5CC /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
-		82F4ED042A3F83DF00F1E5CC /* spring.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = spring.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +110,6 @@
 		8268885C2A33ACA800434219 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				82EF23DB2A3DF2DD004A7B9C /* Rounded Image */,
 				82EF23DD2A3DF612004A7B9C /* Spring Image */,
 			);
 			path = CustomViews;
@@ -169,7 +164,6 @@
 		82808E872A31F12100DEEB16 /* AGPU */ = {
 			isa = PBXGroup;
 			children = (
-				82F4ECFF2A3F836500F1E5CC /* sounds */,
 				8268886A2A34866D00434219 /* Models */,
 				8268885C2A33ACA800434219 /* CustomViews */,
 				82EF23D42A3DF09F004A7B9C /* Protocols */,
@@ -287,14 +281,6 @@
 			path = "Speech Recognition";
 			sourceTree = "<group>";
 		};
-		82EF23DB2A3DF2DD004A7B9C /* Rounded Image */ = {
-			isa = PBXGroup;
-			children = (
-				8268885D2A33ACB700434219 /* RoundedImageView.swift */,
-			);
-			path = "Rounded Image";
-			sourceTree = "<group>";
-		};
 		82EF23DD2A3DF612004A7B9C /* Spring Image */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,14 +295,6 @@
 				82F4ECFD2A3F82E400F1E5CC /* AudioPlayer.swift */,
 			);
 			path = "Audio Player";
-			sourceTree = "<group>";
-		};
-		82F4ECFF2A3F836500F1E5CC /* sounds */ = {
-			isa = PBXGroup;
-			children = (
-				82F4ED042A3F83DF00F1E5CC /* spring.mp3 */,
-			);
-			path = sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,7 +357,6 @@
 			files = (
 				82808E952A31F12500DEEB16 /* LaunchScreen.storyboard in Resources */,
 				82808E922A31F12500DEEB16 /* Assets.xcassets in Resources */,
-				82F4ED052A3F83DF00F1E5CC /* spring.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,7 +380,6 @@
 				82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */,
 				82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */,
 				82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */,
-				8268885E2A33ACB700434219 /* RoundedImageView.swift in Sources */,
 				826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */,
 				82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */,
 				82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */,
