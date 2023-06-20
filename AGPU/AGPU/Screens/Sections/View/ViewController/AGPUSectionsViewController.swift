@@ -83,6 +83,7 @@ extension AGPUSectionsViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         NotificationCenter.default.post(name: Notification.Name("subsection"), object: sections[indexPath.section].subsections[indexPath.row])
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.GoToWeb(url: self.sections[indexPath.section].subsections[indexPath.row].url)

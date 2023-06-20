@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class AGPUTabBarController: UITabBarController {
     
@@ -30,6 +31,8 @@ class AGPUTabBarController: UITabBarController {
         createMiddleButton()
         ObserveSubSection()
         ObserveWebScreen()
+        checkRelaxModeSetting()
+        ObserveRelaxMode()
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -45,29 +48,29 @@ class AGPUTabBarController: UITabBarController {
     private func setUpTabs() {
         // главное
         let mainVC = WebViewController(url: URL(string: "http://test.agpu.net/")!)
-        // расписание
-        let timetableVC = WebViewController(url: URL(string: "http://www.it-institut.ru/SearchString/Index/118")!)
         // кнопка
         let middleButton = UIViewController()
         // разделы
         let sectionsVC = AGPUSectionsViewController()
         // карта
         let mapVC = MapRealisationsListViewController()
+        // настройки
+        let settingsVC = SettingsListViewController()
         // главное
         mainVC.tabBarItem = UITabBarItem(title: "Главное", image: UIImage(named: "home"), selectedImage: UIImage(named: "home selected"))
         mainVC.navigationItem.title = "Главное"
-        // расписание
-        timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: UIImage(named: "schedule"), selectedImage: UIImage(named: "schedule selected"))
-        timetableVC.navigationItem.title = "Расписание"
         // разделы
         sectionsVC.tabBarItem = UITabBarItem(title: "Разделы", image: UIImage(named: "sections"), selectedImage: UIImage(named: "sections selected"))
         // карта
         mapVC.tabBarItem = UITabBarItem(title: "Карты", image: UIImage(named: "map"), selectedImage: UIImage(named: "map selected"))
         mapVC.navigationItem.title = "Карты"
+        // настройки
+        settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear.fill"))
+        settingsVC.navigationItem.title = "Настройки"
         let nav1VC = UINavigationController(rootViewController: mainVC)
-        let nav2VC = UINavigationController(rootViewController: timetableVC)
-        let nav3VC = UINavigationController(rootViewController: sectionsVC)
-        let nav4VC = UINavigationController(rootViewController: mapVC)
+        let nav2VC = UINavigationController(rootViewController: sectionsVC)
+        let nav3VC = UINavigationController(rootViewController: mapVC)
+        let nav4VC = UINavigationController(rootViewController: settingsVC)
         
         setViewControllers([nav1VC, nav2VC, middleButton, nav3VC, nav4VC], animated: true)
     }
@@ -98,9 +101,10 @@ class AGPUTabBarController: UITabBarController {
     
     private func checkVoiceCommands(text: String) {
         
-        if text != "" && selectedIndex == 3 {
+        if text != "" && selectedIndex == 1 {
             // поиск раздела
             for section in AGPUSections.sections {
+                
                 if text.lowercased().contains(section.voiceCommand) {
                     
                     NotificationCenter.default.post(name: Notification.Name("ScrollToSection"), object: section.id)
@@ -122,6 +126,7 @@ class AGPUTabBarController: UITabBarController {
         if text != "" {
             // поиск подраздела
             for section in AGPUSections.sections {
+                
                 for subsection in section.subsections {
                     
                     if text.lowercased().contains(subsection.voiceCommand) {
@@ -171,6 +176,27 @@ class AGPUTabBarController: UITabBarController {
     private func ObserveWebScreen() {
         NotificationCenter.default.addObserver(forName: Notification.Name("WebScreenWasClosed"), object: nil, queue: .main) { _ in
             self.button.setImage(UIImage(named: "АГПУ"), for: .normal)
+        }
+    }
+    
+    private func checkRelaxModeSetting() {
+        let music = UserDefaults.loadData()
+        if music?.isChecked == true {
+            AudioPlayer.shared.PlaySound(resource: music?.fileName ?? "")
+        }
+    }
+    
+    private func ObserveRelaxMode() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("music"), object: nil, queue: .main) { notification in
+            if let music = notification.object as? MusicModel {
+                if music.isChecked {
+                    AudioPlayer.shared.PlaySound(resource: music.fileName)
+                } else {
+                    AudioPlayer.shared.StopSound(resource: music.fileName)
+                    self.button.setImage(UIImage(named: "АГПУ"), for: .normal)
+                    self.animation.StopRotateAnimation(view: self.button)
+                }
+            }
         }
     }
 }
