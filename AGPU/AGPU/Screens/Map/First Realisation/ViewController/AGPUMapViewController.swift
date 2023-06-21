@@ -5,11 +5,10 @@
 //  Created by Марк Киричко on 13.06.2023.
 //
 
-import CoreLocation
 import UIKit
 import MapKit
 
-class AGPUMapViewController: UIViewController, CLLocationManagerDelegate {
+class AGPUMapViewController: UIViewController {
     
     private let mapView = MKMapView()
     private let manager = CLLocationManager()
@@ -48,13 +47,6 @@ class AGPUMapViewController: UIViewController, CLLocationManagerDelegate {
             mapView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-            manager.stopUpdatingLocation()
-            render(location)
-        }
     }
     
     func render(_ location: CLLocation) {
@@ -175,23 +167,6 @@ class AGPUMapViewController: UIViewController, CLLocationManagerDelegate {
             let route = response.routes[0]
             self.mapView.addOverlay(route.polyline)
             self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
-        }
-    }
-}
-
-// MARK: - MKMapViewDelegate
-extension AGPUMapViewController: MKMapViewDelegate {
-    
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let render = MKPolylineRenderer(overlay: overlay as! MKPolyline)
-        render.strokeColor = .green
-        return render
-    }
-    
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if let annotation = view.annotation
-        {
-            self.mapThis(destinationCord: annotation.coordinate)
         }
     }
 }
