@@ -13,7 +13,7 @@ struct MusicModel: Codable {
     let fileName: String
     var isChecked: Bool
     
-    mutating func setDone(_ state: Bool) {
-        isChecked = state
+    mutating func setDone() {
+        isChecked.toggle()
     }
 }

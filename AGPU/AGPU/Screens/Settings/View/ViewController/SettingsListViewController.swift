@@ -44,17 +44,41 @@ extension SettingsListViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        var music = musicArray[indexPath.row]
-        music.setDone(!self.musicArray[indexPath.row].isChecked)
-        musicArray[indexPath.row].setDone(music.isChecked)
-        NotificationCenter.default.post(name: Notification.Name("music"), object: musicArray[indexPath.row])
-        tableView.reloadData()
-        do {
-            let data = try JSONEncoder().encode(music)
-            UserDefaults.standard.setValue(data, forKey: "music")
-        } catch {
-            print(error)
-        }
+    }
+    
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil,
+                                          previewProvider: nil,
+                                          actionProvider: {
+            suggestedActions in
+            let playAction =
+            UIAction(title: "воспроизвести",
+                     image: UIImage(named: "play")) { action in
+                self.musicArray[indexPath.row].isChecked = true
+                NotificationCenter.default.post(name: Notification.Name("music"), object: self.musicArray[indexPath.row])
+                do {
+                    let data = try JSONEncoder().encode(self.musicArray[indexPath.row])
+                    UserDefaults.standard.setValue(data, forKey: "music")
+                    tableView.reloadData()
+                } catch {
+                    print(error)
+                }
+            }
+            let stopAction =
+            UIAction(title: "пауза",
+                     image: UIImage(named: "pause")) { action in
+                self.musicArray[indexPath.row].isChecked = false
+                NotificationCenter.default.post(name: Notification.Name("music"), object: self.musicArray[indexPath.row])
+                do {
+                    let data = try JSONEncoder().encode(self.musicArray[indexPath.row])
+                    UserDefaults.standard.setValue(data, forKey: "music")
+                    tableView.reloadData()
+                } catch {
+                    print(error)
+                }
+            }
+            return UIMenu(title: self.musicArray[indexPath.row].name, children: [playAction, stopAction])
+        })
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
