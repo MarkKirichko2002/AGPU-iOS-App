@@ -9,7 +9,7 @@ import CoreLocation
 import UIKit
 import MapKit
 
-class AGPUSecondMapViewController: UIViewController, CLLocationManagerDelegate {
+class AGPUSecondMapViewController: UIViewController {
     
     private let mapView = MKMapView()
     private let manager = CLLocationManager()
@@ -37,13 +37,6 @@ class AGPUSecondMapViewController: UIViewController, CLLocationManagerDelegate {
             mapView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-            manager.stopUpdatingLocation()
-            render(location)
-        }
     }
     
     func render(_ location: CLLocation) {
@@ -134,18 +127,5 @@ class AGPUSecondMapViewController: UIViewController, CLLocationManagerDelegate {
             building5Pin,
             building6Pin
         ], animated: true)
-    }
-}
-
-// MARK: - MKMapViewDelegate
-extension AGPUSecondMapViewController: MKMapViewDelegate {
-    
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if let annotation = view.annotation
-        {
-            let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: annotation.coordinate, addressDictionary: nil))
-            mapItem.name = annotation.title ?? ""
-            mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
-        }
     }
 }

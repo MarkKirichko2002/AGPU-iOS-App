@@ -51,7 +51,7 @@ class AGPUTabBarController: UITabBarController {
         // кнопка
         let middleButton = UIViewController()
         // разделы
-        let sectionsVC = AGPUSectionsViewController()
+        let sectionsVC = AGPUSectionsListViewController()
         // карта
         let mapVC = MapRealisationsListViewController()
         // настройки
