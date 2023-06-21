@@ -7,13 +7,22 @@
 
 import AVFoundation
 
-class AudioPlayer {
+class AudioPlayer: NSObject, AVAudioPlayerDelegate {
     
     var player: AVAudioPlayer?
     
+    weak var delegate: AVAudioPlayerDelegate?
+    
     static let shared = AudioPlayer()
     
+    private var sound = ""
+    
+    // MARK: - Init
+    private override init() {}
+    
     func PlaySound(resource: String) {
+        
+        self.sound = resource
         
         guard let url = Bundle.main.url(forResource: resource, withExtension: nil) else { return }
         
@@ -25,6 +34,7 @@ class AudioPlayer {
             
             guard let player = player else { return }
             
+            player.delegate = self
             player.play()
             
         } catch let error {
@@ -50,5 +60,8 @@ class AudioPlayer {
             print(error.localizedDescription)
         }
     }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+       PlaySound(resource: sound)
+    }
 }
-

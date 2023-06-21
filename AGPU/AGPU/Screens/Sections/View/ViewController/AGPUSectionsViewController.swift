@@ -34,17 +34,6 @@ class AGPUSectionsViewController: UIViewController {
             
             self.tableView.scrollToRow(at: IndexPath(row: 0, section: notification.object as? Int ?? 0), at: .top, animated: true)
         }
-        // Выбор подраздела
-        NotificationCenter.default.addObserver(forName: Notification.Name("SubSectionSelected"), object: nil, queue: .main) { notification in
-            self.GoToWeb(url: notification.object as? String ?? "")
-        }
-    }
-        
-    private func GoToWeb(url: String) {
-        guard let url = URL(string: url) else {return}
-        let vc = WebViewController(url: url)
-        let navVC = UINavigationController(rootViewController: vc)
-        present(navVC, animated: true)
     }
 }
 
@@ -83,6 +72,7 @@ extension AGPUSectionsViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         NotificationCenter.default.post(name: Notification.Name("subsection"), object: sections[indexPath.section].subsections[indexPath.row])
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.GoToWeb(url: self.sections[indexPath.section].subsections[indexPath.row].url)

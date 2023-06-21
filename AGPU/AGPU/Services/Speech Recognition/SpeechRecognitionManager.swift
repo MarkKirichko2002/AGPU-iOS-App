@@ -13,7 +13,6 @@ class SpeechRecognitionManager: SpeechRecognitionManagerProtocol {
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "ru_RU"))
     private let request = SFSpeechAudioBufferRecognitionRequest()
     private var recognitionTask: SFSpeechRecognitionTask?
-    private var text = ""
     private var speechRecognitionHandler: ((String)->Void)?
     
     func registerSpeechRecognitionHandler(block: @escaping(String)->Void) {
@@ -41,10 +40,8 @@ class SpeechRecognitionManager: SpeechRecognitionManagerProtocol {
             [weak self] (result, error) in
             if let res = result?.bestTranscription {
                 DispatchQueue.main.async {
-                    self?.text = res.formattedString
-                    self?.speechRecognitionHandler?(self?.text ?? "")
+                    self?.speechRecognitionHandler?(res.formattedString)
              }
-                
           } else if let error = error {
               print("\(error.localizedDescription)")
           }
