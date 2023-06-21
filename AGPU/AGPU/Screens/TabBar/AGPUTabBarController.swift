@@ -136,10 +136,10 @@ class AGPUTabBarController: UITabBarController {
                             self.animation.SpringAnimation(view: self.button)
                         }
                         
-                        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in 
-                            NotificationCenter.default.post(name: Notification.Name("SubSectionSelected"), object: subsection.url)
+                        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                            self.GoToWeb(url: subsection.url)
                         }
-                        
+                    
                         NotificationCenter.default.post(name: Notification.Name("scroll"), object: text.lastWord())
                     }
                 }

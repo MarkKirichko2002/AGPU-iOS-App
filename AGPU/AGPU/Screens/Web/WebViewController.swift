@@ -82,9 +82,9 @@ class WebViewController: UIViewController {
             
             print(scrollPosition)
             
-            if scrollPosition.contains("вверх") {
+            if scrollPosition == "вверх" {
                 position -= 20
-            } else if scrollPosition.contains("вниз") {
+            } else if scrollPosition == "вниз" {
                 position += 20
             }
             
