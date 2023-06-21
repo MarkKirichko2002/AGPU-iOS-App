@@ -37,8 +37,8 @@ class WebViewController: UIViewController {
         ObserveScroll()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         NotificationCenter.default.post(name: Notification.Name("WebScreenWasClosed"), object: nil)
     }
 
