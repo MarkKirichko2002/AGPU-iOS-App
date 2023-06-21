@@ -6,10 +6,17 @@
 //
 
 import UIKit
-import AVFoundation
 
 class AGPUTabBarController: UITabBarController {
     
+    // MARK: - сервисы
+    private let speechRecognitionManager = SpeechRecognitionManager()
+    private let animation = AnimationClass()
+    private let settingsManager = SettingsManager()
+    
+    private var isRecording = false
+    
+    // MARK: - Dynamic Button
     private let button: UIButton = {
         let button = UIButton()
         button.imageView?.tintColor = .black
@@ -19,10 +26,6 @@ class AGPUTabBarController: UITabBarController {
         return button
     }()
     
-    private var isRecording = false
-    private let speechRecognitionManager = SpeechRecognitionManager()
-    private let animation = AnimationClass()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -31,20 +34,14 @@ class AGPUTabBarController: UITabBarController {
         createMiddleButton()
         ObserveSubSection()
         ObserveWebScreen()
-        checkRelaxModeSetting()
+        settingsManager.checkAllSettings()
         ObserveRelaxMode()
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         animation.TabBarItemAnimation(item: item)
     }
-    
-    override var selectedIndex: Int {
-        didSet {
-            print(selectedIndex)
-        }
-    }
-    
+        
     private func setUpTabs() {
         // главное
         let mainVC = WebViewController(url: URL(string: "http://test.agpu.net/")!)
@@ -75,6 +72,7 @@ class AGPUTabBarController: UITabBarController {
         setViewControllers([nav1VC, nav2VC, middleButton, nav3VC, nav4VC], animated: true)
     }
     
+    // MARK: - Dynamic Button
     private func createMiddleButton() {
         button.frame = CGRect.init(x: self.tabBar.center.x - 32, y: self.view.bounds.height - 90, width: 64, height: 64)
         button.layer.cornerRadius = 33
@@ -99,6 +97,7 @@ class AGPUTabBarController: UITabBarController {
         }
     }
     
+    // MARK: - Voice Control
     private func checkVoiceCommands(text: String) {
         
         if text != "" && selectedIndex == 1 {
@@ -176,13 +175,6 @@ class AGPUTabBarController: UITabBarController {
     private func ObserveWebScreen() {
         NotificationCenter.default.addObserver(forName: Notification.Name("WebScreenWasClosed"), object: nil, queue: .main) { _ in
             self.button.setImage(UIImage(named: "АГПУ"), for: .normal)
-        }
-    }
-    
-    private func checkRelaxModeSetting() {
-        let music = UserDefaults.loadData()
-        if music?.isChecked == true {
-            AudioPlayer.shared.PlaySound(resource: music?.fileName ?? "")
         }
     }
     
