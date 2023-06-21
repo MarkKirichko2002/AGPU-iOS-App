@@ -35,6 +35,8 @@
 		829AD68D2A42EA020047609B /* history music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 829AD68C2A42EA020047609B /* history music.mp3 */; };
 		829AD68F2A42EC680047609B /* pre school music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 829AD68E2A42EC680047609B /* pre school music.mp3 */; };
 		829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6902A4327D40047609B /* UIViewController + Extensions.swift */; };
+		829AD6962A4380180047609B /* MusicList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6952A4380180047609B /* MusicList.swift */; };
+		829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6982A43818A0047609B /* SettingsListViewModel.swift */; };
 		82BDFDB02A404BA0002DBB89 /* AGPUSecondMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BDFDAF2A404BA0002DBB89 /* AGPUSecondMapViewController.swift */; };
 		82BDFDB22A404C52002DBB89 /* MapRealisationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BDFDB12A404C52002DBB89 /* MapRealisationsListViewController.swift */; };
 		82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */; };
@@ -74,6 +76,8 @@
 		829AD68C2A42EA020047609B /* history music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "history music.mp3"; sourceTree = "<group>"; };
 		829AD68E2A42EC680047609B /* pre school music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "pre school music.mp3"; sourceTree = "<group>"; };
 		829AD6902A4327D40047609B /* UIViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extensions.swift"; sourceTree = "<group>"; };
+		829AD6952A4380180047609B /* MusicList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicList.swift; sourceTree = "<group>"; };
+		829AD6982A43818A0047609B /* SettingsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewModel.swift; sourceTree = "<group>"; };
 		82BDFDAF2A404BA0002DBB89 /* AGPUSecondMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSecondMapViewController.swift; sourceTree = "<group>"; };
 		82BDFDB12A404C52002DBB89 /* MapRealisationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRealisationsListViewController.swift; sourceTree = "<group>"; };
 		82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClassProtocol.swift; sourceTree = "<group>"; };
@@ -93,18 +97,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		822158942A422A480088BDE5 /* Settings */ = {
+		822158942A422A480088BDE5 /* Settings MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				8221589A2A4233C50088BDE5 /* View */,
+				829AD6972A43817B0047609B /* ViewModel */,
 			);
-			path = Settings;
+			path = "Settings MVVM";
 			sourceTree = "<group>";
 		};
 		822158972A4231070088BDE5 /* Music */ = {
 			isa = PBXGroup;
 			children = (
 				822158982A42311E0088BDE5 /* MusicModel.swift */,
+				829AD6952A4380180047609B /* MusicList.swift */,
 			);
 			path = Music;
 			sourceTree = "<group>";
@@ -112,17 +118,9 @@
 		8221589A2A4233C50088BDE5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8221589B2A4233D00088BDE5 /* ViewController */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		8221589B2A4233D00088BDE5 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
 				822158952A422A650088BDE5 /* SettingsListViewController.swift */,
 			);
-			path = ViewController;
+			path = View;
 			sourceTree = "<group>";
 		};
 		8234B2FE2A3242CC0091810F /* Services */ = {
@@ -186,7 +184,6 @@
 				82808E9C2A31F2D400DEEB16 /* Sections */,
 				828CFA352A35F64700C7542D /* Web */,
 				829522DB2A38AEBE00329713 /* Map */,
-				822158942A422A480088BDE5 /* Settings */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -233,13 +230,14 @@
 		82808E872A31F12100DEEB16 /* AGPU */ = {
 			isa = PBXGroup;
 			children = (
-				827B62BD2A4236C5008D241E /* Music */,
 				8268886A2A34866D00434219 /* Models */,
 				8268885C2A33ACA800434219 /* CustomViews */,
 				82EF23D42A3DF09F004A7B9C /* Protocols */,
 				8234B2FE2A3242CC0091810F /* Services */,
 				8268885F2A33ACE800434219 /* Extensions */,
+				829AD69A2A4383160047609B /* Clean Architecture */,
 				826888672A33B87A00434219 /* Screens */,
+				827B62BD2A4236C5008D241E /* Music */,
 				82808E882A31F12100DEEB16 /* AppDelegate.swift */,
 				82808E8A2A31F12100DEEB16 /* SceneDelegate.swift */,
 				82808E912A31F12500DEEB16 /* Assets.xcassets */,
@@ -290,6 +288,22 @@
 				82BDFDAF2A404BA0002DBB89 /* AGPUSecondMapViewController.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		829AD6972A43817B0047609B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				829AD6982A43818A0047609B /* SettingsListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		829AD69A2A4383160047609B /* Clean Architecture */ = {
+			isa = PBXGroup;
+			children = (
+				822158942A422A480088BDE5 /* Settings MVVM */,
+			);
+			path = "Clean Architecture";
 			sourceTree = "<group>";
 		};
 		82EF23D02A3DED73004A7B9C /* Speech Recognition */ = {
@@ -457,6 +471,8 @@
 				828CFA3C2A3680C700C7542D /* String + Extensions.swift in Sources */,
 				82808E8D2A31F12100DEEB16 /* AGPUSectionsViewController.swift in Sources */,
 				82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */,
+				829AD6962A4380180047609B /* MusicList.swift in Sources */,
+				829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */,
 				82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */,
 				82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */,
 				826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */,
