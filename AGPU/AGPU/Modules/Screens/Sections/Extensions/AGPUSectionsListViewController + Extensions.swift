@@ -44,6 +44,12 @@ extension AGPUSectionsListViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         NotificationCenter.default.post(name: Notification.Name("subsection"), object:   AGPUSections.sections[indexPath.section].subsections[indexPath.row])
+        do {
+            let data = try JSONEncoder().encode(AGPUSections.sections[indexPath.section].subsections[indexPath.row])
+            UserDefaults.standard.setValue(data, forKey: "lastSubsection")
+        } catch {
+            print(error)
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.GoToWeb(url: AGPUSections.sections[indexPath.section].subsections[indexPath.row].url)
         }
