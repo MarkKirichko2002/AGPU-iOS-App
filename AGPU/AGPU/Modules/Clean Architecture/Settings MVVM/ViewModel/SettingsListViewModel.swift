@@ -49,7 +49,7 @@ class SettingsListViewModel: NSObject {
     }
     
     func isMusicSelected(index: Int)->UITableViewCell.AccessoryType {
-        let data = UserDefaults.loadData()
+        let data = UserDefaults.loadData(type: MusicModel.self, key: "music")
         if data?.id == MusicList.musicArray[index].id && data?.isChecked == true {
             return .checkmark
         } else {

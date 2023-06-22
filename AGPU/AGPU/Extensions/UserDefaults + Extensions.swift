@@ -9,16 +9,14 @@ import Foundation
 
 extension UserDefaults {
     
-    static func loadData()-> MusicModel? {
+    static func loadData<T: Decodable>(type: T.Type, key: String)-> T? {
         do {
-            if let data = UserDefaults.standard.data(forKey: "music") {
-                let music = try JSONDecoder().decode(MusicModel.self, from: data)
-                print(music)
-                return music
+            if let data = UserDefaults.standard.data(forKey: key) {
+                let object = try JSONDecoder().decode(T.self, from: data)
+                print(object)
+                return object
             }
-        } catch {
-            
-        }
+        } catch {}
         return nil
     }
 }

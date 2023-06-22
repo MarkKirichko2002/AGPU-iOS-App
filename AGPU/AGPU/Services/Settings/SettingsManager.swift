@@ -11,7 +11,7 @@ class SettingsManager: SettingsManagerProtocol {
     
    // MARK: - Relax Mode
    func checkRelaxModeSetting() {
-        let music = UserDefaults.loadData()
+        let music = UserDefaults.loadData(type: MusicModel.self, key: "music")
         if music?.isChecked == true {
             AudioPlayer.shared.PlaySound(resource: music?.fileName ?? "")
         }
