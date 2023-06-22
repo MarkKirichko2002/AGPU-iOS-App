@@ -162,13 +162,8 @@ class AGPUTabBarController: UITabBarController {
                             self.button.setImage(UIImage(named: subsection.icon), for: .normal)
                             self.animation.SpringAnimation(view: self.button)
                         }
-                        
-                        do {
-                            let data = try JSONEncoder().encode(subsection)
-                            UserDefaults.standard.setValue(data, forKey: "lastSubsection")
-                        } catch {
-                            print(error)
-                        }
+                                                
+                        UserDefaults.SaveData(object: subsection, key: "lastSubsection")
                         
                         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                             self.GoToWeb(url: subsection.url)
