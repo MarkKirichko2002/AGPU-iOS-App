@@ -74,11 +74,14 @@ class AGPUTabBarController: UITabBarController {
     
     // MARK: - Dynamic Button
     private func createMiddleButton() {
-        button.frame = CGRect.init(x: self.tabBar.center.x - 32, y: self.view.bounds.height - 90, width: 64, height: 64)
-        button.layer.cornerRadius = 33
         button.setImage(UIImage(named: "АГПУ"), for: .normal)
-        self.view.insertSubview(button, aboveSubview: self.tabBar)
-        button.addTarget(self, action:  #selector(AGPUTabBarController.VoiceCommands), for: .touchUpInside)
+        button.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
+        // Устанавливаем положение кнопки по середине TabBar
+        button.center = CGPoint(x: tabBar.frame.width / 2, y: tabBar.frame.height / 2 - 5)
+        // Назначаем действие для кнопки
+        button.addTarget(self, action: #selector(VoiceCommands), for: .touchUpInside)
+        // Добавляем кнопку на TabBar
+        tabBar.addSubview(button)
     }
     
     @objc private func VoiceCommands() {
