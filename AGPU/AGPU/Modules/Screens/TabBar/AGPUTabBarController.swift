@@ -36,6 +36,7 @@ class AGPUTabBarController: UITabBarController {
         ObserveWebScreen()
         settingsManager.checkAllSettings()
         ObserveRelaxMode()
+        becomeFirstResponder()
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -82,6 +83,30 @@ class AGPUTabBarController: UITabBarController {
         button.addTarget(self, action: #selector(VoiceCommands), for: .touchUpInside)
         // Добавляем кнопку на TabBar
         tabBar.addSubview(button)
+    }
+    
+    // MARK: - Shake To Recall
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        ShakeToRecall(motion: motion)
+    }
+    
+    private func ShakeToRecall(motion: UIEvent.EventSubtype) {
+        if motion == .motionShake {
+            if let subsection = UserDefaults.loadData(type: AGPUSubSectionModel.self, key: "lastSubsection") {
+                DispatchQueue.main.async {
+                    self.button.setImage(UIImage(named: "time.past"), for: .normal)
+                    self.animation.SpringAnimation(view: self.button)
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self.GoToWeb(url: subsection.url)
+                }
+            }
+        }
     }
     
     @objc private func VoiceCommands() {
@@ -138,6 +163,13 @@ class AGPUTabBarController: UITabBarController {
                             self.animation.SpringAnimation(view: self.button)
                         }
                         
+                        do {
+                            let data = try JSONEncoder().encode(subsection)
+                            UserDefaults.standard.setValue(data, forKey: "lastSubsection")
+                        } catch {
+                            print(error)
+                        }
+                        
                         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                             self.GoToWeb(url: subsection.url)
                         }
@@ -177,7 +209,11 @@ class AGPUTabBarController: UITabBarController {
     
     private func ObserveWebScreen() {
         NotificationCenter.default.addObserver(forName: Notification.Name("WebScreenWasClosed"), object: nil, queue: .main) { _ in
-            self.button.setImage(UIImage(named: "АГПУ"), for: .normal)
+            if self.isRecording {
+                self.button.setImage(UIImage(named: "mic"), for: .normal)
+            } else {
+                self.button.setImage(UIImage(named: "АГПУ"), for: .normal)
+            }
         }
     }
     
