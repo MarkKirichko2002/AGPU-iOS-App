@@ -20,7 +20,7 @@ class SettingsListViewModel: NSObject {
         NotificationCenter.default.post(name: Notification.Name("music"), object: MusicList.musicArray[index])
     }
     
-    func sectionsCount()->Int {
+    func sectionsCount()-> Int {
         return 1
     }
     
@@ -43,7 +43,7 @@ class SettingsListViewModel: NSObject {
         return MusicList.musicArray[index]
     }
     
-    func isMusicSelected(index: Int)->UITableViewCell.AccessoryType {
+    func isMusicSelected(index: Int)-> UITableViewCell.AccessoryType {
         let data = UserDefaults.loadData(type: MusicModel.self, key: "music")
         if data?.id == MusicList.musicArray[index].id && data?.isChecked == true {
             return .checkmark

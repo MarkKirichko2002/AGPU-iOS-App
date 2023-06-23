@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */; };
 		822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822158952A422A650088BDE5 /* SettingsListViewController.swift */; };
 		822158992A42311E0088BDE5 /* MusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822158982A42311E0088BDE5 /* MusicModel.swift */; };
 		8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234B2FF2A3242E10091810F /* SpeechRecognitionManager.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsListViewController + Extensions.swift"; sourceTree = "<group>"; };
 		822158952A422A650088BDE5 /* SettingsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewController.swift; sourceTree = "<group>"; };
 		822158982A42311E0088BDE5 /* MusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicModel.swift; sourceTree = "<group>"; };
 		8234B2FF2A3242E10091810F /* SpeechRecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManager.swift; sourceTree = "<group>"; };
@@ -111,11 +113,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		82194E532A459AF2009D2FB3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		822158942A422A480088BDE5 /* Settings MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				8221589A2A4233C50088BDE5 /* View */,
 				829AD6972A43817B0047609B /* ViewModel */,
+				82194E532A459AF2009D2FB3 /* Extensions */,
 			);
 			path = "Settings MVVM";
 			sourceTree = "<group>";
@@ -601,6 +612,7 @@
 				826888662A33B6E700434219 /* AGPUTabBarController.swift in Sources */,
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
 				82BDFDB02A404BA0002DBB89 /* AGPUSecondMapViewController.swift in Sources */,
+				82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
 				822158992A42311E0088BDE5 /* MusicModel.swift in Sources */,

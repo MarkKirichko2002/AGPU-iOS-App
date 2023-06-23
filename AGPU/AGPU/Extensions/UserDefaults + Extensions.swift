@@ -25,7 +25,9 @@ extension UserDefaults {
                 print(object)
                 return object
             }
-        } catch {}
+        } catch {
+            print(error)
+        }
         return nil
     }
 }
