@@ -15,14 +15,9 @@ class SettingsListViewModel: NSObject {
     
     func ToggleMusic(index: Int, isChecked: Bool) {
         MusicList.musicArray[index].isChecked = isChecked
-        do {
-            let data = try JSONEncoder().encode(MusicList.musicArray[index])
-            UserDefaults.standard.setValue(data, forKey: "music")
-            isChanged = true
-            NotificationCenter.default.post(name: Notification.Name("music"), object: MusicList.musicArray[index])
-        } catch {
-            print(error)
-        }
+        UserDefaults.SaveData(object: MusicList.musicArray[index], key: "music")
+        isChanged = true
+        NotificationCenter.default.post(name: Notification.Name("music"), object: MusicList.musicArray[index])
     }
     
     func sectionsCount()->Int {
