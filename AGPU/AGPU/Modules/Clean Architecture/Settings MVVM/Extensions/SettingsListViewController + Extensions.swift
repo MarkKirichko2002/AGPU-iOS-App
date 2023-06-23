@@ -21,6 +21,7 @@ extension SettingsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.accessoryType = viewModel.isMusicSelected(index: indexPath.row)
+        cell.tintColor = .systemGreen
         cell.textLabel?.text = "\(viewModel.musicItem(index: indexPath.row).id)) \(viewModel.musicItem(index: indexPath.row).name)"
         return cell
     }
