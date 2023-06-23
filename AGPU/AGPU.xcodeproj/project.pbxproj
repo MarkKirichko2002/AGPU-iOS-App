@@ -159,6 +159,31 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		8258214B2A46494E00CF0333 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				82808E882A31F12100DEEB16 /* AppDelegate.swift */,
+				82808E8A2A31F12100DEEB16 /* SceneDelegate.swift */,
+				82808E912A31F12500DEEB16 /* Assets.xcassets */,
+				82808E932A31F12500DEEB16 /* LaunchScreen.storyboard */,
+				82808E962A31F12500DEEB16 /* Info.plist */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
+		8258214C2A4649FE00CF0333 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				8268886A2A34866D00434219 /* Models */,
+				8268885C2A33ACA800434219 /* CustomViews */,
+				82EF23D42A3DF09F004A7B9C /* Protocols */,
+				8234B2FE2A3242CC0091810F /* Services */,
+				8268885F2A33ACE800434219 /* Extensions */,
+				8295489E2A43B0E9007DEBA0 /* Modules */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
 		826888502A33A8EE00434219 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,7 +249,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		827B62BD2A4236C5008D241E /* Music */ = {
+		827B62BD2A4236C5008D241E /* music */ = {
 			isa = PBXGroup;
 			children = (
 				827B62BE2A4236DE008D241E /* informatics music.mp3 */,
@@ -234,7 +259,7 @@
 				829AD68E2A42EC680047609B /* pre school music.mp3 */,
 				827B62C02A423A72008D241E /* spring.mp3 */,
 			);
-			path = Music;
+			path = music;
 			sourceTree = "<group>";
 		};
 		82808E7C2A31F12100DEEB16 = {
@@ -256,18 +281,8 @@
 		82808E872A31F12100DEEB16 /* AGPU */ = {
 			isa = PBXGroup;
 			children = (
-				8268886A2A34866D00434219 /* Models */,
-				8268885C2A33ACA800434219 /* CustomViews */,
-				82EF23D42A3DF09F004A7B9C /* Protocols */,
-				8234B2FE2A3242CC0091810F /* Services */,
-				8268885F2A33ACE800434219 /* Extensions */,
-				8295489E2A43B0E9007DEBA0 /* Modules */,
+				8258214C2A4649FE00CF0333 /* resources */,
 				8295489D2A43B0D3007DEBA0 /* sources */,
-				82808E882A31F12100DEEB16 /* AppDelegate.swift */,
-				82808E8A2A31F12100DEEB16 /* SceneDelegate.swift */,
-				82808E912A31F12500DEEB16 /* Assets.xcassets */,
-				82808E932A31F12500DEEB16 /* LaunchScreen.storyboard */,
-				82808E962A31F12500DEEB16 /* Info.plist */,
 			);
 			path = AGPU;
 			sourceTree = "<group>";
@@ -426,7 +441,8 @@
 		8295489D2A43B0D3007DEBA0 /* sources */ = {
 			isa = PBXGroup;
 			children = (
-				827B62BD2A4236C5008D241E /* Music */,
+				8258214B2A46494E00CF0333 /* app */,
+				827B62BD2A4236C5008D241E /* music */,
 			);
 			path = sources;
 			sourceTree = "<group>";
@@ -785,7 +801,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 265GKHT32M;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AGPU/Info.plist;
+				INFOPLIST_FILE = AGPU/sources/app/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "АГПУ";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
@@ -816,7 +832,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 265GKHT32M;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AGPU/Info.plist;
+				INFOPLIST_FILE = AGPU/sources/app/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "АГПУ";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
