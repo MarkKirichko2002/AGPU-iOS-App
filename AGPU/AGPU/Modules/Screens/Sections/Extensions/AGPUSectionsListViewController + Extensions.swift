@@ -7,8 +7,26 @@
 
 import UIKit
 
-// MARK: - UITableViewDelegate, UITableViewDataSource
-extension AGPUSectionsListViewController: UITableViewDelegate, UITableViewDataSource {
+// MARK: - UITableViewDataSource
+extension AGPUSectionsListViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return AGPUSections.sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return AGPUSections.sections[section].subsections.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AGPUSubSectionTableViewCell.identifier, for: indexPath) as? AGPUSubSectionTableViewCell else {return UITableViewCell()}
+        cell.configure(subsection: AGPUSections.sections[indexPath.section].subsections[indexPath.row])
+        return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension AGPUSectionsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
@@ -33,14 +51,6 @@ extension AGPUSectionsListViewController: UITableViewDelegate, UITableViewDataSo
         return 100
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return AGPUSections.sections.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return AGPUSections.sections[section].subsections.count
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let subsection = AGPUSections.sections[indexPath.section].subsections[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
@@ -49,11 +59,5 @@ extension AGPUSectionsListViewController: UITableViewDelegate, UITableViewDataSo
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.GoToWeb(url: subsection.url)
         }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: AGPUSubSectionTableViewCell.identifier, for: indexPath) as? AGPUSubSectionTableViewCell else {return UITableViewCell()}
-        cell.configure(subsection: AGPUSections.sections[indexPath.section].subsections[indexPath.row])
-        return cell
     }
 }
