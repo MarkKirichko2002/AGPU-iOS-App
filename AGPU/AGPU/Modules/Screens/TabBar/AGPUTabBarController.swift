@@ -17,12 +17,10 @@ class AGPUTabBarController: UITabBarController {
     private var isRecording = false
     
     // MARK: - Dynamic Button
-    private let button: UIButton = {
+    private let DynamicButton: UIButton = {
         let button = UIButton()
         button.imageView?.tintColor = .black
         button.imageView?.contentMode = .scaleAspectFill
-        button.layer.cornerRadius = button.frame.width / 2
-        button.clipsToBounds = true
         return button
     }()
     
@@ -75,14 +73,14 @@ class AGPUTabBarController: UITabBarController {
     
     // MARK: - Dynamic Button
     private func createMiddleButton() {
-        button.setImage(UIImage(named: "АГПУ"), for: .normal)
-        button.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
+        DynamicButton.setImage(UIImage(named: "АГПУ"), for: .normal)
+        DynamicButton.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
         // Устанавливаем положение кнопки по середине TabBar
-        button.center = CGPoint(x: tabBar.frame.width / 2, y: tabBar.frame.height / 2 - 5)
+        DynamicButton.center = CGPoint(x: tabBar.frame.width / 2, y: tabBar.frame.height / 2 - 5)
         // Назначаем действие для кнопки
-        button.addTarget(self, action: #selector(VoiceCommands), for: .touchUpInside)
+        DynamicButton.addTarget(self, action: #selector(VoiceCommands), for: .touchUpInside)
         // Добавляем кнопку на TabBar
-        tabBar.addSubview(button)
+        tabBar.addSubview(DynamicButton)
     }
     
     // MARK: - Shake To Recall
@@ -98,10 +96,9 @@ class AGPUTabBarController: UITabBarController {
         if motion == .motionShake {
             if let subsection = UserDefaults.loadData(type: AGPUSubSectionModel.self, key: "lastSubsection") {
                 DispatchQueue.main.async {
-                    self.button.setImage(UIImage(named: "time.past"), for: .normal)
-                    self.animation.SpringAnimation(view: self.button)
+                    self.DynamicButton.setImage(UIImage(named: "time.past"), for: .normal)
+                    self.animation.SpringAnimation(view: self.DynamicButton)
                 }
-                
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                     self.GoToWeb(url: subsection.url)
                 }
@@ -112,15 +109,15 @@ class AGPUTabBarController: UITabBarController {
     @objc private func VoiceCommands() {
         isRecording = !isRecording
         if isRecording {
-            button.setImage(UIImage(named: "mic"), for: .normal)
-            animation.SpringAnimation(view: self.button)
+            DynamicButton.setImage(UIImage(named: "mic"), for: .normal)
+            animation.SpringAnimation(view: self.DynamicButton)
             speechRecognitionManager.startSpeechRecognition()
             speechRecognitionManager.registerSpeechRecognitionHandler { text in
                 self.checkVoiceCommands(text: text)
             }
         } else {
-            button.setImage(UIImage(named: "АГПУ"), for: .normal)
-            animation.SpringAnimation(view: self.button)
+            DynamicButton.setImage(UIImage(named: "АГПУ"), for: .normal)
+            animation.SpringAnimation(view: self.DynamicButton)
             speechRecognitionManager.cancelSpeechRecognition()
         }
     }
@@ -137,8 +134,8 @@ class AGPUTabBarController: UITabBarController {
                     NotificationCenter.default.post(name: Notification.Name("ScrollToSection"), object: section.id)
                     
                     DispatchQueue.main.async {
-                        self.button.setImage(UIImage(named: section.icon), for: .normal)
-                        self.animation.SpringAnimation(view: self.button)
+                        self.DynamicButton.setImage(UIImage(named: section.icon), for: .normal)
+                        self.animation.SpringAnimation(view: self.DynamicButton)
                     }
                     
                     speechRecognitionManager.cancelSpeechRecognition()
@@ -159,8 +156,8 @@ class AGPUTabBarController: UITabBarController {
                     if text.lowercased().contains(subsection.voiceCommand) {
                         
                         DispatchQueue.main.async {
-                            self.button.setImage(UIImage(named: subsection.icon), for: .normal)
-                            self.animation.SpringAnimation(view: self.button)
+                            self.DynamicButton.setImage(UIImage(named: subsection.icon), for: .normal)
+                            self.animation.SpringAnimation(view: self.DynamicButton)
                         }
                                                 
                         UserDefaults.SaveData(object: subsection, key: "lastSubsection")
@@ -182,22 +179,22 @@ class AGPUTabBarController: UITabBarController {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.speechRecognitionManager.startSpeechRecognition()
-                self.button.setImage(UIImage(named: "mic"), for: .normal)
+                self.DynamicButton.setImage(UIImage(named: "mic"), for: .normal)
                 self.dismiss(animated: true)
             }
         }
         
         // выключить микрофон
         if text.lowercased().contains("стоп") {
-            button.sendActions(for: .touchUpInside)
+            DynamicButton.sendActions(for: .touchUpInside)
         }
     }
     
     private func ObserveSubSection() {
         NotificationCenter.default.addObserver(forName: Notification.Name("subsection"), object: nil, queue: .main) { notification in
             if let subsection = notification.object as? AGPUSubSectionModel {
-                self.button.setImage(UIImage(named: subsection.icon), for: .normal)
-                self.animation.SpringAnimation(view: self.button)
+                self.DynamicButton.setImage(UIImage(named: subsection.icon), for: .normal)
+                self.animation.SpringAnimation(view: self.DynamicButton)
             }
         }
     }
@@ -205,9 +202,9 @@ class AGPUTabBarController: UITabBarController {
     private func ObserveWebScreen() {
         NotificationCenter.default.addObserver(forName: Notification.Name("WebScreenWasClosed"), object: nil, queue: .main) { _ in
             if self.isRecording {
-                self.button.setImage(UIImage(named: "mic"), for: .normal)
+                self.DynamicButton.setImage(UIImage(named: "mic"), for: .normal)
             } else {
-                self.button.setImage(UIImage(named: "АГПУ"), for: .normal)
+                self.DynamicButton.setImage(UIImage(named: "АГПУ"), for: .normal)
             }
         }
     }
@@ -219,8 +216,8 @@ class AGPUTabBarController: UITabBarController {
                     AudioPlayer.shared.PlaySound(resource: music.fileName)
                 } else {
                     AudioPlayer.shared.StopSound(resource: music.fileName)
-                    self.button.setImage(UIImage(named: "АГПУ"), for: .normal)
-                    self.animation.StopRotateAnimation(view: self.button)
+                    self.DynamicButton.setImage(UIImage(named: "АГПУ"), for: .normal)
+                    self.animation.StopRotateAnimation(view: self.DynamicButton)
                 }
             }
         }

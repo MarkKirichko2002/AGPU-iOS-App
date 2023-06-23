@@ -26,13 +26,7 @@ class WebViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(WVWEBview)
-        view = WVWEBview
-        WVWEBview.allowsBackForwardNavigationGestures = true
-        DispatchQueue.main.async {
-            let request = URLRequest(url: self.url)
-            self.WVWEBview.load(request)
-        }
+        SetUpWebView()
         SetUpNavigation()
         ObserveScroll()
     }
@@ -44,6 +38,16 @@ class WebViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    private func SetUpWebView() {
+        view.addSubview(WVWEBview)
+        view = WVWEBview
+        WVWEBview.allowsBackForwardNavigationGestures = true
+        let request = URLRequest(url: self.url)
+        DispatchQueue.main.async {
+            self.WVWEBview.load(request)
+        }
     }
     
     private func SetUpNavigation() {
@@ -74,7 +78,9 @@ class WebViewController: UIViewController {
     }
     
     private func ObserveScroll() {
-        var position = 0
+        
+        var positionX = 0
+        var positionY = 0
         var scrollPosition = ""
         
         NotificationCenter.default.addObserver(forName: Notification.Name("scroll"), object: nil, queue: .main) { notification in
@@ -83,12 +89,18 @@ class WebViewController: UIViewController {
             print(scrollPosition)
             
             if scrollPosition == "вверх" {
-                position -= 20
+                positionY -= 20
             } else if scrollPosition == "вниз" {
-                position += 20
+                positionY += 20
             }
             
-            self.WVWEBview.scrollView.setContentOffset(CGPoint(x: 0, y: position), animated: true)
+            if scrollPosition.contains("лево") {
+                positionX -= 10
+            } else if scrollPosition.contains("право") {
+                positionX += 10
+            }
+            
+            self.WVWEBview.scrollView.setContentOffset(CGPoint(x: positionX, y: positionY), animated: true)
         }
     }
 }

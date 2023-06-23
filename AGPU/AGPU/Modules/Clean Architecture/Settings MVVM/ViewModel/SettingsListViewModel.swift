@@ -13,13 +13,6 @@ class SettingsListViewModel: NSObject {
     
     var observation: NSKeyValueObservation?
     
-    func ToggleMusic(index: Int, isChecked: Bool) {
-        MusicList.musicArray[index].isChecked = isChecked
-        UserDefaults.SaveData(object: MusicList.musicArray[index], key: "music")
-        isChanged = true
-        NotificationCenter.default.post(name: Notification.Name("music"), object: MusicList.musicArray[index])
-    }
-    
     func sectionsCount()-> Int {
         return 1
     }
@@ -41,6 +34,14 @@ class SettingsListViewModel: NSObject {
     
     func musicItem(index: Int)-> MusicModel {
         return MusicList.musicArray[index]
+    }
+    
+    // MARK: - Relax Mode
+    func ToggleMusic(index: Int, isChecked: Bool) {
+        MusicList.musicArray[index].isChecked = isChecked
+        UserDefaults.SaveData(object: MusicList.musicArray[index], key: "music")
+        isChanged = true
+        NotificationCenter.default.post(name: Notification.Name("music"), object: MusicList.musicArray[index])
     }
     
     func isMusicSelected(index: Int)-> UITableViewCell.AccessoryType {
