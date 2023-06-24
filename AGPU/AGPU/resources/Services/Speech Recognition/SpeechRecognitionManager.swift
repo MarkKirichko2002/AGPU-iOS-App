@@ -41,6 +41,7 @@ class SpeechRecognitionManager: SpeechRecognitionManagerProtocol {
             if let res = result?.bestTranscription {
                 DispatchQueue.main.async {
                     self?.speechRecognitionHandler?(res.formattedString)
+                    print(res.formattedString.lowercased())
              }
           } else if let error = error {
               print("\(error.localizedDescription)")
