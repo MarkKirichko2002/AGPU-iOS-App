@@ -41,9 +41,10 @@ extension AGPUSectionsListViewController: UITableViewDelegate {
         let label = UILabel(frame: CGRect(x: 30 + imageView.frame.size.width, y: 0,
                                           width: header.frame.size.width - 15 - imageView.frame.size.width,
                                           height: header.frame.size.height-10))
+        label.numberOfLines = 0
         header.addSubview(label)
         label.text = AGPUSections.sections[section].name
-        label.font = .systemFont(ofSize: 17, weight: .black)
+        label.font = .systemFont(ofSize: 16, weight: .black)
         return header
     }
     
