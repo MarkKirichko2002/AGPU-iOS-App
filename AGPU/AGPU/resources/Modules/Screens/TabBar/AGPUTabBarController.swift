@@ -92,17 +92,21 @@ class AGPUTabBarController: UITabBarController {
         ShakeToRecall(motion: motion)
     }
     
+    private func ShakeToRecall() {
+        if let subsection = UserDefaults.loadData(type: AGPUSubSectionModel.self, key: "lastSubsection") {
+            DispatchQueue.main.async {
+                self.DynamicButton.setImage(UIImage(named: "time.past"), for: .normal)
+                self.animation.SpringAnimation(view: self.DynamicButton)
+            }
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.GoToWeb(url: subsection.url)
+            }
+        }
+    }
+    
     private func ShakeToRecall(motion: UIEvent.EventSubtype) {
         if motion == .motionShake {
-            if let subsection = UserDefaults.loadData(type: AGPUSubSectionModel.self, key: "lastSubsection") {
-                DispatchQueue.main.async {
-                    self.DynamicButton.setImage(UIImage(named: "time.past"), for: .normal)
-                    self.animation.SpringAnimation(view: self.DynamicButton)
-                }
-                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                    self.GoToWeb(url: subsection.url)
-                }
-            }
+            ShakeToRecall()
         }
     }
     
@@ -216,8 +220,6 @@ class AGPUTabBarController: UITabBarController {
                     AudioPlayer.shared.PlaySound(resource: music.fileName)
                 } else {
                     AudioPlayer.shared.StopSound(resource: music.fileName)
-                    self.DynamicButton.setImage(UIImage(named: "АГПУ"), for: .normal)
-                    self.animation.StopRotateAnimation(view: self.DynamicButton)
                 }
             }
         }
