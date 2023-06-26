@@ -9,5 +9,6 @@ import Foundation
 
 protocol SettingsManagerProtocol {
     func checkRelaxModeSetting()
+    func checkCurrentIcon()-> String?
     func checkAllSettings()
 }

@@ -17,6 +17,12 @@ class SettingsManager: SettingsManagerProtocol {
         }
     }
     
+    //MARK: - Elected Faculty
+    func checkCurrentIcon()-> String? {
+        let icon = UserDefaults.loadData(type: AlternateIconModel.self, key: "icon")
+        return icon?.icon ?? "АГПУ"
+    }
+    
     // проверить все настройки
     func checkAllSettings() {
         checkRelaxModeSetting()
