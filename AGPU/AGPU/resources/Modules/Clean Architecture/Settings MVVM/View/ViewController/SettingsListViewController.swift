@@ -23,6 +23,7 @@ class SettingsListViewController: UIViewController {
         view.addSubview(tableView)
         tableView.frame = view.bounds
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UINib(nibName: CustomIconTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CustomIconTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
     }

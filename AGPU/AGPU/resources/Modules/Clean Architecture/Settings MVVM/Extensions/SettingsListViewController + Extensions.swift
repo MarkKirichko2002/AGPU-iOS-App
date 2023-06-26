@@ -15,15 +15,11 @@ extension SettingsListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.musicListCount()
+        return viewModel.numberOfRowsInSection(section: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.accessoryType = viewModel.isMusicSelected(index: indexPath.row)
-        cell.tintColor = .systemGreen
-        cell.textLabel?.text = "\(viewModel.musicItem(index: indexPath.row).id)) \(viewModel.musicItem(index: indexPath.row).name)"
-        return cell
+        return viewModel.cellForRowAt(tableView: tableView, indexPath: indexPath)
     }
 }
 
@@ -55,5 +51,6 @@ extension SettingsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        viewModel.DidSelectRow(at: indexPath)
     }
 }

@@ -14,7 +14,50 @@ class SettingsListViewModel: NSObject {
     var observation: NSKeyValueObservation?
     
     func sectionsCount()-> Int {
-        return 1
+        return 2
+    }
+    
+    func numberOfRowsInSection(section: Int)-> Int {
+        switch section {
+        case 0:
+            return musicListCount()
+        case 1:
+            return iconsListCount()
+        default:
+            return 0
+        }
+    }
+    
+    func cellForRowAt(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            cell.accessoryType = isMusicSelected(index: indexPath.row)
+            cell.tintColor = .systemGreen
+            cell.textLabel?.text = "\(musicItem(index: indexPath.row).id)) \(musicItem(index: indexPath.row).name)"
+            return cell
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomIconTableViewCell.identifier, for: indexPath) as? CustomIconTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.accessoryType = isIconSelected(index: indexPath.row)
+            cell.tintColor = .systemGreen
+            cell.configure(icon: customIconItem(index: indexPath.row))
+            return cell
+        default:
+            return UITableViewCell()
+        }
+    }
+    
+    func DidSelectRow(at indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            print("музыка")
+        case 1:
+            ChangeIcon(index: indexPath.row)
+        default:
+            break
+        }
     }
     
     func titleForSection(_ section: Int)-> String {
@@ -24,7 +67,7 @@ class SettingsListViewModel: NSObject {
             return "Релакс Режим"
             
         default:
-            return ""
+            return "Своя Иконка"
         }
     }
     
@@ -34,6 +77,14 @@ class SettingsListViewModel: NSObject {
     
     func musicItem(index: Int)-> MusicModel {
         return MusicList.musicArray[index]
+    }
+    
+    func iconsListCount()-> Int {
+        return AlternateIcons.icons.count
+    }
+    
+    func customIconItem(index: Int)-> AlternateIconModel {
+        return AlternateIcons.icons[index]
     }
     
     // MARK: - Relax Mode
@@ -47,6 +98,24 @@ class SettingsListViewModel: NSObject {
     func isMusicSelected(index: Int)-> UITableViewCell.AccessoryType {
         let data = UserDefaults.loadData(type: MusicModel.self, key: "music")
         if data?.id == MusicList.musicArray[index].id && data?.isChecked == true {
+            return .checkmark
+        } else {
+            return .none
+        }
+    }
+    
+    // MARK: - Custom Icon
+    func ChangeIcon(index: Int) {
+        var icon = AlternateIcons.icons[index]
+        icon.isSelected = true
+        UIApplication.shared.setAlternateIconName(icon.appIcon)
+        UserDefaults.SaveData(object: icon, key: "icon")
+        isChanged = true
+    }
+    
+    func isIconSelected(index: Int)-> UITableViewCell.AccessoryType {
+        let data = UserDefaults.loadData(type: AlternateIconModel.self, key: "icon")
+        if data?.id == AlternateIcons.icons[index].id && data?.isSelected == true {
             return .checkmark
         } else {
             return .none
