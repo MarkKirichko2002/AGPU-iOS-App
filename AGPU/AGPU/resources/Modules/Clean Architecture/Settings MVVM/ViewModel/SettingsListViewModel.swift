@@ -67,7 +67,7 @@ class SettingsListViewModel: NSObject {
             return "Релакс Режим"
             
         default:
-            return "Своя Иконка"
+            return "Избранный Факультет"
         }
     }
     
@@ -104,11 +104,12 @@ class SettingsListViewModel: NSObject {
         }
     }
     
-    // MARK: - Custom Icon
+    // MARK: - Elected Faculty
     func ChangeIcon(index: Int) {
         var icon = AlternateIcons.icons[index]
         icon.isSelected = true
         UIApplication.shared.setAlternateIconName(icon.appIcon)
+        NotificationCenter.default.post(name: Notification.Name("icon"), object: icon)
         UserDefaults.SaveData(object: icon, key: "icon")
         isChanged = true
     }

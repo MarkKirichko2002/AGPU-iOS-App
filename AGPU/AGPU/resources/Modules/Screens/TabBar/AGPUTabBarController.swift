@@ -34,6 +34,7 @@ class AGPUTabBarController: UITabBarController {
         ObserveWebScreen()
         settingsManager.checkAllSettings()
         ObserveRelaxMode()
+        ObserveChangeIcon()
         becomeFirstResponder()
     }
     
@@ -73,7 +74,7 @@ class AGPUTabBarController: UITabBarController {
     
     // MARK: - Dynamic Button
     private func createMiddleButton() {
-        DynamicButton.setImage(UIImage(named: "АГПУ"), for: .normal)
+        DynamicButton.setImage(UIImage(named: settingsManager.checkCurrentIcon() ?? "АГПУ"), for: .normal)
         DynamicButton.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
         // Устанавливаем положение кнопки по середине TabBar
         DynamicButton.center = CGPoint(x: tabBar.frame.width / 2, y: tabBar.frame.height / 2 - 5)
@@ -120,7 +121,7 @@ class AGPUTabBarController: UITabBarController {
                 self.checkVoiceCommands(text: text)
             }
         } else {
-            DynamicButton.setImage(UIImage(named: "АГПУ"), for: .normal)
+            DynamicButton.setImage(UIImage(named: settingsManager.checkCurrentIcon() ?? "АГПУ"), for: .normal)
             animation.SpringAnimation(view: self.DynamicButton)
             speechRecognitionManager.cancelSpeechRecognition()
         }
@@ -208,11 +209,12 @@ class AGPUTabBarController: UITabBarController {
             if self.isRecording {
                 self.DynamicButton.setImage(UIImage(named: "mic"), for: .normal)
             } else {
-                self.DynamicButton.setImage(UIImage(named: "АГПУ"), for: .normal)
+                self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon() ?? "АГПУ"), for: .normal)
             }
         }
     }
     
+    // MARK: - Relax Mode
     private func ObserveRelaxMode() {
         NotificationCenter.default.addObserver(forName: Notification.Name("music"), object: nil, queue: .main) { notification in
             if let music = notification.object as? MusicModel {
@@ -221,6 +223,16 @@ class AGPUTabBarController: UITabBarController {
                 } else {
                     AudioPlayer.shared.StopSound(resource: music.fileName)
                 }
+            }
+        }
+    }
+    
+    // MARK: - Elected Faculty
+    private func ObserveChangeIcon() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("icon"), object: nil, queue: .main) { notification in
+            if let icon = notification.object as? AlternateIconModel {
+                self.DynamicButton.setImage(UIImage(named: icon.icon), for: .normal)
+                self.animation.SpringAnimation(view: self.DynamicButton)
             }
         }
     }
