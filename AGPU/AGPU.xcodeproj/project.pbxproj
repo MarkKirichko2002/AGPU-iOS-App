@@ -23,7 +23,6 @@
 		826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888682A3482DF00434219 /* AGPUSubSections.swift */; };
 		827B62BF2A4236DE008D241E /* informatics music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 827B62BE2A4236DE008D241E /* informatics music.mp3 */; };
 		827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B62C22A425166008D241E /* UserDefaults + Extensions.swift */; };
-		827B62C52A425D98008D241E /* literature music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 827B62C42A425D98008D241E /* literature music.mp3 */; };
 		82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E882A31F12100DEEB16 /* AppDelegate.swift */; };
 		82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E8A2A31F12100DEEB16 /* SceneDelegate.swift */; };
 		82808E8D2A31F12100DEEB16 /* AGPUSectionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E8C2A31F12100DEEB16 /* AGPUSectionsListViewController.swift */; };
@@ -32,6 +31,8 @@
 		82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E9D2A31F2F800DEEB16 /* AGPUSectionModel.swift */; };
 		82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E9F2A31F44500DEEB16 /* AGPUSubSectionModel.swift */; };
 		82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808EA82A32236E00DEEB16 /* AGPUSections.swift */; };
+		82868B892A49BD5F00F4F7A5 /* science music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82868B882A49BD5F00F4F7A5 /* science music.mp3 */; };
+		82868B8B2A49BE9600F4F7A5 /* philology music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82868B8A2A49BE9600F4F7A5 /* philology music.mp3 */; };
 		828CFA372A35F65700C7542D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA362A35F65700C7542D /* WebViewController.swift */; };
 		828CFA3C2A3680C700C7542D /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA3B2A3680C700C7542D /* String + Extensions.swift */; };
 		829522DD2A38AED900329713 /* AGPUMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829522DC2A38AED900329713 /* AGPUMapViewController.swift */; };
@@ -72,7 +73,6 @@
 		826888682A3482DF00434219 /* AGPUSubSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSections.swift; sourceTree = "<group>"; };
 		827B62BE2A4236DE008D241E /* informatics music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "informatics music.mp3"; sourceTree = "<group>"; };
 		827B62C22A425166008D241E /* UserDefaults + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + Extensions.swift"; sourceTree = "<group>"; };
-		827B62C42A425D98008D241E /* literature music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "literature music.mp3"; sourceTree = "<group>"; };
 		82808E852A31F12100DEEB16 /* AGPU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGPU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82808E882A31F12100DEEB16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82808E8A2A31F12100DEEB16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +83,8 @@
 		82808E9D2A31F2F800DEEB16 /* AGPUSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSectionModel.swift; sourceTree = "<group>"; };
 		82808E9F2A31F44500DEEB16 /* AGPUSubSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSectionModel.swift; sourceTree = "<group>"; };
 		82808EA82A32236E00DEEB16 /* AGPUSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSections.swift; sourceTree = "<group>"; };
+		82868B882A49BD5F00F4F7A5 /* science music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "science music.mp3"; sourceTree = "<group>"; };
+		82868B8A2A49BE9600F4F7A5 /* philology music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "philology music.mp3"; sourceTree = "<group>"; };
 		828CFA362A35F65700C7542D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		828CFA3B2A3680C700C7542D /* String + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extensions.swift"; sourceTree = "<group>"; };
 		829522DC2A38AED900329713 /* AGPUMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUMapViewController.swift; sourceTree = "<group>"; };
@@ -284,10 +286,11 @@
 		827B62BD2A4236C5008D241E /* music */ = {
 			isa = PBXGroup;
 			children = (
+				82868B8A2A49BE9600F4F7A5 /* philology music.mp3 */,
 				827B62BE2A4236DE008D241E /* informatics music.mp3 */,
-				827B62C42A425D98008D241E /* literature music.mp3 */,
-				829AD68C2A42EA020047609B /* history music.mp3 */,
 				829AD68E2A42EC680047609B /* pre school music.mp3 */,
+				829AD68C2A42EA020047609B /* history music.mp3 */,
+				82868B882A49BD5F00F4F7A5 /* science music.mp3 */,
 			);
 			path = music;
 			sourceTree = "<group>";
@@ -637,12 +640,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82868B8B2A49BE9600F4F7A5 /* philology music.mp3 in Resources */,
 				829AD68D2A42EA020047609B /* history music.mp3 in Resources */,
 				82808E952A31F12500DEEB16 /* LaunchScreen.storyboard in Resources */,
 				829AD68F2A42EC680047609B /* pre school music.mp3 in Resources */,
+				82868B892A49BD5F00F4F7A5 /* science music.mp3 in Resources */,
 				82320D892A491FBC00ECADEE /* CustomIconTableViewCell.xib in Resources */,
 				827B62BF2A4236DE008D241E /* informatics music.mp3 in Resources */,
-				827B62C52A425D98008D241E /* literature music.mp3 in Resources */,
 				82808E922A31F12500DEEB16 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
