@@ -116,7 +116,7 @@ class AGPUTabBarController: UITabBarController {
         if isRecording {
             DynamicButton.setImage(UIImage(named: "mic"), for: .normal)
             animation.SpringAnimation(view: self.DynamicButton)
-            speechRecognitionManager.startSpeechRecognition()
+            speechRecognitionManager.startRecognize()
             speechRecognitionManager.registerSpeechRecognitionHandler { text in
                 self.checkVoiceCommands(text: text)
             }
@@ -146,7 +146,7 @@ class AGPUTabBarController: UITabBarController {
                     speechRecognitionManager.cancelSpeechRecognition()
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        self.speechRecognitionManager.startSpeechRecognition()
+                        self.speechRecognitionManager.startRecognize()
                     }
                 }
             }
@@ -183,7 +183,7 @@ class AGPUTabBarController: UITabBarController {
             speechRecognitionManager.cancelSpeechRecognition()
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.speechRecognitionManager.startSpeechRecognition()
+                self.speechRecognitionManager.startRecognize()
                 self.DynamicButton.setImage(UIImage(named: "mic"), for: .normal)
                 self.dismiss(animated: true)
             }
