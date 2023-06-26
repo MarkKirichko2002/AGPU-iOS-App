@@ -19,6 +19,23 @@ class SpeechRecognitionManager: SpeechRecognitionManagerProtocol {
         self.speechRecognitionHandler = block
     }
     
+    func startRecognize() {
+        if startRecording() {
+            startSpeechRecognition()
+        } else {}
+    }
+    
+    func startRecording() -> Bool {
+        do {
+            try? AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .default,
+            policy: .default, options: .defaultToSpeaker)
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+    }
+    
     func startSpeechRecognition() {
         
         let node = audioEngine.inputNode
