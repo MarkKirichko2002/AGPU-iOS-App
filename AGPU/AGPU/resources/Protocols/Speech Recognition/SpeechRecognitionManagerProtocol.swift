@@ -11,5 +11,4 @@ protocol SpeechRecognitionManagerProtocol: AnyObject {
     func registerSpeechRecognitionHandler(block: @escaping(String)->Void)
     func startSpeechRecognition()
     func cancelSpeechRecognition()
-    func configureAudioSession()
 }

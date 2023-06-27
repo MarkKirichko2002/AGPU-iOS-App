@@ -23,6 +23,7 @@
 		826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888682A3482DF00434219 /* AGPUSubSections.swift */; };
 		827B62BF2A4236DE008D241E /* informatics music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 827B62BE2A4236DE008D241E /* informatics music.mp3 */; };
 		827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B62C22A425166008D241E /* UserDefaults + Extensions.swift */; };
+		827F0FFA2A4B2D7E00C481E4 /* AGPUMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827F0FF92A4B2D7E00C481E4 /* AGPUMainViewController.swift */; };
 		82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E882A31F12100DEEB16 /* AppDelegate.swift */; };
 		82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E8A2A31F12100DEEB16 /* SceneDelegate.swift */; };
 		82808E8D2A31F12100DEEB16 /* AGPUSectionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E8C2A31F12100DEEB16 /* AGPUSectionsListViewController.swift */; };
@@ -73,6 +74,7 @@
 		826888682A3482DF00434219 /* AGPUSubSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSections.swift; sourceTree = "<group>"; };
 		827B62BE2A4236DE008D241E /* informatics music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "informatics music.mp3"; sourceTree = "<group>"; };
 		827B62C22A425166008D241E /* UserDefaults + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + Extensions.swift"; sourceTree = "<group>"; };
+		827F0FF92A4B2D7E00C481E4 /* AGPUMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUMainViewController.swift; sourceTree = "<group>"; };
 		82808E852A31F12100DEEB16 /* AGPU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGPU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82808E882A31F12100DEEB16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82808E8A2A31F12100DEEB16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 			children = (
 				826888562A33AB3C00434219 /* Splash Screen */,
 				828CFA342A35F62400C7542D /* TabBar */,
+				827F0FF82A4B2D4C00C481E4 /* Main Screen */,
 				82808E9C2A31F2D400DEEB16 /* Sections */,
 				828CFA352A35F64700C7542D /* Web */,
 				829522DB2A38AEBE00329713 /* Map */,
@@ -293,6 +296,14 @@
 				82868B882A49BD5F00F4F7A5 /* science music.mp3 */,
 			);
 			path = music;
+			sourceTree = "<group>";
+		};
+		827F0FF82A4B2D4C00C481E4 /* Main Screen */ = {
+			isa = PBXGroup;
+			children = (
+				827F0FF92A4B2D7E00C481E4 /* AGPUMainViewController.swift */,
+			);
+			path = "Main Screen";
 			sourceTree = "<group>";
 		};
 		82808E7C2A31F12100DEEB16 = {
@@ -674,6 +685,7 @@
 				829548862A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift in Sources */,
 				829548832A439C4F007DEBA0 /* AudioPlayerProtocol.swift in Sources */,
 				828CFA3C2A3680C700C7542D /* String + Extensions.swift in Sources */,
+				827F0FFA2A4B2D7E00C481E4 /* AGPUMainViewController.swift in Sources */,
 				82808E8D2A31F12100DEEB16 /* AGPUSectionsListViewController.swift in Sources */,
 				82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */,
 				8295488D2A439ED2007DEBA0 /* AGPUMapViewController + Extensions.swift in Sources */,

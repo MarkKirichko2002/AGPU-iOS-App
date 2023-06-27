@@ -44,7 +44,7 @@ class AGPUTabBarController: UITabBarController {
         
     private func setUpTabs() {
         // главное
-        let mainVC = WebViewController(url: URL(string: "http://test.agpu.net/")!)
+        let mainVC = AGPUMainViewController(url: URL(string: "http://test.agpu.net/")!)
         // кнопка
         let middleButton = UIViewController()
         // разделы
@@ -210,6 +210,7 @@ class AGPUTabBarController: UITabBarController {
                 self.DynamicButton.setImage(UIImage(named: "mic"), for: .normal)
             } else {
                 self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon() ?? "АГПУ"), for: .normal)
+                self.animation.SpringAnimation(view: self.DynamicButton)
             }
         }
     }

@@ -41,19 +41,19 @@ class WebViewController: UIViewController {
     }
     
     private func SetUpWebView() {
+        let request = URLRequest(url: self.url)
         view.addSubview(WVWEBview)
         view = WVWEBview
         WVWEBview.allowsBackForwardNavigationGestures = true
-        let request = URLRequest(url: self.url)
         DispatchQueue.main.async {
             self.WVWEBview.load(request)
         }
     }
     
     private func SetUpNavigation() {
-        let backbutton = UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
+        let backbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
         backbutton.tintColor = .black
-        let forwardbutton = UIBarButtonItem(image: UIImage(systemName: "arrow.forward"), style: .plain, target: self, action: #selector(forwardButtonTapped))
+        let forwardbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.right"), style: .plain, target: self, action: #selector(forwardButtonTapped))
         forwardbutton.tintColor = .black
         let closebutton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeButtonTapped))
         closebutton.tintColor = .black
