@@ -92,12 +92,10 @@ class SettingsListViewModel: NSObject {
         MusicList.musicArray[index].isChecked = isChecked
         UserDefaults.SaveData(object: MusicList.musicArray[index], key: "music") {
             self.isChanged = true
-            if let music = UserDefaults.loadData(type: MusicModel.self, key: "music") {
-                if music.isChecked {
-                    AudioPlayer.shared.PlaySound(resource: music.fileName)
-                } else {
-                    AudioPlayer.shared.StopSound(resource: music.fileName)
-                }
+            if MusicList.musicArray[index].isChecked {
+                AudioPlayer.shared.PlaySound(resource: MusicList.musicArray[index].fileName)
+            } else {
+                AudioPlayer.shared.StopSound(resource: MusicList.musicArray[index].fileName)
             }
         }
     }
