@@ -72,13 +72,4 @@ class SpeechRecognitionManager: SpeechRecognitionManagerProtocol {
         request.endAudio()
         audioEngine.inputNode.removeTap(onBus: 0)
     }
-    
-    func configureAudioSession() {
-        do {
-            try? AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .default,
-            policy: .default, options: .defaultToSpeaker)
-        } catch {
-            print(error)
-        }
-    }
 }
