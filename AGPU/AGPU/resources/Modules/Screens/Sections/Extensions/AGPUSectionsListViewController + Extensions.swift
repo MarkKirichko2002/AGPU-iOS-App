@@ -56,7 +56,9 @@ extension AGPUSectionsListViewController: UITableViewDelegate {
         let subsection = AGPUSections.sections[indexPath.section].subsections[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
         NotificationCenter.default.post(name: Notification.Name("subsection"), object: subsection)
-        UserDefaults.SaveData(object: subsection, key: "lastSubsection")
+        UserDefaults.SaveData(object: subsection, key: "lastSubsection") {
+            print("Сохранено")
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.GoToWeb(url: subsection.url)
         }

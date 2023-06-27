@@ -28,7 +28,15 @@ extension AGPUSecondMapViewController: MKMapViewDelegate {
         {
             let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: annotation.coordinate, addressDictionary: nil))
             mapItem.name = annotation.title ?? ""
-            mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+            let yes = UIAlertAction(title: "да", style: .default) { _ in
+                mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+            }
+            let cancel = UIAlertAction(title: "нет", style: .default) { _ in}
+            self.ShowAlert(
+                title: "Вы хотите начать путь до: \"\(mapItem.name ?? "")\"?",
+                message: "",
+                actions: [cancel, yes]
+            )
         }
     }
 }

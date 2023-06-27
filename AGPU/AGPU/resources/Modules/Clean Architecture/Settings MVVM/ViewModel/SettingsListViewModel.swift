@@ -90,13 +90,14 @@ class SettingsListViewModel: NSObject {
     // MARK: - Relax Mode
     func ToggleMusic(index: Int, isChecked: Bool) {
         MusicList.musicArray[index].isChecked = isChecked
-        UserDefaults.SaveData(object: MusicList.musicArray[index], key: "music")
-        isChanged = true
-        if let music = UserDefaults.loadData(type: MusicModel.self, key: "music") {
-            if music.isChecked {
-                AudioPlayer.shared.PlaySound(resource: music.fileName)
-            } else {
-                AudioPlayer.shared.StopSound(resource: music.fileName)
+        UserDefaults.SaveData(object: MusicList.musicArray[index], key: "music") {
+            self.isChanged = true
+            if let music = UserDefaults.loadData(type: MusicModel.self, key: "music") {
+                if music.isChecked {
+                    AudioPlayer.shared.PlaySound(resource: music.fileName)
+                } else {
+                    AudioPlayer.shared.StopSound(resource: music.fileName)
+                }
             }
         }
     }
@@ -116,8 +117,9 @@ class SettingsListViewModel: NSObject {
         icon.isSelected = true
         UIApplication.shared.setAlternateIconName(icon.appIcon)
         NotificationCenter.default.post(name: Notification.Name("icon"), object: icon)
-        UserDefaults.SaveData(object: icon, key: "icon")
-        isChanged = true
+        UserDefaults.SaveData(object: icon, key: "icon") {
+            self.isChanged = true
+        }
     }
     
     func isIconSelected(index: Int)-> UITableViewCell.AccessoryType {

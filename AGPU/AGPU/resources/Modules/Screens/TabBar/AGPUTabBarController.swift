@@ -192,7 +192,9 @@ class AGPUTabBarController: UITabBarController {
                             self.animation.SpringAnimation(view: self.DynamicButton)
                         }
                                                 
-                        UserDefaults.SaveData(object: subsection, key: "lastSubsection")
+                        UserDefaults.SaveData(object: subsection, key: "lastSubsection") {
+                            print("сохранено")
+                        }
                         
                         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                             self.GoToWeb(url: subsection.url)
