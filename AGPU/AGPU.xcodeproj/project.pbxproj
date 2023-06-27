@@ -841,6 +841,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AGPU/sources/app/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "АГПУ";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -874,6 +876,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AGPU/sources/app/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "АГПУ";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
