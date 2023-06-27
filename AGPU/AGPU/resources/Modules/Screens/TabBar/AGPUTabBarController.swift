@@ -33,7 +33,6 @@ class AGPUTabBarController: UITabBarController {
         ObserveSubSection()
         ObserveWebScreen()
         settingsManager.checkAllSettings()
-        ObserveRelaxMode()
         ObserveChangeIcon()
         becomeFirstResponder()
     }
@@ -130,6 +129,34 @@ class AGPUTabBarController: UITabBarController {
     // MARK: - Voice Control
     private func checkVoiceCommands(text: String) {
         
+        // MARK: - Screen "Main"
+        if text != "" && selectedIndex == 0 {
+            
+            if text.lowercased().lastWord() == "вверх" {
+                DispatchQueue.main.async {
+                    self.DynamicButton.setImage(UIImage(named: "arrow.up"), for: .normal)
+                    self.animation.SpringAnimation(view: self.DynamicButton)
+                }
+            } else if text.lowercased().lastWord() == "вниз" {
+                DispatchQueue.main.async {
+                    self.DynamicButton.setImage(UIImage(named: "arrow.down"), for: .normal)
+                    self.animation.SpringAnimation(view: self.DynamicButton)
+                }
+            } else if text.lowercased().lastWord().contains("лево") {
+                DispatchQueue.main.async {
+                    self.DynamicButton.setImage(UIImage(named: "arrow.left"), for: .normal)
+                    self.animation.SpringAnimation(view: self.DynamicButton)
+                }
+            } else if text.lowercased().lastWord().contains("право"){
+                DispatchQueue.main.async {
+                    self.DynamicButton.setImage(UIImage(named: "arrow.right"), for: .normal)
+                    self.animation.SpringAnimation(view: self.DynamicButton)
+                }
+            }
+            NotificationCenter.default.post(name: Notification.Name("ScrollMainScreen"), object: text.lastWord())
+        }
+        
+        // MARK: - Screen "Sections"
         if text != "" && selectedIndex == 1 {
             // поиск раздела
             for section in AGPUSections.sections {
@@ -165,7 +192,9 @@ class AGPUTabBarController: UITabBarController {
                             self.animation.SpringAnimation(view: self.DynamicButton)
                         }
                                                 
-                        UserDefaults.SaveData(object: subsection, key: "lastSubsection")
+                        UserDefaults.SaveData(object: subsection, key: "lastSubsection") {
+                            print("сохранено")
+                        }
                         
                         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                             self.GoToWeb(url: subsection.url)
@@ -211,19 +240,6 @@ class AGPUTabBarController: UITabBarController {
             } else {
                 self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon() ?? "АГПУ"), for: .normal)
                 self.animation.SpringAnimation(view: self.DynamicButton)
-            }
-        }
-    }
-    
-    // MARK: - Relax Mode
-    private func ObserveRelaxMode() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("music"), object: nil, queue: .main) { notification in
-            if let music = notification.object as? MusicModel {
-                if music.isChecked {
-                    AudioPlayer.shared.PlaySound(resource: music.fileName)
-                } else {
-                    AudioPlayer.shared.StopSound(resource: music.fileName)
-                }
             }
         }
     }

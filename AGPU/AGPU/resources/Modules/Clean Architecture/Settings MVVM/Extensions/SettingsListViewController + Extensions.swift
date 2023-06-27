@@ -39,7 +39,11 @@ extension SettingsListViewController: UITableViewDelegate {
             let stopAction =
             UIAction(title: "пауза",
                      image: UIImage(named: "pause")) { action in
-                self.viewModel.ToggleMusic(index: indexPath.row, isChecked: false)
+                if let music = UserDefaults.loadData(type: MusicModel.self, key: "music") {
+                    if music.id == self.viewModel.musicItem(index: indexPath.row).id {
+                        self.viewModel.ToggleMusic(index: indexPath.row, isChecked: false)
+                    }
+                }
             }
             return UIMenu(title: self.viewModel.musicItem(index: indexPath.row).name, children: [playAction, stopAction])
         })
