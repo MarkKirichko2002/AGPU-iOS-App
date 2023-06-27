@@ -33,7 +33,6 @@ class AGPUTabBarController: UITabBarController {
         ObserveSubSection()
         ObserveWebScreen()
         settingsManager.checkAllSettings()
-        ObserveRelaxMode()
         ObserveChangeIcon()
         becomeFirstResponder()
     }
@@ -219,7 +218,6 @@ class AGPUTabBarController: UITabBarController {
         
         // выключить микрофон
         if text.lowercased().contains("стоп") {
-            DynamicButton.setImage(UIImage(named: settingsManager.checkCurrentIcon() ?? "АГПУ"), for: .normal)
             DynamicButton.sendActions(for: .touchUpInside)
         }
     }
@@ -240,19 +238,6 @@ class AGPUTabBarController: UITabBarController {
             } else {
                 self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon() ?? "АГПУ"), for: .normal)
                 self.animation.SpringAnimation(view: self.DynamicButton)
-            }
-        }
-    }
-    
-    // MARK: - Relax Mode
-    private func ObserveRelaxMode() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("music"), object: nil, queue: .main) { notification in
-            if let music = notification.object as? MusicModel {
-                if music.isChecked {
-                    AudioPlayer.shared.PlaySound(resource: music.fileName)
-                } else {
-                    AudioPlayer.shared.StopSound(resource: music.fileName)
-                }
             }
         }
     }

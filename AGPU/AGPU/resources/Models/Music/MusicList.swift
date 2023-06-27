@@ -12,9 +12,9 @@ struct MusicList {
     static var musicArray = [
         MusicModel(id: 1, name: "филология", fileName: "philology music.mp3", isChecked: false),
         MusicModel(id: 2, name: "информатика", fileName: "informatics music.mp3", isChecked: false),
-        MusicModel(id: 3, name: "психология", fileName: "", isChecked: false),
+        MusicModel(id: 3, name: "психология", fileName: "science music.mp3", isChecked: false),
         MusicModel(id: 4, name: "начальная школа", fileName: "pre school music.mp3", isChecked: false),
-        MusicModel(id: 5, name: "технология", fileName: "", isChecked: false),
+        MusicModel(id: 5, name: "технология", fileName: "science music.mp3", isChecked: false),
         MusicModel(id: 6, name: "история", fileName: "history music.mp3", isChecked: false),
         MusicModel(id: 7, name: "научно-исследовательский институт", fileName: "science music.mp3", isChecked: false)
     ]

@@ -92,7 +92,13 @@ class SettingsListViewModel: NSObject {
         MusicList.musicArray[index].isChecked = isChecked
         UserDefaults.SaveData(object: MusicList.musicArray[index], key: "music")
         isChanged = true
-        NotificationCenter.default.post(name: Notification.Name("music"), object: MusicList.musicArray[index])
+        if let music = UserDefaults.loadData(type: MusicModel.self, key: "music") {
+            if music.isChecked {
+                AudioPlayer.shared.PlaySound(resource: music.fileName)
+            } else {
+                AudioPlayer.shared.StopSound(resource: music.fileName)
+            }
+        }
     }
     
     func isMusicSelected(index: Int)-> UITableViewCell.AccessoryType {
