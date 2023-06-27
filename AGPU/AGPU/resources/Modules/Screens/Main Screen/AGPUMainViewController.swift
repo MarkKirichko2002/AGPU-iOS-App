@@ -28,6 +28,7 @@ class AGPUMainViewController: UIViewController {
         super.viewDidLoad()
         SetUpWebView()
         SetUpNavigation()
+        ObserveScroll()
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,6 +62,33 @@ class AGPUMainViewController: UIViewController {
     @objc private func forwardButtonTapped() {
         if WVWEBview.canGoForward {
             WVWEBview.goForward()
+        }
+    }
+    
+    private func ObserveScroll() {
+        
+        var positionX = 0
+        var positionY = 0
+        var scrollPosition = ""
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name("ScrollMainScreen"), object: nil, queue: .main) { notification in
+            scrollPosition = notification.object as? String ?? ""
+            
+            print(scrollPosition)
+            
+            if scrollPosition == "вверх" {
+                positionY -= 20
+            } else if scrollPosition == "вниз" {
+                positionY += 20
+            }
+            
+            if scrollPosition.contains("лево") {
+                positionX -= 10
+            } else if scrollPosition.contains("право") {
+                positionX += 10
+            }
+            
+            self.WVWEBview.scrollView.setContentOffset(CGPoint(x: positionX, y: positionY), animated: true)
         }
     }
 }
