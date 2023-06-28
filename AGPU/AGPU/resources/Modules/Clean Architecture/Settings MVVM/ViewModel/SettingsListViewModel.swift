@@ -37,9 +37,7 @@ class SettingsListViewModel: NSObject {
             cell.textLabel?.text = "\(musicItem(index: indexPath.row).id)) \(musicItem(index: indexPath.row).name)"
             return cell
         case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomIconTableViewCell.identifier, for: indexPath) as? CustomIconTableViewCell else {
-                return UITableViewCell()
-            }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomIconTableViewCell.identifier, for: indexPath) as? CustomIconTableViewCell else {return UITableViewCell()}
             cell.accessoryType = isIconSelected(index: indexPath.row)
             cell.tintColor = .systemGreen
             cell.configure(icon: customIconItem(index: indexPath.row))
@@ -65,11 +63,16 @@ class SettingsListViewModel: NSObject {
             
         case 0:
             return "Релакс Режим"
+         
+        case 1:
+            return "Избранный Факультет"
             
         default:
-            return "Избранный Факультет"
+            return ""
         }
     }
+    
+    // MARK: - Relax Mode
     
     func musicListCount()-> Int {
         return MusicList.musicArray.count
@@ -79,15 +82,6 @@ class SettingsListViewModel: NSObject {
         return MusicList.musicArray[index]
     }
     
-    func iconsListCount()-> Int {
-        return AlternateIcons.icons.count
-    }
-    
-    func customIconItem(index: Int)-> AlternateIconModel {
-        return AlternateIcons.icons[index]
-    }
-    
-    // MARK: - Relax Mode
     func ToggleMusic(index: Int, isChecked: Bool) {
         MusicList.musicArray[index].isChecked = isChecked
         UserDefaults.SaveData(object: MusicList.musicArray[index], key: "music") {
@@ -110,6 +104,15 @@ class SettingsListViewModel: NSObject {
     }
     
     // MARK: - Elected Faculty
+    
+    func iconsListCount()-> Int {
+        return AlternateIcons.icons.count
+    }
+    
+    func customIconItem(index: Int)-> AlternateIconModel {
+        return AlternateIcons.icons[index]
+    }
+    
     func ChangeIcon(index: Int) {
         var icon = AlternateIcons.icons[index]
         icon.isSelected = true
