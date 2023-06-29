@@ -32,6 +32,7 @@ class AGPUTabBarController: UITabBarController {
         createMiddleButton()
         ObserveSubSection()
         ObserveWebScreen()
+        ObserveMap()
         settingsManager.checkAllSettings()
         ObserveChangeIcon()
         becomeFirstResponder()
@@ -235,6 +236,40 @@ class AGPUTabBarController: UITabBarController {
     
     private func ObserveWebScreen() {
         NotificationCenter.default.addObserver(forName: Notification.Name("WebScreenWasClosed"), object: nil, queue: .main) { _ in
+            if self.isRecording {
+                self.DynamicButton.setImage(UIImage(named: "mic"), for: .normal)
+            } else {
+                self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon() ?? "АГПУ"), for: .normal)
+                self.animation.SpringAnimation(view: self.DynamicButton)
+            }
+        }
+    }
+    
+    private func ObserveMap() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("Map Pin Selected"), object: nil, queue: .main) { _ in
+            DispatchQueue.main.async {
+                self.DynamicButton.setImage(UIImage(named: "pin"), for: .normal)
+                self.animation.SpringAnimation(view: self.DynamicButton)
+            }
+        }
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name("Go To Map"), object: nil, queue: .main) { _ in
+            DispatchQueue.main.async {
+                self.DynamicButton.setImage(UIImage(named: "map icon"), for: .normal)
+                self.animation.SpringAnimation(view: self.DynamicButton)
+            }
+        }
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name("Map Was Opened"), object: nil, queue: .main) { _ in
+            if self.isRecording {
+                self.DynamicButton.setImage(UIImage(named: "mic"), for: .normal)
+            } else {
+                self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon() ?? "АГПУ"), for: .normal)
+                self.animation.SpringAnimation(view: self.DynamicButton)
+            }
+        }
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name("Map Pin Cancelled"), object: nil, queue: .main) { _ in
             if self.isRecording {
                 self.DynamicButton.setImage(UIImage(named: "mic"), for: .normal)
             } else {
