@@ -49,7 +49,7 @@ class AGPUTabBarController: UITabBarController {
         // разделы
         let sectionsVC = AGPUSectionsListViewController()
         // карта
-        let mapVC = MapRealisationsListViewController()
+        let mapVC = AGPUMapViewController()
         // настройки
         let settingsVC = SettingsListViewController()
         // главное
@@ -58,8 +58,8 @@ class AGPUTabBarController: UITabBarController {
         // разделы
         sectionsVC.tabBarItem = UITabBarItem(title: "Разделы", image: UIImage(named: "sections"), selectedImage: UIImage(named: "sections selected"))
         // карта
-        mapVC.tabBarItem = UITabBarItem(title: "Карты", image: UIImage(named: "map"), selectedImage: UIImage(named: "map selected"))
-        mapVC.navigationItem.title = "Карты"
+        mapVC.tabBarItem = UITabBarItem(title: "Найти АГПУ", image: UIImage(named: "map"), selectedImage: UIImage(named: "map selected"))
+        mapVC.navigationItem.title = "Найти \"АГПУ\""
         // настройки
         settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear.fill"))
         settingsVC.navigationItem.title = "Настройки"
