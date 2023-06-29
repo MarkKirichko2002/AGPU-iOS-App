@@ -1,5 +1,5 @@
 //
-//  AGPUSecondMapViewController + Extensions.swift
+//  AGPUMapViewController + Extensions.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 22.06.2023.
@@ -9,7 +9,7 @@ import CoreLocation
 import MapKit
 
 // MARK: - CLLocationManagerDelegate
-extension AGPUSecondMapViewController: CLLocationManagerDelegate {
+extension AGPUMapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
@@ -21,7 +21,7 @@ extension AGPUSecondMapViewController: CLLocationManagerDelegate {
 }
 
 // MARK: - MKMapViewDelegate
-extension AGPUSecondMapViewController: MKMapViewDelegate {
+extension AGPUMapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotation = view.annotation

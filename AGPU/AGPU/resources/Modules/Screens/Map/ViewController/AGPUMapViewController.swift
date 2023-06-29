@@ -1,5 +1,5 @@
 //
-//  AGPUSecondMapViewController.swift
+//  AGPUMapViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 19.06.2023.
@@ -9,7 +9,7 @@ import CoreLocation
 import UIKit
 import MapKit
 
-class AGPUSecondMapViewController: UIViewController {
+class AGPUMapViewController: UIViewController {
     
     private let mapView = MKMapView()
     private let manager = CLLocationManager()
