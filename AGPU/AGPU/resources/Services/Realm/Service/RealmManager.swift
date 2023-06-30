@@ -31,10 +31,19 @@ class RealmManager: RealmManagerProtocol {
     }
     
     func toggleMusic(music: MusicModel, isChecked: Bool) {
-        var newItem = realm.object(ofType: MusicModel.self, forPrimaryKey: music.id)
+        let newItem = realm.object(ofType: MusicModel.self, forPrimaryKey: music.id)
         try! realm.write {
             newItem?.isChecked = isChecked
             print(newItem)
+        }
+    }
+    
+    func findMusicItem(by id: ObjectId)-> MusicModel? {
+        let music = realm.object(ofType: MusicModel.self, forPrimaryKey: id)
+        if let music = music {
+            return music
+        } else {
+            return nil
         }
     }
     
