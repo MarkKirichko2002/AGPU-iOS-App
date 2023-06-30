@@ -22,6 +22,7 @@ class SettingsListViewController: UIViewController {
     
     private func SetUpNavigation() {
         let add = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(AddMusic))
+        add.tintColor = .black
         self.navigationItem.rightBarButtonItem = add
     }
     

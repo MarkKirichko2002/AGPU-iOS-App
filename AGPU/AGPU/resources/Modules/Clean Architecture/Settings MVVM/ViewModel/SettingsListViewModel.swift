@@ -113,7 +113,7 @@ class SettingsListViewModel: NSObject {
         return musicList[index]
     }
     
-    func OnOffMusic(index: Int) {
+    func OffMusic(index: Int) {
         if let id = UserDefaults.loadData(type: ObjectId.self, key: "id") {
             if let music = realmManager.findMusicItem(by: id) {
                 if music.id == musicItem(index: index).id {
