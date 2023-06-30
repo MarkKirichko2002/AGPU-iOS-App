@@ -40,24 +40,8 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate, AudioPlayerProtocol {
         }
     }
     
-    func StopSound(resource: String) {
-        if let audioUrl = URL(string: resource) {
-            
-            // then lets create your document folder url
-            let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            
-            // lets create your destination file url
-            let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
-            
-            do {
-                player = try AVAudioPlayer(contentsOf: destinationUrl)
-                guard let player = player else { return }
-                player.stop()
-            } catch let error {
-                
-                print(error.localizedDescription)
-            }
-        }
+    func StopSound() {
+        player?.stop()
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
