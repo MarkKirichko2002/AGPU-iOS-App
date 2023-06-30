@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SettingsListViewModel: NSObject {
     
@@ -110,6 +111,16 @@ class SettingsListViewModel: NSObject {
     
     func musicItem(index: Int)-> MusicModel {
         return musicList[index]
+    }
+    
+    func OnOffMusic(index: Int) {
+        if let id = UserDefaults.loadData(type: ObjectId.self, key: "id") {
+            if let music = realmManager.findMusicItem(by: id) {
+                if music.id == musicItem(index: index).id {
+                    ToggleMusic(index: index, isChecked: false)
+                }
+            }
+        }
     }
     
     func ToggleMusic(index: Int, isChecked: Bool) {
