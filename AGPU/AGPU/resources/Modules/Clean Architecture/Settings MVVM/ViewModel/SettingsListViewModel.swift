@@ -34,9 +34,8 @@ class SettingsListViewModel: NSObject {
     
     func DeleteMusic(music: MusicModel) {
         realmManager.deleteMusic(music: music)
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//            self.isChanged = true
-//        }
+        GetMusicList()
+        AudioPlayer.shared.StopSound()
     }
     
     func sectionsCount()-> Int {
@@ -115,7 +114,7 @@ class SettingsListViewModel: NSObject {
         if isChecked {
             AudioPlayer.shared.PlaySound(resource: self.musicList[index].fileName)
         } else {
-            AudioPlayer.shared.StopSound(resource: self.musicList[index].fileName)
+            AudioPlayer.shared.StopSound()
         }
         self.isChanged.toggle()
     }
