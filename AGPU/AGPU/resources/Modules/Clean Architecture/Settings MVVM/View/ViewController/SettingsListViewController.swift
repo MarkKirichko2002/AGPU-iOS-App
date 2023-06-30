@@ -15,8 +15,21 @@ class SettingsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SetUpNavigation()
         SetUpTable()
         observeViewModel()
+    }
+    
+    private func SetUpNavigation() {
+        let add = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(AddMusic))
+        self.navigationItem.rightBarButtonItem = add
+    }
+    
+    @objc private func AddMusic() {
+        let storyboard = UIStoryboard(name: "AddMusicViewController", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "AddMusicViewController") as? AddMusicViewController {
+            present(vc, animated: true)
+        }
     }
     
     private func SetUpTable() {

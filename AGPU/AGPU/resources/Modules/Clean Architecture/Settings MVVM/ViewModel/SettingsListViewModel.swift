@@ -13,6 +13,32 @@ class SettingsListViewModel: NSObject {
     
     var observation: NSKeyValueObservation?
     
+    var musicList = [MusicModel]()
+    private let realmManager = RealmManager()
+    
+    // MARK: - Init
+    override init() {
+        super.init()
+        GetMusicList()
+        NotificationCenter.default.addObserver(forName: Notification.Name("Music Added"), object: nil, queue: .main) { _ in
+            self.GetMusicList()
+        }
+    }
+    
+    func GetMusicList() {
+        realmManager.fetchMusicList { musicList in
+            self.musicList = musicList
+            self.isChanged = true
+        }
+    }
+    
+    func DeleteMusic(music: MusicModel) {
+        realmManager.deleteMusic(music: music)
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//            self.isChanged = true
+//        }
+    }
+    
     func sectionsCount()-> Int {
         return 2
     }
@@ -34,7 +60,7 @@ class SettingsListViewModel: NSObject {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.accessoryType = isMusicSelected(index: indexPath.row)
             cell.tintColor = .systemGreen
-            cell.textLabel?.text = "\(musicItem(index: indexPath.row).id)) \(musicItem(index: indexPath.row).name)"
+            cell.textLabel?.text = musicItem(index: indexPath.row).name
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomIconTableViewCell.identifier, for: indexPath) as? CustomIconTableViewCell else {return UITableViewCell()}
@@ -62,8 +88,8 @@ class SettingsListViewModel: NSObject {
         switch section {
             
         case 0:
-            return "Релакс Режим"
-         
+            return "Своя Музыка"
+            
         case 1:
             return "Избранный Факультет"
             
@@ -72,33 +98,34 @@ class SettingsListViewModel: NSObject {
         }
     }
     
-    // MARK: - Relax Mode
+    // MARK: - Custom Music
     
     func musicListCount()-> Int {
-        return MusicList.musicArray.count
+        return musicList.count
     }
     
     func musicItem(index: Int)-> MusicModel {
-        return MusicList.musicArray[index]
+        return musicList[index]
     }
     
     func ToggleMusic(index: Int, isChecked: Bool) {
-        MusicList.musicArray[index].isChecked = isChecked
-        UserDefaults.SaveData(object: MusicList.musicArray[index], key: "music") {
-            self.isChanged = true
-            if MusicList.musicArray[index].isChecked {
-                AudioPlayer.shared.PlaySound(resource: MusicList.musicArray[index].fileName)
-            } else {
-                AudioPlayer.shared.StopSound(resource: MusicList.musicArray[index].fileName)
-            }
+        let music = MusicModel()
+        music.isChecked = isChecked
+        realmManager.editMusic(music: music)
+        if isChecked {
+            AudioPlayer.shared.PlaySound(resource: self.musicList[index].fileName)
+        } else {
+            AudioPlayer.shared.StopSound(resource: self.musicList[index].fileName)
         }
+        self.isChanged.toggle()
     }
     
     func isMusicSelected(index: Int)-> UITableViewCell.AccessoryType {
-        let data = UserDefaults.loadData(type: MusicModel.self, key: "music")
-        if data?.id == MusicList.musicArray[index].id && data?.isChecked == true {
+        if musicList[index].isChecked {
+            print("yes")
             return .checkmark
         } else {
+            print("no")
             return .none
         }
     }

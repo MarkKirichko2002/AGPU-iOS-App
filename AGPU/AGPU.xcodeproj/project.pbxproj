@@ -10,6 +10,15 @@
 		82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */; };
 		822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822158952A422A650088BDE5 /* SettingsListViewController.swift */; };
 		822158992A42311E0088BDE5 /* MusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822158982A42311E0088BDE5 /* MusicModel.swift */; };
+		8224B4D92A4F10B40069B7B3 /* AddMusicViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8224B4D82A4F10B40069B7B3 /* AddMusicViewController.storyboard */; };
+		8224B4DB2A4F10D80069B7B3 /* AddMusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8224B4DA2A4F10D80069B7B3 /* AddMusicViewController.swift */; };
+		8224B4E02A4F181E0069B7B3 /* AddMusicViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8224B4DF2A4F181E0069B7B3 /* AddMusicViewController + Extensions.swift */; };
+		8224B4E32A4F18A30069B7B3 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8224B4E22A4F18A30069B7B3 /* FileService.swift */; };
+		8224B4E62A4F1AF70069B7B3 /* FileServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8224B4E52A4F1AF70069B7B3 /* FileServiceProtocol.swift */; };
+		8224B4EC2A4F1BB10069B7B3 /* RealmManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8224B4EB2A4F1BB10069B7B3 /* RealmManagerProtocol.swift */; };
+		8224B4EF2A4F1C420069B7B3 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8224B4EE2A4F1C420069B7B3 /* Realm */; };
+		8224B4F12A4F1C420069B7B3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8224B4F02A4F1C420069B7B3 /* RealmSwift */; };
+		8224B4F32A4F1C580069B7B3 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8224B4F22A4F1C580069B7B3 /* RealmManager.swift */; };
 		82320D812A4913FE00ECADEE /* AlternateIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82320D802A4913FE00ECADEE /* AlternateIcons.swift */; };
 		82320D832A49167000ECADEE /* AlternateIconModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82320D822A49167000ECADEE /* AlternateIconModel.swift */; };
 		82320D872A491F5700ECADEE /* CustomIconCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82320D862A491F5700ECADEE /* CustomIconCollectionViewCell.swift */; };
@@ -44,7 +53,6 @@
 		829AD68D2A42EA020047609B /* history music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 829AD68C2A42EA020047609B /* history music.mp3 */; };
 		829AD68F2A42EC680047609B /* pre school music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 829AD68E2A42EC680047609B /* pre school music.mp3 */; };
 		829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6902A4327D40047609B /* UIViewController + Extensions.swift */; };
-		829AD6962A4380180047609B /* MusicList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6952A4380180047609B /* MusicList.swift */; };
 		829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6982A43818A0047609B /* SettingsListViewModel.swift */; };
 		82BDFDB02A404BA0002DBB89 /* AGPUMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BDFDAF2A404BA0002DBB89 /* AGPUMapViewController.swift */; };
 		82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */; };
@@ -57,6 +65,13 @@
 		82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsListViewController + Extensions.swift"; sourceTree = "<group>"; };
 		822158952A422A650088BDE5 /* SettingsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewController.swift; sourceTree = "<group>"; };
 		822158982A42311E0088BDE5 /* MusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicModel.swift; sourceTree = "<group>"; };
+		8224B4D82A4F10B40069B7B3 /* AddMusicViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddMusicViewController.storyboard; sourceTree = "<group>"; };
+		8224B4DA2A4F10D80069B7B3 /* AddMusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMusicViewController.swift; sourceTree = "<group>"; };
+		8224B4DF2A4F181E0069B7B3 /* AddMusicViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddMusicViewController + Extensions.swift"; sourceTree = "<group>"; };
+		8224B4E22A4F18A30069B7B3 /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
+		8224B4E52A4F1AF70069B7B3 /* FileServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileServiceProtocol.swift; sourceTree = "<group>"; };
+		8224B4EB2A4F1BB10069B7B3 /* RealmManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManagerProtocol.swift; sourceTree = "<group>"; };
+		8224B4F22A4F1C580069B7B3 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		82320D802A4913FE00ECADEE /* AlternateIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternateIcons.swift; sourceTree = "<group>"; };
 		82320D822A49167000ECADEE /* AlternateIconModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternateIconModel.swift; sourceTree = "<group>"; };
 		82320D862A491F5700ECADEE /* CustomIconCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIconCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -93,7 +108,6 @@
 		829AD68C2A42EA020047609B /* history music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "history music.mp3"; sourceTree = "<group>"; };
 		829AD68E2A42EC680047609B /* pre school music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "pre school music.mp3"; sourceTree = "<group>"; };
 		829AD6902A4327D40047609B /* UIViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extensions.swift"; sourceTree = "<group>"; };
-		829AD6952A4380180047609B /* MusicList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicList.swift; sourceTree = "<group>"; };
 		829AD6982A43818A0047609B /* SettingsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewModel.swift; sourceTree = "<group>"; };
 		82BDFDAF2A404BA0002DBB89 /* AGPUMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUMapViewController.swift; sourceTree = "<group>"; };
 		82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClassProtocol.swift; sourceTree = "<group>"; };
@@ -107,6 +121,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8224B4F12A4F1C420069B7B3 /* RealmSwift in Frameworks */,
+				8224B4EF2A4F1C420069B7B3 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,15 +147,6 @@
 			path = "Settings MVVM";
 			sourceTree = "<group>";
 		};
-		822158972A4231070088BDE5 /* Music */ = {
-			isa = PBXGroup;
-			children = (
-				822158982A42311E0088BDE5 /* MusicModel.swift */,
-				829AD6952A4380180047609B /* MusicList.swift */,
-			);
-			path = Music;
-			sourceTree = "<group>";
-		};
 		8221589A2A4233C50088BDE5 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +154,89 @@
 				82320D852A491F3C00ECADEE /* Cell */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		8224B4D32A4F0B760069B7B3 /* Add New Music */ = {
+			isa = PBXGroup;
+			children = (
+				8224B4DE2A4F18090069B7B3 /* StoryBoard */,
+				8224B4DC2A4F17F10069B7B3 /* ViewController */,
+				8224B4DD2A4F17F90069B7B3 /* Extensions */,
+			);
+			path = "Add New Music";
+			sourceTree = "<group>";
+		};
+		8224B4DC2A4F17F10069B7B3 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8224B4DA2A4F10D80069B7B3 /* AddMusicViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8224B4DD2A4F17F90069B7B3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8224B4DF2A4F181E0069B7B3 /* AddMusicViewController + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8224B4DE2A4F18090069B7B3 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				8224B4D82A4F10B40069B7B3 /* AddMusicViewController.storyboard */,
+			);
+			path = StoryBoard;
+			sourceTree = "<group>";
+		};
+		8224B4E12A4F18960069B7B3 /* File */ = {
+			isa = PBXGroup;
+			children = (
+				8224B4E22A4F18A30069B7B3 /* FileService.swift */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
+		8224B4E42A4F1AE10069B7B3 /* File */ = {
+			isa = PBXGroup;
+			children = (
+				8224B4E52A4F1AF70069B7B3 /* FileServiceProtocol.swift */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
+		8224B4E92A4F1B5C0069B7B3 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				8224B4EB2A4F1BB10069B7B3 /* RealmManagerProtocol.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		8224B4EA2A4F1B6B0069B7B3 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				8224B4F42A4F1CAC0069B7B3 /* Model */,
+				8224B4F52A4F1CB10069B7B3 /* Service */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		8224B4F42A4F1CAC0069B7B3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				822158982A42311E0088BDE5 /* MusicModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8224B4F52A4F1CB10069B7B3 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				8224B4F22A4F1C580069B7B3 /* RealmManager.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		82320D7F2A4913E800ECADEE /* Icons */ = {
@@ -182,6 +272,8 @@
 				82EF23D02A3DED73004A7B9C /* Speech Recognition */,
 				82EF23D12A3DED7F004A7B9C /* Animation */,
 				8295489A2A43AE6C007DEBA0 /* Settings */,
+				8224B4E12A4F18960069B7B3 /* File */,
+				8224B4EA2A4F1B6B0069B7B3 /* Realm */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -263,6 +355,7 @@
 				82808E9C2A31F2D400DEEB16 /* Sections */,
 				828CFA352A35F64700C7542D /* Web */,
 				829522DB2A38AEBE00329713 /* Map */,
+				8224B4D32A4F0B760069B7B3 /* Add New Music */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -272,7 +365,6 @@
 			children = (
 				82EF23D22A3DEEA6004A7B9C /* Sections */,
 				82EF23D32A3DEEB8004A7B9C /* Sub Sections */,
-				822158972A4231070088BDE5 /* Music */,
 				82320D7F2A4913E800ECADEE /* Icons */,
 			);
 			path = Models;
@@ -489,6 +581,8 @@
 				82EF23D82A3DF237004A7B9C /* Speech Recognition */,
 				82EF23D52A3DF0A5004A7B9C /* Animation */,
 				829548972A43AE1F007DEBA0 /* Settings */,
+				8224B4E42A4F1AE10069B7B3 /* File */,
+				8224B4E92A4F1B5C0069B7B3 /* Realm */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -541,6 +635,10 @@
 			dependencies = (
 			);
 			name = AGPU;
+			packageProductDependencies = (
+				8224B4EE2A4F1C420069B7B3 /* Realm */,
+				8224B4F02A4F1C420069B7B3 /* RealmSwift */,
+			);
 			productName = AGPU;
 			productReference = 82808E852A31F12100DEEB16 /* AGPU.app */;
 			productType = "com.apple.product-type.application";
@@ -569,6 +667,9 @@
 				Base,
 			);
 			mainGroup = 82808E7C2A31F12100DEEB16;
+			packageReferences = (
+				8224B4ED2A4F1C420069B7B3 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 82808E862A31F12100DEEB16 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -590,6 +691,7 @@
 				82868B892A49BD5F00F4F7A5 /* science music.mp3 in Resources */,
 				82320D892A491FBC00ECADEE /* CustomIconTableViewCell.xib in Resources */,
 				827B62BF2A4236DE008D241E /* informatics music.mp3 in Resources */,
+				8224B4D92A4F10B40069B7B3 /* AddMusicViewController.storyboard in Resources */,
 				82808E922A31F12500DEEB16 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -602,15 +704,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				826888662A33B6E700434219 /* AGPUTabBarController.swift in Sources */,
+				8224B4DB2A4F10D80069B7B3 /* AddMusicViewController.swift in Sources */,
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
 				82BDFDB02A404BA0002DBB89 /* AGPUMapViewController.swift in Sources */,
 				82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */,
+				8224B4F32A4F1C580069B7B3 /* RealmManager.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
 				822158992A42311E0088BDE5 /* MusicModel.swift in Sources */,
 				829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */,
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
 				8268885B2A33AC6000434219 /* AnimationClass.swift in Sources */,
+				8224B4E32A4F18A30069B7B3 /* FileService.swift in Sources */,
 				827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */,
 				829548922A439FF7007DEBA0 /* AGPUMapViewController + Extensions.swift in Sources */,
 				826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */,
@@ -620,15 +725,17 @@
 				827F0FFA2A4B2D7E00C481E4 /* AGPUMainViewController.swift in Sources */,
 				82808E8D2A31F12100DEEB16 /* AGPUSectionsListViewController.swift in Sources */,
 				82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */,
-				829AD6962A4380180047609B /* MusicList.swift in Sources */,
 				829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */,
+				8224B4EC2A4F1BB10069B7B3 /* RealmManagerProtocol.swift in Sources */,
 				82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */,
 				82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */,
 				826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */,
 				82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */,
+				8224B4E02A4F181E0069B7B3 /* AddMusicViewController + Extensions.swift in Sources */,
 				82320D832A49167000ECADEE /* AlternateIconModel.swift in Sources */,
 				82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */,
 				829548992A43AE32007DEBA0 /* SettingsManagerProtocol.swift in Sources */,
+				8224B4E62A4F1AF70069B7B3 /* FileServiceProtocol.swift in Sources */,
 				82320D812A4913FE00ECADEE /* AlternateIcons.swift in Sources */,
 				82320D872A491F5700ECADEE /* CustomIconCollectionViewCell.swift in Sources */,
 				82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */,
@@ -860,6 +967,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8224B4ED2A4F1C420069B7B3 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8224B4EE2A4F1C420069B7B3 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8224B4ED2A4F1C420069B7B3 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		8224B4F02A4F1C420069B7B3 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8224B4ED2A4F1C420069B7B3 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 82808E7D2A31F12100DEEB16 /* Project object */;
 }

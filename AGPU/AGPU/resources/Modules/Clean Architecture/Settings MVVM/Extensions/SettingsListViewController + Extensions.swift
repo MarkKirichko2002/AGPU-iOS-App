@@ -39,15 +39,18 @@ extension SettingsListViewController: UITableViewDelegate {
             let stopAction =
             UIAction(title: "пауза",
                      image: UIImage(named: "pause")) { action in
-                if let music = UserDefaults.loadData(type: MusicModel.self, key: "music") {
-                    if music.id == self.viewModel.musicItem(index: indexPath.row).id {
-                        self.viewModel.ToggleMusic(index: indexPath.row, isChecked: false)
-                    }
-                }
+                self.viewModel.ToggleMusic(index: indexPath.row, isChecked: false)
             }
             return UIMenu(title: self.viewModel.musicItem(index: indexPath.row).name, children: [playAction, stopAction])
         })
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            viewModel.DeleteMusic(music: viewModel.musicItem(index: indexPath.row))
+        }
+    }
+    
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel.titleForSection(section)
