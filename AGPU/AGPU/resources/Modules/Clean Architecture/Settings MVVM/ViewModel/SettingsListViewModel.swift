@@ -32,6 +32,11 @@ class SettingsListViewModel: NSObject {
         }
     }
     
+    func EditMusic(music: MusicModel, title: String, isChecked: Bool) {
+        realmManager.editMusic(music: music, title: title, isChecked: isChecked)
+        GetMusicList()
+    }
+    
     func DeleteMusic(music: MusicModel) {
         realmManager.deleteMusic(music: music)
         GetMusicList()
@@ -108,10 +113,9 @@ class SettingsListViewModel: NSObject {
     }
     
     func ToggleMusic(index: Int, isChecked: Bool) {
-        let music = MusicModel()
-        music.isChecked = isChecked
-        realmManager.editMusic(music: music)
-        if isChecked {
+        realmManager.toggleMusic(music: musicList[index], isChecked: isChecked)
+        GetMusicList()
+        if musicList[index].isChecked {
             AudioPlayer.shared.PlaySound(resource: self.musicList[index].fileName)
         } else {
             AudioPlayer.shared.StopSound()
