@@ -115,20 +115,22 @@ class SettingsListViewModel: NSObject {
     func ToggleMusic(index: Int, isChecked: Bool) {
         realmManager.toggleMusic(music: musicList[index], isChecked: isChecked)
         GetMusicList()
+        UserDefaults.SaveData(object: musicList[index].id, key: "id") {
+            print("сохранено")
+        }
         if musicList[index].isChecked {
             AudioPlayer.shared.PlaySound(resource: self.musicList[index].fileName)
+            self.isChanged.toggle()
         } else {
             AudioPlayer.shared.StopSound()
+            self.isChanged.toggle()
         }
-        self.isChanged.toggle()
     }
     
     func isMusicSelected(index: Int)-> UITableViewCell.AccessoryType {
         if musicList[index].isChecked {
-            print("yes")
             return .checkmark
         } else {
-            print("no")
             return .none
         }
     }
