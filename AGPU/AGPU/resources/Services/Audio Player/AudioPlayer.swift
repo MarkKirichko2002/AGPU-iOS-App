@@ -21,47 +21,46 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate, AudioPlayerProtocol {
     private override init() {}
     
     func PlaySound(resource: String) {
-        
-        self.sound = resource
-        
-        guard let url = Bundle.main.url(forResource: resource, withExtension: nil) else { return }
-        
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
+        if let audioUrl = URL(string: resource) {
             
-            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            // then lets create your document folder url
+            let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             
-            guard let player = player else { return }
+            // lets create your destination file url
+            let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
             
-            player.delegate = self
-            player.play()
-            
-        } catch let error {
-            print(error.localizedDescription)
+            do {
+                player = try AVAudioPlayer(contentsOf: destinationUrl)
+                guard let player = player else { return }
+                player.prepareToPlay()
+                player.play()
+            } catch let error {
+                print(error.localizedDescription)
+            }
         }
     }
     
     func StopSound(resource: String) {
-
-        guard let url = Bundle.main.url(forResource: resource, withExtension: nil) else { return }
-        
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
+        if let audioUrl = URL(string: resource) {
             
-            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            // then lets create your document folder url
+            let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             
-            guard let player = player else { return }
+            // lets create your destination file url
+            let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
             
-            player.stop()
-            
-        } catch let error {
-            print(error.localizedDescription)
+            do {
+                player = try AVAudioPlayer(contentsOf: destinationUrl)
+                guard let player = player else { return }
+                player.stop()
+            } catch let error {
+                
+                print(error.localizedDescription)
+            }
         }
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-       PlaySound(resource: sound)
+        PlaySound(resource: sound)
     }
 }

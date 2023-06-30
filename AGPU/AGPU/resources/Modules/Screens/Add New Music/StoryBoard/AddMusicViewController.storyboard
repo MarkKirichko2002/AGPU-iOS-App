@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xq1-TX-je0">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Add Music View Controller-->
+        <scene sceneID="N5o-xd-JPb">
+            <objects>
+                <viewController restorationIdentifier="AddMusicViewController" storyboardIdentifier="AddMusicViewController" id="xq1-TX-je0" customClass="AddMusicViewController" customModule="AGPU" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="p7j-tM-bqL">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добавить Новую Музыку" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UNz-KL-zhs">
+                                <rect key="frame" x="30" y="89" width="333" height="23"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RNM-og-VJo">
+                                <rect key="frame" x="30.000000000000007" y="182" width="87.666666666666686" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="55g-Bm-TDW">
+                                <rect key="frame" x="30" y="213" width="333" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EyB-OC-0Qx">
+                                <rect key="frame" x="30" y="277" width="333" height="35.666666666666686"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Добавить Аудио">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="AddMusicFile" destination="xq1-TX-je0" eventType="touchUpInside" id="klz-oa-6AI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xhk-l1-pYL">
+                                <rect key="frame" x="30" y="342.66666666666669" width="333" height="35.666666666666686"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Сохранить">
+                                    <fontDescription key="titleFontDescription" type="system" weight="black" pointSize="18"/>
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="SaveMusic" destination="xq1-TX-je0" eventType="touchUpInside" id="fHx-zV-jb1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="4F5-zU-kyR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4F5-zU-kyR" firstAttribute="trailing" secondItem="UNz-KL-zhs" secondAttribute="trailing" constant="30" id="0aN-xY-o0Y"/>
+                            <constraint firstItem="55g-Bm-TDW" firstAttribute="leading" secondItem="4F5-zU-kyR" secondAttribute="leading" constant="30" id="1YO-P0-Cpb"/>
+                            <constraint firstItem="UNz-KL-zhs" firstAttribute="top" secondItem="4F5-zU-kyR" secondAttribute="top" constant="30" id="LBi-Ye-lno"/>
+                            <constraint firstItem="EyB-OC-0Qx" firstAttribute="leading" secondItem="4F5-zU-kyR" secondAttribute="leading" constant="30" id="P6m-dc-DWx"/>
+                            <constraint firstItem="EyB-OC-0Qx" firstAttribute="top" secondItem="55g-Bm-TDW" secondAttribute="bottom" constant="30" id="UMA-pU-3Wm"/>
+                            <constraint firstItem="4F5-zU-kyR" firstAttribute="trailing" secondItem="EyB-OC-0Qx" secondAttribute="trailing" constant="30" id="Zdh-zV-mii"/>
+                            <constraint firstItem="55g-Bm-TDW" firstAttribute="top" secondItem="RNM-og-VJo" secondAttribute="bottom" constant="10" id="aPL-Ex-TeO"/>
+                            <constraint firstItem="UNz-KL-zhs" firstAttribute="leading" secondItem="4F5-zU-kyR" secondAttribute="leading" constant="30" id="be8-pl-BuP"/>
+                            <constraint firstItem="Xhk-l1-pYL" firstAttribute="top" secondItem="EyB-OC-0Qx" secondAttribute="bottom" constant="30" id="fA1-Lb-bRf"/>
+                            <constraint firstItem="4F5-zU-kyR" firstAttribute="trailing" secondItem="Xhk-l1-pYL" secondAttribute="trailing" constant="30" id="gjl-6K-sKe"/>
+                            <constraint firstItem="Xhk-l1-pYL" firstAttribute="leading" secondItem="4F5-zU-kyR" secondAttribute="leading" constant="30" id="jdJ-2v-cdd"/>
+                            <constraint firstItem="4F5-zU-kyR" firstAttribute="trailing" secondItem="55g-Bm-TDW" secondAttribute="trailing" constant="30" id="r8j-O5-YSc"/>
+                            <constraint firstItem="RNM-og-VJo" firstAttribute="leading" secondItem="4F5-zU-kyR" secondAttribute="leading" constant="30" id="tk6-Lm-2aw"/>
+                            <constraint firstItem="RNM-og-VJo" firstAttribute="top" secondItem="UNz-KL-zhs" secondAttribute="bottom" constant="70" id="z4E-Ji-Ekv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="TitleTextField" destination="55g-Bm-TDW" id="fCz-VV-H0H"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0sh-4j-ke7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="46.564885496183201" y="-2.1126760563380285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
