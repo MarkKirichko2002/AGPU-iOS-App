@@ -58,6 +58,12 @@
 		829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6902A4327D40047609B /* UIViewController + Extensions.swift */; };
 		829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6982A43818A0047609B /* SettingsListViewModel.swift */; };
 		82BDFDB02A404BA0002DBB89 /* AGPUMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BDFDAF2A404BA0002DBB89 /* AGPUMapViewController.swift */; };
+		82C7B8402A50C98900F9A552 /* AudioPlayer + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B83F2A50C98900F9A552 /* AudioPlayer + Extensions.swift */; };
+		82C7B8422A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */; };
+		82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8432A50CCB800F9A552 /* AnimationClass + Extensions.swift */; };
+		82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8452A50CD4C00F9A552 /* SettingsManager + Extensions.swift */; };
+		82C7B8482A50CDB400F9A552 /* FileService + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8472A50CDB400F9A552 /* FileService + Extensions.swift */; };
+		82C7B84A2A50CE7B00F9A552 /* RealmManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8492A50CE7B00F9A552 /* RealmManager + Extensions.swift */; };
 		82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */; };
 		82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */; };
 		82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */; };
@@ -116,6 +122,12 @@
 		829AD6902A4327D40047609B /* UIViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829AD6982A43818A0047609B /* SettingsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewModel.swift; sourceTree = "<group>"; };
 		82BDFDAF2A404BA0002DBB89 /* AGPUMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUMapViewController.swift; sourceTree = "<group>"; };
+		82C7B83F2A50C98900F9A552 /* AudioPlayer + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayer + Extensions.swift"; sourceTree = "<group>"; };
+		82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpeechRecognitionManager + Extensions.swift"; sourceTree = "<group>"; };
+		82C7B8432A50CCB800F9A552 /* AnimationClass + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimationClass + Extensions.swift"; sourceTree = "<group>"; };
+		82C7B8452A50CD4C00F9A552 /* SettingsManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsManager + Extensions.swift"; sourceTree = "<group>"; };
+		82C7B8472A50CDB400F9A552 /* FileService + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileService + Extensions.swift"; sourceTree = "<group>"; };
+		82C7B8492A50CE7B00F9A552 /* RealmManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealmManager + Extensions.swift"; sourceTree = "<group>"; };
 		82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClassProtocol.swift; sourceTree = "<group>"; };
 		82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManagerProtocol.swift; sourceTree = "<group>"; };
 		82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringImageView.swift; sourceTree = "<group>"; };
@@ -218,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				8224B4E22A4F18A30069B7B3 /* FileService.swift */,
+				82C7B8472A50CDB400F9A552 /* FileService + Extensions.swift */,
 			);
 			path = File;
 			sourceTree = "<group>";
@@ -259,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				8224B4F22A4F1C580069B7B3 /* RealmManager.swift */,
+				82C7B8492A50CE7B00F9A552 /* RealmManager + Extensions.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -527,6 +541,7 @@
 			isa = PBXGroup;
 			children = (
 				8295489B2A43AE7E007DEBA0 /* SettingsManager.swift */,
+				82C7B8452A50CD4C00F9A552 /* SettingsManager + Extensions.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -569,6 +584,7 @@
 			isa = PBXGroup;
 			children = (
 				8234B2FF2A3242E10091810F /* SpeechRecognitionManager.swift */,
+				82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */,
 			);
 			path = "Speech Recognition";
 			sourceTree = "<group>";
@@ -577,6 +593,7 @@
 			isa = PBXGroup;
 			children = (
 				8268885A2A33AC6000434219 /* AnimationClass.swift */,
+				82C7B8432A50CCB800F9A552 /* AnimationClass + Extensions.swift */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -640,6 +657,7 @@
 			isa = PBXGroup;
 			children = (
 				82F4ECFD2A3F82E400F1E5CC /* AudioPlayer.swift */,
+				82C7B83F2A50C98900F9A552 /* AudioPlayer + Extensions.swift */,
 			);
 			path = "Audio Player";
 			sourceTree = "<group>";
@@ -734,6 +752,7 @@
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
 				82BDFDB02A404BA0002DBB89 /* AGPUMapViewController.swift in Sources */,
 				82461FEE2A50C493008A8752 /* AppDelegate + Extensions.swift in Sources */,
+				82C7B8482A50CDB400F9A552 /* FileService + Extensions.swift in Sources */,
 				82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */,
 				8224B4F32A4F1C580069B7B3 /* RealmManager.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
@@ -742,12 +761,15 @@
 				829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */,
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
 				8268885B2A33AC6000434219 /* AnimationClass.swift in Sources */,
+				82C7B84A2A50CE7B00F9A552 /* RealmManager + Extensions.swift in Sources */,
+				82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */,
 				8224B4E32A4F18A30069B7B3 /* FileService.swift in Sources */,
 				827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */,
 				829548922A439FF7007DEBA0 /* AGPUMapViewController + Extensions.swift in Sources */,
 				826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */,
 				829548862A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift in Sources */,
 				829548832A439C4F007DEBA0 /* AudioPlayerProtocol.swift in Sources */,
+				82C7B8422A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift in Sources */,
 				828CFA3C2A3680C700C7542D /* String + Extensions.swift in Sources */,
 				827F0FFA2A4B2D7E00C481E4 /* AGPUMainViewController.swift in Sources */,
 				82808E8D2A31F12100DEEB16 /* AGPUSectionsListViewController.swift in Sources */,
@@ -762,6 +784,7 @@
 				82320D832A49167000ECADEE /* AlternateIconModel.swift in Sources */,
 				82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */,
 				829548992A43AE32007DEBA0 /* SettingsManagerProtocol.swift in Sources */,
+				82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */,
 				8224B4E62A4F1AF70069B7B3 /* FileServiceProtocol.swift in Sources */,
 				82320D812A4913FE00ECADEE /* AlternateIcons.swift in Sources */,
 				8205367E2A50AE5D0054B756 /* CustomMusicTableViewCell.swift in Sources */,
@@ -772,6 +795,7 @@
 				828CFA372A35F65700C7542D /* WebViewController.swift in Sources */,
 				826888582A33AB5600434219 /* AGPUSplashScreenViewController.swift in Sources */,
 				82F4ECFE2A3F82E400F1E5CC /* AudioPlayer.swift in Sources */,
+				82C7B8402A50C98900F9A552 /* AudioPlayer + Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
