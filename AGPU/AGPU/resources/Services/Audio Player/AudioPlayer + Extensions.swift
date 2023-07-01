@@ -27,8 +27,13 @@ extension AudioPlayer: AudioPlayerProtocol {
                 player = try AVAudioPlayer(contentsOf: destinationUrl)
                 guard let player = player else { return }
                 player.delegate = self
-                player.prepareToPlay()
+                player.currentTime = UserDefaults.standard.object(forKey: "time") as? TimeInterval ?? 0
                 player.play()
+                
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in
+                    UserDefaults.standard.setValue(player.currentTime, forKey: "time")
+                }
+                
             } catch let error {
                 print(error.localizedDescription)
             }
@@ -36,6 +41,7 @@ extension AudioPlayer: AudioPlayerProtocol {
     }
     
     func StopSound() {
+        UserDefaults.standard.setValue(player?.currentTime ?? 0, forKey: "time")
         player?.stop()
     }
 }
@@ -44,6 +50,7 @@ extension AudioPlayer: AudioPlayerProtocol {
 extension AudioPlayer: AVAudioPlayerDelegate {
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        UserDefaults.standard.setValue(0, forKey: "time")
         PlaySound(resource: sound)
     }
 }
