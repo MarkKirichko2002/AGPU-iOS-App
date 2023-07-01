@@ -21,7 +21,10 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate, AudioPlayerProtocol {
     private override init() {}
     
     func PlaySound(resource: String) {
+        
         if let audioUrl = URL(string: resource) {
+            
+            self.sound = resource
             
             // then lets create your document folder url
             let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -32,6 +35,7 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate, AudioPlayerProtocol {
             do {
                 player = try AVAudioPlayer(contentsOf: destinationUrl)
                 guard let player = player else { return }
+                player.delegate = self
                 player.prepareToPlay()
                 player.play()
             } catch let error {
