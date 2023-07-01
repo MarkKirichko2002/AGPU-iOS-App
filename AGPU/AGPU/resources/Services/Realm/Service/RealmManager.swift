@@ -6,7 +6,7 @@
 //
 
 import RealmSwift
-import Foundation
+import UIKit
 
 class RealmManager: RealmManagerProtocol {
     
@@ -22,9 +22,13 @@ class RealmManager: RealmManagerProtocol {
         completion(array)
     }
     
-    func saveMusic(music: MusicModel) {
+    func saveMusic(music: MusicModel, image: UIImage) {
         var newItem = MusicModel()
         newItem = music
+        if let image = image.jpegData(compressionQuality: 0.9) {
+            let data = NSData(data: image)
+            newItem.image = data as Data
+        }
         try! realm.write {
             realm.add(newItem)
         }
@@ -48,7 +52,7 @@ class RealmManager: RealmManagerProtocol {
     }
     
     func editMusic(music: MusicModel, title: String, isChecked: Bool) {
-        var newItem = realm.object(ofType: MusicModel.self, forPrimaryKey: music.id)
+        let newItem = realm.object(ofType: MusicModel.self, forPrimaryKey: music.id)
         try! realm.write {
             newItem?.name = title
             newItem?.isChecked = isChecked

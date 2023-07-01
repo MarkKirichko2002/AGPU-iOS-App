@@ -36,8 +36,10 @@ class SettingsListViewController: UIViewController {
     private func SetUpTable() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.register(UINib(nibName: CustomIconTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CustomIconTableViewCell.identifier)
+        // MARK: - Custom Music
+        tableView.register(UINib(nibName: CustomMusicTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CustomMusicTableViewCell.identifier)
+        // MARK: - Elected Faculty
+        tableView.register(UINib(nibName: ElectedFacultyTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ElectedFacultyTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
     }

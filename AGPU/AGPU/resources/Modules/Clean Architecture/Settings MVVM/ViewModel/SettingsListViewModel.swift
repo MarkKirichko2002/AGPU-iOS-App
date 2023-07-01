@@ -62,13 +62,13 @@ class SettingsListViewModel: NSObject {
     func cellForRowAt(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomMusicTableViewCell.identifier, for: indexPath) as? CustomMusicTableViewCell else {return UITableViewCell()}
             cell.accessoryType = isMusicSelected(index: indexPath.row)
             cell.tintColor = .systemGreen
-            cell.textLabel?.text = musicItem(index: indexPath.row).name
+            cell.configure(music: musicItem(index: indexPath.row))
             return cell
         case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomIconTableViewCell.identifier, for: indexPath) as? CustomIconTableViewCell else {return UITableViewCell()}
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ElectedFacultyTableViewCell.identifier, for: indexPath) as? ElectedFacultyTableViewCell else {return UITableViewCell()}
             cell.accessoryType = isIconSelected(index: indexPath.row)
             cell.tintColor = .systemGreen
             cell.configure(icon: customIconItem(index: indexPath.row))
