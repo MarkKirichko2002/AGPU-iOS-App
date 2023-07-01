@@ -40,3 +40,18 @@ extension AddMusicViewController: UIDocumentPickerDelegate {
         }
     }
 }
+
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
+extension AddMusicViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        
+        guard let image = info[.editedImage] as? UIImage else {
+            return
+        }
+        
+        self.image = image
+        print(self.image)
+    }
+}

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8205367E2A50AE5D0054B756 /* CustomMusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8205367C2A50AE5D0054B756 /* CustomMusicTableViewCell.swift */; };
+		8205367F2A50AE5D0054B756 /* CustomMusicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8205367D2A50AE5D0054B756 /* CustomMusicTableViewCell.xib */; };
 		82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */; };
 		822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822158952A422A650088BDE5 /* SettingsListViewController.swift */; };
 		822158992A42311E0088BDE5 /* MusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822158982A42311E0088BDE5 /* MusicModel.swift */; };
@@ -21,8 +23,8 @@
 		8224B4F32A4F1C580069B7B3 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8224B4F22A4F1C580069B7B3 /* RealmManager.swift */; };
 		82320D812A4913FE00ECADEE /* AlternateIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82320D802A4913FE00ECADEE /* AlternateIcons.swift */; };
 		82320D832A49167000ECADEE /* AlternateIconModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82320D822A49167000ECADEE /* AlternateIconModel.swift */; };
-		82320D872A491F5700ECADEE /* CustomIconCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82320D862A491F5700ECADEE /* CustomIconCollectionViewCell.swift */; };
-		82320D892A491FBC00ECADEE /* CustomIconTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82320D882A491FBC00ECADEE /* CustomIconTableViewCell.xib */; };
+		82320D872A491F5700ECADEE /* ElectedFacultyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82320D862A491F5700ECADEE /* ElectedFacultyTableViewCell.swift */; };
+		82320D892A491FBC00ECADEE /* ElectedFacultyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82320D882A491FBC00ECADEE /* ElectedFacultyTableViewCell.xib */; };
 		8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234B2FF2A3242E10091810F /* SpeechRecognitionManager.swift */; };
 		826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888522A33A91200434219 /* AGPUSubSectionTableViewCell.swift */; };
 		826888582A33AB5600434219 /* AGPUSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888572A33AB5600434219 /* AGPUSplashScreenViewController.swift */; };
@@ -62,6 +64,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8205367C2A50AE5D0054B756 /* CustomMusicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMusicTableViewCell.swift; sourceTree = "<group>"; };
+		8205367D2A50AE5D0054B756 /* CustomMusicTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMusicTableViewCell.xib; sourceTree = "<group>"; };
 		82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsListViewController + Extensions.swift"; sourceTree = "<group>"; };
 		822158952A422A650088BDE5 /* SettingsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewController.swift; sourceTree = "<group>"; };
 		822158982A42311E0088BDE5 /* MusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicModel.swift; sourceTree = "<group>"; };
@@ -74,8 +78,8 @@
 		8224B4F22A4F1C580069B7B3 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		82320D802A4913FE00ECADEE /* AlternateIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternateIcons.swift; sourceTree = "<group>"; };
 		82320D822A49167000ECADEE /* AlternateIconModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternateIconModel.swift; sourceTree = "<group>"; };
-		82320D862A491F5700ECADEE /* CustomIconCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIconCollectionViewCell.swift; sourceTree = "<group>"; };
-		82320D882A491FBC00ECADEE /* CustomIconTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomIconTableViewCell.xib; sourceTree = "<group>"; };
+		82320D862A491F5700ECADEE /* ElectedFacultyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectedFacultyTableViewCell.swift; sourceTree = "<group>"; };
+		82320D882A491FBC00ECADEE /* ElectedFacultyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElectedFacultyTableViewCell.xib; sourceTree = "<group>"; };
 		8234B2FF2A3242E10091810F /* SpeechRecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManager.swift; sourceTree = "<group>"; };
 		826888522A33A91200434219 /* AGPUSubSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSectionTableViewCell.swift; sourceTree = "<group>"; };
 		826888572A33AB5600434219 /* AGPUSplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSplashScreenViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +133,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8205367A2A50ADF30054B756 /* Elected Faculty */ = {
+			isa = PBXGroup;
+			children = (
+				82320D862A491F5700ECADEE /* ElectedFacultyTableViewCell.swift */,
+				82320D882A491FBC00ECADEE /* ElectedFacultyTableViewCell.xib */,
+			);
+			path = "Elected Faculty";
+			sourceTree = "<group>";
+		};
+		8205367B2A50AE350054B756 /* Custom Music */ = {
+			isa = PBXGroup;
+			children = (
+				8205367C2A50AE5D0054B756 /* CustomMusicTableViewCell.swift */,
+				8205367D2A50AE5D0054B756 /* CustomMusicTableViewCell.xib */,
+			);
+			path = "Custom Music";
+			sourceTree = "<group>";
+		};
 		82194E532A459AF2009D2FB3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,7 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				82320D842A491F3700ECADEE /* ViewController */,
-				82320D852A491F3C00ECADEE /* Cell */,
+				82320D852A491F3C00ECADEE /* Cells */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -256,13 +278,13 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		82320D852A491F3C00ECADEE /* Cell */ = {
+		82320D852A491F3C00ECADEE /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				82320D862A491F5700ECADEE /* CustomIconCollectionViewCell.swift */,
-				82320D882A491FBC00ECADEE /* CustomIconTableViewCell.xib */,
+				8205367B2A50AE350054B756 /* Custom Music */,
+				8205367A2A50ADF30054B756 /* Elected Faculty */,
 			);
-			path = Cell;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		8234B2FE2A3242CC0091810F /* Services */ = {
@@ -686,10 +708,11 @@
 			files = (
 				82868B8B2A49BE9600F4F7A5 /* philology music.mp3 in Resources */,
 				829AD68D2A42EA020047609B /* history music.mp3 in Resources */,
+				8205367F2A50AE5D0054B756 /* CustomMusicTableViewCell.xib in Resources */,
 				82808E952A31F12500DEEB16 /* LaunchScreen.storyboard in Resources */,
 				829AD68F2A42EC680047609B /* pre school music.mp3 in Resources */,
 				82868B892A49BD5F00F4F7A5 /* science music.mp3 in Resources */,
-				82320D892A491FBC00ECADEE /* CustomIconTableViewCell.xib in Resources */,
+				82320D892A491FBC00ECADEE /* ElectedFacultyTableViewCell.xib in Resources */,
 				827B62BF2A4236DE008D241E /* informatics music.mp3 in Resources */,
 				8224B4D92A4F10B40069B7B3 /* AddMusicViewController.storyboard in Resources */,
 				82808E922A31F12500DEEB16 /* Assets.xcassets in Resources */,
@@ -737,7 +760,8 @@
 				829548992A43AE32007DEBA0 /* SettingsManagerProtocol.swift in Sources */,
 				8224B4E62A4F1AF70069B7B3 /* FileServiceProtocol.swift in Sources */,
 				82320D812A4913FE00ECADEE /* AlternateIcons.swift in Sources */,
-				82320D872A491F5700ECADEE /* CustomIconCollectionViewCell.swift in Sources */,
+				8205367E2A50AE5D0054B756 /* CustomMusicTableViewCell.swift in Sources */,
+				82320D872A491F5700ECADEE /* ElectedFacultyTableViewCell.swift in Sources */,
 				82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */,
 				822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */,
 				8295489C2A43AE7E007DEBA0 /* SettingsManager.swift in Sources */,

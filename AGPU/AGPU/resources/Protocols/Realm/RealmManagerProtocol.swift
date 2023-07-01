@@ -6,10 +6,11 @@
 //
 
 import RealmSwift
+import UIKit
 
 protocol RealmManagerProtocol {
     func fetchMusicList(completion: @escaping([MusicModel])->Void)
-    func saveMusic(music: MusicModel)
+    func saveMusic(music: MusicModel, image: UIImage)
     func toggleMusic(music: MusicModel, isChecked: Bool)
     func findMusicItem(by id: ObjectId)-> MusicModel?
     func editMusic(music: MusicModel, title: String, isChecked: Bool)
