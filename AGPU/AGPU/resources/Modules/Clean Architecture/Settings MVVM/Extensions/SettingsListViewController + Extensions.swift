@@ -47,7 +47,7 @@ extension SettingsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            viewModel.DeleteMusic(music: viewModel.musicItem(index: indexPath.row))
+            viewModel.DeleteMusic(index: indexPath.row)
         }
     }
     
