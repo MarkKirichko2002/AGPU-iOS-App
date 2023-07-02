@@ -34,7 +34,8 @@ extension SettingsListViewController: UITableViewDelegate {
             let playAction =
             UIAction(title: "воспроизвести",
                      image: UIImage(named: "play")) { action in
-                self.viewModel.ToggleMusic(index: indexPath.row, isChecked: true)
+                UserDefaults.standard.setValue(indexPath.row, forKey: "id")
+                self.viewModel.OnMusic(index: indexPath.row)
             }
             let stopAction =
             UIAction(title: "пауза",
