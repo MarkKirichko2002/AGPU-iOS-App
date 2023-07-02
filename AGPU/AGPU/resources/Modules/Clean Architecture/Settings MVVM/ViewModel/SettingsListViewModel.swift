@@ -29,13 +29,8 @@ class SettingsListViewModel: NSObject {
     func GetMusicList() {
         realmManager.fetchMusicList { musicList in
             self.musicList = musicList
-            self.isChanged = true
+            self.isChanged.toggle()
         }
-    }
-    
-    func EditMusic(music: MusicModel, title: String, isChecked: Bool) {
-        realmManager.editMusic(music: music, title: title, isChecked: isChecked)
-        GetMusicList()
     }
     
     func DeleteMusic(index: Int) {
@@ -117,17 +112,16 @@ class SettingsListViewModel: NSObject {
     }
     
     func OnMusic(index: Int) {
-        let id = UserDefaults.standard.object(forKey: "id") as? Int ?? 0
+        UserDefaults.standard.setValue(index, forKey: "id")
         musicList.forEach {
             realmManager.toggleMusic(music: $0, isChecked: false)
-            AudioPlayer.shared.StopSound()
         }
-        ToggleMusic(index: id, isChecked: true)
+        AudioPlayer.shared.StopSound()
+        ToggleMusic(index: index, isChecked: true)
     }
     
     func OffMusic(index: Int) {
-        let id = UserDefaults.standard.object(forKey: "id") as? Int ?? 0
-        if musicItem(index: id).id == musicItem(index: index).id {
+        if musicItem(index: index).isChecked {
             ToggleMusic(index: index, isChecked: false)
         }
     }
@@ -169,7 +163,7 @@ class SettingsListViewModel: NSObject {
         UIApplication.shared.setAlternateIconName(icon.appIcon)
         NotificationCenter.default.post(name: Notification.Name("icon"), object: icon)
         UserDefaults.SaveData(object: icon, key: "icon") {
-            self.isChanged = true
+            self.isChanged.toggle()
         }
     }
     
