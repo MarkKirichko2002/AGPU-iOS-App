@@ -30,29 +30,44 @@ extension SettingsListViewController: UITableViewDelegate {
         return UIContextMenuConfiguration(identifier: nil,
                                           previewProvider: nil,
                                           actionProvider: {
-            suggestedActions in
-            let playAction = UIAction(title: "воспроизвести",
-                                      image: UIImage(named: "play")) { action in
-                self.viewModel.OnMusic(index: indexPath.row)
+            _ in
+            switch indexPath.section {
+                
+            case 0:
+                let playAction = UIAction(title: "воспроизвести",
+                                          image: UIImage(named: "play")) { action in
+                    self.viewModel.OnMusic(index: indexPath.row)
+                }
+                let pauseAction = UIAction(title: "пауза",
+                                           image: UIImage(named: "pause")) { action in
+                    self.viewModel.OffMusic(index: indexPath.row)
+                }
+                return UIMenu(title: self.viewModel.musicItem(index: indexPath.row).name, children: [playAction, pauseAction])
+                
+            case 1:
+                return nil
+                
+            default:
+                return nil
             }
-            let pauseAction = UIAction(title: "пауза",
-                                       image: UIImage(named: "pause")) { action in
-                self.viewModel.OffMusic(index: indexPath.row)
-            }
-            return UIMenu(title: self.viewModel.musicItem(index: indexPath.row).name, children: [playAction, pauseAction])
         })
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: nil) { (_, _, completionHandler) in
-            self.viewModel.DeleteMusic(index: indexPath.row)
+        switch indexPath.section {
+        case 0:
+            let deleteAction = UIContextualAction(style: .destructive, title: nil) { (_, _, completionHandler) in
+                self.viewModel.DeleteMusic(index: indexPath.row)
+            }
+            deleteAction.image = UIImage(systemName: "trash")
+            deleteAction.backgroundColor = .systemRed
+            let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+            return configuration
+        default:
+            let configuration = UISwipeActionsConfiguration(actions: [])
+            return configuration
         }
-        deleteAction.image = UIImage(systemName: "trash")
-        deleteAction.backgroundColor = .systemRed
-        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-        return configuration
     }
-    
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel.titleForSection(section)
