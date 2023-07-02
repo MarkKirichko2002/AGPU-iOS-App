@@ -17,7 +17,6 @@ extension AGPUMapViewController: CLLocationManagerDelegate {
             render(location)
         }
     }
-    
 }
 
 // MARK: - MKMapViewDelegate
