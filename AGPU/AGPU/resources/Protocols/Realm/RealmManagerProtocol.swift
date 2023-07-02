@@ -13,6 +13,6 @@ protocol RealmManagerProtocol {
     func saveMusic(music: MusicModel, image: UIImage)
     func toggleMusic(music: MusicModel, isChecked: Bool)
     func findMusicItem(by id: ObjectId)-> MusicModel?
-    func editMusic(music: MusicModel, title: String, isChecked: Bool)
+    func editMusic(music: MusicModel, title: String, file: String)
     func deleteMusic(music: MusicModel)
 }

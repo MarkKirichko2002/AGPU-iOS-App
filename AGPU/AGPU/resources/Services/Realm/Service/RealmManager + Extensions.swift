@@ -50,11 +50,11 @@ extension RealmManager: RealmManagerProtocol {
         }
     }
     
-    func editMusic(music: MusicModel, title: String, isChecked: Bool) {
+    func editMusic(music: MusicModel, title: String, file: String) {
         let newItem = realm.object(ofType: MusicModel.self, forPrimaryKey: music.id)
         try! realm.write {
             newItem?.name = title
-            newItem?.isChecked = isChecked
+            newItem?.fileName = file
             print(newItem)
         }
     }

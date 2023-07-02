@@ -31,18 +31,15 @@ extension SettingsListViewController: UITableViewDelegate {
                                           previewProvider: nil,
                                           actionProvider: {
             suggestedActions in
-            let playAction =
-            UIAction(title: "воспроизвести",
+            let playAction = UIAction(title: "воспроизвести",
                      image: UIImage(named: "play")) { action in
-                UserDefaults.standard.setValue(indexPath.row, forKey: "id")
                 self.viewModel.OnMusic(index: indexPath.row)
             }
-            let stopAction =
-            UIAction(title: "пауза",
+            let pauseAction = UIAction(title: "пауза",
                      image: UIImage(named: "pause")) { action in
                 self.viewModel.OffMusic(index: indexPath.row)
             }
-            return UIMenu(title: self.viewModel.musicItem(index: indexPath.row).name, children: [playAction, stopAction])
+            return UIMenu(title: self.viewModel.musicItem(index: indexPath.row).name, children: [playAction, pauseAction])
         })
     }
     
