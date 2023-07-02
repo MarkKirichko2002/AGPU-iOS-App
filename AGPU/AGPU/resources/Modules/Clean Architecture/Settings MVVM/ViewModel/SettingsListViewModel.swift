@@ -116,6 +116,15 @@ class SettingsListViewModel: NSObject {
         return musicList[index]
     }
     
+    func OnMusic(index: Int) {
+        let id = UserDefaults.standard.object(forKey: "id") as? Int ?? 0
+        musicList.forEach {
+            realmManager.toggleMusic(music: $0, isChecked: false)
+            AudioPlayer.shared.StopSound()
+        }
+        ToggleMusic(index: id, isChecked: true)
+    }
+    
     func OffMusic(index: Int) {
         let id = UserDefaults.standard.object(forKey: "id") as? Int ?? 0
         if musicItem(index: id).id == musicItem(index: index).id {
