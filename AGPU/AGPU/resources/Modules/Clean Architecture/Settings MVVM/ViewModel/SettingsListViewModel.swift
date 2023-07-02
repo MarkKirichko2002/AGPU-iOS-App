@@ -38,10 +38,13 @@ class SettingsListViewModel: NSObject {
         GetMusicList()
     }
     
-    func DeleteMusic(music: MusicModel) {
-        realmManager.deleteMusic(music: music)
+    func DeleteMusic(index: Int) {
+        let id = UserDefaults.standard.object(forKey: "id") as? Int ?? 0
+        if musicItem(index: index).id == musicItem(index: id).id {
+            AudioPlayer.shared.StopSound()
+        }
+        realmManager.deleteMusic(music: musicItem(index: index))
         GetMusicList()
-        AudioPlayer.shared.StopSound()
     }
     
     func sectionsCount()-> Int {
@@ -114,21 +117,16 @@ class SettingsListViewModel: NSObject {
     }
     
     func OffMusic(index: Int) {
-        if let id = UserDefaults.loadData(type: ObjectId.self, key: "id") {
-            if let music = realmManager.findMusicItem(by: id) {
-                if music.id == musicItem(index: index).id {
-                    ToggleMusic(index: index, isChecked: false)
-                }
-            }
+        let id = UserDefaults.standard.object(forKey: "id") as? Int ?? 0
+        if musicItem(index: id).id == musicItem(index: index).id {
+            ToggleMusic(index: index, isChecked: false)
         }
     }
     
     func ToggleMusic(index: Int, isChecked: Bool) {
         realmManager.toggleMusic(music: musicList[index], isChecked: isChecked)
         GetMusicList()
-        UserDefaults.SaveData(object: musicList[index].id, key: "id") {
-            print("сохранено")
-        }
+        UserDefaults.standard.setValue(index, forKey: "id")
         if musicList[index].isChecked {
             AudioPlayer.shared.PlaySound(resource: self.musicList[index].fileName)
             self.isChanged.toggle()
