@@ -49,7 +49,11 @@ extension SettingsListViewController: UITableViewDelegate {
                 return UIMenu(title: self.viewModel.musicItem(index: indexPath.row).name, children: [playAction, pauseAction, restartAction, deleteAction])
                 
             case 1:
-                return nil
+                let infoAction = UIAction(title: "узнать больше", image: UIImage(named: "info")) { action in
+                    self.GoToWeb(url: self.viewModel.electedFacultyItem(index: indexPath.row).url)
+                }
+                
+                return UIMenu(title: self.viewModel.electedFacultyItem(index: indexPath.row).name, children: [infoAction])
                 
             default:
                 return nil

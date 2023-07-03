@@ -282,7 +282,7 @@ class AGPUTabBarController: UITabBarController {
     // MARK: - Elected Faculty
     private func ObserveChangeIcon() {
         NotificationCenter.default.addObserver(forName: Notification.Name("icon"), object: nil, queue: .main) { notification in
-            if let icon = notification.object as? AlternateIconModel {
+            if let icon = notification.object as? ElectedFacultyModel {
                 self.DynamicButton.setImage(UIImage(named: icon.icon), for: .normal)
                 self.animation.SpringAnimation(view: self.DynamicButton)
             }
