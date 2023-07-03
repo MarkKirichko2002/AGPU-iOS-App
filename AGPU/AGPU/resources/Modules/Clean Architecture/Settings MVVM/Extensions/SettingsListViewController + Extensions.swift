@@ -34,15 +34,16 @@ extension SettingsListViewController: UITableViewDelegate {
             switch indexPath.section {
                 
             case 0:
-                let playAction = UIAction(title: "воспроизвести",
-                                          image: UIImage(named: "play")) { action in
+                let playAction = UIAction(title: "воспроизвести", image: UIImage(named: "play")) { action in
                     self.viewModel.OnMusic(index: indexPath.row)
                 }
-                let pauseAction = UIAction(title: "пауза",
-                                           image: UIImage(named: "pause")) { action in
+                let pauseAction = UIAction(title: "пауза", image: UIImage(named: "pause")) { action in
                     self.viewModel.OffMusic(index: indexPath.row)
                 }
-                return UIMenu(title: self.viewModel.musicItem(index: indexPath.row).name, children: [playAction, pauseAction])
+                let restartAction = UIAction(title: "заново", image: UIImage(named: "restart")) { action in
+                    self.viewModel.RestartMusic(index: indexPath.row)
+                }
+                return UIMenu(title: self.viewModel.musicItem(index: indexPath.row).name, children: [playAction, pauseAction, restartAction])
                 
             case 1:
                 return nil

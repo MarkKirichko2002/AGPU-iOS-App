@@ -126,6 +126,14 @@ class SettingsListViewModel: NSObject {
         }
     }
     
+    func RestartMusic(index: Int) {
+        if musicItem(index: index).isChecked {
+            AudioPlayer.shared.StopSound()
+            UserDefaults.standard.setValue(0, forKey: "time")
+            ToggleMusic(index: index, isChecked: true)
+        }
+    }
+    
     func ToggleMusic(index: Int, isChecked: Bool) {
         realmManager.toggleMusic(music: musicList[index], isChecked: isChecked)
         GetMusicList()
