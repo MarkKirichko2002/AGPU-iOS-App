@@ -53,7 +53,11 @@ extension SettingsListViewController: UITableViewDelegate {
                     self.GoToWeb(url: self.viewModel.electedFacultyItem(index: indexPath.row).url)
                 }
                 
-                return UIMenu(title: self.viewModel.electedFacultyItem(index: indexPath.row).name, children: [infoAction])
+                let iconAction = UIAction(title: "выбрать иконку", image: UIImage(named: self.viewModel.electedFacultyItem(index: indexPath.row).icon)) { action in
+                    self.viewModel.ChangeIcon(index: indexPath.row)
+                }
+                
+                return UIMenu(title: self.viewModel.electedFacultyItem(index: indexPath.row).name, children: [infoAction, iconAction])
                 
             default:
                 return nil

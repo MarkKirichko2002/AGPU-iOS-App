@@ -79,9 +79,9 @@ class SettingsListViewModel: NSObject {
     func DidSelectRow(at indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-            print("музыка")
+            print(musicItem(index: indexPath.row))
         case 1:
-            ChangeIcon(index: indexPath.row)
+            print(electedFacultyItem(index: indexPath.row))
         default:
             break
         }
@@ -169,7 +169,9 @@ class SettingsListViewModel: NSObject {
         var icon = ElectedFaculties.faculties[index]
         icon.isSelected = true
         UIApplication.shared.setAlternateIconName(icon.appIcon)
-        NotificationCenter.default.post(name: Notification.Name("icon"), object: icon)
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            NotificationCenter.default.post(name: Notification.Name("icon"), object: icon)
+        }
         UserDefaults.SaveData(object: icon, key: "icon") {
             self.isChanged.toggle()
         }
