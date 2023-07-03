@@ -43,7 +43,10 @@ extension SettingsListViewController: UITableViewDelegate {
                 let restartAction = UIAction(title: "заново", image: UIImage(named: "restart")) { action in
                     self.viewModel.RestartMusic(index: indexPath.row)
                 }
-                return UIMenu(title: self.viewModel.musicItem(index: indexPath.row).name, children: [playAction, pauseAction, restartAction])
+                let deleteAction = UIAction(title: "удалить", image: UIImage(named: "trash")) { action in
+                    self.viewModel.DeleteMusic(index: indexPath.row)
+                }
+                return UIMenu(title: self.viewModel.musicItem(index: indexPath.row).name, children: [playAction, pauseAction, restartAction, deleteAction])
                 
             case 1:
                 return nil
@@ -61,12 +64,10 @@ extension SettingsListViewController: UITableViewDelegate {
                 self.viewModel.DeleteMusic(index: indexPath.row)
             }
             deleteAction.image = UIImage(systemName: "trash")
-            deleteAction.backgroundColor = .systemRed
             let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
             return configuration
         default:
-            let configuration = UISwipeActionsConfiguration(actions: [])
-            return configuration
+            return nil
         }
     }
     
