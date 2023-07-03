@@ -51,7 +51,7 @@ class SettingsListViewModel: NSObject {
         case 0:
             return musicListCount()
         case 1:
-            return iconsListCount()
+            return facultiesListCount()
         default:
             return 0
         }
@@ -69,7 +69,7 @@ class SettingsListViewModel: NSObject {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ElectedFacultyTableViewCell.identifier, for: indexPath) as? ElectedFacultyTableViewCell else {return UITableViewCell()}
             cell.accessoryType = isIconSelected(index: indexPath.row)
             cell.tintColor = .systemGreen
-            cell.configure(icon: customIconItem(index: indexPath.row))
+            cell.configure(faculty: electedFacultyItem(index: indexPath.row))
             return cell
         default:
             return UITableViewCell()
@@ -157,16 +157,16 @@ class SettingsListViewModel: NSObject {
     
     // MARK: - Elected Faculty
     
-    func iconsListCount()-> Int {
-        return AlternateIcons.icons.count
+    func facultiesListCount()-> Int {
+        return ElectedFaculties.faculties.count
     }
     
-    func customIconItem(index: Int)-> AlternateIconModel {
-        return AlternateIcons.icons[index]
+    func electedFacultyItem(index: Int)-> ElectedFacultyModel {
+        return ElectedFaculties.faculties[index]
     }
     
     func ChangeIcon(index: Int) {
-        var icon = AlternateIcons.icons[index]
+        var icon = ElectedFaculties.faculties[index]
         icon.isSelected = true
         UIApplication.shared.setAlternateIconName(icon.appIcon)
         NotificationCenter.default.post(name: Notification.Name("icon"), object: icon)
@@ -176,8 +176,8 @@ class SettingsListViewModel: NSObject {
     }
     
     func isIconSelected(index: Int)-> UITableViewCell.AccessoryType {
-        let data = UserDefaults.loadData(type: AlternateIconModel.self, key: "icon")
-        if data?.id == AlternateIcons.icons[index].id && data?.isSelected == true {
+        let data = UserDefaults.loadData(type: ElectedFacultyModel.self, key: "icon")
+        if data?.id == ElectedFaculties.faculties[index].id && data?.isSelected == true {
             return .checkmark
         } else {
             return .none

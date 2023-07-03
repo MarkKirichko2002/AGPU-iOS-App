@@ -14,8 +14,8 @@ class ElectedFacultyTableViewCell: UITableViewCell {
     @IBOutlet var ElectedFacultyIcon: SpringImageView!
     @IBOutlet var TitleLabel: UILabel!
      
-    func configure(icon: AlternateIconModel) {
-        ElectedFacultyIcon.image = UIImage(named: icon.icon)
-        TitleLabel.text = icon.name
+    func configure(faculty: ElectedFacultyModel) {
+        ElectedFacultyIcon.image = UIImage(named: faculty.icon)
+        TitleLabel.text = faculty.name
     }
 }
