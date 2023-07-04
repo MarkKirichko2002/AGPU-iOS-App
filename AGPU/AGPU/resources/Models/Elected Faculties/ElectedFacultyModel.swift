@@ -13,5 +13,6 @@ struct ElectedFacultyModel: Codable {
     let icon: String
     let appIcon: String
     let url: String
+    let phoneNumbers: [String]
     var isSelected = false
 }
