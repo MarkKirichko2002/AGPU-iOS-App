@@ -55,11 +55,15 @@ extension SettingsListViewController: UITableViewDelegate {
                 
                 let phoneAction = self.viewModel.makePhoneNumbersMenu(index: indexPath.row)
                 
-                let iconAction = UIAction(title: "выбрать иконку", image: UIImage(named: self.viewModel.electedFacultyItem(index: indexPath.row).icon)) { action in
+                let iconAction = UIAction(title: "выбрать иконку", image: UIImage(named: "photo")) { action in
                     self.viewModel.ChangeIcon(index: indexPath.row)
                 }
                 
-                return UIMenu(title: self.viewModel.electedFacultyItem(index: indexPath.row).name, children: [infoAction, phoneAction, iconAction])
+                let enterAction = UIAction(title: "поступить", image: UIImage(named: "worksheet")) { action in
+                    self.GoToWeb(url: "http://priem.agpu.net/anketa/index.php")
+                }
+                
+                return UIMenu(title: self.viewModel.electedFacultyItem(index: indexPath.row).name, children: [infoAction, phoneAction, enterAction, iconAction])
                 
             default:
                 return nil
