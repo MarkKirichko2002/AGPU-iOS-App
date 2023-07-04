@@ -68,6 +68,7 @@ struct AGPUSubSections {
             AGPUSubSectionModel(name: "Услуги для партнеров", icon: "paper plane", url: "http://test.agpu.net/partneram/uslugi-dlya-partnerov.php", voiceCommand: "услуги для партнёров")
         ], "Международная деятельность" : [
             AGPUSubSectionModel(name: "Отдел международной деятельности", icon: "world", url: "http://test.agpu.net/struktura-vuza/otdel-mezhdunarodnoy-deyatelnosti/index.php", voiceCommand: "отдел международной деятельности"),
+            AGPUSubSectionModel(name: "Центры открытого образования", icon: "world", url: "http://test.agpu.net/mezhdunarodnaya-deyatelnost/tsentry-otkrytogo-obrazovaniya/index.php", voiceCommand: "центры открытого образования"),
             AGPUSubSectionModel(name: "Информация для иностранных абитуриентов", icon: "world", url: "http://test.agpu.net/mezhdunarodnaya-deyatelnost/abiturient/index.php", voiceCommand: "информация для иностранных абитуриентов"),
             AGPUSubSectionModel(name: "Информация для иностранных студентов", icon: "world", url: "http://test.agpu.net/mezhdunarodnaya-deyatelnost/student/index.php", voiceCommand: "информация для иностранных студентов"),
             AGPUSubSectionModel(name: "Международное сотрудничество", icon: "world", url: "http://test.agpu.net/mezhdunarodnaya-deyatelnost/sotrudnichestvo/index.php", voiceCommand: "международное сотрудничество"),
