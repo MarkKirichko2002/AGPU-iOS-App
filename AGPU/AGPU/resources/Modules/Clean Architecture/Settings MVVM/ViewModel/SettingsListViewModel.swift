@@ -190,14 +190,14 @@ class SettingsListViewModel: NSObject {
         let faculty = electedFacultyItem(index: index)
         let rateActions = faculty.phoneNumbers
             .map { phone in
-                return UIAction(title: phone, image: UIImage(systemName: "phone")) { action in
+                return UIAction(title: phone) { action in
                     self.makePhoneCall(phoneNumber: phone)
                 }
             }
         
         return UIMenu(
             title: "позвонить",
-            image: UIImage(systemName: "phone"),
+            image: UIImage(named: "phone"),
             children: rateActions)
     }
     
