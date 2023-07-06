@@ -60,7 +60,7 @@ class AGPUTabBarController: UITabBarController {
         sectionsVC.tabBarItem = UITabBarItem(title: "Разделы", image: UIImage(named: "sections"), selectedImage: UIImage(named: "sections selected"))
         // карта
         mapVC.tabBarItem = UITabBarItem(title: "Найти АГПУ", image: UIImage(named: "map"), selectedImage: UIImage(named: "map selected"))
-        mapVC.navigationItem.title = "Найти \"АГПУ\""
+        mapVC.navigationItem.title = "Найти «АГПУ»"
         // настройки
         settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear.fill"))
         settingsVC.navigationItem.title = "Настройки"
@@ -100,7 +100,7 @@ class AGPUTabBarController: UITabBarController {
                 self.animation.SpringAnimation(view: self.DynamicButton)
             }
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.GoToWeb(url: subsection.url)
+                self.GoToWeb(url: subsection.url, title: nil)
             }
         }
     }
@@ -198,7 +198,7 @@ class AGPUTabBarController: UITabBarController {
                         }
                         
                         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                            self.GoToWeb(url: subsection.url)
+                            self.GoToWeb(url: subsection.url, title: nil)
                         }
                     
                         NotificationCenter.default.post(name: Notification.Name("scroll"), object: text.lastWord())
