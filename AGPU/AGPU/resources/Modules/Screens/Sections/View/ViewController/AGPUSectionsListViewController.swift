@@ -9,6 +9,7 @@ import UIKit
 
 class AGPUSectionsListViewController: UIViewController {
 
+    // MARK: - UI
     private let tableView = UITableView()
 
     override func viewDidLoad() {

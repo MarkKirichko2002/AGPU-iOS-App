@@ -55,7 +55,6 @@ class AGPUTabBarController: UITabBarController {
         let settingsVC = SettingsListViewController()
         // главное
         mainVC.tabBarItem = UITabBarItem(title: "Главное", image: UIImage(named: "home"), selectedImage: UIImage(named: "home selected"))
-        mainVC.navigationItem.title = "Главное"
         // разделы
         sectionsVC.tabBarItem = UITabBarItem(title: "Разделы", image: UIImage(named: "sections"), selectedImage: UIImage(named: "sections selected"))
         // карта
