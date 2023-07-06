@@ -44,7 +44,7 @@ class AGPUTabBarController: UITabBarController {
         
     private func setUpTabs() {
         // главное
-        let mainVC = AGPUMainViewController(url: URL(string: "http://test.agpu.net/")!)
+        let mainVC = AGPUMainViewController()
         // кнопка
         let middleButton = UIViewController()
         // разделы
