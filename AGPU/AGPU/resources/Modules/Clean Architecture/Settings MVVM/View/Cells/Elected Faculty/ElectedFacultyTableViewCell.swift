@@ -12,10 +12,10 @@ class ElectedFacultyTableViewCell: UITableViewCell {
     static let identifier = "ElectedFacultyTableViewCell"
     
     @IBOutlet var ElectedFacultyIcon: SpringImageView!
-    @IBOutlet var TitleLabel: UILabel!
+    @IBOutlet var ElectedFacultyName: UILabel!
      
     func configure(faculty: ElectedFacultyModel) {
         ElectedFacultyIcon.image = UIImage(named: faculty.icon)
-        TitleLabel.text = faculty.name
+        ElectedFacultyName.text = faculty.name
     }
 }
