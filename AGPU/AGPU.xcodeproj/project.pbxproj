@@ -33,6 +33,7 @@
 		826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888602A33ACF500434219 /* UIView + Extensions.swift */; };
 		826888662A33B6E700434219 /* AGPUTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888652A33B6E700434219 /* AGPUTabBarController.swift */; };
 		826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888682A3482DF00434219 /* AGPUSubSections.swift */; };
+		82721F1C2A574EE100982EF7 /* AGPUMainViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82721F1B2A574EE100982EF7 /* AGPUMainViewController + Extensions.swift */; };
 		827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B62C22A425166008D241E /* UserDefaults + Extensions.swift */; };
 		827F0FFA2A4B2D7E00C481E4 /* AGPUMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827F0FF92A4B2D7E00C481E4 /* AGPUMainViewController.swift */; };
 		82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E882A31F12100DEEB16 /* AppDelegate.swift */; };
@@ -94,6 +95,7 @@
 		826888602A33ACF500434219 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		826888652A33B6E700434219 /* AGPUTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUTabBarController.swift; sourceTree = "<group>"; };
 		826888682A3482DF00434219 /* AGPUSubSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSections.swift; sourceTree = "<group>"; };
+		82721F1B2A574EE100982EF7 /* AGPUMainViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUMainViewController + Extensions.swift"; sourceTree = "<group>"; };
 		827B62C22A425166008D241E /* UserDefaults + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + Extensions.swift"; sourceTree = "<group>"; };
 		827F0FF92A4B2D7E00C481E4 /* AGPUMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUMainViewController.swift; sourceTree = "<group>"; };
 		82808E852A31F12100DEEB16 /* AGPU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGPU.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -411,6 +413,7 @@
 			isa = PBXGroup;
 			children = (
 				827F0FF92A4B2D7E00C481E4 /* AGPUMainViewController.swift */,
+				82721F1B2A574EE100982EF7 /* AGPUMainViewController + Extensions.swift */,
 			);
 			path = "Main Screen";
 			sourceTree = "<group>";
@@ -747,6 +750,7 @@
 				82C7B8482A50CDB400F9A552 /* FileService + Extensions.swift in Sources */,
 				82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */,
 				8224B4F32A4F1C580069B7B3 /* RealmManager.swift in Sources */,
+				82721F1C2A574EE100982EF7 /* AGPUMainViewController + Extensions.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
 				822158992A42311E0088BDE5 /* MusicModel.swift in Sources */,
