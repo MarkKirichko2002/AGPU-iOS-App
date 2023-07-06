@@ -46,11 +46,20 @@ class AGPUMainViewController: UIViewController {
     }
     
     private func SetUpNavigation() {
+        let reloadButton = UIBarButtonItem(image: UIImage(systemName: "arrow.clockwise"), style: .plain, target: self, action: #selector(reloadButtonTapped))
+        reloadButton.tintColor = .black
         let backbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
         backbutton.tintColor = .black
         let forwardbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.right"), style: .plain, target: self, action: #selector(forwardButtonTapped))
         forwardbutton.tintColor = .black
         self.navigationItem.rightBarButtonItems = [forwardbutton, backbutton]
+        self.navigationItem.leftBarButtonItem = reloadButton
+    }
+    
+    @objc private func reloadButtonTapped() {
+        DispatchQueue.main.async {
+            self.WVWEBview.load(URLRequest(url: self.url))
+        }
     }
     
     @objc private func backButtonTapped() {
