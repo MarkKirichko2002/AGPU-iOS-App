@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WebKit
 
 // MARK: - UIScrollViewDelegate
 extension WebViewController: UIScrollViewDelegate {
@@ -15,6 +16,22 @@ extension WebViewController: UIScrollViewDelegate {
         let position = CGPoint(x: 0, y: yOffset)
         UserDefaults.SaveData(object: position, key: "last position") {
             print("сохранено: \(position)")
+        }
+    }
+}
+
+// MARK: - WKNavigationDelegate
+extension WebViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        DispatchQueue.main.async {
+            self.spinner.startAnimating()
+        }
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        DispatchQueue.main.async {
+            self.spinner.stopAnimating()
         }
     }
 }

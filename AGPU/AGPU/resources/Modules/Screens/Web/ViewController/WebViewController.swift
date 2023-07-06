@@ -11,7 +11,8 @@ import WebKit
 class WebViewController: UIViewController {
 
     private var WVWEBview = WKWebView(frame: .zero)
-
+    let spinner = UIActivityIndicatorView(style: .large)
+    
     var url: String
 
     // MARK: - Init
@@ -27,6 +28,7 @@ class WebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SetUpWebView()
+        SetUpIndicatorView()
         SetUpNavigation()
         ObserveScroll()
     }
@@ -45,7 +47,17 @@ class WebViewController: UIViewController {
         view = WVWEBview
         WVWEBview.allowsBackForwardNavigationGestures = true
         WVWEBview.scrollView.delegate = self
+        WVWEBview.navigationDelegate = self
         WVWEBview.load(self.url)
+    }
+    
+    private func SetUpIndicatorView() {
+        view.addSubview(spinner)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
     private func SetUpNavigation() {
