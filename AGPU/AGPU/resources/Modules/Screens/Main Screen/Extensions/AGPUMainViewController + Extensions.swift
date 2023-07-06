@@ -11,10 +11,14 @@ import WebKit
 extension AGPUMainViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        spinner.startAnimating()
+        DispatchQueue.main.async {
+            self.spinner.startAnimating()
+        }
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        spinner.stopAnimating()
+        DispatchQueue.main.async {
+            self.spinner.stopAnimating()
+        }
     }
 }
