@@ -10,9 +10,10 @@ import WebKit
 
 class AGPUMainViewController: UIViewController {
 
-    private var WVWEBview = WKWebView(frame: .zero)
-
     var url: URL
+    
+    let WVWEBview = WKWebView(frame: .zero)
+    let spinner = UIActivityIndicatorView(style: .large)
 
     // MARK: - Init
     init(url: URL) {
@@ -27,6 +28,7 @@ class AGPUMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SetUpWebView()
+        SetUpIndicatorView()
         SetUpNavigation()
         ObserveScroll()
     }
@@ -39,10 +41,20 @@ class AGPUMainViewController: UIViewController {
         view.addSubview(WVWEBview)
         view = WVWEBview
         WVWEBview.allowsBackForwardNavigationGestures = true
+        WVWEBview.navigationDelegate = self
         let request = URLRequest(url: self.url)
         DispatchQueue.main.async {
             self.WVWEBview.load(request)
         }
+    }
+    
+    private func SetUpIndicatorView() {
+        view.addSubview(spinner)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
     private func SetUpNavigation() {
