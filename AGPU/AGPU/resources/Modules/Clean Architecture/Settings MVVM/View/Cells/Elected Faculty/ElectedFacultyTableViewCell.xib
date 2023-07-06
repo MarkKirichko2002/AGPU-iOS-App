@@ -3,7 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -44,7 +44,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="ElectedFacultyIcon" destination="Rsj-58-Ipw" id="Lec-6f-iPZ"/>
-                <outlet property="TitleLabel" destination="i26-8e-uVB" id="mGc-HE-eW8"/>
+                <outlet property="ElectedFacultyName" destination="i26-8e-uVB" id="t2O-VE-81Y"/>
             </connections>
             <point key="canvasLocation" x="183.96946564885496" y="10.563380281690142"/>
         </tableViewCell>
