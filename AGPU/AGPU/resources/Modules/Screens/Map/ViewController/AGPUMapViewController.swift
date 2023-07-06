@@ -11,8 +11,11 @@ import MapKit
 
 class AGPUMapViewController: UIViewController {
     
-    private let mapView = MKMapView()
+    // MARK: - сервисы
     private let manager = CLLocationManager()
+    
+    // MARK: - UI
+    private let mapView = MKMapView()
     
     override func viewDidLoad() {
         super.viewDidLoad()

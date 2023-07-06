@@ -9,11 +9,14 @@ import UIKit
 
 class AddMusicViewController: UIViewController {
 
-    @IBOutlet var TitleTextField: UITextField!
-    
-    private let realmManager = RealmManager()
     var music = MusicModel()
     var image = UIImage()
+    
+    // MARK: - сервисы
+    private let realmManager = RealmManager()
+    
+    // MARK: - UI
+    @IBOutlet var TitleTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()

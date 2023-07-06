@@ -10,11 +10,12 @@ import WebKit
 
 class WebViewController: UIViewController {
 
-    private var WVWEBview = WKWebView(frame: .zero)
+    var url: String
+    
+    // MARK: - UI
+    private let WVWEBview = WKWebView(frame: .zero)
     let spinner = UIActivityIndicatorView(style: .large)
     
-    var url: String
-
     // MARK: - Init
     init(url: String) {
         self.url = url

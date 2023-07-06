@@ -10,9 +10,10 @@ import WebKit
 
 class RecentSectionViewController: UIViewController {
     
-    var WVWEBview = WKWebView(frame: .zero)
-    
     var url: String
+    
+    // MARK: - UI
+    let WVWEBview = WKWebView(frame: .zero)
     
     // MARK: - Init
     init(url: String) {

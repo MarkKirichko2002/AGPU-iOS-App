@@ -10,11 +10,16 @@ import WebKit
 
 class AGPUMainViewController: UIViewController {
 
+    // MARK: - сервисы
+    private let dateManager = DateManager()
+    
+    // MARK: - UI
     let WVWEBview = WKWebView(frame: .zero)
     let spinner = UIActivityIndicatorView(style: .large)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Сегодня: \(dateManager.getCurrentDate())"
         SetUpWebView()
         SetUpIndicatorView()
         SetUpNavigation()

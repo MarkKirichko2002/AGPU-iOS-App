@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol SpeechRecognitionManagerProtocol: AnyObject {
+protocol SpeechRecognitionManagerProtocol {
     func registerSpeechRecognitionHandler(block: @escaping(String)->Void)
     func startSpeechRecognition()
     func cancelSpeechRecognition()
