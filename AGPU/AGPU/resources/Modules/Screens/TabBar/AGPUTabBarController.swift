@@ -100,7 +100,7 @@ class AGPUTabBarController: UITabBarController {
                 self.animation.SpringAnimation(view: self.DynamicButton)
             }
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.GoToWeb(url: subsection.url, title: nil)
+                self.ShowRecentSectionScreen(url: subsection.url)
             }
         }
     }
