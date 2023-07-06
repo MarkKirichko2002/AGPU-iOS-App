@@ -9,13 +9,13 @@ import UIKit
 import WebKit
 
 class RecentSectionViewController: UIViewController {
-
+    
     var WVWEBview = WKWebView(frame: .zero)
-
-    var url: URL
-
+    
+    var url: String
+    
     // MARK: - Init
-    init(url: URL) {
+    init(url: String) {
         self.url = url
         super.init(nibName: nil, bundle: nil)
     }
@@ -34,20 +34,17 @@ class RecentSectionViewController: UIViewController {
         super.viewDidDisappear(animated)
         NotificationCenter.default.post(name: Notification.Name("WebScreenWasClosed"), object: nil)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     private func SetUpWebView() {
-        let request = URLRequest(url: self.url)
         view.addSubview(WVWEBview)
         view = WVWEBview
         WVWEBview.allowsBackForwardNavigationGestures = true
         WVWEBview.navigationDelegate = self
-        DispatchQueue.main.async {
-            self.WVWEBview.load(request)
-        }
+        WVWEBview.load(self.url)
     }
     
     private func SetUpNavigation() {
