@@ -60,7 +60,7 @@ extension AGPUSectionsListViewController: UITableViewDelegate {
             print("Сохранено")
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.GoToWeb(url: subsection.url)
+            self.GoToWeb(url: subsection.url, title: "ФГБОУ ВО «АГПУ»")
         }
     }
 }

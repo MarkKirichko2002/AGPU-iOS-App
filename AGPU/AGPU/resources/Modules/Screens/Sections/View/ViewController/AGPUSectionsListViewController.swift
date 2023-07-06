@@ -13,7 +13,7 @@ class AGPUSectionsListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "ФГБОУ ВО «АГПУ»"
+        navigationItem.title = "Разделы"
         SetUpTable()
         ObserveNotifications()
     }
@@ -29,7 +29,6 @@ class AGPUSectionsListViewController: UIViewController {
     private func ObserveNotifications() {
         // Выбор раздела
         NotificationCenter.default.addObserver(forName: Notification.Name("ScrollToSection"), object: nil, queue: .main) { notification in
-            
             self.tableView.scrollToRow(at: IndexPath(row: 0, section: notification.object as? Int ?? 0), at: .top, animated: true)
         }
     }

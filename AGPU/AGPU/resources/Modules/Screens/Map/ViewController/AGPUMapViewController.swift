@@ -52,7 +52,7 @@ class AGPUMapViewController: UIViewController {
         mapView.setRegion(region,
                           animated: true)
         
-        // MARK: - АГПУ корпуса координаты
+        // MARK: - «АГПУ» корпуса координаты
         
         // Главный корпус
         let MainBuildingCoordinate = CLLocationCoordinate2D(latitude: 45.001817, longitude: 41.132393)

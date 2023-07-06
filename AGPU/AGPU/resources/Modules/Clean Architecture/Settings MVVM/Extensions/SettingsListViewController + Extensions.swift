@@ -50,7 +50,7 @@ extension SettingsListViewController: UITableViewDelegate {
                 
             case 1:
                 let infoAction = UIAction(title: "узнать больше", image: UIImage(named: "info")) { action in
-                    self.GoToWeb(url: self.viewModel.electedFacultyItem(index: indexPath.row).url)
+                    self.GoToWeb(url: self.viewModel.electedFacultyItem(index: indexPath.row).url, title: "Факультет")
                 }
                 
                 let phoneAction = self.viewModel.makePhoneNumbersMenu(index: indexPath.row)
@@ -60,7 +60,7 @@ extension SettingsListViewController: UITableViewDelegate {
                 }
                 
                 let enterAction = UIAction(title: "поступить", image: UIImage(named: "worksheet")) { action in
-                    self.GoToWeb(url: "http://priem.agpu.net/anketa/index.php")
+                    self.GoToWeb(url: "http://priem.agpu.net/anketa/index.php", title: "Анкета")
                 }
                 
                 return UIMenu(title: self.viewModel.electedFacultyItem(index: indexPath.row).name, children: [infoAction, phoneAction, enterAction, iconAction])

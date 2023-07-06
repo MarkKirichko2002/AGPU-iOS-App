@@ -9,9 +9,12 @@ import UIKit
 
 extension UIViewController {
     
-    func GoToWeb(url: String) {
+    func GoToWeb(url: String, title: String?) {
         guard let url = URL(string: url) else {return}
         let vc = WebViewController(url: url)
+        if title != nil {
+            vc.navigationItem.title = title
+        }
         let navVC = UINavigationController(rootViewController: vc)
         present(navVC, animated: true)
     }

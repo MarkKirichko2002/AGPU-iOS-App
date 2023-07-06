@@ -78,7 +78,7 @@ final class AGPUSplashScreenViewController: UIViewController {
         animation?.SpringAnimation(view: AGPUIcon)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.AGPUTitleLabel.text = "ФГБОУ ВО АГПУ"
+            self.AGPUTitleLabel.text = "ФГБОУ ВО «АГПУ»"
             self.animation?.SpringAnimation(view: self.AGPUTitleLabel)
         }
         
