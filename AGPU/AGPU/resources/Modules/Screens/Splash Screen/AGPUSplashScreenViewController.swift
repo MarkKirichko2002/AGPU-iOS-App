@@ -13,8 +13,8 @@ final class AGPUSplashScreenViewController: UIViewController {
     var animation: AnimationClassProtocol?
     
     // иконка
-    private let AGPUIcon: UIImageView = {
-        let icon = UIImageView()
+    private let AGPUIcon: SpringImageView = {
+        let icon = SpringImageView()
         icon.image = UIImage(named: "АГПУ")
         icon.contentMode = .scaleAspectFill
         icon.translatesAutoresizingMaskIntoConstraints = false

@@ -57,6 +57,52 @@ class SettingsListViewModel: NSObject {
         }
     }
     
+    func HeaderForView(in section: Int, view: UIView)-> UIView? {
+        switch section {
+        case 0:
+            let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
+            header.backgroundColor = .systemBackground
+            
+            let imageView = SpringImageView(image: UIImage(named: "music"))
+            
+            imageView.contentMode = .scaleAspectFit
+            header.addSubview(imageView)
+            imageView.frame = CGRect(x: 20, y: 0, width: 75, height: 75)
+            
+            let label = UILabel(frame: CGRect(x: 30 + imageView.frame.size.width, y: 0,
+                                              width: header.frame.size.width - 15 - imageView.frame.size.width,
+                                              height: header.frame.size.height-10))
+            label.numberOfLines = 0
+            header.addSubview(label)
+            label.text = "Своя Музыка"
+            label.font = .systemFont(ofSize: 16, weight: .black)
+            return header
+            
+        case 1:
+            let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
+            header.backgroundColor = .systemBackground
+            
+            let imageView = SpringImageView(image: UIImage(named: "university"))
+            
+            imageView.contentMode = .scaleAspectFit
+            header.addSubview(imageView)
+            imageView.frame = CGRect(x: 20, y: 0, width: 75, height: 75)
+            
+            let label = UILabel(frame: CGRect(x: 30 + imageView.frame.size.width, y: 0,
+                                              width: header.frame.size.width - 15 - imageView.frame.size.width,
+                                              height: header.frame.size.height-10))
+            label.numberOfLines = 0
+            header.addSubview(label)
+            label.text = "Избранный факультет"
+            label.font = .systemFont(ofSize: 16, weight: .black)
+            return header
+            
+        default:
+            return nil
+        }
+        
+    }
+    
     func cellForRowAt(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:

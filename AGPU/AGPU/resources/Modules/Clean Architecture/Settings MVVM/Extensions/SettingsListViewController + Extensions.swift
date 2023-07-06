@@ -26,6 +26,14 @@ extension SettingsListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension SettingsListViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return viewModel.HeaderForView(in: section, view: self.view)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 100
+    }
+    
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil,
                                           previewProvider: nil,
