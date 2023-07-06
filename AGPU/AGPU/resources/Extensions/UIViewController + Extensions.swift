@@ -19,6 +19,13 @@ extension UIViewController {
         present(navVC, animated: true)
     }
     
+    func ShowRecentSectionScreen(url: String) {
+        guard let url = URL(string: url) else {return}
+        let vc = RecentSectionViewController(url: url)
+        let navVC = UINavigationController(rootViewController: vc)
+        present(navVC, animated: true)
+    }
+    
     func ShowAlert(title: String, message: String, actions: [UIAlertAction]) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         for action in actions {

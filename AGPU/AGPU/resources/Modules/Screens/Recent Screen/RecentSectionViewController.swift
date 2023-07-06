@@ -1,16 +1,16 @@
 //
-//  WebViewController.swift
+//  RecentSectionViewController.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 11.06.2023.
+//  Created by Марк Киричко on 06.07.2023.
 //
 
 import UIKit
 import WebKit
 
-class WebViewController: UIViewController {
+class RecentSectionViewController: UIViewController {
 
-    private var WVWEBview = WKWebView(frame: .zero)
+    var WVWEBview = WKWebView(frame: .zero)
 
     var url: URL
 
@@ -28,7 +28,6 @@ class WebViewController: UIViewController {
         super.viewDidLoad()
         SetUpWebView()
         SetUpNavigation()
-        ObserveScroll()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -45,7 +44,7 @@ class WebViewController: UIViewController {
         view.addSubview(WVWEBview)
         view = WVWEBview
         WVWEBview.allowsBackForwardNavigationGestures = true
-        WVWEBview.scrollView.delegate = self
+        WVWEBview.navigationDelegate = self
         DispatchQueue.main.async {
             self.WVWEBview.load(request)
         }
@@ -76,32 +75,5 @@ class WebViewController: UIViewController {
     
     @objc private func closeButtonTapped() {
         self.dismiss(animated: true)
-    }
-    
-    private func ObserveScroll() {
-        
-        var positionX = 0
-        var positionY = 0
-        var scrollPosition = ""
-        
-        NotificationCenter.default.addObserver(forName: Notification.Name("scroll"), object: nil, queue: .main) { notification in
-            scrollPosition = notification.object as? String ?? ""
-            
-            print(scrollPosition)
-            
-            if scrollPosition == "вверх" {
-                positionY -= 20
-            } else if scrollPosition == "вниз" {
-                positionY += 20
-            }
-            
-            if scrollPosition.contains("лево") {
-                positionX -= 10
-            } else if scrollPosition.contains("право") {
-                positionX += 10
-            }
-            
-            self.WVWEBview.scrollView.setContentOffset(CGPoint(x: positionX, y: positionY), animated: true)
-        }
     }
 }
