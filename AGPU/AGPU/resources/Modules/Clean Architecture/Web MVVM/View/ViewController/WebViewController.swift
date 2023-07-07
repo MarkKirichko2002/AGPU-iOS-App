@@ -13,7 +13,7 @@ class WebViewController: UIViewController {
     var url: String
     
     // MARK: - сервисы
-    private let viewModel = WebViewModel()
+    let viewModel = WebViewModel()
     
     // MARK: - UI
     private let WVWEBview = WKWebView(frame: .zero)
