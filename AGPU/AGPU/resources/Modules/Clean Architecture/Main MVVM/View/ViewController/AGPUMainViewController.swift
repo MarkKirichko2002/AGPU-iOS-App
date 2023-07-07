@@ -11,7 +11,7 @@ import WebKit
 class AGPUMainViewController: UIViewController {
 
     // MARK: - сервисы
-    private let dateManager = DateManager()
+    private let viewModel = AGPUMainViewModel()
     
     // MARK: - UI
     let WVWEBview = WKWebView(frame: .zero)
@@ -19,7 +19,10 @@ class AGPUMainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Сегодня: \(dateManager.getCurrentDate())"
+        viewModel.GetDate()
+        viewModel.registerDateHandler { date in
+            self.navigationItem.title = date
+        }
         SetUpWebView()
         SetUpIndicatorView()
         SetUpNavigation()

@@ -35,6 +35,8 @@
 		826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888682A3482DF00434219 /* AGPUSubSections.swift */; };
 		8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5442A578452008ACADC /* DateManagerProtocol.swift */; };
 		8270A5482A5784A2008ACADC /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5472A5784A2008ACADC /* DateManager.swift */; };
+		8270A54D2A578A0E008ACADC /* AGPUMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A54C2A578A0E008ACADC /* AGPUMainViewModel.swift */; };
+		8270A5502A578D42008ACADC /* TimeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A54F2A578D42008ACADC /* TimeModel.swift */; };
 		82721F1C2A574EE100982EF7 /* AGPUMainViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82721F1B2A574EE100982EF7 /* AGPUMainViewController + Extensions.swift */; };
 		827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B62C22A425166008D241E /* UserDefaults + Extensions.swift */; };
 		827F0FFA2A4B2D7E00C481E4 /* AGPUMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827F0FF92A4B2D7E00C481E4 /* AGPUMainViewController.swift */; };
@@ -100,6 +102,8 @@
 		826888682A3482DF00434219 /* AGPUSubSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSections.swift; sourceTree = "<group>"; };
 		8270A5442A578452008ACADC /* DateManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerProtocol.swift; sourceTree = "<group>"; };
 		8270A5472A5784A2008ACADC /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
+		8270A54C2A578A0E008ACADC /* AGPUMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUMainViewModel.swift; sourceTree = "<group>"; };
+		8270A54F2A578D42008ACADC /* TimeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeModel.swift; sourceTree = "<group>"; };
 		82721F1B2A574EE100982EF7 /* AGPUMainViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUMainViewController + Extensions.swift"; sourceTree = "<group>"; };
 		827B62C22A425166008D241E /* UserDefaults + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + Extensions.swift"; sourceTree = "<group>"; };
 		827F0FF92A4B2D7E00C481E4 /* AGPUMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUMainViewController.swift; sourceTree = "<group>"; };
@@ -311,13 +315,13 @@
 		8234B2FE2A3242CC0091810F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8270A5462A578491008ACADC /* Date */,
 				82F4ECFC2A3F82CE00F1E5CC /* Audio Player */,
 				82EF23D02A3DED73004A7B9C /* Speech Recognition */,
 				82EF23D12A3DED7F004A7B9C /* Animation */,
 				8295489A2A43AE6C007DEBA0 /* Settings */,
 				8224B4E12A4F18960069B7B3 /* File */,
 				8224B4EA2A4F1B6B0069B7B3 /* Realm */,
-				8270A5462A578491008ACADC /* Date */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -397,7 +401,6 @@
 			children = (
 				826888562A33AB3C00434219 /* Splash Screen */,
 				828CFA342A35F62400C7542D /* TabBar */,
-				827F0FF82A4B2D4C00C481E4 /* Main Screen */,
 				82808E9C2A31F2D400DEEB16 /* Sections */,
 				828CFA352A35F64700C7542D /* Web */,
 				82BC3CFA2A56ED7500E49332 /* Recent Screen */,
@@ -410,6 +413,7 @@
 		8268886A2A34866D00434219 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8270A54E2A578D27008ACADC /* Time */,
 				82EF23D22A3DEEA6004A7B9C /* Sections */,
 				82EF23D32A3DEEB8004A7B9C /* Sub Sections */,
 				82320D7F2A4913E800ECADEE /* Elected Faculties */,
@@ -433,13 +437,38 @@
 			path = Date;
 			sourceTree = "<group>";
 		};
-		827F0FF82A4B2D4C00C481E4 /* Main Screen */ = {
+		8270A5492A5789BE008ACADC /* Main MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				8270A54B2A5789D7008ACADC /* View */,
+				8270A54A2A5789D5008ACADC /* ViewModel */,
+			);
+			path = "Main MVVM";
+			sourceTree = "<group>";
+		};
+		8270A54A2A5789D5008ACADC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8270A54C2A578A0E008ACADC /* AGPUMainViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8270A54B2A5789D7008ACADC /* View */ = {
 			isa = PBXGroup;
 			children = (
 				82E4E55E2A576CD700314296 /* ViewController */,
 				82E4E55F2A576CDE00314296 /* Extensions */,
 			);
-			path = "Main Screen";
+			path = View;
+			sourceTree = "<group>";
+		};
+		8270A54E2A578D27008ACADC /* Time */ = {
+			isa = PBXGroup;
+			children = (
+				8270A54F2A578D42008ACADC /* TimeModel.swift */,
+			);
+			path = Time;
 			sourceTree = "<group>";
 		};
 		82808E7C2A31F12100DEEB16 = {
@@ -588,6 +617,7 @@
 		829AD69A2A4383160047609B /* Clean Architecture */ = {
 			isa = PBXGroup;
 			children = (
+				8270A5492A5789BE008ACADC /* Main MVVM */,
 				822158942A422A480088BDE5 /* Settings MVVM */,
 			);
 			path = "Clean Architecture";
@@ -834,6 +864,7 @@
 				82C7B84A2A50CE7B00F9A552 /* RealmManager + Extensions.swift in Sources */,
 				82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */,
 				82BC3D002A56F5C400E49332 /* RecentSectionViewController + Extensions.swift in Sources */,
+				8270A5502A578D42008ACADC /* TimeModel.swift in Sources */,
 				82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */,
 				8270A5482A5784A2008ACADC /* DateManager.swift in Sources */,
 				8224B4E32A4F18A30069B7B3 /* FileService.swift in Sources */,
@@ -863,6 +894,7 @@
 				82320D812A4913FE00ECADEE /* ElectedFaculties.swift in Sources */,
 				8205367E2A50AE5D0054B756 /* CustomMusicTableViewCell.swift in Sources */,
 				82320D872A491F5700ECADEE /* ElectedFacultyTableViewCell.swift in Sources */,
+				8270A54D2A578A0E008ACADC /* AGPUMainViewModel.swift in Sources */,
 				82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */,
 				822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */,
 				8295489C2A43AE7E007DEBA0 /* SettingsManager.swift in Sources */,
