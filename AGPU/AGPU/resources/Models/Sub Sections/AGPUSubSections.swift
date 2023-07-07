@@ -11,8 +11,7 @@ struct AGPUSubSections {
     static let subsections = [
         "Главное": [
             AGPUSubSectionModel(name: "Главное", icon: "home icon", url: "http://test.agpu.net/", voiceCommand: "главное")
-        ],
-        "Университет" : [
+        ], "Университет" : [
             AGPUSubSectionModel(name: "Сведения об образовательной организации", icon: "university", url: "http://test.agpu.net/sveden/index.php", voiceCommand: "образовательнаяорганизация"),
             AGPUSubSectionModel(name: "Ученый совет", icon: "university", url: "http://test.agpu.net/struktura-vuza/uchenyy-sovet/index.php", voiceCommand: "учёныйсовет"),
             AGPUSubSectionModel(name: "Руководство. Педагогический(научно-педагогический состав) состав", icon: "university", url: "http://test.agpu.net/sveden/employees/index.php", voiceCommand: "руководств"),
