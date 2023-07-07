@@ -8,7 +8,7 @@
 import Foundation
 
 class DateManager: DateManagerProtocol {
-
+    
     private let date = Date()
     
     func getCurrentDate()-> String {
