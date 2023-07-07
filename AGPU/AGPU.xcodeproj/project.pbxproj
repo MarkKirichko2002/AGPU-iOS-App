@@ -57,6 +57,7 @@
 		8295489C2A43AE7E007DEBA0 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8295489B2A43AE7E007DEBA0 /* SettingsManager.swift */; };
 		829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6902A4327D40047609B /* UIViewController + Extensions.swift */; };
 		829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6982A43818A0047609B /* SettingsListViewModel.swift */; };
+		82BA73B62A579B8D006B67DA /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BA73B52A579B8D006B67DA /* WebViewModel.swift */; };
 		82BC3CFC2A56EDA000E49332 /* RecentSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFB2A56EDA000E49332 /* RecentSectionViewController.swift */; };
 		82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */; };
 		82BC3D002A56F5C400E49332 /* RecentSectionViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFF2A56F5C400E49332 /* RecentSectionViewController + Extensions.swift */; };
@@ -126,6 +127,7 @@
 		8295489B2A43AE7E007DEBA0 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		829AD6902A4327D40047609B /* UIViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829AD6982A43818A0047609B /* SettingsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewModel.swift; sourceTree = "<group>"; };
+		82BA73B52A579B8D006B67DA /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		82BC3CFB2A56EDA000E49332 /* RecentSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSectionViewController.swift; sourceTree = "<group>"; };
 		82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController + Extensions.swift"; sourceTree = "<group>"; };
 		82BC3CFF2A56F5C400E49332 /* RecentSectionViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentSectionViewController + Extensions.swift"; sourceTree = "<group>"; };
@@ -402,7 +404,6 @@
 				826888562A33AB3C00434219 /* Splash Screen */,
 				828CFA342A35F62400C7542D /* TabBar */,
 				82808E9C2A31F2D400DEEB16 /* Sections */,
-				828CFA352A35F64700C7542D /* Web */,
 				82BC3CFA2A56ED7500E49332 /* Recent Screen */,
 				829522DB2A38AEBE00329713 /* Map */,
 				8224B4D32A4F0B760069B7B3 /* Add New Music */,
@@ -522,15 +523,6 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		828CFA352A35F64700C7542D /* Web */ = {
-			isa = PBXGroup;
-			children = (
-				82E4E55C2A576CAD00314296 /* ViewController */,
-				82E4E55D2A576CB700314296 /* Extensions */,
-			);
-			path = Web;
-			sourceTree = "<group>";
-		};
 		829522DB2A38AEBE00329713 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -618,9 +610,36 @@
 			isa = PBXGroup;
 			children = (
 				8270A5492A5789BE008ACADC /* Main MVVM */,
+				82BA73B22A579B15006B67DA /* Web MVVM */,
 				822158942A422A480088BDE5 /* Settings MVVM */,
 			);
 			path = "Clean Architecture";
+			sourceTree = "<group>";
+		};
+		82BA73B22A579B15006B67DA /* Web MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82BA73B42A579B21006B67DA /* View */,
+				82BA73B32A579B1F006B67DA /* ViewModel */,
+				82E4E55D2A576CB700314296 /* Extensions */,
+			);
+			path = "Web MVVM";
+			sourceTree = "<group>";
+		};
+		82BA73B32A579B1F006B67DA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82BA73B52A579B8D006B67DA /* WebViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82BA73B42A579B21006B67DA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82E4E55C2A576CAD00314296 /* ViewController */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		82BC3CFA2A56ED7500E49332 /* Recent Screen */ = {
@@ -855,6 +874,7 @@
 				82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */,
 				8224B4F32A4F1C580069B7B3 /* RealmManager.swift in Sources */,
 				82721F1C2A574EE100982EF7 /* AGPUMainViewController + Extensions.swift in Sources */,
+				82BA73B62A579B8D006B67DA /* WebViewModel.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
 				822158992A42311E0088BDE5 /* MusicModel.swift in Sources */,

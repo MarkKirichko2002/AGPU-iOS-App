@@ -1,5 +1,5 @@
 //
-//  AGPUMainViewModel.swift
+//  WebViewModel.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 07.07.2023.
@@ -7,22 +7,7 @@
 
 import Foundation
 
-class AGPUMainViewModel {
-    
-    // MARK: - cервисы
-    private let dateManager = DateManager()
-    
-    private var dateHandler: ((String)->Void)?
-    
-    func registerDateHandler(block: @escaping(String)->Void) {
-        self.dateHandler = block
-    }
-    
-    func GetDate() {
-        DispatchQueue.main.async {
-            self.dateHandler?(self.dateManager.getCurrentDate())
-        }
-    }
+class WebViewModel {
     
     func ObserveScroll(completion: @escaping(CGPoint)->Void) {
         
@@ -30,7 +15,7 @@ class AGPUMainViewModel {
         var positionY = 0
         var scrollPosition = ""
         
-        NotificationCenter.default.addObserver(forName: Notification.Name("ScrollMainScreen"), object: nil, queue: .main) { notification in
+        NotificationCenter.default.addObserver(forName: Notification.Name("scroll"), object: nil, queue: .main) { notification in
             scrollPosition = notification.object as? String ?? ""
             
             print(scrollPosition)
@@ -46,6 +31,7 @@ class AGPUMainViewModel {
             } else if scrollPosition.contains("право") {
                 positionX += 10
             }
+            
             completion(CGPoint(x: positionX, y: positionY))
         }
     }

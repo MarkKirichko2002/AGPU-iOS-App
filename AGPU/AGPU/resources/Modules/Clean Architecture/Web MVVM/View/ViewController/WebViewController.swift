@@ -12,6 +12,9 @@ class WebViewController: UIViewController {
 
     var url: String
     
+    // MARK: - сервисы
+    private let viewModel = WebViewModel()
+    
     // MARK: - UI
     private let WVWEBview = WKWebView(frame: .zero)
     let spinner = UIActivityIndicatorView(style: .large)
@@ -31,7 +34,7 @@ class WebViewController: UIViewController {
         SetUpWebView()
         SetUpIndicatorView()
         SetUpNavigation()
-        ObserveScroll()
+        SetUpViewModel()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -72,6 +75,12 @@ class WebViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = closebutton
     }
     
+    private func SetUpViewModel() {
+        viewModel.ObserveScroll { position in
+            self.WVWEBview.scrollView.setContentOffset(position, animated: true)
+        }
+    }
+    
     @objc private func backButtonTapped() {
         if WVWEBview.canGoBack {
             WVWEBview.goBack()
@@ -86,32 +95,5 @@ class WebViewController: UIViewController {
     
     @objc private func closeButtonTapped() {
         self.dismiss(animated: true)
-    }
-    
-    private func ObserveScroll() {
-        
-        var positionX = 0
-        var positionY = 0
-        var scrollPosition = ""
-        
-        NotificationCenter.default.addObserver(forName: Notification.Name("scroll"), object: nil, queue: .main) { notification in
-            scrollPosition = notification.object as? String ?? ""
-            
-            print(scrollPosition)
-            
-            if scrollPosition == "вверх" {
-                positionY -= 20
-            } else if scrollPosition == "вниз" {
-                positionY += 20
-            }
-            
-            if scrollPosition.contains("лево") {
-                positionX -= 10
-            } else if scrollPosition.contains("право") {
-                positionX += 10
-            }
-            
-            self.WVWEBview.scrollView.setContentOffset(CGPoint(x: positionX, y: positionY), animated: true)
-        }
     }
 }
