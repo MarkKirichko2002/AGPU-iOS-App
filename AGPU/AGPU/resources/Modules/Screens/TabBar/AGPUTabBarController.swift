@@ -185,7 +185,7 @@ class AGPUTabBarController: UITabBarController {
                 
                 for subsection in section.subsections {
                     
-                    if text.lowercased().contains(subsection.voiceCommand) {
+                    if text.noWhitespacesWord().contains(subsection.voiceCommand) {
                         
                         DispatchQueue.main.async {
                             self.DynamicButton.setImage(UIImage(named: subsection.icon), for: .normal)

@@ -15,4 +15,10 @@ extension String {
         let last = self[startWord...]
         return String(last)
     }
+    
+    func noWhitespacesWord()-> String {
+        let words = self.components(separatedBy: .whitespaces)
+        let slittedString = words.joined()
+        return slittedString.lowercased()
+    }
 }
