@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MessageUI
 
 // MARK: - UITableViewDataSource
 extension SettingsListViewController: UITableViewDataSource {
@@ -63,6 +64,10 @@ extension SettingsListViewController: UITableViewDelegate {
                 
                 let phoneAction = self.viewModel.makePhoneNumbersMenu(index: indexPath.row)
                 
+                let emailAction = UIAction(title: "написать", image: UIImage(named: "mail")) { action in
+                    self.showEmailComposer(email: self.viewModel.electedFacultyItem(index: indexPath.row).email)
+                }
+                
                 let iconAction = UIAction(title: "выбрать иконку", image: UIImage(named: "photo")) { action in
                     self.viewModel.ChangeIcon(index: indexPath.row)
                 }
@@ -71,7 +76,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     self.GoToWeb(url: "http://priem.agpu.net/anketa/index.php", title: "Анкета")
                 }
                 
-                return UIMenu(title: self.viewModel.electedFacultyItem(index: indexPath.row).name, children: [infoAction, phoneAction, enterAction, iconAction])
+                return UIMenu(title: self.viewModel.electedFacultyItem(index: indexPath.row).name, children: [infoAction, emailAction, phoneAction, enterAction, iconAction])
                 
             default:
                 return nil
@@ -96,5 +101,27 @@ extension SettingsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         viewModel.DidSelectRow(at: indexPath)
+    }
+}
+
+// MARK: - MFMailComposeViewControllerDelegate
+extension SettingsListViewController: MFMailComposeViewControllerDelegate {
+    
+    func showEmailComposer(email: String) {
+        guard MFMailComposeViewController.canSendMail() else {
+            return
+        }
+        
+        let composer = MFMailComposeViewController()
+        composer.mailComposeDelegate = self
+        composer.setToRecipients([email])
+        composer.setSubject("Тема письма")
+        composer.setMessageBody("Текст письма", isHTML: false)
+        
+        present(composer, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
