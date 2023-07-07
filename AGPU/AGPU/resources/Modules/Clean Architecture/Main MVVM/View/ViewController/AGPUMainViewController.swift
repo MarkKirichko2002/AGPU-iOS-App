@@ -19,14 +19,10 @@ class AGPUMainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.GetDate()
-        viewModel.registerDateHandler { date in
-            self.navigationItem.title = date
-        }
         SetUpWebView()
         SetUpIndicatorView()
         SetUpNavigation()
-        ObserveScroll()
+        SetUpViewModel()
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,6 +59,16 @@ class AGPUMainViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = reloadButton
     }
     
+    private func SetUpViewModel() {
+        viewModel.GetDate()
+        viewModel.registerDateHandler { date in
+            self.navigationItem.title = date
+        }
+        viewModel.ObserveScroll { position in
+            self.WVWEBview.scrollView.setContentOffset(position, animated: true)
+        }
+    }
+    
     @objc private func reloadButtonTapped() {
         DispatchQueue.main.async {
             self.WVWEBview.load("http://test.agpu.net/")
@@ -78,33 +84,6 @@ class AGPUMainViewController: UIViewController {
     @objc private func forwardButtonTapped() {
         if WVWEBview.canGoForward {
             WVWEBview.goForward()
-        }
-    }
-    
-    private func ObserveScroll() {
-        
-        var positionX = 0
-        var positionY = 0
-        var scrollPosition = ""
-        
-        NotificationCenter.default.addObserver(forName: Notification.Name("ScrollMainScreen"), object: nil, queue: .main) { notification in
-            scrollPosition = notification.object as? String ?? ""
-            
-            print(scrollPosition)
-            
-            if scrollPosition == "вверх" {
-                positionY -= 20
-            } else if scrollPosition == "вниз" {
-                positionY += 20
-            }
-            
-            if scrollPosition.contains("лево") {
-                positionX -= 10
-            } else if scrollPosition.contains("право") {
-                positionX += 10
-            }
-            
-            self.WVWEBview.scrollView.setContentOffset(CGPoint(x: positionX, y: positionY), animated: true)
         }
     }
 }

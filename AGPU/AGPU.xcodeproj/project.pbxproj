@@ -442,6 +442,7 @@
 			children = (
 				8270A54B2A5789D7008ACADC /* View */,
 				8270A54A2A5789D5008ACADC /* ViewModel */,
+				82E4E55F2A576CDE00314296 /* Extensions */,
 			);
 			path = "Main MVVM";
 			sourceTree = "<group>";
@@ -458,7 +459,6 @@
 			isa = PBXGroup;
 			children = (
 				82E4E55E2A576CD700314296 /* ViewController */,
-				82E4E55F2A576CDE00314296 /* Extensions */,
 			);
 			path = View;
 			sourceTree = "<group>";
