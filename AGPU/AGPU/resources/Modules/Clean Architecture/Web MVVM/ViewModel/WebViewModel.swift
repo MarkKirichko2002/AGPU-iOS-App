@@ -35,4 +35,14 @@ class WebViewModel {
             completion(CGPoint(x: positionX, y: positionY))
         }
     }
+    
+    func SavePosition(position: CGPoint) {
+        UserDefaults.SaveData(object: position, key: "last position") {
+            print("сохранено: \(position)")
+        }
+    }
+    
+    func SaveCurrentPage(url: String) {
+        UserDefaults.standard.setValue(url, forKey: "last page")
+    }
 }

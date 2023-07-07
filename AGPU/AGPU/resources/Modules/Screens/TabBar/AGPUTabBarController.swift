@@ -92,21 +92,21 @@ class AGPUTabBarController: UITabBarController {
         ShakeToRecall(motion: motion)
     }
     
+    private func ShakeToRecall(motion: UIEvent.EventSubtype) {
+        if motion == .motionShake {
+            ShakeToRecall()
+        }
+    }
+    
     private func ShakeToRecall() {
-        if let subsection = UserDefaults.loadData(type: AGPUSubSectionModel.self, key: "lastSubsection") {
+        if let url = UserDefaults.standard.object(forKey: "last page") as? String {
             DispatchQueue.main.async {
                 self.DynamicButton.setImage(UIImage(named: "time.past"), for: .normal)
                 self.animation.SpringAnimation(view: self.DynamicButton)
             }
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.ShowRecentSectionScreen(url: subsection.url)
+                self.ShowRecentSectionScreen(url: url)
             }
-        }
-    }
-    
-    private func ShakeToRecall(motion: UIEvent.EventSubtype) {
-        if motion == .motionShake {
-            ShakeToRecall()
         }
     }
     

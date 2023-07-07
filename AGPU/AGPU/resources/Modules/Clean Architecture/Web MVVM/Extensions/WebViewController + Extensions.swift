@@ -14,9 +14,7 @@ extension WebViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
         let position = CGPoint(x: 0, y: yOffset)
-        UserDefaults.SaveData(object: position, key: "last position") {
-            print("сохранено: \(position)")
-        }
+        viewModel.SavePosition(position: position)
     }
 }
 
@@ -32,6 +30,9 @@ extension WebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         DispatchQueue.main.async {
             self.spinner.stopAnimating()
+            if let url = webView.url?.absoluteString {
+                self.viewModel.SaveCurrentPage(url: url)
+            }
         }
     }
 }
