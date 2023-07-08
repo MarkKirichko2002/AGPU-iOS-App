@@ -10,12 +10,19 @@ import Foundation
 class DateManager: DateManagerProtocol {
     
     private let date = Date()
+    private let dateFormatter = DateFormatter()
     
     func getCurrentDate()-> String {
         var currentDate = ""
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.dateFormat = "dd MMMM yyyy"
         currentDate = dateFormatter.string(from: date)
         return currentDate
+    }
+    
+    func getCurrentTime()-> String {
+        let date = Date()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        let timeString = dateFormatter.string(from: date)
+        return timeString
     }
 }

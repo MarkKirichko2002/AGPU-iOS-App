@@ -8,5 +8,6 @@
 import Foundation
 
 protocol DateManagerProtocol {
-    func getCurrentDate()->String
+    func getCurrentDate()-> String
+    func getCurrentTime()-> String
 }
