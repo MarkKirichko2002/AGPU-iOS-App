@@ -27,6 +27,7 @@
 		82320D892A491FBC00ECADEE /* ElectedFacultyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82320D882A491FBC00ECADEE /* ElectedFacultyTableViewCell.xib */; };
 		8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234B2FF2A3242E10091810F /* SpeechRecognitionManager.swift */; };
 		82461FEE2A50C493008A8752 /* AppDelegate + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */; };
+		826716C22A5A2AF600CD5C23 /* RecentPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826716C12A5A2AF600CD5C23 /* RecentPageModel.swift */; };
 		826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888522A33A91200434219 /* AGPUSubSectionTableViewCell.swift */; };
 		826888582A33AB5600434219 /* AGPUSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888572A33AB5600434219 /* AGPUSplashScreenViewController.swift */; };
 		8268885B2A33AC6000434219 /* AnimationClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8268885A2A33AC6000434219 /* AnimationClass.swift */; };
@@ -59,9 +60,9 @@
 		829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6902A4327D40047609B /* UIViewController + Extensions.swift */; };
 		829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6982A43818A0047609B /* SettingsListViewModel.swift */; };
 		82BA73B62A579B8D006B67DA /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BA73B52A579B8D006B67DA /* WebViewModel.swift */; };
-		82BC3CFC2A56EDA000E49332 /* RecentSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFB2A56EDA000E49332 /* RecentSectionViewController.swift */; };
+		82BC3CFC2A56EDA000E49332 /* RecentPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFB2A56EDA000E49332 /* RecentPageViewController.swift */; };
 		82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */; };
-		82BC3D002A56F5C400E49332 /* RecentSectionViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFF2A56F5C400E49332 /* RecentSectionViewController + Extensions.swift */; };
+		82BC3D002A56F5C400E49332 /* RecentPageViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFF2A56F5C400E49332 /* RecentPageViewController + Extensions.swift */; };
 		82BDFDB02A404BA0002DBB89 /* AGPUMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BDFDAF2A404BA0002DBB89 /* AGPUMapViewController.swift */; };
 		82C44DAE2A591915002A3864 /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C44DAD2A591915002A3864 /* HapticsManager.swift */; };
 		82C7B8402A50C98900F9A552 /* AudioPlayer + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B83F2A50C98900F9A552 /* AudioPlayer + Extensions.swift */; };
@@ -97,6 +98,7 @@
 		82320D882A491FBC00ECADEE /* ElectedFacultyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElectedFacultyTableViewCell.xib; sourceTree = "<group>"; };
 		8234B2FF2A3242E10091810F /* SpeechRecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManager.swift; sourceTree = "<group>"; };
 		82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate + Extensions.swift"; sourceTree = "<group>"; };
+		826716C12A5A2AF600CD5C23 /* RecentPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPageModel.swift; sourceTree = "<group>"; };
 		826888522A33A91200434219 /* AGPUSubSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSectionTableViewCell.swift; sourceTree = "<group>"; };
 		826888572A33AB5600434219 /* AGPUSplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSplashScreenViewController.swift; sourceTree = "<group>"; };
 		8268885A2A33AC6000434219 /* AnimationClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClass.swift; sourceTree = "<group>"; };
@@ -131,9 +133,9 @@
 		829AD6902A4327D40047609B /* UIViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829AD6982A43818A0047609B /* SettingsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewModel.swift; sourceTree = "<group>"; };
 		82BA73B52A579B8D006B67DA /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
-		82BC3CFB2A56EDA000E49332 /* RecentSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSectionViewController.swift; sourceTree = "<group>"; };
+		82BC3CFB2A56EDA000E49332 /* RecentPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPageViewController.swift; sourceTree = "<group>"; };
 		82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController + Extensions.swift"; sourceTree = "<group>"; };
-		82BC3CFF2A56F5C400E49332 /* RecentSectionViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentSectionViewController + Extensions.swift"; sourceTree = "<group>"; };
+		82BC3CFF2A56F5C400E49332 /* RecentPageViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentPageViewController + Extensions.swift"; sourceTree = "<group>"; };
 		82BDFDAF2A404BA0002DBB89 /* AGPUMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUMapViewController.swift; sourceTree = "<group>"; };
 		82C44DAD2A591915002A3864 /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		82C7B83F2A50C98900F9A552 /* AudioPlayer + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayer + Extensions.swift"; sourceTree = "<group>"; };
@@ -358,6 +360,14 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
+		826716C02A5A2ADA00CD5C23 /* Recent Page */ = {
+			isa = PBXGroup;
+			children = (
+				826716C12A5A2AF600CD5C23 /* RecentPageModel.swift */,
+			);
+			path = "Recent Page";
+			sourceTree = "<group>";
+		};
 		826888502A33A8EE00434219 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,7 +419,7 @@
 				826888562A33AB3C00434219 /* Splash Screen */,
 				828CFA342A35F62400C7542D /* TabBar */,
 				82808E9C2A31F2D400DEEB16 /* Sections */,
-				82BC3CFA2A56ED7500E49332 /* Recent Screen */,
+				82BC3CFA2A56ED7500E49332 /* Recent Page */,
 				829522DB2A38AEBE00329713 /* Map */,
 				8224B4D32A4F0B760069B7B3 /* Add New Music */,
 			);
@@ -421,6 +431,7 @@
 			children = (
 				82EF23D22A3DEEA6004A7B9C /* Sections */,
 				82EF23D32A3DEEB8004A7B9C /* Sub Sections */,
+				826716C02A5A2ADA00CD5C23 /* Recent Page */,
 				82320D7F2A4913E800ECADEE /* Elected Faculties */,
 			);
 			path = Models;
@@ -646,13 +657,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		82BC3CFA2A56ED7500E49332 /* Recent Screen */ = {
+		82BC3CFA2A56ED7500E49332 /* Recent Page */ = {
 			isa = PBXGroup;
 			children = (
 				82E4E55A2A576C7E00314296 /* ViewController */,
 				82E4E55B2A576C8500314296 /* Extensions */,
 			);
-			path = "Recent Screen";
+			path = "Recent Page";
 			sourceTree = "<group>";
 		};
 		82C44DAC2A591907002A3864 /* Haptics */ = {
@@ -667,7 +678,7 @@
 		82E4E55A2A576C7E00314296 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				82BC3CFB2A56EDA000E49332 /* RecentSectionViewController.swift */,
+				82BC3CFB2A56EDA000E49332 /* RecentPageViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -675,7 +686,7 @@
 		82E4E55B2A576C8500314296 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				82BC3CFF2A56F5C400E49332 /* RecentSectionViewController + Extensions.swift */,
+				82BC3CFF2A56F5C400E49332 /* RecentPageViewController + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -878,7 +889,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				826888662A33B6E700434219 /* AGPUTabBarController.swift in Sources */,
-				82BC3CFC2A56EDA000E49332 /* RecentSectionViewController.swift in Sources */,
+				82BC3CFC2A56EDA000E49332 /* RecentPageViewController.swift in Sources */,
 				8224B4DB2A4F10D80069B7B3 /* AddMusicViewController.swift in Sources */,
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
 				82BDFDB02A404BA0002DBB89 /* AGPUMapViewController.swift in Sources */,
@@ -898,7 +909,7 @@
 				82C44DAE2A591915002A3864 /* HapticsManager.swift in Sources */,
 				82C7B84A2A50CE7B00F9A552 /* RealmManager + Extensions.swift in Sources */,
 				82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */,
-				82BC3D002A56F5C400E49332 /* RecentSectionViewController + Extensions.swift in Sources */,
+				82BC3D002A56F5C400E49332 /* RecentPageViewController + Extensions.swift in Sources */,
 				82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */,
 				8270A5482A5784A2008ACADC /* DateManager.swift in Sources */,
 				8224B4E32A4F18A30069B7B3 /* FileService.swift in Sources */,
@@ -928,6 +939,7 @@
 				82875B002A5A1966007DB925 /* HapticsManagerProtocol.swift in Sources */,
 				8224B4E62A4F1AF70069B7B3 /* FileServiceProtocol.swift in Sources */,
 				82320D812A4913FE00ECADEE /* ElectedFaculties.swift in Sources */,
+				826716C22A5A2AF600CD5C23 /* RecentPageModel.swift in Sources */,
 				8205367E2A50AE5D0054B756 /* CustomMusicTableViewCell.swift in Sources */,
 				82320D872A491F5700ECADEE /* ElectedFacultyTableViewCell.swift in Sources */,
 				8270A54D2A578A0E008ACADC /* AGPUMainViewModel.swift in Sources */,

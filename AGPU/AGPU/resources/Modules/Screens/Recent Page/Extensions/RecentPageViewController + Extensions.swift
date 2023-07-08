@@ -1,5 +1,5 @@
 //
-//  RecentSectionViewController + Extensions.swift
+//  RecentPageViewController + Extensions.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 06.07.2023.
@@ -8,7 +8,7 @@
 import WebKit
 
 // MARK: - WKNavigationDelegate
-extension RecentSectionViewController: WKNavigationDelegate {
+extension RecentPageViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if let position = UserDefaults.loadData(type: CGPoint.self, key: "last position") {
