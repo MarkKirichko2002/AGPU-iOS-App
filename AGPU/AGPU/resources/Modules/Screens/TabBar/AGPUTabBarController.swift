@@ -103,6 +103,7 @@ class AGPUTabBarController: UITabBarController {
             DispatchQueue.main.async {
                 self.DynamicButton.setImage(UIImage(named: "time.past"), for: .normal)
                 self.animation.SpringAnimation(view: self.DynamicButton)
+                HapticsManager.shared.HapticFeedback()
             }
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 self.ShowRecentSectionScreen(url: url)
@@ -115,6 +116,7 @@ class AGPUTabBarController: UITabBarController {
         if isRecording {
             DynamicButton.setImage(UIImage(named: "mic"), for: .normal)
             animation.SpringAnimation(view: self.DynamicButton)
+            HapticsManager.shared.HapticFeedback()
             speechRecognitionManager.startRecognize()
             speechRecognitionManager.registerSpeechRecognitionHandler { text in
                 self.checkVoiceCommands(text: text)
@@ -122,6 +124,7 @@ class AGPUTabBarController: UITabBarController {
         } else {
             DynamicButton.setImage(UIImage(named: settingsManager.checkCurrentIcon() ?? "АГПУ"), for: .normal)
             animation.SpringAnimation(view: self.DynamicButton)
+            HapticsManager.shared.HapticFeedback()
             speechRecognitionManager.cancelSpeechRecognition()
         }
     }
@@ -136,21 +139,25 @@ class AGPUTabBarController: UITabBarController {
                 DispatchQueue.main.async {
                     self.DynamicButton.setImage(UIImage(named: "arrow.up"), for: .normal)
                     self.animation.SpringAnimation(view: self.DynamicButton)
+                    HapticsManager.shared.HapticFeedback()
                 }
             } else if text.lowercased().lastWord() == "вниз" {
                 DispatchQueue.main.async {
                     self.DynamicButton.setImage(UIImage(named: "arrow.down"), for: .normal)
                     self.animation.SpringAnimation(view: self.DynamicButton)
+                    HapticsManager.shared.HapticFeedback()
                 }
             } else if text.lowercased().lastWord().contains("лево") {
                 DispatchQueue.main.async {
                     self.DynamicButton.setImage(UIImage(named: "arrow.left"), for: .normal)
                     self.animation.SpringAnimation(view: self.DynamicButton)
+                    HapticsManager.shared.HapticFeedback()
                 }
             } else if text.lowercased().lastWord().contains("право"){
                 DispatchQueue.main.async {
                     self.DynamicButton.setImage(UIImage(named: "arrow.right"), for: .normal)
                     self.animation.SpringAnimation(view: self.DynamicButton)
+                    HapticsManager.shared.HapticFeedback()
                 }
             }
             NotificationCenter.default.post(name: Notification.Name("ScrollMainScreen"), object: text.lastWord())
@@ -229,6 +236,7 @@ class AGPUTabBarController: UITabBarController {
             if let subsection = notification.object as? AGPUSubSectionModel {
                 self.DynamicButton.setImage(UIImage(named: subsection.icon), for: .normal)
                 self.animation.SpringAnimation(view: self.DynamicButton)
+                HapticsManager.shared.HapticFeedback()
             }
         }
     }
@@ -237,9 +245,11 @@ class AGPUTabBarController: UITabBarController {
         NotificationCenter.default.addObserver(forName: Notification.Name("WebScreenWasClosed"), object: nil, queue: .main) { _ in
             if self.isRecording {
                 self.DynamicButton.setImage(UIImage(named: "mic"), for: .normal)
+                HapticsManager.shared.HapticFeedback()
             } else {
                 self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon() ?? "АГПУ"), for: .normal)
                 self.animation.SpringAnimation(view: self.DynamicButton)
+                HapticsManager.shared.HapticFeedback()
             }
         }
     }
@@ -249,6 +259,7 @@ class AGPUTabBarController: UITabBarController {
             DispatchQueue.main.async {
                 self.DynamicButton.setImage(UIImage(named: "pin"), for: .normal)
                 self.animation.SpringAnimation(view: self.DynamicButton)
+                HapticsManager.shared.HapticFeedback()
             }
         }
         
@@ -256,24 +267,29 @@ class AGPUTabBarController: UITabBarController {
             DispatchQueue.main.async {
                 self.DynamicButton.setImage(UIImage(named: "map icon"), for: .normal)
                 self.animation.SpringAnimation(view: self.DynamicButton)
+                HapticsManager.shared.HapticFeedback()
             }
         }
         
         NotificationCenter.default.addObserver(forName: Notification.Name("Map Was Opened"), object: nil, queue: .main) { _ in
             if self.isRecording {
                 self.DynamicButton.setImage(UIImage(named: "mic"), for: .normal)
+                HapticsManager.shared.HapticFeedback()
             } else {
                 self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon() ?? "АГПУ"), for: .normal)
                 self.animation.SpringAnimation(view: self.DynamicButton)
+                HapticsManager.shared.HapticFeedback()
             }
         }
         
         NotificationCenter.default.addObserver(forName: Notification.Name("Map Pin Cancelled"), object: nil, queue: .main) { _ in
             if self.isRecording {
                 self.DynamicButton.setImage(UIImage(named: "mic"), for: .normal)
+                HapticsManager.shared.HapticFeedback()
             } else {
                 self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon() ?? "АГПУ"), for: .normal)
                 self.animation.SpringAnimation(view: self.DynamicButton)
+                HapticsManager.shared.HapticFeedback()
             }
         }
     }
@@ -284,6 +300,7 @@ class AGPUTabBarController: UITabBarController {
             if let icon = notification.object as? ElectedFacultyModel {
                 self.DynamicButton.setImage(UIImage(named: icon.icon), for: .normal)
                 self.animation.SpringAnimation(view: self.DynamicButton)
+                HapticsManager.shared.HapticFeedback()
             }
         }
     }

@@ -62,6 +62,7 @@
 		82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */; };
 		82BC3D002A56F5C400E49332 /* RecentSectionViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFF2A56F5C400E49332 /* RecentSectionViewController + Extensions.swift */; };
 		82BDFDB02A404BA0002DBB89 /* AGPUMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BDFDAF2A404BA0002DBB89 /* AGPUMapViewController.swift */; };
+		82C44DAE2A591915002A3864 /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C44DAD2A591915002A3864 /* HapticsManager.swift */; };
 		82C7B8402A50C98900F9A552 /* AudioPlayer + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B83F2A50C98900F9A552 /* AudioPlayer + Extensions.swift */; };
 		82C7B8422A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */; };
 		82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8432A50CCB800F9A552 /* AnimationClass + Extensions.swift */; };
@@ -132,6 +133,7 @@
 		82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController + Extensions.swift"; sourceTree = "<group>"; };
 		82BC3CFF2A56F5C400E49332 /* RecentSectionViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentSectionViewController + Extensions.swift"; sourceTree = "<group>"; };
 		82BDFDAF2A404BA0002DBB89 /* AGPUMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUMapViewController.swift; sourceTree = "<group>"; };
+		82C44DAD2A591915002A3864 /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		82C7B83F2A50C98900F9A552 /* AudioPlayer + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayer + Extensions.swift"; sourceTree = "<group>"; };
 		82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpeechRecognitionManager + Extensions.swift"; sourceTree = "<group>"; };
 		82C7B8432A50CCB800F9A552 /* AnimationClass + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimationClass + Extensions.swift"; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				8295489A2A43AE6C007DEBA0 /* Settings */,
 				8224B4E12A4F18960069B7B3 /* File */,
 				8224B4EA2A4F1B6B0069B7B3 /* Realm */,
+				82C44DAC2A591907002A3864 /* Haptics */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -651,6 +654,21 @@
 			path = "Recent Screen";
 			sourceTree = "<group>";
 		};
+		82C44DAB2A5918FC002A3864 /* Haptics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Haptics;
+			sourceTree = "<group>";
+		};
+		82C44DAC2A591907002A3864 /* Haptics */ = {
+			isa = PBXGroup;
+			children = (
+				82C44DAD2A591915002A3864 /* HapticsManager.swift */,
+			);
+			path = Haptics;
+			sourceTree = "<group>";
+		};
 		82E4E55A2A576C7E00314296 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -745,6 +763,7 @@
 				829548972A43AE1F007DEBA0 /* Settings */,
 				8224B4E42A4F1AE10069B7B3 /* File */,
 				8224B4E92A4F1B5C0069B7B3 /* Realm */,
+				82C44DAB2A5918FC002A3864 /* Haptics */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -881,6 +900,7 @@
 				829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */,
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
 				8268885B2A33AC6000434219 /* AnimationClass.swift in Sources */,
+				82C44DAE2A591915002A3864 /* HapticsManager.swift in Sources */,
 				82C7B84A2A50CE7B00F9A552 /* RealmManager + Extensions.swift in Sources */,
 				82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */,
 				82BC3D002A56F5C400E49332 /* RecentSectionViewController + Extensions.swift in Sources */,

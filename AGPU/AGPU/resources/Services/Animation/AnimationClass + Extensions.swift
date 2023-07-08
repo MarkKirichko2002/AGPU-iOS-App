@@ -52,6 +52,7 @@ extension AnimationClass: AnimationClassProtocol {
         }
         propertyAnimator.addAnimations({ barItemView.transform = .identity }, delayFactor: CGFloat(timeInterval))
         propertyAnimator.startAnimation()
+        HapticsManager.shared.HapticFeedback()
     }
    
     // анимация переворота
