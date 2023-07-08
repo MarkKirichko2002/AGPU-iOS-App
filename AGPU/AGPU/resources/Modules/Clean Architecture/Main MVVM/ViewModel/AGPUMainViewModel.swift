@@ -20,7 +20,10 @@ class AGPUMainViewModel {
     
     func GetDate() {
         DispatchQueue.main.async {
-            self.dateHandler?(self.dateManager.getCurrentDate())
+            self.dateHandler?("\(self.dateManager.getCurrentDate()) \(self.dateManager.getCurrentTime())")
+        }
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            self.dateHandler?("\(self.dateManager.getCurrentDate()) \(self.dateManager.getCurrentTime())")
         }
     }
     

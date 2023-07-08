@@ -14,8 +14,4 @@ final class HapticsManager {
     // MARK: - Init
     private init() {}
     
-    func HapticFeedback() {
-        let feedback = UIImpactFeedbackGenerator(style: .medium)
-        feedback.impactOccurred()
-    }
 }

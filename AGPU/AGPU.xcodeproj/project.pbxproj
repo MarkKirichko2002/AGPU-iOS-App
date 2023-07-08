@@ -36,7 +36,6 @@
 		8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5442A578452008ACADC /* DateManagerProtocol.swift */; };
 		8270A5482A5784A2008ACADC /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5472A5784A2008ACADC /* DateManager.swift */; };
 		8270A54D2A578A0E008ACADC /* AGPUMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A54C2A578A0E008ACADC /* AGPUMainViewModel.swift */; };
-		8270A5502A578D42008ACADC /* TimeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A54F2A578D42008ACADC /* TimeModel.swift */; };
 		82721F1C2A574EE100982EF7 /* AGPUMainViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82721F1B2A574EE100982EF7 /* AGPUMainViewController + Extensions.swift */; };
 		827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B62C22A425166008D241E /* UserDefaults + Extensions.swift */; };
 		827F0FFA2A4B2D7E00C481E4 /* AGPUMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827F0FF92A4B2D7E00C481E4 /* AGPUMainViewController.swift */; };
@@ -48,6 +47,8 @@
 		82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E9D2A31F2F800DEEB16 /* AGPUSectionModel.swift */; };
 		82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E9F2A31F44500DEEB16 /* AGPUSubSectionModel.swift */; };
 		82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808EA82A32236E00DEEB16 /* AGPUSections.swift */; };
+		82875B002A5A1966007DB925 /* HapticsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875AFF2A5A1966007DB925 /* HapticsManagerProtocol.swift */; };
+		82875B022A5A198A007DB925 /* HapticsManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */; };
 		828CFA372A35F65700C7542D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA362A35F65700C7542D /* WebViewController.swift */; };
 		828CFA3C2A3680C700C7542D /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA3B2A3680C700C7542D /* String + Extensions.swift */; };
 		829548832A439C4F007DEBA0 /* AudioPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548822A439C4F007DEBA0 /* AudioPlayerProtocol.swift */; };
@@ -105,7 +106,6 @@
 		8270A5442A578452008ACADC /* DateManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerProtocol.swift; sourceTree = "<group>"; };
 		8270A5472A5784A2008ACADC /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		8270A54C2A578A0E008ACADC /* AGPUMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUMainViewModel.swift; sourceTree = "<group>"; };
-		8270A54F2A578D42008ACADC /* TimeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeModel.swift; sourceTree = "<group>"; };
 		82721F1B2A574EE100982EF7 /* AGPUMainViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUMainViewController + Extensions.swift"; sourceTree = "<group>"; };
 		827B62C22A425166008D241E /* UserDefaults + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + Extensions.swift"; sourceTree = "<group>"; };
 		827F0FF92A4B2D7E00C481E4 /* AGPUMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUMainViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +119,8 @@
 		82808E9D2A31F2F800DEEB16 /* AGPUSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSectionModel.swift; sourceTree = "<group>"; };
 		82808E9F2A31F44500DEEB16 /* AGPUSubSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSectionModel.swift; sourceTree = "<group>"; };
 		82808EA82A32236E00DEEB16 /* AGPUSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSections.swift; sourceTree = "<group>"; };
+		82875AFF2A5A1966007DB925 /* HapticsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManagerProtocol.swift; sourceTree = "<group>"; };
+		82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HapticsManager + Extensions.swift"; sourceTree = "<group>"; };
 		828CFA362A35F65700C7542D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		828CFA3B2A3680C700C7542D /* String + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extensions.swift"; sourceTree = "<group>"; };
 		829548822A439C4F007DEBA0 /* AudioPlayerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerProtocol.swift; sourceTree = "<group>"; };
@@ -417,7 +419,6 @@
 		8268886A2A34866D00434219 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8270A54E2A578D27008ACADC /* Time */,
 				82EF23D22A3DEEA6004A7B9C /* Sections */,
 				82EF23D32A3DEEB8004A7B9C /* Sub Sections */,
 				82320D7F2A4913E800ECADEE /* Elected Faculties */,
@@ -467,14 +468,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		8270A54E2A578D27008ACADC /* Time */ = {
-			isa = PBXGroup;
-			children = (
-				8270A54F2A578D42008ACADC /* TimeModel.swift */,
-			);
-			path = Time;
-			sourceTree = "<group>";
-		};
 		82808E7C2A31F12100DEEB16 = {
 			isa = PBXGroup;
 			children = (
@@ -516,6 +509,14 @@
 				826888512A33A8FB00434219 /* Cell */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		82875AFE2A5A194D007DB925 /* Haptics */ = {
+			isa = PBXGroup;
+			children = (
+				82875AFF2A5A1966007DB925 /* HapticsManagerProtocol.swift */,
+			);
+			path = Haptics;
 			sourceTree = "<group>";
 		};
 		828CFA342A35F62400C7542D /* TabBar */ = {
@@ -654,17 +655,11 @@
 			path = "Recent Screen";
 			sourceTree = "<group>";
 		};
-		82C44DAB2A5918FC002A3864 /* Haptics */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Haptics;
-			sourceTree = "<group>";
-		};
 		82C44DAC2A591907002A3864 /* Haptics */ = {
 			isa = PBXGroup;
 			children = (
 				82C44DAD2A591915002A3864 /* HapticsManager.swift */,
+				82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */,
 			);
 			path = Haptics;
 			sourceTree = "<group>";
@@ -763,7 +758,7 @@
 				829548972A43AE1F007DEBA0 /* Settings */,
 				8224B4E42A4F1AE10069B7B3 /* File */,
 				8224B4E92A4F1B5C0069B7B3 /* Realm */,
-				82C44DAB2A5918FC002A3864 /* Haptics */,
+				82875AFE2A5A194D007DB925 /* Haptics */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -904,7 +899,6 @@
 				82C7B84A2A50CE7B00F9A552 /* RealmManager + Extensions.swift in Sources */,
 				82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */,
 				82BC3D002A56F5C400E49332 /* RecentSectionViewController + Extensions.swift in Sources */,
-				8270A5502A578D42008ACADC /* TimeModel.swift in Sources */,
 				82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */,
 				8270A5482A5784A2008ACADC /* DateManager.swift in Sources */,
 				8224B4E32A4F18A30069B7B3 /* FileService.swift in Sources */,
@@ -922,6 +916,7 @@
 				829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */,
 				8224B4EC2A4F1BB10069B7B3 /* RealmManagerProtocol.swift in Sources */,
 				82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */,
+				82875B022A5A198A007DB925 /* HapticsManager + Extensions.swift in Sources */,
 				82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */,
 				826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */,
 				82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */,
@@ -930,6 +925,7 @@
 				82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */,
 				829548992A43AE32007DEBA0 /* SettingsManagerProtocol.swift in Sources */,
 				82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */,
+				82875B002A5A1966007DB925 /* HapticsManagerProtocol.swift in Sources */,
 				8224B4E62A4F1AF70069B7B3 /* FileServiceProtocol.swift in Sources */,
 				82320D812A4913FE00ECADEE /* ElectedFaculties.swift in Sources */,
 				8205367E2A50AE5D0054B756 /* CustomMusicTableViewCell.swift in Sources */,
