@@ -19,5 +19,6 @@ class SpringImageView: UIImageView {
     
     @objc private func tapFunction(sender: UITapGestureRecognizer) {
         animation.SpringAnimation(view: self)
+        HapticsManager.shared.HapticFeedback()
     }
 }
