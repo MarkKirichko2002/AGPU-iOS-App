@@ -1,5 +1,5 @@
 //
-//  RecentSectionViewController.swift
+//  RecentPageViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 06.07.2023.
@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class RecentSectionViewController: UIViewController {
+class RecentPageViewController: UIViewController {
     
     var url: String
     

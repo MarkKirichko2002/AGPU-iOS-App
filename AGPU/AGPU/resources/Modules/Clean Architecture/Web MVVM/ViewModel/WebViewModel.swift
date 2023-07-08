@@ -42,7 +42,9 @@ class WebViewModel {
         }
     }
     
-    func SaveCurrentPage(url: String) {
-        UserDefaults.standard.setValue(url, forKey: "last page")
+    func SaveCurrentPage(page: RecentPageModel) {
+        UserDefaults.SaveData(object: page, key: "last page") {
+            print("сохранено")
+        }
     }
 }

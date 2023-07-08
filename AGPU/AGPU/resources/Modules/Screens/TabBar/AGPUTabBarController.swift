@@ -99,14 +99,14 @@ class AGPUTabBarController: UITabBarController {
     }
     
     private func ShakeToRecall() {
-        if let url = UserDefaults.standard.object(forKey: "last page") as? String {
+        if let page = UserDefaults.loadData(type: RecentPageModel.self, key: "last page") {
             DispatchQueue.main.async {
                 self.DynamicButton.setImage(UIImage(named: "time.past"), for: .normal)
                 self.animation.SpringAnimation(view: self.DynamicButton)
                 HapticsManager.shared.HapticFeedback()
             }
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.ShowRecentSectionScreen(url: url)
+                self.ShowRecentPageScreen(page: page)
             }
         }
     }

@@ -31,7 +31,11 @@ extension WebViewController: WKNavigationDelegate {
         DispatchQueue.main.async {
             self.spinner.stopAnimating()
             if let url = webView.url?.absoluteString {
-                self.viewModel.SaveCurrentPage(url: url)
+                let dateManager = DateManager()
+                let date = dateManager.getCurrentDate()
+                let time = dateManager.getCurrentTime()
+                let page = RecentPageModel(date: "\(date) \(time)", url: url)
+                self.viewModel.SaveCurrentPage(page: page)
             }
         }
     }
