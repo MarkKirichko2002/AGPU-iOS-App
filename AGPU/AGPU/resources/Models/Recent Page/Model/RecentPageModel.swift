@@ -9,6 +9,7 @@ import Foundation
 
 struct RecentPageModel: Codable {
     let date: String
+    let time: String
     let url: String
     let position: CGPoint
 }
