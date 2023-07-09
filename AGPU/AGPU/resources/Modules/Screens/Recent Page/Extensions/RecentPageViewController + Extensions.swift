@@ -12,8 +12,10 @@ extension RecentPageViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if let page = UserDefaults.loadData(type: RecentPageModel.self, key: "last page") {
-            DispatchQueue.main.async {
-                self.WVWEBview.scrollView.setContentOffset(page.position, animated: true)
+            if webView.url?.absoluteString == page.url {
+                DispatchQueue.main.async {
+                    self.WVWEBview.scrollView.setContentOffset(page.position, animated: true)
+                }
             }
         }
     }
