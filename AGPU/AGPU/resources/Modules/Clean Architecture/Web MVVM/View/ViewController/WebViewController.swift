@@ -14,6 +14,7 @@ class WebViewController: UIViewController {
     
     // MARK: - сервисы
     let viewModel = WebViewModel()
+    private var timer: Timer?
     
     // MARK: - UI
     let WVWEBview = WKWebView(frame: .zero)
@@ -35,11 +36,15 @@ class WebViewController: UIViewController {
         SetUpIndicatorView()
         SetUpNavigation()
         SetUpViewModel()
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            self.viewModel.SaveCurrentPage(url: self.WVWEBview.url?.absoluteString ?? "", position: CGPoint(x: 0, y: self.WVWEBview.scrollView.contentOffset.y))
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         NotificationCenter.default.post(name: Notification.Name("WebScreenWasClosed"), object: nil)
+        timer?.invalidate()
     }
 
     override func didReceiveMemoryWarning() {
