@@ -14,7 +14,9 @@ extension WebViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
         let position = CGPoint(x: 0, y: yOffset)
-        viewModel.SavePosition(position: position)
+        if let url = WVWEBview.url?.absoluteString {
+            self.viewModel.SaveCurrentPage(url: url, position: position)
+        }
     }
 }
 
@@ -31,11 +33,7 @@ extension WebViewController: WKNavigationDelegate {
         DispatchQueue.main.async {
             self.spinner.stopAnimating()
             if let url = webView.url?.absoluteString {
-                let dateManager = DateManager()
-                let date = dateManager.getCurrentDate()
-                let time = dateManager.getCurrentTime()
-                let page = RecentPageModel(date: "\(date) \(time)", url: url)
-                self.viewModel.SaveCurrentPage(page: page)
+                self.viewModel.SaveCurrentPage(url: url, position: CGPoint(x: 0, y: webView.scrollView.contentOffset.y))
             }
         }
     }

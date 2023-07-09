@@ -16,7 +16,7 @@ class WebViewController: UIViewController {
     let viewModel = WebViewModel()
     
     // MARK: - UI
-    private let WVWEBview = WKWebView(frame: .zero)
+    let WVWEBview = WKWebView(frame: .zero)
     let spinner = UIActivityIndicatorView(style: .large)
     
     // MARK: - Init

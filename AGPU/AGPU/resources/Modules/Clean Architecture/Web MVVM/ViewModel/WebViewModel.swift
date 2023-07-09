@@ -36,15 +36,13 @@ class WebViewModel {
         }
     }
     
-    func SavePosition(position: CGPoint) {
-        UserDefaults.SaveData(object: position, key: "last position") {
-            print("сохранено: \(position)")
-        }
-    }
-    
-    func SaveCurrentPage(page: RecentPageModel) {
+    func SaveCurrentPage(url: String, position: CGPoint) {
+        let dateManager = DateManager()
+        let date = dateManager.getCurrentDate()
+        let time = dateManager.getCurrentTime()
+        let page = RecentPageModel(date: "\(date) \(time)", url: url, position: position)
         UserDefaults.SaveData(object: page, key: "last page") {
-            print("сохранено")
+            print("сохранено: \(page)")
         }
     }
 }
