@@ -195,7 +195,6 @@
 			children = (
 				8221589A2A4233C50088BDE5 /* View */,
 				829AD6972A43817B0047609B /* ViewModel */,
-				82194E532A459AF2009D2FB3 /* Extensions */,
 			);
 			path = "Settings MVVM";
 			sourceTree = "<group>";
@@ -205,6 +204,7 @@
 			children = (
 				82320D842A491F3700ECADEE /* ViewController */,
 				82320D852A491F3C00ECADEE /* Cells */,
+				82194E532A459AF2009D2FB3 /* Extensions */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -297,8 +297,8 @@
 		82320D7F2A4913E800ECADEE /* Elected Faculties */ = {
 			isa = PBXGroup;
 			children = (
-				82320D822A49167000ECADEE /* ElectedFacultyModel.swift */,
-				82320D802A4913FE00ECADEE /* ElectedFaculties.swift */,
+				826716C32A5A414800CD5C23 /* Model */,
+				826716C42A5A414F00CD5C23 /* List */,
 			);
 			path = "Elected Faculties";
 			sourceTree = "<group>";
@@ -363,9 +363,65 @@
 		826716C02A5A2ADA00CD5C23 /* Recent Page */ = {
 			isa = PBXGroup;
 			children = (
-				826716C12A5A2AF600CD5C23 /* RecentPageModel.swift */,
+				826716C52A5A415C00CD5C23 /* Model */,
 			);
 			path = "Recent Page";
+			sourceTree = "<group>";
+		};
+		826716C32A5A414800CD5C23 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82320D822A49167000ECADEE /* ElectedFacultyModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		826716C42A5A414F00CD5C23 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				82320D802A4913FE00ECADEE /* ElectedFaculties.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		826716C52A5A415C00CD5C23 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				826716C12A5A2AF600CD5C23 /* RecentPageModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		826716C62A5A416500CD5C23 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				826888682A3482DF00434219 /* AGPUSubSections.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		826716C72A5A416700CD5C23 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82808E9F2A31F44500DEEB16 /* AGPUSubSectionModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		826716C82A5A419900CD5C23 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82808E9D2A31F2F800DEEB16 /* AGPUSectionModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		826716C92A5A419D00CD5C23 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				82808EA82A32236E00DEEB16 /* AGPUSections.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 		826888502A33A8EE00434219 /* ViewController */ = {
@@ -458,7 +514,6 @@
 			children = (
 				8270A54B2A5789D7008ACADC /* View */,
 				8270A54A2A5789D5008ACADC /* ViewModel */,
-				82E4E55F2A576CDE00314296 /* Extensions */,
 			);
 			path = "Main MVVM";
 			sourceTree = "<group>";
@@ -475,6 +530,7 @@
 			isa = PBXGroup;
 			children = (
 				82E4E55E2A576CD700314296 /* ViewController */,
+				82E4E55F2A576CDE00314296 /* Extensions */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -636,7 +692,6 @@
 			children = (
 				82BA73B42A579B21006B67DA /* View */,
 				82BA73B32A579B1F006B67DA /* ViewModel */,
-				82E4E55D2A576CB700314296 /* Extensions */,
 			);
 			path = "Web MVVM";
 			sourceTree = "<group>";
@@ -653,6 +708,7 @@
 			isa = PBXGroup;
 			children = (
 				82E4E55C2A576CAD00314296 /* ViewController */,
+				82E4E55D2A576CB700314296 /* Extensions */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -744,8 +800,8 @@
 		82EF23D22A3DEEA6004A7B9C /* Sections */ = {
 			isa = PBXGroup;
 			children = (
-				82808E9D2A31F2F800DEEB16 /* AGPUSectionModel.swift */,
-				82808EA82A32236E00DEEB16 /* AGPUSections.swift */,
+				826716C82A5A419900CD5C23 /* Model */,
+				826716C92A5A419D00CD5C23 /* List */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
@@ -753,8 +809,8 @@
 		82EF23D32A3DEEB8004A7B9C /* Sub Sections */ = {
 			isa = PBXGroup;
 			children = (
-				82808E9F2A31F44500DEEB16 /* AGPUSubSectionModel.swift */,
-				826888682A3482DF00434219 /* AGPUSubSections.swift */,
+				826716C72A5A416700CD5C23 /* Model */,
+				826716C62A5A416500CD5C23 /* List */,
 			);
 			path = "Sub Sections";
 			sourceTree = "<group>";
