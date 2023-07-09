@@ -10,7 +10,6 @@ import UIKit
 extension UIViewController {
     
     func GoToWeb(url: String, title: String?) {
-        UserDefaults.standard.setValue(url, forKey: "last page")
         let vc = WebViewController(url: url)
         if title != nil {
             vc.navigationItem.title = title
