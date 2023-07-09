@@ -11,9 +11,9 @@ import WebKit
 extension RecentPageViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        if let position = UserDefaults.loadData(type: CGPoint.self, key: "last position") {
+        if let page = UserDefaults.loadData(type: RecentPageModel.self, key: "last page") {
             DispatchQueue.main.async {
-                self.WVWEBview.scrollView.setContentOffset(position, animated: true)
+                self.WVWEBview.scrollView.setContentOffset(page.position, animated: true)
             }
         }
     }
