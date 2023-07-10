@@ -14,6 +14,7 @@ class RecentPageViewController: UIViewController {
     
     // MARK: - UI
     let WVWEBview = WKWebView(frame: .zero)
+    let spinner = UIActivityIndicatorView(style: .large)
     
     // MARK: - Init
     init(url: String) {
@@ -28,6 +29,7 @@ class RecentPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SetUpWebView()
+        SetUpIndicatorView()
         SetUpNavigation()
     }
     
@@ -46,6 +48,15 @@ class RecentPageViewController: UIViewController {
         WVWEBview.allowsBackForwardNavigationGestures = true
         WVWEBview.navigationDelegate = self
         WVWEBview.load(self.url)
+    }
+    
+    private func SetUpIndicatorView() {
+        view.addSubview(spinner)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
     private func SetUpNavigation() {
