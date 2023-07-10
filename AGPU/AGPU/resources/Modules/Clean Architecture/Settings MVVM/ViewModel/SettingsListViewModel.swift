@@ -204,15 +204,15 @@ class SettingsListViewModel: NSObject {
     // MARK: - Elected Faculty
     
     func facultiesListCount()-> Int {
-        return ElectedFaculties.faculties.count
+        return AGPUFaculties.faculties.count
     }
     
-    func electedFacultyItem(index: Int)-> ElectedFacultyModel {
-        return ElectedFaculties.faculties[index]
+    func electedFacultyItem(index: Int)-> AGPUFacultyModel {
+        return AGPUFaculties.faculties[index]
     }
     
     func ChangeIcon(index: Int) {
-        var icon = ElectedFaculties.faculties[index]
+        var icon = AGPUFaculties.faculties[index]
         icon.isSelected = true
         UIApplication.shared.setAlternateIconName(icon.appIcon)
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
@@ -224,8 +224,8 @@ class SettingsListViewModel: NSObject {
     }
     
     func isIconSelected(index: Int)-> UITableViewCell.AccessoryType {
-        let data = UserDefaults.loadData(type: ElectedFacultyModel.self, key: "icon")
-        if data?.id == ElectedFaculties.faculties[index].id && data?.isSelected == true {
+        let data = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "icon")
+        if data?.id == AGPUFaculties.faculties[index].id && data?.isSelected == true {
             return .checkmark
         } else {
             return .none
