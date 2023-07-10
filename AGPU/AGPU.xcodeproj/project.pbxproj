@@ -21,8 +21,8 @@
 		8224B4EF2A4F1C420069B7B3 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8224B4EE2A4F1C420069B7B3 /* Realm */; };
 		8224B4F12A4F1C420069B7B3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8224B4F02A4F1C420069B7B3 /* RealmSwift */; };
 		8224B4F32A4F1C580069B7B3 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8224B4F22A4F1C580069B7B3 /* RealmManager.swift */; };
-		82320D812A4913FE00ECADEE /* ElectedFaculties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82320D802A4913FE00ECADEE /* ElectedFaculties.swift */; };
-		82320D832A49167000ECADEE /* ElectedFacultyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82320D822A49167000ECADEE /* ElectedFacultyModel.swift */; };
+		82320D812A4913FE00ECADEE /* AGPUFaculties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82320D802A4913FE00ECADEE /* AGPUFaculties.swift */; };
+		82320D832A49167000ECADEE /* AGPUFacultyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82320D822A49167000ECADEE /* AGPUFacultyModel.swift */; };
 		82320D872A491F5700ECADEE /* ElectedFacultyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82320D862A491F5700ECADEE /* ElectedFacultyTableViewCell.swift */; };
 		82320D892A491FBC00ECADEE /* ElectedFacultyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82320D882A491FBC00ECADEE /* ElectedFacultyTableViewCell.xib */; };
 		8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234B2FF2A3242E10091810F /* SpeechRecognitionManager.swift */; };
@@ -92,8 +92,8 @@
 		8224B4E52A4F1AF70069B7B3 /* FileServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileServiceProtocol.swift; sourceTree = "<group>"; };
 		8224B4EB2A4F1BB10069B7B3 /* RealmManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManagerProtocol.swift; sourceTree = "<group>"; };
 		8224B4F22A4F1C580069B7B3 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
-		82320D802A4913FE00ECADEE /* ElectedFaculties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectedFaculties.swift; sourceTree = "<group>"; };
-		82320D822A49167000ECADEE /* ElectedFacultyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectedFacultyModel.swift; sourceTree = "<group>"; };
+		82320D802A4913FE00ECADEE /* AGPUFaculties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFaculties.swift; sourceTree = "<group>"; };
+		82320D822A49167000ECADEE /* AGPUFacultyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultyModel.swift; sourceTree = "<group>"; };
 		82320D862A491F5700ECADEE /* ElectedFacultyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectedFacultyTableViewCell.swift; sourceTree = "<group>"; };
 		82320D882A491FBC00ECADEE /* ElectedFacultyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElectedFacultyTableViewCell.xib; sourceTree = "<group>"; };
 		8234B2FF2A3242E10091810F /* SpeechRecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManager.swift; sourceTree = "<group>"; };
@@ -294,13 +294,13 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		82320D7F2A4913E800ECADEE /* Elected Faculties */ = {
+		82320D7F2A4913E800ECADEE /* AGPU Faculties */ = {
 			isa = PBXGroup;
 			children = (
 				826716C32A5A414800CD5C23 /* Model */,
 				826716C42A5A414F00CD5C23 /* List */,
 			);
-			path = "Elected Faculties";
+			path = "AGPU Faculties";
 			sourceTree = "<group>";
 		};
 		82320D842A491F3700ECADEE /* ViewController */ = {
@@ -371,7 +371,7 @@
 		826716C32A5A414800CD5C23 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				82320D822A49167000ECADEE /* ElectedFacultyModel.swift */,
+				82320D822A49167000ECADEE /* AGPUFacultyModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -379,7 +379,7 @@
 		826716C42A5A414F00CD5C23 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				82320D802A4913FE00ECADEE /* ElectedFaculties.swift */,
+				82320D802A4913FE00ECADEE /* AGPUFaculties.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -488,7 +488,7 @@
 				82EF23D22A3DEEA6004A7B9C /* Sections */,
 				82EF23D32A3DEEB8004A7B9C /* Sub Sections */,
 				826716C02A5A2ADA00CD5C23 /* Recent Page */,
-				82320D7F2A4913E800ECADEE /* Elected Faculties */,
+				82320D7F2A4913E800ECADEE /* AGPU Faculties */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -988,13 +988,13 @@
 				826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */,
 				82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */,
 				8224B4E02A4F181E0069B7B3 /* AddMusicViewController + Extensions.swift in Sources */,
-				82320D832A49167000ECADEE /* ElectedFacultyModel.swift in Sources */,
+				82320D832A49167000ECADEE /* AGPUFacultyModel.swift in Sources */,
 				82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */,
 				829548992A43AE32007DEBA0 /* SettingsManagerProtocol.swift in Sources */,
 				82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */,
 				82875B002A5A1966007DB925 /* HapticsManagerProtocol.swift in Sources */,
 				8224B4E62A4F1AF70069B7B3 /* FileServiceProtocol.swift in Sources */,
-				82320D812A4913FE00ECADEE /* ElectedFaculties.swift in Sources */,
+				82320D812A4913FE00ECADEE /* AGPUFaculties.swift in Sources */,
 				826716C22A5A2AF600CD5C23 /* RecentPageModel.swift in Sources */,
 				8205367E2A50AE5D0054B756 /* CustomMusicTableViewCell.swift in Sources */,
 				82320D872A491F5700ECADEE /* ElectedFacultyTableViewCell.swift in Sources */,

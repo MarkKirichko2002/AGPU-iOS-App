@@ -293,7 +293,7 @@ class AGPUTabBarController: UITabBarController {
     // MARK: - Elected Faculty
     private func ObserveChangeIcon() {
         NotificationCenter.default.addObserver(forName: Notification.Name("icon"), object: nil, queue: .main) { notification in
-            if let icon = notification.object as? ElectedFacultyModel {
+            if let icon = notification.object as? AGPUFacultyModel {
                 self.DynamicButton.setImage(UIImage(named: icon.icon), for: .normal)
                 self.animation.SpringAnimation(view: self.DynamicButton)
                 HapticsManager.shared.HapticFeedback()

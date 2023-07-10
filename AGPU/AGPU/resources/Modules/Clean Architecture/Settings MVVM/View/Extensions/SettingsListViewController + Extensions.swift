@@ -59,7 +59,7 @@ extension SettingsListViewController: UITableViewDelegate {
                 
             case 1:
                 let infoAction = UIAction(title: "узнать больше", image: UIImage(named: "info")) { action in
-                    self.GoToWeb(url: self.viewModel.electedFacultyItem(index: indexPath.row).url, title: "Факультет")
+                    self.GoToWeb(url: self.viewModel.electedFacultyItem(index: indexPath.row).url, title: self.viewModel.electedFacultyItem(index: indexPath.row).abbreviation)
                 }
                 
                 let phoneAction = self.viewModel.makePhoneNumbersMenu(index: indexPath.row)
