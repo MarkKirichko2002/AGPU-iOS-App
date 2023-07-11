@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import AVKit
 
 extension UIViewController {
     
@@ -32,22 +31,5 @@ extension UIViewController {
             alertController.addAction(action)
         }
         self.present(alertController, animated: true)
-    }
-    
-    func PlayVideo(url: String) {
-        guard let videoURL = URL(string: url) else {
-            print("Invalid video URL")
-            return
-        }
-        
-        // Создаем AVPlayerViewController
-        let playerViewController = AVPlayerViewController()
-        let player = AVPlayer(url: videoURL)
-        playerViewController.player = player
-
-        // Воспроизводим видео
-        present(playerViewController, animated: true) {
-            playerViewController.player?.play()
-        }
     }
 }
