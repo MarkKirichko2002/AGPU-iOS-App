@@ -19,6 +19,7 @@ class AGPUMapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Найти «АГПУ»"
         view.addSubview(mapView)
         mapView.translatesAutoresizingMaskIntoConstraints = false
         makeConstraints()
