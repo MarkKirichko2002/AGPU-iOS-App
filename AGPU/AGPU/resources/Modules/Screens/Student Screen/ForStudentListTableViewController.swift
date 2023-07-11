@@ -26,6 +26,8 @@ class ForStudentListTableViewController: UITableViewController {
         case 2:
             let vc = AGPUFacultiesListTableViewController()
             navigationController?.pushViewController(vc, animated: true)
+        case 3:
+            self.GoToWeb(url: "http://test.agpu.net/studentu/obshchezhitiya/index.php", title: "Кампус и общежития")
         default:
             break
         }
