@@ -7,6 +7,7 @@
 
 import UIKit
 import MessageUI
+import AVKit
 
 // MARK: - UITableViewDataSource
 extension SettingsListViewController: UITableViewDataSource {
@@ -112,6 +113,7 @@ extension SettingsListViewController: UITableViewDelegate {
 extension SettingsListViewController: MFMailComposeViewControllerDelegate {
     
     func showEmailComposer(email: String) {
+        
         guard MFMailComposeViewController.canSendMail() else {
             return
         }
@@ -127,5 +129,33 @@ extension SettingsListViewController: MFMailComposeViewControllerDelegate {
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - AVPlayerViewControllerDelegate
+extension SettingsListViewController: AVPlayerViewControllerDelegate {
+    
+    func PlayVideo(url: String) {
+        guard let videoURL = URL(string: url) else {
+            print("Invalid video URL")
+            return
+        }
+        
+        // Создаем AVPlayerViewController
+        let playerViewController = AVPlayerViewController()
+        let player = AVPlayer(url: videoURL)
+        playerViewController.player = player
+        playerViewController.delegate = self
+        // Воспроизводим видео
+        present(playerViewController, animated: true) {
+            playerViewController.player?.play()
+        }
+    }
+    
+    func playerViewController(_ playerViewController: AVPlayerViewController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
+        present(playerViewController, animated: true) {
+            playerViewController.player?.play()
+            completionHandler(true)
+        }
     }
 }
