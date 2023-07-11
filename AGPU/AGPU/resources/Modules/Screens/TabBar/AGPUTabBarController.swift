@@ -47,25 +47,25 @@ class AGPUTabBarController: UITabBarController {
         let mainVC = AGPUMainViewController()
         // кнопка
         let middleButton = UIViewController()
+        // студенту
+        let studentVC = ForStudentListTableViewController()
         // разделы
         let sectionsVC = AGPUSectionsListViewController()
-        // карта
-        let mapVC = AGPUMapViewController()
         // настройки
         let settingsVC = SettingsListViewController()
         // главное
         mainVC.tabBarItem = UITabBarItem(title: "Главное", image: UIImage(named: "home"), selectedImage: UIImage(named: "home selected"))
-        // разделы
-        sectionsVC.tabBarItem = UITabBarItem(title: "Разделы", image: UIImage(named: "sections"), selectedImage: UIImage(named: "sections selected"))
+        // студенту
+        studentVC.tabBarItem = UITabBarItem(title: "Студенту", image: UIImage(named: "applicant"), selectedImage: UIImage(named: "applicant selected"))
         // карта
-        mapVC.tabBarItem = UITabBarItem(title: "Найти АГПУ", image: UIImage(named: "map"), selectedImage: UIImage(named: "map selected"))
-        mapVC.navigationItem.title = "Найти «АГПУ»"
+        sectionsVC.tabBarItem = UITabBarItem(title: "Разделы", image: UIImage(named: "sections"), selectedImage: UIImage(named: "sections selected"))
+        sectionsVC.navigationItem.title = "Разделы"
         // настройки
         settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear.fill"))
         settingsVC.navigationItem.title = "Настройки"
         let nav1VC = UINavigationController(rootViewController: mainVC)
-        let nav2VC = UINavigationController(rootViewController: sectionsVC)
-        let nav3VC = UINavigationController(rootViewController: mapVC)
+        let nav2VC = UINavigationController(rootViewController: studentVC)
+        let nav3VC = UINavigationController(rootViewController: sectionsVC)
         let nav4VC = UINavigationController(rootViewController: settingsVC)
         
         setViewControllers([nav1VC, nav2VC, middleButton, nav3VC, nav4VC], animated: true)
