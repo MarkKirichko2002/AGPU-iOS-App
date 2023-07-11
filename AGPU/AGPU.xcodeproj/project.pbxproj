@@ -74,6 +74,9 @@
 		82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D492A5DD57B0060ADAA /* ForStudentListTableViewController.swift */; };
 		82E05D4D2A5DDBC70060ADAA /* ForStudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D4C2A5DDBC70060ADAA /* ForStudentModel.swift */; };
 		82E05D512A5DDC4F0060ADAA /* ForStudentSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D502A5DDC4F0060ADAA /* ForStudentSections.swift */; };
+		82E05D542A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D532A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift */; };
+		82E05D592A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D582A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift */; };
+		82E05D5D2A5DF36B0060ADAA /* AGPUFacultiesListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D5C2A5DF36B0060ADAA /* AGPUFacultiesListTableViewController + Extensions.swift */; };
 		82E4E5592A57699E00314296 /* WKWebView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4E5582A57699E00314296 /* WKWebView + Extensions.swift */; };
 		82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */; };
 		82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */; };
@@ -150,6 +153,9 @@
 		82E05D492A5DD57B0060ADAA /* ForStudentListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForStudentListTableViewController.swift; sourceTree = "<group>"; };
 		82E05D4C2A5DDBC70060ADAA /* ForStudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForStudentModel.swift; sourceTree = "<group>"; };
 		82E05D502A5DDC4F0060ADAA /* ForStudentSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForStudentSections.swift; sourceTree = "<group>"; };
+		82E05D532A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultiesListTableViewController.swift; sourceTree = "<group>"; };
+		82E05D582A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultiesListViewModel.swift; sourceTree = "<group>"; };
+		82E05D5C2A5DF36B0060ADAA /* AGPUFacultiesListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUFacultiesListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		82E4E5582A57699E00314296 /* WKWebView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView + Extensions.swift"; sourceTree = "<group>"; };
 		82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClassProtocol.swift; sourceTree = "<group>"; };
 		82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManagerProtocol.swift; sourceTree = "<group>"; };
@@ -690,6 +696,7 @@
 			children = (
 				8270A5492A5789BE008ACADC /* Main MVVM */,
 				82BA73B22A579B15006B67DA /* Web MVVM */,
+				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
 				822158942A422A480088BDE5 /* Settings MVVM */,
 			);
 			path = "Clean Architecture";
@@ -770,6 +777,48 @@
 				82E05D502A5DDC4F0060ADAA /* ForStudentSections.swift */,
 			);
 			path = List;
+			sourceTree = "<group>";
+		};
+		82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82E05D572A5DF1330060ADAA /* View */,
+				82E05D562A5DF1300060ADAA /* ViewModel */,
+			);
+			path = "AGPU Faculties List MVVM";
+			sourceTree = "<group>";
+		};
+		82E05D562A5DF1300060ADAA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82E05D582A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82E05D572A5DF1330060ADAA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82E05D5A2A5DF34A0060ADAA /* ViewController */,
+				82E05D5B2A5DF3550060ADAA /* Extensions */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82E05D5A2A5DF34A0060ADAA /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82E05D532A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82E05D5B2A5DF3550060ADAA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82E05D5C2A5DF36B0060ADAA /* AGPUFacultiesListTableViewController + Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		82E4E55A2A576C7E00314296 /* ViewController */ = {
@@ -988,6 +1037,7 @@
 				826888662A33B6E700434219 /* AGPUTabBarController.swift in Sources */,
 				82BC3CFC2A56EDA000E49332 /* RecentPageViewController.swift in Sources */,
 				8224B4DB2A4F10D80069B7B3 /* AddMusicViewController.swift in Sources */,
+				82E05D542A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift in Sources */,
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
 				82BDFDB02A404BA0002DBB89 /* AGPUMapViewController.swift in Sources */,
@@ -1009,8 +1059,10 @@
 				82C7B84A2A50CE7B00F9A552 /* RealmManager + Extensions.swift in Sources */,
 				82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */,
 				82BC3D002A56F5C400E49332 /* RecentPageViewController + Extensions.swift in Sources */,
+				82E05D5D2A5DF36B0060ADAA /* AGPUFacultiesListTableViewController + Extensions.swift in Sources */,
 				82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */,
 				8270A5482A5784A2008ACADC /* DateManager.swift in Sources */,
+				82E05D592A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift in Sources */,
 				8224B4E32A4F18A30069B7B3 /* FileService.swift in Sources */,
 				827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */,
 				829548922A439FF7007DEBA0 /* AGPUMapViewController + Extensions.swift in Sources */,

@@ -23,6 +23,9 @@ class ForStudentListTableViewController: UITableViewController {
         case 1:
             let vc = AGPUMapViewController()
             navigationController?.pushViewController(vc, animated: true)
+        case 2:
+            let vc = AGPUFacultiesListTableViewController()
+            navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }

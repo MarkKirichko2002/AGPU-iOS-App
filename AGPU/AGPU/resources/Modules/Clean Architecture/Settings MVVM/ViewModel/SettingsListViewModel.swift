@@ -43,15 +43,13 @@ class SettingsListViewModel: NSObject {
     }
     
     func sectionsCount()-> Int {
-        return 2
+        return 1
     }
     
     func numberOfRowsInSection(section: Int)-> Int {
         switch section {
         case 0:
             return musicListCount()
-        case 1:
-            return facultiesListCount()
         default:
             return 0
         }
@@ -78,25 +76,6 @@ class SettingsListViewModel: NSObject {
             label.font = .systemFont(ofSize: 16, weight: .black)
             return header
             
-        case 1:
-            let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
-            header.backgroundColor = .systemBackground
-            
-            let imageView = SpringImageView(image: UIImage(named: "university"))
-            
-            imageView.contentMode = .scaleAspectFit
-            header.addSubview(imageView)
-            imageView.frame = CGRect(x: 20, y: 0, width: 75, height: 75)
-            
-            let label = UILabel(frame: CGRect(x: 30 + imageView.frame.size.width, y: 0,
-                                              width: header.frame.size.width - 15 - imageView.frame.size.width,
-                                              height: header.frame.size.height-10))
-            label.numberOfLines = 0
-            header.addSubview(label)
-            label.text = "Избранный факультет"
-            label.font = .systemFont(ofSize: 16, weight: .black)
-            return header
-            
         default:
             return nil
         }
@@ -111,12 +90,6 @@ class SettingsListViewModel: NSObject {
             cell.tintColor = .systemGreen
             cell.configure(music: musicItem(index: indexPath.row))
             return cell
-        case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ElectedFacultyTableViewCell.identifier, for: indexPath) as? ElectedFacultyTableViewCell else {return UITableViewCell()}
-            cell.accessoryType = isIconSelected(index: indexPath.row)
-            cell.tintColor = .systemGreen
-            cell.configure(faculty: electedFacultyItem(index: indexPath.row))
-            return cell
         default:
             return UITableViewCell()
         }
@@ -126,8 +99,6 @@ class SettingsListViewModel: NSObject {
         switch indexPath.section {
         case 0:
             print(musicItem(index: indexPath.row))
-        case 1:
-            print(electedFacultyItem(index: indexPath.row))
         default:
             break
         }
@@ -138,9 +109,6 @@ class SettingsListViewModel: NSObject {
             
         case 0:
             return "Своя Музыка"
-            
-        case 1:
-            return "Избранный Факультет"
             
         default:
             return ""
@@ -198,61 +166,6 @@ class SettingsListViewModel: NSObject {
             return .checkmark
         } else {
             return .none
-        }
-    }
-    
-    // MARK: - Elected Faculty
-    
-    func facultiesListCount()-> Int {
-        return AGPUFaculties.faculties.count
-    }
-    
-    func electedFacultyItem(index: Int)-> AGPUFacultyModel {
-        return AGPUFaculties.faculties[index]
-    }
-    
-    func ChangeIcon(index: Int) {
-        var icon = AGPUFaculties.faculties[index]
-        icon.isSelected = true
-        UIApplication.shared.setAlternateIconName(icon.appIcon)
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("icon"), object: icon)
-        }
-        UserDefaults.SaveData(object: icon, key: "icon") {
-            self.isChanged.toggle()
-        }
-    }
-    
-    func isIconSelected(index: Int)-> UITableViewCell.AccessoryType {
-        let data = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "icon")
-        if data?.id == AGPUFaculties.faculties[index].id && data?.isSelected == true {
-            return .checkmark
-        } else {
-            return .none
-        }
-    }
-    
-    func makePhoneNumbersMenu(index: Int) -> UIMenu {
-        let faculty = electedFacultyItem(index: index)
-        let rateActions = faculty.phoneNumbers
-            .map { phone in
-                return UIAction(title: phone) { action in
-                    self.makePhoneCall(phoneNumber: phone)
-                }
-            }
-        
-        return UIMenu(
-            title: "позвонить",
-            image: UIImage(named: "phone"),
-            children: rateActions)
-    }
-    
-    func makePhoneCall(phoneNumber: String) {
-        if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
-            let application = UIApplication.shared
-            if application.canOpenURL(phoneCallURL) {
-                application.open(phoneCallURL)
-            }
         }
     }
 }
