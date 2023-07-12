@@ -27,6 +27,10 @@
 		82320D892A491FBC00ECADEE /* ElectedFacultyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82320D882A491FBC00ECADEE /* ElectedFacultyTableViewCell.xib */; };
 		8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234B2FF2A3242E10091810F /* SpeechRecognitionManager.swift */; };
 		8241F9812A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9802A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift */; };
+		8241F9852A5F3F73007DF628 /* CalendarViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9842A5F3F73007DF628 /* CalendarViewController + Extensions.swift */; };
+		8241F9932A5F4091007DF628 /* TimeTableServicerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9922A5F4091007DF628 /* TimeTableServicerProtocol.swift */; };
+		8241F9992A5F40EB007DF628 /* TimeTableService + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9982A5F40EB007DF628 /* TimeTableService + Extensions.swift */; };
+		8241F99B2A5F415A007DF628 /* DateManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F99A2A5F415A007DF628 /* DateManager + Extensions.swift */; };
 		82461FEE2A50C493008A8752 /* AppDelegate + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */; };
 		826716C22A5A2AF600CD5C23 /* RecentPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826716C12A5A2AF600CD5C23 /* RecentPageModel.swift */; };
 		826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888522A33A91200434219 /* AGPUSubSectionTableViewCell.swift */; };
@@ -116,6 +120,10 @@
 		82320D882A491FBC00ECADEE /* ElectedFacultyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElectedFacultyTableViewCell.xib; sourceTree = "<group>"; };
 		8234B2FF2A3242E10091810F /* SpeechRecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManager.swift; sourceTree = "<group>"; };
 		8241F9802A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
+		8241F9842A5F3F73007DF628 /* CalendarViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarViewController + Extensions.swift"; sourceTree = "<group>"; };
+		8241F9922A5F4091007DF628 /* TimeTableServicerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableServicerProtocol.swift; sourceTree = "<group>"; };
+		8241F9982A5F40EB007DF628 /* TimeTableService + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableService + Extensions.swift"; sourceTree = "<group>"; };
+		8241F99A2A5F415A007DF628 /* DateManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateManager + Extensions.swift"; sourceTree = "<group>"; };
 		82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate + Extensions.swift"; sourceTree = "<group>"; };
 		826716C12A5A2AF600CD5C23 /* RecentPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPageModel.swift; sourceTree = "<group>"; };
 		826888522A33A91200434219 /* AGPUSubSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSectionTableViewCell.swift; sourceTree = "<group>"; };
@@ -352,6 +360,122 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		8241F9822A5F3F3A007DF628 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82E4E55A2A576C7E00314296 /* ViewController */,
+				82E4E55B2A576C8500314296 /* Extensions */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8241F9832A5F3F4C007DF628 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8295488F2A439FD3007DEBA0 /* ViewController */,
+				829548902A439FDF007DEBA0 /* Extensions */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8241F9862A5F3F78007DF628 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8241F9872A5F3F7C007DF628 /* ViewController */,
+				8241F9882A5F3F84007DF628 /* Extensions */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8241F9872A5F3F7C007DF628 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82D6C3432A5E340300FB7F5D /* CalendarViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8241F9882A5F3F84007DF628 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8241F9842A5F3F73007DF628 /* CalendarViewController + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8241F9892A5F3FC1007DF628 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8241F98B2A5F3FD3007DF628 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8241F98B2A5F3FD3007DF628 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82E05D492A5DD57B0060ADAA /* ForStudentListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8241F98C2A5F4001007DF628 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				826888652A33B6E700434219 /* AGPUTabBarController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8241F98D2A5F4004007DF628 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8241F98C2A5F4001007DF628 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8241F98E2A5F4023007DF628 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8241F98F2A5F4027007DF628 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8241F98F2A5F4027007DF628 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				826888572A33AB5600434219 /* AGPUSplashScreenViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8241F9912A5F407E007DF628 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8241F9922A5F4091007DF628 /* TimeTableServicerProtocol.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		8241F9962A5F40BA007DF628 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				82D6C3312A5E1DE100FB7F5D /* TimeTableService.swift */,
+				8241F9982A5F40EB007DF628 /* TimeTableService + Extensions.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		8241F9972A5F40BD007DF628 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82D6C3332A5E1DEC00FB7F5D /* TimeTable.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8258214B2A46494E00CF0333 /* app */ = {
 			isa = PBXGroup;
 			children = (
@@ -460,7 +584,7 @@
 		826888562A33AB3C00434219 /* Splash Screen */ = {
 			isa = PBXGroup;
 			children = (
-				826888572A33AB5600434219 /* AGPUSplashScreenViewController.swift */,
+				8241F98E2A5F4023007DF628 /* View */,
 			);
 			path = "Splash Screen";
 			sourceTree = "<group>";
@@ -526,6 +650,7 @@
 			isa = PBXGroup;
 			children = (
 				8270A5472A5784A2008ACADC /* DateManager.swift */,
+				8241F99A2A5F415A007DF628 /* DateManager + Extensions.swift */,
 			);
 			path = Date;
 			sourceTree = "<group>";
@@ -593,7 +718,6 @@
 			isa = PBXGroup;
 			children = (
 				82808EA22A31F49B00DEEB16 /* View */,
-				829548842A439D2A007DEBA0 /* Extensions */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
@@ -603,6 +727,7 @@
 			children = (
 				826888502A33A8EE00434219 /* ViewController */,
 				826888512A33A8FB00434219 /* Cell */,
+				829548842A439D2A007DEBA0 /* Extensions */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -618,7 +743,7 @@
 		828CFA342A35F62400C7542D /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				826888652A33B6E700434219 /* AGPUTabBarController.swift */,
+				8241F98D2A5F4004007DF628 /* View */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -678,8 +803,7 @@
 		829522DB2A38AEBE00329713 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				8295488F2A439FD3007DEBA0 /* ViewController */,
-				829548902A439FDF007DEBA0 /* Extensions */,
+				8241F9832A5F3F4C007DF628 /* View */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -800,8 +924,7 @@
 		82BC3CFA2A56ED7500E49332 /* Recent Page */ = {
 			isa = PBXGroup;
 			children = (
-				82E4E55A2A576C7E00314296 /* ViewController */,
-				82E4E55B2A576C8500314296 /* Extensions */,
+				8241F9822A5F3F3A007DF628 /* View */,
 			);
 			path = "Recent Page";
 			sourceTree = "<group>";
@@ -826,8 +949,8 @@
 		82D6C3302A5E1DD100FB7F5D /* API */ = {
 			isa = PBXGroup;
 			children = (
-				82D6C3312A5E1DE100FB7F5D /* TimeTableService.swift */,
-				82D6C3332A5E1DEC00FB7F5D /* TimeTable.swift */,
+				8241F9972A5F40BD007DF628 /* Model */,
+				8241F9962A5F40BA007DF628 /* Service */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -862,7 +985,7 @@
 		82D6C3422A5E33CD00FB7F5D /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				82D6C3432A5E340300FB7F5D /* CalendarViewController.swift */,
+				8241F9862A5F3F78007DF628 /* View */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -870,7 +993,7 @@
 		82E05D482A5DD52B0060ADAA /* For Student Screen */ = {
 			isa = PBXGroup;
 			children = (
-				82E05D492A5DD57B0060ADAA /* ForStudentListTableViewController.swift */,
+				8241F9892A5F3FC1007DF628 /* View */,
 			);
 			path = "For Student Screen";
 			sourceTree = "<group>";
@@ -1030,6 +1153,7 @@
 		82EF23D42A3DF09F004A7B9C /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				8241F9912A5F407E007DF628 /* API */,
 				8270A5432A578444008ACADC /* Date  */,
 				829548812A439C39007DEBA0 /* Audio Player */,
 				82EF23D82A3DF237004A7B9C /* Speech Recognition */,
@@ -1165,6 +1289,7 @@
 				82D6C33A2A5E282A00FB7F5D /* TimeTableTableViewCell.swift in Sources */,
 				82BC3CFC2A56EDA000E49332 /* RecentPageViewController.swift in Sources */,
 				8224B4DB2A4F10D80069B7B3 /* AddMusicViewController.swift in Sources */,
+				8241F9852A5F3F73007DF628 /* CalendarViewController + Extensions.swift in Sources */,
 				82E05D542A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift in Sources */,
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
@@ -1185,6 +1310,7 @@
 				829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */,
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
 				8268885B2A33AC6000434219 /* AnimationClass.swift in Sources */,
+				8241F9992A5F40EB007DF628 /* TimeTableService + Extensions.swift in Sources */,
 				82C44DAE2A591915002A3864 /* HapticsManager.swift in Sources */,
 				82C7B84A2A50CE7B00F9A552 /* RealmManager + Extensions.swift in Sources */,
 				828DE2B42A5E41C200985737 /* CustomMusicListViewModel.swift in Sources */,
@@ -1201,6 +1327,7 @@
 				829548922A439FF7007DEBA0 /* AGPUMapViewController + Extensions.swift in Sources */,
 				82E4E5592A57699E00314296 /* WKWebView + Extensions.swift in Sources */,
 				826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */,
+				8241F9932A5F4091007DF628 /* TimeTableServicerProtocol.swift in Sources */,
 				829548862A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift in Sources */,
 				829548832A439C4F007DEBA0 /* AudioPlayerProtocol.swift in Sources */,
 				82D6C3322A5E1DE100FB7F5D /* TimeTableService.swift in Sources */,
@@ -1235,6 +1362,7 @@
 				822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */,
 				8295489C2A43AE7E007DEBA0 /* SettingsManager.swift in Sources */,
 				828CFA372A35F65700C7542D /* WebViewController.swift in Sources */,
+				8241F99B2A5F415A007DF628 /* DateManager + Extensions.swift in Sources */,
 				826888582A33AB5600434219 /* AGPUSplashScreenViewController.swift in Sources */,
 				82F4ECFE2A3F82E400F1E5CC /* AudioPlayer.swift in Sources */,
 				82C7B8402A50C98900F9A552 /* AudioPlayer + Extensions.swift in Sources */,

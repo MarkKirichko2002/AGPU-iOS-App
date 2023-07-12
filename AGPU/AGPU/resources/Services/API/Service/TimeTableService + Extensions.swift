@@ -1,14 +1,15 @@
 //
-//  TimeTableService.swift
+//  TimeTableService + Extensions.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 12.07.2023.
 //
 
-import Alamofire
 import Foundation
+import Alamofire
 
-class TimeTableService {
+// MARK: - TimeTableServicerProtocol
+extension TimeTableService: TimeTableServicerProtocol {
     
     func GetTimeTable(groupId: String, date: String, completion: @escaping([TimeTable])->Void) {
         
