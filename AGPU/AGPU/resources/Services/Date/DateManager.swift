@@ -14,7 +14,7 @@ class DateManager: DateManagerProtocol {
     
     func getCurrentDate()-> String {
         var currentDate = ""
-        dateFormatter.dateFormat = "dd MMMM yyyy"
+        dateFormatter.dateFormat = "dd.MM.yyyy"
         currentDate = dateFormatter.string(from: date)
         return currentDate
     }

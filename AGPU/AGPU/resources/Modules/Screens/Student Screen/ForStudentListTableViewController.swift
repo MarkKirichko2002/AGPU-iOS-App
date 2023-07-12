@@ -19,7 +19,8 @@ class ForStudentListTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
         case 0:
-            self.GoToWeb(url: "http://www.it-institut.ru/SearchString/Index/118", title: "Расписание")
+            let vc = TimeTableListTableViewController()
+            navigationController?.pushViewController(vc, animated: true)
         case 1:
             let vc = AGPUMapViewController()
             navigationController?.pushViewController(vc, animated: true)

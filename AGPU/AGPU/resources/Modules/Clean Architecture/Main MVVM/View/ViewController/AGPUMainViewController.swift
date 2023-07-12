@@ -70,8 +70,10 @@ class AGPUMainViewController: UIViewController {
     }
     
     @objc private func reloadButtonTapped() {
-        DispatchQueue.main.async {
-            self.WVWEBview.load("http://test.agpu.net/")
+        if let url = WVWEBview.url?.absoluteString {
+            DispatchQueue.main.async {
+                self.WVWEBview.load(url)
+            }
         }
     }
     
