@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TimeTableListTableViewController: UIViewController, UITableViewDataSource {
+class TimeTableListTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     private let service = TimeTableService()
     private let dateManager = DateManager()
@@ -24,25 +24,15 @@ class TimeTableListTableViewController: UIViewController, UITableViewDataSource 
         SetUpTable()
         SetUpIndicatorView()
         SetUpLabel()
-        service.GetTimeTable(groupId: "ВМ-ИВТ-1-1", date: "06.06.2023") { timetable in
-            if !timetable.isEmpty {
-                DispatchQueue.main.async {
-                    self.timetable = timetable
-                    self.tableView.reloadData()
-                    self.spinner.stopAnimating()
-                }
-            } else {
-                self.noTimeTableLabel.isHidden = false
-                self.spinner.stopAnimating()
-            }
-        }
+        GetTimeTable(date: "06.06.2023")
+        ObserveCalendar()
     }
     
     private func SetUpNavigation() {
         navigationItem.title = "Расписание"
         let next = UIBarButtonItem(image: UIImage(systemName: "arrow.right"), style: .plain, target: self, action: nil)
         let previous = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: nil)
-        let calendar = UIBarButtonItem(image: UIImage(named: "calendar"), style: .plain, target: self, action: nil)
+        let calendar = UIBarButtonItem(image: UIImage(named: "calendar"), style: .plain, target: self, action: #selector(openCalendar))
         next.tintColor = .black
         previous.tintColor = .black
         calendar.tintColor = .black
@@ -71,11 +61,51 @@ class TimeTableListTableViewController: UIViewController, UITableViewDataSource 
         ])
     }
     
+    func GetTimeTable(date: String) {
+        service.GetTimeTable(groupId: "ВМ-ИВТ-1-1", date: date) { timetable in
+            if !timetable.isEmpty {
+                DispatchQueue.main.async {
+                    self.timetable = timetable
+                    self.tableView.reloadData()
+                    self.spinner.stopAnimating()
+                    self.noTimeTableLabel.isHidden = true
+                }
+            } else {
+                self.noTimeTableLabel.isHidden = false
+                self.spinner.stopAnimating()
+            }
+        }
+    }
+    
+    @objc private func openCalendar() {
+        let vc = CalendarViewController()
+        present(vc, animated: true)
+    }
+    
+    private func ObserveCalendar() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("DateWasSelected"), object: nil, queue: .main) { notification in
+            if let date = notification.object as? String {
+                DispatchQueue.main.async {
+                    self.spinner.startAnimating()
+                    self.noTimeTableLabel.isHidden = true
+                    self.timetable = []
+                    self.tableView.reloadData()
+                    self.GetTimeTable(date: date)
+                }
+            }
+        }
+    }
+    
     private func SetUpTable() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
+        tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: TimeTableTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimeTableTableViewCell.identifier)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
