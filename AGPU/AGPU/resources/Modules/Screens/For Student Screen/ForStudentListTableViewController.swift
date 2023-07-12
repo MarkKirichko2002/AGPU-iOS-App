@@ -29,6 +29,9 @@ class ForStudentListTableViewController: UITableViewController {
             navigationController?.pushViewController(vc, animated: true)
         case 3:
             self.GoToWeb(url: "http://test.agpu.net/studentu/obshchezhitiya/index.php", title: "Кампус и общежития")
+        case 4:
+            let vc = AGPUSectionsListViewController()
+            navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }

@@ -503,7 +503,7 @@
 			children = (
 				826888562A33AB3C00434219 /* Splash Screen */,
 				828CFA342A35F62400C7542D /* TabBar */,
-				82E05D482A5DD52B0060ADAA /* Student Screen */,
+				82E05D482A5DD52B0060ADAA /* For Student Screen */,
 				82D6C3422A5E33CD00FB7F5D /* Calendar */,
 				82808E9C2A31F2D400DEEB16 /* Sections */,
 				82BC3CFA2A56ED7500E49332 /* Recent Page */,
@@ -816,12 +816,12 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
-		82E05D482A5DD52B0060ADAA /* Student Screen */ = {
+		82E05D482A5DD52B0060ADAA /* For Student Screen */ = {
 			isa = PBXGroup;
 			children = (
 				82E05D492A5DD57B0060ADAA /* ForStudentListTableViewController.swift */,
 			);
-			path = "Student Screen";
+			path = "For Student Screen";
 			sourceTree = "<group>";
 		};
 		82E05D4B2A5DDBAE0060ADAA /* For Student */ = {
