@@ -49,17 +49,17 @@ class AGPUTabBarController: UITabBarController {
         let middleButton = UIViewController()
         // студенту
         let studentVC = ForStudentListTableViewController()
-        // разделы
-        let sectionsVC = AGPUSectionsListViewController()
+        // своя музыка
+        let sectionsVC = CustomMusicListViewController()
         // настройки
         let settingsVC = SettingsListViewController()
         // главное
         mainVC.tabBarItem = UITabBarItem(title: "Главное", image: UIImage(named: "home"), selectedImage: UIImage(named: "home selected"))
         // студенту
         studentVC.tabBarItem = UITabBarItem(title: "Студенту", image: UIImage(named: "applicant"), selectedImage: UIImage(named: "applicant selected"))
-        // карта
-        sectionsVC.tabBarItem = UITabBarItem(title: "Разделы", image: UIImage(named: "sections"), selectedImage: UIImage(named: "sections selected"))
-        sectionsVC.navigationItem.title = "Разделы"
+        // своя музыка
+        sectionsVC.tabBarItem = UITabBarItem(title: "Своя Музыка", image: UIImage(named: "music"), selectedImage: UIImage(named: "music selected"))
+        sectionsVC.navigationItem.title = "Своя Музыка"
         // настройки
         settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear.fill"))
         settingsVC.navigationItem.title = "Настройки"
