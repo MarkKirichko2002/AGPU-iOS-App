@@ -8,9 +8,10 @@
 import Foundation
 
 struct TimeTable: Codable {
-    let date, time, name, teacherName: String
-    let audienceID: String
-    let subgroup: Int
+    let date, time, name: String?
+    let teacherName: String?
+    let audienceID: String?
+    let subgroup: Int?
 
     enum CodingKeys: String, CodingKey {
         case date, time, name, teacherName

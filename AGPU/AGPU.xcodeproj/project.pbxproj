@@ -39,6 +39,7 @@
 		8270A54D2A578A0E008ACADC /* AGPUMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A54C2A578A0E008ACADC /* AGPUMainViewModel.swift */; };
 		82721F1C2A574EE100982EF7 /* AGPUMainViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82721F1B2A574EE100982EF7 /* AGPUMainViewController + Extensions.swift */; };
 		827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B62C22A425166008D241E /* UserDefaults + Extensions.swift */; };
+		827E05A22A5E5222003D8D82 /* AGPUGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E05A12A5E5222003D8D82 /* AGPUGroups.swift */; };
 		827F0FFA2A4B2D7E00C481E4 /* AGPUMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827F0FF92A4B2D7E00C481E4 /* AGPUMainViewController.swift */; };
 		82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E882A31F12100DEEB16 /* AppDelegate.swift */; };
 		82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E8A2A31F12100DEEB16 /* SceneDelegate.swift */; };
@@ -126,6 +127,7 @@
 		8270A54C2A578A0E008ACADC /* AGPUMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUMainViewModel.swift; sourceTree = "<group>"; };
 		82721F1B2A574EE100982EF7 /* AGPUMainViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUMainViewController + Extensions.swift"; sourceTree = "<group>"; };
 		827B62C22A425166008D241E /* UserDefaults + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + Extensions.swift"; sourceTree = "<group>"; };
+		827E05A12A5E5222003D8D82 /* AGPUGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUGroups.swift; sourceTree = "<group>"; };
 		827F0FF92A4B2D7E00C481E4 /* AGPUMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUMainViewController.swift; sourceTree = "<group>"; };
 		82808E852A31F12100DEEB16 /* AGPU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGPU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82808E882A31F12100DEEB16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -497,6 +499,7 @@
 				82EF23D32A3DEEB8004A7B9C /* Sub Sections */,
 				826716C02A5A2ADA00CD5C23 /* Recent Page */,
 				82320D7F2A4913E800ECADEE /* AGPU Faculties */,
+				827E05A02A5E520D003D8D82 /* AGPU Groups */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -541,6 +544,14 @@
 				82E4E55F2A576CDE00314296 /* Extensions */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		827E05A02A5E520D003D8D82 /* AGPU Groups */ = {
+			isa = PBXGroup;
+			children = (
+				827E05A12A5E5222003D8D82 /* AGPUGroups.swift */,
+			);
+			path = "AGPU Groups";
 			sourceTree = "<group>";
 		};
 		82808E7C2A31F12100DEEB16 = {
@@ -1207,6 +1218,7 @@
 				82320D872A491F5700ECADEE /* ElectedFacultyTableViewCell.swift in Sources */,
 				8270A54D2A578A0E008ACADC /* AGPUMainViewModel.swift in Sources */,
 				82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */,
+				827E05A22A5E5222003D8D82 /* AGPUGroups.swift in Sources */,
 				82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */,
 				822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */,
 				8295489C2A43AE7E007DEBA0 /* SettingsManager.swift in Sources */,

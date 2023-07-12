@@ -30,13 +30,9 @@ class TimeTableListTableViewController: UIViewController, UITableViewDelegate, U
     
     private func SetUpNavigation() {
         navigationItem.title = "Расписание"
-        let next = UIBarButtonItem(image: UIImage(systemName: "arrow.right"), style: .plain, target: self, action: nil)
-        let previous = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: nil)
         let calendar = UIBarButtonItem(image: UIImage(named: "calendar"), style: .plain, target: self, action: #selector(openCalendar))
-        next.tintColor = .black
-        previous.tintColor = .black
         calendar.tintColor = .black
-        navigationItem.rightBarButtonItems = [next, previous, calendar]
+        navigationItem.rightBarButtonItem = calendar
     }
     
     private func SetUpIndicatorView() {
@@ -62,7 +58,8 @@ class TimeTableListTableViewController: UIViewController, UITableViewDelegate, U
     }
     
     func GetTimeTable(date: String) {
-        service.GetTimeTable(groupId: "ВМ-ИВТ-1-1", date: date) { timetable in
+        let group = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-1-1"
+        service.GetTimeTable(groupId: group, date: date) { timetable in
             if !timetable.isEmpty {
                 DispatchQueue.main.async {
                     self.timetable = timetable
