@@ -684,7 +684,7 @@
 		827E05A02A5E520D003D8D82 /* AGPU Groups */ = {
 			isa = PBXGroup;
 			children = (
-				827E05A12A5E5222003D8D82 /* AGPUGroups.swift */,
+				82B390702A5F427700563A79 /* List */,
 			);
 			path = "AGPU Groups";
 			sourceTree = "<group>";
@@ -893,6 +893,14 @@
 				822158942A422A480088BDE5 /* Settings MVVM */,
 			);
 			path = "Clean Architecture";
+			sourceTree = "<group>";
+		};
+		82B390702A5F427700563A79 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				827E05A12A5E5222003D8D82 /* AGPUGroups.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 		82BA73B22A579B15006B67DA /* Web MVVM */ = {
