@@ -164,23 +164,23 @@ class AGPUTabBarController: UITabBarController {
         }
         
         // MARK: - Screen "Sections"
-        if text != "" && selectedIndex == 1 {
+        if text != "" {
             // поиск раздела
             for section in AGPUSections.sections {
                 
-                if text.lowercased().contains(section.voiceCommand) {
-                    
-                    NotificationCenter.default.post(name: Notification.Name("ScrollToSection"), object: section.id)
+                if text.lastWord().lowercased().contains(section.voiceCommand) {
                     
                     DispatchQueue.main.async {
                         self.DynamicButton.setImage(UIImage(named: section.icon), for: .normal)
                         self.animation.SpringAnimation(view: self.DynamicButton)
                     }
                     
-                    speechRecognitionManager.cancelSpeechRecognition()
+                    let vc = AGPUSectionsListViewController()
+                    let navVC = UINavigationController(rootViewController: vc)
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        self.speechRecognitionManager.startRecognize()
+                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                        self.present(navVC, animated: true)
+                        NotificationCenter.default.post(name: Notification.Name("ScrollToSection"), object: section.id)
                     }
                 }
             }
