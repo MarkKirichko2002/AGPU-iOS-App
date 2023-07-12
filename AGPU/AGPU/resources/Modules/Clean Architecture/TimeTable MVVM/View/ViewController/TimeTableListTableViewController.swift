@@ -12,6 +12,7 @@ class TimeTableListTableViewController: UIViewController, UITableViewDelegate, U
     private let service = TimeTableService()
     private let dateManager = DateManager()
     private var timetable = [TimeTable]()
+    private var group = ""
     
     // MARK: - UI
     private let tableView = UITableView()
@@ -24,15 +25,31 @@ class TimeTableListTableViewController: UIViewController, UITableViewDelegate, U
         SetUpTable()
         SetUpIndicatorView()
         SetUpLabel()
-        GetTimeTable(date: "06.06.2023")
+        GetTimeTable(date: "06.06.2023", group: UserDefaults.standard.object(forKey: "group") as? String ?? "")
         ObserveCalendar()
     }
     
     private func SetUpNavigation() {
         navigationItem.title = "Расписание"
+        let groups = AGPUGroups.groups
+            .map { group in
+                return UIAction(title: group) { _ in
+                    DispatchQueue.main.async {
+                        self.group = group
+                        self.spinner.startAnimating()
+                        self.noTimeTableLabel.isHidden = true
+                        self.timetable = []
+                        self.tableView.reloadData()
+                        self.GetTimeTable(date: "06.06.2023", group: group)
+                    }
+                }
+            }
+        let groupList = UIMenu(title: "группы", children: groups)
         let calendar = UIBarButtonItem(image: UIImage(named: "calendar"), style: .plain, target: self, action: #selector(openCalendar))
+        let list = UIBarButtonItem(image: UIImage(named: "sections"), menu: groupList)
+        list.tintColor = .black
         calendar.tintColor = .black
-        navigationItem.rightBarButtonItem = calendar
+        navigationItem.rightBarButtonItems = [calendar, list]
     }
     
     private func SetUpIndicatorView() {
@@ -57,8 +74,7 @@ class TimeTableListTableViewController: UIViewController, UITableViewDelegate, U
         ])
     }
     
-    func GetTimeTable(date: String) {
-        let group = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-1-1"
+    func GetTimeTable(date: String, group: String) {
         service.GetTimeTable(groupId: group, date: date) { timetable in
             if !timetable.isEmpty {
                 DispatchQueue.main.async {
@@ -87,7 +103,7 @@ class TimeTableListTableViewController: UIViewController, UITableViewDelegate, U
                     self.noTimeTableLabel.isHidden = true
                     self.timetable = []
                     self.tableView.reloadData()
-                    self.GetTimeTable(date: date)
+                    self.GetTimeTable(date: date, group: self.group)
                 }
             }
         }

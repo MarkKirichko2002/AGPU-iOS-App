@@ -209,6 +209,12 @@ class AGPUTabBarController: UITabBarController {
             }
         }
         
+        if text.lowercased().contains("расписан") {
+            let vc = TimeTableListTableViewController()
+            let navVC = UINavigationController(rootViewController: vc)
+            present(navVC, animated: true)
+        }
+        
         // закрыть экран
         if text.lowercased().contains("закр") {
             

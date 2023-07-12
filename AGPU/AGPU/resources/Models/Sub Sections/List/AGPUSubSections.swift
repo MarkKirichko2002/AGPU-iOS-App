@@ -30,7 +30,7 @@ struct AGPUSubSections {
             AGPUSubSectionModel(name: "Дополнительное образование", icon: "user", url: "https://niiro-agpu.ru/", voiceCommand: "дополнительноеобразование")
         ], "Студенту" :  [
             AGPUSubSectionModel(name: "Личный кабинет ЭИОС", icon: "student", url: "http://plany.agpu.net/WebApp/#/", voiceCommand: "личныйкабинетiOS"),
-            AGPUSubSectionModel(name: "Расписание занятий", icon: "student", url: "http://www.it-institut.ru/SearchString/Index/118", voiceCommand: "расписание"),
+            AGPUSubSectionModel(name: "Расписание занятий", icon: "student", url: "http://www.it-institut.ru/SearchString/Index/118", voiceCommand: ""),
             AGPUSubSectionModel(name: "Институты/Факультеты и кафедры", icon: "student", url: "http://test.agpu.net/struktura-vuza/faculties-institutes/index.php", voiceCommand: "кафедры"),
             AGPUSubSectionModel(name: "Кампус и общежития", icon: "student", url: "http://test.agpu.net/studentu/obshchezhitiya/index.php", voiceCommand: "кампусиобщежития"),
             AGPUSubSectionModel(name: "Студенческие клубы и организации, спорт и фитнес, культурная жизнь", icon: "student", url: "http://test.agpu.net/struktura-vuza/otdel-mpivd/index.php", voiceCommand: "спорт"),
@@ -42,7 +42,7 @@ struct AGPUSubSections {
             AGPUSubSectionModel(name: "Реквизиты", icon: "student", url: "http://test.agpu.net/contacts/requisites.php", voiceCommand: "реквизиты")
         ], "Сотрудникам" : [
             AGPUSubSectionModel(name: "Личный кабинет ЭИОС", icon: "people", url: "http://plany.agpu.net/WebApp/#/", voiceCommand: "личныйкабинетios"),
-            AGPUSubSectionModel(name: "Расписание занятий", icon: "people", url: "http://www.it-institut.ru/SearchString/Index/118", voiceCommand: "расписание"),
+            AGPUSubSectionModel(name: "Расписание занятий", icon: "people", url: "http://www.it-institut.ru/SearchString/Index/118", voiceCommand: ""),
             AGPUSubSectionModel(name: "Ведомости Online", icon: "people", url: "http://vedomosti.agpu.net/login", voiceCommand: "ведомости"),
             AGPUSubSectionModel(name: "Подразделения", icon: "people", url: "http://test.agpu.net/struktura-vuza/index.php", voiceCommand: "подразделени"),
             AGPUSubSectionModel(name: "Документы", icon: "people", url: "http://test.agpu.net/sveden/document/index.php", voiceCommand: "документы"),
