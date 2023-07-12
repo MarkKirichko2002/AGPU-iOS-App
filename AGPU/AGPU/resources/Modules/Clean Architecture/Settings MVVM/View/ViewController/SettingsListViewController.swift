@@ -21,7 +21,7 @@ class SettingsListViewController: UIViewController {
     private func SetUpTable() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UINib(nibName: AGPUFacultyTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AGPUFacultyTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
     }

@@ -43,8 +43,8 @@ class AGPUTabBarController: UITabBarController {
     }
         
     private func setUpTabs() {
-        // главное
-        let mainVC = AGPUMainViewController()
+        // новости
+        let newsVC = AGPUNewsViewController()
         // кнопка
         let middleButton = UIViewController()
         // студенту
@@ -53,8 +53,8 @@ class AGPUTabBarController: UITabBarController {
         let sectionsVC = CustomMusicListViewController()
         // настройки
         let settingsVC = SettingsListViewController()
-        // главное
-        mainVC.tabBarItem = UITabBarItem(title: "Главное", image: UIImage(named: "home"), selectedImage: UIImage(named: "home selected"))
+        // новости
+        newsVC.tabBarItem = UITabBarItem(title: "Новости", image: UIImage(systemName: "newspaper"), selectedImage: UIImage(systemName: "newspaper.fill"))
         // студенту
         studentVC.tabBarItem = UITabBarItem(title: "Студенту", image: UIImage(named: "applicant"), selectedImage: UIImage(named: "applicant selected"))
         // своя музыка
@@ -63,7 +63,7 @@ class AGPUTabBarController: UITabBarController {
         // настройки
         settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear.fill"))
         settingsVC.navigationItem.title = "Настройки"
-        let nav1VC = UINavigationController(rootViewController: mainVC)
+        let nav1VC = UINavigationController(rootViewController: newsVC)
         let nav2VC = UINavigationController(rootViewController: studentVC)
         let nav3VC = UINavigationController(rootViewController: sectionsVC)
         let nav4VC = UINavigationController(rootViewController: settingsVC)

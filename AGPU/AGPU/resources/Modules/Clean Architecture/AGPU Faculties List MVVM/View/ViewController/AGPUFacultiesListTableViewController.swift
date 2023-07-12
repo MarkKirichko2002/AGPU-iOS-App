@@ -14,7 +14,7 @@ class AGPUFacultiesListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "АГПУ Факультеты"
-        tableView.register(UINib(nibName: ElectedFacultyTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ElectedFacultyTableViewCell.identifier)
+        tableView.register(UINib(nibName: AGPUFacultyTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AGPUFacultyTableViewCell.identifier)
         bindViewModel()
     }
     
@@ -66,7 +66,7 @@ class AGPUFacultiesListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ElectedFacultyTableViewCell.identifier, for: indexPath) as? ElectedFacultyTableViewCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AGPUFacultyTableViewCell.identifier, for: indexPath) as? AGPUFacultyTableViewCell else {return UITableViewCell()}
         cell.accessoryType = viewModel.isIconSelected(index: indexPath.row)
         cell.tintColor = .systemGreen
         cell.configure(faculty: viewModel.electedFacultyItem(index: indexPath.row))
