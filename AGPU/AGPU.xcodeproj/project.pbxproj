@@ -52,6 +52,8 @@
 		82875B022A5A198A007DB925 /* HapticsManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */; };
 		828CFA372A35F65700C7542D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA362A35F65700C7542D /* WebViewController.swift */; };
 		828CFA3C2A3680C700C7542D /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA3B2A3680C700C7542D /* String + Extensions.swift */; };
+		828DE2B22A5E3FF100985737 /* CustomMusicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DE2B12A5E3FF100985737 /* CustomMusicListViewController.swift */; };
+		828DE2B42A5E41C200985737 /* CustomMusicListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DE2B32A5E41C200985737 /* CustomMusicListViewModel.swift */; };
 		829548832A439C4F007DEBA0 /* AudioPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548822A439C4F007DEBA0 /* AudioPlayerProtocol.swift */; };
 		829548862A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548852A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift */; };
 		829548922A439FF7007DEBA0 /* AGPUMapViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548912A439FF7007DEBA0 /* AGPUMapViewController + Extensions.swift */; };
@@ -139,6 +141,8 @@
 		82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HapticsManager + Extensions.swift"; sourceTree = "<group>"; };
 		828CFA362A35F65700C7542D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		828CFA3B2A3680C700C7542D /* String + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extensions.swift"; sourceTree = "<group>"; };
+		828DE2B12A5E3FF100985737 /* CustomMusicListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMusicListViewController.swift; sourceTree = "<group>"; };
+		828DE2B32A5E41C200985737 /* CustomMusicListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMusicListViewModel.swift; sourceTree = "<group>"; };
 		829548822A439C4F007DEBA0 /* AudioPlayerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerProtocol.swift; sourceTree = "<group>"; };
 		829548852A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUSectionsListViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829548912A439FF7007DEBA0 /* AGPUMapViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUMapViewController + Extensions.swift"; sourceTree = "<group>"; };
@@ -192,24 +196,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8205367A2A50ADF30054B756 /* Elected Faculty */ = {
-			isa = PBXGroup;
-			children = (
-				82320D862A491F5700ECADEE /* ElectedFacultyTableViewCell.swift */,
-				82320D882A491FBC00ECADEE /* ElectedFacultyTableViewCell.xib */,
-			);
-			path = "Elected Faculty";
-			sourceTree = "<group>";
-		};
-		8205367B2A50AE350054B756 /* Custom Music */ = {
-			isa = PBXGroup;
-			children = (
-				8205367C2A50AE5D0054B756 /* CustomMusicTableViewCell.swift */,
-				8205367D2A50AE5D0054B756 /* CustomMusicTableViewCell.xib */,
-			);
-			path = "Custom Music";
-			sourceTree = "<group>";
-		};
 		82194E532A459AF2009D2FB3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				82320D842A491F3700ECADEE /* ViewController */,
-				82320D852A491F3C00ECADEE /* Cells */,
 				82194E532A459AF2009D2FB3 /* Extensions */,
 			);
 			path = View;
@@ -337,15 +322,6 @@
 				822158952A422A650088BDE5 /* SettingsListViewController.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		82320D852A491F3C00ECADEE /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				8205367B2A50AE350054B756 /* Custom Music */,
-				8205367A2A50ADF30054B756 /* Elected Faculty */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		8234B2FE2A3242CC0091810F /* Services */ = {
@@ -503,7 +479,7 @@
 			children = (
 				826888562A33AB3C00434219 /* Splash Screen */,
 				828CFA342A35F62400C7542D /* TabBar */,
-				82E05D482A5DD52B0060ADAA /* Student Screen */,
+				82E05D482A5DD52B0060ADAA /* For Student Screen */,
 				82D6C3422A5E33CD00FB7F5D /* Calendar */,
 				82808E9C2A31F2D400DEEB16 /* Sections */,
 				82BC3CFA2A56ED7500E49332 /* Recent Page */,
@@ -626,6 +602,58 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		828DE2AB2A5E3EEB00985737 /* Custom Music MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				828DE2AD2A5E3F0A00985737 /* View */,
+				828DE2AC2A5E3F0800985737 /* ViewModel */,
+			);
+			path = "Custom Music MVVM";
+			sourceTree = "<group>";
+		};
+		828DE2AC2A5E3F0800985737 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				828DE2B32A5E41C200985737 /* CustomMusicListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		828DE2AD2A5E3F0A00985737 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				828DE2AF2A5E3F3500985737 /* ViewController */,
+				828DE2AE2A5E3F3200985737 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		828DE2AE2A5E3F3200985737 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8205367C2A50AE5D0054B756 /* CustomMusicTableViewCell.swift */,
+				8205367D2A50AE5D0054B756 /* CustomMusicTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		828DE2AF2A5E3F3500985737 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				828DE2B12A5E3FF100985737 /* CustomMusicListViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		828DE2B02A5E3F4A00985737 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				82320D862A491F5700ECADEE /* ElectedFacultyTableViewCell.swift */,
+				82320D882A491FBC00ECADEE /* ElectedFacultyTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		829522DB2A38AEBE00329713 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -716,6 +744,7 @@
 				82BA73B22A579B15006B67DA /* Web MVVM */,
 				82D6C32D2A5E187400FB7F5D /* TimeTable MVVM */,
 				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
+				828DE2AB2A5E3EEB00985737 /* Custom Music MVVM */,
 				822158942A422A480088BDE5 /* Settings MVVM */,
 			);
 			path = "Clean Architecture";
@@ -816,12 +845,12 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
-		82E05D482A5DD52B0060ADAA /* Student Screen */ = {
+		82E05D482A5DD52B0060ADAA /* For Student Screen */ = {
 			isa = PBXGroup;
 			children = (
 				82E05D492A5DD57B0060ADAA /* ForStudentListTableViewController.swift */,
 			);
-			path = "Student Screen";
+			path = "For Student Screen";
 			sourceTree = "<group>";
 		};
 		82E05D4B2A5DDBAE0060ADAA /* For Student */ = {
@@ -870,6 +899,7 @@
 			isa = PBXGroup;
 			children = (
 				82E05D5A2A5DF34A0060ADAA /* ViewController */,
+				828DE2B02A5E3F4A00985737 /* Cell */,
 				82E05D5B2A5DF3550060ADAA /* Extensions */,
 			);
 			path = View;
@@ -1134,6 +1164,7 @@
 				8268885B2A33AC6000434219 /* AnimationClass.swift in Sources */,
 				82C44DAE2A591915002A3864 /* HapticsManager.swift in Sources */,
 				82C7B84A2A50CE7B00F9A552 /* RealmManager + Extensions.swift in Sources */,
+				828DE2B42A5E41C200985737 /* CustomMusicListViewModel.swift in Sources */,
 				82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */,
 				82D6C32F2A5E189300FB7F5D /* TimeTableListTableViewController.swift in Sources */,
 				82BC3D002A56F5C400E49332 /* RecentPageViewController + Extensions.swift in Sources */,
@@ -1142,6 +1173,7 @@
 				8270A5482A5784A2008ACADC /* DateManager.swift in Sources */,
 				82E05D592A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift in Sources */,
 				8224B4E32A4F18A30069B7B3 /* FileService.swift in Sources */,
+				828DE2B22A5E3FF100985737 /* CustomMusicListViewController.swift in Sources */,
 				827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */,
 				829548922A439FF7007DEBA0 /* AGPUMapViewController + Extensions.swift in Sources */,
 				82E4E5592A57699E00314296 /* WKWebView + Extensions.swift in Sources */,

@@ -10,5 +10,4 @@ import Foundation
 struct ForStudentModel {
     let id: Int
     let name: String
-    let icon: String
 }
