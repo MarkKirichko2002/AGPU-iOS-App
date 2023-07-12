@@ -7,15 +7,15 @@
 
 import UIKit
 
-class TimeTableListTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TimeTableListTableViewController: UIViewController {
     
     private let service = TimeTableService()
     private let dateManager = DateManager()
-    private var timetable = [TimeTable]()
+    var timetable = [TimeTable]()
     private var group = ""
     
     // MARK: - UI
-    private let tableView = UITableView()
+    let tableView = UITableView()
     private let spinner = UIActivityIndicatorView(style: .large)
     private let noTimeTableLabel = UILabel()
     
@@ -115,22 +115,5 @@ class TimeTableListTableViewController: UIViewController, UITableViewDelegate, U
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: TimeTableTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimeTableTableViewCell.identifier)
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return timetable.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TimeTableTableViewCell.identifier, for: indexPath) as? TimeTableTableViewCell else {return UITableViewCell()}
-        
-        cell.configure(timetable: timetable[indexPath.row])
-        
-        return cell
     }
 }
