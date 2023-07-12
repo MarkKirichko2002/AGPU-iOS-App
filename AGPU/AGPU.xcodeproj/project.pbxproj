@@ -77,6 +77,8 @@
 		82D6C3372A5E1E4F00FB7F5D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 82D6C3362A5E1E4F00FB7F5D /* Alamofire */; };
 		82D6C33A2A5E282A00FB7F5D /* TimeTableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3382A5E282A00FB7F5D /* TimeTableTableViewCell.swift */; };
 		82D6C33B2A5E282A00FB7F5D /* TimeTableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82D6C3392A5E282A00FB7F5D /* TimeTableTableViewCell.xib */; };
+		82D6C3412A5E33C200FB7F5D /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 82D6C3402A5E33C200FB7F5D /* FSCalendar */; };
+		82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3432A5E340300FB7F5D /* CalendarViewController.swift */; };
 		82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D492A5DD57B0060ADAA /* ForStudentListTableViewController.swift */; };
 		82E05D4D2A5DDBC70060ADAA /* ForStudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D4C2A5DDBC70060ADAA /* ForStudentModel.swift */; };
 		82E05D512A5DDC4F0060ADAA /* ForStudentSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D502A5DDC4F0060ADAA /* ForStudentSections.swift */; };
@@ -161,6 +163,7 @@
 		82D6C3332A5E1DEC00FB7F5D /* TimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
 		82D6C3382A5E282A00FB7F5D /* TimeTableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableTableViewCell.swift; sourceTree = "<group>"; };
 		82D6C3392A5E282A00FB7F5D /* TimeTableTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeTableTableViewCell.xib; sourceTree = "<group>"; };
+		82D6C3432A5E340300FB7F5D /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		82E05D492A5DD57B0060ADAA /* ForStudentListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForStudentListTableViewController.swift; sourceTree = "<group>"; };
 		82E05D4C2A5DDBC70060ADAA /* ForStudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForStudentModel.swift; sourceTree = "<group>"; };
 		82E05D502A5DDC4F0060ADAA /* ForStudentSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForStudentSections.swift; sourceTree = "<group>"; };
@@ -180,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82D6C3372A5E1E4F00FB7F5D /* Alamofire in Frameworks */,
+				82D6C3412A5E33C200FB7F5D /* FSCalendar in Frameworks */,
 				8224B4F12A4F1C420069B7B3 /* RealmSwift in Frameworks */,
 				8224B4EF2A4F1C420069B7B3 /* Realm in Frameworks */,
 			);
@@ -500,6 +504,7 @@
 				826888562A33AB3C00434219 /* Splash Screen */,
 				828CFA342A35F62400C7542D /* TabBar */,
 				82E05D482A5DD52B0060ADAA /* Student Screen */,
+				82D6C3422A5E33CD00FB7F5D /* Calendar */,
 				82808E9C2A31F2D400DEEB16 /* Sections */,
 				82BC3CFA2A56ED7500E49332 /* Recent Page */,
 				829522DB2A38AEBE00329713 /* Map */,
@@ -763,9 +768,7 @@
 		82D6C32D2A5E187400FB7F5D /* TimeTable MVVM */ = {
 			isa = PBXGroup;
 			children = (
-				82D6C32E2A5E189300FB7F5D /* TimeTableListTableViewController.swift */,
-				82D6C3382A5E282A00FB7F5D /* TimeTableTableViewCell.swift */,
-				82D6C3392A5E282A00FB7F5D /* TimeTableTableViewCell.xib */,
+				82D6C33C2A5E32DE00FB7F5D /* View */,
 			);
 			path = "TimeTable MVVM";
 			sourceTree = "<group>";
@@ -777,6 +780,40 @@
 				82D6C3332A5E1DEC00FB7F5D /* TimeTable.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		82D6C33C2A5E32DE00FB7F5D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82D6C33D2A5E32E300FB7F5D /* ViewController */,
+				82D6C33E2A5E32EA00FB7F5D /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82D6C33D2A5E32E300FB7F5D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82D6C32E2A5E189300FB7F5D /* TimeTableListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82D6C33E2A5E32EA00FB7F5D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				82D6C3382A5E282A00FB7F5D /* TimeTableTableViewCell.swift */,
+				82D6C3392A5E282A00FB7F5D /* TimeTableTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		82D6C3422A5E33CD00FB7F5D /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				82D6C3432A5E340300FB7F5D /* CalendarViewController.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		82E05D482A5DD52B0060ADAA /* Student Screen */ = {
@@ -1006,6 +1043,7 @@
 				8224B4EE2A4F1C420069B7B3 /* Realm */,
 				8224B4F02A4F1C420069B7B3 /* RealmSwift */,
 				82D6C3362A5E1E4F00FB7F5D /* Alamofire */,
+				82D6C3402A5E33C200FB7F5D /* FSCalendar */,
 			);
 			productName = AGPU;
 			productReference = 82808E852A31F12100DEEB16 /* AGPU.app */;
@@ -1039,6 +1077,7 @@
 			packageReferences = (
 				8224B4ED2A4F1C420069B7B3 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				82D6C3352A5E1E4F00FB7F5D /* XCRemoteSwiftPackageReference "Alamofire" */,
+				82D6C33F2A5E33C200FB7F5D /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = 82808E862A31F12100DEEB16 /* Products */;
 			projectDirPath = "";
@@ -1135,6 +1174,7 @@
 				8205367E2A50AE5D0054B756 /* CustomMusicTableViewCell.swift in Sources */,
 				82320D872A491F5700ECADEE /* ElectedFacultyTableViewCell.swift in Sources */,
 				8270A54D2A578A0E008ACADC /* AGPUMainViewModel.swift in Sources */,
+				82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */,
 				82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */,
 				822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */,
 				8295489C2A43AE7E007DEBA0 /* SettingsManager.swift in Sources */,
@@ -1386,6 +1426,14 @@
 				version = 5.7.1;
 			};
 		};
+		82D6C33F2A5E33C200FB7F5D /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar";
+			requirement = {
+				kind = exactVersion;
+				version = 2.8.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1403,6 +1451,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 82D6C3352A5E1E4F00FB7F5D /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		82D6C3402A5E33C200FB7F5D /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 82D6C33F2A5E33C200FB7F5D /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
