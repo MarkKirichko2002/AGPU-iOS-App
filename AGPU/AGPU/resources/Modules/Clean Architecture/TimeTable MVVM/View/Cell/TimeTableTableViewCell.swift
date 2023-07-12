@@ -17,7 +17,7 @@ class TimeTableTableViewCell: UITableViewCell {
     
     func configure(timetable: TimeTable) {
         TimeLabel.text = timetable.time
-        DisciplineName.text = timetable.name
-        SubGroupId.text = "подгруппа: \(timetable.subgroup)"
+        DisciplineName.text = "\(timetable.name ?? "") \(timetable.teacherName ?? "")"
+        SubGroupId.text = "подгруппа: \(timetable.subgroup ?? 0)"
     }
 }
