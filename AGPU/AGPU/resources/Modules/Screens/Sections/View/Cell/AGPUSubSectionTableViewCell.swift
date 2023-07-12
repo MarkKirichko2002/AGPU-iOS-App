@@ -11,7 +11,7 @@ class AGPUSubSectionTableViewCell: UITableViewCell {
     
     static let identifier = "AGPUSubSectionTableViewCell"
     
-    private let AGPUSubSectionTitle: UILabel = {
+    let AGPUSubSectionTitle: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .bold)
         label.numberOfLines = 0
