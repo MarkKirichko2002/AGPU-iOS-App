@@ -9,6 +9,6 @@ import Foundation
 
 protocol SettingsManagerProtocol {
     func checkCustomMusicSetting()
-    func checkCurrentIcon()-> String?
+    func checkCurrentIcon()-> String
     func checkAllSettings()
 }
