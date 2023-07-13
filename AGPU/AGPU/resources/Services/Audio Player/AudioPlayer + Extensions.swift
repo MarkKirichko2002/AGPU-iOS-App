@@ -17,6 +17,8 @@ extension AudioPlayer: AudioPlayerProtocol {
             
             self.sound = resource
             
+            PlayBackControlls()
+            
             // then lets create your document folder url
             let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             
@@ -37,6 +39,21 @@ extension AudioPlayer: AudioPlayerProtocol {
             } catch let error {
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    func PlayBackControlls() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.playCommand.addTarget { event in
+            self.StopSound()
+            self.PlaySound(resource: self.sound)
+            return .success
+        }
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.pauseCommand.addTarget { event in
+            self.StopSound()
+            return .success
         }
     }
     
