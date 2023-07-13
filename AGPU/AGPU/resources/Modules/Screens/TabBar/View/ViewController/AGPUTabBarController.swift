@@ -71,7 +71,7 @@ class AGPUTabBarController: UITabBarController {
     
     // MARK: - Dynamic Button
     private func createMiddleButton() {
-        DynamicButton.setImage(UIImage(named: settingsManager.checkCurrentIcon() ?? "АГПУ"), for: .normal)
+        DynamicButton.setImage(UIImage(named: settingsManager.checkCurrentIcon()), for: .normal)
         DynamicButton.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
         // Устанавливаем положение кнопки по середине TabBar
         DynamicButton.center = CGPoint(x: tabBar.frame.width / 2, y: tabBar.frame.height / 2 - 5)
@@ -120,7 +120,7 @@ class AGPUTabBarController: UITabBarController {
                 self.checkVoiceCommands(text: text)
             }
         } else {
-            DynamicButton.setImage(UIImage(named: settingsManager.checkCurrentIcon() ?? "АГПУ"), for: .normal)
+            DynamicButton.setImage(UIImage(named: settingsManager.checkCurrentIcon()), for: .normal)
             animation.SpringAnimation(view: self.DynamicButton)
             HapticsManager.shared.HapticFeedback()
             speechRecognitionManager.cancelSpeechRecognition()
@@ -240,7 +240,7 @@ class AGPUTabBarController: UITabBarController {
                 self.DynamicButton.setImage(UIImage(named: "mic"), for: .normal)
                 HapticsManager.shared.HapticFeedback()
             } else {
-                self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon() ?? "АГПУ"), for: .normal)
+                self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon()), for: .normal)
                 self.animation.SpringAnimation(view: self.DynamicButton)
                 HapticsManager.shared.HapticFeedback()
             }

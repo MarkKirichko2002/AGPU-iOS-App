@@ -46,10 +46,10 @@ class SettingsListViewModel: NSObject {
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                     NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
                 }
-                UserDefaults.standard.setValue(nil, forKey: "faculty")
                 UserDefaults.SaveData(object: faculty, key: "faculty") {
                     self.isChanged.toggle()
                 }
+                UserDefaults.standard.setValue(nil, forKey: "icon")
             }
         }
     }
