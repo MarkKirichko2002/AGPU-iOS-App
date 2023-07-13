@@ -59,7 +59,7 @@ extension AudioPlayer: AudioPlayerProtocol {
     
     func StopSound() {
         UserDefaults.standard.setValue(player?.currentTime ?? 0, forKey: "time")
-        player?.stop()
+        player?.pause()
     }
 }
 

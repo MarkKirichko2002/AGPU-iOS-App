@@ -72,6 +72,10 @@
 		82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */; };
 		82BC3D002A56F5C400E49332 /* RecentPageViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFF2A56F5C400E49332 /* RecentPageViewController + Extensions.swift */; };
 		82BDFDB02A404BA0002DBB89 /* AGPUMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BDFDAF2A404BA0002DBB89 /* AGPUMapViewController.swift */; };
+		82BF4DB02A5FA52B008B751A /* AGPUThemesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF4DAF2A5FA52B008B751A /* AGPUThemesListViewController.swift */; };
+		82BF4DB22A5FA5B3008B751A /* AGPUThemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF4DB12A5FA5B3008B751A /* AGPUThemeCollectionViewCell.swift */; };
+		82BF4DB42A5FA60D008B751A /* AGPUThemesListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF4DB32A5FA60D008B751A /* AGPUThemesListViewController + Extensions.swift */; };
+		82BF4DB72A5FA807008B751A /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF4DB62A5FA807008B751A /* ImageSaver.swift */; };
 		82C44DAE2A591915002A3864 /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C44DAD2A591915002A3864 /* HapticsManager.swift */; };
 		82C7B8402A50C98900F9A552 /* AudioPlayer + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B83F2A50C98900F9A552 /* AudioPlayer + Extensions.swift */; };
 		82C7B8422A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */; };
@@ -167,6 +171,10 @@
 		82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController + Extensions.swift"; sourceTree = "<group>"; };
 		82BC3CFF2A56F5C400E49332 /* RecentPageViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentPageViewController + Extensions.swift"; sourceTree = "<group>"; };
 		82BDFDAF2A404BA0002DBB89 /* AGPUMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUMapViewController.swift; sourceTree = "<group>"; };
+		82BF4DAF2A5FA52B008B751A /* AGPUThemesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUThemesListViewController.swift; sourceTree = "<group>"; };
+		82BF4DB12A5FA5B3008B751A /* AGPUThemeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUThemeCollectionViewCell.swift; sourceTree = "<group>"; };
+		82BF4DB32A5FA60D008B751A /* AGPUThemesListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUThemesListViewController + Extensions.swift"; sourceTree = "<group>"; };
+		82BF4DB62A5FA807008B751A /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
 		82C44DAD2A591915002A3864 /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		82C7B83F2A50C98900F9A552 /* AudioPlayer + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayer + Extensions.swift"; sourceTree = "<group>"; };
 		82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpeechRecognitionManager + Extensions.swift"; sourceTree = "<group>"; };
@@ -339,6 +347,7 @@
 		8234B2FE2A3242CC0091810F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				82BF4DB52A5FA7F6008B751A /* Image Saver */,
 				82D6C3302A5E1DD100FB7F5D /* API */,
 				8270A5462A578491008ACADC /* Date */,
 				82F4ECFC2A3F82CE00F1E5CC /* Audio Player */,
@@ -618,6 +627,7 @@
 				82E05D482A5DD52B0060ADAA /* For Student Screen */,
 				82D6C3422A5E33CD00FB7F5D /* Calendar */,
 				82808E9C2A31F2D400DEEB16 /* Sections */,
+				82BF4DAE2A5FA50D008B751A /* AGPU Themes */,
 				82BC3CFA2A56ED7500E49332 /* Recent Page */,
 				829522DB2A38AEBE00329713 /* Map */,
 				8224B4D32A4F0B760069B7B3 /* Add New Music */,
@@ -935,6 +945,24 @@
 				8241F9822A5F3F3A007DF628 /* View */,
 			);
 			path = "Recent Page";
+			sourceTree = "<group>";
+		};
+		82BF4DAE2A5FA50D008B751A /* AGPU Themes */ = {
+			isa = PBXGroup;
+			children = (
+				82BF4DAF2A5FA52B008B751A /* AGPUThemesListViewController.swift */,
+				82BF4DB12A5FA5B3008B751A /* AGPUThemeCollectionViewCell.swift */,
+				82BF4DB32A5FA60D008B751A /* AGPUThemesListViewController + Extensions.swift */,
+			);
+			path = "AGPU Themes";
+			sourceTree = "<group>";
+		};
+		82BF4DB52A5FA7F6008B751A /* Image Saver */ = {
+			isa = PBXGroup;
+			children = (
+				82BF4DB62A5FA807008B751A /* ImageSaver.swift */,
+			);
+			path = "Image Saver";
 			sourceTree = "<group>";
 		};
 		82C44DAC2A591907002A3864 /* Haptics */ = {
@@ -1294,11 +1322,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				826888662A33B6E700434219 /* AGPUTabBarController.swift in Sources */,
+				82BF4DB02A5FA52B008B751A /* AGPUThemesListViewController.swift in Sources */,
 				82D6C33A2A5E282A00FB7F5D /* TimeTableTableViewCell.swift in Sources */,
 				82BC3CFC2A56EDA000E49332 /* RecentPageViewController.swift in Sources */,
 				8224B4DB2A4F10D80069B7B3 /* AddMusicViewController.swift in Sources */,
 				8241F9852A5F3F73007DF628 /* CalendarViewController + Extensions.swift in Sources */,
 				82E05D542A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift in Sources */,
+				82BF4DB42A5FA60D008B751A /* AGPUThemesListViewController + Extensions.swift in Sources */,
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
 				82BDFDB02A404BA0002DBB89 /* AGPUMapViewController.swift in Sources */,
@@ -1328,6 +1358,7 @@
 				82E05D5D2A5DF36B0060ADAA /* AGPUFacultiesListTableViewController + Extensions.swift in Sources */,
 				82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */,
 				8270A5482A5784A2008ACADC /* DateManager.swift in Sources */,
+				82BF4DB72A5FA807008B751A /* ImageSaver.swift in Sources */,
 				82E05D592A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift in Sources */,
 				8224B4E32A4F18A30069B7B3 /* FileService.swift in Sources */,
 				828DE2B22A5E3FF100985737 /* CustomMusicListViewController.swift in Sources */,
@@ -1353,6 +1384,7 @@
 				82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */,
 				8224B4E02A4F181E0069B7B3 /* AddMusicViewController + Extensions.swift in Sources */,
 				82320D832A49167000ECADEE /* AGPUFacultyModel.swift in Sources */,
+				82BF4DB22A5FA5B3008B751A /* AGPUThemeCollectionViewCell.swift in Sources */,
 				82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */,
 				82E05D4D2A5DDBC70060ADAA /* ForStudentModel.swift in Sources */,
 				829548992A43AE32007DEBA0 /* SettingsManagerProtocol.swift in Sources */,

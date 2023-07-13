@@ -41,6 +41,10 @@ class ForStudentListTableViewController: UITableViewController {
             let vc = AGPUSectionsListViewController()
             self.tabBarController?.tabBar.isHidden = true
             navigationController?.pushViewController(vc, animated: true)
+        case 5:
+            let vc = AGPUThemesListViewController()
+            self.tabBarController?.tabBar.isHidden = true
+            navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }
