@@ -1,5 +1,5 @@
 //
-//  AGPUMainViewController.swift
+//  AGPUNewsViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 27.06.2023.
@@ -8,15 +8,15 @@
 import UIKit
 import WebKit
 
-class AGPUMainViewController: UIViewController {
-
+class AGPUNewsViewController: UIViewController {
+    
     // MARK: - сервисы
-    private let viewModel = AGPUMainViewModel()
+    private let viewModel = AGPUNewsViewModel()
     
     // MARK: - UI
     let WVWEBview = WKWebView(frame: .zero)
     let spinner = UIActivityIndicatorView(style: .large)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         SetUpWebView()
@@ -35,7 +35,7 @@ class AGPUMainViewController: UIViewController {
         WVWEBview.allowsBackForwardNavigationGestures = true
         WVWEBview.navigationDelegate = self
         DispatchQueue.main.async {
-            self.WVWEBview.load("http://test.agpu.net/")
+            self.WVWEBview.load(self.viewModel.faculty?.newsURL ?? "http://test.agpu.net/news.php")
         }
     }
     
@@ -49,6 +49,7 @@ class AGPUMainViewController: UIViewController {
     }
     
     private func SetUpNavigation() {
+        self.navigationItem.title = viewModel.faculty == nil ? "Новости «АГПУ»" : "Новости \(viewModel.faculty?.abbreviation ?? "")"
         let reloadButton = UIBarButtonItem(image: UIImage(systemName: "arrow.clockwise"), style: .plain, target: self, action: #selector(reloadButtonTapped))
         reloadButton.tintColor = .black
         let backbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
@@ -61,11 +62,14 @@ class AGPUMainViewController: UIViewController {
     
     private func SetUpViewModel() {
         viewModel.GetDate()
-        viewModel.registerDateHandler { date in
-            self.navigationItem.title = date
-        }
-        viewModel.ObserveScroll { position in
+        viewModel.registerScrollHandler { position in
             self.WVWEBview.scrollView.setContentOffset(position, animated: true)
+        }
+        viewModel.registerFacultyHandler { faculty in
+            DispatchQueue.main.async {
+                self.navigationItem.title = "Новости \(faculty?.abbreviation ?? "«АГПУ»")"
+                self.WVWEBview.load(faculty?.newsURL ?? "http://test.agpu.net/news.php")
+            }
         }
     }
     

@@ -9,19 +9,12 @@ import UIKit
 
 class AGPUFacultiesListTableViewController: UITableViewController {
 
-    @objc private let viewModel = AGPUFacultiesListViewModel()
+    private let viewModel = AGPUFacultiesListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "АГПУ Факультеты"
-        tableView.register(UINib(nibName: ElectedFacultyTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ElectedFacultyTableViewCell.identifier)
-        bindViewModel()
-    }
-    
-    private func bindViewModel() {
-        viewModel.observation = observe(\.viewModel.isChanged) { _, _ in
-            self.tableView.reloadData()
-        }
+        tableView.register(UINib(nibName: AGPUFacultyTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AGPUFacultyTableViewCell.identifier)
     }
     
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
@@ -31,28 +24,24 @@ class AGPUFacultiesListTableViewController: UITableViewController {
             _ in
             
             let infoAction = UIAction(title: "узнать больше", image: UIImage(named: "info")) { _ in
-                self.GoToWeb(url: self.viewModel.electedFacultyItem(index: indexPath.row).url, title: self.viewModel.electedFacultyItem(index: indexPath.row).abbreviation)
+                self.GoToWeb(url: self.viewModel.facultyItem(index: indexPath.row).url, title: self.viewModel.facultyItem(index: indexPath.row).abbreviation, isSheet: true)
             }
             
             let watchVideoAction =  UIAction(title: "смотреть видео", image: UIImage(named: "video")) { _ in
-                self.PlayVideo(url: self.viewModel.electedFacultyItem(index: indexPath.row).videoURL)
+                self.PlayVideo(url: self.viewModel.facultyItem(index: indexPath.row).videoURL)
             }
             
             let phoneAction = self.viewModel.makePhoneNumbersMenu(index: indexPath.row)
             
             let emailAction = UIAction(title: "написать", image: UIImage(named: "mail")) { _ in
-                self.showEmailComposer(email: self.viewModel.electedFacultyItem(index: indexPath.row).email)
-            }
-            
-            let iconAction = UIAction(title: "выбрать иконку", image: UIImage(named: "photo")) { _ in
-                self.viewModel.ChangeIcon(index: indexPath.row)
+                self.showEmailComposer(email: self.viewModel.facultyItem(index: indexPath.row).email)
             }
             
             let enterAction = UIAction(title: "поступить", image: UIImage(named: "worksheet")) { _ in
-                self.GoToWeb(url: "http://priem.agpu.net/anketa/index.php", title: "Анкета")
+                self.GoToWeb(url: "http://priem.agpu.net/anketa/index.php", title: "Анкета", isSheet: true)
             }
             
-            return UIMenu(title: self.viewModel.electedFacultyItem(index: indexPath.row).name, children: [infoAction, watchVideoAction, emailAction, phoneAction, enterAction, iconAction])
+            return UIMenu(title: self.viewModel.facultyItem(index: indexPath.row).name, children: [infoAction, watchVideoAction, emailAction, phoneAction, enterAction])
             
         })
     }
@@ -66,10 +55,8 @@ class AGPUFacultiesListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ElectedFacultyTableViewCell.identifier, for: indexPath) as? ElectedFacultyTableViewCell else {return UITableViewCell()}
-        cell.accessoryType = viewModel.isIconSelected(index: indexPath.row)
-        cell.tintColor = .systemGreen
-        cell.configure(faculty: viewModel.electedFacultyItem(index: indexPath.row))
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AGPUFacultyTableViewCell.identifier, for: indexPath) as? AGPUFacultyTableViewCell else {return UITableViewCell()}
+        cell.configure(faculty: viewModel.facultyItem(index: indexPath.row))
         return cell
     }
 }

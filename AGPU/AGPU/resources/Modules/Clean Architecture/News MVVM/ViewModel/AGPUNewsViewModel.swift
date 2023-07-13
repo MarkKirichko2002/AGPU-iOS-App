@@ -1,5 +1,5 @@
 //
-//  AGPUMainViewModel.swift
+//  AGPUNewsViewModel.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 07.07.2023.
@@ -7,10 +7,12 @@
 
 import Foundation
 
-class AGPUMainViewModel {
+class AGPUNewsViewModel {
     
     // MARK: - cервисы
     private let dateManager = DateManager()
+    
+    let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty")
     
     private var dateHandler: ((String)->Void)?
     
@@ -27,7 +29,7 @@ class AGPUMainViewModel {
         }
     }
     
-    func ObserveScroll(completion: @escaping(CGPoint)->Void) {
+    func registerScrollHandler(completion: @escaping(CGPoint)->Void) {
         
         var positionX = 0
         var positionY = 0
@@ -50,6 +52,16 @@ class AGPUMainViewModel {
                 positionX += 10
             }
             completion(CGPoint(x: positionX, y: positionY))
+        }
+    }
+    
+    func registerFacultyHandler(completion: @escaping(AGPUFacultyModel?)->Void) {
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name("faculty"), object: nil, queue: .main) { notification in
+            
+            let faculty = notification.object as? AGPUFacultyModel
+            
+            completion(faculty)
         }
     }
 }

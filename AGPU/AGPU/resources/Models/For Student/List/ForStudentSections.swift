@@ -28,6 +28,10 @@ struct ForStudentSections {
         ForStudentModel(
             id: 5,
             name: "разделы"
+        ),
+        ForStudentModel(
+            id: 6,
+            name: "АГПУ темы"
         )
     ]
 }

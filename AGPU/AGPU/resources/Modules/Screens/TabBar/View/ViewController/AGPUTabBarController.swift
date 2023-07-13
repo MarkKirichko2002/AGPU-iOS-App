@@ -30,9 +30,7 @@ class AGPUTabBarController: UITabBarController {
         UITabBar.appearance().tintColor = UIColor.black
         setUpTabs()
         createMiddleButton()
-        ObserveSubSection()
         ObserveWebScreen()
-        ObserveMap()
         settingsManager.checkAllSettings()
         ObserveChangeIcon()
         becomeFirstResponder()
@@ -43,8 +41,8 @@ class AGPUTabBarController: UITabBarController {
     }
         
     private func setUpTabs() {
-        // главное
-        let mainVC = AGPUMainViewController()
+        // новости
+        let newsVC = AGPUNewsViewController()
         // кнопка
         let middleButton = UIViewController()
         // студенту
@@ -53,8 +51,8 @@ class AGPUTabBarController: UITabBarController {
         let sectionsVC = CustomMusicListViewController()
         // настройки
         let settingsVC = SettingsListViewController()
-        // главное
-        mainVC.tabBarItem = UITabBarItem(title: "Главное", image: UIImage(named: "home"), selectedImage: UIImage(named: "home selected"))
+        // новости
+        newsVC.tabBarItem = UITabBarItem(title: "Новости", image: UIImage(systemName: "newspaper"), selectedImage: UIImage(systemName: "newspaper.fill"))
         // студенту
         studentVC.tabBarItem = UITabBarItem(title: "Студенту", image: UIImage(named: "applicant"), selectedImage: UIImage(named: "applicant selected"))
         // своя музыка
@@ -63,7 +61,7 @@ class AGPUTabBarController: UITabBarController {
         // настройки
         settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear.fill"))
         settingsVC.navigationItem.title = "Настройки"
-        let nav1VC = UINavigationController(rootViewController: mainVC)
+        let nav1VC = UINavigationController(rootViewController: newsVC)
         let nav2VC = UINavigationController(rootViewController: studentVC)
         let nav3VC = UINavigationController(rootViewController: sectionsVC)
         let nav4VC = UINavigationController(rootViewController: settingsVC)
@@ -180,6 +178,9 @@ class AGPUTabBarController: UITabBarController {
                     
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                         self.present(navVC, animated: true)
+                    }
+                    
+                    Timer.scheduledTimer(withTimeInterval: 1.25, repeats: false) { _ in
                         NotificationCenter.default.post(name: Notification.Name("ScrollToSection"), object: section.id)
                     }
                 }
@@ -200,7 +201,7 @@ class AGPUTabBarController: UITabBarController {
                         }
                                                 
                         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                            self.GoToWeb(url: subsection.url, title: nil)
+                            self.GoToWeb(url: subsection.url, title: nil, isSheet: true)
                         }
                     
                         NotificationCenter.default.post(name: Notification.Name("scroll"), object: text.lastWord())
@@ -233,16 +234,6 @@ class AGPUTabBarController: UITabBarController {
         }
     }
     
-    private func ObserveSubSection() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("subsection"), object: nil, queue: .main) { notification in
-            if let subsection = notification.object as? AGPUSubSectionModel {
-                self.DynamicButton.setImage(UIImage(named: subsection.icon), for: .normal)
-                self.animation.SpringAnimation(view: self.DynamicButton)
-                HapticsManager.shared.HapticFeedback()
-            }
-        }
-    }
-    
     private func ObserveWebScreen() {
         NotificationCenter.default.addObserver(forName: Notification.Name("WebScreenWasClosed"), object: nil, queue: .main) { _ in
             if self.isRecording {
@@ -256,51 +247,15 @@ class AGPUTabBarController: UITabBarController {
         }
     }
     
-    private func ObserveMap() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("Map Pin Selected"), object: nil, queue: .main) { _ in
-            DispatchQueue.main.async {
-                self.DynamicButton.setImage(UIImage(named: "pin"), for: .normal)
-                self.animation.SpringAnimation(view: self.DynamicButton)
-                HapticsManager.shared.HapticFeedback()
-            }
-        }
-        
-        NotificationCenter.default.addObserver(forName: Notification.Name("Go To Map"), object: nil, queue: .main) { _ in
-            DispatchQueue.main.async {
-                self.DynamicButton.setImage(UIImage(named: "map icon"), for: .normal)
-                self.animation.SpringAnimation(view: self.DynamicButton)
-                HapticsManager.shared.HapticFeedback()
-            }
-        }
-        
-        NotificationCenter.default.addObserver(forName: Notification.Name("Map Was Opened"), object: nil, queue: .main) { _ in
-            if self.isRecording {
-                self.DynamicButton.setImage(UIImage(named: "mic"), for: .normal)
-                HapticsManager.shared.HapticFeedback()
-            } else {
-                self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon() ?? "АГПУ"), for: .normal)
-                self.animation.SpringAnimation(view: self.DynamicButton)
-                HapticsManager.shared.HapticFeedback()
-            }
-        }
-        
-        NotificationCenter.default.addObserver(forName: Notification.Name("Map Pin Cancelled"), object: nil, queue: .main) { _ in
-            if self.isRecording {
-                self.DynamicButton.setImage(UIImage(named: "mic"), for: .normal)
-                HapticsManager.shared.HapticFeedback()
-            } else {
-                self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon() ?? "АГПУ"), for: .normal)
-                self.animation.SpringAnimation(view: self.DynamicButton)
-                HapticsManager.shared.HapticFeedback()
-            }
-        }
-    }
-    
     // MARK: - Elected Faculty
     private func ObserveChangeIcon() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("icon"), object: nil, queue: .main) { notification in
+        NotificationCenter.default.addObserver(forName: Notification.Name("faculty"), object: nil, queue: .main) { notification in
             if let icon = notification.object as? AGPUFacultyModel {
                 self.DynamicButton.setImage(UIImage(named: icon.icon), for: .normal)
+                self.animation.SpringAnimation(view: self.DynamicButton)
+                HapticsManager.shared.HapticFeedback()
+            } else {
+                self.DynamicButton.setImage(UIImage(named: "АГПУ"), for: .normal)
                 self.animation.SpringAnimation(view: self.DynamicButton)
                 HapticsManager.shared.HapticFeedback()
             }

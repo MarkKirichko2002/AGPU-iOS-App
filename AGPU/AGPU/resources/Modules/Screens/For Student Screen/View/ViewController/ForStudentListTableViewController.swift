@@ -14,23 +14,36 @@ class ForStudentListTableViewController: UITableViewController {
         self.navigationItem.title = "Студенту"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
         case 0:
             let vc = TimeTableListTableViewController()
+            self.tabBarController?.tabBar.isHidden = true
             navigationController?.pushViewController(vc, animated: true)
         case 1:
             let vc = AGPUMapViewController()
+            self.tabBarController?.tabBar.isHidden = true
             navigationController?.pushViewController(vc, animated: true)
         case 2:
             let vc = AGPUFacultiesListTableViewController()
+            self.tabBarController?.tabBar.isHidden = true
             navigationController?.pushViewController(vc, animated: true)
         case 3:
-            self.GoToWeb(url: "http://test.agpu.net/studentu/obshchezhitiya/index.php", title: "Кампус и общежития")
+            self.GoToWeb(url: "http://test.agpu.net/studentu/obshchezhitiya/index.php", title: "Кампус и общежития", isSheet: true)
         case 4:
             let vc = AGPUSectionsListViewController()
+            self.tabBarController?.tabBar.isHidden = true
+            navigationController?.pushViewController(vc, animated: true)
+        case 5:
+            let vc = AGPUThemesListViewController()
+            self.tabBarController?.tabBar.isHidden = true
             navigationController?.pushViewController(vc, animated: true)
         default:
             break
