@@ -12,10 +12,12 @@ struct TimeTable: Codable {
     let teacherName: String?
     let audienceID: String?
     let subgroup: Int?
+    let groupName: String?
 
     enum CodingKeys: String, CodingKey {
         case date, time, name, teacherName
         case audienceID = "audienceId"
-        case subgroup
+        case subgroup = "subgroup"
+        case groupName = "groupName"
     }
 }

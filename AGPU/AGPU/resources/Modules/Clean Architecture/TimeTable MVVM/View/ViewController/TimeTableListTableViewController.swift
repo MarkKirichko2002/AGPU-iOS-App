@@ -25,31 +25,33 @@ class TimeTableListTableViewController: UIViewController {
         SetUpTable()
         SetUpIndicatorView()
         SetUpLabel()
-        GetTimeTable(date: "06.06.2023", group: UserDefaults.standard.object(forKey: "group") as? String ?? "")
+        GetTimeTable(group: "ВМ-ИВТ-2-1", date: dateManager.getCurrentDate())
         ObserveCalendar()
     }
     
     private func SetUpNavigation() {
         navigationItem.title = "Расписание"
-        let groups = AGPUGroups.groups
-            .map { group in
-                return UIAction(title: group) { _ in
-                    DispatchQueue.main.async {
-                        self.group = group
-                        self.spinner.startAnimating()
-                        self.noTimeTableLabel.isHidden = true
-                        self.timetable = []
-                        self.tableView.reloadData()
-                        self.GetTimeTable(date: "06.06.2023", group: group)
+        service.GetAllGroups { groups in
+            let groups = groups
+                .map { group in
+                    return UIAction(title: group) { _ in
+                        DispatchQueue.main.async {
+                            self.group = group
+                            self.spinner.startAnimating()
+                            self.noTimeTableLabel.isHidden = true
+                            self.timetable = []
+                            self.tableView.reloadData()
+                            self.GetTimeTable(group: group, date: self.dateManager.getCurrentDate())
+                        }
                     }
                 }
-            }
-        let groupList = UIMenu(title: "группы", children: groups)
-        let calendar = UIBarButtonItem(image: UIImage(named: "calendar"), style: .plain, target: self, action: #selector(openCalendar))
-        let list = UIBarButtonItem(image: UIImage(named: "sections"), menu: groupList)
-        list.tintColor = .black
-        calendar.tintColor = .black
-        navigationItem.rightBarButtonItems = [calendar, list]
+            let groupList = UIMenu(title: "группы", children: groups)
+            let calendar = UIBarButtonItem(image: UIImage(named: "calendar"), style: .plain, target: self, action: #selector(self.openCalendar))
+            let list = UIBarButtonItem(image: UIImage(named: "sections"), menu: groupList)
+            list.tintColor = .black
+            calendar.tintColor = .black
+            self.navigationItem.rightBarButtonItems = [calendar, list]
+        }
     }
     
     private func SetUpIndicatorView() {
@@ -74,7 +76,7 @@ class TimeTableListTableViewController: UIViewController {
         ])
     }
     
-    func GetTimeTable(date: String, group: String) {
+    func GetTimeTable(group: String, date: String) {
         service.GetTimeTable(groupId: group, date: date) { timetable in
             if !timetable.isEmpty {
                 DispatchQueue.main.async {
@@ -103,7 +105,7 @@ class TimeTableListTableViewController: UIViewController {
                     self.noTimeTableLabel.isHidden = true
                     self.timetable = []
                     self.tableView.reloadData()
-                    self.GetTimeTable(date: date, group: self.group)
+                    self.GetTimeTable(group: date, date: self.group)
                 }
             }
         }
