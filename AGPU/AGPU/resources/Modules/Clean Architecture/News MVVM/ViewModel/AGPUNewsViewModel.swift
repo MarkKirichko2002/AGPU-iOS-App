@@ -55,11 +55,11 @@ class AGPUNewsViewModel {
         }
     }
     
-    func registerFacultyHandler(completion: @escaping(AGPUFacultyModel)->Void) {
+    func registerFacultyHandler(completion: @escaping(AGPUFacultyModel?)->Void) {
         
         NotificationCenter.default.addObserver(forName: Notification.Name("faculty"), object: nil, queue: .main) { notification in
             
-            guard let faculty = notification.object as? AGPUFacultyModel else {return}
+            let faculty = notification.object as? AGPUFacultyModel
             
             completion(faculty)
         }

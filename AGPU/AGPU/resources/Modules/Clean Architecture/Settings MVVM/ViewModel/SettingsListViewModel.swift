@@ -23,16 +23,33 @@ class SettingsListViewModel: NSObject {
         return AGPUFaculties.faculties[index]
     }
     
-    func ChangeFaculty(index: Int) {
+    func ChooseFaculty(index: Int) {
         var faculty = AGPUFaculties.faculties[index]
         faculty.isSelected = true
         UIApplication.shared.setAlternateIconName(faculty.appIcon)
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("icon"), object: faculty)
             NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
         }
         UserDefaults.SaveData(object: faculty, key: "faculty") {
             self.isChanged.toggle()
+        }
+    }
+    
+    func CancelFaculty(index: Int) {
+        if let data = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
+            if data.id == AGPUFaculties.faculties[index].id && data.isSelected {
+                var faculty: AGPUFacultyModel?
+                faculty = AGPUFaculties.faculties[index]
+                faculty = nil
+                UIApplication.shared.setAlternateIconName("AppIcon 7")
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
+                }
+                UserDefaults.standard.setValue(nil, forKey: "faculty")
+                UserDefaults.SaveData(object: faculty, key: "faculty") {
+                    self.isChanged.toggle()
+                }
+            }
         }
     }
     

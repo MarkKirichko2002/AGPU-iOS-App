@@ -7,43 +7,18 @@
 
 import UIKit
 
-class AGPUFacultiesListViewModel: NSObject {
-    
-    @objc dynamic var isChanged = false
-    
-    var observation: NSKeyValueObservation?
+class AGPUFacultiesListViewModel {
     
     func facultiesListCount()-> Int {
         return AGPUFaculties.faculties.count
     }
     
-    func electedFacultyItem(index: Int)-> AGPUFacultyModel {
+    func facultyItem(index: Int)-> AGPUFacultyModel {
         return AGPUFaculties.faculties[index]
     }
     
-    func ChangeIcon(index: Int) {
-        var icon = AGPUFaculties.faculties[index]
-        icon.isSelected = true
-        UIApplication.shared.setAlternateIconName(icon.appIcon)
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("icon"), object: icon)
-        }
-        UserDefaults.SaveData(object: icon, key: "icon") {
-            self.isChanged.toggle()
-        }
-    }
-    
-    func isIconSelected(index: Int)-> UITableViewCell.AccessoryType {
-        let data = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "icon")
-        if data?.id == AGPUFaculties.faculties[index].id && data?.isSelected == true {
-            return .checkmark
-        } else {
-            return .none
-        }
-    }
-    
     func makePhoneNumbersMenu(index: Int) -> UIMenu {
-        let faculty = electedFacultyItem(index: index)
+        let faculty = facultyItem(index: index)
         let rateActions = faculty.phoneNumbers
             .map { phone in
                 return UIAction(title: phone) { action in

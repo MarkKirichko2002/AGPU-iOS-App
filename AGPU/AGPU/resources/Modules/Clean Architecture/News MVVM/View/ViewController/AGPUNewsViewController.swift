@@ -67,8 +67,8 @@ class AGPUNewsViewController: UIViewController {
         }
         viewModel.registerFacultyHandler { faculty in
             DispatchQueue.main.async {
-                self.navigationItem.title = "Новости \(faculty.abbreviation)"
-                self.WVWEBview.load(faculty.newsURL)
+                self.navigationItem.title = "Новости \(faculty?.abbreviation ?? "«АГПУ»")"
+                self.WVWEBview.load(faculty?.newsURL ?? "http://test.agpu.net/news.php")
             }
         }
     }

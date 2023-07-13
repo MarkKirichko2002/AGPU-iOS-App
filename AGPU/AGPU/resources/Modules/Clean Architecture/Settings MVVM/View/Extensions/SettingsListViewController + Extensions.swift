@@ -34,14 +34,40 @@ extension SettingsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "выберите факультет"
+            return "Избранный Факультет"
         default:
             return ""
         }
     }
     
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil,
+                                          previewProvider: nil,
+                                          actionProvider: {
+            _ in
+            
+            switch indexPath.section {
+                
+            case 0:
+                
+                let chooseAction = UIAction(title: "выбрать", image: UIImage(named: "check")) { _ in
+                    self.viewModel.ChooseFaculty(index: indexPath.row)
+                }
+                
+                let cancelAction = UIAction(title: "отмена", image: UIImage(named: "cancel")) { _ in
+                    self.viewModel.CancelFaculty(index: indexPath.row)
+                }
+                
+                return UIMenu(title: self.viewModel.facultyItem(index: indexPath.row).name, children: [chooseAction, cancelAction])
+                
+            default:
+                return nil
+                
+            }
+        })
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        viewModel.ChangeFaculty(index: indexPath.row)
     }
 }
