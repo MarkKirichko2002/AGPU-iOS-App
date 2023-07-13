@@ -57,7 +57,7 @@ extension AGPUSectionsListViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         NotificationCenter.default.post(name: Notification.Name("subsection"), object: subsection)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.GoToWeb(url: subsection.url, title: "ФГБОУ ВО «АГПУ»")
+            self.GoToWeb(url: subsection.url, title: "ФГБОУ ВО «АГПУ»", isSheet: true)
         }
     }
 }

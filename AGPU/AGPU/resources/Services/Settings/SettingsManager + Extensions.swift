@@ -25,8 +25,8 @@ extension SettingsManager: SettingsManagerProtocol {
     
     // MARK: - Elected Faculty
     func checkCurrentIcon()-> String? {
-        let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty")
-        return faculty?.icon ?? "АГПУ"
+        let icon = UserDefaults.standard.object(forKey: "icon") as? String ?? "АГПУ"
+        return icon
     }
     
     // проверить все настройки

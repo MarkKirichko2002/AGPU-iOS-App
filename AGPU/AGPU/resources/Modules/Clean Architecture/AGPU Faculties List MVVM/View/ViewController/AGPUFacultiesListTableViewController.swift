@@ -24,7 +24,7 @@ class AGPUFacultiesListTableViewController: UITableViewController {
             _ in
             
             let infoAction = UIAction(title: "узнать больше", image: UIImage(named: "info")) { _ in
-                self.GoToWeb(url: self.viewModel.facultyItem(index: indexPath.row).url, title: self.viewModel.facultyItem(index: indexPath.row).abbreviation)
+                self.GoToWeb(url: self.viewModel.facultyItem(index: indexPath.row).url, title: self.viewModel.facultyItem(index: indexPath.row).abbreviation, isSheet: true)
             }
             
             let watchVideoAction =  UIAction(title: "смотреть видео", image: UIImage(named: "video")) { _ in
@@ -38,7 +38,7 @@ class AGPUFacultiesListTableViewController: UITableViewController {
             }
             
             let enterAction = UIAction(title: "поступить", image: UIImage(named: "worksheet")) { _ in
-                self.GoToWeb(url: "http://priem.agpu.net/anketa/index.php", title: "Анкета")
+                self.GoToWeb(url: "http://priem.agpu.net/anketa/index.php", title: "Анкета", isSheet: true)
             }
             
             return UIMenu(title: self.viewModel.facultyItem(index: indexPath.row).name, children: [infoAction, watchVideoAction, emailAction, phoneAction, enterAction])

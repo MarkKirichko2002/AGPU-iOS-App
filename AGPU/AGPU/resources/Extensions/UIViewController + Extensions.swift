@@ -9,13 +9,17 @@ import UIKit
 
 extension UIViewController {
     
-    func GoToWeb(url: String, title: String?) {
+    func GoToWeb(url: String, title: String?, isSheet: Bool) {
         let vc = WebViewController(url: url)
+        let navVC = UINavigationController(rootViewController: vc)
         if title != nil {
             vc.navigationItem.title = title
         }
-        let navVC = UINavigationController(rootViewController: vc)
-        present(navVC, animated: true)
+        if isSheet {
+            present(navVC, animated: true)
+        } else {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func ShowRecentPageScreen(page: RecentPageModel) {
