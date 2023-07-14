@@ -37,6 +37,7 @@ class CustomMusicListViewModel: NSObject {
     func DeleteMusic(index: Int) {
         let id = UserDefaults.standard.object(forKey: "id") as? Int ?? 0
         if musicItem(index: index).id == musicItem(index: id).id {
+            UserDefaults.standard.setValue(nil, forKey: "id")
             AudioPlayer.shared.StopSound()
         }
         realmManager.deleteMusic(music: musicItem(index: index))
