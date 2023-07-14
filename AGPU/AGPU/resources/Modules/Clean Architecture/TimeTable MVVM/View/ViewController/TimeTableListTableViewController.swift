@@ -46,7 +46,7 @@ class TimeTableListTableViewController: UIViewController {
                         }
                     }
                 }
-                let mainMenu = UIMenu(title: key, children: items)
+                let mainMenu = UIMenu(title: key.abbreviation(), children: items)
                 arr.append(mainMenu)
                 let groupList = UIMenu(title: "группы", children: arr)
                 let calendar = UIBarButtonItem(image: UIImage(named: "calendar"), style: .plain, target: self, action: #selector(self.openCalendar))
