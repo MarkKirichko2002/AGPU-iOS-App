@@ -8,5 +8,6 @@
 import Foundation
 
 protocol TimeTableServicerProtocol {
+    func GetAllGroups(completion: @escaping([String: [String]])->Void)
     func GetTimeTable(groupId: String, date: String, completion: @escaping([TimeTable])->Void)
 }
