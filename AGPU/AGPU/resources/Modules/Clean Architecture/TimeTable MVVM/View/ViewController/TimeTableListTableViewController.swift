@@ -30,10 +30,11 @@ class TimeTableListTableViewController: UIViewController {
     }
     
     private func SetUpNavigation() {
+        var arr = [UIAction]()
         navigationItem.title = "Расписание"
         service.GetAllGroups { groups in
-            let groups = groups
-                .map { group in
+            for (key,value) in groups {
+                let items = value.map { group in
                     return UIAction(title: group) { _ in
                         DispatchQueue.main.async {
                             self.group = group
@@ -41,16 +42,18 @@ class TimeTableListTableViewController: UIViewController {
                             self.noTimeTableLabel.isHidden = true
                             self.timetable = []
                             self.tableView.reloadData()
-                            self.GetTimeTable(group: group, date: self.dateManager.getCurrentDate())
+                            self.GetTimeTable(group: self.group, date: self.dateManager.getCurrentDate())
                         }
                     }
                 }
-            let groupList = UIMenu(title: "группы", children: groups)
-            let calendar = UIBarButtonItem(image: UIImage(named: "calendar"), style: .plain, target: self, action: #selector(self.openCalendar))
-            let list = UIBarButtonItem(image: UIImage(named: "sections"), menu: groupList)
-            list.tintColor = .black
-            calendar.tintColor = .black
-            self.navigationItem.rightBarButtonItems = [calendar, list]
+                arr.append(contentsOf: items)
+                let groupList = UIMenu(title: "группы", children: arr)
+                let calendar = UIBarButtonItem(image: UIImage(named: "calendar"), style: .plain, target: self, action: #selector(self.openCalendar))
+                let list = UIBarButtonItem(image: UIImage(named: "sections"), menu: groupList)
+                list.tintColor = .black
+                calendar.tintColor = .black
+                self.navigationItem.rightBarButtonItems = [calendar, list]
+            }
         }
     }
     
