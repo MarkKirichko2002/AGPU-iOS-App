@@ -30,31 +30,33 @@ class TimeTableListTableViewController: UIViewController {
     }
     
     private func SetUpNavigation() {
-        var arr = [UIMenu]()
         navigationItem.title = "Расписание"
+        
+        var arr = [UIMenu]()
         service.GetAllGroups { groups in
-            for (key,value) in groups {
+            for (key, value) in groups {
                 let items = value.map { group in
-                    return UIAction(title: group) { _ in
-                        DispatchQueue.main.async {
-                            self.group = group
-                            self.spinner.startAnimating()
-                            self.noTimeTableLabel.isHidden = true
-                            self.timetable = []
-                            self.tableView.reloadData()
-                            self.GetTimeTable(group: self.group, date: self.dateManager.getCurrentDate())
-                        }
+                    return UIAction(title: group) { [weak self] _ in
+                        guard let self = self else { return }
+                        self.group = group
+                        self.spinner.startAnimating()
+                        self.noTimeTableLabel.isHidden = true
+                        self.timetable = []
+                        self.tableView.reloadData()
+                        self.GetTimeTable(group: self.group, date: self.dateManager.getCurrentDate())
                     }
                 }
+                
                 let mainMenu = UIMenu(title: key.abbreviation(), children: items)
                 arr.append(mainMenu)
-                let groupList = UIMenu(title: "группы", children: arr)
-                let calendar = UIBarButtonItem(image: UIImage(named: "calendar"), style: .plain, target: self, action: #selector(self.openCalendar))
-                let list = UIBarButtonItem(image: UIImage(named: "sections"), menu: groupList)
-                list.tintColor = .black
-                calendar.tintColor = .black
-                self.navigationItem.rightBarButtonItems = [calendar, list]
             }
+            
+            let groupList = UIMenu(title: "группы", children: arr)
+            let calendar = UIBarButtonItem(image: UIImage(named: "calendar"), style: .plain, target: self, action: #selector(self.openCalendar))
+            let list = UIBarButtonItem(image: UIImage(named: "sections"), menu: groupList)
+            list.tintColor = .black
+            calendar.tintColor = .black
+            self.navigationItem.rightBarButtonItems = [calendar, list]
         }
     }
     
