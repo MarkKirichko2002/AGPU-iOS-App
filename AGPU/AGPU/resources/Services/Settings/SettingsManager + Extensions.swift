@@ -13,11 +13,12 @@ extension SettingsManager: SettingsManagerProtocol {
     
     // MARK: - Custom Music
     func checkCustomMusicSetting() {
-        let id = UserDefaults.standard.object(forKey: "id") as? Int ?? 0
         realmManager.fetchMusicList { music in
             if !music.isEmpty {
-                if music[id].isChecked == true {
-                    AudioPlayer.shared.PlaySound(resource: music[id].fileName)
+                if let id = UserDefaults.standard.object(forKey: "id") as? Int {
+                    if music[id].isChecked == true {
+                        AudioPlayer.shared.PlaySound(resource: music[id].fileName)
+                    }
                 }
             }
         }
