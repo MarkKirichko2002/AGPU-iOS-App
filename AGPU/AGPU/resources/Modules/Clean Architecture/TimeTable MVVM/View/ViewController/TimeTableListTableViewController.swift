@@ -30,7 +30,7 @@ class TimeTableListTableViewController: UIViewController {
     }
     
     private func SetUpNavigation() {
-        var arr = [UIAction]()
+        var arr = [UIMenu]()
         navigationItem.title = "Расписание"
         service.GetAllGroups { groups in
             for (key,value) in groups {
@@ -46,7 +46,8 @@ class TimeTableListTableViewController: UIViewController {
                         }
                     }
                 }
-                arr.append(contentsOf: items)
+                let mainMenu = UIMenu(title: key, children: items)
+                arr.append(mainMenu)
                 let groupList = UIMenu(title: "группы", children: arr)
                 let calendar = UIBarButtonItem(image: UIImage(named: "calendar"), style: .plain, target: self, action: #selector(self.openCalendar))
                 let list = UIBarButtonItem(image: UIImage(named: "sections"), menu: groupList)
