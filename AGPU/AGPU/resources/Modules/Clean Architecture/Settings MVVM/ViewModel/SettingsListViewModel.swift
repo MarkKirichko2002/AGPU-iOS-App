@@ -13,7 +13,7 @@ class SettingsListViewModel: NSObject {
     
     var observation: NSKeyValueObservation?
     
-    // MARK: - факультеты
+    // MARK: - Elected Faculty
     
     func facultiesListCount()-> Int {
         return AGPUFaculties.faculties.count
@@ -52,6 +52,15 @@ class SettingsListViewModel: NSObject {
                 UserDefaults.standard.setValue(nil, forKey: "icon")
                 UserDefaults.standard.setValue(nil, forKey: "group")
             }
+        }
+    }
+    
+    func isFacultySelected(index: Int)-> Bool {
+        let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty")
+        if faculty?.id == AGPUFaculties.faculties[index].id && faculty?.isSelected == true {
+            return true
+        } else {
+            return false
         }
     }
     
