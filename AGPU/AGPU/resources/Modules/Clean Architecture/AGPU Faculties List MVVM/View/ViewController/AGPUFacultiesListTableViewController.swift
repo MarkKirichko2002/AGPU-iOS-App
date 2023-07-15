@@ -49,10 +49,10 @@ class AGPUFacultiesListTableViewController: UITableViewController {
             
             return UIMenu(title: self.viewModel.facultyItem(index: indexPath.row).name, children: [
                 infoAction,
-                groupsAction,
                 watchVideoAction,
                 emailAction,
                 phoneAction,
+                groupsAction,
                 enterAction
             ])
         })

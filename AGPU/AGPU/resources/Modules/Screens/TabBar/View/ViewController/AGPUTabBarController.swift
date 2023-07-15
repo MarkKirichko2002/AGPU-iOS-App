@@ -136,38 +136,40 @@ class AGPUTabBarController: UITabBarController {
     // MARK: - Voice Control
     private func checkVoiceCommands(text: String) {
         
-        // MARK: - Screen "Main"
+        // MARK: - Screen "News"
         if text != "" && selectedIndex == 0 {
-            
             if text.lowercased().lastWord() == "вверх" {
                 DispatchQueue.main.async {
                     self.DynamicButton.setImage(UIImage(named: "arrow.up"), for: .normal)
                     self.animation.SpringAnimation(view: self.DynamicButton)
                     HapticsManager.shared.HapticFeedback()
                 }
+                NotificationCenter.default.post(name: Notification.Name("ScrollMainScreen"), object: text.lastWord())
             } else if text.lowercased().lastWord() == "вниз" {
                 DispatchQueue.main.async {
                     self.DynamicButton.setImage(UIImage(named: "arrow.down"), for: .normal)
                     self.animation.SpringAnimation(view: self.DynamicButton)
                     HapticsManager.shared.HapticFeedback()
                 }
+                NotificationCenter.default.post(name: Notification.Name("ScrollMainScreen"), object: text.lastWord())
             } else if text.lowercased().lastWord().contains("лево") {
                 DispatchQueue.main.async {
                     self.DynamicButton.setImage(UIImage(named: "arrow.left"), for: .normal)
                     self.animation.SpringAnimation(view: self.DynamicButton)
                     HapticsManager.shared.HapticFeedback()
                 }
+                NotificationCenter.default.post(name: Notification.Name("ScrollMainScreen"), object: text.lastWord())
             } else if text.lowercased().lastWord().contains("право"){
                 DispatchQueue.main.async {
                     self.DynamicButton.setImage(UIImage(named: "arrow.right"), for: .normal)
                     self.animation.SpringAnimation(view: self.DynamicButton)
                     HapticsManager.shared.HapticFeedback()
                 }
+                NotificationCenter.default.post(name: Notification.Name("ScrollMainScreen"), object: text.lastWord())
             }
-            NotificationCenter.default.post(name: Notification.Name("ScrollMainScreen"), object: text.lastWord())
         }
         
-        // MARK: - Screen "Sections"
+        // MARK: - "Sections"
         if text != "" {
             // поиск раздела
             for section in AGPUSections.sections {
