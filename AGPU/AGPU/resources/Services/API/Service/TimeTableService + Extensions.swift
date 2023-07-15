@@ -8,8 +8,6 @@
 import Foundation
 import Alamofire
 
-// http://merqury.fun:8080/api/allGroups
-
 // MARK: - TimeTableServicerProtocol
 extension TimeTableService: TimeTableServicerProtocol {
     
@@ -21,7 +19,6 @@ extension TimeTableService: TimeTableServicerProtocol {
             
             do {
                 let groups = try JSONDecoder().decode([String: [String]].self, from: data)
-                print("Группы: \(groups)")
                 completion(groups)
             } catch {
                 print(error.localizedDescription)
