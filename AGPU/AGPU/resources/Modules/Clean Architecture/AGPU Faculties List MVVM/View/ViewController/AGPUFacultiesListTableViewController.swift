@@ -33,6 +33,12 @@ class AGPUFacultiesListTableViewController: UITableViewController {
             
             let phoneAction = self.viewModel.makePhoneNumbersMenu(index: indexPath.row)
             
+            let groupsAction = UIAction(title: "список групп", image: UIImage(named: "group")) { _ in
+                let vc = FacultyGroupsListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
+                let navVC = UINavigationController(rootViewController: vc)
+                self.present(navVC, animated: true)
+            }
+            
             let emailAction = UIAction(title: "написать", image: UIImage(named: "mail")) { _ in
                 self.showEmailComposer(email: self.viewModel.facultyItem(index: indexPath.row).email)
             }
@@ -41,8 +47,14 @@ class AGPUFacultiesListTableViewController: UITableViewController {
                 self.GoToWeb(url: "http://priem.agpu.net/anketa/index.php", title: "Анкета", isSheet: true)
             }
             
-            return UIMenu(title: self.viewModel.facultyItem(index: indexPath.row).name, children: [infoAction, watchVideoAction, emailAction, phoneAction, enterAction])
-            
+            return UIMenu(title: self.viewModel.facultyItem(index: indexPath.row).name, children: [
+                infoAction,
+                groupsAction,
+                watchVideoAction,
+                emailAction,
+                phoneAction,
+                enterAction
+            ])
         })
     }
 
