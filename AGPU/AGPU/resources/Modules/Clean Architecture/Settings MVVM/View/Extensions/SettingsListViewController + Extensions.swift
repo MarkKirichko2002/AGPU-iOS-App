@@ -54,7 +54,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     self.viewModel.ChooseFaculty(index: indexPath.row)
                 }
                 
-                let checkGroupAction = UIAction(title: "выбрать группу", image: UIImage(named: "university")) { _ in
+                let checkGroupAction = UIAction(title: "выбрать группу", image: UIImage(named: "group")) { _ in
                     if self.viewModel.isFacultySelected(index: indexPath.row) {
                         let vc = FacultyGroupsListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
                         self.navigationController?.pushViewController(vc, animated: true)

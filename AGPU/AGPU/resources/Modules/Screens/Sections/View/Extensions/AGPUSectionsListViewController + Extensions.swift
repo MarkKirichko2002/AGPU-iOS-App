@@ -55,9 +55,6 @@ extension AGPUSectionsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let subsection = AGPUSections.sections[indexPath.section].subsections[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
-        NotificationCenter.default.post(name: Notification.Name("subsection"), object: subsection)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.GoToWeb(url: subsection.url, title: "ФГБОУ ВО «АГПУ»", isSheet: true)
-        }
+        self.GoToWeb(url: subsection.url, title: "ФГБОУ ВО «АГПУ»", isSheet: true)
     }
 }
