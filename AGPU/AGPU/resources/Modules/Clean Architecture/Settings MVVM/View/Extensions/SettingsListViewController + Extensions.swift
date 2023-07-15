@@ -50,15 +50,20 @@ extension SettingsListViewController: UITableViewDelegate {
                 
             case 0:
                 
-                let chooseAction = UIAction(title: "выбрать", image: UIImage(named: "check")) { _ in
+                let chooseAction = UIAction(title: "выбрать факультет", image: UIImage(named: "check")) { _ in
                     self.viewModel.ChooseFaculty(index: indexPath.row)
+                }
+                
+                let checkGroupAction = UIAction(title: "выбрать группу", image: UIImage(named: self.viewModel.facultyItem(index: indexPath.row).icon)) { _ in
+                    let vc = FacultyGroupsListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
                 
                 let cancelAction = UIAction(title: "отмена", image: UIImage(named: "cancel")) { _ in
                     self.viewModel.CancelFaculty(index: indexPath.row)
                 }
                 
-                return UIMenu(title: self.viewModel.facultyItem(index: indexPath.row).name, children: [chooseAction, cancelAction])
+                return UIMenu(title: self.viewModel.facultyItem(index: indexPath.row).name, children: [chooseAction, checkGroupAction, cancelAction])
                 
             default:
                 return nil
