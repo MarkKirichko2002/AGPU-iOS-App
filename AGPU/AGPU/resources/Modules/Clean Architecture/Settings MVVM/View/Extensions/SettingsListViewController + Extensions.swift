@@ -50,13 +50,18 @@ extension SettingsListViewController: UITableViewDelegate {
                 
             case 0:
                 
-                let chooseAction = UIAction(title: "выбрать факультет", image: UIImage(named: "check")) { _ in
+                let chooseAction = UIAction(title: self.viewModel.isFacultySelected(index: indexPath.row) ? "выбран" : "выбрать факультет", image: UIImage(named: self.viewModel.isFacultySelected(index: indexPath.row) ? "check selected" : "check")) { action in
                     self.viewModel.ChooseFaculty(index: indexPath.row)
                 }
                 
-                let checkGroupAction = UIAction(title: "выбрать группу", image: UIImage(named: self.viewModel.facultyItem(index: indexPath.row).icon)) { _ in
-                    let vc = FacultyGroupsListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
-                    self.navigationController?.pushViewController(vc, animated: true)
+                let checkGroupAction = UIAction(title: "выбрать группу", image: UIImage(named: "university")) { _ in
+                    if self.viewModel.isFacultySelected(index: indexPath.row) {
+                        let vc = FacultyGroupsListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    } else {
+                        let ok = UIAlertAction(title: "ОК", style: .default)
+                        self.ShowAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать группу факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
+                    }
                 }
                 
                 let cancelAction = UIAction(title: "отмена", image: UIImage(named: "cancel")) { _ in
