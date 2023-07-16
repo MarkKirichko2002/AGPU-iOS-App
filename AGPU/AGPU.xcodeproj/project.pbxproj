@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8205367E2A50AE5D0054B756 /* CustomMusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8205367C2A50AE5D0054B756 /* CustomMusicTableViewCell.swift */; };
 		8205367F2A50AE5D0054B756 /* CustomMusicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8205367D2A50AE5D0054B756 /* CustomMusicTableViewCell.xib */; };
+		8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8208E7542A63A3D300675EF1 /* AGPUThemes.swift */; };
 		82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */; };
 		822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822158952A422A650088BDE5 /* SettingsListViewController.swift */; };
 		822158992A42311E0088BDE5 /* MusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822158982A42311E0088BDE5 /* MusicModel.swift */; };
@@ -108,6 +109,7 @@
 /* Begin PBXFileReference section */
 		8205367C2A50AE5D0054B756 /* CustomMusicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMusicTableViewCell.swift; sourceTree = "<group>"; };
 		8205367D2A50AE5D0054B756 /* CustomMusicTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMusicTableViewCell.xib; sourceTree = "<group>"; };
+		8208E7542A63A3D300675EF1 /* AGPUThemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUThemes.swift; sourceTree = "<group>"; };
 		82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsListViewController + Extensions.swift"; sourceTree = "<group>"; };
 		821C892F2A510F5600BD756D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		822158952A422A650088BDE5 /* SettingsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +220,104 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8208E74E2A63A36A00675EF1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8208E7512A63A37200675EF1 /* ViewController */,
+				8208E7502A63A37000675EF1 /* Cell */,
+				8208E74F2A63A36E00675EF1 /* Extensions */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8208E74F2A63A36E00675EF1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82BF4DB32A5FA60D008B751A /* AGPUThemesListViewController + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8208E7502A63A37000675EF1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				82BF4DB12A5FA5B3008B751A /* AGPUThemeCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		8208E7512A63A37200675EF1 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82BF4DAF2A5FA52B008B751A /* AGPUThemesListViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8208E7522A63A3B300675EF1 /* AGPU Themes */ = {
+			isa = PBXGroup;
+			children = (
+				8208E7532A63A3C300675EF1 /* List */,
+			);
+			path = "AGPU Themes";
+			sourceTree = "<group>";
+		};
+		8208E7532A63A3C300675EF1 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				8208E7542A63A3D300675EF1 /* AGPUThemes.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		8208E7562A63A4F100675EF1 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				826888602A33ACF500434219 /* UIView + Extensions.swift */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		8208E7572A63A4F900675EF1 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				829AD6902A4327D40047609B /* UIViewController + Extensions.swift */,
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
+		8208E7582A63A50C00675EF1 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				828CFA3B2A3680C700C7542D /* String + Extensions.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
+		8208E7592A63A51B00675EF1 /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				827B62C22A425166008D241E /* UserDefaults + Extensions.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		8208E75A2A63A52700675EF1 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		8208E75B2A63A53000675EF1 /* WKWebView */ = {
+			isa = PBXGroup;
+			children = (
+				82E4E5582A57699E00314296 /* WKWebView + Extensions.swift */,
+			);
+			path = WKWebView;
+			sourceTree = "<group>";
+		};
 		82194E532A459AF2009D2FB3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -636,12 +736,12 @@
 		8268885F2A33ACE800434219 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				826888602A33ACF500434219 /* UIView + Extensions.swift */,
-				829AD6902A4327D40047609B /* UIViewController + Extensions.swift */,
-				828CFA3B2A3680C700C7542D /* String + Extensions.swift */,
-				827B62C22A425166008D241E /* UserDefaults + Extensions.swift */,
-				82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */,
-				82E4E5582A57699E00314296 /* WKWebView + Extensions.swift */,
+				8208E7562A63A4F100675EF1 /* UIView */,
+				8208E7572A63A4F900675EF1 /* UIViewController */,
+				8208E7582A63A50C00675EF1 /* String */,
+				8208E7592A63A51B00675EF1 /* UserDefaults */,
+				8208E75A2A63A52700675EF1 /* AppDelegate */,
+				8208E75B2A63A53000675EF1 /* WKWebView */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -668,6 +768,7 @@
 				82E05D4B2A5DDBAE0060ADAA /* For Student */,
 				82EF23D22A3DEEA6004A7B9C /* Sections */,
 				82EF23D32A3DEEB8004A7B9C /* Sub Sections */,
+				8208E7522A63A3B300675EF1 /* AGPU Themes */,
 				826716C02A5A2ADA00CD5C23 /* Recent Page */,
 				82320D7F2A4913E800ECADEE /* AGPU Faculties */,
 			);
@@ -961,9 +1062,7 @@
 		82BF4DAE2A5FA50D008B751A /* AGPU Themes */ = {
 			isa = PBXGroup;
 			children = (
-				82BF4DAF2A5FA52B008B751A /* AGPUThemesListViewController.swift */,
-				82BF4DB12A5FA5B3008B751A /* AGPUThemeCollectionViewCell.swift */,
-				82BF4DB32A5FA60D008B751A /* AGPUThemesListViewController + Extensions.swift */,
+				8208E74E2A63A36A00675EF1 /* View */,
 			);
 			path = "AGPU Themes";
 			sourceTree = "<group>";
@@ -1354,6 +1453,7 @@
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
 				82D6C3342A5E1DEC00FB7F5D /* TimeTable.swift in Sources */,
+				8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */,
 				822158992A42311E0088BDE5 /* MusicModel.swift in Sources */,
 				8241F9812A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift in Sources */,
 				829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */,

@@ -9,13 +9,6 @@ import UIKit
 
 class AGPUThemesListViewController: UIViewController {
 
-    var themes = [
-        "agpu1",
-        "agpu2",
-        "agpu3",
-        "agpu4"
-    ]
-    
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
