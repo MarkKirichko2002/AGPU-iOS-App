@@ -11,12 +11,12 @@ import UIKit
 extension AGPUThemesListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return themes.count
+        return AGPUThemes.themes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AGPUThemeCollectionViewCell.identifier, for: indexPath) as? AGPUThemeCollectionViewCell else {return UICollectionViewCell()}
-        cell.configure(with: themes[indexPath.row])
+        cell.configure(with: AGPUThemes.themes[indexPath.row])
         return cell
     }
 }
@@ -28,7 +28,7 @@ extension AGPUThemesListViewController: UICollectionViewDelegate {
                                  contextMenuConfigurationForItemAt indexPath: IndexPath,
                                  point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
-            let save = UIAction(title: "cохранить", image: UIImage(systemName: "photo")) { _ in
+            let save = UIAction(title: "cохранить", image: UIImage(named: "download")) { _ in
                 if let cell = collectionView.cellForItem(at: indexPath) as? AGPUThemeCollectionViewCell {
                     if let image = cell.imageView.image {
                         let imageSaver = ImageSaver()
