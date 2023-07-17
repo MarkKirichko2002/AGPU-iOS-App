@@ -25,7 +25,7 @@ class TimeTableListTableViewController: UIViewController {
         SetUpTable()
         SetUpIndicatorView()
         SetUpLabel()
-        GetTimeTable(group: "ВМ-ИВТ-2-1", date: dateManager.getCurrentDate())
+        GetTimeTable(group: UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-1-1", date: "06.06.2023")
         ObserveCalendar()
     }
     

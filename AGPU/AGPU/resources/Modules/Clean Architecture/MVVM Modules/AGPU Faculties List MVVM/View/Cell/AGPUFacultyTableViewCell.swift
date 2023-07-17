@@ -17,5 +17,6 @@ class AGPUFacultyTableViewCell: UITableViewCell {
     func configure(faculty: AGPUFacultyModel) {
         AGPUFacultyIcon.image = UIImage(named: faculty.icon)
         AGPUFacultyName.text = faculty.name
+        self.backgroundColor = .clear
     }
 }

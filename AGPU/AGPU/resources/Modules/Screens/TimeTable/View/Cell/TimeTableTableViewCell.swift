@@ -18,6 +18,12 @@ class TimeTableTableViewCell: UITableViewCell {
     func configure(timetable: TimeTable) {
         TimeLabel.text = timetable.time
         DisciplineName.text = "\(timetable.name ?? "") \(timetable.teacherName ?? "")"
-        SubGroupId.text = "подгруппа: \(timetable.subgroup ?? 0)"
+        switch timetable.subgroup {
+        case 0:
+            SubGroupId.text = "общая пара"
+        default:
+            SubGroupId.text = "подгруппа: \(timetable.subgroup ?? 0)"
+        }
+        self.backgroundColor = .clear
     }
 }

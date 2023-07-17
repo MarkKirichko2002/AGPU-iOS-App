@@ -58,6 +58,7 @@ class ForStudentListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = ForStudentSections.sections[indexPath.row].name
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+        cell.backgroundColor = .clear
         return cell
     }
 }
