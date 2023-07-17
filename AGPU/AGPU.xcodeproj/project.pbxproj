@@ -42,6 +42,9 @@
 		826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888602A33ACF500434219 /* UIView + Extensions.swift */; };
 		826888662A33B6E700434219 /* AGPUTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888652A33B6E700434219 /* AGPUTabBarController.swift */; };
 		826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888682A3482DF00434219 /* AGPUSubSections.swift */; };
+		826BADAF2A64D5A500022B45 /* AGPULocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826BADAE2A64D5A500022B45 /* AGPULocationDetailViewController.swift */; };
+		826BADB12A64D5D100022B45 /* AGPULocationDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826BADB02A64D5D100022B45 /* AGPULocationDetailViewController.storyboard */; };
+		826E6E9C2A65F7CA007A3C13 /* TimeInterval + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826E6E9B2A65F7CA007A3C13 /* TimeInterval + Extensions.swift */; };
 		8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5442A578452008ACADC /* DateManagerProtocol.swift */; };
 		8270A5482A5784A2008ACADC /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5472A5784A2008ACADC /* DateManager.swift */; };
 		8270A54D2A578A0E008ACADC /* AGPUNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A54C2A578A0E008ACADC /* AGPUNewsViewModel.swift */; };
@@ -141,6 +144,9 @@
 		826888602A33ACF500434219 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		826888652A33B6E700434219 /* AGPUTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUTabBarController.swift; sourceTree = "<group>"; };
 		826888682A3482DF00434219 /* AGPUSubSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSections.swift; sourceTree = "<group>"; };
+		826BADAE2A64D5A500022B45 /* AGPULocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPULocationDetailViewController.swift; sourceTree = "<group>"; };
+		826BADB02A64D5D100022B45 /* AGPULocationDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AGPULocationDetailViewController.storyboard; sourceTree = "<group>"; };
+		826E6E9B2A65F7CA007A3C13 /* TimeInterval + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval + Extensions.swift"; sourceTree = "<group>"; };
 		8270A5442A578452008ACADC /* DateManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerProtocol.swift; sourceTree = "<group>"; };
 		8270A5472A5784A2008ACADC /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		8270A54C2A578A0E008ACADC /* AGPUNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUNewsViewModel.swift; sourceTree = "<group>"; };
@@ -742,6 +748,7 @@
 				8208E7592A63A51B00675EF1 /* UserDefaults */,
 				8208E75A2A63A52700675EF1 /* AppDelegate */,
 				8208E75B2A63A53000675EF1 /* WKWebView */,
+				826E6E9A2A65F7AE007A3C13 /* TimeInterval */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -752,11 +759,13 @@
 				826888562A33AB3C00434219 /* Splash Screen */,
 				828CFA342A35F62400C7542D /* TabBar */,
 				82E05D482A5DD52B0060ADAA /* For Student Screen */,
+				82D6C32D2A5E187400FB7F5D /* TimeTable */,
 				82D6C3422A5E33CD00FB7F5D /* Calendar */,
 				82808E9C2A31F2D400DEEB16 /* Sections */,
 				82BF4DAE2A5FA50D008B751A /* AGPU Themes */,
 				82BC3CFA2A56ED7500E49332 /* Recent Page */,
 				829522DB2A38AEBE00329713 /* Map */,
+				826BADAD2A64D57B00022B45 /* AGPU Location Detail Screen */,
 				8224B4D32A4F0B760069B7B3 /* Add New Music */,
 			);
 			path = Screens;
@@ -773,6 +782,52 @@
 				82320D7F2A4913E800ECADEE /* AGPU Faculties */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		826BADAD2A64D57B00022B45 /* AGPU Location Detail Screen */ = {
+			isa = PBXGroup;
+			children = (
+				826BADB22A64DA6300022B45 /* View */,
+			);
+			path = "AGPU Location Detail Screen";
+			sourceTree = "<group>";
+		};
+		826BADB22A64DA6300022B45 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				826BADB32A64DA6800022B45 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		826BADB32A64DA6800022B45 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				826BADAE2A64D5A500022B45 /* AGPULocationDetailViewController.swift */,
+				826BADB02A64D5D100022B45 /* AGPULocationDetailViewController.storyboard */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		826E6E992A65EFCB007A3C13 /* MVVM Modules */ = {
+			isa = PBXGroup;
+			children = (
+				8270A5492A5789BE008ACADC /* News MVVM */,
+				82BA73B22A579B15006B67DA /* Web MVVM */,
+				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
+				828DE2AB2A5E3EEB00985737 /* Custom Music MVVM */,
+				822158942A422A480088BDE5 /* Settings MVVM */,
+				825634B62A6221C10082B7B8 /* Faculty Groups List MVVM */,
+			);
+			path = "MVVM Modules";
+			sourceTree = "<group>";
+		};
+		826E6E9A2A65F7AE007A3C13 /* TimeInterval */ = {
+			isa = PBXGroup;
+			children = (
+				826E6E9B2A65F7CA007A3C13 /* TimeInterval + Extensions.swift */,
+			);
+			path = TimeInterval;
 			sourceTree = "<group>";
 		};
 		8270A5432A578444008ACADC /* Date  */ = {
@@ -1014,13 +1069,7 @@
 		829AD69A2A4383160047609B /* Clean Architecture */ = {
 			isa = PBXGroup;
 			children = (
-				8270A5492A5789BE008ACADC /* News MVVM */,
-				82BA73B22A579B15006B67DA /* Web MVVM */,
-				82D6C32D2A5E187400FB7F5D /* TimeTable MVVM */,
-				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
-				828DE2AB2A5E3EEB00985737 /* Custom Music MVVM */,
-				822158942A422A480088BDE5 /* Settings MVVM */,
-				825634B62A6221C10082B7B8 /* Faculty Groups List MVVM */,
+				826E6E992A65EFCB007A3C13 /* MVVM Modules */,
 			);
 			path = "Clean Architecture";
 			sourceTree = "<group>";
@@ -1084,12 +1133,12 @@
 			path = Haptics;
 			sourceTree = "<group>";
 		};
-		82D6C32D2A5E187400FB7F5D /* TimeTable MVVM */ = {
+		82D6C32D2A5E187400FB7F5D /* TimeTable */ = {
 			isa = PBXGroup;
 			children = (
 				82D6C33C2A5E32DE00FB7F5D /* View */,
 			);
-			path = "TimeTable MVVM";
+			path = TimeTable;
 			sourceTree = "<group>";
 		};
 		82D6C3302A5E1DD100FB7F5D /* API */ = {
@@ -1416,6 +1465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8205367F2A50AE5D0054B756 /* CustomMusicTableViewCell.xib in Resources */,
+				826BADB12A64D5D100022B45 /* AGPULocationDetailViewController.storyboard in Resources */,
 				82D6C33B2A5E282A00FB7F5D /* TimeTableTableViewCell.xib in Resources */,
 				82808E952A31F12500DEEB16 /* LaunchScreen.storyboard in Resources */,
 				82320D892A491FBC00ECADEE /* AGPUFacultyTableViewCell.xib in Resources */,
@@ -1440,6 +1490,7 @@
 				82E05D542A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift in Sources */,
 				82BF4DB42A5FA60D008B751A /* AGPUThemesListViewController + Extensions.swift in Sources */,
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
+				826BADAF2A64D5A500022B45 /* AGPULocationDetailViewController.swift in Sources */,
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
 				82BDFDB02A404BA0002DBB89 /* AGPUMapViewController.swift in Sources */,
 				82461FEE2A50C493008A8752 /* AppDelegate + Extensions.swift in Sources */,
@@ -1475,6 +1526,7 @@
 				8224B4E32A4F18A30069B7B3 /* FileService.swift in Sources */,
 				828DE2B22A5E3FF100985737 /* CustomMusicListViewController.swift in Sources */,
 				827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */,
+				826E6E9C2A65F7CA007A3C13 /* TimeInterval + Extensions.swift in Sources */,
 				829548922A439FF7007DEBA0 /* AGPUMapViewController + Extensions.swift in Sources */,
 				82E4E5592A57699E00314296 /* WKWebView + Extensions.swift in Sources */,
 				826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */,

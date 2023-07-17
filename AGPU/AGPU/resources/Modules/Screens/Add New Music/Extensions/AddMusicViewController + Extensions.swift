@@ -34,6 +34,7 @@ extension AddMusicViewController: UIDocumentPickerDelegate {
                 print("copied file")
                 try FileManager.default.copyItem(at: selectedFileURL, to: sandboxFileURL)
                 music.fileName = "\(sandboxFileURL)"
+                music.duration = AudioPlayer.shared.getAudioDuration(url: sandboxFileURL)!
             } catch {
                 print("Ошибка: \(error)")
             }

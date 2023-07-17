@@ -13,9 +13,11 @@ class CustomMusicTableViewCell: UITableViewCell {
     
     @IBOutlet var CustomMusicImage: SpringImageView!
     @IBOutlet var CustomMusicName: UILabel!
+    @IBOutlet var CustomMusicDuration: UILabel!
     
     func configure(music: MusicModel) {
         CustomMusicImage.image = UIImage(data: music.image)
         CustomMusicName.text = music.name
+        CustomMusicDuration.text = "\(music.duration.formatTime())"
     }
 }
