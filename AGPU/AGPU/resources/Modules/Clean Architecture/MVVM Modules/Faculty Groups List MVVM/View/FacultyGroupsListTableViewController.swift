@@ -98,6 +98,7 @@ class FacultyGroupsListTableViewController: UITableViewController {
         cell.accessoryType = viewModel.isGroupSelected(section: indexPath.section, index: indexPath.row)
         cell.textLabel?.text = String(describing: groups)
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+        cell.backgroundColor = .clear
         return cell
     }
 }

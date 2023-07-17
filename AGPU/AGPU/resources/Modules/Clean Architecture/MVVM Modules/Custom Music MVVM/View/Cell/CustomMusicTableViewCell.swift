@@ -19,5 +19,6 @@ class CustomMusicTableViewCell: UITableViewCell {
         CustomMusicImage.image = UIImage(data: music.image)
         CustomMusicName.text = music.name
         CustomMusicDuration.text = "\(music.duration.formatTime())"
+        self.backgroundColor = .clear
     }
 }
