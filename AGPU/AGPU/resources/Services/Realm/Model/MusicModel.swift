@@ -13,5 +13,6 @@ class MusicModel: Object, Codable {
     @Persisted var name: String
     @Persisted var image: Data
     @Persisted var fileName: String
+    @Persisted var duration: TimeInterval
     @Persisted var isChecked: Bool
 }

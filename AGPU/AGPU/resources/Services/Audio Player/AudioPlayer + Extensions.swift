@@ -11,6 +11,17 @@ import MediaPlayer
 // MARK: - AudioPlayerProtocol
 extension AudioPlayer: AudioPlayerProtocol {
     
+    func getAudioDuration(url: URL)-> TimeInterval? {
+        do {
+            let audioPlayer = try AVAudioPlayer(contentsOf: url)
+            let duration = audioPlayer.duration
+            return duration
+        } catch {
+            print("Failed to get audio duration: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
     func PlaySound(resource: String) {
         
         if let audioUrl = URL(string: resource) {
