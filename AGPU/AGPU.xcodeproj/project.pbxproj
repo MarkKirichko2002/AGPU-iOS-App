@@ -42,6 +42,8 @@
 		826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888602A33ACF500434219 /* UIView + Extensions.swift */; };
 		826888662A33B6E700434219 /* AGPUTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888652A33B6E700434219 /* AGPUTabBarController.swift */; };
 		826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888682A3482DF00434219 /* AGPUSubSections.swift */; };
+		826BADAF2A64D5A500022B45 /* AGPULocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826BADAE2A64D5A500022B45 /* AGPULocationDetailViewController.swift */; };
+		826BADB12A64D5D100022B45 /* AGPULocationDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826BADB02A64D5D100022B45 /* AGPULocationDetailViewController.storyboard */; };
 		8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5442A578452008ACADC /* DateManagerProtocol.swift */; };
 		8270A5482A5784A2008ACADC /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5472A5784A2008ACADC /* DateManager.swift */; };
 		8270A54D2A578A0E008ACADC /* AGPUNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A54C2A578A0E008ACADC /* AGPUNewsViewModel.swift */; };
@@ -141,6 +143,8 @@
 		826888602A33ACF500434219 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		826888652A33B6E700434219 /* AGPUTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUTabBarController.swift; sourceTree = "<group>"; };
 		826888682A3482DF00434219 /* AGPUSubSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSections.swift; sourceTree = "<group>"; };
+		826BADAE2A64D5A500022B45 /* AGPULocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPULocationDetailViewController.swift; sourceTree = "<group>"; };
+		826BADB02A64D5D100022B45 /* AGPULocationDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AGPULocationDetailViewController.storyboard; sourceTree = "<group>"; };
 		8270A5442A578452008ACADC /* DateManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerProtocol.swift; sourceTree = "<group>"; };
 		8270A5472A5784A2008ACADC /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		8270A54C2A578A0E008ACADC /* AGPUNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUNewsViewModel.swift; sourceTree = "<group>"; };
@@ -757,6 +761,7 @@
 				82BF4DAE2A5FA50D008B751A /* AGPU Themes */,
 				82BC3CFA2A56ED7500E49332 /* Recent Page */,
 				829522DB2A38AEBE00329713 /* Map */,
+				826BADAD2A64D57B00022B45 /* AGPU Location Detail Screen */,
 				8224B4D32A4F0B760069B7B3 /* Add New Music */,
 			);
 			path = Screens;
@@ -773,6 +778,31 @@
 				82320D7F2A4913E800ECADEE /* AGPU Faculties */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		826BADAD2A64D57B00022B45 /* AGPU Location Detail Screen */ = {
+			isa = PBXGroup;
+			children = (
+				826BADB22A64DA6300022B45 /* View */,
+			);
+			path = "AGPU Location Detail Screen";
+			sourceTree = "<group>";
+		};
+		826BADB22A64DA6300022B45 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				826BADB32A64DA6800022B45 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		826BADB32A64DA6800022B45 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				826BADAE2A64D5A500022B45 /* AGPULocationDetailViewController.swift */,
+				826BADB02A64D5D100022B45 /* AGPULocationDetailViewController.storyboard */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		8270A5432A578444008ACADC /* Date  */ = {
@@ -1416,6 +1446,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8205367F2A50AE5D0054B756 /* CustomMusicTableViewCell.xib in Resources */,
+				826BADB12A64D5D100022B45 /* AGPULocationDetailViewController.storyboard in Resources */,
 				82D6C33B2A5E282A00FB7F5D /* TimeTableTableViewCell.xib in Resources */,
 				82808E952A31F12500DEEB16 /* LaunchScreen.storyboard in Resources */,
 				82320D892A491FBC00ECADEE /* AGPUFacultyTableViewCell.xib in Resources */,
@@ -1440,6 +1471,7 @@
 				82E05D542A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift in Sources */,
 				82BF4DB42A5FA60D008B751A /* AGPUThemesListViewController + Extensions.swift in Sources */,
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
+				826BADAF2A64D5A500022B45 /* AGPULocationDetailViewController.swift in Sources */,
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
 				82BDFDB02A404BA0002DBB89 /* AGPUMapViewController.swift in Sources */,
 				82461FEE2A50C493008A8752 /* AppDelegate + Extensions.swift in Sources */,
