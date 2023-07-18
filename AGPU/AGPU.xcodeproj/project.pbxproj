@@ -35,6 +35,7 @@
 		8241F9992A5F40EB007DF628 /* TimeTableService + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9982A5F40EB007DF628 /* TimeTableService + Extensions.swift */; };
 		8241F99B2A5F415A007DF628 /* DateManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F99A2A5F415A007DF628 /* DateManager + Extensions.swift */; };
 		82461FEE2A50C493008A8752 /* AppDelegate + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */; };
+		8255ADCC2A672E720012895E /* AGPUSectionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255ADCB2A672E720012895E /* AGPUSectionsListViewModel.swift */; };
 		825634BA2A6222070082B7B8 /* FacultyGroupsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825634B92A6222070082B7B8 /* FacultyGroupsListTableViewController.swift */; };
 		825634BC2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825634BB2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift */; };
 		826716C22A5A2AF600CD5C23 /* RecentPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826716C12A5A2AF600CD5C23 /* RecentPageModel.swift */; };
@@ -140,6 +141,7 @@
 		8241F9982A5F40EB007DF628 /* TimeTableService + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableService + Extensions.swift"; sourceTree = "<group>"; };
 		8241F99A2A5F415A007DF628 /* DateManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateManager + Extensions.swift"; sourceTree = "<group>"; };
 		82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate + Extensions.swift"; sourceTree = "<group>"; };
+		8255ADCB2A672E720012895E /* AGPUSectionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSectionsListViewModel.swift; sourceTree = "<group>"; };
 		825634B92A6222070082B7B8 /* FacultyGroupsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupsListTableViewController.swift; sourceTree = "<group>"; };
 		825634BB2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupsListViewModel.swift; sourceTree = "<group>"; };
 		826716C12A5A2AF600CD5C23 /* RecentPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPageModel.swift; sourceTree = "<group>"; };
@@ -632,6 +634,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		8255ADCA2A672E500012895E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8255ADCB2A672E720012895E /* AGPUSectionsListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		825634B62A6221C10082B7B8 /* Faculty Groups List MVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -799,9 +809,8 @@
 				828CFA342A35F62400C7542D /* TabBar */,
 				82E05D482A5DD52B0060ADAA /* For Student Screen */,
 				82D6C32D2A5E187400FB7F5D /* TimeTable */,
-				82D6C3422A5E33CD00FB7F5D /* Calendar */,
 				829522DB2A38AEBE00329713 /* Maps */,
-				82808E9C2A31F2D400DEEB16 /* Sections */,
+				82D6C3422A5E33CD00FB7F5D /* Calendar */,
 				82BF4DAE2A5FA50D008B751A /* AGPU Themes */,
 				82BC3CFA2A56ED7500E49332 /* Recent Page */,
 				8224B4D32A4F0B760069B7B3 /* Add New Music */,
@@ -854,6 +863,7 @@
 				8270A5492A5789BE008ACADC /* News MVVM */,
 				82BA73B22A579B15006B67DA /* Web MVVM */,
 				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
+				82808E9C2A31F2D400DEEB16 /* Sections MVVM */,
 				828DE2AB2A5E3EEB00985737 /* Custom Music MVVM */,
 				822158942A422A480088BDE5 /* Settings MVVM */,
 				825634B62A6221C10082B7B8 /* Faculty Groups List MVVM */,
@@ -953,12 +963,13 @@
 			path = AGPU;
 			sourceTree = "<group>";
 		};
-		82808E9C2A31F2D400DEEB16 /* Sections */ = {
+		82808E9C2A31F2D400DEEB16 /* Sections MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				82808EA22A31F49B00DEEB16 /* View */,
+				8255ADCA2A672E500012895E /* ViewModel */,
 			);
-			path = Sections;
+			path = "Sections MVVM";
 			sourceTree = "<group>";
 		};
 		82808EA22A31F49B00DEEB16 /* View */ = {
@@ -1560,6 +1571,7 @@
 				82E05D512A5DDC4F0060ADAA /* ForStudentSections.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
+				8255ADCC2A672E720012895E /* AGPUSectionsListViewModel.swift in Sources */,
 				82D6C3342A5E1DEC00FB7F5D /* TimeTable.swift in Sources */,
 				8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */,
 				822158992A42311E0088BDE5 /* MusicModel.swift in Sources */,
