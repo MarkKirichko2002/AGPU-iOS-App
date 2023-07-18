@@ -12,11 +12,18 @@ class AGPUSectionsListViewController: UIViewController {
     // MARK: - UI
     private let tableView = UITableView()
 
+    // MARK: - сервисы
+    private let viewModel = AGPUSectionsListViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Разделы"
         SetUpTable()
-        ObserveNotifications()
+        SetUpViewModel()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
     }
     
     private func SetUpTable() {
@@ -24,13 +31,15 @@ class AGPUSectionsListViewController: UIViewController {
         tableView.frame = view.bounds
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(AGPUSubSectionTableViewCell.self, forCellReuseIdentifier: AGPUSubSectionTableViewCell.identifier)
+        tableView.register(
+            AGPUSubSectionTableViewCell.self,
+            forCellReuseIdentifier: AGPUSubSectionTableViewCell.identifier
+        )
     }
     
-    private func ObserveNotifications() {
-        // Выбор раздела
-        NotificationCenter.default.addObserver(forName: Notification.Name("ScrollToSection"), object: nil, queue: .main) { notification in
-            self.tableView.scrollToRow(at: IndexPath(row: 0, section: notification.object as? Int ?? 0), at: .top, animated: true)
+    private func SetUpViewModel() {
+        viewModel.ObserveScroll { section in
+            self.tableView.scrollToRow(at: IndexPath(row: 0, section: section), at: .top, animated: true)
         }
     }
 }
