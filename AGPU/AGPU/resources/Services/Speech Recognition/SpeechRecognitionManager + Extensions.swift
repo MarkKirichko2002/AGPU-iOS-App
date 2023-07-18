@@ -6,9 +6,27 @@
 //
 
 import Foundation
+import AVFAudio
 
 // MARK: - SpeechRecognitionManagerProtocol
 extension SpeechRecognitionManager: SpeechRecognitionManagerProtocol {
+    
+    func startRecognize() {
+        if startRecording() {
+            startSpeechRecognition()
+        }
+    }
+    
+    func startRecording()-> Bool {
+        do {
+            try? AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .default,
+            policy: .default, options: .defaultToSpeaker)
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+    }
     
     func registerSpeechRecognitionHandler(block: @escaping(String)->Void) {
         self.speechRecognitionHandler = block

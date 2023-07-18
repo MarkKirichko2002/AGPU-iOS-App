@@ -8,7 +8,7 @@
 import Foundation
 
 struct TimeTable: Codable {
-    let date, time, name: String?
+    let date, time, name: String
     let teacherName: String?
     let audienceID: String?
     let subgroup: Int?
