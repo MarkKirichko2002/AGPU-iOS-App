@@ -1,15 +1,17 @@
 //
-//  AGPUMapViewController.swift
+//  AGPUCurrentBuildingMapViewController.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 19.06.2023.
+//  Created by Марк Киричко on 18.07.2023.
 //
 
 import CoreLocation
 import UIKit
 import MapKit
 
-class AGPUMapViewController: UIViewController {
+class AGPUCurrentBuildingMapViewController: UIViewController {
+
+    private var audienceID: String!
     
     // MARK: - сервисы
     private let manager = CLLocationManager()
@@ -17,9 +19,20 @@ class AGPUMapViewController: UIViewController {
     // MARK: - UI
     private let mapView = MKMapView()
     
+    // MARK: - Init
+    init(audienceID: String) {
+        self.audienceID = audienceID
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Найти «АГПУ»"
+        view.backgroundColor = .white
+        navigationItem.title = CurrentBuilding().title!
         view.addSubview(mapView)
         mapView.translatesAutoresizingMaskIntoConstraints = false
         makeConstraints()
@@ -43,6 +56,25 @@ class AGPUMapViewController: UIViewController {
         ])
     }
     
+    func CurrentBuilding()-> MKAnnotation {
+        
+        for location in AGPUPins.pins {
+            let audiences = location.subtitle!.components(separatedBy: " ")
+            for audience in audiences {
+                if audience.contains(audienceID) {
+                    print(audience)
+                    return location
+                }
+            }
+        }
+        
+        if audienceID.contains("ФОК") {
+            return AGPUPins.pins[6]
+        }
+        
+        return AGPUPins.pins[0]
+    }
+    
     func render(_ location: CLLocation) {
         
         let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude,
@@ -60,16 +92,12 @@ class AGPUMapViewController: UIViewController {
         let currentpin = MKPointAnnotation()
         currentpin.coordinate = coordinate
         currentpin.title = "Вы"
-                
+              
+        let building = CurrentBuilding()
+        
         mapView.showAnnotations([
             currentpin,
-            AGPUPins.pins[0],
-            AGPUPins.pins[1],
-            AGPUPins.pins[2],
-            AGPUPins.pins[3],
-            AGPUPins.pins[4],
-            AGPUPins.pins[5],
-            AGPUPins.pins[6]
+            building
         ], animated: true)
     }
 }

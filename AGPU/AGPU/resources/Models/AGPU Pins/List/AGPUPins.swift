@@ -15,14 +15,14 @@ struct AGPUPins {
         MKPointAnnotation(
             __coordinate: CLLocationCoordinate2D(latitude: 45.001817, longitude: 41.132393),
             title: "Главный корпус",
-            subtitle: "Аудитории: 1, 2, 3, 4, 4а, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14а, 15, 15а, 16, 17, 18,  23"
+            subtitle: "Аудитории: 1, 2, 3, 4, 4а, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14а, 15, 15а, 16, 17, 18, 23"
         ),
         
         // Корпус №1
         MKPointAnnotation(
             __coordinate: CLLocationCoordinate2D(latitude: 45.000517, longitude: 41.126859),
             title: "Корпус №1",
-            subtitle: "Аудитории: 101, 103, 104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121"
+            subtitle: "Аудитории: 101, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121"
         ),
         
         // Корпус №2
@@ -57,7 +57,7 @@ struct AGPUPins {
         MKPointAnnotation(
             __coordinate: CLLocationCoordinate2D(latitude: 45.006374, longitude: 41.128629),
             title: "Корпус №6 (ФОК)",
-            subtitle: "Аудитории: 85, 85а, 86"
+            subtitle: "Аудитории: 85, 85а, 86, 86а"
         ),
     ]
 }
