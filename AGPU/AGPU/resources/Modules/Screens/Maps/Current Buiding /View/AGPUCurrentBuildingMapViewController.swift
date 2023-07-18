@@ -31,6 +31,7 @@ class AGPUCurrentBuildingMapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         navigationItem.title = CurrentBuilding().title!
         view.addSubview(mapView)
         mapView.translatesAutoresizingMaskIntoConstraints = false

@@ -16,7 +16,7 @@ extension TimeTableListTableViewController: UITableViewDelegate {
                                           actionProvider: {
             _ in
             
-            let mapAction = UIAction(title: "найти корпус", image: UIImage(named: "map")) { _ in
+            let mapAction = UIAction(title: "найти корпус", image: UIImage(named: "search")) { _ in
                 if let audience = self.timetable[indexPath.row].audienceID {
                     let vc = AGPUCurrentBuildingMapViewController(audienceID: audience)
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
@@ -24,7 +24,7 @@ extension TimeTableListTableViewController: UITableViewDelegate {
                     }
                 } else if self.timetable[indexPath.row].audienceID == nil || self.timetable[indexPath.row].audienceID == ""  {
                     let ok = UIAlertAction(title: "ОК", style: .default)
-                    self.ShowAlert(title: "Корпус не найден!", message: "К сожалению не найден корпус с данной аудиторией", actions: [ok])
+                    self.ShowAlert(title: "Корпус не найден!", message: "К сожалению у данной пары отсутствует аудитория", actions: [ok])
                 }
             }
             
