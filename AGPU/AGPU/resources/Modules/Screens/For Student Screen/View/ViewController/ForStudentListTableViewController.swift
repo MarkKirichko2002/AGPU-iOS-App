@@ -11,13 +11,29 @@ class ForStudentListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Студенту «АГПУ»"
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        SetUpNavigation()
+        SetUpTable()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    private func SetUpNavigation() {
+        let titleView = CustomTitleView(
+            image: "student",
+            title: "Студенту",
+            frame: .zero
+        )
+        navigationItem.titleView = titleView
+    }
+    
+    private func SetUpTable() {
+        tableView.register(
+            UITableViewCell.self,
+            forCellReuseIdentifier: "cell"
+        )
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
