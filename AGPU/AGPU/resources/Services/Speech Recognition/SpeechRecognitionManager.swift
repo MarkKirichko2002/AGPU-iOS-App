@@ -15,20 +15,4 @@ class SpeechRecognitionManager {
     var recognitionTask: SFSpeechRecognitionTask?
     var speechRecognitionHandler: ((String)->Void)?
     
-    func startRecognize() {
-        if startRecording() {
-            startSpeechRecognition()
-        } else {}
-    }
-    
-    func startRecording()-> Bool {
-        do {
-            try? AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .default,
-            policy: .default, options: .defaultToSpeaker)
-            return true
-        } catch {
-            print(error)
-            return false
-        }
-    }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 class TimeTableTableViewCell: UITableViewCell {
-
+    
     static let identifier = "TimeTableTableViewCell"
     
     @IBOutlet var TimeLabel: UILabel!
@@ -17,13 +17,24 @@ class TimeTableTableViewCell: UITableViewCell {
     
     func configure(timetable: TimeTable) {
         TimeLabel.text = timetable.time
-        DisciplineName.text = "\(timetable.name ?? "") \(timetable.teacherName ?? "")"
+        DisciplineName.text = "\(timetable.name) \n\(timetable.teacherName ?? ""), \(timetable.audienceID ?? "") \n (\(timetable.groupName ?? ""))"
         switch timetable.subgroup {
         case 0:
-            SubGroupId.text = "общая пара"
+            SubGroupId.text = ""
         default:
-            SubGroupId.text = "подгруппа: \(timetable.subgroup ?? 0)"
+            SubGroupId.text = "(подгруппа: \(timetable.subgroup ?? 0))"
         }
-        self.backgroundColor = .clear
+        switch timetable.name {
+        case _ where timetable.name.contains("прак"):
+            self.backgroundColor = UIColor(named: "prac")
+        case _ where timetable.name.contains("лек"):
+            self.backgroundColor = UIColor(named: "lecture")
+        case _ where timetable.name.contains("лаб"):
+            self.backgroundColor = UIColor(named: "lab")
+        case _ where timetable.name.contains("экз"):
+            self.backgroundColor = UIColor(named: "exam")
+        default:
+            self.backgroundColor = .clear
+        }
     }
 }

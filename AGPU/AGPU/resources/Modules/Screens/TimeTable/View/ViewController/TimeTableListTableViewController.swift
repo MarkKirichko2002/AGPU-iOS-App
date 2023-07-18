@@ -13,6 +13,7 @@ class TimeTableListTableViewController: UIViewController {
     private let dateManager = DateManager()
     var timetable = [TimeTable]()
     private var group = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-1-1"
+    private var date = ""
     
     // MARK: - UI
     let tableView = UITableView()
@@ -25,11 +26,12 @@ class TimeTableListTableViewController: UIViewController {
         SetUpTable()
         SetUpIndicatorView()
         SetUpLabel()
-        GetTimeTable(group: group, date: "06.06.2023")
         ObserveCalendar()
+        GetTimeTable(group: group, date: dateManager.getCurrentDate())
     }
     
     private func SetUpNavigation() {
+        
         navigationItem.title = "Расписание"
         
         var arr = [UIMenu]()
@@ -43,7 +45,7 @@ class TimeTableListTableViewController: UIViewController {
                         self.noTimeTableLabel.isHidden = true
                         self.timetable = []
                         self.tableView.reloadData()
-                        self.GetTimeTable(group: group, date: self.dateManager.getCurrentDate())
+                        self.GetTimeTable(group: group, date: date)
                     }
                 }
                 
@@ -111,6 +113,7 @@ class TimeTableListTableViewController: UIViewController {
         NotificationCenter.default.addObserver(forName: Notification.Name("DateWasSelected"), object: nil, queue: .main) { notification in
             if let date = notification.object as? String {
                 self.navigationItem.title = date
+                self.date = date
                 self.GetTimeTable(group: self.group, date: date)
             }
         }

@@ -8,6 +8,8 @@
 import Foundation
 
 protocol SpeechRecognitionManagerProtocol {
+    func startRecognize()
+    func startRecording()-> Bool
     func registerSpeechRecognitionHandler(block: @escaping(String)->Void)
     func startSpeechRecognition()
     func cancelSpeechRecognition()
