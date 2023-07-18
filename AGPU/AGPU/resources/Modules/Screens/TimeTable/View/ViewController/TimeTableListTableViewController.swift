@@ -12,7 +12,7 @@ class TimeTableListTableViewController: UIViewController {
     private let service = TimeTableService()
     private let dateManager = DateManager()
     var timetable = [TimeTable]()
-    private var group = ""
+    private var group = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-1-1"
     
     // MARK: - UI
     let tableView = UITableView()
@@ -25,7 +25,7 @@ class TimeTableListTableViewController: UIViewController {
         SetUpTable()
         SetUpIndicatorView()
         SetUpLabel()
-        GetTimeTable(group: UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-1-1", date: "06.06.2023")
+        GetTimeTable(group: group, date: "06.06.2023")
         ObserveCalendar()
     }
     
@@ -43,7 +43,7 @@ class TimeTableListTableViewController: UIViewController {
                         self.noTimeTableLabel.isHidden = true
                         self.timetable = []
                         self.tableView.reloadData()
-                        self.GetTimeTable(group: self.group, date: self.dateManager.getCurrentDate())
+                        self.GetTimeTable(group: group, date: self.dateManager.getCurrentDate())
                     }
                 }
                 
@@ -83,6 +83,10 @@ class TimeTableListTableViewController: UIViewController {
     }
     
     func GetTimeTable(group: String, date: String) {
+        self.spinner.startAnimating()
+        self.noTimeTableLabel.isHidden = true
+        self.timetable = []
+        self.tableView.reloadData()
         service.GetTimeTable(groupId: group, date: date) { timetable in
             if !timetable.isEmpty {
                 DispatchQueue.main.async {
@@ -106,13 +110,8 @@ class TimeTableListTableViewController: UIViewController {
     private func ObserveCalendar() {
         NotificationCenter.default.addObserver(forName: Notification.Name("DateWasSelected"), object: nil, queue: .main) { notification in
             if let date = notification.object as? String {
-                DispatchQueue.main.async {
-                    self.spinner.startAnimating()
-                    self.noTimeTableLabel.isHidden = true
-                    self.timetable = []
-                    self.tableView.reloadData()
-                    self.GetTimeTable(group: date, date: self.group)
-                }
+                self.navigationItem.title = date
+                self.GetTimeTable(group: self.group, date: date)
             }
         }
     }
