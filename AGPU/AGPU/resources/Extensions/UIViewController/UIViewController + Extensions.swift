@@ -23,9 +23,8 @@ extension UIViewController {
     }
     
     func ShowRecentPageScreen(page: RecentPageModel) {
-        let vc = RecentPageViewController(url: page.url)
+        let vc = RecentPageViewController(page: page)
         let navVC = UINavigationController(rootViewController: vc)
-        vc.navigationItem.title = "\(page.date) \(page.time)"
         present(navVC, animated: true)
     }
     

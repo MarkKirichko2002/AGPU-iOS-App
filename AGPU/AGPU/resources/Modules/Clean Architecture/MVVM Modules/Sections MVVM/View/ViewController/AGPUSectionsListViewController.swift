@@ -17,13 +17,22 @@ class AGPUSectionsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Разделы"
+        SetUpNavigation()
         SetUpTable()
         SetUpViewModel()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
+    }
+    
+    private func SetUpNavigation() {
+        let titleView = CustomTitleView(
+            image: "АГПУ",
+            title: "Разделы",
+            frame: .zero
+        )
+        navigationItem.titleView = titleView
     }
     
     private func SetUpTable() {
