@@ -49,6 +49,7 @@
 		8270A5482A5784A2008ACADC /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5472A5784A2008ACADC /* DateManager.swift */; };
 		8270A54D2A578A0E008ACADC /* AGPUNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A54C2A578A0E008ACADC /* AGPUNewsViewModel.swift */; };
 		82721F1C2A574EE100982EF7 /* AGPUNewsViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82721F1B2A574EE100982EF7 /* AGPUNewsViewController + Extensions.swift */; };
+		82722D432A66462100149D06 /* AGPUPins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82722D422A66462100149D06 /* AGPUPins.swift */; };
 		827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B62C22A425166008D241E /* UserDefaults + Extensions.swift */; };
 		827F0FFA2A4B2D7E00C481E4 /* AGPUNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827F0FF92A4B2D7E00C481E4 /* AGPUNewsViewController.swift */; };
 		82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E882A31F12100DEEB16 /* AppDelegate.swift */; };
@@ -151,6 +152,7 @@
 		8270A5472A5784A2008ACADC /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		8270A54C2A578A0E008ACADC /* AGPUNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUNewsViewModel.swift; sourceTree = "<group>"; };
 		82721F1B2A574EE100982EF7 /* AGPUNewsViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUNewsViewController + Extensions.swift"; sourceTree = "<group>"; };
+		82722D422A66462100149D06 /* AGPUPins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUPins.swift; sourceTree = "<group>"; };
 		827B62C22A425166008D241E /* UserDefaults + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + Extensions.swift"; sourceTree = "<group>"; };
 		827F0FF92A4B2D7E00C481E4 /* AGPUNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUNewsViewController.swift; sourceTree = "<group>"; };
 		82808E852A31F12100DEEB16 /* AGPU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGPU.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -761,10 +763,10 @@
 				82E05D482A5DD52B0060ADAA /* For Student Screen */,
 				82D6C32D2A5E187400FB7F5D /* TimeTable */,
 				82D6C3422A5E33CD00FB7F5D /* Calendar */,
+				829522DB2A38AEBE00329713 /* Map */,
 				82808E9C2A31F2D400DEEB16 /* Sections */,
 				82BF4DAE2A5FA50D008B751A /* AGPU Themes */,
 				82BC3CFA2A56ED7500E49332 /* Recent Page */,
-				829522DB2A38AEBE00329713 /* Map */,
 				826BADAD2A64D57B00022B45 /* AGPU Location Detail Screen */,
 				8224B4D32A4F0B760069B7B3 /* Add New Music */,
 			);
@@ -775,6 +777,7 @@
 			isa = PBXGroup;
 			children = (
 				82E05D4B2A5DDBAE0060ADAA /* For Student */,
+				82722D402A66460500149D06 /* AGPU Pins */,
 				82EF23D22A3DEEA6004A7B9C /* Sections */,
 				82EF23D32A3DEEB8004A7B9C /* Sub Sections */,
 				8208E7522A63A3B300675EF1 /* AGPU Themes */,
@@ -871,6 +874,22 @@
 				82E4E55F2A576CDE00314296 /* Extensions */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		82722D402A66460500149D06 /* AGPU Pins */ = {
+			isa = PBXGroup;
+			children = (
+				82722D412A66461500149D06 /* List */,
+			);
+			path = "AGPU Pins";
+			sourceTree = "<group>";
+		};
+		82722D412A66461500149D06 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				82722D422A66462100149D06 /* AGPUPins.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 		82808E7C2A31F12100DEEB16 = {
@@ -1507,6 +1526,7 @@
 				8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */,
 				822158992A42311E0088BDE5 /* MusicModel.swift in Sources */,
 				8241F9812A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift in Sources */,
+				82722D432A66462100149D06 /* AGPUPins.swift in Sources */,
 				829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */,
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
 				8268885B2A33AC6000434219 /* AnimationClass.swift in Sources */,
