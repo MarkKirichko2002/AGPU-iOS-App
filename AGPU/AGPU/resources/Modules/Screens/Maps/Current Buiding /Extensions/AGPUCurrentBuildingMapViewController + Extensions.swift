@@ -1,15 +1,15 @@
 //
-//  AGPUMapViewController + Extensions.swift
+//  AGPUCurrentBuildingMapViewController + Extensions.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 22.06.2023.
+//  Created by Марк Киричко on 18.07.2023.
 //
 
 import CoreLocation
 import MapKit
 
 // MARK: - CLLocationManagerDelegate
-extension AGPUMapViewController: CLLocationManagerDelegate {
+extension AGPUCurrentBuildingMapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
@@ -20,7 +20,7 @@ extension AGPUMapViewController: CLLocationManagerDelegate {
 }
 
 // MARK: - MKMapViewDelegate
-extension AGPUMapViewController: MKMapViewDelegate {
+extension AGPUCurrentBuildingMapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let storyboard = UIStoryboard(name: "AGPULocationDetailViewController", bundle: nil)
@@ -30,3 +30,4 @@ extension AGPUMapViewController: MKMapViewDelegate {
         }
     }
 }
+

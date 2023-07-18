@@ -11,7 +11,7 @@ class ForStudentListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Студенту"
+        self.navigationItem.title = "Студенту «АГПУ»"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
@@ -28,7 +28,7 @@ class ForStudentListTableViewController: UITableViewController {
             self.tabBarController?.tabBar.isHidden = true
             navigationController?.pushViewController(vc, animated: true)
         case 1:
-            let vc = AGPUMapViewController()
+            let vc = AGPUBuildingsMapViewController()
             self.tabBarController?.tabBar.isHidden = true
             navigationController?.pushViewController(vc, animated: true)
         case 2:
