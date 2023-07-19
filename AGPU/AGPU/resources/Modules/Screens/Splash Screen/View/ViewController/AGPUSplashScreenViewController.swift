@@ -16,6 +16,7 @@ final class AGPUSplashScreenViewController: UIViewController {
     private let AGPUIcon: SpringImageView = {
         let icon = SpringImageView()
         icon.image = UIImage(named: "АГПУ")
+        icon.isInteraction = false
         icon.contentMode = .scaleAspectFill
         icon.translatesAutoresizingMaskIntoConstraints = false
         return icon

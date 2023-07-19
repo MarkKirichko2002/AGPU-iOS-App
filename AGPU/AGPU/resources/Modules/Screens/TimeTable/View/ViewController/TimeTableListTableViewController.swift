@@ -23,8 +23,8 @@ class TimeTableListTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SetUpNavigation()
-        SetUpIndicatorView()
         SetUpTable()
+        SetUpIndicatorView()
         SetUpLabel()
         ObserveCalendar()
         GetTimeTable(group: group, date: dateManager.getCurrentDate())
@@ -64,7 +64,6 @@ class TimeTableListTableViewController: UIViewController {
     
     private func SetUpIndicatorView() {
         view.addSubview(spinner)
-        
         spinner.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
