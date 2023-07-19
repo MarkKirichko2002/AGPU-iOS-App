@@ -16,6 +16,7 @@ class TimeTableTableViewCell: UITableViewCell {
     @IBOutlet var SubGroupId: UILabel!
     
     func configure(timetable: TimeTable) {
+        layer.borderWidth = 2
         TimeLabel.text = timetable.time
         DisciplineName.text = "\(timetable.name) \n\(timetable.teacherName ?? ""), \(timetable.audienceID ?? "") \n (\(timetable.groupName ?? ""))"
         switch timetable.subgroup {
@@ -25,14 +26,14 @@ class TimeTableTableViewCell: UITableViewCell {
             SubGroupId.text = "(подгруппа: \(timetable.subgroup ?? 0))"
         }
         switch timetable.name {
-        case _ where timetable.name.contains("прак"):
-            self.backgroundColor = UIColor(named: "prac")
-        case _ where timetable.name.contains("лек"):
-            self.backgroundColor = UIColor(named: "lecture")
-        case _ where timetable.name.contains("лаб"):
-            self.backgroundColor = UIColor(named: "lab")
         case _ where timetable.name.contains("экз"):
             self.backgroundColor = UIColor(named: "exam")
+        case _ where timetable.name.contains("лек"):
+            self.backgroundColor = UIColor(named: "lecture")
+        case _ where timetable.name.contains("прак"):
+            self.backgroundColor = UIColor(named: "prac")
+        case _ where timetable.name.contains("лаб"):
+            self.backgroundColor = UIColor(named: "lab")
         default:
             self.backgroundColor = .clear
         }

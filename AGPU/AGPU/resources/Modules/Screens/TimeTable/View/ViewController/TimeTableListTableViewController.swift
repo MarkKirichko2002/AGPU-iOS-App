@@ -23,8 +23,8 @@ class TimeTableListTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SetUpNavigation()
-        SetUpTable()
         SetUpIndicatorView()
+        SetUpTable()
         SetUpLabel()
         ObserveCalendar()
         GetTimeTable(group: group, date: dateManager.getCurrentDate())
@@ -55,7 +55,7 @@ class TimeTableListTableViewController: UIViewController {
             
             let groupList = UIMenu(title: "группы", children: arr)
             let calendar = UIBarButtonItem(image: UIImage(named: "calendar"), style: .plain, target: self, action: #selector(self.openCalendar))
-            let list = UIBarButtonItem(image: UIImage(named: "sections"), menu: groupList)
+            let list = UIBarButtonItem(image: UIImage(named: "group"), menu: groupList)
             list.tintColor = .black
             calendar.tintColor = .black
             self.navigationItem.rightBarButtonItems = [calendar, list]
@@ -71,6 +71,15 @@ class TimeTableListTableViewController: UIViewController {
             spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         spinner.startAnimating()
+    }
+    
+    private func SetUpTable() {
+        view.addSubview(tableView)
+        tableView.frame = view.bounds
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: TimeTableTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimeTableTableViewCell.identifier)
+        tableView.separatorStyle = .none
     }
     
     private func SetUpLabel() {
@@ -117,13 +126,5 @@ class TimeTableListTableViewController: UIViewController {
                 self.GetTimeTable(group: self.group, date: date)
             }
         }
-    }
-    
-    private func SetUpTable() {
-        view.addSubview(tableView)
-        tableView.frame = view.bounds
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UINib(nibName: TimeTableTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimeTableTableViewCell.identifier)
     }
 }
