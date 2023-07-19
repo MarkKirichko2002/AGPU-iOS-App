@@ -9,7 +9,10 @@ import UIKit
 
 class SettingsListViewController: UIViewController {
    
+    // MARK: - сервисы
     @objc let viewModel = SettingsListViewModel()
+    
+    // MARK: - UI
     private let tableView = UITableView()
     
     override func viewDidLoad() {

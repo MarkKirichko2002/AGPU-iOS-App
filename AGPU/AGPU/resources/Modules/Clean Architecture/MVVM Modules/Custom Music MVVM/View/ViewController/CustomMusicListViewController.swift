@@ -19,26 +19,32 @@ class CustomMusicListViewController: UITableViewController {
         BindViewModel()
     }
 
+    private func SetUpNavigation() {
+        let titleView = CustomTitleView(
+            image: "music",
+            title: "Своя Музыка",
+            frame: .zero
+        )
+        let add = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(AddMusic))
+        add.tintColor = .black
+        self.navigationItem.titleView = titleView
+        self.navigationItem.rightBarButtonItem = add
+    }
+    
     private func SetUpTable() {
         tableView.register(UINib(nibName: CustomMusicTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CustomMusicTableViewCell.identifier)
     }
     
-    private func SetUpNavigation() {
-        let add = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(AddMusic))
-        add.tintColor = .black
-        self.navigationItem.rightBarButtonItem = add
+    private func BindViewModel() {
+        viewModel.observation = observe(\.viewModel.isChanged) { _, _ in
+            self.tableView.reloadData()
+        }
     }
     
     @objc private func AddMusic() {
         let storyboard = UIStoryboard(name: "AddMusicViewController", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "AddMusicViewController") as? AddMusicViewController {
             present(vc, animated: true)
-        }
-    }
-    
-    private func BindViewModel() {
-        viewModel.observation = observe(\.viewModel.isChanged) { _, _ in
-            self.tableView.reloadData()
         }
     }
     

@@ -10,15 +10,15 @@ import WebKit
 
 class RecentPageViewController: UIViewController {
     
-    var url: String
+    var page: RecentPageModel
     
     // MARK: - UI
     let WVWEBview = WKWebView(frame: .zero)
     let spinner = UIActivityIndicatorView(style: .large)
     
     // MARK: - Init
-    init(url: String) {
-        self.url = url
+    init(page: RecentPageModel) {
+        self.page = page
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -28,9 +28,9 @@ class RecentPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SetUpNavigation()
         SetUpWebView()
         SetUpIndicatorView()
-        SetUpNavigation()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -47,7 +47,7 @@ class RecentPageViewController: UIViewController {
         view = WVWEBview
         WVWEBview.allowsBackForwardNavigationGestures = true
         WVWEBview.navigationDelegate = self
-        WVWEBview.load(self.url)
+        WVWEBview.load(self.page.url)
     }
     
     private func SetUpIndicatorView() {
@@ -60,12 +60,18 @@ class RecentPageViewController: UIViewController {
     }
     
     private func SetUpNavigation() {
+        let titleView = CustomTitleView(
+            image: "time",
+            title: "\(page.date) \(page.time)",
+            frame: .zero
+        )
         let backbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
         backbutton.tintColor = .black
         let forwardbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.right"), style: .plain, target: self, action: #selector(forwardButtonTapped))
         forwardbutton.tintColor = .black
         let closebutton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeButtonTapped))
         closebutton.tintColor = .black
+        self.navigationItem.titleView = titleView
         self.navigationItem.rightBarButtonItems = [forwardbutton, backbutton]
         self.navigationItem.leftBarButtonItem = closebutton
     }

@@ -33,39 +33,12 @@ class FacultyGroupsListTableViewController: UITableViewController {
     }
     
     private func SetUpNavigation() {
-        // Создаем кастомное view для заголовка
-        let titleView = UIView()
-        
-        // Создаем изображение
-        let imageView = UIImageView(image: UIImage(named: faculty.icon))
-        imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        titleView.addSubview(imageView)
-        
-        // Создаем текстовую метку
-        let label = UILabel()
-        label.text = faculty.abbreviation
-        label.font = .systemFont(ofSize: 16, weight: .medium)
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        titleView.addSubview(label)
-        
-        // Устанавливаем констреинты для изображения и текстовой метки
-        NSLayoutConstraint.activate([
-            
-            imageView.leadingAnchor.constraint(equalTo: titleView.leadingAnchor),
-            imageView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor),
-            imageView.widthAnchor.constraint(equalToConstant: 45),
-            imageView.heightAnchor.constraint(equalToConstant: 45),
-            
-            label.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
-            label.trailingAnchor.constraint(equalTo: titleView.trailingAnchor),
-            label.centerYAnchor.constraint(equalTo: titleView.centerYAnchor)
-        ])
-        
-        // Устанавливаем кастомное view в качестве заголовка navigation item
+        let titleView = CustomTitleView(
+            image: faculty.icon,
+            title: faculty.abbreviation,
+            frame: .zero
+        )
         navigationItem.titleView = titleView
-        
     }
     
     private func BindViewModel() {
