@@ -44,8 +44,7 @@ extension UIViewController {
             tableView.drawHierarchy(in: tableView.bounds, afterScreenUpdates: true)
         }
         let textToShare: [Any] = [
-            CustomActivityItemSource(title: title, text: text, image: image),
-            image
+            CustomActivityItemSource(title: title, text: text, image: image)
         ]
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
         present(activityViewController, animated: true)
