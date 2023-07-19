@@ -649,7 +649,7 @@
 		8255ADCD2A6731F50012895E /* Title View */ = {
 			isa = PBXGroup;
 			children = (
-				8255ADCE2A6732110012895E /* CustomTitleView.swift */,
+				82B1CA792A6826A700D1FBA4 /* View */,
 			);
 			path = "Title View";
 			sourceTree = "<group>";
@@ -1178,6 +1178,14 @@
 				82B1CA752A681EEE00D1FBA4 /* Extensions */,
 			);
 			path = Image;
+			sourceTree = "<group>";
+		};
+		82B1CA792A6826A700D1FBA4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8255ADCE2A6732110012895E /* CustomTitleView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		82BA73B22A579B15006B67DA /* Web MVVM */ = {
