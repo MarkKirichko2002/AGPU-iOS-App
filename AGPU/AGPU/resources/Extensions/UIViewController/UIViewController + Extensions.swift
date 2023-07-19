@@ -35,4 +35,19 @@ extension UIViewController {
         }
         self.present(alertController, animated: true)
     }
+    
+    func shareTableViewAsImage(tableView: UITableView, title: String, text: String) {
+        
+        let renderer = UIGraphicsImageRenderer(bounds: tableView.bounds)
+        
+        let image = renderer.image { context in
+            tableView.drawHierarchy(in: tableView.bounds, afterScreenUpdates: true)
+        }
+        let textToShare: [Any] = [
+            CustomActivityItemSource(title: title, text: text, image: image),
+            image
+        ]
+        let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+        present(activityViewController, animated: true)
+    }
 }

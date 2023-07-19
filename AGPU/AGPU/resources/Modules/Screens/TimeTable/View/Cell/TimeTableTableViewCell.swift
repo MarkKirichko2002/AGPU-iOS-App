@@ -16,7 +16,7 @@ class TimeTableTableViewCell: UITableViewCell {
     @IBOutlet var SubGroupId: UILabel!
     
     func configure(timetable: TimeTable) {
-        layer.borderWidth = 2
+        layer.borderWidth = 1
         TimeLabel.text = timetable.time
         DisciplineName.text = "\(timetable.name) \n\(timetable.teacherName ?? ""), \(timetable.audienceID ?? "") \n (\(timetable.groupName ?? ""))"
         switch timetable.subgroup {

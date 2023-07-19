@@ -12,6 +12,7 @@
 		8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8208E7542A63A3D300675EF1 /* AGPUThemes.swift */; };
 		8210CA052A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210CA042A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift */; };
 		8210CA092A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210CA082A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift */; };
+		8218F5872A688F8C00C94EB4 /* CustomActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218F5862A688F8C00C94EB4 /* CustomActivityItemSource.swift */; };
 		82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */; };
 		822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822158952A422A650088BDE5 /* SettingsListViewController.swift */; };
 		822158992A42311E0088BDE5 /* MusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822158982A42311E0088BDE5 /* MusicModel.swift */; };
@@ -121,6 +122,7 @@
 		8208E7542A63A3D300675EF1 /* AGPUThemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUThemes.swift; sourceTree = "<group>"; };
 		8210CA042A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUCurrentBuildingMapViewController.swift; sourceTree = "<group>"; };
 		8210CA082A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUCurrentBuildingMapViewController + Extensions.swift"; sourceTree = "<group>"; };
+		8218F5862A688F8C00C94EB4 /* CustomActivityItemSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityItemSource.swift; sourceTree = "<group>"; };
 		82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsListViewController + Extensions.swift"; sourceTree = "<group>"; };
 		821C892F2A510F5600BD756D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		822158952A422A650088BDE5 /* SettingsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewController.swift; sourceTree = "<group>"; };
@@ -367,6 +369,14 @@
 				8210CA082A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8218F5852A688F6B00C94EB4 /* ActivityItemSource */ = {
+			isa = PBXGroup;
+			children = (
+				8218F5862A688F8C00C94EB4 /* CustomActivityItemSource.swift */,
+			);
+			path = ActivityItemSource;
 			sourceTree = "<group>";
 		};
 		82194E532A459AF2009D2FB3 /* Extensions */ = {
@@ -834,6 +844,7 @@
 		8268886A2A34866D00434219 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8218F5852A688F6B00C94EB4 /* ActivityItemSource */,
 				82E05D4B2A5DDBAE0060ADAA /* For Student */,
 				82722D402A66460500149D06 /* AGPU Pins */,
 				82EF23D22A3DEEA6004A7B9C /* Sections */,
@@ -1628,6 +1639,7 @@
 				8268885B2A33AC6000434219 /* AnimationClass.swift in Sources */,
 				8241F9992A5F40EB007DF628 /* TimeTableService + Extensions.swift in Sources */,
 				825634BC2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift in Sources */,
+				8218F5872A688F8C00C94EB4 /* CustomActivityItemSource.swift in Sources */,
 				82C44DAE2A591915002A3864 /* HapticsManager.swift in Sources */,
 				82C7B84A2A50CE7B00F9A552 /* RealmManager + Extensions.swift in Sources */,
 				82B1CA782A681F1D00D1FBA4 /* SpringImageView + Extensions.swift in Sources */,
