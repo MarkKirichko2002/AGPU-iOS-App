@@ -10,11 +10,17 @@ import UIKit
 class SpringImageView: UIImageView {
     
     private let animation = AnimationClass()
-    
+
     override func layoutSubviews() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         self.isUserInteractionEnabled = true
         self.addGestureRecognizer(tap)
+        SetUpInteraction()
+    }
+    
+    private func SetUpInteraction() {
+        let interaction = UIContextMenuInteraction(delegate: self)
+        self.addInteraction(interaction)
     }
     
     @objc private func tapFunction(sender: UITapGestureRecognizer) {

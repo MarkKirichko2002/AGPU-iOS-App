@@ -77,6 +77,7 @@
 		8295489C2A43AE7E007DEBA0 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8295489B2A43AE7E007DEBA0 /* SettingsManager.swift */; };
 		829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6902A4327D40047609B /* UIViewController + Extensions.swift */; };
 		829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6982A43818A0047609B /* SettingsListViewModel.swift */; };
+		82B1CA782A681F1D00D1FBA4 /* SpringImageView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1CA772A681F1D00D1FBA4 /* SpringImageView + Extensions.swift */; };
 		82BA73B62A579B8D006B67DA /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BA73B52A579B8D006B67DA /* WebViewModel.swift */; };
 		82BC3CFC2A56EDA000E49332 /* RecentPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFB2A56EDA000E49332 /* RecentPageViewController.swift */; };
 		82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */; };
@@ -186,6 +187,7 @@
 		8295489B2A43AE7E007DEBA0 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		829AD6902A4327D40047609B /* UIViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829AD6982A43818A0047609B /* SettingsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewModel.swift; sourceTree = "<group>"; };
+		82B1CA772A681F1D00D1FBA4 /* SpringImageView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpringImageView + Extensions.swift"; sourceTree = "<group>"; };
 		82BA73B52A579B8D006B67DA /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		82BC3CFB2A56EDA000E49332 /* RecentPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPageViewController.swift; sourceTree = "<group>"; };
 		82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController + Extensions.swift"; sourceTree = "<group>"; };
@@ -1153,6 +1155,31 @@
 			path = "Clean Architecture";
 			sourceTree = "<group>";
 		};
+		82B1CA742A681EE400D1FBA4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82B1CA752A681EEE00D1FBA4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82B1CA772A681F1D00D1FBA4 /* SpringImageView + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82B1CA762A681F0400D1FBA4 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				82B1CA742A681EE400D1FBA4 /* View */,
+				82B1CA752A681EEE00D1FBA4 /* Extensions */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		82BA73B22A579B15006B67DA /* Web MVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -1459,7 +1486,7 @@
 		82EF23DD2A3DF612004A7B9C /* Spring Image */ = {
 			isa = PBXGroup;
 			children = (
-				82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */,
+				82B1CA762A681F0400D1FBA4 /* Image */,
 			);
 			path = "Spring Image";
 			sourceTree = "<group>";
@@ -1595,6 +1622,7 @@
 				825634BC2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift in Sources */,
 				82C44DAE2A591915002A3864 /* HapticsManager.swift in Sources */,
 				82C7B84A2A50CE7B00F9A552 /* RealmManager + Extensions.swift in Sources */,
+				82B1CA782A681F1D00D1FBA4 /* SpringImageView + Extensions.swift in Sources */,
 				828DE2B42A5E41C200985737 /* CustomMusicListViewModel.swift in Sources */,
 				82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */,
 				82D6C32F2A5E189300FB7F5D /* TimeTableListTableViewController.swift in Sources */,
