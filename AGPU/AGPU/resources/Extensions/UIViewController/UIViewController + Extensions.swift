@@ -38,11 +38,8 @@ extension UIViewController {
     
     func shareTableViewAsImage(tableView: UITableView, title: String, text: String) {
         
-        let renderer = UIGraphicsImageRenderer(bounds: tableView.bounds)
+        let image = tableView.toImage()!
         
-        let image = renderer.image { context in
-            tableView.drawHierarchy(in: tableView.bounds, afterScreenUpdates: true)
-        }
         let textToShare: [Any] = [
             CustomActivityItemSource(title: title, text: text, image: image)
         ]
