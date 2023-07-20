@@ -47,13 +47,18 @@ class AGPUFacultiesListTableViewController: UITableViewController {
                 self.GoToWeb(url: "http://priem.agpu.net/anketa/index.php", title: "Анкета", isSheet: true)
             }
             
+            let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
+                self.shareInfo(image: UIImage(named: self.viewModel.facultyItem(index: indexPath.row).icon)!, title: self.viewModel.facultyItem(index: indexPath.row).abbreviation, text: self.viewModel.facultyItem(index: indexPath.row).url)
+            }
+            
             return UIMenu(title: self.viewModel.facultyItem(index: indexPath.row).name, children: [
                 infoAction,
                 watchVideoAction,
                 emailAction,
                 phoneAction,
                 groupsAction,
-                enterAction
+                enterAction,
+                shareAction
             ])
         })
     }
