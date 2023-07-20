@@ -10,13 +10,14 @@ import UIKit
 class TimeTableTableViewCell: UITableViewCell {
     
     static let identifier = "TimeTableTableViewCell"
+    private let animation = AnimationClass()
     
     @IBOutlet var TimeLabel: UILabel!
     @IBOutlet var DisciplineName: UILabel!
     @IBOutlet var SubGroupId: UILabel!
     
     func configure(timetable: TimeTable) {
-        layer.borderWidth = 2
+        layer.borderWidth = 1
         TimeLabel.text = timetable.time
         DisciplineName.text = "\(timetable.name) \n\(timetable.teacherName ?? ""), \(timetable.audienceID ?? "") \n (\(timetable.groupName ?? ""))"
         switch timetable.subgroup {
@@ -37,5 +38,11 @@ class TimeTableTableViewCell: UITableViewCell {
         default:
             self.backgroundColor = .clear
         }
+    }
+    
+    func didTapCell(indexPath: IndexPath) {
+        animation.SpringAnimation(view: self.TimeLabel)
+        animation.SpringAnimation(view: self.DisciplineName)
+        animation.SpringAnimation(view: self.SubGroupId)
     }
 }

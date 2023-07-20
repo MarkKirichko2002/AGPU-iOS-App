@@ -22,6 +22,7 @@ class TimeTableListTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        date = dateManager.getCurrentDate()
         SetUpNavigation()
         SetUpTable()
         SetUpIndicatorView()
@@ -52,13 +53,14 @@ class TimeTableListTableViewController: UIViewController {
                 let mainMenu = UIMenu(title: key.abbreviation(), children: items)
                 arr.append(mainMenu)
             }
-            
+            let shareTimeTable = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(self.ShareTimeTable))
             let groupList = UIMenu(title: "группы", children: arr)
             let calendar = UIBarButtonItem(image: UIImage(named: "calendar"), style: .plain, target: self, action: #selector(self.openCalendar))
             let list = UIBarButtonItem(image: UIImage(named: "group"), menu: groupList)
+            shareTimeTable.tintColor = .black
             list.tintColor = .black
             calendar.tintColor = .black
-            self.navigationItem.rightBarButtonItems = [calendar, list]
+            self.navigationItem.rightBarButtonItems = [calendar, list, shareTimeTable]
         }
     }
     
@@ -112,6 +114,10 @@ class TimeTableListTableViewController: UIViewController {
         }
     }
     
+    @objc private func ShareTimeTable() {
+        self.shareTableViewAsImage(tableView: tableView, title: self.date, text: self.group)
+    }
+    
     @objc private func openCalendar() {
         let vc = CalendarViewController()
         present(vc, animated: true)
@@ -127,3 +133,4 @@ class TimeTableListTableViewController: UIViewController {
         }
     }
 }
+
