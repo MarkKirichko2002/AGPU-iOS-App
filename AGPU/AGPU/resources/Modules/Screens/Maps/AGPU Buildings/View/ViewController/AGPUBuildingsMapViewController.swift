@@ -39,7 +39,7 @@ class AGPUBuildingsMapViewController: UIViewController {
             mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mapView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             mapView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
     
@@ -55,21 +55,17 @@ class AGPUBuildingsMapViewController: UIViewController {
         
         mapView.setRegion(region,
                           animated: true)
-      
+        
         // текущая геопозиция
         let currentpin = MKPointAnnotation()
         currentpin.coordinate = coordinate
         currentpin.title = "Вы"
-                
-        mapView.showAnnotations([
-            currentpin,
-            AGPUPins.pins[0],
-            AGPUPins.pins[1],
-            AGPUPins.pins[2],
-            AGPUPins.pins[3],
-            AGPUPins.pins[4],
-            AGPUPins.pins[5],
-            AGPUPins.pins[6]
-        ], animated: true)
+        
+        AGPUPins.pins.append(currentpin)
+        
+        mapView.showAnnotations(
+            AGPUPins.pins
+            , animated: true
+        )
     }
 }

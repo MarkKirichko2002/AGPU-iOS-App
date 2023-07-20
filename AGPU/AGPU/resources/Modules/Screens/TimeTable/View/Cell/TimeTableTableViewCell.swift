@@ -26,17 +26,22 @@ class TimeTableTableViewCell: UITableViewCell {
         default:
             SubGroupId.text = "(подгруппа: \(timetable.subgroup ?? 0))"
         }
-        switch timetable.name {
-        case _ where timetable.name.contains("экз"):
-            self.backgroundColor = UIColor(named: "exam")
-        case _ where timetable.name.contains("лек"):
-            self.backgroundColor = UIColor(named: "lecture")
-        case _ where timetable.name.contains("прак"):
-            self.backgroundColor = UIColor(named: "prac")
-        case _ where timetable.name.contains("лаб"):
-            self.backgroundColor = UIColor(named: "lab")
+        let color = coupleСolor(name: timetable.name)
+        self.backgroundColor = color
+    }
+    
+    private func coupleСolor(name: String)->UIColor {
+        switch name {
+        case _ where name.contains("экз."):
+            return UIColor(named: "exam")!
+        case _ where name.contains("лек."):
+            return UIColor(named: "lecture")!
+        case _ where name.contains("прак."):
+            return UIColor(named: "prac")!
+        case _ where name.contains("лаб."):
+            return UIColor(named: "lab")!
         default:
-            self.backgroundColor = .clear
+            return .clear
         }
     }
     

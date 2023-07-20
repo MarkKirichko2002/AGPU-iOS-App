@@ -52,7 +52,7 @@ class AGPUCurrentBuildingMapViewController: UIViewController {
             mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mapView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             mapView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
     
