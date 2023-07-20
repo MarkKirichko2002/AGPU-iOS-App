@@ -31,11 +31,49 @@ class TimeTableListTableViewController: UIViewController {
         GetTimeTable(group: group, date: dateManager.getCurrentDate())
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
+        navigationItem.title = "Расписание"
         
+        service.GetAllGroups { groups in
+            DispatchQueue.main.async { // Выполнение кода в основном потоке
+                var arr = [UIMenu]()
+                for (key, value) in groups {
+                    let items = value.map { group in
+                        return UIAction(title: group) { [weak self] _ in
+                            guard let self = self else { return }
+                            self.group = group
+                            self.spinner.startAnimating()
+                            self.noTimeTableLabel.isHidden = true
+                            self.timetable = []
+                            self.tableView.reloadData()
+                            self.GetTimeTable(group: group, date: date)
+                        }
+                    }
+                    
+                    let mainMenu = UIMenu(title: key.abbreviation(), children: items)
+                    arr.append(mainMenu)
+                }
+                let groupList = UIMenu(title: "группы", image: UIImage(named: "group"), children: arr)
+                let calendar = UIAction(title: "календарь", image: UIImage(named: "calendar")) { _ in
+                    let vc = CalendarViewController()
+                    self.present(vc, animated: true)
+                }
+                let shareTimeTable = UIAction(title: "поделиться", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+                    self.shareTableViewAsImage(tableView: self.tableView, title: self.date, text: self.group)
+                }
+                let optionsMenu = UIMenu(title: "расписание", children: [calendar, groupList, shareTimeTable])
+                let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: optionsMenu)
+                options.tintColor = .black
+                self.navigationItem.rightBarButtonItem = options
+            }
+        }
+    }
+    
+    private func SetUpNavigation() {
         navigationItem.title = "Расписание"
         
         var arr = [UIMenu]()
+        
         service.GetAllGroups { groups in
             for (key, value) in groups {
                 let items = value.map { group in
@@ -53,16 +91,25 @@ class TimeTableListTableViewController: UIViewController {
                 let mainMenu = UIMenu(title: key.abbreviation(), children: items)
                 arr.append(mainMenu)
             }
-            let shareTimeTable = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(self.ShareTimeTable))
-            let groupList = UIMenu(title: "группы", children: arr)
-            let calendar = UIBarButtonItem(image: UIImage(named: "calendar"), style: .plain, target: self, action: #selector(self.openCalendar))
-            let list = UIBarButtonItem(image: UIImage(named: "group"), menu: groupList)
-            shareTimeTable.tintColor = .black
-            list.tintColor = .black
-            calendar.tintColor = .black
-            self.navigationItem.rightBarButtonItems = [calendar, list, shareTimeTable]
+            
+            let groupsList = UIMenu(title: "группы", image: UIImage(named: "group"), children: arr)
+            
+            DispatchQueue.main.async {
+                let calendar = UIAction(title: "календарь", image: UIImage(named: "calendar")) { _ in
+                    let vc = CalendarViewController()
+                    self.present(vc, animated: true)
+                }
+                let shareTimeTable = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
+                    self.shareTableViewAsImage(tableView: self.tableView, title: self.date, text: self.group)
+                }
+                let optionsMenu = UIMenu(title: "расписание", children: [groupsList, calendar, shareTimeTable])
+                let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: optionsMenu)
+                options.tintColor = .black
+                self.navigationItem.rightBarButtonItem = options
+            }
         }
     }
+    
     
     private func SetUpIndicatorView() {
         view.addSubview(spinner)
@@ -114,21 +161,12 @@ class TimeTableListTableViewController: UIViewController {
         }
     }
     
-    @objc private func ShareTimeTable() {
-        self.shareTableViewAsImage(tableView: tableView, title: self.date, text: self.group)
-    }
-    
-    @objc private func openCalendar() {
-        let vc = CalendarViewController()
-        present(vc, animated: true)
-    }
-    
     private func ObserveCalendar() {
         NotificationCenter.default.addObserver(forName: Notification.Name("DateWasSelected"), object: nil, queue: .main) { notification in
             if let date = notification.object as? String {
-                self.navigationItem.title = date
                 self.date = date
                 self.GetTimeTable(group: self.group, date: date)
+                self.navigationItem.title = date
             }
         }
     }
