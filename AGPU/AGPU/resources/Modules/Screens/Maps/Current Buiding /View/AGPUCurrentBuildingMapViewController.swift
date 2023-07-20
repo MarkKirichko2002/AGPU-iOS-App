@@ -58,21 +58,14 @@ class AGPUCurrentBuildingMapViewController: UIViewController {
     
     func CurrentBuilding()-> MKAnnotation {
         
-        for location in AGPUPins.pins {
-            let audiences = location.subtitle!.components(separatedBy: " ")
-            for audience in audiences {
-                if audience.contains(audienceID) {
-                    print(audience)
-                    return location
+        for building in AGPUBuildings.buildings {
+            for audience in building.audiences {
+                if audience == audienceID {
+                    return building.pin
                 }
             }
         }
-        
-        if audienceID.contains("ФОК") {
-            return AGPUPins.pins[6]
-        }
-        
-        return AGPUPins.pins[0]
+        return AGPUBuildings.buildings[0].pin
     }
     
     func render(_ location: CLLocation) {
@@ -80,13 +73,20 @@ class AGPUCurrentBuildingMapViewController: UIViewController {
         let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude,
                                                 longitude: location.coordinate.longitude)
         
-        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        let span = MKCoordinateSpan(
+            latitudeDelta: 0.1,
+            longitudeDelta: 0.1
+        )
         
-        let region = MKCoordinateRegion(center: coordinate,
-                                        span: span)
+        let region = MKCoordinateRegion(
+            center: coordinate,
+            span: span
+        )
         
-        mapView.setRegion(region,
-                          animated: true)
+        mapView.setRegion(
+            region,
+            animated: true
+        )
       
         // текущая геопозиция
         let currentpin = MKPointAnnotation()
