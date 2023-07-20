@@ -8,20 +8,28 @@
 import UIKit
 import LinkPresentation
 
+enum ActivityItemType {
+    case url
+    case image
+}
+
 class CustomActivityItemSource: NSObject, UIActivityItemSource {
     
     var title: String
     var text: String
     var image: UIImage
+    var type: ActivityItemType
     
     init(
         title: String,
         text: String,
-        image: UIImage
+        image: UIImage,
+        type: ActivityItemType
     ) {
         self.title = title
         self.text = text
         self.image = image
+        self.type = type
         super.init()
     }
     
@@ -34,7 +42,12 @@ class CustomActivityItemSource: NSObject, UIActivityItemSource {
     }
     
     func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
-        return image
+        switch type {
+        case .url:
+            return text
+        case .image:
+            return image
+        }
     }
     
     func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
