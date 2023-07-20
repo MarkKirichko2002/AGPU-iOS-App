@@ -10,6 +10,7 @@ import UIKit
 class TimeTableTableViewCell: UITableViewCell {
     
     static let identifier = "TimeTableTableViewCell"
+    private let animation = AnimationClass()
     
     @IBOutlet var TimeLabel: UILabel!
     @IBOutlet var DisciplineName: UILabel!
@@ -37,5 +38,11 @@ class TimeTableTableViewCell: UITableViewCell {
         default:
             self.backgroundColor = .clear
         }
+    }
+    
+    func didTapCell(indexPath: IndexPath) {
+        animation.SpringAnimation(view: self.TimeLabel)
+        animation.SpringAnimation(view: self.DisciplineName)
+        animation.SpringAnimation(view: self.SubGroupId)
     }
 }
