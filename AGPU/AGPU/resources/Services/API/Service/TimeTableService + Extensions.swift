@@ -19,6 +19,7 @@ extension TimeTableService: TimeTableServicerProtocol {
             
             do {
                 let groups = try JSONDecoder().decode([String: [String]].self, from: data)
+                print(groups)
                 completion(groups)
             } catch {
                 print(error.localizedDescription)
