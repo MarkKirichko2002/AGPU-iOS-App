@@ -128,6 +128,9 @@
 		82E4C5612A6B14C700F65A67 /* SettingsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5602A6B14C700F65A67 /* SettingsListViewModel + Extensions.swift */; };
 		82E4C5662A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5652A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift */; };
 		82E4C5682A6B154300F65A67 /* FacultyGroupsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5672A6B154300F65A67 /* FacultyGroupsListViewModelProtocol.swift */; };
+		82E4C5842A6B201600F65A67 /* LocationManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5832A6B201600F65A67 /* LocationManagerProtocol.swift */; };
+		82E4C5892A6B20DE00F65A67 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5882A6B20DE00F65A67 /* LocationManager.swift */; };
+		82E4C58B2A6B20FF00F65A67 /* LocationManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C58A2A6B20FF00F65A67 /* LocationManager + Extensions.swift */; };
 		82E4E5592A57699E00314296 /* WKWebView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4E5582A57699E00314296 /* WKWebView + Extensions.swift */; };
 		82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */; };
 		82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */; };
@@ -256,6 +259,9 @@
 		82E4C5602A6B14C700F65A67 /* SettingsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82E4C5652A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FacultyGroupsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82E4C5672A6B154300F65A67 /* FacultyGroupsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupsListViewModelProtocol.swift; sourceTree = "<group>"; };
+		82E4C5832A6B201600F65A67 /* LocationManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerProtocol.swift; sourceTree = "<group>"; };
+		82E4C5882A6B20DE00F65A67 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		82E4C58A2A6B20FF00F65A67 /* LocationManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationManager + Extensions.swift"; sourceTree = "<group>"; };
 		82E4E5582A57699E00314296 /* WKWebView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView + Extensions.swift"; sourceTree = "<group>"; };
 		82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClassProtocol.swift; sourceTree = "<group>"; };
 		82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManagerProtocol.swift; sourceTree = "<group>"; };
@@ -407,14 +413,6 @@
 				820D18E42A68F9EE00BFAA35 /* AGPUBuildingModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		8210CA012A664D4800D0BEEE /* AGPU Buildings */ = {
-			isa = PBXGroup;
-			children = (
-				8241F9832A5F3F4C007DF628 /* View */,
-			);
-			path = "AGPU Buildings";
 			sourceTree = "<group>";
 		};
 		8210CA022A664D5700D0BEEE /* Current Buiding  */ = {
@@ -589,6 +587,7 @@
 		8234B2FE2A3242CC0091810F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				82E4C5852A6B20B800F65A67 /* Location Manager */,
 				82BF4DB52A5FA7F6008B751A /* Image Saver */,
 				82D6C3302A5E1DD100FB7F5D /* API */,
 				8270A5462A578491008ACADC /* Date */,
@@ -1166,7 +1165,7 @@
 		829522DB2A38AEBE00329713 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
-				8210CA012A664D4800D0BEEE /* AGPU Buildings */,
+				82E4C58C2A6B254200F65A67 /* AGPU Buildings Maps */,
 				826BADAD2A64D57B00022B45 /* AGPU Location Detail Screen */,
 				8210CA022A664D5700D0BEEE /* Current Buiding  */,
 			);
@@ -1898,6 +1897,55 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		82E4C5812A6B1FEE00F65A67 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				82E4C5822A6B200400F65A67 /* Protocol */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		82E4C5822A6B200400F65A67 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82E4C5832A6B201600F65A67 /* LocationManagerProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		82E4C5852A6B20B800F65A67 /* Location Manager */ = {
+			isa = PBXGroup;
+			children = (
+				82E4C5872A6B20CB00F65A67 /* Service */,
+				82E4C5862A6B20C900F65A67 /* Extensions */,
+			);
+			path = "Location Manager";
+			sourceTree = "<group>";
+		};
+		82E4C5862A6B20C900F65A67 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82E4C58A2A6B20FF00F65A67 /* LocationManager + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82E4C5872A6B20CB00F65A67 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				82E4C5882A6B20DE00F65A67 /* LocationManager.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		82E4C58C2A6B254200F65A67 /* AGPU Buildings Maps */ = {
+			isa = PBXGroup;
+			children = (
+				8241F9832A5F3F4C007DF628 /* View */,
+			);
+			path = "AGPU Buildings Maps";
+			sourceTree = "<group>";
+		};
 		82E4E55A2A576C7E00314296 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1985,6 +2033,7 @@
 		82EF23D42A3DF09F004A7B9C /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				82E4C5812A6B1FEE00F65A67 /* Location */,
 				82E4C5132A6B0C7C00F65A67 /* Image Saver */,
 				8241F9912A5F407E007DF628 /* API */,
 				8270A5432A578444008ACADC /* Date  */,
@@ -2143,6 +2192,7 @@
 				82C7B8482A50CDB400F9A552 /* FileService + Extensions.swift in Sources */,
 				82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */,
 				8224B4F32A4F1C580069B7B3 /* RealmManager.swift in Sources */,
+				82E4C58B2A6B20FF00F65A67 /* LocationManager + Extensions.swift in Sources */,
 				82E4C53E2A6B103B00F65A67 /* AGPUNewsViewModel + Extensions.swift in Sources */,
 				82721F1C2A574EE100982EF7 /* AGPUNewsViewController + Extensions.swift in Sources */,
 				82BA73B62A579B8D006B67DA /* WebViewModel.swift in Sources */,
@@ -2229,11 +2279,13 @@
 				822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */,
 				8295489C2A43AE7E007DEBA0 /* SettingsManager.swift in Sources */,
 				828CFA372A35F65700C7542D /* WebViewController.swift in Sources */,
+				82E4C5842A6B201600F65A67 /* LocationManagerProtocol.swift in Sources */,
 				8241F99B2A5F415A007DF628 /* DateManager + Extensions.swift in Sources */,
 				8255ADCF2A6732110012895E /* CustomTitleView.swift in Sources */,
 				826888582A33AB5600434219 /* AGPUSplashScreenViewController.swift in Sources */,
 				82F4ECFE2A3F82E400F1E5CC /* AudioPlayer.swift in Sources */,
 				82C7B8402A50C98900F9A552 /* AudioPlayer + Extensions.swift in Sources */,
+				82E4C5892A6B20DE00F65A67 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
