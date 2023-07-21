@@ -419,7 +419,6 @@
 			isa = PBXGroup;
 			children = (
 				8210CA062A66530400D0BEEE /* View */,
-				8210CA072A66530A00D0BEEE /* Extensions */,
 			);
 			path = "Current Buiding ";
 			sourceTree = "<group>";
@@ -427,7 +426,8 @@
 		8210CA062A66530400D0BEEE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8210CA042A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift */,
+				82E4C5912A6B291700F65A67 /* ViewController */,
+				8210CA072A66530A00D0BEEE /* Extensions */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1944,6 +1944,14 @@
 				8241F9832A5F3F4C007DF628 /* View */,
 			);
 			path = "AGPU Buildings Maps";
+			sourceTree = "<group>";
+		};
+		82E4C5912A6B291700F65A67 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8210CA042A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		82E4E55A2A576C7E00314296 /* ViewController */ = {
