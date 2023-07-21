@@ -1,13 +1,14 @@
 //
-//  ImageSaver.swift
+//  ImageSaver + Extensions.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 13.07.2023.
+//  Created by Марк Киричко on 21.07.2023.
 //
 
 import UIKit
 
-class ImageSaver: NSObject {
+// MARK: - ImageSaverProtocol
+extension ImageSaver: ImageSaverProtocol {
     
     func writeToPhotoAlbum(image: UIImage) {
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveCompleted), nil)
@@ -17,4 +18,3 @@ class ImageSaver: NSObject {
         print("Save finished!")
     }
 }
-

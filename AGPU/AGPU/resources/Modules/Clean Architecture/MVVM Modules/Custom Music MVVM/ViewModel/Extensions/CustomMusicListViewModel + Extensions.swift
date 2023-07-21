@@ -1,31 +1,14 @@
 //
-//  CustomMusicListViewModel.swift
+//  CustomMusicListViewModel + Extensions.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 12.07.2023.
+//  Created by Марк Киричко on 21.07.2023.
 //
 
 import UIKit
 
-class CustomMusicListViewModel: NSObject {
-    
-    @objc dynamic var isChanged = false
-    var observation: NSKeyValueObservation?
-    
-    var musicList = [MusicModel]()
-    
-    private let realmManager = RealmManager()
-    
-    // MARK: - Init
-    override init() {
-        super.init()
-        GetMusicList()
-        NotificationCenter.default.addObserver(forName: Notification.Name("Music Added"), object: nil, queue: .main) { _ in
-            self.GetMusicList()
-        }
-    }
-    
-    // MARK: - Custom Music
+// MARK: - CustomMusicListViewModelProtocol
+extension CustomMusicListViewModel: CustomMusicListViewModelProtocol {
     
     func GetMusicList() {
         realmManager.fetchMusicList { musicList in

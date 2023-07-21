@@ -1,13 +1,14 @@
 //
-//  AGPUFacultiesListViewModel.swift
+//  AGPUFacultiesListViewModel + Extensions.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 11.07.2023.
+//  Created by Марк Киричко on 21.07.2023.
 //
 
 import UIKit
 
-class AGPUFacultiesListViewModel {
+// MARK: - AGPUFacultiesListViewModelProtocol
+extension AGPUFacultiesListViewModel: AGPUFacultiesListViewModelProtocol {
     
     func facultiesListCount()-> Int {
         return AGPUFaculties.faculties.count
