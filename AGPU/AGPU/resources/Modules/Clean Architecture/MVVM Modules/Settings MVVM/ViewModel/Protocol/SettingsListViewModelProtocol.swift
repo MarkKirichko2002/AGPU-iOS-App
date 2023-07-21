@@ -14,4 +14,5 @@ protocol SettingsListViewModelProtocol {
     func CancelFaculty(index: Int)
     func isFacultySelected(index: Int)-> Bool
     func isFacultySelected(index: Int)-> UITableViewCell.AccessoryType
+    func isFacultySelectedColor(index: Int)-> UIColor
 }
