@@ -131,6 +131,8 @@
 		82E4C5842A6B201600F65A67 /* LocationManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5832A6B201600F65A67 /* LocationManagerProtocol.swift */; };
 		82E4C5892A6B20DE00F65A67 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5882A6B20DE00F65A67 /* LocationManager.swift */; };
 		82E4C58B2A6B20FF00F65A67 /* LocationManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C58A2A6B20FF00F65A67 /* LocationManager + Extensions.swift */; };
+		82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5942A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift */; };
+		82E4C5972A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82E4C5952A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib */; };
 		82E4E5592A57699E00314296 /* WKWebView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4E5582A57699E00314296 /* WKWebView + Extensions.swift */; };
 		82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */; };
 		82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */; };
@@ -262,6 +264,8 @@
 		82E4C5832A6B201600F65A67 /* LocationManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerProtocol.swift; sourceTree = "<group>"; };
 		82E4C5882A6B20DE00F65A67 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		82E4C58A2A6B20FF00F65A67 /* LocationManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationManager + Extensions.swift"; sourceTree = "<group>"; };
+		82E4C5942A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupTableViewCell.swift; sourceTree = "<group>"; };
+		82E4C5952A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FacultyGroupTableViewCell.xib; sourceTree = "<group>"; };
 		82E4E5582A57699E00314296 /* WKWebView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView + Extensions.swift"; sourceTree = "<group>"; };
 		82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClassProtocol.swift; sourceTree = "<group>"; };
 		82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManagerProtocol.swift; sourceTree = "<group>"; };
@@ -766,7 +770,8 @@
 		825634B82A6221DB0082B7B8 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				825634B92A6222070082B7B8 /* FacultyGroupsListTableViewController.swift */,
+				82E4C5922A6B2C9800F65A67 /* ViewController */,
+				82E4C5932A6B2CA300F65A67 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1954,6 +1959,23 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		82E4C5922A6B2C9800F65A67 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				825634B92A6222070082B7B8 /* FacultyGroupsListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82E4C5932A6B2CA300F65A67 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				82E4C5942A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift */,
+				82E4C5952A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		82E4E55A2A576C7E00314296 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2165,6 +2187,7 @@
 				82808E952A31F12500DEEB16 /* LaunchScreen.storyboard in Resources */,
 				82320D892A491FBC00ECADEE /* AGPUFacultyTableViewCell.xib in Resources */,
 				8224B4D92A4F10B40069B7B3 /* AddMusicViewController.storyboard in Resources */,
+				82E4C5972A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib in Resources */,
 				82808E922A31F12500DEEB16 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2189,6 +2212,7 @@
 				82E05D542A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift in Sources */,
 				82BF4DB42A5FA60D008B751A /* AGPUThemesListViewController + Extensions.swift in Sources */,
 				82E4C5582A6B136D00F65A67 /* CustomMusicListViewModelProtocol.swift in Sources */,
+				82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */,
 				82E4C55A2A6B13FC00F65A67 /* CustomMusicListViewModel + Extensions.swift in Sources */,
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
 				826BADAF2A64D5A500022B45 /* AGPULocationDetailViewController.swift in Sources */,

@@ -27,7 +27,7 @@ class FacultyGroupsListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SetUpNavigation()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        SetUpTable()
         BindViewModel()
         viewModel.GetGroups(by: faculty)
     }
@@ -39,6 +39,10 @@ class FacultyGroupsListTableViewController: UITableViewController {
             frame: .zero
         )
         navigationItem.titleView = titleView
+    }
+    
+    private func SetUpTable() {
+        tableView.register(UINib(nibName: FacultyGroupTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyGroupTableViewCell.identifier)
     }
     
     private func BindViewModel() {
@@ -65,13 +69,11 @@ class FacultyGroupsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FacultyGroupTableViewCell.identifier, for: indexPath) as? FacultyGroupTableViewCell else {return UITableViewCell()}
         let groups = viewModel.groupItem(section: indexPath.section, index: indexPath.row)
         cell.tintColor = .systemGreen
         cell.accessoryType = viewModel.isGroupSelected(section: indexPath.section, index: indexPath.row)
-        cell.textLabel?.text = String(describing: groups)
-        cell.textLabel?.font = .systemFont(ofSize: 16, weight: .medium)
-        cell.backgroundColor = .clear
+        cell.configure(faculty: faculty, group: groups)
         return cell
     }
 }
