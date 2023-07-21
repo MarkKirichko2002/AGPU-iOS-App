@@ -5,7 +5,6 @@
 //  Created by Марк Киричко on 18.07.2023.
 //
 
-import CoreLocation
 import UIKit
 import MapKit
 
@@ -14,7 +13,7 @@ class AGPUCurrentBuildingMapViewController: UIViewController {
     private var audienceID: String!
     
     // MARK: - сервисы
-    private let manager = CLLocationManager()
+    private let locationManager = LocationManager()
     
     // MARK: - UI
     private let mapView = MKMapView()
@@ -33,18 +32,22 @@ class AGPUCurrentBuildingMapViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.title = CurrentBuilding().title!
-        view.addSubview(mapView)
-        mapView.translatesAutoresizingMaskIntoConstraints = false
+        SetUpMap()
         makeConstraints()
-        mapView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.delegate = self
-        manager.requestWhenInUseAuthorization()
-        manager.startUpdatingLocation()
+        locationManager.GetLocations()
+        locationManager.registerLocationHandler { location in
+            self.render(location)
+        }
+    }
+    
+    private func SetUpMap() {
+        view.addSubview(mapView)
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        mapView.delegate = self
     }
     
     private func makeConstraints() {
