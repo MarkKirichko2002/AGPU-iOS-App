@@ -1,13 +1,14 @@
 //
-//  WebViewModel.swift
+//  WebViewModel + Extensions.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 07.07.2023.
+//  Created by Марк Киричко on 21.07.2023.
 //
 
 import Foundation
 
-class WebViewModel {
+// MARK: - WebViewModelProtocol
+extension WebViewModel: WebViewModelProtocol {
     
     func ObserveScroll(completion: @escaping(CGPoint)->Void) {
         

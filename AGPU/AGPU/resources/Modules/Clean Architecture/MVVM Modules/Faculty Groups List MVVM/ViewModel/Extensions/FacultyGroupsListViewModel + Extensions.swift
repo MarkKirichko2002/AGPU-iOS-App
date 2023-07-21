@@ -1,22 +1,14 @@
 //
-//  FacultyGroupsListViewModel.swift
+//  FacultyGroupsListViewModel + Extensions.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 15.07.2023.
+//  Created by Марк Киричко on 21.07.2023.
 //
 
 import UIKit
 
-class FacultyGroupsListViewModel: NSObject {
-    
-    @objc dynamic var isChanged = false
-    var observation: NSKeyValueObservation?
-    
-    var groups = [String: [String]]()
-    var key = ""
-    
-    // MARK: - сервисы
-    private let timetableService = TimeTableService()
+// MARK: - FacultyGroupsListViewModelProtocol
+extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
     
     func GetGroups(by faculty: AGPUFacultyModel) {
         timetableService.GetAllGroups { groups in

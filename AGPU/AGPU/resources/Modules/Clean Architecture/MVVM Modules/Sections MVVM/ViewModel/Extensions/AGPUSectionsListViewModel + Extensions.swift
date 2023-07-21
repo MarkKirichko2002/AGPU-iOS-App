@@ -1,13 +1,14 @@
 //
-//  AGPUSectionsListViewModel.swift
+//  AGPUSectionsListViewModel + Extensions.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 18.07.2023.
+//  Created by Марк Киричко on 21.07.2023.
 //
 
 import Foundation
 
-class AGPUSectionsListViewModel {
+// MARK: - AGPUSectionsListViewModelProtocol
+extension AGPUSectionsListViewModel: AGPUSectionsListViewModelProtocol {
     
     func ObserveScroll(completion: @escaping(Int)->Void) {
         // Выбор раздела

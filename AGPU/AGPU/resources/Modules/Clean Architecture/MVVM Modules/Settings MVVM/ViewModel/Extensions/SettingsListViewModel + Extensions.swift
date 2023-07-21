@@ -1,19 +1,14 @@
 //
-//  SettingsListViewModel.swift
+//  SettingsListViewModel + Extensions.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 21.06.2023.
+//  Created by Марк Киричко on 21.07.2023.
 //
 
 import UIKit
 
-class SettingsListViewModel: NSObject {
-    
-    @objc dynamic var isChanged = false
-    
-    var observation: NSKeyValueObservation?
-    
-    // MARK: - Elected Faculty
+// MARK: - SettingsListViewModelProtocol
+extension SettingsListViewModel: SettingsListViewModelProtocol {
     
     func facultiesListCount()-> Int {
         return AGPUFaculties.faculties.count

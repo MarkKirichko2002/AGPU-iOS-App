@@ -1,20 +1,14 @@
 //
-//  AGPUNewsViewModel.swift
+//  AGPUNewsViewModel + Extensions.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 07.07.2023.
+//  Created by Марк Киричко on 21.07.2023.
 //
 
 import Foundation
 
-class AGPUNewsViewModel {
-    
-    // MARK: - cервисы
-    private let dateManager = DateManager()
-    
-    let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty")
-    
-    private var dateHandler: ((String)->Void)?
+// MARK: - AGPUNewsViewModelProtocol
+extension AGPUNewsViewModel: AGPUNewsViewModelProtocol {
     
     func registerDateHandler(block: @escaping(String)->Void) {
         self.dateHandler = block
