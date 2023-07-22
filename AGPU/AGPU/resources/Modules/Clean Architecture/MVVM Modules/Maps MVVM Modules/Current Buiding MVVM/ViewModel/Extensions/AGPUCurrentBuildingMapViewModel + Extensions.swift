@@ -1,5 +1,5 @@
 //
-//  AGPUCurrentBuildingMapViewModel.swift
+//  AGPUCurrentBuildingMapViewModel + Extensions.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 23.07.2023.
@@ -7,19 +7,8 @@
 
 import MapKit
 
-class AGPUCurrentBuildingMapViewModel {
-    
-    private var audienceID: String
-    
-    private var locationHandler: ((LocationModel)->Void)?
-    
-    // MARK: - сервисы
-    private let locationManager = LocationManager()
-    
-    // MARK: - Init
-    init(audienceID: String) {
-        self.audienceID = audienceID
-    }
+// MARK: - AGPUCurrentBuildingMapViewModelProtocol
+extension AGPUCurrentBuildingMapViewModel: AGPUCurrentBuildingMapViewModelProtocol {
     
     func registerLocationHandler(block: @escaping(LocationModel)->Void) {
         self.locationHandler = block
