@@ -38,29 +38,42 @@ class ForStudentListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
         switch indexPath.row {
         case 0:
-            let vc = TimeTableListTableViewController()
-            self.tabBarController?.tabBar.isHidden = true
-            navigationController?.pushViewController(vc, animated: true)
+            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+                let vc = TimeTableListTableViewController()
+                self.tabBarController?.tabBar.isHidden = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         case 1:
-            let vc = AGPUBuildingsMapViewController()
-            self.tabBarController?.tabBar.isHidden = true
-            navigationController?.pushViewController(vc, animated: true)
+            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+                let vc = AGPUBuildingsMapViewController()
+                self.tabBarController?.tabBar.isHidden = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         case 2:
-            let vc = AGPUFacultiesListTableViewController()
-            self.tabBarController?.tabBar.isHidden = true
-            navigationController?.pushViewController(vc, animated: true)
+            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+                let vc = AGPUFacultiesListTableViewController()
+                self.tabBarController?.tabBar.isHidden = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         case 3:
-            self.GoToWeb(url: "http://test.agpu.net/studentu/obshchezhitiya/index.php", title: "Кампус и общежития", isSheet: true)
+            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+                self.GoToWeb(url: "http://test.agpu.net/studentu/obshchezhitiya/index.php", title: "Кампус и общежития", isSheet: true)
+            }
         case 4:
-            let vc = AGPUSectionsListViewController()
-            self.tabBarController?.tabBar.isHidden = true
-            navigationController?.pushViewController(vc, animated: true)
+            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+                let vc = AGPUSectionsListViewController()
+                self.tabBarController?.tabBar.isHidden = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         case 5:
-            let vc = AGPUThemesListViewController()
-            self.tabBarController?.tabBar.isHidden = true
-            navigationController?.pushViewController(vc, animated: true)
+            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+                let vc = AppFeaturesListTableViewController()
+                self.tabBarController?.tabBar.isHidden = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         default:
             break
         }

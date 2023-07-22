@@ -25,7 +25,7 @@ final class AGPUSplashScreenViewController: UIViewController {
     // название
     private let AGPUTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 23, weight: .black)
+        label.font = .systemFont(ofSize: 21, weight: .black)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

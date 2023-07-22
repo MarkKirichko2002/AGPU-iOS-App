@@ -29,6 +29,11 @@ class AGPUBuildingsMapViewController: UIViewController {
         locationManager.GetLocations()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.post(name: Notification.Name("for student appear"), object: nil)
+    }
+    
     private func SetUpMap() {
         view.addSubview(mapView)
         mapView.translatesAutoresizingMaskIntoConstraints = false

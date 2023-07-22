@@ -28,7 +28,12 @@ class TimeTableListTableViewController: UIViewController {
         SetUpIndicatorView()
         SetUpLabel()
         ObserveCalendar()
-        GetTimeTable(group: group, date: dateManager.getCurrentDate())
+        GetTimeTable(group: group, date: date)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.post(name: Notification.Name("for student appear"), object: nil)
     }
     
     private func SetUpNavigation() {
@@ -66,7 +71,7 @@ class TimeTableListTableViewController: UIViewController {
                     let vc = CalendarViewController()
                     self.present(vc, animated: true)
                 }
-                let shareTimeTable = UIAction(title: "поделиться", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+                let shareTimeTable = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
                     self.shareTableViewAsImage(tableView: self.tableView, title: self.date, text: self.group)
                 }
                 let updatedOptionsMenu = UIMenu(title: "расписание", children: [groupList, calendar, shareTimeTable])
@@ -98,6 +103,7 @@ class TimeTableListTableViewController: UIViewController {
     private func SetUpLabel() {
         view.addSubview(noTimeTableLabel)
         noTimeTableLabel.text = "Нет расписания"
+        noTimeTableLabel.font = .systemFont(ofSize: 18, weight: .medium)
         noTimeTableLabel.isHidden = true
         noTimeTableLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

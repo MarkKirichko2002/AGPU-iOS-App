@@ -29,9 +29,10 @@ class AGPUTabBarController: UITabBarController {
         view.backgroundColor = .systemBackground
         UITabBar.appearance().tintColor = UIColor.black
         setUpTabs()
-        createMiddleButton()
-        ObserveWebScreen()
         settingsManager.checkAllSettings()
+        createMiddleButton()
+        ObserveForStudent()
+        ObserveWebScreen()
         ObserveChangeIcon()
         becomeFirstResponder()
     }
@@ -47,8 +48,8 @@ class AGPUTabBarController: UITabBarController {
         let middleButton = UIViewController()
         // студенту
         let studentVC = ForStudentListTableViewController()
-        // своя музыка
-        let sectionsVC = CustomMusicListViewController()
+        // обои
+        let themesVC = AGPUThemesListViewController()
         // настройки
         let settingsVC = SettingsListViewController()
         // новости
@@ -56,14 +57,13 @@ class AGPUTabBarController: UITabBarController {
         // студенту
         studentVC.tabBarItem = UITabBarItem(title: "Студенту", image: UIImage(named: "applicant"), selectedImage: UIImage(named: "applicant selected"))
         // своя музыка
-        sectionsVC.tabBarItem = UITabBarItem(title: "Своя Музыка", image: UIImage(named: "music"), selectedImage: UIImage(named: "music selected"))
-        sectionsVC.navigationItem.title = "Своя Музыка"
+        themesVC.tabBarItem = UITabBarItem(title: "Обои", image: UIImage(named: "photo"), selectedImage: UIImage(named: "photo"))
         // настройки
         settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear.fill"))
         settingsVC.navigationItem.title = "Настройки"
         let nav1VC = UINavigationController(rootViewController: newsVC)
         let nav2VC = UINavigationController(rootViewController: studentVC)
-        let nav3VC = UINavigationController(rootViewController: sectionsVC)
+        let nav3VC = UINavigationController(rootViewController: themesVC)
         let nav4VC = UINavigationController(rootViewController: settingsVC)
         
         setViewControllers([nav1VC, nav2VC, middleButton, nav3VC, nav4VC], animated: true)
@@ -239,6 +239,26 @@ class AGPUTabBarController: UITabBarController {
         // выключить микрофон
         if text.lowercased().contains("стоп") {
             DynamicButton.sendActions(for: .touchUpInside)
+        }
+    }
+    
+    private func ObserveForStudent() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("for student selected"), object: nil, queue: .main) { notification in
+            if let icon = notification.object as? String {
+                DispatchQueue.main.async {
+                    self.DynamicButton.setImage(UIImage(named: icon), for: .normal)
+                    self.animation.SpringAnimation(view: self.DynamicButton)
+                    HapticsManager.shared.HapticFeedback()
+                }
+            }
+        }
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name("for student appear"), object: nil, queue: .main) { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon()), for: .normal)
+                self.animation.SpringAnimation(view: self.DynamicButton)
+                HapticsManager.shared.HapticFeedback()
+            }
         }
     }
     

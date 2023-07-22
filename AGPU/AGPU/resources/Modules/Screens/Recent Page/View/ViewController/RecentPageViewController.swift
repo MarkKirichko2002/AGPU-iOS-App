@@ -77,16 +77,12 @@ class RecentPageViewController: UIViewController {
     }
     
     @objc private func backButtonTapped() {
-        if WVWEBview.canGoBack {
-            WVWEBview.goBack()
+        if let url = UserDefaults.standard.string(forKey: "previous page") {
+            WVWEBview.load(url)
         }
     }
     
-    @objc private func forwardButtonTapped() {
-        if WVWEBview.canGoForward {
-            WVWEBview.goForward()
-        }
-    }
+    @objc private func forwardButtonTapped() {}
     
     @objc private func closeButtonTapped() {
         self.dismiss(animated: true)

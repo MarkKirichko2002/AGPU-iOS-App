@@ -9,5 +9,6 @@ import Foundation
 
 struct ForStudentModel {
     let id: Int
+    let icon: String
     let name: String
 }
