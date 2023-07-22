@@ -5,14 +5,13 @@
 //  Created by Марк Киричко on 19.06.2023.
 //
 
-import CoreLocation
 import UIKit
 import MapKit
 
 class AGPUBuildingsMapViewController: UIViewController {
     
     // MARK: - сервисы
-    private let locationManager = LocationManager()
+    private let viewModel = AGPUBuildingsMapViewModel()
     
     // MARK: - UI
     private let mapView = MKMapView()
@@ -26,7 +25,17 @@ class AGPUBuildingsMapViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        locationManager.GetLocations()
+        viewModel.GetLocation()
+        viewModel.registerLocationHandler { location in
+            self.mapView.setRegion(
+                location.region,
+                animated: true
+            )
+            self.mapView.showAnnotations(
+                location.pins
+                , animated: true
+            )
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -38,10 +47,6 @@ class AGPUBuildingsMapViewController: UIViewController {
         view.addSubview(mapView)
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.delegate = self
-        locationManager.GetLocations()
-        locationManager.registerLocationHandler { location in
-            self.render(location)
-        }
     }
     
     private func makeConstraints() {
@@ -51,31 +56,5 @@ class AGPUBuildingsMapViewController: UIViewController {
             mapView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
-    }
-    
-    func render(_ location: CLLocation) {
-        
-        let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude,
-                                                longitude: location.coordinate.longitude)
-        
-        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-        
-        let region = MKCoordinateRegion(center: coordinate,
-                                        span: span)
-        
-        mapView.setRegion(region,
-                          animated: true)
-        
-        // текущая геопозиция
-        let currentpin = MKPointAnnotation()
-        currentpin.coordinate = coordinate
-        currentpin.title = "Вы"
-        
-        AGPUPins.pins.append(currentpin)
-        
-        mapView.showAnnotations(
-            AGPUPins.pins
-            , animated: true
-        )
     }
 }
