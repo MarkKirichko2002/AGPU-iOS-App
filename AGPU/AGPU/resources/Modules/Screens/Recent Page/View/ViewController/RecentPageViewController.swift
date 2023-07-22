@@ -82,7 +82,11 @@ class RecentPageViewController: UIViewController {
         }
     }
     
-    @objc private func forwardButtonTapped() {}
+    @objc private func forwardButtonTapped() {
+        if let url = UserDefaults.standard.string(forKey: "next page") {
+            WVWEBview.load(url)
+        }
+    }
     
     @objc private func closeButtonTapped() {
         self.dismiss(animated: true)
