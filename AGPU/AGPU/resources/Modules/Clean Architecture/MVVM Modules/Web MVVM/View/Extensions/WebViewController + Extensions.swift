@@ -30,6 +30,11 @@ extension WebViewController: WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        
+        DispatchQueue.main.async {
+            self.spinner.stopAnimating()
+        }
+        
         // Предыдущая страница равна текущей странице перед загрузкой новой страницы
         viewModel.previousPage = viewModel.currentPage
         
