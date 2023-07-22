@@ -29,10 +29,10 @@ class AGPUTabBarController: UITabBarController {
         view.backgroundColor = .systemBackground
         UITabBar.appearance().tintColor = UIColor.black
         setUpTabs()
+        settingsManager.checkAllSettings()
         createMiddleButton()
         ObserveForStudent()
         ObserveWebScreen()
-        settingsManager.checkAllSettings()
         ObserveChangeIcon()
         becomeFirstResponder()
     }
@@ -248,6 +248,7 @@ class AGPUTabBarController: UITabBarController {
                 DispatchQueue.main.async {
                     self.DynamicButton.setImage(UIImage(named: icon), for: .normal)
                     self.animation.SpringAnimation(view: self.DynamicButton)
+                    HapticsManager.shared.HapticFeedback()
                 }
             }
         }
@@ -256,6 +257,7 @@ class AGPUTabBarController: UITabBarController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon()), for: .normal)
                 self.animation.SpringAnimation(view: self.DynamicButton)
+                HapticsManager.shared.HapticFeedback()
             }
         }
     }

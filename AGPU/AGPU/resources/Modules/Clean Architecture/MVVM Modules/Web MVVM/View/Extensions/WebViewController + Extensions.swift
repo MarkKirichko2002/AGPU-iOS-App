@@ -30,11 +30,22 @@ extension WebViewController: WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        DispatchQueue.main.async {
-            self.spinner.stopAnimating()
-            if let url = webView.url?.absoluteString {
-                self.viewModel.SaveCurrentPage(url: url, position: CGPoint(x: 0, y: webView.scrollView.contentOffset.y))
+        // Предыдущая страница равна текущей странице перед загрузкой новой страницы
+        viewModel.previousPage = viewModel.currentPage
+        
+        // Сохранение текущего адреса и предыдущей страницы в UserDefaults
+        if let currentURL = webView.url?.absoluteString {
+            if let previousPage = viewModel.previousPage {
+                UserDefaults.standard.set(previousPage, forKey: "previous page")
             }
+            
+            UserDefaults.standard.set(currentURL, forKey: "last page")
+            UserDefaults.standard.synchronize()
+            
+            viewModel.currentPage = currentURL
         }
+        
+        print("Последняя посещенная страница: \(viewModel.currentPage ?? "")")
+        print("Предыдущая посещенная страница: \(viewModel.previousPage ?? "")")
     }
 }

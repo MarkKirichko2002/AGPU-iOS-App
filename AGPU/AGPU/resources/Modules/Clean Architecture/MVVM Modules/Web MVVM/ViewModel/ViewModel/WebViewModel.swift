@@ -9,4 +9,7 @@ import Foundation
 
 class WebViewModel {
     
+    var currentPage: String? // Текущая страница
+    var previousPage: String? // Предыдущая страница
+    
 }
