@@ -31,6 +31,10 @@
 		8228E3992A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E3982A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift */; };
 		8228E39C2A6C920D00C1B6AD /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E39B2A6C920D00C1B6AD /* LocationModel.swift */; };
 		8228E39F2A6C994D00C1B6AD /* AGPUBuildingsMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E39E2A6C994D00C1B6AD /* AGPUBuildingsMapViewModel.swift */; };
+		8228E3A42A6C9D3700C1B6AD /* AGPUBuildingsMapViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E3A32A6C9D3700C1B6AD /* AGPUBuildingsMapViewModelProtocol.swift */; };
+		8228E3A62A6C9DB300C1B6AD /* AGPUBuildingsMapViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E3A52A6C9DB300C1B6AD /* AGPUBuildingsMapViewModel + Extensions.swift */; };
+		8228E3AB2A6C9E3B00C1B6AD /* AGPUCurrentBuildingMapViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E3AA2A6C9E3B00C1B6AD /* AGPUCurrentBuildingMapViewModelProtocol.swift */; };
+		8228E3AD2A6C9E9E00C1B6AD /* AGPUCurrentBuildingMapViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E3AC2A6C9E9E00C1B6AD /* AGPUCurrentBuildingMapViewModel + Extensions.swift */; };
 		82320D812A4913FE00ECADEE /* AGPUFaculties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82320D802A4913FE00ECADEE /* AGPUFaculties.swift */; };
 		82320D832A49167000ECADEE /* AGPUFacultyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82320D822A49167000ECADEE /* AGPUFacultyModel.swift */; };
 		82320D872A491F5700ECADEE /* AGPUFacultyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82320D862A491F5700ECADEE /* AGPUFacultyTableViewCell.swift */; };
@@ -172,6 +176,10 @@
 		8228E3982A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUCurrentBuildingMapViewModel.swift; sourceTree = "<group>"; };
 		8228E39B2A6C920D00C1B6AD /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		8228E39E2A6C994D00C1B6AD /* AGPUBuildingsMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingsMapViewModel.swift; sourceTree = "<group>"; };
+		8228E3A32A6C9D3700C1B6AD /* AGPUBuildingsMapViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingsMapViewModelProtocol.swift; sourceTree = "<group>"; };
+		8228E3A52A6C9DB300C1B6AD /* AGPUBuildingsMapViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUBuildingsMapViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		8228E3AA2A6C9E3B00C1B6AD /* AGPUCurrentBuildingMapViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUCurrentBuildingMapViewModelProtocol.swift; sourceTree = "<group>"; };
+		8228E3AC2A6C9E9E00C1B6AD /* AGPUCurrentBuildingMapViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUCurrentBuildingMapViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82320D802A4913FE00ECADEE /* AGPUFaculties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFaculties.swift; sourceTree = "<group>"; };
 		82320D822A49167000ECADEE /* AGPUFacultyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultyModel.swift; sourceTree = "<group>"; };
 		82320D862A491F5700ECADEE /* AGPUFacultyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultyTableViewCell.swift; sourceTree = "<group>"; };
@@ -600,7 +608,9 @@
 		8228E3972A6C8F2000C1B6AD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				8228E3982A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift */,
+				8228E3A92A6C9E1F00C1B6AD /* Protocol */,
+				8228E3A82A6C9E1D00C1B6AD /* ViewModel */,
+				8228E3A72A6C9E1B00C1B6AD /* Extensions */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -616,9 +626,59 @@
 		8228E39D2A6C98E300C1B6AD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				8228E3A22A6C9D1D00C1B6AD /* Protocol */,
+				8228E3A12A6C9D1B00C1B6AD /* ViewModel */,
+				8228E3A02A6C9D1900C1B6AD /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8228E3A02A6C9D1900C1B6AD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8228E3A52A6C9DB300C1B6AD /* AGPUBuildingsMapViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8228E3A12A6C9D1B00C1B6AD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
 				8228E39E2A6C994D00C1B6AD /* AGPUBuildingsMapViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8228E3A22A6C9D1D00C1B6AD /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				8228E3A32A6C9D3700C1B6AD /* AGPUBuildingsMapViewModelProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		8228E3A72A6C9E1B00C1B6AD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8228E3AC2A6C9E9E00C1B6AD /* AGPUCurrentBuildingMapViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8228E3A82A6C9E1D00C1B6AD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8228E3982A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8228E3A92A6C9E1F00C1B6AD /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				8228E3AA2A6C9E3B00C1B6AD /* AGPUCurrentBuildingMapViewModelProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		82320D7F2A4913E800ECADEE /* AGPU Faculties */ = {
@@ -2328,7 +2388,9 @@
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
 				82BDFDB02A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift in Sources */,
 				82461FEE2A50C493008A8752 /* AppDelegate + Extensions.swift in Sources */,
+				8228E3A42A6C9D3700C1B6AD /* AGPUBuildingsMapViewModelProtocol.swift in Sources */,
 				8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */,
+				8228E3A62A6C9DB300C1B6AD /* AGPUBuildingsMapViewModel + Extensions.swift in Sources */,
 				82C7B8482A50CDB400F9A552 /* FileService + Extensions.swift in Sources */,
 				82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */,
 				8224B4F32A4F1C580069B7B3 /* RealmManager.swift in Sources */,
@@ -2356,6 +2418,7 @@
 				82E4C53C2A6B0FD000F65A67 /* AGPUNewsViewModelProtocol.swift in Sources */,
 				8218F5872A688F8C00C94EB4 /* CustomActivityItemSource.swift in Sources */,
 				82C44DAE2A591915002A3864 /* HapticsManager.swift in Sources */,
+				8228E3AB2A6C9E3B00C1B6AD /* AGPUCurrentBuildingMapViewModelProtocol.swift in Sources */,
 				82C7B84A2A50CE7B00F9A552 /* RealmManager + Extensions.swift in Sources */,
 				82B1CA782A681F1D00D1FBA4 /* SpringImageView + Extensions.swift in Sources */,
 				828DE2B42A5E41C200985737 /* CustomMusicListViewModel.swift in Sources */,
@@ -2419,6 +2482,7 @@
 				82320D872A491F5700ECADEE /* AGPUFacultyTableViewCell.swift in Sources */,
 				8270A54D2A578A0E008ACADC /* AGPUNewsViewModel.swift in Sources */,
 				82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */,
+				8228E3AD2A6C9E9E00C1B6AD /* AGPUCurrentBuildingMapViewModel + Extensions.swift in Sources */,
 				82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */,
 				822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */,
 				8295489C2A43AE7E007DEBA0 /* SettingsManager.swift in Sources */,
