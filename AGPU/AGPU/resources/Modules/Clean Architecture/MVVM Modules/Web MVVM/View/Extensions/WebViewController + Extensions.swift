@@ -40,6 +40,7 @@ extension WebViewController: WKNavigationDelegate {
             }
             
             UserDefaults.standard.set(currentURL, forKey: "last page")
+            UserDefaults.standard.set(currentURL, forKey: "next page")
             UserDefaults.standard.synchronize()
             
             viewModel.currentPage = currentURL
