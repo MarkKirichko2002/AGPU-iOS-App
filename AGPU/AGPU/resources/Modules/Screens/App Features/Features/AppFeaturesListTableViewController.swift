@@ -14,6 +14,11 @@ class AppFeaturesListTableViewController: UITableViewController {
         navigationItem.title = "Фишки"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.post(name: Notification.Name("for student appear"), object: nil)
+    }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
