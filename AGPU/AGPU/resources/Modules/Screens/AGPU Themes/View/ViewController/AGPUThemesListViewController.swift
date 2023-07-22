@@ -21,7 +21,7 @@ class AGPUThemesListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "АГПУ темы"
+        navigationItem.title = "АГПУ обои"
         view.addSubview(collectionView)
         collectionView.frame = view.bounds
         collectionView.delegate = self

@@ -92,6 +92,11 @@
 		82BF4DB42A5FA60D008B751A /* AGPUThemesListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF4DB32A5FA60D008B751A /* AGPUThemesListViewController + Extensions.swift */; };
 		82BF4DB72A5FA807008B751A /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF4DB62A5FA807008B751A /* ImageSaver.swift */; };
 		82C44DAE2A591915002A3864 /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C44DAD2A591915002A3864 /* HapticsManager.swift */; };
+		82C5615D2A6B757C00514B00 /* AppFeatureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C5615C2A6B757C00514B00 /* AppFeatureModel.swift */; };
+		82C5615F2A6B75B700514B00 /* AppFeaturesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C5615E2A6B75B700514B00 /* AppFeaturesList.swift */; };
+		82C561622A6B772600514B00 /* AppFeaturesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C561612A6B772600514B00 /* AppFeaturesListTableViewController.swift */; };
+		82C561672A6B7B0D00514B00 /* AppFeatureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C561662A6B7B0D00514B00 /* AppFeatureDetailViewController.swift */; };
+		82C561692A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82C561682A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard */; };
 		82C7B8402A50C98900F9A552 /* AudioPlayer + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B83F2A50C98900F9A552 /* AudioPlayer + Extensions.swift */; };
 		82C7B8422A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */; };
 		82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8432A50CCB800F9A552 /* AnimationClass + Extensions.swift */; };
@@ -227,6 +232,11 @@
 		82BF4DB32A5FA60D008B751A /* AGPUThemesListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUThemesListViewController + Extensions.swift"; sourceTree = "<group>"; };
 		82BF4DB62A5FA807008B751A /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
 		82C44DAD2A591915002A3864 /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
+		82C5615C2A6B757C00514B00 /* AppFeatureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeatureModel.swift; sourceTree = "<group>"; };
+		82C5615E2A6B75B700514B00 /* AppFeaturesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeaturesList.swift; sourceTree = "<group>"; };
+		82C561612A6B772600514B00 /* AppFeaturesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeaturesListTableViewController.swift; sourceTree = "<group>"; };
+		82C561662A6B7B0D00514B00 /* AppFeatureDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeatureDetailViewController.swift; sourceTree = "<group>"; };
+		82C561682A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppFeatureDetailViewController.storyboard; sourceTree = "<group>"; };
 		82C7B83F2A50C98900F9A552 /* AudioPlayer + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayer + Extensions.swift"; sourceTree = "<group>"; };
 		82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpeechRecognitionManager + Extensions.swift"; sourceTree = "<group>"; };
 		82C7B8432A50CCB800F9A552 /* AnimationClass + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimationClass + Extensions.swift"; sourceTree = "<group>"; };
@@ -921,6 +931,7 @@
 				828CFA342A35F62400C7542D /* TabBar */,
 				82E05D482A5DD52B0060ADAA /* For Student Screen */,
 				82D6C32D2A5E187400FB7F5D /* TimeTable */,
+				82C561602A6B770800514B00 /* App Features */,
 				829522DB2A38AEBE00329713 /* Maps */,
 				82D6C3422A5E33CD00FB7F5D /* Calendar */,
 				82BF4DAE2A5FA50D008B751A /* AGPU Themes */,
@@ -934,6 +945,7 @@
 			isa = PBXGroup;
 			children = (
 				82E05D4B2A5DDBAE0060ADAA /* For Student */,
+				82C561592A6B753500514B00 /* App Features */,
 				820D18E12A68F9BB00BFAA35 /* AGPU Buildings */,
 				82722D402A66460500149D06 /* AGPU Pins */,
 				82EF23D22A3DEEA6004A7B9C /* Sections */,
@@ -1354,6 +1366,57 @@
 				82E4C52A2A6B0E6D00F65A67 /* Extensions */,
 			);
 			path = Haptics;
+			sourceTree = "<group>";
+		};
+		82C561592A6B753500514B00 /* App Features */ = {
+			isa = PBXGroup;
+			children = (
+				82C5615B2A6B755E00514B00 /* Model */,
+				82C5615A2A6B755C00514B00 /* List */,
+			);
+			path = "App Features";
+			sourceTree = "<group>";
+		};
+		82C5615A2A6B755C00514B00 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				82C5615E2A6B75B700514B00 /* AppFeaturesList.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		82C5615B2A6B755E00514B00 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82C5615C2A6B757C00514B00 /* AppFeatureModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82C561602A6B770800514B00 /* App Features */ = {
+			isa = PBXGroup;
+			children = (
+				82C561652A6B7AEA00514B00 /* Features */,
+				82C561642A6B7AE800514B00 /* Feature Detail */,
+			);
+			path = "App Features";
+			sourceTree = "<group>";
+		};
+		82C561642A6B7AE800514B00 /* Feature Detail */ = {
+			isa = PBXGroup;
+			children = (
+				82C561662A6B7B0D00514B00 /* AppFeatureDetailViewController.swift */,
+				82C561682A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard */,
+			);
+			path = "Feature Detail";
+			sourceTree = "<group>";
+		};
+		82C561652A6B7AEA00514B00 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				82C561612A6B772600514B00 /* AppFeaturesListTableViewController.swift */,
+			);
+			path = Features;
 			sourceTree = "<group>";
 		};
 		82D6C32D2A5E187400FB7F5D /* TimeTable */ = {
@@ -2184,6 +2247,7 @@
 				8205367F2A50AE5D0054B756 /* CustomMusicTableViewCell.xib in Resources */,
 				826BADB12A64D5D100022B45 /* AGPULocationDetailViewController.storyboard in Resources */,
 				82D6C33B2A5E282A00FB7F5D /* TimeTableTableViewCell.xib in Resources */,
+				82C561692A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard in Resources */,
 				82808E952A31F12500DEEB16 /* LaunchScreen.storyboard in Resources */,
 				82320D892A491FBC00ECADEE /* AGPUFacultyTableViewCell.xib in Resources */,
 				8224B4D92A4F10B40069B7B3 /* AddMusicViewController.storyboard in Resources */,
@@ -2209,6 +2273,7 @@
 				82BC3CFC2A56EDA000E49332 /* RecentPageViewController.swift in Sources */,
 				8224B4DB2A4F10D80069B7B3 /* AddMusicViewController.swift in Sources */,
 				8241F9852A5F3F73007DF628 /* CalendarViewController + Extensions.swift in Sources */,
+				82C561622A6B772600514B00 /* AppFeaturesListTableViewController.swift in Sources */,
 				82E05D542A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift in Sources */,
 				82BF4DB42A5FA60D008B751A /* AGPUThemesListViewController + Extensions.swift in Sources */,
 				82E4C5582A6B136D00F65A67 /* CustomMusicListViewModelProtocol.swift in Sources */,
@@ -2253,6 +2318,7 @@
 				82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */,
 				82D6C32F2A5E189300FB7F5D /* TimeTableListTableViewController.swift in Sources */,
 				82BC3D002A56F5C400E49332 /* RecentPageViewController + Extensions.swift in Sources */,
+				82C5615D2A6B757C00514B00 /* AppFeatureModel.swift in Sources */,
 				82E05D5D2A5DF36B0060ADAA /* AGPUFacultiesListTableViewController + Extensions.swift in Sources */,
 				82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */,
 				821C9E192A68DE8700EF0030 /* UITableView + Extensions.swift in Sources */,
@@ -2281,6 +2347,7 @@
 				82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */,
 				829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */,
 				8224B4EC2A4F1BB10069B7B3 /* RealmManagerProtocol.swift in Sources */,
+				82C5615F2A6B75B700514B00 /* AppFeaturesList.swift in Sources */,
 				82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */,
 				82875B022A5A198A007DB925 /* HapticsManager + Extensions.swift in Sources */,
 				82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */,
@@ -2293,6 +2360,7 @@
 				82320D832A49167000ECADEE /* AGPUFacultyModel.swift in Sources */,
 				82E4C5662A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift in Sources */,
 				82BF4DB22A5FA5B3008B751A /* AGPUThemeCollectionViewCell.swift in Sources */,
+				82C561672A6B7B0D00514B00 /* AppFeatureDetailViewController.swift in Sources */,
 				82E4C5152A6B0C8F00F65A67 /* ImageSaverProtocol.swift in Sources */,
 				82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */,
 				82E05D4D2A5DDBC70060ADAA /* ForStudentModel.swift in Sources */,

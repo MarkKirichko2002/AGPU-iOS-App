@@ -58,7 +58,7 @@ class ForStudentListTableViewController: UITableViewController {
             self.tabBarController?.tabBar.isHidden = true
             navigationController?.pushViewController(vc, animated: true)
         case 5:
-            let vc = AGPUThemesListViewController()
+            let vc = AppFeaturesListTableViewController()
             self.tabBarController?.tabBar.isHidden = true
             navigationController?.pushViewController(vc, animated: true)
         default:

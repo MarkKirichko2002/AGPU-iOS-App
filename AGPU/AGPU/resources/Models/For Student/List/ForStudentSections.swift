@@ -31,7 +31,7 @@ struct ForStudentSections {
         ),
         ForStudentModel(
             id: 6,
-            name: "АГПУ темы"
+            name: "фишки приложения АГПУ для iOS"
         )
     ]
 }
