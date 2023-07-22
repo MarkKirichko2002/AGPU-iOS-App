@@ -8,6 +8,7 @@
 import Foundation
 
 struct AGPUSubSectionModel: Codable {
+    let id: Int
     let name: String
     let icon: String
     let url: String
