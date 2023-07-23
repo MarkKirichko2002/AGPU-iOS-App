@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class RecentPageViewController: UIViewController {
+final class RecentPageViewController: UIViewController {
     
     var page: RecentPageModel
     
@@ -17,7 +17,9 @@ class RecentPageViewController: UIViewController {
     let spinner = UIActivityIndicatorView(style: .large)
     
     // MARK: - Init
-    init(page: RecentPageModel) {
+    init(
+        page: RecentPageModel
+    ) {
         self.page = page
         super.init(nibName: nil, bundle: nil)
     }

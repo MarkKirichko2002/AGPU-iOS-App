@@ -7,7 +7,7 @@
 
 import MapKit
 
-class AGPUCurrentBuildingMapViewModel {
+final class AGPUCurrentBuildingMapViewModel {
     
     var audienceID: String
     
@@ -17,7 +17,9 @@ class AGPUCurrentBuildingMapViewModel {
     let locationManager = LocationManager()
     
     // MARK: - Init
-    init(audienceID: String) {
+    init(
+        audienceID: String
+    ) {
         self.audienceID = audienceID
     }
 }

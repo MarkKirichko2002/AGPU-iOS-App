@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AGPUSectionsListViewController: UIViewController {
+final class AGPUSectionsListViewController: UIViewController {
 
     // MARK: - UI
     private let tableView = UITableView()

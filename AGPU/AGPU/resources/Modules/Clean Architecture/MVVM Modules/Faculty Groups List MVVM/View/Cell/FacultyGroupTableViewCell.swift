@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FacultyGroupTableViewCell: UITableViewCell {
+final class FacultyGroupTableViewCell: UITableViewCell {
     
     static let identifier = "FacultyGroupTableViewCell"
     

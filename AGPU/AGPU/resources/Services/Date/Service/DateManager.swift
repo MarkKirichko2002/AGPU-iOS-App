@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DateManager {
+final class DateManager {
     
     let date = Date()
     let dateFormatter = DateFormatter()

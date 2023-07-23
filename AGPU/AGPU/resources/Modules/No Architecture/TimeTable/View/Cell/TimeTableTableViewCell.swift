@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TimeTableTableViewCell: UITableViewCell {
+final class TimeTableTableViewCell: UITableViewCell {
     
     static let identifier = "TimeTableTableViewCell"
     private let animation = AnimationClass()

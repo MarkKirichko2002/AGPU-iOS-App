@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AppFeatureDetailViewController: UIViewController {
+final class AppFeatureDetailViewController: UIViewController {
     
     var feature: AppFeatureModel?
     
@@ -15,7 +15,9 @@ class AppFeatureDetailViewController: UIViewController {
     @IBOutlet var FeatureDescription: UITextView!
 
     // MARK: - Init
-    init(feature: AppFeatureModel) {
+    init(
+        feature: AppFeatureModel
+    ) {
         self.feature = feature
         super.init(nibName: nil, bundle: nil)
     }

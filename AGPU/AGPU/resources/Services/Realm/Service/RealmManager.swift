@@ -7,7 +7,7 @@
 
 import RealmSwift
 
-class RealmManager {
+final class RealmManager {
     
     let realm = try! Realm()
     

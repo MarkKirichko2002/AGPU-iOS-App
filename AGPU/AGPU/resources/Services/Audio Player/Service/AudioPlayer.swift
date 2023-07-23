@@ -7,7 +7,7 @@
 
 import AVFoundation
 
-class AudioPlayer: NSObject {
+final class AudioPlayer: NSObject {
     
     var player: AVAudioPlayer?
     

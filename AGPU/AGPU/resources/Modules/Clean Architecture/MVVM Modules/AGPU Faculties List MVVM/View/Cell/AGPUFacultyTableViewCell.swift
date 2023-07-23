@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AGPUFacultyTableViewCell: UITableViewCell {
+final class AGPUFacultyTableViewCell: UITableViewCell {
     
     static let identifier = "AGPUFacultyTableViewCell"
     

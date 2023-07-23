@@ -7,6 +7,6 @@
 
 import Foundation
 
-class ImageSaver: NSObject {
+final class ImageSaver: NSObject {
     
 }

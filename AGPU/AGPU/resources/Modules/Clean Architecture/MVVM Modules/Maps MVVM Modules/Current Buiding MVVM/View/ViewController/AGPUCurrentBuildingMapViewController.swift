@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class AGPUCurrentBuildingMapViewController: UIViewController {
+final class AGPUCurrentBuildingMapViewController: UIViewController {
 
     private var audienceID: String!
     
@@ -19,7 +19,9 @@ class AGPUCurrentBuildingMapViewController: UIViewController {
     private let mapView = MKMapView()
     
     // MARK: - Init
-    init(audienceID: String) {
+    init(
+        audienceID: String
+    ) {
         self.audienceID = audienceID
         self.viewModel = AGPUCurrentBuildingMapViewModel(audienceID: audienceID)
         super.init(nibName: nil, bundle: nil)

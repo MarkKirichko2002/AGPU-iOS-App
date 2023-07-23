@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AGPUTabBarController: UITabBarController {
+final class AGPUTabBarController: UITabBarController {
     
     // MARK: - сервисы
     private let speechRecognitionManager = SpeechRecognitionManager()

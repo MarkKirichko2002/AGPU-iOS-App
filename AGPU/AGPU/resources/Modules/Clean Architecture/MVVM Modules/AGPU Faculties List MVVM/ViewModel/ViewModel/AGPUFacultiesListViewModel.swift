@@ -7,6 +7,6 @@
 
 import UIKit
 
-class AGPUFacultiesListViewModel {
+final class AGPUFacultiesListViewModel {
     
 }

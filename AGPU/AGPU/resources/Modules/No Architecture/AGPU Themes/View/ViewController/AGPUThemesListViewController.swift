@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AGPUThemesListViewController: UIViewController {
+final class AGPUThemesListViewController: UIViewController {
 
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomMusicTableViewCell: UITableViewCell {
+final class CustomMusicTableViewCell: UITableViewCell {
 
     static let identifier = "CustomMusicTableViewCell"
     

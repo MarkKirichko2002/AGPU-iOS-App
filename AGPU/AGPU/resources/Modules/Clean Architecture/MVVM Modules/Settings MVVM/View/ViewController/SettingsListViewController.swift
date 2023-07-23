@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsListViewController: UIViewController {
+final class SettingsListViewController: UIViewController {
    
     // MARK: - сервисы
     @objc let viewModel = SettingsListViewModel()

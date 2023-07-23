@@ -13,7 +13,7 @@ enum ActivityItemType {
     case image
 }
 
-class CustomActivityItemSource: NSObject, UIActivityItemSource {
+final class CustomActivityItemSource: NSObject, UIActivityItemSource {
     
     var title: String
     var text: String

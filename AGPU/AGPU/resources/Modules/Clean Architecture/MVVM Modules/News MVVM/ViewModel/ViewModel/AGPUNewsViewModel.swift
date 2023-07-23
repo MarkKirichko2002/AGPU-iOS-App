@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AGPUNewsViewModel {
+final class AGPUNewsViewModel {
     
     // MARK: - cервисы
     let dateManager = DateManager()

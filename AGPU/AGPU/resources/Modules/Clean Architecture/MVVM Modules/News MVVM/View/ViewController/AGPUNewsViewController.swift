@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class AGPUNewsViewController: UIViewController {
+final class AGPUNewsViewController: UIViewController {
     
     // MARK: - сервисы
     private let viewModel = AGPUNewsViewModel()

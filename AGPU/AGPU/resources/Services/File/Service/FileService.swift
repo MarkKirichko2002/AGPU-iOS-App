@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FileService {
+final class FileService {
     
     weak var delegate: UIDocumentPickerDelegate?
     var vc: UIViewController?
