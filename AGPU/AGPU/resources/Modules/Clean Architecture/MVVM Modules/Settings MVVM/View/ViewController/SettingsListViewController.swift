@@ -25,6 +25,7 @@ class SettingsListViewController: UIViewController {
         view.addSubview(tableView)
         tableView.frame = view.bounds
         tableView.register(UINib(nibName: AGPUFacultyTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AGPUFacultyTableViewCell.identifier)
+        tableView.register(UINib(nibName: ShakeToRecallOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ShakeToRecallOptionTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
     }

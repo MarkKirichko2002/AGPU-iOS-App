@@ -28,6 +28,8 @@
 		8224B4EF2A4F1C420069B7B3 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8224B4EE2A4F1C420069B7B3 /* Realm */; };
 		8224B4F12A4F1C420069B7B3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8224B4F02A4F1C420069B7B3 /* RealmSwift */; };
 		8224B4F32A4F1C580069B7B3 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8224B4F22A4F1C580069B7B3 /* RealmManager.swift */; };
+		822632412A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8226323F2A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift */; };
+		822632422A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822632402A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib */; };
 		8228E3992A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E3982A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift */; };
 		8228E39C2A6C920D00C1B6AD /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E39B2A6C920D00C1B6AD /* LocationModel.swift */; };
 		8228E39F2A6C994D00C1B6AD /* AGPUBuildingsMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E39E2A6C994D00C1B6AD /* AGPUBuildingsMapViewModel.swift */; };
@@ -173,6 +175,8 @@
 		8224B4E52A4F1AF70069B7B3 /* FileServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileServiceProtocol.swift; sourceTree = "<group>"; };
 		8224B4EB2A4F1BB10069B7B3 /* RealmManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManagerProtocol.swift; sourceTree = "<group>"; };
 		8224B4F22A4F1C580069B7B3 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		8226323F2A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeToRecallOptionTableViewCell.swift; sourceTree = "<group>"; };
+		822632402A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShakeToRecallOptionTableViewCell.xib; sourceTree = "<group>"; };
 		8228E3982A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUCurrentBuildingMapViewModel.swift; sourceTree = "<group>"; };
 		8228E39B2A6C920D00C1B6AD /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		8228E39E2A6C994D00C1B6AD /* AGPUBuildingsMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingsMapViewModel.swift; sourceTree = "<group>"; };
@@ -506,6 +510,7 @@
 			isa = PBXGroup;
 			children = (
 				82320D842A491F3700ECADEE /* ViewController */,
+				8226323C2A6CB31C0000E14C /* Cells */,
 				82194E532A459AF2009D2FB3 /* Extensions */,
 			);
 			path = View;
@@ -594,6 +599,15 @@
 				82E4C5282A6B0E5A00F65A67 /* Extensions */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		8226323C2A6CB31C0000E14C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8226323F2A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift */,
+				822632402A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		8228E3962A6C8EFD00C1B6AD /* Maps MVVM Modules */ = {
@@ -2348,6 +2362,7 @@
 				8205367F2A50AE5D0054B756 /* CustomMusicTableViewCell.xib in Resources */,
 				826BADB12A64D5D100022B45 /* AGPULocationDetailViewController.storyboard in Resources */,
 				82D6C33B2A5E282A00FB7F5D /* TimeTableTableViewCell.xib in Resources */,
+				822632422A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib in Resources */,
 				82C561692A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard in Resources */,
 				82808E952A31F12500DEEB16 /* LaunchScreen.storyboard in Resources */,
 				82320D892A491FBC00ECADEE /* AGPUFacultyTableViewCell.xib in Resources */,
@@ -2399,6 +2414,7 @@
 				82721F1C2A574EE100982EF7 /* AGPUNewsViewController + Extensions.swift in Sources */,
 				82BA73B62A579B8D006B67DA /* WebViewModel.swift in Sources */,
 				82E05D512A5DDC4F0060ADAA /* ForStudentSections.swift in Sources */,
+				822632412A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
 				8255ADCC2A672E720012895E /* AGPUSectionsListViewModel.swift in Sources */,

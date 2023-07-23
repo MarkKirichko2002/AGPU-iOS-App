@@ -10,6 +10,10 @@ import UIKit
 // MARK: - SettingsListViewModelProtocol
 extension SettingsListViewModel: SettingsListViewModelProtocol {
     
+    func sectionsCount()->Int {
+        return 2
+    }
+    
     func facultiesListCount()-> Int {
         return AGPUFaculties.faculties.count
     }

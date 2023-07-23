@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShakeToRecallOptionTableViewCell" rowHeight="110" id="v0C-8U-7Tt" customClass="ShakeToRecallOptionTableViewCell" customModule="AGPU" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="430" height="110"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="v0C-8U-7Tt" id="uFH-IT-dZo">
+                <rect key="frame" x="0.0" y="0.0" width="430" height="110"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time.past" translatesAutoresizingMaskIntoConstraints="NO" id="Taf-As-JFV" customClass="RoundedImageView" customModule="QUIZ" customModuleProvider="target">
+                        <rect key="frame" x="30" y="19" width="70" height="70"/>
+                        <color key="tintColor" red="0.0564979439" green="0.0" blue="0.25830120280000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="70" id="CNy-mB-4WQ"/>
+                            <constraint firstAttribute="width" constant="70" id="VGv-MN-jGb"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shake To Recall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqh-nB-i1g">
+                        <rect key="frame" x="116" y="19" width="278" height="20.333333333333329"/>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i1S-ji-5kD">
+                        <rect key="frame" x="116" y="49.333333333333343" width="280" height="31"/>
+                        <connections>
+                            <action selector="switchAction:" destination="v0C-8U-7Tt" eventType="touchUpInside" id="F5x-tO-kgd"/>
+                        </connections>
+                    </switch>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Taf-As-JFV" firstAttribute="top" secondItem="uFH-IT-dZo" secondAttribute="topMargin" constant="8" id="8rK-ex-VCs"/>
+                    <constraint firstItem="i1S-ji-5kD" firstAttribute="top" secondItem="fqh-nB-i1g" secondAttribute="bottom" constant="10" id="Dzz-W1-FFt"/>
+                    <constraint firstItem="fqh-nB-i1g" firstAttribute="leading" secondItem="Taf-As-JFV" secondAttribute="trailing" constant="16" id="FVq-rj-lSK"/>
+                    <constraint firstItem="i1S-ji-5kD" firstAttribute="leading" secondItem="fqh-nB-i1g" secondAttribute="leading" id="U5t-x0-fPS"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Taf-As-JFV" secondAttribute="bottom" constant="8" id="VI2-x6-R1F"/>
+                    <constraint firstItem="fqh-nB-i1g" firstAttribute="top" secondItem="Taf-As-JFV" secondAttribute="top" id="XSG-1Y-6cw"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="fqh-nB-i1g" secondAttribute="trailing" constant="16" id="fnY-jJ-vaO"/>
+                    <constraint firstItem="i1S-ji-5kD" firstAttribute="trailing" secondItem="fqh-nB-i1g" secondAttribute="trailing" id="lQV-Zj-qQY"/>
+                    <constraint firstItem="Taf-As-JFV" firstAttribute="leading" secondItem="uFH-IT-dZo" secondAttribute="leadingMargin" constant="10" id="nbX-lT-edl"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="ShakeToRecallIcon" destination="Taf-As-JFV" id="ERc-Vb-FI2"/>
+                <outlet property="ShakeToRecallLabel" destination="fqh-nB-i1g" id="95I-yU-mK9"/>
+                <outlet property="Switch" destination="i1S-ji-5kD" id="05T-Ox-ke5"/>
+            </connections>
+            <point key="canvasLocation" x="48.854961832061065" y="-12.67605633802817"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="time.past" width="48" height="48"/>
+    </resources>
+</document>

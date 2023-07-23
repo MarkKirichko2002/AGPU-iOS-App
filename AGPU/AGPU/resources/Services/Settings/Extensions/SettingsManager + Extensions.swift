@@ -8,9 +8,11 @@
 import RealmSwift
 import Foundation
 
+// onShakeToRecallOption
+
 // MARK: - SettingsManagerProtocol
 extension SettingsManager: SettingsManagerProtocol {
-    
+   
     // MARK: - Custom Music
     func checkCustomMusicSetting() {
         realmManager.fetchMusicList { music in
@@ -28,6 +30,15 @@ extension SettingsManager: SettingsManagerProtocol {
     func checkCurrentIcon()-> String {
         let icon = UserDefaults.standard.object(forKey: "icon") as? String ?? "АГПУ"
         return icon
+    }
+    
+    // MARK: - Shake To Recall
+    func checkShakeToRecallOption()-> Bool {
+        if let option = UserDefaults.standard.value(forKey: "onShakeToRecallOption") as? Bool {
+            return option
+        } else {
+            return true
+        }
     }
     
     // проверить все настройки
