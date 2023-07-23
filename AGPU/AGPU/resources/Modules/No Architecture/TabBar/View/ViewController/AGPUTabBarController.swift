@@ -87,7 +87,9 @@ class AGPUTabBarController: UITabBarController {
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        ShakeToRecall(motion: motion)
+        if settingsManager.checkShakeToRecallOption() {
+            ShakeToRecall(motion: motion)
+        }
     }
     
     private func ShakeToRecall(motion: UIEvent.EventSubtype) {

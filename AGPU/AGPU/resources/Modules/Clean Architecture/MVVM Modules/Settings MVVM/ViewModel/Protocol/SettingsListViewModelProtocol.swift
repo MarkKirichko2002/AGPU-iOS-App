@@ -8,6 +8,7 @@
 import UIKit
 
 protocol SettingsListViewModelProtocol {
+    func sectionsCount()->Int
     func facultiesListCount()-> Int
     func facultyItem(index: Int)-> AGPUFacultyModel
     func ChooseFaculty(index: Int)

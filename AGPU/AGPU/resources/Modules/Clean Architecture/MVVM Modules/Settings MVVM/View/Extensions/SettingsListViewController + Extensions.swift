@@ -10,22 +10,34 @@ import UIKit
 // MARK: - UITableViewDataSource
 extension SettingsListViewController: UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.sectionsCount()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return AGPUFaculties.faculties.count
         default:
-            return 0
+            return 1
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: AGPUFacultyTableViewCell.identifier, for: indexPath) as? AGPUFacultyTableViewCell else {return UITableViewCell()}
-        cell.accessoryType = viewModel.isFacultySelected(index: indexPath.row)
-        cell.tintColor = .systemGreen
-        cell.AGPUFacultyName.textColor = viewModel.isFacultySelectedColor(index: indexPath.row)
-        cell.configure(faculty: AGPUFaculties.faculties[indexPath.row])
-        return cell
+        switch indexPath.section {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: AGPUFacultyTableViewCell.identifier, for: indexPath) as? AGPUFacultyTableViewCell else {return UITableViewCell()}
+            cell.accessoryType = viewModel.isFacultySelected(index: indexPath.row)
+            cell.tintColor = .systemGreen
+            cell.AGPUFacultyName.textColor = viewModel.isFacultySelectedColor(index: indexPath.row)
+            cell.configure(faculty: AGPUFaculties.faculties[indexPath.row])
+            return cell
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ShakeToRecallOptionTableViewCell.identifier, for: indexPath) as? ShakeToRecallOptionTableViewCell else {return UITableViewCell()}
+            return cell
+        default:
+            return UITableViewCell()
+        }
     }
 }
 
@@ -36,6 +48,8 @@ extension SettingsListViewController: UITableViewDelegate {
         switch section {
         case 0:
             return "Избранный Факультет"
+        case 1:
+            return "Shake To Recall"
         default:
             return ""
         }

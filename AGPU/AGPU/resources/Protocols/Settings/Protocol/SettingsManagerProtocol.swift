@@ -10,5 +10,6 @@ import Foundation
 protocol SettingsManagerProtocol {
     func checkCustomMusicSetting()
     func checkCurrentIcon()-> String
+    func checkShakeToRecallOption()-> Bool
     func checkAllSettings()
 }
