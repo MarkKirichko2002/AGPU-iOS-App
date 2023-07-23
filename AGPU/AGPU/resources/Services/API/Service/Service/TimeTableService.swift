@@ -7,6 +7,6 @@
 
 import Foundation
 
-class TimeTableService {
+final class TimeTableService {
 
 }

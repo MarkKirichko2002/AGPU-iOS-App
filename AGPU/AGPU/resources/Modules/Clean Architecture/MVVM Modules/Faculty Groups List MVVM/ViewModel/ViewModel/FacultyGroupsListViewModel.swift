@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FacultyGroupsListViewModel: NSObject {
+final class FacultyGroupsListViewModel: NSObject {
     
     @objc dynamic var isChanged = false
     var observation: NSKeyValueObservation?

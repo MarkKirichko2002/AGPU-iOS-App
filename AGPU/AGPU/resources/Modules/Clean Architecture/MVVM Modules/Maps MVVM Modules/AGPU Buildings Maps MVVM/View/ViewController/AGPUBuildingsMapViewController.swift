@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class AGPUBuildingsMapViewController: UIViewController {
+final class AGPUBuildingsMapViewController: UIViewController {
     
     // MARK: - сервисы
     private let viewModel = AGPUBuildingsMapViewModel()

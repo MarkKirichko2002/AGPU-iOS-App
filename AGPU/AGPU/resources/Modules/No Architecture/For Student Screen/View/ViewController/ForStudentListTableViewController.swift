@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ForStudentListTableViewController: UITableViewController {
+final class ForStudentListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

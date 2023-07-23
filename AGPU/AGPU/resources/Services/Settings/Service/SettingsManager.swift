@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SettingsManager {
+final class SettingsManager {
     
     let realmManager = RealmManager()
     

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AppFeaturesListTableViewController: UITableViewController {
+final class AppFeaturesListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

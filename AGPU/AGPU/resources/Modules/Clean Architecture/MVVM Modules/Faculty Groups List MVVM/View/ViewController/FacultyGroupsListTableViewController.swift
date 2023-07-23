@@ -7,12 +7,14 @@
 
 import UIKit
 
-class FacultyGroupsListTableViewController: UITableViewController {
+final class FacultyGroupsListTableViewController: UITableViewController {
     
     var faculty: AGPUFacultyModel
     
     // MARK: - Init
-    init(faculty: AGPUFacultyModel) {
+    init(
+        faculty: AGPUFacultyModel
+    ) {
         self.faculty = faculty
         super.init(nibName: nil, bundle: nil)
     }

@@ -7,6 +7,6 @@
 
 import Foundation
 
-class AGPUSectionsListViewModel {
+final class AGPUSectionsListViewModel {
     
 }

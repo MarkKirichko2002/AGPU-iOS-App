@@ -7,7 +7,7 @@
 
 import MapKit
 
-class AGPUBuildingsMapViewModel {
+final class AGPUBuildingsMapViewModel {
     
     var locationHandler: ((LocationModel)->Void)?
     

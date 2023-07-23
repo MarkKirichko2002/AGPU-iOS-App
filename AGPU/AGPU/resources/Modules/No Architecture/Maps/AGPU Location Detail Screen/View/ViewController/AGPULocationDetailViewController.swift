@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class AGPULocationDetailViewController: UIViewController {
+final class AGPULocationDetailViewController: UIViewController {
     
     var annotation: MKAnnotation!
     
@@ -16,7 +16,9 @@ class AGPULocationDetailViewController: UIViewController {
     @IBOutlet var LocationDetail: UILabel!
     
     // MARK: - Init
-    init(annotation: MKAnnotation) {
+    init(
+        annotation: MKAnnotation
+    ) {
         self.annotation = annotation
         super.init(nibName: nil, bundle: nil)
     }
@@ -37,4 +39,3 @@ class AGPULocationDetailViewController: UIViewController {
         mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
     }
 }
-

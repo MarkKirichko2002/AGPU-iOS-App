@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TimeTableListTableViewController: UIViewController {
+final class TimeTableListTableViewController: UIViewController {
     
     private let service = TimeTableService()
     private let dateManager = DateManager()

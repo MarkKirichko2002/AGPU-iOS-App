@@ -8,7 +8,7 @@
 import RealmSwift
 import Foundation
 
-class MusicModel: Object, Codable {
+final class MusicModel: Object, Codable {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var name: String
     @Persisted var image: Data

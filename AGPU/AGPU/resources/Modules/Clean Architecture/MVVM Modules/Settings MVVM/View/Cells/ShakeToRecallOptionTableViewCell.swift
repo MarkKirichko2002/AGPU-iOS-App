@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ShakeToRecallOptionTableViewCell: UITableViewCell {
+final class ShakeToRecallOptionTableViewCell: UITableViewCell {
 
     static let identifier = "ShakeToRecallOptionTableViewCell"
     

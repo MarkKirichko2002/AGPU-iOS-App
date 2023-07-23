@@ -7,7 +7,7 @@
 
 import CoreLocation
 
-class LocationManager: NSObject {
+final class LocationManager: NSObject {
     
     var manager = CLLocationManager()
     

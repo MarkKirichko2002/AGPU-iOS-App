@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomTitleView: UIView {
+final class CustomTitleView: UIView {
     
     var image: String = ""
     var title: String = ""

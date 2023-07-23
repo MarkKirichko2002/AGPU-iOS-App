@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomMusicListViewModel: NSObject {
+final class CustomMusicListViewModel: NSObject {
     
     @objc dynamic var isChanged = false
     var observation: NSKeyValueObservation?

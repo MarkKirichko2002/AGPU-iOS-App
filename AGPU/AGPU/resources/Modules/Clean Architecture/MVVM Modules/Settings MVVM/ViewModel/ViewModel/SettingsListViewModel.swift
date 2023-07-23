@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsListViewModel: NSObject {
+final class SettingsListViewModel: NSObject {
     
     @objc dynamic var isChanged = false
     

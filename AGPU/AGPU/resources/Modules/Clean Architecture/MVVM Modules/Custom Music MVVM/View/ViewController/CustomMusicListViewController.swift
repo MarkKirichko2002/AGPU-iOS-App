@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomMusicListViewController: UITableViewController {
+final class CustomMusicListViewController: UITableViewController {
 
     // MARK: - сервисы
     @objc private let viewModel = CustomMusicListViewModel()

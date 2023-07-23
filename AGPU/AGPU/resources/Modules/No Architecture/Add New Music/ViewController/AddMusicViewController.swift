@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddMusicViewController: UIViewController {
+final class AddMusicViewController: UIViewController {
 
     var music = MusicModel()
     var image = UIImage()

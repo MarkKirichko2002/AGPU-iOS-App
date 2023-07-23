@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SpringImageView: UIImageView {
+final class SpringImageView: UIImageView {
     
     private let animation = AnimationClass()
     var isInteraction = true

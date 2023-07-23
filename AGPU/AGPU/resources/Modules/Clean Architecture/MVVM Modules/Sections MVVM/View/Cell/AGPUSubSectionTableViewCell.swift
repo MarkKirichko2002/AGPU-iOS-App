@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AGPUSubSectionTableViewCell: UITableViewCell {
+final class AGPUSubSectionTableViewCell: UITableViewCell {
     
     static let identifier = "AGPUSubSectionTableViewCell"
     
@@ -20,7 +20,10 @@ class AGPUSubSectionTableViewCell: UITableViewCell {
     }()
     
     // MARK: - Init
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    override init(
+        style: UITableViewCell.CellStyle,
+        reuseIdentifier: String?
+    ) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(AGPUSubSectionTitle)
         self.backgroundColor = .clear

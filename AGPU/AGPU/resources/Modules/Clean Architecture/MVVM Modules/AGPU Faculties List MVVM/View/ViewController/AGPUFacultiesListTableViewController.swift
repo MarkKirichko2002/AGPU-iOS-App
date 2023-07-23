@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AGPUFacultiesListTableViewController: UITableViewController {
+final class AGPUFacultiesListTableViewController: UITableViewController {
 
     private let viewModel = AGPUFacultiesListViewModel()
     

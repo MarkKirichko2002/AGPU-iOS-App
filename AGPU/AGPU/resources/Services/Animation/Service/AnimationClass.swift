@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AnimationClass {
+final class AnimationClass {
     
     let rotationAnimation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
     
