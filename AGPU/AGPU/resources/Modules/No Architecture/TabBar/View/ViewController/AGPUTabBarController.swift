@@ -33,7 +33,7 @@ final class AGPUTabBarController: UITabBarController {
         createMiddleButton()
         ObserveForStudent()
         ObserveWebScreen()
-        ObserveChangeIcon()
+        ObserveFaculty()
         becomeFirstResponder()
     }
     
@@ -89,6 +89,22 @@ final class AGPUTabBarController: UITabBarController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if settingsManager.checkShakeToRecallOption() {
             ShakeToRecall(motion: motion)
+        } else {
+            DispatchQueue.main.async {
+                self.DynamicButton.setImage(UIImage(named: "info icon"), for: .normal)
+                self.animation.SpringAnimation(view: self.DynamicButton)
+                HapticsManager.shared.HapticFeedback()
+            }
+            
+            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+                let ok = UIAlertAction(title: "ОК", style: .default)
+                self.ShowAlert(title: "Вы отключили фишку Shake To Recall!", message: "чтобы дальше пользоваться данной фишкой включите ее в настройках.", actions: [ok])
+                DispatchQueue.main.async {
+                    self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon()), for: .normal)
+                    self.animation.SpringAnimation(view: self.DynamicButton)
+                    HapticsManager.shared.HapticFeedback()
+                }
+            }
         }
     }
     
@@ -286,7 +302,7 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     // MARK: - Elected Faculty
-    private func ObserveChangeIcon() {
+    private func ObserveFaculty() {
         NotificationCenter.default.addObserver(forName: Notification.Name("faculty"), object: nil, queue: .main) { notification in
             if let icon = notification.object as? AGPUFacultyModel {
                 DispatchQueue.main.async {
@@ -300,6 +316,20 @@ final class AGPUTabBarController: UITabBarController {
                     self.animation.SpringAnimation(view: self.DynamicButton)
                     HapticsManager.shared.HapticFeedback()
                 }
+            }
+        }
+        NotificationCenter.default.addObserver(forName: Notification.Name("group"), object: nil, queue: .main) { notification in
+            
+            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+                self.DynamicButton.setImage(UIImage(named: "lock"), for: .normal)
+                self.animation.SpringAnimation(view: self.DynamicButton)
+                HapticsManager.shared.HapticFeedback()
+            }
+            
+            Timer.scheduledTimer(withTimeInterval: 2.5, repeats: false) { _ in
+                self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon()), for: .normal)
+                self.animation.SpringAnimation(view: self.DynamicButton)
+                HapticsManager.shared.HapticFeedback()
             }
         }
     }

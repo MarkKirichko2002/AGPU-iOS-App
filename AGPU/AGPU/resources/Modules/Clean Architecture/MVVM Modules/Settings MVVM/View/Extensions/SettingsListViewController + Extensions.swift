@@ -74,6 +74,7 @@ extension SettingsListViewController: UITableViewDelegate {
                         let vc = FacultyGroupsListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
                         self.navigationController?.pushViewController(vc, animated: true)
                     } else {
+                        NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
                         let ok = UIAlertAction(title: "ОК", style: .default)
                         self.ShowAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать группу факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
                     }
