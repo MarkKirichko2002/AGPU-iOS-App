@@ -41,7 +41,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
                 self.PlayVideo(url: self.viewModel.facultyItem(index: indexPath.row).videoURL)
             }
             
-            //let phoneAction = self.viewModel.makePhoneNumbersMenu(index: indexPath.row)
+            let phoneAction = self.viewModel.makePhoneNumbersMenu(index: indexPath.row)
             
             let groupsAction = UIAction(title: "список групп", image: UIImage(named: "group")) { _ in
                 let vc = FacultyGroupsListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
@@ -66,7 +66,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
                 cathedraAction,
                 watchVideoAction,
                 emailAction,
-                //phoneAction,
+                phoneAction,
                 groupsAction,
                 enterAction,
                 shareAction
