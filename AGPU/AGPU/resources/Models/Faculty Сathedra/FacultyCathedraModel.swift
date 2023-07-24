@@ -10,4 +10,5 @@ import Foundation
 struct FacultyCathedraModel: Codable {
     let name: String
     let url: String
+    let address: String
 }
