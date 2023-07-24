@@ -29,13 +29,28 @@ class FacultyCathedraListTableViewController: UITableViewController {
         tableView.register(UINib(nibName: FacultyCathedraTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyCathedraTableViewCell.identifier)
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return faculty.cathedra.count
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil,
+                                          previewProvider: nil,
+                                          actionProvider: {
+            _ in
+            
+            let infoAction = UIAction(title: "узнать больше", image: UIImage(named: "info")) { _ in
+                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].url, title: "Кафедра \(self.faculty.abbreviation)", isSheet: true)
+            }
+            
+            return UIMenu(title: self.faculty.cathedra[indexPath.row].name, children: [
+                infoAction
+            ])
+        })
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
-        self.GoToWeb(url: faculty.cathedra[indexPath.row].url, title: "Кафедра \(faculty.abbreviation)", isSheet: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return faculty.cathedra.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
