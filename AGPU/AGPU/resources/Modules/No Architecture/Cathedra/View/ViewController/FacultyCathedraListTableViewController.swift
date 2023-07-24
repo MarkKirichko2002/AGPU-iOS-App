@@ -45,7 +45,7 @@ class FacultyCathedraListTableViewController: UITableViewController {
             }
             
             let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
-                self.shareInfo(image: UIImage(named: self.faculty.icon)!, title: self.faculty.abbreviation, text: self.faculty.cathedra[indexPath.row].name)
+                self.shareInfo(image: UIImage(named: self.faculty.icon)!, title: self.faculty.abbreviation, text: self.faculty.cathedra[indexPath.row].url)
             }
             
             return UIMenu(title: self.faculty.cathedra[indexPath.row].name, children: [

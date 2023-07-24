@@ -49,7 +49,7 @@ final class AGPUTabBarController: UITabBarController {
         // студенту
         let studentVC = ForStudentListTableViewController()
         // обои
-        let themesVC = AGPUThemesListViewController()
+        let themesVC = AGPUWallpapersListViewController()
         // настройки
         let settingsVC = SettingsListViewController()
         // новости

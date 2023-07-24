@@ -1,5 +1,5 @@
 //
-//  AGPUThemesListViewController.swift
+//  AGPUWallpapersListViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 13.07.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AGPUThemesListViewController: UIViewController {
+final class AGPUWallpapersListViewController: UIViewController {
 
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -15,7 +15,7 @@ final class AGPUThemesListViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(AGPUThemeCollectionViewCell.self, forCellWithReuseIdentifier: AGPUThemeCollectionViewCell.identifier)
+        collectionView.register(AGPUWallpaperCollectionViewCell.self, forCellWithReuseIdentifier: AGPUWallpaperCollectionViewCell.identifier)
         return collectionView
     }()
     

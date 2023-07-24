@@ -25,7 +25,7 @@ final class AppFeaturesListTableViewController: UITableViewController {
         let storyboard = UIStoryboard(name: "AppFeatureDetailViewController", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "AppFeatureDetailViewController") as? AppFeatureDetailViewController {
             vc.feature = AppFeaturesList.features[indexPath.row]
-            navigationController?.pushViewController(vc, animated: true)
+            self.present(vc, animated: true)
         }
     }
     
