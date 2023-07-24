@@ -8,18 +8,22 @@
 import Foundation
 
 struct AGPUFaculties {
+    
     static let faculties = [
+        
         AGPUFacultyModel(
             id: 1,
             name: "Институт русской и иностранной филологии",
             cathedra: [
                 FacultyCathedraModel(
                     name: "Кафедра русского языка, литературы и методики их преподавания",
-                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/iriif/kafedra-ryalimip/index.php"
+                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/iriif/kafedra-ryalimip/index.php",
+                    address: "ул.Р.Люксембург, 159"
                 ),
                 FacultyCathedraModel(
                     name: "Кафедра иностранных языков и методики их преподавания",
-                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/iriif/kafedra-iyaimip/index.php"
+                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/iriif/kafedra-iyaimip/index.php",
+                    address: "ул. Р. Люксембург 159"
                 ),
             ],
             icon: "icon1",
@@ -38,11 +42,13 @@ struct AGPUFaculties {
             cathedra: [
                 FacultyCathedraModel(
                     name: "Кафедра математики, физики и методики их преподавания",
-                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/ipimif/kafedra-mfimip/index.php"
+                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/ipimif/kafedra-mfimip/index.php",
+                    address: "ул. Р.Люксембург, 159"
                 ),
                 FacultyCathedraModel(
                     name: "Кафедра информатики и информационных технологий обучения",
-                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/ipimif/kafedra-infiITO/index.php"
+                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/ipimif/kafedra-infiITO/index.php",
+                    address: "ул. Р. Люксембург 159"
                 ),
             ],
             icon: "icon2",
@@ -61,11 +67,13 @@ struct AGPUFaculties {
             cathedra: [
                 FacultyCathedraModel(
                     name: "Кафедра социальной, специальной педагогики и психологии",
-                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/spf/kafedra-sspip/index.php"
+                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/spf/kafedra-sspip/index.php",
+                    address: "ул. Ленина, 79"
                 ),
                 FacultyCathedraModel(
                     name: "Кафедра физической культуры и медико-биологических дисциплин",
-                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/spf/kafedra-fkimbd/index.php"
+                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/spf/kafedra-fkimbd/index.php",
+                    address: "ул. П. Осипенко, 83/1"
                 ),
             ],
             icon: "icon3",
@@ -84,11 +92,13 @@ struct AGPUFaculties {
             cathedra: [
                 FacultyCathedraModel(
                     name: "Кафедра теории, истории педагогики и образовательной практики",
-                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/fdino/kafedra-tipiop/index.php"
+                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/fdino/kafedra-tipiop/index.php",
+                    address: "ул. Р. Люксембург 159"
                 ),
                 FacultyCathedraModel(
                     name: "Кафедра педагогики и технологий дошкольного и начального образования",
-                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/fdino/kafedra-pitdino/index.php"
+                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/fdino/kafedra-pitdino/index.php",
+                    address: "ул. Р. Люксембург 159"
                 ),
             ],
             icon: "icon4",
@@ -107,11 +117,13 @@ struct AGPUFaculties {
             cathedra: [
                 FacultyCathedraModel(
                     name: "Кафедра технологии и дизайна",
-                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/fteid/kafedra-tid/index.php"
+                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/fteid/kafedra-tid/index.php",
+                    address: "ул. Комсомольская, 93"
                 ),
                 FacultyCathedraModel(
                     name: "Кафедра экономики и управления",
-                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/fteid/kafedra-eiu/index.php"
+                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/fteid/kafedra-eiu/index.php",
+                    address: "ул. Комсомольская, 93"
                 ),
             ],
             icon: "icon5",
@@ -130,11 +142,13 @@ struct AGPUFaculties {
             cathedra: [
                 FacultyCathedraModel(
                     name: "Кафедра всеобщей и отечественной истории",
-                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/istfak/kafedra-vioi/index.php"
+                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/istfak/kafedra-vioi/index.php",
+                    address: "ул. Володарского 120б"
                 ),
                 FacultyCathedraModel(
                     name: "Кафедра философии, права и социально-гуманитарных наук",
-                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/istfak/kafedra-fpisgn/index.php"
+                    url: "http://test.agpu.net/struktura-vuza/faculties-institutes/istfak/kafedra-fpisgn/index.php",
+                    address: "ул. Володарского, д. 120 б"
                 ),
             ],
             icon: "icon6",

@@ -9,4 +9,5 @@ import CoreLocation
 
 protocol LocationManagerProtocol {
     func GetLocations()
+    func getCoordinatesFromAddress(address: String, completion: @escaping (CLLocationCoordinate2D?, Error?) -> Void)
 }

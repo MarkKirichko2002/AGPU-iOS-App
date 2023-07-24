@@ -16,6 +16,19 @@ extension LocationManager: LocationManagerProtocol {
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
     }
+    
+    func getCoordinatesFromAddress(address: String, completion: @escaping (CLLocationCoordinate2D?, Error?) -> Void) {
+        let geocoder = CLGeocoder()
+        
+        geocoder.geocodeAddressString(address) { (placemarks, error) in
+            guard let placemark = placemarks?.first, let location = placemark.location else {
+                completion(nil, error)
+                return
+            }
+            
+            completion(location.coordinate, nil)
+        }
+    }
 }
 
 // MARK: - CLLocationManagerDelegate
