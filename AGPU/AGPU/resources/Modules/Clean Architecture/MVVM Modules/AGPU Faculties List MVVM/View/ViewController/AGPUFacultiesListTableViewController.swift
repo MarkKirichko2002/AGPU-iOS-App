@@ -13,7 +13,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "АГПУ Факультеты"
+        self.navigationItem.title = "Факультеты"
         tableView.register(UINib(nibName: AGPUFacultyTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AGPUFacultyTableViewCell.identifier)
     }
     
@@ -32,11 +32,16 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
                 self.GoToWeb(url: self.viewModel.facultyItem(index: indexPath.row).url, title: self.viewModel.facultyItem(index: indexPath.row).abbreviation, isSheet: true)
             }
             
+            let cathedraAction = UIAction(title: "кафедры", image: UIImage(named: "university")) { _ in
+                let vc = FacultyCathedraListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
             let watchVideoAction =  UIAction(title: "смотреть видео", image: UIImage(named: "video")) { _ in
                 self.PlayVideo(url: self.viewModel.facultyItem(index: indexPath.row).videoURL)
             }
             
-            let phoneAction = self.viewModel.makePhoneNumbersMenu(index: indexPath.row)
+            //let phoneAction = self.viewModel.makePhoneNumbersMenu(index: indexPath.row)
             
             let groupsAction = UIAction(title: "список групп", image: UIImage(named: "group")) { _ in
                 let vc = FacultyGroupsListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
@@ -58,9 +63,10 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
             
             return UIMenu(title: self.viewModel.facultyItem(index: indexPath.row).name, children: [
                 infoAction,
+                cathedraAction,
                 watchVideoAction,
                 emailAction,
-                phoneAction,
+                //phoneAction,
                 groupsAction,
                 enterAction,
                 shareAction
