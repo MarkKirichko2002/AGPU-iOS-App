@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FacultyCathedraTableViewCell" rowHeight="126" id="2ty-P3-XoF" customClass="FacultyCathedraTableViewCell" customModule="AGPU" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="126"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2ty-P3-XoF" id="kYz-C1-hiR">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="126"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon2" translatesAutoresizingMaskIntoConstraints="NO" id="pWJ-3H-VqH" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
+                        <rect key="frame" x="10" y="10" width="100" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="PX8-TI-abR"/>
+                            <constraint firstAttribute="height" constant="100" id="ZQt-VT-hgw"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Кафедра информатики и информационных технологий обучения" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCy-ta-pao">
+                        <rect key="frame" x="120" y="25" width="263" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="bz1-aH-Lmn"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="yCy-ta-pao" firstAttribute="top" secondItem="kYz-C1-hiR" secondAttribute="top" constant="25" id="Ey4-pl-sy6"/>
+                    <constraint firstItem="pWJ-3H-VqH" firstAttribute="top" secondItem="kYz-C1-hiR" secondAttribute="top" constant="10" id="VsQ-9H-oSG"/>
+                    <constraint firstItem="yCy-ta-pao" firstAttribute="leading" secondItem="pWJ-3H-VqH" secondAttribute="trailing" constant="10" id="XLB-rI-uUe"/>
+                    <constraint firstAttribute="bottom" secondItem="pWJ-3H-VqH" secondAttribute="bottom" constant="10" id="bux-OX-6ta"/>
+                    <constraint firstAttribute="trailing" secondItem="yCy-ta-pao" secondAttribute="trailing" constant="10" id="vQp-CX-Zi8"/>
+                    <constraint firstItem="pWJ-3H-VqH" firstAttribute="leading" secondItem="kYz-C1-hiR" secondAttribute="leading" constant="10" id="xsk-aG-tN5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="CathedraName" destination="yCy-ta-pao" id="nEi-n3-5Kc"/>
+                <outlet property="FacultyIcon" destination="pWJ-3H-VqH" id="B7y-9q-tpX"/>
+            </connections>
+            <point key="canvasLocation" x="183.96946564885496" y="10.563380281690142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon2" width="300" height="320"/>
+    </resources>
+</document>
