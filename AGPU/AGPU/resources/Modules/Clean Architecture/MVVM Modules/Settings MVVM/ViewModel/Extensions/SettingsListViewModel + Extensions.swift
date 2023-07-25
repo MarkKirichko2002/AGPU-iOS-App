@@ -29,10 +29,12 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
             NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
         }
-        UserDefaults.standard.setValue(faculty.icon, forKey: "icon")
         UserDefaults.SaveData(object: faculty, key: "faculty") {
             self.isChanged.toggle()
         }
+        UserDefaults.standard.setValue(faculty.icon, forKey: "icon")
+        UserDefaults.standard.setValue(nil, forKey: "group")
+        UserDefaults.standard.setValue(nil, forKey: "cathedra")
     }
     
     func CancelFaculty(index: Int) {
@@ -50,6 +52,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
                 }
                 UserDefaults.standard.setValue(nil, forKey: "icon")
                 UserDefaults.standard.setValue(nil, forKey: "group")
+                UserDefaults.standard.setValue(nil, forKey: "cathedra")
             }
         }
     }
