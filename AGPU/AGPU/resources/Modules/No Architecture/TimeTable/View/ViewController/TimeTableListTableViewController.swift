@@ -31,11 +31,6 @@ final class TimeTableListTableViewController: UIViewController {
         GetTimeTable(group: group, date: date)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        NotificationCenter.default.post(name: Notification.Name("for student appear"), object: nil)
-    }
-    
     private func SetUpNavigation() {
         
         navigationItem.title = "Расписание"
