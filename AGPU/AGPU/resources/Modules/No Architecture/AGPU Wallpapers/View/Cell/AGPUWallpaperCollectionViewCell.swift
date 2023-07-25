@@ -1,5 +1,5 @@
 //
-//  AGPUThemeCollectionViewCell.swift
+//  AGPUWallpaperCollectionViewCell.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 13.07.2023.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class AGPUThemeCollectionViewCell: UICollectionViewCell {
+final class AGPUWallpaperCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "AGPUThemeCollectionViewCell"
+    static let identifier = "AGPUWallpaperCollectionViewCell"
     
     let imageView: UIImageView = {
        let imageView = UIImageView()
@@ -37,9 +37,6 @@ final class AGPUThemeCollectionViewCell: UICollectionViewCell {
     private func setUpLayer() {
         contentView.layer.cornerRadius = 8
         contentView.layer.shadowColor = UIColor.label.cgColor
-        contentView.layer.cornerRadius = 4
-        contentView.layer.shadowOffset = CGSize(width: -4, height: -4)
-        contentView.layer.shadowOpacity = 0.3
     }
     
     private func addConstaints() {
