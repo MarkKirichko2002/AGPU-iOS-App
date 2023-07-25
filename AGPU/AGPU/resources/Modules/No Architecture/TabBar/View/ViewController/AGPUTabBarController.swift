@@ -28,6 +28,7 @@ final class AGPUTabBarController: UITabBarController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         UITabBar.appearance().tintColor = UIColor.black
+        UITabBar.appearance().backgroundColor = UIColor.white
         setUpTabs()
         settingsManager.checkAllSettings()
         createMiddleButton()
