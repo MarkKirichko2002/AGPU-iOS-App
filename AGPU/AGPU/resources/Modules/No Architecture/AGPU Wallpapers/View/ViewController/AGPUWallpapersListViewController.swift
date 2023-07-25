@@ -27,4 +27,9 @@ final class AGPUWallpapersListViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.post(name: Notification.Name("for student appear"), object: nil)
+    }
 }
