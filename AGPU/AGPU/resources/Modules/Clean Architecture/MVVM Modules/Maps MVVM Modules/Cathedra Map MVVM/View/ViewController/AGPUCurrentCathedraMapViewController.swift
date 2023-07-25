@@ -10,7 +10,7 @@ import MapKit
 
 class AGPUCurrentCathedraMapViewController: UIViewController {
 
-    private var address: String!
+    var cathedra: FacultyCathedraModel!
     
     // MARK: - сервисы
     private var viewModel: AGPUCurrentCathedraMapViewModel!
@@ -20,10 +20,10 @@ class AGPUCurrentCathedraMapViewController: UIViewController {
     
     // MARK: - Init
     init(
-        address: String
+        cathedra: FacultyCathedraModel
     ) {
-        self.address = address
-        self.viewModel = AGPUCurrentCathedraMapViewModel(address: address)
+        self.cathedra = cathedra
+        self.viewModel = AGPUCurrentCathedraMapViewModel(cathedra: cathedra)
         super.init(nibName: nil, bundle: nil)
     }
     
