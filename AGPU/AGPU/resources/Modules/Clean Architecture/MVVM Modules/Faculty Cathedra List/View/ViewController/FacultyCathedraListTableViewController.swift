@@ -11,11 +11,14 @@ class FacultyCathedraListTableViewController: UITableViewController {
     
     var faculty: AGPUFacultyModel
     
+    @objc private let viewModel: FacultyCathedraListViewModel!
+    
     // MARK: - Init
     init(
         faculty: AGPUFacultyModel
     ) {
         self.faculty = faculty
+        self.viewModel = FacultyCathedraListViewModel(faculty: faculty)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -27,8 +30,14 @@ class FacultyCathedraListTableViewController: UITableViewController {
         super.viewDidLoad()
         navigationItem.title = "Кафедры \(faculty.abbreviation)"
         tableView.register(UINib(nibName: FacultyCathedraTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyCathedraTableViewCell.identifier)
+        BindViewModel()
     }
     
+    private func BindViewModel() {
+        viewModel.observation = observe(\.viewModel.isChanged) { _, _ in
+            self.tableView.reloadData()
+        }
+    }
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil,
                                           previewProvider: nil,
@@ -62,6 +71,7 @@ class FacultyCathedraListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.SelectCathedra(index: indexPath.row)
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -71,6 +81,9 @@ class FacultyCathedraListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FacultyCathedraTableViewCell.identifier, for: indexPath) as? FacultyCathedraTableViewCell else {return UITableViewCell()}
+        cell.tintColor = .systemGreen
+        cell.accessoryType = viewModel.isCathedraSelected(index: indexPath.row)
+        cell.CathedraName.textColor = viewModel.isCathedraSelectedColor(index: indexPath.row)
         cell.configure(cathedra: faculty.cathedra[indexPath.row], faculty: faculty)
         return cell
     }

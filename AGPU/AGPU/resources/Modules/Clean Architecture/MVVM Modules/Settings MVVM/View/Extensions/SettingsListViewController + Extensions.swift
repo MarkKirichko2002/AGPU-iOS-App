@@ -69,6 +69,17 @@ extension SettingsListViewController: UITableViewDelegate {
                     self.viewModel.ChooseFaculty(index: indexPath.row)
                 }
                 
+                let cathedraAction = UIAction(title: "выбрать кафедру", image: UIImage(named: "university")) { action in
+                    if self.viewModel.isFacultySelected(index: indexPath.row) {
+                        let vc = FacultyCathedraListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    } else {
+                        NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
+                        let ok = UIAlertAction(title: "ОК", style: .default)
+                        self.ShowAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать кафедру факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
+                    }
+                }
+                
                 let checkGroupAction = UIAction(title: "выбрать группу", image: UIImage(named: "group")) { _ in
                     if self.viewModel.isFacultySelected(index: indexPath.row) {
                         let vc = FacultyGroupsListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
@@ -84,7 +95,12 @@ extension SettingsListViewController: UITableViewDelegate {
                     self.viewModel.CancelFaculty(index: indexPath.row)
                 }
                 
-                return UIMenu(title: self.viewModel.facultyItem(index: indexPath.row).name, children: [chooseAction, checkGroupAction, cancelAction])
+                return UIMenu(title: self.viewModel.facultyItem(index: indexPath.row).name, children: [
+                    chooseAction,
+                    cathedraAction,
+                    checkGroupAction,
+                    cancelAction
+                ])
                 
             default:
                 return nil
