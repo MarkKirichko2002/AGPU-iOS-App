@@ -13,11 +13,11 @@ class AGPUCurrentCathedraMapViewModel {
     
     private let locationManager = LocationManager()
     
-    private var address: String = ""
+    private var cathedra: FacultyCathedraModel!
     
     // MARK: - Init
-    init(address: String) {
-        self.address = address
+    init(cathedra: FacultyCathedraModel) {
+        self.cathedra = cathedra
     }
     
     func registerLocationHandler(block: @escaping(LocationModel)->Void) {
@@ -52,14 +52,15 @@ class AGPUCurrentCathedraMapViewModel {
             
             // кафедра
             
-            self.locationManager.getCoordinatesFromAddress(address: self.address) { location, error in
+            self.locationManager.getCoordinatesFromAddress(address: self.cathedra.address) { location, error in
                 if let error = error {
                     print(error)
                 }
                 if let location = location {
                     let cathedraLocation = location
                     let cathedraPin = MKPointAnnotation(__coordinate: cathedraLocation)
-                    cathedraPin.title = "Кафедра"
+                    cathedraPin.title = self.cathedra.name
+                    cathedraPin.subtitle = self.cathedra.address
                     
                     let location = LocationModel(region: region, pins: [currentpin, cathedraPin])
                     

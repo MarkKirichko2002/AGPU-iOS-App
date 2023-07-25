@@ -53,7 +53,7 @@ class FacultyCathedraListTableViewController: UITableViewController {
             }
             
             let mapAction = UIAction(title: "найти кафедру", image: UIImage(named: "search")) { _ in
-                let vc = AGPUCurrentCathedraMapViewController(address: self.faculty.cathedra[indexPath.row].address)
+                let vc = AGPUCurrentCathedraMapViewController(cathedra: self.faculty.cathedra[indexPath.row])
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
