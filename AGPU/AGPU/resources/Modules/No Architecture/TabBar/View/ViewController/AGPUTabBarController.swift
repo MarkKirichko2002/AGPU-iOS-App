@@ -46,24 +46,24 @@ final class AGPUTabBarController: UITabBarController {
         let newsVC = AGPUNewsViewController()
         // кнопка
         let middleButton = UIViewController()
+        // расписание
+        let timetableVC = TimeTableListTableViewController()
         // студенту
         let studentVC = ForStudentListTableViewController()
-        // обои
-        let themesVC = AGPUWallpapersListViewController()
         // настройки
         let settingsVC = SettingsListViewController()
         // новости
         newsVC.tabBarItem = UITabBarItem(title: "Новости", image: UIImage(systemName: "newspaper"), selectedImage: UIImage(systemName: "newspaper.fill"))
-        // студенту
+        // cтуденту
         studentVC.tabBarItem = UITabBarItem(title: "Студенту", image: UIImage(named: "applicant"), selectedImage: UIImage(named: "applicant selected"))
-        // своя музыка
-        themesVC.tabBarItem = UITabBarItem(title: "Обои", image: UIImage(named: "photo"), selectedImage: UIImage(named: "photo"))
+        // расписание
+        timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: UIImage(named: "calendar"), selectedImage: UIImage(named: "calendar selected"))
         // настройки
         settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear.fill"))
         settingsVC.navigationItem.title = "Настройки"
         let nav1VC = UINavigationController(rootViewController: newsVC)
         let nav2VC = UINavigationController(rootViewController: studentVC)
-        let nav3VC = UINavigationController(rootViewController: themesVC)
+        let nav3VC = UINavigationController(rootViewController: timetableVC)
         let nav4VC = UINavigationController(rootViewController: settingsVC)
         
         setViewControllers([nav1VC, nav2VC, middleButton, nav3VC, nav4VC], animated: true)

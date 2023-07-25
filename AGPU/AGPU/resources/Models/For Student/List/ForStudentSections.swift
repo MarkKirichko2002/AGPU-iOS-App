@@ -13,36 +13,31 @@ struct ForStudentSections {
         
         ForStudentModel(
             id: 1,
-            icon: "timetable icon",
-            name: "расписание"
-        ),
-        ForStudentModel(
-            id: 2,
             icon: "map icon",
             name: "найти «АГПУ»"
         ),
         ForStudentModel(
-            id: 3,
+            id: 2,
             icon: "university",
             name: "факультеты и кафедры"
         ),
         ForStudentModel(
-            id: 4,
-            icon: "manual",
+            id: 3,
+            icon: "book",
             name: "методические материалы"
         ),
         ForStudentModel(
-            id: 5,
+            id: 4,
             icon: "people",
             name: "кампус и общежития"
         ),
         ForStudentModel(
-            id: 6,
+            id: 5,
             icon: "sections icon",
             name: "разделы"
         ),
         ForStudentModel(
-            id: 7,
+            id: 6,
             icon: "АГПУ",
             name: "фишки приложения АГПУ для iOS"
         )
