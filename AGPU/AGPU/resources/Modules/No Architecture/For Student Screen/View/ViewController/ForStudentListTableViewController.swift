@@ -8,7 +8,7 @@
 import UIKit
 
 final class ForStudentListTableViewController: UITableViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         SetUpNavigation()
@@ -31,11 +31,11 @@ final class ForStudentListTableViewController: UITableViewController {
     
     private func SetUpTable() {
         tableView.register(
-            UITableViewCell.self,
-            forCellReuseIdentifier: "cell"
+            UINib(nibName: ForStudentTableViewCell.identifier, bundle: nil),
+            forCellReuseIdentifier: ForStudentTableViewCell.identifier
         )
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
@@ -83,6 +83,14 @@ final class ForStudentListTableViewController: UITableViewController {
         case 5:
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+                let vc = AGPUWallpapersListViewController()
+                self.tabBarController?.tabBar.isHidden = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+        case 6:
+            NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AppFeaturesListTableViewController()
                 self.tabBarController?.tabBar.isHidden = true
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -96,12 +104,10 @@ final class ForStudentListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ForStudentSections.sections.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = ForStudentSections.sections[indexPath.row].name
-        cell.textLabel?.font = .systemFont(ofSize: 16, weight: .medium)
-        cell.backgroundColor = .clear
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ForStudentTableViewCell.identifier, for: indexPath) as? ForStudentTableViewCell else {return UITableViewCell()}
+        cell.configure(for: ForStudentSections.sections[indexPath.row])
         return cell
     }
 }
