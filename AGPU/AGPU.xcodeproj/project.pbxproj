@@ -48,6 +48,7 @@
 		8241F9992A5F40EB007DF628 /* TimeTableService + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9982A5F40EB007DF628 /* TimeTableService + Extensions.swift */; };
 		8241F99B2A5F415A007DF628 /* DateManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F99A2A5F415A007DF628 /* DateManager + Extensions.swift */; };
 		82461FEE2A50C493008A8752 /* AppDelegate + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */; };
+		824C56D92A6FE98F0074ADB7 /* FacultyCathedraList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */; };
 		8255ADCC2A672E720012895E /* AGPUSectionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255ADCB2A672E720012895E /* AGPUSectionsListViewModel.swift */; };
 		8255ADCF2A6732110012895E /* CustomTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255ADCE2A6732110012895E /* CustomTitleView.swift */; };
 		825634BA2A6222070082B7B8 /* FacultyGroupsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825634B92A6222070082B7B8 /* FacultyGroupsListTableViewController.swift */; };
@@ -207,6 +208,7 @@
 		8241F9982A5F40EB007DF628 /* TimeTableService + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableService + Extensions.swift"; sourceTree = "<group>"; };
 		8241F99A2A5F415A007DF628 /* DateManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateManager + Extensions.swift"; sourceTree = "<group>"; };
 		82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate + Extensions.swift"; sourceTree = "<group>"; };
+		824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyCathedraList.swift; sourceTree = "<group>"; };
 		8255ADCB2A672E720012895E /* AGPUSectionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSectionsListViewModel.swift; sourceTree = "<group>"; };
 		8255ADCE2A6732110012895E /* CustomTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTitleView.swift; sourceTree = "<group>"; };
 		825634B92A6222070082B7B8 /* FacultyGroupsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupsListTableViewController.swift; sourceTree = "<group>"; };
@@ -880,6 +882,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		824C56D62A6FE9660074ADB7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82989AC92A6E2D4500F27858 /* FacultyCathedraModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		824C56D72A6FE96C0074ADB7 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */,
+			);
+			name = List;
+			sourceTree = "<group>";
+		};
 		8255ADCA2A672E500012895E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1400,7 +1418,8 @@
 		82989AC82A6E2D1E00F27858 /* Faculty Сathedra */ = {
 			isa = PBXGroup;
 			children = (
-				82989AC92A6E2D4500F27858 /* FacultyCathedraModel.swift */,
+				824C56D62A6FE9660074ADB7 /* Model */,
+				824C56D72A6FE96C0074ADB7 /* List */,
 			);
 			path = "Faculty Сathedra";
 			sourceTree = "<group>";
@@ -2603,6 +2622,7 @@
 				82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */,
 				82D6C32F2A5E189300FB7F5D /* TimeTableListTableViewController.swift in Sources */,
 				82989AE02A6E5B4F00F27858 /* AGPUCurrentCathedraMapViewModel.swift in Sources */,
+				824C56D92A6FE98F0074ADB7 /* FacultyCathedraList.swift in Sources */,
 				82BC3D002A56F5C400E49332 /* RecentPageViewController + Extensions.swift in Sources */,
 				82C5615D2A6B757C00514B00 /* AppFeatureModel.swift in Sources */,
 				82E05D5D2A5DF36B0060ADAA /* AGPUFacultiesListTableViewController + Extensions.swift in Sources */,
