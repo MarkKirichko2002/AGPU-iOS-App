@@ -11,4 +11,5 @@ struct FacultyCathedraModel: Codable {
     let name: String
     let url: String
     let address: String
+    let manualUrl: String
 }

@@ -39,6 +39,10 @@ class FacultyCathedraListTableViewController: UITableViewController {
                 self.GoToWeb(url: self.faculty.cathedra[indexPath.row].url, title: "Кафедра \(self.faculty.abbreviation)", isSheet: true)
             }
             
+            let manualAction = UIAction(title: "методические материалы", image: UIImage(named: "manual")) { _ in
+                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].manualUrl, title: "методические материалы", isSheet: true)
+            }
+            
             let mapAction = UIAction(title: "найти кафедру", image: UIImage(named: "search")) { _ in
                 let vc = AGPUCurrentCathedraMapViewController(address: self.faculty.cathedra[indexPath.row].address)
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -50,6 +54,7 @@ class FacultyCathedraListTableViewController: UITableViewController {
             
             return UIMenu(title: self.faculty.cathedra[indexPath.row].name, children: [
                 infoAction,
+                manualAction,
                 mapAction,
                 shareAction
             ])
