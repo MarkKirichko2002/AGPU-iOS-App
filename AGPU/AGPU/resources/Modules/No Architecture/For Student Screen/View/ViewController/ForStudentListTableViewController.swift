@@ -60,15 +60,22 @@ final class ForStudentListTableViewController: UITableViewController {
             }
         case 3:
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "http://test.agpu.net/studentu/obshchezhitiya/index.php", title: "Кампус и общежития", isSheet: true)
+                if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
+                    self.GoToWeb(url: cathedra.manualUrl, title: "Методические материалы", isSheet: true)
+                }
             }
         case 4:
+            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+                self.GoToWeb(url: "http://test.agpu.net/studentu/obshchezhitiya/index.php", title: "Кампус и общежития", isSheet: true)
+            }
+        case 5:
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AGPUSectionsListViewController()
                 self.tabBarController?.tabBar.isHidden = true
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-        case 5:
+            
+        case 6:
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AppFeaturesListTableViewController()
                 self.tabBarController?.tabBar.isHidden = true
