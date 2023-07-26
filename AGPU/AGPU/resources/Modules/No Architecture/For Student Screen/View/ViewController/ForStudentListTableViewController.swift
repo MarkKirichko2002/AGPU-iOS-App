@@ -31,8 +31,8 @@ final class ForStudentListTableViewController: UITableViewController {
     
     private func SetUpTable() {
         tableView.register(
-            UINib(nibName: ForStudentTableViewCell.identifier, bundle: nil),
-            forCellReuseIdentifier: ForStudentTableViewCell.identifier
+            UINib(nibName: ForEveryStatusTableViewCell.identifier, bundle: nil),
+            forCellReuseIdentifier: ForEveryStatusTableViewCell.identifier
         )
     }
     
@@ -113,7 +113,7 @@ final class ForStudentListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ForStudentTableViewCell.identifier, for: indexPath) as? ForStudentTableViewCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ForEveryStatusTableViewCell.identifier, for: indexPath) as? ForEveryStatusTableViewCell else {return UITableViewCell()}
         cell.configure(for: ForStudentSections.sections[indexPath.row])
         return cell
     }
