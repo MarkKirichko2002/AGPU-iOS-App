@@ -12,6 +12,6 @@ protocol FacultyGroupsListViewModelProtocol {
     func groupsListCount(section: Int)-> Int
     func groupItem(section: Int, index: Int)-> String
     func SelectGroup(section: Int, index: Int)
-    func isGroupSelected(section: Int, index: Int)-> UITableViewCell.AccessoryType
+    func isGroupSelected(section: Int, index: Int)-> Bool
     func isGroupSelectedColor(section: Int, index: Int)-> UIColor
 }

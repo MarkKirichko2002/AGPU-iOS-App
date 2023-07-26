@@ -49,7 +49,7 @@ class FacultyCathedraListTableViewController: UITableViewController {
             }
             
             let manualAction = UIAction(title: "методические материалы", image: UIImage(named: "manual")) { _ in
-                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].manualUrl, title: "методические материалы", isSheet: true)
+                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].manualUrl, title: "Методические материалы", isSheet: true)
             }
             
             let mapAction = UIAction(title: "найти кафедру", image: UIImage(named: "search")) { _ in
@@ -82,7 +82,7 @@ class FacultyCathedraListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FacultyCathedraTableViewCell.identifier, for: indexPath) as? FacultyCathedraTableViewCell else {return UITableViewCell()}
         cell.tintColor = .systemGreen
-        cell.accessoryType = viewModel.isCathedraSelected(index: indexPath.row)
+        cell.accessoryType = viewModel.isCathedraSelected(index: indexPath.row) ? .checkmark : .none
         cell.CathedraName.textColor = viewModel.isCathedraSelectedColor(index: indexPath.row)
         cell.configure(cathedra: faculty.cathedra[indexPath.row], faculty: faculty)
         return cell

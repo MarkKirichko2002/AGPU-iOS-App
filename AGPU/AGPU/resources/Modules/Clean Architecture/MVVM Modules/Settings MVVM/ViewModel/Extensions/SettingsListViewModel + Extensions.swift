@@ -66,15 +66,6 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         }
     }
     
-    func isFacultySelected(index: Int)-> UITableViewCell.AccessoryType {
-        let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty")
-        if faculty?.id == AGPUFaculties.faculties[index].id && faculty?.isSelected == true {
-            return .checkmark
-        } else {
-            return .none
-        }
-    }
-    
     func isFacultySelectedColor(index: Int)-> UIColor {
         let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty")
         if faculty?.id == AGPUFaculties.faculties[index].id && faculty?.isSelected == true {
