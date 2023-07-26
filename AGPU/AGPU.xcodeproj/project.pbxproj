@@ -116,7 +116,7 @@
 		82D6C3412A5E33C200FB7F5D /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 82D6C3402A5E33C200FB7F5D /* FSCalendar */; };
 		82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3432A5E340300FB7F5D /* CalendarViewController.swift */; };
 		82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D492A5DD57B0060ADAA /* ForStudentListTableViewController.swift */; };
-		82E05D4D2A5DDBC70060ADAA /* ForStudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D4C2A5DDBC70060ADAA /* ForStudentModel.swift */; };
+		82E05D4D2A5DDBC70060ADAA /* ForEveryStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D4C2A5DDBC70060ADAA /* ForEveryStatusModel.swift */; };
 		82E05D512A5DDC4F0060ADAA /* ForStudentSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D502A5DDC4F0060ADAA /* ForStudentSections.swift */; };
 		82E05D542A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D532A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift */; };
 		82E05D592A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D582A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift */; };
@@ -257,7 +257,7 @@
 		82D6C3392A5E282A00FB7F5D /* TimeTableTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeTableTableViewCell.xib; sourceTree = "<group>"; };
 		82D6C3432A5E340300FB7F5D /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		82E05D492A5DD57B0060ADAA /* ForStudentListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForStudentListTableViewController.swift; sourceTree = "<group>"; };
-		82E05D4C2A5DDBC70060ADAA /* ForStudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForStudentModel.swift; sourceTree = "<group>"; };
+		82E05D4C2A5DDBC70060ADAA /* ForEveryStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEveryStatusModel.swift; sourceTree = "<group>"; };
 		82E05D502A5DDC4F0060ADAA /* ForStudentSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForStudentSections.swift; sourceTree = "<group>"; };
 		82E05D532A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultiesListTableViewController.swift; sourceTree = "<group>"; };
 		82E05D582A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultiesListViewModel.swift; sourceTree = "<group>"; };
@@ -972,7 +972,7 @@
 			isa = PBXGroup;
 			children = (
 				8228E39A2A6C920000C1B6AD /* Location */,
-				82E05D4B2A5DDBAE0060ADAA /* For Student */,
+				82E05D4B2A5DDBAE0060ADAA /* For Every Status */,
 				82C561592A6B753500514B00 /* App Features */,
 				820D18E12A68F9BB00BFAA35 /* AGPU Buildings */,
 				82722D402A66460500149D06 /* AGPU Pins */,
@@ -1583,19 +1583,19 @@
 			path = "For Student Screen";
 			sourceTree = "<group>";
 		};
-		82E05D4B2A5DDBAE0060ADAA /* For Student */ = {
+		82E05D4B2A5DDBAE0060ADAA /* For Every Status */ = {
 			isa = PBXGroup;
 			children = (
 				82E05D4E2A5DDC170060ADAA /* Model */,
 				82E05D4F2A5DDC1C0060ADAA /* List */,
 			);
-			path = "For Student";
+			path = "For Every Status";
 			sourceTree = "<group>";
 		};
 		82E05D4E2A5DDC170060ADAA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				82E05D4C2A5DDBC70060ADAA /* ForStudentModel.swift */,
+				82E05D4C2A5DDBC70060ADAA /* ForEveryStatusModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2361,7 +2361,7 @@
 				82C561672A6B7B0D00514B00 /* AppFeatureDetailViewController.swift in Sources */,
 				82E4C5152A6B0C8F00F65A67 /* ImageSaverProtocol.swift in Sources */,
 				82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */,
-				82E05D4D2A5DDBC70060ADAA /* ForStudentModel.swift in Sources */,
+				82E05D4D2A5DDBC70060ADAA /* ForEveryStatusModel.swift in Sources */,
 				82989ACF2A6E35B200F27858 /* FacultyCathedraTableViewCell.swift in Sources */,
 				829548992A43AE32007DEBA0 /* SettingsManagerProtocol.swift in Sources */,
 				82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */,
