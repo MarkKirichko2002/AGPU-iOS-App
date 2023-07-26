@@ -10,39 +10,43 @@ import Foundation
 struct ForStudentSections {
     
     static let sections = [
-        
         ForStudentModel(
             id: 1,
+            icon: "profile icon",
+            name: "личный кабинет ЭИОС"
+        ),
+        ForStudentModel(
+            id: 2,
             icon: "map icon",
             name: "найти «АГПУ»"
         ),
         ForStudentModel(
-            id: 2,
+            id: 3,
             icon: "university",
             name: "факультеты и кафедры"
         ),
         ForStudentModel(
-            id: 3,
+            id: 4,
             icon: "book",
             name: "методические материалы"
         ),
         ForStudentModel(
-            id: 4,
+            id: 5,
             icon: "group icon",
             name: "кампус и общежития"
         ),
         ForStudentModel(
-            id: 5,
+            id: 6,
             icon: "sections icon",
             name: "разделы"
         ),
         ForStudentModel(
-            id: 6,
+            id: 7,
             icon: "photo icon",
             name: "АГПУ обои"
         ),
         ForStudentModel(
-            id: 7,
+            id: 8,
             icon: "info icon",
             name: "фишки приложения АГПУ для iOS"
         )
