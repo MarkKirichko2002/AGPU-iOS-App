@@ -49,13 +49,13 @@ final class AGPUTabBarController: UITabBarController {
         // расписание
         let timetableVC = TimeTableListTableViewController()
         // студенту
-        let studentVC = ForStudentListTableViewController()
+        let studentVC = ForApplicantListTableViewController()
         // настройки
         let settingsVC = SettingsListViewController()
         // новости
         newsVC.tabBarItem = UITabBarItem(title: "Новости", image: UIImage(systemName: "newspaper"), selectedImage: UIImage(systemName: "newspaper.fill"))
         // cтуденту
-        studentVC.tabBarItem = UITabBarItem(title: "Студенту", image: UIImage(named: "applicant"), selectedImage: UIImage(named: "applicant selected"))
+        studentVC.tabBarItem = UITabBarItem(title: "Абитуриенту", image: UIImage(named: "applicant"), selectedImage: UIImage(named: "applicant selected"))
         // расписание
         timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: UIImage(named: "calendar"), selectedImage: UIImage(named: "calendar selected"))
         // настройки
