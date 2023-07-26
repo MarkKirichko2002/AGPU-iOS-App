@@ -14,7 +14,7 @@ class ForEveryStatusTableViewCell: UITableViewCell {
     @IBOutlet var SectionIcon: SpringImageView!
     @IBOutlet var SectionName: UILabel!
     
-    func configure(for student: ForStudentModel) {
+    func configure(for student: ForEveryStatusModel) {
         SectionIcon.image = UIImage(named: student.icon)
         SectionName.text = student.name
     }
