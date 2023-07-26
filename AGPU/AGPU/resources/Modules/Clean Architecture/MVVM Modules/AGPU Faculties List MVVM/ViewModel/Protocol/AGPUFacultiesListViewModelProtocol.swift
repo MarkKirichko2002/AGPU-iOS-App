@@ -10,7 +10,7 @@ import UIKit
 protocol AGPUFacultiesListViewModelProtocol {
     func facultiesListCount()-> Int
     func facultyItem(index: Int)-> AGPUFacultyModel
-    func isFacultySelected(index: Int)-> UITableViewCell.AccessoryType
+    func isFacultySelected(index: Int)-> Bool
     func isFacultySelectedColor(index: Int)-> UIColor
     func makePhoneNumbersMenu(index: Int) -> UIMenu
     func makePhoneCall(phoneNumber: String)

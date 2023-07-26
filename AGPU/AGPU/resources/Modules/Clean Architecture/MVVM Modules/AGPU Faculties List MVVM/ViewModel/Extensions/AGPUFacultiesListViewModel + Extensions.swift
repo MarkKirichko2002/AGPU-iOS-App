@@ -18,12 +18,12 @@ extension AGPUFacultiesListViewModel: AGPUFacultiesListViewModelProtocol {
         return AGPUFaculties.faculties[index]
     }
     
-    func isFacultySelected(index: Int)-> UITableViewCell.AccessoryType {
+    func isFacultySelected(index: Int)-> Bool {
         let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty")
         if faculty?.id == AGPUFaculties.faculties[index].id && faculty?.isSelected == true {
-            return .checkmark
+            return true
         } else {
-            return .none
+            return false
         }
     }
     

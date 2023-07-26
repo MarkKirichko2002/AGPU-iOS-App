@@ -34,6 +34,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
             
             let cathedraAction = UIAction(title: "кафедры", image: UIImage(named: "university")) { _ in
                 let vc = FacultyCathedraListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
+                let navVC = UINavigationController(rootViewController: vc)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
@@ -84,7 +85,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AGPUFacultyTableViewCell.identifier, for: indexPath) as? AGPUFacultyTableViewCell else {return UITableViewCell()}
-        cell.accessoryType = viewModel.isFacultySelected(index: indexPath.row)
+        cell.accessoryType = viewModel.isFacultySelected(index: indexPath.row) ? .checkmark : .none
         cell.tintColor = .systemGreen
         cell.AGPUFacultyName.textColor = viewModel.isFacultySelectedColor(index: indexPath.row)
         cell.configure(faculty: viewModel.facultyItem(index: indexPath.row))
