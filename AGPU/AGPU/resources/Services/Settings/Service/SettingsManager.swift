@@ -9,6 +9,4 @@ import Foundation
 
 final class SettingsManager {
     
-    let realmManager = RealmManager()
-    
 }

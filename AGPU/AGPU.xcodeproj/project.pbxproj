@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8205367E2A50AE5D0054B756 /* CustomMusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8205367C2A50AE5D0054B756 /* CustomMusicTableViewCell.swift */; };
-		8205367F2A50AE5D0054B756 /* CustomMusicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8205367D2A50AE5D0054B756 /* CustomMusicTableViewCell.xib */; };
 		8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8208E7542A63A3D300675EF1 /* AGPUThemes.swift */; };
 		820D18E52A68F9EE00BFAA35 /* AGPUBuildingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820D18E42A68F9EE00BFAA35 /* AGPUBuildingModel.swift */; };
 		820D18E72A68FA7D00BFAA35 /* AGPUBuildings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820D18E62A68FA7D00BFAA35 /* AGPUBuildings.swift */; };
@@ -18,16 +16,6 @@
 		82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */; };
 		821C9E192A68DE8700EF0030 /* UITableView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C9E182A68DE8700EF0030 /* UITableView + Extensions.swift */; };
 		822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822158952A422A650088BDE5 /* SettingsListViewController.swift */; };
-		822158992A42311E0088BDE5 /* MusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822158982A42311E0088BDE5 /* MusicModel.swift */; };
-		8224B4D92A4F10B40069B7B3 /* AddMusicViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8224B4D82A4F10B40069B7B3 /* AddMusicViewController.storyboard */; };
-		8224B4DB2A4F10D80069B7B3 /* AddMusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8224B4DA2A4F10D80069B7B3 /* AddMusicViewController.swift */; };
-		8224B4E02A4F181E0069B7B3 /* AddMusicViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8224B4DF2A4F181E0069B7B3 /* AddMusicViewController + Extensions.swift */; };
-		8224B4E32A4F18A30069B7B3 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8224B4E22A4F18A30069B7B3 /* FileService.swift */; };
-		8224B4E62A4F1AF70069B7B3 /* FileServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8224B4E52A4F1AF70069B7B3 /* FileServiceProtocol.swift */; };
-		8224B4EC2A4F1BB10069B7B3 /* RealmManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8224B4EB2A4F1BB10069B7B3 /* RealmManagerProtocol.swift */; };
-		8224B4EF2A4F1C420069B7B3 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8224B4EE2A4F1C420069B7B3 /* Realm */; };
-		8224B4F12A4F1C420069B7B3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8224B4F02A4F1C420069B7B3 /* RealmSwift */; };
-		8224B4F32A4F1C580069B7B3 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8224B4F22A4F1C580069B7B3 /* RealmManager.swift */; };
 		822632412A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8226323F2A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift */; };
 		822632422A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822632402A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib */; };
 		8228E3992A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E3982A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift */; };
@@ -82,9 +70,6 @@
 		82875B022A5A198A007DB925 /* HapticsManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */; };
 		828CFA372A35F65700C7542D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA362A35F65700C7542D /* WebViewController.swift */; };
 		828CFA3C2A3680C700C7542D /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA3B2A3680C700C7542D /* String + Extensions.swift */; };
-		828DE2B22A5E3FF100985737 /* CustomMusicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DE2B12A5E3FF100985737 /* CustomMusicListViewController.swift */; };
-		828DE2B42A5E41C200985737 /* CustomMusicListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DE2B32A5E41C200985737 /* CustomMusicListViewModel.swift */; };
-		829548832A439C4F007DEBA0 /* AudioPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548822A439C4F007DEBA0 /* AudioPlayerProtocol.swift */; };
 		829548862A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548852A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift */; };
 		829548922A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548912A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift */; };
 		829548992A43AE32007DEBA0 /* SettingsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548982A43AE32007DEBA0 /* SettingsManagerProtocol.swift */; };
@@ -119,12 +104,9 @@
 		82C561622A6B772600514B00 /* AppFeaturesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C561612A6B772600514B00 /* AppFeaturesListTableViewController.swift */; };
 		82C561672A6B7B0D00514B00 /* AppFeatureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C561662A6B7B0D00514B00 /* AppFeatureDetailViewController.swift */; };
 		82C561692A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82C561682A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard */; };
-		82C7B8402A50C98900F9A552 /* AudioPlayer + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B83F2A50C98900F9A552 /* AudioPlayer + Extensions.swift */; };
 		82C7B8422A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */; };
 		82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8432A50CCB800F9A552 /* AnimationClass + Extensions.swift */; };
 		82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8452A50CD4C00F9A552 /* SettingsManager + Extensions.swift */; };
-		82C7B8482A50CDB400F9A552 /* FileService + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8472A50CDB400F9A552 /* FileService + Extensions.swift */; };
-		82C7B84A2A50CE7B00F9A552 /* RealmManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8492A50CE7B00F9A552 /* RealmManager + Extensions.swift */; };
 		82D6C32F2A5E189300FB7F5D /* TimeTableListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C32E2A5E189300FB7F5D /* TimeTableListTableViewController.swift */; };
 		82D6C3322A5E1DE100FB7F5D /* TimeTableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3312A5E1DE100FB7F5D /* TimeTableService.swift */; };
 		82D6C3342A5E1DEC00FB7F5D /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3332A5E1DEC00FB7F5D /* TimeTable.swift */; };
@@ -149,8 +131,6 @@
 		82E4C54C2A6B121900F65A67 /* AGPUFacultiesListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C54B2A6B121900F65A67 /* AGPUFacultiesListViewModel + Extensions.swift */; };
 		82E4C5512A6B129300F65A67 /* AGPUSectionsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5502A6B129300F65A67 /* AGPUSectionsListViewModelProtocol.swift */; };
 		82E4C5532A6B12E300F65A67 /* AGPUSectionsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5522A6B12E300F65A67 /* AGPUSectionsListViewModel + Extensions.swift */; };
-		82E4C5582A6B136D00F65A67 /* CustomMusicListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5572A6B136D00F65A67 /* CustomMusicListViewModelProtocol.swift */; };
-		82E4C55A2A6B13FC00F65A67 /* CustomMusicListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5592A6B13FC00F65A67 /* CustomMusicListViewModel + Extensions.swift */; };
 		82E4C55F2A6B147900F65A67 /* SettingsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C55E2A6B147900F65A67 /* SettingsListViewModelProtocol.swift */; };
 		82E4C5612A6B14C700F65A67 /* SettingsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5602A6B14C700F65A67 /* SettingsListViewModel + Extensions.swift */; };
 		82E4C5662A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5652A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift */; };
@@ -164,12 +144,9 @@
 		82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */; };
 		82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */; };
 		82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */; };
-		82F4ECFE2A3F82E400F1E5CC /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F4ECFD2A3F82E400F1E5CC /* AudioPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8205367C2A50AE5D0054B756 /* CustomMusicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMusicTableViewCell.swift; sourceTree = "<group>"; };
-		8205367D2A50AE5D0054B756 /* CustomMusicTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMusicTableViewCell.xib; sourceTree = "<group>"; };
 		8208E7542A63A3D300675EF1 /* AGPUThemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUThemes.swift; sourceTree = "<group>"; };
 		820D18E42A68F9EE00BFAA35 /* AGPUBuildingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingModel.swift; sourceTree = "<group>"; };
 		820D18E62A68FA7D00BFAA35 /* AGPUBuildings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildings.swift; sourceTree = "<group>"; };
@@ -180,14 +157,6 @@
 		821C892F2A510F5600BD756D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		821C9E182A68DE8700EF0030 /* UITableView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extensions.swift"; sourceTree = "<group>"; };
 		822158952A422A650088BDE5 /* SettingsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewController.swift; sourceTree = "<group>"; };
-		822158982A42311E0088BDE5 /* MusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicModel.swift; sourceTree = "<group>"; };
-		8224B4D82A4F10B40069B7B3 /* AddMusicViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddMusicViewController.storyboard; sourceTree = "<group>"; };
-		8224B4DA2A4F10D80069B7B3 /* AddMusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMusicViewController.swift; sourceTree = "<group>"; };
-		8224B4DF2A4F181E0069B7B3 /* AddMusicViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddMusicViewController + Extensions.swift"; sourceTree = "<group>"; };
-		8224B4E22A4F18A30069B7B3 /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
-		8224B4E52A4F1AF70069B7B3 /* FileServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileServiceProtocol.swift; sourceTree = "<group>"; };
-		8224B4EB2A4F1BB10069B7B3 /* RealmManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManagerProtocol.swift; sourceTree = "<group>"; };
-		8224B4F22A4F1C580069B7B3 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		8226323F2A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeToRecallOptionTableViewCell.swift; sourceTree = "<group>"; };
 		822632402A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShakeToRecallOptionTableViewCell.xib; sourceTree = "<group>"; };
 		8228E3982A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUCurrentBuildingMapViewModel.swift; sourceTree = "<group>"; };
@@ -244,9 +213,6 @@
 		82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HapticsManager + Extensions.swift"; sourceTree = "<group>"; };
 		828CFA362A35F65700C7542D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		828CFA3B2A3680C700C7542D /* String + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extensions.swift"; sourceTree = "<group>"; };
-		828DE2B12A5E3FF100985737 /* CustomMusicListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMusicListViewController.swift; sourceTree = "<group>"; };
-		828DE2B32A5E41C200985737 /* CustomMusicListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMusicListViewModel.swift; sourceTree = "<group>"; };
-		829548822A439C4F007DEBA0 /* AudioPlayerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerProtocol.swift; sourceTree = "<group>"; };
 		829548852A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUSectionsListViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829548912A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUBuildingsMapViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829548982A43AE32007DEBA0 /* SettingsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerProtocol.swift; sourceTree = "<group>"; };
@@ -281,12 +247,9 @@
 		82C561612A6B772600514B00 /* AppFeaturesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeaturesListTableViewController.swift; sourceTree = "<group>"; };
 		82C561662A6B7B0D00514B00 /* AppFeatureDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeatureDetailViewController.swift; sourceTree = "<group>"; };
 		82C561682A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppFeatureDetailViewController.storyboard; sourceTree = "<group>"; };
-		82C7B83F2A50C98900F9A552 /* AudioPlayer + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayer + Extensions.swift"; sourceTree = "<group>"; };
 		82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpeechRecognitionManager + Extensions.swift"; sourceTree = "<group>"; };
 		82C7B8432A50CCB800F9A552 /* AnimationClass + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimationClass + Extensions.swift"; sourceTree = "<group>"; };
 		82C7B8452A50CD4C00F9A552 /* SettingsManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsManager + Extensions.swift"; sourceTree = "<group>"; };
-		82C7B8472A50CDB400F9A552 /* FileService + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileService + Extensions.swift"; sourceTree = "<group>"; };
-		82C7B8492A50CE7B00F9A552 /* RealmManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealmManager + Extensions.swift"; sourceTree = "<group>"; };
 		82D6C32E2A5E189300FB7F5D /* TimeTableListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableListTableViewController.swift; sourceTree = "<group>"; };
 		82D6C3312A5E1DE100FB7F5D /* TimeTableService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableService.swift; sourceTree = "<group>"; };
 		82D6C3332A5E1DEC00FB7F5D /* TimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
@@ -309,8 +272,6 @@
 		82E4C54B2A6B121900F65A67 /* AGPUFacultiesListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUFacultiesListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82E4C5502A6B129300F65A67 /* AGPUSectionsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSectionsListViewModelProtocol.swift; sourceTree = "<group>"; };
 		82E4C5522A6B12E300F65A67 /* AGPUSectionsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUSectionsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
-		82E4C5572A6B136D00F65A67 /* CustomMusicListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMusicListViewModelProtocol.swift; sourceTree = "<group>"; };
-		82E4C5592A6B13FC00F65A67 /* CustomMusicListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomMusicListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82E4C55E2A6B147900F65A67 /* SettingsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewModelProtocol.swift; sourceTree = "<group>"; };
 		82E4C5602A6B14C700F65A67 /* SettingsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82E4C5652A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FacultyGroupsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
@@ -324,7 +285,6 @@
 		82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClassProtocol.swift; sourceTree = "<group>"; };
 		82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManagerProtocol.swift; sourceTree = "<group>"; };
 		82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringImageView.swift; sourceTree = "<group>"; };
-		82F4ECFD2A3F82E400F1E5CC /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,8 +294,6 @@
 			files = (
 				82D6C3372A5E1E4F00FB7F5D /* Alamofire in Frameworks */,
 				82D6C3412A5E33C200FB7F5D /* FSCalendar in Frameworks */,
-				8224B4F12A4F1C420069B7B3 /* RealmSwift in Frameworks */,
-				8224B4EF2A4F1C420069B7B3 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,91 +500,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		8224B4D32A4F0B760069B7B3 /* Add New Music */ = {
-			isa = PBXGroup;
-			children = (
-				8224B4DE2A4F18090069B7B3 /* StoryBoard */,
-				8224B4DC2A4F17F10069B7B3 /* ViewController */,
-				8224B4DD2A4F17F90069B7B3 /* Extensions */,
-			);
-			path = "Add New Music";
-			sourceTree = "<group>";
-		};
-		8224B4DC2A4F17F10069B7B3 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				8224B4DA2A4F10D80069B7B3 /* AddMusicViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		8224B4DD2A4F17F90069B7B3 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				8224B4DF2A4F181E0069B7B3 /* AddMusicViewController + Extensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		8224B4DE2A4F18090069B7B3 /* StoryBoard */ = {
-			isa = PBXGroup;
-			children = (
-				8224B4D82A4F10B40069B7B3 /* AddMusicViewController.storyboard */,
-			);
-			path = StoryBoard;
-			sourceTree = "<group>";
-		};
-		8224B4E12A4F18960069B7B3 /* File */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C5272A6B0E3D00F65A67 /* Service */,
-				82E4C5262A6B0E3B00F65A67 /* Extensions */,
-			);
-			path = File;
-			sourceTree = "<group>";
-		};
-		8224B4E42A4F1AE10069B7B3 /* File */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C5332A6B0EE800F65A67 /* Protocol */,
-			);
-			path = File;
-			sourceTree = "<group>";
-		};
-		8224B4E92A4F1B5C0069B7B3 /* Realm */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C5342A6B0EF100F65A67 /* Protocol */,
-			);
-			path = Realm;
-			sourceTree = "<group>";
-		};
-		8224B4EA2A4F1B6B0069B7B3 /* Realm */ = {
-			isa = PBXGroup;
-			children = (
-				8224B4F42A4F1CAC0069B7B3 /* Model */,
-				8224B4F52A4F1CB10069B7B3 /* Service */,
-			);
-			path = Realm;
-			sourceTree = "<group>";
-		};
-		8224B4F42A4F1CAC0069B7B3 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				822158982A42311E0088BDE5 /* MusicModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		8224B4F52A4F1CB10069B7B3 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C5292A6B0E5C00F65A67 /* Service */,
-				82E4C5282A6B0E5A00F65A67 /* Extensions */,
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
 		8226323C2A6CB31C0000E14C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -746,12 +619,9 @@
 				82BF4DB52A5FA7F6008B751A /* Image Saver */,
 				82D6C3302A5E1DD100FB7F5D /* API */,
 				8270A5462A578491008ACADC /* Date */,
-				82F4ECFC2A3F82CE00F1E5CC /* Audio Player */,
 				82EF23D02A3DED73004A7B9C /* Speech Recognition */,
 				82EF23D12A3DED7F004A7B9C /* Animation */,
 				8295489A2A43AE6C007DEBA0 /* Settings */,
-				8224B4E12A4F18960069B7B3 /* File */,
-				8224B4EA2A4F1B6B0069B7B3 /* Realm */,
 				82C44DAC2A591907002A3864 /* Haptics */,
 			);
 			path = Services;
@@ -1094,7 +964,6 @@
 				82D6C3422A5E33CD00FB7F5D /* Calendar */,
 				82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */,
 				82BC3CFA2A56ED7500E49332 /* Recent Page */,
-				8224B4D32A4F0B760069B7B3 /* Add New Music */,
 			);
 			path = "No Architecture";
 			sourceTree = "<group>";
@@ -1150,7 +1019,6 @@
 				82BA73B22A579B15006B67DA /* Web MVVM */,
 				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
 				82808E9C2A31F2D400DEEB16 /* Sections MVVM */,
-				828DE2AB2A5E3EEB00985737 /* Custom Music MVVM */,
 				822158942A422A480088BDE5 /* Settings MVVM */,
 				82989ACB2A6E308F00F27858 /* Faculty Cathedra List */,
 				825634B62A6221C10082B7B8 /* Faculty Groups List MVVM */,
@@ -1287,51 +1155,6 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		828DE2AB2A5E3EEB00985737 /* Custom Music MVVM */ = {
-			isa = PBXGroup;
-			children = (
-				828DE2AD2A5E3F0A00985737 /* View */,
-				828DE2AC2A5E3F0800985737 /* ViewModel */,
-			);
-			path = "Custom Music MVVM";
-			sourceTree = "<group>";
-		};
-		828DE2AC2A5E3F0800985737 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C5562A6B135600F65A67 /* Protocol */,
-				82E4C5552A6B135400F65A67 /* ViewModel */,
-				82E4C5542A6B135200F65A67 /* Extensions */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		828DE2AD2A5E3F0A00985737 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				828DE2AF2A5E3F3500985737 /* ViewController */,
-				828DE2AE2A5E3F3200985737 /* Cell */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		828DE2AE2A5E3F3200985737 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				8205367C2A50AE5D0054B756 /* CustomMusicTableViewCell.swift */,
-				8205367D2A50AE5D0054B756 /* CustomMusicTableViewCell.xib */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		828DE2AF2A5E3F3500985737 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				828DE2B12A5E3FF100985737 /* CustomMusicListViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 		828DE2B02A5E3F4A00985737 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1347,14 +1170,6 @@
 				826BADAD2A64D57B00022B45 /* AGPU Location Detail Screen */,
 			);
 			path = Maps;
-			sourceTree = "<group>";
-		};
-		829548812A439C39007DEBA0 /* Audio Player */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C52F2A6B0EC600F65A67 /* Protocol */,
-			);
-			path = "Audio Player";
 			sourceTree = "<group>";
 		};
 		829548842A439D2A007DEBA0 /* Extensions */ = {
@@ -1894,22 +1709,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		82E4C51E2A6B0DC000F65A67 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				82C7B83F2A50C98900F9A552 /* AudioPlayer + Extensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		82E4C51F2A6B0DC700F65A67 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				82F4ECFD2A3F82E400F1E5CC /* AudioPlayer.swift */,
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
 		82E4C5202A6B0DD900F65A67 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1958,38 +1757,6 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		82E4C5262A6B0E3B00F65A67 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				82C7B8472A50CDB400F9A552 /* FileService + Extensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		82E4C5272A6B0E3D00F65A67 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				8224B4E22A4F18A30069B7B3 /* FileService.swift */,
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
-		82E4C5282A6B0E5A00F65A67 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				82C7B8492A50CE7B00F9A552 /* RealmManager + Extensions.swift */,
-			);
-			name = Extensions;
-			sourceTree = "<group>";
-		};
-		82E4C5292A6B0E5C00F65A67 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				8224B4F22A4F1C580069B7B3 /* RealmManager.swift */,
-			);
-			name = Service;
-			sourceTree = "<group>";
-		};
 		82E4C52A2A6B0E6D00F65A67 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -2030,14 +1797,6 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		82E4C52F2A6B0EC600F65A67 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				829548822A439C4F007DEBA0 /* AudioPlayerProtocol.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
 		82E4C5302A6B0ED000F65A67 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -2058,22 +1817,6 @@
 			isa = PBXGroup;
 			children = (
 				829548982A43AE32007DEBA0 /* SettingsManagerProtocol.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
-		82E4C5332A6B0EE800F65A67 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				8224B4E52A4F1AF70069B7B3 /* FileServiceProtocol.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
-		82E4C5342A6B0EF100F65A67 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				8224B4EB2A4F1BB10069B7B3 /* RealmManagerProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -2178,30 +1921,6 @@
 			isa = PBXGroup;
 			children = (
 				82E4C5502A6B129300F65A67 /* AGPUSectionsListViewModelProtocol.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
-		82E4C5542A6B135200F65A67 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C5592A6B13FC00F65A67 /* CustomMusicListViewModel + Extensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		82E4C5552A6B135400F65A67 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				828DE2B32A5E41C200985737 /* CustomMusicListViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		82E4C5562A6B135600F65A67 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C5572A6B136D00F65A67 /* CustomMusicListViewModelProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -2420,12 +2139,9 @@
 				82E4C5132A6B0C7C00F65A67 /* Image Saver */,
 				8241F9912A5F407E007DF628 /* API */,
 				8270A5432A578444008ACADC /* Date  */,
-				829548812A439C39007DEBA0 /* Audio Player */,
 				82EF23D82A3DF237004A7B9C /* Speech Recognition */,
 				82EF23D52A3DF0A5004A7B9C /* Animation */,
 				829548972A43AE1F007DEBA0 /* Settings */,
-				8224B4E42A4F1AE10069B7B3 /* File */,
-				8224B4E92A4F1B5C0069B7B3 /* Realm */,
 				82875AFE2A5A194D007DB925 /* Haptics */,
 			);
 			path = Protocols;
@@ -2455,15 +2171,6 @@
 			path = "Spring Image";
 			sourceTree = "<group>";
 		};
-		82F4ECFC2A3F82CE00F1E5CC /* Audio Player */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C51F2A6B0DC700F65A67 /* Service */,
-				82E4C51E2A6B0DC000F65A67 /* Extensions */,
-			);
-			path = "Audio Player";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2481,8 +2188,6 @@
 			);
 			name = AGPU;
 			packageProductDependencies = (
-				8224B4EE2A4F1C420069B7B3 /* Realm */,
-				8224B4F02A4F1C420069B7B3 /* RealmSwift */,
 				82D6C3362A5E1E4F00FB7F5D /* Alamofire */,
 				82D6C3402A5E33C200FB7F5D /* FSCalendar */,
 			);
@@ -2516,7 +2221,6 @@
 			);
 			mainGroup = 82808E7C2A31F12100DEEB16;
 			packageReferences = (
-				8224B4ED2A4F1C420069B7B3 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				82D6C3352A5E1E4F00FB7F5D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				82D6C33F2A5E33C200FB7F5D /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
@@ -2534,14 +2238,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8205367F2A50AE5D0054B756 /* CustomMusicTableViewCell.xib in Resources */,
 				826BADB12A64D5D100022B45 /* AGPULocationDetailViewController.storyboard in Resources */,
 				82D6C33B2A5E282A00FB7F5D /* TimeTableTableViewCell.xib in Resources */,
 				822632422A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib in Resources */,
 				82C561692A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard in Resources */,
 				82808E952A31F12500DEEB16 /* LaunchScreen.storyboard in Resources */,
 				82320D892A491FBC00ECADEE /* AGPUFacultyTableViewCell.xib in Resources */,
-				8224B4D92A4F10B40069B7B3 /* AddMusicViewController.storyboard in Resources */,
 				82E4C5972A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib in Resources */,
 				82989AF32A6F8CDF00F27858 /* ForStudentTableViewCell.xib in Resources */,
 				82989AD42A6E36C700F27858 /* FacultyCathedraTableViewCell.xib in Resources */,
@@ -2564,7 +2266,6 @@
 				82BF4DB02A5FA52B008B751A /* AGPUWallpapersListViewController.swift in Sources */,
 				82D6C33A2A5E282A00FB7F5D /* TimeTableTableViewCell.swift in Sources */,
 				82BC3CFC2A56EDA000E49332 /* RecentPageViewController.swift in Sources */,
-				8224B4DB2A4F10D80069B7B3 /* AddMusicViewController.swift in Sources */,
 				8241F9852A5F3F73007DF628 /* CalendarViewController + Extensions.swift in Sources */,
 				82C561622A6B772600514B00 /* AppFeaturesListTableViewController.swift in Sources */,
 				82E05D542A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift in Sources */,
@@ -2572,9 +2273,7 @@
 				82BF4DB42A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift in Sources */,
 				82989ADE2A6E59BC00F27858 /* AGPUCurrentCathedraMapViewController + Extensions.swift in Sources */,
 				82989ACD2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift in Sources */,
-				82E4C5582A6B136D00F65A67 /* CustomMusicListViewModelProtocol.swift in Sources */,
 				82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */,
-				82E4C55A2A6B13FC00F65A67 /* CustomMusicListViewModel + Extensions.swift in Sources */,
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
 				826BADAF2A64D5A500022B45 /* AGPULocationDetailViewController.swift in Sources */,
 				8228E39C2A6C920D00C1B6AD /* LocationModel.swift in Sources */,
@@ -2586,9 +2285,7 @@
 				8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */,
 				8228E3A62A6C9DB300C1B6AD /* AGPUBuildingsMapViewModel + Extensions.swift in Sources */,
 				82989AD82A6E54AF00F27858 /* AGPUCurrentCathedraMapViewController.swift in Sources */,
-				82C7B8482A50CDB400F9A552 /* FileService + Extensions.swift in Sources */,
 				82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */,
-				8224B4F32A4F1C580069B7B3 /* RealmManager.swift in Sources */,
 				82E4C58B2A6B20FF00F65A67 /* LocationManager + Extensions.swift in Sources */,
 				82E4C53E2A6B103B00F65A67 /* AGPUNewsViewModel + Extensions.swift in Sources */,
 				82721F1C2A574EE100982EF7 /* AGPUNewsViewController + Extensions.swift in Sources */,
@@ -2602,7 +2299,6 @@
 				82D6C3342A5E1DEC00FB7F5D /* TimeTable.swift in Sources */,
 				8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */,
 				82E4C5172A6B0D0200F65A67 /* ImageSaver + Extensions.swift in Sources */,
-				822158992A42311E0088BDE5 /* MusicModel.swift in Sources */,
 				8241F9812A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift in Sources */,
 				82722D432A66462100149D06 /* AGPUPins.swift in Sources */,
 				8228E3992A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift in Sources */,
@@ -2616,9 +2312,7 @@
 				8218F5872A688F8C00C94EB4 /* CustomActivityItemSource.swift in Sources */,
 				82C44DAE2A591915002A3864 /* HapticsManager.swift in Sources */,
 				8228E3AB2A6C9E3B00C1B6AD /* AGPUCurrentBuildingMapViewModelProtocol.swift in Sources */,
-				82C7B84A2A50CE7B00F9A552 /* RealmManager + Extensions.swift in Sources */,
 				82B1CA782A681F1D00D1FBA4 /* SpringImageView + Extensions.swift in Sources */,
-				828DE2B42A5E41C200985737 /* CustomMusicListViewModel.swift in Sources */,
 				82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */,
 				82D6C32F2A5E189300FB7F5D /* TimeTableListTableViewController.swift in Sources */,
 				82989AE02A6E5B4F00F27858 /* AGPUCurrentCathedraMapViewModel.swift in Sources */,
@@ -2633,8 +2327,6 @@
 				82BF4DB72A5FA807008B751A /* ImageSaver.swift in Sources */,
 				82E4C5512A6B129300F65A67 /* AGPUSectionsListViewModelProtocol.swift in Sources */,
 				82E05D592A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift in Sources */,
-				8224B4E32A4F18A30069B7B3 /* FileService.swift in Sources */,
-				828DE2B22A5E3FF100985737 /* CustomMusicListViewController.swift in Sources */,
 				827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */,
 				826E6E9C2A65F7CA007A3C13 /* TimeInterval + Extensions.swift in Sources */,
 				829548922A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift in Sources */,
@@ -2645,7 +2337,6 @@
 				82E4C5682A6B154300F65A67 /* FacultyGroupsListViewModelProtocol.swift in Sources */,
 				8241F9932A5F4091007DF628 /* TimeTableServicerProtocol.swift in Sources */,
 				829548862A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift in Sources */,
-				829548832A439C4F007DEBA0 /* AudioPlayerProtocol.swift in Sources */,
 				82D6C3322A5E1DE100FB7F5D /* TimeTableService.swift in Sources */,
 				82C7B8422A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift in Sources */,
 				828CFA3C2A3680C700C7542D /* String + Extensions.swift in Sources */,
@@ -2655,7 +2346,6 @@
 				82808E8D2A31F12100DEEB16 /* AGPUSectionsListViewController.swift in Sources */,
 				82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */,
 				829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */,
-				8224B4EC2A4F1BB10069B7B3 /* RealmManagerProtocol.swift in Sources */,
 				82C5615F2A6B75B700514B00 /* AppFeaturesList.swift in Sources */,
 				82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */,
 				82875B022A5A198A007DB925 /* HapticsManager + Extensions.swift in Sources */,
@@ -2665,7 +2355,6 @@
 				825634BA2A6222070082B7B8 /* FacultyGroupsListTableViewController.swift in Sources */,
 				826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */,
 				82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */,
-				8224B4E02A4F181E0069B7B3 /* AddMusicViewController + Extensions.swift in Sources */,
 				82320D832A49167000ECADEE /* AGPUFacultyModel.swift in Sources */,
 				82E4C5662A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift in Sources */,
 				82BF4DB22A5FA5B3008B751A /* AGPUWallpaperCollectionViewCell.swift in Sources */,
@@ -2678,10 +2367,8 @@
 				82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */,
 				82875B002A5A1966007DB925 /* HapticsManagerProtocol.swift in Sources */,
 				8210CA092A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift in Sources */,
-				8224B4E62A4F1AF70069B7B3 /* FileServiceProtocol.swift in Sources */,
 				82320D812A4913FE00ECADEE /* AGPUFaculties.swift in Sources */,
 				826716C22A5A2AF600CD5C23 /* RecentPageModel.swift in Sources */,
-				8205367E2A50AE5D0054B756 /* CustomMusicTableViewCell.swift in Sources */,
 				82320D872A491F5700ECADEE /* AGPUFacultyTableViewCell.swift in Sources */,
 				8270A54D2A578A0E008ACADC /* AGPUNewsViewModel.swift in Sources */,
 				82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */,
@@ -2695,8 +2382,6 @@
 				8255ADCF2A6732110012895E /* CustomTitleView.swift in Sources */,
 				82989AE62A6F6DEA00F27858 /* FacultyCathedraListViewModel.swift in Sources */,
 				826888582A33AB5600434219 /* AGPUSplashScreenViewController.swift in Sources */,
-				82F4ECFE2A3F82E400F1E5CC /* AudioPlayer.swift in Sources */,
-				82C7B8402A50C98900F9A552 /* AudioPlayer + Extensions.swift in Sources */,
 				82E4C5892A6B20DE00F65A67 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2926,14 +2611,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8224B4ED2A4F1C420069B7B3 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		82D6C3352A5E1E4F00FB7F5D /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -2953,16 +2630,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8224B4EE2A4F1C420069B7B3 /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8224B4ED2A4F1C420069B7B3 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = Realm;
-		};
-		8224B4F02A4F1C420069B7B3 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8224B4ED2A4F1C420069B7B3 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
 		82D6C3362A5E1E4F00FB7F5D /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 82D6C3352A5E1E4F00FB7F5D /* XCRemoteSwiftPackageReference "Alamofire" */;
