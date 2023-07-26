@@ -32,12 +32,12 @@ extension FacultyCathedraListViewModel: FacultyCathedraListViewModelProtocol {
         }
     }
     
-    func isCathedraSelected(index: Int) -> UITableViewCell.AccessoryType {
+    func isCathedraSelected(index: Int)-> Bool {
         let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra")
         if cathedra?.name == cathedraItem(index: index).name {
-            return .checkmark
+            return true
         } else {
-            return .none
+            return false
         }
     }
     

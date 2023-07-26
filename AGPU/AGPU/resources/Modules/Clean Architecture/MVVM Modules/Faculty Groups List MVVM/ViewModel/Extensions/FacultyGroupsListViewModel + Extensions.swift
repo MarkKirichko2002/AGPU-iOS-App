@@ -43,12 +43,12 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
         }
     }
     
-    func isGroupSelected(section: Int, index: Int)-> UITableViewCell.AccessoryType {
+    func isGroupSelected(section: Int, index: Int)-> Bool {
         let group = UserDefaults.standard.object(forKey: "group") as? String ?? ""
         if group == groupItem(section: section, index: index) {
-            return .checkmark
+            return true
         } else {
-            return .none
+            return false
         }
     }
     

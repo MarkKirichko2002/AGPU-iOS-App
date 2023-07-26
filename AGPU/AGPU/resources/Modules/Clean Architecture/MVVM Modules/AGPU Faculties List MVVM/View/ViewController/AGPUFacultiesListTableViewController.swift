@@ -34,7 +34,6 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
             
             let cathedraAction = UIAction(title: "кафедры", image: UIImage(named: "university")) { _ in
                 let vc = FacultyCathedraListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
-                let navVC = UINavigationController(rootViewController: vc)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             

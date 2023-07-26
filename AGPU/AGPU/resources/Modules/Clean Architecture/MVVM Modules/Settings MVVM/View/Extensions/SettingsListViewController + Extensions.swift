@@ -27,7 +27,7 @@ extension SettingsListViewController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AGPUFacultyTableViewCell.identifier, for: indexPath) as? AGPUFacultyTableViewCell else {return UITableViewCell()}
-            cell.accessoryType = viewModel.isFacultySelected(index: indexPath.row)
+            cell.accessoryType = viewModel.isFacultySelected(index: indexPath.row) ? .checkmark : .none
             cell.tintColor = .systemGreen
             cell.AGPUFacultyName.textColor = viewModel.isFacultySelectedColor(index: indexPath.row)
             cell.configure(faculty: AGPUFaculties.faculties[indexPath.row])
