@@ -1,5 +1,5 @@
 //
-//  ForStudentTableViewCell.swift
+//  ForEveryStatusTableViewCell.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 25.07.2023.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class ForStudentTableViewCell: UITableViewCell {
+class ForEveryStatusTableViewCell: UITableViewCell {
     
-    static let identifier = "ForStudentTableViewCell"
+    static let identifier = "ForEveryStatusTableViewCell"
     
     @IBOutlet var SectionIcon: SpringImageView!
     @IBOutlet var SectionName: UILabel!
