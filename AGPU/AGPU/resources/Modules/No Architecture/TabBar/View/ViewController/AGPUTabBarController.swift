@@ -49,7 +49,7 @@ final class AGPUTabBarController: UITabBarController {
         // расписание
         let timetableVC = TimeTableListTableViewController()
         // студенту
-        let studentVC = ForApplicantListTableViewController()
+        let studentVC = ForEmployeeListTableViewController()
         // настройки
         let settingsVC = SettingsListViewController()
         // новости

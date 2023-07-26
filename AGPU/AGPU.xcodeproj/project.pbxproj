@@ -41,6 +41,8 @@
 		82426C7A2A714DEA00D5AA57 /* ForApplicantSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C792A714DEA00D5AA57 /* ForApplicantSections.swift */; };
 		82426C852A71603B00D5AA57 /* AppFeaturesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C832A71603B00D5AA57 /* AppFeaturesTableViewCell.swift */; };
 		82426C862A71603B00D5AA57 /* AppFeaturesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82426C842A71603B00D5AA57 /* AppFeaturesTableViewCell.xib */; };
+		82426C8B2A71CFC600D5AA57 /* ForEmployeeListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C8A2A71CFC600D5AA57 /* ForEmployeeListTableViewController.swift */; };
+		82426C8D2A71D26100D5AA57 /* ForEmployeeSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C8C2A71D26100D5AA57 /* ForEmployeeSections.swift */; };
 		82461FEE2A50C493008A8752 /* AppDelegate + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */; };
 		824C56D92A6FE98F0074ADB7 /* FacultyCathedraList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */; };
 		8255ADCC2A672E720012895E /* AGPUSectionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255ADCB2A672E720012895E /* AGPUSectionsListViewModel.swift */; };
@@ -186,6 +188,8 @@
 		82426C792A714DEA00D5AA57 /* ForApplicantSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForApplicantSections.swift; sourceTree = "<group>"; };
 		82426C832A71603B00D5AA57 /* AppFeaturesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeaturesTableViewCell.swift; sourceTree = "<group>"; };
 		82426C842A71603B00D5AA57 /* AppFeaturesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppFeaturesTableViewCell.xib; sourceTree = "<group>"; };
+		82426C8A2A71CFC600D5AA57 /* ForEmployeeListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEmployeeListTableViewController.swift; sourceTree = "<group>"; };
+		82426C8C2A71D26100D5AA57 /* ForEmployeeSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEmployeeSections.swift; sourceTree = "<group>"; };
 		82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate + Extensions.swift"; sourceTree = "<group>"; };
 		824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyCathedraList.swift; sourceTree = "<group>"; };
 		8255ADCB2A672E720012895E /* AGPUSectionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSectionsListViewModel.swift; sourceTree = "<group>"; };
@@ -771,8 +775,9 @@
 		82426C6F2A71476D00D5AA57 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				82426C702A71476D00D5AA57 /* ForStudentSections.swift */,
 				82426C792A714DEA00D5AA57 /* ForApplicantSections.swift */,
+				82426C702A71476D00D5AA57 /* ForStudentSections.swift */,
+				82426C8C2A71D26100D5AA57 /* ForEmployeeSections.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -790,6 +795,7 @@
 			children = (
 				82426C762A714CF400D5AA57 /* For Applicant Screen */,
 				82E05D482A5DD52B0060ADAA /* For Student Screen */,
+				82426C872A71CF8400D5AA57 /* For Employee  Screen */,
 			);
 			path = "For Every Status";
 			sourceTree = "<group>";
@@ -843,6 +849,30 @@
 				82426C842A71603B00D5AA57 /* AppFeaturesTableViewCell.xib */,
 			);
 			path = "App Features";
+			sourceTree = "<group>";
+		};
+		82426C872A71CF8400D5AA57 /* For Employee  Screen */ = {
+			isa = PBXGroup;
+			children = (
+				82426C882A71CFA900D5AA57 /* View */,
+			);
+			path = "For Employee  Screen";
+			sourceTree = "<group>";
+		};
+		82426C882A71CFA900D5AA57 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82426C892A71CFB100D5AA57 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82426C892A71CFB100D5AA57 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82426C8A2A71CFC600D5AA57 /* ForEmployeeListTableViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		824C56D62A6FE9660074ADB7 /* Model */ = {
@@ -2358,6 +2388,7 @@
 				8255ADCC2A672E720012895E /* AGPUSectionsListViewModel.swift in Sources */,
 				82D6C3342A5E1DEC00FB7F5D /* TimeTable.swift in Sources */,
 				82426C742A71476D00D5AA57 /* ForEveryStatusModel.swift in Sources */,
+				82426C8D2A71D26100D5AA57 /* ForEmployeeSections.swift in Sources */,
 				8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */,
 				82E4C5172A6B0D0200F65A67 /* ImageSaver + Extensions.swift in Sources */,
 				8241F9812A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift in Sources */,
@@ -2382,6 +2413,7 @@
 				82BC3D002A56F5C400E49332 /* RecentPageViewController + Extensions.swift in Sources */,
 				82C5615D2A6B757C00514B00 /* AppFeatureModel.swift in Sources */,
 				82E05D5D2A5DF36B0060ADAA /* AGPUFacultiesListTableViewController + Extensions.swift in Sources */,
+				82426C8B2A71CFC600D5AA57 /* ForEmployeeListTableViewController.swift in Sources */,
 				82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */,
 				82989AF22A6F8CDF00F27858 /* ForEveryStatusTableViewCell.swift in Sources */,
 				821C9E192A68DE8700EF0030 /* UITableView + Extensions.swift in Sources */,
