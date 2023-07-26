@@ -18,8 +18,12 @@ extension SettingsListViewController: UITableViewDataSource {
         switch section {
         case 0:
             return AGPUFaculties.faculties.count
-        default:
+        case 1:
             return 1
+        case 2:
+            return 1
+        default:
+            return 0
         }
     }
     
@@ -34,6 +38,9 @@ extension SettingsListViewController: UITableViewDataSource {
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ShakeToRecallOptionTableViewCell.identifier, for: indexPath) as? ShakeToRecallOptionTableViewCell else {return UITableViewCell()}
+            return cell
+        case 2:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: AppFeaturesTableViewCell.identifier, for: indexPath) as? AppFeaturesTableViewCell else {return UITableViewCell()}
             return cell
         default:
             return UITableViewCell()
@@ -51,7 +58,7 @@ extension SettingsListViewController: UITableViewDelegate {
         case 1:
             return "Shake To Recall"
         default:
-            return ""
+            return "О приложение"
         }
     }
     
@@ -111,5 +118,16 @@ extension SettingsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        switch indexPath.section {
+        case 2:
+            NotificationCenter.default.post(name: Notification.Name("for student selected"), object: "info icon")
+            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+                let vc = AppFeaturesListTableViewController()
+                let navVC = UINavigationController(rootViewController: vc)
+                self.present(navVC, animated: true)
+            }
+        default:
+            break
+        }
     }
 }

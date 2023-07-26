@@ -44,11 +44,6 @@ struct ForStudentSections {
             id: 7,
             icon: "photo icon",
             name: "АГПУ обои"
-        ),
-        ForEveryStatusModel(
-            id: 8,
-            icon: "info icon",
-            name: "фишки приложения АГПУ для iOS"
         )
     ]
 }

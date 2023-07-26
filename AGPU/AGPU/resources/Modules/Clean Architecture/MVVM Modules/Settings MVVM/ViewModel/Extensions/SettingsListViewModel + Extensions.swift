@@ -11,7 +11,7 @@ import UIKit
 extension SettingsListViewModel: SettingsListViewModelProtocol {
     
     func sectionsCount()->Int {
-        return 2
+        return 3
     }
     
     func facultiesListCount()-> Int {
