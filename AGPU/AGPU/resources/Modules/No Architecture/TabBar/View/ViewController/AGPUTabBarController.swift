@@ -30,7 +30,6 @@ final class AGPUTabBarController: UITabBarController {
         UITabBar.appearance().tintColor = UIColor.black
         UITabBar.appearance().backgroundColor = UIColor.white
         setUpTabs()
-        settingsManager.checkAllSettings()
         createMiddleButton()
         ObserveForStudent()
         ObserveWebScreen()
