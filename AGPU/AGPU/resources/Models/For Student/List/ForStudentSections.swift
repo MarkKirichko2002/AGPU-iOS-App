@@ -43,11 +43,6 @@ struct ForStudentSections {
         ),
         ForStudentModel(
             id: 7,
-            icon: "note",
-            name: "своя музыка"
-        ),
-        ForStudentModel(
-            id: 8,
             icon: "info icon",
             name: "фишки приложения АГПУ для iOS"
         )
