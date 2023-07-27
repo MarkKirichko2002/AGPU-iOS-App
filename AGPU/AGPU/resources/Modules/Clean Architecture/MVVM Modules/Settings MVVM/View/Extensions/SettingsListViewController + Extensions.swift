@@ -134,7 +134,9 @@ extension SettingsListViewController: UITableViewDelegate {
         switch indexPath.section {
         case 0:
             viewModel.ChooseStatus(index: indexPath.row)
-        case 2:
+        case 1,2:
+            break
+        case 3:
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object: "info icon")
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AppFeaturesListTableViewController()
