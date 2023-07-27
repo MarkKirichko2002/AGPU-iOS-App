@@ -30,7 +30,7 @@ final class AppFeatureDetailViewController: UIViewController {
         super.viewDidLoad()
         if let feature = feature {
             FeatureName.text = feature.name
-            FeatureDescription.text = feature.features
+            FeatureDescription.text = feature.description
             FeatureDescription.isEditable = false
         }
     }

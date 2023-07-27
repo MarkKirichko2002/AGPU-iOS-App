@@ -9,5 +9,5 @@ import Foundation
 
 struct AppFeatureModel {
     let name: String
-    let features: String
+    let description: String
 }
