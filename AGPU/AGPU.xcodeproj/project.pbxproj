@@ -41,6 +41,10 @@
 		82426C7A2A714DEA00D5AA57 /* ForApplicantSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C792A714DEA00D5AA57 /* ForApplicantSections.swift */; };
 		82426C852A71603B00D5AA57 /* AppFeaturesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C832A71603B00D5AA57 /* AppFeaturesTableViewCell.swift */; };
 		82426C862A71603B00D5AA57 /* AppFeaturesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82426C842A71603B00D5AA57 /* AppFeaturesTableViewCell.xib */; };
+		82426C8B2A71CFC600D5AA57 /* ForEmployeeListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C8A2A71CFC600D5AA57 /* ForEmployeeListTableViewController.swift */; };
+		82426C8D2A71D26100D5AA57 /* ForEmployeeSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C8C2A71D26100D5AA57 /* ForEmployeeSections.swift */; };
+		82426C902A71DCDA00D5AA57 /* UserStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C8F2A71DCDA00D5AA57 /* UserStatusModel.swift */; };
+		82426C942A71DD0100D5AA57 /* UserStatusList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C932A71DD0100D5AA57 /* UserStatusList.swift */; };
 		82461FEE2A50C493008A8752 /* AppDelegate + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */; };
 		824C56D92A6FE98F0074ADB7 /* FacultyCathedraList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */; };
 		8255ADCC2A672E720012895E /* AGPUSectionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255ADCB2A672E720012895E /* AGPUSectionsListViewModel.swift */; };
@@ -186,6 +190,10 @@
 		82426C792A714DEA00D5AA57 /* ForApplicantSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForApplicantSections.swift; sourceTree = "<group>"; };
 		82426C832A71603B00D5AA57 /* AppFeaturesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeaturesTableViewCell.swift; sourceTree = "<group>"; };
 		82426C842A71603B00D5AA57 /* AppFeaturesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppFeaturesTableViewCell.xib; sourceTree = "<group>"; };
+		82426C8A2A71CFC600D5AA57 /* ForEmployeeListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEmployeeListTableViewController.swift; sourceTree = "<group>"; };
+		82426C8C2A71D26100D5AA57 /* ForEmployeeSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEmployeeSections.swift; sourceTree = "<group>"; };
+		82426C8F2A71DCDA00D5AA57 /* UserStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusModel.swift; sourceTree = "<group>"; };
+		82426C932A71DD0100D5AA57 /* UserStatusList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusList.swift; sourceTree = "<group>"; };
 		82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate + Extensions.swift"; sourceTree = "<group>"; };
 		824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyCathedraList.swift; sourceTree = "<group>"; };
 		8255ADCB2A672E720012895E /* AGPUSectionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSectionsListViewModel.swift; sourceTree = "<group>"; };
@@ -771,8 +779,9 @@
 		82426C6F2A71476D00D5AA57 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				82426C702A71476D00D5AA57 /* ForStudentSections.swift */,
 				82426C792A714DEA00D5AA57 /* ForApplicantSections.swift */,
+				82426C702A71476D00D5AA57 /* ForStudentSections.swift */,
+				82426C8C2A71D26100D5AA57 /* ForEmployeeSections.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -790,6 +799,7 @@
 			children = (
 				82426C762A714CF400D5AA57 /* For Applicant Screen */,
 				82E05D482A5DD52B0060ADAA /* For Student Screen */,
+				82426C872A71CF8400D5AA57 /* For Employee  Screen */,
 			);
 			path = "For Every Status";
 			sourceTree = "<group>";
@@ -843,6 +853,55 @@
 				82426C842A71603B00D5AA57 /* AppFeaturesTableViewCell.xib */,
 			);
 			path = "App Features";
+			sourceTree = "<group>";
+		};
+		82426C872A71CF8400D5AA57 /* For Employee  Screen */ = {
+			isa = PBXGroup;
+			children = (
+				82426C882A71CFA900D5AA57 /* View */,
+			);
+			path = "For Employee  Screen";
+			sourceTree = "<group>";
+		};
+		82426C882A71CFA900D5AA57 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82426C892A71CFB100D5AA57 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82426C892A71CFB100D5AA57 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82426C8A2A71CFC600D5AA57 /* ForEmployeeListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82426C8E2A71DCC000D5AA57 /* User Status */ = {
+			isa = PBXGroup;
+			children = (
+				82426C912A71DCEA00D5AA57 /* Model */,
+				82426C922A71DCF000D5AA57 /* List */,
+			);
+			path = "User Status";
+			sourceTree = "<group>";
+		};
+		82426C912A71DCEA00D5AA57 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82426C8F2A71DCDA00D5AA57 /* UserStatusModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82426C922A71DCF000D5AA57 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				82426C932A71DD0100D5AA57 /* UserStatusList.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 		824C56D62A6FE9660074ADB7 /* Model */ = {
@@ -1068,6 +1127,7 @@
 				8228E39A2A6C920000C1B6AD /* Location */,
 				82C561592A6B753500514B00 /* App Features */,
 				82426C6E2A71476D00D5AA57 /* For Every Status */,
+				82426C8E2A71DCC000D5AA57 /* User Status */,
 				820D18E12A68F9BB00BFAA35 /* AGPU Buildings */,
 				82722D402A66460500149D06 /* AGPU Pins */,
 				82EF23D22A3DEEA6004A7B9C /* Sections */,
@@ -2337,6 +2397,7 @@
 				82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */,
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
 				826BADAF2A64D5A500022B45 /* AGPULocationDetailViewController.swift in Sources */,
+				82426C942A71DD0100D5AA57 /* UserStatusList.swift in Sources */,
 				8228E39C2A6C920D00C1B6AD /* LocationModel.swift in Sources */,
 				820D18E52A68F9EE00BFAA35 /* AGPUBuildingModel.swift in Sources */,
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
@@ -2346,6 +2407,7 @@
 				8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */,
 				8228E3A62A6C9DB300C1B6AD /* AGPUBuildingsMapViewModel + Extensions.swift in Sources */,
 				82989AD82A6E54AF00F27858 /* AGPUCurrentCathedraMapViewController.swift in Sources */,
+				82426C902A71DCDA00D5AA57 /* UserStatusModel.swift in Sources */,
 				82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */,
 				82E4C58B2A6B20FF00F65A67 /* LocationManager + Extensions.swift in Sources */,
 				82E4C53E2A6B103B00F65A67 /* AGPUNewsViewModel + Extensions.swift in Sources */,
@@ -2358,6 +2420,7 @@
 				8255ADCC2A672E720012895E /* AGPUSectionsListViewModel.swift in Sources */,
 				82D6C3342A5E1DEC00FB7F5D /* TimeTable.swift in Sources */,
 				82426C742A71476D00D5AA57 /* ForEveryStatusModel.swift in Sources */,
+				82426C8D2A71D26100D5AA57 /* ForEmployeeSections.swift in Sources */,
 				8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */,
 				82E4C5172A6B0D0200F65A67 /* ImageSaver + Extensions.swift in Sources */,
 				8241F9812A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift in Sources */,
@@ -2382,6 +2445,7 @@
 				82BC3D002A56F5C400E49332 /* RecentPageViewController + Extensions.swift in Sources */,
 				82C5615D2A6B757C00514B00 /* AppFeatureModel.swift in Sources */,
 				82E05D5D2A5DF36B0060ADAA /* AGPUFacultiesListTableViewController + Extensions.swift in Sources */,
+				82426C8B2A71CFC600D5AA57 /* ForEmployeeListTableViewController.swift in Sources */,
 				82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */,
 				82989AF22A6F8CDF00F27858 /* ForEveryStatusTableViewCell.swift in Sources */,
 				821C9E192A68DE8700EF0030 /* UITableView + Extensions.swift in Sources */,

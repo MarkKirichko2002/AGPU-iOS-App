@@ -14,6 +14,18 @@ final class AGPUTabBarController: UITabBarController {
     private let animation = AnimationClass()
     private let settingsManager = SettingsManager()
     
+    // MARK: - вкладки
+    // новости
+    let newsVC = AGPUNewsViewController()
+    // для каждого статуса
+    var forEveryStatusVC = UIViewController()
+    // кнопка
+    let middleButton = UIViewController()
+    // расписание
+    let timetableVC = TimeTableListTableViewController()
+    // настройки
+    let settingsVC = SettingsListViewController()
+    
     private var isRecording = false
     
     // MARK: - Dynamic Button
@@ -30,8 +42,9 @@ final class AGPUTabBarController: UITabBarController {
         UITabBar.appearance().tintColor = UIColor.black
         UITabBar.appearance().backgroundColor = UIColor.white
         setUpTabs()
+        SetUpTab()
         createMiddleButton()
-        ObserveForStudent()
+        ObserveForEveryStatus()
         ObserveWebScreen()
         ObserveFaculty()
         becomeFirstResponder()
@@ -43,30 +56,24 @@ final class AGPUTabBarController: UITabBarController {
         
     private func setUpTabs() {
         // новости
-        let newsVC = AGPUNewsViewController()
-        // кнопка
-        let middleButton = UIViewController()
-        // расписание
-        let timetableVC = TimeTableListTableViewController()
-        // студенту
-        let studentVC = ForApplicantListTableViewController()
-        // настройки
-        let settingsVC = SettingsListViewController()
-        // новости
         newsVC.tabBarItem = UITabBarItem(title: "Новости", image: UIImage(systemName: "newspaper"), selectedImage: UIImage(systemName: "newspaper.fill"))
-        // cтуденту
-        studentVC.tabBarItem = UITabBarItem(title: "Абитуриенту", image: UIImage(named: "applicant"), selectedImage: UIImage(named: "applicant selected"))
+        // для каждого статуса
+        forEveryStatusVC = settingsManager.checkCurrentStatus()
         // расписание
         timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: UIImage(named: "calendar"), selectedImage: UIImage(named: "calendar selected"))
         // настройки
         settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear.fill"))
         settingsVC.navigationItem.title = "Настройки"
         let nav1VC = UINavigationController(rootViewController: newsVC)
-        let nav2VC = UINavigationController(rootViewController: studentVC)
         let nav3VC = UINavigationController(rootViewController: timetableVC)
         let nav4VC = UINavigationController(rootViewController: settingsVC)
-        
-        setViewControllers([nav1VC, nav2VC, middleButton, nav3VC, nav4VC], animated: true)
+        setViewControllers([nav1VC, forEveryStatusVC, middleButton, nav3VC, nav4VC], animated: false)
+    }
+    
+    private func SetUpTab() {
+        settingsManager.ObserveStatusChanged {
+            self.setUpTabs()
+        }
     }
     
     // MARK: - Dynamic Button
@@ -260,7 +267,7 @@ final class AGPUTabBarController: UITabBarController {
         }
     }
     
-    private func ObserveForStudent() {
+    private func ObserveForEveryStatus() {
         NotificationCenter.default.addObserver(forName: Notification.Name("for student selected"), object: nil, queue: .main) { notification in
             if let icon = notification.object as? String {
                 DispatchQueue.main.async {

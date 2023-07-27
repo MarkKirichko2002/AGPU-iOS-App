@@ -11,8 +11,43 @@ import UIKit
 extension SettingsListViewModel: SettingsListViewModelProtocol {
     
     func sectionsCount()->Int {
+        return 4
+    }
+    
+    // MARK: - Your Status
+    
+    func statusListCount()-> Int {
         return 3
     }
+    
+    func ChooseStatus(index: Int) {
+        var status = UserStatusList.list[index]
+        status.isSelected = true
+        UserDefaults.SaveData(object: status, key: "user status") {
+            self.isChanged.toggle()
+        }
+        NotificationCenter.default.post(name: Notification.Name("user status"), object: status)
+    }
+    
+    func isStatusSelected(index: Int)-> Bool {
+        let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status")
+        if status?.id == UserStatusList.list[index].id && status?.isSelected == true {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func isStatusSelectedColor(index: Int)-> UIColor {
+        let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status")
+        if status?.id == UserStatusList.list[index].id && status?.isSelected == true {
+            return .systemGreen
+        } else {
+            return .black
+        }
+    }
+    
+    // MARK: - Elected Faculty
     
     func facultiesListCount()-> Int {
         return AGPUFaculties.faculties.count

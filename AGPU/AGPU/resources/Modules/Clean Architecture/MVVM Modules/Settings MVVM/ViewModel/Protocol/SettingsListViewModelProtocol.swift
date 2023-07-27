@@ -9,6 +9,10 @@ import UIKit
 
 protocol SettingsListViewModelProtocol {
     func sectionsCount()->Int
+    func statusListCount()->Int
+    func ChooseStatus(index: Int)
+    func isStatusSelected(index: Int)-> Bool
+    func isStatusSelectedColor(index: Int)-> UIColor
     func facultiesListCount()-> Int
     func facultyItem(index: Int)-> AGPUFacultyModel
     func ChooseFaculty(index: Int)
