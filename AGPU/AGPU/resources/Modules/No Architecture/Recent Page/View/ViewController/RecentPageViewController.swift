@@ -79,14 +79,14 @@ final class RecentPageViewController: UIViewController {
     }
     
     @objc private func backButtonTapped() {
-        if let url = UserDefaults.standard.string(forKey: "previous page") {
-            WVWEBview.load(url)
+        if WVWEBview.canGoBack {
+            WVWEBview.goBack()
         }
     }
     
     @objc private func forwardButtonTapped() {
-        if let url = UserDefaults.standard.string(forKey: "next page") {
-            WVWEBview.load(url)
+        if WVWEBview.canGoForward {
+            WVWEBview.goForward()
         }
     }
     
