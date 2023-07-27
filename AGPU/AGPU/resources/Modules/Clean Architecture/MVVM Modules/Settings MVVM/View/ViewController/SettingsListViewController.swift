@@ -34,7 +34,9 @@ final class SettingsListViewController: UIViewController {
     
     private func BindViewModel() {
         viewModel.observation = observe(\.viewModel.isChanged) { _, _ in
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
 }

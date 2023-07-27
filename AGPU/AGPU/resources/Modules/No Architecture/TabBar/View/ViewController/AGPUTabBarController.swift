@@ -72,7 +72,9 @@ final class AGPUTabBarController: UITabBarController {
     
     private func SetUpTab() {
         settingsManager.ObserveStatusChanged {
-            self.setUpTabs()
+            DispatchQueue.main.async {
+                self.setUpTabs()
+            }
         }
     }
     

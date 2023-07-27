@@ -49,7 +49,9 @@ final class FacultyGroupsListTableViewController: UITableViewController {
     
     private func BindViewModel() {
         viewModel.observation = observe(\.viewModel.isChanged) { _, _ in
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     

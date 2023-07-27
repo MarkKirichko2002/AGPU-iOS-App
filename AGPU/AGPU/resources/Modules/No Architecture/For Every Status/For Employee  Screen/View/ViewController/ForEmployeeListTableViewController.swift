@@ -11,7 +11,7 @@ class ForEmployeeListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Сотрудникам"
+        navigationItem.title = "Сотруднику"
         tableView.register(UINib(nibName: ForEveryStatusTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ForEveryStatusTableViewCell.identifier)
     }
     
@@ -71,6 +71,14 @@ class ForEmployeeListTableViewController: UITableViewController {
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AGPUSectionsListViewController()
+                self.tabBarController?.tabBar.isHidden = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+        case 7:
+            NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
+            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+                let vc = AGPUWallpapersListViewController()
                 self.tabBarController?.tabBar.isHidden = true
                 self.navigationController?.pushViewController(vc, animated: true)
             }

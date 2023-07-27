@@ -35,7 +35,9 @@ class FacultyCathedraListTableViewController: UITableViewController {
     
     private func BindViewModel() {
         viewModel.observation = observe(\.viewModel.isChanged) { _, _ in
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
