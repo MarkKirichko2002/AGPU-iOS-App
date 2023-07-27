@@ -84,8 +84,7 @@ extension SettingsListViewController: UITableViewDelegate {
             
             switch indexPath.section {
                 
-            case 0:
-                
+            case 1:
                 let chooseAction = UIAction(title: self.viewModel.isFacultySelected(index: indexPath.row) ? "выбран" : "выбрать факультет", image: UIImage(named: self.viewModel.isFacultySelected(index: indexPath.row) ? "check selected" : "check")) { action in
                     self.viewModel.ChooseFaculty(index: indexPath.row)
                 }
