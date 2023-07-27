@@ -33,7 +33,7 @@ final class TimeTableListTableViewController: UIViewController {
     
     private func SetUpNavigation() {
         
-        navigationItem.title = "Расписание"
+        navigationItem.title = "Сегодня: \(date)"
 
         let optionsMenu = UIMenu(title: "расписание", children: [])
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: optionsMenu)
