@@ -39,6 +39,11 @@ struct AppFeaturesList {
         AppFeatureModel(
             name: "AGPU Wallpapers",
             features: "AGPU Wallpapers - Вы можете скачать и установить обои связанные с АГПУ на экран вашего устройства."
-        )
+        ),
+        
+        AppFeatureModel(
+            name: "Your Status",
+            features: "Your Status - Выберите свой статус под свои предпочтения и насладитесь экраном, заполненным соответствующим контентом."
+        ),
     ]
 }
