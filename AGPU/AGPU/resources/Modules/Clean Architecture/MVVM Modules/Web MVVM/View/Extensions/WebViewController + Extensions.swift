@@ -29,6 +29,17 @@ extension WebViewController: WKNavigationDelegate {
         }
     }
     
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+            if navigationAction.navigationType == .linkActivated, let url = navigationAction.request.url {
+                if url.absoluteString.lowercased().hasSuffix(".pdf") {
+                    webView.load(URLRequest(url: url))
+                    decisionHandler(.cancel)
+                    return
+                }
+            }
+            decisionHandler(.allow)
+    }
+
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         
         DispatchQueue.main.async {

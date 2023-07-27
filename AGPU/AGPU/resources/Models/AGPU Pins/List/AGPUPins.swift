@@ -63,7 +63,7 @@ struct AGPUPins {
         // (ИСТФАК)
         MKPointAnnotation(
             __coordinate: CLLocationCoordinate2D(latitude: 44.989082, longitude: 41.126904),
-            title: "(ИСТФАК)",
+            title: "ИСТФАК",
             subtitle: "Аудитории: 201, 202, 203, 204, 205, 206, 207, 208, 209, 210"
         ),
     ]
