@@ -17,10 +17,12 @@ extension SettingsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return AGPUFaculties.faculties.count
+            return UserStatusList.list.count
         case 1:
-            return 1
+            return AGPUFaculties.faculties.count
         case 2:
+            return 1
+        case 3:
             return 1
         default:
             return 0
@@ -30,16 +32,24 @@ extension SettingsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            cell.accessoryType = viewModel.isStatusSelected(index: indexPath.row) ? .checkmark : .none
+            cell.tintColor = .systemGreen
+            cell.textLabel?.text = UserStatusList.list[indexPath.row].name
+            cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
+            cell.textLabel?.textColor = viewModel.isStatusSelectedColor(index: indexPath.row)
+            return cell
+        case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AGPUFacultyTableViewCell.identifier, for: indexPath) as? AGPUFacultyTableViewCell else {return UITableViewCell()}
             cell.accessoryType = viewModel.isFacultySelected(index: indexPath.row) ? .checkmark : .none
             cell.tintColor = .systemGreen
             cell.AGPUFacultyName.textColor = viewModel.isFacultySelectedColor(index: indexPath.row)
             cell.configure(faculty: AGPUFaculties.faculties[indexPath.row])
             return cell
-        case 1:
+        case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ShakeToRecallOptionTableViewCell.identifier, for: indexPath) as? ShakeToRecallOptionTableViewCell else {return UITableViewCell()}
             return cell
-        case 2:
+        case 3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AppFeaturesTableViewCell.identifier, for: indexPath) as? AppFeaturesTableViewCell else {return UITableViewCell()}
             return cell
         default:
@@ -54,11 +64,15 @@ extension SettingsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Избранный Факультет"
+            return "Ваш Статус"
         case 1:
+            return "Избранный Факультет"
+        case 2:
             return "Shake To Recall"
-        default:
+        case 3:
             return "О приложение"
+        default:
+            return ""
         }
     }
     
@@ -119,6 +133,8 @@ extension SettingsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.section {
+        case 0:
+            viewModel.ChooseStatus(index: indexPath.row)
         case 2:
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object: "info icon")
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
