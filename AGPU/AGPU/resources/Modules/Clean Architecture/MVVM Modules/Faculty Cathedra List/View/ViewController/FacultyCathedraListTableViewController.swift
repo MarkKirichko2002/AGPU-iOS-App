@@ -90,7 +90,7 @@ class FacultyCathedraListTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FacultyCathedraTableViewCell.identifier, for: indexPath) as? FacultyCathedraTableViewCell else {return UITableViewCell()}
         cell.tintColor = .systemGreen
         cell.accessoryType = viewModel.isCathedraSelected(index: indexPath.row) ? .checkmark : .none
-        cell.CathedraName.textColor = viewModel.isCathedraSelectedColor(index: indexPath.row)
+        cell.CathedraName.textColor = viewModel.isCathedraSelected(index: indexPath.row) ? .systemGreen : .black
         cell.configure(cathedra: faculty.cathedra[indexPath.row], faculty: faculty)
         return cell
     }

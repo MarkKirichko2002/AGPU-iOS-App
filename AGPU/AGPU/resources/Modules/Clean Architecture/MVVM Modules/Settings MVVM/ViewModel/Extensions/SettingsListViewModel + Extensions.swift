@@ -38,15 +38,6 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         }
     }
     
-    func isStatusSelectedColor(index: Int)-> UIColor {
-        let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status")
-        if status?.id == UserStatusList.list[index].id && status?.isSelected == true {
-            return .systemGreen
-        } else {
-            return .black
-        }
-    }
-    
     // MARK: - Elected Faculty
     
     func facultiesListCount()-> Int {
@@ -98,15 +89,6 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
             return true
         } else {
             return false
-        }
-    }
-    
-    func isFacultySelectedColor(index: Int)-> UIColor {
-        let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty")
-        if faculty?.id == AGPUFaculties.faculties[index].id && faculty?.isSelected == true {
-            return UIColor.systemGreen
-        } else {
-            return UIColor.black
         }
     }
 }

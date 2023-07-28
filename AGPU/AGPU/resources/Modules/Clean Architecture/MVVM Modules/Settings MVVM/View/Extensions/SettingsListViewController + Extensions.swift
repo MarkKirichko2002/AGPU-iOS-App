@@ -37,13 +37,13 @@ extension SettingsListViewController: UITableViewDataSource {
             cell.tintColor = .systemGreen
             cell.textLabel?.text = UserStatusList.list[indexPath.row].name
             cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
-            cell.textLabel?.textColor = viewModel.isStatusSelectedColor(index: indexPath.row)
+            cell.textLabel?.textColor = viewModel.isStatusSelected(index: indexPath.row) ? .systemGreen : .black
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AGPUFacultyTableViewCell.identifier, for: indexPath) as? AGPUFacultyTableViewCell else {return UITableViewCell()}
             cell.accessoryType = viewModel.isFacultySelected(index: indexPath.row) ? .checkmark : .none
             cell.tintColor = .systemGreen
-            cell.AGPUFacultyName.textColor = viewModel.isFacultySelectedColor(index: indexPath.row)
+            cell.AGPUFacultyName.textColor = viewModel.isFacultySelected(index: indexPath.row) ? .systemGreen : .black
             cell.configure(faculty: AGPUFaculties.faculties[indexPath.row])
             return cell
         case 2:

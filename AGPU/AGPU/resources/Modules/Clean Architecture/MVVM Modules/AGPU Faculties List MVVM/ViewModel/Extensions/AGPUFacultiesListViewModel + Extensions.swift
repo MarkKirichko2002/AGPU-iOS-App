@@ -27,15 +27,6 @@ extension AGPUFacultiesListViewModel: AGPUFacultiesListViewModelProtocol {
         }
     }
     
-    func isFacultySelectedColor(index: Int)-> UIColor {
-        let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty")
-        if faculty?.id == AGPUFaculties.faculties[index].id && faculty?.isSelected == true {
-            return UIColor.systemGreen
-        } else {
-            return UIColor.black
-        }
-    }
-    
     func makePhoneNumbersMenu(index: Int) -> UIMenu {
         let faculty = facultyItem(index: index)
         let rateActions = faculty.phoneNumbers

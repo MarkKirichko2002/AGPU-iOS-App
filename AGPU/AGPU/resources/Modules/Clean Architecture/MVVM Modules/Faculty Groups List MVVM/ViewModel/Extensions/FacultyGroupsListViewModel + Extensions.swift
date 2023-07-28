@@ -51,13 +51,4 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
             return false
         }
     }
-    
-    func isGroupSelectedColor(section: Int, index: Int)-> UIColor {
-        let group = UserDefaults.standard.object(forKey: "group") as? String ?? ""
-        if group == groupItem(section: section, index: index) {
-            return UIColor.systemGreen
-        } else {
-            return UIColor.black
-        }
-    }
 }
