@@ -11,9 +11,10 @@ final class TimeTableListTableViewController: UIViewController {
     
     private let service = TimeTableService()
     private let dateManager = DateManager()
-    var timetable = [TimeTable]()
-    private var group = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-1-1"
+    private var group = ""
     private var date = ""
+    
+    var timetable = [TimeTable]()
     
     // MARK: - UI
     let tableView = UITableView()
@@ -22,6 +23,7 @@ final class TimeTableListTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        group = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-1-1"
         date = dateManager.getCurrentDate()
         SetUpNavigation()
         SetUpTable()
@@ -42,6 +44,7 @@ final class TimeTableListTableViewController: UIViewController {
         navigationItem.rightBarButtonItem = options
         
         service.GetAllGroups { [weak self] groups in
+            
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 
@@ -182,4 +185,3 @@ final class TimeTableListTableViewController: UIViewController {
         }
     }
 }
-
