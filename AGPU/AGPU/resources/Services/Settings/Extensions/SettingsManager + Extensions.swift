@@ -57,7 +57,7 @@ extension SettingsManager: SettingsManagerProtocol {
         if let option = UserDefaults.standard.value(forKey: "onShakeToRecallOption") as? Bool {
             return option
         } else {
-            return true
+            return false
         }
     }
 }

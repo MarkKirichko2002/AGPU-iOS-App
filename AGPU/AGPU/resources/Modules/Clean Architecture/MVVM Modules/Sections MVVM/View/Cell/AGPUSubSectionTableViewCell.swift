@@ -10,6 +10,7 @@ import UIKit
 final class AGPUSubSectionTableViewCell: UITableViewCell {
     
     static let identifier = "AGPUSubSectionTableViewCell"
+    private let animation = AnimationClass()
     
     let AGPUSubSectionTitle: UILabel = {
         let label = UILabel()
@@ -41,6 +42,10 @@ final class AGPUSubSectionTableViewCell: UITableViewCell {
             AGPUSubSectionTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -30),
             AGPUSubSectionTitle.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30),
         ])
+    }
+    
+    func didTapCell(indexPath: IndexPath) {
+        animation.SpringAnimation(view: AGPUSubSectionTitle)
     }
     
     func configure(subsection: AGPUSubSectionModel) {
