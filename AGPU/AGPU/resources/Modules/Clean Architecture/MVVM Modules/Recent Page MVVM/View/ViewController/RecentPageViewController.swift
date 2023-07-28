@@ -16,6 +16,9 @@ final class RecentPageViewController: UIViewController {
     let WVWEBview = WKWebView(frame: .zero)
     let spinner = UIActivityIndicatorView(style: .large)
     
+    // MARK: - сервисы
+    let viewModel = RecentPageViewModel()
+    
     // MARK: - Init
     init(
         page: RecentPageModel

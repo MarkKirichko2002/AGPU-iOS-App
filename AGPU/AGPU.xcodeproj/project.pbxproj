@@ -104,6 +104,7 @@
 		82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */; };
 		82BC3D002A56F5C400E49332 /* RecentPageViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFF2A56F5C400E49332 /* RecentPageViewController + Extensions.swift */; };
 		82BDFDB02A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BDFDAF2A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift */; };
+		82BEAD822A7414C300DD34C2 /* RecentPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BEAD812A7414C300DD34C2 /* RecentPageViewModel.swift */; };
 		82BF4DB02A5FA52B008B751A /* AGPUWallpapersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF4DAF2A5FA52B008B751A /* AGPUWallpapersListViewController.swift */; };
 		82BF4DB22A5FA5B3008B751A /* AGPUWallpaperCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF4DB12A5FA5B3008B751A /* AGPUWallpaperCollectionViewCell.swift */; };
 		82BF4DB42A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF4DB32A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift */; };
@@ -255,6 +256,7 @@
 		82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController + Extensions.swift"; sourceTree = "<group>"; };
 		82BC3CFF2A56F5C400E49332 /* RecentPageViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentPageViewController + Extensions.swift"; sourceTree = "<group>"; };
 		82BDFDAF2A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingsMapViewController.swift; sourceTree = "<group>"; };
+		82BEAD812A7414C300DD34C2 /* RecentPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPageViewModel.swift; sourceTree = "<group>"; };
 		82BF4DAF2A5FA52B008B751A /* AGPUWallpapersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUWallpapersListViewController.swift; sourceTree = "<group>"; };
 		82BF4DB12A5FA5B3008B751A /* AGPUWallpaperCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUWallpaperCollectionViewCell.swift; sourceTree = "<group>"; };
 		82BF4DB32A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUWallpapersListViewController + Extensions.swift"; sourceTree = "<group>"; };
@@ -1116,7 +1118,6 @@
 				829522DB2A38AEBE00329713 /* Maps */,
 				82D6C3422A5E33CD00FB7F5D /* Calendar */,
 				82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */,
-				82BC3CFA2A56ED7500E49332 /* Recent Page */,
 			);
 			path = "No Architecture";
 			sourceTree = "<group>";
@@ -1170,6 +1171,7 @@
 			children = (
 				8270A5492A5789BE008ACADC /* News MVVM */,
 				82BA73B22A579B15006B67DA /* Web MVVM */,
+				82BC3CFA2A56ED7500E49332 /* Recent Page MVVM */,
 				8228E3962A6C8EFD00C1B6AD /* Maps MVVM Modules */,
 				82808E9C2A31F2D400DEEB16 /* Sections MVVM */,
 				822158942A422A480088BDE5 /* Settings MVVM */,
@@ -1583,12 +1585,21 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		82BC3CFA2A56ED7500E49332 /* Recent Page */ = {
+		82BC3CFA2A56ED7500E49332 /* Recent Page MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				8241F9822A5F3F3A007DF628 /* View */,
+				82BEAD802A74148B00DD34C2 /* ViewModel */,
 			);
-			path = "Recent Page";
+			path = "Recent Page MVVM";
+			sourceTree = "<group>";
+		};
+		82BEAD802A74148B00DD34C2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82BEAD812A7414C300DD34C2 /* RecentPageViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */ = {
@@ -2400,6 +2411,7 @@
 				82426C942A71DD0100D5AA57 /* UserStatusList.swift in Sources */,
 				8228E39C2A6C920D00C1B6AD /* LocationModel.swift in Sources */,
 				820D18E52A68F9EE00BFAA35 /* AGPUBuildingModel.swift in Sources */,
+				82BEAD822A7414C300DD34C2 /* RecentPageViewModel.swift in Sources */,
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
 				82BDFDB02A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift in Sources */,
 				82461FEE2A50C493008A8752 /* AppDelegate + Extensions.swift in Sources */,
