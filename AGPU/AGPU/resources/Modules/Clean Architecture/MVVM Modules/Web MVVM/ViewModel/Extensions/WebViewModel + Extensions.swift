@@ -37,6 +37,12 @@ extension WebViewModel: WebViewModelProtocol {
         }
     }
     
+    func ObserveActions(block: @escaping()->Void) {
+        NotificationCenter.default.addObserver(forName: Notification.Name("close screen"), object: nil, queue: nil) { _ in
+            block()
+        }
+    }
+    
     func SaveCurrentPage(url: String, position: CGPoint) {
         let dateManager = DateManager()
         let date = dateManager.getCurrentDate()

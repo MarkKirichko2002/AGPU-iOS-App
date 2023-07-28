@@ -45,7 +45,7 @@ final class WebViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        NotificationCenter.default.post(name: Notification.Name("WebScreenWasClosed"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
         timer?.invalidate()
     }
 
@@ -85,6 +85,9 @@ final class WebViewController: UIViewController {
     private func SetUpViewModel() {
         viewModel.ObserveScroll { position in
             self.WVWEBview.scrollView.setContentOffset(position, animated: true)
+        }
+        viewModel.ObserveActions {
+            self.dismiss(animated: true)
         }
     }
     

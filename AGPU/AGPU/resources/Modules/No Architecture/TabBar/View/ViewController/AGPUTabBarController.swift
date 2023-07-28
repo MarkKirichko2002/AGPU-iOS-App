@@ -197,27 +197,27 @@ final class AGPUTabBarController: UITabBarController {
         }
         
         // MARK: - "Sections"
-        if text != "" {
+        if text.lowercased().contains("разделы") {
+            
+            let vc = AGPUSectionsListViewController()
+            let navVC = UINavigationController(rootViewController: vc)
+            
+            DispatchQueue.main.async {
+                self.DynamicButton.setImage(UIImage(named: "sections icon"), for: .normal)
+                self.animation.SpringAnimation(view: self.DynamicButton)
+            }
+            
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.present(navVC, animated: true)
+            }
+            
             // поиск раздела
             for section in AGPUSections.sections {
                 
                 if text.lastWord().lowercased().contains(section.voiceCommand) {
                     
-                    DispatchQueue.main.async {
-                        self.DynamicButton.setImage(UIImage(named: section.icon), for: .normal)
-                        self.animation.SpringAnimation(view: self.DynamicButton)
-                    }
-                    
-                    let vc = AGPUSectionsListViewController()
-                    let navVC = UINavigationController(rootViewController: vc)
-                    
-                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                        self.present(navVC, animated: true)
-                    }
-                    
-                    Timer.scheduledTimer(withTimeInterval: 1.25, repeats: false) { _ in
-                        NotificationCenter.default.post(name: Notification.Name("ScrollToSection"), object: section.id)
-                    }
+                    NotificationCenter.default.post(name: Notification.Name("ScrollToSection"), object: section.id)
+                    break
                 }
             }
         }
@@ -240,6 +240,7 @@ final class AGPUTabBarController: UITabBarController {
                         }
                     
                         NotificationCenter.default.post(name: Notification.Name("scroll"), object: text.lastWord())
+                        break
                     }
                 }
             }
@@ -253,7 +254,7 @@ final class AGPUTabBarController: UITabBarController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.speechRecognitionManager.startRecognize()
                 self.DynamicButton.setImage(UIImage(named: "mic"), for: .normal)
-                self.dismiss(animated: true)
+                NotificationCenter.default.post(name: Notification.Name("close screen"), object: nil)
             }
         }
         
@@ -284,7 +285,7 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     private func ObserveWebScreen() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("WebScreenWasClosed"), object: nil, queue: .main) { _ in
+        NotificationCenter.default.addObserver(forName: Notification.Name("screen was closed"), object: nil, queue: .main) { _ in
             if self.isRecording {
                 if !self.tabBar.isHidden {
                     DispatchQueue.main.async {
