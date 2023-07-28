@@ -37,6 +37,7 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
             if key.abbreviation().contains(faculty.abbreviation) {
                 UserDefaults.standard.setValue(group, forKey: "group")
                 self.isChanged.toggle()
+                NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
             } else {
                 print("no \(key.abbreviation()) != \(faculty.abbreviation)")
             }

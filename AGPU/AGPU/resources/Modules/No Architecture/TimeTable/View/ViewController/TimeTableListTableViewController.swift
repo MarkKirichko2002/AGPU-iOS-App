@@ -27,6 +27,7 @@ final class TimeTableListTableViewController: UIViewController {
         SetUpTable()
         SetUpIndicatorView()
         SetUpLabel()
+        ObserveGroupChange()
         ObserveCalendar()
         GetTimeTable(group: group, date: date)
     }
@@ -123,6 +124,16 @@ final class TimeTableListTableViewController: UIViewController {
             } else {
                 self.noTimeTableLabel.isHidden = false
                 self.spinner.stopAnimating()
+            }
+        }
+    }
+    
+    private func ObserveGroupChange() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("group changed"), object: nil, queue: .main) { notification in
+            if let group = notification.object as? String {
+                self.GetTimeTable(group: group, date: self.date)
+                self.group = group
+                print(self.group)
             }
         }
     }
