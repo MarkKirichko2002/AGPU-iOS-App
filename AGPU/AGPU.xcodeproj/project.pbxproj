@@ -105,6 +105,8 @@
 		82BC3D002A56F5C400E49332 /* RecentPageViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFF2A56F5C400E49332 /* RecentPageViewController + Extensions.swift */; };
 		82BDFDB02A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BDFDAF2A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift */; };
 		82BEAD822A7414C300DD34C2 /* RecentPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BEAD812A7414C300DD34C2 /* RecentPageViewModel.swift */; };
+		82BEAD872A7417EC00DD34C2 /* RecentPageViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BEAD862A7417EC00DD34C2 /* RecentPageViewModelProtocol.swift */; };
+		82BEAD892A74180D00DD34C2 /* RecentPageViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BEAD882A74180D00DD34C2 /* RecentPageViewModel + Extensions.swift */; };
 		82BF4DB02A5FA52B008B751A /* AGPUWallpapersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF4DAF2A5FA52B008B751A /* AGPUWallpapersListViewController.swift */; };
 		82BF4DB22A5FA5B3008B751A /* AGPUWallpaperCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF4DB12A5FA5B3008B751A /* AGPUWallpaperCollectionViewCell.swift */; };
 		82BF4DB42A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF4DB32A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift */; };
@@ -257,6 +259,8 @@
 		82BC3CFF2A56F5C400E49332 /* RecentPageViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentPageViewController + Extensions.swift"; sourceTree = "<group>"; };
 		82BDFDAF2A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingsMapViewController.swift; sourceTree = "<group>"; };
 		82BEAD812A7414C300DD34C2 /* RecentPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPageViewModel.swift; sourceTree = "<group>"; };
+		82BEAD862A7417EC00DD34C2 /* RecentPageViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPageViewModelProtocol.swift; sourceTree = "<group>"; };
+		82BEAD882A74180D00DD34C2 /* RecentPageViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentPageViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82BF4DAF2A5FA52B008B751A /* AGPUWallpapersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUWallpapersListViewController.swift; sourceTree = "<group>"; };
 		82BF4DB12A5FA5B3008B751A /* AGPUWallpaperCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUWallpaperCollectionViewCell.swift; sourceTree = "<group>"; };
 		82BF4DB32A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUWallpapersListViewController + Extensions.swift"; sourceTree = "<group>"; };
@@ -1597,9 +1601,35 @@
 		82BEAD802A74148B00DD34C2 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				82BEAD852A7417C700DD34C2 /* Protocol */,
+				82BEAD842A7417C500DD34C2 /* ViewModel */,
+				82BEAD832A7417C300DD34C2 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82BEAD832A7417C300DD34C2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82BEAD882A74180D00DD34C2 /* RecentPageViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82BEAD842A7417C500DD34C2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
 				82BEAD812A7414C300DD34C2 /* RecentPageViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82BEAD852A7417C700DD34C2 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82BEAD862A7417EC00DD34C2 /* RecentPageViewModelProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */ = {
@@ -2474,6 +2504,7 @@
 				82989AEB2A6F6E1B00F27858 /* FacultyCathedraListViewModelProtocol.swift in Sources */,
 				82E4C5682A6B154300F65A67 /* FacultyGroupsListViewModelProtocol.swift in Sources */,
 				8241F9932A5F4091007DF628 /* TimeTableServicerProtocol.swift in Sources */,
+				82BEAD872A7417EC00DD34C2 /* RecentPageViewModelProtocol.swift in Sources */,
 				82426C782A714D6A00D5AA57 /* ForApplicantListTableViewController.swift in Sources */,
 				829548862A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift in Sources */,
 				82D6C3322A5E1DE100FB7F5D /* TimeTableService.swift in Sources */,
@@ -2488,6 +2519,7 @@
 				82C5615F2A6B75B700514B00 /* AppFeaturesList.swift in Sources */,
 				82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */,
 				82426C852A71603B00D5AA57 /* AppFeaturesTableViewCell.swift in Sources */,
+				82BEAD892A74180D00DD34C2 /* RecentPageViewModel + Extensions.swift in Sources */,
 				82875B022A5A198A007DB925 /* HapticsManager + Extensions.swift in Sources */,
 				82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */,
 				82E4C55F2A6B147900F65A67 /* SettingsListViewModelProtocol.swift in Sources */,

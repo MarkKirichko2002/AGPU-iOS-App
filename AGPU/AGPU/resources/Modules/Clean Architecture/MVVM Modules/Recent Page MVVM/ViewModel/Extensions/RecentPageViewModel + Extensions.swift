@@ -1,5 +1,5 @@
 //
-//  RecentPageViewModel.swift
+//  RecentPageViewModel + Extensions.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 28.07.2023.
@@ -7,7 +7,8 @@
 
 import Foundation
 
-class RecentPageViewModel {
+// MARK: - RecentPageViewModelProtocol
+extension RecentPageViewModel: RecentPageViewModelProtocol {
     
     func GetLastPosition(currentUrl: String, completion: @escaping(CGPoint)->Void) {
         if let page = UserDefaults.loadData(type: RecentPageModel.self, key: "last page") {
