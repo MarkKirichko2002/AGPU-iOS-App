@@ -74,12 +74,23 @@ final class ForStudentListTableViewController: UITableViewController {
             }
             
         case 4:
+            if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
+                NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+                Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+                    self.GoToWeb(url: cathedra.additionalEducationUrl, title: "Дополнительное образование", isSheet: true)
+                }
+            } else {
+                let ok = UIAlertAction(title: "ОК", style: .default)
+                self.ShowAlert(title: "Вы не выбрали кафедру", message: "чтобы посмотреть соответствующие материалы для вашей кафедры выберите ее в настройках", actions: [ok])
+            }
+            
+        case 5:
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 self.GoToWeb(url: "http://test.agpu.net/studentu/obshchezhitiya/index.php", title: "Кампус и общежития", isSheet: true)
             }
             
-        case 5:
+        case 6:
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AGPUSectionsListViewController()
@@ -87,7 +98,7 @@ final class ForStudentListTableViewController: UITableViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-        case 6:
+        case 7:
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AGPUWallpapersListViewController()
