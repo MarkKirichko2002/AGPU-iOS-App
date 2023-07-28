@@ -51,5 +51,8 @@ final class AGPUSectionsListViewController: UIViewController {
         viewModel.ObserveScroll { section in
             self.tableView.scrollToRow(at: IndexPath(row: 0, section: section), at: .top, animated: true)
         }
+        viewModel.ObserveActions {
+            self.dismiss(animated: true)
+        }
     }
 }

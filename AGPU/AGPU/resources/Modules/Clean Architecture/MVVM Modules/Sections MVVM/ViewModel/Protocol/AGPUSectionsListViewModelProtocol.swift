@@ -9,4 +9,5 @@ import Foundation
 
 protocol AGPUSectionsListViewModelProtocol {
     func ObserveScroll(completion: @escaping(Int)->Void)
+    func ObserveActions(block: @escaping()->Void)
 }

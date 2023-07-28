@@ -86,6 +86,9 @@ final class WebViewController: UIViewController {
         viewModel.ObserveScroll { position in
             self.WVWEBview.scrollView.setContentOffset(position, animated: true)
         }
+        viewModel.ObserveActions {
+            self.dismiss(animated: true)
+        }
     }
     
     @objc private func backButtonTapped() {

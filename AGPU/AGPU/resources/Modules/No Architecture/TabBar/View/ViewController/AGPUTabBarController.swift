@@ -253,7 +253,7 @@ final class AGPUTabBarController: UITabBarController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.speechRecognitionManager.startRecognize()
                 self.DynamicButton.setImage(UIImage(named: "mic"), for: .normal)
-                self.dismiss(animated: true)
+                NotificationCenter.default.post(name: Notification.Name("close web"), object: nil)
             }
         }
         
