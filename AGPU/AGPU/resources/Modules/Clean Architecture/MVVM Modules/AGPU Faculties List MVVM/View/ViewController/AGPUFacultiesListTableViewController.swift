@@ -86,7 +86,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AGPUFacultyTableViewCell.identifier, for: indexPath) as? AGPUFacultyTableViewCell else {return UITableViewCell()}
         cell.accessoryType = viewModel.isFacultySelected(index: indexPath.row) ? .checkmark : .none
         cell.tintColor = .systemGreen
-        cell.AGPUFacultyName.textColor = viewModel.isFacultySelectedColor(index: indexPath.row)
+        cell.AGPUFacultyName.textColor = viewModel.isFacultySelected(index: indexPath.row) ? .systemGreen : .black
         cell.configure(faculty: viewModel.facultyItem(index: indexPath.row))
         return cell
     }

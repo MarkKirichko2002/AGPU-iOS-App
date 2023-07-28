@@ -40,13 +40,4 @@ extension FacultyCathedraListViewModel: FacultyCathedraListViewModelProtocol {
             return false
         }
     }
-    
-    func isCathedraSelectedColor(index: Int)-> UIColor {
-        let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra")
-        if cathedra?.name == cathedraItem(index: index).name {
-            return UIColor.systemGreen
-        } else {
-            return UIColor.black
-        }
-    }
 }
