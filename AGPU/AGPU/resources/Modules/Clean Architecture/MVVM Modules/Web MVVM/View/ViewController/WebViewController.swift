@@ -45,7 +45,7 @@ final class WebViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        NotificationCenter.default.post(name: Notification.Name("WebScreenWasClosed"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
         timer?.invalidate()
     }
 

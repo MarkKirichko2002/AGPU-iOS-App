@@ -20,7 +20,7 @@ extension AGPUSectionsListViewModel: AGPUSectionsListViewModelProtocol {
     }
     
     func ObserveActions(block: @escaping()->Void) {
-        NotificationCenter.default.addObserver(forName: Notification.Name("close web"), object: nil, queue: nil) { _ in
+        NotificationCenter.default.addObserver(forName: Notification.Name("close screen"), object: nil, queue: nil) { _ in
             block()
         }
     }
