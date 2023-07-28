@@ -87,7 +87,10 @@ final class WebViewController: UIViewController {
             self.WVWEBview.scrollView.setContentOffset(position, animated: true)
         }
         viewModel.ObserveActions {
-            self.dismiss(animated: true)
+            if self.navigationController?.viewControllers.first == self {
+                self.dismiss(animated: true)
+            } else {
+            }
         }
     }
     

@@ -52,7 +52,10 @@ final class AGPUSectionsListViewController: UIViewController {
             self.tableView.scrollToRow(at: IndexPath(row: 0, section: section), at: .top, animated: true)
         }
         viewModel.ObserveActions {
-            self.dismiss(animated: true)
+            if self.navigationController?.viewControllers.first == self {
+                self.dismiss(animated: true)
+            } else {
+            }
         }
     }
 }
