@@ -62,21 +62,55 @@ final class TimeTableListTableViewController: UIViewController {
                     arr.append(mainMenu)
                 }
                 
+                // список групп
                 let groupList = UIMenu(title: "группы", image: UIImage(named: "group"), children: arr)
-                let calendar = UIAction(title: "календарь", image: UIImage(named: "calendar")) { _ in
+                // сегодняшний день
+                let current = UIAction(title: "сегодня") { _ in
+                    let currentDay = self.dateManager.getCurrentDate()
+                    self.GetTimeTable(group: self.group, date: currentDay)
+                    self.date = currentDay
+                    self.navigationItem.title = self.date
+                }
+                // следующий день
+                let next = UIAction(title: "следующий") { _ in
+                    let nextDay = self.dateManager.nextDay(date: self.date)
+                    self.GetTimeTable(group: self.group, date: nextDay)
+                    self.date = nextDay
+                    self.navigationItem.title = self.date
+                }
+                // предыдущий день
+                let previous = UIAction(title: "предыдущий") { _ in
+                    let previousDay = self.dateManager.previousDay(date: self.date)
+                    self.GetTimeTable(group: self.group, date: previousDay)
+                    self.date = previousDay
+                    self.navigationItem.title = self.date
+                }
+                // календарь
+                let calendar = UIAction(title: "календарь") { _ in
                     let vc = CalendarViewController()
                     self.present(vc, animated: true)
                 }
+                // день
+                let day = UIMenu(title: "выбрать день", image: UIImage(named: "calendar"), children: [
+                    current,
+                    next,
+                    previous,
+                    calendar
+                ])
+                // поделиться
                 let shareTimeTable = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
                     self.shareTableViewAsImage(tableView: self.tableView, title: self.date, text: self.group)
                 }
-                let updatedOptionsMenu = UIMenu(title: "расписание", children: [groupList, calendar, shareTimeTable])
+                let updatedOptionsMenu = UIMenu(title: "расписание", children: [
+                    groupList,
+                    day,
+                    shareTimeTable
+                ])
                 options.menu = updatedOptionsMenu
             }
         }
     }
 
-    
     private func SetUpIndicatorView() {
         view.addSubview(spinner)
         spinner.translatesAutoresizingMaskIntoConstraints = false

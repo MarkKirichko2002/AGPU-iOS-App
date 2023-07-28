@@ -10,4 +10,6 @@ import Foundation
 protocol DateManagerProtocol {
     func getCurrentDate()-> String
     func getCurrentTime()-> String
+    func nextDay(date: String)-> String
+    func previousDay(date: String)-> String
 }
