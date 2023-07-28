@@ -40,14 +40,14 @@ extension AGPUFacultiesListViewModel: AGPUFacultiesListViewModelProtocol {
         let faculty = facultyItem(index: index)
         let rateActions = faculty.phoneNumbers
             .map { phone in
-                return UIAction(title: phone) { action in
+                return UIAction(title: phone, image: UIImage(named: "phone")) { action in
                     self.makePhoneCall(phoneNumber: phone)
                 }
             }
         
         return UIMenu(
-            title: "позвонить",
-            image: UIImage(named: "phone"),
+            title: "контакты",
+            image: UIImage(named: "contacts"),
             children: rateActions)
     }
     
