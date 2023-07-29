@@ -58,6 +58,10 @@ class FacultyCathedraListTableViewController: UITableViewController {
                 self.GoToWeb(url: self.faculty.cathedra[indexPath.row].manualUrl, title: "Методические материалы", isSheet: true)
             }
             
+            let emailAction = UIAction(title: "написать", image: UIImage(named: "mail")) { _ in
+                self.showEmailComposer(email: self.faculty.cathedra[indexPath.row].email)
+            }
+            
             let mapAction = UIAction(title: "найти кафедру", image: UIImage(named: "search")) { _ in
                 let vc = AGPUCurrentCathedraMapViewController(cathedra: self.faculty.cathedra[indexPath.row])
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -69,9 +73,10 @@ class FacultyCathedraListTableViewController: UITableViewController {
             
             return UIMenu(title: self.faculty.cathedra[indexPath.row].name, children: [
                 infoAction,
+                emailAction,
+                mapAction,
                 additionalEducationAction,
                 manualAction,
-                mapAction,
                 shareAction
             ])
         })
