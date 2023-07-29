@@ -21,7 +21,7 @@ struct AGPUFaculties {
             url: "http://test.agpu.net/struktura-vuza/faculties-institutes/iriif/index.php",
             newsURL: "http://test.agpu.net/struktura-vuza/faculties-institutes/iriif/news/news.php",
             videoURL: "http://priem.agpu.net/video/stud/iriif.mp4",
-            phoneNumbers: ["89883610402"],
+            contacts: [],
             email: "markkir123@gmail.com",
             isSelected: false
         ),
@@ -35,7 +35,7 @@ struct AGPUFaculties {
             url: "http://test.agpu.net/struktura-vuza/faculties-institutes/ipimif/index.php",
             newsURL: "http://test.agpu.net/struktura-vuza/faculties-institutes/ipimif/news/news.php",
             videoURL: "http://priem.agpu.net/video/stud/ipimif.mp4",
-            phoneNumbers: ["89883610402"],
+            contacts: [],
             email: "markkir123@gmail.com",
             isSelected: false
         ),
@@ -49,7 +49,43 @@ struct AGPUFaculties {
             url: "http://test.agpu.net/struktura-vuza/faculties-institutes/spf/index.php",
             newsURL: "http://test.agpu.net/struktura-vuza/faculties-institutes/spf/news/news.php",
             videoURL: "http://priem.agpu.net/video/stud/spf.mp4",
-            phoneNumbers: ["88613737994", "89892761786"],
+            contacts: [
+                ContactsModel(
+                    name: "-",
+                    degree: "специалист по учебно-методической работе",
+                    phoneNumber: "+7(989)276-17-86"
+                ),
+                ContactsModel(
+                    name: "Костенко Анаид Арсеновна",
+                    degree: "декан социально-психологического факультета, кандидат психологических наук, доцент",
+                    phoneNumber: "+7(918)384-97-79"
+                ),
+                ContactsModel(
+                    name: "Алдакимова Ольга Викторовна",
+                    degree: "заместитель декана по учебной работе",
+                    phoneNumber: "+7(918)405-38-20"
+                ),
+                ContactsModel(
+                    name: "Ромашина Елена Владимировна",
+                    degree: "заместитель декана по воспитательной работе",
+                    phoneNumber: "+7(918)154-31-23"
+                ),
+                ContactsModel(
+                    name: "Клюковкина Олеся Александровна",
+                    degree: "диспетчер очной и очно-заочной формы обучения",
+                    phoneNumber: "+7(918)171-13-19"
+                ),
+                ContactsModel(
+                    name: "Хачатурова Диана Александровна",
+                    degree: "cпециалист по учебно-методической работе заочной формы обучения бакалавриата",
+                    phoneNumber: "+7(989)276-17-86"
+                ),
+                ContactsModel(
+                    name: "Михаилян Наталья Евгеньевна",
+                    degree: "специалист по учебно-методической работе заочной формы обучения магистратуры",
+                    phoneNumber: "+7(960)477-04-49"
+                ),
+            ],
             email: "pedfak_agpu@mail.ru",
             isSelected: false
         ),
@@ -63,7 +99,13 @@ struct AGPUFaculties {
             url: "http://test.agpu.net/struktura-vuza/faculties-institutes/fdino/index.php",
             newsURL: "http://test.agpu.net/struktura-vuza/faculties-institutes/fdino/news/news.php",
             videoURL: "http://priem.agpu.net/video/stud/fdino.mp4",
-            phoneNumbers: ["88613733264"],
+            contacts: [
+                ContactsModel(
+                    name: "деканат",
+                    degree: "-",
+                    phoneNumber: "+7(86137)3-32-64"
+                )
+            ],
             email: "dekanat_fdino@mail.ru",
             isSelected: false
         ),
@@ -77,7 +119,18 @@ struct AGPUFaculties {
             url: "http://test.agpu.net/struktura-vuza/faculties-institutes/fteid/index.php",
             newsURL: "http://test.agpu.net/struktura-vuza/faculties-institutes/fteid/news/news.php",
             videoURL: "http://priem.agpu.net/video/stud/fteid.mp4",
-            phoneNumbers: ["88613728094", "88613728217"],
+            contacts: [
+                ContactsModel(
+                    name: "Мукучян Размон Рубенович",
+                    degree: "декан факультета",
+                    phoneNumber: "8(86137)2-80-94"
+                ),
+                ContactsModel(
+                    name: "Мукучян Размон Рубенович",
+                    degree: "декан факультета",
+                    phoneNumber: "8(86137)2-82-17"
+                )
+            ],
             email: "dekanat.tekhfak@mail.ru",
             isSelected: false
         ),
@@ -91,7 +144,7 @@ struct AGPUFaculties {
             url: "http://test.agpu.net/struktura-vuza/faculties-institutes/istfak/index.php",
             newsURL: "http://test.agpu.net/struktura-vuza/faculties-institutes/istfak/news/news.php",
             videoURL: "http://priem.agpu.net/video/stud/istfak.mp4",
-            phoneNumbers: ["89883610402"],
+            contacts: [],
             email: "markkir123@gmail.com",
             isSelected: false
         )

@@ -17,7 +17,7 @@ struct AGPUFacultyModel: Codable {
     let url: String
     let newsURL: String
     let videoURL: String
-    let phoneNumbers: [String]
+    let contacts: [ContactsModel]
     let email: String
     var isSelected = false
 }

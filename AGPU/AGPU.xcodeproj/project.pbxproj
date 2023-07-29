@@ -10,6 +10,10 @@
 		8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8208E7542A63A3D300675EF1 /* AGPUThemes.swift */; };
 		820D18E52A68F9EE00BFAA35 /* AGPUBuildingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820D18E42A68F9EE00BFAA35 /* AGPUBuildingModel.swift */; };
 		820D18E72A68FA7D00BFAA35 /* AGPUBuildings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820D18E62A68FA7D00BFAA35 /* AGPUBuildings.swift */; };
+		820D339B2A75977400843313 /* FacultyContactsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820D339A2A75977400843313 /* FacultyContactsListTableViewController.swift */; };
+		820D339F2A75985400843313 /* ContactsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820D339E2A75985400843313 /* ContactsModel.swift */; };
+		820D33A62A759E9100843313 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820D33A42A759E9100843313 /* ContactsTableViewCell.swift */; };
+		820D33A72A759E9100843313 /* ContactsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820D33A52A759E9100843313 /* ContactsTableViewCell.xib */; };
 		8210CA052A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210CA042A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift */; };
 		8210CA092A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210CA082A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift */; };
 		8218F5872A688F8C00C94EB4 /* CustomActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218F5862A688F8C00C94EB4 /* CustomActivityItemSource.swift */; };
@@ -161,6 +165,10 @@
 		8208E7542A63A3D300675EF1 /* AGPUThemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUThemes.swift; sourceTree = "<group>"; };
 		820D18E42A68F9EE00BFAA35 /* AGPUBuildingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingModel.swift; sourceTree = "<group>"; };
 		820D18E62A68FA7D00BFAA35 /* AGPUBuildings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildings.swift; sourceTree = "<group>"; };
+		820D339A2A75977400843313 /* FacultyContactsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyContactsListTableViewController.swift; sourceTree = "<group>"; };
+		820D339E2A75985400843313 /* ContactsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsModel.swift; sourceTree = "<group>"; };
+		820D33A42A759E9100843313 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
+		820D33A52A759E9100843313 /* ContactsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsTableViewCell.xib; sourceTree = "<group>"; };
 		8210CA042A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUCurrentBuildingMapViewController.swift; sourceTree = "<group>"; };
 		8210CA082A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUCurrentBuildingMapViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8218F5862A688F8C00C94EB4 /* CustomActivityItemSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityItemSource.swift; sourceTree = "<group>"; };
@@ -453,6 +461,72 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		820D33992A75974F00843313 /* Contacts List */ = {
+			isa = PBXGroup;
+			children = (
+				820D339C2A75980700843313 /* Faculty */,
+			);
+			path = "Contacts List";
+			sourceTree = "<group>";
+		};
+		820D339C2A75980700843313 /* Faculty */ = {
+			isa = PBXGroup;
+			children = (
+				820D33A82A75A1D000843313 /* View */,
+			);
+			path = Faculty;
+			sourceTree = "<group>";
+		};
+		820D339D2A75984200843313 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				820D33A02A7598E000843313 /* Model */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
+		820D33A02A7598E000843313 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				820D339E2A75985400843313 /* ContactsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		820D33A12A7598E600843313 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8228E39B2A6C920D00C1B6AD /* LocationModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		820D33A22A759E6300843313 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				820D339A2A75977400843313 /* FacultyContactsListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		820D33A32A759E7A00843313 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				820D33A42A759E9100843313 /* ContactsTableViewCell.swift */,
+				820D33A52A759E9100843313 /* ContactsTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		820D33A82A75A1D000843313 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				820D33A22A759E6300843313 /* ViewController */,
+				820D33A32A759E7A00843313 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8210CA022A664D5700D0BEEE /* Current Buiding MVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -554,7 +628,7 @@
 		8228E39A2A6C920000C1B6AD /* Location */ = {
 			isa = PBXGroup;
 			children = (
-				8228E39B2A6C920D00C1B6AD /* LocationModel.swift */,
+				820D33A12A7598E600843313 /* Model */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -1114,6 +1188,7 @@
 		826888672A33B87A00434219 /* No Architecture */ = {
 			isa = PBXGroup;
 			children = (
+				820D33992A75974F00843313 /* Contacts List */,
 				82426C752A714CDD00D5AA57 /* For Every Status */,
 				826888562A33AB3C00434219 /* Splash Screen */,
 				828CFA342A35F62400C7542D /* TabBar */,
@@ -1129,6 +1204,7 @@
 		8268886A2A34866D00434219 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				820D339D2A75984200843313 /* Contacts */,
 				8228E39A2A6C920000C1B6AD /* Location */,
 				82C561592A6B753500514B00 /* App Features */,
 				82426C6E2A71476D00D5AA57 /* For Every Status */,
@@ -2403,6 +2479,7 @@
 				82D6C33B2A5E282A00FB7F5D /* TimeTableTableViewCell.xib in Resources */,
 				822632422A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib in Resources */,
 				82C561692A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard in Resources */,
+				820D33A72A759E9100843313 /* ContactsTableViewCell.xib in Resources */,
 				82808E952A31F12500DEEB16 /* LaunchScreen.storyboard in Resources */,
 				82320D892A491FBC00ECADEE /* AGPUFacultyTableViewCell.xib in Resources */,
 				82E4C5972A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib in Resources */,
@@ -2482,6 +2559,7 @@
 				82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */,
 				82426C7A2A714DEA00D5AA57 /* ForApplicantSections.swift in Sources */,
 				82D6C32F2A5E189300FB7F5D /* TimeTableListTableViewController.swift in Sources */,
+				820D33A62A759E9100843313 /* ContactsTableViewCell.swift in Sources */,
 				82989AE02A6E5B4F00F27858 /* AGPUCurrentCathedraMapViewModel.swift in Sources */,
 				824C56D92A6FE98F0074ADB7 /* FacultyCathedraList.swift in Sources */,
 				82BC3D002A56F5C400E49332 /* RecentPageViewController + Extensions.swift in Sources */,
@@ -2542,6 +2620,8 @@
 				82320D812A4913FE00ECADEE /* AGPUFaculties.swift in Sources */,
 				826716C22A5A2AF600CD5C23 /* RecentPageModel.swift in Sources */,
 				82320D872A491F5700ECADEE /* AGPUFacultyTableViewCell.swift in Sources */,
+				820D339B2A75977400843313 /* FacultyContactsListTableViewController.swift in Sources */,
+				820D339F2A75985400843313 /* ContactsModel.swift in Sources */,
 				8270A54D2A578A0E008ACADC /* AGPUNewsViewModel.swift in Sources */,
 				82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */,
 				8228E3AD2A6C9E9E00C1B6AD /* AGPUCurrentBuildingMapViewModel + Extensions.swift in Sources */,
