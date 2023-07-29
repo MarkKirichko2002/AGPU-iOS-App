@@ -24,7 +24,7 @@ final class AGPUSectionsListViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name("for student appear"), object: nil)
     }
     
     private func SetUpNavigation() {

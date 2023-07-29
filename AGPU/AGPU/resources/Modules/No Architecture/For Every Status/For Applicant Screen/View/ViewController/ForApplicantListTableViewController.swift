@@ -15,6 +15,11 @@ class ForApplicantListTableViewController: UITableViewController {
         tableView.register(UINib(nibName: ForEveryStatusTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ForEveryStatusTableViewCell.identifier)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
@@ -28,7 +33,9 @@ class ForApplicantListTableViewController: UITableViewController {
         case 1:
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "http://test.agpu.net/abitur/faculties-institutes/index.php", title: "Институты/Факультеты", isSheet: true)
+                let vc = AGPUFacultiesListTableViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                self.tabBarController?.tabBar.isHidden = true
             }
             
         case 2:

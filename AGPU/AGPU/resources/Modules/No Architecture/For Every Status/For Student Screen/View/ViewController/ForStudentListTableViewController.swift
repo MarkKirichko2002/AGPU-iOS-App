@@ -50,16 +50,16 @@ final class ForStudentListTableViewController: UITableViewController {
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AGPUBuildingsMapViewController()
-                self.tabBarController?.tabBar.isHidden = true
                 self.navigationController?.pushViewController(vc, animated: true)
+                self.tabBarController?.tabBar.isHidden = true
             }
             
         case 2:
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AGPUFacultiesListTableViewController()
-                self.tabBarController?.tabBar.isHidden = true
                 self.navigationController?.pushViewController(vc, animated: true)
+                self.tabBarController?.tabBar.isHidden = true
             }
             
         case 3:
@@ -94,16 +94,16 @@ final class ForStudentListTableViewController: UITableViewController {
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AGPUSectionsListViewController()
-                self.tabBarController?.tabBar.isHidden = true
                 self.navigationController?.pushViewController(vc, animated: true)
+                self.tabBarController?.tabBar.isHidden = true
             }
             
         case 7:
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AGPUWallpapersListViewController()
-                self.tabBarController?.tabBar.isHidden = true
                 self.navigationController?.pushViewController(vc, animated: true)
+                self.tabBarController?.tabBar.isHidden = true
             }
         default:
             break
