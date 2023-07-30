@@ -21,6 +21,7 @@ struct FacultyCathedraList {
                     41.132393
                 ],
                 email: "ofizh@mail.ru",
+                staffUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/iriif/kafedra-ryalimip/sostav-kafedry/index.php",
                 manualUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/iriif/kafedra-ryalimip/MetodicheskoyeObespecheniye/index.php",
                 additionalEducationUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/iriif/kafedra-ryalimip/dopolnitelnoe-obrazovanie/index.php"
             ),
@@ -33,6 +34,7 @@ struct FacultyCathedraList {
                     41.132393
                 ],
                 email: "angl_kaf_agpu@mail.ru",
+                staffUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/iriif/kafedra-iyaimip/sostav-kafedry/index.php",
                 manualUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/iriif/kafedra-iyaimip/MetodicheskoyeObespecheniye/index.php",
                 additionalEducationUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/iriif/kafedra-iyaimip/dopolnitelnoe-obrazovanie/index.php"
             ),
@@ -48,6 +50,7 @@ struct FacultyCathedraList {
                     41.132393
                 ],
                 email: "arctgx@yandex.ru",
+                staffUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/ipimif/kafedra-mfimip/sostav-kafedry/index.php",
                 manualUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/iriif/kafedra-iyaimip/MetodicheskoyeObespecheniye/index.php",
                 additionalEducationUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/ipimif/kafedra-mfimip/dopolnitelnoe-obrazovanie/index.php"
             ),
@@ -60,6 +63,7 @@ struct FacultyCathedraList {
                     41.132393
                 ],
                 email: "agpu_kaf_inf@mail.ru",
+                staffUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/ipimif/kafedra-infiITO/sostav-kafedry/index.php",
                 manualUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/ipimif/kafedra-infiITO/MetodicheskoyeObespecheniye/index.php",
                 additionalEducationUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/ipimif/kafedra-infiITO/dopolnitelnoe-obrazovanie/index.php"
             ),
@@ -75,6 +79,7 @@ struct FacultyCathedraList {
                     41.121873
                 ],
                 email: "sspp2010@mail.ru",
+                staffUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/spf/kafedra-sspip/sostav-kafedry/index.php",
                 manualUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/spf/kafedra-sspip/MetodicheskoyeObespecheniye/index.php",
                 additionalEducationUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/spf/kafedra-sspip/dopolnitelnoe-obrazovanie/index.php"
             ),
@@ -87,6 +92,7 @@ struct FacultyCathedraList {
                     41.128629
                 ],
                 email: "andrmaz@mail.ru",
+                staffUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/spf/kafedra-fkimbd/sostav-kafedry/index.php",
                 manualUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/spf/kafedra-fkimbd/MetodicheskoyeObespecheniye/index.php",
                 additionalEducationUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/spf/kafedra-fkimbd/dopolnitelnoe-obrazovanie/index.php"
             ),
@@ -102,6 +108,7 @@ struct FacultyCathedraList {
                     41.132393
                 ],
                 email: "kaf_tipiop@mail.ru",
+                staffUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/fdino/kafedra-tipiop/sostav-kafedry/index.php",
                 manualUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/fdino/kafedra-tipiop/MetodicheskoyeObespecheniye/index.php",
                 additionalEducationUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/fdino/kafedra-tipiop/dopolnitelnoe-obrazovanie/index.php"
             ),
@@ -114,6 +121,7 @@ struct FacultyCathedraList {
                     41.132393
                 ],
                 email: "kaf_pitdino@mail.ru",
+                staffUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/fdino/kafedra-pitdino/sostav-kafedry/index.php",
                 manualUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/fdino/kafedra-pitdino/MetodicheskoyeObespecheniye/index.php",
                 additionalEducationUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/fdino/kafedra-pitdino/dopolnitelnoe-obrazovanie/index.php"
             ),
@@ -129,6 +137,7 @@ struct FacultyCathedraList {
                     41.122763
                 ],
                 email: "agpu_ofap@mail.ru",
+                staffUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/fteid/kafedra-tid/sostav-kafedry/index.php",
                 manualUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/fteid/kafedra-tid/MetodicheskoyeObespecheniye/index.php",
                 additionalEducationUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/fteid/kafedra-tid/dopolnitelnoe-obrazovanie/index.php"
             ),
@@ -141,6 +150,7 @@ struct FacultyCathedraList {
                     41.122763
                 ],
                 email: "pshmahova_m@mail.ru",
+                staffUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/fteid/kafedra-eiu/sostav-kafedry/index.php",
                 manualUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/fteid/kafedra-eiu/MetodicheskoyeObespecheniye/index.php",
                 additionalEducationUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/fteid/kafedra-eiu/dopolnitelnoe-obrazovanie/index.php"
             ),
@@ -156,6 +166,7 @@ struct FacultyCathedraList {
                     41.126904
                 ],
                 email: "kvioi-agpu@mail.ru",
+                staffUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/istfak/kafedra-vioi/sostav-kafedry/index.php",
                 manualUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/istfak/kafedra-vioi/MetodicheskoyeObespecheniye/index.php",
                 additionalEducationUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/istfak/kafedra-vioi/dopolnitelnoe-obrazovanie/index.php"
             ),
@@ -168,6 +179,7 @@ struct FacultyCathedraList {
                     41.126904
                 ],
                 email: "kaffilosof@mail.ru",
+                staffUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/istfak/kafedra-fpisgn/sostav-kafedry/index.php",
                 manualUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/istfak/kafedra-fpisgn/MetodicheskoyeObespecheniye/index.php",
                 additionalEducationUrl: "http://test.agpu.net/struktura-vuza/faculties-institutes/istfak/kafedra-fpisgn/dopolnitelnoe-obrazovanie/index.php"
             ),

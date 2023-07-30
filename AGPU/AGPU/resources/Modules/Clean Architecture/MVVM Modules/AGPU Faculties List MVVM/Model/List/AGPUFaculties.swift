@@ -35,7 +35,13 @@ struct AGPUFaculties {
             url: "http://test.agpu.net/struktura-vuza/faculties-institutes/ipimif/index.php",
             newsURL: "http://test.agpu.net/struktura-vuza/faculties-institutes/ipimif/news/news.php",
             videoURL: "http://priem.agpu.net/video/stud/ipimif.mp4",
-            contacts: [],
+            contacts: [
+                ContactsModel(
+                    name: "Имя",
+                    degree: "информация",
+                    phoneNumber: "+7(988)361-04-02"
+                )
+            ],
             email: "markkir123@gmail.com",
             isSelected: false
         ),

@@ -50,7 +50,11 @@ class FacultyCathedraListTableViewController: UITableViewController {
                 self.GoToWeb(url: self.faculty.cathedra[indexPath.row].url, title: "Кафедра \(self.faculty.abbreviation)", isSheet: true)
             }
             
-            let additionalEducationAction = UIAction(title: "доп образование", image: UIImage(named: "plus")) { _ in
+            let staffInfoAction = UIAction(title: "состав кафедры", image: UIImage(named: "group")) { _ in
+                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].staffUrl, title: "Состав кафедры", isSheet: true)
+            }
+            
+            let additionalEducationAction = UIAction(title: "дополнительное образование", image: UIImage(named: "plus")) { _ in
                 self.GoToWeb(url: self.faculty.cathedra[indexPath.row].additionalEducationUrl, title: "Дополнительное образование", isSheet: true)
             }
             
@@ -73,6 +77,7 @@ class FacultyCathedraListTableViewController: UITableViewController {
             
             return UIMenu(title: self.faculty.cathedra[indexPath.row].name, children: [
                 infoAction,
+                staffInfoAction,
                 emailAction,
                 mapAction,
                 additionalEducationAction,

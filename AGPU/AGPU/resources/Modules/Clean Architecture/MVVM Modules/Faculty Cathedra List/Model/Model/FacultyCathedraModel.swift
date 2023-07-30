@@ -13,6 +13,7 @@ struct FacultyCathedraModel: Codable {
     let address: String
     let coordinates: [Double]
     let email: String
+    let staffUrl: String
     let manualUrl: String
     let additionalEducationUrl: String
 }
