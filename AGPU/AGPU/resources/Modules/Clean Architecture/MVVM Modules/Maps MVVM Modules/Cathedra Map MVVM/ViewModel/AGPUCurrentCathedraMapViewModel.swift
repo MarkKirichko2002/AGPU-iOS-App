@@ -51,22 +51,17 @@ class AGPUCurrentCathedraMapViewModel {
             currentpin.title = "Вы"
             
             // кафедра
+            let cathedraLocation = CLLocationCoordinate2D(
+                latitude: self.cathedra.coordinates[0],
+                longitude: self.cathedra.coordinates[1]
+            )
+            let cathedraPin = MKPointAnnotation(__coordinate: cathedraLocation)
+            cathedraPin.title = self.cathedra.name
+            cathedraPin.subtitle = self.cathedra.address
             
-            self.locationManager.getCoordinatesFromAddress(address: self.cathedra.address) { location, error in
-                if let error = error {
-                    print(error)
-                }
-                if let location = location {
-                    let cathedraLocation = location
-                    let cathedraPin = MKPointAnnotation(__coordinate: cathedraLocation)
-                    cathedraPin.title = self.cathedra.name
-                    cathedraPin.subtitle = self.cathedra.address
-                    
-                    let location = LocationModel(region: region, pins: [currentpin, cathedraPin])
-                    
-                    self.locationHandler?(location)
-                }
-            }
+            let location = LocationModel(region: region, pins: [currentpin, cathedraPin])
+            
+            self.locationHandler?(location)
         }
     }
 }

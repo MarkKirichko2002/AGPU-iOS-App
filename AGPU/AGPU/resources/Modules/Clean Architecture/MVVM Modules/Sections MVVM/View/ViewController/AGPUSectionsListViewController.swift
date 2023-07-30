@@ -24,7 +24,7 @@ final class AGPUSectionsListViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name("for student appear"), object: nil)
     }
     
     private func SetUpNavigation() {
@@ -52,7 +52,10 @@ final class AGPUSectionsListViewController: UIViewController {
             self.tableView.scrollToRow(at: IndexPath(row: 0, section: section), at: .top, animated: true)
         }
         viewModel.ObserveActions {
-            self.dismiss(animated: true)
+            if self.navigationController?.viewControllers.first == self {
+                self.dismiss(animated: true)
+            } else {
+            }
         }
     }
 }

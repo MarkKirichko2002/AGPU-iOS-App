@@ -150,17 +150,25 @@ final class TimeTableListTableViewController: UIViewController {
         self.noTimeTableLabel.isHidden = true
         self.timetable = []
         self.tableView.reloadData()
-        service.GetTimeTable(groupId: group, date: date) { timetable in
-            if !timetable.isEmpty {
-                DispatchQueue.main.async {
-                    self.timetable = timetable
-                    self.tableView.reloadData()
+        service.GetTimeTable(groupId: group, date: date) { result in
+            switch result {
+            case .success(let timetable):
+                if !timetable.isEmpty {
+                    DispatchQueue.main.async {
+                        self.timetable = timetable
+                        self.tableView.reloadData()
+                        self.spinner.stopAnimating()
+                        self.noTimeTableLabel.isHidden = true
+                    }
+                } else {
+                    self.noTimeTableLabel.isHidden = false
                     self.spinner.stopAnimating()
-                    self.noTimeTableLabel.isHidden = true
                 }
-            } else {
-                self.noTimeTableLabel.isHidden = false
+            case .failure(let error):
                 self.spinner.stopAnimating()
+                self.noTimeTableLabel.text = "Ошибка"
+                self.noTimeTableLabel.isHidden = false
+                print(error)
             }
         }
     }

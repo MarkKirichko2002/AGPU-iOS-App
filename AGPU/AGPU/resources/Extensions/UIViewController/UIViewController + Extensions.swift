@@ -54,4 +54,13 @@ extension UIViewController {
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
         present(activityViewController, animated: true)
     }
+    
+    func makePhoneCall(phoneNumber: String) {
+        if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
+            let application = UIApplication.shared
+            if application.canOpenURL(phoneCallURL) {
+                application.open(phoneCallURL)
+            }
+        }
+    }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 final class SettingsListViewController: UIViewController {
-   
+    
     // MARK: - сервисы
     @objc let viewModel = SettingsListViewModel()
     
@@ -34,7 +34,7 @@ final class SettingsListViewController: UIViewController {
     
     private func BindViewModel() {
         viewModel.observation = observe(\.viewModel.isChanged) { _, _ in
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                 self.tableView.reloadData()
             }
         }

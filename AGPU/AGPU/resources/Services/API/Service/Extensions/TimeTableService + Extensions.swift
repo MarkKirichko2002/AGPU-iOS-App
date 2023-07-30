@@ -27,7 +27,7 @@ extension TimeTableService: TimeTableServicerProtocol {
         }
     }
     
-    func GetTimeTable(groupId: String, date: String, completion: @escaping([TimeTable])->Void) {
+    func GetTimeTable(groupId: String, date: String, completion: @escaping(Result<[TimeTable],Error>)->Void) {
         
         let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
@@ -38,9 +38,9 @@ extension TimeTableService: TimeTableServicerProtocol {
             do {
                 let timetable = try JSONDecoder().decode([TimeTable].self, from: data)
                 print("Расписание: \(timetable)")
-                completion(timetable)
+                completion(.success(timetable))
             } catch {
-                print(error.localizedDescription)
+                completion(.failure(error))
             }
         }
     }

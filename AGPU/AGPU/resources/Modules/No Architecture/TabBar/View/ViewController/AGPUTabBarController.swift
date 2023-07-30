@@ -197,7 +197,7 @@ final class AGPUTabBarController: UITabBarController {
         }
         
         // MARK: - "Sections"
-        if text.lowercased().contains("разделы") {
+        if text.lowercased().contains("раздел") {
             
             let vc = AGPUSectionsListViewController()
             let navVC = UINavigationController(rootViewController: vc)

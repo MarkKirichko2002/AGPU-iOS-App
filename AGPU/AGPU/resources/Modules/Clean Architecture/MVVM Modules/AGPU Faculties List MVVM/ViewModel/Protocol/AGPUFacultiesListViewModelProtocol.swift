@@ -11,6 +11,4 @@ protocol AGPUFacultiesListViewModelProtocol {
     func facultiesListCount()-> Int
     func facultyItem(index: Int)-> AGPUFacultyModel
     func isFacultySelected(index: Int)-> Bool
-    func makePhoneNumbersMenu(index: Int) -> UIMenu
-    func makePhoneCall(phoneNumber: String)
 }
