@@ -79,7 +79,9 @@ class FacultyCathedraListTableViewController: UITableViewController {
             
             let mapAction = UIAction(title: "найти кафедру", image: UIImage(named: "search")) { _ in
                 let vc = AGPUCurrentCathedraMapViewController(cathedra: self.faculty.cathedra[indexPath.row])
-                self.navigationController?.pushViewController(vc, animated: true)
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                self.present(navVC, animated: true)
             }
             
             let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
