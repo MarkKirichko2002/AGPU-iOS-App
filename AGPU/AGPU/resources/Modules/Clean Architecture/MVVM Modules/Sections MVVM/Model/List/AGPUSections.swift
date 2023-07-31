@@ -8,7 +8,9 @@
 import Foundation
 
 struct AGPUSections {
+    
     static let sections = [
+        
         AGPUSectionModel(
             id: 0,
             name: "Главное",

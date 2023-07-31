@@ -28,9 +28,20 @@ class FacultyCathedraListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Кафедры \(faculty.abbreviation)"
+        SetUpNavigation()
         tableView.register(UINib(nibName: FacultyCathedraTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyCathedraTableViewCell.identifier)
         BindViewModel()
+    }
+    
+    private func SetUpNavigation() {
+        navigationItem.title = "Кафедры \(faculty.abbreviation)"
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        closeButton.tintColor = .black
+        navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    @objc private func closeScreen() {
+         dismiss(animated: true)
     }
     
     private func BindViewModel() {

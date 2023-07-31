@@ -45,7 +45,9 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
             
             let cathedraAction = UIAction(title: "кафедры", image: UIImage(named: "university")) { _ in
                 let vc = FacultyCathedraListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
-                self.navigationController?.pushViewController(vc, animated: true)
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                self.present(navVC, animated: true)
             }
             
             let watchVideoAction = UIAction(title: "смотреть видео", image: UIImage(named: "video")) { _ in
@@ -55,12 +57,14 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
             let groupsAction = UIAction(title: "список групп", image: UIImage(named: "group")) { _ in
                 let vc = FacultyGroupsListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
                 let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
                 self.present(navVC, animated: true)
             }
             
             let contactsAction = UIAction(title: "контакты", image: UIImage(named: "contacts")) { _ in
                 let vc = FacultyContactsListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
                 let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
                 self.present(navVC, animated: true)
             }
             
