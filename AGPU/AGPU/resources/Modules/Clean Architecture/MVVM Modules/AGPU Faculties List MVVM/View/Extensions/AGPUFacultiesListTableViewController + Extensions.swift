@@ -23,7 +23,7 @@ extension AGPUFacultiesListTableViewController: MFMailComposeViewControllerDeleg
         composer.setToRecipients([email])
         composer.setSubject("Тема письма")
         composer.setMessageBody("Текст письма", isHTML: false)
-        
+        composer.modalPresentationStyle = .fullScreen
         present(composer, animated: true, completion: nil)
     }
     

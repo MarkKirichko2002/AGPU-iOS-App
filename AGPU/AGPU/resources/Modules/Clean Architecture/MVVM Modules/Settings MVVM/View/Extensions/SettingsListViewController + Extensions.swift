@@ -92,9 +92,8 @@ extension SettingsListViewController: UITableViewDelegate {
                 let cathedraAction = UIAction(title: "выбрать кафедру", image: UIImage(named: "university")) { action in
                     if self.viewModel.isFacultySelected(index: indexPath.row) {
                         let vc = FacultyCathedraListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
-                        let navVC = UINavigationController(rootViewController: vc)
-                        navVC.modalPresentationStyle = .fullScreen
-                        self.present(navVC, animated: true)
+                        vc.hidesBottomBarWhenPushed = true
+                        self.navigationController?.pushViewController(vc, animated: true)
                     } else {
                         NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
                         let ok = UIAlertAction(title: "ОК", style: .default)
@@ -105,9 +104,8 @@ extension SettingsListViewController: UITableViewDelegate {
                 let checkGroupAction = UIAction(title: "выбрать группу", image: UIImage(named: "group")) { _ in
                     if self.viewModel.isFacultySelected(index: indexPath.row) {
                         let vc = FacultyGroupsListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
-                        let navVC = UINavigationController(rootViewController: vc)
-                        navVC.modalPresentationStyle = .fullScreen
-                        self.present(navVC, animated: true)
+                        vc.hidesBottomBarWhenPushed = true
+                        self.navigationController?.pushViewController(vc, animated: true)
                     } else {
                         NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
                         let ok = UIAlertAction(title: "ОК", style: .default)
@@ -144,9 +142,8 @@ extension SettingsListViewController: UITableViewDelegate {
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object: "info icon")
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AppFeaturesListTableViewController()
-                let navVC = UINavigationController(rootViewController: vc)
-                navVC.modalPresentationStyle = .fullScreen
-                self.present(navVC, animated: true)
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         default:
             break
