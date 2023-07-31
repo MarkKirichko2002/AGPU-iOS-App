@@ -8,6 +8,7 @@
 import Foundation
 
 struct AppFeatureModel {
+    let id: Int
     let name: String
     let description: String
 }

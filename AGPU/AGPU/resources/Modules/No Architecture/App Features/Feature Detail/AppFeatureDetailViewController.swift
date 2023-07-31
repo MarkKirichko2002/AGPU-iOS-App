@@ -9,7 +9,7 @@ import UIKit
 
 final class AppFeatureDetailViewController: UIViewController {
     
-    var feature: AppFeatureModel?
+    var feature: AppFeatureModel!
     
     @IBOutlet var FeatureName: UILabel!
     @IBOutlet var FeatureDescription: UITextView!
@@ -28,10 +28,20 @@ final class AppFeatureDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let feature = feature {
-            FeatureName.text = feature.name
-            FeatureDescription.text = feature.description
-            FeatureDescription.isEditable = false
-        }
+        SetUpNavigation()
+        FeatureName.text = feature.name
+        FeatureDescription.text = feature.description
+        FeatureDescription.isEditable = false
+    }
+    
+    private func SetUpNavigation() {
+        navigationItem.title = "Фишки №\(feature.id)"
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        closeButton.tintColor = .black
+        navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    @objc private func closeScreen() {
+         dismiss(animated: true)
     }
 }
