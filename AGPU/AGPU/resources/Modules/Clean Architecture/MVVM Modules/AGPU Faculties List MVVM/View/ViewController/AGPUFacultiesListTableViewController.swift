@@ -21,7 +21,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
         navigationItem.title = "Факультеты"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .black
-        navigationItem.leftBarButtonItem = closeButton
+        navigationItem.rightBarButtonItem = closeButton
     }
     
     @objc private func closeScreen() {

@@ -17,7 +17,6 @@ final class ForStudentListTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.tabBarController?.tabBar.isHidden = false
     }
     
     private func SetUpNavigation() {
@@ -50,8 +49,9 @@ final class ForStudentListTableViewController: UITableViewController {
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AGPUBuildingsMapViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
-                self.tabBarController?.tabBar.isHidden = true
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                self.present(navVC, animated: true)
             }
             
         case 2:
@@ -104,8 +104,9 @@ final class ForStudentListTableViewController: UITableViewController {
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AGPUWallpapersListViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
-                self.tabBarController?.tabBar.isHidden = true
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                self.present(navVC, animated: true)
             }
         default:
             break
