@@ -33,7 +33,14 @@ final class AGPUSectionsListViewController: UIViewController {
             title: "Разделы",
             frame: .zero
         )
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        closeButton.tintColor = .black
         navigationItem.titleView = titleView
+        navigationItem.leftBarButtonItem = closeButton
+    }
+    
+    @objc private func closeScreen() {
+         dismiss(animated: true)
     }
     
     private func SetUpTable() {

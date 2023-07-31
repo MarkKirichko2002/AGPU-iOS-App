@@ -18,13 +18,15 @@ extension UIViewController {
         if isSheet {
             present(navVC, animated: true)
         } else {
-            self.navigationController?.pushViewController(vc, animated: true)
+            navVC.modalPresentationStyle = .fullScreen
+            present(navVC, animated: true)
         }
     }
     
     func ShowRecentPageScreen(page: RecentPageModel) {
         let vc = RecentPageViewController(page: page)
         let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
     }
     

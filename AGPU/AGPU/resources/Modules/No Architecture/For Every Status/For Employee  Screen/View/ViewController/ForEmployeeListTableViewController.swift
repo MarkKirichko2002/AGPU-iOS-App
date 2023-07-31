@@ -27,7 +27,7 @@ class ForEmployeeListTableViewController: UITableViewController {
         case 0:
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "http://plany.agpu.net/WebApp/#/", title: "Личный кабинет ЭИОС", isSheet: true)
+                self.GoToWeb(url: "http://plany.agpu.net/WebApp/#/", title: "Личный кабинет ЭИОС", isSheet: false)
             }
             
         case 1:
@@ -41,14 +41,14 @@ class ForEmployeeListTableViewController: UITableViewController {
         case 2:
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "http://vedomosti.agpu.net/", title: "Ведомости ONLINE", isSheet: true)
+                self.GoToWeb(url: "http://vedomosti.agpu.net/", title: "Ведомости ONLINE", isSheet: false)
             }
             
         case 3:
             if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
                 NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
                 Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                    self.GoToWeb(url: cathedra.manualUrl, title: "Методические материалы", isSheet: true)
+                    self.GoToWeb(url: cathedra.manualUrl, title: "Методические материалы", isSheet: false)
                 }
             } else {
                 let ok = UIAlertAction(title: "ОК", style: .default)
@@ -58,13 +58,13 @@ class ForEmployeeListTableViewController: UITableViewController {
         case 4:
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "http://test.agpu.net/struktura-vuza/index.php", title: "Подразделения", isSheet: true)
+                self.GoToWeb(url: "http://test.agpu.net/struktura-vuza/index.php", title: "Подразделения", isSheet: false)
             }
             
         case 5:
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "http://test.agpu.net/sveden/document/index.php", title: "Документы", isSheet: true)
+                self.GoToWeb(url: "http://test.agpu.net/sveden/document/index.php", title: "Документы", isSheet: false)
             }
             
         case 6:

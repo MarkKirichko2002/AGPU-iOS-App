@@ -236,7 +236,7 @@ final class AGPUTabBarController: UITabBarController {
                         }
                                                 
                         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                            self.GoToWeb(url: subsection.url, title: nil, isSheet: true)
+                            self.GoToWeb(url: subsection.url, title: nil, isSheet: false)
                         }
                     
                         NotificationCenter.default.post(name: Notification.Name("scroll"), object: text.lastWord())

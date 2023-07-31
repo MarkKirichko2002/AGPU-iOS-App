@@ -59,7 +59,7 @@ extension AGPUSectionsListViewController: UITableViewDelegate {
             cell.didTapCell(indexPath: indexPath)
         }
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.GoToWeb(url: subsection.url, title: "ФГБОУ ВО «АГПУ»", isSheet: true)
+            self.GoToWeb(url: subsection.url, title: "ФГБОУ ВО «АГПУ»", isSheet: false)
         }
     }
 }

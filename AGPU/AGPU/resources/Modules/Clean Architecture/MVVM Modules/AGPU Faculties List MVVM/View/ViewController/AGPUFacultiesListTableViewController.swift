@@ -13,8 +13,19 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Факультеты"
+        SetUpNavigation()
         tableView.register(UINib(nibName: AGPUFacultyTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AGPUFacultyTableViewCell.identifier)
+    }
+    
+    private func SetUpNavigation() {
+        navigationItem.title = "Факультеты"
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        closeButton.tintColor = .black
+        navigationItem.leftBarButtonItem = closeButton
+    }
+    
+    @objc private func closeScreen() {
+         dismiss(animated: true)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -29,7 +40,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
             _ in
             
             let infoAction = UIAction(title: "узнать больше", image: UIImage(named: "info")) { _ in
-                self.GoToWeb(url: self.viewModel.facultyItem(index: indexPath.row).url, title: self.viewModel.facultyItem(index: indexPath.row).abbreviation, isSheet: true)
+                self.GoToWeb(url: self.viewModel.facultyItem(index: indexPath.row).url, title: self.viewModel.facultyItem(index: indexPath.row).abbreviation, isSheet: false)
             }
             
             let cathedraAction = UIAction(title: "кафедры", image: UIImage(named: "university")) { _ in
@@ -58,7 +69,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
             }
             
             let enterAction = UIAction(title: "поступить", image: UIImage(named: "worksheet")) { _ in
-                self.GoToWeb(url: "http://priem.agpu.net/anketa/index.php", title: "Анкета", isSheet: true)
+                self.GoToWeb(url: "http://priem.agpu.net/anketa/index.php", title: "Анкета", isSheet: false)
             }
             
             let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
