@@ -35,14 +35,23 @@ final class AGPUBuildingsMapViewController: UIViewController {
     }
     
     private func SetUpNavigation() {
+        
         navigationItem.title = "Найти «АГПУ»"
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
-        closeButton.tintColor = .black
-        navigationItem.rightBarButtonItem = closeButton
+        
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
+        
+        let button = UIButton()
+        button.setImage(UIImage(named: "back"), for: .normal)
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        
+        let backButton = UIBarButtonItem(customView: button)
+        backButton.tintColor = .black
+        navigationItem.leftBarButtonItem = backButton
     }
     
-    @objc private func closeScreen() {
-         dismiss(animated: true)
+    @objc private func back() {
+        navigationController?.popViewController(animated: true)
     }
     
     private func SetUpMap() {

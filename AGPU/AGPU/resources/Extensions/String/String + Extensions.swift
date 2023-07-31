@@ -42,15 +42,13 @@ extension String {
         }
         
         return result
-        
-        
     }
     
     func lastWord()-> String {
         let size = self.reversed().firstIndex(of: " ") ?? self.count
         let startWord = self.index(self.endIndex, offsetBy: -size)
         let last = String(self[startWord...])
-        return last
+        return last.lowercased()
     }
     
     func noWhitespacesWord()-> String {
