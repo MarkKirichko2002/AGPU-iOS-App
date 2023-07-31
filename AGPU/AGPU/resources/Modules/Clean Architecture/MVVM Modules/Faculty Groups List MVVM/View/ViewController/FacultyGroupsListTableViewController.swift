@@ -41,6 +41,13 @@ final class FacultyGroupsListTableViewController: UITableViewController {
             frame: .zero
         )
         navigationItem.titleView = titleView
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        closeButton.tintColor = .black
+        navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    @objc private func closeScreen() {
+         dismiss(animated: true)
     }
     
     private func SetUpTable() {

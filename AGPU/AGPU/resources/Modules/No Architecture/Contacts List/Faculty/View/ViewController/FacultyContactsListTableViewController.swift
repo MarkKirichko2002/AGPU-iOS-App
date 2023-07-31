@@ -23,8 +23,19 @@ class FacultyContactsListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Контакты \(faculty.abbreviation)"
+        SetUpNavigation()
         tableView.register(UINib(nibName: ContactsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ContactsTableViewCell.identifier)
+    }
+    
+    private func SetUpNavigation() {
+        navigationItem.title = "Контакты \(faculty.abbreviation)"
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        closeButton.tintColor = .black
+        navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    @objc private func closeScreen() {
+         dismiss(animated: true)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -8,7 +8,7 @@
 import UIKit
 
 final class AGPUWallpapersListViewController: UIViewController {
-
+    
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -21,15 +21,30 @@ final class AGPUWallpapersListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "АГПУ обои"
-        view.addSubview(collectionView)
-        collectionView.frame = view.bounds
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        SetUpNavigation()
+        SetUpCollectionView()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         NotificationCenter.default.post(name: Notification.Name("for student appear"), object: nil)
+    }
+    
+    private func SetUpNavigation() {
+        navigationItem.title = "АГПУ обои"
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        closeButton.tintColor = .black
+        navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    @objc private func closeScreen() {
+         dismiss(animated: true)
+    }
+    
+    private func SetUpCollectionView() {
+        view.addSubview(collectionView)
+        collectionView.frame = view.bounds
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
 }

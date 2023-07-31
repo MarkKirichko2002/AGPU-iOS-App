@@ -17,7 +17,6 @@ class ForApplicantListTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.tabBarController?.tabBar.isHidden = false
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -27,33 +26,34 @@ class ForApplicantListTableViewController: UITableViewController {
         case 0:
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "http://abit.agpu.net/", title: "Личный кабинет абитуриента", isSheet: true)
+                self.GoToWeb(url: "http://abit.agpu.net/", title: "Личный кабинет абитуриента", isSheet: false)
             }
             
         case 1:
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AGPUFacultiesListTableViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
-                self.tabBarController?.tabBar.isHidden = true
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                self.present(navVC, animated: true)
             }
             
         case 2:
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "http://priem.agpu.net/", title: "Информация для поступающих", isSheet: true)
+                self.GoToWeb(url: "http://priem.agpu.net/", title: "Информация для поступающих", isSheet: false)
             }
             
         case 3:
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "http://priem.agpu.net/contact-form/Quest.php", title: "Вопросы и ответы", isSheet: true)
+                self.GoToWeb(url: "http://priem.agpu.net/contact-form/Quest.php", title: "Вопросы и ответы", isSheet: false)
             }
             
         case 4:
             NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "https://niiro-agpu.ru/", title: "Дополнительное образование", isSheet: true)
+                self.GoToWeb(url: "https://niiro-agpu.ru/", title: "Дополнительное образование", isSheet: false)
             }
             
         default:

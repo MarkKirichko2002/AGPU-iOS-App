@@ -11,7 +11,7 @@ final class AppFeaturesListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Фишки"
+        SetUpNavigation()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
@@ -19,13 +19,25 @@ final class AppFeaturesListTableViewController: UITableViewController {
         super.viewDidDisappear(animated)
         NotificationCenter.default.post(name: Notification.Name("for student appear"), object: nil)
     }
+    
+    private func SetUpNavigation() {
+        navigationItem.title = "Фишки"
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        closeButton.tintColor = .black
+        navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    @objc private func closeScreen() {
+         dismiss(animated: true)
+    }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let storyboard = UIStoryboard(name: "AppFeatureDetailViewController", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "AppFeatureDetailViewController") as? AppFeatureDetailViewController {
             vc.feature = AppFeaturesList.features[indexPath.row]
-            self.present(vc, animated: true)
+            let navVC = UINavigationController(rootViewController: vc)
+            self.present(navVC, animated: true)
         }
     }
     

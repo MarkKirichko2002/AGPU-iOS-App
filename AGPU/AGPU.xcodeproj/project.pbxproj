@@ -581,6 +581,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		821270452A783FA40095D68E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				826716C82A5A419900CD5C23 /* Model */,
+				826716C92A5A419D00CD5C23 /* List */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8218F5852A688F6B00C94EB4 /* ActivityItemSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -1231,7 +1240,6 @@
 				82426C8E2A71DCC000D5AA57 /* User Status */,
 				820D18E12A68F9BB00BFAA35 /* AGPU Buildings */,
 				82722D402A66460500149D06 /* AGPU Pins */,
-				82EF23D22A3DEEA6004A7B9C /* Sections */,
 				82EF23D32A3DEEB8004A7B9C /* Sub Sections */,
 				8208E7522A63A3B300675EF1 /* AGPU Themes */,
 				826716C02A5A2ADA00CD5C23 /* Recent Page */,
@@ -1377,6 +1385,7 @@
 		82808E9C2A31F2D400DEEB16 /* Sections MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				821270452A783FA40095D68E /* Model */,
 				82808EA22A31F49B00DEEB16 /* View */,
 				8255ADCA2A672E500012895E /* ViewModel */,
 			);
@@ -2361,15 +2370,6 @@
 				82E4C5222A6B0DF400F65A67 /* Extensions */,
 			);
 			path = Animation;
-			sourceTree = "<group>";
-		};
-		82EF23D22A3DEEA6004A7B9C /* Sections */ = {
-			isa = PBXGroup;
-			children = (
-				826716C82A5A419900CD5C23 /* Model */,
-				826716C92A5A419D00CD5C23 /* List */,
-			);
-			path = Sections;
 			sourceTree = "<group>";
 		};
 		82EF23D32A3DEEB8004A7B9C /* Sub Sections */ = {

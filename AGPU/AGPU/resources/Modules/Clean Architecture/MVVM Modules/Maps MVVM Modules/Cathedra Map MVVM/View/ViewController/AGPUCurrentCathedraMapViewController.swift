@@ -33,23 +33,26 @@ class AGPUCurrentCathedraMapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
+        SetUpNavigation()
         SetUpMap()
         makeConstraints()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel.GetLocation()
-        viewModel.registerLocationHandler { location in
-            self.mapView.setRegion(
-                location.region,
-                animated: true
-            )
-            self.mapView.showAnnotations(
-                location.pins
-                , animated: true
-            )
-        }
+        BindViewModel()
+    }
+    
+    private func SetUpNavigation() {
+        navigationItem.title = "Найти кафедру"
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        closeButton.tintColor = .black
+        navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    @objc private func closeScreen() {
+         dismiss(animated: true)
     }
     
     private func SetUpMap() {
@@ -65,5 +68,13 @@ class AGPUCurrentCathedraMapViewController: UIViewController {
             mapView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
+    }
+    
+    private func BindViewModel() {
+        viewModel.GetLocation()
+        viewModel.registerLocationHandler { location in
+            self.mapView.setRegion(location.region, animated: true)
+            self.mapView.showAnnotations(location.pins, animated: true)
+        }
     }
 }

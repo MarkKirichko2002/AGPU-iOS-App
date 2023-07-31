@@ -19,7 +19,7 @@ final class AGPUSectionsListViewController: UIViewController {
         super.viewDidLoad()
         SetUpNavigation()
         SetUpTable()
-        SetUpViewModel()
+        BindViewModel()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -33,7 +33,14 @@ final class AGPUSectionsListViewController: UIViewController {
             title: "Разделы",
             frame: .zero
         )
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        closeButton.tintColor = .black
         navigationItem.titleView = titleView
+        navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    @objc private func closeScreen() {
+         dismiss(animated: true)
     }
     
     private func SetUpTable() {
@@ -47,15 +54,12 @@ final class AGPUSectionsListViewController: UIViewController {
         )
     }
     
-    private func SetUpViewModel() {
+    private func BindViewModel() {
         viewModel.ObserveScroll { section in
             self.tableView.scrollToRow(at: IndexPath(row: 0, section: section), at: .top, animated: true)
         }
         viewModel.ObserveActions {
-            if self.navigationController?.viewControllers.first == self {
-                self.dismiss(animated: true)
-            } else {
-            }
+            self.dismiss(animated: true)
         }
     }
 }

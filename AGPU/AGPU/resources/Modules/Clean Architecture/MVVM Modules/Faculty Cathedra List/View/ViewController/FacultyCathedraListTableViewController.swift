@@ -28,9 +28,20 @@ class FacultyCathedraListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Кафедры \(faculty.abbreviation)"
+        SetUpNavigation()
         tableView.register(UINib(nibName: FacultyCathedraTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyCathedraTableViewCell.identifier)
         BindViewModel()
+    }
+    
+    private func SetUpNavigation() {
+        navigationItem.title = "Кафедры \(faculty.abbreviation)"
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        closeButton.tintColor = .black
+        navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    @objc private func closeScreen() {
+         dismiss(animated: true)
     }
     
     private func BindViewModel() {
@@ -47,19 +58,19 @@ class FacultyCathedraListTableViewController: UITableViewController {
             _ in
             
             let infoAction = UIAction(title: "узнать больше", image: UIImage(named: "info")) { _ in
-                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].url, title: "Кафедра \(self.faculty.abbreviation)", isSheet: true)
+                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].url, title: "Кафедра \(self.faculty.abbreviation)", isSheet: false)
             }
             
             let staffInfoAction = UIAction(title: "состав кафедры", image: UIImage(named: "group")) { _ in
-                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].staffUrl, title: "Состав кафедры", isSheet: true)
+                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].staffUrl, title: "Состав кафедры", isSheet: false)
             }
             
             let additionalEducationAction = UIAction(title: "дополнительное образование", image: UIImage(named: "plus")) { _ in
-                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].additionalEducationUrl, title: "Дополнительное образование", isSheet: true)
+                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].additionalEducationUrl, title: "Дополнительное образование", isSheet: false)
             }
             
             let manualAction = UIAction(title: "методические материалы", image: UIImage(named: "manual")) { _ in
-                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].manualUrl, title: "Методические материалы", isSheet: true)
+                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].manualUrl, title: "Методические материалы", isSheet: false)
             }
             
             let emailAction = UIAction(title: "написать", image: UIImage(named: "mail")) { _ in
@@ -68,7 +79,9 @@ class FacultyCathedraListTableViewController: UITableViewController {
             
             let mapAction = UIAction(title: "найти кафедру", image: UIImage(named: "search")) { _ in
                 let vc = AGPUCurrentCathedraMapViewController(cathedra: self.faculty.cathedra[indexPath.row])
-                self.navigationController?.pushViewController(vc, animated: true)
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                self.present(navVC, animated: true)
             }
             
             let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
