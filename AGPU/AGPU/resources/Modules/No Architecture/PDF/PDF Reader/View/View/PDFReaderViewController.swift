@@ -10,9 +10,10 @@ import PDFKit
 
 class PDFReaderViewController: UIViewController {
     
-    var pdfView: PDFView!
-    var currentPage: Int = 0
-    var url: String = ""
+    private var pdfView: PDFView!
+    private var document: PDFDocument!
+    private var currentPage: Int = 0
+    private var url: String = ""
     
     init(url: String) {
         self.url = url
@@ -25,17 +26,42 @@ class PDFReaderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Документ"
+        SetUpNavigation()
         SetUpPDF()
+    }
+    
+    private func SetUpNavigation() {
+        navigationItem.title = "Документ"
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
+        closeButton.tintColor = .black
+        navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    @objc private func close() {
+        self.dismiss(animated: true)
     }
     
     private func SetUpPDF() {
         pdfView = PDFView(frame: view.bounds)
         pdfView.autoScales = true
+        pdfView.usePageViewController(true)
         if let document = PDFDocument(url: URL(string: url)!) {
-            pdfView.document = document
-            pdfView.go(to: document.page(at: 3)!)
+            self.pdfView.document = document
+            self.document = document
         }
         view.addSubview(pdfView)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePageChange), name: Notification.Name.PDFViewPageChanged, object: nil)
+    }
+    
+    @objc private func handlePageChange() {
+        let currentPage = document.index(for: pdfView.currentPage!) + 1
+        let totalPageCount = pdfView.document?.pageCount
+        navigationItem.title = "Документ [\(currentPage)/\(totalPageCount ?? 0)]"
+    }
+    
+    private func SavePage() {
+        guard let currentPage = pdfView.currentPage?.pageRef?.pageNumber else { return }
+        UserDefaults.standard.set(currentPage, forKey: "pdfPageNumber")
     }
 }
