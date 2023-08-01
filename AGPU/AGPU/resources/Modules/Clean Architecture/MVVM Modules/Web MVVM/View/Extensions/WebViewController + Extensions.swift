@@ -15,7 +15,7 @@ extension WebViewController: UIScrollViewDelegate {
         let yOffset = scrollView.contentOffset.y
         let position = CGPoint(x: 0, y: yOffset)
         if let url = WVWEBview.url?.absoluteString {
-            self.viewModel.SaveCurrentPage(url: url, position: position)
+            self.viewModel.SaveCurrentWebPage(url: url, position: position)
         }
     }
 }
@@ -35,7 +35,9 @@ extension WebViewController: WKNavigationDelegate {
                 let vc = PDFReaderViewController(url: url.absoluteString)
                 let navVC = UINavigationController(rootViewController: vc)
                 navVC.modalPresentationStyle = .fullScreen
-                self.present(navVC, animated: true)
+                DispatchQueue.main.async {
+                    self.present(navVC, animated: true)
+                }
                 decisionHandler(.cancel)
                 return
             }
@@ -48,24 +50,5 @@ extension WebViewController: WKNavigationDelegate {
         DispatchQueue.main.async {
             self.spinner.stopAnimating()
         }
-        
-        // Предыдущая страница равна текущей странице перед загрузкой новой страницы
-        viewModel.previousPage = viewModel.currentPage
-        
-        // Сохранение текущего адреса и предыдущей страницы в UserDefaults
-        if let currentURL = webView.url?.absoluteString {
-            if let previousPage = viewModel.previousPage {
-                UserDefaults.standard.set(previousPage, forKey: "previous page")
-            }
-            
-            UserDefaults.standard.set(currentURL, forKey: "last page")
-            UserDefaults.standard.set(currentURL, forKey: "next page")
-            UserDefaults.standard.synchronize()
-            
-            viewModel.currentPage = currentURL
-        }
-        
-        print("Последняя посещенная страница: \(viewModel.currentPage ?? "")")
-        print("Предыдущая посещенная страница: \(viewModel.previousPage ?? "")")
     }
 }

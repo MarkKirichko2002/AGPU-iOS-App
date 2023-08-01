@@ -22,7 +22,9 @@ extension RecentWebPageViewController: WKNavigationDelegate {
                     let vc = PDFReaderViewController(url: url.absoluteString)
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
-                    self.present(navVC, animated: true)
+                    DispatchQueue.main.async {
+                        self.present(navVC, animated: true)
+                    }
                     decisionHandler(.cancel)
                     return
                 }
