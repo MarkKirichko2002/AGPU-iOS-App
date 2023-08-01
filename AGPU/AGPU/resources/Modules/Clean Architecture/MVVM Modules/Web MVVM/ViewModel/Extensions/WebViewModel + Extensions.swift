@@ -43,7 +43,7 @@ extension WebViewModel: WebViewModelProtocol {
         }
     }
     
-    func SaveCurrentPage(url: String, position: CGPoint) {
+    func SaveCurrentWebPage(url: String, position: CGPoint) {
         let dateManager = DateManager()
         let date = dateManager.getCurrentDate()
         let time = dateManager.getCurrentTime()

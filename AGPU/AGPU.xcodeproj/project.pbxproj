@@ -18,6 +18,7 @@
 		8210CA052A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210CA042A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift */; };
 		8210CA092A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210CA082A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift */; };
 		8212704C2A7892910095D68E /* PDFReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8212704B2A7892910095D68E /* PDFReaderViewController.swift */; };
+		821270512A7903930095D68E /* PDFLastPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821270502A7903930095D68E /* PDFLastPageViewController.swift */; };
 		8218F5872A688F8C00C94EB4 /* CustomActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218F5862A688F8C00C94EB4 /* CustomActivityItemSource.swift */; };
 		82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */; };
 		821C9E192A68DE8700EF0030 /* UITableView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C9E182A68DE8700EF0030 /* UITableView + Extensions.swift */; };
@@ -175,6 +176,7 @@
 		8210CA042A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUCurrentBuildingMapViewController.swift; sourceTree = "<group>"; };
 		8210CA082A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUCurrentBuildingMapViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8212704B2A7892910095D68E /* PDFReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderViewController.swift; sourceTree = "<group>"; };
+		821270502A7903930095D68E /* PDFLastPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFLastPageViewController.swift; sourceTree = "<group>"; };
 		8218F5862A688F8C00C94EB4 /* CustomActivityItemSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityItemSource.swift; sourceTree = "<group>"; };
 		82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsListViewController + Extensions.swift"; sourceTree = "<group>"; };
 		821C892F2A510F5600BD756D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -596,6 +598,7 @@
 			isa = PBXGroup;
 			children = (
 				821270472A7892660095D68E /* PDF Reader */,
+				8212704D2A7903620095D68E /* PDF Last Page */,
 			);
 			path = PDF;
 			sourceTree = "<group>";
@@ -611,25 +614,41 @@
 		821270482A7892750095D68E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8212704A2A78927C0095D68E /* View */,
-				821270492A7892790095D68E /* Controller */,
+				8212704A2A78927C0095D68E /* ViewController */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		821270492A7892790095D68E /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		8212704A2A78927C0095D68E /* View */ = {
+		8212704A2A78927C0095D68E /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				8212704B2A7892910095D68E /* PDFReaderViewController.swift */,
 			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8212704D2A7903620095D68E /* PDF Last Page */ = {
+			isa = PBXGroup;
+			children = (
+				8212704E2A79036D0095D68E /* View */,
+			);
+			path = "PDF Last Page";
+			sourceTree = "<group>";
+		};
+		8212704E2A79036D0095D68E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8212704F2A7903730095D68E /* ViewController */,
+			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		8212704F2A7903730095D68E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				821270502A7903930095D68E /* PDFLastPageViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		8218F5852A688F6B00C94EB4 /* ActivityItemSource */ = {
@@ -2647,6 +2666,7 @@
 				8210CA052A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift in Sources */,
 				827F0FFA2A4B2D7E00C481E4 /* AGPUNewsViewController.swift in Sources */,
 				82989ACA2A6E2D4500F27858 /* FacultyCathedraModel.swift in Sources */,
+				821270512A7903930095D68E /* PDFLastPageViewController.swift in Sources */,
 				82808E8D2A31F12100DEEB16 /* AGPUSectionsListViewController.swift in Sources */,
 				82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */,
 				829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */,

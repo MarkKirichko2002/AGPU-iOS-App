@@ -39,7 +39,7 @@ final class WebViewController: UIViewController {
         SetUpNavigation()
         SetUpViewModel()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            self.viewModel.SaveCurrentPage(url: self.WVWEBview.url?.absoluteString ?? "", position: CGPoint(x: 0, y: self.WVWEBview.scrollView.contentOffset.y))
+            self.viewModel.SaveCurrentWebPage(url: self.WVWEBview.url?.absoluteString ?? "", position: CGPoint(x: 0, y: self.WVWEBview.scrollView.contentOffset.y))
         }
     }
     
