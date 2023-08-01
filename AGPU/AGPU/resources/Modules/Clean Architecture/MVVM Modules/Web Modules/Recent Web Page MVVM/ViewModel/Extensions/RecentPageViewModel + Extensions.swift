@@ -11,7 +11,7 @@ import Foundation
 extension RecentPageViewModel: RecentPageViewModelProtocol {
     
     func GetLastPosition(currentUrl: String, completion: @escaping(CGPoint)->Void) {
-        if let page = UserDefaults.loadData(type: RecentPageModel.self, key: "last page") {
+        if let page = UserDefaults.loadData(type: RecentWebPageModel.self, key: "last page") {
             if currentUrl == page.url {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     completion(page.position)

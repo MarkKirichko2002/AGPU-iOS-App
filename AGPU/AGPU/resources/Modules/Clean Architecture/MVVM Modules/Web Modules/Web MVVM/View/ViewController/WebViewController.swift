@@ -14,7 +14,6 @@ final class WebViewController: UIViewController {
     
     // MARK: - сервисы
     let viewModel = WebViewModel()
-    private var timer: Timer?
     
     // MARK: - UI
     let WVWEBview = WKWebView(frame: .zero)
@@ -43,7 +42,6 @@ final class WebViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
-        timer?.invalidate()
     }
 
     override func didReceiveMemoryWarning() {

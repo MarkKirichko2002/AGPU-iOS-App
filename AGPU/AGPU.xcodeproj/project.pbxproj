@@ -19,6 +19,7 @@
 		8210CA092A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210CA082A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift */; };
 		8212704C2A7892910095D68E /* PDFReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8212704B2A7892910095D68E /* PDFReaderViewController.swift */; };
 		821270512A7903930095D68E /* PDFLastPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821270502A7903930095D68E /* PDFLastPageViewController.swift */; };
+		8212705B2A792A610095D68E /* RecentPDFModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8212705A2A792A610095D68E /* RecentPDFModel.swift */; };
 		8218F5872A688F8C00C94EB4 /* CustomActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218F5862A688F8C00C94EB4 /* CustomActivityItemSource.swift */; };
 		82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */; };
 		821C9E192A68DE8700EF0030 /* UITableView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C9E182A68DE8700EF0030 /* UITableView + Extensions.swift */; };
@@ -58,7 +59,7 @@
 		8255ADCF2A6732110012895E /* CustomTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255ADCE2A6732110012895E /* CustomTitleView.swift */; };
 		825634BA2A6222070082B7B8 /* FacultyGroupsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825634B92A6222070082B7B8 /* FacultyGroupsListTableViewController.swift */; };
 		825634BC2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825634BB2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift */; };
-		826716C22A5A2AF600CD5C23 /* RecentPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826716C12A5A2AF600CD5C23 /* RecentPageModel.swift */; };
+		826716C22A5A2AF600CD5C23 /* RecentWebPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826716C12A5A2AF600CD5C23 /* RecentWebPageModel.swift */; };
 		826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888522A33A91200434219 /* AGPUSubSectionTableViewCell.swift */; };
 		826888582A33AB5600434219 /* AGPUSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888572A33AB5600434219 /* AGPUSplashScreenViewController.swift */; };
 		8268885B2A33AC6000434219 /* AnimationClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8268885A2A33AC6000434219 /* AnimationClass.swift */; };
@@ -177,6 +178,7 @@
 		8210CA082A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUCurrentBuildingMapViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8212704B2A7892910095D68E /* PDFReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderViewController.swift; sourceTree = "<group>"; };
 		821270502A7903930095D68E /* PDFLastPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFLastPageViewController.swift; sourceTree = "<group>"; };
+		8212705A2A792A610095D68E /* RecentPDFModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPDFModel.swift; sourceTree = "<group>"; };
 		8218F5862A688F8C00C94EB4 /* CustomActivityItemSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityItemSource.swift; sourceTree = "<group>"; };
 		82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsListViewController + Extensions.swift"; sourceTree = "<group>"; };
 		821C892F2A510F5600BD756D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -217,7 +219,7 @@
 		8255ADCE2A6732110012895E /* CustomTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTitleView.swift; sourceTree = "<group>"; };
 		825634B92A6222070082B7B8 /* FacultyGroupsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupsListTableViewController.swift; sourceTree = "<group>"; };
 		825634BB2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupsListViewModel.swift; sourceTree = "<group>"; };
-		826716C12A5A2AF600CD5C23 /* RecentPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPageModel.swift; sourceTree = "<group>"; };
+		826716C12A5A2AF600CD5C23 /* RecentWebPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWebPageModel.swift; sourceTree = "<group>"; };
 		826888522A33A91200434219 /* AGPUSubSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSectionTableViewCell.swift; sourceTree = "<group>"; };
 		826888572A33AB5600434219 /* AGPUSplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSplashScreenViewController.swift; sourceTree = "<group>"; };
 		8268885A2A33AC6000434219 /* AnimationClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClass.swift; sourceTree = "<group>"; };
@@ -594,13 +596,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		821270462A78925D0095D68E /* PDF */ = {
+		821270462A78925D0095D68E /* PDF Modules */ = {
 			isa = PBXGroup;
 			children = (
 				821270472A7892660095D68E /* PDF Reader */,
 				8212704D2A7903620095D68E /* PDF Last Page */,
 			);
-			path = PDF;
+			path = "PDF Modules";
 			sourceTree = "<group>";
 		};
 		821270472A7892660095D68E /* PDF Reader */ = {
@@ -659,6 +661,22 @@
 				82BC3CFA2A56ED7500E49332 /* Recent Web Page MVVM */,
 			);
 			path = "Web Modules";
+			sourceTree = "<group>";
+		};
+		821270582A7929F80095D68E /* Recent PDF */ = {
+			isa = PBXGroup;
+			children = (
+				821270592A792A0B0095D68E /* Model */,
+			);
+			path = "Recent PDF";
+			sourceTree = "<group>";
+		};
+		821270592A792A0B0095D68E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8212705A2A792A610095D68E /* RecentPDFModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		8218F5852A688F6B00C94EB4 /* ActivityItemSource */ = {
@@ -1172,12 +1190,12 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
-		826716C02A5A2ADA00CD5C23 /* Recent Page */ = {
+		826716C02A5A2ADA00CD5C23 /* Recent Web Page */ = {
 			isa = PBXGroup;
 			children = (
 				826716C52A5A415C00CD5C23 /* Model */,
 			);
-			path = "Recent Page";
+			path = "Recent Web Page";
 			sourceTree = "<group>";
 		};
 		826716C32A5A414800CD5C23 /* Model */ = {
@@ -1199,7 +1217,7 @@
 		826716C52A5A415C00CD5C23 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				826716C12A5A2AF600CD5C23 /* RecentPageModel.swift */,
+				826716C12A5A2AF600CD5C23 /* RecentWebPageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1290,7 +1308,7 @@
 			children = (
 				820D33992A75974F00843313 /* Contacts List */,
 				82426C752A714CDD00D5AA57 /* For Every Status */,
-				821270462A78925D0095D68E /* PDF */,
+				821270462A78925D0095D68E /* PDF Modules */,
 				826888562A33AB3C00434219 /* Splash Screen */,
 				828CFA342A35F62400C7542D /* TabBar */,
 				82D6C32D2A5E187400FB7F5D /* TimeTable */,
@@ -1314,7 +1332,8 @@
 				82722D402A66460500149D06 /* AGPU Pins */,
 				82EF23D32A3DEEB8004A7B9C /* Sub Sections */,
 				8208E7522A63A3B300675EF1 /* AGPU Themes */,
-				826716C02A5A2ADA00CD5C23 /* Recent Page */,
+				826716C02A5A2ADA00CD5C23 /* Recent Web Page */,
+				821270582A7929F80095D68E /* Recent PDF */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2650,6 +2669,7 @@
 				82E05D5D2A5DF36B0060ADAA /* AGPUFacultiesListTableViewController + Extensions.swift in Sources */,
 				82426C8B2A71CFC600D5AA57 /* ForEmployeeListTableViewController.swift in Sources */,
 				82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */,
+				8212705B2A792A610095D68E /* RecentPDFModel.swift in Sources */,
 				82989AF22A6F8CDF00F27858 /* ForEveryStatusTableViewCell.swift in Sources */,
 				821C9E192A68DE8700EF0030 /* UITableView + Extensions.swift in Sources */,
 				8270A5482A5784A2008ACADC /* DateManager.swift in Sources */,
@@ -2702,7 +2722,7 @@
 				82875B002A5A1966007DB925 /* HapticsManagerProtocol.swift in Sources */,
 				8210CA092A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift in Sources */,
 				82320D812A4913FE00ECADEE /* AGPUFaculties.swift in Sources */,
-				826716C22A5A2AF600CD5C23 /* RecentPageModel.swift in Sources */,
+				826716C22A5A2AF600CD5C23 /* RecentWebPageModel.swift in Sources */,
 				82320D872A491F5700ECADEE /* AGPUFacultyTableViewCell.swift in Sources */,
 				820D339B2A75977400843313 /* FacultyContactsListTableViewController.swift in Sources */,
 				820D339F2A75985400843313 /* ContactsModel.swift in Sources */,
