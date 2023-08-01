@@ -38,9 +38,6 @@ final class WebViewController: UIViewController {
         SetUpIndicatorView()
         SetUpNavigation()
         SetUpViewModel()
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            self.viewModel.SaveCurrentWebPage(url: self.WVWEBview.url?.absoluteString ?? "", position: CGPoint(x: 0, y: self.WVWEBview.scrollView.contentOffset.y))
-        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {

@@ -651,6 +651,16 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		821270572A7921DD0095D68E /* Web Modules */ = {
+			isa = PBXGroup;
+			children = (
+				8270A5492A5789BE008ACADC /* News MVVM */,
+				82BA73B22A579B15006B67DA /* Web MVVM */,
+				82BC3CFA2A56ED7500E49332 /* Recent Web Page MVVM */,
+			);
+			path = "Web Modules";
+			sourceTree = "<group>";
+		};
 		8218F5852A688F6B00C94EB4 /* ActivityItemSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -1337,9 +1347,7 @@
 		826E6E992A65EFCB007A3C13 /* MVVM Modules */ = {
 			isa = PBXGroup;
 			children = (
-				8270A5492A5789BE008ACADC /* News MVVM */,
-				82BA73B22A579B15006B67DA /* Web MVVM */,
-				82BC3CFA2A56ED7500E49332 /* Recent Web Page MVVM */,
+				821270572A7921DD0095D68E /* Web Modules */,
 				8228E3962A6C8EFD00C1B6AD /* Maps MVVM Modules */,
 				82808E9C2A31F2D400DEEB16 /* Sections MVVM */,
 				822158942A422A480088BDE5 /* Settings MVVM */,
