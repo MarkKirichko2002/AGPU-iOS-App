@@ -40,7 +40,23 @@ final class AGPUSectionsListViewController: UIViewController {
         
         let backButton = UIBarButtonItem(customView: button)
         backButton.tintColor = .black
+        
+        let list = UIBarButtonItem(image: UIImage(named: "sections"), menu: SetUpMenu())
+        list.tintColor = .black
+        
         navigationItem.leftBarButtonItem = backButton
+        navigationItem.rightBarButtonItem = list
+    }
+    
+    private func SetUpMenu()-> UIMenu {
+        let items = AGPUSections.sections.map { section in
+            return UIAction(title: "\(section.id + 1)) \(section.name.lowercased())") { _ in
+                let indexPath = IndexPath(row: 0, section: section.id)
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+            }
+        }
+        let menu = UIMenu(title: "разделы", options: .singleSelection, children: items)
+        return menu
     }
     
     @objc private func back() {
