@@ -132,8 +132,17 @@ final class AGPUTabBarController: UITabBarController {
                     HapticsManager.shared.HapticFeedback()
                 }
             }
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.ShowRecentPageScreen(page: page)
+            if page.url.lowercased().hasSuffix(".pdf") {
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    let vc = PDFReaderViewController(url: page.url)
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    self.present(navVC, animated: true)
+                }
+            } else {
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self.ShowRecentPageScreen(page: page)
+                }
             }
         }
     }

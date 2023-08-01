@@ -1,5 +1,5 @@
 //
-//  RecentPageViewController.swift
+//  RecentWebPageViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 06.07.2023.
@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-final class RecentPageViewController: UIViewController {
+final class RecentWebPageViewController: UIViewController {
     
     var page: RecentPageModel
     

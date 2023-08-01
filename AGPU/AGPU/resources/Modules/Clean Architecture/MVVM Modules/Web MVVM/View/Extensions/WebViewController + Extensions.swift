@@ -32,7 +32,7 @@ extension WebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
             if navigationAction.navigationType == .linkActivated, let url = navigationAction.request.url {
                 if url.absoluteString.lowercased().hasSuffix(".pdf") {
-                    webView.load(URLRequest(url: url))
+                    webView.load(url.absoluteString)
                     decisionHandler(.cancel)
                     return
                 }
