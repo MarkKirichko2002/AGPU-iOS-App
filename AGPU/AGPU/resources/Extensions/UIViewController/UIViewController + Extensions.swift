@@ -24,7 +24,7 @@ extension UIViewController {
     }
     
     func ShowRecentPageScreen(page: RecentPageModel) {
-        let vc = RecentPageViewController(page: page)
+        let vc = RecentWebPageViewController(page: page)
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)

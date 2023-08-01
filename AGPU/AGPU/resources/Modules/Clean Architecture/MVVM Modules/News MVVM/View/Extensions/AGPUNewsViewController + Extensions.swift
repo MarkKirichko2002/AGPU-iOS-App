@@ -18,8 +18,11 @@ extension AGPUNewsViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType == .linkActivated, let url = navigationAction.request.url {
-            if url.absoluteString.lowercased().hasSuffix(".pdf") {
-                webView.load(URLRequest(url: url))
+            if url.pathExtension == "pdf" {
+                let vc = PDFReaderViewController(url: url.absoluteString)
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                self.present(navVC, animated: true)
                 decisionHandler(.cancel)
                 return
             }

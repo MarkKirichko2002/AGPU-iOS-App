@@ -132,8 +132,12 @@ final class AGPUTabBarController: UITabBarController {
                     HapticsManager.shared.HapticFeedback()
                 }
             }
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.ShowRecentPageScreen(page: page)
+            if page.url.lowercased().hasSuffix(".pdf") {
+                
+            } else {
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self.ShowRecentPageScreen(page: page)
+                }
             }
         }
     }
