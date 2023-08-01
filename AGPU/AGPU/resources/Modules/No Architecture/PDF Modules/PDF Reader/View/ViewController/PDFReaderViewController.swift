@@ -1,5 +1,5 @@
 //
-//  PDFLastPageViewController.swift
+//  PDFReaderViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 01.08.2023.
@@ -8,7 +8,7 @@
 import UIKit
 import PDFKit
 
-class PDFLastPageViewController: UIViewController {
+class PDFReaderViewController: UIViewController {
     
     private var pdfView: PDFView!
     private var document: PDFDocument!
@@ -28,13 +28,7 @@ class PDFLastPageViewController: UIViewController {
         super.viewDidLoad()
         SetUpNavigation()
         SetUpPDF()
-        LoadLastPage()
-        SavePage()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
+        SavePDF()
     }
     
     private func SetUpNavigation() {
@@ -59,24 +53,28 @@ class PDFLastPageViewController: UIViewController {
         view.addSubview(pdfView)
         
         NotificationCenter.default.addObserver(self, selector: #selector(handlePageChange), name: Notification.Name.PDFViewPageChanged, object: nil)
+        
+        UserDefaults.standard.setValue(url, forKey: "last pdf url")
     }
     
     @objc private func handlePageChange() {
         let currentPage = document.index(for: pdfView.currentPage!) + 1
         let totalPageCount = pdfView.document?.pageCount
         navigationItem.title = "Документ [\(currentPage)/\(totalPageCount ?? 0)]"
-        SavePage()
+        SavePDF()
     }
     
-    private func SavePage() {
+    private func SavePDF() {
         var page = 0
         guard let currentPage = pdfView.currentPage?.pageRef?.pageNumber else { return }
         page = currentPage - 1
-        UserDefaults.standard.set(page, forKey: "pdfPageNumber")
-    }
-    
-    private func LoadLastPage() {
-        let lastPage = UserDefaults.standard.integer(forKey: "pdfPageNumber")
-        pdfView.go(to: document.page(at: lastPage)!)
+       
+        let pdf = RecentPDFModel(url: url, pageNumber: page)
+        
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            UserDefaults.SaveData(object: pdf, key: "last pdf") {
+                print("сохранено: \(pdf)")
+            }
+        }
     }
 }

@@ -10,7 +10,7 @@ import WebKit
 
 final class RecentWebPageViewController: UIViewController {
     
-    var page: RecentPageModel
+    var page: RecentWebPageModel
     
     // MARK: - UI
     let WVWEBview = WKWebView(frame: .zero)
@@ -21,7 +21,7 @@ final class RecentWebPageViewController: UIViewController {
     
     // MARK: - Init
     init(
-        page: RecentPageModel
+        page: RecentWebPageModel
     ) {
         self.page = page
         super.init(nibName: nil, bundle: nil)

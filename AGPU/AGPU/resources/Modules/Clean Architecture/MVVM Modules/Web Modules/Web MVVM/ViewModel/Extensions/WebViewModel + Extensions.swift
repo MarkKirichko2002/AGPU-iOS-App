@@ -47,7 +47,7 @@ extension WebViewModel: WebViewModelProtocol {
         let dateManager = DateManager()
         let date = dateManager.getCurrentDate()
         let time = dateManager.getCurrentTime()
-        let page = RecentPageModel(date: date, time: time, url: url, position: position)
+        let page = RecentWebPageModel(date: date, time: time, url: url, position: position)
         UserDefaults.SaveData(object: page, key: "last page") {
             print("сохранено: \(page)")
         }

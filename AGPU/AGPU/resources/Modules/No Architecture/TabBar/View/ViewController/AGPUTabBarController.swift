@@ -53,7 +53,7 @@ final class AGPUTabBarController: UITabBarController {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         animation.TabBarItemAnimation(item: item)
     }
-        
+    
     private func setUpTabs() {
         // новости
         newsVC.tabBarItem = UITabBarItem(title: "Новости", image: UIImage(systemName: "newspaper"), selectedImage: UIImage(systemName: "newspaper.fill"))
@@ -124,27 +124,43 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     private func ShakeToRecall() {
-        if let page = UserDefaults.loadData(type: RecentPageModel.self, key: "last page") {
-            if !self.tabBar.isHidden {
-                DispatchQueue.main.async {
-                    self.DynamicButton.setImage(UIImage(named: "time.past"), for: .normal)
-                    self.animation.SpringAnimation(view: self.DynamicButton)
-                    HapticsManager.shared.HapticFeedback()
-                }
-            }
-            if page.url.lowercased().hasSuffix(".pdf") {
-                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                    let vc = PDFLastPageViewController(url: page.url)
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    self.present(navVC, animated: true)
-                }
-            } else {
-                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                    self.ShowRecentPageScreen(page: page)
+        
+        let webPage = UIAlertAction(title: "веб-страница", style: .default) { _ in
+            if let page = UserDefaults.loadData(type: RecentWebPageModel.self, key: "last page") {
+                if !self.tabBar.isHidden {
+                    DispatchQueue.main.async {
+                        self.DynamicButton.setImage(UIImage(named: "time.past"), for: .normal)
+                        self.animation.SpringAnimation(view: self.DynamicButton)
+                        HapticsManager.shared.HapticFeedback()
+                    }
+                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                        self.ShowRecentPageScreen(page: page)
+                    }
                 }
             }
         }
+        
+        let document = UIAlertAction(title: "документ", style: .default) { _ in
+            if let pdf = UserDefaults.loadData(type: RecentPDFModel.self, key: "last pdf") {
+                if !self.tabBar.isHidden {
+                    DispatchQueue.main.async {
+                        self.DynamicButton.setImage(UIImage(named: "time.past"), for: .normal)
+                        self.animation.SpringAnimation(view: self.DynamicButton)
+                        HapticsManager.shared.HapticFeedback()
+                    }
+                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                        let vc = PDFLastPageViewController(pdf: pdf)
+                        let navVC = UINavigationController(rootViewController: vc)
+                        navVC.modalPresentationStyle = .fullScreen
+                        self.present(navVC, animated: true)
+                    }
+                }
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "отмена", style: .cancel, handler: nil)
+        
+        self.ShowAlert(title: "Последний раздел", message: "Выберите один из последних просмотренных экранов", actions: [webPage, document, cancelAction])
     }
     
     @objc private func VoiceCommands() {
@@ -243,11 +259,11 @@ final class AGPUTabBarController: UITabBarController {
                             self.DynamicButton.setImage(UIImage(named: subsection.icon), for: .normal)
                             self.animation.SpringAnimation(view: self.DynamicButton)
                         }
-                                                
+                        
                         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                             self.GoToWeb(url: subsection.url, title: nil, isSheet: false)
                         }
-                    
+                        
                         NotificationCenter.default.post(name: Notification.Name("scroll"), object: text.lastWord())
                         break
                     }
