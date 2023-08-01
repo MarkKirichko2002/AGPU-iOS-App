@@ -221,32 +221,6 @@ final class AGPUTabBarController: UITabBarController {
             }
         }
         
-        // MARK: - "Sections"
-        if text.lowercased().contains("раздел") {
-            
-            let vc = AGPUSectionsListViewController()
-            let navVC = UINavigationController(rootViewController: vc)
-            
-            DispatchQueue.main.async {
-                self.DynamicButton.setImage(UIImage(named: "sections icon"), for: .normal)
-                self.animation.SpringAnimation(view: self.DynamicButton)
-            }
-            
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.present(navVC, animated: true)
-            }
-            
-            // поиск раздела
-            for section in AGPUSections.sections {
-                
-                if text.lastWord().lowercased().contains(section.voiceCommand) {
-                    
-                    NotificationCenter.default.post(name: Notification.Name("ScrollToSection"), object: section.id)
-                    break
-                }
-            }
-        }
-        
         if text != "" {
             // поиск подраздела
             for section in AGPUSections.sections {
