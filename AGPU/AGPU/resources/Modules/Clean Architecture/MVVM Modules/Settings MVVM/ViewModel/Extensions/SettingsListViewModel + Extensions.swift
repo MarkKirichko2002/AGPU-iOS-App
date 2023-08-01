@@ -56,7 +56,9 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
             NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
         }
         UserDefaults.SaveData(object: faculty, key: "faculty") {
-            self.isChanged.toggle()
+            Timer.scheduledTimer(withTimeInterval: 0.8, repeats: false) { _ in
+                self.isChanged.toggle()
+            }
         }
         UserDefaults.standard.setValue(faculty.icon, forKey: "icon")
         UserDefaults.standard.setValue(nil, forKey: "group")
