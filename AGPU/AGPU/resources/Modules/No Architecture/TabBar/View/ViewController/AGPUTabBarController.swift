@@ -133,10 +133,12 @@ final class AGPUTabBarController: UITabBarController {
                 }
             }
             if page.url.lowercased().hasSuffix(".pdf") {
-                let vc = PDFLastPageViewController(url: page.url)
-                let navVC = UINavigationController(rootViewController: vc)
-                navVC.modalPresentationStyle = .fullScreen
-                present(navVC, animated: true)
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    let vc = PDFLastPageViewController(url: page.url)
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    self.present(navVC, animated: true)
+                }
             } else {
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                     self.ShowRecentPageScreen(page: page)

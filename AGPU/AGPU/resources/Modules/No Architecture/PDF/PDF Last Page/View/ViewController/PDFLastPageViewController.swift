@@ -29,6 +29,12 @@ class PDFLastPageViewController: UIViewController {
         SetUpNavigation()
         SetUpPDF()
         LoadLastPage()
+        SavePage()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
     }
     
     private func SetUpNavigation() {
@@ -59,6 +65,14 @@ class PDFLastPageViewController: UIViewController {
         let currentPage = document.index(for: pdfView.currentPage!) + 1
         let totalPageCount = pdfView.document?.pageCount
         navigationItem.title = "Документ [\(currentPage)/\(totalPageCount ?? 0)]"
+        SavePage()
+    }
+    
+    private func SavePage() {
+        var page = 0
+        guard let currentPage = pdfView.currentPage?.pageRef?.pageNumber else { return }
+        page = currentPage - 1
+        UserDefaults.standard.set(page, forKey: "pdfPageNumber")
     }
     
     private func LoadLastPage() {
