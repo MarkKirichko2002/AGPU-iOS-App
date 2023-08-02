@@ -1368,7 +1368,7 @@
 			children = (
 				821270572A7921DD0095D68E /* Web Modules */,
 				8228E3962A6C8EFD00C1B6AD /* Maps MVVM Modules */,
-				82808E9C2A31F2D400DEEB16 /* Sections MVVM */,
+				82808E9C2A31F2D400DEEB16 /* AGPU Sections MVVM */,
 				822158942A422A480088BDE5 /* Settings MVVM */,
 				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
 				82989ACB2A6E308F00F27858 /* Faculty Cathedra List */,
@@ -1471,14 +1471,14 @@
 			path = AGPU;
 			sourceTree = "<group>";
 		};
-		82808E9C2A31F2D400DEEB16 /* Sections MVVM */ = {
+		82808E9C2A31F2D400DEEB16 /* AGPU Sections MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				821270452A783FA40095D68E /* Model */,
 				82808EA22A31F49B00DEEB16 /* View */,
 				8255ADCA2A672E500012895E /* ViewModel */,
 			);
-			path = "Sections MVVM";
+			path = "AGPU Sections MVVM";
 			sourceTree = "<group>";
 		};
 		82808EA22A31F49B00DEEB16 /* View */ = {
