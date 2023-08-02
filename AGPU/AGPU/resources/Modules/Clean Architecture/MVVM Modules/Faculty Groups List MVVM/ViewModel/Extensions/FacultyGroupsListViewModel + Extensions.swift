@@ -33,12 +33,12 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
     func SelectGroup(section: Int, index: Int) {
         let group = groupItem(section: section, index: index)
         if let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
-            if group.abbreviation().contains(faculty.abbreviation) {
+            if groups[section].name.abbreviation().contains(faculty.abbreviation) {
                 UserDefaults.standard.setValue(group, forKey: "group")
                 self.isChanged.toggle()
                 NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
             } else {
-                //print("no \(group) != \(faculty.abbreviation)")
+                print("no \(groups[section].name) != \(faculty.abbreviation)")
             }
         }
     }
