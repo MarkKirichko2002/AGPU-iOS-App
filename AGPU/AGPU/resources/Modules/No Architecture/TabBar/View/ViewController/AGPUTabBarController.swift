@@ -222,6 +222,27 @@ final class AGPUTabBarController: UITabBarController {
         }
         
         if text != "" {
+            // поиск раздела
+            for section in AGPUSections.sections {
+                
+                if text.lowercased().contains(section.voiceCommand) {
+                    
+                    DispatchQueue.main.async {
+                        self.DynamicButton.setImage(UIImage(named: section.icon), for: .normal)
+                        self.animation.SpringAnimation(view: self.DynamicButton)
+                    }
+                    
+                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                        self.GoToWeb(url: section.url, title: nil, isSheet: false)
+                    }
+                    
+                    NotificationCenter.default.post(name: Notification.Name("scroll"), object: text.lastWord())
+                    break
+                }
+            }
+        }
+        
+        if text != "" {
             // поиск подраздела
             for section in AGPUSections.sections {
                 
