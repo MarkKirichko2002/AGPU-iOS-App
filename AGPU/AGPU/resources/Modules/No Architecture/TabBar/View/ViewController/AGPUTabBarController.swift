@@ -233,7 +233,7 @@ final class AGPUTabBarController: UITabBarController {
                     }
                     
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                        self.GoToWeb(url: section.url, title: nil, isSheet: false)
+                        self.GoToWeb(url: section.url, title: section.name, isSheet: false)
                     }
                     
                     NotificationCenter.default.post(name: Notification.Name("scroll"), object: text.lastWord())
@@ -241,6 +241,23 @@ final class AGPUTabBarController: UITabBarController {
                 }
             }
         }
+        
+        if text.lowercased().contains("случайный раздел") || text.lowercased().contains("рандомный раздел") {
+            
+            let section = AGPUSections.sections[Int.random(in: 0..<AGPUSections.sections.count - 1)]
+            
+            DispatchQueue.main.async {
+                self.DynamicButton.setImage(UIImage(named: "dice"), for: .normal)
+                self.animation.SpringAnimation(view: self.DynamicButton)
+            }
+            
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.GoToWeb(url: section.url, title: section.name, isSheet: false)
+            }
+            
+            NotificationCenter.default.post(name: Notification.Name("scroll"), object: text.lastWord())
+        }
+        
         
         if text != "" {
             // поиск подраздела
