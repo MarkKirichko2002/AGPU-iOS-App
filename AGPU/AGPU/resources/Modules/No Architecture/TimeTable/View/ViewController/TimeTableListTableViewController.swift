@@ -49,21 +49,21 @@ final class TimeTableListTableViewController: UIViewController {
                 guard let self = self else { return }
                 
                 var arr = [UIMenu]()
-                for (key, value) in groups {
-                    let items = value.map { group in
-                        return UIAction(title: group) { _ in
-                            self.group = group
-                            self.spinner.startAnimating()
-                            self.noTimeTableLabel.isHidden = true
-                            self.timetable = []
-                            self.tableView.reloadData()
-                            self.GetTimeTable(group: group, date: self.date)
-                        }
-                    }
-                    
-                    let mainMenu = UIMenu(title: key.abbreviation(), children: items)
-                    arr.append(mainMenu)
-                }
+//                for (key, value) in groups {
+//                    let items = value.map { group in
+//                        return UIAction(title: group) { _ in
+//                            self.group = group
+//                            self.spinner.startAnimating()
+//                            self.noTimeTableLabel.isHidden = true
+//                            self.timetable = []
+//                            self.tableView.reloadData()
+//                            self.GetTimeTable(group: group, date: self.date)
+//                        }
+//                    }
+//                    
+//                    let mainMenu = UIMenu(title: key.abbreviation(), children: items)
+//                    arr.append(mainMenu)
+//                }
                 
                 // список групп
                 let groupList = UIMenu(title: "группы", image: UIImage(named: "group"), children: arr)

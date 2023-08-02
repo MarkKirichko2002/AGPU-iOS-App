@@ -12,10 +12,9 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
     
     func GetGroups(by faculty: AGPUFacultyModel) {
         timetableService.GetAllGroups { groups in
-            for (key, value) in groups {
-                if key.abbreviation().contains(faculty.abbreviation) {
-                    self.groups[key.abbreviation()] = value
-                    self.key = key
+            for group in groups {
+                if group.name.abbreviation().contains(faculty.abbreviation) {
+                    self.groups.append(group)
                     self.isChanged.toggle()
                 }
             }
@@ -24,22 +23,22 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
     
     // MARK: - Elected Faculty
     func groupsListCount(section: Int)-> Int {
-        return Array(groups.values)[section].count
+        return groups.count
     }
     
     func groupItem(section: Int, index: Int)-> String {
-        return Array(groups.values)[section][index]
+        return groups[section].groups[index]
     }
     
     func SelectGroup(section: Int, index: Int) {
         let group = groupItem(section: section, index: index)
         if let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
-            if key.abbreviation().contains(faculty.abbreviation) {
+            if group.abbreviation().contains(faculty.abbreviation) {
                 UserDefaults.standard.setValue(group, forKey: "group")
                 self.isChanged.toggle()
                 NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
             } else {
-                print("no \(key.abbreviation()) != \(faculty.abbreviation)")
+                //print("no \(group) != \(faculty.abbreviation)")
             }
         }
     }

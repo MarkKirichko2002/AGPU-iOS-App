@@ -11,14 +11,14 @@ import Alamofire
 // MARK: - TimeTableServicerProtocol
 extension TimeTableService: TimeTableServicerProtocol {
     
-    func GetAllGroups(completion: @escaping ([String: [String]]) -> Void) {
+    func GetAllGroups(completion: @escaping ([GroupModel]) -> Void) {
         
         AF.request("http://merqury.fun:8080/api/allGroups").responseData { response in
             
             guard let data = response.data else {return}
             
             do {
-                let groups = try JSONDecoder().decode([String: [String]].self, from: data)
+                let groups = try JSONDecoder().decode([GroupModel].self, from: data)
                 print(groups)
                 completion(groups)
             } catch {
