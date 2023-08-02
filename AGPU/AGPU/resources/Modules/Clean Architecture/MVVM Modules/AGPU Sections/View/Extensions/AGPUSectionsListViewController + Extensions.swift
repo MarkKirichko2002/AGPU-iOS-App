@@ -29,9 +29,11 @@ extension AGPUSectionsListViewController: UITableViewDataSource {
 extension AGPUSectionsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
+        let header = InteractiveView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
         header.backgroundColor = .systemBackground
-        
+        header.tapAction = {
+            self.sectionSelected(index: section)
+        }
         let imageView = SpringImageView(image: UIImage(named: AGPUSections.sections[section].icon))
 
         imageView.contentMode = .scaleAspectFit
@@ -61,5 +63,13 @@ extension AGPUSectionsListViewController: UITableViewDelegate {
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
             self.GoToWeb(url: subsection.url, title: "ФГБОУ ВО «АГПУ»", isSheet: false)
         }
+    }
+}
+
+extension AGPUSectionsListViewController {
+    
+    func sectionSelected(index: Int) {
+        let section = AGPUSections.sections[index]
+        self.GoToWeb(url: section.url, title: section.name, isSheet: false)
     }
 }
