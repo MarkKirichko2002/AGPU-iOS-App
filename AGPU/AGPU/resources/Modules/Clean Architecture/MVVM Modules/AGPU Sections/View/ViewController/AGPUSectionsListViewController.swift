@@ -12,14 +12,10 @@ final class AGPUSectionsListViewController: UIViewController {
     // MARK: - UI
     private let tableView = UITableView()
 
-    // MARK: - сервисы
-    private let viewModel = AGPUSectionsListViewModel()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         SetUpNavigation()
         SetUpTable()
-        BindViewModel()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -72,14 +68,5 @@ final class AGPUSectionsListViewController: UIViewController {
             AGPUSubSectionTableViewCell.self,
             forCellReuseIdentifier: AGPUSubSectionTableViewCell.identifier
         )
-    }
-    
-    private func BindViewModel() {
-        viewModel.ObserveScroll { section in
-            self.tableView.scrollToRow(at: IndexPath(row: 0, section: section), at: .top, animated: true)
-        }
-        viewModel.ObserveActions {
-            self.dismiss(animated: true)
-        }
     }
 }

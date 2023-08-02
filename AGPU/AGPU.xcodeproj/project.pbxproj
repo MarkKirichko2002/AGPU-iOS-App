@@ -55,7 +55,6 @@
 		82426C942A71DD0100D5AA57 /* UserStatusList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C932A71DD0100D5AA57 /* UserStatusList.swift */; };
 		82461FEE2A50C493008A8752 /* AppDelegate + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */; };
 		824C56D92A6FE98F0074ADB7 /* FacultyCathedraList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */; };
-		8255ADCC2A672E720012895E /* AGPUSectionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255ADCB2A672E720012895E /* AGPUSectionsListViewModel.swift */; };
 		8255ADCF2A6732110012895E /* CustomTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255ADCE2A6732110012895E /* CustomTitleView.swift */; };
 		825634BA2A6222070082B7B8 /* FacultyGroupsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825634B92A6222070082B7B8 /* FacultyGroupsListTableViewController.swift */; };
 		825634BC2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825634BB2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift */; };
@@ -148,8 +147,6 @@
 		82E4C5452A6B114000F65A67 /* WebViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5442A6B114000F65A67 /* WebViewModel + Extensions.swift */; };
 		82E4C54A2A6B11BB00F65A67 /* AGPUFacultiesListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5492A6B11BB00F65A67 /* AGPUFacultiesListViewModelProtocol.swift */; };
 		82E4C54C2A6B121900F65A67 /* AGPUFacultiesListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C54B2A6B121900F65A67 /* AGPUFacultiesListViewModel + Extensions.swift */; };
-		82E4C5512A6B129300F65A67 /* AGPUSectionsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5502A6B129300F65A67 /* AGPUSectionsListViewModelProtocol.swift */; };
-		82E4C5532A6B12E300F65A67 /* AGPUSectionsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5522A6B12E300F65A67 /* AGPUSectionsListViewModel + Extensions.swift */; };
 		82E4C55F2A6B147900F65A67 /* SettingsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C55E2A6B147900F65A67 /* SettingsListViewModelProtocol.swift */; };
 		82E4C5612A6B14C700F65A67 /* SettingsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5602A6B14C700F65A67 /* SettingsListViewModel + Extensions.swift */; };
 		82E4C5662A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5652A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift */; };
@@ -163,6 +160,7 @@
 		82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */; };
 		82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */; };
 		82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */; };
+		82FB5B642A7A8FF600728980 /* InteractiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FB5B632A7A8FF600728980 /* InteractiveView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -215,7 +213,6 @@
 		82426C932A71DD0100D5AA57 /* UserStatusList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusList.swift; sourceTree = "<group>"; };
 		82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate + Extensions.swift"; sourceTree = "<group>"; };
 		824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyCathedraList.swift; sourceTree = "<group>"; };
-		8255ADCB2A672E720012895E /* AGPUSectionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSectionsListViewModel.swift; sourceTree = "<group>"; };
 		8255ADCE2A6732110012895E /* CustomTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTitleView.swift; sourceTree = "<group>"; };
 		825634B92A6222070082B7B8 /* FacultyGroupsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupsListTableViewController.swift; sourceTree = "<group>"; };
 		825634BB2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupsListViewModel.swift; sourceTree = "<group>"; };
@@ -308,8 +305,6 @@
 		82E4C5442A6B114000F65A67 /* WebViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82E4C5492A6B11BB00F65A67 /* AGPUFacultiesListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultiesListViewModelProtocol.swift; sourceTree = "<group>"; };
 		82E4C54B2A6B121900F65A67 /* AGPUFacultiesListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUFacultiesListViewModel + Extensions.swift"; sourceTree = "<group>"; };
-		82E4C5502A6B129300F65A67 /* AGPUSectionsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSectionsListViewModelProtocol.swift; sourceTree = "<group>"; };
-		82E4C5522A6B12E300F65A67 /* AGPUSectionsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUSectionsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82E4C55E2A6B147900F65A67 /* SettingsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewModelProtocol.swift; sourceTree = "<group>"; };
 		82E4C5602A6B14C700F65A67 /* SettingsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82E4C5652A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FacultyGroupsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
@@ -323,6 +318,7 @@
 		82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClassProtocol.swift; sourceTree = "<group>"; };
 		82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManagerProtocol.swift; sourceTree = "<group>"; };
 		82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringImageView.swift; sourceTree = "<group>"; };
+		82FB5B632A7A8FF600728980 /* InteractiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -587,13 +583,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		821270452A783FA40095D68E /* Model */ = {
+		821270452A783FA40095D68E /* Sections */ = {
 			isa = PBXGroup;
 			children = (
 				826716C82A5A419900CD5C23 /* Model */,
 				826716C92A5A419D00CD5C23 /* List */,
 			);
-			path = Model;
+			path = Sections;
 			sourceTree = "<group>";
 		};
 		821270462A78925D0095D68E /* PDF Modules */ = {
@@ -1118,16 +1114,6 @@
 			path = "Faculty Сathedra";
 			sourceTree = "<group>";
 		};
-		8255ADCA2A672E500012895E /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C54F2A6B127A00F65A67 /* Protocol */,
-				82E4C54E2A6B127800F65A67 /* ViewModel */,
-				82E4C54D2A6B127600F65A67 /* Extensions */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		8255ADCD2A6731F50012895E /* Title View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1281,6 +1267,7 @@
 		8268885C2A33ACA800434219 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				82FB5B622A7A8FE500728980 /* Interactive View */,
 				82EF23DD2A3DF612004A7B9C /* Spring Image */,
 				8255ADCD2A6731F50012895E /* Title View */,
 				82426C7D2A7152DB00D5AA57 /* Custom Cells */,
@@ -1308,6 +1295,7 @@
 			children = (
 				820D33992A75974F00843313 /* Contacts List */,
 				82426C752A714CDD00D5AA57 /* For Every Status */,
+				82808E9C2A31F2D400DEEB16 /* AGPU Sections */,
 				821270462A78925D0095D68E /* PDF Modules */,
 				826888562A33AB3C00434219 /* Splash Screen */,
 				828CFA342A35F62400C7542D /* TabBar */,
@@ -1330,6 +1318,7 @@
 				82426C8E2A71DCC000D5AA57 /* User Status */,
 				820D18E12A68F9BB00BFAA35 /* AGPU Buildings */,
 				82722D402A66460500149D06 /* AGPU Pins */,
+				821270452A783FA40095D68E /* Sections */,
 				82EF23D32A3DEEB8004A7B9C /* Sub Sections */,
 				8208E7522A63A3B300675EF1 /* AGPU Themes */,
 				826716C02A5A2ADA00CD5C23 /* Recent Web Page */,
@@ -1368,7 +1357,6 @@
 			children = (
 				821270572A7921DD0095D68E /* Web Modules */,
 				8228E3962A6C8EFD00C1B6AD /* Maps MVVM Modules */,
-				82808E9C2A31F2D400DEEB16 /* AGPU Sections MVVM */,
 				822158942A422A480088BDE5 /* Settings MVVM */,
 				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
 				82989ACB2A6E308F00F27858 /* Faculty Cathedra List */,
@@ -1471,14 +1459,13 @@
 			path = AGPU;
 			sourceTree = "<group>";
 		};
-		82808E9C2A31F2D400DEEB16 /* AGPU Sections MVVM */ = {
+		82808E9C2A31F2D400DEEB16 /* AGPU Sections */ = {
 			isa = PBXGroup;
 			children = (
-				821270452A783FA40095D68E /* Model */,
 				82808EA22A31F49B00DEEB16 /* View */,
-				8255ADCA2A672E500012895E /* ViewModel */,
 			);
-			path = "AGPU Sections MVVM";
+			name = "AGPU Sections";
+			path = "../Clean Architecture/MVVM Modules/AGPU Sections";
 			sourceTree = "<group>";
 		};
 		82808EA22A31F49B00DEEB16 /* View */ = {
@@ -2248,30 +2235,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		82E4C54D2A6B127600F65A67 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C5522A6B12E300F65A67 /* AGPUSectionsListViewModel + Extensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		82E4C54E2A6B127800F65A67 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				8255ADCB2A672E720012895E /* AGPUSectionsListViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		82E4C54F2A6B127A00F65A67 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C5502A6B129300F65A67 /* AGPUSectionsListViewModelProtocol.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
 		82E4C55B2A6B145B00F65A67 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -2509,6 +2472,22 @@
 			path = "Spring Image";
 			sourceTree = "<group>";
 		};
+		82FB5B622A7A8FE500728980 /* Interactive View */ = {
+			isa = PBXGroup;
+			children = (
+				82FB5B652A7A8FFD00728980 /* View */,
+			);
+			path = "Interactive View";
+			sourceTree = "<group>";
+		};
+		82FB5B652A7A8FFD00728980 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82FB5B632A7A8FF600728980 /* InteractiveView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2601,7 +2580,6 @@
 				82E4C5612A6B14C700F65A67 /* SettingsListViewModel + Extensions.swift in Sources */,
 				82E4C54A2A6B11BB00F65A67 /* AGPUFacultiesListViewModelProtocol.swift in Sources */,
 				820D18E72A68FA7D00BFAA35 /* AGPUBuildings.swift in Sources */,
-				82E4C5532A6B12E300F65A67 /* AGPUSectionsListViewModel + Extensions.swift in Sources */,
 				826888662A33B6E700434219 /* AGPUTabBarController.swift in Sources */,
 				82BF4DB02A5FA52B008B751A /* AGPUWallpapersListViewController.swift in Sources */,
 				82D6C33A2A5E282A00FB7F5D /* TimeTableTableViewCell.swift in Sources */,
@@ -2637,7 +2615,6 @@
 				822632412A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
-				8255ADCC2A672E720012895E /* AGPUSectionsListViewModel.swift in Sources */,
 				82D6C3342A5E1DEC00FB7F5D /* TimeTable.swift in Sources */,
 				82426C742A71476D00D5AA57 /* ForEveryStatusModel.swift in Sources */,
 				82426C8D2A71D26100D5AA57 /* ForEmployeeSections.swift in Sources */,
@@ -2645,6 +2622,7 @@
 				82E4C5172A6B0D0200F65A67 /* ImageSaver + Extensions.swift in Sources */,
 				8241F9812A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift in Sources */,
 				82722D432A66462100149D06 /* AGPUPins.swift in Sources */,
+				82FB5B642A7A8FF600728980 /* InteractiveView.swift in Sources */,
 				8228E3992A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift in Sources */,
 				829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */,
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
@@ -2674,7 +2652,6 @@
 				821C9E192A68DE8700EF0030 /* UITableView + Extensions.swift in Sources */,
 				8270A5482A5784A2008ACADC /* DateManager.swift in Sources */,
 				82BF4DB72A5FA807008B751A /* ImageSaver.swift in Sources */,
-				82E4C5512A6B129300F65A67 /* AGPUSectionsListViewModelProtocol.swift in Sources */,
 				82E05D592A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift in Sources */,
 				827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */,
 				826E6E9C2A65F7CA007A3C13 /* TimeInterval + Extensions.swift in Sources */,
