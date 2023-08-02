@@ -71,7 +71,7 @@ final class FacultyGroupsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int)-> String? {
-        return Array(viewModel.groups.keys)[section]
+        return viewModel.groups[section].name.abbreviation()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -80,11 +80,11 @@ final class FacultyGroupsListTableViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.groups.keys.count
+        return viewModel.groups.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.groupsListCount(section: section)
+        return viewModel.groups[section].groups.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -49,8 +49,8 @@ final class TimeTableListTableViewController: UIViewController {
                 guard let self = self else { return }
                 
                 var arr = [UIMenu]()
-                for (key, value) in groups {
-                    let items = value.map { group in
+                for group in groups {
+                    let items = group.groups.map { group in
                         return UIAction(title: group) { _ in
                             self.group = group
                             self.spinner.startAnimating()
@@ -61,7 +61,7 @@ final class TimeTableListTableViewController: UIViewController {
                         }
                     }
                     
-                    let mainMenu = UIMenu(title: key.abbreviation(), children: items)
+                    let mainMenu = UIMenu(title: group.name.abbreviation(), options: .singleSelection, children: items)
                     arr.append(mainMenu)
                 }
                 
@@ -75,14 +75,14 @@ final class TimeTableListTableViewController: UIViewController {
                     self.navigationItem.title = self.date
                 }
                 // следующий день
-                let next = UIAction(title: "следующий") { _ in
+                let next = UIAction(title: "завтра") { _ in
                     let nextDay = self.dateManager.nextDay(date: self.date)
                     self.GetTimeTable(group: self.group, date: nextDay)
                     self.date = nextDay
                     self.navigationItem.title = self.date
                 }
                 // предыдущий день
-                let previous = UIAction(title: "предыдущий") { _ in
+                let previous = UIAction(title: "вчера") { _ in
                     let previousDay = self.dateManager.previousDay(date: self.date)
                     self.GetTimeTable(group: self.group, date: previousDay)
                     self.date = previousDay
