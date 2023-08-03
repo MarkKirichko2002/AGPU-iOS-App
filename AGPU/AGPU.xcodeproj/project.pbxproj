@@ -15,6 +15,8 @@
 		820D33A62A759E9100843313 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820D33A42A759E9100843313 /* ContactsTableViewCell.swift */; };
 		820D33A72A759E9100843313 /* ContactsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820D33A52A759E9100843313 /* ContactsTableViewCell.xib */; };
 		820D33AD2A75ACA900843313 /* FacultyCathedraListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820D33AC2A75ACA900843313 /* FacultyCathedraListTableViewController + Extensions.swift */; };
+		820E40932A7C365B007A1E0A /* AGPUCurrentCathedraMapViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820E40922A7C365B007A1E0A /* AGPUCurrentCathedraMapViewModelProtocol.swift */; };
+		820E40952A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820E40942A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift */; };
 		8210CA052A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210CA042A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift */; };
 		8210CA092A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210CA082A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift */; };
 		8212704C2A7892910095D68E /* PDFReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8212704B2A7892910095D68E /* PDFReaderViewController.swift */; };
@@ -174,6 +176,8 @@
 		820D33A42A759E9100843313 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
 		820D33A52A759E9100843313 /* ContactsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsTableViewCell.xib; sourceTree = "<group>"; };
 		820D33AC2A75ACA900843313 /* FacultyCathedraListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FacultyCathedraListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
+		820E40922A7C365B007A1E0A /* AGPUCurrentCathedraMapViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUCurrentCathedraMapViewModelProtocol.swift; sourceTree = "<group>"; };
+		820E40942A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUCurrentCathedraMapViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		8210CA042A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUCurrentBuildingMapViewController.swift; sourceTree = "<group>"; };
 		8210CA082A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUCurrentBuildingMapViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8212704B2A7892910095D68E /* PDFReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderViewController.swift; sourceTree = "<group>"; };
@@ -559,6 +563,30 @@
 				820D33AC2A75ACA900843313 /* FacultyCathedraListTableViewController + Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		820E408F2A7C362D007A1E0A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				820E40942A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		820E40902A7C362F007A1E0A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82989ADF2A6E5B4F00F27858 /* AGPUCurrentCathedraMapViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		820E40912A7C3631007A1E0A /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				820E40922A7C365B007A1E0A /* AGPUCurrentCathedraMapViewModelProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		8210CA022A664D5700D0BEEE /* Current Buiding MVVM */ = {
@@ -1648,7 +1676,9 @@
 		82989AD92A6E586800F27858 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				82989ADF2A6E5B4F00F27858 /* AGPUCurrentCathedraMapViewModel.swift */,
+				820E40912A7C3631007A1E0A /* Protocol */,
+				820E40902A7C362F007A1E0A /* ViewModel */,
+				820E408F2A7C362D007A1E0A /* Extensions */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2629,6 +2659,7 @@
 				82BF4DB42A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift in Sources */,
 				82989ADE2A6E59BC00F27858 /* AGPUCurrentCathedraMapViewController + Extensions.swift in Sources */,
 				828DC55C2A7B3887001EA324 /* FacultyGroups.swift in Sources */,
+				820E40952A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift in Sources */,
 				82989ACD2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift in Sources */,
 				82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */,
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
@@ -2719,6 +2750,7 @@
 				82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */,
 				82426C852A71603B00D5AA57 /* AppFeaturesTableViewCell.swift in Sources */,
 				82BEAD892A74180D00DD34C2 /* RecentPageViewModel + Extensions.swift in Sources */,
+				820E40932A7C365B007A1E0A /* AGPUCurrentCathedraMapViewModelProtocol.swift in Sources */,
 				82875B022A5A198A007DB925 /* HapticsManager + Extensions.swift in Sources */,
 				82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */,
 				82E4C55F2A6B147900F65A67 /* SettingsListViewModelProtocol.swift in Sources */,

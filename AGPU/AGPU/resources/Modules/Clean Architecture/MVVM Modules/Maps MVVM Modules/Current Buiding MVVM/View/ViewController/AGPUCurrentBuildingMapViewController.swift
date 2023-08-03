@@ -35,7 +35,6 @@ final class AGPUCurrentBuildingMapViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         SetUpNavigation()
-        SetUpSwipeGesture()
         SetUpMap()
         makeConstraints()
     }
