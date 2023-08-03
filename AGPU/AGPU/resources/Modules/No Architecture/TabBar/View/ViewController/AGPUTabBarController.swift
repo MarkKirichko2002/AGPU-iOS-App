@@ -242,7 +242,7 @@ final class AGPUTabBarController: UITabBarController {
             }
         }
         
-        if text.lowercased().contains("случайный раздел") || text.lowercased().contains("рандомный раздел") {
+        if text.lowercased().contains("случайный раздел") || text.lowercased().contains("случайно раздел") || text.lowercased().contains("рандомный раздел") || text.lowercased().contains("рандомно раздел") {
             
             let section = AGPUSections.sections[Int.random(in: 0..<AGPUSections.sections.count - 1)]
             
@@ -297,7 +297,13 @@ final class AGPUTabBarController: UITabBarController {
         
         // выключить микрофон
         if text.lowercased().contains("стоп") {
-            DynamicButton.sendActions(for: .touchUpInside)
+            
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                NotificationCenter.default.post(name: Notification.Name("close screen"), object: nil)
+            }
+            
+            self.DynamicButton.sendActions(for: .touchUpInside)
+            
         }
     }
     
