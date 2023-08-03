@@ -19,29 +19,33 @@ final class TimeTableTableViewCell: UITableViewCell {
     func configure(timetable: TimeTable) {
         layer.borderWidth = 1
         TimeLabel.text = timetable.time
-        DisciplineName.text = "\(timetable.name) \n\(timetable.teacherName ?? ""), \(timetable.audienceID ?? "") \n (\(timetable.groupName ?? ""))"
+        DisciplineName.text = "\(timetable.name) \n\(timetable.teacherName ?? ""), \(timetable.audienceID ?? "") \n (\(timetable.groupName))"
         switch timetable.subgroup {
         case 0:
             SubGroupId.text = ""
         default:
-            SubGroupId.text = "(подгруппа: \(timetable.subgroup ?? 0))"
+            SubGroupId.text = "(подгруппа: \(timetable.subgroup))"
         }
-        let color = coupleСolor(name: timetable.name)
+        let color = pairСolor(type: timetable.type)
         self.backgroundColor = color
     }
     
-    private func coupleСolor(name: String)->UIColor {
-        switch name {
-        case _ where name.contains("экз."):
-            return UIColor(named: "exam")!
-        case _ where name.contains("лек."):
+    private func pairСolor(type: PairType)->UIColor {
+        switch type {
+        case .lec:
             return UIColor(named: "lecture")!
-        case _ where name.contains("прак."):
+        case .prac:
             return UIColor(named: "prac")!
-        case _ where name.contains("лаб."):
+        case .exam:
+            return UIColor(named: "exam")!
+        case .lab:
             return UIColor(named: "lab")!
-        default:
-            return .clear
+        case .hol:
+            return UIColor.white
+        case .cred:
+            return UIColor.white
+        case .none:
+            return UIColor.white
         }
     }
     

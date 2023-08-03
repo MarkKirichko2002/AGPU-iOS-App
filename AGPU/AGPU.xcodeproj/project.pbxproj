@@ -956,12 +956,12 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		8241F9972A5F40BD007DF628 /* Models */ = {
+		8241F9972A5F40BD007DF628 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				82B87C752A7AF52800E9E68B /* Time table */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		82426C6E2A71476D00D5AA57 /* For Every Status */ = {
@@ -1930,7 +1930,7 @@
 		82D6C3302A5E1DD100FB7F5D /* API */ = {
 			isa = PBXGroup;
 			children = (
-				8241F9972A5F40BD007DF628 /* Models */,
+				8241F9972A5F40BD007DF628 /* Model */,
 				8241F9962A5F40BA007DF628 /* Service */,
 			);
 			path = API;
