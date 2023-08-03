@@ -321,8 +321,6 @@ final class AGPUTabBarController: UITabBarController {
         NotificationCenter.default.addObserver(forName: Notification.Name("for every status appear"), object: nil, queue: .main) { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon()), for: .normal)
-                self.animation.SpringAnimation(view: self.DynamicButton)
-                HapticsManager.shared.HapticFeedback()
             }
         }
     }

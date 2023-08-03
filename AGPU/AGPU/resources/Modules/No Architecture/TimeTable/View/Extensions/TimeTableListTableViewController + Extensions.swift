@@ -20,6 +20,7 @@ extension TimeTableListTableViewController: UITableViewDelegate {
                 if let audience = self.timetable[indexPath.row].audienceID {
                     let vc = AGPUCurrentBuildingMapViewController(audienceID: audience)
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                        vc.hidesBottomBarWhenPushed = true
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
                 } else if self.timetable[indexPath.row].audienceID == nil || self.timetable[indexPath.row].audienceID == ""  {
