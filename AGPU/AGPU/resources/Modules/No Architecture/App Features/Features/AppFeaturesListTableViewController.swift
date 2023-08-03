@@ -15,11 +15,6 @@ final class AppFeaturesListTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        NotificationCenter.default.post(name: Notification.Name("for student appear"), object: nil)
-    }
-    
     private func SetUpNavigation() {
         
         navigationItem.title = "Фишки"
