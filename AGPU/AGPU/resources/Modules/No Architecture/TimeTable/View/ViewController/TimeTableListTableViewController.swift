@@ -39,7 +39,12 @@ final class TimeTableListTableViewController: UIViewController {
         navigationItem.title = "Сегодня: \(date)"
         
         // список групп
-        let groupList = SetUpGroupsMenu()
+        let groupList = UIAction(title: "группы", image: UIImage(named: "group")) { _ in
+            let vc = AllGroupsListTableViewController()
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
         
         // сегодняшний день
         let current = UIAction(title: "сегодня") { _ in
