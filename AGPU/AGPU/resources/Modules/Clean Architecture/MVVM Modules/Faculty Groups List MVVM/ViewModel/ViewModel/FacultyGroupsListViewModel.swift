@@ -12,7 +12,7 @@ final class FacultyGroupsListViewModel: NSObject {
     @objc dynamic var isChanged = false
     var observation: NSKeyValueObservation?
     
-    var groups = [GroupModel]()
+    var groups = [FacultyGroupModel]()
     
     // MARK: - сервисы
     let timetableService = TimeTableService()

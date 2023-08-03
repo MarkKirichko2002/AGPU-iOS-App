@@ -108,7 +108,6 @@
 		829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6902A4327D40047609B /* UIViewController + Extensions.swift */; };
 		829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6982A43818A0047609B /* SettingsListViewModel.swift */; };
 		82B1CA782A681F1D00D1FBA4 /* SpringImageView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1CA772A681F1D00D1FBA4 /* SpringImageView + Extensions.swift */; };
-		82B87C782A7AF55900E9E68B /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B87C772A7AF55900E9E68B /* GroupModel.swift */; };
 		82BA73B62A579B8D006B67DA /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BA73B52A579B8D006B67DA /* WebViewModel.swift */; };
 		82BC3CFC2A56EDA000E49332 /* RecentWebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFB2A56EDA000E49332 /* RecentWebPageViewController.swift */; };
 		82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */; };
@@ -271,7 +270,6 @@
 		829AD6902A4327D40047609B /* UIViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829AD6982A43818A0047609B /* SettingsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewModel.swift; sourceTree = "<group>"; };
 		82B1CA772A681F1D00D1FBA4 /* SpringImageView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpringImageView + Extensions.swift"; sourceTree = "<group>"; };
-		82B87C772A7AF55900E9E68B /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
 		82BA73B52A579B8D006B67DA /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		82BC3CFB2A56EDA000E49332 /* RecentWebPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWebPageViewController.swift; sourceTree = "<group>"; };
 		82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController + Extensions.swift"; sourceTree = "<group>"; };
@@ -962,7 +960,6 @@
 			isa = PBXGroup;
 			children = (
 				82B87C752A7AF52800E9E68B /* Time table */,
-				82B87C762A7AF53D00E9E68B /* Group */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1772,14 +1769,6 @@
 				82D6C3332A5E1DEC00FB7F5D /* TimeTable.swift */,
 			);
 			path = "Time table";
-			sourceTree = "<group>";
-		};
-		82B87C762A7AF53D00E9E68B /* Group */ = {
-			isa = PBXGroup;
-			children = (
-				82B87C772A7AF55900E9E68B /* GroupModel.swift */,
-			);
-			path = Group;
 			sourceTree = "<group>";
 		};
 		82BA73B22A579B15006B67DA /* Web MVVM */ = {
@@ -2711,7 +2700,6 @@
 				82E4E5592A57699E00314296 /* WKWebView + Extensions.swift in Sources */,
 				826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */,
 				82989AEB2A6F6E1B00F27858 /* FacultyCathedraListViewModelProtocol.swift in Sources */,
-				82B87C782A7AF55900E9E68B /* GroupModel.swift in Sources */,
 				82E4C5682A6B154300F65A67 /* FacultyGroupsListViewModelProtocol.swift in Sources */,
 				8241F9932A5F4091007DF628 /* TimeTableServicerProtocol.swift in Sources */,
 				82BEAD872A7417EC00DD34C2 /* RecentPageViewModelProtocol.swift in Sources */,

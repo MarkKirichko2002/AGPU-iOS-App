@@ -11,22 +11,6 @@ import Alamofire
 // MARK: - TimeTableServicerProtocol
 extension TimeTableService: TimeTableServicerProtocol {
     
-    func GetAllGroups(completion: @escaping ([GroupModel]) -> Void) {
-        
-        AF.request("http://merqury.fun:8080/api/allGroups").responseData { response in
-            
-            guard let data = response.data else {return}
-            
-            do {
-                let groups = try JSONDecoder().decode([GroupModel].self, from: data)
-                print(groups)
-                completion(groups)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
     func GetTimeTable(groupId: String, date: String, completion: @escaping(Result<[TimeTable],Error>)->Void) {
         
         let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
