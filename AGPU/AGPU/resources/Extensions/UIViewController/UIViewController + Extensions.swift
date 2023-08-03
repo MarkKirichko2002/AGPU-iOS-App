@@ -65,4 +65,16 @@ extension UIViewController {
             }
         }
     }
+    
+    func SetUpSwipeGesture() {
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
+        swipeGesture.direction = .right
+        view.addGestureRecognizer(swipeGesture)
+    }
+    
+    @objc func handleSwipeGesture(_ gesture: UISwipeGestureRecognizer) {
+        if let navigationController = navigationController {
+            navigationController.popViewController(animated: true)
+        }
+    }
 }

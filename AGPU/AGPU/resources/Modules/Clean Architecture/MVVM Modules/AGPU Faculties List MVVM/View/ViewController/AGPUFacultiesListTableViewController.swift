@@ -14,6 +14,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SetUpNavigation()
+        SetUpSwipeGesture()
         tableView.register(UINib(nibName: AGPUFacultyTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AGPUFacultyTableViewCell.identifier)
     }
     
@@ -31,6 +32,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
         let backButton = UIBarButtonItem(customView: button)
         backButton.tintColor = .black
         navigationItem.leftBarButtonItem = backButton
+        SetUpSwipeGesture()
     }
     
     @objc private func back() {
