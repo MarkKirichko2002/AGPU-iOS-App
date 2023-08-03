@@ -15,6 +15,7 @@ final class AGPUSectionsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SetUpNavigation()
+        SetUpSwipeGesture()
         SetUpTable()
     }
     
