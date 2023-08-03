@@ -1,24 +1,14 @@
 //
-//  AGPUCurrentCathedraMapViewModel.swift
+//  AGPUCurrentCathedraMapViewModel + Extensions.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 24.07.2023.
+//  Created by Марк Киричко on 03.08.2023.
 //
 
 import MapKit
 
-class AGPUCurrentCathedraMapViewModel {
-    
-    var locationHandler: ((LocationModel)->Void)?
-    
-    private let locationManager = LocationManager()
-    
-    private var cathedra: FacultyCathedraModel!
-    
-    // MARK: - Init
-    init(cathedra: FacultyCathedraModel) {
-        self.cathedra = cathedra
-    }
+// MARK: - AGPUCurrentCathedraMapViewModelProtocol
+extension AGPUCurrentCathedraMapViewModel: AGPUCurrentCathedraMapViewModelProtocol {
     
     func registerLocationHandler(block: @escaping(LocationModel)->Void) {
         self.locationHandler = block
