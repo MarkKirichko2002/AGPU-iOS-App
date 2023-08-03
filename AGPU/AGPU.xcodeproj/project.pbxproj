@@ -87,6 +87,8 @@
 		82875B022A5A198A007DB925 /* HapticsManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */; };
 		828CFA372A35F65700C7542D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA362A35F65700C7542D /* WebViewController.swift */; };
 		828CFA3C2A3680C700C7542D /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA3B2A3680C700C7542D /* String + Extensions.swift */; };
+		828DC5592A7B3865001EA324 /* FacultyGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DC5582A7B3865001EA324 /* FacultyGroupModel.swift */; };
+		828DC55C2A7B3887001EA324 /* FacultyGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DC55B2A7B3887001EA324 /* FacultyGroups.swift */; };
 		829548862A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548852A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift */; };
 		829548922A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548912A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift */; };
 		829548992A43AE32007DEBA0 /* SettingsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548982A43AE32007DEBA0 /* SettingsManagerProtocol.swift */; };
@@ -248,6 +250,8 @@
 		82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HapticsManager + Extensions.swift"; sourceTree = "<group>"; };
 		828CFA362A35F65700C7542D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		828CFA3B2A3680C700C7542D /* String + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extensions.swift"; sourceTree = "<group>"; };
+		828DC5582A7B3865001EA324 /* FacultyGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupModel.swift; sourceTree = "<group>"; };
+		828DC55B2A7B3887001EA324 /* FacultyGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroups.swift; sourceTree = "<group>"; };
 		829548852A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUSectionsListViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829548912A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUBuildingsMapViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829548982A43AE32007DEBA0 /* SettingsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerProtocol.swift; sourceTree = "<group>"; };
@@ -1314,6 +1318,7 @@
 		8268886A2A34866D00434219 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				828DC5562A7B384C001EA324 /* Faculty Groups */,
 				820D339D2A75984200843313 /* Contacts */,
 				8228E39A2A6C920000C1B6AD /* Location */,
 				82C561592A6B753500514B00 /* App Features */,
@@ -1495,6 +1500,31 @@
 				8241F98D2A5F4004007DF628 /* View */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		828DC5562A7B384C001EA324 /* Faculty Groups */ = {
+			isa = PBXGroup;
+			children = (
+				828DC5572A7B3857001EA324 /* Model */,
+				828DC55A2A7B387B001EA324 /* List */,
+			);
+			path = "Faculty Groups";
+			sourceTree = "<group>";
+		};
+		828DC5572A7B3857001EA324 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				828DC5582A7B3865001EA324 /* FacultyGroupModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		828DC55A2A7B387B001EA324 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				828DC55B2A7B3887001EA324 /* FacultyGroups.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 		828DE2B02A5E3F4A00985737 /* Cell */ = {
@@ -2609,6 +2639,7 @@
 				8228E39F2A6C994D00C1B6AD /* AGPUBuildingsMapViewModel.swift in Sources */,
 				82BF4DB42A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift in Sources */,
 				82989ADE2A6E59BC00F27858 /* AGPUCurrentCathedraMapViewController + Extensions.swift in Sources */,
+				828DC55C2A7B3887001EA324 /* FacultyGroups.swift in Sources */,
 				82989ACD2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift in Sources */,
 				82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */,
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
@@ -2632,6 +2663,7 @@
 				82BA73B62A579B8D006B67DA /* WebViewModel.swift in Sources */,
 				82989AEE2A6F6EB600F27858 /* FacultyCathedraListViewModel + Extensions.swift in Sources */,
 				822632412A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift in Sources */,
+				828DC5592A7B3865001EA324 /* FacultyGroupModel.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
 				82D6C3342A5E1DEC00FB7F5D /* TimeTable.swift in Sources */,

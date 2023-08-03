@@ -37,83 +37,82 @@ final class TimeTableListTableViewController: UIViewController {
     private func SetUpNavigation() {
         
         navigationItem.title = "Сегодня: \(date)"
-
-        let optionsMenu = UIMenu(title: "расписание", children: [])
-        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: optionsMenu)
+        
+        // список групп
+        let groupList = SetUpGroupsMenu()
+        
+        // сегодняшний день
+        let current = UIAction(title: "сегодня") { _ in
+            let currentDay = self.dateManager.getCurrentDate()
+            self.GetTimeTable(group: self.group, date: currentDay)
+            self.date = currentDay
+            self.navigationItem.title = self.date
+        }
+        // следующий день
+        let next = UIAction(title: "завтра") { _ in
+            let nextDay = self.dateManager.nextDay(date: self.date)
+            self.GetTimeTable(group: self.group, date: nextDay)
+            self.date = nextDay
+            self.navigationItem.title = self.date
+        }
+        // предыдущий день
+        let previous = UIAction(title: "вчера") { _ in
+            let previousDay = self.dateManager.previousDay(date: self.date)
+            self.GetTimeTable(group: self.group, date: previousDay)
+            self.date = previousDay
+            self.navigationItem.title = self.date
+        }
+        // календарь
+        let calendar = UIAction(title: "календарь") { _ in
+            let vc = CalendarViewController()
+            self.present(vc, animated: true)
+        }
+        // день
+        let day = UIMenu(title: "выбрать день", image: UIImage(named: "calendar"), children: [
+            current,
+            next,
+            previous,
+            calendar
+        ])
+        // поделиться
+        let shareTimeTable = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
+            self.shareTableViewAsImage(tableView: self.tableView, title: self.date, text: self.group)
+        }
+        let menu = UIMenu(title: "расписание", children: [
+            groupList,
+            day,
+            shareTimeTable
+        ])
+        
+        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         options.tintColor = .black
         navigationItem.rightBarButtonItem = options
-        
-        service.GetAllGroups { [weak self] groups in
-            
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                
-                var arr = [UIMenu]()
-                for group in groups {
-                    let items = group.groups.map { group in
-                        return UIAction(title: group) { _ in
-                            self.group = group
-                            self.spinner.startAnimating()
-                            self.noTimeTableLabel.isHidden = true
-                            self.timetable = []
-                            self.tableView.reloadData()
-                            self.GetTimeTable(group: group, date: self.date)
-                        }
-                    }
-                    
-                    let mainMenu = UIMenu(title: group.name.abbreviation(), options: .singleSelection, children: items)
-                    arr.append(mainMenu)
-                }
-                
-                // список групп
-                let groupList = UIMenu(title: "группы", image: UIImage(named: "group"), children: arr)
-                // сегодняшний день
-                let current = UIAction(title: "сегодня") { _ in
-                    let currentDay = self.dateManager.getCurrentDate()
-                    self.GetTimeTable(group: self.group, date: currentDay)
-                    self.date = currentDay
-                    self.navigationItem.title = self.date
-                }
-                // следующий день
-                let next = UIAction(title: "завтра") { _ in
-                    let nextDay = self.dateManager.nextDay(date: self.date)
-                    self.GetTimeTable(group: self.group, date: nextDay)
-                    self.date = nextDay
-                    self.navigationItem.title = self.date
-                }
-                // предыдущий день
-                let previous = UIAction(title: "вчера") { _ in
-                    let previousDay = self.dateManager.previousDay(date: self.date)
-                    self.GetTimeTable(group: self.group, date: previousDay)
-                    self.date = previousDay
-                    self.navigationItem.title = self.date
-                }
-                // календарь
-                let calendar = UIAction(title: "календарь") { _ in
-                    let vc = CalendarViewController()
-                    self.present(vc, animated: true)
-                }
-                // день
-                let day = UIMenu(title: "выбрать день", image: UIImage(named: "calendar"), children: [
-                    current,
-                    next,
-                    previous,
-                    calendar
-                ])
-                // поделиться
-                let shareTimeTable = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
-                    self.shareTableViewAsImage(tableView: self.tableView, title: self.date, text: self.group)
-                }
-                let updatedOptionsMenu = UIMenu(title: "расписание", children: [
-                    groupList,
-                    day,
-                    shareTimeTable
-                ])
-                options.menu = updatedOptionsMenu
-            }
-        }
     }
-
+    
+    private func SetUpGroupsMenu()-> UIMenu {
+        
+        var arr = [UIMenu]()
+        for group in FacultyGroups.groups {
+            let items = group.groups.map { group in
+                return UIAction(title: group) { _ in
+                    self.group = group
+                    self.spinner.startAnimating()
+                    self.noTimeTableLabel.isHidden = true
+                    self.timetable = []
+                    self.tableView.reloadData()
+                    self.GetTimeTable(group: group, date: self.date)
+                }
+            }
+            
+            let mainMenu = UIMenu(title: group.name.abbreviation(), options: .singleSelection, children: items)
+            arr.append(mainMenu)
+        }
+        
+        // список групп
+        let groupList = UIMenu(title: "группы", image: UIImage(named: "group"), children: arr)
+        return groupList
+    }
+    
     private func SetUpIndicatorView() {
         view.addSubview(spinner)
         spinner.translatesAutoresizingMaskIntoConstraints = false
