@@ -18,11 +18,6 @@ final class AGPUSectionsListViewController: UIViewController {
         SetUpTable()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        NotificationCenter.default.post(name: Notification.Name("for student appear"), object: nil)
-    }
-    
     private func SetUpNavigation() {
         
         navigationItem.title = "Разделы"

@@ -29,11 +29,6 @@ final class AGPUBuildingsMapViewController: UIViewController {
         BindViewModel()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        NotificationCenter.default.post(name: Notification.Name("for student appear"), object: nil)
-    }
-    
     private func SetUpNavigation() {
         
         navigationItem.title = "Найти «АГПУ»"
