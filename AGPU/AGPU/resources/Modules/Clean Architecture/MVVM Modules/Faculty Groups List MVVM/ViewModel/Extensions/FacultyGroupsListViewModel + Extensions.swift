@@ -11,12 +11,10 @@ import UIKit
 extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
     
     func GetGroups(by faculty: AGPUFacultyModel) {
-        timetableService.GetAllGroups { groups in
-            for group in groups {
-                if group.name.abbreviation().contains(faculty.abbreviation) {
-                    self.groups.append(group)
-                    self.isChanged.toggle()
-                }
+        for group in FacultyGroups.groups {
+            if group.name.abbreviation().contains(faculty.abbreviation) {
+                self.groups.append(group)
+                self.isChanged.toggle()
             }
         }
     }
