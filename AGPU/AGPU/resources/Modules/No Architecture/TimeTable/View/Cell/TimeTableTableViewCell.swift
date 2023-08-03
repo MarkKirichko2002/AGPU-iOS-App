@@ -30,7 +30,7 @@ final class TimeTableTableViewCell: UITableViewCell {
         self.backgroundColor = color
     }
     
-    private func pairСolor(type: PairType)->UIColor {
+    private func pairСolor(type: PairType)-> UIColor {
         switch type {
         case .lec:
             return UIColor(named: "lecture")!
@@ -43,6 +43,10 @@ final class TimeTableTableViewCell: UITableViewCell {
         case .hol:
             return UIColor.white
         case .cred:
+            return UIColor.white
+        case .fepo:
+            return UIColor(named: "fepo")!
+        case .cons:
             return UIColor.white
         case .none:
             return UIColor.white

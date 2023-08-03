@@ -28,5 +28,7 @@ enum PairType: String, Codable {
     case lab
     case hol
     case cred
+    case fepo
+    case cons
     case none
 }
