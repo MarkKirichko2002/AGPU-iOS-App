@@ -40,13 +40,25 @@ class AllGroupsListTableViewController: UITableViewController {
         self.dismiss(animated: true)
     }
     
+    func isGroupSelected(section: Int, index: Int)-> Bool {
+        let group = FacultyGroups.groups[section].groups[index]
+        let lastGroup = UserDefaults.standard.string(forKey: "last group")
+        if lastGroup == group {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int)-> String? {
         return FacultyGroups.groups[section].name.abbreviation()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let group = FacultyGroups.groups[indexPath.section].groups[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
-        NotificationCenter.default.post(name: Notification.Name("group changed"), object: FacultyGroups.groups[indexPath.section].groups[indexPath.row])
+        UserDefaults.standard.setValue(group, forKey: "last group")
+        NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
         self.dismiss(animated: true)
     }
     
@@ -59,9 +71,12 @@ class AllGroupsListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        let group = FacultyGroups.groups[indexPath.section].groups[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = FacultyGroups.groups[indexPath.section].groups[indexPath.row]
+        cell.tintColor = .systemGreen
+        cell.textLabel?.text = group
+        cell.textLabel?.textColor = isGroupSelected(section: indexPath.section, index: indexPath.row) ? .systemGreen : .black
+        cell.accessoryType = isGroupSelected(section: indexPath.section, index: indexPath.row) ? .checkmark : .none
         return cell
     }
 }
