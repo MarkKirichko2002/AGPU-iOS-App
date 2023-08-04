@@ -41,7 +41,7 @@ struct AGPUBuildings {
                 "23"
             ],
             pin: AGPUPins.pins[0],
-            voiceCommands: ["главный корпус"]
+            voiceCommands: ["главный"]
         ),
         
         // Корпус №1
@@ -143,7 +143,7 @@ struct AGPUBuildings {
                 "68"
             ],
             pin: AGPUPins.pins[4],
-            voiceCommands: ["четыре", "четвертый", "номер четыре"]
+            voiceCommands: ["четыре", "четвёртый", "номер четыре"]
         ),
         
         // Корпус №5 (ЕБД)
