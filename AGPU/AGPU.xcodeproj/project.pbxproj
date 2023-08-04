@@ -86,6 +86,9 @@
 		82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E9F2A31F44500DEEB16 /* AGPUSubSectionModel.swift */; };
 		82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808EA82A32236E00DEEB16 /* AGPUSections.swift */; };
 		828321642A7C6A48008641A5 /* AllGroupsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828321632A7C6A48008641A5 /* AllGroupsListTableViewController.swift */; };
+		828321672A7D02E6008641A5 /* AllGroupsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828321662A7D02E6008641A5 /* AllGroupsListViewModel.swift */; };
+		8283216C2A7D090C008641A5 /* AllGroupsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283216B2A7D090C008641A5 /* AllGroupsListViewModelProtocol.swift */; };
+		8283216E2A7D0932008641A5 /* AllGroupsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283216D2A7D0932008641A5 /* AllGroupsListViewModel + Extensions.swift */; };
 		82875B002A5A1966007DB925 /* HapticsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875AFF2A5A1966007DB925 /* HapticsManagerProtocol.swift */; };
 		82875B022A5A198A007DB925 /* HapticsManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */; };
 		828CFA372A35F65700C7542D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA362A35F65700C7542D /* WebViewController.swift */; };
@@ -251,6 +254,9 @@
 		82808E9F2A31F44500DEEB16 /* AGPUSubSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSectionModel.swift; sourceTree = "<group>"; };
 		82808EA82A32236E00DEEB16 /* AGPUSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSections.swift; sourceTree = "<group>"; };
 		828321632A7C6A48008641A5 /* AllGroupsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsListTableViewController.swift; sourceTree = "<group>"; };
+		828321662A7D02E6008641A5 /* AllGroupsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsListViewModel.swift; sourceTree = "<group>"; };
+		8283216B2A7D090C008641A5 /* AllGroupsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsListViewModelProtocol.swift; sourceTree = "<group>"; };
+		8283216D2A7D0932008641A5 /* AllGroupsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AllGroupsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82875AFF2A5A1966007DB925 /* HapticsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManagerProtocol.swift; sourceTree = "<group>"; };
 		82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HapticsManager + Extensions.swift"; sourceTree = "<group>"; };
 		828CFA362A35F65700C7542D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -1334,7 +1340,6 @@
 				82808E9C2A31F2D400DEEB16 /* AGPU Sections */,
 				821270462A78925D0095D68E /* PDF Modules */,
 				82D6C32D2A5E187400FB7F5D /* TimeTable */,
-				828321602A7C6A25008641A5 /* All Groups */,
 				82C561602A6B770800514B00 /* App Features */,
 				829522DB2A38AEBE00329713 /* Maps */,
 				82D6C3422A5E33CD00FB7F5D /* Calendar */,
@@ -1393,6 +1398,7 @@
 			children = (
 				821270572A7921DD0095D68E /* Web Modules */,
 				8228E3962A6C8EFD00C1B6AD /* Maps MVVM Modules */,
+				828321602A7C6A25008641A5 /* All Groups MVVM */,
 				822158942A422A480088BDE5 /* Settings MVVM */,
 				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
 				82989ACB2A6E308F00F27858 /* Faculty Cathedra List */,
@@ -1514,12 +1520,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		828321602A7C6A25008641A5 /* All Groups */ = {
+		828321602A7C6A25008641A5 /* All Groups MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				828321612A7C6A2F008641A5 /* View */,
+				828321652A7D02C8008641A5 /* ViewModel */,
 			);
-			path = "All Groups";
+			path = "All Groups MVVM";
 			sourceTree = "<group>";
 		};
 		828321612A7C6A2F008641A5 /* View */ = {
@@ -1536,6 +1543,40 @@
 				828321632A7C6A48008641A5 /* AllGroupsListTableViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		828321652A7D02C8008641A5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				828321682A7D08E7008641A5 /* Protocol */,
+				828321692A7D08ED008641A5 /* ViewModel */,
+				8283216A2A7D08F6008641A5 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		828321682A7D08E7008641A5 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				8283216B2A7D090C008641A5 /* AllGroupsListViewModelProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		828321692A7D08ED008641A5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				828321662A7D02E6008641A5 /* AllGroupsListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8283216A2A7D08F6008641A5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8283216D2A7D0932008641A5 /* AllGroupsListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		82875AFE2A5A194D007DB925 /* Haptics */ = {
@@ -2708,6 +2749,7 @@
 				82E4C53E2A6B103B00F65A67 /* AGPUNewsViewModel + Extensions.swift in Sources */,
 				82721F1C2A574EE100982EF7 /* AGPUNewsViewController + Extensions.swift in Sources */,
 				82BA73B62A579B8D006B67DA /* WebViewModel.swift in Sources */,
+				8283216C2A7D090C008641A5 /* AllGroupsListViewModelProtocol.swift in Sources */,
 				82989AEE2A6F6EB600F27858 /* FacultyCathedraListViewModel + Extensions.swift in Sources */,
 				822632412A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift in Sources */,
 				828DC5592A7B3865001EA324 /* FacultyGroupModel.swift in Sources */,
@@ -2791,6 +2833,7 @@
 				82E4C5662A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift in Sources */,
 				82BF4DB22A5FA5B3008B751A /* AGPUWallpaperCollectionViewCell.swift in Sources */,
 				82C561672A6B7B0D00514B00 /* AppFeatureDetailViewController.swift in Sources */,
+				8283216E2A7D0932008641A5 /* AllGroupsListViewModel + Extensions.swift in Sources */,
 				82E4C5152A6B0C8F00F65A67 /* ImageSaverProtocol.swift in Sources */,
 				82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */,
 				82989ACF2A6E35B200F27858 /* FacultyCathedraTableViewCell.swift in Sources */,
@@ -2812,6 +2855,7 @@
 				8295489C2A43AE7E007DEBA0 /* SettingsManager.swift in Sources */,
 				828CFA372A35F65700C7542D /* WebViewController.swift in Sources */,
 				82E4C5842A6B201600F65A67 /* LocationManagerProtocol.swift in Sources */,
+				828321672A7D02E6008641A5 /* AllGroupsListViewModel.swift in Sources */,
 				8241F99B2A5F415A007DF628 /* DateManager + Extensions.swift in Sources */,
 				8255ADCF2A6732110012895E /* CustomTitleView.swift in Sources */,
 				82989AE62A6F6DEA00F27858 /* FacultyCathedraListViewModel.swift in Sources */,

@@ -11,7 +11,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        UserDefaults.standard.setValue(nil, forKey: "last group")
+        let savedGroup = UserDefaults.standard.string(forKey: "group")
+        UserDefaults.standard.setValue(savedGroup, forKey: "selected group")
         configureAudioSession()
         return true
     }

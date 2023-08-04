@@ -9,6 +9,9 @@ import UIKit
 
 class AllGroupsListTableViewController: UITableViewController {
 
+    // MARK: - сервисы
+    private let viewModel = AllGroupsListViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -40,16 +43,6 @@ class AllGroupsListTableViewController: UITableViewController {
         self.dismiss(animated: true)
     }
     
-    func isGroupSelected(section: Int, index: Int)-> Bool {
-        let group = FacultyGroups.groups[section].groups[index]
-        let lastGroup = UserDefaults.standard.string(forKey: "last group")
-        if lastGroup == group {
-            return true
-        } else {
-            return false
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int)-> String? {
         return FacultyGroups.groups[section].name.abbreviation()
     }
@@ -57,7 +50,7 @@ class AllGroupsListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let group = FacultyGroups.groups[indexPath.section].groups[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
-        UserDefaults.standard.setValue(group, forKey: "last group")
+        UserDefaults.standard.setValue(group, forKey: "selected group")
         NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
         self.dismiss(animated: true)
     }
@@ -75,8 +68,8 @@ class AllGroupsListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.tintColor = .systemGreen
         cell.textLabel?.text = group
-        cell.textLabel?.textColor = isGroupSelected(section: indexPath.section, index: indexPath.row) ? .systemGreen : .black
-        cell.accessoryType = isGroupSelected(section: indexPath.section, index: indexPath.row) ? .checkmark : .none
+        cell.textLabel?.textColor = viewModel.isGroupSelected(section: indexPath.section, index: indexPath.row) ? .systemGreen : .black
+        cell.accessoryType = viewModel.isGroupSelected(section: indexPath.section, index: indexPath.row) ? .checkmark : .none
         return cell
     }
 }
