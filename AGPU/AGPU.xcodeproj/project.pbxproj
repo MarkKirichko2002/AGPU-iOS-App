@@ -89,6 +89,11 @@
 		828321672A7D02E6008641A5 /* AllGroupsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828321662A7D02E6008641A5 /* AllGroupsListViewModel.swift */; };
 		8283216C2A7D090C008641A5 /* AllGroupsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283216B2A7D090C008641A5 /* AllGroupsListViewModelProtocol.swift */; };
 		8283216E2A7D0932008641A5 /* AllGroupsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283216D2A7D0932008641A5 /* AllGroupsListViewModel + Extensions.swift */; };
+		828321732A7D643C008641A5 /* SearchAGPUBuildingMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828321722A7D643C008641A5 /* SearchAGPUBuildingMapViewController.swift */; };
+		828321762A7D6503008641A5 /* SearchAGPUBuildingMapViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828321752A7D6503008641A5 /* SearchAGPUBuildingMapViewController + Extensions.swift */; };
+		8283217C2A7D67D4008641A5 /* SearchAGPUBuildingMapViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283217B2A7D67D4008641A5 /* SearchAGPUBuildingMapViewModelProtocol.swift */; };
+		8283217E2A7D683F008641A5 /* SearchAGPUBuildingMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283217D2A7D683F008641A5 /* SearchAGPUBuildingMapViewModel.swift */; };
+		828321802A7D687A008641A5 /* SearchAGPUBuildingMapViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283217F2A7D687A008641A5 /* SearchAGPUBuildingMapViewModel + Extensions.swift */; };
 		82875B002A5A1966007DB925 /* HapticsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875AFF2A5A1966007DB925 /* HapticsManagerProtocol.swift */; };
 		82875B022A5A198A007DB925 /* HapticsManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */; };
 		828CFA372A35F65700C7542D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA362A35F65700C7542D /* WebViewController.swift */; };
@@ -257,6 +262,11 @@
 		828321662A7D02E6008641A5 /* AllGroupsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsListViewModel.swift; sourceTree = "<group>"; };
 		8283216B2A7D090C008641A5 /* AllGroupsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsListViewModelProtocol.swift; sourceTree = "<group>"; };
 		8283216D2A7D0932008641A5 /* AllGroupsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AllGroupsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		828321722A7D643C008641A5 /* SearchAGPUBuildingMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAGPUBuildingMapViewController.swift; sourceTree = "<group>"; };
+		828321752A7D6503008641A5 /* SearchAGPUBuildingMapViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchAGPUBuildingMapViewController + Extensions.swift"; sourceTree = "<group>"; };
+		8283217B2A7D67D4008641A5 /* SearchAGPUBuildingMapViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAGPUBuildingMapViewModelProtocol.swift; sourceTree = "<group>"; };
+		8283217D2A7D683F008641A5 /* SearchAGPUBuildingMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAGPUBuildingMapViewModel.swift; sourceTree = "<group>"; };
+		8283217F2A7D687A008641A5 /* SearchAGPUBuildingMapViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchAGPUBuildingMapViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82875AFF2A5A1966007DB925 /* HapticsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManagerProtocol.swift; sourceTree = "<group>"; };
 		82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HapticsManager + Extensions.swift"; sourceTree = "<group>"; };
 		828CFA362A35F65700C7542D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -773,6 +783,7 @@
 				82E4C58C2A6B254200F65A67 /* AGPU Buildings Maps MVVM */,
 				82989AD62A6E548B00F27858 /* Cathedra Map MVVM */,
 				8210CA022A664D5700D0BEEE /* Current Buiding MVVM */,
+				8283216F2A7D6403008641A5 /* Search AGPU Building Map MVVM */,
 			);
 			path = "Maps MVVM Modules";
 			sourceTree = "<group>";
@@ -1577,6 +1588,74 @@
 				8283216D2A7D0932008641A5 /* AllGroupsListViewModel + Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8283216F2A7D6403008641A5 /* Search AGPU Building Map MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				828321702A7D6418008641A5 /* View */,
+				828321772A7D67A3008641A5 /* ViewModel */,
+			);
+			path = "Search AGPU Building Map MVVM";
+			sourceTree = "<group>";
+		};
+		828321702A7D6418008641A5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				828321712A7D6424008641A5 /* ViewController */,
+				828321742A7D64F2008641A5 /* Extensions */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		828321712A7D6424008641A5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				828321722A7D643C008641A5 /* SearchAGPUBuildingMapViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		828321742A7D64F2008641A5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				828321752A7D6503008641A5 /* SearchAGPUBuildingMapViewController + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		828321772A7D67A3008641A5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8283217A2A7D67BB008641A5 /* Protocol */,
+				828321792A7D67B8008641A5 /* ViewModel */,
+				828321782A7D67B5008641A5 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		828321782A7D67B5008641A5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8283217F2A7D687A008641A5 /* SearchAGPUBuildingMapViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		828321792A7D67B8008641A5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8283217D2A7D683F008641A5 /* SearchAGPUBuildingMapViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8283217A2A7D67BB008641A5 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				8283217B2A7D67D4008641A5 /* SearchAGPUBuildingMapViewModelProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		82875AFE2A5A194D007DB925 /* Haptics */ = {
@@ -2733,6 +2812,7 @@
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
 				826BADAF2A64D5A500022B45 /* AGPULocationDetailViewController.swift in Sources */,
 				82426C942A71DD0100D5AA57 /* UserStatusList.swift in Sources */,
+				828321732A7D643C008641A5 /* SearchAGPUBuildingMapViewController.swift in Sources */,
 				8228E39C2A6C920D00C1B6AD /* LocationModel.swift in Sources */,
 				820D18E52A68F9EE00BFAA35 /* AGPUBuildingModel.swift in Sources */,
 				82BEAD822A7414C300DD34C2 /* RecentPageViewModel.swift in Sources */,
@@ -2763,6 +2843,7 @@
 				8241F9812A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift in Sources */,
 				82722D432A66462100149D06 /* AGPUPins.swift in Sources */,
 				82FB5B642A7A8FF600728980 /* InteractiveView.swift in Sources */,
+				828321802A7D687A008641A5 /* SearchAGPUBuildingMapViewModel + Extensions.swift in Sources */,
 				8228E3992A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift in Sources */,
 				829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */,
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
@@ -2770,6 +2851,7 @@
 				8241F9992A5F40EB007DF628 /* TimeTableService + Extensions.swift in Sources */,
 				825634BC2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift in Sources */,
 				82E4C54C2A6B121900F65A67 /* AGPUFacultiesListViewModel + Extensions.swift in Sources */,
+				8283217E2A7D683F008641A5 /* SearchAGPUBuildingMapViewModel.swift in Sources */,
 				82E4C53C2A6B0FD000F65A67 /* AGPUNewsViewModelProtocol.swift in Sources */,
 				8218F5872A688F8C00C94EB4 /* CustomActivityItemSource.swift in Sources */,
 				82C44DAE2A591915002A3864 /* HapticsManager.swift in Sources */,
@@ -2791,11 +2873,13 @@
 				82989AF22A6F8CDF00F27858 /* ForEveryStatusTableViewCell.swift in Sources */,
 				821C9E192A68DE8700EF0030 /* UITableView + Extensions.swift in Sources */,
 				8270A5482A5784A2008ACADC /* DateManager.swift in Sources */,
+				8283217C2A7D67D4008641A5 /* SearchAGPUBuildingMapViewModelProtocol.swift in Sources */,
 				82BF4DB72A5FA807008B751A /* ImageSaver.swift in Sources */,
 				82E05D592A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift in Sources */,
 				827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */,
 				826E6E9C2A65F7CA007A3C13 /* TimeInterval + Extensions.swift in Sources */,
 				829548922A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift in Sources */,
+				828321762A7D6503008641A5 /* SearchAGPUBuildingMapViewController + Extensions.swift in Sources */,
 				82E4C5432A6B10F900F65A67 /* WebViewModelProtocol.swift in Sources */,
 				82E4E5592A57699E00314296 /* WKWebView + Extensions.swift in Sources */,
 				826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */,

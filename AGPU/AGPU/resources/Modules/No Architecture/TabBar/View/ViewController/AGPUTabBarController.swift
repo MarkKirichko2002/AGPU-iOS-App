@@ -242,6 +242,7 @@ final class AGPUTabBarController: UITabBarController {
             }
         }
         
+        // случайны раздел
         if text.lowercased().contains("случайный раздел") || text.lowercased().contains("случайно раздел") || text.lowercased().contains("рандомный раздел") || text.lowercased().contains("рандомно раздел") {
             
             let section = AGPUSections.sections[Int.random(in: 0..<AGPUSections.sections.count - 1)]
@@ -279,6 +280,19 @@ final class AGPUTabBarController: UITabBarController {
                         NotificationCenter.default.post(name: Notification.Name("scroll"), object: text.lastWord())
                         break
                     }
+                }
+            }
+        }
+        
+        if text.lowercased().contains("корпус") {
+            
+            for building in AGPUBuildings.buildings {
+                if building.voiceCommands.contains(text.lastWord().lowercased()) {
+                    let vc = SearchAGPUBuildingMapViewController(building: building)
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    present(navVC, animated: true)
+                    break
                 }
             }
         }
