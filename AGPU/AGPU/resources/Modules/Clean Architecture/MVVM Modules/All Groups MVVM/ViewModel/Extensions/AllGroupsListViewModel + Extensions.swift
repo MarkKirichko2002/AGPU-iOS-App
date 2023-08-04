@@ -12,7 +12,7 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
     
     func isGroupSelected(section: Int, index: Int)-> Bool {
         let group = FacultyGroups.groups[section].groups[index]
-        let lastGroup = UserDefaults.standard.string(forKey: "selected group")
+        let lastGroup = self.group
         if lastGroup == group {
             return true
         } else {

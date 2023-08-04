@@ -9,8 +9,19 @@ import UIKit
 
 class AllGroupsListTableViewController: UITableViewController {
 
+    private var group: String = ""
     // MARK: - сервисы
-    private let viewModel = AllGroupsListViewModel()
+    private var viewModel: AllGroupsListViewModel!
+    
+    init(group: String) {
+        self.group = group
+        self.viewModel = AllGroupsListViewModel(group: group)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +61,6 @@ class AllGroupsListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let group = FacultyGroups.groups[indexPath.section].groups[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
-        UserDefaults.standard.setValue(group, forKey: "selected group")
         NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
         self.dismiss(animated: true)
     }
