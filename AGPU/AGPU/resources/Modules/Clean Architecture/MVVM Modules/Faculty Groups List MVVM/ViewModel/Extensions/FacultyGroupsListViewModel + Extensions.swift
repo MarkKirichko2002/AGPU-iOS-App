@@ -33,7 +33,6 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
         if let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
             if groups[section].name.abbreviation().contains(faculty.abbreviation) {
                 UserDefaults.standard.setValue(group, forKey: "group")
-                UserDefaults.standard.setValue(group, forKey: "selected group")
                 self.isChanged.toggle()
                 NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
             } else {

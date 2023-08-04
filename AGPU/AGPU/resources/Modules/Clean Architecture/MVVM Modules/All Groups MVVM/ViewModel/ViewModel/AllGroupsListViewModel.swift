@@ -9,4 +9,10 @@ import Foundation
 
 class AllGroupsListViewModel {
     
+    var group: String = ""
+    
+    // MARK: - Init
+    init(group: String) {
+        self.group = group
+    }
 }

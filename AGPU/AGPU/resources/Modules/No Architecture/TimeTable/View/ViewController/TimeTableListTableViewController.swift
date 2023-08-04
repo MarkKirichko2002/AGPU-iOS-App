@@ -40,7 +40,7 @@ final class TimeTableListTableViewController: UIViewController {
         
         // список групп
         let groupList = UIAction(title: "группы", image: UIImage(named: "group")) { _ in
-            let vc = AllGroupsListTableViewController()
+            let vc = AllGroupsListTableViewController(group: self.group)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
