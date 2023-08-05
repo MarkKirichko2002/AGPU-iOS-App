@@ -10,6 +10,7 @@ import MapKit
 final class AGPUBuildingsMapViewModel {
     
     var locationHandler: ((LocationModel)->Void)?
+    var choiceHandler: ((Bool, MKAnnotation)->Void)?
     
     // MARK: - сервисы
     let locationManager = LocationManager()
