@@ -14,6 +14,7 @@ struct AGPUBuildings {
         AGPUBuildingModel(
             name: "Главный корпус",
             image: "",
+            type: .building,
             audiences: [
                 "1",
                 "2",
@@ -40,14 +41,15 @@ struct AGPUBuildings {
                 "22",
                 "23"
             ],
-            pin: AGPUPins.pins[0],
+            pin: AGPUBuildingPins.pins[0],
             voiceCommands: ["главный корпус"]
         ),
         
-        // Корпус №1
+        // Корпус №1 и Общежитие №1
         AGPUBuildingModel(
-            name: "Корпус №1",
+            name: "Корпус №1 и Общежитие №1",
             image: "",
+            type: .buildingAndHostel,
             audiences: [
                 "30",
                 "31",
@@ -80,13 +82,18 @@ struct AGPUBuildings {
                 "120",
                 "121"
             ],
-            pin: AGPUPins.pins[1],
+            pin: AGPUBuildingPins.pins[1],
             voiceCommands: [
+                // для корпуса
                 "корпус один",
                 "корпус первый",
                 "первый корпус",
                 "корпус номер один",
-                "корпус под номером один"
+                "корпус под номером один",
+                // для общежития
+                "общежитие один",
+                "общежитие номер один",
+                "общежитие под номером один"
             ]
         ),
         
@@ -94,6 +101,7 @@ struct AGPUBuildings {
         AGPUBuildingModel(
             name: "Корпус №2",
             image: "",
+            type: .building,
             audiences: [
                 "24",
                 "25",
@@ -101,7 +109,7 @@ struct AGPUBuildings {
                 "27",
                 "28"
             ],
-            pin: AGPUPins.pins[2],
+            pin: AGPUBuildingPins.pins[2],
             voiceCommands: [
                 "корпус два",
                 "корпус второй",
@@ -115,6 +123,7 @@ struct AGPUBuildings {
         AGPUBuildingModel(
             name: "Корпус №3 (СПФ)",
             image: "",
+            type: .building,
             audiences: [
                 "40",
                 "41",
@@ -128,7 +137,7 @@ struct AGPUBuildings {
                 "49",
                 "50"
             ],
-            pin: AGPUPins.pins[3],
+            pin: AGPUBuildingPins.pins[3],
             voiceCommands: [
                 "корпус три",
                 "корпус третий",
@@ -142,6 +151,7 @@ struct AGPUBuildings {
         AGPUBuildingModel(
             name: "Корпус №4 (ФТЭиД)",
             image: "",
+            type: .building,
             audiences: [
                 "51",
                 "52",
@@ -160,7 +170,7 @@ struct AGPUBuildings {
                 "67",
                 "68"
             ],
-            pin: AGPUPins.pins[4],
+            pin: AGPUBuildingPins.pins[4],
             voiceCommands: [
                 "корпус четыре",
                 "корпус четвёртый",
@@ -174,6 +184,7 @@ struct AGPUBuildings {
         AGPUBuildingModel(
             name: "Корпус №5 (ЕБД)",
             image: "",
+            type: .building,
             audiences: [
                 "80",
                 "81",
@@ -182,7 +193,7 @@ struct AGPUBuildings {
                 "83",
                 "84"
             ],
-            pin: AGPUPins.pins[5],
+            pin: AGPUBuildingPins.pins[5],
             voiceCommands: [
                 "корпус пять",
                 "корпус пятый",
@@ -196,6 +207,7 @@ struct AGPUBuildings {
         AGPUBuildingModel(
             name: "Корпус №6 (ФОК)",
             image: "",
+            type: .building,
             audiences: [
                 "85",
                 "85а",
@@ -203,7 +215,7 @@ struct AGPUBuildings {
                 "86a",
                 "Спортзал ФОК"
             ],
-            pin: AGPUPins.pins[6],
+            pin: AGPUBuildingPins.pins[6],
             voiceCommands: [
                 "корпус шесть",
                 "корпус шестой",
@@ -218,6 +230,7 @@ struct AGPUBuildings {
         AGPUBuildingModel(
             name: "ИСТФАК",
             image: "",
+            type: .building,
             audiences: [
                 "201",
                 "202",
@@ -230,11 +243,24 @@ struct AGPUBuildings {
                 "209",
                 "210"
             ],
-            pin: AGPUPins.pins[7],
+            pin: AGPUBuildingPins.pins[7],
             voiceCommands: [
                 "истфак",
                 "исторический факультет",
                 "факультет исторический"
+            ]
+        ),
+        
+        AGPUBuildingModel(
+            name: "Общежитие №2",
+            image: "",
+            type: .hostel,
+            audiences: [],
+            pin: AGPUBuildingPins.pins[8],
+            voiceCommands: [
+                "общежитие два",
+                "общежитие номер два",
+                "общежитие под номером два",
             ]
         )
     ]

@@ -10,6 +10,7 @@ import MapKit
 struct AGPUBuildingModel {
     let name: String
     let image: String
+    let type: AGPUBuildingType
     let audiences: [String]
     let pin: MKAnnotation
     let voiceCommands: [String]

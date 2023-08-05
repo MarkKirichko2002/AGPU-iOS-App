@@ -74,7 +74,7 @@
 		8270A5482A5784A2008ACADC /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5472A5784A2008ACADC /* DateManager.swift */; };
 		8270A54D2A578A0E008ACADC /* AGPUNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A54C2A578A0E008ACADC /* AGPUNewsViewModel.swift */; };
 		82721F1C2A574EE100982EF7 /* AGPUNewsViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82721F1B2A574EE100982EF7 /* AGPUNewsViewController + Extensions.swift */; };
-		82722D432A66462100149D06 /* AGPUPins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82722D422A66462100149D06 /* AGPUPins.swift */; };
+		82722D432A66462100149D06 /* AGPUBuildingPins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82722D422A66462100149D06 /* AGPUBuildingPins.swift */; };
 		827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B62C22A425166008D241E /* UserDefaults + Extensions.swift */; };
 		827F0FFA2A4B2D7E00C481E4 /* AGPUNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827F0FF92A4B2D7E00C481E4 /* AGPUNewsViewController.swift */; };
 		82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E882A31F12100DEEB16 /* AppDelegate.swift */; };
@@ -174,6 +174,7 @@
 		82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */; };
 		82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */; };
 		82FB5B642A7A8FF600728980 /* InteractiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FB5B632A7A8FF600728980 /* InteractiveView.swift */; };
+		82FEA7AE2A7ED5BB00863453 /* AGPUBuildingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FEA7AD2A7ED5BB00863453 /* AGPUBuildingType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -245,7 +246,7 @@
 		8270A5472A5784A2008ACADC /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		8270A54C2A578A0E008ACADC /* AGPUNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUNewsViewModel.swift; sourceTree = "<group>"; };
 		82721F1B2A574EE100982EF7 /* AGPUNewsViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUNewsViewController + Extensions.swift"; sourceTree = "<group>"; };
-		82722D422A66462100149D06 /* AGPUPins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUPins.swift; sourceTree = "<group>"; };
+		82722D422A66462100149D06 /* AGPUBuildingPins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingPins.swift; sourceTree = "<group>"; };
 		827B62C22A425166008D241E /* UserDefaults + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + Extensions.swift"; sourceTree = "<group>"; };
 		827F0FF92A4B2D7E00C481E4 /* AGPUNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUNewsViewController.swift; sourceTree = "<group>"; };
 		82808E852A31F12100DEEB16 /* AGPU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGPU.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -345,6 +346,7 @@
 		82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManagerProtocol.swift; sourceTree = "<group>"; };
 		82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringImageView.swift; sourceTree = "<group>"; };
 		82FB5B632A7A8FF600728980 /* InteractiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveView.swift; sourceTree = "<group>"; };
+		82FEA7AD2A7ED5BB00863453 /* AGPUBuildingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1369,7 +1371,8 @@
 				82426C6E2A71476D00D5AA57 /* For Every Status */,
 				82426C8E2A71DCC000D5AA57 /* User Status */,
 				820D18E12A68F9BB00BFAA35 /* AGPU Buildings */,
-				82722D402A66460500149D06 /* AGPU Pins */,
+				82722D402A66460500149D06 /* AGPU Building Pins */,
+				82FEA7AB2A7ED59F00863453 /* Building Type */,
 				821270452A783FA40095D68E /* Sections */,
 				82EF23D32A3DEEB8004A7B9C /* Sub Sections */,
 				8208E7522A63A3B300675EF1 /* AGPU Themes */,
@@ -1471,18 +1474,18 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		82722D402A66460500149D06 /* AGPU Pins */ = {
+		82722D402A66460500149D06 /* AGPU Building Pins */ = {
 			isa = PBXGroup;
 			children = (
 				82722D412A66461500149D06 /* List */,
 			);
-			path = "AGPU Pins";
+			path = "AGPU Building Pins";
 			sourceTree = "<group>";
 		};
 		82722D412A66461500149D06 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				82722D422A66462100149D06 /* AGPUPins.swift */,
+				82722D422A66462100149D06 /* AGPUBuildingPins.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -2703,6 +2706,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		82FEA7AB2A7ED59F00863453 /* Building Type */ = {
+			isa = PBXGroup;
+			children = (
+				82FEA7AC2A7ED5AD00863453 /* Model */,
+			);
+			path = "Building Type";
+			sourceTree = "<group>";
+		};
+		82FEA7AC2A7ED5AD00863453 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82FEA7AD2A7ED5BB00863453 /* AGPUBuildingType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2830,6 +2849,7 @@
 				82721F1C2A574EE100982EF7 /* AGPUNewsViewController + Extensions.swift in Sources */,
 				82BA73B62A579B8D006B67DA /* WebViewModel.swift in Sources */,
 				8283216C2A7D090C008641A5 /* AllGroupsListViewModelProtocol.swift in Sources */,
+				82FEA7AE2A7ED5BB00863453 /* AGPUBuildingType.swift in Sources */,
 				82989AEE2A6F6EB600F27858 /* FacultyCathedraListViewModel + Extensions.swift in Sources */,
 				822632412A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift in Sources */,
 				828DC5592A7B3865001EA324 /* FacultyGroupModel.swift in Sources */,
@@ -2841,7 +2861,7 @@
 				8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */,
 				82E4C5172A6B0D0200F65A67 /* ImageSaver + Extensions.swift in Sources */,
 				8241F9812A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift in Sources */,
-				82722D432A66462100149D06 /* AGPUPins.swift in Sources */,
+				82722D432A66462100149D06 /* AGPUBuildingPins.swift in Sources */,
 				82FB5B642A7A8FF600728980 /* InteractiveView.swift in Sources */,
 				828321802A7D687A008641A5 /* SearchAGPUBuildingMapViewModel + Extensions.swift in Sources */,
 				8228E3992A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift in Sources */,

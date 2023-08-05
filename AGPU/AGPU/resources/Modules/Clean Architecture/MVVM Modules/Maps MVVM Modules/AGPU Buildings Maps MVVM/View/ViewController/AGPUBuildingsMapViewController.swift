@@ -42,11 +42,52 @@ final class AGPUBuildingsMapViewController: UIViewController {
         
         let backButton = UIBarButtonItem(customView: button)
         backButton.tintColor = .black
+        
+        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: MakeMenu())
+        options.tintColor = .black
+        
         navigationItem.leftBarButtonItem = backButton
+        navigationItem.rightBarButtonItem = options
     }
     
     @objc private func back() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    private func MakeMenu()-> UIMenu {
+        
+        let all = UIAction(title: "все") { _ in
+            for building in AGPUBuildings.buildings {
+                self.mapView.addAnnotation(building.pin)
+            }
+        }
+        
+        let buildings = UIAction(title: "корпуса") { _ in
+            for building in AGPUBuildings.buildings {
+                if building.type == .building || building.type == .buildingAndHostel {
+                    self.mapView.addAnnotation(building.pin)
+                } else {
+                    self.mapView.removeAnnotation(building.pin)
+                }
+            }
+        }
+        
+        let hostels = UIAction(title: "общежития") { _ in
+            for building in AGPUBuildings.buildings {
+                if building.type == .hostel || building.type == .buildingAndHostel {
+                    self.mapView.addAnnotation(building.pin)
+                } else {
+                    self.mapView.removeAnnotation(building.pin)
+                }
+            }
+        }
+        
+        let menu = UIMenu(title: "показать на карте", options: .singleSelection, children: [
+            all,
+            buildings,
+            hostels
+        ])
+        return menu
     }
     
     private func SetUpMap() {
@@ -67,14 +108,8 @@ final class AGPUBuildingsMapViewController: UIViewController {
     private func BindViewModel() {
         viewModel.GetLocation()
         viewModel.registerLocationHandler { location in
-            self.mapView.setRegion(
-                location.region,
-                animated: true
-            )
-            self.mapView.showAnnotations(
-                location.pins
-                , animated: true
-            )
+            self.mapView.setRegion(location.region, animated: true)
+            self.mapView.showAnnotations(location.pins, animated: true)
         }
     }
 }
