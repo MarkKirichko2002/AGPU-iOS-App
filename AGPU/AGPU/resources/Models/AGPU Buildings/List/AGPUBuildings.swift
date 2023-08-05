@@ -14,6 +14,7 @@ struct AGPUBuildings {
         AGPUBuildingModel(
             name: "Главный корпус",
             image: "",
+            type: .building,
             audiences: [
                 "1",
                 "2",
@@ -48,6 +49,7 @@ struct AGPUBuildings {
         AGPUBuildingModel(
             name: "Корпус №1 и Общежитие №1",
             image: "",
+            type: .buildingAndHostel,
             audiences: [
                 "30",
                 "31",
@@ -99,6 +101,7 @@ struct AGPUBuildings {
         AGPUBuildingModel(
             name: "Корпус №2",
             image: "",
+            type: .building,
             audiences: [
                 "24",
                 "25",
@@ -120,6 +123,7 @@ struct AGPUBuildings {
         AGPUBuildingModel(
             name: "Корпус №3 (СПФ)",
             image: "",
+            type: .building,
             audiences: [
                 "40",
                 "41",
@@ -147,6 +151,7 @@ struct AGPUBuildings {
         AGPUBuildingModel(
             name: "Корпус №4 (ФТЭиД)",
             image: "",
+            type: .building,
             audiences: [
                 "51",
                 "52",
@@ -179,6 +184,7 @@ struct AGPUBuildings {
         AGPUBuildingModel(
             name: "Корпус №5 (ЕБД)",
             image: "",
+            type: .building,
             audiences: [
                 "80",
                 "81",
@@ -201,6 +207,7 @@ struct AGPUBuildings {
         AGPUBuildingModel(
             name: "Корпус №6 (ФОК)",
             image: "",
+            type: .building,
             audiences: [
                 "85",
                 "85а",
@@ -223,6 +230,7 @@ struct AGPUBuildings {
         AGPUBuildingModel(
             name: "ИСТФАК",
             image: "",
+            type: .building,
             audiences: [
                 "201",
                 "202",
@@ -246,6 +254,7 @@ struct AGPUBuildings {
         AGPUBuildingModel(
             name: "Общежитие №2",
             image: "",
+            type: .hostel,
             audiences: [],
             pin: AGPUBuildingPins.pins[8],
             voiceCommands: [
