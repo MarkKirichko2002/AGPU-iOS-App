@@ -235,9 +235,9 @@ final class AGPUTabBarController: UITabBarController {
         }
         
         if text != "" {
-            
+            // поиск корпуса
             for building in AGPUBuildings.buildings {
-                if building.voiceCommands.contains(text.lastWord().lowercased()) {
+                if building.voiceCommands.contains(text.lastWords().lowercased()) {
                     let vc = SearchAGPUBuildingMapViewController(building: building)
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
