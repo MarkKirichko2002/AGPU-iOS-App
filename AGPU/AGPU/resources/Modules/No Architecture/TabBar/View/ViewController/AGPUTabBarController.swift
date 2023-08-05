@@ -236,25 +236,27 @@ final class AGPUTabBarController: UITabBarController {
         
         if text != "" {
             // поиск корпуса
-            DispatchQueue.main.async {
-                for building in AGPUBuildings.buildings {
-                    if building.voiceCommands.contains(text.lastWords().lowercased()) {
-                        let vc = SearchAGPUBuildingMapViewController(building: building)
-                        let navVC = UINavigationController(rootViewController: vc)
-                        navVC.modalPresentationStyle = .fullScreen
+            for building in AGPUBuildings.buildings {
+                
+                if building.voiceCommands.contains(where: { text.lowercased().range(of: $0.lowercased()) != nil }) {
+                    
+                    let vc = SearchAGPUBuildingMapViewController(building: building)
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    DispatchQueue.main.async {
                         self.present(navVC, animated: true)
-                        break
-                        }
                     }
+                    break
                 }
             }
+        }
         
         // закрыть экран
         if text.lowercased().contains("закр") {
             
             speechRecognitionManager.cancelSpeechRecognition()
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 self.speechRecognitionManager.startRecognize()
                 self.displayDynamicButton(icon: "mic")
                 NotificationCenter.default.post(name: Notification.Name("close screen"), object: nil)
