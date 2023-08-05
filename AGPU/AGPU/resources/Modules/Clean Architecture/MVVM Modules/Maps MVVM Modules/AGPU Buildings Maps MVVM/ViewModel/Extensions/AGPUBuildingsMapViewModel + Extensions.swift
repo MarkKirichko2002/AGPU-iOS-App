@@ -14,6 +14,10 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
         self.locationHandler = block
     }
     
+    func registerChoiceHandler(block: @escaping(Bool, MKAnnotation)->Void) {
+        self.choiceHandler = block
+    }
+    
     func GetLocation() {
         
         locationManager.GetLocations()
@@ -45,5 +49,41 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
             let location = LocationModel(region: region, pins: AGPUBuildingPins.pins)
             self.locationHandler?(location)
         }
+    }
+    
+    func makeOptionsMenu()-> UIMenu {
+        
+        let all = UIAction(title: "все") { _ in
+            for building in AGPUBuildings.buildings {
+                self.choiceHandler?(true, building.pin)
+            }
+        }
+        
+        let buildings = UIAction(title: "корпуса") { _ in
+            for building in AGPUBuildings.buildings {
+                if building.type == .building || building.type == .buildingAndHostel {
+                    self.choiceHandler?(true, building.pin)
+                } else {
+                    self.choiceHandler?(false, building.pin)
+                }
+            }
+        }
+        
+        let hostels = UIAction(title: "общежития") { _ in
+            for building in AGPUBuildings.buildings {
+                if building.type == .hostel || building.type == .buildingAndHostel {
+                    self.choiceHandler?(true, building.pin)
+                } else {
+                    self.choiceHandler?(false, building.pin)
+                }
+            }
+        }
+        
+        let menu = UIMenu(title: "показать на карте", options: .singleSelection, children: [
+            all,
+            buildings,
+            hostels
+        ])
+        return menu
     }
 }
