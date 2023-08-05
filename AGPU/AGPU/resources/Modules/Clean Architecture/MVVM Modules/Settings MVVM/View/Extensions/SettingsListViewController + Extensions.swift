@@ -89,7 +89,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     self.viewModel.ChooseFaculty(index: indexPath.row)
                 }
                 
-                let cathedraAction = UIAction(title: self.viewModel.isCathedraSelected(index: indexPath.row) ? "выбрана кафедру" : "выбрать кафедру", image: UIImage(named: self.viewModel.isCathedraSelected(index: indexPath.row) ? "university selected" : "university")) { action in
+                let cathedraAction = UIAction(title: self.viewModel.isCathedraSelected(index: indexPath.row) ? "выбрана кафедра" : "выбрать кафедру", image: UIImage(named: self.viewModel.isCathedraSelected(index: indexPath.row) ? "university selected" : "university")) { action in
                     if self.viewModel.isFacultySelected(index: indexPath.row) {
                         let vc = FacultyCathedraListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
                         vc.hidesBottomBarWhenPushed = true
