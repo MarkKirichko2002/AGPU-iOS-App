@@ -28,11 +28,11 @@ final class FacultyGroupsListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
         SetUpSwipeGesture()
         SetUpTable()
         BindViewModel()
         viewModel.GetGroups(by: faculty)
+        SetUpNavigation()
     }
     
     private func SetUpNavigation() {
@@ -52,9 +52,21 @@ final class FacultyGroupsListTableViewController: UITableViewController {
         
         let backButton = UIBarButtonItem(customView: button)
         backButton.tintColor = .black
+        
+        let items = viewModel.groups.enumerated().map { (index: Int, group: FacultyGroupModel) in
+            
+            return UIAction(title: group.name.abbreviation()) { _ in
+                let indexPath = IndexPath(row: 0, section: index)
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+            }
+        }
+        let menu = UIMenu(title: "группы", options: .singleSelection, children: items)
+        let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
+        sections.tintColor = .black
+        
         navigationItem.leftBarButtonItem = backButton
+        navigationItem.rightBarButtonItem = sections
     }
-    
     @objc private func back() {
         navigationController?.popViewController(animated: true)
     }
