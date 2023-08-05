@@ -93,4 +93,30 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
             return false
         }
     }
+    
+    func isCathedraSelected(index: Int)-> Bool {
+        let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty")
+        let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra")
+        if faculty?.id == AGPUFaculties.faculties[index].id && faculty?.isSelected == true {
+            if cathedra != nil {
+                return true
+            } else {
+                print("NO")
+            }
+        }
+        return false
+    }
+    
+    func isGroupSelected(index: Int)-> Bool {
+        let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty")
+        let group = UserDefaults.standard.string(forKey: "group")
+        if faculty?.id == AGPUFaculties.faculties[index].id && faculty?.isSelected == true {
+            if group != nil {
+                return true
+            } else {
+                print("NOOOOOOO")
+            }
+        }
+        return false
+    }
 }
