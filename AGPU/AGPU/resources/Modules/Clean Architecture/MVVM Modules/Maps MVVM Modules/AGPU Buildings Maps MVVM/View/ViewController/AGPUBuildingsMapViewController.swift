@@ -75,8 +75,8 @@ final class AGPUBuildingsMapViewController: UIViewController {
             self.mapView.setRegion(location.region, animated: true)
             self.mapView.showAnnotations(location.pins, animated: true)
         }
-        viewModel.registerChoiceHandler { choose, annotation in
-            if choose {
+        viewModel.registerChoiceHandler { isBuildingType, annotation in
+            if isBuildingType {
                 self.mapView.addAnnotation(annotation)
             } else {
                 self.mapView.removeAnnotation(annotation)

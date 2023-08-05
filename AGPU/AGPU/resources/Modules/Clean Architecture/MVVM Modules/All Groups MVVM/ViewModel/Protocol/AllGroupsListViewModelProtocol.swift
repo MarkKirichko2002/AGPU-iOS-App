@@ -9,4 +9,5 @@ import Foundation
 
 protocol AllGroupsListViewModelProtocol {
     func isGroupSelected(section: Int, index: Int)-> Bool
+    func currentFacultyIcon(section: Int, abbreviation: String)-> String
 }

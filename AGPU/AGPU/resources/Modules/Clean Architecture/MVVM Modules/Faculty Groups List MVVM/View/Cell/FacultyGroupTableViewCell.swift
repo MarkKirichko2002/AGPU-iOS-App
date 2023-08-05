@@ -14,8 +14,8 @@ final class FacultyGroupTableViewCell: UITableViewCell {
     @IBOutlet var AGPUFacultyIcon: SpringImageView!
     @IBOutlet var GroupName: UILabel!
     
-    func configure(faculty: AGPUFacultyModel, group: String) {
-        AGPUFacultyIcon.image = UIImage(named: faculty.icon)
+    func configure(facultyIcon: String, group: String) {
+        AGPUFacultyIcon.image = UIImage(named: facultyIcon)
         GroupName.text = group
         self.backgroundColor = .clear
     }
