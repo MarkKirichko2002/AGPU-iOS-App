@@ -1,5 +1,5 @@
 //
-//  AGPUPins.swift
+//  AGPUBuildingPins.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 18.07.2023.
@@ -7,7 +7,7 @@
 
 import MapKit
 
-struct AGPUPins {
+struct AGPUBuildingPins {
     
     static var pins = [
         

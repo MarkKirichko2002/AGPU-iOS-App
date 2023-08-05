@@ -40,9 +40,9 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
             currentpin.coordinate = coordinate
             currentpin.title = "Вы"
             
-            AGPUPins.pins.append(currentpin)
+            AGPUBuildingPins.pins.append(currentpin)
             
-            let location = LocationModel(region: region, pins: AGPUPins.pins)
+            let location = LocationModel(region: region, pins: AGPUBuildingPins.pins)
             
             self.locationHandler?(location)
             

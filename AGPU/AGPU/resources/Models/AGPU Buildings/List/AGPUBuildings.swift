@@ -40,7 +40,7 @@ struct AGPUBuildings {
                 "22",
                 "23"
             ],
-            pin: AGPUPins.pins[0],
+            pin: AGPUBuildingPins.pins[0],
             voiceCommands: ["главный корпус"]
         ),
         
@@ -80,7 +80,7 @@ struct AGPUBuildings {
                 "120",
                 "121"
             ],
-            pin: AGPUPins.pins[1],
+            pin: AGPUBuildingPins.pins[1],
             voiceCommands: [
                 "корпус один",
                 "корпус первый",
@@ -101,7 +101,7 @@ struct AGPUBuildings {
                 "27",
                 "28"
             ],
-            pin: AGPUPins.pins[2],
+            pin: AGPUBuildingPins.pins[2],
             voiceCommands: [
                 "корпус два",
                 "корпус второй",
@@ -128,7 +128,7 @@ struct AGPUBuildings {
                 "49",
                 "50"
             ],
-            pin: AGPUPins.pins[3],
+            pin: AGPUBuildingPins.pins[3],
             voiceCommands: [
                 "корпус три",
                 "корпус третий",
@@ -160,7 +160,7 @@ struct AGPUBuildings {
                 "67",
                 "68"
             ],
-            pin: AGPUPins.pins[4],
+            pin: AGPUBuildingPins.pins[4],
             voiceCommands: [
                 "корпус четыре",
                 "корпус четвёртый",
@@ -182,7 +182,7 @@ struct AGPUBuildings {
                 "83",
                 "84"
             ],
-            pin: AGPUPins.pins[5],
+            pin: AGPUBuildingPins.pins[5],
             voiceCommands: [
                 "корпус пять",
                 "корпус пятый",
@@ -203,7 +203,7 @@ struct AGPUBuildings {
                 "86a",
                 "Спортзал ФОК"
             ],
-            pin: AGPUPins.pins[6],
+            pin: AGPUBuildingPins.pins[6],
             voiceCommands: [
                 "корпус шесть",
                 "корпус шестой",
@@ -230,7 +230,7 @@ struct AGPUBuildings {
                 "209",
                 "210"
             ],
-            pin: AGPUPins.pins[7],
+            pin: AGPUBuildingPins.pins[7],
             voiceCommands: [
                 "истфак",
                 "исторический факультет",
