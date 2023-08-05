@@ -85,11 +85,11 @@ extension SettingsListViewController: UITableViewDelegate {
             switch indexPath.section {
                 
             case 1:
-                let chooseAction = UIAction(title: self.viewModel.isFacultySelected(index: indexPath.row) ? "выбран" : "выбрать факультет", image: UIImage(named: self.viewModel.isFacultySelected(index: indexPath.row) ? "check selected" : "check")) { action in
+                let chooseAction = UIAction(title: self.viewModel.isFacultySelected(index: indexPath.row) ? "выбран факультет" : "выбрать факультет", image: UIImage(named: self.viewModel.isFacultySelected(index: indexPath.row) ? "check selected" : "check")) { action in
                     self.viewModel.ChooseFaculty(index: indexPath.row)
                 }
                 
-                let cathedraAction = UIAction(title: "выбрать кафедру", image: UIImage(named: "university")) { action in
+                let cathedraAction = UIAction(title: self.viewModel.isCathedraSelected(index: indexPath.row) ? "выбрана кафедру" : "выбрать кафедру", image: UIImage(named: self.viewModel.isCathedraSelected(index: indexPath.row) ? "university selected" : "university")) { action in
                     if self.viewModel.isFacultySelected(index: indexPath.row) {
                         let vc = FacultyCathedraListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
                         vc.hidesBottomBarWhenPushed = true
@@ -101,7 +101,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     }
                 }
                 
-                let checkGroupAction = UIAction(title: "выбрать группу", image: UIImage(named: "group")) { _ in
+                let checkGroupAction = UIAction(title: self.viewModel.isGroupSelected(index: indexPath.row) ? "выбрана группа" : "выбрать группу", image: UIImage(named: self.viewModel.isGroupSelected(index: indexPath.row) ? "group selected" : "group")) { _ in
                     if self.viewModel.isFacultySelected(index: indexPath.row) {
                         let vc = FacultyGroupsListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
                         vc.hidesBottomBarWhenPushed = true

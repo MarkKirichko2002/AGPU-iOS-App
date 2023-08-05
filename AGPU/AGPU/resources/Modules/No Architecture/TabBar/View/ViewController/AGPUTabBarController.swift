@@ -236,16 +236,18 @@ final class AGPUTabBarController: UITabBarController {
         
         if text != "" {
             // поиск корпуса
-            for building in AGPUBuildings.buildings {
-                if building.voiceCommands.contains(text.lastWords().lowercased()) {
-                    let vc = SearchAGPUBuildingMapViewController(building: building)
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    present(navVC, animated: true)
-                    break
+            DispatchQueue.main.async {
+                for building in AGPUBuildings.buildings {
+                    if building.voiceCommands.contains(text.lastWords().lowercased()) {
+                        let vc = SearchAGPUBuildingMapViewController(building: building)
+                        let navVC = UINavigationController(rootViewController: vc)
+                        navVC.modalPresentationStyle = .fullScreen
+                        self.present(navVC, animated: true)
+                        break
+                        }
+                    }
                 }
             }
-        }
         
         // закрыть экран
         if text.lowercased().contains("закр") {
