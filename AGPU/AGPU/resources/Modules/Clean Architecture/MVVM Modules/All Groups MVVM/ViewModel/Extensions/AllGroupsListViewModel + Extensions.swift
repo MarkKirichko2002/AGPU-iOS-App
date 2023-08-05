@@ -19,4 +19,14 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
             return false
         }
     }
+    
+    func currentFacultyIcon(section: Int, abbreviation: String)-> String {
+        let group = FacultyGroups.groups[section]
+        for faculty in AGPUFaculties.faculties {
+            if group.name.abbreviation().contains(faculty.abbreviation) {
+                return faculty.icon
+            }
+        }
+        return "АГПУ"
+    }
 }

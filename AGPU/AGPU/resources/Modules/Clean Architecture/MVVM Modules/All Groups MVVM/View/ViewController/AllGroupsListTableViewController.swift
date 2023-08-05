@@ -25,8 +25,12 @@ class AllGroupsListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         SetUpNavigation()
+        SetUpTable()
+    }
+    
+    private func SetUpTable() {
+        tableView.register(UINib(nibName: FacultyGroupTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyGroupTableViewCell.identifier)
     }
 
     private func SetUpNavigation() {
@@ -40,7 +44,9 @@ class AllGroupsListTableViewController: UITableViewController {
             
             return UIAction(title: group.name.abbreviation()) { _ in
                 let indexPath = IndexPath(row: 0, section: index)
-                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                DispatchQueue.main.async {
+                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                }
             }
         }
         let menu = UIMenu(title: "группы", options: .singleSelection, children: items)
@@ -74,12 +80,13 @@ class AllGroupsListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let groupSection = FacultyGroups.groups[indexPath.section]
         let group = FacultyGroups.groups[indexPath.section].groups[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FacultyGroupTableViewCell.identifier, for: indexPath) as? FacultyGroupTableViewCell else {return UITableViewCell()}
         cell.tintColor = .systemGreen
-        cell.textLabel?.text = group
-        cell.textLabel?.textColor = viewModel.isGroupSelected(section: indexPath.section, index: indexPath.row) ? .systemGreen : .black
+        cell.GroupName.textColor = viewModel.isGroupSelected(section: indexPath.section, index: indexPath.row) ? .systemGreen : .black
         cell.accessoryType = viewModel.isGroupSelected(section: indexPath.section, index: indexPath.row) ? .checkmark : .none
+        cell.configure(facultyIcon: self.viewModel.currentFacultyIcon(section: indexPath.section, abbreviation: groupSection.name.abbreviation()), group: group)
         return cell
     }
 }

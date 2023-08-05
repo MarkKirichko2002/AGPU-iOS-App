@@ -106,7 +106,7 @@ final class FacultyGroupsListTableViewController: UITableViewController {
         cell.tintColor = .systemGreen
         cell.accessoryType = viewModel.isGroupSelected(section: indexPath.section, index: indexPath.row) ? .checkmark : .none
         cell.GroupName.textColor = viewModel.isGroupSelected(section: indexPath.section, index: indexPath.row) ? .systemGreen : .black
-        cell.configure(faculty: faculty, group: groups)
+        cell.configure(facultyIcon: faculty.icon, group: groups)
         return cell
     }
 }
