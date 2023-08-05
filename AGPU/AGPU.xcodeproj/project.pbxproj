@@ -174,9 +174,6 @@
 		82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */; };
 		82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */; };
 		82FB5B642A7A8FF600728980 /* InteractiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FB5B632A7A8FF600728980 /* InteractiveView.swift */; };
-		82FEA7A42A7ECEA500863453 /* AGPUHostelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FEA7A32A7ECEA500863453 /* AGPUHostelModel.swift */; };
-		82FEA7A62A7ECED500863453 /* AGPUHostels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FEA7A52A7ECED500863453 /* AGPUHostels.swift */; };
-		82FEA7AA2A7ECF3B00863453 /* AGPUHostelPins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FEA7A92A7ECF3B00863453 /* AGPUHostelPins.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -348,9 +345,6 @@
 		82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManagerProtocol.swift; sourceTree = "<group>"; };
 		82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringImageView.swift; sourceTree = "<group>"; };
 		82FB5B632A7A8FF600728980 /* InteractiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveView.swift; sourceTree = "<group>"; };
-		82FEA7A32A7ECEA500863453 /* AGPUHostelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUHostelModel.swift; sourceTree = "<group>"; };
-		82FEA7A52A7ECED500863453 /* AGPUHostels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUHostels.swift; sourceTree = "<group>"; };
-		82FEA7A92A7ECF3B00863453 /* AGPUHostelPins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUHostelPins.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1376,8 +1370,6 @@
 				82426C8E2A71DCC000D5AA57 /* User Status */,
 				820D18E12A68F9BB00BFAA35 /* AGPU Buildings */,
 				82722D402A66460500149D06 /* AGPU Building Pins */,
-				82FEA7A02A7ECDF500863453 /* AGPU Hostels */,
-				82FEA7A72A7ECF1300863453 /* AGPU Hostels Pins */,
 				821270452A783FA40095D68E /* Sections */,
 				82EF23D32A3DEEB8004A7B9C /* Sub Sections */,
 				8208E7522A63A3B300675EF1 /* AGPU Themes */,
@@ -2711,47 +2703,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		82FEA7A02A7ECDF500863453 /* AGPU Hostels */ = {
-			isa = PBXGroup;
-			children = (
-				82FEA7A12A7ECE7400863453 /* Model */,
-				82FEA7A22A7ECE7800863453 /* List */,
-			);
-			path = "AGPU Hostels";
-			sourceTree = "<group>";
-		};
-		82FEA7A12A7ECE7400863453 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				82FEA7A32A7ECEA500863453 /* AGPUHostelModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		82FEA7A22A7ECE7800863453 /* List */ = {
-			isa = PBXGroup;
-			children = (
-				82FEA7A52A7ECED500863453 /* AGPUHostels.swift */,
-			);
-			path = List;
-			sourceTree = "<group>";
-		};
-		82FEA7A72A7ECF1300863453 /* AGPU Hostels Pins */ = {
-			isa = PBXGroup;
-			children = (
-				82FEA7A82A7ECF2300863453 /* List */,
-			);
-			path = "AGPU Hostels Pins";
-			sourceTree = "<group>";
-		};
-		82FEA7A82A7ECF2300863453 /* List */ = {
-			isa = PBXGroup;
-			children = (
-				82FEA7A92A7ECF3B00863453 /* AGPUHostelPins.swift */,
-			);
-			path = List;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2842,7 +2793,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				82E4C5612A6B14C700F65A67 /* SettingsListViewModel + Extensions.swift in Sources */,
-				82FEA7AA2A7ECF3B00863453 /* AGPUHostelPins.swift in Sources */,
 				82E4C54A2A6B11BB00F65A67 /* AGPUFacultiesListViewModelProtocol.swift in Sources */,
 				820D18E72A68FA7D00BFAA35 /* AGPUBuildings.swift in Sources */,
 				826888662A33B6E700434219 /* AGPUTabBarController.swift in Sources */,
@@ -2875,7 +2825,6 @@
 				82989AD82A6E54AF00F27858 /* AGPUCurrentCathedraMapViewController.swift in Sources */,
 				82426C902A71DCDA00D5AA57 /* UserStatusModel.swift in Sources */,
 				82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */,
-				82FEA7A62A7ECED500863453 /* AGPUHostels.swift in Sources */,
 				82E4C58B2A6B20FF00F65A67 /* LocationManager + Extensions.swift in Sources */,
 				82E4C53E2A6B103B00F65A67 /* AGPUNewsViewModel + Extensions.swift in Sources */,
 				82721F1C2A574EE100982EF7 /* AGPUNewsViewController + Extensions.swift in Sources */,
@@ -2966,7 +2915,6 @@
 				82320D832A49167000ECADEE /* AGPUFacultyModel.swift in Sources */,
 				82426C732A71476D00D5AA57 /* ForStudentSections.swift in Sources */,
 				82E4C5662A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift in Sources */,
-				82FEA7A42A7ECEA500863453 /* AGPUHostelModel.swift in Sources */,
 				82BF4DB22A5FA5B3008B751A /* AGPUWallpaperCollectionViewCell.swift in Sources */,
 				82C561672A6B7B0D00514B00 /* AppFeatureDetailViewController.swift in Sources */,
 				8283216E2A7D0932008641A5 /* AllGroupsListViewModel + Extensions.swift in Sources */,
