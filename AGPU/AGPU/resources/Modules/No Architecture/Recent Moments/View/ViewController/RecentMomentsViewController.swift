@@ -13,9 +13,23 @@ class RecentMomentsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Недавние моменты"
         view.backgroundColor = .white
+        SetUpNavigation()
         SetUpStackView()
+    }
+    
+    private func SetUpNavigation() {
+        navigationItem.title = "Недавние моменты"
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        closeButton.tintColor = .black
+        navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    @objc private func closeScreen() {
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
+        }
+        dismiss(animated: true)
     }
     
     private func SetUpStackView() {
