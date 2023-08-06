@@ -15,11 +15,6 @@ final class ForStudentListTableViewController: UITableViewController {
         SetUpTable()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        NotificationCenter.default.post(name: Notification.Name("for every status appear"), object: nil)
-    }
-    
     private func SetUpNavigation() {
         let titleView = CustomTitleView(
             image: "student",

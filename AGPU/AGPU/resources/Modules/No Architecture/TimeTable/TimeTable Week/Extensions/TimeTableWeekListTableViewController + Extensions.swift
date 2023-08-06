@@ -22,19 +22,20 @@ extension TimeTableWeekListTableViewController: UITableViewDelegate {
             _ in
             
             let mapAction = UIAction(title: "найти корпус", image: UIImage(named: "search")) { _ in
-                if let audience = self.timetable[indexPath.section][indexPath.row].audienceID {
+                let audience = self.timetable[indexPath.section].disciplines[indexPath.row].audienceID 
                     let vc = AGPUCurrentBuildingMapViewController(audienceID: audience)
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                         vc.hidesBottomBarWhenPushed = true
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
-                } else if self.timetable[indexPath.section][indexPath.row].audienceID == nil || self.timetable[indexPath.section][indexPath.row].audienceID == ""  {
+                
+                if self.timetable[indexPath.section].disciplines[indexPath.row].audienceID == ""  {
                     let ok = UIAlertAction(title: "ОК", style: .default)
                     self.ShowAlert(title: "Корпус не найден!", message: "К сожалению у данной пары отсутствует аудитория", actions: [ok])
                 }
             }
             
-            return UIMenu(title: self.timetable[indexPath.section][indexPath.row].name, children: [
+            return UIMenu(title: self.timetable[indexPath.section].disciplines[indexPath.row].name, children: [
                 mapAction
             ])
         })
@@ -58,7 +59,7 @@ extension TimeTableWeekListTableViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return timetable[section].count
+        return timetable[section].disciplines.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -69,7 +70,7 @@ extension TimeTableWeekListTableViewController: UITableViewDataSource {
         selectedView.backgroundColor = UIColor.clear
         cell.selectedBackgroundView = selectedView
         
-        cell.configure(timetable: timetable[indexPath.section][indexPath.row])
+        cell.configure(timetable: timetable[indexPath.section], index: indexPath.row)
         
         return cell
     }

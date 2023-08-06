@@ -10,11 +10,11 @@ import UIKit
 final class TimeTableWeekListTableViewController: UIViewController {
     
     private let service = TimeTableService()
-    private var group = ""
     
     var startDate: String = ""
     private var endDate: String = ""
-    var timetable = [[TimeTable]]()
+    private var group: String = ""
+    var timetable = [TimeTable]()
     
     // MARK: - UI
     let tableView = UITableView()
@@ -22,7 +22,8 @@ final class TimeTableWeekListTableViewController: UIViewController {
     private let noTimeTableLabel = UILabel()
     
     // MARK: - Init
-    init(startDate: String, endDate: String) {
+    init(group: String, startDate: String, endDate: String) {
+        self.group = group
         self.startDate = startDate
         self.endDate = endDate
         super.init(nibName: nil, bundle: nil)
@@ -34,7 +35,6 @@ final class TimeTableWeekListTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        group = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-1-1"
         SetUpTable()
         SetUpLabel()
         SetUpIndicatorView()
@@ -59,7 +59,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     private func SetUpDatesMenu()-> UIMenu {
         let actions = DatesList().enumerated().map { (index: Int, date: String) in
             return UIAction(title: date) { _ in
-                if !self.timetable[index].isEmpty {
+                if !self.timetable[index].disciplines.isEmpty {
                     self.tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
                 }
             }

@@ -120,6 +120,8 @@
 		82989AF32A6F8CDF00F27858 /* ForEveryStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82989AF12A6F8CDF00F27858 /* ForEveryStatusTableViewCell.xib */; };
 		829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6902A4327D40047609B /* UIViewController + Extensions.swift */; };
 		829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6982A43818A0047609B /* SettingsListViewModel.swift */; };
+		82B1C0C12A805D8200520C14 /* RecentMomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1C0C02A805D8200520C14 /* RecentMomentsViewController.swift */; };
+		82B1C0C42A8061AA00520C14 /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1C0C32A8061AA00520C14 /* TimeTable.swift */; };
 		82B1CA782A681F1D00D1FBA4 /* SpringImageView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1CA772A681F1D00D1FBA4 /* SpringImageView + Extensions.swift */; };
 		82BA73B62A579B8D006B67DA /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BA73B52A579B8D006B67DA /* WebViewModel.swift */; };
 		82BC3CFC2A56EDA000E49332 /* RecentWebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFB2A56EDA000E49332 /* RecentWebPageViewController.swift */; };
@@ -144,7 +146,7 @@
 		82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8452A50CD4C00F9A552 /* SettingsManager + Extensions.swift */; };
 		82D6C32F2A5E189300FB7F5D /* TimeTableDayListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C32E2A5E189300FB7F5D /* TimeTableDayListTableViewController.swift */; };
 		82D6C3322A5E1DE100FB7F5D /* TimeTableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3312A5E1DE100FB7F5D /* TimeTableService.swift */; };
-		82D6C3342A5E1DEC00FB7F5D /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3332A5E1DEC00FB7F5D /* TimeTable.swift */; };
+		82D6C3342A5E1DEC00FB7F5D /* Discipline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3332A5E1DEC00FB7F5D /* Discipline.swift */; };
 		82D6C3372A5E1E4F00FB7F5D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 82D6C3362A5E1E4F00FB7F5D /* Alamofire */; };
 		82D6C33A2A5E282A00FB7F5D /* TimeTableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3382A5E282A00FB7F5D /* TimeTableTableViewCell.swift */; };
 		82D6C33B2A5E282A00FB7F5D /* TimeTableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82D6C3392A5E282A00FB7F5D /* TimeTableTableViewCell.xib */; };
@@ -296,6 +298,8 @@
 		82989AF12A6F8CDF00F27858 /* ForEveryStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForEveryStatusTableViewCell.xib; sourceTree = "<group>"; };
 		829AD6902A4327D40047609B /* UIViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829AD6982A43818A0047609B /* SettingsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewModel.swift; sourceTree = "<group>"; };
+		82B1C0C02A805D8200520C14 /* RecentMomentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMomentsViewController.swift; sourceTree = "<group>"; };
+		82B1C0C32A8061AA00520C14 /* TimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
 		82B1CA772A681F1D00D1FBA4 /* SpringImageView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpringImageView + Extensions.swift"; sourceTree = "<group>"; };
 		82BA73B52A579B8D006B67DA /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		82BC3CFB2A56EDA000E49332 /* RecentWebPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWebPageViewController.swift; sourceTree = "<group>"; };
@@ -320,7 +324,7 @@
 		82C7B8452A50CD4C00F9A552 /* SettingsManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsManager + Extensions.swift"; sourceTree = "<group>"; };
 		82D6C32E2A5E189300FB7F5D /* TimeTableDayListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableDayListTableViewController.swift; sourceTree = "<group>"; };
 		82D6C3312A5E1DE100FB7F5D /* TimeTableService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableService.swift; sourceTree = "<group>"; };
-		82D6C3332A5E1DEC00FB7F5D /* TimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
+		82D6C3332A5E1DEC00FB7F5D /* Discipline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discipline.swift; sourceTree = "<group>"; };
 		82D6C3382A5E282A00FB7F5D /* TimeTableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableTableViewCell.swift; sourceTree = "<group>"; };
 		82D6C3392A5E282A00FB7F5D /* TimeTableTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeTableTableViewCell.xib; sourceTree = "<group>"; };
 		82D6C3432A5E340300FB7F5D /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -1001,12 +1005,13 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		8241F9972A5F40BD007DF628 /* Model */ = {
+		8241F9972A5F40BD007DF628 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				82B87C752A7AF52800E9E68B /* Time table */,
+				82B1C0C22A80611100520C14 /* Discipline */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		82426C6E2A71476D00D5AA57 /* For Every Status */ = {
@@ -1394,6 +1399,7 @@
 				829522DB2A38AEBE00329713 /* Maps */,
 				82D6C3422A5E33CD00FB7F5D /* Calendar */,
 				82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */,
+				82B1C0BD2A805D5200520C14 /* Recent Moments */,
 			);
 			path = "No Architecture";
 			sourceTree = "<group>";
@@ -1925,6 +1931,38 @@
 			path = "Clean Architecture";
 			sourceTree = "<group>";
 		};
+		82B1C0BD2A805D5200520C14 /* Recent Moments */ = {
+			isa = PBXGroup;
+			children = (
+				82B1C0BE2A805D6D00520C14 /* View */,
+			);
+			path = "Recent Moments";
+			sourceTree = "<group>";
+		};
+		82B1C0BE2A805D6D00520C14 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82B1C0BF2A805D7000520C14 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82B1C0BF2A805D7000520C14 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82B1C0C02A805D8200520C14 /* RecentMomentsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82B1C0C22A80611100520C14 /* Discipline */ = {
+			isa = PBXGroup;
+			children = (
+				82D6C3332A5E1DEC00FB7F5D /* Discipline.swift */,
+			);
+			path = Discipline;
+			sourceTree = "<group>";
+		};
 		82B1CA742A681EE400D1FBA4 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1961,7 +1999,7 @@
 		82B87C752A7AF52800E9E68B /* Time table */ = {
 			isa = PBXGroup;
 			children = (
-				82D6C3332A5E1DEC00FB7F5D /* TimeTable.swift */,
+				82B1C0C32A8061AA00520C14 /* TimeTable.swift */,
 			);
 			path = "Time table";
 			sourceTree = "<group>";
@@ -2128,7 +2166,7 @@
 			isa = PBXGroup;
 			children = (
 				82E4C52D2A6B0EB600F65A67 /* Protocol */,
-				8241F9972A5F40BD007DF628 /* Model */,
+				8241F9972A5F40BD007DF628 /* Models */,
 				8241F9962A5F40BA007DF628 /* Service */,
 			);
 			path = API;
@@ -2804,6 +2842,7 @@
 				82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */,
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
 				826BADAF2A64D5A500022B45 /* AGPULocationDetailViewController.swift in Sources */,
+				82B1C0C42A8061AA00520C14 /* TimeTable.swift in Sources */,
 				82426C942A71DD0100D5AA57 /* UserStatusList.swift in Sources */,
 				828321732A7D643C008641A5 /* SearchAGPUBuildingMapViewController.swift in Sources */,
 				8228E39C2A6C920D00C1B6AD /* LocationModel.swift in Sources */,
@@ -2829,7 +2868,7 @@
 				828DC5592A7B3865001EA324 /* FacultyGroupModel.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
-				82D6C3342A5E1DEC00FB7F5D /* TimeTable.swift in Sources */,
+				82D6C3342A5E1DEC00FB7F5D /* Discipline.swift in Sources */,
 				82426C742A71476D00D5AA57 /* ForEveryStatusModel.swift in Sources */,
 				82426C8D2A71D26100D5AA57 /* ForEmployeeSections.swift in Sources */,
 				8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */,
@@ -2840,6 +2879,7 @@
 				828321802A7D687A008641A5 /* SearchAGPUBuildingMapViewModel + Extensions.swift in Sources */,
 				8228E3992A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift in Sources */,
 				829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */,
+				82B1C0C12A805D8200520C14 /* RecentMomentsViewController.swift in Sources */,
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
 				8268885B2A33AC6000434219 /* AnimationClass.swift in Sources */,
 				8241F9992A5F40EB007DF628 /* TimeTableService + Extensions.swift in Sources */,
