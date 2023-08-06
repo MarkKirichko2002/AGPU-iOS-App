@@ -115,13 +115,42 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     private func ShakeToRecall() {
-        self.displayDynamicButton(icon: "time.past")
-        let vc = RecentMomentsViewController()
-        let navVC = UINavigationController(rootViewController: vc)
-        navVC.modalPresentationStyle = .fullScreen
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.present(navVC, animated: true)
+        
+        let webPage = UIAlertAction(title: "веб-страница", style: .default) { _ in
+            if let page = UserDefaults.loadData(type: RecentWebPageModel.self, key: "last page") {
+                self.displayDynamicButton(icon: "time.past")
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self.ShowRecentPageScreen(page: page)
+                }
+            }
         }
+        
+        let document = UIAlertAction(title: "документ", style: .default) { _ in
+            if let pdf = UserDefaults.loadData(type: RecentPDFModel.self, key: "last pdf") {
+                self.displayDynamicButton(icon: "time.past")
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    let vc = PDFLastPageViewController(pdf: pdf)
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    self.present(navVC, animated: true)
+                }
+            }
+        }
+        
+        let video = UIAlertAction(title: "видео", style: .default) { _ in
+            if let videoUrl = UserDefaults.standard.string(forKey: "last video") {
+                self.PlayVideo(url: videoUrl)
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "отмена", style: .cancel, handler: nil)
+        
+        self.ShowAlert(title: "Недавние моменты", message: "Выберите один из недавних моментов", actions: [
+            webPage,
+            document,
+            video,
+            cancelAction
+        ])
     }
     
     @objc private func VoiceCommands() {
@@ -262,7 +291,7 @@ final class AGPUTabBarController: UITabBarController {
         
         NotificationCenter.default.addObserver(forName: Notification.Name("for every status appear"), object: nil, queue: .main) { _ in
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                self.displayDynamicButton(icon: self.settingsManager.checkCurrentIcon())
+                self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon()), for: .normal)
             }
         }
     }

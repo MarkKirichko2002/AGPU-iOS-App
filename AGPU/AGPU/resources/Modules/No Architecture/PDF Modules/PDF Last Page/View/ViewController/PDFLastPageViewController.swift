@@ -32,6 +32,11 @@ class PDFLastPageViewController: UIViewController {
         SavePDF()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
+    }
+    
     private func SetUpNavigation() {
         navigationItem.title = "Документ"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))

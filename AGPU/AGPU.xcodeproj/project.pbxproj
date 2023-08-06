@@ -14,6 +14,7 @@
 		820D339F2A75985400843313 /* ContactsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820D339E2A75985400843313 /* ContactsModel.swift */; };
 		820D33A62A759E9100843313 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820D33A42A759E9100843313 /* ContactsTableViewCell.swift */; };
 		820D33A72A759E9100843313 /* ContactsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820D33A52A759E9100843313 /* ContactsTableViewCell.xib */; };
+		820D33AD2A75ACA900843313 /* FacultyCathedraListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820D33AC2A75ACA900843313 /* FacultyCathedraListTableViewController + Extensions.swift */; };
 		820E40932A7C365B007A1E0A /* AGPUCurrentCathedraMapViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820E40922A7C365B007A1E0A /* AGPUCurrentCathedraMapViewModelProtocol.swift */; };
 		820E40952A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820E40942A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift */; };
 		8210CA052A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210CA042A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift */; };
@@ -105,7 +106,6 @@
 		829548922A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548912A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift */; };
 		829548992A43AE32007DEBA0 /* SettingsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548982A43AE32007DEBA0 /* SettingsManagerProtocol.swift */; };
 		8295489C2A43AE7E007DEBA0 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8295489B2A43AE7E007DEBA0 /* SettingsManager.swift */; };
-		82965DD32A800B81006FB8EE /* RecentMomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82965DD22A800B80006FB8EE /* RecentMomentsViewController.swift */; };
 		82989ACA2A6E2D4500F27858 /* FacultyCathedraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82989AC92A6E2D4500F27858 /* FacultyCathedraModel.swift */; };
 		82989ACD2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82989ACC2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift */; };
 		82989ACF2A6E35B200F27858 /* FacultyCathedraTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82989ACE2A6E35B200F27858 /* FacultyCathedraTableViewCell.swift */; };
@@ -153,6 +153,7 @@
 		82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D492A5DD57B0060ADAA /* ForStudentListTableViewController.swift */; };
 		82E05D542A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D532A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift */; };
 		82E05D592A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D582A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift */; };
+		82E05D5D2A5DF36B0060ADAA /* AGPUFacultiesListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D5C2A5DF36B0060ADAA /* AGPUFacultiesListTableViewController + Extensions.swift */; };
 		82E4C5152A6B0C8F00F65A67 /* ImageSaverProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5142A6B0C8F00F65A67 /* ImageSaverProtocol.swift */; };
 		82E4C5172A6B0D0200F65A67 /* ImageSaver + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5162A6B0D0200F65A67 /* ImageSaver + Extensions.swift */; };
 		82E4C53C2A6B0FD000F65A67 /* AGPUNewsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C53B2A6B0FD000F65A67 /* AGPUNewsViewModelProtocol.swift */; };
@@ -186,6 +187,7 @@
 		820D339E2A75985400843313 /* ContactsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsModel.swift; sourceTree = "<group>"; };
 		820D33A42A759E9100843313 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
 		820D33A52A759E9100843313 /* ContactsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsTableViewCell.xib; sourceTree = "<group>"; };
+		820D33AC2A75ACA900843313 /* FacultyCathedraListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FacultyCathedraListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		820E40922A7C365B007A1E0A /* AGPUCurrentCathedraMapViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUCurrentCathedraMapViewModelProtocol.swift; sourceTree = "<group>"; };
 		820E40942A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUCurrentCathedraMapViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		8210CA042A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUCurrentBuildingMapViewController.swift; sourceTree = "<group>"; };
@@ -280,7 +282,6 @@
 		829548912A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUBuildingsMapViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829548982A43AE32007DEBA0 /* SettingsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerProtocol.swift; sourceTree = "<group>"; };
 		8295489B2A43AE7E007DEBA0 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
-		82965DD22A800B80006FB8EE /* RecentMomentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMomentsViewController.swift; sourceTree = "<group>"; };
 		82989AC92A6E2D4500F27858 /* FacultyCathedraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyCathedraModel.swift; sourceTree = "<group>"; };
 		82989ACC2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyCathedraListTableViewController.swift; sourceTree = "<group>"; };
 		82989ACE2A6E35B200F27858 /* FacultyCathedraTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyCathedraTableViewCell.swift; sourceTree = "<group>"; };
@@ -326,6 +327,7 @@
 		82E05D492A5DD57B0060ADAA /* ForStudentListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForStudentListTableViewController.swift; sourceTree = "<group>"; };
 		82E05D532A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultiesListTableViewController.swift; sourceTree = "<group>"; };
 		82E05D582A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultiesListViewModel.swift; sourceTree = "<group>"; };
+		82E05D5C2A5DF36B0060ADAA /* AGPUFacultiesListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUFacultiesListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		82E4C5142A6B0C8F00F65A67 /* ImageSaverProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaverProtocol.swift; sourceTree = "<group>"; };
 		82E4C5162A6B0D0200F65A67 /* ImageSaver + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageSaver + Extensions.swift"; sourceTree = "<group>"; };
 		82E4C53B2A6B0FD000F65A67 /* AGPUNewsViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUNewsViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -577,6 +579,14 @@
 				824C56D72A6FE96C0074ADB7 /* List */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		820D33AB2A75AC9900843313 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				820D33AC2A75ACA900843313 /* FacultyCathedraListTableViewController + Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		820E408F2A7C362D007A1E0A /* Extensions */ = {
@@ -1384,7 +1394,6 @@
 				829522DB2A38AEBE00329713 /* Maps */,
 				82D6C3422A5E33CD00FB7F5D /* Calendar */,
 				82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */,
-				82965DCF2A800B5B006FB8EE /* Recent Moments */,
 			);
 			path = "No Architecture";
 			sourceTree = "<group>";
@@ -1783,30 +1792,6 @@
 			path = Modules;
 			sourceTree = "<group>";
 		};
-		82965DCF2A800B5B006FB8EE /* Recent Moments */ = {
-			isa = PBXGroup;
-			children = (
-				82965DD02A800B67006FB8EE /* View */,
-			);
-			path = "Recent Moments";
-			sourceTree = "<group>";
-		};
-		82965DD02A800B67006FB8EE /* View */ = {
-			isa = PBXGroup;
-			children = (
-				82965DD12A800B6B006FB8EE /* ViewController */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		82965DD12A800B6B006FB8EE /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				82965DD22A800B80006FB8EE /* RecentMomentsViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 		82989ACB2A6E308F00F27858 /* Faculty Cathedra List */ = {
 			isa = PBXGroup;
 			children = (
@@ -1822,6 +1807,7 @@
 			children = (
 				82989AD12A6E36AA00F27858 /* ViewController */,
 				82989AD22A6E36B000F27858 /* Cell */,
+				820D33AB2A75AC9900843313 /* Extensions */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2216,6 +2202,7 @@
 			children = (
 				82E05D5A2A5DF34A0060ADAA /* ViewController */,
 				828DE2B02A5E3F4A00985737 /* Cell */,
+				82E05D5B2A5DF3550060ADAA /* Extensions */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2226,6 +2213,14 @@
 				82E05D532A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82E05D5B2A5DF3550060ADAA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82E05D5C2A5DF36B0060ADAA /* AGPUFacultiesListTableViewController + Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		82E4C5182A6B0D4100F65A67 /* Service */ = {
@@ -2866,6 +2861,7 @@
 				824C56D92A6FE98F0074ADB7 /* FacultyCathedraList.swift in Sources */,
 				82BC3D002A56F5C400E49332 /* RecentWebPageViewController + Extensions.swift in Sources */,
 				82C5615D2A6B757C00514B00 /* AppFeatureModel.swift in Sources */,
+				82E05D5D2A5DF36B0060ADAA /* AGPUFacultiesListTableViewController + Extensions.swift in Sources */,
 				82426C8B2A71CFC600D5AA57 /* ForEmployeeListTableViewController.swift in Sources */,
 				82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */,
 				8212705B2A792A610095D68E /* RecentPDFModel.swift in Sources */,
@@ -2922,7 +2918,6 @@
 				82989ACF2A6E35B200F27858 /* FacultyCathedraTableViewCell.swift in Sources */,
 				82505F502A7FBD7D001DE24A /* TimeTableWeekListTableViewController.swift in Sources */,
 				829548992A43AE32007DEBA0 /* SettingsManagerProtocol.swift in Sources */,
-				82965DD32A800B81006FB8EE /* RecentMomentsViewController.swift in Sources */,
 				82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */,
 				82875B002A5A1966007DB925 /* HapticsManagerProtocol.swift in Sources */,
 				8210CA092A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift in Sources */,
@@ -2935,6 +2930,7 @@
 				82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */,
 				8228E3AD2A6C9E9E00C1B6AD /* AGPUCurrentBuildingMapViewModel + Extensions.swift in Sources */,
 				82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */,
+				820D33AD2A75ACA900843313 /* FacultyCathedraListTableViewController + Extensions.swift in Sources */,
 				822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */,
 				8295489C2A43AE7E007DEBA0 /* SettingsManager.swift in Sources */,
 				828CFA372A35F65700C7542D /* WebViewController.swift in Sources */,
