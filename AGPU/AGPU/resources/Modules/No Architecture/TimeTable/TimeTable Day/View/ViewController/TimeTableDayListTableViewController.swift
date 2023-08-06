@@ -133,7 +133,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         for week in weeks {
             let action = UIAction(title: week) { _ in
-                let vc = TimeTableWeekListTableViewController(startDate: "01.06.2023", endDate: "08.06.2023")
+                let vc = TimeTableWeekListTableViewController(group: self.group, startDate: "01.06.2023", endDate: "08.06.2023")
                 let navVC = UINavigationController(rootViewController: vc)
                 navVC.modalPresentationStyle = .fullScreen
                 self.present(navVC, animated: true)
