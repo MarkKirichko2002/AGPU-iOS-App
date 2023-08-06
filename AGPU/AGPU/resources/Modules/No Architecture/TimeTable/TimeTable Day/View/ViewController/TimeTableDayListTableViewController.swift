@@ -14,7 +14,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     private var group = ""
     private var date = ""
     
-    var timetable = [TimeTable]()
+    var timetable: TimeTable?
     
     // MARK: - UI
     let tableView = UITableView()
@@ -106,7 +106,7 @@ final class TimeTableDayListTableViewController: UIViewController {
                     self.group = group
                     self.spinner.startAnimating()
                     self.noTimeTableLabel.isHidden = true
-                    self.timetable = []
+                    self.timetable?.disciplines = []
                     self.tableView.reloadData()
                     self.GetTimeTable(group: group, date: self.date)
                 }
@@ -179,12 +179,12 @@ final class TimeTableDayListTableViewController: UIViewController {
     func GetTimeTable(group: String, date: String) {
         self.spinner.startAnimating()
         self.noTimeTableLabel.isHidden = true
-        self.timetable = []
+        self.timetable?.disciplines = []
         self.tableView.reloadData()
         service.GetTimeTableDay(groupId: group, date: date) { result in
             switch result {
             case .success(let timetable):
-                if !timetable.isEmpty {
+                if !timetable.disciplines.isEmpty {
                     DispatchQueue.main.async {
                         self.timetable = timetable
                         self.tableView.reloadData()

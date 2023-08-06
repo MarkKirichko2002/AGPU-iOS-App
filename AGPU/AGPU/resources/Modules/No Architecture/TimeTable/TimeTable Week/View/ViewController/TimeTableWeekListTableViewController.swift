@@ -14,7 +14,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     
     var startDate: String = ""
     private var endDate: String = ""
-    var timetable = [[TimeTable]]()
+    var timetable = [TimeTable]()
     
     // MARK: - UI
     let tableView = UITableView()
@@ -59,7 +59,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     private func SetUpDatesMenu()-> UIMenu {
         let actions = DatesList().enumerated().map { (index: Int, date: String) in
             return UIAction(title: date) { _ in
-                if !self.timetable[index].isEmpty {
+                if !self.timetable[index].disciplines.isEmpty {
                     self.tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
                 }
             }

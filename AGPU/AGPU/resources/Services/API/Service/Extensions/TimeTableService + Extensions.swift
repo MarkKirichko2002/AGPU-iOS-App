@@ -11,7 +11,7 @@ import Alamofire
 // MARK: - TimeTableServicerProtocol
 extension TimeTableService: TimeTableServicerProtocol {
     
-    func GetTimeTableDay(groupId: String, date: String, completion: @escaping(Result<[TimeTable],Error>)->Void) {
+    func GetTimeTableDay(groupId: String, date: String, completion: @escaping(Result<TimeTable,Error>)->Void) {
         
         let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
@@ -20,7 +20,7 @@ extension TimeTableService: TimeTableServicerProtocol {
             guard let data = response.data else {return}
             
             do {
-                let timetable = try JSONDecoder().decode([TimeTable].self, from: data)
+                let timetable = try JSONDecoder().decode(TimeTable.self, from: data)
                 print("Расписание: \(timetable)")
                 completion(.success(timetable))
             } catch {
@@ -29,16 +29,16 @@ extension TimeTableService: TimeTableServicerProtocol {
         }
     }
     
-    func GetTimeTableWeek(groupId: String, startDate: String, endDate: String, completion: @escaping(Result<[[TimeTable]],Error>)->Void) {
+    func GetTimeTableWeek(groupId: String, startDate: String, endDate: String, completion: @escaping(Result<[TimeTable],Error>)->Void) {
         
         let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("http://merqury.fun:8080/api/timetableOfDays?groupId=\(group)&startDate=\(startDate)&endDate=\(endDate)").responseData { response in
+        AF.request("http://merqury.fun:8080/api/timetableOfDays?groupId=\(group)&startDate=\(startDate)&endDate=\(endDate)&removeEmptyDays").responseData { response in
             
             guard let data = response.data else {return}
             
             do {
-                let timetable = try JSONDecoder().decode([[TimeTable]].self, from: data)
+                let timetable = try JSONDecoder().decode([TimeTable].self, from: data)
                 print("Расписание: \(timetable)")
                 completion(.success(timetable))
             } catch {

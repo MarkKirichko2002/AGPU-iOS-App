@@ -16,17 +16,17 @@ final class TimeTableTableViewCell: UITableViewCell {
     @IBOutlet var DisciplineName: UILabel!
     @IBOutlet var SubGroupId: UILabel!
     
-    func configure(timetable: TimeTable) {
+    func configure(timetable: TimeTable, index: Int) {
         layer.borderWidth = 1
-        TimeLabel.text = timetable.time
-        DisciplineName.text = "\(timetable.name) \n\(timetable.teacherName ?? ""), \(timetable.audienceID ?? "") \n (\(timetable.groupName))"
-        switch timetable.subgroup {
+        TimeLabel.text = timetable.disciplines[index].time
+        DisciplineName.text = "\(timetable.disciplines[index].name) \n\(timetable.disciplines[index].teacherName), \(timetable.disciplines[index].audienceID) \n (\(timetable.groupName))"
+        switch timetable.disciplines[index].subgroup {
         case 0:
             SubGroupId.text = ""
         default:
-            SubGroupId.text = "(подгруппа: \(timetable.subgroup))"
+            SubGroupId.text = "(подгруппа: \(timetable.disciplines[index].subgroup))"
         }
-        let color = pairСolor(type: timetable.type)
+        let color = pairСolor(type: timetable.disciplines[index].type)
         self.backgroundColor = color
     }
     
