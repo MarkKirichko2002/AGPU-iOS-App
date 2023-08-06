@@ -1,5 +1,5 @@
 //
-//  TimeTableListTableViewController.swift
+//  TimeTableDayListTableViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 12.07.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TimeTableListTableViewController: UIViewController {
+final class TimeTableDayListTableViewController: UIViewController {
     
     private let service = TimeTableService()
     private let dateManager = DateManager()
@@ -39,7 +39,7 @@ final class TimeTableListTableViewController: UIViewController {
         navigationItem.title = "Сегодня: \(date)"
         
         // список групп
-        let groupList = UIAction(title: "группы", image: UIImage(named: "group")) { _ in
+        let groupList = UIAction(title: "группы") { _ in
             let vc = AllGroupsListTableViewController(group: self.group)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -73,19 +73,22 @@ final class TimeTableListTableViewController: UIViewController {
             self.present(vc, animated: true)
         }
         // день
-        let day = UIMenu(title: "выбрать день", image: UIImage(named: "calendar"), children: [
+        let day = UIMenu(title: "выбрать день", children: [
             current,
             next,
             previous,
             calendar
         ])
+        
+        let weeksList = SetUpWeeksMenu()
         // поделиться
-        let shareTimeTable = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
+        let shareTimeTable = UIAction(title: "поделиться") { _ in
             self.shareTableViewAsImage(tableView: self.tableView, title: self.date, text: self.group)
         }
         let menu = UIMenu(title: "расписание", children: [
             groupList,
             day,
+            weeksList,
             shareTimeTable
         ])
         
@@ -116,6 +119,30 @@ final class TimeTableListTableViewController: UIViewController {
         // список групп
         let groupList = UIMenu(title: "группы", image: UIImage(named: "group"), children: arr)
         return groupList
+    }
+    
+    private func SetUpWeeksMenu()-> UIMenu {
+        
+        var weeks = [String]()
+        var actions = [UIAction]()
+        
+        for i in 0..<50 {
+            let week = "неделя \(i + 1)"
+            weeks.append(week)
+        }
+        
+        for week in weeks {
+            let action = UIAction(title: week) { _ in
+                let vc = TimeTableWeekListTableViewController(startDate: "01.06.2023", endDate: "08.06.2023")
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                self.present(navVC, animated: true)
+            }
+            actions.append(action)
+        }
+        
+        let menu = UIMenu(title: "недели", children: actions)
+        return menu
     }
     
     private func SetUpIndicatorView() {
@@ -154,7 +181,7 @@ final class TimeTableListTableViewController: UIViewController {
         self.noTimeTableLabel.isHidden = true
         self.timetable = []
         self.tableView.reloadData()
-        service.GetTimeTable(groupId: group, date: date) { result in
+        service.GetTimeTableDay(groupId: group, date: date) { result in
             switch result {
             case .success(let timetable):
                 if !timetable.isEmpty {

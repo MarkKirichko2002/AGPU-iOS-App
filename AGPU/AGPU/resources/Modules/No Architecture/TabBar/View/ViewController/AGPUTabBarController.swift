@@ -22,7 +22,7 @@ final class AGPUTabBarController: UITabBarController {
     // кнопка
     let middleButton = UIViewController()
     // расписание
-    let timetableVC = TimeTableListTableViewController()
+    let timetableVC = TimeTableDayListTableViewController()
     // настройки
     let settingsVC = SettingsListViewController()
     

@@ -51,13 +51,6 @@ extension String {
         return last.lowercased()
     }
     
-    func lastWords()-> String {
-        let words = self.components(separatedBy: " ")
-        let lastTwoWords = Array(words.suffix(4))
-        let lastTwoWordsString = lastTwoWords.joined(separator: " ")
-        return lastTwoWordsString
-    }
-    
     func noWhitespacesWord()-> String {
         let words = self.components(separatedBy: .whitespaces)
         let slittedString = words.joined()
