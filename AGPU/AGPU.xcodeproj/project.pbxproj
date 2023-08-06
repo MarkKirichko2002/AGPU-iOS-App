@@ -1373,7 +1373,6 @@
 		826888672A33B87A00434219 /* No Architecture */ = {
 			isa = PBXGroup;
 			children = (
-				82965DCF2A800B5B006FB8EE /* Recent Moments */,
 				82505F432A7F9A0D001DE24A /* TimeTable */,
 				826888562A33AB3C00434219 /* Splash Screen */,
 				828CFA342A35F62400C7542D /* TabBar */,
@@ -1385,6 +1384,7 @@
 				829522DB2A38AEBE00329713 /* Maps */,
 				82D6C3422A5E33CD00FB7F5D /* Calendar */,
 				82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */,
+				82965DCF2A800B5B006FB8EE /* Recent Moments */,
 			);
 			path = "No Architecture";
 			sourceTree = "<group>";

@@ -262,7 +262,7 @@ final class AGPUTabBarController: UITabBarController {
         
         NotificationCenter.default.addObserver(forName: Notification.Name("for every status appear"), object: nil, queue: .main) { _ in
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                self.DynamicButton.setImage(UIImage(named: self.settingsManager.checkCurrentIcon()), for: .normal)
+                self.displayDynamicButton(icon: self.settingsManager.checkCurrentIcon())
             }
         }
     }

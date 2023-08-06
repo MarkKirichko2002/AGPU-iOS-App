@@ -51,6 +51,9 @@ final class AGPUBuildingsMapViewController: UIViewController {
     }
     
     @objc private func back() {
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            NotificationCenter.default.post(name: Notification.Name("for every status appear"), object: nil)
+        }
         navigationController?.popViewController(animated: true)
     }
     
