@@ -1,5 +1,5 @@
 //
-//  TimeTableListTableViewController.swift
+//  TimeTableDayListTableViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 12.07.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TimeTableListTableViewController: UIViewController {
+final class TimeTableDayListTableViewController: UIViewController {
     
     private let service = TimeTableService()
     private let dateManager = DateManager()
@@ -79,6 +79,13 @@ final class TimeTableListTableViewController: UIViewController {
             previous,
             calendar
         ])
+        
+        let week = UIAction(title: "неделя") { _ in
+            let vc = TimeTableWeekListTableViewController(startDate: "01.06.2023", endDate: "08.06.2023")
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
         // поделиться
         let shareTimeTable = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
             self.shareTableViewAsImage(tableView: self.tableView, title: self.date, text: self.group)
@@ -86,6 +93,7 @@ final class TimeTableListTableViewController: UIViewController {
         let menu = UIMenu(title: "расписание", children: [
             groupList,
             day,
+            week,
             shareTimeTable
         ])
         
@@ -154,7 +162,7 @@ final class TimeTableListTableViewController: UIViewController {
         self.noTimeTableLabel.isHidden = true
         self.timetable = []
         self.tableView.reloadData()
-        service.GetTimeTable(groupId: group, date: date) { result in
+        service.GetTimeTableDay(groupId: group, date: date) { result in
             switch result {
             case .success(let timetable):
                 if !timetable.isEmpty {

@@ -61,4 +61,26 @@ extension DateManager: DateManagerProtocol {
         }
         return previousDay
     }
+    
+    func getWeekId(date: String)-> Int {
+        let mappingWeekId = 1
+        let weekId = mappingWeekId + countDays(startDate: "29.08.2022", endDate: date) / 7
+        return weekId
+    }
+    
+    func countDays(startDate: String, endDate: String)-> Int {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+
+        let startDateObj = dateFormatter.date(from: startDate)!
+        let endDateObj = dateFormatter.date(from: endDate)!
+
+        let calendar = Calendar.current
+        let start = calendar.startOfDay(for: startDateObj)
+        let end = calendar.startOfDay(for: endDateObj)
+
+        let dateComponents = calendar.dateComponents([.day], from: start, to: end)
+
+        return dateComponents.day!
+    }
 }

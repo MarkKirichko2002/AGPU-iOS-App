@@ -1,5 +1,5 @@
 //
-//  TimeTableListTableViewController + Extensions.swift
+//  TimeTableDayListTableViewController + Extensions.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 12.07.2023.
@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: - UITableViewDelegate
-extension TimeTableListTableViewController: UITableViewDelegate {
+extension TimeTableDayListTableViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil,
@@ -46,7 +46,7 @@ extension TimeTableListTableViewController: UITableViewDelegate {
 }
 
 // MARK: - UITableViewDataSource
-extension TimeTableListTableViewController: UITableViewDataSource {
+extension TimeTableDayListTableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return timetable.count

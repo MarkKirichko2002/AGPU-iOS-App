@@ -57,6 +57,8 @@
 		82426C942A71DD0100D5AA57 /* UserStatusList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C932A71DD0100D5AA57 /* UserStatusList.swift */; };
 		82461FEE2A50C493008A8752 /* AppDelegate + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */; };
 		824C56D92A6FE98F0074ADB7 /* FacultyCathedraList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */; };
+		82505F482A7F9A6F001DE24A /* TimeTableWeekListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82505F472A7F9A6F001DE24A /* TimeTableWeekListTableViewController.swift */; };
+		82505F4B2A7F9ABC001DE24A /* TimeTableWeekListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82505F4A2A7F9ABC001DE24A /* TimeTableWeekListTableViewController + Extensions.swift */; };
 		8255ADCF2A6732110012895E /* CustomTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255ADCE2A6732110012895E /* CustomTitleView.swift */; };
 		825634BA2A6222070082B7B8 /* FacultyGroupsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825634B92A6222070082B7B8 /* FacultyGroupsListTableViewController.swift */; };
 		825634BC2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825634BB2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift */; };
@@ -140,7 +142,7 @@
 		82C7B8422A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */; };
 		82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8432A50CCB800F9A552 /* AnimationClass + Extensions.swift */; };
 		82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8452A50CD4C00F9A552 /* SettingsManager + Extensions.swift */; };
-		82D6C32F2A5E189300FB7F5D /* TimeTableListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C32E2A5E189300FB7F5D /* TimeTableListTableViewController.swift */; };
+		82D6C32F2A5E189300FB7F5D /* TimeTableDayListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C32E2A5E189300FB7F5D /* TimeTableDayListTableViewController.swift */; };
 		82D6C3322A5E1DE100FB7F5D /* TimeTableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3312A5E1DE100FB7F5D /* TimeTableService.swift */; };
 		82D6C3342A5E1DEC00FB7F5D /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3332A5E1DEC00FB7F5D /* TimeTable.swift */; };
 		82D6C3372A5E1E4F00FB7F5D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 82D6C3362A5E1E4F00FB7F5D /* Alamofire */; };
@@ -229,6 +231,8 @@
 		82426C932A71DD0100D5AA57 /* UserStatusList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusList.swift; sourceTree = "<group>"; };
 		82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate + Extensions.swift"; sourceTree = "<group>"; };
 		824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyCathedraList.swift; sourceTree = "<group>"; };
+		82505F472A7F9A6F001DE24A /* TimeTableWeekListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimeTableWeekListTableViewController.swift; path = ../../../../../../../../../../../../../../Documents/TimeTableWeekListTableViewController.swift; sourceTree = "<group>"; };
+		82505F4A2A7F9ABC001DE24A /* TimeTableWeekListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TimeTableWeekListTableViewController + Extensions.swift"; path = "../../../../../../../../../../../../../../Documents/TimeTableWeekListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8255ADCE2A6732110012895E /* CustomTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTitleView.swift; sourceTree = "<group>"; };
 		825634B92A6222070082B7B8 /* FacultyGroupsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupsListTableViewController.swift; sourceTree = "<group>"; };
 		825634BB2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupsListViewModel.swift; sourceTree = "<group>"; };
@@ -314,7 +318,7 @@
 		82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpeechRecognitionManager + Extensions.swift"; sourceTree = "<group>"; };
 		82C7B8432A50CCB800F9A552 /* AnimationClass + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimationClass + Extensions.swift"; sourceTree = "<group>"; };
 		82C7B8452A50CD4C00F9A552 /* SettingsManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsManager + Extensions.swift"; sourceTree = "<group>"; };
-		82D6C32E2A5E189300FB7F5D /* TimeTableListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableListTableViewController.swift; sourceTree = "<group>"; };
+		82D6C32E2A5E189300FB7F5D /* TimeTableDayListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableDayListTableViewController.swift; sourceTree = "<group>"; };
 		82D6C3312A5E1DE100FB7F5D /* TimeTableService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableService.swift; sourceTree = "<group>"; };
 		82D6C3332A5E1DEC00FB7F5D /* TimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
 		82D6C3382A5E282A00FB7F5D /* TimeTableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableTableViewCell.swift; sourceTree = "<group>"; };
@@ -988,14 +992,6 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		8241F9912A5F407E007DF628 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C52D2A6B0EB600F65A67 /* Protocol */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
 		8241F9962A5F40BA007DF628 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -1167,6 +1163,48 @@
 			path = "Faculty Сathedra";
 			sourceTree = "<group>";
 		};
+		82505F432A7F9A0D001DE24A /* TimeTable */ = {
+			isa = PBXGroup;
+			children = (
+				82D6C32D2A5E187400FB7F5D /* TimeTable Day */,
+				82505F442A7F9A21001DE24A /* TimeTable Week */,
+			);
+			path = TimeTable;
+			sourceTree = "<group>";
+		};
+		82505F442A7F9A21001DE24A /* TimeTable Week */ = {
+			isa = PBXGroup;
+			children = (
+				82505F452A7F9A2C001DE24A /* View */,
+			);
+			path = "TimeTable Week";
+			sourceTree = "<group>";
+		};
+		82505F452A7F9A2C001DE24A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82505F462A7F9A49001DE24A /* ViewController */,
+				82505F492A7F9A8D001DE24A /* Extensions */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82505F462A7F9A49001DE24A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82505F472A7F9A6F001DE24A /* TimeTableWeekListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82505F492A7F9A8D001DE24A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82505F4A2A7F9ABC001DE24A /* TimeTableWeekListTableViewController + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		8255ADCD2A6731F50012895E /* Title View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1221,7 +1259,6 @@
 				820D18E02A68F9AE00BFAA35 /* Other */,
 				8268886A2A34866D00434219 /* Models */,
 				8268885C2A33ACA800434219 /* CustomViews */,
-				82EF23D42A3DF09F004A7B9C /* Protocols */,
 				8234B2FE2A3242CC0091810F /* Services */,
 				8268885F2A33ACE800434219 /* Extensions */,
 				8295489E2A43B0E9007DEBA0 /* Modules */,
@@ -1346,13 +1383,13 @@
 		826888672A33B87A00434219 /* No Architecture */ = {
 			isa = PBXGroup;
 			children = (
+				82505F432A7F9A0D001DE24A /* TimeTable */,
 				826888562A33AB3C00434219 /* Splash Screen */,
 				828CFA342A35F62400C7542D /* TabBar */,
 				820D33992A75974F00843313 /* Contacts List */,
 				82426C752A714CDD00D5AA57 /* For Every Status */,
 				82808E9C2A31F2D400DEEB16 /* AGPU Sections */,
 				821270462A78925D0095D68E /* PDF Modules */,
-				82D6C32D2A5E187400FB7F5D /* TimeTable */,
 				82C561602A6B770800514B00 /* App Features */,
 				829522DB2A38AEBE00329713 /* Maps */,
 				82D6C3422A5E33CD00FB7F5D /* Calendar */,
@@ -1429,17 +1466,10 @@
 			path = TimeInterval;
 			sourceTree = "<group>";
 		};
-		8270A5432A578444008ACADC /* Date  */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C52E2A6B0EBD00F65A67 /* Protocol */,
-			);
-			path = "Date ";
-			sourceTree = "<group>";
-		};
 		8270A5462A578491008ACADC /* Date */ = {
 			isa = PBXGroup;
 			children = (
+				82E4C52E2A6B0EBD00F65A67 /* Protocol */,
 				82E4C51C2A6B0DAD00F65A67 /* Service */,
 				82E4C51D2A6B0DB500F65A67 /* Extensions */,
 			);
@@ -1661,14 +1691,6 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		82875AFE2A5A194D007DB925 /* Haptics */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C5352A6B0EFA00F65A67 /* Protocol */,
-			);
-			path = Haptics;
-			sourceTree = "<group>";
-		};
 		828CFA342A35F62400C7542D /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -1743,17 +1765,10 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		829548972A43AE1F007DEBA0 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C5322A6B0EE000F65A67 /* Protocol */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
 		8295489A2A43AE6C007DEBA0 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				82E4C5322A6B0EE000F65A67 /* Protocol */,
 				82E4C5252A6B0E1100F65A67 /* Service */,
 				82E4C5242A6B0E0D00F65A67 /* Extensions */,
 			);
@@ -2033,6 +2048,7 @@
 		82BF4DB52A5FA7F6008B751A /* Image Saver */ = {
 			isa = PBXGroup;
 			children = (
+				82E4C52C2A6B0EA600F65A67 /* Protocol */,
 				82E4C5182A6B0D4100F65A67 /* Service */,
 				82E4C5192A6B0D4800F65A67 /* Extensions */,
 			);
@@ -2042,6 +2058,7 @@
 		82C44DAC2A591907002A3864 /* Haptics */ = {
 			isa = PBXGroup;
 			children = (
+				82E4C5352A6B0EFA00F65A67 /* Protocol */,
 				82E4C52B2A6B0E6F00F65A67 /* Service */,
 				82E4C52A2A6B0E6D00F65A67 /* Extensions */,
 			);
@@ -2099,17 +2116,18 @@
 			path = Features;
 			sourceTree = "<group>";
 		};
-		82D6C32D2A5E187400FB7F5D /* TimeTable */ = {
+		82D6C32D2A5E187400FB7F5D /* TimeTable Day */ = {
 			isa = PBXGroup;
 			children = (
 				82D6C33C2A5E32DE00FB7F5D /* View */,
 			);
-			path = TimeTable;
+			path = "TimeTable Day";
 			sourceTree = "<group>";
 		};
 		82D6C3302A5E1DD100FB7F5D /* API */ = {
 			isa = PBXGroup;
 			children = (
+				82E4C52D2A6B0EB600F65A67 /* Protocol */,
 				8241F9972A5F40BD007DF628 /* Model */,
 				8241F9962A5F40BA007DF628 /* Service */,
 			);
@@ -2129,7 +2147,7 @@
 		82D6C33D2A5E32E300FB7F5D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				82D6C32E2A5E189300FB7F5D /* TimeTableListTableViewController.swift */,
+				82D6C32E2A5E189300FB7F5D /* TimeTableDayListTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2203,14 +2221,6 @@
 				82E05D5C2A5DF36B0060ADAA /* AGPUFacultiesListTableViewController + Extensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		82E4C5132A6B0C7C00F65A67 /* Image Saver */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C52C2A6B0EA600F65A67 /* Protocol */,
-			);
-			path = "Image Saver";
 			sourceTree = "<group>";
 		};
 		82E4C5182A6B0D4100F65A67 /* Service */ = {
@@ -2501,14 +2511,6 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		82E4C5812A6B1FEE00F65A67 /* Location */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C5822A6B200400F65A67 /* Protocol */,
-			);
-			path = Location;
-			sourceTree = "<group>";
-		};
 		82E4C5822A6B200400F65A67 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -2520,6 +2522,7 @@
 		82E4C5852A6B20B800F65A67 /* Location Manager */ = {
 			isa = PBXGroup;
 			children = (
+				82E4C5822A6B200400F65A67 /* Protocol */,
 				82E4C5872A6B20CB00F65A67 /* Service */,
 				82E4C5862A6B20C900F65A67 /* Extensions */,
 			);
@@ -2627,6 +2630,7 @@
 		82EF23D02A3DED73004A7B9C /* Speech Recognition */ = {
 			isa = PBXGroup;
 			children = (
+				82E4C5302A6B0ED000F65A67 /* Protocol */,
 				82E4C5212A6B0DDA00F65A67 /* Service */,
 				82E4C5202A6B0DD900F65A67 /* Extensions */,
 			);
@@ -2636,6 +2640,7 @@
 		82EF23D12A3DED7F004A7B9C /* Animation */ = {
 			isa = PBXGroup;
 			children = (
+				82E4C5312A6B0ED800F65A67 /* Protocol */,
 				82E4C5232A6B0DF600F65A67 /* Service */,
 				82E4C5222A6B0DF400F65A67 /* Extensions */,
 			);
@@ -2649,37 +2654,6 @@
 				826716C62A5A416500CD5C23 /* List */,
 			);
 			path = "Sub Sections";
-			sourceTree = "<group>";
-		};
-		82EF23D42A3DF09F004A7B9C /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C5812A6B1FEE00F65A67 /* Location */,
-				82E4C5132A6B0C7C00F65A67 /* Image Saver */,
-				8241F9912A5F407E007DF628 /* API */,
-				8270A5432A578444008ACADC /* Date  */,
-				82EF23D82A3DF237004A7B9C /* Speech Recognition */,
-				82EF23D52A3DF0A5004A7B9C /* Animation */,
-				829548972A43AE1F007DEBA0 /* Settings */,
-				82875AFE2A5A194D007DB925 /* Haptics */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		82EF23D52A3DF0A5004A7B9C /* Animation */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C5312A6B0ED800F65A67 /* Protocol */,
-			);
-			path = Animation;
-			sourceTree = "<group>";
-		};
-		82EF23D82A3DF237004A7B9C /* Speech Recognition */ = {
-			isa = PBXGroup;
-			children = (
-				82E4C5302A6B0ED000F65A67 /* Protocol */,
-			);
-			path = "Speech Recognition";
 			sourceTree = "<group>";
 		};
 		82EF23DD2A3DF612004A7B9C /* Spring Image */ = {
@@ -2827,6 +2801,7 @@
 				828DC55C2A7B3887001EA324 /* FacultyGroups.swift in Sources */,
 				820E40952A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift in Sources */,
 				82989ACD2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift in Sources */,
+				82505F482A7F9A6F001DE24A /* TimeTableWeekListTableViewController.swift in Sources */,
 				82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */,
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
 				826BADAF2A64D5A500022B45 /* AGPULocationDetailViewController.swift in Sources */,
@@ -2877,9 +2852,10 @@
 				82C44DAE2A591915002A3864 /* HapticsManager.swift in Sources */,
 				8228E3AB2A6C9E3B00C1B6AD /* AGPUCurrentBuildingMapViewModelProtocol.swift in Sources */,
 				82B1CA782A681F1D00D1FBA4 /* SpringImageView + Extensions.swift in Sources */,
+				82505F4B2A7F9ABC001DE24A /* TimeTableWeekListTableViewController + Extensions.swift in Sources */,
 				82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */,
 				82426C7A2A714DEA00D5AA57 /* ForApplicantSections.swift in Sources */,
-				82D6C32F2A5E189300FB7F5D /* TimeTableListTableViewController.swift in Sources */,
+				82D6C32F2A5E189300FB7F5D /* TimeTableDayListTableViewController.swift in Sources */,
 				820D33A62A759E9100843313 /* ContactsTableViewCell.swift in Sources */,
 				82989AE02A6E5B4F00F27858 /* AGPUCurrentCathedraMapViewModel.swift in Sources */,
 				8212704C2A7892910095D68E /* PDFReaderViewController.swift in Sources */,
