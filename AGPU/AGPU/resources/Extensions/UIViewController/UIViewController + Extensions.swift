@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVKit
 
 extension UIViewController {
     
@@ -75,6 +76,35 @@ extension UIViewController {
     @objc func handleSwipeGesture(_ gesture: UISwipeGestureRecognizer) {
         if let navigationController = navigationController {
             navigationController.popViewController(animated: true)
+        }
+    }
+}
+
+// MARK: - AVPlayerViewControllerDelegate
+extension UIViewController: AVPlayerViewControllerDelegate {
+    
+    func PlayVideo(url: String) {
+        guard let videoURL = URL(string: url) else {
+            print("Invalid video URL")
+            return
+        }
+        
+        // Создаем AVPlayerViewController
+        let playerViewController = AVPlayerViewController()
+        let player = AVPlayer(url: videoURL)
+        playerViewController.player = player
+        playerViewController.delegate = self
+        // Воспроизводим видео
+        present(playerViewController, animated: true) {
+            playerViewController.player?.play()
+        }
+        UserDefaults.standard.setValue(url, forKey: "last video")
+    }
+    
+    public func playerViewController(_ playerViewController: AVPlayerViewController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
+        present(playerViewController, animated: true) {
+            playerViewController.player?.play()
+            completionHandler(true)
         }
     }
 }

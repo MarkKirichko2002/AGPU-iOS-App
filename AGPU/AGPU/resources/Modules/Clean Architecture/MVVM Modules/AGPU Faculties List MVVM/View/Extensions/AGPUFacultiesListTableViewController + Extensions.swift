@@ -7,7 +7,6 @@
 
 import Foundation
 import MessageUI
-import AVKit
 
 // MARK: - MFMailComposeViewControllerDelegate
 extension AGPUFacultiesListTableViewController: MFMailComposeViewControllerDelegate {
@@ -29,33 +28,5 @@ extension AGPUFacultiesListTableViewController: MFMailComposeViewControllerDeleg
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
-    }
-}
-
-// MARK: - AVPlayerViewControllerDelegate
-extension AGPUFacultiesListTableViewController: AVPlayerViewControllerDelegate {
-    
-    func PlayVideo(url: String) {
-        guard let videoURL = URL(string: url) else {
-            print("Invalid video URL")
-            return
-        }
-        
-        // Создаем AVPlayerViewController
-        let playerViewController = AVPlayerViewController()
-        let player = AVPlayer(url: videoURL)
-        playerViewController.player = player
-        playerViewController.delegate = self
-        // Воспроизводим видео
-        present(playerViewController, animated: true) {
-            playerViewController.player?.play()
-        }
-    }
-    
-    func playerViewController(_ playerViewController: AVPlayerViewController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
-        present(playerViewController, animated: true) {
-            playerViewController.player?.play()
-            completionHandler(true)
-        }
     }
 }
