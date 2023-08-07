@@ -19,6 +19,7 @@ struct AGPUSections {
             subsections: AGPUSubSections.subsections["Главное"]!,
             voiceCommand: "главное"
         ),
+        
         AGPUSectionModel(
             id: 1, name: "Университет",
             icon: "university",
@@ -26,6 +27,7 @@ struct AGPUSections {
             subsections: AGPUSubSections.subsections["Университет"]!,
             voiceCommand: "универ"
         ),
+        
         AGPUSectionModel(
             id: 2, name: "Абитуриенту",
             icon: "user",
@@ -33,6 +35,7 @@ struct AGPUSections {
             subsections: AGPUSubSections.subsections["Абитуриенту"]!,
             voiceCommand: "абитуриент"
         ),
+        
         AGPUSectionModel(
             id: 3, name: "Студенту",
             icon: "student",
@@ -40,6 +43,7 @@ struct AGPUSections {
             subsections: AGPUSubSections.subsections["Студенту"]!,
             voiceCommand: "студент"
         ),
+        
         AGPUSectionModel(
             id: 4,
             name: "Сотрудникам",
@@ -48,6 +52,7 @@ struct AGPUSections {
             subsections: AGPUSubSections.subsections["Сотрудникам"]!,
             voiceCommand: "сотрудник"
         ),
+        
         AGPUSectionModel(
             id: 5,
             name: "Наука",
@@ -56,6 +61,7 @@ struct AGPUSections {
             subsections: AGPUSubSections.subsections["Наука"]!,
             voiceCommand: "наук"
         ),
+        
         AGPUSectionModel(
             id: 6,
             name: "Партнерам",
@@ -64,6 +70,7 @@ struct AGPUSections {
             subsections: AGPUSubSections.subsections["Партнерам"]!,
             voiceCommand: "партнёр"
         ),
+        
         AGPUSectionModel(
             id: 7,
             name: "Международная деятельность",
@@ -72,13 +79,14 @@ struct AGPUSections {
             subsections: AGPUSubSections.subsections["Международная деятельность"]!,
             voiceCommand: "международная деятельность"
         ),
+        
         AGPUSectionModel(
             id: 8,
             name: "Безопасность",
             icon: "security",
             url: "http://test.agpu.net/bezopasnost/index.php",
             subsections: AGPUSubSections.subsections["Безопасность"]!,
-            voiceCommand: "безопасность"
+            voiceCommand: "безопасност"
         )
     ]
 }

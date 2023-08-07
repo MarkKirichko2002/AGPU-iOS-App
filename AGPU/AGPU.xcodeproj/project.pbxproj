@@ -126,6 +126,8 @@
 		82B1C0CF2A8070CE00520C14 /* SubGroupsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1C0CE2A8070CE00520C14 /* SubGroupsListViewModelProtocol.swift */; };
 		82B1C0D22A8070FF00520C14 /* SubGroupsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1C0D12A8070FF00520C14 /* SubGroupsListViewModel + Extensions.swift */; };
 		82B1C0D62A8071E500520C14 /* SubGroupsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1C0D52A8071E500520C14 /* SubGroupsListTableViewController.swift */; };
+		82B1C0EE2A8123F800520C14 /* VoiceDirections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1C0ED2A8123F800520C14 /* VoiceDirections.swift */; };
+		82B1C0F12A8125E400520C14 /* VoiceDirectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1C0F02A8125E400520C14 /* VoiceDirectionModel.swift */; };
 		82B1CA782A681F1D00D1FBA4 /* SpringImageView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1CA772A681F1D00D1FBA4 /* SpringImageView + Extensions.swift */; };
 		82BA73B62A579B8D006B67DA /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BA73B52A579B8D006B67DA /* WebViewModel.swift */; };
 		82BC3CFC2A56EDA000E49332 /* RecentWebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFB2A56EDA000E49332 /* RecentWebPageViewController.swift */; };
@@ -178,6 +180,8 @@
 		82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5942A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift */; };
 		82E4C5972A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82E4C5952A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib */; };
 		82E4E5592A57699E00314296 /* WKWebView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4E5582A57699E00314296 /* WKWebView + Extensions.swift */; };
+		82ECABE12A81520A00FE7462 /* SubGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECABE02A81520A00FE7462 /* SubGroupModel.swift */; };
+		82ECABE52A81524500FE7462 /* SubGroupsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECABE42A81524500FE7462 /* SubGroupsList.swift */; };
 		82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */; };
 		82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */; };
 		82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */; };
@@ -308,6 +312,8 @@
 		82B1C0CE2A8070CE00520C14 /* SubGroupsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGroupsListViewModelProtocol.swift; sourceTree = "<group>"; };
 		82B1C0D12A8070FF00520C14 /* SubGroupsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubGroupsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82B1C0D52A8071E500520C14 /* SubGroupsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGroupsListTableViewController.swift; sourceTree = "<group>"; };
+		82B1C0ED2A8123F800520C14 /* VoiceDirections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceDirections.swift; sourceTree = "<group>"; };
+		82B1C0F02A8125E400520C14 /* VoiceDirectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceDirectionModel.swift; sourceTree = "<group>"; };
 		82B1CA772A681F1D00D1FBA4 /* SpringImageView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpringImageView + Extensions.swift"; sourceTree = "<group>"; };
 		82BA73B52A579B8D006B67DA /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		82BC3CFB2A56EDA000E49332 /* RecentWebPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWebPageViewController.swift; sourceTree = "<group>"; };
@@ -358,6 +364,8 @@
 		82E4C5942A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupTableViewCell.swift; sourceTree = "<group>"; };
 		82E4C5952A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FacultyGroupTableViewCell.xib; sourceTree = "<group>"; };
 		82E4E5582A57699E00314296 /* WKWebView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView + Extensions.swift"; sourceTree = "<group>"; };
+		82ECABE02A81520A00FE7462 /* SubGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGroupModel.swift; sourceTree = "<group>"; };
+		82ECABE42A81524500FE7462 /* SubGroupsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGroupsList.swift; sourceTree = "<group>"; };
 		82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClassProtocol.swift; sourceTree = "<group>"; };
 		82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManagerProtocol.swift; sourceTree = "<group>"; };
 		82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringImageView.swift; sourceTree = "<group>"; };
@@ -1429,6 +1437,7 @@
 				8208E7522A63A3B300675EF1 /* AGPU Themes */,
 				826716C02A5A2ADA00CD5C23 /* Recent Web Page */,
 				821270582A7929F80095D68E /* Recent PDF */,
+				82B1C0EB2A8123DF00520C14 /* Voice Directions */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1975,6 +1984,7 @@
 		82B1C0C52A80702D00520C14 /* Sub Groups List MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				82ECABDF2A8151ED00FE7462 /* Model */,
 				82B1C0C72A80705700520C14 /* View */,
 				82B1C0C62A80705500520C14 /* ViewModel */,
 			);
@@ -2029,6 +2039,31 @@
 				82B1C0CE2A8070CE00520C14 /* SubGroupsListViewModelProtocol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		82B1C0EB2A8123DF00520C14 /* Voice Directions */ = {
+			isa = PBXGroup;
+			children = (
+				82B1C0EF2A8125D600520C14 /* Model */,
+				82B1C0EC2A8123E800520C14 /* List */,
+			);
+			path = "Voice Directions";
+			sourceTree = "<group>";
+		};
+		82B1C0EC2A8123E800520C14 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				82B1C0ED2A8123F800520C14 /* VoiceDirections.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		82B1C0EF2A8125D600520C14 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82B1C0F02A8125E400520C14 /* VoiceDirectionModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		82B1CA742A681EE400D1FBA4 /* View */ = {
@@ -2733,6 +2768,31 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		82ECABDF2A8151ED00FE7462 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82ECABE22A81522700FE7462 /* Model */,
+				82ECABE32A81522D00FE7462 /* List */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82ECABE22A81522700FE7462 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82ECABE02A81520A00FE7462 /* SubGroupModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82ECABE32A81522D00FE7462 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				82ECABE42A81524500FE7462 /* SubGroupsList.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
 		82EF23D02A3DED73004A7B9C /* Speech Recognition */ = {
 			isa = PBXGroup;
 			children = (
@@ -2903,6 +2963,7 @@
 				82E05D542A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift in Sources */,
 				8228E39F2A6C994D00C1B6AD /* AGPUBuildingsMapViewModel.swift in Sources */,
 				82BF4DB42A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift in Sources */,
+				82B1C0F12A8125E400520C14 /* VoiceDirectionModel.swift in Sources */,
 				82989ADE2A6E59BC00F27858 /* AGPUCurrentCathedraMapViewController + Extensions.swift in Sources */,
 				828DC55C2A7B3887001EA324 /* FacultyGroups.swift in Sources */,
 				820E40952A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift in Sources */,
@@ -2938,6 +2999,7 @@
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
 				82D6C3342A5E1DEC00FB7F5D /* Discipline.swift in Sources */,
+				82ECABE52A81524500FE7462 /* SubGroupsList.swift in Sources */,
 				82426C742A71476D00D5AA57 /* ForEveryStatusModel.swift in Sources */,
 				82426C8D2A71D26100D5AA57 /* ForEmployeeSections.swift in Sources */,
 				8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */,
@@ -3002,6 +3064,7 @@
 				8210CA052A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift in Sources */,
 				827F0FFA2A4B2D7E00C481E4 /* AGPUNewsViewController.swift in Sources */,
 				82989ACA2A6E2D4500F27858 /* FacultyCathedraModel.swift in Sources */,
+				82ECABE12A81520A00FE7462 /* SubGroupModel.swift in Sources */,
 				821270512A7903930095D68E /* PDFLastPageViewController.swift in Sources */,
 				82808E8D2A31F12100DEEB16 /* AGPUSectionsListViewController.swift in Sources */,
 				82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */,
@@ -3044,6 +3107,7 @@
 				82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */,
 				820D33AD2A75ACA900843313 /* FacultyCathedraListTableViewController + Extensions.swift in Sources */,
 				822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */,
+				82B1C0EE2A8123F800520C14 /* VoiceDirections.swift in Sources */,
 				8295489C2A43AE7E007DEBA0 /* SettingsManager.swift in Sources */,
 				828CFA372A35F65700C7542D /* WebViewController.swift in Sources */,
 				82E4C5842A6B201600F65A67 /* LocationManagerProtocol.swift in Sources */,

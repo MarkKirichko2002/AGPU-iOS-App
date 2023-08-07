@@ -44,7 +44,7 @@ struct AGPUSubSections {
                 name: "Институты и Факультеты",
                 icon: "university",
                 url: "http://test.agpu.net/struktura-vuza/faculties-institutes/index.php",
-                voiceCommand: "институтыифакультеты"
+                voiceCommand: "факультеты"
             ),
             AGPUSubSectionModel(
                 id: 4,
@@ -101,7 +101,7 @@ struct AGPUSubSections {
                 name: "Институты/Факультеты",
                 icon: "user",
                 url: "http://test.agpu.net/abitur/faculties-institutes/index.php",
-                voiceCommand: "институтыфакультеты"
+                voiceCommand: "факультеты"
             ),
             AGPUSubSectionModel(
                 id: 2,

@@ -29,7 +29,7 @@ extension AGPUNewsViewModel: AGPUNewsViewModelProtocol {
         var positionY = 0
         var scrollPosition = ""
         
-        NotificationCenter.default.addObserver(forName: Notification.Name("ScrollMainScreen"), object: nil, queue: .main) { notification in
+        NotificationCenter.default.addObserver(forName: Notification.Name("scroll news screen"), object: nil, queue: .main) { notification in
             scrollPosition = notification.object as? String ?? ""
             
             print(scrollPosition)
