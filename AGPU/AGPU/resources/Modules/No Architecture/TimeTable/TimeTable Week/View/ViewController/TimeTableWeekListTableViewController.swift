@@ -14,6 +14,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     var startDate: String = ""
     private var endDate: String = ""
     private var group: String = ""
+    private var subgroup: Int = 0
     var timetable = [TimeTable]()
     
     // MARK: - UI
@@ -22,8 +23,9 @@ final class TimeTableWeekListTableViewController: UIViewController {
     private let noTimeTableLabel = UILabel()
     
     // MARK: - Init
-    init(group: String, startDate: String, endDate: String) {
+    init(group: String, subgroup: Int, startDate: String, endDate: String) {
         self.group = group
+        self.subgroup = subgroup
         self.startDate = startDate
         self.endDate = endDate
         super.init(nibName: nil, bundle: nil)

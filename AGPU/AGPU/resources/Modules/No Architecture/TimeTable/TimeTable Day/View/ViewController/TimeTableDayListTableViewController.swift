@@ -12,6 +12,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     private let service = TimeTableService()
     private let dateManager = DateManager()
     private var group = ""
+    private var subgroup = 0
     private var date = ""
     
     var timetable: TimeTable?
@@ -23,13 +24,13 @@ final class TimeTableDayListTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        group = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-1-1"
         date = dateManager.getCurrentDate()
         SetUpNavigation()
         SetUpTable()
         SetUpIndicatorView()
         SetUpLabel()
         ObserveGroupChange()
+        ObserveSubGroupChange()
         ObserveCalendar()
         GetTimeTable(group: group, date: date)
     }
@@ -133,7 +134,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         for week in weeks {
             let action = UIAction(title: week) { _ in
-                let vc = TimeTableWeekListTableViewController(group: self.group, startDate: "01.06.2023", endDate: "08.06.2023")
+                let vc = TimeTableWeekListTableViewController(group: self.group, subgroup: self.subgroup, startDate: "01.06.2023", endDate: "08.06.2023")
                 let navVC = UINavigationController(rootViewController: vc)
                 navVC.modalPresentationStyle = .fullScreen
                 self.present(navVC, animated: true)
@@ -177,6 +178,8 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     func GetTimeTable(group: String, date: String) {
+        self.group = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-1-1"
+        self.subgroup = UserDefaults.standard.integer(forKey: "subgroup")
         self.spinner.startAnimating()
         self.noTimeTableLabel.isHidden = true
         self.timetable?.disciplines = []
@@ -186,7 +189,9 @@ final class TimeTableDayListTableViewController: UIViewController {
             case .success(let timetable):
                 if !timetable.disciplines.isEmpty {
                     DispatchQueue.main.async {
+                        let data = timetable.disciplines.filter { $0.subgroup == self.subgroup || $0.subgroup == 0}
                         self.timetable = timetable
+                        self.timetable?.disciplines = data
                         self.tableView.reloadData()
                         self.spinner.stopAnimating()
                         self.noTimeTableLabel.isHidden = true
@@ -211,6 +216,12 @@ final class TimeTableDayListTableViewController: UIViewController {
                 self.group = group
                 print(self.group)
             }
+        }
+    }
+    
+    private func ObserveSubGroupChange() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("subgroup changed"), object: nil, queue: .main) { _ in
+            self.GetTimeTable(group: self.group, date: self.date)
         }
     }
     

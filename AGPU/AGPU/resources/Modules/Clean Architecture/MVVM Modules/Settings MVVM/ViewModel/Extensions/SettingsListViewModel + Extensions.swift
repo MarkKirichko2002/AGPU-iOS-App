@@ -80,6 +80,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
                 }
                 UserDefaults.standard.setValue(nil, forKey: "icon")
                 UserDefaults.standard.setValue(nil, forKey: "group")
+                UserDefaults.standard.setValue(nil, forKey: "subgroup")
                 UserDefaults.standard.setValue(nil, forKey: "cathedra")
             }
         }
@@ -113,8 +114,17 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         if faculty?.id == AGPUFaculties.faculties[index].id && faculty?.isSelected == true {
             if group != nil {
                 return true
-            } else {
-                print("NOOOOOOO")
+            }
+        }
+        return false
+    }
+    
+    func isSubGroupSelected(index: Int)-> Bool {
+        let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty")
+        let subgroup = UserDefaults.standard.string(forKey: "subgroup")
+        if faculty?.id == AGPUFaculties.faculties[index].id && faculty?.isSelected == true {
+            if subgroup != nil {
+                return true
             }
         }
         return false

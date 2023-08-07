@@ -122,6 +122,10 @@
 		829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6982A43818A0047609B /* SettingsListViewModel.swift */; };
 		82B1C0C12A805D8200520C14 /* RecentMomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1C0C02A805D8200520C14 /* RecentMomentsViewController.swift */; };
 		82B1C0C42A8061AA00520C14 /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1C0C32A8061AA00520C14 /* TimeTable.swift */; };
+		82B1C0CA2A8070A100520C14 /* SubGroupsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1C0C92A8070A100520C14 /* SubGroupsListViewModel.swift */; };
+		82B1C0CF2A8070CE00520C14 /* SubGroupsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1C0CE2A8070CE00520C14 /* SubGroupsListViewModelProtocol.swift */; };
+		82B1C0D22A8070FF00520C14 /* SubGroupsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1C0D12A8070FF00520C14 /* SubGroupsListViewModel + Extensions.swift */; };
+		82B1C0D62A8071E500520C14 /* SubGroupsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1C0D52A8071E500520C14 /* SubGroupsListTableViewController.swift */; };
 		82B1CA782A681F1D00D1FBA4 /* SpringImageView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1CA772A681F1D00D1FBA4 /* SpringImageView + Extensions.swift */; };
 		82BA73B62A579B8D006B67DA /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BA73B52A579B8D006B67DA /* WebViewModel.swift */; };
 		82BC3CFC2A56EDA000E49332 /* RecentWebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFB2A56EDA000E49332 /* RecentWebPageViewController.swift */; };
@@ -300,6 +304,10 @@
 		829AD6982A43818A0047609B /* SettingsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewModel.swift; sourceTree = "<group>"; };
 		82B1C0C02A805D8200520C14 /* RecentMomentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMomentsViewController.swift; sourceTree = "<group>"; };
 		82B1C0C32A8061AA00520C14 /* TimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
+		82B1C0C92A8070A100520C14 /* SubGroupsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGroupsListViewModel.swift; sourceTree = "<group>"; };
+		82B1C0CE2A8070CE00520C14 /* SubGroupsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGroupsListViewModelProtocol.swift; sourceTree = "<group>"; };
+		82B1C0D12A8070FF00520C14 /* SubGroupsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubGroupsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		82B1C0D52A8071E500520C14 /* SubGroupsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGroupsListTableViewController.swift; sourceTree = "<group>"; };
 		82B1CA772A681F1D00D1FBA4 /* SpringImageView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpringImageView + Extensions.swift"; sourceTree = "<group>"; };
 		82BA73B52A579B8D006B67DA /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		82BC3CFB2A56EDA000E49332 /* RecentWebPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWebPageViewController.swift; sourceTree = "<group>"; };
@@ -1455,11 +1463,12 @@
 			children = (
 				821270572A7921DD0095D68E /* Web Modules */,
 				8228E3962A6C8EFD00C1B6AD /* Maps MVVM Modules */,
-				828321602A7C6A25008641A5 /* All Groups MVVM */,
-				822158942A422A480088BDE5 /* Settings MVVM */,
 				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
 				82989ACB2A6E308F00F27858 /* Faculty Cathedra List */,
 				825634B62A6221C10082B7B8 /* Faculty Groups List MVVM */,
+				828321602A7C6A25008641A5 /* All Groups MVVM */,
+				82B1C0C52A80702D00520C14 /* Sub Groups List MVVM */,
+				822158942A422A480088BDE5 /* Settings MVVM */,
 			);
 			path = "MVVM Modules";
 			sourceTree = "<group>";
@@ -1961,6 +1970,65 @@
 				82D6C3332A5E1DEC00FB7F5D /* Discipline.swift */,
 			);
 			path = Discipline;
+			sourceTree = "<group>";
+		};
+		82B1C0C52A80702D00520C14 /* Sub Groups List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82B1C0C72A80705700520C14 /* View */,
+				82B1C0C62A80705500520C14 /* ViewModel */,
+			);
+			path = "Sub Groups List MVVM";
+			sourceTree = "<group>";
+		};
+		82B1C0C62A80705500520C14 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82B1C0CD2A8070B300520C14 /* Protocol */,
+				82B1C0CC2A8070B100520C14 /* ViewModel */,
+				82B1C0CB2A8070AF00520C14 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82B1C0C72A80705700520C14 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82B1C0C82A80706400520C14 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82B1C0C82A80706400520C14 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82B1C0D52A8071E500520C14 /* SubGroupsListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82B1C0CB2A8070AF00520C14 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82B1C0D12A8070FF00520C14 /* SubGroupsListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82B1C0CC2A8070B100520C14 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82B1C0C92A8070A100520C14 /* SubGroupsListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82B1C0CD2A8070B300520C14 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82B1C0CE2A8070CE00520C14 /* SubGroupsListViewModelProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		82B1CA742A681EE400D1FBA4 /* View */ = {
@@ -2842,6 +2910,7 @@
 				82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */,
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
 				826BADAF2A64D5A500022B45 /* AGPULocationDetailViewController.swift in Sources */,
+				82B1C0CF2A8070CE00520C14 /* SubGroupsListViewModelProtocol.swift in Sources */,
 				82B1C0C42A8061AA00520C14 /* TimeTable.swift in Sources */,
 				82426C942A71DD0100D5AA57 /* UserStatusList.swift in Sources */,
 				828321732A7D643C008641A5 /* SearchAGPUBuildingMapViewController.swift in Sources */,
@@ -2918,10 +2987,12 @@
 				82E4C5432A6B10F900F65A67 /* WebViewModelProtocol.swift in Sources */,
 				82E4E5592A57699E00314296 /* WKWebView + Extensions.swift in Sources */,
 				826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */,
+				82B1C0D62A8071E500520C14 /* SubGroupsListTableViewController.swift in Sources */,
 				82989AEB2A6F6E1B00F27858 /* FacultyCathedraListViewModelProtocol.swift in Sources */,
 				82E4C5682A6B154300F65A67 /* FacultyGroupsListViewModelProtocol.swift in Sources */,
 				8241F9932A5F4091007DF628 /* TimeTableServicerProtocol.swift in Sources */,
 				82BEAD872A7417EC00DD34C2 /* RecentPageViewModelProtocol.swift in Sources */,
+				82B1C0CA2A8070A100520C14 /* SubGroupsListViewModel.swift in Sources */,
 				828321642A7C6A48008641A5 /* AllGroupsListTableViewController.swift in Sources */,
 				82426C782A714D6A00D5AA57 /* ForApplicantListTableViewController.swift in Sources */,
 				829548862A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift in Sources */,
@@ -2965,6 +3036,7 @@
 				826716C22A5A2AF600CD5C23 /* RecentWebPageModel.swift in Sources */,
 				82320D872A491F5700ECADEE /* AGPUFacultyTableViewCell.swift in Sources */,
 				820D339B2A75977400843313 /* FacultyContactsListTableViewController.swift in Sources */,
+				82B1C0D22A8070FF00520C14 /* SubGroupsListViewModel + Extensions.swift in Sources */,
 				820D339F2A75985400843313 /* ContactsModel.swift in Sources */,
 				8270A54D2A578A0E008ACADC /* AGPUNewsViewModel.swift in Sources */,
 				82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */,
