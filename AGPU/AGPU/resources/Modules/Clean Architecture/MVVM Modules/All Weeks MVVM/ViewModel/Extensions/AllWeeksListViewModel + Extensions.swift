@@ -1,22 +1,14 @@
 //
-//  AllWeeksListViewModel.swift
+//  AllWeeksListViewModel + Extensions.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 07.08.2023.
+//  Created by Марк Киричко on 08.08.2023.
 //
 
 import Foundation
 
-class AllWeeksListViewModel {
-    
-    // MARK: - сервисы
-    private let service = TimeTableService()
-    private let dateManager = DateManager()
-    
-    private var isChangedHandler: (()->Void)?
-    private var ScrollHandler: ((Int)->Void)?
-    
-    var weeks = [WeekModel]()
+// MARK: - AllWeeksListViewModelProtocol
+extension AllWeeksListViewModel: AllWeeksListViewModelProtocol {
     
     func GetWeeks() {
         service.GetWeeks { result in
@@ -47,5 +39,11 @@ class AllWeeksListViewModel {
     
     func registerScrollHandler(block: @escaping((Int)->Void)) {
         self.ScrollHandler = block
+    }
+    
+    func isCurrentWeek(index: Int)-> Bool {
+        let week = weeks[index]
+        let isRange = dateManager.DateRange(startDate: week.from, endDate: week.to)
+        return isRange
     }
 }

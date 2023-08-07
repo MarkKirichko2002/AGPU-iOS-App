@@ -11,7 +11,7 @@ import UIKit
 extension TimeTableWeekListTableViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let date = timetable[section].date
+        let date = "\(week.dayNames[timetable[section].date]!) \(timetable[section].date)"
         return date
     }
 

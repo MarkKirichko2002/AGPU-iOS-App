@@ -34,7 +34,7 @@ class AllWeeksListTableViewController: UITableViewController {
     }
     
     private func SetUpNavigation() {
-        navigationItem.title = "Недели"
+        navigationItem.title = "Список недель"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .black
         navigationItem.rightBarButtonItem = closeButton
@@ -69,7 +69,7 @@ class AllWeeksListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = TimeTableWeekListTableViewController(group: self.group, subgroup: self.subgroup, startDate: viewModel.weeks[indexPath.row].from, endDate: viewModel.weeks[indexPath.row].to)
+        let vc = TimeTableWeekListTableViewController(group: self.group, subgroup: self.subgroup, week: viewModel.weeks[indexPath.row])
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
@@ -82,6 +82,8 @@ class AllWeeksListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WeekTableViewCell.identifier, for: indexPath) as? WeekTableViewCell else {return UITableViewCell()}
         cell.configure(week: viewModel.weeks[indexPath.row])
+        cell.DateRangeLabel.textColor = viewModel.isCurrentWeek(index: indexPath.row) ? .systemGreen : .black
+        cell.WeekID.textColor = viewModel.isCurrentWeek(index: indexPath.row) ? .systemGreen : .black
         return cell
     }
 }

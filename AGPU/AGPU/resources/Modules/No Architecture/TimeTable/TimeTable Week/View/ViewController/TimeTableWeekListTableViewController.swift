@@ -11,10 +11,9 @@ final class TimeTableWeekListTableViewController: UIViewController {
     
     private let service = TimeTableService()
     
-    var startDate: String = ""
-    private var endDate: String = ""
     private var group: String = ""
     private var subgroup: Int = 0
+    var week: WeekModel!
     var timetable = [TimeTable]()
     
     // MARK: - UI
@@ -23,11 +22,10 @@ final class TimeTableWeekListTableViewController: UIViewController {
     private let noTimeTableLabel = UILabel()
     
     // MARK: - Init
-    init(group: String, subgroup: Int, startDate: String, endDate: String) {
+    init(group: String, subgroup: Int, week: WeekModel) {
         self.group = group
         self.subgroup = subgroup
-        self.startDate = startDate
-        self.endDate = endDate
+        self.week = week
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -44,7 +42,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     private func SetUpNavigation() {
-        navigationItem.title = "с \(startDate) до \(endDate)"
+        navigationItem.title = "с \(week.from) до \(week.to)"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .black
         let menu = SetUpDatesMenu()
@@ -60,13 +58,13 @@ final class TimeTableWeekListTableViewController: UIViewController {
     
     private func SetUpDatesMenu() -> UIMenu {
         let actions = timetable.enumerated().map { (index: Int, date: TimeTable) -> UIAction in
-            return UIAction(title: date.date) { _ in
+            return UIAction(title: week.dayNames[date.date]!) { _ in
                 if !date.disciplines.isEmpty {
                     self.tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
                 }
             }
         }
-        let datesList = UIMenu(title: "даты", options: .singleSelection, children: actions)
+        let datesList = UIMenu(title: "дни недели", options: .singleSelection, children: actions)
         return datesList
     }
     
@@ -106,7 +104,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         self.noTimeTableLabel.isHidden = true
         self.timetable = []
         self.tableView.reloadData()
-        service.GetTimeTableWeek(groupId: group, startDate: startDate, endDate: endDate) { result in
+        service.GetTimeTableWeek(groupId: group, startDate: week.from, endDate: week.to) { result in
             switch result {
             case .success(let timetable):
                 var arr = [TimeTable]()
