@@ -16,7 +16,7 @@ extension WebViewModel: WebViewModelProtocol {
         var positionY = 0
         var scrollPosition = ""
         
-        NotificationCenter.default.addObserver(forName: Notification.Name("scroll"), object: nil, queue: .main) { notification in
+        NotificationCenter.default.addObserver(forName: Notification.Name("scroll web page"), object: nil, queue: .main) { notification in
             scrollPosition = notification.object as? String ?? ""
             
             print(scrollPosition)

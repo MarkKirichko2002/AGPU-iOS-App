@@ -140,18 +140,11 @@ final class AGPUTabBarController: UITabBarController {
         
         // MARK: - Screen "News"
         if text != "" && selectedIndex == 0 {
-            if text.lowercased().lastWord() == "вверх" {
-                self.displayDynamicButton(icon: "")
-                NotificationCenter.default.post(name: Notification.Name("ScrollMainScreen"), object: text.lastWord())
-            } else if text.lowercased().lastWord() == "вниз" {
-                self.displayDynamicButton(icon: "arrow.down")
-                NotificationCenter.default.post(name: Notification.Name("ScrollMainScreen"), object: text.lastWord())
-            } else if text.lowercased().lastWord().contains("лево") {
-                self.displayDynamicButton(icon: "arrow.left")
-                NotificationCenter.default.post(name: Notification.Name("ScrollMainScreen"), object: text.lastWord())
-            } else if text.lowercased().lastWord().contains("право"){
-                self.displayDynamicButton(icon: "arrow.right")
-                NotificationCenter.default.post(name: Notification.Name("ScrollMainScreen"), object: text.lastWord())
+            for direction in VoiceDirections.directions {
+                if direction.name.contains(text.lastWord()) {
+                    self.displayDynamicButton(icon: direction.icon)
+                    NotificationCenter.default.post(name: Notification.Name("scroll news screen"), object: text.lastWord())
+                }
             }
         }
         
@@ -161,7 +154,7 @@ final class AGPUTabBarController: UITabBarController {
                 
                 if text.lowercased().contains(section.voiceCommand) {
                     
-                    self.displayDynamicButton(icon: "section.icon")
+                    self.displayDynamicButton(icon: section.icon)
                     
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                         self.GoToWeb(url: section.url, title: section.name, isSheet: false)
@@ -196,13 +189,17 @@ final class AGPUTabBarController: UITabBarController {
                     
                     if text.noWhitespacesWord().contains(subsection.voiceCommand) {
                         
-                        self.displayDynamicButton(icon: "subsection.icon")
+                        self.displayDynamicButton(icon: subsection.icon)
                         
                         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                            self.GoToWeb(url: subsection.url, title: nil, isSheet: false)
+                            self.GoToWeb(url: subsection.url, title: "ФГБОУ ВО «АГПУ»", isSheet: false)
                         }
                         
-                        NotificationCenter.default.post(name: Notification.Name("scroll"), object: text.lastWord())
+                        for direction in VoiceDirections.directions {
+                            if direction.name.contains(text.lastWord()) {
+                                NotificationCenter.default.post(name: Notification.Name("scroll web page"), object: text.lastWord())
+                            }
+                        }
                         break
                     }
                 }
