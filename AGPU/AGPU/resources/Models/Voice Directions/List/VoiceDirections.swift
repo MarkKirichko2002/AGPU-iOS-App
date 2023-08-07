@@ -21,11 +21,11 @@ struct VoiceDirections {
         ),
         VoiceDirectionModel(
             name: "право",
-            icon: "arrow.left"
+            icon: "arrow.right"
         ),
         VoiceDirectionModel(
             name: "лево",
-            icon: "arrow.right"
+            icon: "arrow.left"
         )
     ]
 }
