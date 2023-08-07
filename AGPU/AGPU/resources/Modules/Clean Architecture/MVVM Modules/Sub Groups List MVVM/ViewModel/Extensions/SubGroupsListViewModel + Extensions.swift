@@ -10,17 +10,27 @@ import Foundation
 // MARK: - SubGroupsListViewModelProtocol
 extension SubGroupsListViewModel: SubGroupsListViewModelProtocol {
     
+    func numberOfSubGroups()-> Int {
+        return SubGroupsList.subgroups.count
+    }
+    
+    func subgroupItem(index: Int)-> SubGroupModel {
+        let subgroup = SubGroupsList.subgroups[index]
+        return subgroup
+    }
+    
     func selectSubGroup(index: Int) {
-        let subgroup = [1,2]
-        UserDefaults.standard.setValue(subgroup[index], forKey: "subgroup")
+        let subgroup = SubGroupsList.subgroups[index].number
+        UserDefaults.standard.setValue(subgroup, forKey: "subgroup")
         NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: nil)
         changedHandler?()
     }
     
     func isSubGroupSelected(index: Int)-> Bool {
-        let subgroup = [1,2]
-        let lastSubGroup = UserDefaults.standard.integer(forKey: "subgroup")
-        if lastSubGroup == subgroup[index] {
+        let subgroup = SubGroupsList.subgroups[index]
+        let lastSubGroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
+        print(lastSubGroup)
+        if lastSubGroup == subgroup.number {
             return true
         } else {
             return false

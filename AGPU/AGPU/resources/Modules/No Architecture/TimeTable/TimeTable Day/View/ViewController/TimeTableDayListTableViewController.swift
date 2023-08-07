@@ -190,7 +190,7 @@ final class TimeTableDayListTableViewController: UIViewController {
             case .success(let timetable):
                 if !timetable.disciplines.isEmpty {
                     DispatchQueue.main.async {
-                        let data = timetable.disciplines.filter { $0.subgroup == self.subgroup || $0.subgroup == 0}
+                        let data = timetable.disciplines.filter { $0.subgroup == self.subgroup || $0.subgroup == 0 || (self.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
                         self.timetable = timetable
                         self.timetable?.disciplines = data
                         self.tableView.reloadData()
