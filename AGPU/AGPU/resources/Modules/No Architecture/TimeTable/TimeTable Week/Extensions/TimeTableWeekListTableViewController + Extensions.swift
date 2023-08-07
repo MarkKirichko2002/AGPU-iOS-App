@@ -14,7 +14,7 @@ extension TimeTableWeekListTableViewController: UITableViewDelegate {
         let date = "\(week.dayNames[timetable[section].date]!) \(timetable[section].date)"
         return date
     }
-
+    
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil,
                                           previewProvider: nil,

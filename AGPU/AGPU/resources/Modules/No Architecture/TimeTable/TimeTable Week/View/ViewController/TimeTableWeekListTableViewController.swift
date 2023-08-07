@@ -58,7 +58,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     
     private func SetUpDatesMenu() -> UIMenu {
         let actions = timetable.enumerated().map { (index: Int, date: TimeTable) -> UIAction in
-            return UIAction(title: week.dayNames[date.date]!) { _ in
+            return UIAction(title: week.dayNames[date.date]!.lowercased()) { _ in
                 if !date.disciplines.isEmpty {
                     self.tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
                 }
@@ -114,7 +114,6 @@ final class TimeTableWeekListTableViewController: UIViewController {
                         let timeTable = TimeTable(date: timetable.date, groupName: timetable.groupName, disciplines: data)
                         arr.append(timeTable)
                     }
-                    
                     DispatchQueue.main.async {
                         self.timetable = arr
                         self.tableView.reloadData()
@@ -125,11 +124,13 @@ final class TimeTableWeekListTableViewController: UIViewController {
                 } else {
                     self.noTimeTableLabel.isHidden = false
                     self.spinner.stopAnimating()
+                    self.SetUpNavigation()
                 }
             case .failure(let error):
                 self.spinner.stopAnimating()
                 self.noTimeTableLabel.text = "Ошибка"
                 self.noTimeTableLabel.isHidden = false
+                self.SetUpNavigation()
                 print(error)
             }
         }
