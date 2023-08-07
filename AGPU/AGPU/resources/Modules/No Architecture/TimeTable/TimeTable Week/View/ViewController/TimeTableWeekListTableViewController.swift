@@ -121,9 +121,16 @@ final class TimeTableWeekListTableViewController: UIViewController {
         service.GetTimeTableWeek(groupId: group, startDate: startDate, endDate: endDate) { result in
             switch result {
             case .success(let timetable):
+                var arr = [TimeTable]()
                 if !timetable.isEmpty {
+                    for timetable in timetable {
+                        let data = timetable.disciplines.filter({$0.subgroup == self.subgroup || $0.subgroup == 0})
+                        let timeTable = TimeTable(date: timetable.date, groupName: timetable.groupName, disciplines: data)
+                        arr.append(timeTable)
+                    }
+                    
                     DispatchQueue.main.async {
-                        self.timetable = timetable
+                        self.timetable = arr
                         self.tableView.reloadData()
                         self.spinner.stopAnimating()
                         self.noTimeTableLabel.isHidden = true
