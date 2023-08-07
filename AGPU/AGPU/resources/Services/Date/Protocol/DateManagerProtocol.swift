@@ -12,6 +12,5 @@ protocol DateManagerProtocol {
     func getCurrentTime()-> String
     func nextDay(date: String)-> String
     func previousDay(date: String)-> String
-    func getWeekId(date: String)-> Int
-    func countDays(startDate: String, endDate: String)-> Int
+    func DateRange(startDate: String, endDate: String)-> Bool
 }

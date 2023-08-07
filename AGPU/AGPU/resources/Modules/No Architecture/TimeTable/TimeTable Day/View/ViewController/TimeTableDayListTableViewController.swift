@@ -81,11 +81,19 @@ final class TimeTableDayListTableViewController: UIViewController {
             calendar
         ])
         
-        let weeksList = SetUpWeeksMenu()
+        
+        let weeksList = UIAction(title: "список недель") { _ in
+            let vc = AllWeeksListTableViewController(group: self.group, subgroup: self.subgroup)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         // поделиться
         let shareTimeTable = UIAction(title: "поделиться") { _ in
             self.shareTableViewAsImage(tableView: self.tableView, title: self.date, text: self.group)
         }
+        
         let menu = UIMenu(title: "расписание", children: [
             groupList,
             day,
@@ -95,55 +103,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         options.tintColor = .black
-        navigationItem.rightBarButtonItem = options
-    }
-    
-    private func SetUpGroupsMenu()-> UIMenu {
-        
-        var arr = [UIMenu]()
-        for group in FacultyGroups.groups {
-            let items = group.groups.map { group in
-                return UIAction(title: group) { _ in
-                    self.group = group
-                    self.spinner.startAnimating()
-                    self.noTimeTableLabel.isHidden = true
-                    self.timetable?.disciplines = []
-                    self.tableView.reloadData()
-                    self.GetTimeTable(group: group, date: self.date)
-                }
-            }
-            
-            let mainMenu = UIMenu(title: group.name.abbreviation(), options: .singleSelection, children: items)
-            arr.append(mainMenu)
-        }
-        
-        // список групп
-        let groupList = UIMenu(title: "группы", image: UIImage(named: "group"), children: arr)
-        return groupList
-    }
-    
-    private func SetUpWeeksMenu()-> UIMenu {
-        
-        var weeks = [String]()
-        var actions = [UIAction]()
-        
-        for i in 0..<50 {
-            let week = "неделя \(i + 1)"
-            weeks.append(week)
-        }
-        
-        for week in weeks {
-            let action = UIAction(title: week) { _ in
-                let vc = TimeTableWeekListTableViewController(group: self.group, subgroup: self.subgroup, startDate: "01.06.2023", endDate: "08.06.2023")
-                let navVC = UINavigationController(rootViewController: vc)
-                navVC.modalPresentationStyle = .fullScreen
-                self.present(navVC, animated: true)
-            }
-            actions.append(action)
-        }
-        
-        let menu = UIMenu(title: "недели", children: actions)
-        return menu
+        self.navigationItem.rightBarButtonItem = options
     }
     
     private func SetUpIndicatorView() {

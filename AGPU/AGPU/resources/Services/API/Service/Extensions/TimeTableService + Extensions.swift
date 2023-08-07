@@ -11,6 +11,22 @@ import Alamofire
 // MARK: - TimeTableServicerProtocol
 extension TimeTableService: TimeTableServicerProtocol {
     
+    func GetWeeks(completion: @escaping(Result<[WeekModel],Error>)->Void) {
+        
+        AF.request("http://merqury.fun:8080/api/getWeeks").responseData { response in
+            
+            guard let data = response.data else {return}
+            
+            do {
+                let weeks = try JSONDecoder().decode([WeekModel].self, from: data)
+                print("Недели: \(weeks)")
+                completion(.success(weeks))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
     func GetTimeTableDay(groupId: String, date: String, completion: @escaping(Result<TimeTable,Error>)->Void) {
         
         let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""

@@ -25,7 +25,6 @@ extension DateManager: DateManagerProtocol {
     }
     
     func nextDay(date: String)-> String {
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
         var nextDay = ""
@@ -62,25 +61,24 @@ extension DateManager: DateManagerProtocol {
         return previousDay
     }
     
-    func getWeekId(date: String)-> Int {
-        let mappingWeekId = 1
-        let weekId = mappingWeekId + countDays(startDate: "29.08.2022", endDate: date) / 7
-        return weekId
-    }
-    
-    func countDays(startDate: String, endDate: String)-> Int {
+    func DateRange(startDate: String, endDate: String)-> Bool {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
 
-        let startDateObj = dateFormatter.date(from: startDate)!
-        let endDateObj = dateFormatter.date(from: endDate)!
+        let startDateString = startDate
+        let endDateString = endDate
+        let currentDateString = getCurrentDate()
 
-        let calendar = Calendar.current
-        let start = calendar.startOfDay(for: startDateObj)
-        let end = calendar.startOfDay(for: endDateObj)
+        if let startDate = dateFormatter.date(from: startDateString),
+            let endDate = dateFormatter.date(from: endDateString),
+            let currentDate = dateFormatter.date(from: currentDateString) {
 
-        let dateComponents = calendar.dateComponents([.day], from: start, to: end)
-
-        return dateComponents.day!
+            if (startDate...endDate).contains(currentDate) {
+                return true
+            } else {
+                return false
+            }
+        }
+        return false
     }
 }

@@ -129,6 +129,11 @@
 		82B1C0EE2A8123F800520C14 /* VoiceDirections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1C0ED2A8123F800520C14 /* VoiceDirections.swift */; };
 		82B1C0F12A8125E400520C14 /* VoiceDirectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1C0F02A8125E400520C14 /* VoiceDirectionModel.swift */; };
 		82B1CA782A681F1D00D1FBA4 /* SpringImageView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1CA772A681F1D00D1FBA4 /* SpringImageView + Extensions.swift */; };
+		82B24A642A816B54008B94E4 /* WeekModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B24A632A816B54008B94E4 /* WeekModel.swift */; };
+		82B24A692A817AEC008B94E4 /* AllWeeksListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B24A682A817AEC008B94E4 /* AllWeeksListTableViewController.swift */; };
+		82B24A6D2A817BDE008B94E4 /* WeekTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B24A6B2A817BDE008B94E4 /* WeekTableViewCell.swift */; };
+		82B24A6E2A817BDE008B94E4 /* WeekTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82B24A6C2A817BDE008B94E4 /* WeekTableViewCell.xib */; };
+		82B24A732A8180AE008B94E4 /* AllWeeksListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B24A722A8180AE008B94E4 /* AllWeeksListViewModel.swift */; };
 		82BA73B62A579B8D006B67DA /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BA73B52A579B8D006B67DA /* WebViewModel.swift */; };
 		82BC3CFC2A56EDA000E49332 /* RecentWebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFB2A56EDA000E49332 /* RecentWebPageViewController.swift */; };
 		82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */; };
@@ -315,6 +320,11 @@
 		82B1C0ED2A8123F800520C14 /* VoiceDirections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceDirections.swift; sourceTree = "<group>"; };
 		82B1C0F02A8125E400520C14 /* VoiceDirectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceDirectionModel.swift; sourceTree = "<group>"; };
 		82B1CA772A681F1D00D1FBA4 /* SpringImageView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpringImageView + Extensions.swift"; sourceTree = "<group>"; };
+		82B24A632A816B54008B94E4 /* WeekModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekModel.swift; sourceTree = "<group>"; };
+		82B24A682A817AEC008B94E4 /* AllWeeksListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllWeeksListTableViewController.swift; sourceTree = "<group>"; };
+		82B24A6B2A817BDE008B94E4 /* WeekTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekTableViewCell.swift; sourceTree = "<group>"; };
+		82B24A6C2A817BDE008B94E4 /* WeekTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeekTableViewCell.xib; sourceTree = "<group>"; };
+		82B24A722A8180AE008B94E4 /* AllWeeksListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllWeeksListViewModel.swift; sourceTree = "<group>"; };
 		82BA73B52A579B8D006B67DA /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		82BC3CFB2A56EDA000E49332 /* RecentWebPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWebPageViewController.swift; sourceTree = "<group>"; };
 		82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController + Extensions.swift"; sourceTree = "<group>"; };
@@ -1024,6 +1034,7 @@
 		8241F9972A5F40BD007DF628 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				82B24A622A816B4A008B94E4 /* Week */,
 				82B87C752A7AF52800E9E68B /* Time table */,
 				82B1C0C22A80611100520C14 /* Discipline */,
 			);
@@ -1404,7 +1415,6 @@
 		826888672A33B87A00434219 /* No Architecture */ = {
 			isa = PBXGroup;
 			children = (
-				82505F432A7F9A0D001DE24A /* TimeTable */,
 				826888562A33AB3C00434219 /* Splash Screen */,
 				828CFA342A35F62400C7542D /* TabBar */,
 				820D33992A75974F00843313 /* Contacts List */,
@@ -1413,6 +1423,7 @@
 				821270462A78925D0095D68E /* PDF Modules */,
 				82C561602A6B770800514B00 /* App Features */,
 				829522DB2A38AEBE00329713 /* Maps */,
+				82505F432A7F9A0D001DE24A /* TimeTable */,
 				82D6C3422A5E33CD00FB7F5D /* Calendar */,
 				82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */,
 				82B1C0BD2A805D5200520C14 /* Recent Moments */,
@@ -1475,6 +1486,7 @@
 				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
 				82989ACB2A6E308F00F27858 /* Faculty Cathedra List */,
 				825634B62A6221C10082B7B8 /* Faculty Groups List MVVM */,
+				82B24A6F2A817D69008B94E4 /* All Weeks MVVM */,
 				828321602A7C6A25008641A5 /* All Groups MVVM */,
 				82B1C0C52A80702D00520C14 /* Sub Groups List MVVM */,
 				822158942A422A480088BDE5 /* Settings MVVM */,
@@ -2097,6 +2109,58 @@
 				8255ADCE2A6732110012895E /* CustomTitleView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		82B24A622A816B4A008B94E4 /* Week */ = {
+			isa = PBXGroup;
+			children = (
+				82B24A632A816B54008B94E4 /* WeekModel.swift */,
+			);
+			path = Week;
+			sourceTree = "<group>";
+		};
+		82B24A662A817AB4008B94E4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82B24A672A817ACD008B94E4 /* ViewController */,
+				82B24A6A2A817BBD008B94E4 /* Cell */,
+			);
+			name = View;
+			path = View/View;
+			sourceTree = "<group>";
+		};
+		82B24A672A817ACD008B94E4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82B24A682A817AEC008B94E4 /* AllWeeksListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82B24A6A2A817BBD008B94E4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				82B24A6B2A817BDE008B94E4 /* WeekTableViewCell.swift */,
+				82B24A6C2A817BDE008B94E4 /* WeekTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		82B24A6F2A817D69008B94E4 /* All Weeks MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82B24A662A817AB4008B94E4 /* View */,
+				82B24A712A817D88008B94E4 /* ViewModel */,
+			);
+			path = "All Weeks MVVM";
+			sourceTree = "<group>";
+		};
+		82B24A712A817D88008B94E4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82B24A722A8180AE008B94E4 /* AllWeeksListViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		82B87C752A7AF52800E9E68B /* Time table */ = {
@@ -2940,6 +3004,7 @@
 				82989AF32A6F8CDF00F27858 /* ForEveryStatusTableViewCell.xib in Resources */,
 				82426C862A71603B00D5AA57 /* AppFeaturesTableViewCell.xib in Resources */,
 				82989AD42A6E36C700F27858 /* FacultyCathedraTableViewCell.xib in Resources */,
+				82B24A6E2A817BDE008B94E4 /* WeekTableViewCell.xib in Resources */,
 				82808E922A31F12500DEEB16 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2962,6 +3027,7 @@
 				82C561622A6B772600514B00 /* AppFeaturesListTableViewController.swift in Sources */,
 				82E05D542A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift in Sources */,
 				8228E39F2A6C994D00C1B6AD /* AGPUBuildingsMapViewModel.swift in Sources */,
+				82B24A692A817AEC008B94E4 /* AllWeeksListTableViewController.swift in Sources */,
 				82BF4DB42A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift in Sources */,
 				82B1C0F12A8125E400520C14 /* VoiceDirectionModel.swift in Sources */,
 				82989ADE2A6E59BC00F27858 /* AGPUCurrentCathedraMapViewController + Extensions.swift in Sources */,
@@ -2978,6 +3044,7 @@
 				8228E39C2A6C920D00C1B6AD /* LocationModel.swift in Sources */,
 				820D18E52A68F9EE00BFAA35 /* AGPUBuildingModel.swift in Sources */,
 				82BEAD822A7414C300DD34C2 /* RecentPageViewModel.swift in Sources */,
+				82B24A642A816B54008B94E4 /* WeekModel.swift in Sources */,
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
 				82BDFDB02A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift in Sources */,
 				82461FEE2A50C493008A8752 /* AppDelegate + Extensions.swift in Sources */,
@@ -3030,12 +3097,14 @@
 				82989AE02A6E5B4F00F27858 /* AGPUCurrentCathedraMapViewModel.swift in Sources */,
 				8212704C2A7892910095D68E /* PDFReaderViewController.swift in Sources */,
 				824C56D92A6FE98F0074ADB7 /* FacultyCathedraList.swift in Sources */,
+				82B24A6D2A817BDE008B94E4 /* WeekTableViewCell.swift in Sources */,
 				82BC3D002A56F5C400E49332 /* RecentWebPageViewController + Extensions.swift in Sources */,
 				82C5615D2A6B757C00514B00 /* AppFeatureModel.swift in Sources */,
 				82E05D5D2A5DF36B0060ADAA /* AGPUFacultiesListTableViewController + Extensions.swift in Sources */,
 				82426C8B2A71CFC600D5AA57 /* ForEmployeeListTableViewController.swift in Sources */,
 				82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */,
 				8212705B2A792A610095D68E /* RecentPDFModel.swift in Sources */,
+				82B24A732A8180AE008B94E4 /* AllWeeksListViewModel.swift in Sources */,
 				82989AF22A6F8CDF00F27858 /* ForEveryStatusTableViewCell.swift in Sources */,
 				821C9E192A68DE8700EF0030 /* UITableView + Extensions.swift in Sources */,
 				8270A5482A5784A2008ACADC /* DateManager.swift in Sources */,

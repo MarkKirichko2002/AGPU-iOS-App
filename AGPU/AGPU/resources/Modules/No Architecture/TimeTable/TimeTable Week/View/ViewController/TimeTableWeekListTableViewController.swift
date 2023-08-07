@@ -58,28 +58,16 @@ final class TimeTableWeekListTableViewController: UIViewController {
          dismiss(animated: true)
     }
     
-    private func SetUpDatesMenu()-> UIMenu {
-        let actions = DatesList().enumerated().map { (index: Int, date: String) in
-            return UIAction(title: date) { _ in
-                if !self.timetable[index].disciplines.isEmpty {
+    private func SetUpDatesMenu() -> UIMenu {
+        let actions = timetable.enumerated().map { (index: Int, date: TimeTable) -> UIAction in
+            return UIAction(title: date.date) { _ in
+                if !date.disciplines.isEmpty {
                     self.tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
                 }
             }
         }
-        print(actions)
         let datesList = UIMenu(title: "даты", options: .singleSelection, children: actions)
         return datesList
-    }
-    
-    func DatesList()-> [String] {
-        var array = [String]()
-        var currentDate = startDate
-        
-        for _ in 0..<timetable.count {
-            array.append(currentDate)
-            currentDate = DateManager().nextDay(date: currentDate)
-        }
-        return array
     }
     
     private func SetUpTable() {
