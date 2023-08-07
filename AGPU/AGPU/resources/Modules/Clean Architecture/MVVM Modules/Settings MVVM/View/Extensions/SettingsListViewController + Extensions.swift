@@ -113,6 +113,18 @@ extension SettingsListViewController: UITableViewDelegate {
                     }
                 }
                 
+                let checkSubGroupAction = UIAction(title: self.viewModel.isSubGroupSelected(index: indexPath.row) ? "выбрана подгруппа" : "выбрать подгруппу", image: UIImage(named: "group")) { _ in
+                    if self.viewModel.isFacultySelected(index: indexPath.row) {
+                        let vc = SubGroupsListTableViewController()
+                        vc.hidesBottomBarWhenPushed = true
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    } else {
+                        NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
+                        let ok = UIAlertAction(title: "ОК", style: .default)
+                        self.ShowAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать подгруппу факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
+                    }
+                }
+                
                 let cancelAction = UIAction(title: "отмена", image: UIImage(named: "cancel")) { _ in
                     self.viewModel.CancelFaculty(index: indexPath.row)
                 }
@@ -121,6 +133,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     chooseAction,
                     cathedraAction,
                     checkGroupAction,
+                    checkSubGroupAction,
                     cancelAction
                 ])
                 
