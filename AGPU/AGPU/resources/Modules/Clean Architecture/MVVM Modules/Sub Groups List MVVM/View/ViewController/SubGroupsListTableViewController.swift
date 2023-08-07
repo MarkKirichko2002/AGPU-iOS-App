@@ -17,8 +17,29 @@ class SubGroupsListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        navigationItem.title = "Подгруппы"
+        SetUpNavigation()
         BindViewModel()
+    }
+    
+    private func SetUpNavigation() {
+        
+        navigationItem.title = "Подгруппы"
+        
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
+        
+        let button = UIButton()
+        button.setImage(UIImage(named: "back"), for: .normal)
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        
+        let backButton = UIBarButtonItem(customView: button)
+        backButton.tintColor = .black
+        
+        navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc private func back() {
+        navigationController?.popViewController(animated: true)
     }
     
     private func BindViewModel() {
