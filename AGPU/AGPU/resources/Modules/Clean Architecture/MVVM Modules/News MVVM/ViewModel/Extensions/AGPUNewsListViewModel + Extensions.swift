@@ -12,6 +12,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     func GetNews() {
         if let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
+            self.faculty = faculty
             newsService.GetFacultyNews(abbreviation: faculty.newsAbbreviation) { result in
                 switch result {
                 case .success(let news):

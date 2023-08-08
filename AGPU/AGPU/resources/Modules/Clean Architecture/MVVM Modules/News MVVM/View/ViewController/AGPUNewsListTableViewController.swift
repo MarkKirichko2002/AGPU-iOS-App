@@ -38,6 +38,23 @@ class AGPUNewsListTableViewController: UITableViewController {
         viewModel.ObserveFacultyChanges()
     }
     
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil,
+                                          previewProvider: nil,
+                                          actionProvider: {
+            _ in
+            
+            let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
+                self.shareInfo(image: UIImage(named: "АГПУ")!, title: self.viewModel.news[indexPath.row].title ?? "", text: "http://test.agpu.net/struktura-vuza/faculties-institutes/\(self.viewModel.faculty?.newsAbbreviation ?? "")/news/news.php")
+            }
+            
+            return UIMenu(title: self.viewModel.news[indexPath.row].title ?? "", children: [
+                shareAction
+            ])
+        })
+    }
+
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -45,7 +62,7 @@ class AGPUNewsListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.news.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifier, for: indexPath) as? NewsTableViewCell else {return UITableViewCell()}
         cell.configure(news: viewModel.news[indexPath.row])

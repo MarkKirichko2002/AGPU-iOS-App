@@ -16,4 +16,5 @@ class AGPUNewsListViewModel {
     
     var dataChangedHandler: ((AGPUFacultyModel)->Void)?
    
+    var faculty: AGPUFacultyModel?
 }
