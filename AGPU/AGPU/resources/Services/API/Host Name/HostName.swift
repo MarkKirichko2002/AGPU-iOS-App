@@ -8,5 +8,5 @@
 import Foundation
 
 struct HostName {
-    static let host = "195.43.142.74"
+    static let host = "merqury.fun"
 }

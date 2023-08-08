@@ -5,7 +5,7 @@
 //  Created by Марк Киричко on 08.08.2023.
 //
 
-import Foundation
+import UIKit
 
 // MARK: - AGPUNewsListViewModelProtocol
 extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
@@ -15,9 +15,20 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             self.faculty = faculty
             newsService.GetFacultyNews(abbreviation: faculty.newsAbbreviation) { result in
                 switch result {
-                case .success(let news):
-                    self.news = news
+                case .success(let response):
+                    self.newsResponse = response
                     self.dataChangedHandler?(faculty)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        } else {
+            newsService.GetAGPUNews { result in
+                switch result {
+                case .success(let response):
+                    self.newsResponse = response
+                    print(self.newsResponse)
+                    self.dataChangedHandler?(self.faculty)
                 case .failure(let error):
                     print(error)
                 }
@@ -25,12 +36,12 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         }
     }
     
-    func articleItem(index: Int)-> NewsModel {
-        let article = news[index]
+    func articleItem(index: Int)-> Article {
+        let article = newsResponse.articles[index]
         return article
     }
     
-    func registerDataChangedHandler(block: @escaping(AGPUFacultyModel)->Void) {
+    func registerDataChangedHandler(block: @escaping(AGPUFacultyModel?)->Void) {
         self.dataChangedHandler = block
     }
     
@@ -41,8 +52,22 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     }
     
     func urlForCurrentArticle(index: Int)-> String {
-        let newsURL = "http://test.agpu.net/struktura-vuza/faculties-institutes/\(faculty?.newsAbbreviation ?? "")/news/news.php?ELEMENT_ID=\(articleItem(index: index).id)"
-        print(newsURL)
+        var newsURL = ""
+        if faculty != nil {
+            newsURL = "http://test.agpu.net/struktura-vuza/faculties-institutes/\(faculty?.newsAbbreviation ?? "")/news/news.php?ELEMENT_ID=\(articleItem(index: index).id)"
+        } else {
+            newsURL = "http://test.agpu.net/news.php?ELEMENT_ID=\(articleItem(index: index).id)"
+        }
         return newsURL
+    }
+    
+    func pagesMenu()-> UIMenu {
+        var arr = [UIAction]()
+        for i in 1...self.newsResponse.countPages {
+            let page = UIAction(title: "страница \(i)") { _ in}
+            arr.append(page)
+        }
+        let menu = UIMenu(title: "страницы", options: .singleSelection, children: arr)
+        return menu
     }
 }

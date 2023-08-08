@@ -16,7 +16,7 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet var NewsTitle: UILabel!
     @IBOutlet var NewsDate: UILabel!
     
-    func configure(news: NewsModel) {
+    func configure(news: Article) {
         NewsImage.sd_setImage(with: URL(string: news.previewImage ?? ""))
         NewsTitle.text = news.title
         NewsDate.text = news.date

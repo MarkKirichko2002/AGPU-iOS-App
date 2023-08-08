@@ -8,5 +8,6 @@
 import Foundation
 
 protocol AGPUNewsServiceProtocol {
-    func GetFacultyNews(abbreviation: String, completion: @escaping(Result<[NewsModel], Error>)->Void)
+    func GetFacultyNews(abbreviation: String, completion: @escaping(Result<NewsResponse, Error>)->Void)
+    func GetAGPUNews(completion: @escaping(Result<NewsResponse, Error>)->Void)
 }

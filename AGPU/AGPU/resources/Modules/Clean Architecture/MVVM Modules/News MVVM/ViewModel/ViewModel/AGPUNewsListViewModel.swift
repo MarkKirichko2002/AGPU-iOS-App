@@ -12,9 +12,9 @@ class AGPUNewsListViewModel {
     // MARK: - сервисы
     let newsService = AGPUNewsService()
     
-    var news = [NewsModel]()
+    var newsResponse = NewsResponse(currentPage: 0, countPages: 0, articles: [])
     
-    var dataChangedHandler: ((AGPUFacultyModel)->Void)?
+    var dataChangedHandler: ((AGPUFacultyModel?)->Void)?
    
     var faculty: AGPUFacultyModel?
 }

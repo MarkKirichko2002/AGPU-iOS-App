@@ -11,15 +11,30 @@ import Foundation
 // MARK: - AGPUNewsServiceProtocol
 extension AGPUNewsService: AGPUNewsServiceProtocol {
     
-    func GetFacultyNews(abbreviation: String, completion: @escaping(Result<[NewsModel], Error>)->Void) {
+    func GetFacultyNews(abbreviation: String, completion: @escaping(Result<NewsResponse, Error>)->Void) {
         
-        AF.request("http://195.43.142.74:8080/api/news/\(abbreviation)").responseData { response in
+        AF.request("http://\(HostName.host):8080/api/news/\(abbreviation)").responseData { response in
             
             guard let data = response.data else {return}
             
             do {
-                let news = try JSONDecoder().decode([NewsModel].self, from: data)
-                completion(.success(news))
+                let response = try JSONDecoder().decode(NewsResponse.self, from: data)
+                completion(.success(response))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func GetAGPUNews(completion: @escaping(Result<NewsResponse, Error>)->Void) {
+        
+        AF.request("http://\(HostName.host):8080/api/news").responseData { response in
+            
+            guard let data = response.data else {return}
+            
+            do {
+                let response = try JSONDecoder().decode(NewsResponse.self, from: data)
+                completion(.success(response))
             } catch {
                 completion(.failure(error))
             }

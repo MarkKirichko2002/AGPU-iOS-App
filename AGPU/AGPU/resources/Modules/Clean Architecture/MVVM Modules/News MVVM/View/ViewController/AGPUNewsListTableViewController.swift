@@ -30,9 +30,16 @@ class AGPUNewsListTableViewController: UITableViewController {
     private func BindViewModel() {
         viewModel.GetNews()
         viewModel.registerDataChangedHandler { faculty in
-            DispatchQueue.main.async {
-                self.navigationItem.title = "Новости \(faculty.abbreviation)"
-                self.tableView.reloadData()
+            if faculty != nil {
+                DispatchQueue.main.async {
+                    self.navigationItem.title = "Новости \(faculty?.abbreviation ?? "")"
+                    self.tableView.reloadData()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.navigationItem.title = "Новости АГПУ"
+                    self.tableView.reloadData()
+                }
             }
         }
         viewModel.ObserveFacultyChanges()
@@ -52,7 +59,7 @@ class AGPUNewsListTableViewController: UITableViewController {
                 self.shareInfo(image: UIImage(named: "АГПУ")!, title: self.viewModel.articleItem(index: indexPath.row).title ?? "", text: self.viewModel.urlForCurrentArticle(index: indexPath.row))
             }
             
-            return UIMenu(title: self.viewModel.news[indexPath.row].title ?? "", children: [
+            return UIMenu(title: self.viewModel.articleItem(index: indexPath.row).title ?? "", children: [
                 infoAction,
                 shareAction
             ])
@@ -64,12 +71,12 @@ class AGPUNewsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.news.count
+        return viewModel.newsResponse.articles.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifier, for: indexPath) as? NewsTableViewCell else {return UITableViewCell()}
-        cell.configure(news: viewModel.news[indexPath.row])
+        cell.configure(news: viewModel.articleItem(index: indexPath.row))
         return cell
     }
 }
