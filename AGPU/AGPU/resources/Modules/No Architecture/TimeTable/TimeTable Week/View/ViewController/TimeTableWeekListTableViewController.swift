@@ -9,8 +9,6 @@ import UIKit
 
 final class TimeTableWeekListTableViewController: UIViewController {
     
-    private let service = TimeTableService()
-    
     private var group: String = ""
     private var subgroup: Int = 0
     var week: WeekModel!
@@ -20,6 +18,10 @@ final class TimeTableWeekListTableViewController: UIViewController {
     let tableView = UITableView()
     private let spinner = UIActivityIndicatorView(style: .large)
     private let noTimeTableLabel = UILabel()
+    
+    // MARK: - сервисы
+    private let service = TimeTableService()
+    private let dateManager = DateManager()
     
     // MARK: - Init
     init(group: String, subgroup: Int, week: WeekModel) {
@@ -39,6 +41,9 @@ final class TimeTableWeekListTableViewController: UIViewController {
         SetUpLabel()
         SetUpIndicatorView()
         GetTimeTable()
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.ScrollToCurrentDay()
+        }
     }
     
     private func SetUpNavigation() {
@@ -132,6 +137,18 @@ final class TimeTableWeekListTableViewController: UIViewController {
                 self.noTimeTableLabel.isHidden = false
                 self.SetUpNavigation()
                 print(error)
+            }
+        }
+    }
+    
+    func ScrollToCurrentDay() {
+        let currentDate = dateManager.getCurrentDate()
+        timetable.enumerated().forEach { (index: Int, timetable: TimeTable) in
+            if timetable.date == currentDate {
+                DispatchQueue.main.async {
+                    let indexPath = IndexPath(row: 0, section: index)
+                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                }
             }
         }
     }

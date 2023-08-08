@@ -49,7 +49,7 @@ extension TimeTableService: TimeTableServicerProtocol {
         
         let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("http://\(HostName.host):8080/api/timetable/days?groupId=\(groupId)&startDate=\(startDate)&endDate=\(endDate)").responseData { response in
+        AF.request("http://\(HostName.host):8080/api/timetable/days?groupId=\(group)&startDate=\(startDate)&endDate=\(endDate)&removeEmptyDays").responseData { response in
             
             guard let data = response.data else {return}
             
