@@ -9,6 +9,8 @@ import Foundation
 
 protocol AGPUNewsListViewModelProtocol {
     func GetNews()
+    func articleItem(index: Int)-> NewsModel
     func registerDataChangedHandler(block: @escaping(AGPUFacultyModel)->Void)
     func ObserveFacultyChanges()
+    func urlForCurrentArticle(index: Int)-> String
 }

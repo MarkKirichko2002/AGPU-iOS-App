@@ -25,6 +25,11 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         }
     }
     
+    func articleItem(index: Int)-> NewsModel {
+        let article = news[index]
+        return article
+    }
+    
     func registerDataChangedHandler(block: @escaping(AGPUFacultyModel)->Void) {
         self.dataChangedHandler = block
     }
@@ -33,5 +38,11 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         NotificationCenter.default.addObserver(forName: Notification.Name("faculty"), object: nil, queue: .main) { _ in
             self.GetNews()
         }
+    }
+    
+    func urlForCurrentArticle(index: Int)-> String {
+        let newsURL = "http://test.agpu.net/struktura-vuza/faculties-institutes/\(faculty?.newsAbbreviation ?? "")/news/news.php?ELEMENT_ID=\(articleItem(index: index).id)"
+        print(newsURL)
+        return newsURL
     }
 }

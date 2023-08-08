@@ -44,17 +44,21 @@ class AGPUNewsListTableViewController: UITableViewController {
                                           actionProvider: {
             _ in
             
+            let infoAction = UIAction(title: "узнать больше", image: UIImage(named: "info")) { _ in
+                self.GoToWeb(url: self.viewModel.urlForCurrentArticle(index: indexPath.row), title: "\(self.viewModel.articleItem(index: indexPath.row).date ?? "")", isSheet: false)
+            }
+            
             let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
-                self.shareInfo(image: UIImage(named: "АГПУ")!, title: self.viewModel.news[indexPath.row].title ?? "", text: "http://test.agpu.net/struktura-vuza/faculties-institutes/\(self.viewModel.faculty?.newsAbbreviation ?? "")/news/news.php")
+                self.shareInfo(image: UIImage(named: "АГПУ")!, title: self.viewModel.articleItem(index: indexPath.row).title ?? "", text: self.viewModel.urlForCurrentArticle(index: indexPath.row))
             }
             
             return UIMenu(title: self.viewModel.news[indexPath.row].title ?? "", children: [
+                infoAction,
                 shareAction
             ])
         })
     }
 
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
