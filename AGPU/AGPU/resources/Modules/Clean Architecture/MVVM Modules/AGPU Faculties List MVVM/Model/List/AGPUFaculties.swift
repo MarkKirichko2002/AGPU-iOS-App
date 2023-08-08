@@ -19,7 +19,7 @@ struct AGPUFaculties {
             abbreviation: "ИРиИФ",
             appIcon: "AppIcon 1",
             url: "http://test.agpu.net/struktura-vuza/faculties-institutes/iriif/index.php",
-            newsURL: "http://test.agpu.net/struktura-vuza/faculties-institutes/iriif/news/news.php",
+            newsAbbreviation: "iriif",
             videoURL: "http://priem.agpu.net/video/stud/iriif.mp4",
             contacts: [],
             email: "markkir123@gmail.com",
@@ -33,7 +33,7 @@ struct AGPUFaculties {
             abbreviation: "ИПИМиФ",
             appIcon:  "AppIcon 2",
             url: "http://test.agpu.net/struktura-vuza/faculties-institutes/ipimif/index.php",
-            newsURL: "http://test.agpu.net/struktura-vuza/faculties-institutes/ipimif/news/news.php",
+            newsAbbreviation: "ipimif",
             videoURL: "http://priem.agpu.net/video/stud/ipimif.mp4",
             contacts: [
                 ContactsModel(
@@ -53,7 +53,7 @@ struct AGPUFaculties {
             abbreviation: "СПФ",
             appIcon:  "AppIcon 3",
             url: "http://test.agpu.net/struktura-vuza/faculties-institutes/spf/index.php",
-            newsURL: "http://test.agpu.net/struktura-vuza/faculties-institutes/spf/news/news.php",
+            newsAbbreviation: "spf",
             videoURL: "http://priem.agpu.net/video/stud/spf.mp4",
             contacts: [
                 ContactsModel(
@@ -103,7 +103,7 @@ struct AGPUFaculties {
             abbreviation: "ФДиНО",
             appIcon:  "AppIcon 4",
             url: "http://test.agpu.net/struktura-vuza/faculties-institutes/fdino/index.php",
-            newsURL: "http://test.agpu.net/struktura-vuza/faculties-institutes/fdino/news/news.php",
+            newsAbbreviation: "fdino",
             videoURL: "http://priem.agpu.net/video/stud/fdino.mp4",
             contacts: [
                 ContactsModel(
@@ -123,7 +123,7 @@ struct AGPUFaculties {
             abbreviation: "ФТЭиД",
             appIcon:  "AppIcon 5",
             url: "http://test.agpu.net/struktura-vuza/faculties-institutes/fteid/index.php",
-            newsURL: "http://test.agpu.net/struktura-vuza/faculties-institutes/fteid/news/news.php",
+            newsAbbreviation: "fteid",
             videoURL: "http://priem.agpu.net/video/stud/fteid.mp4",
             contacts: [
                 ContactsModel(
@@ -148,7 +148,7 @@ struct AGPUFaculties {
             abbreviation: "ИстФак",
             appIcon:  "AppIcon 6",
             url: "http://test.agpu.net/struktura-vuza/faculties-institutes/istfak/index.php",
-            newsURL: "http://test.agpu.net/struktura-vuza/faculties-institutes/istfak/news/news.php",
+            newsAbbreviation: "istfak",
             videoURL: "http://priem.agpu.net/video/stud/istfak.mp4",
             contacts: [],
             email: "markkir123@gmail.com",

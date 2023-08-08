@@ -13,7 +13,7 @@ extension TimeTableService: TimeTableServicerProtocol {
     
     func GetWeeks(completion: @escaping(Result<[WeekModel],Error>)->Void) {
         
-        AF.request("http://\(HostName.host):8080/api/getWeeks").responseData { response in
+        AF.request("http://\(HostName.host):8080/api/timetable/weeks").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -31,7 +31,7 @@ extension TimeTableService: TimeTableServicerProtocol {
         
         let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("http://\(HostName.host):8080/api/timetableOfDay?groupId=\(group)&date=\(date)").responseData { response in
+        AF.request("http://\(HostName.host):8080/api/timetable/day?groupId=\(group)&date=\(date)").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -49,7 +49,7 @@ extension TimeTableService: TimeTableServicerProtocol {
         
         let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("http://\(HostName.host):8080/api/timetableOfDays?groupId=\(group)&startDate=\(startDate)&endDate=\(endDate)&removeEmptyDays").responseData { response in
+        AF.request("http://\(HostName.host):8080/api/timetable/days?groupId=\(groupId)&startDate=\(startDate)&endDate=\(endDate)").responseData { response in
             
             guard let data = response.data else {return}
             

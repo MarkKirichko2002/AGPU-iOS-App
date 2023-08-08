@@ -16,7 +16,7 @@ final class AGPUTabBarController: UITabBarController {
     
     // MARK: - вкладки
     // новости
-    let newsVC = AGPUNewsViewController()
+    let newsVC = AGPUNewsListTableViewController()
     // для каждого статуса
     var forEveryStatusVC = UIViewController()
     // кнопка
@@ -137,16 +137,6 @@ final class AGPUTabBarController: UITabBarController {
     
     // MARK: - Voice Control
     private func checkVoiceCommands(text: String) {
-        
-        // MARK: - Screen "News"
-        if text != "" && selectedIndex == 0 {
-            for direction in VoiceDirections.directions {
-                if direction.name.contains(text.lastWord()) {
-                    self.displayDynamicButton(icon: direction.icon)
-                    NotificationCenter.default.post(name: Notification.Name("scroll news screen"), object: text.lastWord())
-                }
-            }
-        }
         
         if text != "" {
             // поиск раздела

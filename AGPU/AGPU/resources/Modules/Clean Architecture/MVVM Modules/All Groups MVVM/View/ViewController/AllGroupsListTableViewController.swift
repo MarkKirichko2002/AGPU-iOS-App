@@ -29,10 +29,6 @@ class AllGroupsListTableViewController: UITableViewController {
         SetUpTable()
     }
     
-    private func SetUpTable() {
-        tableView.register(UINib(nibName: FacultyGroupTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyGroupTableViewCell.identifier)
-    }
-
     private func SetUpNavigation() {
         
         navigationItem.title = "Список групп"
@@ -60,6 +56,10 @@ class AllGroupsListTableViewController: UITableViewController {
         self.dismiss(animated: true)
     }
     
+    private func SetUpTable() {
+        tableView.register(UINib(nibName: FacultyGroupTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyGroupTableViewCell.identifier)
+    }
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int)-> String? {
         return FacultyGroups.groups[section].name.abbreviation()
     }
