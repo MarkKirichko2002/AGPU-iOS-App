@@ -27,6 +27,7 @@ class AllGroupsListTableViewController: UITableViewController {
         super.viewDidLoad()
         SetUpNavigation()
         SetUpTable()
+        BindViewModel()
     }
     
     private func SetUpNavigation() {
@@ -58,6 +59,17 @@ class AllGroupsListTableViewController: UITableViewController {
     
     private func SetUpTable() {
         tableView.register(UINib(nibName: FacultyGroupTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyGroupTableViewCell.identifier)
+    }
+    
+    private func BindViewModel() {
+        viewModel.scrollToSelectedGroup { section, index in
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                DispatchQueue.main.async {
+                    let indexPath = IndexPath(row: index, section: section)
+                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                }
+            }
+        }
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int)-> String? {

@@ -20,6 +20,16 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
         }
     }
     
+    func scrollToSelectedGroup(completion: @escaping(Int, Int)->Void) {
+        for (groupIndex, groups) in FacultyGroups.groups.enumerated() {
+            for (elementIndex, group) in groups.groups.enumerated() {
+                if group == self.group {
+                    completion(groupIndex, elementIndex)
+                }
+            }
+        }
+    }
+    
     func currentFacultyIcon(section: Int, abbreviation: String)-> String {
         let group = FacultyGroups.groups[section]
         for faculty in AGPUFaculties.faculties {

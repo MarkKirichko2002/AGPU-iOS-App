@@ -9,5 +9,6 @@ import Foundation
 
 protocol AllGroupsListViewModelProtocol {
     func isGroupSelected(section: Int, index: Int)-> Bool
+    func scrollToSelectedGroup(completion: @escaping(Int, Int)->Void)
     func currentFacultyIcon(section: Int, abbreviation: String)-> String
 }
