@@ -138,7 +138,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     func GetTimeTable(group: String, date: String) {
-        self.group = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-1-1"
+        self.group = UserDefaults.standard.string(forKey: "group") ?? ""
         self.subgroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
         print(self.subgroup)
         self.spinner.startAnimating()

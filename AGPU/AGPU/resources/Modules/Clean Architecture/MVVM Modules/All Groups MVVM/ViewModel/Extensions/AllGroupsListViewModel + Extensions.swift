@@ -5,7 +5,7 @@
 //  Created by Марк Киричко on 04.08.2023.
 //
 
-import Foundation
+import UIKit
 
 // MARK: - AllGroupsListViewModelProtocol
 extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
@@ -38,5 +38,17 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
             }
         }
         return "АГПУ"
+    }
+    
+    func makeGroupsMenu()-> UIMenu {
+        let items = FacultyGroups.groups.enumerated().map { (index: Int, group: FacultyGroupModel) in
+            return UIAction(title: group.name.abbreviation()) { _ in
+                DispatchQueue.main.async {
+                    self.scrollHandler?(0, index)
+                }
+            }
+        }
+        let menu = UIMenu(title: "группы", options: .singleSelection, children: items)
+        return menu
     }
 }
