@@ -16,13 +16,4 @@ final class AGPUBuildingsMapViewModel {
     // MARK: - сервисы
     let locationManager = LocationManager()
  
-    func CheckLocationAuthorizationStatus() {
-        locationManager.СheckLocationAuthorization { isAuthorized in
-            if isAuthorized {
-                self.GetLocation()
-            } else {
-                self.alertHandler?(true)
-            }
-        }
-    }
 }

@@ -75,11 +75,15 @@ final class AGPUBuildingsMapViewController: UIViewController {
     private func BindViewModel() {
         viewModel.alertHandler = { bool in
             if bool {
-                
                 let goToSettings = UIAlertAction(title: "перейти в настройки", style: .default) { _ in
                     self.OpenSettings()
                 }
-                let cancel = UIAlertAction(title: "отмена", style: .cancel)
+                let cancel = UIAlertAction(title: "отмена", style: .cancel) { _ in
+                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                        NotificationCenter.default.post(name: Notification.Name("for every status appear"), object: nil)
+                    }
+                    self.navigationController?.popViewController(animated: true)
+                }
                 self.ShowAlert(title: "Геопозиция выключена", message: "хотите включить в настройках?", actions: [goToSettings, cancel])
             } else {
                 fatalError()

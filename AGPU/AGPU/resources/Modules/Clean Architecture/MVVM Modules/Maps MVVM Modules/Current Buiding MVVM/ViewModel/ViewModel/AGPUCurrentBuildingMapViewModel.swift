@@ -10,8 +10,8 @@ import MapKit
 final class AGPUCurrentBuildingMapViewModel {
     
     var audienceID: String
-    
     var locationHandler: ((LocationModel)->Void)?
+    var alertHandler: ((Bool)->Void)?
     
     // MARK: - сервисы
     let locationManager = LocationManager()

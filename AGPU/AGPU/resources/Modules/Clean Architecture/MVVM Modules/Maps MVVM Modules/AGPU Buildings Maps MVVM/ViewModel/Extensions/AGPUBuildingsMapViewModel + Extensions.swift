@@ -10,6 +10,16 @@ import MapKit
 // MARK: - AGPUBuildingsMapViewModelProtocol
 extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
     
+    func CheckLocationAuthorizationStatus() {
+        locationManager.СheckLocationAuthorization { isAuthorized in
+            if isAuthorized {
+                self.GetLocation()
+            } else {
+                self.alertHandler?(true)
+            }
+        }
+    }
+    
     func registerLocationHandler(block: @escaping(LocationModel)->Void) {
         self.locationHandler = block
     }

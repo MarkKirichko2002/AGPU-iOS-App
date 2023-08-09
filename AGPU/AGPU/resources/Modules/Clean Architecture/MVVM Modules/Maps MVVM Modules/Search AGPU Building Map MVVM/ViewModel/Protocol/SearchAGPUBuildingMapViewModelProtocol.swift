@@ -9,7 +9,8 @@ import MapKit
 
 protocol SearchAGPUBuildingMapViewModelProtocol {
     var locationHandler: ((LocationModel)->Void)? {get set}
-    func registerLocationHandler(block: @escaping(LocationModel)->Void)
+    func CheckLocationAuthorizationStatus()
     func GetLocation()
+    func registerLocationHandler(block: @escaping(LocationModel)->Void)
     func ObserveActions(block: @escaping()->Void)
 }

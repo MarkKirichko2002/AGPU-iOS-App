@@ -10,8 +10,14 @@ import MapKit
 // MARK: - SearchAGPUBuildingMapViewModelProtocol
 extension SearchAGPUBuildingMapViewModel: SearchAGPUBuildingMapViewModelProtocol {
     
-    func registerLocationHandler(block: @escaping(LocationModel)->Void) {
-        self.locationHandler = block
+    func CheckLocationAuthorizationStatus() {
+        locationManager.СheckLocationAuthorization { isAuthorized in
+            if isAuthorized {
+                self.GetLocation()
+            } else {
+                self.alertHandler?(true)
+            }
+        }
     }
     
     func GetLocation() {
@@ -44,6 +50,10 @@ extension SearchAGPUBuildingMapViewModel: SearchAGPUBuildingMapViewModelProtocol
             
             self.locationHandler?(location)
         }
+    }
+    
+    func registerLocationHandler(block: @escaping(LocationModel)->Void) {
+        self.locationHandler = block
     }
     
     func ObserveActions(block: @escaping()->Void) {
