@@ -17,16 +17,15 @@ extension LocationManager: LocationManagerProtocol {
         manager.startUpdatingLocation()
     }
     
-    func getCoordinatesFromAddress(address: String, completion: @escaping (CLLocationCoordinate2D?, Error?) -> Void) {
-        let geocoder = CLGeocoder()
-        
-        geocoder.geocodeAddressString(address) { (placemarks, error) in
-            guard let placemark = placemarks?.first, let location = placemark.location else {
-                completion(nil, error)
-                return
-            }
-            
-            completion(location.coordinate, nil)
+    func СheckLocationAuthorization(completion: @escaping (Bool) -> Void) {
+        let status = CLLocationManager.authorizationStatus()
+        if status == .notDetermined {
+            manager.requestWhenInUseAuthorization()
+            completion(false)
+        } else if status == .restricted || status == .denied {
+            completion(false)
+        } else if status == .authorizedWhenInUse || status == .authorizedAlways {
+            completion(true)
         }
     }
 }

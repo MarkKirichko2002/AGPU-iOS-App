@@ -58,6 +58,12 @@ extension UIViewController {
         present(activityViewController, animated: true)
     }
     
+    func OpenSettings() {
+        if let settingsURL = URL(string: UIApplication.openSettingsURLString + Bundle.main.bundleIdentifier!) {
+            UIApplication.shared.open(settingsURL)
+        }
+    }
+    
     func makePhoneCall(phoneNumber: String) {
         if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
             let application = UIApplication.shared

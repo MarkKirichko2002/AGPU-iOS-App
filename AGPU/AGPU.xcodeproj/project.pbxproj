@@ -932,10 +932,10 @@
 		8234B2FE2A3242CC0091810F /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				82E4C5852A6B20B800F65A67 /* Location Manager */,
-				82BF4DB52A5FA7F6008B751A /* Image Saver */,
 				82D6C3302A5E1DD100FB7F5D /* API */,
 				8270A5462A578491008ACADC /* Date */,
+				82E4C5852A6B20B800F65A67 /* Location */,
+				82BF4DB52A5FA7F6008B751A /* Image Saver */,
 				82EF23D02A3DED73004A7B9C /* Speech Recognition */,
 				82EF23D12A3DED7F004A7B9C /* Animation */,
 				8295489A2A43AE6C007DEBA0 /* Settings */,
@@ -2885,14 +2885,14 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		82E4C5852A6B20B800F65A67 /* Location Manager */ = {
+		82E4C5852A6B20B800F65A67 /* Location */ = {
 			isa = PBXGroup;
 			children = (
 				82E4C5822A6B200400F65A67 /* Protocol */,
 				82E4C5872A6B20CB00F65A67 /* Service */,
 				82E4C5862A6B20C900F65A67 /* Extensions */,
 			);
-			path = "Location Manager";
+			path = Location;
 			sourceTree = "<group>";
 		};
 		82E4C5862A6B20C900F65A67 /* Extensions */ = {

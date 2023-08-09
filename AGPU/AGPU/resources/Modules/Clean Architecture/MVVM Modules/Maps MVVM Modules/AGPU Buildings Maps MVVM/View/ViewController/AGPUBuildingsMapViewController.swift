@@ -73,7 +73,19 @@ final class AGPUBuildingsMapViewController: UIViewController {
     }
     
     private func BindViewModel() {
-        viewModel.GetLocation()
+        viewModel.alertHandler = { bool in
+            if bool {
+                
+                let goToSettings = UIAlertAction(title: "перейти в настройки", style: .default) { _ in
+                    self.OpenSettings()
+                }
+                let cancel = UIAlertAction(title: "отмена", style: .cancel)
+                self.ShowAlert(title: "Геопозиция выключена", message: "хотите включить в настройках?", actions: [goToSettings, cancel])
+            } else {
+                fatalError()
+            }
+        }
+        viewModel.CheckLocationAuthorizationStatus()
         viewModel.registerLocationHandler { location in
             self.mapView.setRegion(location.region, animated: true)
             self.mapView.showAnnotations(location.pins, animated: true)
