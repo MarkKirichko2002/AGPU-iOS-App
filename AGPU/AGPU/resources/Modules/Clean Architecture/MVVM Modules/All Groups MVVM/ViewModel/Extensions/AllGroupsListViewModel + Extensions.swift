@@ -41,12 +41,24 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
     }
     
     func makeGroupsMenu()-> UIMenu {
+        
+        var currentGroup = ""
+        
+        if let group = FacultyGroups.groups.first(where: { $0.groups.contains(self.group)}) {
+            print("Группа \(self.group) находится в группе \(group.name)")
+            currentGroup = group.name
+        } else {
+            print("Группа \(self.group) не найдена")
+        }
+        
         let items = FacultyGroups.groups.enumerated().map { (index: Int, group: FacultyGroupModel) in
-            return UIAction(title: group.name.abbreviation()) { _ in
+            let groupItem = group.name
+            let actionHandler: UIActionHandler = { [weak self] _ in
                 DispatchQueue.main.async {
-                    self.scrollHandler?(0, index)
+                    self?.scrollHandler?(index, 0)
                 }
             }
+            return UIAction(title: group.name.abbreviation(), state: currentGroup == groupItem ? .on : .off, handler: actionHandler)
         }
         let menu = UIMenu(title: "группы", options: .singleSelection, children: items)
         return menu
