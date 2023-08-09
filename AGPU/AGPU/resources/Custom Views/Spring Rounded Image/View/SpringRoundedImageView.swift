@@ -24,8 +24,8 @@ class SpringRoundedImageView: UIImageView {
         self.clipsToBounds = true
     }
     
-    @IBAction func tapFunction(sender: UITapGestureRecognizer) {
+    @objc private func tapFunction(sender: UITapGestureRecognizer) {
+        HapticsManager.shared.HapticFeedback()
         animation.SpringAnimation(view: self)
     }
 }
-

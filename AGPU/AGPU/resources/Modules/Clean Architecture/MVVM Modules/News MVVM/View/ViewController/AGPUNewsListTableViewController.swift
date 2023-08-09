@@ -8,7 +8,7 @@
 import UIKit
 
 class AGPUNewsListTableViewController: UITableViewController {
-
+    
     // MARK: - сервисы
     private let viewModel = AGPUNewsListViewModel()
     
@@ -28,20 +28,38 @@ class AGPUNewsListTableViewController: UITableViewController {
     }
     
     private func BindViewModel() {
+        
+        var menu = UIMenu()
+        
+        DispatchQueue.main.async {
+            self.navigationItem.title = "загрузка новостей..."
+            self.tableView.reloadData()
+            let pages = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
+            pages.tintColor = .black
+            self.navigationItem.rightBarButtonItem = pages
+        }
+        
         viewModel.GetNews()
-        viewModel.registerDataChangedHandler { faculty in
-            if faculty != nil {
-                DispatchQueue.main.async {
-                    self.navigationItem.title = "Новости \(faculty?.abbreviation ?? "")"
+        
+        viewModel.registerDataChangedHandler { [weak self] faculty in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                if let faculty = faculty {
+                    self.navigationItem.title = "Новости \(faculty.abbreviation)"
                     self.tableView.reloadData()
-                }
-            } else {
-                DispatchQueue.main.async {
+                } else {
                     self.navigationItem.title = "Новости АГПУ"
                     self.tableView.reloadData()
                 }
+                
+                menu = self.viewModel.pagesMenu()
+                let pages = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
+                pages.tintColor = .black
+                self.navigationItem.rightBarButtonItem = pages
             }
         }
+        
         viewModel.ObserveFacultyChanges()
     }
     
@@ -65,7 +83,7 @@ class AGPUNewsListTableViewController: UITableViewController {
             ])
         })
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }

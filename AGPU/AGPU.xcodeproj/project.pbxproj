@@ -1303,7 +1303,7 @@
 			children = (
 				820D18E02A68F9AE00BFAA35 /* Other */,
 				8268886A2A34866D00434219 /* Models */,
-				8268885C2A33ACA800434219 /* CustomViews */,
+				8268885C2A33ACA800434219 /* Custom Views */,
 				8234B2FE2A3242CC0091810F /* Services */,
 				8268885F2A33ACE800434219 /* Extensions */,
 				8295489E2A43B0E9007DEBA0 /* Modules */,
@@ -1399,7 +1399,7 @@
 			path = "Splash Screen";
 			sourceTree = "<group>";
 		};
-		8268885C2A33ACA800434219 /* CustomViews */ = {
+		8268885C2A33ACA800434219 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
 				82B24AA42A81CB0A008B94E4 /* Spring Rounded Image */,
@@ -1408,7 +1408,7 @@
 				8255ADCD2A6731F50012895E /* Title View */,
 				82426C7D2A7152DB00D5AA57 /* Custom Cells */,
 			);
-			path = CustomViews;
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 		8268885F2A33ACE800434219 /* Extensions */ = {
