@@ -61,7 +61,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
          dismiss(animated: true)
     }
     
-    private func SetUpDatesMenu() -> UIMenu {
+    private func SetUpDatesMenu()-> UIMenu {
         let actions = timetable.enumerated().map { (index: Int, date: TimeTable) -> UIAction in
             return UIAction(title: week.dayNames[date.date]!.lowercased()) { _ in
                 if !date.disciplines.isEmpty {

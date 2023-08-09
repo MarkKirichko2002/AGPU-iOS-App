@@ -8,10 +8,12 @@
 import UIKit
 
 protocol AGPUNewsListViewModelProtocol {
-    func GetNews()
+    func GetNewsByCurrentType()
+    func GetFacultyNews(faculty: AGPUFacultyModel)
+    func GetAGPUNews()
+    func GetNews(by page: Int, faculty: AGPUFacultyModel?)
     func articleItem(index: Int)-> Article
     func registerDataChangedHandler(block: @escaping(AGPUFacultyModel?)->Void)
     func ObserveFacultyChanges()
-    func urlForCurrentArticle(index: Int)-> String
     func pagesMenu()-> UIMenu
 }

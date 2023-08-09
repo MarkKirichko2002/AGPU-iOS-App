@@ -39,7 +39,7 @@ class AGPUNewsListTableViewController: UITableViewController {
             self.navigationItem.rightBarButtonItem = pages
         }
         
-        viewModel.GetNews()
+        viewModel.GetNewsByCurrentType()
         
         viewModel.registerDataChangedHandler { [weak self] faculty in
             guard let self = self else { return }
@@ -70,11 +70,11 @@ class AGPUNewsListTableViewController: UITableViewController {
             _ in
             
             let infoAction = UIAction(title: "узнать больше", image: UIImage(named: "info")) { _ in
-                self.GoToWeb(url: self.viewModel.urlForCurrentArticle(index: indexPath.row), title: "\(self.viewModel.articleItem(index: indexPath.row).date ?? "")", isSheet: false)
+//                self.GoToWeb(url: self.viewModel.urlForCurrentArticle(index: indexPath.row), title: "\(self.viewModel.articleItem(index: indexPath.row).date ?? "")", isSheet: false)
             }
             
             let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
-                self.shareInfo(image: UIImage(named: "АГПУ")!, title: self.viewModel.articleItem(index: indexPath.row).title ?? "", text: self.viewModel.urlForCurrentArticle(index: indexPath.row))
+//                self.shareInfo(image: UIImage(named: "АГПУ")!, title: self.viewModel.articleItem(index: indexPath.row).title ?? "", text: self.viewModel.urlForCurrentArticle(index: indexPath.row))
             }
             
             return UIMenu(title: self.viewModel.articleItem(index: indexPath.row).title ?? "", children: [
