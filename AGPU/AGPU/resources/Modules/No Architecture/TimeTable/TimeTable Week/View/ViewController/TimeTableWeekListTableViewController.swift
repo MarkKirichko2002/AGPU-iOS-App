@@ -58,16 +58,20 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     @objc private func closeScreen() {
-         dismiss(animated: true)
+        dismiss(animated: true)
     }
     
     private func SetUpDatesMenu()-> UIMenu {
+        
+        let currentDay = dateManager.getCurrentDate()
+        
         let actions = timetable.enumerated().map { (index: Int, date: TimeTable) -> UIAction in
-            return UIAction(title: week.dayNames[date.date]!.lowercased()) { _ in
-                if !date.disciplines.isEmpty {
-                    self.tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
-                }
+            let currentDay = week.dayNames[currentDay]
+            let day = week.dayNames[date.date]!
+            let actionHandler: UIActionHandler = { [weak self] _ in
+                self?.tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
             }
+            return UIAction(title: week.dayNames[date.date]!.lowercased(), state: currentDay == day ? .on : .off, handler: actionHandler)
         }
         let datesList = UIMenu(title: "дни недели", options: .singleSelection, children: actions)
         return datesList
