@@ -44,7 +44,7 @@ final class AGPUWallpapersListViewController: UIViewController {
     
     @objc private func back() {
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("for every status appear"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
         }
         navigationController?.popViewController(animated: true)
     }

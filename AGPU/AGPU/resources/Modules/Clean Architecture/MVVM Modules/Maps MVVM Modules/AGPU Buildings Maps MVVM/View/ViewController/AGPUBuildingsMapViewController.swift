@@ -52,7 +52,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
     
     @objc private func back() {
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("for every status appear"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
         }
         navigationController?.popViewController(animated: true)
     }
@@ -80,7 +80,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
                 }
                 let cancel = UIAlertAction(title: "отмена", style: .cancel) { _ in
                     Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                        NotificationCenter.default.post(name: Notification.Name("for every status appear"), object: nil)
+                        NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
                     }
                     self.navigationController?.popViewController(animated: true)
                 }

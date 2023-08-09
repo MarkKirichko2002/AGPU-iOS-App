@@ -243,12 +243,6 @@ final class AGPUTabBarController: UITabBarController {
                 self.displayDynamicButton(icon: icon)
             }
         }
-        
-        NotificationCenter.default.addObserver(forName: Notification.Name("for every status appear"), object: nil, queue: .main) { _ in
-            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                self.displayDynamicButton(icon: self.settingsManager.checkCurrentIcon())
-            }
-        }
     }
     
     private func ObserveWebScreen() {
