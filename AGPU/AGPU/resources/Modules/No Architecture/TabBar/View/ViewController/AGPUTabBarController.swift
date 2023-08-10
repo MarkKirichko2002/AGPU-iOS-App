@@ -137,104 +137,13 @@ final class AGPUTabBarController: UITabBarController {
     
     // MARK: - Voice Control
     private func checkVoiceCommands(text: String) {
-        
-        if text != "" {
-            // поиск раздела
-            for section in AGPUSections.sections {
-                
-                if text.lowercased().contains(section.voiceCommand) {
-                    
-                    self.displayDynamicButton(icon: section.icon)
-                    
-                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                        self.GoToWeb(url: section.url, title: section.name, isSheet: false)
-                    }
-                    
-                    NotificationCenter.default.post(name: Notification.Name("scroll"), object: text.lastWord())
-                    break
-                }
-            }
-        }
-        
-        // случайны раздел
-        if text.lowercased().contains("случайный раздел") || text.lowercased().contains("случайно раздел") || text.lowercased().contains("рандомный раздел") || text.lowercased().contains("рандомно раздел") {
-            
-            let section = AGPUSections.sections[Int.random(in: 0..<AGPUSections.sections.count - 1)]
-            
-            self.displayDynamicButton(icon: "dice")
-            
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.GoToWeb(url: section.url, title: section.name, isSheet: false)
-            }
-            
-            NotificationCenter.default.post(name: Notification.Name("scroll"), object: text.lastWord())
-        }
-        
-        
-        if text != "" {
-            // поиск подраздела
-            for section in AGPUSections.sections {
-                
-                for subsection in section.subsections {
-                    
-                    if text.noWhitespacesWord().contains(subsection.voiceCommand) {
-                        
-                        self.displayDynamicButton(icon: subsection.icon)
-                        
-                        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                            self.GoToWeb(url: subsection.url, title: "ФГБОУ ВО «АГПУ»", isSheet: false)
-                        }
-                        
-                        for direction in VoiceDirections.directions {
-                            if direction.name.contains(text.lastWord()) {
-                                NotificationCenter.default.post(name: Notification.Name("scroll web page"), object: text.lastWord())
-                            }
-                        }
-                        break
-                    }
-                }
-            }
-        }
-        
-        if text != "" {
-            // поиск корпуса
-            for building in AGPUBuildings.buildings {
-                
-                if building.voiceCommands.contains(where: { text.lowercased().range(of: $0.lowercased()) != nil }) {
-                    
-                    let vc = SearchAGPUBuildingMapViewController(building: building)
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    DispatchQueue.main.async {
-                        self.present(navVC, animated: true)
-                    }
-                    break
-                }
-            }
-        }
-        
-        // закрыть экран
-        if text.lowercased().contains("закр") {
-            
-            speechRecognitionManager.cancelSpeechRecognition()
-            
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.speechRecognitionManager.startRecognize()
-                self.displayDynamicButton(icon: "mic")
-                NotificationCenter.default.post(name: Notification.Name("close screen"), object: nil)
-            }
-        }
-        
-        // выключить микрофон
-        if text.lowercased().contains("стоп") {
-            
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("close screen"), object: nil)
-            }
-            
-            self.DynamicButton.sendActions(for: .touchUpInside)
-            
-        }
+        searchSection(text: text.lowercased())
+        GenerateRandomSection(text: text.lowercased())
+        searchSubSection(text: text.lowercased())
+        findBuilding(text: text.lowercased())
+        closeScreen(text: text.lowercased())
+        turnOfMicrophone(text: text.lowercased())
+        ScrollWebScreen(text: text.lastWord())
     }
     
     private func ObserveForEveryStatus() {
@@ -284,6 +193,123 @@ final class AGPUTabBarController: UITabBarController {
 }
 
 extension AGPUTabBarController {
+    
+    // поиск раздела
+    func searchSection(text: String) {
+        
+        for section in AGPUSections.sections {
+            
+            if text.lowercased().contains(section.voiceCommand) {
+                
+                self.displayDynamicButton(icon: section.icon)
+                
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self.GoToWeb(url: section.url, title: section.name, isSheet: false)
+                }
+                ResetSpeechRecognition()
+                break
+            }
+        }
+    }
+    
+    // случайный раздел
+    func GenerateRandomSection(text: String) {
+        
+        if text.lowercased().contains("случайный раздел") || text.lowercased().contains("случайно раздел") || text.lowercased().contains("рандомный раздел") || text.lowercased().contains("рандомно раздел") {
+            
+            let section = AGPUSections.sections[Int.random(in: 0..<AGPUSections.sections.count - 1)]
+            
+            self.displayDynamicButton(icon: "dice")
+            
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.GoToWeb(url: section.url, title: section.name, isSheet: false)
+            }
+            ResetSpeechRecognition()
+        }
+    }
+    
+    // поиск подраздела
+    func searchSubSection(text: String) {
+        
+        for section in AGPUSections.sections {
+            
+            for subsection in section.subsections {
+                
+                if text.noWhitespacesWord().contains(subsection.voiceCommand) {
+                    
+                    self.displayDynamicButton(icon: subsection.icon)
+                    
+                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                        self.GoToWeb(url: subsection.url, title: "ФГБОУ ВО «АГПУ»", isSheet: false)
+                    }
+                    
+                    for direction in VoiceDirections.directions {
+                        if direction.name.contains(text.lastWord()) {
+                            self.ResetSpeechRecognition()
+                        }
+                    }
+                    break
+                }
+            }
+        }
+    }
+    
+    // поиск корпуса
+    func findBuilding(text: String) {
+        
+        for building in AGPUBuildings.buildings {
+            
+            if building.voiceCommands.contains(where: { text.lowercased().range(of: $0.lowercased()) != nil }) {
+                ResetSpeechRecognition()
+                let vc = SearchAGPUBuildingMapViewController(building: building)
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                DispatchQueue.main.async {
+                    self.present(navVC, animated: true)
+                }
+                break
+            }
+        }
+    }
+    
+    // закрыть экран
+    func closeScreen(text: String) {
+        
+        if text.lowercased().contains("закр") {
+            
+            self.ResetSpeechRecognition()
+            
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.displayDynamicButton(icon: "mic")
+                NotificationCenter.default.post(name: Notification.Name("close screen"), object: nil)
+            }
+        }
+    }
+    
+    func ResetSpeechRecognition() {
+        speechRecognitionManager.cancelSpeechRecognition()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.speechRecognitionManager.startRecognize()
+        }
+    }
+    
+    // выключить микрофон
+    func turnOfMicrophone(text: String) {
+        
+        if text.lowercased().contains("стоп") {
+            
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                NotificationCenter.default.post(name: Notification.Name("close screen"), object: nil)
+            }
+            
+            self.DynamicButton.sendActions(for: .touchUpInside)
+            
+        }
+    }
+    
+    func ScrollWebScreen(text: String) {
+        NotificationCenter.default.post(name: Notification.Name("scroll web page"), object: text.lastWord())
+    }
     
     func displayDynamicButton(icon: String) {
         DispatchQueue.main.async {
