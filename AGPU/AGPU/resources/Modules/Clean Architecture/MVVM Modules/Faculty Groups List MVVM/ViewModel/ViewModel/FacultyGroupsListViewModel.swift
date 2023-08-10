@@ -13,8 +13,6 @@ final class FacultyGroupsListViewModel: NSObject {
     var observation: NSKeyValueObservation?
     
     var groups = [FacultyGroupModel]()
-    
-    // MARK: - сервисы
-    let timetableService = TimeTableService()
+    var scrollHandler: ((Int, Int)->Void)?
     
 }

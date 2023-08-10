@@ -58,6 +58,12 @@ extension UIViewController {
         present(activityViewController, animated: true)
     }
     
+    func OpenSettings() {
+        if let settingsURL = URL(string: UIApplication.openSettingsURLString + Bundle.main.bundleIdentifier!) {
+            UIApplication.shared.open(settingsURL)
+        }
+    }
+    
     func makePhoneCall(phoneNumber: String) {
         if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
             let application = UIApplication.shared
@@ -74,6 +80,9 @@ extension UIViewController {
     }
     
     @objc func handleSwipeGesture(_ gesture: UISwipeGestureRecognizer) {
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+            NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
+        }
         if let navigationController = navigationController {
             navigationController.popViewController(animated: true)
         }

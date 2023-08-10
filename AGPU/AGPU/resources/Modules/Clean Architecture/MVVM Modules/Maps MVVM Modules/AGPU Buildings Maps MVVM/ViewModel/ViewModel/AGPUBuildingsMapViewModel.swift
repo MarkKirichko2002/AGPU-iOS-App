@@ -11,8 +11,9 @@ final class AGPUBuildingsMapViewModel {
     
     var locationHandler: ((LocationModel)->Void)?
     var choiceHandler: ((Bool, MKAnnotation)->Void)?
+    var alertHandler: ((Bool)->Void)?
     
     // MARK: - сервисы
     let locationManager = LocationManager()
-        
+ 
 }

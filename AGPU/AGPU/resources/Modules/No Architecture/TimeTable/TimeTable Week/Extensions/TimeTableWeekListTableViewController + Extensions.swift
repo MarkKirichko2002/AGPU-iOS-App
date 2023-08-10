@@ -11,10 +11,10 @@ import UIKit
 extension TimeTableWeekListTableViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let date = DatesList()[section]
+        let date = "\(week.dayNames[timetable[section].date]!) \(timetable[section].date)"
         return date
     }
-
+    
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil,
                                           previewProvider: nil,

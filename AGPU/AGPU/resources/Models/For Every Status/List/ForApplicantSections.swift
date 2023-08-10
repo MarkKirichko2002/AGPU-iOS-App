@@ -17,23 +17,33 @@ struct ForApplicantSections {
         ),
         ForEveryStatusModel(
             id: 2,
+            icon: "map icon",
+            name: "найти «АГПУ»"
+        ),
+        ForEveryStatusModel(
+            id: 3,
             icon: "university",
             name: "институты/факультета"
         ),
         ForEveryStatusModel(
-            id: 3,
+            id: 4,
             icon: "info icon",
             name: "информация для поступающих"
         ),
         ForEveryStatusModel(
-            id: 4,
+            id: 5,
             icon: "question",
             name: "вопросы и ответы"
         ),
         ForEveryStatusModel(
-            id: 5,
+            id: 6,
             icon: "plus",
             name: "дополнительное образование"
-        )
+        ),
+        ForEveryStatusModel(
+            id: 7,
+            icon: "sections",
+            name: "разделы"
+        ),
     ]
 }

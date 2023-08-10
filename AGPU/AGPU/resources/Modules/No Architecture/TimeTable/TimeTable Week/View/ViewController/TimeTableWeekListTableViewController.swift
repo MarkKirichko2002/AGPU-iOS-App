@@ -9,12 +9,9 @@ import UIKit
 
 final class TimeTableWeekListTableViewController: UIViewController {
     
-    private let service = TimeTableService()
-    
-    var startDate: String = ""
-    private var endDate: String = ""
     private var group: String = ""
     private var subgroup: Int = 0
+    var week: WeekModel!
     var timetable = [TimeTable]()
     
     // MARK: - UI
@@ -22,12 +19,15 @@ final class TimeTableWeekListTableViewController: UIViewController {
     private let spinner = UIActivityIndicatorView(style: .large)
     private let noTimeTableLabel = UILabel()
     
+    // MARK: - сервисы
+    private let service = TimeTableService()
+    private let dateManager = DateManager()
+    
     // MARK: - Init
-    init(group: String, subgroup: Int, startDate: String, endDate: String) {
+    init(group: String, subgroup: Int, week: WeekModel) {
         self.group = group
         self.subgroup = subgroup
-        self.startDate = startDate
-        self.endDate = endDate
+        self.week = week
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -41,10 +41,13 @@ final class TimeTableWeekListTableViewController: UIViewController {
         SetUpLabel()
         SetUpIndicatorView()
         GetTimeTable()
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.ScrollToCurrentDay()
+        }
     }
     
     private func SetUpNavigation() {
-        navigationItem.title = "с \(startDate) до \(endDate)"
+        navigationItem.title = "с \(week.from) до \(week.to)"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .black
         let menu = SetUpDatesMenu()
@@ -55,31 +58,23 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     @objc private func closeScreen() {
-         dismiss(animated: true)
+        dismiss(animated: true)
     }
     
     private func SetUpDatesMenu()-> UIMenu {
-        let actions = DatesList().enumerated().map { (index: Int, date: String) in
-            return UIAction(title: date) { _ in
-                if !self.timetable[index].disciplines.isEmpty {
-                    self.tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
-                }
-            }
-        }
-        print(actions)
-        let datesList = UIMenu(title: "даты", options: .singleSelection, children: actions)
-        return datesList
-    }
-    
-    func DatesList()-> [String] {
-        var array = [String]()
-        var currentDate = startDate
         
-        for _ in 0..<timetable.count {
-            array.append(currentDate)
-            currentDate = DateManager().nextDay(date: currentDate)
+        let currentDay = dateManager.getCurrentDate()
+        
+        let actions = timetable.enumerated().map { (index: Int, date: TimeTable) -> UIAction in
+            let currentDay = week.dayNames[currentDay]
+            let day = week.dayNames[date.date]!
+            let actionHandler: UIActionHandler = { [weak self] _ in
+                self?.tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
+            }
+            return UIAction(title: week.dayNames[date.date]!.lowercased(), state: currentDay == day ? .on : .off, handler: actionHandler)
         }
-        return array
+        let datesList = UIMenu(title: "дни недели", options: .singleSelection, children: actions)
+        return datesList
     }
     
     private func SetUpTable() {
@@ -118,7 +113,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         self.noTimeTableLabel.isHidden = true
         self.timetable = []
         self.tableView.reloadData()
-        service.GetTimeTableWeek(groupId: group, startDate: startDate, endDate: endDate) { result in
+        service.GetTimeTableWeek(groupId: group, startDate: week.from, endDate: week.to) { result in
             switch result {
             case .success(let timetable):
                 var arr = [TimeTable]()
@@ -128,7 +123,6 @@ final class TimeTableWeekListTableViewController: UIViewController {
                         let timeTable = TimeTable(date: timetable.date, groupName: timetable.groupName, disciplines: data)
                         arr.append(timeTable)
                     }
-                    
                     DispatchQueue.main.async {
                         self.timetable = arr
                         self.tableView.reloadData()
@@ -139,12 +133,26 @@ final class TimeTableWeekListTableViewController: UIViewController {
                 } else {
                     self.noTimeTableLabel.isHidden = false
                     self.spinner.stopAnimating()
+                    self.SetUpNavigation()
                 }
             case .failure(let error):
                 self.spinner.stopAnimating()
                 self.noTimeTableLabel.text = "Ошибка"
                 self.noTimeTableLabel.isHidden = false
+                self.SetUpNavigation()
                 print(error)
+            }
+        }
+    }
+    
+    func ScrollToCurrentDay() {
+        let currentDate = dateManager.getCurrentDate()
+        timetable.enumerated().forEach { (index: Int, timetable: TimeTable) in
+            if timetable.date == currentDate {
+                DispatchQueue.main.async {
+                    let indexPath = IndexPath(row: 0, section: index)
+                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                }
             }
         }
     }

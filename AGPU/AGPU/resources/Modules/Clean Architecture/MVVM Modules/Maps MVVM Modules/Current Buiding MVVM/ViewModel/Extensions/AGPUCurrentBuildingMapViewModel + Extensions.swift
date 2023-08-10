@@ -10,11 +10,18 @@ import MapKit
 // MARK: - AGPUCurrentBuildingMapViewModelProtocol
 extension AGPUCurrentBuildingMapViewModel: AGPUCurrentBuildingMapViewModelProtocol {
     
-    func registerLocationHandler(block: @escaping(LocationModel)->Void) {
-        self.locationHandler = block
+    func CheckLocationAuthorizationStatus() {
+        locationManager.СheckLocationAuthorization { isAuthorized in
+            if isAuthorized {
+                self.GetLocation()
+            } else {
+                self.alertHandler?(true)
+            }
+        }
     }
     
     func GetLocation() {
+        
         locationManager.GetLocations()
         
         locationManager.registerLocationHandler { location in
@@ -46,6 +53,10 @@ extension AGPUCurrentBuildingMapViewModel: AGPUCurrentBuildingMapViewModelProtoc
             
             self.locationHandler?(location)
         }
+    }
+    
+    func registerLocationHandler(block: @escaping(LocationModel)->Void) {
+        self.locationHandler = block
     }
     
     func CurrentBuilding()-> MKAnnotation {

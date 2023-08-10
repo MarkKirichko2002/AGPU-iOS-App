@@ -49,4 +49,44 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
             return false
         }
     }
+    
+    func makeGroupsMenu()-> UIMenu {
+        
+        let savedGroup = UserDefaults.standard.object(forKey: "group") as? String ?? ""
+        
+        var currentGroup = ""
+        
+        if let group = self.groups.first(where: { $0.groups.contains(savedGroup)}) {
+            currentGroup = group.name
+        }
+        
+        let items = self.groups.enumerated().map { (section: Int, group: FacultyGroupModel) in
+            let actionHandler: UIActionHandler = { [weak self] _ in
+                DispatchQueue.main.async {
+                    self?.scrollHandler?(section, 0)
+                }
+            }
+            return UIAction(title: group.name.abbreviation(), state: currentGroup == group.name ? .on : .off, handler: actionHandler)
+        }
+        let menu = UIMenu(title: "группы", options: .singleSelection, children: items)
+        return menu
+    }
+    
+    func scrollToSelectedGroup() {
+        let savedGroup = UserDefaults.standard.object(forKey: "group") as? String ?? ""
+        for (sectionIndex, groupsSections) in self.groups.enumerated() {
+            for (itemIndex, groupItem) in groupsSections.groups.enumerated() {
+                print(groupItem)
+                if groupItem == savedGroup {
+                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                        self.scrollHandler?(sectionIndex, itemIndex)
+                    }
+                }
+            }
+        }
+    }
+    
+    func registerScrollHandler(block: @escaping (Int, Int) -> Void) {
+        self.scrollHandler = block
+    }
 }

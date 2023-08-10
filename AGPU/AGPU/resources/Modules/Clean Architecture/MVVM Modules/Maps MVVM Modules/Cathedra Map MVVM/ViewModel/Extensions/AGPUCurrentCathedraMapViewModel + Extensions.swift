@@ -10,8 +10,14 @@ import MapKit
 // MARK: - AGPUCurrentCathedraMapViewModelProtocol
 extension AGPUCurrentCathedraMapViewModel: AGPUCurrentCathedraMapViewModelProtocol {
     
-    func registerLocationHandler(block: @escaping(LocationModel)->Void) {
-        self.locationHandler = block
+    func CheckLocationAuthorizationStatus() {
+        locationManager.СheckLocationAuthorization { isAuthorized in
+            if isAuthorized {
+                self.GetLocation()
+            } else {
+                self.alertHandler?(true)
+            }
+        }
     }
     
     func GetLocation() {
@@ -53,5 +59,9 @@ extension AGPUCurrentCathedraMapViewModel: AGPUCurrentCathedraMapViewModelProtoc
             
             self.locationHandler?(location)
         }
+    }
+    
+    func registerLocationHandler(block: @escaping(LocationModel)->Void) {
+        self.locationHandler = block
     }
 }

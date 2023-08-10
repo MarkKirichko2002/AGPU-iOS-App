@@ -5,7 +5,7 @@
 //  Created by Марк Киричко on 04.08.2023.
 //
 
-import Foundation
+import UIKit
 
 // MARK: - AllGroupsListViewModelProtocol
 extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
@@ -20,6 +20,16 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
         }
     }
     
+    func scrollToSelectedGroup(completion: @escaping(Int, Int)->Void) {
+        for (groupIndex, groups) in FacultyGroups.groups.enumerated() {
+            for (elementIndex, group) in groups.groups.enumerated() {
+                if group == self.group {
+                    completion(groupIndex, elementIndex)
+                }
+            }
+        }
+    }
+    
     func currentFacultyIcon(section: Int, abbreviation: String)-> String {
         let group = FacultyGroups.groups[section]
         for faculty in AGPUFaculties.faculties {
@@ -28,5 +38,26 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
             }
         }
         return "АГПУ"
+    }
+    
+    func makeGroupsMenu()-> UIMenu {
+        
+        var currentGroup = ""
+        
+        if let group = FacultyGroups.groups.first(where: { $0.groups.contains(self.group)}) {
+            currentGroup = group.name
+        }
+        
+        let items = FacultyGroups.groups.enumerated().map { (index: Int, group: FacultyGroupModel) in
+            let groupItem = group.name
+            let actionHandler: UIActionHandler = { [weak self] _ in
+                DispatchQueue.main.async {
+                    self?.scrollHandler?(index, 0)
+                }
+            }
+            return UIAction(title: group.name.abbreviation(), state: currentGroup == groupItem ? .on : .off, handler: actionHandler)
+        }
+        let menu = UIMenu(title: "группы", options: .singleSelection, children: items)
+        return menu
     }
 }

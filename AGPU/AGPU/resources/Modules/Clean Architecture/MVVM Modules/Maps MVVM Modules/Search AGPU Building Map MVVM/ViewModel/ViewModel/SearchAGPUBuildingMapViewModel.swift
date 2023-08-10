@@ -10,6 +10,7 @@ import MapKit
 class SearchAGPUBuildingMapViewModel {
     
     var locationHandler: ((LocationModel)->Void)?
+    var alertHandler: ((Bool)->Void)?
     var building: AGPUBuildingModel!
     
     // MARK: - сервисы

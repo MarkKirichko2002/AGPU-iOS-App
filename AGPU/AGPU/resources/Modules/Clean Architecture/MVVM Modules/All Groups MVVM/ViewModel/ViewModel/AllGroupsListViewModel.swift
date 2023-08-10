@@ -10,6 +10,7 @@ import Foundation
 class AllGroupsListViewModel {
     
     var group: String = ""
+    var scrollHandler: ((Int, Int)->Void)?
     
     // MARK: - Init
     init(group: String) {

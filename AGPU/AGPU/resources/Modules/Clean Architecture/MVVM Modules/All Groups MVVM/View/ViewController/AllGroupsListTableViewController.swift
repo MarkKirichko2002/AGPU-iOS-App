@@ -27,29 +27,21 @@ class AllGroupsListTableViewController: UITableViewController {
         super.viewDidLoad()
         SetUpNavigation()
         SetUpTable()
+        BindViewModel()
     }
     
-    private func SetUpTable() {
-        tableView.register(UINib(nibName: FacultyGroupTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyGroupTableViewCell.identifier)
-    }
-
     private func SetUpNavigation() {
         
         navigationItem.title = "Список групп"
         
         let closebutton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeButtonTapped))
         closebutton.tintColor = .black
-        
-        let items = FacultyGroups.groups.enumerated().map { (index: Int, group: FacultyGroupModel) in
-            
-            return UIAction(title: group.name.abbreviation()) { _ in
-                let indexPath = IndexPath(row: 0, section: index)
-                DispatchQueue.main.async {
-                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-                }
+        let menu = viewModel.makeGroupsMenu()
+        viewModel.scrollHandler = { (section, index) in
+            DispatchQueue.main.async {
+                self.tableView.scrollToRow(at: IndexPath(row: index, section: section), at: .top, animated: true)
             }
         }
-        let menu = UIMenu(title: "группы", options: .singleSelection, children: items)
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         sections.tintColor = .black
         navigationItem.leftBarButtonItem = closebutton
@@ -60,6 +52,21 @@ class AllGroupsListTableViewController: UITableViewController {
         self.dismiss(animated: true)
     }
     
+    private func SetUpTable() {
+        tableView.register(UINib(nibName: FacultyGroupTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyGroupTableViewCell.identifier)
+    }
+    
+    private func BindViewModel() {
+        viewModel.scrollToSelectedGroup { section, index in
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                DispatchQueue.main.async {
+                    let indexPath = IndexPath(row: index, section: section)
+                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                }
+            }
+        }
+    }
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int)-> String? {
         return FacultyGroups.groups[section].name.abbreviation()
     }

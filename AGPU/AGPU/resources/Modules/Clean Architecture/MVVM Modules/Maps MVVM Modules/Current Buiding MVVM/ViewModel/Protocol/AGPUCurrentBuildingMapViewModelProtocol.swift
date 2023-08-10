@@ -9,7 +9,8 @@ import MapKit
 
 protocol AGPUCurrentBuildingMapViewModelProtocol {
     var locationHandler: ((LocationModel)->Void)? {get set}
-    func registerLocationHandler(block: @escaping(LocationModel)->Void)
+    func CheckLocationAuthorizationStatus()
     func GetLocation()
+    func registerLocationHandler(block: @escaping(LocationModel)->Void)
     func CurrentBuilding()-> MKAnnotation
 }
