@@ -31,7 +31,6 @@ final class FacultyGroupsListTableViewController: UITableViewController {
         SetUpSwipeGesture()
         SetUpTable()
         BindViewModel()
-        viewModel.GetGroups(by: faculty)
         SetUpNavigation()
     }
     
@@ -76,9 +75,18 @@ final class FacultyGroupsListTableViewController: UITableViewController {
     }
     
     private func BindViewModel() {
+        viewModel.GetGroups(by: faculty)
         viewModel.observation = observe(\.viewModel.isChanged) { _, _ in
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+            }
+        }
+        self.viewModel.scrollToSelectedGroup { section, index in
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                DispatchQueue.main.async {
+                    let indexPath = IndexPath(row: index, section: section)
+                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                }
             }
         }
     }

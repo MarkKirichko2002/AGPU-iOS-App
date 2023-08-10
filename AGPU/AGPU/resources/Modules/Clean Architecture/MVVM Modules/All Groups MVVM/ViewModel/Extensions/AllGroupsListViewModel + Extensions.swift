@@ -45,10 +45,7 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
         var currentGroup = ""
         
         if let group = FacultyGroups.groups.first(where: { $0.groups.contains(self.group)}) {
-            print("Группа \(self.group) находится в группе \(group.name)")
             currentGroup = group.name
-        } else {
-            print("Группа \(self.group) не найдена")
         }
         
         let items = FacultyGroups.groups.enumerated().map { (index: Int, group: FacultyGroupModel) in

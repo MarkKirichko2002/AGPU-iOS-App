@@ -49,4 +49,16 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
             return false
         }
     }
+    
+    func scrollToSelectedGroup(completion: @escaping(Int, Int)->Void) {
+        let savedGroup = UserDefaults.standard.object(forKey: "group") as? String ?? ""
+        for (sectionIndex, groupsSections) in self.groups.enumerated() {
+            for (itemIndex, groupItem) in groupsSections.groups.enumerated() {
+                print(groupItem)
+                if groupItem == savedGroup {
+                    completion(sectionIndex, itemIndex)
+                }
+            }
+        }
+    }
 }
