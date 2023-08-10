@@ -81,7 +81,7 @@ final class FacultyGroupsListTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-        self.viewModel.scrollToSelectedGroup { section, index in
+        viewModel.registerScrollHandler { section, index in
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 DispatchQueue.main.async {
                     let indexPath = IndexPath(row: index, section: section)
@@ -89,6 +89,7 @@ final class FacultyGroupsListTableViewController: UITableViewController {
                 }
             }
         }
+        viewModel.scrollToSelectedGroup()
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int)-> String? {

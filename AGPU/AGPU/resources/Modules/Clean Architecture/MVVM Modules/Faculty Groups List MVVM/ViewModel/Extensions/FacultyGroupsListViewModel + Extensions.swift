@@ -50,15 +50,42 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
         }
     }
     
-    func scrollToSelectedGroup(completion: @escaping(Int, Int)->Void) {
+    func makeGroupsMenu()-> UIMenu {
+        
+        let savedGroup = UserDefaults.standard.object(forKey: "group") as? String ?? ""
+        
+        var currentGroup = ""
+        
+        if let group = FacultyGroups.groups.first(where: { $0.groups.contains(savedGroup)}) {
+            currentGroup = group.name
+        }
+        
+        let items = FacultyGroups.groups.enumerated().map { (index: Int, group: FacultyGroupModel) in
+            let groupItem = group.name
+            let actionHandler: UIActionHandler = { [weak self] _ in
+                DispatchQueue.main.async {
+                    self?.scrollHandler?(index, 0)
+                }
+            }
+            return UIAction(title: group.name.abbreviation(), state: currentGroup == groupItem ? .on : .off, handler: actionHandler)
+        }
+        let menu = UIMenu(title: "группы", options: .singleSelection, children: items)
+        return menu
+    }
+    
+    func scrollToSelectedGroup() {
         let savedGroup = UserDefaults.standard.object(forKey: "group") as? String ?? ""
         for (sectionIndex, groupsSections) in self.groups.enumerated() {
             for (itemIndex, groupItem) in groupsSections.groups.enumerated() {
                 print(groupItem)
                 if groupItem == savedGroup {
-                    completion(sectionIndex, itemIndex)
+                    self.scrollHandler?(sectionIndex, itemIndex)
                 }
             }
         }
+    }
+    
+    func registerScrollHandler(block: @escaping (Int, Int) -> Void) {
+        self.scrollHandler = block
     }
 }
