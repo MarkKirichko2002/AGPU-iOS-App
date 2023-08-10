@@ -28,6 +28,7 @@ class AllWeeksListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("группа: \(self.group)")
         SetUpNavigation()
         SetUpTable()
         BindViewModel()

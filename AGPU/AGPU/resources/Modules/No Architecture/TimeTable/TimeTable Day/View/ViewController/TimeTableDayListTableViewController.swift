@@ -9,13 +9,15 @@ import UIKit
 
 final class TimeTableDayListTableViewController: UIViewController {
     
-    private let service = TimeTableService()
-    private let dateManager = DateManager()
     private var group = ""
     private var subgroup = 0
     private var date = ""
     
     var timetable: TimeTable?
+    
+    // MARK: - сервисы
+    private let service = TimeTableService()
+    private let dateManager = DateManager()
     
     // MARK: - UI
     let tableView = UITableView()
@@ -24,15 +26,21 @@ final class TimeTableDayListTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        date = dateManager.getCurrentDate()
+        SetUpData()
         SetUpNavigation()
         SetUpTable()
         SetUpIndicatorView()
         SetUpLabel()
+        GetTimeTable(group: group, date: date)
         ObserveGroupChange()
         ObserveSubGroupChange()
         ObserveCalendar()
-        GetTimeTable(group: group, date: date)
+    }
+    
+    private func SetUpData() {
+        self.group = UserDefaults.standard.string(forKey: "group") ?? ""
+        self.subgroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
+        date = dateManager.getCurrentDate()
     }
     
     private func SetUpNavigation() {
@@ -138,9 +146,6 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     func GetTimeTable(group: String, date: String) {
-        self.group = UserDefaults.standard.string(forKey: "group") ?? ""
-        self.subgroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
-        print(self.subgroup)
         self.spinner.startAnimating()
         self.noTimeTableLabel.isHidden = true
         self.timetable?.disciplines = []
