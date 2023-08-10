@@ -9,7 +9,11 @@ import UIKit
 
 class RecentMomentsViewController: UIViewController {
     
+    // MARK: - UI
     var stackView: UIStackView!
+    
+    // MARK: - сервисы
+    private let viewModel = RecentMomentsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,17 +47,20 @@ class RecentMomentsViewController: UIViewController {
         
         // Создаем кнопки
         let button1 = UIButton()
-        button1.setTitle("Веб-страница", for: .normal)
+        button1.setImage(UIImage(named: "online"), for: .normal)
+        button1.setTitle(" Веб-страница", for: .normal)
         button1.setTitleColor(.black, for: .normal)
         button1.addTarget(self, action: #selector(CheckLastWebPage), for: .touchUpInside)
         
         let button2 = UIButton()
-        button2.setTitle("Документ", for: .normal)
+        button2.setImage(UIImage(named: "document"), for: .normal)
+        button2.setTitle(" Документ", for: .normal)
         button2.setTitleColor(.black, for: .normal)
         button2.addTarget(self, action: #selector(CheckLastPDFDocument), for: .touchUpInside)
         
         let button3 = UIButton()
-        button3.setTitle("Видео", for: .normal)
+        button3.setImage(UIImage(named: "play icon"), for: .normal)
+        button3.setTitle(" Видео", for: .normal)
         button3.setTitleColor(.black, for: .normal)
         button3.addTarget(self, action: #selector(CheckLastVideo), for: .touchUpInside)
         
@@ -74,27 +81,25 @@ class RecentMomentsViewController: UIViewController {
     }
     
     @objc private func CheckLastWebPage() {
-        if let page = UserDefaults.loadData(type: RecentWebPageModel.self, key: "last page") {
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.ShowRecentPageScreen(page: page)
-            }
+        viewModel.GetLastWebPage { page in
+            self.ShowRecentPageScreen(page: page)
         }
     }
     
     @objc private func CheckLastPDFDocument() {
-        if let pdf = UserDefaults.loadData(type: RecentPDFModel.self, key: "last pdf") {
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                let vc = PDFLastPageViewController(pdf: pdf)
-                let navVC = UINavigationController(rootViewController: vc)
-                navVC.modalPresentationStyle = .fullScreen
+        viewModel.GetLastPDFDocument { pdf in
+            let vc = PDFLastPageViewController(pdf: pdf)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            DispatchQueue.main.async {
                 self.present(navVC, animated: true)
             }
         }
     }
     
     @objc private func CheckLastVideo() {
-        if let videoUrl = UserDefaults.standard.string(forKey: "last video") {
-            self.PlayVideo(url: videoUrl)
+        viewModel.GetLastVideo { videoURL in
+            self.PlayVideo(url: videoURL)
         }
     }
 }

@@ -27,6 +27,9 @@
 		821C9E192A68DE8700EF0030 /* UITableView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C9E182A68DE8700EF0030 /* UITableView + Extensions.swift */; };
 		822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822158952A422A650088BDE5 /* SettingsListViewController.swift */; };
 		822605EF2A84A0600055925F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82808E912A31F12500DEEB16 /* Assets.xcassets */; };
+		822605F62A8532410055925F /* RecentMomentsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822605F52A8532410055925F /* RecentMomentsViewModelProtocol.swift */; };
+		822605F82A8532E20055925F /* RecentMomentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822605F72A8532E20055925F /* RecentMomentsViewModel.swift */; };
+		822605FA2A8532F30055925F /* RecentMomentsViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822605F92A8532F30055925F /* RecentMomentsViewModel + Extensions.swift */; };
 		822632412A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8226323F2A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift */; };
 		822632422A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822632402A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib */; };
 		8228E3992A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E3982A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift */; };
@@ -226,6 +229,9 @@
 		821C892F2A510F5600BD756D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		821C9E182A68DE8700EF0030 /* UITableView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extensions.swift"; sourceTree = "<group>"; };
 		822158952A422A650088BDE5 /* SettingsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewController.swift; sourceTree = "<group>"; };
+		822605F52A8532410055925F /* RecentMomentsViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMomentsViewModelProtocol.swift; sourceTree = "<group>"; };
+		822605F72A8532E20055925F /* RecentMomentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMomentsViewModel.swift; sourceTree = "<group>"; };
+		822605F92A8532F30055925F /* RecentMomentsViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentMomentsViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		8226323F2A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeToRecallOptionTableViewCell.swift; sourceTree = "<group>"; };
 		822632402A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShakeToRecallOptionTableViewCell.xib; sourceTree = "<group>"; };
 		8228E3982A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUCurrentBuildingMapViewModel.swift; sourceTree = "<group>"; };
@@ -823,6 +829,40 @@
 				82194E532A459AF2009D2FB3 /* Extensions */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		822605F12A8532050055925F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				822605F42A8532270055925F /* Protocol */,
+				822605F32A8532240055925F /* ViewModel */,
+				822605F22A8532210055925F /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		822605F22A8532210055925F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				822605F92A8532F30055925F /* RecentMomentsViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		822605F32A8532240055925F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				822605F72A8532E20055925F /* RecentMomentsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		822605F42A8532270055925F /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				822605F52A8532410055925F /* RecentMomentsViewModelProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		8226323C2A6CB31C0000E14C /* Cells */ = {
@@ -1440,7 +1480,6 @@
 				82505F432A7F9A0D001DE24A /* TimeTable */,
 				82D6C3422A5E33CD00FB7F5D /* Calendar */,
 				82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */,
-				82B1C0BD2A805D5200520C14 /* Recent Moments */,
 			);
 			path = "No Architecture";
 			sourceTree = "<group>";
@@ -1499,6 +1538,7 @@
 				821270572A7921DD0095D68E /* Web Modules */,
 				8228E3962A6C8EFD00C1B6AD /* Maps MVVM Modules */,
 				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
+				82B1C0BD2A805D5200520C14 /* Recent Moments MVVM */,
 				82989ACB2A6E308F00F27858 /* Faculty Cathedra List */,
 				828321602A7C6A25008641A5 /* All Groups MVVM */,
 				825634B62A6221C10082B7B8 /* Faculty Groups List MVVM */,
@@ -1948,12 +1988,13 @@
 			path = "Clean Architecture";
 			sourceTree = "<group>";
 		};
-		82B1C0BD2A805D5200520C14 /* Recent Moments */ = {
+		82B1C0BD2A805D5200520C14 /* Recent Moments MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				82B1C0BE2A805D6D00520C14 /* View */,
+				822605F12A8532050055925F /* ViewModel */,
 			);
-			path = "Recent Moments";
+			path = "Recent Moments MVVM";
 			sourceTree = "<group>";
 		};
 		82B1C0BE2A805D6D00520C14 /* View */ = {
@@ -3201,6 +3242,7 @@
 				8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */,
 				8228E3A62A6C9DB300C1B6AD /* AGPUBuildingsMapViewModel + Extensions.swift in Sources */,
 				82989AD82A6E54AF00F27858 /* AGPUCurrentCathedraMapViewController.swift in Sources */,
+				822605FA2A8532F30055925F /* RecentMomentsViewModel + Extensions.swift in Sources */,
 				82426C902A71DCDA00D5AA57 /* UserStatusModel.swift in Sources */,
 				82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */,
 				82E4C58B2A6B20FF00F65A67 /* LocationManager + Extensions.swift in Sources */,
@@ -3217,6 +3259,7 @@
 				82426C742A71476D00D5AA57 /* ForEveryStatusModel.swift in Sources */,
 				82426C8D2A71D26100D5AA57 /* ForEmployeeSections.swift in Sources */,
 				8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */,
+				822605F82A8532E20055925F /* RecentMomentsViewModel.swift in Sources */,
 				82E4C5172A6B0D0200F65A67 /* ImageSaver + Extensions.swift in Sources */,
 				8241F9812A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift in Sources */,
 				82722D432A66462100149D06 /* AGPUBuildingPins.swift in Sources */,
@@ -3331,6 +3374,7 @@
 				82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */,
 				8228E3AD2A6C9E9E00C1B6AD /* AGPUCurrentBuildingMapViewModel + Extensions.swift in Sources */,
 				82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */,
+				822605F62A8532410055925F /* RecentMomentsViewModelProtocol.swift in Sources */,
 				820D33AD2A75ACA900843313 /* FacultyCathedraListTableViewController + Extensions.swift in Sources */,
 				822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */,
 				82B1C0EE2A8123F800520C14 /* VoiceDirections.swift in Sources */,

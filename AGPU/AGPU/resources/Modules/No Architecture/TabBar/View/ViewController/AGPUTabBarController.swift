@@ -99,11 +99,11 @@ final class AGPUTabBarController: UITabBarController {
         if settingsManager.checkShakeToRecallOption() {
             ShakeToRecall(motion: motion)
         } else {
-            self.displayDynamicButton(icon: "info icon")
+            self.updateDynamicButton(icon: "info icon")
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let ok = UIAlertAction(title: "ОК", style: .default)
                 self.ShowAlert(title: "Вы отключили фишку Shake To Recall!", message: "чтобы дальше пользоваться данной фишкой включите ее в настройках.", actions: [ok])
-                self.displayDynamicButton(icon: self.settingsManager.checkCurrentIcon())
+                self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
             }
         }
     }
@@ -115,22 +115,25 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     private func ShakeToRecall() {
+        self.updateDynamicButton(icon: "time.past")
         let vc = RecentMomentsViewController()
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
-        present(navVC, animated: true)
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.present(navVC, animated: true)
+        }
     }
     
     @objc private func VoiceCommands() {
         isRecording = !isRecording
         if isRecording {
-            self.displayDynamicButton(icon: "mic")
+            self.updateDynamicButton(icon: "mic")
             speechRecognitionManager.startRecognize()
             speechRecognitionManager.registerSpeechRecognitionHandler { text in
                 self.checkVoiceCommands(text: text)
             }
         } else {
-            self.displayDynamicButton(icon: self.settingsManager.checkCurrentIcon())
+            self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
             speechRecognitionManager.cancelSpeechRecognition()
         }
     }
@@ -149,7 +152,7 @@ final class AGPUTabBarController: UITabBarController {
     private func ObserveForEveryStatus() {
         NotificationCenter.default.addObserver(forName: Notification.Name("for student selected"), object: nil, queue: .main) { notification in
             if let icon = notification.object as? String {
-                self.displayDynamicButton(icon: icon)
+                self.updateDynamicButton(icon: icon)
             }
         }
     }
@@ -159,12 +162,12 @@ final class AGPUTabBarController: UITabBarController {
             if self.isRecording {
                 if !self.tabBar.isHidden {
                     DispatchQueue.main.async {
-                        self.displayDynamicButton(icon: "mic")
+                        self.updateDynamicButton(icon: "mic")
                     }
                 }
             } else {
                 if !self.tabBar.isHidden {
-                    self.displayDynamicButton(icon: self.settingsManager.checkCurrentIcon())
+                    self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
                 }
             }
         }
@@ -174,19 +177,19 @@ final class AGPUTabBarController: UITabBarController {
     private func ObserveFaculty() {
         NotificationCenter.default.addObserver(forName: Notification.Name("faculty"), object: nil, queue: .main) { notification in
             if let icon = notification.object as? AGPUFacultyModel {
-                self.displayDynamicButton(icon: icon.icon)
+                self.updateDynamicButton(icon: icon.icon)
             } else {
-                self.displayDynamicButton(icon: "АГПУ")
+                self.updateDynamicButton(icon: "АГПУ")
             }
         }
         NotificationCenter.default.addObserver(forName: Notification.Name("group"), object: nil, queue: .main) { notification in
             
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.displayDynamicButton(icon: "lock")
+                self.updateDynamicButton(icon: "lock")
             }
             
             Timer.scheduledTimer(withTimeInterval: 2.5, repeats: false) { _ in
-                self.displayDynamicButton(icon: self.settingsManager.checkCurrentIcon())
+                self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
             }
         }
     }
@@ -201,7 +204,7 @@ extension AGPUTabBarController {
             
             if text.lowercased().contains(section.voiceCommand) {
                 
-                self.displayDynamicButton(icon: section.icon)
+                self.updateDynamicButton(icon: section.icon)
                 
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                     self.GoToWeb(url: section.url, title: section.name, isSheet: false)
@@ -219,7 +222,7 @@ extension AGPUTabBarController {
             
             let section = AGPUSections.sections[Int.random(in: 0..<AGPUSections.sections.count - 1)]
             
-            self.displayDynamicButton(icon: "dice")
+            self.updateDynamicButton(icon: "dice")
             
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 self.GoToWeb(url: section.url, title: section.name, isSheet: false)
@@ -237,7 +240,7 @@ extension AGPUTabBarController {
                 
                 if text.noWhitespacesWord().contains(subsection.voiceCommand) {
                     ResetSpeechRecognition()
-                    self.displayDynamicButton(icon: subsection.icon)
+                    self.updateDynamicButton(icon: subsection.icon)
                     
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                         self.GoToWeb(url: subsection.url, title: "ФГБОУ ВО «АГПУ»", isSheet: false)
@@ -274,7 +277,7 @@ extension AGPUTabBarController {
             self.ResetSpeechRecognition()
             
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.displayDynamicButton(icon: "mic")
+                self.updateDynamicButton(icon: "mic")
                 NotificationCenter.default.post(name: Notification.Name("close screen"), object: nil)
             }
         }
@@ -301,6 +304,7 @@ extension AGPUTabBarController {
         }
     }
     
+    // прокрутка веб страницы
     func ScrollWebScreen(text: String) {
         for direction in VoiceDirections.directions {
             if direction.name.contains(text.lastWord()) {
@@ -309,7 +313,8 @@ extension AGPUTabBarController {
         }
     }
     
-    func displayDynamicButton(icon: String) {
+    // изменение Dynamic Button
+    func updateDynamicButton(icon: String) {
         DispatchQueue.main.async {
             self.DynamicButton.setImage(UIImage(named: icon), for: .normal)
             self.animation.SpringAnimation(view: self.DynamicButton)
