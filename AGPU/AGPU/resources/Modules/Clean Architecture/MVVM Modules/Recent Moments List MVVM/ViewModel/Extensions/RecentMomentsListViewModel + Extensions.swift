@@ -1,5 +1,5 @@
 //
-//  RecentMomentsViewModel + Extensions.swift
+//  RecentMomentsListViewModel + Extensions.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 10.08.2023.
@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - RecentMomentsViewModelProtocol
-extension RecentMomentsViewModel: RecentMomentsViewModelProtocol {
+extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
     
     func GetLastWebPage(completion: @escaping(RecentWebPageModel)->Void) {
         if let page = UserDefaults.loadData(type: RecentWebPageModel.self, key: "last page") {

@@ -116,7 +116,7 @@ final class AGPUTabBarController: UITabBarController {
     
     private func ShakeToRecall() {
         self.updateDynamicButton(icon: "time.past")
-        let vc = RecentMomentsViewController()
+        let vc = RecentMomentsListTableViewController()
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
