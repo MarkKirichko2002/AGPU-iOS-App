@@ -15,7 +15,4 @@ final class FacultyGroupsListViewModel: NSObject {
     var groups = [FacultyGroupModel]()
     var scrollHandler: ((Int, Int)->Void)?
     
-    // MARK: - сервисы
-    let timetableService = TimeTableService()
-    
 }

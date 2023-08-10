@@ -30,8 +30,10 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
     }
     
     func isStatusSelected(index: Int)-> Bool {
-        let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status")
-        if status?.id == UserStatusList.list[index].id && status?.isSelected == true {
+        var defaultstatus = UserStatusList.list[0]
+        defaultstatus.isSelected = true
+        let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status") ?? defaultstatus
+        if status.id == UserStatusList.list[index].id && status.isSelected == true {
             return true
         } else {
             return false

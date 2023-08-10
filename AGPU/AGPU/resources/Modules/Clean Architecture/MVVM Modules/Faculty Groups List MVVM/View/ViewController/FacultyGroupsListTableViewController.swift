@@ -52,14 +52,7 @@ final class FacultyGroupsListTableViewController: UITableViewController {
         let backButton = UIBarButtonItem(customView: button)
         backButton.tintColor = .black
         
-        let items = viewModel.groups.enumerated().map { (index: Int, group: FacultyGroupModel) in
-            
-            return UIAction(title: group.name.abbreviation()) { _ in
-                let indexPath = IndexPath(row: 0, section: index)
-                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-            }
-        }
-        let menu = UIMenu(title: "группы", options: .singleSelection, children: items)
+        let menu = viewModel.makeGroupsMenu()
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         sections.tintColor = .black
         
@@ -82,11 +75,9 @@ final class FacultyGroupsListTableViewController: UITableViewController {
             }
         }
         viewModel.registerScrollHandler { section, index in
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                DispatchQueue.main.async {
-                    let indexPath = IndexPath(row: index, section: section)
-                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-                }
+            DispatchQueue.main.async {
+                let indexPath = IndexPath(row: index, section: section)
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
             }
         }
         viewModel.scrollToSelectedGroup()

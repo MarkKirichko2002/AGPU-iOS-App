@@ -17,6 +17,7 @@ class SubGroupsListTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         SetUpNavigation()
         BindViewModel()
+        SetUpSwipeGesture()
     }
     
     private func SetUpNavigation() {

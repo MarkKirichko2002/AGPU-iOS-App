@@ -56,18 +56,17 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
         
         var currentGroup = ""
         
-        if let group = FacultyGroups.groups.first(where: { $0.groups.contains(savedGroup)}) {
+        if let group = self.groups.first(where: { $0.groups.contains(savedGroup)}) {
             currentGroup = group.name
         }
         
-        let items = FacultyGroups.groups.enumerated().map { (index: Int, group: FacultyGroupModel) in
-            let groupItem = group.name
+        let items = self.groups.enumerated().map { (section: Int, group: FacultyGroupModel) in
             let actionHandler: UIActionHandler = { [weak self] _ in
                 DispatchQueue.main.async {
-                    self?.scrollHandler?(index, 0)
+                    self?.scrollHandler?(section, 0)
                 }
             }
-            return UIAction(title: group.name.abbreviation(), state: currentGroup == groupItem ? .on : .off, handler: actionHandler)
+            return UIAction(title: group.name.abbreviation(), state: currentGroup == group.name ? .on : .off, handler: actionHandler)
         }
         let menu = UIMenu(title: "группы", options: .singleSelection, children: items)
         return menu
@@ -79,7 +78,9 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
             for (itemIndex, groupItem) in groupsSections.groups.enumerated() {
                 print(groupItem)
                 if groupItem == savedGroup {
-                    self.scrollHandler?(sectionIndex, itemIndex)
+                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                        self.scrollHandler?(sectionIndex, itemIndex)
+                    }
                 }
             }
         }
