@@ -39,6 +39,11 @@ struct ForApplicantSections {
             id: 6,
             icon: "plus",
             name: "дополнительное образование"
-        )
+        ),
+        ForEveryStatusModel(
+            id: 7,
+            icon: "sections",
+            name: "разделы"
+        ),
     ]
 }

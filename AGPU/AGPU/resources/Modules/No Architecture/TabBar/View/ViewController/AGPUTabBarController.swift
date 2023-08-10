@@ -236,17 +236,11 @@ extension AGPUTabBarController {
             for subsection in section.subsections {
                 
                 if text.noWhitespacesWord().contains(subsection.voiceCommand) {
-                    
+                    ResetSpeechRecognition()
                     self.displayDynamicButton(icon: subsection.icon)
                     
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                         self.GoToWeb(url: subsection.url, title: "ФГБОУ ВО «АГПУ»", isSheet: false)
-                    }
-                    
-                    for direction in VoiceDirections.directions {
-                        if direction.name.contains(text.lastWord()) {
-                            self.ResetSpeechRecognition()
-                        }
                     }
                     break
                 }
@@ -308,7 +302,11 @@ extension AGPUTabBarController {
     }
     
     func ScrollWebScreen(text: String) {
-        NotificationCenter.default.post(name: Notification.Name("scroll web page"), object: text.lastWord())
+        for direction in VoiceDirections.directions {
+            if direction.name.contains(text.lastWord()) {
+                NotificationCenter.default.post(name: Notification.Name("scroll web page"), object: text.lastWord())
+            }
+        }
     }
     
     func displayDynamicButton(icon: String) {
