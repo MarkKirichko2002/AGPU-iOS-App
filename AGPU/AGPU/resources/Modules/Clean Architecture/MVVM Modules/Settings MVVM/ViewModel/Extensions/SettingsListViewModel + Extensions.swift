@@ -54,12 +54,17 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         var faculty = AGPUFaculties.faculties[index]
         faculty.isSelected = true
         UserDefaults.SaveData(object: faculty, key: "faculty") {
-            Timer.scheduledTimer(withTimeInterval: 0.8, repeats: false) { _ in
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 self.isChanged.toggle()
             }
         }
-        UserDefaults.standard.setValue(nil, forKey: "group")
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
+        }
+        UserDefaults.standard.setValue(faculty.icon, forKey: "icon")
         UserDefaults.standard.setValue(nil, forKey: "cathedra")
+        UserDefaults.standard.setValue(nil, forKey: "group")
+        UserDefaults.standard.setValue(nil, forKey: "subgroup")
     }
     
     func ChooseFacultyIcon(index: Int) {
