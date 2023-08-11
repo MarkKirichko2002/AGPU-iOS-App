@@ -1129,9 +1129,9 @@
 			isa = PBXGroup;
 			children = (
 				82B24A852A81BCCB008B94E4 /* News */,
-				82B24A622A816B4A008B94E4 /* Week */,
 				82B87C752A7AF52800E9E68B /* Time table */,
 				82B1C0C22A80611100520C14 /* Discipline */,
+				82B24A622A816B4A008B94E4 /* Week */,
 			);
 			path = Models;
 			sourceTree = "<group>";

@@ -170,7 +170,7 @@ final class TimeTableDayListTableViewController: UIViewController {
                 self.spinner.stopAnimating()
                 self.noTimeTableLabel.text = "Ошибка"
                 self.noTimeTableLabel.isHidden = false
-                print(error)
+                print(error.localizedDescription)
             }
         }
     }
