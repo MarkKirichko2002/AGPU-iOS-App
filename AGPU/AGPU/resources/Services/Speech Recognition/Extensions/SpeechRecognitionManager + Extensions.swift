@@ -5,11 +5,43 @@
 //  Created by Марк Киричко on 02.07.2023.
 //
 
-import Foundation
+import Speech
 import AVFAudio
 
 // MARK: - SpeechRecognitionManagerProtocol
 extension SpeechRecognitionManager: SpeechRecognitionManagerProtocol {
+    
+    func requestSpeechAndMicrophonePermission() {
+        let audioSession = AVAudioSession.sharedInstance()
+        if audioSession.recordPermission == .undetermined {
+            audioSession.requestRecordPermission { (granted) in
+                if granted {
+                    self.requestSpeechAuthorization()
+                } else {
+                    
+                }
+            }
+        } else {
+            requestSpeechAuthorization()
+        }
+    }
+    
+    func requestSpeechAuthorization() {
+        SFSpeechRecognizer.requestAuthorization { (status) in
+            switch status {
+            case .authorized:
+                self.speechAuthorizationHandler?(.authorized)
+            case .denied:
+                self.speechAuthorizationHandler?(.denied)
+            case .restricted:
+                self.speechAuthorizationHandler?(.restricted)
+            case .notDetermined:
+                self.speechAuthorizationHandler?(.notDetermined)
+            @unknown default:
+                break
+            }
+        }
+    }
     
     func startRecognize() {
         if startRecording() {

@@ -36,7 +36,9 @@ extension UIViewController {
         for action in actions {
             alertController.addAction(action)
         }
-        self.present(alertController, animated: true)
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true)
+        }
     }
     
     func shareTableViewAsImage(tableView: UITableView, title: String, text: String) {

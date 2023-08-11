@@ -3582,14 +3582,14 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AGPU/sources/app/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "ФГБОУ ВО АГПУ";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Для определения вашего местоположения приложение запрашивает постоянный и временный доступ к данным о местоположении. Это позволяет предоставлять вам точные сведения о вашем местоположении в реальном времени и улучшать функциональность приложения. Ваши данные о местоположении будут использоваться только в рамках функциональности приложения и не будут передаваться третьим лицам";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Для определения вашего местоположения приложение запрашивает постоянный и временный доступ к данным о местоположении. Это позволяет предоставлять вам точные сведения о вашем местоположении в реальном времени и улучшать функциональность приложения. Ваши данные о местоположении будут использоваться только в рамках функциональности приложения и не будут передаваться третьим лицам";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Микрофон используется для распознавания речи и обработки голосовых команд в приложении, чтобы повысить взаимодействие и возможность управления функциями через голосовые команды.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Для обеспечения функциональности голосового распознавания приложение запрашивает доступ к микрофону для обработки и распознавания речи, что позволяет пользователю управлять функциями приложения через голосовые команды.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3617,14 +3617,14 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AGPU/sources/app/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "ФГБОУ ВО АГПУ";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Для определения вашего местоположения приложение запрашивает постоянный и временный доступ к данным о местоположении. Это позволяет предоставлять вам точные сведения о вашем местоположении в реальном времени и улучшать функциональность приложения. Ваши данные о местоположении будут использоваться только в рамках функциональности приложения и не будут передаваться третьим лицам";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Для определения вашего местоположения приложение запрашивает постоянный и временный доступ к данным о местоположении. Это позволяет предоставлять вам точные сведения о вашем местоположении в реальном времени и улучшать функциональность приложения. Ваши данные о местоположении будут использоваться только в рамках функциональности приложения и не будут передаваться третьим лицам";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Микрофон используется для распознавания речи и обработки голосовых команд в приложении, чтобы повысить взаимодействие и возможность управления функциями через голосовые команды.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Для обеспечения функциональности голосового распознавания приложение запрашивает доступ к микрофону для обработки и распознавания речи, что позволяет пользователю управлять функциями приложения через голосовые команды.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

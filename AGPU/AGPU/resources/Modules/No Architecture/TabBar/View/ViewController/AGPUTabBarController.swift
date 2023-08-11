@@ -128,7 +128,29 @@ final class AGPUTabBarController: UITabBarController {
         isRecording = !isRecording
         if isRecording {
             self.updateDynamicButton(icon: "mic")
-            speechRecognitionManager.startRecognize()
+            speechRecognitionManager.requestSpeechAndMicrophonePermission()
+            speechRecognitionManager.registerSpeechAuthorizationHandler { auth in
+                switch auth {
+                case .notDetermined:
+                    print("Разрешение на распознавание речи еще не было получено.")
+                case .denied:
+                    let settingsAction = UIAlertAction(title: "перейти в настройки", style: .default) { _ in
+                        self.OpenSettings()
+                    }
+                    let cancel = UIAlertAction(title: "отмена", style: .default) { _ in
+                        self.DynamicButton.sendActions(for: .touchUpInside)
+                    }
+                    self.ShowAlert(title: "Микрофон выключен", message: "хотите включить в настройках?", actions: [settingsAction, cancel])
+                    print("Доступ к распознаванию речи был отклонен.")
+                case .restricted:
+                    print("Функциональность распознавания речи ограничена.")
+                case .authorized:
+                    print("Разрешение на распознавание речи получено.")
+                    self.speechRecognitionManager.startRecognize()
+                @unknown default:
+                    print("неизвестно")
+                }
+            }
             speechRecognitionManager.registerSpeechRecognitionHandler { text in
                 self.checkVoiceCommands(text: text)
             }
