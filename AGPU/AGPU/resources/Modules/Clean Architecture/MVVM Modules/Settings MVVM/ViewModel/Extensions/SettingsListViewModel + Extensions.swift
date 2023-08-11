@@ -61,10 +61,18 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
                     self.isChanged.toggle()
                 }
             }
-            UIApplication.shared.setAlternateIconName("AppIcon 7")
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("faculty"), object: nil)
+            
+            if let currentIconName = UIApplication.shared.alternateIconName {
+                if currentIconName == "AppIcon 7" {
+                    
+                } else {
+                    UIApplication.shared.setAlternateIconName("AppIcon 7")
+                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                        NotificationCenter.default.post(name: Notification.Name("faculty"), object: nil)
+                    }
+                }
             }
+            
             UserDefaults.standard.setValue(nil, forKey: "icon")
             UserDefaults.standard.setValue(nil, forKey: "cathedra")
             UserDefaults.standard.setValue(nil, forKey: "group")
