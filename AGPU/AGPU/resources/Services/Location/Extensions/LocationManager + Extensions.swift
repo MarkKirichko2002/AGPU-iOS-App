@@ -21,7 +21,7 @@ extension LocationManager: LocationManagerProtocol {
         let status = CLLocationManager.authorizationStatus()
         if status == .notDetermined {
             manager.requestWhenInUseAuthorization()
-            completion(false)
+            completion(true)
         } else if status == .restricted || status == .denied {
             completion(false)
         } else if status == .authorizedWhenInUse || status == .authorizedAlways {
