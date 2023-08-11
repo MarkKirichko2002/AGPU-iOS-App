@@ -53,18 +53,30 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
     func ChooseFaculty(index: Int) {
         var faculty = AGPUFaculties.faculties[index]
         faculty.isSelected = true
-        UIApplication.shared.setAlternateIconName(faculty.appIcon)
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
-        }
         UserDefaults.SaveData(object: faculty, key: "faculty") {
             Timer.scheduledTimer(withTimeInterval: 0.8, repeats: false) { _ in
                 self.isChanged.toggle()
             }
         }
-        UserDefaults.standard.setValue(faculty.icon, forKey: "icon")
         UserDefaults.standard.setValue(nil, forKey: "group")
         UserDefaults.standard.setValue(nil, forKey: "cathedra")
+    }
+    
+    func ChooseFacultyIcon(index: Int) {
+        let faculty = AGPUFaculties.faculties[index]
+        UIApplication.shared.setAlternateIconName(faculty.appIcon)
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
+        }
+        UserDefaults.standard.setValue(faculty.icon, forKey: "icon")
+    }
+    
+    func CancelFacultyIcon(index: Int) {
+        UIApplication.shared.setAlternateIconName("AppIcon 7")
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            NotificationCenter.default.post(name: Notification.Name("faculty"), object: nil)
+        }
+        UserDefaults.standard.setValue(nil, forKey: "icon")
     }
     
     func CancelFaculty(index: Int) {
@@ -92,6 +104,15 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
     func isFacultySelected(index: Int)-> Bool {
         let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty")
         if faculty?.id == AGPUFaculties.faculties[index].id && faculty?.isSelected == true {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func isFacultyIconSelected(index: Int)-> Bool {
+        let icon = UserDefaults.standard.string(forKey: "icon")
+        if icon == AGPUFaculties.faculties[index].icon {
             return true
         } else {
             return false

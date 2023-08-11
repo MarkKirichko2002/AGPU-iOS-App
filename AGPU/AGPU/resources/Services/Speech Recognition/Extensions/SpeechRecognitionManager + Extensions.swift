@@ -17,9 +17,7 @@ extension SpeechRecognitionManager: SpeechRecognitionManagerProtocol {
             audioSession.requestRecordPermission { (granted) in
                 if granted {
                     self.requestSpeechAuthorization()
-                } else {
-                    
-                }
+                } else {}
             }
         } else {
             requestSpeechAuthorization()

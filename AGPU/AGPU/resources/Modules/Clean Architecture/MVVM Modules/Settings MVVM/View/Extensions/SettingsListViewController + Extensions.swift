@@ -85,11 +85,29 @@ extension SettingsListViewController: UITableViewDelegate {
             switch indexPath.section {
                 
             case 1:
-                let chooseAction = UIAction(title: self.viewModel.isFacultySelected(index: indexPath.row) ? "выбран факультет" : "выбрать факультет", image: UIImage(named: "check")) { action in
+                let chooseFacultyAction = UIAction(title: self.viewModel.isFacultySelected(index: indexPath.row) ? "выбран факультет" : "выбрать факультет", image: self.viewModel.isFacultySelected(index: indexPath.row) ? UIImage(named: "check"): nil) { action in
                     self.viewModel.ChooseFaculty(index: indexPath.row)
                 }
                 
-                let cathedraAction = UIAction(title: self.viewModel.isCathedraSelected(index: indexPath.row) ? "выбрана кафедра" : "выбрать кафедру", image: UIImage(named: "university")) { action in
+                let chooseIconAction = UIAction(title: self.viewModel.isFacultyIconSelected(index: indexPath.row) ? "выбрана иконка" : "выбрать иконку", image: self.viewModel.isFacultyIconSelected(index: indexPath.row) ? UIImage(named: "check"): nil) { action in
+                    if self.viewModel.isFacultySelected(index: indexPath.row) {
+                        self.viewModel.ChooseFacultyIcon(index: indexPath.row)
+                    } else {
+                        NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
+                        let ok = UIAlertAction(title: "ОК", style: .default)
+                        self.ShowAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать иконку факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
+                    }
+                }
+                
+                let cancelIconAction = UIAction(title: "отменить иконку", image: UIImage(named: "cancel")) { action in
+                    if self.viewModel.isFacultySelected(index: indexPath.row) {
+                        self.viewModel.CancelFacultyIcon(index: indexPath.row)
+                    } else {
+                        
+                    }
+                }
+                
+                let cathedraAction = UIAction(title: self.viewModel.isCathedraSelected(index: indexPath.row) ? "выбрана кафедра" : "выбрать кафедру", image: self.viewModel.isCathedraSelected(index: indexPath.row) ? UIImage(named: "check"): nil) { action in
                     if self.viewModel.isFacultySelected(index: indexPath.row) {
                         let vc = FacultyCathedraListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
                         vc.hidesBottomBarWhenPushed = true
@@ -101,7 +119,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     }
                 }
                 
-                let checkGroupAction = UIAction(title: self.viewModel.isGroupSelected(index: indexPath.row) ? "выбрана группа" : "выбрать группу", image: UIImage(named: "group")) { _ in
+                let checkGroupAction = UIAction(title: self.viewModel.isGroupSelected(index: indexPath.row) ? "выбрана группа" : "выбрать группу", image: self.viewModel.isGroupSelected(index: indexPath.row) ? UIImage(named: "check"): nil) { _ in
                     if self.viewModel.isFacultySelected(index: indexPath.row) {
                         let vc = FacultyGroupsListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
                         vc.hidesBottomBarWhenPushed = true
@@ -113,7 +131,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     }
                 }
                 
-                let checkSubGroupAction = UIAction(title: self.viewModel.isSubGroupSelected(index: indexPath.row) ? "выбрана подгруппа" : "выбрать подгруппу", image: UIImage(named: "group")) { _ in
+                let checkSubGroupAction = UIAction(title: self.viewModel.isSubGroupSelected(index: indexPath.row) ? "выбрана подгруппа" : "выбрать подгруппу", image: self.viewModel.isSubGroupSelected(index: indexPath.row) ? UIImage(named: "check"): nil) { _ in
                     if self.viewModel.isFacultySelected(index: indexPath.row) {
                         let vc = SubGroupsListTableViewController()
                         vc.hidesBottomBarWhenPushed = true
@@ -125,16 +143,18 @@ extension SettingsListViewController: UITableViewDelegate {
                     }
                 }
                 
-                let cancelAction = UIAction(title: "отмена", image: UIImage(named: "cancel")) { _ in
+                let cancelFacultyAction = UIAction(title: "отменить факультет", image: UIImage(named: "cancel")) { _ in
                     self.viewModel.CancelFaculty(index: indexPath.row)
                 }
                 
                 return UIMenu(title: self.viewModel.facultyItem(index: indexPath.row).name, children: [
-                    chooseAction,
+                    chooseFacultyAction,
+                    chooseIconAction,
+                    cancelIconAction,
                     cathedraAction,
                     checkGroupAction,
                     checkSubGroupAction,
-                    cancelAction
+                    cancelFacultyAction
                 ])
                 
             default:
