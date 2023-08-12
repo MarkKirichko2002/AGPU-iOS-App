@@ -38,7 +38,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     private func SetUpData() {
-        self.group = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-2-1"
+        self.group = UserDefaults.standard.string(forKey: "group") ?? ""
         self.subgroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
         date = dateManager.getCurrentDate()
     }
