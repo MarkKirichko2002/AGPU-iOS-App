@@ -45,7 +45,7 @@ final class TimeTableTableViewCell: UITableViewCell {
         case .cred:
             return UIColor.white
         case .fepo:
-            return UIColor(named: "fepo")!
+            return UIColor.white
         case .cons:
             return UIColor.white
         case .none:
