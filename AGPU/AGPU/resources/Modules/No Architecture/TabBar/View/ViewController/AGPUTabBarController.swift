@@ -16,7 +16,7 @@ final class AGPUTabBarController: UITabBarController {
     
     // MARK: - вкладки
     // новости
-    let newsVC = AGPUNewsListTableViewController()
+    let newsVC = NewsListViewController()
     // для каждого статуса
     var forEveryStatusVC = UIViewController()
     // кнопка

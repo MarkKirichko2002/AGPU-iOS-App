@@ -64,7 +64,9 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
             
             if let currentIconName = UIApplication.shared.alternateIconName {
                 if currentIconName == "AppIcon 7" {
-                    
+                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                        NotificationCenter.default.post(name: Notification.Name("faculty"), object: nil)
+                    }
                 } else {
                     UIApplication.shared.setAlternateIconName("AppIcon 7")
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
