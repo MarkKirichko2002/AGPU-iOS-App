@@ -31,11 +31,22 @@ class PDFReaderViewController: UIViewController {
         SavePDF()
     }
     
+    private func makeMenu()-> UIMenu {
+        let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
+            self.shareInfo(image: UIImage(named: "pdf")!, title: "документ", text: self.url)
+        }
+        let menu = UIMenu(title: "документ", children: [shareAction])
+        return menu
+    }
+    
     private func SetUpNavigation() {
         navigationItem.title = "Документ"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .black
-        navigationItem.rightBarButtonItem = closeButton
+        let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())
+        sections.tintColor = .black
+        navigationItem.leftBarButtonItem = closeButton
+        navigationItem.rightBarButtonItem = sections
     }
     
     @objc private func close() {
