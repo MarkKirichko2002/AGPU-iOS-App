@@ -103,4 +103,9 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         let menu = UIMenu(title: "страницы", options: .singleSelection, children: actions)
         return menu
     }
+   
+    func makeUrlForCurrentArticle(index: Int)-> String {
+        let url = newsService.urlForCurrentArticle(faculty: self.faculty, index: articleItem(index: index).id)
+        return url
+    }
 }

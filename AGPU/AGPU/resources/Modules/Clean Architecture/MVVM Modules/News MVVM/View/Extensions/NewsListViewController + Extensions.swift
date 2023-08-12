@@ -30,11 +30,11 @@ extension NewsListViewController: UICollectionViewDelegate {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
             let infoAction = UIAction(title: "узнать больше", image: UIImage(named: "info")) { _ in
-               
+                self.GoToWeb(url: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))", title: "\(self.viewModel.articleItem(index: indexPath.row).date ?? "")", isSheet: false)
             }
             
             let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
-                
+                self.shareInfo(image: UIImage(named: self.viewModel.faculty?.icon ?? "АГПУ")!, title: "\(self.viewModel.articleItem(index: indexPath.row).title ?? "")", text: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))")
             }
             
             return UIMenu(title: self.viewModel.articleItem(index: indexPath.row).title ?? "", children: [
