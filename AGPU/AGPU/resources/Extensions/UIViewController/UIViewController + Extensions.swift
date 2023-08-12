@@ -28,7 +28,9 @@ extension UIViewController {
         let vc = RecentWebPageViewController(page: page)
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
-        present(navVC, animated: true)
+        DispatchQueue.main.async {
+            self.present(navVC, animated: true)
+        }
     }
     
     func ShowAlert(title: String, message: String, actions: [UIAlertAction]) {

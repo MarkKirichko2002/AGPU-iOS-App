@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecentMomentsListTableViewController: UITableViewController {
+final class RecentMomentsListTableViewController: UITableViewController {
     
     // MARK: - сервисы
     private let viewModel = RecentMomentsListViewModel()
@@ -16,6 +16,7 @@ class RecentMomentsListTableViewController: UITableViewController {
         super.viewDidLoad()
         SetUpNavigation()
         SetUpTable()
+        BindViewModel()
     }
     
     private func SetUpNavigation() {
@@ -34,6 +35,13 @@ class RecentMomentsListTableViewController: UITableViewController {
     
     private func SetUpTable() {
         tableView.register(UINib(nibName: RecentMomentTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RecentMomentTableViewCell.identifier)
+    }
+    
+    private func BindViewModel() {
+        viewModel.registerAlertHandler { message, description in
+            let ok = UIAlertAction(title: "ОК", style: .default)
+            self.ShowAlert(title: message, message: description, actions: [ok])
+        }
     }
     
     private func CheckLastWebPage() {
