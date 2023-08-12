@@ -63,7 +63,7 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
     
     func makeOptionsMenu()-> UIMenu {
         
-        let all = UIAction(title: "все") { _ in
+        let all = UIAction(title: "все здания", state: .on) { _ in
             for building in AGPUBuildings.buildings {
                 self.choiceHandler?(true, building.pin)
             }
