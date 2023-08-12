@@ -41,6 +41,9 @@ extension WebViewController: WKNavigationDelegate {
                 decisionHandler(.cancel)
                 return
             }
+            if url.pathExtension == "word" {
+                self.viewModel.SaveCurrentWebPage(url: url.absoluteString, position: webView.scrollView.contentOffset)
+            }
         }
         decisionHandler(.allow)
     }

@@ -61,6 +61,17 @@ final class RecentMomentsListTableViewController: UITableViewController {
         }
     }
     
+    private func CheckLastWordDocument() {
+        viewModel.GetLastWordDocument { url in
+            let vc = WebViewController(url: url)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            DispatchQueue.main.async {
+                self.present(navVC, animated: true)
+            }
+        }
+    }
+    
     private func CheckLastVideo() {
         viewModel.GetLastVideo { videoURL in
             self.PlayVideo(url: videoURL)
@@ -75,6 +86,8 @@ final class RecentMomentsListTableViewController: UITableViewController {
         case 1:
             CheckLastPDFDocument()
         case 2:
+            CheckLastWordDocument()
+        case 3:
             CheckLastVideo()
         default:
             break

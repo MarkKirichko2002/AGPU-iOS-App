@@ -12,11 +12,23 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
     
     func GetLastWebPage(completion: @escaping(RecentWebPageModel)->Void) {
         if let page = UserDefaults.loadData(type: RecentWebPageModel.self, key: "last page") {
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                completion(page)
+            completion(page)
+        } else {
+            alertHandler?("Нет недавней веб-страницы.", "Вы еще не открывали не одной веб-страницы.")
+        }
+    }
+    
+    func GetLastWordDocument(completion: @escaping(String)->Void) {
+        if let page = UserDefaults.loadData(type: RecentWebPageModel.self, key: "last page") {
+            if page.url.contains(".doc") {
+                print(page.url)
+                completion(page.url)
+            } else {
+                print(page.url)
+                alertHandler?("Нет недавнего Word-документа.", "Вы еще не открывали не одного Word-документа.")
             }
         } else {
-            alertHandler?("Нет недавней веб-страницы", "Вы еще не открывали не одной веб-страницы")
+            alertHandler?("Нет недавнего Word-документа.", "Вы еще не открывали не одного Word-документа.")
         }
     }
     
@@ -24,7 +36,7 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
         if let pdf = UserDefaults.loadData(type: RecentPDFModel.self, key: "last pdf") {
             completion(pdf)
         } else {
-            alertHandler?("Нет недавнего документа", "Вы еще не открывали не одного документа")
+            alertHandler?("Нет недавнего PDF-документа.", "Вы еще не открывали не одного PDF-документа.")
         }
     }
     
@@ -32,7 +44,7 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
         if let videoUrl = UserDefaults.standard.string(forKey: "last video") {
             completion(videoUrl)
         } else {
-            alertHandler?("Нет недавнего видео", "Вы еще не смотрели не одного видео")
+            alertHandler?("Нет недавнего видео.", "Вы еще не смотрели не одного видео.")
         }
     }
 }

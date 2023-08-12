@@ -1202,7 +1202,7 @@
 			children = (
 				82426C762A714CF400D5AA57 /* For Applicant Screen */,
 				82E05D482A5DD52B0060ADAA /* For Student Screen */,
-				82426C872A71CF8400D5AA57 /* For Employee  Screen */,
+				82426C872A71CF8400D5AA57 /* For Employee Screen */,
 			);
 			path = "For Every Status";
 			sourceTree = "<group>";
@@ -1258,12 +1258,12 @@
 			path = "App Features";
 			sourceTree = "<group>";
 		};
-		82426C872A71CF8400D5AA57 /* For Employee  Screen */ = {
+		82426C872A71CF8400D5AA57 /* For Employee Screen */ = {
 			isa = PBXGroup;
 			children = (
 				82426C882A71CFA900D5AA57 /* View */,
 			);
-			path = "For Employee  Screen";
+			path = "For Employee Screen";
 			sourceTree = "<group>";
 		};
 		82426C882A71CFA900D5AA57 /* View */ = {
