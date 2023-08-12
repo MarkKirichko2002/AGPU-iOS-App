@@ -17,19 +17,29 @@ extension RecentWebPageViewController: WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-            if navigationAction.navigationType == .linkActivated, let url = navigationAction.request.url {
-                if url.pathExtension == "pdf" {
-                    let vc = PDFReaderViewController(url: url.absoluteString)
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    DispatchQueue.main.async {
-                        self.present(navVC, animated: true)
-                    }
-                    decisionHandler(.cancel)
-                    return
+        if navigationAction.navigationType == .linkActivated, let url = navigationAction.request.url {
+            if url.pathExtension == "pdf" {
+                let vc = PDFDocumentReaderViewController(url: url.absoluteString)
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                DispatchQueue.main.async {
+                    self.present(navVC, animated: true)
                 }
+                decisionHandler(.cancel)
+                return
             }
-            decisionHandler(.allow)
+            if url.pathExtension == "doc" {
+                let vc = WordDocumentReaderViewController(url: url.absoluteString)
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                DispatchQueue.main.async {
+                    self.present(navVC, animated: true)
+                }
+                decisionHandler(.cancel)
+                return
+            }
+        }
+        decisionHandler(.allow)
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

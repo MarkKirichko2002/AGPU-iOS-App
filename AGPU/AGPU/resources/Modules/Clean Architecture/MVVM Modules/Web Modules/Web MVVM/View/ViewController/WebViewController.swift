@@ -20,9 +20,7 @@ final class WebViewController: UIViewController {
     let spinner = UIActivityIndicatorView(style: .large)
     
     // MARK: - Init
-    init(
-        url: String
-    ) {
+    init(url: String) {
         self.url = url
         super.init(nibName: nil, bundle: nil)
     }

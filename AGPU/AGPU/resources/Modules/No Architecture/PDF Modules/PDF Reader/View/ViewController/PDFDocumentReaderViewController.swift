@@ -1,5 +1,5 @@
 //
-//  PDFReaderViewController.swift
+//  PDFDocumentReaderViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 01.08.2023.
@@ -8,7 +8,7 @@
 import UIKit
 import PDFKit
 
-class PDFReaderViewController: UIViewController {
+class PDFDocumentReaderViewController: UIViewController {
     
     private var pdfView: PDFView!
     private var document: PDFDocument!
@@ -40,7 +40,7 @@ class PDFReaderViewController: UIViewController {
     }
     
     private func SetUpNavigation() {
-        navigationItem.title = "Документ"
+        navigationItem.title = "Документ PDF"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .black
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())

@@ -32,7 +32,7 @@ extension WebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType == .linkActivated, let url = navigationAction.request.url {
             if url.pathExtension == "pdf" {
-                let vc = PDFReaderViewController(url: url.absoluteString)
+                let vc = PDFDocumentReaderViewController(url: url.absoluteString)
                 let navVC = UINavigationController(rootViewController: vc)
                 navVC.modalPresentationStyle = .fullScreen
                 DispatchQueue.main.async {
@@ -41,8 +41,15 @@ extension WebViewController: WKNavigationDelegate {
                 decisionHandler(.cancel)
                 return
             }
-            if url.pathExtension == "word" {
-                self.viewModel.SaveCurrentWebPage(url: url.absoluteString, position: webView.scrollView.contentOffset)
+            if url.pathExtension == "doc" {
+                let vc = WordDocumentReaderViewController(url: url.absoluteString)
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                DispatchQueue.main.async {
+                    self.present(navVC, animated: true)
+                }
+                decisionHandler(.cancel)
+                return
             }
         }
         decisionHandler(.allow)
