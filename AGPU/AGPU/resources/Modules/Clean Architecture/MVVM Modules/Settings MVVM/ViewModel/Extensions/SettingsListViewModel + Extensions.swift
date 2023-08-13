@@ -120,6 +120,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
                 UserDefaults.standard.setValue(nil, forKey: "group")
                 UserDefaults.standard.setValue(nil, forKey: "subgroup")
                 UserDefaults.standard.setValue(nil, forKey: "cathedra")
+                NotificationCenter.default.post(name: Notification.Name("group changed"), object: nil)
                 NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: nil)
             }
         }

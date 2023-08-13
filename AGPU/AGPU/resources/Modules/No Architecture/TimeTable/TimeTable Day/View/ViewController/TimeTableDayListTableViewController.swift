@@ -177,16 +177,16 @@ final class TimeTableDayListTableViewController: UIViewController {
     
     private func ObserveGroupChange() {
         NotificationCenter.default.addObserver(forName: Notification.Name("group changed"), object: nil, queue: .main) { notification in
-            if let group = notification.object as? String {
-                self.GetTimeTable(group: group, date: self.date)
-                self.group = group
-                print(self.group)
-            }
+            let group = notification.object as? String ?? ""
+            self.GetTimeTable(group: group, date: self.date)
+            self.group = group
+            print(self.group)
         }
     }
     
     private func ObserveSubGroupChange() {
         NotificationCenter.default.addObserver(forName: Notification.Name("subgroup changed"), object: nil, queue: .main) { _ in
+            self.subgroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
             self.GetTimeTable(group: self.group, date: self.date)
         }
     }
