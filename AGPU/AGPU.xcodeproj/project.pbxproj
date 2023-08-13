@@ -54,6 +54,9 @@
 		8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234B2FF2A3242E10091810F /* SpeechRecognitionManager.swift */; };
 		8234E5EF2A88506400ED354C /* WordDocumentReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E5EE2A88506400ED354C /* WordDocumentReaderViewController.swift */; };
 		8234E5F32A88514600ED354C /* WordDocumentReaderViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E5F22A88514600ED354C /* WordDocumentReaderViewController + Extensions.swift */; };
+		8234E5F52A8854DF00ED354C /* WordDocumenReaderViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E5F42A8854DF00ED354C /* WordDocumenReaderViewModelProtocol.swift */; };
+		8234E5FA2A88553700ED354C /* WordDocumenReaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E5F92A88553700ED354C /* WordDocumenReaderViewModel.swift */; };
+		8234E5FC2A88557400ED354C /* WordDocumenReaderViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E5FB2A88557400ED354C /* WordDocumenReaderViewModel + Extensions.swift */; };
 		8241F9812A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9802A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift */; };
 		8241F9852A5F3F73007DF628 /* CalendarViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9842A5F3F73007DF628 /* CalendarViewController + Extensions.swift */; };
 		8241F9932A5F4091007DF628 /* TimeTableServicerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9922A5F4091007DF628 /* TimeTableServicerProtocol.swift */; };
@@ -262,6 +265,9 @@
 		8234B2FF2A3242E10091810F /* SpeechRecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManager.swift; sourceTree = "<group>"; };
 		8234E5EE2A88506400ED354C /* WordDocumentReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDocumentReaderViewController.swift; sourceTree = "<group>"; };
 		8234E5F22A88514600ED354C /* WordDocumentReaderViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WordDocumentReaderViewController + Extensions.swift"; sourceTree = "<group>"; };
+		8234E5F42A8854DF00ED354C /* WordDocumenReaderViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDocumenReaderViewModelProtocol.swift; sourceTree = "<group>"; };
+		8234E5F92A88553700ED354C /* WordDocumenReaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDocumenReaderViewModel.swift; sourceTree = "<group>"; };
+		8234E5FB2A88557400ED354C /* WordDocumenReaderViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WordDocumenReaderViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		8241F9802A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8241F9842A5F3F73007DF628 /* CalendarViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8241F9922A5F4091007DF628 /* TimeTableServicerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableServicerProtocol.swift; sourceTree = "<group>"; };
@@ -1077,6 +1083,9 @@
 		8234E5EB2A88500600ED354C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				8234E5F82A88552500ED354C /* Protocol */,
+				8234E5F72A88552300ED354C /* ViewModel */,
+				8234E5F62A88552100ED354C /* Extensions */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1112,6 +1121,30 @@
 				8234E5F22A88514600ED354C /* WordDocumentReaderViewController + Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8234E5F62A88552100ED354C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8234E5FB2A88557400ED354C /* WordDocumenReaderViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8234E5F72A88552300ED354C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8234E5F92A88553700ED354C /* WordDocumenReaderViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8234E5F82A88552500ED354C /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				8234E5F42A8854DF00ED354C /* WordDocumenReaderViewModelProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		8241F97F2A5F3C38007DF628 /* Extensions */ = {
@@ -3427,6 +3460,7 @@
 				82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */,
 				829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */,
 				82C5615F2A6B75B700514B00 /* AppFeaturesList.swift in Sources */,
+				8234E5F52A8854DF00ED354C /* WordDocumenReaderViewModelProtocol.swift in Sources */,
 				82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */,
 				82426C852A71603B00D5AA57 /* AppFeaturesTableViewCell.swift in Sources */,
 				82BEAD892A74180D00DD34C2 /* RecentPageViewModel + Extensions.swift in Sources */,
@@ -3435,6 +3469,7 @@
 				82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */,
 				82E4C55F2A6B147900F65A67 /* SettingsListViewModelProtocol.swift in Sources */,
 				82E4C5452A6B114000F65A67 /* WebViewModel + Extensions.swift in Sources */,
+				8234E5FC2A88557400ED354C /* WordDocumenReaderViewModel + Extensions.swift in Sources */,
 				825634BA2A6222070082B7B8 /* FacultyGroupsListTableViewController.swift in Sources */,
 				826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */,
 				82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */,
@@ -3466,6 +3501,7 @@
 				82B1C0D22A8070FF00520C14 /* SubGroupsListViewModel + Extensions.swift in Sources */,
 				820D339F2A75985400843313 /* ContactsModel.swift in Sources */,
 				82B24A8F2A81BDDD008B94E4 /* AGPUNewsServiceProtocol.swift in Sources */,
+				8234E5FA2A88553700ED354C /* WordDocumenReaderViewModel.swift in Sources */,
 				821FCF0A2A87CE79006FFB26 /* NewsListViewController + Extensions.swift in Sources */,
 				82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */,
 				8228E3AD2A6C9E9E00C1B6AD /* AGPUCurrentBuildingMapViewModel + Extensions.swift in Sources */,

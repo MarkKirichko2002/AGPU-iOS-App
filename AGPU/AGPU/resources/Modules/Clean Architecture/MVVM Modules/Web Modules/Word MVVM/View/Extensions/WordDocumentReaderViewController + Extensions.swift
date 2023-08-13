@@ -12,7 +12,11 @@ import WebKit
 extension WordDocumentReaderViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-         
+        let yOffset = scrollView.contentOffset.y
+        let position = CGPoint(x: 0, y: yOffset)
+        if let url = WVWEBview.url?.absoluteString {
+            self.viewModel.SaveCurrentWordDocument(url: url, position: position)
+        }
     }
 }
 

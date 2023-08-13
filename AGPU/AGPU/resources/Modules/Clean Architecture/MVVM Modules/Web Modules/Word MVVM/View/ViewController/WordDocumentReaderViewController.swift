@@ -12,6 +12,9 @@ final class WordDocumentReaderViewController: UIViewController {
 
     var url: String
     
+    // MARK: - сервисы
+    let viewModel = WordDocumenReaderViewModel()
+    
     // MARK: - UI
     let WVWEBview = WKWebView(frame: .zero)
     let spinner = UIActivityIndicatorView(style: .large)
@@ -31,6 +34,7 @@ final class WordDocumentReaderViewController: UIViewController {
         SetUpWebView()
         SetUpIndicatorView()
         SetUpNavigation()
+        BindViewModel()
     }
     
     private func SetUpWebView() {
@@ -71,5 +75,16 @@ final class WordDocumentReaderViewController: UIViewController {
     
     @objc private func close() {
         self.dismiss(animated: true)
+    }
+    
+    private func BindViewModel() {
+        viewModel.ObserveScroll { position in
+            self.WVWEBview.scrollView.setContentOffset(position, animated: true)
+        }
+        viewModel.ObserveActions {
+            if self.navigationController?.viewControllers.first == self {
+                self.dismiss(animated: true)
+            } else {}
+        }
     }
 }

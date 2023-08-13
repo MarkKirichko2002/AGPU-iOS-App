@@ -34,7 +34,7 @@ final class WebViewController: UIViewController {
         SetUpWebView()
         SetUpIndicatorView()
         SetUpNavigation()
-        SetUpViewModel()
+        BindViewModel()
     }
     
     override func didReceiveMemoryWarning() {
@@ -70,15 +70,14 @@ final class WebViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = closebutton
     }
     
-    private func SetUpViewModel() {
+    private func BindViewModel() {
         viewModel.ObserveScroll { position in
             self.WVWEBview.scrollView.setContentOffset(position, animated: true)
         }
         viewModel.ObserveActions {
             if self.navigationController?.viewControllers.first == self {
                 self.dismiss(animated: true)
-            } else {
-            }
+            } else {}
         }
     }
     

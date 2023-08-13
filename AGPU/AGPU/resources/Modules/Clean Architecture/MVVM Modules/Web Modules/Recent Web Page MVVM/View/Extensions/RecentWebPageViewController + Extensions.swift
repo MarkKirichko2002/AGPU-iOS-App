@@ -28,7 +28,7 @@ extension RecentWebPageViewController: WKNavigationDelegate {
                 decisionHandler(.cancel)
                 return
             }
-            if url.pathExtension == "doc" {
+            if url.pathExtension == "doc" || url.pathExtension == "docx" {
                 let vc = WordDocumentReaderViewController(url: url.absoluteString)
                 let navVC = UINavigationController(rootViewController: vc)
                 navVC.modalPresentationStyle = .fullScreen
