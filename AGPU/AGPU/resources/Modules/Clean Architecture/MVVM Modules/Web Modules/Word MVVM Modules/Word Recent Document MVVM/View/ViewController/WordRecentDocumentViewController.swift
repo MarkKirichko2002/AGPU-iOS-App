@@ -55,14 +55,14 @@ class WordRecentDocumentViewController: UIViewController {
     
     private func makeMenu()-> UIMenu {
         let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
-            self.shareInfo(image: UIImage(named: "word")!, title: "документ", text: self.document.url)
+            self.shareInfo(image: UIImage(named: "word")!, title: "Word-документ", text: self.document.url)
         }
-        let menu = UIMenu(title: "документ", children: [shareAction])
+        let menu = UIMenu(title: "Word-документ", children: [shareAction])
         return menu
     }
     
     private func SetUpNavigation() {
-        navigationItem.title = "Документ Word"
+        navigationItem.title = "Word-документ"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .black
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())
