@@ -62,8 +62,8 @@ final class RecentMomentsListTableViewController: UITableViewController {
     }
     
     private func CheckLastWordDocument() {
-        viewModel.GetLastWordDocument { url in
-            let vc = WebViewController(url: url)
+        viewModel.GetLastWordDocument { document in
+            let vc = WordRecentDocumentViewController(document: document)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             DispatchQueue.main.async {

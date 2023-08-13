@@ -57,6 +57,12 @@
 		8234E5F52A8854DF00ED354C /* WordDocumenReaderViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E5F42A8854DF00ED354C /* WordDocumenReaderViewModelProtocol.swift */; };
 		8234E5FA2A88553700ED354C /* WordDocumenReaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E5F92A88553700ED354C /* WordDocumenReaderViewModel.swift */; };
 		8234E5FC2A88557400ED354C /* WordDocumenReaderViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E5FB2A88557400ED354C /* WordDocumenReaderViewModel + Extensions.swift */; };
+		8234E6032A88583E00ED354C /* WordRecentDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E6022A88583E00ED354C /* WordRecentDocumentViewController.swift */; };
+		8234E6082A8858C400ED354C /* WordRecentDocumentViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E6072A8858C400ED354C /* WordRecentDocumentViewModelProtocol.swift */; };
+		8234E60B2A88591300ED354C /* RecentWordDocumentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E60A2A88591300ED354C /* RecentWordDocumentModel.swift */; };
+		8234E60D2A885B6D00ED354C /* WordRecentDocumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E60C2A885B6D00ED354C /* WordRecentDocumentViewModel.swift */; };
+		8234E60F2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E60E2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift */; };
+		8234E6122A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E6112A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift */; };
 		8241F9812A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9802A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift */; };
 		8241F9852A5F3F73007DF628 /* CalendarViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9842A5F3F73007DF628 /* CalendarViewController + Extensions.swift */; };
 		8241F9932A5F4091007DF628 /* TimeTableServicerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9922A5F4091007DF628 /* TimeTableServicerProtocol.swift */; };
@@ -268,6 +274,12 @@
 		8234E5F42A8854DF00ED354C /* WordDocumenReaderViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDocumenReaderViewModelProtocol.swift; sourceTree = "<group>"; };
 		8234E5F92A88553700ED354C /* WordDocumenReaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDocumenReaderViewModel.swift; sourceTree = "<group>"; };
 		8234E5FB2A88557400ED354C /* WordDocumenReaderViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WordDocumenReaderViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		8234E6022A88583E00ED354C /* WordRecentDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRecentDocumentViewController.swift; sourceTree = "<group>"; };
+		8234E6072A8858C400ED354C /* WordRecentDocumentViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRecentDocumentViewModelProtocol.swift; sourceTree = "<group>"; };
+		8234E60A2A88591300ED354C /* RecentWordDocumentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWordDocumentModel.swift; sourceTree = "<group>"; };
+		8234E60C2A885B6D00ED354C /* WordRecentDocumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRecentDocumentViewModel.swift; sourceTree = "<group>"; };
+		8234E60E2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WordRecentDocumentViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		8234E6112A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentWordDocumentViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8241F9802A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8241F9842A5F3F73007DF628 /* CalendarViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8241F9922A5F4091007DF628 /* TimeTableServicerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableServicerProtocol.swift; sourceTree = "<group>"; };
@@ -785,7 +797,7 @@
 			isa = PBXGroup;
 			children = (
 				82BA73B22A579B15006B67DA /* Web MVVM */,
-				8234E5EA2A884FD300ED354C /* Word MVVM */,
+				8234E5FD2A8857A800ED354C /* Word MVVM Modules */,
 				82BC3CFA2A56ED7500E49332 /* Recent Web Page MVVM */,
 			);
 			path = "Web Modules";
@@ -1071,13 +1083,13 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		8234E5EA2A884FD300ED354C /* Word MVVM */ = {
+		8234E5EA2A884FD300ED354C /* Word Reader MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				8234E5EC2A88500800ED354C /* View */,
 				8234E5EB2A88500600ED354C /* ViewModel */,
 			);
-			path = "Word MVVM";
+			path = "Word Reader MVVM";
 			sourceTree = "<group>";
 		};
 		8234E5EB2A88500600ED354C /* ViewModel */ = {
@@ -1145,6 +1157,92 @@
 				8234E5F42A8854DF00ED354C /* WordDocumenReaderViewModelProtocol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		8234E5FD2A8857A800ED354C /* Word MVVM Modules */ = {
+			isa = PBXGroup;
+			children = (
+				8234E5EA2A884FD300ED354C /* Word Reader MVVM */,
+				8234E5FE2A8857D400ED354C /* Word Recent Document MVVM */,
+			);
+			path = "Word MVVM Modules";
+			sourceTree = "<group>";
+		};
+		8234E5FE2A8857D400ED354C /* Word Recent Document MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				8234E6092A8858E000ED354C /* Model */,
+				8234E6002A88580200ED354C /* View */,
+				8234E5FF2A88580000ED354C /* ViewModel */,
+			);
+			path = "Word Recent Document MVVM";
+			sourceTree = "<group>";
+		};
+		8234E5FF2A88580000ED354C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8234E6062A8858AB00ED354C /* Protocol */,
+				8234E6052A8858A900ED354C /* ViewModel */,
+				8234E6042A8858A700ED354C /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8234E6002A88580200ED354C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8234E6012A88581400ED354C /* ViewController */,
+				8234E6102A885C2500ED354C /* Extensions */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8234E6012A88581400ED354C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8234E6022A88583E00ED354C /* WordRecentDocumentViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8234E6042A8858A700ED354C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8234E60E2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8234E6052A8858A900ED354C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8234E60C2A885B6D00ED354C /* WordRecentDocumentViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8234E6062A8858AB00ED354C /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				8234E6072A8858C400ED354C /* WordRecentDocumentViewModelProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		8234E6092A8858E000ED354C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8234E60A2A88591300ED354C /* RecentWordDocumentModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8234E6102A885C2500ED354C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8234E6112A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		8241F97F2A5F3C38007DF628 /* Extensions */ = {
@@ -3348,6 +3446,7 @@
 				82989ADE2A6E59BC00F27858 /* AGPUCurrentCathedraMapViewController + Extensions.swift in Sources */,
 				828DC55C2A7B3887001EA324 /* FacultyGroups.swift in Sources */,
 				820E40952A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift in Sources */,
+				8234E6122A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift in Sources */,
 				82989ACD2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift in Sources */,
 				82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */,
 				8226060A2A853DEE0055925F /* RecentMomentsListTableViewController.swift in Sources */,
@@ -3363,6 +3462,7 @@
 				82B24A642A816B54008B94E4 /* WeekModel.swift in Sources */,
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
 				82BDFDB02A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift in Sources */,
+				8234E60B2A88591300ED354C /* RecentWordDocumentModel.swift in Sources */,
 				82461FEE2A50C493008A8752 /* AppDelegate + Extensions.swift in Sources */,
 				8228E3A42A6C9D3700C1B6AD /* AGPUBuildingsMapViewModelProtocol.swift in Sources */,
 				8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */,
@@ -3389,11 +3489,13 @@
 				822605F82A8532E20055925F /* RecentMomentsListViewModel.swift in Sources */,
 				82E4C5172A6B0D0200F65A67 /* ImageSaver + Extensions.swift in Sources */,
 				8241F9812A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift in Sources */,
+				8234E6032A88583E00ED354C /* WordRecentDocumentViewController.swift in Sources */,
 				82722D432A66462100149D06 /* AGPUBuildingPins.swift in Sources */,
 				82B24AA12A81C89E008B94E4 /* AGPUNewsListViewModel.swift in Sources */,
 				82FB5B642A7A8FF600728980 /* InteractiveView.swift in Sources */,
 				828321802A7D687A008641A5 /* SearchAGPUBuildingMapViewModel + Extensions.swift in Sources */,
 				8228E3992A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift in Sources */,
+				8234E6082A8858C400ED354C /* WordRecentDocumentViewModelProtocol.swift in Sources */,
 				829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */,
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
 				8268885B2A33AC6000434219 /* AnimationClass.swift in Sources */,
@@ -3483,6 +3585,7 @@
 				82B24AAB2A82E45A008B94E4 /* NewsResponse.swift in Sources */,
 				82B24A912A81BE21008B94E4 /* AGPUNewsService + Extensions.swift in Sources */,
 				82C561672A6B7B0D00514B00 /* AppFeatureDetailViewController.swift in Sources */,
+				8234E60D2A885B6D00ED354C /* WordRecentDocumentViewModel.swift in Sources */,
 				8283216E2A7D0932008641A5 /* AllGroupsListViewModel + Extensions.swift in Sources */,
 				82E4C5152A6B0C8F00F65A67 /* ImageSaverProtocol.swift in Sources */,
 				82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */,
@@ -3504,6 +3607,7 @@
 				8234E5FA2A88553700ED354C /* WordDocumenReaderViewModel.swift in Sources */,
 				821FCF0A2A87CE79006FFB26 /* NewsListViewController + Extensions.swift in Sources */,
 				82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */,
+				8234E60F2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift in Sources */,
 				8228E3AD2A6C9E9E00C1B6AD /* AGPUCurrentBuildingMapViewModel + Extensions.swift in Sources */,
 				82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */,
 				822605F62A8532410055925F /* RecentMomentsListViewModelProtocol.swift in Sources */,

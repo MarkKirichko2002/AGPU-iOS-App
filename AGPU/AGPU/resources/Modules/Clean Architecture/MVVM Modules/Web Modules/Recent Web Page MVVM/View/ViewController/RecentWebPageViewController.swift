@@ -20,9 +20,7 @@ final class RecentWebPageViewController: UIViewController {
     let viewModel = RecentPageViewModel()
     
     // MARK: - Init
-    init(
-        page: RecentWebPageModel
-    ) {
+    init(page: RecentWebPageModel) {
         self.page = page
         super.init(nibName: nil, bundle: nil)
     }

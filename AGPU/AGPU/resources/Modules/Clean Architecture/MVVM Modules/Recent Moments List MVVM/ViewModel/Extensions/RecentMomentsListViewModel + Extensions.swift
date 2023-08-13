@@ -18,15 +18,9 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
         }
     }
     
-    func GetLastWordDocument(completion: @escaping(String)->Void) {
-        if let page = UserDefaults.loadData(type: RecentWebPageModel.self, key: "last page") {
-            if page.url.contains(".doc") {
-                print(page.url)
-                completion(page.url)
-            } else {
-                print(page.url)
-                alertHandler?("Нет недавнего Word-документа.", "Вы еще не открывали не одного Word-документа.")
-            }
+    func GetLastWordDocument(completion: @escaping(RecentWordDocumentModel)->Void) {
+        if let document = UserDefaults.loadData(type: RecentWordDocumentModel.self, key: "last word document") {
+            completion(document)
         } else {
             alertHandler?("Нет недавнего Word-документа.", "Вы еще не открывали не одного Word-документа.")
         }
