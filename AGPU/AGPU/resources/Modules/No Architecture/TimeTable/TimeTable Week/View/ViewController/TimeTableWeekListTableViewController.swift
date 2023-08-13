@@ -140,7 +140,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
                 self.noTimeTableLabel.text = "Ошибка"
                 self.noTimeTableLabel.isHidden = false
                 self.SetUpNavigation()
-                print(error)
+                print(error.localizedDescription)
             }
         }
     }

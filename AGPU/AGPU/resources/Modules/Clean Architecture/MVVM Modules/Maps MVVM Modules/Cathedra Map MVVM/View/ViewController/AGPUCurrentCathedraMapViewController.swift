@@ -19,9 +19,7 @@ class AGPUCurrentCathedraMapViewController: UIViewController {
     private let mapView = MKMapView()
     
     // MARK: - Init
-    init(
-        cathedra: FacultyCathedraModel
-    ) {
+    init(cathedra: FacultyCathedraModel) {
         self.cathedra = cathedra
         self.viewModel = AGPUCurrentCathedraMapViewModel(cathedra: cathedra)
         super.init(nibName: nil, bundle: nil)
