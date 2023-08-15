@@ -7,30 +7,23 @@
 
 import UIKit
 
-// MARK: - UICollectionViewDataSource
-extension NewsListViewController: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.newsResponse.articles.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsCollectionViewCell.identifier, for: indexPath) as? NewsCollectionViewCell else {return UICollectionViewCell()}
-        cell.configure(with: viewModel.articleItem(index: indexPath.row))
-        return cell
-    }
-}
-
 // MARK: - UICollectionViewDelegate
 extension NewsListViewController: UICollectionViewDelegate {
-    
+        
     func collectionView(_ collectionView: UICollectionView,
                                  contextMenuConfigurationForItemAt indexPath: IndexPath,
                                  point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
             let infoAction = UIAction(title: "узнать больше", image: UIImage(named: "info")) { _ in
-                self.GoToWeb(url: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))", title: "\(self.viewModel.articleItem(index: indexPath.row).date ?? "")", isSheet: false)
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    if let cell = collectionView.cellForItem(at: indexPath) as? NewsCollectionViewCell {
+                        cell.didTapCell(indexPath: indexPath)
+                    }
+                }
+                Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+                    self.GoToWeb(url: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))", title: "\(self.viewModel.articleItem(index: indexPath.row).date ?? "")", isSheet: false)
+                }
             }
             
             let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
@@ -42,6 +35,20 @@ extension NewsListViewController: UICollectionViewDelegate {
                 shareAction
             ])
         }
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+extension NewsListViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.newsResponse.articles.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsCollectionViewCell.identifier, for: indexPath) as? NewsCollectionViewCell else {return UICollectionViewCell()}
+        cell.configure(with: viewModel.articleItem(index: indexPath.row))
+        return cell
     }
 }
 

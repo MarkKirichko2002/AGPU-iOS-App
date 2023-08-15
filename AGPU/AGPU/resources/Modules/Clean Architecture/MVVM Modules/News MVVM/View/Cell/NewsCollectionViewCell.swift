@@ -12,6 +12,9 @@ final class NewsCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "NewsCollectionViewCell"
     
+    // MARK: - сервисы
+    private let animation = AnimationClass()
+    
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -39,9 +42,7 @@ final class NewsCollectionViewCell: UICollectionViewCell {
     }()
     
     // MARK: - Init
-    override init(
-        frame: CGRect
-    ) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .secondarySystemBackground
         contentView.addSubviews(imageView, NewsTitle, dateLabel)
@@ -87,5 +88,9 @@ final class NewsCollectionViewCell: UICollectionViewCell {
         imageView.sd_setImage(with: URL(string: news.previewImage ?? ""))
         NewsTitle.text = news.title ?? ""
         dateLabel.text = news.date ?? ""
+    }
+    
+    func didTapCell(indexPath: IndexPath) {
+        animation.FlipAnimation(view: self)
     }
 }
