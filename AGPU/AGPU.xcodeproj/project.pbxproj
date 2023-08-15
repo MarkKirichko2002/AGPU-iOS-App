@@ -80,6 +80,9 @@
 		82426C942A71DD0100D5AA57 /* UserStatusList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C932A71DD0100D5AA57 /* UserStatusList.swift */; };
 		82461FEE2A50C493008A8752 /* AppDelegate + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */; };
 		824C56D92A6FE98F0074ADB7 /* FacultyCathedraList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */; };
+		824DCE9F2A8B189500D229B7 /* DocumentsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824DCE9E2A8B189500D229B7 /* DocumentsListViewModelProtocol.swift */; };
+		824DCEA12A8B18CB00D229B7 /* DocumentsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824DCEA02A8B18CB00D229B7 /* DocumentsListViewModel.swift */; };
+		824DCEA32A8B18DB00D229B7 /* DocumentsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824DCEA22A8B18DB00D229B7 /* DocumentsListViewModel + Extensions.swift */; };
 		82505F502A7FBD7D001DE24A /* TimeTableWeekListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82505F4F2A7FBD7D001DE24A /* TimeTableWeekListTableViewController.swift */; };
 		82505F532A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82505F522A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift */; };
 		8255ADCF2A6732110012895E /* CustomTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255ADCE2A6732110012895E /* CustomTitleView.swift */; };
@@ -303,6 +306,9 @@
 		82426C932A71DD0100D5AA57 /* UserStatusList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusList.swift; sourceTree = "<group>"; };
 		82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate + Extensions.swift"; sourceTree = "<group>"; };
 		824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyCathedraList.swift; sourceTree = "<group>"; };
+		824DCE9E2A8B189500D229B7 /* DocumentsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsListViewModelProtocol.swift; sourceTree = "<group>"; };
+		824DCEA02A8B18CB00D229B7 /* DocumentsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsListViewModel.swift; sourceTree = "<group>"; };
+		824DCEA22A8B18DB00D229B7 /* DocumentsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82505F4F2A7FBD7D001DE24A /* TimeTableWeekListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableWeekListTableViewController.swift; sourceTree = "<group>"; };
 		82505F522A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableWeekListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8255ADCE2A6732110012895E /* CustomTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTitleView.swift; sourceTree = "<group>"; };
@@ -1522,6 +1528,48 @@
 			path = "Faculty Сathedra";
 			sourceTree = "<group>";
 		};
+		824DCE992A8B183700D229B7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82D6E1132A895CF2005910A0 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		824DCE9A2A8B184200D229B7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				824DCE9D2A8B187100D229B7 /* Protocol */,
+				824DCE9C2A8B186F00D229B7 /* ViewModel */,
+				824DCE9B2A8B186C00D229B7 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		824DCE9B2A8B186C00D229B7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				824DCEA22A8B18DB00D229B7 /* DocumentsListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		824DCE9C2A8B186F00D229B7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				824DCEA02A8B18CB00D229B7 /* DocumentsListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		824DCE9D2A8B187100D229B7 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				824DCE9E2A8B189500D229B7 /* DocumentsListViewModelProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		82505F432A7F9A0D001DE24A /* TimeTable */ = {
 			isa = PBXGroup;
 			children = (
@@ -1727,7 +1775,6 @@
 		826888672A33B87A00434219 /* No Architecture */ = {
 			isa = PBXGroup;
 			children = (
-				82D6E1122A895CD3005910A0 /* Documents List */,
 				826888562A33AB3C00434219 /* Splash Screen */,
 				828CFA342A35F62400C7542D /* TabBar */,
 				820D33992A75974F00843313 /* Contacts List */,
@@ -1794,6 +1841,7 @@
 			children = (
 				82B24A7E2A81BA32008B94E4 /* News MVVM */,
 				821270572A7921DD0095D68E /* Web Modules */,
+				82D6E1122A895CD3005910A0 /* Documents List MVVM */,
 				8228E3962A6C8EFD00C1B6AD /* Maps MVVM Modules */,
 				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
 				82B1C0BD2A805D5200520C14 /* Recent Moments List MVVM */,
@@ -2876,12 +2924,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		82D6E1122A895CD3005910A0 /* Documents List */ = {
+		82D6E1122A895CD3005910A0 /* Documents List MVVM */ = {
 			isa = PBXGroup;
 			children = (
-				82D6E1132A895CF2005910A0 /* ViewController */,
+				824DCE992A8B183700D229B7 /* View */,
+				824DCE9A2A8B184200D229B7 /* ViewModel */,
 			);
-			path = "Documents List";
+			path = "Documents List MVVM";
 			sourceTree = "<group>";
 		};
 		82D6E1132A895CF2005910A0 /* ViewController */ = {
@@ -3522,6 +3571,7 @@
 				82989ADE2A6E59BC00F27858 /* AGPUCurrentCathedraMapViewController + Extensions.swift in Sources */,
 				828DC55C2A7B3887001EA324 /* FacultyGroups.swift in Sources */,
 				820E40952A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift in Sources */,
+				824DCEA12A8B18CB00D229B7 /* DocumentsListViewModel.swift in Sources */,
 				8234E6122A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift in Sources */,
 				82D6E1152A895D08005910A0 /* DocumentsListTableViewController.swift in Sources */,
 				82989ACD2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift in Sources */,
@@ -3534,6 +3584,7 @@
 				82426C942A71DD0100D5AA57 /* UserStatusList.swift in Sources */,
 				828321732A7D643C008641A5 /* SearchAGPUBuildingMapViewController.swift in Sources */,
 				8228E39C2A6C920D00C1B6AD /* LocationModel.swift in Sources */,
+				824DCEA32A8B18DB00D229B7 /* DocumentsListViewModel + Extensions.swift in Sources */,
 				820D18E52A68F9EE00BFAA35 /* AGPUBuildingModel.swift in Sources */,
 				82BEAD822A7414C300DD34C2 /* RecentPageViewModel.swift in Sources */,
 				82B24A642A816B54008B94E4 /* WeekModel.swift in Sources */,
@@ -3676,6 +3727,7 @@
 				826716C22A5A2AF600CD5C23 /* RecentWebPageModel.swift in Sources */,
 				82B24A872A81BCE6008B94E4 /* Article.swift in Sources */,
 				82320D872A491F5700ECADEE /* AGPUFacultyTableViewCell.swift in Sources */,
+				824DCE9F2A8B189500D229B7 /* DocumentsListViewModelProtocol.swift in Sources */,
 				82D6E10B2A895B49005910A0 /* HTMLParser + Extensions.swift in Sources */,
 				820D339B2A75977400843313 /* FacultyContactsListTableViewController.swift in Sources */,
 				82B24AA32A81C8C3008B94E4 /* AGPUNewsListViewModel + Extensions.swift in Sources */,

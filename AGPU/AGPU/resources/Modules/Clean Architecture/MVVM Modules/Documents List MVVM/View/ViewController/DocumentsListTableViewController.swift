@@ -9,14 +9,15 @@ import UIKit
 
 class DocumentsListTableViewController: UITableViewController {
     
-    private let service = HTMLParser()
-    var documents = [DocumentModel]()
-    var docs = [DocumentModel]()
     private var url = ""
+    
+    // MARK: - сервисы
+    private let viewModel: DocumentsListViewModel!
     
     // MARK: - Init
     init(url: String) {
         self.url = url
+        self.viewModel = DocumentsListViewModel(url: url)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -26,61 +27,42 @@ class DocumentsListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpTable()
         SetUpNavigation()
+        SetUpTable()
+        BindViewModel()
     }
     
-    private func makeMenu()-> UIMenu {
-        let formats = ["все", "pdf", "doc", "docx"]
-        let actions = formats.map { format in
-            return UIAction(title: format, state: format == "все" ? .on : .off) { [weak self] _ in
-                if format == "все" {
-                    guard let self = self else { return }
-                    self.documents = self.docs
-                    self.tableView.reloadData()
-                } else {
-                    guard let self = self else { return }
-                    self.documents = self.docs
-                    self.documents = self.documents.filter { $0.format.lowercased() == format }
-                    self.tableView.reloadData()
-                }
-            }
-        }
-        let menu = UIMenu(title: "форматы", options: .singleSelection, children: actions)
-        return menu
-    }
-
     private func SetUpNavigation() {
         navigationItem.title = "Методические материалы"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .black
-        let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())
+        let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: viewModel.makeMenu())
         sections.tintColor = .black
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = sections
     }
     
     @objc private func close() {
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
-        }
+        viewModel.SendScreenClosedNotification()
         self.dismiss(animated: true)
     }
     
     private func SetUpTable() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        service.ParseDocuments(url: self.url) { documents in
+    }
+    
+    private func BindViewModel() {
+        viewModel.GetDocuments()
+        viewModel.registerDataChangedHandler {
             DispatchQueue.main.async {
-                self.documents = documents
-                self.docs = documents
                 self.tableView.reloadData()
             }
         }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let url = documents[indexPath.row].url
-        let format = documents[indexPath.row].format.lowercased()
+        let url = viewModel.documents[indexPath.row].url
+        let format = viewModel.documents[indexPath.row].format.lowercased()
         switch format {
         case "pdf":
             let vc = PDFDocumentReaderViewController(url: url)
@@ -98,12 +80,12 @@ class DocumentsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return documents.count
+        return viewModel.documents.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "\(documents[indexPath.row].name) (\(documents[indexPath.row].format))"
+        cell.textLabel?.text = "\(viewModel.documents[indexPath.row].name) (\(viewModel.documents[indexPath.row].format))"
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
         cell.textLabel?.numberOfLines = 0
         return cell
