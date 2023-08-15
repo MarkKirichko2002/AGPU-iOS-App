@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 
 class AGPUCurrentCathedraMapViewController: UIViewController {
-
+    
     var cathedra: FacultyCathedraModel!
     
     // MARK: - сервисы
@@ -50,7 +50,7 @@ class AGPUCurrentCathedraMapViewController: UIViewController {
     }
     
     @objc private func closeScreen() {
-         dismiss(animated: true)
+        dismiss(animated: true)
     }
     
     private func SetUpMap() {

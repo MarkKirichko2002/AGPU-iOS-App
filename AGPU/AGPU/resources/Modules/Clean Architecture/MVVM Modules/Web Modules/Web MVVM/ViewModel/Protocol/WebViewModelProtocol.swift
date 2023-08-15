@@ -11,4 +11,5 @@ protocol WebViewModelProtocol {
     func ObserveScroll(completion: @escaping(CGPoint)->Void)
     func ObserveActions(block: @escaping()->Void)
     func SaveCurrentWebPage(url: String, position: CGPoint)
+    func SendScreenClosedNotification()
 }

@@ -13,4 +13,5 @@ protocol RecentMomentsListViewModelProtocol {
     func GetLastWordDocument(completion: @escaping(RecentWordDocumentModel)->Void)
     func GetLastPDFDocument(completion: @escaping(RecentPDFModel)->Void)
     func GetLastVideo(completion: @escaping(String)->Void)
+    func SendScreenClosedNotification()
 }
