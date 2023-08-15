@@ -37,8 +37,8 @@ struct AGPUFaculties {
             videoURL: "http://priem.agpu.net/video/stud/ipimif.mp4",
             contacts: [
                 ContactsModel(
-                    name: "Имя",
-                    degree: "информация",
+                    name: "-",
+                    degree: "-",
                     phoneNumber: "+7(988)361-04-02"
                 )
             ],

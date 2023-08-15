@@ -7,6 +7,7 @@
 
 import UIKit
 import AVKit
+import MessageUI
 
 extension UIViewController {
     
@@ -90,6 +91,29 @@ extension UIViewController {
         if let navigationController = navigationController {
             navigationController.popViewController(animated: true)
         }
+    }
+}
+
+// MARK: - MFMailComposeViewControllerDelegate
+extension UIViewController: MFMailComposeViewControllerDelegate {
+    
+    func showEmailComposer(email: String) {
+        
+        guard MFMailComposeViewController.canSendMail() else {
+            return
+        }
+        
+        let composer = MFMailComposeViewController()
+        composer.mailComposeDelegate = self
+        composer.setToRecipients([email])
+        composer.setSubject("Тема письма")
+        composer.setMessageBody("Текст письма", isHTML: false)
+        composer.modalPresentationStyle = .fullScreen
+        present(composer, animated: true, completion: nil)
+    }
+    
+    public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
 
