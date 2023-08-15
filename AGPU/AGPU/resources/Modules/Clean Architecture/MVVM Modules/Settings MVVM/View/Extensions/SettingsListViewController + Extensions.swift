@@ -100,11 +100,14 @@ extension SettingsListViewController: UITableViewDelegate {
                     }
                 }
                 
-                let cathedraAction = UIAction(title: self.viewModel.isCathedraSelected(index: indexPath.row) ? "выбрана кафедра" : "выбрать кафедру", image: self.viewModel.isCathedraSelected(index: indexPath.row) ? UIImage(named: "check") : nil) { action in
-                    if self.viewModel.isFacultySelected(index: indexPath.row) {
+                let cathedraAction = UIAction(title: self.viewModel.isCathedraSelected(index: indexPath.row) ? "выбрана кафедра" : "\(!self.viewModel.facultyItem(index: indexPath.row).cathedra.isEmpty ? "выбрать кафедру" : "кафедры отсутствуют")", image: self.viewModel.isCathedraSelected(index: indexPath.row) ? UIImage(named: "check") : nil) { action in
+                    if self.viewModel.isFacultySelected(index: indexPath.row) && !self.viewModel.facultyItem(index: indexPath.row).cathedra.isEmpty {
                         let vc = FacultyCathedraListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
                         vc.hidesBottomBarWhenPushed = true
                         self.navigationController?.pushViewController(vc, animated: true)
+                    } else if self.viewModel.isFacultySelected(index: indexPath.row) &&  self.viewModel.facultyItem(index: indexPath.row).cathedra.isEmpty {
+                        let ok = UIAlertAction(title: "ОК", style: .default)
+                        self.ShowAlert(title: "У \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) отсутствуют кафедры", message: "", actions: [ok])
                     } else {
                         NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
                         let ok = UIAlertAction(title: "ОК", style: .default)

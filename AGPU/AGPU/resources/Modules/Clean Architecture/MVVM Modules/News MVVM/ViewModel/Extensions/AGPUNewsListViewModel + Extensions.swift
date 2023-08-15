@@ -13,7 +13,12 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     // получить новости в зависимости от типа
     func GetNewsByCurrentType() {
         if let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
-            GetFacultyNews(faculty: faculty)
+            if !faculty.newsAbbreviation.isEmpty {
+                GetFacultyNews(faculty: faculty)
+            } else {
+                GetAGPUNews()
+                self.faculty = nil
+            }
         } else {
             GetAGPUNews()
             self.faculty = nil

@@ -153,6 +153,20 @@ struct AGPUFaculties {
             contacts: [],
             email: "markkir123@gmail.com",
             isSelected: false
+        ),
+        AGPUFacultyModel(
+            id: 7,
+            name: "Научно-исследовательский институт развития образования",
+            cathedra: [],
+            icon: "АГПУ",
+            abbreviation: "НИИРО",
+            appIcon:  "AppIcon 7",
+            url: "https://niiro-agpu.ru/",
+            newsAbbreviation: "",
+            videoURL: "",
+            contacts: [],
+            email: "markkir123@gmail.com",
+            isSelected: false
         )
     ]
 }
