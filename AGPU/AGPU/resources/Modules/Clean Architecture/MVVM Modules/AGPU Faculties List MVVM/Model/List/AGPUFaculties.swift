@@ -164,8 +164,14 @@ struct AGPUFaculties {
             url: "https://niiro-agpu.ru/",
             newsAbbreviation: "",
             videoURL: "",
-            contacts: [],
-            email: "markkir123@gmail.com",
+            contacts: [
+                ContactsModel(
+                    name: "-",
+                    degree: "-",
+                    phoneNumber: "8(86137)3-85-04"
+                )
+            ],
+            email: "NIIRO_AGPU@mail.ru",
             isSelected: false
         )
     ]
