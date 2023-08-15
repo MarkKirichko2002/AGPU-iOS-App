@@ -64,4 +64,11 @@ extension AGPUCurrentCathedraMapViewModel: AGPUCurrentCathedraMapViewModelProtoc
     func registerLocationHandler(block: @escaping(LocationModel)->Void) {
         self.locationHandler = block
     }
+    
+    func GetCurrentFaculty()-> AGPUFacultyModel {
+        if let faculty = AGPUFaculties.faculties.first(where: { $0.cathedra.contains { $0.name == self.cathedra.name }}) {
+            return faculty
+        }
+        return AGPUFaculties.faculties[0]
+    }
 }

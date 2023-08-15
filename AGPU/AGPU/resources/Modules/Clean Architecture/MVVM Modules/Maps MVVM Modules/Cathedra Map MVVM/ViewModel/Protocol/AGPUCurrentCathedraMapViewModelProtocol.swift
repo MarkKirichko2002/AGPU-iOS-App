@@ -11,4 +11,5 @@ protocol AGPUCurrentCathedraMapViewModelProtocol {
     func CheckLocationAuthorizationStatus()
     func GetLocation()
     func registerLocationHandler(block: @escaping(LocationModel)->Void)
+    func GetCurrentFaculty()-> AGPUFacultyModel
 }
