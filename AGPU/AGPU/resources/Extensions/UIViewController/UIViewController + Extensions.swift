@@ -18,10 +18,14 @@ extension UIViewController {
             vc.navigationItem.title = title
         }
         if isSheet {
-            present(navVC, animated: true)
+            DispatchQueue.main.async {
+                self.present(navVC, animated: true)
+            }
         } else {
             navVC.modalPresentationStyle = .fullScreen
-            present(navVC, animated: true)
+            DispatchQueue.main.async {
+                self.present(navVC, animated: true)
+            }
         }
     }
     
