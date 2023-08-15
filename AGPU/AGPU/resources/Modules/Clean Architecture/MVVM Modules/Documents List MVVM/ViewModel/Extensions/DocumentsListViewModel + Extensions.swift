@@ -25,10 +25,10 @@ extension DocumentsListViewModel: DocumentsListViewModelProtocol {
     }
     
     func makeMenu()-> UIMenu {
-        let formats = ["все", "pdf", "doc", "docx"]
+        let formats = ["все форматы", "pdf", "doc", "docx"]
         let actions = formats.map { format in
-            return UIAction(title: format, state: format == "все" ? .on : .off) { [weak self] _ in
-                if format == "все" {
+            return UIAction(title: format, state: format == "все форматы" ? .on : .off) { [weak self] _ in
+                if format == "все форматы" {
                     guard let self = self else { return }
                     self.documents = self.docs
                     self.dataChangedHandler?()

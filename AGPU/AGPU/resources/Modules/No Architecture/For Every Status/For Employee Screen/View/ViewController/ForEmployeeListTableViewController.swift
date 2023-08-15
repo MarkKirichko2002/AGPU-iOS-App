@@ -51,7 +51,10 @@ class ForEmployeeListTableViewController: UITableViewController {
             if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
                 NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
                 Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                    self.GoToWeb(url: cathedra.manualUrl, title: "Методические материалы", isSheet: false)
+                    let vc = DocumentsListTableViewController(url: cathedra.manualUrl)
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    self.present(navVC, animated: true)
                 }
             } else {
                 let ok = UIAlertAction(title: "ОК", style: .default)

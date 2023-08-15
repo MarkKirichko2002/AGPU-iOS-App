@@ -14,14 +14,13 @@ class DocumentsListViewModel {
     
     var dataChangedHandler: (()->Void)?
     
+    // MARK: - сервисы
+    let service = HTMLParser()
+    
     var url: String = ""
     
     // MARK: - Init
     init(url: String) {
         self.url = url
     }
-    
-    // MARK: - сервисы
-    let service = HTMLParser()
-    
 }

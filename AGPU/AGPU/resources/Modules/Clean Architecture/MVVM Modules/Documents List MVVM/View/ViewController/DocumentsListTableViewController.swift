@@ -84,8 +84,10 @@ class DocumentsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let documentName = viewModel.documents[indexPath.row].name
+        let documentFormat = viewModel.documents[indexPath.row].format
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "\(viewModel.documents[indexPath.row].name) (\(viewModel.documents[indexPath.row].format))"
+        cell.textLabel?.text = "\(documentName) (\(documentFormat))"
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
         cell.textLabel?.numberOfLines = 0
         return cell
