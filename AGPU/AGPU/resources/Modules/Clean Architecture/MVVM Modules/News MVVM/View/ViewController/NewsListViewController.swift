@@ -47,6 +47,8 @@ final class NewsListViewController: UIViewController {
         
         var menu = UIMenu()
         
+        var titleView = CustomTitleView(image: "АГПУ", title: "Новости АГПУ", frame: .zero)
+        
         DispatchQueue.main.async {
             self.navigationItem.title = "загрузка новостей..."
             self.collectionView.reloadData()
@@ -62,16 +64,17 @@ final class NewsListViewController: UIViewController {
             
             DispatchQueue.main.async {
                 if let faculty = faculty {
-                    self.navigationItem.title = "Новости \(faculty.abbreviation)"
+                    titleView = CustomTitleView(image: "\(faculty.icon)", title: "\(faculty.abbreviation) новости", frame: .zero)
                     self.collectionView.reloadData()
                 } else {
-                    self.navigationItem.title = "Новости АГПУ"
+                    titleView = CustomTitleView(image: "АГПУ", title: "АГПУ новости", frame: .zero)
                     self.collectionView.reloadData()
                 }
                 
                 menu = self.viewModel.pagesMenu()
                 let pages = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
                 pages.tintColor = .black
+                self.navigationItem.titleView = titleView
                 self.navigationItem.rightBarButtonItem = pages
             }
         }
