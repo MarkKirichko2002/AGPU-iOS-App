@@ -79,9 +79,6 @@
 		82426C942A71DD0100D5AA57 /* UserStatusList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C932A71DD0100D5AA57 /* UserStatusList.swift */; };
 		82461FEE2A50C493008A8752 /* AppDelegate + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */; };
 		824C56D92A6FE98F0074ADB7 /* FacultyCathedraList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */; };
-		824DCE9F2A8B189500D229B7 /* DocumentsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824DCE9E2A8B189500D229B7 /* DocumentsListViewModelProtocol.swift */; };
-		824DCEA12A8B18CB00D229B7 /* DocumentsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824DCEA02A8B18CB00D229B7 /* DocumentsListViewModel.swift */; };
-		824DCEA32A8B18DB00D229B7 /* DocumentsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824DCEA22A8B18DB00D229B7 /* DocumentsListViewModel + Extensions.swift */; };
 		82505F502A7FBD7D001DE24A /* TimeTableWeekListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82505F4F2A7FBD7D001DE24A /* TimeTableWeekListTableViewController.swift */; };
 		82505F532A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82505F522A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift */; };
 		8255ADCF2A6732110012895E /* CustomTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255ADCE2A6732110012895E /* CustomTitleView.swift */; };
@@ -195,12 +192,6 @@
 		82D6C33B2A5E282A00FB7F5D /* TimeTableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82D6C3392A5E282A00FB7F5D /* TimeTableTableViewCell.xib */; };
 		82D6C3412A5E33C200FB7F5D /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 82D6C3402A5E33C200FB7F5D /* FSCalendar */; };
 		82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3432A5E340300FB7F5D /* CalendarViewController.swift */; };
-		82D6E1042A895AD0005910A0 /* HTMLParserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6E1032A895AD0005910A0 /* HTMLParserProtocol.swift */; };
-		82D6E1082A895B2B005910A0 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6E1072A895B2B005910A0 /* HTMLParser.swift */; };
-		82D6E10B2A895B49005910A0 /* HTMLParser + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6E10A2A895B49005910A0 /* HTMLParser + Extensions.swift */; };
-		82D6E10E2A895B88005910A0 /* DocumentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6E10D2A895B88005910A0 /* DocumentModel.swift */; };
-		82D6E1112A895BDB005910A0 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 82D6E1102A895BDB005910A0 /* SwiftSoup */; };
-		82D6E1152A895D08005910A0 /* DocumentsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6E1142A895D08005910A0 /* DocumentsListTableViewController.swift */; };
 		82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D492A5DD57B0060ADAA /* ForStudentListTableViewController.swift */; };
 		82E05D542A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D532A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift */; };
 		82E05D592A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D582A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift */; };
@@ -302,9 +293,6 @@
 		82426C932A71DD0100D5AA57 /* UserStatusList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusList.swift; sourceTree = "<group>"; };
 		82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate + Extensions.swift"; sourceTree = "<group>"; };
 		824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyCathedraList.swift; sourceTree = "<group>"; };
-		824DCE9E2A8B189500D229B7 /* DocumentsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsListViewModelProtocol.swift; sourceTree = "<group>"; };
-		824DCEA02A8B18CB00D229B7 /* DocumentsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsListViewModel.swift; sourceTree = "<group>"; };
-		824DCEA22A8B18DB00D229B7 /* DocumentsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82505F4F2A7FBD7D001DE24A /* TimeTableWeekListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableWeekListTableViewController.swift; sourceTree = "<group>"; };
 		82505F522A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableWeekListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8255ADCE2A6732110012895E /* CustomTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTitleView.swift; sourceTree = "<group>"; };
@@ -418,11 +406,6 @@
 		82D6C3382A5E282A00FB7F5D /* TimeTableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableTableViewCell.swift; sourceTree = "<group>"; };
 		82D6C3392A5E282A00FB7F5D /* TimeTableTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeTableTableViewCell.xib; sourceTree = "<group>"; };
 		82D6C3432A5E340300FB7F5D /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		82D6E1032A895AD0005910A0 /* HTMLParserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLParserProtocol.swift; sourceTree = "<group>"; };
-		82D6E1072A895B2B005910A0 /* HTMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
-		82D6E10A2A895B49005910A0 /* HTMLParser + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTMLParser + Extensions.swift"; sourceTree = "<group>"; };
-		82D6E10D2A895B88005910A0 /* DocumentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentModel.swift; sourceTree = "<group>"; };
-		82D6E1142A895D08005910A0 /* DocumentsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsListTableViewController.swift; sourceTree = "<group>"; };
 		82E05D492A5DD57B0060ADAA /* ForStudentListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForStudentListTableViewController.swift; sourceTree = "<group>"; };
 		82E05D532A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultiesListTableViewController.swift; sourceTree = "<group>"; };
 		82E05D582A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultiesListViewModel.swift; sourceTree = "<group>"; };
@@ -457,7 +440,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				82B24A9A2A81C0D1008B94E4 /* SDWebImage in Frameworks */,
-				82D6E1112A895BDB005910A0 /* SwiftSoup in Frameworks */,
 				82D6C3372A5E1E4F00FB7F5D /* Alamofire in Frameworks */,
 				82D6C3412A5E33C200FB7F5D /* FSCalendar in Frameworks */,
 			);
@@ -1076,7 +1058,6 @@
 			isa = PBXGroup;
 			children = (
 				82D6C3302A5E1DD100FB7F5D /* API */,
-				82D6E1012A895AA7005910A0 /* HTML Parser */,
 				8270A5462A578491008ACADC /* Date */,
 				82E4C5852A6B20B800F65A67 /* Location */,
 				82BF4DB52A5FA7F6008B751A /* Image Saver */,
@@ -1514,48 +1495,6 @@
 			path = "Faculty Сathedra";
 			sourceTree = "<group>";
 		};
-		824DCE992A8B183700D229B7 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				82D6E1132A895CF2005910A0 /* ViewController */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		824DCE9A2A8B184200D229B7 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				824DCE9D2A8B187100D229B7 /* Protocol */,
-				824DCE9C2A8B186F00D229B7 /* ViewModel */,
-				824DCE9B2A8B186C00D229B7 /* Extensions */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		824DCE9B2A8B186C00D229B7 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				824DCEA22A8B18DB00D229B7 /* DocumentsListViewModel + Extensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		824DCE9C2A8B186F00D229B7 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				824DCEA02A8B18CB00D229B7 /* DocumentsListViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		824DCE9D2A8B187100D229B7 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				824DCE9E2A8B189500D229B7 /* DocumentsListViewModelProtocol.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
 		82505F432A7F9A0D001DE24A /* TimeTable */ = {
 			isa = PBXGroup;
 			children = (
@@ -1826,7 +1765,6 @@
 			children = (
 				82B24A7E2A81BA32008B94E4 /* News MVVM */,
 				821270572A7921DD0095D68E /* Web Modules */,
-				82D6E1122A895CD3005910A0 /* Documents List MVVM */,
 				8228E3962A6C8EFD00C1B6AD /* Maps MVVM Modules */,
 				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
 				82B1C0BD2A805D5200520C14 /* Recent Moments List MVVM */,
@@ -2857,66 +2795,6 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
-		82D6E1012A895AA7005910A0 /* HTML Parser */ = {
-			isa = PBXGroup;
-			children = (
-				82D6E10C2A895B7C005910A0 /* Model */,
-				82D6E1022A895AB6005910A0 /* Protocol */,
-				82D6E1062A895B15005910A0 /* Service */,
-				82D6E1092A895B34005910A0 /* Extensions */,
-			);
-			path = "HTML Parser";
-			sourceTree = "<group>";
-		};
-		82D6E1022A895AB6005910A0 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				82D6E1032A895AD0005910A0 /* HTMLParserProtocol.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
-		82D6E1062A895B15005910A0 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				82D6E1072A895B2B005910A0 /* HTMLParser.swift */,
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
-		82D6E1092A895B34005910A0 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				82D6E10A2A895B49005910A0 /* HTMLParser + Extensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		82D6E10C2A895B7C005910A0 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				82D6E10D2A895B88005910A0 /* DocumentModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		82D6E1122A895CD3005910A0 /* Documents List MVVM */ = {
-			isa = PBXGroup;
-			children = (
-				824DCE992A8B183700D229B7 /* View */,
-				824DCE9A2A8B184200D229B7 /* ViewModel */,
-			);
-			path = "Documents List MVVM";
-			sourceTree = "<group>";
-		};
-		82D6E1132A895CF2005910A0 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				82D6E1142A895D08005910A0 /* DocumentsListTableViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 		82E05D482A5DD52B0060ADAA /* For Student Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -3442,7 +3320,6 @@
 				82D6C3362A5E1E4F00FB7F5D /* Alamofire */,
 				82D6C3402A5E33C200FB7F5D /* FSCalendar */,
 				82B24A992A81C0D1008B94E4 /* SDWebImage */,
-				82D6E1102A895BDB005910A0 /* SwiftSoup */,
 			);
 			productName = AGPU;
 			productReference = 82808E852A31F12100DEEB16 /* AGPU.app */;
@@ -3477,7 +3354,6 @@
 				82D6C3352A5E1E4F00FB7F5D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				82D6C33F2A5E33C200FB7F5D /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				82B24A982A81C0D1008B94E4 /* XCRemoteSwiftPackageReference "SDWebImage" */,
-				82D6E10F2A895BDB005910A0 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = 82808E862A31F12100DEEB16 /* Products */;
 			projectDirPath = "";
@@ -3527,7 +3403,6 @@
 				82D6C33A2A5E282A00FB7F5D /* TimeTableTableViewCell.swift in Sources */,
 				822606002A853C110055925F /* RecentMomentTableViewCell.swift in Sources */,
 				82BC3CFC2A56EDA000E49332 /* RecentWebPageViewController.swift in Sources */,
-				82D6E10E2A895B88005910A0 /* DocumentModel.swift in Sources */,
 				8241F9852A5F3F73007DF628 /* CalendarViewController + Extensions.swift in Sources */,
 				82C561622A6B772600514B00 /* AppFeaturesListTableViewController.swift in Sources */,
 				82E05D542A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift in Sources */,
@@ -3538,9 +3413,7 @@
 				82989ADE2A6E59BC00F27858 /* AGPUCurrentCathedraMapViewController + Extensions.swift in Sources */,
 				828DC55C2A7B3887001EA324 /* FacultyGroups.swift in Sources */,
 				820E40952A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift in Sources */,
-				824DCEA12A8B18CB00D229B7 /* DocumentsListViewModel.swift in Sources */,
 				8234E6122A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift in Sources */,
-				82D6E1152A895D08005910A0 /* DocumentsListTableViewController.swift in Sources */,
 				82989ACD2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift in Sources */,
 				82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */,
 				8226060A2A853DEE0055925F /* RecentMomentsListTableViewController.swift in Sources */,
@@ -3551,7 +3424,6 @@
 				82426C942A71DD0100D5AA57 /* UserStatusList.swift in Sources */,
 				828321732A7D643C008641A5 /* SearchAGPUBuildingMapViewController.swift in Sources */,
 				8228E39C2A6C920D00C1B6AD /* LocationModel.swift in Sources */,
-				824DCEA32A8B18DB00D229B7 /* DocumentsListViewModel + Extensions.swift in Sources */,
 				820D18E52A68F9EE00BFAA35 /* AGPUBuildingModel.swift in Sources */,
 				82BEAD822A7414C300DD34C2 /* RecentPageViewModel.swift in Sources */,
 				82B24A642A816B54008B94E4 /* WeekModel.swift in Sources */,
@@ -3692,8 +3564,6 @@
 				826716C22A5A2AF600CD5C23 /* RecentWebPageModel.swift in Sources */,
 				82B24A872A81BCE6008B94E4 /* Article.swift in Sources */,
 				82320D872A491F5700ECADEE /* AGPUFacultyTableViewCell.swift in Sources */,
-				824DCE9F2A8B189500D229B7 /* DocumentsListViewModelProtocol.swift in Sources */,
-				82D6E10B2A895B49005910A0 /* HTMLParser + Extensions.swift in Sources */,
 				820D339B2A75977400843313 /* FacultyContactsListTableViewController.swift in Sources */,
 				82B24AA32A81C8C3008B94E4 /* AGPUNewsListViewModel + Extensions.swift in Sources */,
 				82B1C0D22A8070FF00520C14 /* SubGroupsListViewModel + Extensions.swift in Sources */,
@@ -3713,10 +3583,8 @@
 				82E4C5842A6B201600F65A67 /* LocationManagerProtocol.swift in Sources */,
 				828321672A7D02E6008641A5 /* AllGroupsListViewModel.swift in Sources */,
 				8241F99B2A5F415A007DF628 /* DateManager + Extensions.swift in Sources */,
-				82D6E1042A895AD0005910A0 /* HTMLParserProtocol.swift in Sources */,
 				8255ADCF2A6732110012895E /* CustomTitleView.swift in Sources */,
 				82989AE62A6F6DEA00F27858 /* FacultyCathedraListViewModel.swift in Sources */,
-				82D6E1082A895B2B005910A0 /* HTMLParser.swift in Sources */,
 				826888582A33AB5600434219 /* AGPUSplashScreenViewController.swift in Sources */,
 				82E4C5892A6B20DE00F65A67 /* LocationManager.swift in Sources */,
 			);
@@ -3971,14 +3839,6 @@
 				version = 2.8.4;
 			};
 		};
-		82D6E10F2A895BDB005910A0 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
-			requirement = {
-				kind = exactVersion;
-				version = 2.6.1;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -3996,11 +3856,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 82D6C33F2A5E33C200FB7F5D /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
-		};
-		82D6E1102A895BDB005910A0 /* SwiftSoup */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 82D6E10F2A895BDB005910A0 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
-			productName = SwiftSoup;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
