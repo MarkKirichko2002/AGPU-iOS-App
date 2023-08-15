@@ -33,7 +33,7 @@ class DocumentsListTableViewController: UITableViewController {
     private func makeMenu()-> UIMenu {
         let formats = ["все", "pdf", "doc", "docx"]
         let actions = formats.map { format in
-            return UIAction(title: format) { [weak self] _ in
+            return UIAction(title: format, state: format == "все" ? .on : .off) { [weak self] _ in
                 if format == "все" {
                     guard let self = self else { return }
                     self.documents = self.docs
@@ -61,6 +61,9 @@ class DocumentsListTableViewController: UITableViewController {
     }
     
     @objc private func close() {
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+            NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
+        }
         self.dismiss(animated: true)
     }
     
