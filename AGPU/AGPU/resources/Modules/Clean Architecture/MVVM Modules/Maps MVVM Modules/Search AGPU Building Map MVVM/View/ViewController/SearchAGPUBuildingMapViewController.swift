@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 
 class SearchAGPUBuildingMapViewController: UIViewController {
-
+    
     private var building: AGPUBuildingModel!
     
     // MARK: - сервисы
@@ -46,7 +46,8 @@ class SearchAGPUBuildingMapViewController: UIViewController {
     }
     
     @objc private func closeScreen() {
-         dismiss(animated: true)
+        viewModel.SendScreenClosedNotification()
+        dismiss(animated: true)
     }
     
     private func SetUpMap() {
