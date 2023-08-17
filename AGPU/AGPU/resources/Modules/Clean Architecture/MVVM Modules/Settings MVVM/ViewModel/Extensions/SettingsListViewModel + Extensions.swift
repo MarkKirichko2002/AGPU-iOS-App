@@ -107,7 +107,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
     
     func CancelFaculty(index: Int) {
         
-        if !isFacultySelected(index: index) {
+        if isFacultySelected(index: index) {
             if let data = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
                 if data.id == AGPUFaculties.faculties[index].id && data.isSelected {
                     var faculty: AGPUFacultyModel?
@@ -127,11 +127,13 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
                         if currentIconName == "AppIcon 7" {
                             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                                 NotificationCenter.default.post(name: Notification.Name("faculty"), object: nil)
+                                NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
                             }
                         } else {
                             UIApplication.shared.setAlternateIconName("AppIcon 7")
                             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                                 NotificationCenter.default.post(name: Notification.Name("faculty"), object: nil)
+                                NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
                             }
                         }
                     }
