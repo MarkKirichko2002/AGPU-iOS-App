@@ -140,9 +140,7 @@ extension SettingsListViewController: UITableViewDelegate {
                 }
                 
                 let cancelIconAction = UIAction(title: "отменить иконку", image: self.viewModel.isFacultySelected(index: indexPath.row) ? UIImage(named: "cancel") : nil) { action in
-                    if self.viewModel.isFacultySelected(index: indexPath.row) {
-                        self.viewModel.CancelFacultyIcon(index: indexPath.row)
-                    } else {}
+                    self.viewModel.CancelFacultyIcon(index: indexPath.row)
                 }
                 
                 let cancelFacultyAction = UIAction(title: "отменить факультет", image: self.viewModel.isFacultySelected(index: indexPath.row) ? UIImage(named: "cancel") : nil) { _ in
