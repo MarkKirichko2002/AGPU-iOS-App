@@ -10,6 +10,7 @@ import Foundation
 struct ForStudentSections {
     
     static let sections = [
+        
         ForEveryStatusModel(
             id: 1,
             icon: "profile icon",

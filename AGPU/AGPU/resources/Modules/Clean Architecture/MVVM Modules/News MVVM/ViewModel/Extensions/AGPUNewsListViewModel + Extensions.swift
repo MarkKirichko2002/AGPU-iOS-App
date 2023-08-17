@@ -81,8 +81,12 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     }
     
     func ObserveFacultyChanges() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("faculty"), object: nil, queue: .main) { _ in
-            self.GetNewsByCurrentType()
+        NotificationCenter.default.addObserver(forName: Notification.Name("faculty"), object: nil, queue: .main) { notification in
+            if let faculty = notification.object as? AGPUFacultyModel {
+                self.GetFacultyNews(faculty: faculty)
+            } else {
+                self.GetAGPUNews()
+            }
         }
     }
     
@@ -92,8 +96,10 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         
         let currentPage = newsResponse.currentPage
         
-        for i in 1...self.newsResponse.countPages {
-            pages.append(i)
+        if let countPages = self.newsResponse.countPages {
+            for i in 1...countPages {
+                pages.append(i)
+            }
         }
         
         let actions = pages.map { pageNumber -> UIAction in

@@ -45,16 +45,20 @@ final class NewsListViewController: UIViewController {
     
     private func BindViewModel() {
         
+        var options = UIBarButtonItem(image: UIImage(named: "sections"), menu: UIMenu())
+        var pages = UIMenu()
         var menu = UIMenu()
+        
+        var categoriesAction = UIAction(title: "категории") { _ in}
         
         var titleView = CustomTitleView(image: "АГПУ", title: "Новости АГПУ", frame: .zero)
         
         DispatchQueue.main.async {
             self.navigationItem.title = "загрузка новостей..."
             self.collectionView.reloadData()
-            let pages = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
-            pages.tintColor = .black
-            self.navigationItem.rightBarButtonItem = pages
+            options = UIBarButtonItem(image: UIImage(named: "sections"), menu: UIMenu())
+            options.tintColor = .black
+            self.navigationItem.rightBarButtonItem = options
         }
         
         viewModel.GetNewsByCurrentType()
@@ -63,6 +67,7 @@ final class NewsListViewController: UIViewController {
             guard let self = self else { return }
             
             DispatchQueue.main.async {
+                
                 if let faculty = faculty {
                     titleView = CustomTitleView(image: "\(faculty.icon)", title: "\(faculty.abbreviation) новости", frame: .zero)
                     self.collectionView.reloadData()
@@ -71,11 +76,19 @@ final class NewsListViewController: UIViewController {
                     self.collectionView.reloadData()
                 }
                 
-                menu = self.viewModel.pagesMenu()
-                let pages = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
-                pages.tintColor = .black
+                categoriesAction = UIAction(title: "категории") { _ in
+                    let vc = NewsCategoryListTableViewController(currentCategory: faculty?.abbreviation ?? "АГПУ")
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    self.present(navVC, animated: true)
+                }
+                
+                pages = self.viewModel.pagesMenu()
+                menu = UIMenu(title: "новости", children: [categoriesAction, pages])
+                options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
+                options.tintColor = .black
                 self.navigationItem.titleView = titleView
-                self.navigationItem.rightBarButtonItem = pages
+                self.navigationItem.rightBarButtonItem = options
             }
         }
         

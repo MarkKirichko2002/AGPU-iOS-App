@@ -197,9 +197,9 @@ final class AGPUTabBarController: UITabBarController {
     
     // MARK: - Elected Faculty
     private func ObserveFaculty() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("faculty"), object: nil, queue: .main) { notification in
-            if let icon = notification.object as? AGPUFacultyModel {
-                self.updateDynamicButton(icon: icon.icon)
+        NotificationCenter.default.addObserver(forName: Notification.Name("icon"), object: nil, queue: .main) { notification in
+            if let icon = notification.object as? String {
+                self.updateDynamicButton(icon: icon)
             } else {
                 self.updateDynamicButton(icon: "АГПУ")
             }

@@ -89,7 +89,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         if !isFacultyIconSelected(index: index) {
             UIApplication.shared.setAlternateIconName(faculty.appIcon)
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
+                NotificationCenter.default.post(name: Notification.Name("icon"), object: faculty.icon)
             }
             UserDefaults.standard.setValue(faculty.icon, forKey: "icon")
         }
