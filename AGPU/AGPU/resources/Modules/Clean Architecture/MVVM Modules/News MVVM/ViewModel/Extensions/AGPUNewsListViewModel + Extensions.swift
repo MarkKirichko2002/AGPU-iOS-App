@@ -86,6 +86,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                 self.GetFacultyNews(faculty: faculty)
             } else {
                 self.GetAGPUNews()
+                self.faculty = nil
             }
         }
     }
