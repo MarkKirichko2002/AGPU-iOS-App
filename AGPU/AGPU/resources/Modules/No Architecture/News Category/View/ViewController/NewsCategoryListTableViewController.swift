@@ -40,22 +40,26 @@ class NewsCategoryListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let category = NewsCategories.categories[indexPath.row]
-        if let faculty = AGPUFaculties.faculties.first(where: { $0.abbreviation ==  category.name}) {
-            NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
-            self.currentCategory = category.name
-            self.tableView.reloadData()
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.dismiss(animated: true)
+        if category.name != currentCategory {
+            if let faculty = AGPUFaculties.faculties.first(where: { $0.abbreviation ==  category.name}) {
+                NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
+                self.currentCategory = category.name
+                self.tableView.reloadData()
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self.dismiss(animated: true)
+                }
+            } else {
+                NotificationCenter.default.post(name: Notification.Name("faculty"), object: nil)
+                self.currentCategory = category.name
+                self.tableView.reloadData()
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self.dismiss(animated: true)
+                }
             }
+            self.navigationItem.title = "Выбрана категория \(category.name)"
         } else {
-            NotificationCenter.default.post(name: Notification.Name("faculty"), object: nil)
-            self.currentCategory = category.name
-            self.tableView.reloadData()
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.dismiss(animated: true)
-            }
+            self.navigationItem.title = "Категория \(category.name) уже выбрана"
         }
-        self.navigationItem.title = "Выбрана категория \(category.name)"
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
