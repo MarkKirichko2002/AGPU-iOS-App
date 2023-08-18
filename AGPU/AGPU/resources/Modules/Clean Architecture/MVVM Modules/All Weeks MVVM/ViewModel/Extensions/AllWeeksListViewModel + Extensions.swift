@@ -22,6 +22,14 @@ extension AllWeeksListViewModel: AllWeeksListViewModelProtocol {
         }
     }
     
+    func numberOfWeeks()-> Int {
+        return weeks.count
+    }
+    
+    func weekItem(index: Int)-> WeekModel {
+        return weeks[index]
+    }
+    
     func registerIsChangedHandler(block: @escaping(()->Void)) {
         self.isChangedHandler = block
     }

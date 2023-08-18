@@ -70,19 +70,21 @@ class AllWeeksListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = TimeTableWeekListTableViewController(group: self.group, subgroup: self.subgroup, week: viewModel.weeks[indexPath.row])
+        let week = viewModel.weekItem(index: indexPath.row)
+        let vc = TimeTableWeekListTableViewController(group: self.group, subgroup: self.subgroup, week: week)
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.weeks.count
+        return viewModel.numberOfWeeks()
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let week = viewModel.weekItem(index: indexPath.row)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WeekTableViewCell.identifier, for: indexPath) as? WeekTableViewCell else {return UITableViewCell()}
-        cell.configure(week: viewModel.weeks[indexPath.row])
+        cell.configure(week: week)
         cell.DateRangeLabel.textColor = viewModel.isCurrentWeek(index: indexPath.row) ? .systemGreen : .black
         cell.WeekID.textColor = viewModel.isCurrentWeek(index: indexPath.row) ? .systemGreen : .black
         return cell

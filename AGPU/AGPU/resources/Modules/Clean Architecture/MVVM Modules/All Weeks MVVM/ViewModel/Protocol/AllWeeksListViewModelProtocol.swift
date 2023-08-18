@@ -9,6 +9,8 @@ import Foundation
 
 protocol AllWeeksListViewModelProtocol {
     func GetWeeks()
+    func numberOfWeeks()-> Int
+    func weekItem(index: Int)-> WeekModel
     func registerIsChangedHandler(block: @escaping(()->Void))
     func GetCurrentWeek()
     func registerScrollHandler(block: @escaping((Int)->Void))
