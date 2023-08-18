@@ -102,5 +102,6 @@ final class NewsListViewController: UIViewController {
         }
         
         viewModel.ObserveFacultyChanges()
+        viewModel.ObservedPageChanges()
     }
 }

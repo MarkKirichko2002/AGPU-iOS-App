@@ -52,18 +52,12 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         }
     }
     
-    func GetNews(by page: Int, faculty: AGPUFacultyModel?) {
-        var url = ""
-        if faculty != nil {
-            url = newsService.urlForPagination(faculty: faculty, page: page)
-        } else {
-            url = newsService.urlForPagination(faculty: nil, page: page)
-        }
+    func GetNews(by page: Int) {
         newsService.GetNews(by: page, faculty: faculty) { result in
             switch result {
             case .success(let response):
                 self.newsResponse = response
-                self.dataChangedHandler?(faculty)
+                self.dataChangedHandler?(self.faculty)
             case .failure(let error):
                 print(error)
             }
@@ -80,6 +74,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         self.dataChangedHandler = block
     }
     
+    // следить за изменением факультета
     func ObserveFacultyChanges() {
         NotificationCenter.default.addObserver(forName: Notification.Name("faculty"), object: nil, queue: .main) { notification in
             if let faculty = notification.object as? AGPUFacultyModel {
@@ -89,14 +84,18 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                 self.faculty = nil
             }
         }
-        
+    }
+    
+    // следить за изменением страницы
+    func ObservedPageChanges() {
         NotificationCenter.default.addObserver(forName: Notification.Name("page"), object: nil, queue: .main) { notification in
             if let page = notification.object as? Int {
-                self.GetNews(by: page, faculty: self.faculty)
+                self.GetNews(by: page)
             }
         }
     }
     
+    // получить URL для конкретной статьи
     func makeUrlForCurrentArticle(index: Int)-> String {
         let url = newsService.urlForCurrentArticle(faculty: self.faculty, index: articleItem(index: index).id)
         return url
