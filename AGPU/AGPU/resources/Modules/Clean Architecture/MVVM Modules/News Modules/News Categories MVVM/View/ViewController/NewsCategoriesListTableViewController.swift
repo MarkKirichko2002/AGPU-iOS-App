@@ -36,7 +36,7 @@ class NewsCategoriesListTableViewController: UITableViewController {
         navigationItem.title = "Категории новостей"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .black
-        navigationItem.leftBarButtonItem = closeButton
+        navigationItem.rightBarButtonItem = closeButton
     }
     
     @objc private func close() {
