@@ -77,7 +77,7 @@ final class NewsListViewController: UIViewController {
                 }
                 
                 categoriesAction = UIAction(title: "категории") { _ in
-                    let vc = NewsCategoryListTableViewController(currentCategory: faculty?.abbreviation ?? "АГПУ")
+                    let vc = NewsCategoriesListTableViewController(currentCategory: faculty?.abbreviation ?? "АГПУ")
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
