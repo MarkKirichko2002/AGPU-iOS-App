@@ -65,6 +65,14 @@ class AllGroupsListTableViewController: UITableViewController {
                 }
             }
         }
+        viewModel.registerGroupSelectedHandler {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.dismiss(animated: true)
+            }
+        }
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int)-> String? {
@@ -73,9 +81,8 @@ class AllGroupsListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let group = FacultyGroups.groups[indexPath.section].groups[indexPath.row]
+        viewModel.SelectGroup(section: indexPath.section, index: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
-        NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
-        self.dismiss(animated: true)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

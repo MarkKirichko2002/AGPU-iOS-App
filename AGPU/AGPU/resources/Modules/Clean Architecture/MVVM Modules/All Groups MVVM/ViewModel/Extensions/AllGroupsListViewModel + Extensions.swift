@@ -10,6 +10,27 @@ import UIKit
 // MARK: - AllGroupsListViewModelProtocol
 extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
     
+    func registerGroupSelectedHandler(block: @escaping()->Void) {
+        self.groupSelectedHandler = block
+    }
+    
+    func groupItem(section: Int, index: Int)-> String {
+        return FacultyGroups.groups[section].groups[index]
+    }
+    
+    func SelectGroup(section: Int, index: Int) {
+        let group = groupItem(section: section, index: index)
+        if let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
+            if FacultyGroups.groups[section].name.abbreviation().contains(faculty.abbreviation) {
+                NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
+                self.group = group
+                self.groupSelectedHandler?()
+            } else {
+                print("no \(FacultyGroups.groups[section].name) != \(faculty.abbreviation)")
+            }
+        }
+    }
+    
     func isGroupSelected(section: Int, index: Int)-> Bool {
         let group = FacultyGroups.groups[section].groups[index]
         let lastGroup = self.group

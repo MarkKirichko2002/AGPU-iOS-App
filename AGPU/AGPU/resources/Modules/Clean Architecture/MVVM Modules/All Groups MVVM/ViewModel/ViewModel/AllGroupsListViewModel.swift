@@ -11,6 +11,7 @@ class AllGroupsListViewModel {
     
     var group: String = ""
     var scrollHandler: ((Int, Int)->Void)?
+    var groupSelectedHandler: (()->Void)?
     
     // MARK: - Init
     init(group: String) {

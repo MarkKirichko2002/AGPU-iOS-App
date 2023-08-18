@@ -8,6 +8,8 @@
 import UIKit
 
 protocol AllGroupsListViewModelProtocol {
+    func groupItem(section: Int, index: Int)-> String
+    func SelectGroup(section: Int, index: Int)
     func isGroupSelected(section: Int, index: Int)-> Bool
     func scrollToSelectedGroup(completion: @escaping(Int, Int)->Void)
     func currentFacultyIcon(section: Int, abbreviation: String)-> String
