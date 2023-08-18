@@ -14,6 +14,10 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
         self.groupSelectedHandler = block
     }
     
+    func groupSectionItem(section: Int)-> FacultyGroupModel {
+        return FacultyGroups.groups[section]
+    }
+    
     func groupItem(section: Int, index: Int)-> String {
         return FacultyGroups.groups[section].groups[index]
     }
