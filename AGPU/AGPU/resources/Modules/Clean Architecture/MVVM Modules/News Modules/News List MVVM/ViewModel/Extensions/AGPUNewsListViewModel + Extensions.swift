@@ -5,7 +5,7 @@
 //  Created by Марк Киричко on 08.08.2023.
 //
 
-import UIKit
+import Foundation
 
 // MARK: - AGPUNewsListViewModelProtocol
 extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
@@ -89,33 +89,14 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                 self.faculty = nil
             }
         }
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name("page"), object: nil, queue: .main) { notification in
+            if let page = notification.object as? Int {
+                self.GetNews(by: page, faculty: self.faculty)
+            }
+        }
     }
     
-    func pagesMenu()-> UIMenu {
-        
-        var pages = [Int]()
-        
-        let currentPage = newsResponse.currentPage
-        
-        if let countPages = self.newsResponse.countPages {
-            for i in 1...countPages {
-                pages.append(i)
-            }
-        }
-        
-        let actions = pages.map { pageNumber -> UIAction in
-            let title = "страница \(pageNumber)"
-            let actionHandler: UIActionHandler = { [weak self] _ in
-                self?.GetNews(by: pageNumber, faculty: self?.faculty)
-            }
-            
-            return UIAction(title: title, state: pageNumber == currentPage ? .on : .off, handler: actionHandler)
-        }
-        
-        let menu = UIMenu(title: "страницы", options: .singleSelection, children: actions)
-        return menu
-    }
-   
     func makeUrlForCurrentArticle(index: Int)-> String {
         let url = newsService.urlForCurrentArticle(faculty: self.faculty, index: articleItem(index: index).id)
         return url

@@ -172,6 +172,7 @@
 		82BC2F442A8EFD5500ADB239 /* NewsCategoriesListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC2F432A8EFD5500ADB239 /* NewsCategoriesListViewModelProtocol.swift */; };
 		82BC2F462A8EFD6400ADB239 /* NewsCategoriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC2F452A8EFD6400ADB239 /* NewsCategoriesListViewModel.swift */; };
 		82BC2F482A8EFD7C00ADB239 /* NewsCategoriesListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC2F472A8EFD7C00ADB239 /* NewsCategoriesListViewModel + Extensions.swift */; };
+		82BC2F4D2A8F0B9500ADB239 /* NewsPagesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC2F4C2A8F0B9500ADB239 /* NewsPagesListTableViewController.swift */; };
 		82BC3CFC2A56EDA000E49332 /* RecentWebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFB2A56EDA000E49332 /* RecentWebPageViewController.swift */; };
 		82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */; };
 		82BC3D002A56F5C400E49332 /* RecentWebPageViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFF2A56F5C400E49332 /* RecentWebPageViewController + Extensions.swift */; };
@@ -396,6 +397,7 @@
 		82BC2F432A8EFD5500ADB239 /* NewsCategoriesListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCategoriesListViewModelProtocol.swift; sourceTree = "<group>"; };
 		82BC2F452A8EFD6400ADB239 /* NewsCategoriesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCategoriesListViewModel.swift; sourceTree = "<group>"; };
 		82BC2F472A8EFD7C00ADB239 /* NewsCategoriesListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsCategoriesListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		82BC2F4C2A8F0B9500ADB239 /* NewsPagesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPagesListTableViewController.swift; sourceTree = "<group>"; };
 		82BC3CFB2A56EDA000E49332 /* RecentWebPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWebPageViewController.swift; sourceTree = "<group>"; };
 		82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController + Extensions.swift"; sourceTree = "<group>"; };
 		82BC3CFF2A56F5C400E49332 /* RecentWebPageViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentWebPageViewController + Extensions.swift"; sourceTree = "<group>"; };
@@ -1717,6 +1719,7 @@
 			children = (
 				826888562A33AB3C00434219 /* Splash Screen */,
 				828CFA342A35F62400C7542D /* TabBar */,
+				82BC2F492A8F0B5B00ADB239 /* News Pages List */,
 				820D33992A75974F00843313 /* Contacts List */,
 				82426C752A714CDD00D5AA57 /* For Every Status */,
 				82808E9C2A31F2D400DEEB16 /* AGPU Sections */,
@@ -2739,6 +2742,30 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		82BC2F492A8F0B5B00ADB239 /* News Pages List */ = {
+			isa = PBXGroup;
+			children = (
+				82BC2F4A2A8F0B6600ADB239 /* View */,
+			);
+			path = "News Pages List";
+			sourceTree = "<group>";
+		};
+		82BC2F4A2A8F0B6600ADB239 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82BC2F4B2A8F0B7A00ADB239 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82BC2F4B2A8F0B7A00ADB239 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82BC2F4C2A8F0B9500ADB239 /* NewsPagesListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		82BC3CFA2A56ED7500E49332 /* Recent Web Page MVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -3691,6 +3718,7 @@
 				82B24A872A81BCE6008B94E4 /* Article.swift in Sources */,
 				82320D872A491F5700ECADEE /* AGPUFacultyTableViewCell.swift in Sources */,
 				820D339B2A75977400843313 /* FacultyContactsListTableViewController.swift in Sources */,
+				82BC2F4D2A8F0B9500ADB239 /* NewsPagesListTableViewController.swift in Sources */,
 				82B2670B2A8DAB4900043A6D /* NewsCategoryModel.swift in Sources */,
 				82B24AA32A81C8C3008B94E4 /* AGPUNewsListViewModel + Extensions.swift in Sources */,
 				82B1C0D22A8070FF00520C14 /* SubGroupsListViewModel + Extensions.swift in Sources */,
