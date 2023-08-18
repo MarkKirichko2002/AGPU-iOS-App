@@ -10,8 +10,8 @@ import UIKit
 // MARK: - AllGroupsListViewModelProtocol
 extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
     
-    func registerGroupSelectedHandler(block: @escaping()->Void) {
-        self.groupSelectedHandler = block
+    func numberOfGroupSections()-> Int {
+        return FacultyGroups.groups.count
     }
     
     func groupSectionItem(section: Int)-> FacultyGroupModel {
@@ -19,7 +19,7 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
     }
     
     func groupItem(section: Int, index: Int)-> String {
-        return FacultyGroups.groups[section].groups[index]
+        return groupSectionItem(section: section).groups[index]
     }
     
     func SelectGroup(section: Int, index: Int) {
@@ -33,6 +33,10 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
                 print("no \(FacultyGroups.groups[section].name) != \(faculty.abbreviation)")
             }
         }
+    }
+    
+    func registerGroupSelectedHandler(block: @escaping()->Void) {
+        self.groupSelectedHandler = block
     }
     
     func isGroupSelected(section: Int, index: Int)-> Bool {
