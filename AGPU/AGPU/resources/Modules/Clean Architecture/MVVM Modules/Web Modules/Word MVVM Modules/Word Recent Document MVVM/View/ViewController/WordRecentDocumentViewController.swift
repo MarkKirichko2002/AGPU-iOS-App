@@ -62,7 +62,7 @@ class WordRecentDocumentViewController: UIViewController {
     }
     
     private func SetUpNavigation() {
-        navigationItem.title = "Word-документ"
+        navigationItem.title = "\(document.date) \(document.time)"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .black
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())

@@ -11,7 +11,4 @@ class SubGroupsListViewModel {
     
     var changedHandler: (()->Void)?
     
-    func registerChangedHandler(block: @escaping()->Void) {
-        self.changedHandler = block
-    }
 }
