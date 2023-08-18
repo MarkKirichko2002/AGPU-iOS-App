@@ -20,9 +20,7 @@ final class WebViewController: UIViewController {
     let spinner = UIActivityIndicatorView(style: .large)
     
     // MARK: - Init
-    init(
-        url: String
-    ) {
+    init(url: String) {
         self.url = url
         super.init(nibName: nil, bundle: nil)
     }
@@ -36,7 +34,7 @@ final class WebViewController: UIViewController {
         SetUpWebView()
         SetUpIndicatorView()
         SetUpNavigation()
-        SetUpViewModel()
+        BindViewModel()
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,15 +70,14 @@ final class WebViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = closebutton
     }
     
-    private func SetUpViewModel() {
+    private func BindViewModel() {
         viewModel.ObserveScroll { position in
             self.WVWEBview.scrollView.setContentOffset(position, animated: true)
         }
         viewModel.ObserveActions {
             if self.navigationController?.viewControllers.first == self {
                 self.dismiss(animated: true)
-            } else {
-            }
+            } else {}
         }
     }
     
@@ -97,9 +94,7 @@ final class WebViewController: UIViewController {
     }
     
     @objc private func closeButtonTapped() {
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
-        }
+        viewModel.SendScreenClosedNotification()
         self.dismiss(animated: true)
     }
 }

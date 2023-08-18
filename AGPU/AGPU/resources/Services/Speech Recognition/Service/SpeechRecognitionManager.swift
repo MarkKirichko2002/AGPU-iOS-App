@@ -15,6 +15,9 @@ final class SpeechRecognitionManager {
     var recognitionTask: SFSpeechRecognitionTask?
     var speechRecognitionHandler: ((String)->Void)?
     
+    var tapInstalled = false
+
+    
     var speechAuthorizationHandler: ((SFSpeechRecognizerAuthorizationStatus)->Void)?
     
     func registerSpeechAuthorizationHandler(block: @escaping(SFSpeechRecognizerAuthorizationStatus)->Void) {

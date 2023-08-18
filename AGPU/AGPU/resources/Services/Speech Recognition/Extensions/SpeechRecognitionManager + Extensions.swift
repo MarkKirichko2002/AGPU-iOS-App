@@ -64,6 +64,8 @@ extension SpeechRecognitionManager: SpeechRecognitionManagerProtocol {
     
     func startSpeechRecognition() {
         
+        guard !tapInstalled else { return }
+        
         let node = audioEngine.inputNode
         let recognitionFormat = node.outputFormat(forBus: 0)
         
@@ -71,6 +73,8 @@ extension SpeechRecognitionManager: SpeechRecognitionManagerProtocol {
             [unowned self](buffer, audioTime) in
             self.request.append(buffer)
         }
+        
+        tapInstalled = true
         
         audioEngine.prepare()
         do {
@@ -93,9 +97,14 @@ extension SpeechRecognitionManager: SpeechRecognitionManagerProtocol {
     }
     
     func cancelSpeechRecognition() {
+        guard tapInstalled else { return }
+
         audioEngine.stop()
         recognitionTask?.cancel()
         request.endAudio()
         audioEngine.inputNode.removeTap(onBus: 0)
+        
+        tapInstalled = false
+
     }
 }

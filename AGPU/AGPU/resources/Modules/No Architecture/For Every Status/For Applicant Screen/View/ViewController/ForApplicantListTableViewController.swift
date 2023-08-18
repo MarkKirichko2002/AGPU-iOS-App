@@ -11,7 +11,15 @@ class ForApplicantListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SetUpNavigation()
+        SetUpTable()
+    }
+    
+    private func SetUpNavigation() {
         navigationItem.title = "Абитуриенту"
+    }
+    
+    private func SetUpTable() {
         tableView.register(UINib(nibName: ForEveryStatusTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ForEveryStatusTableViewCell.identifier)
     }
     

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecentMomentsListTableViewController: UITableViewController {
+final class RecentMomentsListTableViewController: UITableViewController {
     
     // MARK: - сервисы
     private let viewModel = RecentMomentsListViewModel()
@@ -16,6 +16,7 @@ class RecentMomentsListTableViewController: UITableViewController {
         super.viewDidLoad()
         SetUpNavigation()
         SetUpTable()
+        BindViewModel()
     }
     
     private func SetUpNavigation() {
@@ -26,14 +27,19 @@ class RecentMomentsListTableViewController: UITableViewController {
     }
     
     @objc private func closeScreen() {
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
-        }
+        viewModel.SendScreenClosedNotification()
         dismiss(animated: true)
     }
     
     private func SetUpTable() {
         tableView.register(UINib(nibName: RecentMomentTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RecentMomentTableViewCell.identifier)
+    }
+    
+    private func BindViewModel() {
+        viewModel.registerAlertHandler { message, description in
+            let ok = UIAlertAction(title: "ОК", style: .default)
+            self.ShowAlert(title: message, message: description, actions: [ok])
+        }
     }
     
     private func CheckLastWebPage() {
@@ -45,6 +51,17 @@ class RecentMomentsListTableViewController: UITableViewController {
     private func CheckLastPDFDocument() {
         viewModel.GetLastPDFDocument { pdf in
             let vc = PDFLastPageViewController(pdf: pdf)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            DispatchQueue.main.async {
+                self.present(navVC, animated: true)
+            }
+        }
+    }
+    
+    private func CheckLastWordDocument() {
+        viewModel.GetLastWordDocument { document in
+            let vc = WordRecentDocumentViewController(document: document)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             DispatchQueue.main.async {
@@ -67,6 +84,8 @@ class RecentMomentsListTableViewController: UITableViewController {
         case 1:
             CheckLastPDFDocument()
         case 2:
+            CheckLastWordDocument()
+        case 3:
             CheckLastVideo()
         default:
             break

@@ -13,4 +13,5 @@ protocol SearchAGPUBuildingMapViewModelProtocol {
     func GetLocation()
     func registerLocationHandler(block: @escaping(LocationModel)->Void)
     func ObserveActions(block: @escaping()->Void)
+    func SendScreenClosedNotification()
 }

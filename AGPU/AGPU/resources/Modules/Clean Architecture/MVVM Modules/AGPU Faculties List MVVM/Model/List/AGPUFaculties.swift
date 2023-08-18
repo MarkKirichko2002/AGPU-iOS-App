@@ -37,8 +37,8 @@ struct AGPUFaculties {
             videoURL: "http://priem.agpu.net/video/stud/ipimif.mp4",
             contacts: [
                 ContactsModel(
-                    name: "Имя",
-                    degree: "информация",
+                    name: "-",
+                    degree: "-",
                     phoneNumber: "+7(988)361-04-02"
                 )
             ],
@@ -152,6 +152,26 @@ struct AGPUFaculties {
             videoURL: "http://priem.agpu.net/video/stud/istfak.mp4",
             contacts: [],
             email: "markkir123@gmail.com",
+            isSelected: false
+        ),
+        AGPUFacultyModel(
+            id: 7,
+            name: "Научно-исследовательский институт развития образования",
+            cathedra: [],
+            icon: "АГПУ",
+            abbreviation: "НИИРО",
+            appIcon:  "AppIcon 7",
+            url: "https://niiro-agpu.ru/",
+            newsAbbreviation: "",
+            videoURL: "",
+            contacts: [
+                ContactsModel(
+                    name: "-",
+                    degree: "-",
+                    phoneNumber: "8(86137)3-85-04"
+                )
+            ],
+            email: "NIIRO_AGPU@mail.ru",
             isSelected: false
         )
     ]

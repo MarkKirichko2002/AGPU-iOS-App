@@ -51,6 +51,7 @@ final class CustomTitleView: UIView {
     }
     
     private func makeConstraints() {
+        
         NSLayoutConstraint.activate([
             
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -58,7 +59,7 @@ final class CustomTitleView: UIView {
             imageView.widthAnchor.constraint(equalToConstant: 45),
             imageView.heightAnchor.constraint(equalToConstant: 45),
             
-            label.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8),
+            label.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 5),
             label.trailingAnchor.constraint(equalTo: trailingAnchor),
             label.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])

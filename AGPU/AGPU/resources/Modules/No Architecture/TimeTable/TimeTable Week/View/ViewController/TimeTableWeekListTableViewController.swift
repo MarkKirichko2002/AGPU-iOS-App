@@ -121,7 +121,9 @@ final class TimeTableWeekListTableViewController: UIViewController {
                     for timetable in timetable {
                         let data = timetable.disciplines.filter { $0.subgroup == self.subgroup || $0.subgroup == 0 || (self.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
                         let timeTable = TimeTable(date: timetable.date, groupName: timetable.groupName, disciplines: data)
-                        arr.append(timeTable)
+                        if !timetable.disciplines.isEmpty {
+                            arr.append(timeTable)
+                        }
                     }
                     DispatchQueue.main.async {
                         self.timetable = arr
@@ -140,7 +142,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
                 self.noTimeTableLabel.text = "Ошибка"
                 self.noTimeTableLabel.isHidden = false
                 self.SetUpNavigation()
-                print(error)
+                print(error.localizedDescription)
             }
         }
     }

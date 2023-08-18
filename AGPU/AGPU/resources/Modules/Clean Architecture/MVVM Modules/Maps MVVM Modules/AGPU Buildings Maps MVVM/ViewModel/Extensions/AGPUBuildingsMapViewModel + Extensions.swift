@@ -63,7 +63,7 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
     
     func makeOptionsMenu()-> UIMenu {
         
-        let all = UIAction(title: "все") { _ in
+        let all = UIAction(title: "все здания", state: .on) { _ in
             for building in AGPUBuildings.buildings {
                 self.choiceHandler?(true, building.pin)
             }
@@ -95,5 +95,11 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
             hostels
         ])
         return menu
+    }
+    
+    func SendScreenClosedNotification() {
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+            NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
+        }
     }
 }

@@ -16,4 +16,5 @@ protocol AGPUBuildingsMapViewModelProtocol {
     func registerLocationHandler(block: @escaping(LocationModel)->Void)
     func registerChoiceHandler(block: @escaping(Bool, MKAnnotation)->Void)
     func makeOptionsMenu()-> UIMenu
+    func SendScreenClosedNotification()
 }

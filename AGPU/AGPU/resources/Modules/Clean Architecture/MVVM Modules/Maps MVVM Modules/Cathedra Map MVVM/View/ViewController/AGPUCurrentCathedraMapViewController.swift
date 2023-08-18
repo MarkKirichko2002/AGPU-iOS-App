@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 
 class AGPUCurrentCathedraMapViewController: UIViewController {
-
+    
     var cathedra: FacultyCathedraModel!
     
     // MARK: - сервисы
@@ -19,9 +19,7 @@ class AGPUCurrentCathedraMapViewController: UIViewController {
     private let mapView = MKMapView()
     
     // MARK: - Init
-    init(
-        cathedra: FacultyCathedraModel
-    ) {
+    init(cathedra: FacultyCathedraModel) {
         self.cathedra = cathedra
         self.viewModel = AGPUCurrentCathedraMapViewModel(cathedra: cathedra)
         super.init(nibName: nil, bundle: nil)
@@ -45,14 +43,15 @@ class AGPUCurrentCathedraMapViewController: UIViewController {
     }
     
     private func SetUpNavigation() {
-        navigationItem.title = "Найти кафедру"
+        let titleView = CustomTitleView(image: "\(viewModel.GetCurrentFaculty().icon)", title: "\(viewModel.GetCurrentFaculty().abbreviation) кафедра", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .black
+        navigationItem.titleView = titleView
         navigationItem.rightBarButtonItem = closeButton
     }
     
     @objc private func closeScreen() {
-         dismiss(animated: true)
+        dismiss(animated: true)
     }
     
     private func SetUpMap() {
