@@ -23,12 +23,14 @@ final class TimeTableDayListTableViewController: UIViewController {
     let tableView = UITableView()
     private let spinner = UIActivityIndicatorView(style: .large)
     private let noTimeTableLabel = UILabel()
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         SetUpData()
         SetUpNavigation()
         SetUpTable()
+        SetUpRefreshControl()
         SetUpIndicatorView()
         SetUpLabel()
         GetTimeTable(group: group, date: date)
@@ -133,6 +135,15 @@ final class TimeTableDayListTableViewController: UIViewController {
         tableView.separatorStyle = .none
     }
     
+    private func SetUpRefreshControl() {
+        tableView.addSubview(refreshControl)
+        refreshControl.addTarget(self, action: #selector(refreshTimetable), for: .valueChanged)
+    }
+    
+    @objc private func refreshTimetable() {
+        GetTimeTable(group: group, date: date)
+    }
+    
     private func SetUpLabel() {
         view.addSubview(noTimeTableLabel)
         noTimeTableLabel.text = "Нет расписания"
@@ -160,14 +171,17 @@ final class TimeTableDayListTableViewController: UIViewController {
                         self.timetable?.disciplines = data
                         self.tableView.reloadData()
                         self.spinner.stopAnimating()
+                        self.refreshControl.endRefreshing()
                         self.noTimeTableLabel.isHidden = true
                     }
                 } else {
-                    self.noTimeTableLabel.isHidden = false
                     self.spinner.stopAnimating()
+                    self.refreshControl.endRefreshing()
+                    self.noTimeTableLabel.isHidden = false
                 }
             case .failure(let error):
                 self.spinner.stopAnimating()
+                self.refreshControl.endRefreshing()
                 self.noTimeTableLabel.text = "Ошибка"
                 self.noTimeTableLabel.isHidden = false
                 print(error.localizedDescription)

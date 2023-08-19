@@ -24,15 +24,9 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
     
     func SelectGroup(section: Int, index: Int) {
         let group = groupItem(section: section, index: index)
-        if let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
-            if FacultyGroups.groups[section].name.abbreviation().contains(faculty.abbreviation) {
-                NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
-                self.group = group
-                self.groupSelectedHandler?()
-            } else {
-                print("no \(FacultyGroups.groups[section].name) != \(faculty.abbreviation)")
-            }
-        }
+        NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
+        self.group = group
+        self.groupSelectedHandler?()
     }
     
     func registerGroupSelectedHandler(block: @escaping()->Void) {
