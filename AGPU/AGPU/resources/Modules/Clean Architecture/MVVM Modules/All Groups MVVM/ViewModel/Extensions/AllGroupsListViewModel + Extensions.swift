@@ -10,6 +10,29 @@ import UIKit
 // MARK: - AllGroupsListViewModelProtocol
 extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
     
+    func numberOfGroupSections()-> Int {
+        return FacultyGroups.groups.count
+    }
+    
+    func groupSectionItem(section: Int)-> FacultyGroupModel {
+        return FacultyGroups.groups[section]
+    }
+    
+    func groupItem(section: Int, index: Int)-> String {
+        return groupSectionItem(section: section).groups[index]
+    }
+    
+    func SelectGroup(section: Int, index: Int) {
+        let group = groupItem(section: section, index: index)
+        NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
+        self.group = group
+        self.groupSelectedHandler?()
+    }
+    
+    func registerGroupSelectedHandler(block: @escaping()->Void) {
+        self.groupSelectedHandler = block
+    }
+    
     func isGroupSelected(section: Int, index: Int)-> Bool {
         let group = FacultyGroups.groups[section].groups[index]
         let lastGroup = self.group

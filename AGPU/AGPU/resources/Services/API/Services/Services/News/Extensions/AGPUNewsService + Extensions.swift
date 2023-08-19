@@ -11,6 +11,7 @@ import Foundation
 // MARK: - AGPUNewsServiceProtocol
 extension AGPUNewsService: AGPUNewsServiceProtocol {
 
+    // получить новости факультета
     func GetFacultyNews(abbreviation: String, completion: @escaping(Result<NewsResponse, Error>)->Void) {
         
         AF.request("http://\(HostName.host):8080/api/news/\(abbreviation)").responseData { response in
@@ -26,6 +27,7 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
         }
     }
     
+    // получить новости АГПУ
     func GetAGPUNews(completion: @escaping(Result<NewsResponse, Error>)->Void) {
         
         AF.request("http://\(HostName.host):8080/api/news").responseData { response in
@@ -58,6 +60,7 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
         }
     }
     
+    // получить URL для конкретной статьи
     func urlForCurrentArticle(faculty: AGPUFacultyModel?, index: Int)-> String {
         var newsURL = ""
         if faculty != nil {
@@ -68,6 +71,7 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
         return newsURL
     }
     
+    // получить URL для пагинации
     func urlForPagination(faculty: AGPUFacultyModel?, page: Int)-> String {
         var url = ""
         if let faculty = faculty {

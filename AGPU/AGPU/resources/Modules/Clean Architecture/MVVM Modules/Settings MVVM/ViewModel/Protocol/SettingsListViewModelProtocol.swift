@@ -19,4 +19,5 @@ protocol SettingsListViewModelProtocol {
     func isFacultySelected(index: Int)-> Bool
     func isCathedraSelected(index: Int)-> Bool
     func isGroupSelected(index: Int)-> Bool
+    func isSubGroupSelected(index: Int)-> Bool
 }

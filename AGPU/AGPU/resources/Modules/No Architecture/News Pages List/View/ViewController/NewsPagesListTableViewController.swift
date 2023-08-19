@@ -11,15 +11,13 @@ class NewsPagesListTableViewController: UITableViewController {
     
     private var currentPage: Int = 0
     private var countPages: Int = 0
-    private var faculty: AGPUFacultyModel?
     
     private var pages = [Int]()
     
     // MARK: - Init
-    init(currentPage: Int, countPages: Int, faculty: AGPUFacultyModel?) {
+    init(currentPage: Int, countPages: Int) {
         self.currentPage = currentPage
         self.countPages = countPages
-        self.faculty = faculty
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -31,6 +29,7 @@ class NewsPagesListTableViewController: UITableViewController {
         super.viewDidLoad()
         SetUpNavigation()
         SetUpTable()
+        SetUpData()
     }
     
     private func SetUpNavigation() {
@@ -45,18 +44,15 @@ class NewsPagesListTableViewController: UITableViewController {
     }
     
     private func SetUpTable() {
-        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
+    }
+    
+    private func SetUpData() {
         let countPages = self.countPages
-            for i in 1...countPages {
+        for i in 1...countPages {
             pages.append(i)
         }
         self.tableView.reloadData()
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            let indexPath = IndexPath(row: self.currentPage - 1, section: 0)
-            self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

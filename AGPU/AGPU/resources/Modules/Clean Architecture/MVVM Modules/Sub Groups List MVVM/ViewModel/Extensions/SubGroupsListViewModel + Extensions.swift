@@ -36,4 +36,8 @@ extension SubGroupsListViewModel: SubGroupsListViewModelProtocol {
             return false
         }
     }
+    
+    func registerChangedHandler(block: @escaping()->Void) {
+        self.changedHandler = block
+    }
 }

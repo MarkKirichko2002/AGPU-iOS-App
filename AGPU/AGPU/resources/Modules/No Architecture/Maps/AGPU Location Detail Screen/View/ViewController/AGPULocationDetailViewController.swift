@@ -16,9 +16,7 @@ final class AGPULocationDetailViewController: UIViewController {
     @IBOutlet var LocationDetail: UILabel!
     
     // MARK: - Init
-    init(
-        annotation: MKAnnotation
-    ) {
+    init(annotation: MKAnnotation) {
         self.annotation = annotation
         super.init(nibName: nil, bundle: nil)
     }

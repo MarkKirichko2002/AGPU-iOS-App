@@ -65,6 +65,14 @@ class AllGroupsListTableViewController: UITableViewController {
                 }
             }
         }
+        viewModel.registerGroupSelectedHandler {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.dismiss(animated: true)
+            }
+        }
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int)-> String? {
@@ -72,14 +80,12 @@ class AllGroupsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let group = FacultyGroups.groups[indexPath.section].groups[indexPath.row]
+        viewModel.SelectGroup(section: indexPath.section, index: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
-        NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
-        self.dismiss(animated: true)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return FacultyGroups.groups.count
+        return viewModel.numberOfGroupSections()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -87,8 +93,8 @@ class AllGroupsListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let groupSection = FacultyGroups.groups[indexPath.section]
-        let group = FacultyGroups.groups[indexPath.section].groups[indexPath.row]
+        let groupSection = viewModel.groupSectionItem(section: indexPath.section)
+        let group = viewModel.groupItem(section: indexPath.section, index: indexPath.row)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FacultyGroupTableViewCell.identifier, for: indexPath) as? FacultyGroupTableViewCell else {return UITableViewCell()}
         cell.tintColor = .systemGreen
         cell.GroupName.textColor = viewModel.isGroupSelected(section: indexPath.section, index: indexPath.row) ? .systemGreen : .black

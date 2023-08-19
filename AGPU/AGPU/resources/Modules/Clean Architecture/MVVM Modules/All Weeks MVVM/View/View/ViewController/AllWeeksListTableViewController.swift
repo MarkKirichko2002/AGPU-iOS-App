@@ -8,12 +8,15 @@
 import UIKit
 
 class AllWeeksListTableViewController: UITableViewController {
-
-    // MARK: - сервисы
-    private let viewModel = AllWeeksListViewModel()
     
     private var group: String = ""
     private var subgroup: Int = 0
+    
+    // MARK: - сервисы
+    private let viewModel = AllWeeksListViewModel()
+    
+    // MARK: - UI
+    private let refreshControll = UIRefreshControl()
     
     // MARK: - Init
     init(group: String, subgroup: Int) {
@@ -23,7 +26,7 @@ class AllWeeksListTableViewController: UITableViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     
     override func viewDidLoad() {
@@ -31,6 +34,7 @@ class AllWeeksListTableViewController: UITableViewController {
         print("группа: \(self.group)")
         SetUpNavigation()
         SetUpTable()
+        SetUpRefreshControl()
         BindViewModel()
     }
     
@@ -50,11 +54,21 @@ class AllWeeksListTableViewController: UITableViewController {
         tableView.register(UINib(nibName: WeekTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: WeekTableViewCell.identifier)
     }
     
+    private func SetUpRefreshControl() {
+        tableView.addSubview(self.refreshControll)
+        refreshControll.addTarget(self, action: #selector(refreshTimetable), for: .valueChanged)
+    }
+    
+    @objc private func refreshTimetable() {
+        viewModel.GetWeeks()
+    }
+    
     private func BindViewModel() {
         viewModel.GetWeeks()
         viewModel.registerIsChangedHandler {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.refreshControll.endRefreshing()
             }
         }
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
@@ -70,19 +84,21 @@ class AllWeeksListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = TimeTableWeekListTableViewController(group: self.group, subgroup: self.subgroup, week: viewModel.weeks[indexPath.row])
+        let week = viewModel.weekItem(index: indexPath.row)
+        let vc = TimeTableWeekListTableViewController(group: self.group, subgroup: self.subgroup, week: week)
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.weeks.count
+        return viewModel.numberOfWeeks()
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let week = viewModel.weekItem(index: indexPath.row)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WeekTableViewCell.identifier, for: indexPath) as? WeekTableViewCell else {return UITableViewCell()}
-        cell.configure(week: viewModel.weeks[indexPath.row])
+        cell.configure(week: week)
         cell.DateRangeLabel.textColor = viewModel.isCurrentWeek(index: indexPath.row) ? .systemGreen : .black
         cell.WeekID.textColor = viewModel.isCurrentWeek(index: indexPath.row) ? .systemGreen : .black
         return cell
