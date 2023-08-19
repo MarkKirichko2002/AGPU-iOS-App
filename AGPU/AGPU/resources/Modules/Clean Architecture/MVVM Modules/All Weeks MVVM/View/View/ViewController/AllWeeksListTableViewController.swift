@@ -8,12 +8,15 @@
 import UIKit
 
 class AllWeeksListTableViewController: UITableViewController {
-
-    // MARK: - сервисы
-    private let viewModel = AllWeeksListViewModel()
     
     private var group: String = ""
     private var subgroup: Int = 0
+    
+    // MARK: - сервисы
+    private let viewModel = AllWeeksListViewModel()
+    
+    // MARK: - UI
+    private let refreshControll = UIRefreshControl()
     
     // MARK: - Init
     init(group: String, subgroup: Int) {
@@ -31,6 +34,7 @@ class AllWeeksListTableViewController: UITableViewController {
         print("группа: \(self.group)")
         SetUpNavigation()
         SetUpTable()
+        SetUpRefreshControl()
         BindViewModel()
     }
     
@@ -50,11 +54,21 @@ class AllWeeksListTableViewController: UITableViewController {
         tableView.register(UINib(nibName: WeekTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: WeekTableViewCell.identifier)
     }
     
+    private func SetUpRefreshControl() {
+        tableView.addSubview(self.refreshControll)
+        refreshControll.addTarget(self, action: #selector(refreshTimetable), for: .valueChanged)
+    }
+    
+    @objc private func refreshTimetable() {
+        viewModel.GetWeeks()
+    }
+    
     private func BindViewModel() {
         viewModel.GetWeeks()
         viewModel.registerIsChangedHandler {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.refreshControll.endRefreshing()
             }
         }
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
