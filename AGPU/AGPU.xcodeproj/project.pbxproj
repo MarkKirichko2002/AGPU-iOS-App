@@ -777,6 +777,7 @@
 		8212704D2A7903620095D68E /* PDF Last Page */ = {
 			isa = PBXGroup;
 			children = (
+				821270592A792A0B0095D68E /* Model */,
 				8212704E2A79036D0095D68E /* View */,
 			);
 			path = "PDF Last Page";
@@ -806,14 +807,6 @@
 				82BC3CFA2A56ED7500E49332 /* Recent Web Page MVVM */,
 			);
 			path = "Web Modules";
-			sourceTree = "<group>";
-		};
-		821270582A7929F80095D68E /* Recent PDF */ = {
-			isa = PBXGroup;
-			children = (
-				821270592A792A0B0095D68E /* Model */,
-			);
-			path = "Recent PDF";
 			sourceTree = "<group>";
 		};
 		821270592A792A0B0095D68E /* Model */ = {
@@ -1739,12 +1732,9 @@
 			isa = PBXGroup;
 			children = (
 				8228E39A2A6C920000C1B6AD /* Location */,
-				82426C6E2A71476D00D5AA57 /* For Every Status */,
 				82426C8E2A71DCC000D5AA57 /* User Status */,
-				820D18E12A68F9BB00BFAA35 /* AGPU Buildings */,
-				82722D402A66460500149D06 /* AGPU Building Pins */,
-				82FEA7AB2A7ED59F00863453 /* Building Type */,
-				821270582A7929F80095D68E /* Recent PDF */,
+				82426C6E2A71476D00D5AA57 /* For Every Status */,
+				826F93812A91005500DE4FB1 /* Map Models */,
 				82B1C0EB2A8123DF00520C14 /* Voice Directions */,
 			);
 			path = Models;
@@ -1809,6 +1799,16 @@
 				82C5615A2A6B755C00514B00 /* List */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		826F93812A91005500DE4FB1 /* Map Models */ = {
+			isa = PBXGroup;
+			children = (
+				820D18E12A68F9BB00BFAA35 /* AGPU Buildings */,
+				82722D402A66460500149D06 /* AGPU Building Pins */,
+				82FEA7AB2A7ED59F00863453 /* Building Type */,
+			);
+			path = "Map Models";
 			sourceTree = "<group>";
 		};
 		8270A5462A578491008ACADC /* Date */ = {

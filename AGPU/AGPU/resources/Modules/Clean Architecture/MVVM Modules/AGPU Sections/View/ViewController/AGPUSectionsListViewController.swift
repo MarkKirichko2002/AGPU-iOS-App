@@ -42,7 +42,7 @@ final class AGPUSectionsListViewController: UIViewController {
     
     private func SetUpMenu()-> UIMenu {
         let items = AGPUSections.sections.map { section in
-            return UIAction(title: "\(section.id + 1)) \(section.name.lowercased())") { _ in
+            return UIAction(title: "\(section.id + 1)) \(section.name.lowercased())", image: UIImage(named: section.icon)) { _ in
                 let indexPath = IndexPath(row: 0, section: section.id)
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
             }
