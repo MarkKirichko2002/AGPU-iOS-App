@@ -57,13 +57,18 @@ class NewsPagesListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let page = pages[indexPath.row]
-        tableView.deselectRow(at: indexPath, animated: true)
-        NotificationCenter.default.post(name: Notification.Name("page"), object: page)
-        currentPage = page
-        self.tableView.reloadData()
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.dismiss(animated: true)
+        if currentPage != page {
+            NotificationCenter.default.post(name: Notification.Name("page"), object: page)
+            currentPage = page
+            self.tableView.reloadData()
+            navigationItem.title = "Выбрана страница \(page)"
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.dismiss(animated: true)
+            }
+        } else {
+            navigationItem.title = "Страница \(page) уже выбрана"
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
