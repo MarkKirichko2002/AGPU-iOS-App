@@ -14,14 +14,15 @@ final class TimeTableWeekListTableViewController: UIViewController {
     var week: WeekModel!
     var timetable = [TimeTable]()
     
+    // MARK: - сервисы
+    private let service = TimeTableService()
+    private let dateManager = DateManager()
+    
     // MARK: - UI
     let tableView = UITableView()
     private let spinner = UIActivityIndicatorView(style: .large)
     private let noTimeTableLabel = UILabel()
-    
-    // MARK: - сервисы
-    private let service = TimeTableService()
-    private let dateManager = DateManager()
+    private let refreshControl = UIRefreshControl()
     
     // MARK: - Init
     init(group: String, subgroup: Int, week: WeekModel) {
@@ -41,6 +42,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         SetUpLabel()
         SetUpIndicatorView()
         GetTimeTable()
+        SetUpRefreshControl()
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
             self.ScrollToCurrentDay()
         }
@@ -86,6 +88,15 @@ final class TimeTableWeekListTableViewController: UIViewController {
         tableView.separatorStyle = .none
     }
     
+    private func SetUpRefreshControl() {
+        tableView.addSubview(refreshControl)
+        refreshControl.addTarget(self, action: #selector(refreshTimetable), for: .valueChanged)
+    }
+    
+    @objc private func refreshTimetable() {
+        GetTimeTable()
+    }
+    
     private func SetUpLabel() {
         view.addSubview(noTimeTableLabel)
         noTimeTableLabel.text = "Нет расписания"
@@ -129,18 +140,21 @@ final class TimeTableWeekListTableViewController: UIViewController {
                         self.timetable = arr
                         self.tableView.reloadData()
                         self.spinner.stopAnimating()
+                        self.refreshControl.endRefreshing()
                         self.noTimeTableLabel.isHidden = true
                         self.SetUpNavigation()
                     }
                 } else {
                     self.noTimeTableLabel.isHidden = false
                     self.spinner.stopAnimating()
+                    self.refreshControl.endRefreshing()
                     self.SetUpNavigation()
                 }
             case .failure(let error):
                 self.spinner.stopAnimating()
                 self.noTimeTableLabel.text = "Ошибка"
                 self.noTimeTableLabel.isHidden = false
+                self.refreshControl.endRefreshing()
                 self.SetUpNavigation()
                 print(error.localizedDescription)
             }
