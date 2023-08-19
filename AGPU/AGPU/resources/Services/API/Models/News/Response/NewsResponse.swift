@@ -9,5 +9,5 @@ import Foundation
 
 struct NewsResponse: Codable {
     let currentPage, countPages: Int?
-    var articles: [Article]
+    var articles: [Article]?
 }
