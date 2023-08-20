@@ -47,6 +47,7 @@ final class AppFeaturesListTableViewController: UITableViewController {
         if let vc = storyboard.instantiateViewController(withIdentifier: "AppFeatureDetailViewController") as? AppFeatureDetailViewController {
             vc.feature = AppFeaturesList.features[indexPath.row]
             let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
         }
     }

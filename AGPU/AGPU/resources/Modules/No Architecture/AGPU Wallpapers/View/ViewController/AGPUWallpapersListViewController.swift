@@ -27,18 +27,17 @@ final class AGPUWallpapersListViewController: UIViewController {
     }
     
     private func SetUpNavigation() {
-        
-        navigationItem.title = "АГПУ обои"
-        
-        navigationItem.leftBarButtonItem = nil
-        navigationItem.hidesBackButton = true
-        
+                
         let button = UIButton()
         button.setImage(UIImage(named: "back"), for: .normal)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         
         let backButton = UIBarButtonItem(customView: button)
         backButton.tintColor = .black
+        
+        navigationItem.title = "АГПУ Обои"
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = backButton
     }
     

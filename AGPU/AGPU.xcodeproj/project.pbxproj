@@ -977,7 +977,7 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		8228E3962A6C8EFD00C1B6AD /* Maps MVVM Modules */ = {
+		8228E3962A6C8EFD00C1B6AD /* Maps Modules */ = {
 			isa = PBXGroup;
 			children = (
 				82E4C58C2A6B254200F65A67 /* AGPU Buildings Maps MVVM */,
@@ -985,7 +985,7 @@
 				8210CA022A664D5700D0BEEE /* Current Buiding MVVM */,
 				8283216F2A7D6403008641A5 /* Search AGPU Building Map MVVM */,
 			);
-			path = "Maps MVVM Modules";
+			path = "Maps Modules";
 			sourceTree = "<group>";
 		};
 		8228E3972A6C8F2000C1B6AD /* ViewModel */ = {
@@ -1775,7 +1775,7 @@
 			children = (
 				82BC2F3F2A8EFC5D00ADB239 /* News Modules */,
 				821270572A7921DD0095D68E /* Web Modules */,
-				8228E3962A6C8EFD00C1B6AD /* Maps MVVM Modules */,
+				8228E3962A6C8EFD00C1B6AD /* Maps Modules */,
 				82B1C0BD2A805D5200520C14 /* Recent Moments List MVVM */,
 				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
 				82989ACB2A6E308F00F27858 /* Faculty Cathedra List */,
