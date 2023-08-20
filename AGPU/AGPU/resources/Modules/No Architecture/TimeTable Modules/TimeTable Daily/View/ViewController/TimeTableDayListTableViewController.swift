@@ -49,6 +49,11 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         navigationItem.title = "Сегодня: \(date)"
         
+        // кнопка перезагрузить
+        let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshNews))
+        refreshButton.tintColor = .black
+        navigationItem.leftBarButtonItem = refreshButton
+        
         // список групп
         let groupList = UIAction(title: "группы") { _ in
             let vc = AllGroupsListTableViewController(group: self.group)
@@ -116,6 +121,10 @@ final class TimeTableDayListTableViewController: UIViewController {
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         options.tintColor = .black
         self.navigationItem.rightBarButtonItem = options
+    }
+    
+    @objc private func refreshNews() {
+        GetTimeTable(group: group, date: date)
     }
     
     private func SetUpIndicatorView() {
