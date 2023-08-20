@@ -31,16 +31,8 @@ class PDFDocumentReaderViewController: UIViewController {
         SavePDF()
     }
     
-    private func makeMenu()-> UIMenu {
-        let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
-            self.shareInfo(image: UIImage(named: "pdf")!, title: "документ", text: self.url)
-        }
-        let menu = UIMenu(title: "документ", children: [shareAction])
-        return menu
-    }
-    
     private func SetUpNavigation() {
-        navigationItem.title = "Документ PDF"
+        navigationItem.title = "PDF-документ"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .black
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())
@@ -51,6 +43,14 @@ class PDFDocumentReaderViewController: UIViewController {
     
     @objc private func close() {
         self.dismiss(animated: true)
+    }
+    
+    private func makeMenu()-> UIMenu {
+        let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
+            self.shareInfo(image: UIImage(named: "pdf")!, title: "документ", text: self.url)
+        }
+        let menu = UIMenu(title: "документ", children: [shareAction])
+        return menu
     }
     
     private func SetUpPDF() {

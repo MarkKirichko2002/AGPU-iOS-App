@@ -809,8 +809,8 @@
 			isa = PBXGroup;
 			children = (
 				82BA73B22A579B15006B67DA /* Web MVVM */,
-				8234E5FD2A8857A800ED354C /* Word MVVM Modules */,
 				82BC3CFA2A56ED7500E49332 /* Recent Web Page MVVM */,
+				8234E5FD2A8857A800ED354C /* Word MVVM Modules */,
 			);
 			path = "Web Modules";
 			sourceTree = "<group>";

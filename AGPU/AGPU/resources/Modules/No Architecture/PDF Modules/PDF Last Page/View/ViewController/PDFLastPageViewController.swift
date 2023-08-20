@@ -32,14 +32,6 @@ class PDFLastPageViewController: UIViewController {
         SavePDF()
     }
     
-    private func makeMenu()-> UIMenu {
-        let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
-            self.shareInfo(image: UIImage(named: "pdf")!, title: "PDF-документ", text: self.pdf.url)
-        }
-        let menu = UIMenu(title: "PDF-документ", children: [shareAction])
-        return menu
-    }
-    
     private func SetUpNavigation() {
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .black
@@ -51,6 +43,14 @@ class PDFLastPageViewController: UIViewController {
     
     @objc private func close() {
         self.dismiss(animated: true)
+    }
+    
+    private func makeMenu()-> UIMenu {
+        let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
+            self.shareInfo(image: UIImage(named: "pdf")!, title: "PDF-документ", text: self.pdf.url)
+        }
+        let menu = UIMenu(title: "PDF-документ", children: [shareAction])
+        return menu
     }
     
     private func SetUpPDF() {
