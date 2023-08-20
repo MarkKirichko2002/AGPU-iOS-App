@@ -46,7 +46,7 @@ class SearchAGPUBuildingMapViewController: UIViewController {
     }
     
     @objc private func closeScreen() {
-        viewModel.SendScreenClosedNotification()
+        SendScreenWasClosedNotification()
         dismiss(animated: true)
     }
     

@@ -96,10 +96,4 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
         ])
         return menu
     }
-    
-    func SendScreenClosedNotification() {
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
-        }
-    }
 }

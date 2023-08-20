@@ -11,5 +11,4 @@ protocol AGPUFacultiesListViewModelProtocol {
     func facultiesListCount()-> Int
     func facultyItem(index: Int)-> AGPUFacultyModel
     func isFacultySelected(index: Int)-> Bool
-    func SendScreenClosedNotification()
 }

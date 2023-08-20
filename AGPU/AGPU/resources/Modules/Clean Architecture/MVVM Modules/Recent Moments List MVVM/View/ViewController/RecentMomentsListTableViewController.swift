@@ -27,7 +27,7 @@ final class RecentMomentsListTableViewController: UITableViewController {
     }
     
     @objc private func closeScreen() {
-        viewModel.SendScreenClosedNotification()
+        SendScreenWasClosedNotification()
         dismiss(animated: true)
     }
     

@@ -26,10 +26,4 @@ extension AGPUFacultiesListViewModel: AGPUFacultiesListViewModelProtocol {
             return false
         }
     }
-    
-    func SendScreenClosedNotification() {
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
-        }
-    }
 }

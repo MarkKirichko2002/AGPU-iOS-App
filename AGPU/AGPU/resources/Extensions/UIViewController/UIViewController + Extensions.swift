@@ -90,11 +90,15 @@ extension UIViewController {
     }
     
     @objc func handleSwipeGesture(_ gesture: UISwipeGestureRecognizer) {
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
-        }
+        SendScreenWasClosedNotification()
         if let navigationController = navigationController {
             navigationController.popViewController(animated: true)
+        }
+    }
+    
+    func SendScreenWasClosedNotification() {
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+            NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
         }
     }
 }

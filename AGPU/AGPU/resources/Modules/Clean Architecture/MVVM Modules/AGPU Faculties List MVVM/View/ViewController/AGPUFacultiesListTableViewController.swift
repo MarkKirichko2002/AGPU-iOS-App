@@ -38,7 +38,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
     }
     
     @objc private func back() {
-        viewModel.SendScreenClosedNotification()
+        SendScreenWasClosedNotification()
         navigationController?.popViewController(animated: true)
     }
     

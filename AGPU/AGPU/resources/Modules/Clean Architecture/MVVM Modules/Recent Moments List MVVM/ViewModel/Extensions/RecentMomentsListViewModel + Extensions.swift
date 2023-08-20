@@ -41,10 +41,4 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
             alertHandler?("Нет недавнего видео.", "Вы еще не смотрели не одного видео.")
         }
     }
-    
-    func SendScreenClosedNotification() {
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
-        }
-    }
 }

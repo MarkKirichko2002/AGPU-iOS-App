@@ -50,7 +50,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
     }
     
     @objc private func back() {
-        viewModel.SendScreenClosedNotification()
+        SendScreenWasClosedNotification()
         navigationController?.popViewController(animated: true)
     }
     
