@@ -32,8 +32,18 @@ final class NewsListViewController: UIViewController {
     }
     
     private func SetUpNavigation() {
-        
         navigationItem.title = "Новости АГПУ"
+        let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshNews))
+        refreshButton.tintColor = .black
+        navigationItem.leftBarButtonItem = refreshButton
+    }
+    
+    @objc private func refreshNews() {
+        if let faculty = viewModel.faculty {
+            viewModel.GetFacultyNews(faculty: faculty)
+        } else {
+            viewModel.GetAGPUNews()
+        }
     }
     
     private func SetUpCollectionView() {
@@ -102,6 +112,6 @@ final class NewsListViewController: UIViewController {
         }
         
         viewModel.ObserveFacultyChanges()
-        viewModel.ObservedPageChanges()
+        viewModel.ObservePageChanges()
     }
 }

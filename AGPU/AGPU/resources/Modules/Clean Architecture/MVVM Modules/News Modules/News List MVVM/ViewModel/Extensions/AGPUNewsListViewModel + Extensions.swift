@@ -25,6 +25,19 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         }
     }
     
+    // получить новости АГПУ
+    func GetAGPUNews() {
+        newsService.GetAGPUNews { result in
+            switch result {
+            case .success(let response):
+                self.newsResponse = response
+                self.dataChangedHandler?(nil)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     // получить новости факультета
     func GetFacultyNews(faculty: AGPUFacultyModel) {
         self.faculty = faculty
@@ -39,19 +52,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         }
     }
     
-    // получить новости АГПУ
-    func GetAGPUNews() {
-        newsService.GetAGPUNews { result in
-            switch result {
-            case .success(let response):
-                self.newsResponse = response
-                self.dataChangedHandler?(nil)
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
+    // получить новость по странице
     func GetNews(by page: Int) {
         newsService.GetNews(by: page, faculty: faculty) { result in
             switch result {
@@ -89,7 +90,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     }
     
     // следить за изменением страницы
-    func ObservedPageChanges() {
+    func ObservePageChanges() {
         NotificationCenter.default.addObserver(forName: Notification.Name("page"), object: nil, queue: .main) { notification in
             if let page = notification.object as? Int {
                 self.GetNews(by: page)
