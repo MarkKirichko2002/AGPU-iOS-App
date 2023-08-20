@@ -98,11 +98,14 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
     }
     
     func CancelFacultyIcon(index: Int) {
-        UIApplication.shared.setAlternateIconName("AppIcon 7")
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
+        
+        if isFacultyIconSelected(index: index) {
+            UIApplication.shared.setAlternateIconName("AppIcon 7")
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
+            }
+            UserDefaults.standard.setValue(nil, forKey: "icon")
         }
-        UserDefaults.standard.setValue(nil, forKey: "icon")
     }
     
     func CancelFaculty(index: Int) {

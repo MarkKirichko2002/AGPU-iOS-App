@@ -172,7 +172,7 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     private func ObserveForEveryStatus() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("for student selected"), object: nil, queue: .main) { notification in
+        NotificationCenter.default.addObserver(forName: Notification.Name("for every status selected"), object: nil, queue: .main) { notification in
             if let icon = notification.object as? String {
                 self.updateDynamicButton(icon: icon)
             }
