@@ -56,7 +56,7 @@ final class AGPUTabBarController: UITabBarController {
     
     private func setUpTabs() {
         // новости
-        newsVC.tabBarItem = UITabBarItem(title: "Новости", image: UIImage(systemName: "newspaper"), selectedImage: UIImage(systemName: "newspaper.fill"))
+        newsVC.tabBarItem = UITabBarItem(title: "Новости", image: UIImage(named: "mail"), selectedImage: UIImage(named: "mail selected"))
         // для каждого статуса
         forEveryStatusVC = settingsManager.checkCurrentStatus()
         // расписание
