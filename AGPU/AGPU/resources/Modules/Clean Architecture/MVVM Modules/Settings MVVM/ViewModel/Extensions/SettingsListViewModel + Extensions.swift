@@ -22,11 +22,16 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
     
     func ChooseStatus(index: Int) {
         var status = UserStatusList.list[index]
-        status.isSelected = true
-        UserDefaults.SaveData(object: status, key: "user status") {
-            self.isChanged.toggle()
+        let savedStatus = UserDefaults.loadData(type: UserStatusModel.self, key: "user status")
+        if status.id != savedStatus?.id {
+            status.isSelected = true
+            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in
+                UserDefaults.SaveData(object: status, key: "user status") {
+                    self.isChanged.toggle()
+                }
+            }
+            NotificationCenter.default.post(name: Notification.Name("user status"), object: status)
         }
-        NotificationCenter.default.post(name: Notification.Name("user status"), object: status)
     }
     
     func isStatusSelected(index: Int)-> Bool {
