@@ -78,11 +78,11 @@ class FacultyCathedraListTableViewController: UITableViewController {
             }
             
             let additionalEducationAction = UIAction(title: "дополнительное образование", image: UIImage(named: "plus")) { _ in
-                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].additionalEducationUrl, title: "Дополнительное образование", isSheet: false)
+                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].additionalEducationUrl, title: "Доп. образование", isSheet: false)
             }
             
             let manualAction = UIAction(title: "методические материалы", image: UIImage(named: "manual")) { _ in
-                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].manualUrl, title: "Методические материалы", isSheet: false)
+                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].manualUrl, title: "Метод. материалы", isSheet: false)
             }
             
             let emailAction = UIAction(title: "написать", image: UIImage(named: "mail")) { _ in
