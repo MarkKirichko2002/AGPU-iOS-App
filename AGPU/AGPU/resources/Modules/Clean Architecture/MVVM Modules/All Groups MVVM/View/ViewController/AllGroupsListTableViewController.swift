@@ -10,9 +10,11 @@ import UIKit
 class AllGroupsListTableViewController: UITableViewController {
 
     private var group: String = ""
+    
     // MARK: - сервисы
     private var viewModel: AllGroupsListViewModel!
     
+    // MARK: - Init
     init(group: String) {
         self.group = group
         self.viewModel = AllGroupsListViewModel(group: group)

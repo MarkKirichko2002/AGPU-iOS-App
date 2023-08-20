@@ -21,10 +21,7 @@ final class AGPUSectionsListViewController: UIViewController {
     
     private func SetUpNavigation() {
         
-        navigationItem.title = "Разделы"
-        
-        navigationItem.leftBarButtonItem = nil
-        navigationItem.hidesBackButton = true
+        let titleView = CustomTitleView(image: "АГПУ", title: "Разделы", frame: .zero)
         
         let button = UIButton()
         button.setImage(UIImage(named: "back"), for: .normal)
@@ -35,6 +32,10 @@ final class AGPUSectionsListViewController: UIViewController {
         
         let list = UIBarButtonItem(image: UIImage(named: "sections"), menu: SetUpMenu())
         list.tintColor = .black
+        
+        navigationItem.titleView = titleView
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
         
         navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItem = list

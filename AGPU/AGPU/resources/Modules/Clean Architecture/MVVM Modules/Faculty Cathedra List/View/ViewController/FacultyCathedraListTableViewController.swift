@@ -36,17 +36,19 @@ class FacultyCathedraListTableViewController: UITableViewController {
     
     private func SetUpNavigation() {
         
-        navigationItem.title = "Кафедры \(faculty.abbreviation)"
-        
-        navigationItem.leftBarButtonItem = nil
-        navigationItem.hidesBackButton = true
-        
+        let titleView = CustomTitleView(image: "\(faculty.icon)", title: "Кафедры \(faculty.abbreviation)", frame: .zero)
+    
         let button = UIButton()
         button.setImage(UIImage(named: "back"), for: .normal)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         
         let backButton = UIBarButtonItem(customView: button)
         backButton.tintColor = .black
+        
+        navigationItem.titleView = titleView
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
+        
         navigationItem.leftBarButtonItem = backButton
     }
     

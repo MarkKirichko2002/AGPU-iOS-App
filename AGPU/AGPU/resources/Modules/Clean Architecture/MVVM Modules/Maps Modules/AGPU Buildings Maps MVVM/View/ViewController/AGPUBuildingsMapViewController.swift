@@ -31,11 +31,6 @@ final class AGPUBuildingsMapViewController: UIViewController {
     
     private func SetUpNavigation() {
         
-        navigationItem.title = "Найти «АГПУ»"
-        
-        navigationItem.leftBarButtonItem = nil
-        navigationItem.hidesBackButton = true
-        
         let button = UIButton()
         button.setImage(UIImage(named: "back"), for: .normal)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
@@ -45,6 +40,10 @@ final class AGPUBuildingsMapViewController: UIViewController {
         
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: viewModel.makeOptionsMenu())
         options.tintColor = .black
+        
+        navigationItem.title = "Найти «АГПУ»"
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
         
         navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItem = options

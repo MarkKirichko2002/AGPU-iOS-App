@@ -17,9 +17,7 @@ final class AGPUCurrentBuildingMapViewModel {
     let locationManager = LocationManager()
     
     // MARK: - Init
-    init(
-        audienceID: String
-    ) {
+    init(audienceID: String) {
         self.audienceID = audienceID
     }
 }

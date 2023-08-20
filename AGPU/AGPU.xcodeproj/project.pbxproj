@@ -1513,13 +1513,13 @@
 			path = "Faculty Сathedra";
 			sourceTree = "<group>";
 		};
-		82505F432A7F9A0D001DE24A /* TimeTable */ = {
+		82505F432A7F9A0D001DE24A /* TimeTable Modules */ = {
 			isa = PBXGroup;
 			children = (
-				82D6C32D2A5E187400FB7F5D /* TimeTable Day */,
+				82D6C32D2A5E187400FB7F5D /* TimeTable Daily */,
 				82505F4C2A7FBD48001DE24A /* TimeTable Week */,
 			);
-			path = TimeTable;
+			path = "TimeTable Modules";
 			sourceTree = "<group>";
 		};
 		82505F4C2A7FBD48001DE24A /* TimeTable Week */ = {
@@ -1726,7 +1726,7 @@
 				821270462A78925D0095D68E /* PDF Modules */,
 				82C561602A6B770800514B00 /* App Features */,
 				829522DB2A38AEBE00329713 /* Maps */,
-				82505F432A7F9A0D001DE24A /* TimeTable */,
+				82505F432A7F9A0D001DE24A /* TimeTable Modules */,
 				82D6C3422A5E33CD00FB7F5D /* Calendar */,
 				82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */,
 			);
@@ -2938,12 +2938,12 @@
 			path = "Features List";
 			sourceTree = "<group>";
 		};
-		82D6C32D2A5E187400FB7F5D /* TimeTable Day */ = {
+		82D6C32D2A5E187400FB7F5D /* TimeTable Daily */ = {
 			isa = PBXGroup;
 			children = (
 				82D6C33C2A5E32DE00FB7F5D /* View */,
 			);
-			path = "TimeTable Day";
+			path = "TimeTable Daily";
 			sourceTree = "<group>";
 		};
 		82D6C3302A5E1DD100FB7F5D /* API */ = {

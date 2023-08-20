@@ -15,6 +15,7 @@ final class NewsCollectionViewCell: UICollectionViewCell {
     // MARK: - сервисы
     private let animation = AnimationClass()
     
+    // MARK: - UI
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill

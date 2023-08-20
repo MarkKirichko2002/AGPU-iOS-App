@@ -19,11 +19,8 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
     }
     
     private func SetUpNavigation() {
-        
-        navigationItem.title = "Факультеты"
-        
-        navigationItem.leftBarButtonItem = nil
-        navigationItem.hidesBackButton = true
+                
+        let titleView = CustomTitleView(image: "АГПУ", title: "Факультеты", frame: .zero)
         
         let button = UIButton()
         button.setImage(UIImage(named: "back"), for: .normal)
@@ -31,7 +28,12 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
         
         let backButton = UIBarButtonItem(customView: button)
         backButton.tintColor = .black
+        
+        navigationItem.titleView = titleView
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = backButton
+        
         SetUpSwipeGesture()
     }
     

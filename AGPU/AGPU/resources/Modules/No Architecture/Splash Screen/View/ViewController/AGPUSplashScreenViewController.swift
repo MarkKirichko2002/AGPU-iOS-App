@@ -12,6 +12,7 @@ final class AGPUSplashScreenViewController: UIViewController {
     // MARK: - сервисы
     var animation: AnimationClassProtocol?
     
+    // MARK: - UI
     // иконка
     private let AGPUIcon: SpringImageView = {
         let icon = SpringImageView()

@@ -9,6 +9,9 @@ import UIKit
 
 final class NewsListViewController: UIViewController {
     
+    // MARK: - сервисы
+    let viewModel = AGPUNewsListViewModel()
+    
     // MARK: - UI
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -19,9 +22,6 @@ final class NewsListViewController: UIViewController {
         collectionView.register(NewsCollectionViewCell.self, forCellWithReuseIdentifier: NewsCollectionViewCell.identifier)
         return collectionView
     }()
-    
-    // MARK: - сервисы
-    let viewModel = AGPUNewsListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -12,12 +12,12 @@ final class RecentWebPageViewController: UIViewController {
     
     var page: RecentWebPageModel
     
+    // MARK: - сервисы
+    let viewModel = RecentPageViewModel()
+    
     // MARK: - UI
     let WVWEBview = WKWebView(frame: .zero)
     let spinner = UIActivityIndicatorView(style: .large)
-    
-    // MARK: - сервисы
-    let viewModel = RecentPageViewModel()
     
     // MARK: - Init
     init(page: RecentWebPageModel) {

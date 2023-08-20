@@ -31,14 +31,25 @@ final class WebViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SetUpNavigation()
         SetUpWebView()
         SetUpIndicatorView()
-        SetUpNavigation()
         BindViewModel()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    private func SetUpNavigation() {
+        let backbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
+        backbutton.tintColor = .black
+        let forwardbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.right"), style: .plain, target: self, action: #selector(forwardButtonTapped))
+        forwardbutton.tintColor = .black
+        let closebutton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeButtonTapped))
+        closebutton.tintColor = .black
+        self.navigationItem.rightBarButtonItems = [forwardbutton, backbutton]
+        self.navigationItem.leftBarButtonItem = closebutton
     }
     
     private func SetUpWebView() {
@@ -57,17 +68,6 @@ final class WebViewController: UIViewController {
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-    }
-    
-    private func SetUpNavigation() {
-        let backbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
-        backbutton.tintColor = .black
-        let forwardbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.right"), style: .plain, target: self, action: #selector(forwardButtonTapped))
-        forwardbutton.tintColor = .black
-        let closebutton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeButtonTapped))
-        closebutton.tintColor = .black
-        self.navigationItem.rightBarButtonItems = [forwardbutton, backbutton]
-        self.navigationItem.leftBarButtonItem = closebutton
     }
     
     private func BindViewModel() {
