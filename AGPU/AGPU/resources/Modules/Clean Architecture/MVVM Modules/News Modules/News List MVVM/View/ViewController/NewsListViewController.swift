@@ -23,11 +23,14 @@ final class NewsListViewController: UIViewController {
         return collectionView
     }()
     
+    private let spinner = UIActivityIndicatorView(style: .large)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         SetUpNavigation()
         SetUpSwipeGesture()
         SetUpCollectionView()
+        SetUpIndicatorView()
         BindViewModel()
     }
     
@@ -53,6 +56,16 @@ final class NewsListViewController: UIViewController {
         collectionView.dataSource = self
     }
     
+    private func SetUpIndicatorView() {
+        view.addSubview(spinner)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        spinner.startAnimating()
+    }
+    
     private func BindViewModel() {
         
         var options = UIBarButtonItem(image: UIImage(named: "sections"), menu: UIMenu())
@@ -75,6 +88,7 @@ final class NewsListViewController: UIViewController {
         viewModel.GetNewsByCurrentType()
         
         viewModel.registerDataChangedHandler { [weak self] faculty in
+            
             guard let self = self else { return }
             
             DispatchQueue.main.async {
@@ -82,9 +96,11 @@ final class NewsListViewController: UIViewController {
                 if let faculty = faculty {
                     titleView = CustomTitleView(image: "\(faculty.icon)", title: "\(faculty.abbreviation) новости", frame: .zero)
                     self.collectionView.reloadData()
+                    self.spinner.stopAnimating()
                 } else {
                     titleView = CustomTitleView(image: "АГПУ", title: "АГПУ новости", frame: .zero)
                     self.collectionView.reloadData()
+                    self.spinner.stopAnimating()
                 }
                 
                 categoriesAction = UIAction(title: "категории") { _ in

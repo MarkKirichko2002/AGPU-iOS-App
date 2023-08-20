@@ -50,7 +50,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         navigationItem.title = "Сегодня: \(date)"
         
         // кнопка перезагрузить
-        let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshNews))
+        let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshTimetable))
         refreshButton.tintColor = .black
         navigationItem.leftBarButtonItem = refreshButton
         
@@ -123,7 +123,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = options
     }
     
-    @objc private func refreshNews() {
+    @objc private func refreshTimetable() {
         GetTimeTable(group: group, date: date)
     }
     
@@ -149,10 +149,6 @@ final class TimeTableDayListTableViewController: UIViewController {
     private func SetUpRefreshControl() {
         tableView.addSubview(refreshControl)
         refreshControl.addTarget(self, action: #selector(refreshTimetable), for: .valueChanged)
-    }
-    
-    @objc private func refreshTimetable() {
-        GetTimeTable(group: group, date: date)
     }
     
     private func SetUpLabel() {
