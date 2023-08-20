@@ -17,8 +17,14 @@ final class SettingsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SetUpNavigation()
         SetUpTable()
         BindViewModel()
+    }
+    
+    private func SetUpNavigation() {
+        let titleView = CustomTitleView(image: "settings", title: "Настройки", frame: .zero)
+        navigationItem.titleView = titleView
     }
     
     private func SetUpTable() {
