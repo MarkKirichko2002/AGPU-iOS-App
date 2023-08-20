@@ -93,6 +93,9 @@
 		826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888682A3482DF00434219 /* AGPUSubSections.swift */; };
 		826BADAF2A64D5A500022B45 /* AGPULocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826BADAE2A64D5A500022B45 /* AGPULocationDetailViewController.swift */; };
 		826BADB12A64D5D100022B45 /* AGPULocationDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826BADB02A64D5D100022B45 /* AGPULocationDetailViewController.storyboard */; };
+		826F93872A91C3D500DE4FB1 /* NewsPagesListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826F93862A91C3D500DE4FB1 /* NewsPagesListViewModelProtocol.swift */; };
+		826F93892A91C46A00DE4FB1 /* NewsPagesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826F93882A91C46A00DE4FB1 /* NewsPagesListViewModel.swift */; };
+		826F938B2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826F938A2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift */; };
 		8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5442A578452008ACADC /* DateManagerProtocol.swift */; };
 		8270A5482A5784A2008ACADC /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5472A5784A2008ACADC /* DateManager.swift */; };
 		82722D432A66462100149D06 /* AGPUBuildingPins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82722D422A66462100149D06 /* AGPUBuildingPins.swift */; };
@@ -316,6 +319,9 @@
 		826888682A3482DF00434219 /* AGPUSubSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSections.swift; sourceTree = "<group>"; };
 		826BADAE2A64D5A500022B45 /* AGPULocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPULocationDetailViewController.swift; sourceTree = "<group>"; };
 		826BADB02A64D5D100022B45 /* AGPULocationDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AGPULocationDetailViewController.storyboard; sourceTree = "<group>"; };
+		826F93862A91C3D500DE4FB1 /* NewsPagesListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPagesListViewModelProtocol.swift; sourceTree = "<group>"; };
+		826F93882A91C46A00DE4FB1 /* NewsPagesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPagesListViewModel.swift; sourceTree = "<group>"; };
+		826F938A2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsPagesListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		8270A5442A578452008ACADC /* DateManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerProtocol.swift; sourceTree = "<group>"; };
 		8270A5472A5784A2008ACADC /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		82722D422A66462100149D06 /* AGPUBuildingPins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingPins.swift; sourceTree = "<group>"; };
@@ -500,12 +506,12 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		8208E7522A63A3B300675EF1 /* AGPU Themes */ = {
+		8208E7522A63A3B300675EF1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				8208E7532A63A3C300675EF1 /* List */,
 			);
-			path = "AGPU Themes";
+			path = Model;
 			sourceTree = "<group>";
 		};
 		8208E7532A63A3C300675EF1 /* List */ = {
@@ -600,6 +606,7 @@
 		820D33992A75974F00843313 /* Contacts List */ = {
 			isa = PBXGroup;
 			children = (
+				820D339D2A75984200843313 /* Model */,
 				820D339C2A75980700843313 /* Faculty */,
 			);
 			path = "Contacts List";
@@ -613,12 +620,12 @@
 			path = Faculty;
 			sourceTree = "<group>";
 		};
-		820D339D2A75984200843313 /* Contacts */ = {
+		820D339D2A75984200843313 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				820D33A02A7598E000843313 /* Model */,
 			);
-			path = Contacts;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		820D33A02A7598E000843313 /* Model */ = {
@@ -776,6 +783,7 @@
 		8212704D2A7903620095D68E /* PDF Last Page */ = {
 			isa = PBXGroup;
 			children = (
+				821270592A792A0B0095D68E /* Model */,
 				8212704E2A79036D0095D68E /* View */,
 			);
 			path = "PDF Last Page";
@@ -801,18 +809,10 @@
 			isa = PBXGroup;
 			children = (
 				82BA73B22A579B15006B67DA /* Web MVVM */,
-				8234E5FD2A8857A800ED354C /* Word MVVM Modules */,
 				82BC3CFA2A56ED7500E49332 /* Recent Web Page MVVM */,
+				8234E5FD2A8857A800ED354C /* Word MVVM Modules */,
 			);
 			path = "Web Modules";
-			sourceTree = "<group>";
-		};
-		821270582A7929F80095D68E /* Recent PDF */ = {
-			isa = PBXGroup;
-			children = (
-				821270592A792A0B0095D68E /* Model */,
-			);
-			path = "Recent PDF";
 			sourceTree = "<group>";
 		};
 		821270592A792A0B0095D68E /* Model */ = {
@@ -977,7 +977,7 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		8228E3962A6C8EFD00C1B6AD /* Maps MVVM Modules */ = {
+		8228E3962A6C8EFD00C1B6AD /* Maps Modules */ = {
 			isa = PBXGroup;
 			children = (
 				82E4C58C2A6B254200F65A67 /* AGPU Buildings Maps MVVM */,
@@ -985,7 +985,7 @@
 				8210CA022A664D5700D0BEEE /* Current Buiding MVVM */,
 				8283216F2A7D6403008641A5 /* Search AGPU Building Map MVVM */,
 			);
-			path = "Maps MVVM Modules";
+			path = "Maps Modules";
 			sourceTree = "<group>";
 		};
 		8228E3972A6C8F2000C1B6AD /* ViewModel */ = {
@@ -1513,13 +1513,13 @@
 			path = "Faculty Сathedra";
 			sourceTree = "<group>";
 		};
-		82505F432A7F9A0D001DE24A /* TimeTable */ = {
+		82505F432A7F9A0D001DE24A /* TimeTable Modules */ = {
 			isa = PBXGroup;
 			children = (
-				82D6C32D2A5E187400FB7F5D /* TimeTable Day */,
+				82D6C32D2A5E187400FB7F5D /* TimeTable Daily */,
 				82505F4C2A7FBD48001DE24A /* TimeTable Week */,
 			);
-			path = TimeTable;
+			path = "TimeTable Modules";
 			sourceTree = "<group>";
 		};
 		82505F4C2A7FBD48001DE24A /* TimeTable Week */ = {
@@ -1566,6 +1566,7 @@
 		825634B62A6221C10082B7B8 /* Faculty Groups List MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				828DC5562A7B384C001EA324 /* Model */,
 				825634B82A6221DB0082B7B8 /* View */,
 				825634B72A6221D90082B7B8 /* ViewModel */,
 			);
@@ -1719,14 +1720,13 @@
 			children = (
 				826888562A33AB3C00434219 /* Splash Screen */,
 				828CFA342A35F62400C7542D /* TabBar */,
-				82BC2F492A8F0B5B00ADB239 /* News Pages List */,
 				820D33992A75974F00843313 /* Contacts List */,
 				82426C752A714CDD00D5AA57 /* For Every Status */,
 				82808E9C2A31F2D400DEEB16 /* AGPU Sections */,
 				821270462A78925D0095D68E /* PDF Modules */,
 				82C561602A6B770800514B00 /* App Features */,
 				829522DB2A38AEBE00329713 /* Maps */,
-				82505F432A7F9A0D001DE24A /* TimeTable */,
+				82505F432A7F9A0D001DE24A /* TimeTable Modules */,
 				82D6C3422A5E33CD00FB7F5D /* Calendar */,
 				82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */,
 			);
@@ -1736,19 +1736,10 @@
 		8268886A2A34866D00434219 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				828DC5562A7B384C001EA324 /* Faculty Groups */,
-				820D339D2A75984200843313 /* Contacts */,
 				8228E39A2A6C920000C1B6AD /* Location */,
-				82C561592A6B753500514B00 /* App Features */,
-				82426C6E2A71476D00D5AA57 /* For Every Status */,
 				82426C8E2A71DCC000D5AA57 /* User Status */,
-				820D18E12A68F9BB00BFAA35 /* AGPU Buildings */,
-				82722D402A66460500149D06 /* AGPU Building Pins */,
-				82FEA7AB2A7ED59F00863453 /* Building Type */,
-				821270452A783FA40095D68E /* Sections */,
-				82EF23D32A3DEEB8004A7B9C /* Sub Sections */,
-				8208E7522A63A3B300675EF1 /* AGPU Themes */,
-				821270582A7929F80095D68E /* Recent PDF */,
+				82426C6E2A71476D00D5AA57 /* For Every Status */,
+				826F93812A91005500DE4FB1 /* Map Models */,
 				82B1C0EB2A8123DF00520C14 /* Voice Directions */,
 			);
 			path = Models;
@@ -1784,7 +1775,7 @@
 			children = (
 				82BC2F3F2A8EFC5D00ADB239 /* News Modules */,
 				821270572A7921DD0095D68E /* Web Modules */,
-				8228E3962A6C8EFD00C1B6AD /* Maps MVVM Modules */,
+				8228E3962A6C8EFD00C1B6AD /* Maps Modules */,
 				82B1C0BD2A805D5200520C14 /* Recent Moments List MVVM */,
 				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
 				82989ACB2A6E308F00F27858 /* Faculty Cathedra List */,
@@ -1795,6 +1786,68 @@
 				822158942A422A480088BDE5 /* Settings MVVM */,
 			);
 			path = "MVVM Modules";
+			sourceTree = "<group>";
+		};
+		826F937F2A90FE9000DE4FB1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				821270452A783FA40095D68E /* Sections */,
+				82EF23D32A3DEEB8004A7B9C /* Sub Sections */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		826F93802A90FECB00DE4FB1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82C5615B2A6B755E00514B00 /* Model */,
+				82C5615A2A6B755C00514B00 /* List */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		826F93812A91005500DE4FB1 /* Map Models */ = {
+			isa = PBXGroup;
+			children = (
+				820D18E12A68F9BB00BFAA35 /* AGPU Buildings */,
+				82722D402A66460500149D06 /* AGPU Building Pins */,
+				82FEA7AB2A7ED59F00863453 /* Building Type */,
+			);
+			path = "Map Models";
+			sourceTree = "<group>";
+		};
+		826F93822A91C3A700DE4FB1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				826F93852A91C3C200DE4FB1 /* Protocol */,
+				826F93842A91C3C000DE4FB1 /* ViewModel */,
+				826F93832A91C3BE00DE4FB1 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		826F93832A91C3BE00DE4FB1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				826F938A2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		826F93842A91C3C000DE4FB1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				826F93882A91C46A00DE4FB1 /* NewsPagesListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		826F93852A91C3C200DE4FB1 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				826F93862A91C3D500DE4FB1 /* NewsPagesListViewModelProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		8270A5462A578491008ACADC /* Date */ = {
@@ -1851,6 +1904,7 @@
 		82808E9C2A31F2D400DEEB16 /* AGPU Sections */ = {
 			isa = PBXGroup;
 			children = (
+				826F937F2A90FE9000DE4FB1 /* Models */,
 				82808EA22A31F49B00DEEB16 /* View */,
 			);
 			name = "AGPU Sections";
@@ -2002,13 +2056,13 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		828DC5562A7B384C001EA324 /* Faculty Groups */ = {
+		828DC5562A7B384C001EA324 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				828DC5572A7B3857001EA324 /* Model */,
 				828DC55A2A7B387B001EA324 /* List */,
 			);
-			path = "Faculty Groups";
+			path = Model;
 			sourceTree = "<group>";
 		};
 		828DC5572A7B3857001EA324 /* Model */ = {
@@ -2714,6 +2768,7 @@
 			children = (
 				82B24A7E2A81BA32008B94E4 /* News List MVVM */,
 				82B266F82A8D91B600043A6D /* News Categories MVVM */,
+				82BC2F492A8F0B5B00ADB239 /* News Pages List MVVM */,
 			);
 			path = "News Modules";
 			sourceTree = "<group>";
@@ -2742,12 +2797,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		82BC2F492A8F0B5B00ADB239 /* News Pages List */ = {
+		82BC2F492A8F0B5B00ADB239 /* News Pages List MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				82BC2F4A2A8F0B6600ADB239 /* View */,
+				826F93822A91C3A700DE4FB1 /* ViewModel */,
 			);
-			path = "News Pages List";
+			path = "News Pages List MVVM";
 			sourceTree = "<group>";
 		};
 		82BC2F4A2A8F0B6600ADB239 /* View */ = {
@@ -2813,6 +2869,7 @@
 		82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */ = {
 			isa = PBXGroup;
 			children = (
+				8208E7522A63A3B300675EF1 /* Model */,
 				8208E74E2A63A36A00675EF1 /* View */,
 			);
 			path = "AGPU Wallpapers";
@@ -2838,15 +2895,6 @@
 			path = Haptics;
 			sourceTree = "<group>";
 		};
-		82C561592A6B753500514B00 /* App Features */ = {
-			isa = PBXGroup;
-			children = (
-				82C5615B2A6B755E00514B00 /* Model */,
-				82C5615A2A6B755C00514B00 /* List */,
-			);
-			path = "App Features";
-			sourceTree = "<group>";
-		};
 		82C5615A2A6B755C00514B00 /* List */ = {
 			isa = PBXGroup;
 			children = (
@@ -2866,7 +2914,8 @@
 		82C561602A6B770800514B00 /* App Features */ = {
 			isa = PBXGroup;
 			children = (
-				82C561652A6B7AEA00514B00 /* Features */,
+				826F93802A90FECB00DE4FB1 /* Model */,
+				82C561652A6B7AEA00514B00 /* Features List */,
 				82C561642A6B7AE800514B00 /* Feature Detail */,
 			);
 			path = "App Features";
@@ -2881,20 +2930,20 @@
 			path = "Feature Detail";
 			sourceTree = "<group>";
 		};
-		82C561652A6B7AEA00514B00 /* Features */ = {
+		82C561652A6B7AEA00514B00 /* Features List */ = {
 			isa = PBXGroup;
 			children = (
 				82C561612A6B772600514B00 /* AppFeaturesListTableViewController.swift */,
 			);
-			path = Features;
+			path = "Features List";
 			sourceTree = "<group>";
 		};
-		82D6C32D2A5E187400FB7F5D /* TimeTable Day */ = {
+		82D6C32D2A5E187400FB7F5D /* TimeTable Daily */ = {
 			isa = PBXGroup;
 			children = (
 				82D6C33C2A5E32DE00FB7F5D /* View */,
 			);
-			path = "TimeTable Day";
+			path = "TimeTable Daily";
 			sourceTree = "<group>";
 		};
 		82D6C3302A5E1DD100FB7F5D /* API */ = {
@@ -3593,9 +3642,11 @@
 				82FEA7AE2A7ED5BB00863453 /* AGPUBuildingType.swift in Sources */,
 				82989AEE2A6F6EB600F27858 /* FacultyCathedraListViewModel + Extensions.swift in Sources */,
 				822632412A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift in Sources */,
+				826F93892A91C46A00DE4FB1 /* NewsPagesListViewModel.swift in Sources */,
 				828DC5592A7B3865001EA324 /* FacultyGroupModel.swift in Sources */,
 				821FCF072A87CE30006FFB26 /* NewsListViewController.swift in Sources */,
 				82BC2F482A8EFD7C00ADB239 /* NewsCategoriesListViewModel + Extensions.swift in Sources */,
+				826F938B2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
 				82D6C3342A5E1DEC00FB7F5D /* Discipline.swift in Sources */,
@@ -3738,6 +3789,7 @@
 				828CFA372A35F65700C7542D /* WebViewController.swift in Sources */,
 				82E4C5842A6B201600F65A67 /* LocationManagerProtocol.swift in Sources */,
 				828321672A7D02E6008641A5 /* AllGroupsListViewModel.swift in Sources */,
+				826F93872A91C3D500DE4FB1 /* NewsPagesListViewModelProtocol.swift in Sources */,
 				8241F99B2A5F415A007DF628 /* DateManager + Extensions.swift in Sources */,
 				8255ADCF2A6732110012895E /* CustomTitleView.swift in Sources */,
 				82989AE62A6F6DEA00F27858 /* FacultyCathedraListViewModel.swift in Sources */,

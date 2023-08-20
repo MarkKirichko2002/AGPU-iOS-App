@@ -15,7 +15,8 @@ extension UIViewController {
         let vc = WebViewController(url: url)
         let navVC = UINavigationController(rootViewController: vc)
         if title != nil {
-            vc.navigationItem.title = title
+            let titleView = CustomTitleView(image: "online", title: title ?? "", frame: .zero)
+            vc.navigationItem.titleView = titleView
         }
         if isSheet {
             DispatchQueue.main.async {

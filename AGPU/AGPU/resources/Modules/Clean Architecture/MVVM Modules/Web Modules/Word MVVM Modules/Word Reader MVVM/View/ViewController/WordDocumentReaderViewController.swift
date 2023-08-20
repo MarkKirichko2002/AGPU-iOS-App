@@ -31,10 +31,26 @@ final class WordDocumentReaderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SetUpNavigation()
         SetUpWebView()
         SetUpIndicatorView()
-        SetUpNavigation()
         BindViewModel()
+    }
+    
+    private func SetUpNavigation() {
+        let titleView = CustomTitleView(image: "word", title: "Word-документ", frame: .zero)
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
+        closeButton.tintColor = .black
+        let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())
+        sections.tintColor = .black
+        
+        navigationItem.titleView = titleView
+        navigationItem.leftBarButtonItem = closeButton
+        navigationItem.rightBarButtonItem = sections
+    }
+    
+    @objc private func close() {
+        self.dismiss(animated: true)
     }
     
     private func SetUpWebView() {
@@ -61,20 +77,6 @@ final class WordDocumentReaderViewController: UIViewController {
         }
         let menu = UIMenu(title: "Word-документ", children: [shareAction])
         return menu
-    }
-    
-    private func SetUpNavigation() {
-        navigationItem.title = "Word-документ"
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
-        closeButton.tintColor = .black
-        let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())
-        sections.tintColor = .black
-        navigationItem.leftBarButtonItem = closeButton
-        navigationItem.rightBarButtonItem = sections
-    }
-    
-    @objc private func close() {
-        self.dismiss(animated: true)
     }
     
     private func BindViewModel() {

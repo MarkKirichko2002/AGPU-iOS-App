@@ -31,9 +31,25 @@ class WordRecentDocumentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SetUpNavigation()
         SetUpWebView()
         SetUpIndicatorView()
-        SetUpNavigation()
+    }
+    
+    private func SetUpNavigation() {
+        let titleView = CustomTitleView(image: "word", title: "\(document.date) \(document.time)", frame: .zero)
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
+        closeButton.tintColor = .black
+        let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())
+        sections.tintColor = .black
+        
+        navigationItem.titleView = titleView
+        navigationItem.leftBarButtonItem = closeButton
+        navigationItem.rightBarButtonItem = sections
+    }
+    
+    @objc private func close() {
+        self.dismiss(animated: true)
     }
     
     private func SetUpWebView() {
@@ -59,19 +75,5 @@ class WordRecentDocumentViewController: UIViewController {
         }
         let menu = UIMenu(title: "Word-документ", children: [shareAction])
         return menu
-    }
-    
-    private func SetUpNavigation() {
-        navigationItem.title = "\(document.date) \(document.time)"
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
-        closeButton.tintColor = .black
-        let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())
-        sections.tintColor = .black
-        navigationItem.leftBarButtonItem = closeButton
-        navigationItem.rightBarButtonItem = sections
-    }
-    
-    @objc private func close() {
-        self.dismiss(animated: true)
     }
 }

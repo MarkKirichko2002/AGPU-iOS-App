@@ -9,13 +9,12 @@ import Foundation
 
 class AllWeeksListViewModel {
     
+    var isChangedHandler: (()->Void)?
+    var ScrollHandler: ((Int)->Void)?
+    var weeks = [WeekModel]()
+    
     // MARK: - сервисы
     let service = TimeTableService()
     let dateManager = DateManager()
-    
-    var isChangedHandler: (()->Void)?
-    var ScrollHandler: ((Int)->Void)?
-    
-    var weeks = [WeekModel]()
     
 }

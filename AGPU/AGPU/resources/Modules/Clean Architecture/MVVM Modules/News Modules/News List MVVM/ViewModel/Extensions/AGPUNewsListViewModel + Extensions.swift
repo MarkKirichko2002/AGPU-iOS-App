@@ -66,8 +66,10 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     // вернуть элемент новости
     func articleItem(index: Int)-> Article {
-        let article = newsResponse.articles[index]
-        return article
+        if let article = newsResponse.articles?[index] {
+            return article
+        }
+        return Article(id: 0, title: "", description: "", date: "", previewImage: "")
     }
     
     func registerDataChangedHandler(block: @escaping(AGPUFacultyModel?)->Void) {

@@ -21,10 +21,7 @@ final class AGPUSectionsListViewController: UIViewController {
     
     private func SetUpNavigation() {
         
-        navigationItem.title = "Разделы"
-        
-        navigationItem.leftBarButtonItem = nil
-        navigationItem.hidesBackButton = true
+        let titleView = CustomTitleView(image: "АГПУ", title: "Разделы", frame: .zero)
         
         let button = UIButton()
         button.setImage(UIImage(named: "back"), for: .normal)
@@ -36,13 +33,17 @@ final class AGPUSectionsListViewController: UIViewController {
         let list = UIBarButtonItem(image: UIImage(named: "sections"), menu: SetUpMenu())
         list.tintColor = .black
         
+        navigationItem.titleView = titleView
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
+        
         navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItem = list
     }
     
     private func SetUpMenu()-> UIMenu {
         let items = AGPUSections.sections.map { section in
-            return UIAction(title: "\(section.id + 1)) \(section.name.lowercased())") { _ in
+            return UIAction(title: "\(section.id + 1)) \(section.name.lowercased())", image: UIImage(named: section.icon)) { _ in
                 let indexPath = IndexPath(row: 0, section: section.id)
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
             }
@@ -63,9 +64,6 @@ final class AGPUSectionsListViewController: UIViewController {
         tableView.frame = view.bounds
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(
-            AGPUSubSectionTableViewCell.self,
-            forCellReuseIdentifier: AGPUSubSectionTableViewCell.identifier
-        )
+        tableView.register(AGPUSubSectionTableViewCell.self, forCellReuseIdentifier: AGPUSubSectionTableViewCell.identifier)
     }
 }

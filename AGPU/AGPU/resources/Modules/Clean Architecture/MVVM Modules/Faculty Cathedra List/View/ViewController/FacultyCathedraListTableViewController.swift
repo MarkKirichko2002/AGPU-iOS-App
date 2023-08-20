@@ -36,17 +36,19 @@ class FacultyCathedraListTableViewController: UITableViewController {
     
     private func SetUpNavigation() {
         
-        navigationItem.title = "Кафедры \(faculty.abbreviation)"
-        
-        navigationItem.leftBarButtonItem = nil
-        navigationItem.hidesBackButton = true
-        
+        let titleView = CustomTitleView(image: "\(faculty.icon)", title: "Кафедры \(faculty.abbreviation)", frame: .zero)
+    
         let button = UIButton()
         button.setImage(UIImage(named: "back"), for: .normal)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         
         let backButton = UIBarButtonItem(customView: button)
         backButton.tintColor = .black
+        
+        navigationItem.titleView = titleView
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
+        
         navigationItem.leftBarButtonItem = backButton
     }
     
@@ -76,11 +78,11 @@ class FacultyCathedraListTableViewController: UITableViewController {
             }
             
             let additionalEducationAction = UIAction(title: "дополнительное образование", image: UIImage(named: "plus")) { _ in
-                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].additionalEducationUrl, title: "Дополнительное образование", isSheet: false)
+                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].additionalEducationUrl, title: "Доп. образование", isSheet: false)
             }
             
             let manualAction = UIAction(title: "методические материалы", image: UIImage(named: "manual")) { _ in
-                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].manualUrl, title: "Методические материалы", isSheet: false)
+                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].manualUrl, title: "Метод. материалы", isSheet: false)
             }
             
             let emailAction = UIAction(title: "написать", image: UIImage(named: "mail")) { _ in

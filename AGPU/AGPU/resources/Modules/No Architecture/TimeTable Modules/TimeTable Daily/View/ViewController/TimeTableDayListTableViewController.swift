@@ -81,7 +81,9 @@ final class TimeTableDayListTableViewController: UIViewController {
         // календарь
         let calendar = UIAction(title: "календарь") { _ in
             let vc = CalendarViewController()
-            self.present(vc, animated: true)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
         }
         // день
         let day = UIMenu(title: "выбрать день", children: [

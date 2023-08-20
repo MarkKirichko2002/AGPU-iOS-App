@@ -28,10 +28,7 @@ final class AGPUWallpapersListViewController: UIViewController {
     
     private func SetUpNavigation() {
         
-        navigationItem.title = "АГПУ обои"
-        
-        navigationItem.leftBarButtonItem = nil
-        navigationItem.hidesBackButton = true
+        let titleView = CustomTitleView(image: "АГПУ", title: "АГПУ Обои", frame: .zero)
         
         let button = UIButton()
         button.setImage(UIImage(named: "back"), for: .normal)
@@ -39,6 +36,10 @@ final class AGPUWallpapersListViewController: UIViewController {
         
         let backButton = UIBarButtonItem(customView: button)
         backButton.tintColor = .black
+        
+        navigationItem.titleView = titleView
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = backButton
     }
     
