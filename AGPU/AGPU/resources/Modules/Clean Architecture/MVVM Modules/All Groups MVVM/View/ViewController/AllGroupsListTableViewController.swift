@@ -34,7 +34,7 @@ class AllGroupsListTableViewController: UITableViewController {
     
     private func SetUpNavigation() {
         
-        navigationItem.title = "Список групп"
+        let titleView = CustomTitleView(image: "group", title: "Список групп", frame: .zero)
         
         let closebutton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeButtonTapped))
         closebutton.tintColor = .black
@@ -46,6 +46,8 @@ class AllGroupsListTableViewController: UITableViewController {
         }
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         sections.tintColor = .black
+        
+        navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = closebutton
         navigationItem.rightBarButtonItem = sections
     }
