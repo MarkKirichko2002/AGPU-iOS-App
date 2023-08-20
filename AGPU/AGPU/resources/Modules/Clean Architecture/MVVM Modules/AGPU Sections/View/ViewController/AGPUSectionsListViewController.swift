@@ -63,9 +63,6 @@ final class AGPUSectionsListViewController: UIViewController {
         tableView.frame = view.bounds
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(
-            AGPUSubSectionTableViewCell.self,
-            forCellReuseIdentifier: AGPUSubSectionTableViewCell.identifier
-        )
+        tableView.register(AGPUSubSectionTableViewCell.self, forCellReuseIdentifier: AGPUSubSectionTableViewCell.identifier)
     }
 }

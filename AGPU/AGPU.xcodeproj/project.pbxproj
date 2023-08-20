@@ -93,6 +93,9 @@
 		826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888682A3482DF00434219 /* AGPUSubSections.swift */; };
 		826BADAF2A64D5A500022B45 /* AGPULocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826BADAE2A64D5A500022B45 /* AGPULocationDetailViewController.swift */; };
 		826BADB12A64D5D100022B45 /* AGPULocationDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826BADB02A64D5D100022B45 /* AGPULocationDetailViewController.storyboard */; };
+		826F93872A91C3D500DE4FB1 /* NewsPagesListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826F93862A91C3D500DE4FB1 /* NewsPagesListViewModelProtocol.swift */; };
+		826F93892A91C46A00DE4FB1 /* NewsPagesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826F93882A91C46A00DE4FB1 /* NewsPagesListViewModel.swift */; };
+		826F938B2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826F938A2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift */; };
 		8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5442A578452008ACADC /* DateManagerProtocol.swift */; };
 		8270A5482A5784A2008ACADC /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5472A5784A2008ACADC /* DateManager.swift */; };
 		82722D432A66462100149D06 /* AGPUBuildingPins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82722D422A66462100149D06 /* AGPUBuildingPins.swift */; };
@@ -316,6 +319,9 @@
 		826888682A3482DF00434219 /* AGPUSubSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSections.swift; sourceTree = "<group>"; };
 		826BADAE2A64D5A500022B45 /* AGPULocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPULocationDetailViewController.swift; sourceTree = "<group>"; };
 		826BADB02A64D5D100022B45 /* AGPULocationDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AGPULocationDetailViewController.storyboard; sourceTree = "<group>"; };
+		826F93862A91C3D500DE4FB1 /* NewsPagesListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPagesListViewModelProtocol.swift; sourceTree = "<group>"; };
+		826F93882A91C46A00DE4FB1 /* NewsPagesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPagesListViewModel.swift; sourceTree = "<group>"; };
+		826F938A2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsPagesListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		8270A5442A578452008ACADC /* DateManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerProtocol.swift; sourceTree = "<group>"; };
 		8270A5472A5784A2008ACADC /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		82722D422A66462100149D06 /* AGPUBuildingPins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingPins.swift; sourceTree = "<group>"; };
@@ -1714,7 +1720,6 @@
 			children = (
 				826888562A33AB3C00434219 /* Splash Screen */,
 				828CFA342A35F62400C7542D /* TabBar */,
-				82BC2F492A8F0B5B00ADB239 /* News Pages List */,
 				820D33992A75974F00843313 /* Contacts List */,
 				82426C752A714CDD00D5AA57 /* For Every Status */,
 				82808E9C2A31F2D400DEEB16 /* AGPU Sections */,
@@ -1809,6 +1814,40 @@
 				82FEA7AB2A7ED59F00863453 /* Building Type */,
 			);
 			path = "Map Models";
+			sourceTree = "<group>";
+		};
+		826F93822A91C3A700DE4FB1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				826F93852A91C3C200DE4FB1 /* Protocol */,
+				826F93842A91C3C000DE4FB1 /* ViewModel */,
+				826F93832A91C3BE00DE4FB1 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		826F93832A91C3BE00DE4FB1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				826F938A2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		826F93842A91C3C000DE4FB1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				826F93882A91C46A00DE4FB1 /* NewsPagesListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		826F93852A91C3C200DE4FB1 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				826F93862A91C3D500DE4FB1 /* NewsPagesListViewModelProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		8270A5462A578491008ACADC /* Date */ = {
@@ -2729,6 +2768,7 @@
 			children = (
 				82B24A7E2A81BA32008B94E4 /* News List MVVM */,
 				82B266F82A8D91B600043A6D /* News Categories MVVM */,
+				82BC2F492A8F0B5B00ADB239 /* News Pages List MVVM */,
 			);
 			path = "News Modules";
 			sourceTree = "<group>";
@@ -2757,12 +2797,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		82BC2F492A8F0B5B00ADB239 /* News Pages List */ = {
+		82BC2F492A8F0B5B00ADB239 /* News Pages List MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				82BC2F4A2A8F0B6600ADB239 /* View */,
+				826F93822A91C3A700DE4FB1 /* ViewModel */,
 			);
-			path = "News Pages List";
+			path = "News Pages List MVVM";
 			sourceTree = "<group>";
 		};
 		82BC2F4A2A8F0B6600ADB239 /* View */ = {
@@ -3601,9 +3642,11 @@
 				82FEA7AE2A7ED5BB00863453 /* AGPUBuildingType.swift in Sources */,
 				82989AEE2A6F6EB600F27858 /* FacultyCathedraListViewModel + Extensions.swift in Sources */,
 				822632412A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift in Sources */,
+				826F93892A91C46A00DE4FB1 /* NewsPagesListViewModel.swift in Sources */,
 				828DC5592A7B3865001EA324 /* FacultyGroupModel.swift in Sources */,
 				821FCF072A87CE30006FFB26 /* NewsListViewController.swift in Sources */,
 				82BC2F482A8EFD7C00ADB239 /* NewsCategoriesListViewModel + Extensions.swift in Sources */,
+				826F938B2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
 				82D6C3342A5E1DEC00FB7F5D /* Discipline.swift in Sources */,
@@ -3746,6 +3789,7 @@
 				828CFA372A35F65700C7542D /* WebViewController.swift in Sources */,
 				82E4C5842A6B201600F65A67 /* LocationManagerProtocol.swift in Sources */,
 				828321672A7D02E6008641A5 /* AllGroupsListViewModel.swift in Sources */,
+				826F93872A91C3D500DE4FB1 /* NewsPagesListViewModelProtocol.swift in Sources */,
 				8241F99B2A5F415A007DF628 /* DateManager + Extensions.swift in Sources */,
 				8255ADCF2A6732110012895E /* CustomTitleView.swift in Sources */,
 				82989AE62A6F6DEA00F27858 /* FacultyCathedraListViewModel.swift in Sources */,
