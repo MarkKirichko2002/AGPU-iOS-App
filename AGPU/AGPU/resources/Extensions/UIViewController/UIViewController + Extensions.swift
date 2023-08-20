@@ -11,11 +11,11 @@ import MessageUI
 
 extension UIViewController {
     
-    func GoToWeb(url: String, title: String?, isSheet: Bool) {
+    func GoToWeb(url: String, image: String, title: String?, isSheet: Bool) {
         let vc = WebViewController(url: url)
         let navVC = UINavigationController(rootViewController: vc)
         if title != nil {
-            let titleView = CustomTitleView(image: "online", title: title ?? "", frame: .zero)
+            let titleView = CustomTitleView(image: image, title: title ?? "", frame: .zero)
             vc.navigationItem.titleView = titleView
         }
         if isSheet {

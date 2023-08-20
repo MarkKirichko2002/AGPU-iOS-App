@@ -30,12 +30,12 @@ extension SettingsManager: SettingsManagerProtocol {
             return navVC
         case 2:
             let vc = ForStudentListTableViewController()
-            vc.tabBarItem = UITabBarItem(title: "Студенту", image: UIImage(named: "applicant"), selectedImage: UIImage(named: "applicant selected"))
+            vc.tabBarItem = UITabBarItem(title: "Студенту", image: UIImage(named: "student icon"), selectedImage: UIImage(named: "student icon selected"))
             let navVC = UINavigationController(rootViewController: vc)
             return navVC
         case 3:
             let vc = ForEmployeeListTableViewController()
-            vc.tabBarItem = UITabBarItem(title: "Сотруднику", image: UIImage(named: "applicant"), selectedImage: UIImage(named: "applicant selected"))
+            vc.tabBarItem = UITabBarItem(title: "Сотруднику", image: UIImage(named: "computer"), selectedImage: UIImage(named: "computer selected"))
             let navVC = UINavigationController(rootViewController: vc)
             return navVC
         default:

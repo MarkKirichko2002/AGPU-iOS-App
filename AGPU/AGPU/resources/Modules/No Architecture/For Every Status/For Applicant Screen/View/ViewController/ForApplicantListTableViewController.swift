@@ -16,7 +16,8 @@ class ForApplicantListTableViewController: UITableViewController {
     }
     
     private func SetUpNavigation() {
-        navigationItem.title = "Абитуриенту"
+        let titleView = CustomTitleView(image: "profile icon", title: "Абитуриенту", frame: .zero)
+        navigationItem.titleView = titleView
     }
     
     private func SetUpTable() {
@@ -30,7 +31,7 @@ class ForApplicantListTableViewController: UITableViewController {
         case 0:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "http://abit.agpu.net/", title: "Личный кабинет абитуриента", isSheet: false)
+                self.GoToWeb(url: "http://abit.agpu.net/", image: ForApplicantSections.sections[indexPath.row].icon, title: "Личный кабинет абитуриента", isSheet: false)
             }
             
         case 1:
@@ -52,19 +53,19 @@ class ForApplicantListTableViewController: UITableViewController {
         case 3:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "http://priem.agpu.net/", title: "Информация для поступающих", isSheet: false)
+                self.GoToWeb(url: "http://priem.agpu.net/", image: ForApplicantSections.sections[indexPath.row].icon, title: "Информация для поступающих", isSheet: false)
             }
             
         case 4:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "http://priem.agpu.net/contact-form/Quest.php", title: "Вопросы и ответы", isSheet: false)
+                self.GoToWeb(url: "http://priem.agpu.net/contact-form/Quest.php", image: ForApplicantSections.sections[indexPath.row].icon, title: "Вопросы и ответы", isSheet: false)
             }
             
         case 5:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "https://niiro-agpu.ru/", title: "Доп. образование", isSheet: false)
+                self.GoToWeb(url: "https://niiro-agpu.ru/", image: ForApplicantSections.sections[indexPath.row].icon, title: "Доп. образование", isSheet: false)
             }
             
         case 6:

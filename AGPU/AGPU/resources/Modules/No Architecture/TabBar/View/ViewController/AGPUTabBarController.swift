@@ -228,7 +228,7 @@ extension AGPUTabBarController {
                 self.updateDynamicButton(icon: section.icon)
                 
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                    self.GoToWeb(url: section.url, title: section.name, isSheet: false)
+                    self.GoToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false)
                 }
                 ResetSpeechRecognition()
                 break
@@ -246,7 +246,7 @@ extension AGPUTabBarController {
             self.updateDynamicButton(icon: "dice")
             
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.GoToWeb(url: section.url, title: section.name, isSheet: false)
+                self.GoToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false)
             }
             ResetSpeechRecognition()
         }
@@ -264,7 +264,7 @@ extension AGPUTabBarController {
                     self.updateDynamicButton(icon: subsection.icon)
                     
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                        self.GoToWeb(url: subsection.url, title: "ФГБОУ ВО «АГПУ»", isSheet: false)
+                        self.GoToWeb(url: subsection.url, image: subsection.icon, title: "ФГБОУ ВО «АГПУ»", isSheet: false)
                     }
                     break
                 }

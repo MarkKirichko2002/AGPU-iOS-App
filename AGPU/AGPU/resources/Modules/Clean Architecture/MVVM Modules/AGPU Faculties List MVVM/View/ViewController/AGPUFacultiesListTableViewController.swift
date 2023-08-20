@@ -49,7 +49,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
             _ in
             
             let infoAction = UIAction(title: "узнать больше", image: UIImage(named: "info")) { _ in
-                self.GoToWeb(url: self.viewModel.facultyItem(index: indexPath.row).url, title: self.viewModel.facultyItem(index: indexPath.row).abbreviation, isSheet: false)
+                self.GoToWeb(url: self.viewModel.facultyItem(index: indexPath.row).url, image: self.viewModel.facultyItem(index: indexPath.row).icon, title: self.viewModel.facultyItem(index: indexPath.row).abbreviation, isSheet: false)
             }
             
             let cathedraAction = UIAction(title: "кафедры", image: UIImage(named: "university")) { _ in
@@ -78,7 +78,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
             }
             
             let enterAction = UIAction(title: "поступить", image: UIImage(named: "worksheet")) { _ in
-                self.GoToWeb(url: "http://priem.agpu.net/anketa/index.php", title: "Анкета", isSheet: false)
+                self.GoToWeb(url: "http://priem.agpu.net/anketa/index.php", image: "worksheet", title: "Анкета", isSheet: false)
             }
             
             let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in

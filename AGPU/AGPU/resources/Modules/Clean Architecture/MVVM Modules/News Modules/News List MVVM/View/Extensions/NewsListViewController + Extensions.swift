@@ -22,7 +22,7 @@ extension NewsListViewController: UICollectionViewDelegate {
                     }
                 }
                 Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
-                    self.GoToWeb(url: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))", title: "\(self.viewModel.articleItem(index: indexPath.row).date ?? "")", isSheet: false)
+                    self.GoToWeb(url: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))", image: "online", title: "\(self.viewModel.articleItem(index: indexPath.row).date ?? "")", isSheet: false)
                 }
             }
             
