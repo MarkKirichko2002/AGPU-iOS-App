@@ -77,7 +77,6 @@
 		82426C8D2A71D26100D5AA57 /* ForEmployeeSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C8C2A71D26100D5AA57 /* ForEmployeeSections.swift */; };
 		82426C902A71DCDA00D5AA57 /* UserStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C8F2A71DCDA00D5AA57 /* UserStatusModel.swift */; };
 		82426C942A71DD0100D5AA57 /* UserStatusList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C932A71DD0100D5AA57 /* UserStatusList.swift */; };
-		82461FEE2A50C493008A8752 /* AppDelegate + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */; };
 		824C56D92A6FE98F0074ADB7 /* FacultyCathedraList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */; };
 		82505F502A7FBD7D001DE24A /* TimeTableWeekListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82505F4F2A7FBD7D001DE24A /* TimeTableWeekListTableViewController.swift */; };
 		82505F532A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82505F522A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift */; };
@@ -303,7 +302,6 @@
 		82426C8C2A71D26100D5AA57 /* ForEmployeeSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEmployeeSections.swift; sourceTree = "<group>"; };
 		82426C8F2A71DCDA00D5AA57 /* UserStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusModel.swift; sourceTree = "<group>"; };
 		82426C932A71DD0100D5AA57 /* UserStatusList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusList.swift; sourceTree = "<group>"; };
-		82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate + Extensions.swift"; sourceTree = "<group>"; };
 		824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyCathedraList.swift; sourceTree = "<group>"; };
 		82505F4F2A7FBD7D001DE24A /* TimeTableWeekListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableWeekListTableViewController.swift; sourceTree = "<group>"; };
 		82505F522A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableWeekListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
@@ -552,14 +550,6 @@
 				827B62C22A425166008D241E /* UserDefaults + Extensions.swift */,
 			);
 			path = UserDefaults;
-			sourceTree = "<group>";
-		};
-		8208E75A2A63A52700675EF1 /* AppDelegate */ = {
-			isa = PBXGroup;
-			children = (
-				82461FED2A50C493008A8752 /* AppDelegate + Extensions.swift */,
-			);
-			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 		8208E75B2A63A53000675EF1 /* WKWebView */ = {
@@ -1709,7 +1699,6 @@
 				8208E7572A63A4F900675EF1 /* UIViewController */,
 				8208E7582A63A50C00675EF1 /* String */,
 				8208E7592A63A51B00675EF1 /* UserDefaults */,
-				8208E75A2A63A52700675EF1 /* AppDelegate */,
 				8208E75B2A63A53000675EF1 /* WKWebView */,
 			);
 			path = Extensions;
@@ -3628,7 +3617,6 @@
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
 				82BDFDB02A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift in Sources */,
 				8234E60B2A88591300ED354C /* RecentWordDocumentModel.swift in Sources */,
-				82461FEE2A50C493008A8752 /* AppDelegate + Extensions.swift in Sources */,
 				8228E3A42A6C9D3700C1B6AD /* AGPUBuildingsMapViewModelProtocol.swift in Sources */,
 				8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */,
 				8228E3A62A6C9DB300C1B6AD /* AGPUBuildingsMapViewModel + Extensions.swift in Sources */,
@@ -3946,6 +3934,7 @@
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Для обеспечения постоянного отображения вашей геопозиции и уточнения расположения корпусов университета на карте даже в неактивном режиме приложения.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Для отображения вашей текущей геопозиции и указания расположения корпусов университета на карте.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Микрофон используется для распознавания речи и обработки голосовых команд в приложении, чтобы повысить взаимодействие и возможность управления функциями через голосовые команды.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Данное приложение требует доступ к вашей фото-галерее, чтобы вы могли сохранять изображения приложения на устройство.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Для обеспечения функциональности голосового распознавания приложение запрашивает доступ к микрофону для обработки и распознавания речи, что позволяет пользователю управлять функциями приложения через голосовые команды.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -3981,6 +3970,7 @@
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Для обеспечения постоянного отображения вашей геопозиции и уточнения расположения корпусов университета на карте даже в неактивном режиме приложения.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Для отображения вашей текущей геопозиции и указания расположения корпусов университета на карте.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Микрофон используется для распознавания речи и обработки голосовых команд в приложении, чтобы повысить взаимодействие и возможность управления функциями через голосовые команды.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Данное приложение требует доступ к вашей фото-галерее, чтобы вы могли сохранять изображения приложения на устройство.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Для обеспечения функциональности голосового распознавания приложение запрашивает доступ к микрофону для обработки и распознавания речи, что позволяет пользователю управлять функциями приложения через голосовые команды.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
