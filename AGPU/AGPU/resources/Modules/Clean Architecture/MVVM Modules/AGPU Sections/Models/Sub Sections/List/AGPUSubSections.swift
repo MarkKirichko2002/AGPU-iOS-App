@@ -91,34 +91,27 @@ struct AGPUSubSections {
         ], "Абитуриенту" :  [
             AGPUSubSectionModel(
                 id: 0,
-                name: "Личный кабинет абитуриента",
-                icon: "user",
-                url: "http://abit.agpu.net/",
-                voiceCommand: "личныйкабинетабитуриента"
-            ),
-            AGPUSubSectionModel(
-                id: 1,
                 name: "Институты/Факультеты",
                 icon: "user",
                 url: "http://test.agpu.net/abitur/faculties-institutes/index.php",
                 voiceCommand: "факультеты"
             ),
             AGPUSubSectionModel(
-                id: 2,
+                id: 1,
                 name: "Информация для поступающих",
                 icon: "user",
                 url: "http://priem.agpu.net/",
                 voiceCommand: "информациядляпоступающих"
             ),
             AGPUSubSectionModel(
-                id: 3,
+                id: 2,
                 name: "Вопросы и ответы",
                 icon: "user",
                 url: "http://priem.agpu.net/contact-form/Quest.php",
                 voiceCommand: "вопросыиответы"
             ),
             AGPUSubSectionModel(
-                id: 4,
+                id: 3,
                 name: "Дополнительное образование",
                 icon: "user",
                 url: "https://niiro-agpu.ru/",
@@ -127,76 +120,69 @@ struct AGPUSubSections {
         ], "Студенту" :  [
             AGPUSubSectionModel(
                 id: 0,
-                name: "Личный кабинет ЭИОС",
-                icon: "student",
-                url: "http://plany.agpu.net/WebApp/#/",
-                voiceCommand: "личныйкабинетiOS"
-            ),
-            AGPUSubSectionModel(
-                id: 1,
                 name: "Расписание занятий",
                 icon: "student",
                 url: "",
                 voiceCommand: "-"
             ),
             AGPUSubSectionModel(
-                id: 2,
+                id: 1,
                 name: "Институты/Факультеты и кафедры",
                 icon: "student",
                 url: "http://test.agpu.net/struktura-vuza/faculties-institutes/index.php",
                 voiceCommand: "кафедры"
             ),
             AGPUSubSectionModel(
-                id: 3,
+                id: 2,
                 name: "Кампус и общежития",
                 icon: "student",
                 url: "http://test.agpu.net/studentu/obshchezhitiya/index.php",
                 voiceCommand: "кампусиобщежития"
             ),
             AGPUSubSectionModel(
-                id: 4,
+                id: 3,
                 name: "Студенческие клубы и организации, спорт и фитнес, культурная жизнь",
                 icon: "student",
                 url: "http://test.agpu.net/struktura-vuza/otdel-mpivd/index.php",
                 voiceCommand: "спорт"
             ),
             AGPUSubSectionModel(
-                id: 5,
+                id: 4,
                 name: "Дополнительное образование",
                 icon: "student",
                 url: "https://niiro-agpu.ru/",
                 voiceCommand: "дополнительноеобразование"
             ),
             AGPUSubSectionModel(
-                id: 6,
+                id: 5,
                 name: "Карьера",
                 icon: "student",
                 url: "http://test.agpu.net/struktura-vuza/uapik/sodeystvie-trudoustroystvu/index.php",
                 voiceCommand: "карьера"
             ),
             AGPUSubSectionModel(
-                id: 7,
+                id: 6,
                 name: "Психологическая служба",
                 icon: "student",
                 url: "http://test.agpu.net/PsychologicalService/index.php",
                 voiceCommand: "психологическаяслужба"
             ),
             AGPUSubSectionModel(
-                id: 8,
+                id: 7,
                 name: "Профсоюз",
                 icon: "student",
                 url: "http://test.agpu.net/profsouz/index.php",
                 voiceCommand: "профсоюз"
             ),
             AGPUSubSectionModel(
-                id: 9,
+                id: 8,
                 name: "Платные образовательные услуги",
                 icon: "student",
                 url: "http://test.agpu.net/sveden/paid_edu/index.php",
                 voiceCommand: "платныеобразовательныеуслуги"
             ),
             AGPUSubSectionModel(
-                id: 10,
+                id: 9,
                 name: "Реквизиты",
                 icon: "student",
                 url: "http://test.agpu.net/contacts/requisites.php",
@@ -205,69 +191,62 @@ struct AGPUSubSections {
         ], "Сотрудникам" : [
             AGPUSubSectionModel(
                 id: 0,
-                name: "Личный кабинет ЭИОС",
-                icon: "people",
-                url: "http://plany.agpu.net/WebApp/#/",
-                voiceCommand: "личныйкабинетios"
-            ),
-            AGPUSubSectionModel(
-                id: 1,
                 name: "Расписание занятий",
                 icon: "people",
                 url: "",
                 voiceCommand: "-"
             ),
             AGPUSubSectionModel(
-                id: 2,
+                id: 1,
                 name: "Ведомости Online",
                 icon: "people",
                 url: "http://vedomosti.agpu.net/login",
                 voiceCommand: "ведомости"
             ),
             AGPUSubSectionModel(
-                id: 3,
+                id: 2,
                 name: "Подразделения",
                 icon: "people",
                 url: "http://test.agpu.net/struktura-vuza/index.php",
                 voiceCommand: "подразделени"
             ),
             AGPUSubSectionModel(
-                id: 4,
+                id: 3,
                 name: "Документы",
                 icon: "people",
                 url: "http://test.agpu.net/sveden/document/index.php",
                 voiceCommand: "документы"
             ),
             AGPUSubSectionModel(
-                id: 5,
+                id: 4,
                 name: "Внутренние нормативные документы",
                 icon: "people",
                 url: "http://test.agpu.net/struktura-vuza/uapik/wnutrennie_dokumenti/index.php",
                 voiceCommand: "внутренниенормативныедокументы"
             ),
             AGPUSubSectionModel(
-                id: 6,
+                id: 5,
                 name: "Информация отдела кадровой политики",
                 icon: "people",
                 url: "http://test.agpu.net/struktura-vuza/ukppsip/otdel-kadrovoy-politiki/index.php",
                 voiceCommand: "информацияотделакадровойполитики"
             ),
             AGPUSubSectionModel(
-                id: 7,
+                id: 6,
                 name: "Профсоюз",
                 icon: "people",
                 url: "http://test.agpu.net/profsouz/index.php",
                 voiceCommand: "профсоюз"
             ),
             AGPUSubSectionModel(
-                id: 8,
+                id: 7,
                 name: "Информационная система мониторинга научных достижений преподавателей",
                 icon: "people",
                 url: "https://nir.it-institut.ru/",
                 voiceCommand: "информационнаясистемамониторинганаучныхдостиженийпреподавателей"
             ),
             AGPUSubSectionModel(
-                id: 9,
+                id: 8,
                 name: "Психологическая служба",
                 icon: "people",
                 url: "http://test.agpu.net/PsychologicalService/index.php",

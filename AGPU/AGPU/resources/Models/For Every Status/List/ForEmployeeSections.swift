@@ -10,43 +10,39 @@ import Foundation
 struct ForEmployeeSections {
     
     static let sections = [
+        
         ForEveryStatusModel(
             id: 1,
-            icon: "profile icon",
-            name: "личный кабинет ЭИОС"
-        ),
-        ForEveryStatusModel(
-            id: 2,
             icon: "map icon",
             name: "найти «АГПУ»"
         ),
         ForEveryStatusModel(
-            id: 3,
+            id: 2,
             icon: "online",
             name: "ведомости online"
         ),
         ForEveryStatusModel(
-            id: 4,
+            id: 3,
             icon: "book",
             name: "методические материалы"
         ),
         ForEveryStatusModel(
-            id: 5,
+            id: 4,
             icon: "group icon",
             name: "подразделения"
         ),
         ForEveryStatusModel(
-            id: 6,
+            id: 5,
             icon: "document",
             name: "документы"
         ),
         ForEveryStatusModel(
-            id: 7,
+            id: 6,
             icon: "sections icon",
             name: "разделы"
         ),
         ForEveryStatusModel(
-            id: 8,
+            id: 7,
             icon: "photo icon",
             name: "АГПУ обои"
         )
