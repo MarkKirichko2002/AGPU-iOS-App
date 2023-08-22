@@ -24,6 +24,16 @@ extension DateManager: DateManagerProtocol {
         return timeString
     }
     
+    func getDateFromOtherFormat(date: String)-> String {
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        if let formattedDate = dateFormatter.date(from: date) {
+            let formattedDateString = dateFormatter.string(from: formattedDate)
+            print("Дата: \(formattedDate)")
+            return formattedDateString
+        }
+        return ""
+    }
+    
     func nextDay(date: String)-> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"

@@ -259,7 +259,7 @@ extension AGPUTabBarController {
             
             for subsection in section.subsections {
                 
-                if text.noWhitespacesWord().contains(subsection.voiceCommand) {
+                if text.noWhitespacesWord().contains(subsection.voiceCommand) && subsection.url != "" {
                     ResetSpeechRecognition()
                     self.updateDynamicButton(icon: subsection.icon)
                     

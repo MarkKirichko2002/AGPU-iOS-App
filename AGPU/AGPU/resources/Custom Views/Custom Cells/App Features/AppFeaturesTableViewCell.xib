@@ -24,7 +24,7 @@
                             <constraint firstAttribute="height" constant="70" id="MGf-6h-0up"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="фишки приложения АГПУ для iOS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKi-CH-bEd">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="фишки приложения АГПУ" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKi-CH-bEd">
                         <rect key="frame" x="110" y="15" width="292" height="60"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="1Xu-Uh-LLi"/>

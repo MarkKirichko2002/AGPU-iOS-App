@@ -49,11 +49,6 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         navigationItem.title = "Сегодня: \(date)"
         
-        // кнопка перезагрузить
-        let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshTimetable))
-        refreshButton.tintColor = .black
-        navigationItem.leftBarButtonItem = refreshButton
-        
         // список групп
         let groupList = UIAction(title: "группы") { _ in
             let vc = AllGroupsListTableViewController(group: self.group)

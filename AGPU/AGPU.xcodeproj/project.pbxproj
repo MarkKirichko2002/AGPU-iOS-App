@@ -1711,13 +1711,13 @@
 				828CFA342A35F62400C7542D /* TabBar */,
 				820D33992A75974F00843313 /* Contacts List */,
 				82426C752A714CDD00D5AA57 /* For Every Status */,
+				82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */,
 				82808E9C2A31F2D400DEEB16 /* AGPU Sections */,
 				821270462A78925D0095D68E /* PDF Modules */,
 				82C561602A6B770800514B00 /* App Features */,
 				829522DB2A38AEBE00329713 /* Maps */,
 				82505F432A7F9A0D001DE24A /* TimeTable Modules */,
 				82D6C3422A5E33CD00FB7F5D /* Calendar */,
-				82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */,
 			);
 			path = "No Architecture";
 			sourceTree = "<group>";

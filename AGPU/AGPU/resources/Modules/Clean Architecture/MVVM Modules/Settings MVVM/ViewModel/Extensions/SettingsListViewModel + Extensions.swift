@@ -10,7 +10,7 @@ import UIKit
 // MARK: - SettingsListViewModelProtocol
 extension SettingsListViewModel: SettingsListViewModelProtocol {
     
-    func sectionsCount()->Int {
+    func sectionsCount()-> Int {
         return 4
     }
     

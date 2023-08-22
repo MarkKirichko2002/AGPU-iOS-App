@@ -136,7 +136,7 @@ struct AGPUSubSections {
                 id: 1,
                 name: "Расписание занятий",
                 icon: "student",
-                url: "http://www.it-institut.ru/SearchString/Index/118",
+                url: "",
                 voiceCommand: "-"
             ),
             AGPUSubSectionModel(
@@ -214,7 +214,7 @@ struct AGPUSubSections {
                 id: 1,
                 name: "Расписание занятий",
                 icon: "people",
-                url: "http://www.it-institut.ru/SearchString/Index/118",
+                url: "",
                 voiceCommand: "-"
             ),
             AGPUSubSectionModel(
