@@ -65,6 +65,12 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         }
     }
     
+    func RefreshNews() {
+        if let page = newsResponse.currentPage {
+            GetNews(by: page)
+        }
+    }
+    
     // вернуть элемент новости
     func articleItem(index: Int)-> Article {
         if let article = newsResponse.articles?[index] {

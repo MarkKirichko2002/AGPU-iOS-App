@@ -42,11 +42,7 @@ final class NewsListViewController: UIViewController {
     }
     
     @objc private func refreshNews() {
-        if let faculty = viewModel.faculty {
-            viewModel.GetFacultyNews(faculty: faculty)
-        } else {
-            viewModel.GetAGPUNews()
-        }
+        viewModel.RefreshNews()
     }
     
     private func SetUpCollectionView() {

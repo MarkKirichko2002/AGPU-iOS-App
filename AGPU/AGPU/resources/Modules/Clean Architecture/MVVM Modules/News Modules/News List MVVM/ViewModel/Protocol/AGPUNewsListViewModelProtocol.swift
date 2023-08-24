@@ -12,6 +12,7 @@ protocol AGPUNewsListViewModelProtocol {
     func GetAGPUNews()
     func GetFacultyNews(faculty: AGPUFacultyModel)
     func GetNews(by page: Int)
+    func RefreshNews()
     func articleItem(index: Int)-> Article
     func registerDataChangedHandler(block: @escaping(AGPUFacultyModel?)->Void)
     func ObserveFacultyChanges()
