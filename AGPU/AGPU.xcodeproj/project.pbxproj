@@ -1747,7 +1747,7 @@
 				82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */,
 				82808E9C2A31F2D400DEEB16 /* AGPU Sections */,
 				821270462A78925D0095D68E /* PDF Modules */,
-				82C561602A6B770800514B00 /* App Features */,
+				82C561602A6B770800514B00 /* App Features Modules */,
 				829522DB2A38AEBE00329713 /* Maps */,
 				82505F432A7F9A0D001DE24A /* TimeTable Modules */,
 				82D6C3422A5E33CD00FB7F5D /* Calendar */,
@@ -2933,14 +2933,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		82C561602A6B770800514B00 /* App Features */ = {
+		82C561602A6B770800514B00 /* App Features Modules */ = {
 			isa = PBXGroup;
 			children = (
 				826F93802A90FECB00DE4FB1 /* Model */,
 				82C561652A6B7AEA00514B00 /* Features List */,
 				82C561642A6B7AE800514B00 /* Feature Detail */,
 			);
-			path = "App Features";
+			path = "App Features Modules";
 			sourceTree = "<group>";
 		};
 		82C561642A6B7AE800514B00 /* Feature Detail */ = {
@@ -4002,7 +4002,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -4036,7 +4036,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

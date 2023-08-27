@@ -53,8 +53,9 @@ final class AppFeaturesListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let feature = AppFeaturesList.features[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "\(indexPath.row + 1)) \(AppFeaturesList.features[indexPath.row].name)"
+        cell.textLabel?.text = "\(feature.id)) \(feature.name)"
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
         return cell
     }
