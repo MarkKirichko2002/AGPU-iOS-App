@@ -11,12 +11,12 @@ import UIKit
 extension NewsListViewController: UICollectionViewDelegate {
         
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+        Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
             if let cell = collectionView.cellForItem(at: indexPath) as? NewsCollectionViewCell {
                 cell.didTapCell(indexPath: indexPath)
             }
         }
-        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
             self.GoToWeb(url: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))", image: "online", title: "\(self.viewModel.articleItem(index: indexPath.row).date ?? "")", isSheet: false)
         }
     }
