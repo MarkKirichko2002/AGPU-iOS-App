@@ -48,6 +48,7 @@ final class AGPUTabBarController: UITabBarController {
         ObserveWebScreen()
         ObserveFaculty()
         ObserveArticleSelected()
+        ObserveNewsRefreshed()
         becomeFirstResponder()
     }
     
@@ -220,6 +221,15 @@ final class AGPUTabBarController: UITabBarController {
     private func ObserveArticleSelected() {
         NotificationCenter.default.addObserver(forName: Notification.Name("article selected"), object: nil, queue: .main) { _ in
             self.updateDynamicButton(icon: "info icon")
+        }
+    }
+    
+    private func ObserveNewsRefreshed() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("news refreshed"), object: nil, queue: .main) { _ in
+            self.updateDynamicButton(icon: "refresh icon")
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
+            }
         }
     }
 }

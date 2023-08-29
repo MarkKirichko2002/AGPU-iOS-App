@@ -72,6 +72,7 @@ extension DateManager: DateManagerProtocol {
     }
     
     func DateRange(startDate: String, endDate: String)-> Bool {
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
 

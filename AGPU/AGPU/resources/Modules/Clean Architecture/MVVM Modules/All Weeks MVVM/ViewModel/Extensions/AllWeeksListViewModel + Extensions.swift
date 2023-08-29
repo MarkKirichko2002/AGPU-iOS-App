@@ -38,7 +38,7 @@ extension AllWeeksListViewModel: AllWeeksListViewModelProtocol {
         for week in weeks {
             let isRange = dateManager.DateRange(startDate: week.from, endDate: week.to)
             if isRange {
-                DispatchQueue.main.async {
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
                     self.ScrollHandler?(week.id - 1)
                 }
             }
