@@ -65,6 +65,10 @@
 		8234E60D2A885B6D00ED354C /* WordRecentDocumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E60C2A885B6D00ED354C /* WordRecentDocumentViewModel.swift */; };
 		8234E60F2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E60E2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift */; };
 		8234E6122A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E6112A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift */; };
+		823BFAF62A9D2FAC00209F44 /* TimeTableInfoListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823BFAF52A9D2FAC00209F44 /* TimeTableInfoListViewModelProtocol.swift */; };
+		823BFAF82A9D2FBA00209F44 /* TimeTableInfoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823BFAF72A9D2FBA00209F44 /* TimeTableInfoListViewModel.swift */; };
+		823BFAFA2A9D2FD000209F44 /* TimeTableInfoListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823BFAF92A9D2FD000209F44 /* TimeTableInfoListViewModel + Extensions.swift */; };
+		823BFAFC2A9D2FF500209F44 /* TimeTableInfoListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823BFAFB2A9D2FF500209F44 /* TimeTableInfoListTableViewController.swift */; };
 		8241F9812A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9802A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift */; };
 		8241F9852A5F3F73007DF628 /* CalendarViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9842A5F3F73007DF628 /* CalendarViewController + Extensions.swift */; };
 		8241F9932A5F4091007DF628 /* TimeTableServicerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9922A5F4091007DF628 /* TimeTableServicerProtocol.swift */; };
@@ -293,6 +297,10 @@
 		8234E60C2A885B6D00ED354C /* WordRecentDocumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRecentDocumentViewModel.swift; sourceTree = "<group>"; };
 		8234E60E2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WordRecentDocumentViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		8234E6112A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentWordDocumentViewController + Extensions.swift"; sourceTree = "<group>"; };
+		823BFAF52A9D2FAC00209F44 /* TimeTableInfoListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableInfoListViewModelProtocol.swift; sourceTree = "<group>"; };
+		823BFAF72A9D2FBA00209F44 /* TimeTableInfoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableInfoListViewModel.swift; sourceTree = "<group>"; };
+		823BFAF92A9D2FD000209F44 /* TimeTableInfoListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableInfoListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		823BFAFB2A9D2FF500209F44 /* TimeTableInfoListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableInfoListTableViewController.swift; sourceTree = "<group>"; };
 		8241F9802A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8241F9842A5F3F73007DF628 /* CalendarViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8241F9922A5F4091007DF628 /* TimeTableServicerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableServicerProtocol.swift; sourceTree = "<group>"; };
@@ -1261,6 +1269,65 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		823BFAEE2A9D2F4300209F44 /* TimeTable Info */ = {
+			isa = PBXGroup;
+			children = (
+				823BFAF02A9D2F6B00209F44 /* View */,
+				823BFAEF2A9D2F6800209F44 /* ViewModel */,
+			);
+			path = "TimeTable Info";
+			sourceTree = "<group>";
+		};
+		823BFAEF2A9D2F6800209F44 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				823BFAF42A9D2F7F00209F44 /* Protocol */,
+				823BFAF32A9D2F7D00209F44 /* ViewModel */,
+				823BFAF22A9D2F7B00209F44 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		823BFAF02A9D2F6B00209F44 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				823BFAF12A9D2F7500209F44 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		823BFAF12A9D2F7500209F44 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				823BFAFB2A9D2FF500209F44 /* TimeTableInfoListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		823BFAF22A9D2F7B00209F44 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				823BFAF92A9D2FD000209F44 /* TimeTableInfoListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		823BFAF32A9D2F7D00209F44 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				823BFAF72A9D2FBA00209F44 /* TimeTableInfoListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		823BFAF42A9D2F7F00209F44 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				823BFAF52A9D2FAC00209F44 /* TimeTableInfoListViewModelProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		8241F97F2A5F3C38007DF628 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1802,6 +1869,7 @@
 				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
 				82989ACB2A6E308F00F27858 /* Faculty Cathedra List */,
 				825634B62A6221C10082B7B8 /* Faculty Groups List MVVM */,
+				823BFAEE2A9D2F4300209F44 /* TimeTable Info */,
 				828321602A7C6A25008641A5 /* All Groups MVVM */,
 				82B24A6F2A817D69008B94E4 /* All Weeks MVVM */,
 				82B1C0C52A80702D00520C14 /* Sub Groups List MVVM */,
@@ -3649,6 +3717,7 @@
 				8228E39C2A6C920D00C1B6AD /* LocationModel.swift in Sources */,
 				820D18E52A68F9EE00BFAA35 /* AGPUBuildingModel.swift in Sources */,
 				82BEAD822A7414C300DD34C2 /* RecentPageViewModel.swift in Sources */,
+				823BFAF62A9D2FAC00209F44 /* TimeTableInfoListViewModelProtocol.swift in Sources */,
 				82B24A642A816B54008B94E4 /* WeekModel.swift in Sources */,
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
 				82BDFDB02A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift in Sources */,
@@ -3658,6 +3727,7 @@
 				8228E3A62A6C9DB300C1B6AD /* AGPUBuildingsMapViewModel + Extensions.swift in Sources */,
 				82989AD82A6E54AF00F27858 /* AGPUCurrentCathedraMapViewController.swift in Sources */,
 				822605FA2A8532F30055925F /* RecentMomentsListViewModel + Extensions.swift in Sources */,
+				823BFAF82A9D2FBA00209F44 /* TimeTableInfoListViewModel.swift in Sources */,
 				82426C902A71DCDA00D5AA57 /* UserStatusModel.swift in Sources */,
 				82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */,
 				82E4C58B2A6B20FF00F65A67 /* LocationManager + Extensions.swift in Sources */,
@@ -3688,6 +3758,7 @@
 				82FB5B642A7A8FF600728980 /* InteractiveView.swift in Sources */,
 				828321802A7D687A008641A5 /* SearchAGPUBuildingMapViewModel + Extensions.swift in Sources */,
 				8228E3992A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift in Sources */,
+				823BFAFC2A9D2FF500209F44 /* TimeTableInfoListTableViewController.swift in Sources */,
 				8234E6082A8858C400ED354C /* WordRecentDocumentViewModelProtocol.swift in Sources */,
 				829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */,
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
@@ -3790,6 +3861,7 @@
 				8210CA092A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift in Sources */,
 				82320D812A4913FE00ECADEE /* AGPUFaculties.swift in Sources */,
 				826716C22A5A2AF600CD5C23 /* RecentWebPageModel.swift in Sources */,
+				823BFAFA2A9D2FD000209F44 /* TimeTableInfoListViewModel + Extensions.swift in Sources */,
 				82B24A872A81BCE6008B94E4 /* Article.swift in Sources */,
 				82320D872A491F5700ECADEE /* AGPUFacultyTableViewCell.swift in Sources */,
 				820D339B2A75977400843313 /* FacultyContactsListTableViewController.swift in Sources */,
