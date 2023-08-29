@@ -48,7 +48,9 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
         for (groupIndex, groups) in FacultyGroups.groups.enumerated() {
             for (elementIndex, group) in groups.groups.enumerated() {
                 if group == self.group {
-                    completion(groupIndex, elementIndex)
+                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                        completion(groupIndex, elementIndex)
+                    }
                 }
             }
         }

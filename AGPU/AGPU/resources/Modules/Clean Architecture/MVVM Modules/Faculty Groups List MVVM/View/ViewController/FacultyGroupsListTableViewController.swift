@@ -63,6 +63,7 @@ final class FacultyGroupsListTableViewController: UITableViewController {
     
     private func SetUpTable() {
         tableView.register(UINib(nibName: FacultyGroupTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyGroupTableViewCell.identifier)
+        tableView.isUserInteractionEnabled = false
     }
     
     private func BindViewModel() {
@@ -76,6 +77,9 @@ final class FacultyGroupsListTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 let indexPath = IndexPath(row: index, section: section)
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    self.tableView.isUserInteractionEnabled = true
+                }
             }
         }
         viewModel.scrollToSelectedGroup()

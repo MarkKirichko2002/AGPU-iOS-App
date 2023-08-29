@@ -60,10 +60,10 @@ class AllGroupsListTableViewController: UITableViewController {
     private func BindViewModel() {
         
         viewModel.scrollToSelectedGroup { section, index in
-            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                DispatchQueue.main.async {
-                    let indexPath = IndexPath(row: index, section: section)
-                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+            DispatchQueue.main.async {
+                let indexPath = IndexPath(row: index, section: section)
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
                     self.tableView.isUserInteractionEnabled = true
                 }
             }

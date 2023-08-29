@@ -79,7 +79,7 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
             for (itemIndex, groupItem) in groupsSections.groups.enumerated() {
                 print(groupItem)
                 if groupItem == savedGroup {
-                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
                         self.scrollHandler?(sectionIndex, itemIndex)
                     }
                 }
