@@ -27,6 +27,7 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
         NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
         self.group = group
         self.groupSelectedHandler?()
+        HapticsManager.shared.HapticFeedback()
     }
     
     func registerGroupSelectedHandler(block: @escaping()->Void) {

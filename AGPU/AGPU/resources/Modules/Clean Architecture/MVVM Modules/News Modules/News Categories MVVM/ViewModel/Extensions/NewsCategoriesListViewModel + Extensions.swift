@@ -34,10 +34,12 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
                 NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
                 self.currentCategory = category.name
                 self.dataChangedHandler?()
+                HapticsManager.shared.HapticFeedback()
             } else {
                 NotificationCenter.default.post(name: Notification.Name("faculty"), object: nil)
                 self.currentCategory = category.name
                 self.dataChangedHandler?()
+                HapticsManager.shared.HapticFeedback()
             }
             self.categorySelectedHandler?("Выбрана категория \(category.name)")
         } else {

@@ -34,6 +34,7 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
             if groups[section].name.abbreviation().contains(faculty.abbreviation) {
                 UserDefaults.standard.setValue(group, forKey: "group")
                 self.isChanged.toggle()
+                HapticsManager.shared.HapticFeedback()
                 NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
             } else {
                 print("no \(groups[section].name) != \(faculty.abbreviation)")

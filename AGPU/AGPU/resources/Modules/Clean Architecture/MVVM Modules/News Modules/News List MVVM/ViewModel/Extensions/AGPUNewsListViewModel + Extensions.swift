@@ -68,6 +68,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     func RefreshNews() {
         if let page = newsResponse.currentPage {
             GetNews(by: page)
+            HapticsManager.shared.HapticFeedback()
         }
     }
     

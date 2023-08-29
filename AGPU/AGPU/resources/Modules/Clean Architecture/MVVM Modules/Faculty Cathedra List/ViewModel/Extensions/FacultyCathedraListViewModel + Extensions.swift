@@ -25,6 +25,7 @@ extension FacultyCathedraListViewModel: FacultyCathedraListViewModelProtocol {
                 UserDefaults.SaveData(object: cathedraItem, key: "cathedra") {
                     print("сохранено")
                     self.isChanged.toggle()
+                    HapticsManager.shared.HapticFeedback()
                 }
             } else {
                 print("no \(faculty.name) != \(Savedfaculty.name)")

@@ -89,7 +89,7 @@ class FacultyCathedraListTableViewController: UITableViewController {
                 self.showEmailComposer(email: self.faculty.cathedra[indexPath.row].email)
             }
             
-            let mapAction = UIAction(title: "найти кафедру", image: UIImage(named: "search")) { _ in
+            let mapAction = UIAction(title: "найти кафедру", image: UIImage(named: "map icon")) { _ in
                 let vc = AGPUCurrentCathedraMapViewController(cathedra: self.faculty.cathedra[indexPath.row])
                 let navVC = UINavigationController(rootViewController: vc)
                 navVC.modalPresentationStyle = .fullScreen

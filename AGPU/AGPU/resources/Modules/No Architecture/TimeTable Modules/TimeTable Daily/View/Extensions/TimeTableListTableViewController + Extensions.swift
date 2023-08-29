@@ -25,7 +25,7 @@ extension TimeTableDayListTableViewController: UITableViewDelegate {
                 }
             }
             
-            let mapAction = UIAction(title: "найти корпус", image: UIImage(named: "search")) { _ in
+            let mapAction = UIAction(title: "найти корпус", image: UIImage(named: "map icon")) { _ in
                 if let audience = self.timetable?.disciplines[indexPath.row].audienceID {
                     let vc = AGPUCurrentBuildingMapViewController(audienceID: audience)
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in

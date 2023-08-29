@@ -27,6 +27,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
             status.isSelected = true
             UserDefaults.SaveData(object: status, key: "user status") {
                 self.isChanged.toggle()
+                HapticsManager.shared.HapticFeedback()
             }
             NotificationCenter.default.post(name: Notification.Name("user status"), object: status)
         }

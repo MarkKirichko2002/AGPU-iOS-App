@@ -24,6 +24,7 @@ extension SubGroupsListViewModel: SubGroupsListViewModelProtocol {
         UserDefaults.standard.setValue(subgroup, forKey: "subgroup")
         NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: nil)
         changedHandler?()
+        HapticsManager.shared.HapticFeedback()
     }
     
     func isSubGroupSelected(index: Int)-> Bool {
