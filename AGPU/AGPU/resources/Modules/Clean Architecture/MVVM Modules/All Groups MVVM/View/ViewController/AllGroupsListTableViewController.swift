@@ -39,11 +39,7 @@ class AllGroupsListTableViewController: UITableViewController {
         let closebutton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeButtonTapped))
         closebutton.tintColor = .black
         let menu = viewModel.makeGroupsMenu()
-        viewModel.scrollHandler = { (section, index) in
-            DispatchQueue.main.async {
-                self.tableView.scrollToRow(at: IndexPath(row: index, section: section), at: .top, animated: true)
-            }
-        }
+
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         sections.tintColor = .black
         
@@ -58,23 +54,33 @@ class AllGroupsListTableViewController: UITableViewController {
     
     private func SetUpTable() {
         tableView.register(UINib(nibName: FacultyGroupTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyGroupTableViewCell.identifier)
+        tableView.isUserInteractionEnabled = false
     }
     
     private func BindViewModel() {
+        
         viewModel.scrollToSelectedGroup { section, index in
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
                 DispatchQueue.main.async {
                     let indexPath = IndexPath(row: index, section: section)
                     self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                    self.tableView.isUserInteractionEnabled = true
                 }
             }
         }
+        
         viewModel.registerGroupSelectedHandler {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 self.dismiss(animated: true)
+            }
+        }
+        
+        viewModel.scrollHandler = { (section, index) in
+            DispatchQueue.main.async {
+                self.tableView.scrollToRow(at: IndexPath(row: index, section: section), at: .top, animated: true)
             }
         }
     }
