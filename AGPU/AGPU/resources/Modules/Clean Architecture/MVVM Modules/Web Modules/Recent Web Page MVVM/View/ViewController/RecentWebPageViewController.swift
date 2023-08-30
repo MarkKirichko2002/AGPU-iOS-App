@@ -13,7 +13,7 @@ final class RecentWebPageViewController: UIViewController {
     var page: RecentWebPageModel
     
     // MARK: - сервисы
-    let viewModel = RecentPageViewModel()
+    let viewModel = RecentWebPageViewModel()
     
     // MARK: - UI
     let WVWEBview = WKWebView(frame: .zero)
