@@ -29,12 +29,12 @@ class NewsPagesListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpTable()
-        BindViewModel()
+        setUpNavigation()
+        setUpTable()
+        bindViewModel()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         navigationItem.title = "Выберите страницу"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .black
@@ -45,12 +45,12 @@ class NewsPagesListTableViewController: UITableViewController {
         dismiss(animated: true)
     }
     
-    private func SetUpTable() {
+    private func setUpTable() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
-    private func BindViewModel() {
-        viewModel.SetUpData()
+    private func bindViewModel() {
+        viewModel.setUpData()
         viewModel.registerPageSelectedHandler { category in
             self.navigationItem.title = category
         }

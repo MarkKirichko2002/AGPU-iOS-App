@@ -27,14 +27,14 @@ final class NewsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpSwipeGesture()
-        SetUpCollectionView()
-        SetUpIndicatorView()
-        BindViewModel()
+        setUpNavigation()
+        setUpSwipeGesture()
+        setUpCollectionView()
+        setUpIndicatorView()
+        bindViewModel()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         navigationItem.title = "Новости АГПУ"
         let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshNews))
         refreshButton.tintColor = .black
@@ -42,17 +42,17 @@ final class NewsListViewController: UIViewController {
     }
     
     @objc private func refreshNews() {
-        viewModel.RefreshNews()
+        viewModel.refreshNews()
     }
     
-    private func SetUpCollectionView() {
+    private func setUpCollectionView() {
         view.addSubview(collectionView)
         collectionView.frame = view.bounds
         collectionView.delegate = self
         collectionView.dataSource = self
     }
     
-    private func SetUpIndicatorView() {
+    private func setUpIndicatorView() {
         view.addSubview(spinner)
         spinner.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -62,7 +62,7 @@ final class NewsListViewController: UIViewController {
         spinner.startAnimating()
     }
     
-    private func BindViewModel() {
+    private func bindViewModel() {
         
         var options = UIBarButtonItem(image: UIImage(named: "sections"), menu: UIMenu())
         
@@ -81,7 +81,7 @@ final class NewsListViewController: UIViewController {
             self.navigationItem.rightBarButtonItem = options
         }
         
-        viewModel.GetNewsByCurrentType()
+        viewModel.getNewsByCurrentType()
         
         viewModel.registerDataChangedHandler { [weak self] faculty in
             
@@ -123,7 +123,7 @@ final class NewsListViewController: UIViewController {
             }
         }
         
-        viewModel.ObserveFacultyChanges()
-        viewModel.ObservePageChanges()
+        viewModel.observeFacultyChanges()
+        viewModel.observePageChanges()
     }
 }

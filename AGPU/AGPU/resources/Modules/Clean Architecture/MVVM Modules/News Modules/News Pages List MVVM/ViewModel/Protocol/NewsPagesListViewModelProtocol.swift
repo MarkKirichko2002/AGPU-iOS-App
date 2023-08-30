@@ -8,7 +8,7 @@
 import Foundation
 
 protocol NewsPagesListViewModelProtocol {
-    func SetUpData()
+    func setUpData()
     func registerPageSelectedHandler(block: @escaping((String)->Void))
     func registerDataChangedHandler(block: @escaping()->Void)
     func pageItem(index: Int)-> String

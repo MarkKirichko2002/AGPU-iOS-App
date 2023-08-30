@@ -83,7 +83,7 @@ extension UIViewController {
         }
     }
     
-    func SetUpSwipeGesture() {
+    func setUpSwipeGesture() {
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
         swipeGesture.direction = .right
         view.addGestureRecognizer(swipeGesture)

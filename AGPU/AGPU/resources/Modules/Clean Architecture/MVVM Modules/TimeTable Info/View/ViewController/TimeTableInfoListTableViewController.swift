@@ -25,17 +25,17 @@ class TimeTableInfoListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpTable()
-        SetUpData()
+        setUpNavigation()
+        setUpTable()
+        setUpData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        StopTimer()
+        stopTimer()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         navigationItem.title = "Информация о паре"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .black
@@ -46,27 +46,27 @@ class TimeTableInfoListTableViewController: UITableViewController {
         dismiss(animated: true)
     }
     
-    private func SetUpTable() {
+    private func setUpTable() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
-    private func SetUpData() {
+    private func setUpData() {
         let dates = discipline.time.components(separatedBy: "-")
         info.append("время начала: \(dates[0])")
         info.append("время окончания: \(dates[1])")
         info.append("название: \(discipline.name)")
         info.append("преподаватель: \(discipline.teacherName)")
         info.append("аудитория: \(discipline.audienceID)")
-        info.append("тип пары: \(CurrentType(type: discipline.type))")
-        info.append("до начала: \(CalculateTimeLeftForStart())")
-        info.append("до окончания: \(CalculateTimeLeftForEnd())")
+        info.append("тип пары: \(currentType(type: discipline.type))")
+        info.append("до начала: \(calculateTimeLeftForStart())")
+        info.append("до окончания: \(calculateTimeLeftForEnd())")
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-        StartTimer()
+        startTimer()
     }
     
-    private func CurrentType(type: PairType)-> String {
+    private func currentType(type: PairType)-> String {
         switch type {
         case .lec:
             return "лекция"
@@ -89,31 +89,31 @@ class TimeTableInfoListTableViewController: UITableViewController {
         }
     }
     
-    private func StartTimer() {
+    private func startTimer() {
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             
-            let time = self.CalculateTimeLeftForStart()
+            let time = self.calculateTimeLeftForStart()
             
             if !time.contains("время вышло") {
                 DispatchQueue.main.async {
-                    self.info[6] = "до начала: \(self.CalculateTimeLeftForStart())"
+                    self.info[6] = "до начала: \(self.calculateTimeLeftForStart())"
                     self.info[7] = "до окончания: еще не началась"
                     self.tableView.reloadData()
                 }
             } else if time.contains("пара началась") {
-                self.info[7] = "до окончания: \(self.CalculateTimeLeftForEnd())"
+                self.info[7] = "до окончания: \(self.calculateTimeLeftForEnd())"
                 self.tableView.reloadData()
             }
         }
     }
     
-    private func StopTimer() {
+    private func stopTimer() {
         timer?.invalidate()
         print("Stopped")
     }
     
-    private func CalculateTimeLeftForStart()-> String {
+    private func calculateTimeLeftForStart()-> String {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss"
@@ -152,7 +152,7 @@ class TimeTableInfoListTableViewController: UITableViewController {
         return "время вышло"
     }
     
-    private func CalculateTimeLeftForEnd()-> String {
+    private func calculateTimeLeftForEnd()-> String {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss"
@@ -179,7 +179,7 @@ class TimeTableInfoListTableViewController: UITableViewController {
         if remainingHours >= 0 && remainingMinutes > 0 && remainingDays > 0 && remainingMonths > 0  {
             return "\(remainingHours) часов \(remainingMinutes) минут \(remainingSeconds) секунд"
         } else {
-            StopTimer()
+            stopTimer()
             return "пара закончилась"
         }
     }

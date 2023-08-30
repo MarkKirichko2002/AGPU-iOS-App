@@ -19,17 +19,17 @@ final class AGPUBuildingsMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        SetUpNavigation()
-        SetUpMap()
+        setUpNavigation()
+        setUpMap()
         makeConstraints()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        BindViewModel()
+        bindViewModel()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         
         let button = UIButton()
         button.setImage(UIImage(named: "back"), for: .normal)
@@ -54,7 +54,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    private func SetUpMap() {
+    private func setUpMap() {
         view.addSubview(mapView)
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.delegate = self
@@ -69,7 +69,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
         ])
     }
     
-    private func BindViewModel() {
+    private func bindViewModel() {
         viewModel.alertHandler = { bool in
             if bool {
                 let goToSettings = UIAlertAction(title: "перейти в настройки", style: .default) { _ in
@@ -86,7 +86,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
                 fatalError()
             }
         }
-        viewModel.CheckLocationAuthorizationStatus()
+        viewModel.checkLocationAuthorizationStatus()
         viewModel.registerLocationHandler { location in
             self.mapView.setRegion(location.region, animated: true)
             self.mapView.showAnnotations(location.pins, animated: true)

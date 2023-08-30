@@ -10,7 +10,7 @@ import Foundation
 // MARK: - RecentMomentsViewModelProtocol
 extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
     
-    func GetLastWebPage(completion: @escaping(RecentWebPageModel)->Void) {
+    func getLastWebPage(completion: @escaping(RecentWebPageModel)->Void) {
         if let page = UserDefaults.loadData(type: RecentWebPageModel.self, key: "last page") {
             completion(page)
         } else {
@@ -18,7 +18,7 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
         }
     }
     
-    func GetLastWordDocument(completion: @escaping(RecentWordDocumentModel)->Void) {
+    func getLastWordDocument(completion: @escaping(RecentWordDocumentModel)->Void) {
         if let document = UserDefaults.loadData(type: RecentWordDocumentModel.self, key: "last word document") {
             completion(document)
         } else {
@@ -26,7 +26,7 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
         }
     }
     
-    func GetLastPDFDocument(completion: @escaping(RecentPDFModel)->Void) {
+    func getLastPDFDocument(completion: @escaping(RecentPDFModel)->Void) {
         if let pdf = UserDefaults.loadData(type: RecentPDFModel.self, key: "last pdf") {
             completion(pdf)
         } else {
@@ -34,7 +34,7 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
         }
     }
     
-    func GetLastVideo(completion: @escaping(String)->Void) {
+    func getLastVideo(completion: @escaping(String)->Void) {
         if let videoUrl = UserDefaults.standard.string(forKey: "last video") {
             completion(videoUrl)
         } else {

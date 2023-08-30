@@ -32,13 +32,13 @@ class AllWeeksListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("группа: \(self.group)")
-        SetUpNavigation()
-        SetUpTable()
-        SetUpRefreshControl()
-        BindViewModel()
+        setUpNavigation()
+        setUpTable()
+        setUpRefreshControl()
+        bindViewModel()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         navigationItem.title = "Список недель"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .black
@@ -49,12 +49,12 @@ class AllWeeksListTableViewController: UITableViewController {
         self.dismiss(animated: true)
     }
 
-    private func SetUpTable() {
+    private func setUpTable() {
         tableView.rowHeight = 130
         tableView.register(UINib(nibName: WeekTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: WeekTableViewCell.identifier)
     }
     
-    private func SetUpRefreshControl() {
+    private func setUpRefreshControl() {
         tableView.addSubview(self.refreshControll)
         refreshControll.addTarget(self, action: #selector(refreshTimetable), for: .valueChanged)
     }
@@ -63,7 +63,7 @@ class AllWeeksListTableViewController: UITableViewController {
         viewModel.GetWeeks()
     }
     
-    private func BindViewModel() {
+    private func bindViewModel() {
         viewModel.GetWeeks()
         viewModel.registerIsChangedHandler {
             DispatchQueue.main.async {
@@ -72,7 +72,7 @@ class AllWeeksListTableViewController: UITableViewController {
             }
         }
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.viewModel.GetCurrentWeek()
+            self.viewModel.getCurrentWeek()
             self.viewModel.registerScrollHandler { row in
                 DispatchQueue.main.async {
                     let indexPath = IndexPath(row: row, section: 0)

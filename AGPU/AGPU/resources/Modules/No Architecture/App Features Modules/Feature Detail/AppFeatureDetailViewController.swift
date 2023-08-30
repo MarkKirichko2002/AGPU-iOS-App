@@ -15,9 +15,7 @@ final class AppFeatureDetailViewController: UIViewController {
     @IBOutlet var FeatureDescription: UITextView!
 
     // MARK: - Init
-    init(
-        feature: AppFeatureModel
-    ) {
+    init(feature: AppFeatureModel) {
         self.feature = feature
         super.init(nibName: nil, bundle: nil)
     }
@@ -28,13 +26,13 @@ final class AppFeatureDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
+        setUpNavigation()
         FeatureName.text = feature.name
         FeatureDescription.text = feature.description
         FeatureDescription.isEditable = false
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         navigationItem.title = "Фишки №\(feature.id)"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .black

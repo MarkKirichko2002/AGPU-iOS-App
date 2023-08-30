@@ -38,22 +38,26 @@ final class AGPUTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        UITabBar.appearance().tintColor = UIColor.black
-        UITabBar.appearance().backgroundColor = UIColor.white
+        setUpView()
         setUpTabs()
-        SetUpTab()
+        setUpTab()
         createMiddleButton()
-        ObserveForEveryStatus()
-        ObserveWebScreen()
-        ObserveFaculty()
-        ObserveArticleSelected()
-        ObserveNewsRefreshed()
+        observeForEveryStatus()
+        observeWebScreen()
+        observeFaculty()
+        observeArticleSelected()
+        observeNewsRefreshed()
         becomeFirstResponder()
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         animation.TabBarItemAnimation(item: item)
+    }
+    
+    private func setUpView() {
+        view.backgroundColor = .systemBackground
+        UITabBar.appearance().tintColor = UIColor.black
+        UITabBar.appearance().backgroundColor = UIColor.white
     }
     
     private func setUpTabs() {
@@ -71,7 +75,7 @@ final class AGPUTabBarController: UITabBarController {
         setViewControllers([nav1VC, forEveryStatusVC, middleButton, nav3VC, nav4VC], animated: false)
     }
     
-    private func SetUpTab() {
+    private func setUpTab() {
         settingsManager.ObserveStatusChanged {
             DispatchQueue.main.async {
                 self.setUpTabs()
@@ -172,7 +176,7 @@ final class AGPUTabBarController: UITabBarController {
         ScrollWebScreen(text: text.lastWord())
     }
     
-    private func ObserveForEveryStatus() {
+    private func observeForEveryStatus() {
         NotificationCenter.default.addObserver(forName: Notification.Name("for every status selected"), object: nil, queue: .main) { notification in
             if let icon = notification.object as? String {
                 self.updateDynamicButton(icon: icon)
@@ -180,7 +184,7 @@ final class AGPUTabBarController: UITabBarController {
         }
     }
     
-    private func ObserveWebScreen() {
+    private func observeWebScreen() {
         NotificationCenter.default.addObserver(forName: Notification.Name("screen was closed"), object: nil, queue: .main) { _ in
             if self.isRecording {
                 if !self.tabBar.isHidden {
@@ -197,7 +201,7 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     // MARK: - Elected Faculty
-    private func ObserveFaculty() {
+    private func observeFaculty() {
         NotificationCenter.default.addObserver(forName: Notification.Name("icon"), object: nil, queue: .main) { notification in
             if let icon = notification.object as? String {
                 self.updateDynamicButton(icon: icon)
@@ -218,13 +222,13 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     // MARK: - Adaptive News
-    private func ObserveArticleSelected() {
+    private func observeArticleSelected() {
         NotificationCenter.default.addObserver(forName: Notification.Name("article selected"), object: nil, queue: .main) { _ in
             self.updateDynamicButton(icon: "info icon")
         }
     }
     
-    private func ObserveNewsRefreshed() {
+    private func observeNewsRefreshed() {
         NotificationCenter.default.addObserver(forName: Notification.Name("news refreshed"), object: nil, queue: .main) { _ in
             self.updateDynamicButton(icon: "refresh icon")
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in

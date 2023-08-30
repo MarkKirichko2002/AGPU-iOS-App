@@ -8,14 +8,14 @@
 import Foundation
 
 protocol SettingsListViewModelProtocol {
-    func sectionsCount()->Int
-    func statusListCount()->Int
-    func ChooseStatus(index: Int)
+    func sectionsCount()-> Int
+    func statusListCount()-> Int
+    func chooseStatus(index: Int)
     func isStatusSelected(index: Int)-> Bool
     func facultiesListCount()-> Int
     func facultyItem(index: Int)-> AGPUFacultyModel
-    func ChooseFaculty(index: Int)
-    func CancelFaculty(index: Int)
+    func chooseFaculty(index: Int)
+    func cancelFaculty(index: Int)
     func isFacultySelected(index: Int)-> Bool
     func isCathedraSelected(index: Int)-> Bool
     func isGroupSelected(index: Int)-> Bool

@@ -27,12 +27,12 @@ class AllGroupsListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpTable()
-        BindViewModel()
+        setUpNavigation()
+        setUpTable()
+        bindViewModel()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         
         let titleView = CustomTitleView(image: "group", title: "Список групп", frame: .zero)
         
@@ -52,12 +52,12 @@ class AllGroupsListTableViewController: UITableViewController {
         self.dismiss(animated: true)
     }
     
-    private func SetUpTable() {
+    private func setUpTable() {
         tableView.register(UINib(nibName: FacultyGroupTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyGroupTableViewCell.identifier)
         tableView.isUserInteractionEnabled = false
     }
     
-    private func BindViewModel() {
+    private func bindViewModel() {
         
         viewModel.scrollToSelectedGroup { section, index in
             DispatchQueue.main.async {
@@ -90,7 +90,7 @@ class AllGroupsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.SelectGroup(section: indexPath.section, index: indexPath.row)
+        viewModel.selectGroup(section: indexPath.section, index: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

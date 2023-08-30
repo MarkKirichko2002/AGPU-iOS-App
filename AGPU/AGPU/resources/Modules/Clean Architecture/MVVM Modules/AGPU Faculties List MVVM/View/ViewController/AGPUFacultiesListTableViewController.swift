@@ -13,12 +13,12 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpSwipeGesture()
+        setUpNavigation()
+        setUpSwipeGesture()
         tableView.register(UINib(nibName: AGPUFacultyTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AGPUFacultyTableViewCell.identifier)
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
                 
         let titleView = CustomTitleView(image: "АГПУ", title: "Факультеты", frame: .zero)
         
@@ -34,7 +34,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
         navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = backButton
         
-        SetUpSwipeGesture()
+        setUpSwipeGesture()
     }
     
     @objc private func back() {

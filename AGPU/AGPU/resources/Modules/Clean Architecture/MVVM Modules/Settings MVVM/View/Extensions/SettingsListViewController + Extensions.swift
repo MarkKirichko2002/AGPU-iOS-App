@@ -87,12 +87,12 @@ extension SettingsListViewController: UITableViewDelegate {
             case 1:
                 
                 let chooseFacultyAction = UIAction(title: self.viewModel.isFacultySelected(index: indexPath.row) ? "выбран факультет" : "выбрать факультет", image: self.viewModel.isFacultySelected(index: indexPath.row) ? UIImage(named: "check") : nil) { action in
-                    self.viewModel.ChooseFaculty(index: indexPath.row)
+                    self.viewModel.chooseFaculty(index: indexPath.row)
                 }
                                 
                 let chooseIconAction = UIAction(title: self.viewModel.isFacultyIconSelected(index: indexPath.row) ? "выбрана иконка" : "выбрать иконку", image: self.viewModel.isFacultyIconSelected(index: indexPath.row) ? UIImage(named: "check") : nil) { action in
                     if self.viewModel.isFacultySelected(index: indexPath.row) {
-                        self.viewModel.ChooseFacultyIcon(index: indexPath.row)
+                        self.viewModel.chooseFacultyIcon(index: indexPath.row)
                     } else {
                         NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
                         let ok = UIAlertAction(title: "ОК", style: .default)
@@ -140,11 +140,11 @@ extension SettingsListViewController: UITableViewDelegate {
                 }
                 
                 let cancelIconAction = UIAction(title: "отменить иконку", image: self.viewModel.isFacultySelected(index: indexPath.row) ? UIImage(named: "cancel") : nil) { action in
-                    self.viewModel.CancelFacultyIcon(index: indexPath.row)
+                    self.viewModel.cancelFacultyIcon(index: indexPath.row)
                 }
                 
                 let cancelFacultyAction = UIAction(title: "отменить факультет", image: self.viewModel.isFacultySelected(index: indexPath.row) ? UIImage(named: "cancel") : nil) { _ in
-                    self.viewModel.CancelFaculty(index: indexPath.row)
+                    self.viewModel.cancelFaculty(index: indexPath.row)
                 }
                 
                 return UIMenu(title: self.viewModel.facultyItem(index: indexPath.row).name, children: [
@@ -168,7 +168,7 @@ extension SettingsListViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.section {
         case 0:
-            viewModel.ChooseStatus(index: indexPath.row)
+            viewModel.chooseStatus(index: indexPath.row)
         case 1,2:
             break
         case 3:

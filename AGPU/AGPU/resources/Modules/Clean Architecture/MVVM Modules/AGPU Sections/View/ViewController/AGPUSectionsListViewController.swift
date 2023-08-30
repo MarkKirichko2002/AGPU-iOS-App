@@ -14,12 +14,12 @@ final class AGPUSectionsListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpSwipeGesture()
-        SetUpTable()
+        setUpNavigation()
+        setUpSwipeGesture()
+        setUpTable()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         
         let titleView = CustomTitleView(image: "АГПУ", title: "Разделы", frame: .zero)
         
@@ -30,7 +30,7 @@ final class AGPUSectionsListViewController: UIViewController {
         let backButton = UIBarButtonItem(customView: button)
         backButton.tintColor = .black
         
-        let list = UIBarButtonItem(image: UIImage(named: "sections"), menu: SetUpMenu())
+        let list = UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpMenu())
         list.tintColor = .black
         
         navigationItem.titleView = titleView
@@ -41,7 +41,7 @@ final class AGPUSectionsListViewController: UIViewController {
         navigationItem.rightBarButtonItem = list
     }
     
-    private func SetUpMenu()-> UIMenu {
+    private func setUpMenu()-> UIMenu {
         let items = AGPUSections.sections.map { section in
             return UIAction(title: "\(section.id + 1)) \(section.name.lowercased())") { _ in
                 let indexPath = IndexPath(row: 0, section: section.id)
@@ -57,7 +57,7 @@ final class AGPUSectionsListViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    private func SetUpTable() {
+    private func setUpTable() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
         tableView.delegate = self

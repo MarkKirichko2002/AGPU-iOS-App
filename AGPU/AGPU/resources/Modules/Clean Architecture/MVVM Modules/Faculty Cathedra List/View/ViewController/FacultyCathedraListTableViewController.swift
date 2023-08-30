@@ -14,9 +14,7 @@ class FacultyCathedraListTableViewController: UITableViewController {
     @objc private let viewModel: FacultyCathedraListViewModel!
     
     // MARK: - Init
-    init(
-        faculty: AGPUFacultyModel
-    ) {
+    init(faculty: AGPUFacultyModel) {
         self.faculty = faculty
         self.viewModel = FacultyCathedraListViewModel(faculty: faculty)
         super.init(nibName: nil, bundle: nil)
@@ -28,13 +26,13 @@ class FacultyCathedraListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpSwipeGesture()
+        setUpNavigation()
+        setUpSwipeGesture()
         tableView.register(UINib(nibName: FacultyCathedraTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyCathedraTableViewCell.identifier)
-        BindViewModel()
+        bindViewModel()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         
         let titleView = CustomTitleView(image: "\(faculty.icon)", title: "Кафедры \(faculty.abbreviation)", frame: .zero)
     
@@ -56,7 +54,7 @@ class FacultyCathedraListTableViewController: UITableViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    private func BindViewModel() {
+    private func bindViewModel() {
         viewModel.observation = observe(\.viewModel.isChanged) { _, _ in
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -113,7 +111,7 @@ class FacultyCathedraListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.SelectCathedra(index: indexPath.row)
+        viewModel.selectCathedra(index: indexPath.row)
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
     

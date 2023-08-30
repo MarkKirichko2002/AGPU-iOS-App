@@ -10,6 +10,6 @@ import Foundation
 protocol FacultyCathedraListViewModelProtocol {
     func cathedraListCount()-> Int
     func cathedraItem(index: Int)-> FacultyCathedraModel
-    func SelectCathedra(index: Int)
+    func selectCathedra(index: Int)
     func isCathedraSelected(index: Int)-> Bool
 }

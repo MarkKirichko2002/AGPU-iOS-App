@@ -34,7 +34,7 @@ extension AllWeeksListViewModel: AllWeeksListViewModelProtocol {
         self.isChangedHandler = block
     }
     
-    func GetCurrentWeek() {
+    func getCurrentWeek() {
         for week in weeks {
             let isRange = dateManager.DateRange(startDate: week.from, endDate: week.to)
             if isRange {

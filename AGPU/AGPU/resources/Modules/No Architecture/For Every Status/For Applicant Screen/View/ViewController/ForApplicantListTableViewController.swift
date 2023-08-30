@@ -11,16 +11,16 @@ class ForApplicantListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpTable()
+        setUpNavigation()
+        setUpTable()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         let titleView = CustomTitleView(image: "profile icon", title: "Абитуриенту", frame: .zero)
         navigationItem.titleView = titleView
     }
     
-    private func SetUpTable() {
+    private func setUpTable() {
         tableView.register(UINib(nibName: ForEveryStatusTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ForEveryStatusTableViewCell.identifier)
     }
     

@@ -10,7 +10,7 @@ import UIKit
 // MARK: - FacultyGroupsListViewModelProtocol
 extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
     
-    func GetGroups(by faculty: AGPUFacultyModel) {
+    func getGroups(by faculty: AGPUFacultyModel) {
         for group in FacultyGroups.groups {
             if group.name.abbreviation().contains(faculty.abbreviation) {
                 self.groups.append(group)
@@ -28,7 +28,7 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
         return groups[section].groups[index]
     }
     
-    func SelectGroup(section: Int, index: Int) {
+    func selectGroup(section: Int, index: Int) {
         let group = groupItem(section: section, index: index)
         if let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
             if groups[section].name.abbreviation().contains(faculty.abbreviation) {

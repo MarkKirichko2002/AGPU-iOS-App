@@ -18,7 +18,7 @@ extension FacultyCathedraListViewModel: FacultyCathedraListViewModelProtocol {
         return faculty.cathedra[index]
     }
     
-    func SelectCathedra(index: Int) {
+    func selectCathedra(index: Int) {
         let cathedraItem = cathedraItem(index: index)
         if let Savedfaculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
             if Savedfaculty.name == faculty.name {

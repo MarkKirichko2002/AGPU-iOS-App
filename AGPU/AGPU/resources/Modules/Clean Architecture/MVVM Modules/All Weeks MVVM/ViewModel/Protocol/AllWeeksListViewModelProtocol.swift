@@ -12,7 +12,7 @@ protocol AllWeeksListViewModelProtocol {
     func numberOfWeeks()-> Int
     func weekItem(index: Int)-> WeekModel
     func registerIsChangedHandler(block: @escaping(()->Void))
-    func GetCurrentWeek()
+    func getCurrentWeek()
     func registerScrollHandler(block: @escaping((Int)->Void))
     func isCurrentWeek(index: Int)-> Bool
 }

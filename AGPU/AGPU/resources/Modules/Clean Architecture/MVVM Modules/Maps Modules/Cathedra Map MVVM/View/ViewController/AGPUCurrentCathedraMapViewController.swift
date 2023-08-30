@@ -32,18 +32,18 @@ class AGPUCurrentCathedraMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        SetUpNavigation()
-        SetUpMap()
+        setUpNavigation()
+        setUpMap()
         makeConstraints()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        BindViewModel()
+        bindViewModel()
     }
     
-    private func SetUpNavigation() {
-        let titleView = CustomTitleView(image: "\(viewModel.GetCurrentFaculty().icon)", title: "\(viewModel.GetCurrentFaculty().abbreviation) кафедра", frame: .zero)
+    private func setUpNavigation() {
+        let titleView = CustomTitleView(image: "\(viewModel.getCurrentFaculty().icon)", title: "\(viewModel.getCurrentFaculty().abbreviation) кафедра", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .black
         navigationItem.titleView = titleView
@@ -54,7 +54,7 @@ class AGPUCurrentCathedraMapViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    private func SetUpMap() {
+    private func setUpMap() {
         view.addSubview(mapView)
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.delegate = self
@@ -69,7 +69,7 @@ class AGPUCurrentCathedraMapViewController: UIViewController {
         ])
     }
     
-    private func BindViewModel() {
+    private func bindViewModel() {
         viewModel.alertHandler = { bool in
             if bool {
                 let goToSettings = UIAlertAction(title: "перейти в настройки", style: .default) { _ in
@@ -83,7 +83,7 @@ class AGPUCurrentCathedraMapViewController: UIViewController {
                 fatalError()
             }
         }
-        viewModel.CheckLocationAuthorizationStatus()
+        viewModel.checkLocationAuthorizationStatus()
         viewModel.registerLocationHandler { location in
             self.mapView.setRegion(location.region, animated: true)
             self.mapView.showAnnotations(location.pins, animated: true)

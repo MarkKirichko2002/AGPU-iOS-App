@@ -10,17 +10,17 @@ import MapKit
 // MARK: - AGPUCurrentCathedraMapViewModelProtocol
 extension AGPUCurrentCathedraMapViewModel: AGPUCurrentCathedraMapViewModelProtocol {
     
-    func CheckLocationAuthorizationStatus() {
+    func checkLocationAuthorizationStatus() {
         locationManager.СheckLocationAuthorization { isAuthorized in
             if isAuthorized {
-                self.GetLocation()
+                self.getLocation()
             } else {
                 self.alertHandler?(true)
             }
         }
     }
     
-    func GetLocation() {
+    func getLocation() {
         
         locationManager.GetLocations()
         
@@ -65,7 +65,7 @@ extension AGPUCurrentCathedraMapViewModel: AGPUCurrentCathedraMapViewModelProtoc
         self.locationHandler = block
     }
     
-    func GetCurrentFaculty()-> AGPUFacultyModel {
+    func getCurrentFaculty()-> AGPUFacultyModel {
         if let faculty = AGPUFaculties.faculties.first(where: { $0.cathedra.contains { $0.name == self.cathedra.name }}) {
             return faculty
         }

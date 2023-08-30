@@ -15,12 +15,12 @@ class SubGroupsListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        SetUpNavigation()
-        BindViewModel()
-        SetUpSwipeGesture()
+        setUpNavigation()
+        bindViewModel()
+        setUpSwipeGesture()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         
         navigationItem.title = "Подгруппы"
         
@@ -41,7 +41,7 @@ class SubGroupsListTableViewController: UITableViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    private func BindViewModel() {
+    private func bindViewModel() {
         viewModel.registerChangedHandler {
             DispatchQueue.main.async {
                 self.tableView.reloadData()

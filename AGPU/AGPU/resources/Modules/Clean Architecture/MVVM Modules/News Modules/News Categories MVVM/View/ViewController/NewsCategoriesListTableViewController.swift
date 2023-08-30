@@ -27,12 +27,12 @@ class NewsCategoriesListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpTable()
-        BindViewModel()
+        setUpNavigation()
+        setUpTable()
+        bindViewModel()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         navigationItem.title = "Категории новостей"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .black
@@ -43,11 +43,11 @@ class NewsCategoriesListTableViewController: UITableViewController {
         self.dismiss(animated: true)
     }
     
-    private func SetUpTable() {
+    private func setUpTable() {
         tableView.register(UINib(nibName: NewsCategoryTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: NewsCategoryTableViewCell.identifier)
     }
     
-    private func BindViewModel() {
+    private func bindViewModel() {
         viewModel.registerCategorySelectedHandler { category in
             self.navigationItem.title = category
         }

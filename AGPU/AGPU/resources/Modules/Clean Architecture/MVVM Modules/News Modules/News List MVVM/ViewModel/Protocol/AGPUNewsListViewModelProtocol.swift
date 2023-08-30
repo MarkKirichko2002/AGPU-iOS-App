@@ -8,14 +8,14 @@
 import Foundation
 
 protocol AGPUNewsListViewModelProtocol {
-    func GetNewsByCurrentType()
-    func GetAGPUNews()
-    func GetFacultyNews(faculty: AGPUFacultyModel)
-    func GetNews(by page: Int)
-    func RefreshNews()
+    func getNewsByCurrentType()
+    func getAGPUNews()
+    func getFacultyNews(faculty: AGPUFacultyModel)
+    func getNews(by page: Int)
+    func refreshNews()
     func articleItem(index: Int)-> Article
     func registerDataChangedHandler(block: @escaping(AGPUFacultyModel?)->Void)
-    func ObserveFacultyChanges()
-    func ObservePageChanges()
+    func observeFacultyChanges()
+    func observePageChanges()
     func makeUrlForCurrentArticle(index: Int)-> String
 }

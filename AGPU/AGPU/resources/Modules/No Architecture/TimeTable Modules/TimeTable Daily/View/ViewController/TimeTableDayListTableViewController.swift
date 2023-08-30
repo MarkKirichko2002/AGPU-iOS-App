@@ -27,25 +27,25 @@ final class TimeTableDayListTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpData()
-        SetUpNavigation()
-        SetUpTable()
-        SetUpRefreshControl()
-        SetUpIndicatorView()
-        SetUpLabel()
-        GetTimeTable(group: group, date: date)
-        ObserveGroupChange()
-        ObserveSubGroupChange()
-        ObserveCalendar()
+        setUpData()
+        setUpNavigation()
+        setUpTable()
+        setUpRefreshControl()
+        setUpIndicatorView()
+        setUpLabel()
+        getTimeTable(group: group, date: date)
+        observeGroupChange()
+        observeSubGroupChange()
+        observeCalendar()
     }
     
-    private func SetUpData() {
+    private func setUpData() {
         self.group = UserDefaults.standard.string(forKey: "group") ?? ""
         self.subgroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
         date = dateManager.getCurrentDate()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         
         navigationItem.title = "Сегодня: \(date)"
         
@@ -60,21 +60,21 @@ final class TimeTableDayListTableViewController: UIViewController {
         // сегодняшний день
         let current = UIAction(title: "сегодня") { _ in
             let currentDay = self.dateManager.getCurrentDate()
-            self.GetTimeTable(group: self.group, date: currentDay)
+            self.getTimeTable(group: self.group, date: currentDay)
             self.date = currentDay
             self.navigationItem.title = self.date
         }
         // следующий день
         let next = UIAction(title: "завтра") { _ in
             let nextDay = self.dateManager.nextDay(date: self.date)
-            self.GetTimeTable(group: self.group, date: nextDay)
+            self.getTimeTable(group: self.group, date: nextDay)
             self.date = nextDay
             self.navigationItem.title = self.date
         }
         // предыдущий день
         let previous = UIAction(title: "вчера") { _ in
             let previousDay = self.dateManager.previousDay(date: self.date)
-            self.GetTimeTable(group: self.group, date: previousDay)
+            self.getTimeTable(group: self.group, date: previousDay)
             self.date = previousDay
             self.navigationItem.title = self.date
         }
@@ -119,10 +119,10 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     @objc private func refreshTimetable() {
-        GetTimeTable(group: group, date: date)
+        getTimeTable(group: group, date: date)
     }
     
-    private func SetUpIndicatorView() {
+    private func setUpIndicatorView() {
         view.addSubview(spinner)
         spinner.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -132,7 +132,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         spinner.startAnimating()
     }
     
-    private func SetUpTable() {
+    private func setUpTable() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
         tableView.delegate = self
@@ -141,12 +141,12 @@ final class TimeTableDayListTableViewController: UIViewController {
         tableView.separatorStyle = .none
     }
     
-    private func SetUpRefreshControl() {
+    private func setUpRefreshControl() {
         tableView.addSubview(refreshControl)
         refreshControl.addTarget(self, action: #selector(refreshTimetable), for: .valueChanged)
     }
     
-    private func SetUpLabel() {
+    private func setUpLabel() {
         view.addSubview(noTimeTableLabel)
         noTimeTableLabel.text = "Нет расписания"
         noTimeTableLabel.font = .systemFont(ofSize: 18, weight: .medium)
@@ -158,7 +158,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         ])
     }
     
-    func GetTimeTable(group: String, date: String) {
+    func getTimeTable(group: String, date: String) {
         self.spinner.startAnimating()
         self.noTimeTableLabel.isHidden = true
         self.timetable?.disciplines = []
@@ -191,27 +191,27 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
     }
     
-    private func ObserveGroupChange() {
+    private func observeGroupChange() {
         NotificationCenter.default.addObserver(forName: Notification.Name("group changed"), object: nil, queue: .main) { notification in
             let group = notification.object as? String ?? ""
-            self.GetTimeTable(group: group, date: self.date)
+            self.getTimeTable(group: group, date: self.date)
             self.group = group
             print(self.group)
         }
     }
     
-    private func ObserveSubGroupChange() {
+    private func observeSubGroupChange() {
         NotificationCenter.default.addObserver(forName: Notification.Name("subgroup changed"), object: nil, queue: .main) { _ in
             self.subgroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
-            self.GetTimeTable(group: self.group, date: self.date)
+            self.getTimeTable(group: self.group, date: self.date)
         }
     }
     
-    private func ObserveCalendar() {
+    private func observeCalendar() {
         NotificationCenter.default.addObserver(forName: Notification.Name("DateWasSelected"), object: nil, queue: .main) { notification in
             if let date = notification.object as? String {
                 self.date = date
-                self.GetTimeTable(group: self.group, date: date)
+                self.getTimeTable(group: self.group, date: date)
                 self.navigationItem.title = date
             }
         }

@@ -26,13 +26,13 @@ final class FacultyGroupsListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpSwipeGesture()
-        SetUpTable()
-        BindViewModel()
-        SetUpNavigation()
+        setUpSwipeGesture()
+        setUpTable()
+        bindViewModel()
+        setUpNavigation()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         let titleView = CustomTitleView(
             image: faculty.icon,
             title: faculty.abbreviation,
@@ -61,13 +61,13 @@ final class FacultyGroupsListTableViewController: UITableViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    private func SetUpTable() {
+    private func setUpTable() {
         tableView.register(UINib(nibName: FacultyGroupTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyGroupTableViewCell.identifier)
         tableView.isUserInteractionEnabled = false
     }
     
-    private func BindViewModel() {
-        viewModel.GetGroups(by: faculty)
+    private func bindViewModel() {
+        viewModel.getGroups(by: faculty)
         viewModel.observation = observe(\.viewModel.isChanged) { _, _ in
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -91,7 +91,7 @@ final class FacultyGroupsListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        viewModel.SelectGroup(section: indexPath.section, index: indexPath.row)
+        viewModel.selectGroup(section: indexPath.section, index: indexPath.row)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

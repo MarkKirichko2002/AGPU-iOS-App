@@ -20,7 +20,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         return 3
     }
     
-    func ChooseStatus(index: Int) {
+    func chooseStatus(index: Int) {
         var status = UserStatusList.list[index]
         let savedStatus = UserDefaults.loadData(type: UserStatusModel.self, key: "user status")
         if status.id != savedStatus?.id {
@@ -54,7 +54,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         return AGPUFaculties.faculties[index]
     }
     
-    func ChooseFaculty(index: Int) {
+    func chooseFaculty(index: Int) {
         
         var faculty = AGPUFaculties.faculties[index]
         faculty.isSelected = true
@@ -82,7 +82,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         }
     }
     
-    func ChooseFacultyIcon(index: Int) {
+    func chooseFacultyIcon(index: Int) {
         
         let faculty = AGPUFaculties.faculties[index]
         
@@ -94,7 +94,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         }
     }
     
-    func CancelFacultyIcon(index: Int) {
+    func cancelFacultyIcon(index: Int) {
         
         if isFacultyIconSelected(index: index) {
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
@@ -104,7 +104,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         }
     }
     
-    func CancelFaculty(index: Int) {
+    func cancelFaculty(index: Int) {
         
         if isFacultySelected(index: index) {
             if let data = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {

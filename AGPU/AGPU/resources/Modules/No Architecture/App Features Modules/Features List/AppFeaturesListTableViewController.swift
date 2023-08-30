@@ -11,12 +11,12 @@ final class AppFeaturesListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpSwipeGesture()
+        setUpNavigation()
+        setUpSwipeGesture()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         
         navigationItem.title = "Фишки"
         

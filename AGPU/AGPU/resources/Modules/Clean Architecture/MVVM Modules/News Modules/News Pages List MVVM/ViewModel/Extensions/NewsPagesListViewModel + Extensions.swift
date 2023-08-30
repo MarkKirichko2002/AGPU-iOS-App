@@ -10,7 +10,7 @@ import Foundation
 // MARK: - NewsPagesListViewModelProtocol
 extension NewsPagesListViewModel: NewsPagesListViewModelProtocol {
     
-    func SetUpData() {
+    func setUpData() {
         let countPages = self.countPages
         for i in 1...countPages {
             pages.append(i)

@@ -22,7 +22,7 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
         return groupSectionItem(section: section).groups[index]
     }
     
-    func SelectGroup(section: Int, index: Int) {
+    func selectGroup(section: Int, index: Int) {
         let group = groupItem(section: section, index: index)
         NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
         self.group = group

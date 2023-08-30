@@ -32,13 +32,13 @@ class SearchAGPUBuildingMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        SetUpNavigation()
-        SetUpMap()
+        setUpNavigation()
+        setUpMap()
         makeConstraints()
-        BindViewModel()
+        bindViewModel()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         navigationItem.title = building.name
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .black
@@ -50,7 +50,7 @@ class SearchAGPUBuildingMapViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    private func SetUpMap() {
+    private func setUpMap() {
         view.addSubview(mapView)
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.delegate = self
@@ -65,7 +65,7 @@ class SearchAGPUBuildingMapViewController: UIViewController {
         ])
     }
     
-    private func BindViewModel() {
+    private func bindViewModel() {
         viewModel.alertHandler = { bool in
             if bool {
                 let goToSettings = UIAlertAction(title: "перейти в настройки", style: .default) { _ in
@@ -79,12 +79,12 @@ class SearchAGPUBuildingMapViewController: UIViewController {
                 
             }
         }
-        viewModel.CheckLocationAuthorizationStatus()
+        viewModel.checkLocationAuthorizationStatus()
         viewModel.registerLocationHandler { location in
             self.mapView.setRegion(location.region, animated: true)
             self.mapView.showAnnotations(location.pins, animated: true)
         }
-        viewModel.ObserveActions {
+        viewModel.observeActions {
             self.dismiss(animated: true)
         }
     }

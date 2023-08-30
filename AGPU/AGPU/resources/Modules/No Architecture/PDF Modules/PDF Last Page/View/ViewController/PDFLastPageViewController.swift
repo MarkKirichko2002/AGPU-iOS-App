@@ -26,13 +26,13 @@ class PDFLastPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpPDF()
-        LoadLastPage()
-        SavePDF()
+        setUpNavigation()
+        setUpPDF()
+        loadLastPage()
+        savePDF()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .black
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())
@@ -53,7 +53,7 @@ class PDFLastPageViewController: UIViewController {
         return menu
     }
     
-    private func SetUpPDF() {
+    private func setUpPDF() {
         pdfView = PDFView(frame: view.bounds)
         pdfView.autoScales = true
         pdfView.usePageViewController(true)
@@ -70,10 +70,10 @@ class PDFLastPageViewController: UIViewController {
         let currentPage = document.index(for: pdfView.currentPage!) + 1
         let totalPageCount = pdfView.document?.pageCount
         navigationItem.title = "Документ [\(currentPage)/\(totalPageCount ?? 0)]"
-        SavePDF()
+        savePDF()
     }
     
-    private func SavePDF() {
+    private func savePDF() {
         var page = 0
         guard let currentPage = pdfView.currentPage?.pageRef?.pageNumber else { return }
         page = currentPage - 1
@@ -87,7 +87,7 @@ class PDFLastPageViewController: UIViewController {
         }
     }
     
-    private func LoadLastPage() {
+    private func loadLastPage() {
         pdfView.go(to: document.page(at: pdf.pageNumber)!)
     }
 }

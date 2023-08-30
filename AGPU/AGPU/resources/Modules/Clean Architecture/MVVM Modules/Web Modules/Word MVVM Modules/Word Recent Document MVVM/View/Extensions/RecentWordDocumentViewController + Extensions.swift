@@ -19,7 +19,7 @@ extension WordRecentDocumentViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.spinner.stopAnimating()
         if let currentUrl = webView.url?.absoluteString {
-            viewModel.GetLastPosition(currentUrl: currentUrl) { position in
+            viewModel.getRecentPosition(currentUrl: currentUrl) { position in
                 self.WVWEBview.scrollView.setContentOffset(position, animated: true)
             }
         }

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol WebViewModelProtocol {
-    func ObserveScroll(completion: @escaping(CGPoint)->Void)
-    func ObserveActions(block: @escaping()->Void)
-    func SaveCurrentWebPage(url: String, position: CGPoint)
+    func observeScroll(completion: @escaping(CGPoint)->Void)
+    func observeActions(block: @escaping()->Void)
+    func saveCurrentWebPage(url: String, position: CGPoint)
 }
