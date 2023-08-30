@@ -27,7 +27,7 @@ final class RecentMomentsListTableViewController: UITableViewController {
     }
     
     @objc private func closeScreen() {
-        SendScreenWasClosedNotification()
+        sendScreenWasClosedNotification()
         dismiss(animated: true)
     }
     
@@ -38,13 +38,13 @@ final class RecentMomentsListTableViewController: UITableViewController {
     private func bindViewModel() {
         viewModel.registerAlertHandler { message, description in
             let ok = UIAlertAction(title: "ОК", style: .default)
-            self.ShowAlert(title: message, message: description, actions: [ok])
+            self.showAlert(title: message, message: description, actions: [ok])
         }
     }
     
     private func checkLastWebPage() {
         viewModel.getLastWebPage { page in
-            self.ShowRecentPageScreen(page: page)
+            self.showRecentPageScreen(page: page)
         }
     }
     
@@ -72,7 +72,7 @@ final class RecentMomentsListTableViewController: UITableViewController {
     
     private func checkLastVideo() {
         viewModel.getLastVideo { videoURL in
-            self.PlayVideo(url: videoURL)
+            self.playVideo(url: videoURL)
         }
     }
     

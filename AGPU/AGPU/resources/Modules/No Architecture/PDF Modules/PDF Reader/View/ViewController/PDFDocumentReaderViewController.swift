@@ -83,7 +83,7 @@ class PDFDocumentReaderViewController: UIViewController {
         let pdf = RecentPDFModel(url: url, pageNumber: page)
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            UserDefaults.SaveData(object: pdf, key: "last pdf") {
+            UserDefaults.saveData(object: pdf, key: "last pdf") {
                 print("сохранено: \(pdf)")
             }
         }

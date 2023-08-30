@@ -35,6 +35,7 @@ extension DateManager: DateManagerProtocol {
     }
     
     func nextDay(date: String)-> String {
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
         var nextDay = ""
@@ -71,7 +72,7 @@ extension DateManager: DateManagerProtocol {
         return previousDay
     }
     
-    func DateRange(startDate: String, endDate: String)-> Bool {
+    func dateRange(startDate: String, endDate: String)-> Bool {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"

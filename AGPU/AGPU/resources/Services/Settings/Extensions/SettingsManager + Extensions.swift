@@ -12,7 +12,7 @@ extension SettingsManager: SettingsManagerProtocol {
    
     // MARK: - Your Status
     
-    func ObserveStatusChanged(completion: @escaping()->Void) {
+    func observeStatusChanged(completion: @escaping()->Void) {
         NotificationCenter.default.addObserver(forName: Notification.Name("user status"), object: nil, queue: .main) { notification in
             if let _ = notification.object as? UserStatusModel {
                 completion()

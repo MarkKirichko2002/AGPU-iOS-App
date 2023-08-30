@@ -8,10 +8,10 @@
 import UIKit
 
 protocol AnimationClassProtocol {
-    func SpringAnimation<T: UIView>(view: T)
-    func RotateAnimation<T: UIView>(view: T)
-    func StartRotateAnimation<T: UIView>(view: T)
-    func StopRotateAnimation<T: UIView>(view: T)
-    func TabBarItemAnimation(item: UITabBarItem)
-    func FlipAnimation<T: UIView>(view: T)
+    func springAnimation<T: UIView>(view: T)
+    func rotateAnimation<T: UIView>(view: T)
+    func startRotateAnimation<T: UIView>(view: T)
+    func stopRotateAnimation<T: UIView>(view: T)
+    func tabBarItemAnimation(item: UITabBarItem)
+    func flipAnimation<T: UIView>(view: T)
 }

@@ -124,7 +124,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         self.noTimeTableLabel.isHidden = true
         self.timetable = []
         self.tableView.reloadData()
-        service.GetTimeTableWeek(groupId: group, startDate: week.from, endDate: week.to) { result in
+        service.getTimeTableWeek(groupId: group, startDate: week.from, endDate: week.to) { result in
             switch result {
             case .success(let timetable):
                 var arr = [TimeTable]()

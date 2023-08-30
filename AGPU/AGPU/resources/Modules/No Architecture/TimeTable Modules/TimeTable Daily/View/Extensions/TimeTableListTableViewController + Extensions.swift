@@ -34,7 +34,7 @@ extension TimeTableDayListTableViewController: UITableViewDelegate {
                     }
                 } else if self.timetable?.disciplines[indexPath.row].audienceID == nil || self.timetable?.disciplines[indexPath.row].audienceID == ""  {
                     let ok = UIAlertAction(title: "ОК", style: .default)
-                    self.ShowAlert(title: "Корпус не найден!", message: "К сожалению у данной пары отсутствует аудитория", actions: [ok])
+                    self.showAlert(title: "Корпус не найден!", message: "К сожалению у данной пары отсутствует аудитория", actions: [ok])
                 }
             }
             

@@ -89,7 +89,7 @@ class AllWeeksListTableViewController: UITableViewController {
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
-        HapticsManager.shared.HapticFeedback()
+        HapticsManager.shared.hapticFeedback()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -10,14 +10,14 @@ import CoreLocation
 // MARK: - LocationManagerProtocol
 extension LocationManager: LocationManagerProtocol {
     
-    func GetLocations() {
+    func getLocations() {
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.delegate = self
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
     }
     
-    func СheckLocationAuthorization(completion: @escaping (Bool) -> Void) {
+    func checkLocationAuthorization(completion: @escaping (Bool) -> Void) {
         let status = CLLocationManager.authorizationStatus()
         if status == .notDetermined {
             manager.requestWhenInUseAuthorization()

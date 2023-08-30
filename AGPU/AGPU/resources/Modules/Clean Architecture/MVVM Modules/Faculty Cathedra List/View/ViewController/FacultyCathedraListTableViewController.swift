@@ -68,19 +68,19 @@ class FacultyCathedraListTableViewController: UITableViewController {
             _ in
             
             let infoAction = UIAction(title: "узнать больше", image: UIImage(named: "info")) { _ in
-                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].url, image: "info", title: "Кафедра \(self.faculty.abbreviation)", isSheet: false)
+                self.goToWeb(url: self.faculty.cathedra[indexPath.row].url, image: "info", title: "Кафедра \(self.faculty.abbreviation)", isSheet: false)
             }
             
             let staffInfoAction = UIAction(title: "состав кафедры", image: UIImage(named: "group")) { _ in
-                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].staffUrl, image: "group", title: "Состав кафедры", isSheet: false)
+                self.goToWeb(url: self.faculty.cathedra[indexPath.row].staffUrl, image: "group", title: "Состав кафедры", isSheet: false)
             }
             
             let additionalEducationAction = UIAction(title: "дополнительное образование", image: UIImage(named: "plus")) { _ in
-                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].additionalEducationUrl, image: "plus", title: "Доп. образование", isSheet: false)
+                self.goToWeb(url: self.faculty.cathedra[indexPath.row].additionalEducationUrl, image: "plus", title: "Доп. образование", isSheet: false)
             }
             
             let manualAction = UIAction(title: "методические материалы", image: UIImage(named: "manual")) { _ in
-                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].manualUrl, image: "manual", title: "Метод. материалы", isSheet: false)
+                self.goToWeb(url: self.faculty.cathedra[indexPath.row].manualUrl, image: "manual", title: "Метод. материалы", isSheet: false)
             }
             
             let emailAction = UIAction(title: "написать", image: UIImage(named: "mail")) { _ in

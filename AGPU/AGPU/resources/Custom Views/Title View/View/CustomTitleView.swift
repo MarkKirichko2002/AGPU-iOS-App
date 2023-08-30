@@ -37,7 +37,7 @@ final class CustomTitleView: UIView {
         self.image = image
         self.title = title
         addSubviews(imageView,label)
-        SetUpView()
+        setUpView()
         makeConstraints()
     }
     
@@ -45,7 +45,7 @@ final class CustomTitleView: UIView {
         super.init(coder: coder)
     }
     
-    private func SetUpView() {
+    private func setUpView() {
         imageView.image = UIImage(named: image)
         label.text = title
     }
@@ -62,6 +62,7 @@ final class CustomTitleView: UIView {
             label.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 5),
             label.trailingAnchor.constraint(equalTo: trailingAnchor),
             label.centerYAnchor.constraint(equalTo: centerYAnchor)
+            
         ])
     }
 }

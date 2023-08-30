@@ -51,7 +51,7 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        animation.TabBarItemAnimation(item: item)
+        animation.tabBarItemAnimation(item: item)
     }
     
     private func setUpView() {
@@ -76,7 +76,7 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     private func setUpTab() {
-        settingsManager.ObserveStatusChanged {
+        settingsManager.observeStatusChanged {
             DispatchQueue.main.async {
                 self.setUpTabs()
             }
@@ -107,7 +107,7 @@ final class AGPUTabBarController: UITabBarController {
             self.updateDynamicButton(icon: "info icon")
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let ok = UIAlertAction(title: "ОК", style: .default)
-                self.ShowAlert(title: "Вы отключили фишку Shake To Recall!", message: "чтобы дальше пользоваться данной фишкой включите ее в настройках.", actions: [ok])
+                self.showAlert(title: "Вы отключили фишку Shake To Recall!", message: "чтобы дальше пользоваться данной фишкой включите ее в настройках.", actions: [ok])
                 self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
             }
         }
@@ -140,12 +140,12 @@ final class AGPUTabBarController: UITabBarController {
                     print("Разрешение на распознавание речи еще не было получено.")
                 case .denied:
                     let settingsAction = UIAlertAction(title: "перейти в настройки", style: .default) { _ in
-                        self.OpenSettings()
+                        self.openSettings()
                     }
                     let cancel = UIAlertAction(title: "отмена", style: .default) { _ in
                         self.DynamicButton.sendActions(for: .touchUpInside)
                     }
-                    self.ShowAlert(title: "Микрофон выключен", message: "хотите включить в настройках?", actions: [settingsAction, cancel])
+                    self.showAlert(title: "Микрофон выключен", message: "хотите включить в настройках?", actions: [settingsAction, cancel])
                     print("Доступ к распознаванию речи был отклонен.")
                 case .restricted:
                     print("Функциональность распознавания речи ограничена.")
@@ -250,7 +250,7 @@ extension AGPUTabBarController {
                 self.updateDynamicButton(icon: section.icon)
                 
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                    self.GoToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false)
+                    self.goToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false)
                 }
                 ResetSpeechRecognition()
                 break
@@ -268,7 +268,7 @@ extension AGPUTabBarController {
             self.updateDynamicButton(icon: "dice")
             
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.GoToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false)
+                self.goToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false)
             }
             ResetSpeechRecognition()
         }
@@ -286,7 +286,7 @@ extension AGPUTabBarController {
                     self.updateDynamicButton(icon: subsection.icon)
                     
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                        self.GoToWeb(url: subsection.url, image: subsection.icon, title: "ФГБОУ ВО «АГПУ»", isSheet: false)
+                        self.goToWeb(url: subsection.url, image: subsection.icon, title: "ФГБОУ ВО «АГПУ»", isSheet: false)
                     }
                     break
                 }
@@ -361,8 +361,8 @@ extension AGPUTabBarController {
     func updateDynamicButton(icon: String) {
         DispatchQueue.main.async {
             self.DynamicButton.setImage(UIImage(named: icon), for: .normal)
-            self.animation.SpringAnimation(view: self.DynamicButton)
-            HapticsManager.shared.HapticFeedback()
+            self.animation.springAnimation(view: self.DynamicButton)
+            HapticsManager.shared.hapticFeedback()
         }
     }
 }

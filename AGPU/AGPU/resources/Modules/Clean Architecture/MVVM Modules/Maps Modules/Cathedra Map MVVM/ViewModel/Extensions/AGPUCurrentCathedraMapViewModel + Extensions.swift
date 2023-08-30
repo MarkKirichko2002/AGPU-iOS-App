@@ -11,7 +11,7 @@ import MapKit
 extension AGPUCurrentCathedraMapViewModel: AGPUCurrentCathedraMapViewModelProtocol {
     
     func checkLocationAuthorizationStatus() {
-        locationManager.СheckLocationAuthorization { isAuthorized in
+        locationManager.checkLocationAuthorization { isAuthorized in
             if isAuthorized {
                 self.getLocation()
             } else {
@@ -22,7 +22,7 @@ extension AGPUCurrentCathedraMapViewModel: AGPUCurrentCathedraMapViewModelProtoc
     
     func getLocation() {
         
-        locationManager.GetLocations()
+        locationManager.getLocations()
         
         locationManager.registerLocationHandler { location in
             

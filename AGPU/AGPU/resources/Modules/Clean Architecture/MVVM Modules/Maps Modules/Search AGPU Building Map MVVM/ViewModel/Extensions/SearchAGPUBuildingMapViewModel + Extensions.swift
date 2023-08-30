@@ -11,7 +11,7 @@ import MapKit
 extension SearchAGPUBuildingMapViewModel: SearchAGPUBuildingMapViewModelProtocol {
     
     func checkLocationAuthorizationStatus() {
-        locationManager.СheckLocationAuthorization { isAuthorized in
+        locationManager.checkLocationAuthorization { isAuthorized in
             if isAuthorized {
                 self.getLocation()
             } else {
@@ -22,7 +22,7 @@ extension SearchAGPUBuildingMapViewModel: SearchAGPUBuildingMapViewModelProtocol
     
     func getLocation() {
         
-        locationManager.GetLocations()
+        locationManager.getLocations()
         
         locationManager.registerLocationHandler { location in
             

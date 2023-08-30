@@ -48,7 +48,7 @@ extension WordDocumenReaderViewModel: WordDocumenReaderViewModelProtocol {
         let date = dateManager.getCurrentDate()
         let time = dateManager.getCurrentTime()
         let page = RecentWordDocumentModel(date: date, time: time, url: url, position: position)
-        UserDefaults.SaveData(object: page, key: "last word document") {
+        UserDefaults.saveData(object: page, key: "last word document") {
             print("сохранено: \(page)")
         }
     }

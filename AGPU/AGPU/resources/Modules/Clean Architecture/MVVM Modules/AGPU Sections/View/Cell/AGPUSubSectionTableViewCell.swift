@@ -45,7 +45,7 @@ final class AGPUSubSectionTableViewCell: UITableViewCell {
     }
     
     func didTapCell(indexPath: IndexPath) {
-        animation.SpringAnimation(view: AGPUSubSectionTitle)
+        animation.springAnimation(view: AGPUSubSectionTitle)
     }
     
     func configure(subsection: AGPUSubSectionModel) {

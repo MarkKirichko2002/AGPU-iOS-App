@@ -94,7 +94,7 @@ final class WebViewController: UIViewController {
     }
     
     @objc private func closeButtonTapped() {
-        SendScreenWasClosedNotification()
+        sendScreenWasClosedNotification()
         self.dismiss(animated: true)
     }
 }

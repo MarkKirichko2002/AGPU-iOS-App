@@ -26,7 +26,7 @@ final class ShakeToRecallOptionTableViewCell: UITableViewCell {
         if Switch.isOn == true {
             print("on")
             userDefaults.set(true, forKey: "onShakeToRecallOption")
-            animation.SpringAnimation(view: ShakeToRecallIcon)
+            animation.springAnimation(view: ShakeToRecallIcon)
         } else if Switch.isOn == false {
             print("off")
             userDefaults.set(false, forKey: "onShakeToRecallOption")

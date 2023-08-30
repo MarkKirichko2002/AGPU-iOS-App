@@ -54,8 +54,8 @@ final class TimeTableTableViewCell: UITableViewCell {
     }
     
     func didTapCell(indexPath: IndexPath) {
-        animation.SpringAnimation(view: self.TimeLabel)
-        animation.SpringAnimation(view: self.DisciplineName)
-        animation.SpringAnimation(view: self.SubGroupId)
+        animation.springAnimation(view: self.TimeLabel)
+        animation.springAnimation(view: self.DisciplineName)
+        animation.springAnimation(view: self.SubGroupId)
     }
 }

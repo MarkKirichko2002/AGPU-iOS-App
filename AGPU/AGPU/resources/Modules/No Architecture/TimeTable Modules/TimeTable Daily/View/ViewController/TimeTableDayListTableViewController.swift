@@ -163,7 +163,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         self.noTimeTableLabel.isHidden = true
         self.timetable?.disciplines = []
         self.tableView.reloadData()
-        service.GetTimeTableDay(groupId: group, date: date) { result in
+        service.getTimeTableDay(groupId: group, date: date) { result in
             switch result {
             case .success(let timetable):
                 if !timetable.disciplines.isEmpty {

@@ -61,7 +61,7 @@ extension AGPUSectionsListViewController: UITableViewDelegate {
             cell.didTapCell(indexPath: indexPath)
         }
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.GoToWeb(url: subsection.url, image: subsection.icon, title: "ФГБОУ ВО «АГПУ»", isSheet: false)
+            self.goToWeb(url: subsection.url, image: subsection.icon, title: "ФГБОУ ВО «АГПУ»", isSheet: false)
         }
     }
 }
@@ -70,6 +70,6 @@ extension AGPUSectionsListViewController {
     
     func sectionSelected(index: Int) {
         let section = AGPUSections.sections[index]
-        self.GoToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false)
+        self.goToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false)
     }
 }

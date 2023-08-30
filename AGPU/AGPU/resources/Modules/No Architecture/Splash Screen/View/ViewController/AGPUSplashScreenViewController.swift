@@ -77,16 +77,16 @@ final class AGPUSplashScreenViewController: UIViewController {
     
     private func showSplashScreen() {
         
-        animation?.SpringAnimation(view: AGPUIcon)
+        animation?.springAnimation(view: AGPUIcon)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.AGPUTitleLabel.text = "ФГБОУ ВО «АГПУ»"
-            self.animation?.SpringAnimation(view: self.AGPUTitleLabel)
+            self.animation?.springAnimation(view: self.AGPUTitleLabel)
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.AnniversaryLabel.text = "100 лет 🎉!!!"
-            self.animation?.SpringAnimation(view: self.AnniversaryLabel)
+            self.animation?.springAnimation(view: self.AnniversaryLabel)
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {

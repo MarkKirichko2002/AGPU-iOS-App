@@ -8,6 +8,6 @@
 import CoreLocation
 
 protocol LocationManagerProtocol {
-    func GetLocations()
-    func СheckLocationAuthorization(completion: @escaping (Bool) -> Void)
+    func getLocations()
+    func checkLocationAuthorization(completion: @escaping (Bool) -> Void)
 }

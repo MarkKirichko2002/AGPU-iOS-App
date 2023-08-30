@@ -3145,8 +3145,8 @@
 		82E4C51A2A6B0D7000F65A67 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				82B24A832A81BCB5008B94E4 /* TimeTable */,
 				82B24A842A81BCBE008B94E4 /* News */,
+				82B24A832A81BCB5008B94E4 /* TimeTable */,
 			);
 			name = Services;
 			path = Services/Services;

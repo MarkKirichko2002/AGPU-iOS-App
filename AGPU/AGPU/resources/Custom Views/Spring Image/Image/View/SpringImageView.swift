@@ -16,10 +16,10 @@ final class SpringImageView: UIImageView {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         self.isUserInteractionEnabled = true
         self.addGestureRecognizer(tap)
-        SetUpInteraction()
+        setUpInteraction()
     }
     
-    private func SetUpInteraction() {
+    private func setUpInteraction() {
         let interaction = UIContextMenuInteraction(delegate: self)
         if isInteraction {
             self.addInteraction(interaction)
@@ -27,7 +27,7 @@ final class SpringImageView: UIImageView {
     }
     
     @objc private func tapFunction(sender: UITapGestureRecognizer) {
-        animation.SpringAnimation(view: self)
-        HapticsManager.shared.HapticFeedback()
+        animation.springAnimation(view: self)
+        HapticsManager.shared.hapticFeedback()
     }
 }

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol HapticsManagerProtocol {
-    func HapticFeedback()
+    func hapticFeedback()
 }

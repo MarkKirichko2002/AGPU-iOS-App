@@ -25,9 +25,9 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         let savedStatus = UserDefaults.loadData(type: UserStatusModel.self, key: "user status")
         if status.id != savedStatus?.id {
             status.isSelected = true
-            UserDefaults.SaveData(object: status, key: "user status") {
+            UserDefaults.saveData(object: status, key: "user status") {
                 self.isChanged.toggle()
-                HapticsManager.shared.HapticFeedback()
+                HapticsManager.shared.hapticFeedback()
             }
             NotificationCenter.default.post(name: Notification.Name("user status"), object: status)
         }
@@ -60,7 +60,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         faculty.isSelected = true
         
         if !isFacultySelected(index: index) {
-            UserDefaults.SaveData(object: faculty, key: "faculty") {
+            UserDefaults.saveData(object: faculty, key: "faculty") {
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     self.isChanged.toggle()
                 }
@@ -113,7 +113,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
                     faculty = AGPUFaculties.faculties[index]
                     faculty = nil
                     
-                    UserDefaults.SaveData(object: faculty, key: "faculty") {
+                    UserDefaults.saveData(object: faculty, key: "faculty") {
                         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                             self.isChanged.toggle()
                         }

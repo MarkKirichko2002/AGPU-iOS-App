@@ -11,7 +11,7 @@ import Foundation
 extension AllWeeksListViewModel: AllWeeksListViewModelProtocol {
     
     func GetWeeks() {
-        service.GetWeeks { result in
+        service.getWeeks { result in
             switch result {
             case .success(let weeks):
                 self.weeks = weeks
@@ -36,7 +36,7 @@ extension AllWeeksListViewModel: AllWeeksListViewModelProtocol {
     
     func getCurrentWeek() {
         for week in weeks {
-            let isRange = dateManager.DateRange(startDate: week.from, endDate: week.to)
+            let isRange = dateManager.dateRange(startDate: week.from, endDate: week.to)
             if isRange {
                 Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
                     self.ScrollHandler?(week.id - 1)
@@ -51,7 +51,7 @@ extension AllWeeksListViewModel: AllWeeksListViewModelProtocol {
     
     func isCurrentWeek(index: Int)-> Bool {
         let week = weeks[index]
-        let isRange = dateManager.DateRange(startDate: week.from, endDate: week.to)
+        let isRange = dateManager.dateRange(startDate: week.from, endDate: week.to)
         return isRange
     }
 }

@@ -19,19 +19,6 @@ extension String {
         let modifiedStroke = self.replacingOccurrences(of: ",", with: "").replacingOccurrences(of: "-", with: " ")
         
         let sntns = modifiedStroke.components(separatedBy: "(")
-        // херня (полная()
-        // жирный (позер)
-        // ["жирный ", "позер)"]
-        // ["херня ", "полная", ")"]
-        // ивт 1()
-        // ["ивт 1", ")"]
-        // ивт 2()()
-        // ["ивт 2", ")", ")"]
-        // separatedBy: "><"
-        //<tag></tag>
-        // ["<tag","/tag>"]
-        // agpu.merqury.fun
-        // ["agpu", "merqury", "fun"]
         
         if modifiedStroke.lowercased().contains("исторический факультет") {
             result = "ИстФак"

@@ -10,7 +10,7 @@ import UIKit
 // MARK: - HapticsManagerProtocol
 extension HapticsManager: HapticsManagerProtocol {
     
-    func HapticFeedback() {
+    func hapticFeedback() {
         let feedback = UIImpactFeedbackGenerator(style: .medium)
         feedback.impactOccurred()
     }

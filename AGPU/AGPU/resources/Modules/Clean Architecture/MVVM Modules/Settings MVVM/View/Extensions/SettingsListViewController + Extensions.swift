@@ -96,7 +96,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     } else {
                         NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
                         let ok = UIAlertAction(title: "ОК", style: .default)
-                        self.ShowAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать иконку факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
+                        self.showAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать иконку факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
                     }
                 }
                 
@@ -107,11 +107,11 @@ extension SettingsListViewController: UITableViewDelegate {
                         self.navigationController?.pushViewController(vc, animated: true)
                     } else if self.viewModel.isFacultySelected(index: indexPath.row) &&  self.viewModel.facultyItem(index: indexPath.row).cathedra.isEmpty {
                         let ok = UIAlertAction(title: "ОК", style: .default)
-                        self.ShowAlert(title: "У \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) отсутствуют кафедры", message: "", actions: [ok])
+                        self.showAlert(title: "У \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) отсутствуют кафедры", message: "", actions: [ok])
                     } else {
                         NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
                         let ok = UIAlertAction(title: "ОК", style: .default)
-                        self.ShowAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать кафедру факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
+                        self.showAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать кафедру факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
                     }
                 }
                 
@@ -123,7 +123,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     } else {
                         NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
                         let ok = UIAlertAction(title: "ОК", style: .default)
-                        self.ShowAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать группу факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
+                        self.showAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать группу факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
                     }
                 }
                 
@@ -135,7 +135,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     } else {
                         NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
                         let ok = UIAlertAction(title: "ОК", style: .default)
-                        self.ShowAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать подгруппу факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
+                        self.showAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать подгруппу факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
                     }
                 }
                 

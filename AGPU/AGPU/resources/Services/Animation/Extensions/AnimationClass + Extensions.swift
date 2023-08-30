@@ -11,7 +11,7 @@ import UIKit
 extension AnimationClass: AnimationClassProtocol {
     
     // пружинная анимация
-    func SpringAnimation<T: UIView>(view: T) {
+    func springAnimation<T: UIView>(view: T) {
         let animation = CASpringAnimation(keyPath: "transform.scale")
         animation.fromValue = 0
         animation.toValue = 1
@@ -23,13 +23,13 @@ extension AnimationClass: AnimationClassProtocol {
     }
     
     // анимация вращения
-    func RotateAnimation<T: UIView>(view: T) {
+    func rotateAnimation<T: UIView>(view: T) {
         rotationAnimation.toValue = NSNumber(value: 180)
         view.layer.add(rotationAnimation, forKey: "rotationAnimation")
     }
     
     // начать анимацию вращения
-    func StartRotateAnimation<T: UIView>(view: T) {
+    func startRotateAnimation<T: UIView>(view: T) {
         rotationAnimation.toValue = NSNumber(value: .pi * 2.0)
         rotationAnimation.duration = 2.0;
         rotationAnimation.isCumulative = true;
@@ -38,12 +38,12 @@ extension AnimationClass: AnimationClassProtocol {
     }
     
     // завершить анимацию вращения
-    func StopRotateAnimation<T: UIView>(view: T) {
+    func stopRotateAnimation<T: UIView>(view: T) {
         view.layer.removeAnimation(forKey: "rotationAnimation")
     }
    
     // анимация TabBarItem
-    func TabBarItemAnimation(item: UITabBarItem) {
+    func tabBarItemAnimation(item: UITabBarItem) {
         guard let barItemView = item.value(forKey: "view") as? UIView else { return }
         
         let timeInterval: TimeInterval = 0.3
@@ -52,11 +52,11 @@ extension AnimationClass: AnimationClassProtocol {
         }
         propertyAnimator.addAnimations({ barItemView.transform = .identity }, delayFactor: CGFloat(timeInterval))
         propertyAnimator.startAnimation()
-        HapticsManager.shared.HapticFeedback()
+        HapticsManager.shared.hapticFeedback()
     }
    
     // анимация переворота
-    func FlipAnimation<T: UIView>(view: T) {
+    func flipAnimation<T: UIView>(view: T) {
         T.transition(with: view, duration: 0.5,
                      options: .transitionFlipFromRight, animations: nil,
                      completion: nil)

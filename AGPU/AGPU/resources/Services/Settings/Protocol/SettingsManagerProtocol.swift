@@ -8,6 +8,7 @@
 import UIKit
 
 protocol SettingsManagerProtocol {
+    func observeStatusChanged(completion: @escaping()->Void)
     func checkCurrentStatus()-> UIViewController
     func checkCurrentIcon()-> String
     func checkShakeToRecallOption()-> Bool

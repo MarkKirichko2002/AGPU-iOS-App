@@ -33,7 +33,7 @@ final class AppFeaturesListTableViewController: UITableViewController {
     }
     
     @objc private func back() {
-        SendScreenWasClosedNotification()
+        sendScreenWasClosedNotification()
         navigationController?.popViewController(animated: true)
     }
 

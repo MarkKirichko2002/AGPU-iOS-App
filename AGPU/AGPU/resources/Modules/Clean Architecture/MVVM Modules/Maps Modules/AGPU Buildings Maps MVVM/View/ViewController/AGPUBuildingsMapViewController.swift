@@ -50,7 +50,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
     }
     
     @objc private func back() {
-        SendScreenWasClosedNotification()
+        sendScreenWasClosedNotification()
         navigationController?.popViewController(animated: true)
     }
     
@@ -73,7 +73,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
         viewModel.alertHandler = { bool in
             if bool {
                 let goToSettings = UIAlertAction(title: "перейти в настройки", style: .default) { _ in
-                    self.OpenSettings()
+                    self.openSettings()
                 }
                 let cancel = UIAlertAction(title: "отмена", style: .cancel) { _ in
                     Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
@@ -81,7 +81,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
                     }
                     self.navigationController?.popViewController(animated: true)
                 }
-                self.ShowAlert(title: "Геопозиция выключена", message: "хотите включить в настройках?", actions: [goToSettings, cancel])
+                self.showAlert(title: "Геопозиция выключена", message: "хотите включить в настройках?", actions: [goToSettings, cancel])
             } else {
                 fatalError()
             }

@@ -53,7 +53,7 @@ final class AGPUSectionsListViewController: UIViewController {
     }
     
     @objc private func back() {
-        SendScreenWasClosedNotification()
+        sendScreenWasClosedNotification()
         navigationController?.popViewController(animated: true)
     }
     

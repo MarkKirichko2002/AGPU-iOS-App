@@ -48,28 +48,28 @@ final class ForStudentListTableViewController: UITableViewController {
             if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
                 Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                    self.GoToWeb(url: cathedra.manualUrl, image: ForStudentSections.sections[indexPath.row].icon, title: "Метод. материалы", isSheet: false)
+                    self.goToWeb(url: cathedra.manualUrl, image: ForStudentSections.sections[indexPath.row].icon, title: "Метод. материалы", isSheet: false)
                 }
             } else {
                 let ok = UIAlertAction(title: "ОК", style: .default)
-                self.ShowAlert(title: "Вы не выбрали кафедру", message: "чтобы посмотреть методические материалы для вашей кафедры выберите ее в настройках", actions: [ok])
+                self.showAlert(title: "Вы не выбрали кафедру", message: "чтобы посмотреть методические материалы для вашей кафедры выберите ее в настройках", actions: [ok])
             }
             
         case 3:
             if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
                 Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                    self.GoToWeb(url: cathedra.additionalEducationUrl, image: ForStudentSections.sections[indexPath.row].icon, title: "Доп. образование", isSheet: false)
+                    self.goToWeb(url: cathedra.additionalEducationUrl, image: ForStudentSections.sections[indexPath.row].icon, title: "Доп. образование", isSheet: false)
                 }
             } else {
                 let ok = UIAlertAction(title: "ОК", style: .default)
-                self.ShowAlert(title: "Вы не выбрали кафедру", message: "чтобы посмотреть соответствующие материалы для вашей кафедры выберите ее в настройках", actions: [ok])
+                self.showAlert(title: "Вы не выбрали кафедру", message: "чтобы посмотреть соответствующие материалы для вашей кафедры выберите ее в настройках", actions: [ok])
             }
             
         case 4:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "http://test.agpu.net/studentu/obshchezhitiya/index.php", image: ForStudentSections.sections[indexPath.row].icon, title: "Кампус и общежития", isSheet: false)
+                self.goToWeb(url: "http://test.agpu.net/studentu/obshchezhitiya/index.php", image: ForStudentSections.sections[indexPath.row].icon, title: "Кампус и общежития", isSheet: false)
             }
             
         case 5:

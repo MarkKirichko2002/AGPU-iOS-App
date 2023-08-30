@@ -18,7 +18,7 @@ final class InteractiveView: UIView {
     }
     
     @objc private func tapFunction(sender: UITapGestureRecognizer) {
-        HapticsManager.shared.HapticFeedback()
+        HapticsManager.shared.hapticFeedback()
         tapAction?()
     }
 }

@@ -13,5 +13,5 @@ protocol DateManagerProtocol {
     func getDateFromOtherFormat(date: String)-> String
     func nextDay(date: String)-> String
     func previousDay(date: String)-> String
-    func DateRange(startDate: String, endDate: String)-> Bool
+    func dateRange(startDate: String, endDate: String)-> Bool
 }

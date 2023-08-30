@@ -22,10 +22,10 @@ extension FacultyCathedraListViewModel: FacultyCathedraListViewModelProtocol {
         let cathedraItem = cathedraItem(index: index)
         if let Savedfaculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
             if Savedfaculty.name == faculty.name {
-                UserDefaults.SaveData(object: cathedraItem, key: "cathedra") {
+                UserDefaults.saveData(object: cathedraItem, key: "cathedra") {
                     print("сохранено")
                     self.isChanged.toggle()
-                    HapticsManager.shared.HapticFeedback()
+                    HapticsManager.shared.hapticFeedback()
                 }
             } else {
                 print("no \(faculty.name) != \(Savedfaculty.name)")

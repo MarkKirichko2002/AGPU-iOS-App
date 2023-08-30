@@ -42,7 +42,7 @@ extension NewsPagesListViewModel: NewsPagesListViewModelProtocol {
             currentPage = page
             self.dataChangedHandler?()
             self.pageSelectedHandler?("Выбрана страница \(page)")
-            HapticsManager.shared.HapticFeedback()
+            HapticsManager.shared.hapticFeedback()
         } else {
             self.pageSelectedHandler?("Страница \(page) уже выбрана")
         }

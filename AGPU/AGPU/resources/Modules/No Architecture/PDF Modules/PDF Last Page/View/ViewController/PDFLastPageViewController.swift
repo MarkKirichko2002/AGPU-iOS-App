@@ -74,6 +74,7 @@ class PDFLastPageViewController: UIViewController {
     }
     
     private func savePDF() {
+        
         var page = 0
         guard let currentPage = pdfView.currentPage?.pageRef?.pageNumber else { return }
         page = currentPage - 1
@@ -81,7 +82,7 @@ class PDFLastPageViewController: UIViewController {
         let pdf = RecentPDFModel(url: pdf.url, pageNumber: page)
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            UserDefaults.SaveData(object: pdf, key: "last pdf") {
+            UserDefaults.saveData(object: pdf, key: "last pdf") {
                 print("сохранено: \(pdf)")
             }
         }
