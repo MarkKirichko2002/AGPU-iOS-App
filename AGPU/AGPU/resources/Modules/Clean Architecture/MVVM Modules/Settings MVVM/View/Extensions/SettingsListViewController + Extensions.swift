@@ -32,12 +32,11 @@ extension SettingsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: UserStatusTableViewCell.identifier, for: indexPath) as? UserStatusTableViewCell else {return UITableViewCell()}
+            cell.configure(type: UserStatusList.list[indexPath.row])
             cell.accessoryType = viewModel.isStatusSelected(index: indexPath.row) ? .checkmark : .none
             cell.tintColor = .systemGreen
-            cell.textLabel?.text = UserStatusList.list[indexPath.row].name
-            cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
-            cell.textLabel?.textColor = viewModel.isStatusSelected(index: indexPath.row) ? .systemGreen : .black
+            cell.StatusName.textColor = viewModel.isStatusSelected(index: indexPath.row) ? .systemGreen : .black
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AGPUFacultyTableViewCell.identifier, for: indexPath) as? AGPUFacultyTableViewCell else {return UITableViewCell()}
