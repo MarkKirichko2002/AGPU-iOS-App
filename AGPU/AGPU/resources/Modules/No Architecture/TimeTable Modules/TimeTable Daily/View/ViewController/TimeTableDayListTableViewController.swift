@@ -183,6 +183,7 @@ final class TimeTableDayListTableViewController: UIViewController {
                         let data = timetable.disciplines.filter { $0.subgroup == self.subgroup || $0.subgroup == 0 || (self.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
                         self.timetable = timetable
                         self.timetable?.disciplines = data
+                        self.allDisciplines = data
                         self.tableView.reloadData()
                         self.spinner.stopAnimating()
                         self.refreshControl.endRefreshing()
@@ -230,6 +231,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     private func observePairType() {
+        
         NotificationCenter.default.addObserver(forName: Notification.Name("TypeWasSelected"), object: nil, queue: .main) { [weak self] notification in
             guard let type = notification.object as? PairType, let self = self, let timetable = self.timetable else { return }
             
@@ -243,6 +245,7 @@ final class TimeTableDayListTableViewController: UIViewController {
                 
                 self.timetable?.disciplines = self.allDisciplines
                 self.tableView.reloadData()
+                
             } else {
                 
                 if self.allDisciplines.isEmpty {
