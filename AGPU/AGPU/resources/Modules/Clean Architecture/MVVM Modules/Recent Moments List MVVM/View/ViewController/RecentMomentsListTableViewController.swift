@@ -14,12 +14,12 @@ final class RecentMomentsListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpTable()
-        BindViewModel()
+        setUpNavigation()
+        setUpTable()
+        bindViewModel()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         navigationItem.title = "Недавние моменты"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .black
@@ -27,29 +27,29 @@ final class RecentMomentsListTableViewController: UITableViewController {
     }
     
     @objc private func closeScreen() {
-        viewModel.SendScreenClosedNotification()
+        sendScreenWasClosedNotification()
         dismiss(animated: true)
     }
     
-    private func SetUpTable() {
+    private func setUpTable() {
         tableView.register(UINib(nibName: RecentMomentTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RecentMomentTableViewCell.identifier)
     }
     
-    private func BindViewModel() {
+    private func bindViewModel() {
         viewModel.registerAlertHandler { message, description in
             let ok = UIAlertAction(title: "ОК", style: .default)
-            self.ShowAlert(title: message, message: description, actions: [ok])
+            self.showAlert(title: message, message: description, actions: [ok])
         }
     }
     
-    private func CheckLastWebPage() {
-        viewModel.GetLastWebPage { page in
-            self.ShowRecentPageScreen(page: page)
+    private func checkLastWebPage() {
+        viewModel.getLastWebPage { page in
+            self.showRecentPageScreen(page: page)
         }
     }
     
-    private func CheckLastPDFDocument() {
-        viewModel.GetLastPDFDocument { pdf in
+    private func checkLastPDFDocument() {
+        viewModel.getLastPDFDocument { pdf in
             let vc = PDFLastPageViewController(pdf: pdf)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -59,8 +59,8 @@ final class RecentMomentsListTableViewController: UITableViewController {
         }
     }
     
-    private func CheckLastWordDocument() {
-        viewModel.GetLastWordDocument { document in
+    private func checkLastWordDocument() {
+        viewModel.getLastWordDocument { document in
             let vc = WordRecentDocumentViewController(document: document)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -70,9 +70,9 @@ final class RecentMomentsListTableViewController: UITableViewController {
         }
     }
     
-    private func CheckLastVideo() {
-        viewModel.GetLastVideo { videoURL in
-            self.PlayVideo(url: videoURL)
+    private func checkLastVideo() {
+        viewModel.getLastVideo { videoURL in
+            self.playVideo(url: videoURL)
         }
     }
     
@@ -80,13 +80,13 @@ final class RecentMomentsListTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
         case 0:
-            CheckLastWebPage()
+            checkLastWebPage()
         case 1:
-            CheckLastPDFDocument()
+            checkLastPDFDocument()
         case 2:
-            CheckLastWordDocument()
+            checkLastWordDocument()
         case 3:
-            CheckLastVideo()
+            checkLastVideo()
         default:
             break
         }
@@ -97,8 +97,9 @@ final class RecentMomentsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let moment = RecentMomentsList.moments[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RecentMomentTableViewCell.identifier, for: indexPath) as? RecentMomentTableViewCell else {return UITableViewCell()}
-        cell.configure(moment: RecentMomentsList.moments[indexPath.row])
+        cell.configure(moment: moment)
         return cell
     }
 }

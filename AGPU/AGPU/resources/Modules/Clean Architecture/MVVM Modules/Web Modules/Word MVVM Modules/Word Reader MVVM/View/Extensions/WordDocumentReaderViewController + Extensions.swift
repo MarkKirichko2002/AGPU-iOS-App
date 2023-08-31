@@ -15,7 +15,7 @@ extension WordDocumentReaderViewController: UIScrollViewDelegate {
         let yOffset = scrollView.contentOffset.y
         let position = CGPoint(x: 0, y: yOffset)
         if let url = WVWEBview.url?.absoluteString {
-            self.viewModel.SaveCurrentWordDocument(url: url, position: position)
+            self.viewModel.saveCurrentWordDocument(url: url, position: position)
         }
     }
 }

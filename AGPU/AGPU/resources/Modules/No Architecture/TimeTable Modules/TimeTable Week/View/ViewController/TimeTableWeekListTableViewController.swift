@@ -38,21 +38,21 @@ final class TimeTableWeekListTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpTable()
-        SetUpLabel()
-        SetUpIndicatorView()
-        GetTimeTable()
-        SetUpRefreshControl()
+        setUpTable()
+        setUpLabel()
+        setUpIndicatorView()
+        getTimeTable()
+        setUpRefreshControl()
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.ScrollToCurrentDay()
+            self.scrollToCurrentDay()
         }
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         navigationItem.title = "с \(week.from) до \(week.to)"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .black
-        let menu = SetUpDatesMenu()
+        let menu = setUpDatesMenu()
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         sections.tintColor = .black
         navigationItem.leftBarButtonItem = closeButton
@@ -63,7 +63,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    private func SetUpDatesMenu()-> UIMenu {
+    private func setUpDatesMenu()-> UIMenu {
         
         let currentDay = dateManager.getCurrentDate()
         
@@ -79,7 +79,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         return datesList
     }
     
-    private func SetUpTable() {
+    private func setUpTable() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
         tableView.delegate = self
@@ -88,16 +88,16 @@ final class TimeTableWeekListTableViewController: UIViewController {
         tableView.separatorStyle = .none
     }
     
-    private func SetUpRefreshControl() {
+    private func setUpRefreshControl() {
         tableView.addSubview(refreshControl)
         refreshControl.addTarget(self, action: #selector(refreshTimetable), for: .valueChanged)
     }
     
     @objc private func refreshTimetable() {
-        GetTimeTable()
+        getTimeTable()
     }
     
-    private func SetUpLabel() {
+    private func setUpLabel() {
         view.addSubview(noTimeTableLabel)
         noTimeTableLabel.text = "Нет расписания"
         noTimeTableLabel.font = .systemFont(ofSize: 18, weight: .medium)
@@ -109,7 +109,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         ])
     }
     
-    private func SetUpIndicatorView() {
+    private func setUpIndicatorView() {
         view.addSubview(spinner)
         spinner.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -119,12 +119,12 @@ final class TimeTableWeekListTableViewController: UIViewController {
         spinner.startAnimating()
     }
     
-    func GetTimeTable() {
+    func getTimeTable() {
         self.spinner.startAnimating()
         self.noTimeTableLabel.isHidden = true
         self.timetable = []
         self.tableView.reloadData()
-        service.GetTimeTableWeek(groupId: group, startDate: week.from, endDate: week.to) { result in
+        service.getTimeTableWeek(groupId: group, startDate: week.from, endDate: week.to) { result in
             switch result {
             case .success(let timetable):
                 var arr = [TimeTable]()
@@ -142,26 +142,26 @@ final class TimeTableWeekListTableViewController: UIViewController {
                         self.spinner.stopAnimating()
                         self.refreshControl.endRefreshing()
                         self.noTimeTableLabel.isHidden = true
-                        self.SetUpNavigation()
+                        self.setUpNavigation()
                     }
                 } else {
                     self.noTimeTableLabel.isHidden = false
                     self.spinner.stopAnimating()
                     self.refreshControl.endRefreshing()
-                    self.SetUpNavigation()
+                    self.setUpNavigation()
                 }
             case .failure(let error):
                 self.spinner.stopAnimating()
                 self.noTimeTableLabel.text = "Ошибка"
                 self.noTimeTableLabel.isHidden = false
                 self.refreshControl.endRefreshing()
-                self.SetUpNavigation()
+                self.setUpNavigation()
                 print(error.localizedDescription)
             }
         }
     }
     
-    func ScrollToCurrentDay() {
+    func scrollToCurrentDay() {
         let currentDate = dateManager.getCurrentDate()
         timetable.enumerated().forEach { (index: Int, timetable: TimeTable) in
             if timetable.date == currentDate {

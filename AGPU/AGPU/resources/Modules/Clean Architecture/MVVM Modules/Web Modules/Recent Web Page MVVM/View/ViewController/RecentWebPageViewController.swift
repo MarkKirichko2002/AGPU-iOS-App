@@ -13,7 +13,7 @@ final class RecentWebPageViewController: UIViewController {
     var page: RecentWebPageModel
     
     // MARK: - сервисы
-    let viewModel = RecentPageViewModel()
+    let viewModel = RecentWebPageViewModel()
     
     // MARK: - UI
     let WVWEBview = WKWebView(frame: .zero)
@@ -31,16 +31,16 @@ final class RecentWebPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpWebView()
-        SetUpIndicatorView()
+        setUpNavigation()
+        setUpWebView()
+        setUpIndicatorView()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    private func SetUpWebView() {
+    private func setUpWebView() {
         view.addSubview(WVWEBview)
         view = WVWEBview
         WVWEBview.allowsBackForwardNavigationGestures = true
@@ -48,7 +48,7 @@ final class RecentWebPageViewController: UIViewController {
         WVWEBview.load(self.page.url)
     }
     
-    private func SetUpIndicatorView() {
+    private func setUpIndicatorView() {
         view.addSubview(spinner)
         spinner.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -57,7 +57,7 @@ final class RecentWebPageViewController: UIViewController {
         ])
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         let titleView = CustomTitleView(image: "online", title: "\(page.date) \(page.time)", frame: .zero)
         let backbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
         backbutton.tintColor = .black

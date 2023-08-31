@@ -87,16 +87,16 @@ extension SettingsListViewController: UITableViewDelegate {
             case 1:
                 
                 let chooseFacultyAction = UIAction(title: self.viewModel.isFacultySelected(index: indexPath.row) ? "выбран факультет" : "выбрать факультет", image: self.viewModel.isFacultySelected(index: indexPath.row) ? UIImage(named: "check") : nil) { action in
-                    self.viewModel.ChooseFaculty(index: indexPath.row)
+                    self.viewModel.chooseFaculty(index: indexPath.row)
                 }
                                 
                 let chooseIconAction = UIAction(title: self.viewModel.isFacultyIconSelected(index: indexPath.row) ? "выбрана иконка" : "выбрать иконку", image: self.viewModel.isFacultyIconSelected(index: indexPath.row) ? UIImage(named: "check") : nil) { action in
                     if self.viewModel.isFacultySelected(index: indexPath.row) {
-                        self.viewModel.ChooseFacultyIcon(index: indexPath.row)
+                        self.viewModel.chooseFacultyIcon(index: indexPath.row)
                     } else {
                         NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
                         let ok = UIAlertAction(title: "ОК", style: .default)
-                        self.ShowAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать иконку факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
+                        self.showAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать иконку факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
                     }
                 }
                 
@@ -107,11 +107,11 @@ extension SettingsListViewController: UITableViewDelegate {
                         self.navigationController?.pushViewController(vc, animated: true)
                     } else if self.viewModel.isFacultySelected(index: indexPath.row) &&  self.viewModel.facultyItem(index: indexPath.row).cathedra.isEmpty {
                         let ok = UIAlertAction(title: "ОК", style: .default)
-                        self.ShowAlert(title: "У \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) отсутствуют кафедры", message: "", actions: [ok])
+                        self.showAlert(title: "У \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) отсутствуют кафедры", message: "", actions: [ok])
                     } else {
                         NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
                         let ok = UIAlertAction(title: "ОК", style: .default)
-                        self.ShowAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать кафедру факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
+                        self.showAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать кафедру факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
                     }
                 }
                 
@@ -123,7 +123,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     } else {
                         NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
                         let ok = UIAlertAction(title: "ОК", style: .default)
-                        self.ShowAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать группу факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
+                        self.showAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать группу факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
                     }
                 }
                 
@@ -135,16 +135,16 @@ extension SettingsListViewController: UITableViewDelegate {
                     } else {
                         NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
                         let ok = UIAlertAction(title: "ОК", style: .default)
-                        self.ShowAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать подгруппу факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
+                        self.showAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать подгруппу факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
                     }
                 }
                 
                 let cancelIconAction = UIAction(title: "отменить иконку", image: self.viewModel.isFacultySelected(index: indexPath.row) ? UIImage(named: "cancel") : nil) { action in
-                    self.viewModel.CancelFacultyIcon(index: indexPath.row)
+                    self.viewModel.cancelFacultyIcon(index: indexPath.row)
                 }
                 
                 let cancelFacultyAction = UIAction(title: "отменить факультет", image: self.viewModel.isFacultySelected(index: indexPath.row) ? UIImage(named: "cancel") : nil) { _ in
-                    self.viewModel.CancelFaculty(index: indexPath.row)
+                    self.viewModel.cancelFaculty(index: indexPath.row)
                 }
                 
                 return UIMenu(title: self.viewModel.facultyItem(index: indexPath.row).name, children: [
@@ -168,11 +168,11 @@ extension SettingsListViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.section {
         case 0:
-            viewModel.ChooseStatus(index: indexPath.row)
+            viewModel.chooseStatus(index: indexPath.row)
         case 1,2:
             break
         case 3:
-            NotificationCenter.default.post(name: Notification.Name("for student selected"), object: "info icon")
+            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "info icon")
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AppFeaturesListTableViewController()
                 vc.hidesBottomBarWhenPushed = true

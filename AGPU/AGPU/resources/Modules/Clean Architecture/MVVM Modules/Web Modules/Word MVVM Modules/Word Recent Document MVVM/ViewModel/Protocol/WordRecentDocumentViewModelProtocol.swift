@@ -8,5 +8,5 @@
 import Foundation
 
 protocol WordRecentDocumentViewModelProtocol {
-    func GetLastPosition(currentUrl: String, completion: @escaping(CGPoint)->Void)
+    func getRecentPosition(currentUrl: String, completion: @escaping(CGPoint)->Void)
 }

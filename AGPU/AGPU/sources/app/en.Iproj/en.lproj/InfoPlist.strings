@@ -1,0 +1,14 @@
+/* 
+  InfoPlist.strings
+  AGPU
+
+  Created by Марк Киричко on 22.08.2023.
+  
+*/
+
+NSMicrophoneUsageDescription = "The microphone is used for speech recognition and voice command processing in the application to enhance interaction and enable control of functions through voice commands.";
+NSSpeechRecognitionUsageDescription = "To provide voice recognition functionality, the application requests access to the microphone for speech processing and recognition, allowing the user to control application functions through voice commands.";
+NSPhotoLibraryUsageDescription = "This application requires access to your photo library so that you can save application images to your device.";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Required for precise location determination and providing personalized information about nearby university buildings. Continuous access to geolocation is necessary for reliable display of current location and real-time information about buildings, even when the application is inactive.";
+NSLocationAlwaysUsageDescription = "To continuously display your geolocation and accurately locate university buildings on the map even when the application is inactive.";
+NSLocationWhenInUseUsageDescription = "To display your current geolocation and indicate the locations of university buildings on the map.";

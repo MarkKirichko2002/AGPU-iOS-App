@@ -8,10 +8,10 @@
 import UIKit
 
 protocol FacultyGroupsListViewModelProtocol {
-    func GetGroups(by faculty: AGPUFacultyModel)
+    func getGroups(by faculty: AGPUFacultyModel)
     func groupsListCount(section: Int)-> Int
     func groupItem(section: Int, index: Int)-> String
-    func SelectGroup(section: Int, index: Int)
+    func selectGroup(section: Int, index: Int)
     func isGroupSelected(section: Int, index: Int)-> Bool
     func makeGroupsMenu()-> UIMenu
     func scrollToSelectedGroup()

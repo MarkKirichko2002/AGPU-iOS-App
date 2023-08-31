@@ -11,15 +11,16 @@ class ForApplicantListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpTable()
+        setUpNavigation()
+        setUpTable()
     }
     
-    private func SetUpNavigation() {
-        navigationItem.title = "Абитуриенту"
+    private func setUpNavigation() {
+        let titleView = CustomTitleView(image: "profile icon", title: "Абитуриенту", frame: .zero)
+        navigationItem.titleView = titleView
     }
     
-    private func SetUpTable() {
+    private func setUpTable() {
         tableView.register(UINib(nibName: ForEveryStatusTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ForEveryStatusTableViewCell.identifier)
     }
     
@@ -28,47 +29,41 @@ class ForApplicantListTableViewController: UITableViewController {
         switch indexPath.row {
             
         case 0:
-            NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
-            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "http://abit.agpu.net/", title: "Личный кабинет абитуриента", isSheet: false)
-            }
-            
-        case 1:
-            NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
+            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AGPUBuildingsMapViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-        case 2:
-            NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
+        case 1:
+            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AGPUFacultiesListTableViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-        case 3:
-            NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
+        case 2:
+            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "http://priem.agpu.net/", title: "Информация для поступающих", isSheet: false)
+                self.goToWeb(url: "http://priem.agpu.net/", image: ForApplicantSections.sections[indexPath.row].icon, title: "Информация для поступающих", isSheet: false)
+            }
+            
+        case 3:
+            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
+            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+                self.goToWeb(url: "http://priem.agpu.net/contact-form/Quest.php", image: ForApplicantSections.sections[indexPath.row].icon, title: "Вопросы и ответы", isSheet: false)
             }
             
         case 4:
-            NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
+            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "http://priem.agpu.net/contact-form/Quest.php", title: "Вопросы и ответы", isSheet: false)
+                self.goToWeb(url: "https://niiro-agpu.ru/", image: ForApplicantSections.sections[indexPath.row].icon, title: "Доп. образование", isSheet: false)
             }
             
         case 5:
-            NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
-            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "https://niiro-agpu.ru/", title: "Доп. образование", isSheet: false)
-            }
-            
-        case 6:
-            NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
+            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AGPUSectionsListViewController()
                 vc.hidesBottomBarWhenPushed = true

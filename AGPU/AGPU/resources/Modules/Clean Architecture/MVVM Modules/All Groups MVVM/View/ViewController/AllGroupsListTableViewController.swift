@@ -27,25 +27,23 @@ class AllGroupsListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpTable()
-        BindViewModel()
+        setUpNavigation()
+        setUpTable()
+        bindViewModel()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         
-        navigationItem.title = "Список групп"
+        let titleView = CustomTitleView(image: "group", title: "Список групп", frame: .zero)
         
         let closebutton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeButtonTapped))
         closebutton.tintColor = .black
         let menu = viewModel.makeGroupsMenu()
-        viewModel.scrollHandler = { (section, index) in
-            DispatchQueue.main.async {
-                self.tableView.scrollToRow(at: IndexPath(row: index, section: section), at: .top, animated: true)
-            }
-        }
+
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         sections.tintColor = .black
+        
+        navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = closebutton
         navigationItem.rightBarButtonItem = sections
     }
@@ -54,25 +52,35 @@ class AllGroupsListTableViewController: UITableViewController {
         self.dismiss(animated: true)
     }
     
-    private func SetUpTable() {
+    private func setUpTable() {
         tableView.register(UINib(nibName: FacultyGroupTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyGroupTableViewCell.identifier)
+        tableView.isUserInteractionEnabled = false
     }
     
-    private func BindViewModel() {
+    private func bindViewModel() {
+        
         viewModel.scrollToSelectedGroup { section, index in
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                DispatchQueue.main.async {
-                    let indexPath = IndexPath(row: index, section: section)
-                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+            DispatchQueue.main.async {
+                let indexPath = IndexPath(row: index, section: section)
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    self.tableView.isUserInteractionEnabled = true
                 }
             }
         }
+        
         viewModel.registerGroupSelectedHandler {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 self.dismiss(animated: true)
+            }
+        }
+        
+        viewModel.scrollHandler = { (section, index) in
+            DispatchQueue.main.async {
+                self.tableView.scrollToRow(at: IndexPath(row: index, section: section), at: .top, animated: true)
             }
         }
     }
@@ -82,7 +90,7 @@ class AllGroupsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.SelectGroup(section: indexPath.section, index: indexPath.row)
+        viewModel.selectGroup(section: indexPath.section, index: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

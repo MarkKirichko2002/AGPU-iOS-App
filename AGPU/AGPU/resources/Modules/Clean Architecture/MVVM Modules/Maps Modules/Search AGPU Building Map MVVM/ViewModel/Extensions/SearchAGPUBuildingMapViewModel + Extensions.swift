@@ -10,19 +10,19 @@ import MapKit
 // MARK: - SearchAGPUBuildingMapViewModelProtocol
 extension SearchAGPUBuildingMapViewModel: SearchAGPUBuildingMapViewModelProtocol {
     
-    func CheckLocationAuthorizationStatus() {
-        locationManager.СheckLocationAuthorization { isAuthorized in
+    func checkLocationAuthorizationStatus() {
+        locationManager.checkLocationAuthorization { isAuthorized in
             if isAuthorized {
-                self.GetLocation()
+                self.getLocation()
             } else {
                 self.alertHandler?(true)
             }
         }
     }
     
-    func GetLocation() {
+    func getLocation() {
         
-        locationManager.GetLocations()
+        locationManager.getLocations()
         
         locationManager.registerLocationHandler { location in
             
@@ -56,15 +56,9 @@ extension SearchAGPUBuildingMapViewModel: SearchAGPUBuildingMapViewModelProtocol
         self.locationHandler = block
     }
     
-    func ObserveActions(block: @escaping()->Void) {
+    func observeActions(block: @escaping()->Void) {
         NotificationCenter.default.addObserver(forName: Notification.Name("close screen"), object: nil, queue: .main) { _ in
             block()
-        }
-    }
-    
-    func SendScreenClosedNotification() {
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
         }
     }
 }

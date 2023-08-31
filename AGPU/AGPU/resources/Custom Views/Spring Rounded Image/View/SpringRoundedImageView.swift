@@ -25,7 +25,7 @@ class SpringRoundedImageView: UIImageView {
     }
     
     @objc private func tapFunction(sender: UITapGestureRecognizer) {
-        HapticsManager.shared.HapticFeedback()
-        animation.SpringAnimation(view: self)
+        HapticsManager.shared.hapticFeedback()
+        animation.springAnimation(view: self)
     }
 }

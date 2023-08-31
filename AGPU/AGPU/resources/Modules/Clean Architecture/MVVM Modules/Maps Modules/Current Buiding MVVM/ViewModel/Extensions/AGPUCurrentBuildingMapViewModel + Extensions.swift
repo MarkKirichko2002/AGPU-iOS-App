@@ -10,19 +10,19 @@ import MapKit
 // MARK: - AGPUCurrentBuildingMapViewModelProtocol
 extension AGPUCurrentBuildingMapViewModel: AGPUCurrentBuildingMapViewModelProtocol {
     
-    func CheckLocationAuthorizationStatus() {
-        locationManager.СheckLocationAuthorization { isAuthorized in
+    func checkLocationAuthorizationStatus() {
+        locationManager.checkLocationAuthorization { isAuthorized in
             if isAuthorized {
-                self.GetLocation()
+                self.getLocation()
             } else {
                 self.alertHandler?(true)
             }
         }
     }
     
-    func GetLocation() {
+    func getLocation() {
         
-        locationManager.GetLocations()
+        locationManager.getLocations()
         
         locationManager.registerLocationHandler { location in
             
@@ -47,7 +47,7 @@ extension AGPUCurrentBuildingMapViewModel: AGPUCurrentBuildingMapViewModelProtoc
             currentpin.title = "Вы"
             
             // текущий корпус
-            let currentBuilding = self.CurrentBuilding()
+            let currentBuilding = self.currentBuilding()
             
             let location = LocationModel(region: region, pins: [currentpin, currentBuilding])
             
@@ -59,7 +59,7 @@ extension AGPUCurrentBuildingMapViewModel: AGPUCurrentBuildingMapViewModelProtoc
         self.locationHandler = block
     }
     
-    func CurrentBuilding()-> MKAnnotation {
+    func currentBuilding()-> MKAnnotation {
         
         for building in AGPUBuildings.buildings {
             for audience in building.audiences {

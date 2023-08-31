@@ -31,12 +31,12 @@ class WordRecentDocumentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpWebView()
-        SetUpIndicatorView()
+        setUpNavigation()
+        setUpWebView()
+        setUpIndicatorView()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         let titleView = CustomTitleView(image: "word", title: "\(document.date) \(document.time)", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .black
@@ -52,7 +52,7 @@ class WordRecentDocumentViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
-    private func SetUpWebView() {
+    private func setUpWebView() {
         view.addSubview(WVWEBview)
         view = WVWEBview
         WVWEBview.allowsBackForwardNavigationGestures = true
@@ -60,7 +60,7 @@ class WordRecentDocumentViewController: UIViewController {
         WVWEBview.load(self.document.url)
     }
     
-    private func SetUpIndicatorView() {
+    private func setUpIndicatorView() {
         view.addSubview(spinner)
         spinner.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

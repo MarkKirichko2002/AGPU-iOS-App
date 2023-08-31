@@ -9,7 +9,7 @@ import Foundation
 
 extension UserDefaults {
     
-    static func SaveData<T: Encodable>(object: T, key: String, completion: @escaping()->Void) {
+    static func saveData<T: Encodable>(object: T, key: String, completion: @escaping()->Void) {
         do {
             let data = try JSONEncoder().encode(object)
             UserDefaults.standard.setValue(data, forKey: key)

@@ -11,7 +11,7 @@ import Alamofire
 // MARK: - TimeTableServicerProtocol
 extension TimeTableService: TimeTableServicerProtocol {
     
-    func GetWeeks(completion: @escaping(Result<[WeekModel],Error>)->Void) {
+    func getWeeks(completion: @escaping(Result<[WeekModel],Error>)->Void) {
         
         AF.request("http://\(HostName.host):8080/api/timetable/weeks").responseData { response in
             
@@ -27,7 +27,7 @@ extension TimeTableService: TimeTableServicerProtocol {
         }
     }
     
-    func GetTimeTableDay(groupId: String, date: String, completion: @escaping(Result<TimeTable,Error>)->Void) {
+    func getTimeTableDay(groupId: String, date: String, completion: @escaping(Result<TimeTable,Error>)->Void) {
         
         let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
@@ -45,7 +45,7 @@ extension TimeTableService: TimeTableServicerProtocol {
         }
     }
     
-    func GetTimeTableWeek(groupId: String, startDate: String, endDate: String, completion: @escaping(Result<[TimeTable],Error>)->Void) {
+    func getTimeTableWeek(groupId: String, startDate: String, endDate: String, completion: @escaping(Result<[TimeTable],Error>)->Void) {
         
         let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         

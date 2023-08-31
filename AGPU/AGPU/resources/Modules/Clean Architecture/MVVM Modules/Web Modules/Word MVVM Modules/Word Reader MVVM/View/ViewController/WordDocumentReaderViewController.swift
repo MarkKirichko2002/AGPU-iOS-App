@@ -31,13 +31,13 @@ final class WordDocumentReaderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpWebView()
-        SetUpIndicatorView()
-        BindViewModel()
+        setUpNavigation()
+        setUpWebView()
+        setUpIndicatorView()
+        bindViewModel()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         let titleView = CustomTitleView(image: "word", title: "Word-документ", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .black
@@ -53,7 +53,7 @@ final class WordDocumentReaderViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
-    private func SetUpWebView() {
+    private func setUpWebView() {
         view.addSubview(WVWEBview)
         view = WVWEBview
         WVWEBview.allowsBackForwardNavigationGestures = true
@@ -62,7 +62,7 @@ final class WordDocumentReaderViewController: UIViewController {
         WVWEBview.load(self.url)
     }
     
-    private func SetUpIndicatorView() {
+    private func setUpIndicatorView() {
         view.addSubview(spinner)
         spinner.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -79,11 +79,11 @@ final class WordDocumentReaderViewController: UIViewController {
         return menu
     }
     
-    private func BindViewModel() {
-        viewModel.ObserveScroll { position in
+    private func bindViewModel() {
+        viewModel.observeScroll { position in
             self.WVWEBview.scrollView.setContentOffset(position, animated: true)
         }
-        viewModel.ObserveActions {
+        viewModel.observeActions {
             if self.navigationController?.viewControllers.first == self {
                 self.dismiss(animated: true)
             } else {}

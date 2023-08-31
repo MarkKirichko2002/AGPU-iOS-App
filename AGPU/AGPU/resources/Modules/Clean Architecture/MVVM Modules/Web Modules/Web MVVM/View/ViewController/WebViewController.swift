@@ -31,17 +31,17 @@ final class WebViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpWebView()
-        SetUpIndicatorView()
-        BindViewModel()
+        setUpNavigation()
+        setUpWebView()
+        setUpIndicatorView()
+        bindViewModel()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         let backbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
         backbutton.tintColor = .black
         let forwardbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.right"), style: .plain, target: self, action: #selector(forwardButtonTapped))
@@ -52,7 +52,7 @@ final class WebViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = closebutton
     }
     
-    private func SetUpWebView() {
+    private func setUpWebView() {
         view.addSubview(WVWEBview)
         view = WVWEBview
         WVWEBview.allowsBackForwardNavigationGestures = true
@@ -61,7 +61,7 @@ final class WebViewController: UIViewController {
         WVWEBview.load(self.url)
     }
     
-    private func SetUpIndicatorView() {
+    private func setUpIndicatorView() {
         view.addSubview(spinner)
         spinner.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -70,11 +70,11 @@ final class WebViewController: UIViewController {
         ])
     }
     
-    private func BindViewModel() {
-        viewModel.ObserveScroll { position in
+    private func bindViewModel() {
+        viewModel.observeScroll { position in
             self.WVWEBview.scrollView.setContentOffset(position, animated: true)
         }
-        viewModel.ObserveActions {
+        viewModel.observeActions {
             if self.navigationController?.viewControllers.first == self {
                 self.dismiss(animated: true)
             } else {}
@@ -94,7 +94,7 @@ final class WebViewController: UIViewController {
     }
     
     @objc private func closeButtonTapped() {
-        viewModel.SendScreenClosedNotification()
+        sendScreenWasClosedNotification()
         self.dismiss(animated: true)
     }
 }

@@ -11,11 +11,11 @@ import MessageUI
 
 extension UIViewController {
     
-    func GoToWeb(url: String, title: String?, isSheet: Bool) {
+    func goToWeb(url: String, image: String, title: String?, isSheet: Bool) {
         let vc = WebViewController(url: url)
         let navVC = UINavigationController(rootViewController: vc)
         if title != nil {
-            let titleView = CustomTitleView(image: "online", title: title ?? "", frame: .zero)
+            let titleView = CustomTitleView(image: image, title: title ?? "", frame: .zero)
             vc.navigationItem.titleView = titleView
         }
         if isSheet {
@@ -30,7 +30,7 @@ extension UIViewController {
         }
     }
     
-    func ShowRecentPageScreen(page: RecentWebPageModel) {
+    func showRecentPageScreen(page: RecentWebPageModel) {
         let vc = RecentWebPageViewController(page: page)
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
@@ -39,7 +39,7 @@ extension UIViewController {
         }
     }
     
-    func ShowAlert(title: String, message: String, actions: [UIAlertAction]) {
+    func showAlert(title: String, message: String, actions: [UIAlertAction]) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         for action in actions {
             alertController.addAction(action)
@@ -68,7 +68,7 @@ extension UIViewController {
         present(activityViewController, animated: true)
     }
     
-    func OpenSettings() {
+    func openSettings() {
         if let settingsURL = URL(string: UIApplication.openSettingsURLString + Bundle.main.bundleIdentifier!) {
             UIApplication.shared.open(settingsURL)
         }
@@ -83,18 +83,22 @@ extension UIViewController {
         }
     }
     
-    func SetUpSwipeGesture() {
+    func setUpSwipeGesture() {
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
         swipeGesture.direction = .right
         view.addGestureRecognizer(swipeGesture)
     }
     
     @objc func handleSwipeGesture(_ gesture: UISwipeGestureRecognizer) {
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
-        }
+        sendScreenWasClosedNotification()
         if let navigationController = navigationController {
             navigationController.popViewController(animated: true)
+        }
+    }
+    
+    func sendScreenWasClosedNotification() {
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+            NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
         }
     }
 }
@@ -125,7 +129,8 @@ extension UIViewController: MFMailComposeViewControllerDelegate {
 // MARK: - AVPlayerViewControllerDelegate
 extension UIViewController: AVPlayerViewControllerDelegate {
     
-    func PlayVideo(url: String) {
+    func playVideo(url: String) {
+        
         guard let videoURL = URL(string: url) else {
             print("Invalid video URL")
             return

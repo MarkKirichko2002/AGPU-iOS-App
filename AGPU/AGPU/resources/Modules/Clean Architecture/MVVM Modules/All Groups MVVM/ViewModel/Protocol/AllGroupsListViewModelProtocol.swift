@@ -11,7 +11,7 @@ protocol AllGroupsListViewModelProtocol {
     func numberOfGroupSections()-> Int
     func groupSectionItem(section: Int)-> FacultyGroupModel
     func groupItem(section: Int, index: Int)-> String
-    func SelectGroup(section: Int, index: Int)
+    func selectGroup(section: Int, index: Int)
     func registerGroupSelectedHandler(block: @escaping()->Void)
     func isGroupSelected(section: Int, index: Int)-> Bool
     func scrollToSelectedGroup(completion: @escaping(Int, Int)->Void)

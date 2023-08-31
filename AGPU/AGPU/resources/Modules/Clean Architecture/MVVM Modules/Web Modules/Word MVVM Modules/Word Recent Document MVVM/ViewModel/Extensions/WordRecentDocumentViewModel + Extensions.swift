@@ -10,7 +10,7 @@ import Foundation
 // MARK: - WordRecentDocumentViewModelProtocol
 extension WordRecentDocumentViewModel: WordRecentDocumentViewModelProtocol {
     
-    func GetLastPosition(currentUrl: String, completion: @escaping(CGPoint)->Void) {
+    func getRecentPosition(currentUrl: String, completion: @escaping(CGPoint)->Void) {
         if let page = UserDefaults.loadData(type: RecentWordDocumentModel.self, key: "last word document") {
             if currentUrl == page.url {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

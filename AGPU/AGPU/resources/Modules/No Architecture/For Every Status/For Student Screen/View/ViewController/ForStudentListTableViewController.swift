@@ -11,24 +11,17 @@ final class ForStudentListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpTable()
+        setUpNavigation()
+        setUpTable()
     }
     
-    private func SetUpNavigation() {
-        let titleView = CustomTitleView(
-            image: "student",
-            title: "Студенту",
-            frame: .zero
-        )
+    private func setUpNavigation() {
+        let titleView = CustomTitleView(image: "student icon", title: "Студенту", frame: .zero)
         navigationItem.titleView = titleView
     }
     
-    private func SetUpTable() {
-        tableView.register(
-            UINib(nibName: ForEveryStatusTableViewCell.identifier, bundle: nil),
-            forCellReuseIdentifier: ForEveryStatusTableViewCell.identifier
-        )
+    private func setUpTable() {
+        tableView.register(UINib(nibName: ForEveryStatusTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ForEveryStatusTableViewCell.identifier)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -36,65 +29,59 @@ final class ForStudentListTableViewController: UITableViewController {
         switch indexPath.row {
             
         case 0:
-            NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
-            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "http://plany.agpu.net/WebApp/#/", title: "Личный кабинет ЭИОС", isSheet: false)
-            }
-            
-        case 1:
-            NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AGPUBuildingsMapViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-        case 2:
-            NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+        case 1:
+            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AGPUFacultiesListTableViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-        case 3:
+        case 2:
             if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
-                NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
                 Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                    self.GoToWeb(url: cathedra.manualUrl, title: "Метод. материалы", isSheet: false)
+                    self.goToWeb(url: cathedra.manualUrl, image: ForStudentSections.sections[indexPath.row].icon, title: "Метод. материалы", isSheet: false)
                 }
             } else {
                 let ok = UIAlertAction(title: "ОК", style: .default)
-                self.ShowAlert(title: "Вы не выбрали кафедру", message: "чтобы посмотреть методические материалы для вашей кафедры выберите ее в настройках", actions: [ok])
+                self.showAlert(title: "Вы не выбрали кафедру", message: "чтобы посмотреть методические материалы для вашей кафедры выберите ее в настройках", actions: [ok])
+            }
+            
+        case 3:
+            if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+                Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+                    self.goToWeb(url: cathedra.additionalEducationUrl, image: ForStudentSections.sections[indexPath.row].icon, title: "Доп. образование", isSheet: false)
+                }
+            } else {
+                let ok = UIAlertAction(title: "ОК", style: .default)
+                self.showAlert(title: "Вы не выбрали кафедру", message: "чтобы посмотреть соответствующие материалы для вашей кафедры выберите ее в настройках", actions: [ok])
             }
             
         case 4:
-            if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
-                NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
-                Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                    self.GoToWeb(url: cathedra.additionalEducationUrl, title: "Доп. образование", isSheet: false)
-                }
-            } else {
-                let ok = UIAlertAction(title: "ОК", style: .default)
-                self.ShowAlert(title: "Вы не выбрали кафедру", message: "чтобы посмотреть соответствующие материалы для вашей кафедры выберите ее в настройках", actions: [ok])
+            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+                self.goToWeb(url: "http://test.agpu.net/studentu/obshchezhitiya/index.php", image: ForStudentSections.sections[indexPath.row].icon, title: "Кампус и общежития", isSheet: false)
             }
             
         case 5:
-            NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
-            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.GoToWeb(url: "http://test.agpu.net/studentu/obshchezhitiya/index.php", title: "Кампус и общежития", isSheet: false)
-            }
-            
-        case 6:
-            NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AGPUSectionsListViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-        case 7:
-            NotificationCenter.default.post(name: Notification.Name("for student selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+        case 6:
+            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let vc = AGPUWallpapersListViewController()
                 vc.hidesBottomBarWhenPushed = true

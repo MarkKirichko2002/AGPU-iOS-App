@@ -26,12 +26,12 @@ class PDFDocumentReaderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpPDF()
-        SavePDF()
+        setUpNavigation()
+        setUpPDF()
+        savePDF()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         navigationItem.title = "PDF-документ"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .black
@@ -53,7 +53,7 @@ class PDFDocumentReaderViewController: UIViewController {
         return menu
     }
     
-    private func SetUpPDF() {
+    private func setUpPDF() {
         pdfView = PDFView(frame: view.bounds)
         pdfView.autoScales = true
         pdfView.usePageViewController(true)
@@ -72,10 +72,10 @@ class PDFDocumentReaderViewController: UIViewController {
         let currentPage = document.index(for: pdfView.currentPage!) + 1
         let totalPageCount = pdfView.document?.pageCount
         navigationItem.title = "Документ [\(currentPage)/\(totalPageCount ?? 0)]"
-        SavePDF()
+        savePDF()
     }
     
-    private func SavePDF() {
+    private func savePDF() {
         var page = 0
         guard let currentPage = pdfView.currentPage?.pageRef?.pageNumber else { return }
         page = currentPage - 1
@@ -83,7 +83,7 @@ class PDFDocumentReaderViewController: UIViewController {
         let pdf = RecentPDFModel(url: url, pageNumber: page)
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            UserDefaults.SaveData(object: pdf, key: "last pdf") {
+            UserDefaults.saveData(object: pdf, key: "last pdf") {
                 print("сохранено: \(pdf)")
             }
         }

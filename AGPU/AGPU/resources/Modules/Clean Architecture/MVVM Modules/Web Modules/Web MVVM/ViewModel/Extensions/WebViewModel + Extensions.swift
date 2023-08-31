@@ -10,7 +10,7 @@ import Foundation
 // MARK: - WebViewModelProtocol
 extension WebViewModel: WebViewModelProtocol {
     
-    func ObserveScroll(completion: @escaping(CGPoint)->Void) {
+    func observeScroll(completion: @escaping(CGPoint)->Void) {
         
         var positionX = 0
         var positionY = 0
@@ -37,25 +37,19 @@ extension WebViewModel: WebViewModelProtocol {
         }
     }
     
-    func ObserveActions(block: @escaping()->Void) {
+    func observeActions(block: @escaping()->Void) {
         NotificationCenter.default.addObserver(forName: Notification.Name("close screen"), object: nil, queue: nil) { _ in
             block()
         }
     }
     
-    func SaveCurrentWebPage(url: String, position: CGPoint) {
+    func saveCurrentWebPage(url: String, position: CGPoint) {
         let dateManager = DateManager()
         let date = dateManager.getCurrentDate()
         let time = dateManager.getCurrentTime()
         let page = RecentWebPageModel(date: date, time: time, url: url, position: position)
-        UserDefaults.SaveData(object: page, key: "last page") {
+        UserDefaults.saveData(object: page, key: "last page") {
             print("сохранено: \(page)")
-        }
-    }
-    
-    func SendScreenClosedNotification() {
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
         }
     }
 }

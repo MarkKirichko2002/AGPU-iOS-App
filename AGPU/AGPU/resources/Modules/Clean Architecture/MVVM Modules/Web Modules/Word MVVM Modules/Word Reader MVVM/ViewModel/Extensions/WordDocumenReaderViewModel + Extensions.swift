@@ -10,7 +10,7 @@ import Foundation
 // MARK: - WordDocumenReaderViewModelProtocol
 extension WordDocumenReaderViewModel: WordDocumenReaderViewModelProtocol {
     
-    func ObserveScroll(completion: @escaping(CGPoint)->Void) {
+    func observeScroll(completion: @escaping(CGPoint)->Void) {
         
         var positionX = 0
         var positionY = 0
@@ -37,18 +37,18 @@ extension WordDocumenReaderViewModel: WordDocumenReaderViewModelProtocol {
         }
     }
     
-    func ObserveActions(block: @escaping()->Void) {
+    func observeActions(block: @escaping()->Void) {
         NotificationCenter.default.addObserver(forName: Notification.Name("close screen"), object: nil, queue: nil) { _ in
             block()
         }
     }
     
-    func SaveCurrentWordDocument(url: String, position: CGPoint) {
+    func saveCurrentWordDocument(url: String, position: CGPoint) {
         let dateManager = DateManager()
         let date = dateManager.getCurrentDate()
         let time = dateManager.getCurrentTime()
         let page = RecentWordDocumentModel(date: date, time: time, url: url, position: position)
-        UserDefaults.SaveData(object: page, key: "last word document") {
+        UserDefaults.saveData(object: page, key: "last word document") {
             print("сохранено: \(page)")
         }
     }

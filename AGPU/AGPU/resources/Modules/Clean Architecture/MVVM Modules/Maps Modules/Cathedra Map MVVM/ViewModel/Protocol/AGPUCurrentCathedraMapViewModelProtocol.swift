@@ -8,8 +8,8 @@
 import Foundation
 
 protocol AGPUCurrentCathedraMapViewModelProtocol {
-    func CheckLocationAuthorizationStatus()
-    func GetLocation()
+    func checkLocationAuthorizationStatus()
+    func getLocation()
     func registerLocationHandler(block: @escaping(LocationModel)->Void)
-    func GetCurrentFaculty()-> AGPUFacultyModel
+    func getCurrentFaculty()-> AGPUFacultyModel
 }

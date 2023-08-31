@@ -10,7 +10,7 @@ import UIKit
 // MARK: - SettingsListViewModelProtocol
 extension SettingsListViewModel: SettingsListViewModelProtocol {
     
-    func sectionsCount()->Int {
+    func sectionsCount()-> Int {
         return 4
     }
     
@@ -20,13 +20,17 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         return 3
     }
     
-    func ChooseStatus(index: Int) {
+    func chooseStatus(index: Int) {
         var status = UserStatusList.list[index]
-        status.isSelected = true
-        UserDefaults.SaveData(object: status, key: "user status") {
-            self.isChanged.toggle()
+        let savedStatus = UserDefaults.loadData(type: UserStatusModel.self, key: "user status")
+        if status.id != savedStatus?.id {
+            status.isSelected = true
+            UserDefaults.saveData(object: status, key: "user status") {
+                self.isChanged.toggle()
+                HapticsManager.shared.hapticFeedback()
+            }
+            NotificationCenter.default.post(name: Notification.Name("user status"), object: status)
         }
-        NotificationCenter.default.post(name: Notification.Name("user status"), object: status)
     }
     
     func isStatusSelected(index: Int)-> Bool {
@@ -50,30 +54,15 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         return AGPUFaculties.faculties[index]
     }
     
-    func ChooseFaculty(index: Int) {
+    func chooseFaculty(index: Int) {
         
         var faculty = AGPUFaculties.faculties[index]
         faculty.isSelected = true
         
         if !isFacultySelected(index: index) {
-            UserDefaults.SaveData(object: faculty, key: "faculty") {
+            UserDefaults.saveData(object: faculty, key: "faculty") {
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     self.isChanged.toggle()
-                }
-            }
-            
-            if let currentIconName = UIApplication.shared.alternateIconName {
-                if currentIconName == "AppIcon 7" {
-                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                        NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
-                        NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
-                    }
-                } else {
-                    UIApplication.shared.setAlternateIconName("AppIcon 7")
-                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                        NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
-                        NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
-                    }
                 }
             }
             
@@ -81,15 +70,23 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
             UserDefaults.standard.setValue(nil, forKey: "cathedra")
             UserDefaults.standard.setValue(nil, forKey: "group")
             UserDefaults.standard.setValue(nil, forKey: "subgroup")
+            
+            NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
+            
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
+            }
+            
+            NotificationCenter.default.post(name: Notification.Name("group changed"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: nil)
         }
     }
     
-    func ChooseFacultyIcon(index: Int) {
+    func chooseFacultyIcon(index: Int) {
         
         let faculty = AGPUFaculties.faculties[index]
         
         if !isFacultyIconSelected(index: index) {
-            UIApplication.shared.setAlternateIconName(faculty.appIcon)
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 NotificationCenter.default.post(name: Notification.Name("icon"), object: faculty.icon)
             }
@@ -97,15 +94,17 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         }
     }
     
-    func CancelFacultyIcon(index: Int) {
-        UIApplication.shared.setAlternateIconName("AppIcon 7")
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
+    func cancelFacultyIcon(index: Int) {
+        
+        if isFacultyIconSelected(index: index) {
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
+            }
+            UserDefaults.standard.setValue(nil, forKey: "icon")
         }
-        UserDefaults.standard.setValue(nil, forKey: "icon")
     }
     
-    func CancelFaculty(index: Int) {
+    func cancelFaculty(index: Int) {
         
         if isFacultySelected(index: index) {
             if let data = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
@@ -114,33 +113,22 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
                     faculty = AGPUFaculties.faculties[index]
                     faculty = nil
                     
-                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                        NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
-                    }
-                    UserDefaults.SaveData(object: faculty, key: "faculty") {
+                    UserDefaults.saveData(object: faculty, key: "faculty") {
                         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                             self.isChanged.toggle()
                         }
                     }
                     
-                    if let currentIconName = UIApplication.shared.alternateIconName {
-                        if currentIconName == "AppIcon 7" {
-                            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                                NotificationCenter.default.post(name: Notification.Name("faculty"), object: nil)
-                                NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
-                            }
-                        } else {
-                            UIApplication.shared.setAlternateIconName("AppIcon 7")
-                            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                                NotificationCenter.default.post(name: Notification.Name("faculty"), object: nil)
-                                NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
-                            }
-                        }
-                    }
                     UserDefaults.standard.setValue(nil, forKey: "icon")
                     UserDefaults.standard.setValue(nil, forKey: "group")
                     UserDefaults.standard.setValue(nil, forKey: "subgroup")
                     UserDefaults.standard.setValue(nil, forKey: "cathedra")
+                    
+                    NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
+                    
+                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                        NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
+                    }
                     NotificationCenter.default.post(name: Notification.Name("group changed"), object: nil)
                     NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: nil)
                 }

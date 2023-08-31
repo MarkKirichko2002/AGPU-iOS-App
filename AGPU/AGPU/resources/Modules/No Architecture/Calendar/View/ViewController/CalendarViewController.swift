@@ -19,11 +19,11 @@ final class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        SetUpNavigation()
-        SetUpCalendar()
+        setUpNavigation()
+        setUpCalendar()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         navigationItem.title = "Календарь"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .black
@@ -34,7 +34,7 @@ final class CalendarViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
-    private func SetUpCalendar() {
+    private func setUpCalendar() {
         view.addSubview(Calendar)
         Calendar.delegate = self
         makeConstraints()

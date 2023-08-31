@@ -21,12 +21,12 @@ final class AGPUWallpapersListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpSwipeGesture()
-        SetUpCollectionView()
+        setUpNavigation()
+        setUpSwipeGesture()
+        setUpCollectionView()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         
         let titleView = CustomTitleView(image: "АГПУ", title: "АГПУ Обои", frame: .zero)
         
@@ -49,7 +49,8 @@ final class AGPUWallpapersListViewController: UIViewController {
         }
         navigationController?.popViewController(animated: true)
     }
-    private func SetUpCollectionView() {
+    
+    private func setUpCollectionView() {
         view.addSubview(collectionView)
         collectionView.frame = view.bounds
         collectionView.delegate = self

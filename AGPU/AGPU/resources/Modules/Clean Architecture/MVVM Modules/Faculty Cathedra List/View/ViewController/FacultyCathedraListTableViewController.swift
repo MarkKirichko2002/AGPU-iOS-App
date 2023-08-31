@@ -14,9 +14,7 @@ class FacultyCathedraListTableViewController: UITableViewController {
     @objc private let viewModel: FacultyCathedraListViewModel!
     
     // MARK: - Init
-    init(
-        faculty: AGPUFacultyModel
-    ) {
+    init(faculty: AGPUFacultyModel) {
         self.faculty = faculty
         self.viewModel = FacultyCathedraListViewModel(faculty: faculty)
         super.init(nibName: nil, bundle: nil)
@@ -28,13 +26,13 @@ class FacultyCathedraListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpSwipeGesture()
+        setUpNavigation()
+        setUpSwipeGesture()
         tableView.register(UINib(nibName: FacultyCathedraTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyCathedraTableViewCell.identifier)
-        BindViewModel()
+        bindViewModel()
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
         
         let titleView = CustomTitleView(image: "\(faculty.icon)", title: "Кафедры \(faculty.abbreviation)", frame: .zero)
     
@@ -56,7 +54,7 @@ class FacultyCathedraListTableViewController: UITableViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    private func BindViewModel() {
+    private func bindViewModel() {
         viewModel.observation = observe(\.viewModel.isChanged) { _, _ in
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -70,26 +68,26 @@ class FacultyCathedraListTableViewController: UITableViewController {
             _ in
             
             let infoAction = UIAction(title: "узнать больше", image: UIImage(named: "info")) { _ in
-                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].url, title: "Кафедра \(self.faculty.abbreviation)", isSheet: false)
+                self.goToWeb(url: self.faculty.cathedra[indexPath.row].url, image: "info", title: "Кафедра \(self.faculty.abbreviation)", isSheet: false)
             }
             
             let staffInfoAction = UIAction(title: "состав кафедры", image: UIImage(named: "group")) { _ in
-                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].staffUrl, title: "Состав кафедры", isSheet: false)
+                self.goToWeb(url: self.faculty.cathedra[indexPath.row].staffUrl, image: "group", title: "Состав кафедры", isSheet: false)
             }
             
             let additionalEducationAction = UIAction(title: "дополнительное образование", image: UIImage(named: "plus")) { _ in
-                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].additionalEducationUrl, title: "Доп. образование", isSheet: false)
+                self.goToWeb(url: self.faculty.cathedra[indexPath.row].additionalEducationUrl, image: "plus", title: "Доп. образование", isSheet: false)
             }
             
             let manualAction = UIAction(title: "методические материалы", image: UIImage(named: "manual")) { _ in
-                self.GoToWeb(url: self.faculty.cathedra[indexPath.row].manualUrl, title: "Метод. материалы", isSheet: false)
+                self.goToWeb(url: self.faculty.cathedra[indexPath.row].manualUrl, image: "manual", title: "Метод. материалы", isSheet: false)
             }
             
             let emailAction = UIAction(title: "написать", image: UIImage(named: "mail")) { _ in
                 self.showEmailComposer(email: self.faculty.cathedra[indexPath.row].email)
             }
             
-            let mapAction = UIAction(title: "найти кафедру", image: UIImage(named: "search")) { _ in
+            let mapAction = UIAction(title: "найти кафедру", image: UIImage(named: "map icon")) { _ in
                 let vc = AGPUCurrentCathedraMapViewController(cathedra: self.faculty.cathedra[indexPath.row])
                 let navVC = UINavigationController(rootViewController: vc)
                 navVC.modalPresentationStyle = .fullScreen
@@ -113,7 +111,7 @@ class FacultyCathedraListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.SelectCathedra(index: indexPath.row)
+        viewModel.selectCathedra(index: indexPath.row)
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
     

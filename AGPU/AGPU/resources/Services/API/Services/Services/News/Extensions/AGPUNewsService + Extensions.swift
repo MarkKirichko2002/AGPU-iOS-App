@@ -12,7 +12,7 @@ import Foundation
 extension AGPUNewsService: AGPUNewsServiceProtocol {
 
     // получить новости факультета
-    func GetFacultyNews(abbreviation: String, completion: @escaping(Result<NewsResponse, Error>)->Void) {
+    func getFacultyNews(abbreviation: String, completion: @escaping(Result<NewsResponse, Error>)->Void) {
         
         AF.request("http://\(HostName.host):8080/api/news/\(abbreviation)").responseData { response in
             
@@ -28,7 +28,7 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
     }
     
     // получить новости АГПУ
-    func GetAGPUNews(completion: @escaping(Result<NewsResponse, Error>)->Void) {
+    func getAGPUNews(completion: @escaping(Result<NewsResponse, Error>)->Void) {
         
         AF.request("http://\(HostName.host):8080/api/news").responseData { response in
             
@@ -43,7 +43,7 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
         }
     }
     
-    func GetNews(by page: Int, faculty: AGPUFacultyModel?, completion: @escaping(Result<NewsResponse, Error>)->Void) {
+    func getNews(by page: Int, faculty: AGPUFacultyModel?, completion: @escaping(Result<NewsResponse, Error>)->Void) {
         
         let url = urlForPagination(faculty: faculty, page: page)
         

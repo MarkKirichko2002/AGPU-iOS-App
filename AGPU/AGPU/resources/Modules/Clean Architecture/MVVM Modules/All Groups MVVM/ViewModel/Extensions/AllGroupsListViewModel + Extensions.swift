@@ -22,11 +22,12 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
         return groupSectionItem(section: section).groups[index]
     }
     
-    func SelectGroup(section: Int, index: Int) {
+    func selectGroup(section: Int, index: Int) {
         let group = groupItem(section: section, index: index)
         NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
         self.group = group
         self.groupSelectedHandler?()
+        HapticsManager.shared.hapticFeedback()
     }
     
     func registerGroupSelectedHandler(block: @escaping()->Void) {
@@ -47,7 +48,9 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
         for (groupIndex, groups) in FacultyGroups.groups.enumerated() {
             for (elementIndex, group) in groups.groups.enumerated() {
                 if group == self.group {
-                    completion(groupIndex, elementIndex)
+                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                        completion(groupIndex, elementIndex)
+                    }
                 }
             }
         }

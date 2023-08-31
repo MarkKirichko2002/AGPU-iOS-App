@@ -23,27 +23,46 @@ final class NewsListViewController: UIViewController {
         return collectionView
     }()
     
+    private let spinner = UIActivityIndicatorView(style: .large)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpSwipeGesture()
-        SetUpCollectionView()
-        BindViewModel()
+        setUpNavigation()
+        setUpSwipeGesture()
+        setUpCollectionView()
+        setUpIndicatorView()
+        bindViewModel()
     }
     
-    private func SetUpNavigation() {
-        
+    private func setUpNavigation() {
         navigationItem.title = "Новости АГПУ"
+        let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshNews))
+        refreshButton.tintColor = .black
+        navigationItem.leftBarButtonItem = refreshButton
     }
     
-    private func SetUpCollectionView() {
+    @objc private func refreshNews() {
+        viewModel.refreshNews()
+    }
+    
+    private func setUpCollectionView() {
         view.addSubview(collectionView)
         collectionView.frame = view.bounds
         collectionView.delegate = self
         collectionView.dataSource = self
     }
     
-    private func BindViewModel() {
+    private func setUpIndicatorView() {
+        view.addSubview(spinner)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        spinner.startAnimating()
+    }
+    
+    private func bindViewModel() {
         
         var options = UIBarButtonItem(image: UIImage(named: "sections"), menu: UIMenu())
         
@@ -62,9 +81,10 @@ final class NewsListViewController: UIViewController {
             self.navigationItem.rightBarButtonItem = options
         }
         
-        viewModel.GetNewsByCurrentType()
+        viewModel.getNewsByCurrentType()
         
         viewModel.registerDataChangedHandler { [weak self] faculty in
+            
             guard let self = self else { return }
             
             DispatchQueue.main.async {
@@ -72,9 +92,11 @@ final class NewsListViewController: UIViewController {
                 if let faculty = faculty {
                     titleView = CustomTitleView(image: "\(faculty.icon)", title: "\(faculty.abbreviation) новости", frame: .zero)
                     self.collectionView.reloadData()
+                    self.spinner.stopAnimating()
                 } else {
                     titleView = CustomTitleView(image: "АГПУ", title: "АГПУ новости", frame: .zero)
                     self.collectionView.reloadData()
+                    self.spinner.stopAnimating()
                 }
                 
                 categoriesAction = UIAction(title: "категории") { _ in
@@ -101,7 +123,7 @@ final class NewsListViewController: UIViewController {
             }
         }
         
-        viewModel.ObserveFacultyChanges()
-        viewModel.ObservedPageChanges()
+        viewModel.observeFacultyChanges()
+        viewModel.observePageChanges()
     }
 }

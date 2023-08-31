@@ -43,14 +43,12 @@ final class AGPUSplashScreenViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         view.addSubviews(AGPUIcon, AGPUTitleLabel, AnniversaryLabel)
-        SetUpConstraints()
-        ShowSplashScreen()
+        setUpConstraints()
+        showSplashScreen()
     }
     
     // MARK: - Init
-    init(
-        animation: AnimationClassProtocol?
-    ) {
+    init(animation: AnimationClassProtocol?) {
         self.animation = animation
         super.init(nibName: nil, bundle: nil)
     }
@@ -59,7 +57,7 @@ final class AGPUSplashScreenViewController: UIViewController {
         super.init(coder: coder)
     }
     
-    private func SetUpConstraints() {
+    private func setUpConstraints() {
         NSLayoutConstraint.activate([
             // иконка
             AGPUIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -77,18 +75,18 @@ final class AGPUSplashScreenViewController: UIViewController {
         ])
     }
     
-    private func ShowSplashScreen() {
+    private func showSplashScreen() {
         
-        animation?.SpringAnimation(view: AGPUIcon)
+        animation?.springAnimation(view: AGPUIcon)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.AGPUTitleLabel.text = "ФГБОУ ВО «АГПУ»"
-            self.animation?.SpringAnimation(view: self.AGPUTitleLabel)
+            self.animation?.springAnimation(view: self.AGPUTitleLabel)
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.AnniversaryLabel.text = "100 лет 🎉!!!"
-            self.animation?.SpringAnimation(view: self.AnniversaryLabel)
+            self.animation?.springAnimation(view: self.AnniversaryLabel)
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {

@@ -10,38 +10,34 @@ import Foundation
 struct ForApplicantSections {
     
     static let sections = [
+        
         ForEveryStatusModel(
             id: 1,
-            icon: "profile icon",
-            name: "личный кабинет абитуриента"
-        ),
-        ForEveryStatusModel(
-            id: 2,
             icon: "map icon",
             name: "найти «АГПУ»"
         ),
         ForEveryStatusModel(
-            id: 3,
+            id: 2,
             icon: "university",
             name: "институты/факультета"
         ),
         ForEveryStatusModel(
-            id: 4,
+            id: 3,
             icon: "info icon",
             name: "информация для поступающих"
         ),
         ForEveryStatusModel(
-            id: 5,
+            id: 4,
             icon: "question",
             name: "вопросы и ответы"
         ),
         ForEveryStatusModel(
-            id: 6,
+            id: 5,
             icon: "plus",
             name: "дополнительное образование"
         ),
         ForEveryStatusModel(
-            id: 7,
+            id: 6,
             icon: "sections",
             name: "разделы"
         ),

@@ -38,40 +38,45 @@ final class AGPUTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        UITabBar.appearance().tintColor = UIColor.black
-        UITabBar.appearance().backgroundColor = UIColor.white
+        setUpView()
         setUpTabs()
-        SetUpTab()
+        setUpTab()
         createMiddleButton()
-        ObserveForEveryStatus()
-        ObserveWebScreen()
-        ObserveFaculty()
+        observeForEveryStatus()
+        observeWebScreen()
+        observeFaculty()
+        observeArticleSelected()
+        observeNewsRefreshed()
         becomeFirstResponder()
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        animation.TabBarItemAnimation(item: item)
+        animation.tabBarItemAnimation(item: item)
+    }
+    
+    private func setUpView() {
+        view.backgroundColor = .systemBackground
+        UITabBar.appearance().tintColor = UIColor.black
+        UITabBar.appearance().backgroundColor = UIColor.white
     }
     
     private func setUpTabs() {
         // новости
-        newsVC.tabBarItem = UITabBarItem(title: "Новости", image: UIImage(systemName: "newspaper"), selectedImage: UIImage(systemName: "newspaper.fill"))
+        newsVC.tabBarItem = UITabBarItem(title: "Новости", image: UIImage(named: "mail"), selectedImage: UIImage(named: "mail selected"))
         // для каждого статуса
         forEveryStatusVC = settingsManager.checkCurrentStatus()
         // расписание
         timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: UIImage(named: "calendar"), selectedImage: UIImage(named: "calendar selected"))
         // настройки
-        settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear.fill"))
-        settingsVC.navigationItem.title = "Настройки"
+        settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(named: "settings"), selectedImage: UIImage(named: "settings selected"))
         let nav1VC = UINavigationController(rootViewController: newsVC)
         let nav3VC = UINavigationController(rootViewController: timetableVC)
         let nav4VC = UINavigationController(rootViewController: settingsVC)
         setViewControllers([nav1VC, forEveryStatusVC, middleButton, nav3VC, nav4VC], animated: false)
     }
     
-    private func SetUpTab() {
-        settingsManager.ObserveStatusChanged {
+    private func setUpTab() {
+        settingsManager.observeStatusChanged {
             DispatchQueue.main.async {
                 self.setUpTabs()
             }
@@ -102,7 +107,7 @@ final class AGPUTabBarController: UITabBarController {
             self.updateDynamicButton(icon: "info icon")
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let ok = UIAlertAction(title: "ОК", style: .default)
-                self.ShowAlert(title: "Вы отключили фишку Shake To Recall!", message: "чтобы дальше пользоваться данной фишкой включите ее в настройках.", actions: [ok])
+                self.showAlert(title: "Вы отключили фишку Shake To Recall!", message: "чтобы дальше пользоваться данной фишкой включите ее в настройках.", actions: [ok])
                 self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
             }
         }
@@ -135,12 +140,12 @@ final class AGPUTabBarController: UITabBarController {
                     print("Разрешение на распознавание речи еще не было получено.")
                 case .denied:
                     let settingsAction = UIAlertAction(title: "перейти в настройки", style: .default) { _ in
-                        self.OpenSettings()
+                        self.openSettings()
                     }
                     let cancel = UIAlertAction(title: "отмена", style: .default) { _ in
                         self.DynamicButton.sendActions(for: .touchUpInside)
                     }
-                    self.ShowAlert(title: "Микрофон выключен", message: "хотите включить в настройках?", actions: [settingsAction, cancel])
+                    self.showAlert(title: "Микрофон выключен", message: "хотите включить в настройках?", actions: [settingsAction, cancel])
                     print("Доступ к распознаванию речи был отклонен.")
                 case .restricted:
                     print("Функциональность распознавания речи ограничена.")
@@ -171,15 +176,15 @@ final class AGPUTabBarController: UITabBarController {
         ScrollWebScreen(text: text.lastWord())
     }
     
-    private func ObserveForEveryStatus() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("for student selected"), object: nil, queue: .main) { notification in
+    private func observeForEveryStatus() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("for every status selected"), object: nil, queue: .main) { notification in
             if let icon = notification.object as? String {
                 self.updateDynamicButton(icon: icon)
             }
         }
     }
     
-    private func ObserveWebScreen() {
+    private func observeWebScreen() {
         NotificationCenter.default.addObserver(forName: Notification.Name("screen was closed"), object: nil, queue: .main) { _ in
             if self.isRecording {
                 if !self.tabBar.isHidden {
@@ -196,7 +201,7 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     // MARK: - Elected Faculty
-    private func ObserveFaculty() {
+    private func observeFaculty() {
         NotificationCenter.default.addObserver(forName: Notification.Name("icon"), object: nil, queue: .main) { notification in
             if let icon = notification.object as? String {
                 self.updateDynamicButton(icon: icon)
@@ -215,6 +220,22 @@ final class AGPUTabBarController: UITabBarController {
             }
         }
     }
+    
+    // MARK: - Adaptive News
+    private func observeArticleSelected() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("article selected"), object: nil, queue: .main) { _ in
+            self.updateDynamicButton(icon: "info icon")
+        }
+    }
+    
+    private func observeNewsRefreshed() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("news refreshed"), object: nil, queue: .main) { _ in
+            self.updateDynamicButton(icon: "refresh icon")
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
+            }
+        }
+    }
 }
 
 extension AGPUTabBarController {
@@ -229,7 +250,7 @@ extension AGPUTabBarController {
                 self.updateDynamicButton(icon: section.icon)
                 
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                    self.GoToWeb(url: section.url, title: section.name, isSheet: false)
+                    self.goToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false)
                 }
                 ResetSpeechRecognition()
                 break
@@ -247,7 +268,7 @@ extension AGPUTabBarController {
             self.updateDynamicButton(icon: "dice")
             
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.GoToWeb(url: section.url, title: section.name, isSheet: false)
+                self.goToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false)
             }
             ResetSpeechRecognition()
         }
@@ -260,12 +281,12 @@ extension AGPUTabBarController {
             
             for subsection in section.subsections {
                 
-                if text.noWhitespacesWord().contains(subsection.voiceCommand) {
+                if text.noWhitespacesWord().contains(subsection.voiceCommand) && subsection.url != "" {
                     ResetSpeechRecognition()
                     self.updateDynamicButton(icon: subsection.icon)
                     
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                        self.GoToWeb(url: subsection.url, title: "ФГБОУ ВО «АГПУ»", isSheet: false)
+                        self.goToWeb(url: subsection.url, image: subsection.icon, title: "ФГБОУ ВО «АГПУ»", isSheet: false)
                     }
                     break
                 }
@@ -340,8 +361,8 @@ extension AGPUTabBarController {
     func updateDynamicButton(icon: String) {
         DispatchQueue.main.async {
             self.DynamicButton.setImage(UIImage(named: icon), for: .normal)
-            self.animation.SpringAnimation(view: self.DynamicButton)
-            HapticsManager.shared.HapticFeedback()
+            self.animation.springAnimation(view: self.DynamicButton)
+            HapticsManager.shared.hapticFeedback()
         }
     }
 }

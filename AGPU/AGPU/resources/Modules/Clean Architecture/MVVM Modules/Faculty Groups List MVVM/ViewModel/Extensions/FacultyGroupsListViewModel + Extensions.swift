@@ -10,7 +10,7 @@ import UIKit
 // MARK: - FacultyGroupsListViewModelProtocol
 extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
     
-    func GetGroups(by faculty: AGPUFacultyModel) {
+    func getGroups(by faculty: AGPUFacultyModel) {
         for group in FacultyGroups.groups {
             if group.name.abbreviation().contains(faculty.abbreviation) {
                 self.groups.append(group)
@@ -28,12 +28,13 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
         return groups[section].groups[index]
     }
     
-    func SelectGroup(section: Int, index: Int) {
+    func selectGroup(section: Int, index: Int) {
         let group = groupItem(section: section, index: index)
         if let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
             if groups[section].name.abbreviation().contains(faculty.abbreviation) {
                 UserDefaults.standard.setValue(group, forKey: "group")
                 self.isChanged.toggle()
+                HapticsManager.shared.hapticFeedback()
                 NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
             } else {
                 print("no \(groups[section].name) != \(faculty.abbreviation)")
@@ -78,7 +79,7 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
             for (itemIndex, groupItem) in groupsSections.groups.enumerated() {
                 print(groupItem)
                 if groupItem == savedGroup {
-                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
                         self.scrollHandler?(sectionIndex, itemIndex)
                     }
                 }

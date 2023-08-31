@@ -8,8 +8,8 @@
 import Foundation
 
 protocol TimeTableServicerProtocol {
-    func GetWeeks(completion: @escaping(Result<[WeekModel],Error>)->Void) 
-    func GetTimeTableDay(groupId: String, date: String, completion: @escaping(Result<TimeTable,Error>)->Void)
-    func GetTimeTableWeek(groupId: String, startDate: String, endDate: String, completion: @escaping(Result<[TimeTable],Error>)->Void)
+    func getWeeks(completion: @escaping(Result<[WeekModel],Error>)->Void)
+    func getTimeTableDay(groupId: String, date: String, completion: @escaping(Result<TimeTable,Error>)->Void)
+    func getTimeTableWeek(groupId: String, startDate: String, endDate: String, completion: @escaping(Result<[TimeTable],Error>)->Void)
     
 }

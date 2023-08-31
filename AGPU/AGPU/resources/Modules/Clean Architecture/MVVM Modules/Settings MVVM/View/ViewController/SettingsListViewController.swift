@@ -17,11 +17,17 @@ final class SettingsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpTable()
-        BindViewModel()
+        setUpNavigation()
+        setUpTable()
+        bindViewModel()
     }
     
-    private func SetUpTable() {
+    private func setUpNavigation() {
+        let titleView = CustomTitleView(image: "settings", title: "Настройки", frame: .zero)
+        navigationItem.titleView = titleView
+    }
+    
+    private func setUpTable() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -32,7 +38,7 @@ final class SettingsListViewController: UIViewController {
         tableView.dataSource = self
     }
     
-    private func BindViewModel() {
+    private func bindViewModel() {
         viewModel.observation = observe(\.viewModel.isChanged) { _, _ in
             DispatchQueue.main.async {
                 self.tableView.reloadData()

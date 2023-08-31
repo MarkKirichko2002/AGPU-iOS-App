@@ -13,12 +13,12 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SetUpNavigation()
-        SetUpSwipeGesture()
+        setUpNavigation()
+        setUpSwipeGesture()
         tableView.register(UINib(nibName: AGPUFacultyTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AGPUFacultyTableViewCell.identifier)
     }
     
-    private func SetUpNavigation() {
+    private func setUpNavigation() {
                 
         let titleView = CustomTitleView(image: "АГПУ", title: "Факультеты", frame: .zero)
         
@@ -34,11 +34,11 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
         navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = backButton
         
-        SetUpSwipeGesture()
+        setUpSwipeGesture()
     }
     
     @objc private func back() {
-        viewModel.SendScreenClosedNotification()
+        sendScreenWasClosedNotification()
         navigationController?.popViewController(animated: true)
     }
     
@@ -49,7 +49,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
             _ in
             
             let infoAction = UIAction(title: "узнать больше", image: UIImage(named: "info")) { _ in
-                self.GoToWeb(url: self.viewModel.facultyItem(index: indexPath.row).url, title: self.viewModel.facultyItem(index: indexPath.row).abbreviation, isSheet: false)
+                self.goToWeb(url: self.viewModel.facultyItem(index: indexPath.row).url, image: self.viewModel.facultyItem(index: indexPath.row).icon, title: self.viewModel.facultyItem(index: indexPath.row).abbreviation, isSheet: false)
             }
             
             let cathedraAction = UIAction(title: "кафедры", image: UIImage(named: "university")) { _ in
@@ -63,7 +63,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
             }
             
             let watchVideoAction = UIAction(title: "смотреть видео", image: UIImage(named: "play")) { _ in
-                self.PlayVideo(url: self.viewModel.facultyItem(index: indexPath.row).videoURL)
+                self.playVideo(url: self.viewModel.facultyItem(index: indexPath.row).videoURL)
             }
             
             let contactsAction = UIAction(title: "контакты", image: UIImage(named: "contacts")) { _ in
@@ -78,7 +78,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
             }
             
             let enterAction = UIAction(title: "поступить", image: UIImage(named: "worksheet")) { _ in
-                self.GoToWeb(url: "http://priem.agpu.net/anketa/index.php", title: "Анкета", isSheet: false)
+                self.goToWeb(url: "http://priem.agpu.net/anketa/index.php", image: "worksheet", title: "Анкета", isSheet: false)
             }
             
             let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in

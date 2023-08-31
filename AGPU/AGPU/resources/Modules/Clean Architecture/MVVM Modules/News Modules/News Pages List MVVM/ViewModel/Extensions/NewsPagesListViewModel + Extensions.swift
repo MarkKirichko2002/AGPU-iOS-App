@@ -10,7 +10,7 @@ import Foundation
 // MARK: - NewsPagesListViewModelProtocol
 extension NewsPagesListViewModel: NewsPagesListViewModelProtocol {
     
-    func SetUpData() {
+    func setUpData() {
         let countPages = self.countPages
         for i in 1...countPages {
             pages.append(i)
@@ -42,6 +42,7 @@ extension NewsPagesListViewModel: NewsPagesListViewModelProtocol {
             currentPage = page
             self.dataChangedHandler?()
             self.pageSelectedHandler?("Выбрана страница \(page)")
+            HapticsManager.shared.hapticFeedback()
         } else {
             self.pageSelectedHandler?("Страница \(page) уже выбрана")
         }
