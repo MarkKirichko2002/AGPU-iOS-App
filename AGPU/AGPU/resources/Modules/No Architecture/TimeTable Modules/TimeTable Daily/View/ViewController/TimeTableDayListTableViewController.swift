@@ -12,6 +12,8 @@ final class TimeTableDayListTableViewController: UIViewController {
     private var group = ""
     private var subgroup = 0
     private var date = ""
+    private var allDisciplines: [Discipline] = []
+    private var type: PairType = .all
     
     var timetable: TimeTable?
     
@@ -37,6 +39,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         observeGroupChange()
         observeSubGroupChange()
         observeCalendar()
+        observePairType()
     }
     
     private func setUpData() {
@@ -93,7 +96,7 @@ final class TimeTableDayListTableViewController: UIViewController {
             calendar
         ])
         
-        
+        // список недель
         let weeksList = UIAction(title: "список недель") { _ in
             let vc = AllWeeksListTableViewController(group: self.group, subgroup: self.subgroup)
             let navVC = UINavigationController(rootViewController: vc)
@@ -106,10 +109,19 @@ final class TimeTableDayListTableViewController: UIViewController {
             self.shareTableViewAsImage(tableView: self.tableView, title: self.date, text: self.group)
         }
         
+        // список типов пар
+        let pairTypesList = UIAction(title: "типы пары") { _ in
+            let vc = PairTypesListTableViewController(type: self.type)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         let menu = UIMenu(title: "расписание", children: [
             groupList,
             day,
             weeksList,
+            pairTypesList,
             shareTimeTable
         ])
         
@@ -213,6 +225,38 @@ final class TimeTableDayListTableViewController: UIViewController {
                 self.date = date
                 self.getTimeTable(group: self.group, date: date)
                 self.navigationItem.title = date
+            }
+        }
+    }
+    
+    private func observePairType() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("TypeWasSelected"), object: nil, queue: .main) { [weak self] notification in
+            guard let type = notification.object as? PairType, let self = self, let timetable = self.timetable else { return }
+            
+            self.type = type
+            
+            if type == .all {
+                
+                if self.allDisciplines.isEmpty {
+                    self.allDisciplines = timetable.disciplines
+                }
+                
+                self.timetable?.disciplines = self.allDisciplines
+                self.tableView.reloadData()
+            } else {
+                
+                if self.allDisciplines.isEmpty {
+                    self.allDisciplines = timetable.disciplines
+                }
+                
+                if let type = notification.object as? PairType {
+                    let filteredDisciplines = self.allDisciplines.filter { $0.type == type }
+                    self.timetable?.disciplines = filteredDisciplines
+                    self.tableView.reloadData()
+                } else {
+                    self.timetable?.disciplines = self.allDisciplines
+                    self.tableView.reloadData()
+                }
             }
         }
     }

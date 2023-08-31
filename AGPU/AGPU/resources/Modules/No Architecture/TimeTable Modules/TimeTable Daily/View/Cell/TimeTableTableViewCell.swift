@@ -50,6 +50,8 @@ final class TimeTableTableViewCell: UITableViewCell {
             return UIColor.white
         case .none:
             return UIColor.white
+        case .all:
+            return UIColor.white
         }
     }
     

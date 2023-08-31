@@ -67,10 +67,6 @@
 		8234E60D2A885B6D00ED354C /* WordRecentDocumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E60C2A885B6D00ED354C /* WordRecentDocumentViewModel.swift */; };
 		8234E60F2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E60E2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift */; };
 		8234E6122A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E6112A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift */; };
-		823BFAF62A9D2FAC00209F44 /* TimeTableInfoListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823BFAF52A9D2FAC00209F44 /* TimeTableInfoListViewModelProtocol.swift */; };
-		823BFAF82A9D2FBA00209F44 /* TimeTableInfoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823BFAF72A9D2FBA00209F44 /* TimeTableInfoListViewModel.swift */; };
-		823BFAFA2A9D2FD000209F44 /* TimeTableInfoListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823BFAF92A9D2FD000209F44 /* TimeTableInfoListViewModel + Extensions.swift */; };
-		823BFAFC2A9D2FF500209F44 /* TimeTableInfoListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823BFAFB2A9D2FF500209F44 /* TimeTableInfoListTableViewController.swift */; };
 		8241F9812A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9802A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift */; };
 		8241F9852A5F3F73007DF628 /* CalendarViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9842A5F3F73007DF628 /* CalendarViewController + Extensions.swift */; };
 		8241F9932A5F4091007DF628 /* TimeTableServicerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9922A5F4091007DF628 /* TimeTableServicerProtocol.swift */; };
@@ -108,6 +104,9 @@
 		8270A5482A5784A2008ACADC /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5472A5784A2008ACADC /* DateManager.swift */; };
 		82722D432A66462100149D06 /* AGPUBuildingPins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82722D422A66462100149D06 /* AGPUBuildingPins.swift */; };
 		827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B62C22A425166008D241E /* UserDefaults + Extensions.swift */; };
+		82807C712AA0FA5D00E9C884 /* PairTypesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82807C702AA0FA5D00E9C884 /* PairTypesListTableViewController.swift */; };
+		82807C742AA102A600E9C884 /* PairTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82807C732AA102A600E9C884 /* PairTypeModel.swift */; };
+		82807C782AA102DD00E9C884 /* PairTypesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82807C772AA102DD00E9C884 /* PairTypesList.swift */; };
 		82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E882A31F12100DEEB16 /* AppDelegate.swift */; };
 		82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E8A2A31F12100DEEB16 /* SceneDelegate.swift */; };
 		82808E8D2A31F12100DEEB16 /* AGPUSectionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E8C2A31F12100DEEB16 /* AGPUSectionsListViewController.swift */; };
@@ -301,10 +300,6 @@
 		8234E60C2A885B6D00ED354C /* WordRecentDocumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRecentDocumentViewModel.swift; sourceTree = "<group>"; };
 		8234E60E2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WordRecentDocumentViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		8234E6112A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentWordDocumentViewController + Extensions.swift"; sourceTree = "<group>"; };
-		823BFAF52A9D2FAC00209F44 /* TimeTableInfoListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableInfoListViewModelProtocol.swift; sourceTree = "<group>"; };
-		823BFAF72A9D2FBA00209F44 /* TimeTableInfoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableInfoListViewModel.swift; sourceTree = "<group>"; };
-		823BFAF92A9D2FD000209F44 /* TimeTableInfoListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableInfoListViewModel + Extensions.swift"; sourceTree = "<group>"; };
-		823BFAFB2A9D2FF500209F44 /* TimeTableInfoListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableInfoListTableViewController.swift; sourceTree = "<group>"; };
 		8241F9802A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8241F9842A5F3F73007DF628 /* CalendarViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8241F9922A5F4091007DF628 /* TimeTableServicerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableServicerProtocol.swift; sourceTree = "<group>"; };
@@ -342,6 +337,9 @@
 		8270A5472A5784A2008ACADC /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		82722D422A66462100149D06 /* AGPUBuildingPins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingPins.swift; sourceTree = "<group>"; };
 		827B62C22A425166008D241E /* UserDefaults + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + Extensions.swift"; sourceTree = "<group>"; };
+		82807C702AA0FA5D00E9C884 /* PairTypesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairTypesListTableViewController.swift; sourceTree = "<group>"; };
+		82807C732AA102A600E9C884 /* PairTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairTypeModel.swift; sourceTree = "<group>"; };
+		82807C772AA102DD00E9C884 /* PairTypesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairTypesList.swift; sourceTree = "<group>"; };
 		82808E852A31F12100DEEB16 /* AGPU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGPU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82808E882A31F12100DEEB16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82808E8A2A31F12100DEEB16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1284,65 +1282,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		823BFAEE2A9D2F4300209F44 /* TimeTable Info */ = {
-			isa = PBXGroup;
-			children = (
-				823BFAF02A9D2F6B00209F44 /* View */,
-				823BFAEF2A9D2F6800209F44 /* ViewModel */,
-			);
-			path = "TimeTable Info";
-			sourceTree = "<group>";
-		};
-		823BFAEF2A9D2F6800209F44 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				823BFAF42A9D2F7F00209F44 /* Protocol */,
-				823BFAF32A9D2F7D00209F44 /* ViewModel */,
-				823BFAF22A9D2F7B00209F44 /* Extensions */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		823BFAF02A9D2F6B00209F44 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				823BFAF12A9D2F7500209F44 /* ViewController */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		823BFAF12A9D2F7500209F44 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				823BFAFB2A9D2FF500209F44 /* TimeTableInfoListTableViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		823BFAF22A9D2F7B00209F44 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				823BFAF92A9D2FD000209F44 /* TimeTableInfoListViewModel + Extensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		823BFAF32A9D2F7D00209F44 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				823BFAF72A9D2FBA00209F44 /* TimeTableInfoListViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		823BFAF42A9D2F7F00209F44 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				823BFAF52A9D2FAC00209F44 /* TimeTableInfoListViewModelProtocol.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
 		8241F97F2A5F3C38007DF628 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1446,7 +1385,7 @@
 			isa = PBXGroup;
 			children = (
 				82B24A852A81BCCB008B94E4 /* News */,
-				82B87C752A7AF52800E9E68B /* Time table */,
+				82B87C752A7AF52800E9E68B /* Timetable */,
 				82B1C0C22A80611100520C14 /* Discipline */,
 				82B24A622A816B4A008B94E4 /* Week */,
 			);
@@ -1883,8 +1822,8 @@
 				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
 				82989ACB2A6E308F00F27858 /* Faculty Cathedra List */,
 				825634B62A6221C10082B7B8 /* Faculty Groups List MVVM */,
-				823BFAEE2A9D2F4300209F44 /* TimeTable Info */,
 				828321602A7C6A25008641A5 /* All Groups MVVM */,
+				82807C6C2AA0FA0900E9C884 /* Pair Type MVVM */,
 				82B24A6F2A817D69008B94E4 /* All Weeks MVVM */,
 				82B1C0C52A80702D00520C14 /* Sub Groups List MVVM */,
 				822158942A422A480088BDE5 /* Settings MVVM */,
@@ -1976,6 +1915,64 @@
 			isa = PBXGroup;
 			children = (
 				82722D422A66462100149D06 /* AGPUBuildingPins.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		82807C6C2AA0FA0900E9C884 /* Pair Type MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82807C722AA1029500E9C884 /* Model */,
+				82807C6E2AA0FA2200E9C884 /* View */,
+				82807C6D2AA0FA2000E9C884 /* ViewModel */,
+			);
+			path = "Pair Type MVVM";
+			sourceTree = "<group>";
+		};
+		82807C6D2AA0FA2000E9C884 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82807C6E2AA0FA2200E9C884 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82807C6F2AA0FA3100E9C884 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82807C6F2AA0FA3100E9C884 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82807C702AA0FA5D00E9C884 /* PairTypesListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82807C722AA1029500E9C884 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82807C752AA102AA00E9C884 /* Model */,
+				82807C762AA102AD00E9C884 /* List */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82807C752AA102AA00E9C884 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82807C732AA102A600E9C884 /* PairTypeModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82807C762AA102AD00E9C884 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				82807C772AA102DD00E9C884 /* PairTypesList.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -2821,12 +2818,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		82B87C752A7AF52800E9E68B /* Time table */ = {
+		82B87C752A7AF52800E9E68B /* Timetable */ = {
 			isa = PBXGroup;
 			children = (
 				82B1C0C32A8061AA00520C14 /* TimeTable.swift */,
 			);
-			path = "Time table";
+			path = Timetable;
 			sourceTree = "<group>";
 		};
 		82BA73B22A579B15006B67DA /* Web MVVM */ = {
@@ -3719,6 +3716,7 @@
 				82989ADE2A6E59BC00F27858 /* AGPUCurrentCathedraMapViewController + Extensions.swift in Sources */,
 				828DC55C2A7B3887001EA324 /* FacultyGroups.swift in Sources */,
 				820E40952A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift in Sources */,
+				82807C712AA0FA5D00E9C884 /* PairTypesListTableViewController.swift in Sources */,
 				8234E6122A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift in Sources */,
 				82989ACD2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift in Sources */,
 				82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */,
@@ -3732,7 +3730,6 @@
 				8228E39C2A6C920D00C1B6AD /* LocationModel.swift in Sources */,
 				820D18E52A68F9EE00BFAA35 /* AGPUBuildingModel.swift in Sources */,
 				82BEAD822A7414C300DD34C2 /* RecentWebPageViewModel.swift in Sources */,
-				823BFAF62A9D2FAC00209F44 /* TimeTableInfoListViewModelProtocol.swift in Sources */,
 				82B24A642A816B54008B94E4 /* WeekModel.swift in Sources */,
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
 				82BDFDB02A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift in Sources */,
@@ -3742,7 +3739,6 @@
 				8228E3A62A6C9DB300C1B6AD /* AGPUBuildingsMapViewModel + Extensions.swift in Sources */,
 				82989AD82A6E54AF00F27858 /* AGPUCurrentCathedraMapViewController.swift in Sources */,
 				822605FA2A8532F30055925F /* RecentMomentsListViewModel + Extensions.swift in Sources */,
-				823BFAF82A9D2FBA00209F44 /* TimeTableInfoListViewModel.swift in Sources */,
 				82426C902A71DCDA00D5AA57 /* UserStatusModel.swift in Sources */,
 				82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */,
 				82E4C58B2A6B20FF00F65A67 /* LocationManager + Extensions.swift in Sources */,
@@ -3758,6 +3754,7 @@
 				826F938B2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
+				82807C742AA102A600E9C884 /* PairTypeModel.swift in Sources */,
 				82D6C3342A5E1DEC00FB7F5D /* Discipline.swift in Sources */,
 				82ECABE52A81524500FE7462 /* SubGroupsList.swift in Sources */,
 				82426C742A71476D00D5AA57 /* ForEveryStatusModel.swift in Sources */,
@@ -3773,7 +3770,6 @@
 				82FB5B642A7A8FF600728980 /* InteractiveView.swift in Sources */,
 				828321802A7D687A008641A5 /* SearchAGPUBuildingMapViewModel + Extensions.swift in Sources */,
 				8228E3992A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift in Sources */,
-				823BFAFC2A9D2FF500209F44 /* TimeTableInfoListTableViewController.swift in Sources */,
 				8234E6082A8858C400ED354C /* WordRecentDocumentViewModelProtocol.swift in Sources */,
 				829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */,
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
@@ -3877,7 +3873,6 @@
 				8210CA092A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift in Sources */,
 				82320D812A4913FE00ECADEE /* AGPUFaculties.swift in Sources */,
 				826716C22A5A2AF600CD5C23 /* RecentWebPageModel.swift in Sources */,
-				823BFAFA2A9D2FD000209F44 /* TimeTableInfoListViewModel + Extensions.swift in Sources */,
 				82B24A872A81BCE6008B94E4 /* Article.swift in Sources */,
 				82320D872A491F5700ECADEE /* AGPUFacultyTableViewCell.swift in Sources */,
 				820D339B2A75977400843313 /* FacultyContactsListTableViewController.swift in Sources */,
@@ -3903,6 +3898,7 @@
 				828321672A7D02E6008641A5 /* AllGroupsListViewModel.swift in Sources */,
 				826F93872A91C3D500DE4FB1 /* NewsPagesListViewModelProtocol.swift in Sources */,
 				8241F99B2A5F415A007DF628 /* DateManager + Extensions.swift in Sources */,
+				82807C782AA102DD00E9C884 /* PairTypesList.swift in Sources */,
 				8255ADCF2A6732110012895E /* CustomTitleView.swift in Sources */,
 				82989AE62A6F6DEA00F27858 /* FacultyCathedraListViewModel.swift in Sources */,
 				826888582A33AB5600434219 /* AGPUSplashScreenViewController.swift in Sources */,
@@ -4090,7 +4086,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -4124,7 +4120,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
