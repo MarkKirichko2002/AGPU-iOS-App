@@ -132,6 +132,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     
     @objc private func refreshTimetable() {
         getTimeTable(group: group, date: date)
+        self.type = .all
     }
     
     private func setUpIndicatorView() {

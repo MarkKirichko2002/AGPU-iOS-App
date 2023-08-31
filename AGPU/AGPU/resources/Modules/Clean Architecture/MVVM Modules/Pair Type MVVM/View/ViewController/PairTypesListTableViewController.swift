@@ -29,6 +29,13 @@ class PairTypesListTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         navigationItem.title = "Типы пары"
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
+        closeButton.tintColor = .black
+        navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    @objc private func close() {
+        self.dismiss(animated: true)
     }
     
     private func setUpTable() {

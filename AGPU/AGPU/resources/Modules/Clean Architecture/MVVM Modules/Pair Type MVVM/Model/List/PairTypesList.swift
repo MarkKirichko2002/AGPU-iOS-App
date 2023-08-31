@@ -30,6 +30,9 @@ struct PairTypesList {
             name: "Каникулы",
             type: .hol),
         PairTypeModel(
+            name: "Зачёт",
+            type: .cred),
+        PairTypeModel(
             name: "ФЭПО",
             type: .fepo),
         PairTypeModel(

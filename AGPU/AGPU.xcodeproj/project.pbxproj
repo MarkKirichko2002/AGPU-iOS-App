@@ -1924,16 +1924,8 @@
 			children = (
 				82807C722AA1029500E9C884 /* Model */,
 				82807C6E2AA0FA2200E9C884 /* View */,
-				82807C6D2AA0FA2000E9C884 /* ViewModel */,
 			);
 			path = "Pair Type MVVM";
-			sourceTree = "<group>";
-		};
-		82807C6D2AA0FA2000E9C884 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		82807C6E2AA0FA2200E9C884 /* View */ = {
