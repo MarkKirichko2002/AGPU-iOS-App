@@ -50,6 +50,7 @@ class PairTypesListTableViewController: UITableViewController {
         }
         self.type = type.type
         tableView.reloadData()
+        HapticsManager.shared.hapticFeedback()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

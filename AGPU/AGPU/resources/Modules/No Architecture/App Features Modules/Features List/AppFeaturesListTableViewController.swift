@@ -38,7 +38,6 @@ final class AppFeaturesListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         let storyboard = UIStoryboard(name: "AppFeatureDetailViewController", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "AppFeatureDetailViewController") as? AppFeatureDetailViewController {
             vc.feature = AppFeaturesList.features[indexPath.row]
@@ -46,6 +45,8 @@ final class AppFeaturesListTableViewController: UITableViewController {
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
         }
+        HapticsManager.shared.hapticFeedback()
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
