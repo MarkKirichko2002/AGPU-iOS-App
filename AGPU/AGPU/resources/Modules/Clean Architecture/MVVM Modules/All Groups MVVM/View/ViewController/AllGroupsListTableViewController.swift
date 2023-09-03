@@ -63,9 +63,6 @@ class AllGroupsListTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 let indexPath = IndexPath(row: index, section: section)
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                    self.tableView.isUserInteractionEnabled = true
-                }
             }
         }
         
@@ -82,6 +79,10 @@ class AllGroupsListTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.tableView.scrollToRow(at: IndexPath(row: index, section: section), at: .top, animated: true)
             }
+        }
+        
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+            self.tableView.isUserInteractionEnabled = true
         }
     }
 
