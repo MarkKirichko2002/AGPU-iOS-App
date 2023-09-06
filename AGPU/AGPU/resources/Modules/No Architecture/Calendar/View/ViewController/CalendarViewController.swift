@@ -26,7 +26,7 @@ final class CalendarViewController: UIViewController {
     private func setUpNavigation() {
         navigationItem.title = "Календарь"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
-        closeButton.tintColor = .black
+        closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }
     

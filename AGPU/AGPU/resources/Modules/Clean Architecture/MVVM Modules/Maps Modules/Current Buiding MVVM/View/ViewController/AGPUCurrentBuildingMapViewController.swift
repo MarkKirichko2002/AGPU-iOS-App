@@ -31,7 +31,7 @@ final class AGPUCurrentBuildingMapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         setUpNavigation()
         setUpMap()
         makeConstraints()
@@ -50,11 +50,11 @@ final class AGPUCurrentBuildingMapViewController: UIViewController {
         navigationItem.hidesBackButton = true
         
         let button = UIButton()
+        button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         
         let backButton = UIBarButtonItem(customView: button)
-        backButton.tintColor = .black
         navigationItem.leftBarButtonItem = backButton
     }
     

@@ -35,7 +35,7 @@ final class AppFeatureDetailViewController: UIViewController {
     private func setUpNavigation() {
         navigationItem.title = "Фишки №\(feature.id)"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
-        closeButton.tintColor = .black
+        closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }
     

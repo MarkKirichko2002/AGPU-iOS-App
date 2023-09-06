@@ -18,4 +18,11 @@ class ForEveryStatusTableViewCell: UITableViewCell {
         SectionIcon.image = UIImage(named: status.icon)
         SectionName.text = status.name
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        SectionIcon.tintColor = .label
+        SectionName.textColor = .label
+        backgroundColor = .systemBackground
+    }
 }

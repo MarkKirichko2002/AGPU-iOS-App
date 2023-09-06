@@ -30,7 +30,7 @@ class FacultyContactsListTableViewController: UITableViewController {
     private func setUpNavigation() {
         navigationItem.title = "Контакты \(faculty.abbreviation)"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
-        closeButton.tintColor = .black
+        closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }
     

@@ -44,6 +44,10 @@
                     <constraint firstItem="YbD-mV-Ttx" firstAttribute="leading" secondItem="MKp-rc-AqI" secondAttribute="leading" constant="30" id="vze-lD-7bS"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="InfoIcon" destination="YbD-mV-Ttx" id="5Nc-zw-OFA"/>
+                <outlet property="TitleLabel" destination="VKi-CH-bEd" id="mGe-cW-I1X"/>
+            </connections>
             <point key="canvasLocation" x="167.93893129770993" y="1.0563380281690142"/>
         </tableViewCell>
     </objects>

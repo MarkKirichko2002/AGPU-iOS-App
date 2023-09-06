@@ -22,7 +22,7 @@ final class RecentMomentsListTableViewController: UITableViewController {
     private func setUpNavigation() {
         navigationItem.title = "Недавние моменты"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
-        closeButton.tintColor = .black
+        closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }
     

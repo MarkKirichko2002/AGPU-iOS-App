@@ -31,7 +31,7 @@ class SearchAGPUBuildingMapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         setUpNavigation()
         setUpMap()
         makeConstraints()
@@ -41,7 +41,7 @@ class SearchAGPUBuildingMapViewController: UIViewController {
     private func setUpNavigation() {
         navigationItem.title = building.name
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
-        closeButton.tintColor = .black
+        closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }
     

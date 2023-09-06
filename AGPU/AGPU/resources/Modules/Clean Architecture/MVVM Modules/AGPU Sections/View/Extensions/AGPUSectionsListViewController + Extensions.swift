@@ -46,6 +46,7 @@ extension AGPUSectionsListViewController: UITableViewDelegate {
         label.numberOfLines = 0
         header.addSubview(label)
         label.text = AGPUSections.sections[section].name
+        label.textColor = .label
         label.font = .systemFont(ofSize: 16, weight: .black)
         return header
     }

@@ -37,11 +37,11 @@ class FacultyCathedraListTableViewController: UITableViewController {
         let titleView = CustomTitleView(image: "\(faculty.icon)", title: "Кафедры \(faculty.abbreviation)", frame: .zero)
     
         let button = UIButton()
+        button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         
         let backButton = UIBarButtonItem(customView: button)
-        backButton.tintColor = .black
         
         navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = nil
@@ -123,7 +123,7 @@ class FacultyCathedraListTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FacultyCathedraTableViewCell.identifier, for: indexPath) as? FacultyCathedraTableViewCell else {return UITableViewCell()}
         cell.tintColor = .systemGreen
         cell.accessoryType = viewModel.isCathedraSelected(index: indexPath.row) ? .checkmark : .none
-        cell.CathedraName.textColor = viewModel.isCathedraSelected(index: indexPath.row) ? .systemGreen : .black
+        cell.CathedraName.textColor = viewModel.isCathedraSelected(index: indexPath.row) ? .systemGreen : .label
         cell.configure(cathedra: faculty.cathedra[indexPath.row], faculty: faculty)
         return cell
     }

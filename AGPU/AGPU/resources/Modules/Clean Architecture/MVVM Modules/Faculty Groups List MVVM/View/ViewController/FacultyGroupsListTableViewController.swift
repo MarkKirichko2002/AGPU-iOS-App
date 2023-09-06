@@ -44,15 +44,15 @@ final class FacultyGroupsListTableViewController: UITableViewController {
         navigationItem.hidesBackButton = true
         
         let button = UIButton()
+        button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         
         let backButton = UIBarButtonItem(customView: button)
-        backButton.tintColor = .black
         
         let menu = viewModel.makeGroupsMenu()
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
-        sections.tintColor = .black
+        sections.tintColor = .label
         
         navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItem = sections
@@ -107,7 +107,7 @@ final class FacultyGroupsListTableViewController: UITableViewController {
         let groups = viewModel.groupItem(section: indexPath.section, index: indexPath.row)
         cell.tintColor = .systemGreen
         cell.accessoryType = viewModel.isGroupSelected(section: indexPath.section, index: indexPath.row) ? .checkmark : .none
-        cell.GroupName.textColor = viewModel.isGroupSelected(section: indexPath.section, index: indexPath.row) ? .systemGreen : .black
+        cell.GroupName.textColor = viewModel.isGroupSelected(section: indexPath.section, index: indexPath.row) ? .systemGreen : .label
         cell.configure(facultyIcon: faculty.icon, group: groups)
         return cell
     }

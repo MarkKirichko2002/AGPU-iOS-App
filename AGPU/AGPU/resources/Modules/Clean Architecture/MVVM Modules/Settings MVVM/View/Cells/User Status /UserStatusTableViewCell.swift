@@ -18,4 +18,9 @@ class UserStatusTableViewCell: UITableViewCell {
         StatusIcon.image = UIImage(named: type.icon)
         StatusName.text = type.name
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        StatusIcon.tintColor = .label
+    }
 }

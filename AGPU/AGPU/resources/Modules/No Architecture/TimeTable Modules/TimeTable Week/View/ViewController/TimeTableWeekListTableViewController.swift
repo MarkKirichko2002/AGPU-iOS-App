@@ -51,10 +51,10 @@ final class TimeTableWeekListTableViewController: UIViewController {
     private func setUpNavigation() {
         navigationItem.title = "с \(week.from) до \(week.to)"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
-        closeButton.tintColor = .black
+        closeButton.tintColor = .label
         let menu = setUpDatesMenu()
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
-        sections.tintColor = .black
+        sections.tintColor = .label
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = sections
     }

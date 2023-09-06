@@ -171,7 +171,6 @@
 		82B24A9F2A81C859008B94E4 /* AGPUNewsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B24A9E2A81C859008B94E4 /* AGPUNewsListViewModelProtocol.swift */; };
 		82B24AA12A81C89E008B94E4 /* AGPUNewsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B24AA02A81C89E008B94E4 /* AGPUNewsListViewModel.swift */; };
 		82B24AA32A81C8C3008B94E4 /* AGPUNewsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B24AA22A81C8C3008B94E4 /* AGPUNewsListViewModel + Extensions.swift */; };
-		82B24AA72A81CB2E008B94E4 /* SpringRoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B24AA62A81CB2E008B94E4 /* SpringRoundedImageView.swift */; };
 		82B24AAB2A82E45A008B94E4 /* NewsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B24AAA2A82E45A008B94E4 /* NewsResponse.swift */; };
 		82B266FC2A8D91E400043A6D /* NewsCategoriesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B266FB2A8D91E400043A6D /* NewsCategoriesListTableViewController.swift */; };
 		82B267032A8D926400043A6D /* NewsCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B267022A8D926400043A6D /* NewsCategories.swift */; };
@@ -406,7 +405,6 @@
 		82B24A9E2A81C859008B94E4 /* AGPUNewsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUNewsListViewModelProtocol.swift; sourceTree = "<group>"; };
 		82B24AA02A81C89E008B94E4 /* AGPUNewsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUNewsListViewModel.swift; sourceTree = "<group>"; };
 		82B24AA22A81C8C3008B94E4 /* AGPUNewsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUNewsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
-		82B24AA62A81CB2E008B94E4 /* SpringRoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringRoundedImageView.swift; sourceTree = "<group>"; };
 		82B24AAA2A82E45A008B94E4 /* NewsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsResponse.swift; sourceTree = "<group>"; };
 		82B266FB2A8D91E400043A6D /* NewsCategoriesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCategoriesListTableViewController.swift; sourceTree = "<group>"; };
 		82B267022A8D926400043A6D /* NewsCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCategories.swift; sourceTree = "<group>"; };
@@ -1735,7 +1733,6 @@
 		8268885C2A33ACA800434219 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				82B24AA42A81CB0A008B94E4 /* Spring Rounded Image */,
 				82FB5B622A7A8FE500728980 /* Interactive View */,
 				82EF23DD2A3DF612004A7B9C /* Spring Image */,
 				8255ADCD2A6731F50012895E /* Title View */,
@@ -2715,22 +2712,6 @@
 				82B24A9E2A81C859008B94E4 /* AGPUNewsListViewModelProtocol.swift */,
 			);
 			path = Protocol;
-			sourceTree = "<group>";
-		};
-		82B24AA42A81CB0A008B94E4 /* Spring Rounded Image */ = {
-			isa = PBXGroup;
-			children = (
-				82B24AA52A81CB1D008B94E4 /* View */,
-			);
-			path = "Spring Rounded Image";
-			sourceTree = "<group>";
-		};
-		82B24AA52A81CB1D008B94E4 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				82B24AA62A81CB2E008B94E4 /* SpringRoundedImageView.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		82B24AA82A82E427008B94E4 /* Response */ = {
@@ -3806,7 +3787,6 @@
 				82E4E5592A57699E00314296 /* WKWebView + Extensions.swift in Sources */,
 				826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */,
 				821FCF052A87CDB8006FFB26 /* NewsCollectionViewCell.swift in Sources */,
-				82B24AA72A81CB2E008B94E4 /* SpringRoundedImageView.swift in Sources */,
 				82B1C0D62A8071E500520C14 /* SubGroupsListTableViewController.swift in Sources */,
 				82989AEB2A6F6E1B00F27858 /* FacultyCathedraListViewModelProtocol.swift in Sources */,
 				82E4C5682A6B154300F65A67 /* FacultyGroupsListViewModelProtocol.swift in Sources */,

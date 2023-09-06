@@ -37,7 +37,7 @@ final class NewsListViewController: UIViewController {
     private func setUpNavigation() {
         navigationItem.title = "Новости АГПУ"
         let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshNews))
-        refreshButton.tintColor = .black
+        refreshButton.tintColor = .label
         navigationItem.leftBarButtonItem = refreshButton
     }
     
@@ -77,7 +77,7 @@ final class NewsListViewController: UIViewController {
             self.navigationItem.title = "загрузка новостей..."
             self.collectionView.reloadData()
             options = UIBarButtonItem(image: UIImage(named: "sections"), menu: UIMenu())
-            options.tintColor = .black
+            options.tintColor = .label
             self.navigationItem.rightBarButtonItem = options
         }
         
@@ -117,7 +117,7 @@ final class NewsListViewController: UIViewController {
                 
                 menu = UIMenu(title: "новости", children: [categoriesAction, pagesAction])
                 options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
-                options.tintColor = .black
+                options.tintColor = .label
                 self.navigationItem.titleView = titleView
                 self.navigationItem.rightBarButtonItem = options
             }

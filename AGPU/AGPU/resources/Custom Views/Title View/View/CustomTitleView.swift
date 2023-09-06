@@ -15,6 +15,7 @@ final class CustomTitleView: UIView {
     private let imageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
+        image.tintColor = .label
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()

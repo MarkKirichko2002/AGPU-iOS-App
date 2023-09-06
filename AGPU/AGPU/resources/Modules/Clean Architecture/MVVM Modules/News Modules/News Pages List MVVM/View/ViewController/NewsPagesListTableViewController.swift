@@ -37,7 +37,7 @@ class NewsPagesListTableViewController: UITableViewController {
     private func setUpNavigation() {
         navigationItem.title = "Выберите страницу"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
-        closeButton.tintColor = .black
+        closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }
     
@@ -79,7 +79,7 @@ class NewsPagesListTableViewController: UITableViewController {
         cell.tintColor = .systemGreen
         cell.textLabel?.text = page
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
-        cell.textLabel?.textColor = viewModel.isCurrentPage(index: indexPath.row) ? .systemGreen : .black
+        cell.textLabel?.textColor = viewModel.isCurrentPage(index: indexPath.row) ? .systemGreen : .label
         cell.accessoryType = viewModel.isCurrentPage(index: indexPath.row) ? .checkmark : .none
         return cell
     }

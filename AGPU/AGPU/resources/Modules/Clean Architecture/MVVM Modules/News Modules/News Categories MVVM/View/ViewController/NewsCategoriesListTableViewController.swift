@@ -35,7 +35,7 @@ class NewsCategoriesListTableViewController: UITableViewController {
     private func setUpNavigation() {
         navigationItem.title = "Категории новостей"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
-        closeButton.tintColor = .black
+        closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }
     
@@ -74,7 +74,7 @@ class NewsCategoriesListTableViewController: UITableViewController {
         let category = viewModel.categoryItem(index: indexPath.row)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsCategoryTableViewCell.identifier, for: indexPath) as? NewsCategoryTableViewCell else {return UITableViewCell()}
         cell.tintColor = .systemGreen
-        cell.CategoryName.textColor = viewModel.isCurrentCategory(index: indexPath.row) ? .systemGreen : .black
+        cell.CategoryName.textColor = viewModel.isCurrentCategory(index: indexPath.row) ? .systemGreen : .label
         cell.accessoryType = viewModel.isCurrentCategory(index: indexPath.row) ? .checkmark : .none
         cell.configure(category: category)
         return cell

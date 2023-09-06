@@ -41,7 +41,7 @@ class AllWeeksListTableViewController: UITableViewController {
     private func setUpNavigation() {
         navigationItem.title = "Список недель"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
-        closeButton.tintColor = .black
+        closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }
     
@@ -100,8 +100,8 @@ class AllWeeksListTableViewController: UITableViewController {
         let week = viewModel.weekItem(index: indexPath.row)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WeekTableViewCell.identifier, for: indexPath) as? WeekTableViewCell else {return UITableViewCell()}
         cell.configure(week: week)
-        cell.DateRangeLabel.textColor = viewModel.isCurrentWeek(index: indexPath.row) ? .systemGreen : .black
-        cell.WeekID.textColor = viewModel.isCurrentWeek(index: indexPath.row) ? .systemGreen : .black
+        cell.DateRangeLabel.textColor = viewModel.isCurrentWeek(index: indexPath.row) ? .systemGreen : .label
+        cell.WeekID.textColor = viewModel.isCurrentWeek(index: indexPath.row) ? .systemGreen : .label
         return cell
     }
 }

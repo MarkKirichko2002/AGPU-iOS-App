@@ -34,9 +34,9 @@ class PDFLastPageViewController: UIViewController {
     
     private func setUpNavigation() {
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
-        closeButton.tintColor = .black
+        closeButton.tintColor = .label
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())
-        sections.tintColor = .black
+        sections.tintColor = .label
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = sections
     }

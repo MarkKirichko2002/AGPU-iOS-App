@@ -126,7 +126,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         ])
         
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
-        options.tintColor = .black
+        options.tintColor = .label
         self.navigationItem.rightBarButtonItem = options
     }
     

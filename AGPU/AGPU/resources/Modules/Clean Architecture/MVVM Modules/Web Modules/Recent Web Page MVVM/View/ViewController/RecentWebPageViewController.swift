@@ -60,11 +60,11 @@ final class RecentWebPageViewController: UIViewController {
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: "online", title: "\(page.date) \(page.time)", frame: .zero)
         let backbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
-        backbutton.tintColor = .black
+        backbutton.tintColor = .label
         let forwardbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.right"), style: .plain, target: self, action: #selector(forwardButtonTapped))
-        forwardbutton.tintColor = .black
+        forwardbutton.tintColor = .label
         let closebutton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeButtonTapped))
-        closebutton.tintColor = .black
+        closebutton.tintColor = .label
         
         self.navigationItem.titleView = titleView
         self.navigationItem.rightBarButtonItems = [forwardbutton, backbutton]

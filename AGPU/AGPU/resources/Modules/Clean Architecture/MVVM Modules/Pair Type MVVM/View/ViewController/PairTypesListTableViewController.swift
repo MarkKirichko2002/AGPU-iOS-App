@@ -30,7 +30,7 @@ class PairTypesListTableViewController: UITableViewController {
     private func setUpNavigation() {
         navigationItem.title = "Типы пары"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
-        closeButton.tintColor = .black
+        closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }
     
@@ -65,7 +65,7 @@ class PairTypesListTableViewController: UITableViewController {
         cell.textLabel?.text = type.name
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
         cell.accessoryType = type.type == self.type ? .checkmark : .none
-        cell.textLabel?.textColor = type.type == self.type ? .systemGreen : .black
+        cell.textLabel?.textColor = type.type == self.type ? .systemGreen : .label
         return cell
     }
 }

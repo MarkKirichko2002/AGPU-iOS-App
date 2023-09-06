@@ -36,13 +36,13 @@ extension SettingsListViewController: UITableViewDataSource {
             cell.configure(type: UserStatusList.list[indexPath.row])
             cell.accessoryType = viewModel.isStatusSelected(index: indexPath.row) ? .checkmark : .none
             cell.tintColor = .systemGreen
-            cell.StatusName.textColor = viewModel.isStatusSelected(index: indexPath.row) ? .systemGreen : .black
+            cell.StatusName.textColor = viewModel.isStatusSelected(index: indexPath.row) ? .systemGreen : .label
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AGPUFacultyTableViewCell.identifier, for: indexPath) as? AGPUFacultyTableViewCell else {return UITableViewCell()}
             cell.accessoryType = viewModel.isFacultySelected(index: indexPath.row) ? .checkmark : .none
             cell.tintColor = .systemGreen
-            cell.AGPUFacultyName.textColor = viewModel.isFacultySelected(index: indexPath.row) ? .systemGreen : .black
+            cell.AGPUFacultyName.textColor = viewModel.isFacultySelected(index: indexPath.row) ? .systemGreen : .label
             cell.configure(faculty: AGPUFaculties.faculties[indexPath.row])
             return cell
         case 2:
@@ -67,7 +67,7 @@ extension SettingsListViewController: UITableViewDelegate {
         case 1:
             return "Избранный Факультет"
         case 2:
-            return "Shake To Recall"
+            return "Другие опции"
         case 3:
             return "О приложение"
         default:
