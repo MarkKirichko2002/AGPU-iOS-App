@@ -89,6 +89,8 @@ class PDFLastPageViewController: UIViewController {
     }
     
     private func loadLastPage() {
-        pdfView.go(to: document.page(at: pdf.pageNumber)!)
+        if let document = document {
+            pdfView.go(to: document.page(at: pdf.pageNumber)!)
+        }
     }
 }

@@ -55,6 +55,14 @@ final class TimeTableTableViewCell: UITableViewCell {
         }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        TimeLabel.textColor = .black
+        DisciplineName.textColor = .black
+        SubGroupId.textColor = .black
+        backgroundColor = .systemBackground
+    }
+    
     func didTapCell(indexPath: IndexPath) {
         animation.springAnimation(view: self.TimeLabel)
         animation.springAnimation(view: self.DisciplineName)

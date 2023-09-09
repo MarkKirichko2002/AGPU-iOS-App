@@ -12,6 +12,8 @@ final class CalendarViewController: UIViewController {
 
     private let Calendar: FSCalendar = {
         let calendar = FSCalendar()
+        calendar.appearance.titleDefaultColor = .label
+        calendar.backgroundColor = .systemBackground
         calendar.translatesAutoresizingMaskIntoConstraints = false
         return calendar
     }()

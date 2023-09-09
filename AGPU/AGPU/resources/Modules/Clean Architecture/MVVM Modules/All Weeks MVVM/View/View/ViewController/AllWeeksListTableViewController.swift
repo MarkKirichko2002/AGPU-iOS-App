@@ -69,16 +69,15 @@ class AllWeeksListTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.refreshControll.endRefreshing()
+                self.viewModel.getCurrentWeek()
             }
         }
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.viewModel.getCurrentWeek()
-            self.viewModel.registerScrollHandler { row in
-                DispatchQueue.main.async {
-                    let indexPath = IndexPath(row: row, section: 0)
-                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-                    self.navigationItem.title = "Текущая неделя \(row + 1)"
-                }
+        
+        self.viewModel.registerScrollHandler { row in
+            DispatchQueue.main.async {
+                let indexPath = IndexPath(row: row, section: 0)
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                self.navigationItem.title = "Текущая неделя \(row + 1)"
             }
         }
     }

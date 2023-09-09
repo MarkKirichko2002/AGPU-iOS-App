@@ -35,11 +35,13 @@ extension AllWeeksListViewModel: AllWeeksListViewModelProtocol {
     }
     
     func getCurrentWeek() {
-        for week in weeks {
-            let isRange = dateManager.dateRange(startDate: week.from, endDate: week.to)
-            if isRange {
-                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                    self.ScrollHandler?(week.id - 1)
+        if !weeks.isEmpty {
+            for week in weeks {
+                let isRange = dateManager.dateRange(startDate: week.from, endDate: week.to)
+                if isRange {
+                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                        self.ScrollHandler?(week.id - 1)
+                    }
                 }
             }
         }

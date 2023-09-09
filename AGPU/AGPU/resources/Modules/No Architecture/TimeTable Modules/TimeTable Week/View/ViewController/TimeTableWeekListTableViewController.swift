@@ -43,9 +43,6 @@ final class TimeTableWeekListTableViewController: UIViewController {
         setUpIndicatorView()
         getTimeTable()
         setUpRefreshControl()
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.scrollToCurrentDay()
-        }
     }
     
     private func setUpNavigation() {
@@ -143,6 +140,9 @@ final class TimeTableWeekListTableViewController: UIViewController {
                         self.refreshControl.endRefreshing()
                         self.noTimeTableLabel.isHidden = true
                         self.setUpNavigation()
+                        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                            self.scrollToCurrentDay()
+                        }
                     }
                 } else {
                     self.noTimeTableLabel.isHidden = false
