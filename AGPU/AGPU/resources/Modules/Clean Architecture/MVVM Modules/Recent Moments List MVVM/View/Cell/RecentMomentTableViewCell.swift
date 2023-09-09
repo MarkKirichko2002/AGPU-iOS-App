@@ -11,11 +11,18 @@ class RecentMomentTableViewCell: UITableViewCell {
 
     static let identifier = "RecentMomentTableViewCell"
     
-    @IBOutlet var MomentName: UILabel!
     @IBOutlet var MomentIcon: SpringImageView!
+    @IBOutlet var MomentName: UILabel!
     
     func configure(moment: RecentMomentModel) {
         MomentName.text = moment.name
         MomentIcon.image = UIImage(named: moment.icon)
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        MomentIcon.tintColor = .label
+        MomentName.textColor = .label
+        backgroundColor = .systemBackground
     }
 }

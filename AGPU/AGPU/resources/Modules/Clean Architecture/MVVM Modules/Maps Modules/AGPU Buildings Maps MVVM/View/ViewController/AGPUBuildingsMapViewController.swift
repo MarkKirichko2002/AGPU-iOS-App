@@ -18,7 +18,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         setUpNavigation()
         setUpMap()
         makeConstraints()
@@ -32,14 +32,14 @@ final class AGPUBuildingsMapViewController: UIViewController {
     private func setUpNavigation() {
         
         let button = UIButton()
+        button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         
         let backButton = UIBarButtonItem(customView: button)
-        backButton.tintColor = .black
         
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: viewModel.makeOptionsMenu())
-        options.tintColor = .black
+        options.tintColor = .label
         
         navigationItem.title = "Найти «АГПУ»"
         navigationItem.leftBarButtonItem = nil

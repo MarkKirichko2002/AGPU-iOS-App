@@ -37,11 +37,11 @@ class AllGroupsListTableViewController: UITableViewController {
         let titleView = CustomTitleView(image: "group", title: "Список групп", frame: .zero)
         
         let closebutton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeButtonTapped))
-        closebutton.tintColor = .black
+        closebutton.tintColor = .label
         let menu = viewModel.makeGroupsMenu()
 
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
-        sections.tintColor = .black
+        sections.tintColor = .label
         
         navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = closebutton
@@ -63,9 +63,6 @@ class AllGroupsListTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 let indexPath = IndexPath(row: index, section: section)
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                    self.tableView.isUserInteractionEnabled = true
-                }
             }
         }
         
@@ -82,6 +79,10 @@ class AllGroupsListTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.tableView.scrollToRow(at: IndexPath(row: index, section: section), at: .top, animated: true)
             }
+        }
+        
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+            self.tableView.isUserInteractionEnabled = true
         }
     }
 
@@ -107,7 +108,7 @@ class AllGroupsListTableViewController: UITableViewController {
         let group = viewModel.groupItem(section: indexPath.section, index: indexPath.row)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FacultyGroupTableViewCell.identifier, for: indexPath) as? FacultyGroupTableViewCell else {return UITableViewCell()}
         cell.tintColor = .systemGreen
-        cell.GroupName.textColor = viewModel.isGroupSelected(section: indexPath.section, index: indexPath.row) ? .systemGreen : .black
+        cell.GroupName.textColor = viewModel.isGroupSelected(section: indexPath.section, index: indexPath.row) ? .systemGreen : .label
         cell.accessoryType = viewModel.isGroupSelected(section: indexPath.section, index: indexPath.row) ? .checkmark : .none
         cell.configure(facultyIcon: self.viewModel.currentFacultyIcon(section: indexPath.section, abbreviation: groupSection.name.abbreviation()), group: group)
         return cell

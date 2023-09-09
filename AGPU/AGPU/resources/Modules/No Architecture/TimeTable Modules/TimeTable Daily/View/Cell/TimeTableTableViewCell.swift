@@ -50,7 +50,17 @@ final class TimeTableTableViewCell: UITableViewCell {
             return UIColor.white
         case .none:
             return UIColor.white
+        case .all:
+            return UIColor.white
         }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        TimeLabel.textColor = .black
+        DisciplineName.textColor = .black
+        SubGroupId.textColor = .black
+        backgroundColor = .systemBackground
     }
     
     func didTapCell(indexPath: IndexPath) {

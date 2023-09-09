@@ -31,11 +31,11 @@ final class AGPUWallpapersListViewController: UIViewController {
         let titleView = CustomTitleView(image: "АГПУ", title: "АГПУ Обои", frame: .zero)
         
         let button = UIButton()
+        button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         
         let backButton = UIBarButtonItem(customView: button)
-        backButton.tintColor = .black
         
         navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = nil

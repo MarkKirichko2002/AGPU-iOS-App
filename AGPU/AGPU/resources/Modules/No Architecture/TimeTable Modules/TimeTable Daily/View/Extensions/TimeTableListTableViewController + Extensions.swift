@@ -16,15 +16,6 @@ extension TimeTableDayListTableViewController: UITableViewDelegate {
                                           actionProvider: {
             _ in
             
-            let infoAction = UIAction(title: "подробнее", image: UIImage(named: "info")) { _ in
-                if let discipline = self.timetable?.disciplines[indexPath.row] {
-                    let vc = TimeTableInfoListTableViewController(discipline: discipline)
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    self.present(navVC, animated: true)
-                }
-            }
-            
             let mapAction = UIAction(title: "найти корпус", image: UIImage(named: "map icon")) { _ in
                 if let audience = self.timetable?.disciplines[indexPath.row].audienceID {
                     let vc = AGPUCurrentBuildingMapViewController(audienceID: audience)
@@ -39,7 +30,6 @@ extension TimeTableDayListTableViewController: UITableViewDelegate {
             }
             
             return UIMenu(title: self.timetable?.disciplines[indexPath.row].name ?? "", children: [
-                infoAction,
                 mapAction
             ])
         })

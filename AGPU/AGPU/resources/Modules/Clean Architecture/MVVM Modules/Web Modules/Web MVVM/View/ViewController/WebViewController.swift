@@ -42,13 +42,13 @@ final class WebViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        let backbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
-        backbutton.tintColor = .black
+        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
+        backButton.tintColor = .label
         let forwardbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.right"), style: .plain, target: self, action: #selector(forwardButtonTapped))
-        forwardbutton.tintColor = .black
+        forwardbutton.tintColor = .label
         let closebutton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeButtonTapped))
-        closebutton.tintColor = .black
-        self.navigationItem.rightBarButtonItems = [forwardbutton, backbutton]
+        closebutton.tintColor = .label
+        self.navigationItem.rightBarButtonItems = [forwardbutton, backButton]
         self.navigationItem.leftBarButtonItem = closebutton
     }
     

@@ -26,6 +26,7 @@ final class AGPUSplashScreenViewController: UIViewController {
     // название
     private let AGPUTitleLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .label
         label.font = .systemFont(ofSize: 21, weight: .black)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -34,6 +35,7 @@ final class AGPUSplashScreenViewController: UIViewController {
     // 1 год
     private let AnniversaryLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .label
         label.font = .systemFont(ofSize: 21, weight: .black)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

@@ -31,7 +31,6 @@ final class AGPUTabBarController: UITabBarController {
     // MARK: - Dynamic Button
     private let DynamicButton: UIButton = {
         let button = UIButton()
-        button.imageView?.tintColor = .black
         button.imageView?.contentMode = .scaleAspectFill
         return button
     }()
@@ -56,8 +55,8 @@ final class AGPUTabBarController: UITabBarController {
     
     private func setUpView() {
         view.backgroundColor = .systemBackground
-        UITabBar.appearance().tintColor = UIColor.black
-        UITabBar.appearance().backgroundColor = UIColor.white
+        UITabBar.appearance().tintColor = UIColor.label
+        UITabBar.appearance().backgroundColor = .systemBackground
     }
     
     private func setUpTabs() {

@@ -14,6 +14,7 @@ final class AGPUSubSectionTableViewCell: UITableViewCell {
     
     let AGPUSubSectionTitle: UILabel = {
         let label = UILabel()
+        label.textColor = .label
         label.font = .systemFont(ofSize: 17, weight: .bold)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false

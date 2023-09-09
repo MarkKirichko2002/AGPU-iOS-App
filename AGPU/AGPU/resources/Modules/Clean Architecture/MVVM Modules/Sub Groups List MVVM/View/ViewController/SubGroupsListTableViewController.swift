@@ -28,11 +28,11 @@ class SubGroupsListTableViewController: UITableViewController {
         navigationItem.hidesBackButton = true
         
         let button = UIButton()
+        button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         
         let backButton = UIBarButtonItem(customView: button)
-        backButton.tintColor = .black
         
         navigationItem.leftBarButtonItem = backButton
     }
@@ -63,7 +63,7 @@ class SubGroupsListTableViewController: UITableViewController {
         cell.tintColor = .systemGreen
         cell.textLabel?.text = viewModel.subgroupItem(index: indexPath.row).name
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
-        cell.textLabel?.textColor = viewModel.isSubGroupSelected(index: indexPath.row) ? .systemGreen : .black
+        cell.textLabel?.textColor = viewModel.isSubGroupSelected(index: indexPath.row) ? .systemGreen : .label
         cell.accessoryType = viewModel.isSubGroupSelected(index: indexPath.row) ? .checkmark : .none
         return cell
     }

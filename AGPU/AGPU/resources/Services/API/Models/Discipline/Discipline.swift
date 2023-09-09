@@ -30,4 +30,5 @@ enum PairType: String, Codable {
     case fepo
     case cons
     case none
+    case all
 }

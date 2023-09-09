@@ -14,8 +14,15 @@ class ForEveryStatusTableViewCell: UITableViewCell {
     @IBOutlet var SectionIcon: SpringImageView!
     @IBOutlet var SectionName: UILabel!
     
-    func configure(for student: ForEveryStatusModel) {
-        SectionIcon.image = UIImage(named: student.icon)
-        SectionName.text = student.name
+    func configure(for status: ForEveryStatusModel) {
+        SectionIcon.image = UIImage(named: status.icon)
+        SectionName.text = status.name
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        SectionIcon.tintColor = .label
+        SectionName.textColor = .label
+        backgroundColor = .systemBackground
     }
 }

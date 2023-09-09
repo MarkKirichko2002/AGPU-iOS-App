@@ -45,7 +45,7 @@ final class NewsCollectionViewCell: UICollectionViewCell {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .secondarySystemBackground
+        contentView.backgroundColor = .systemBackground
         contentView.addSubviews(imageView, NewsTitle, dateLabel)
         addConstaints()
         setUpLayer()

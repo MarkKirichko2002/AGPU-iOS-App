@@ -39,9 +39,9 @@ class WordRecentDocumentViewController: UIViewController {
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: "word", title: "\(document.date) \(document.time)", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
-        closeButton.tintColor = .black
+        closeButton.tintColor = .label
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())
-        sections.tintColor = .black
+        sections.tintColor = .label
         
         navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = closeButton

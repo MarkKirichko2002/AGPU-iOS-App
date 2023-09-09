@@ -24,14 +24,14 @@ final class AGPUSectionsListViewController: UIViewController {
         let titleView = CustomTitleView(image: "АГПУ", title: "Разделы", frame: .zero)
         
         let button = UIButton()
+        button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         
         let backButton = UIBarButtonItem(customView: button)
-        backButton.tintColor = .black
         
         let list = UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpMenu())
-        list.tintColor = .black
+        list.tintColor = .label
         
         navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = nil

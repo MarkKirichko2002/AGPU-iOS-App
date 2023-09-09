@@ -12,6 +12,8 @@ final class CalendarViewController: UIViewController {
 
     private let Calendar: FSCalendar = {
         let calendar = FSCalendar()
+        calendar.appearance.titleDefaultColor = .label
+        calendar.backgroundColor = .systemBackground
         calendar.translatesAutoresizingMaskIntoConstraints = false
         return calendar
     }()
@@ -26,7 +28,7 @@ final class CalendarViewController: UIViewController {
     private func setUpNavigation() {
         navigationItem.title = "Календарь"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
-        closeButton.tintColor = .black
+        closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }
     

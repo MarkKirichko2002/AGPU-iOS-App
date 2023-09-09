@@ -41,7 +41,7 @@ class AllWeeksListTableViewController: UITableViewController {
     private func setUpNavigation() {
         navigationItem.title = "Список недель"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
-        closeButton.tintColor = .black
+        closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }
     
@@ -69,16 +69,15 @@ class AllWeeksListTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.refreshControll.endRefreshing()
+                self.viewModel.getCurrentWeek()
             }
         }
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.viewModel.getCurrentWeek()
-            self.viewModel.registerScrollHandler { row in
-                DispatchQueue.main.async {
-                    let indexPath = IndexPath(row: row, section: 0)
-                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-                    self.navigationItem.title = "Текущая неделя \(row + 1)"
-                }
+        
+        self.viewModel.registerScrollHandler { row in
+            DispatchQueue.main.async {
+                let indexPath = IndexPath(row: row, section: 0)
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                self.navigationItem.title = "Текущая неделя \(row + 1)"
             }
         }
     }
@@ -100,8 +99,8 @@ class AllWeeksListTableViewController: UITableViewController {
         let week = viewModel.weekItem(index: indexPath.row)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WeekTableViewCell.identifier, for: indexPath) as? WeekTableViewCell else {return UITableViewCell()}
         cell.configure(week: week)
-        cell.DateRangeLabel.textColor = viewModel.isCurrentWeek(index: indexPath.row) ? .systemGreen : .black
-        cell.WeekID.textColor = viewModel.isCurrentWeek(index: indexPath.row) ? .systemGreen : .black
+        cell.DateRangeLabel.textColor = viewModel.isCurrentWeek(index: indexPath.row) ? .systemGreen : .label
+        cell.WeekID.textColor = viewModel.isCurrentWeek(index: indexPath.row) ? .systemGreen : .label
         return cell
     }
 }

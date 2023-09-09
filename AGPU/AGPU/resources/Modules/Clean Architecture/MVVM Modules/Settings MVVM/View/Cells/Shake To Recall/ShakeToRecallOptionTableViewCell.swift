@@ -15,8 +15,8 @@ final class ShakeToRecallOptionTableViewCell: UITableViewCell {
     var animation = AnimationClass()
     
     @IBOutlet weak var Switch: UISwitch!
-    @IBOutlet weak var ShakeToRecallLabel: UILabel!
     @IBOutlet weak var ShakeToRecallIcon: UIImageView!
+    @IBOutlet weak var ShakeToRecallLabel: UILabel!
     
     @IBAction func switchAction(_ sender: UISwitch) {
         
@@ -35,7 +35,14 @@ final class ShakeToRecallOptionTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        setUpView()
         Switch.isOn = userDefaults.bool(forKey: "onShakeToRecall")
         Switch.isOn = userDefaults.bool(forKey: "offShakeToRecall")
+    }
+    
+    private func setUpView() {
+        ShakeToRecallIcon.tintColor = .label
+        backgroundColor = .systemBackground
+        ShakeToRecallLabel.textColor = .label
     }
 }
