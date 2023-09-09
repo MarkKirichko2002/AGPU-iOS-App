@@ -19,4 +19,10 @@ final class FacultyGroupTableViewCell: UITableViewCell {
         GroupName.text = group
         self.backgroundColor = .clear
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        GroupName.textColor = .label
+        backgroundColor = .systemBackground
+    }
 }

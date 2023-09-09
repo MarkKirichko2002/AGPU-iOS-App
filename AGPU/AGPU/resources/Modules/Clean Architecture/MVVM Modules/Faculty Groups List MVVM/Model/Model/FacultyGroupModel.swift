@@ -8,6 +8,6 @@
 import Foundation
 
 struct FacultyGroupModel {
-    let name: String
+    let facultyName: String
     let groups: [String]
 }

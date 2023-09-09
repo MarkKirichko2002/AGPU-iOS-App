@@ -18,4 +18,11 @@ class WeekTableViewCell: UITableViewCell {
         WeekID.text = "\(week.id)"
         DateRangeLabel.text = "с \(week.from) по \(week.to)"
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        WeekID.textColor = .label
+        DateRangeLabel.textColor = .label
+        backgroundColor = .systemBackground
+    }
 }

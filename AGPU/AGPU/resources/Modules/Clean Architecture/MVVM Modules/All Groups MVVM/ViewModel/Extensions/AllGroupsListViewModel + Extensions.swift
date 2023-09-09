@@ -59,7 +59,7 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
     func currentFacultyIcon(section: Int, abbreviation: String)-> String {
         let group = FacultyGroups.groups[section]
         for faculty in AGPUFaculties.faculties {
-            if group.name.abbreviation().contains(faculty.abbreviation) {
+            if group.facultyName.abbreviation().contains(faculty.abbreviation) {
                 return faculty.icon
             }
         }
@@ -71,17 +71,17 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
         var currentGroup = ""
         
         if let group = FacultyGroups.groups.first(where: { $0.groups.contains(self.group)}) {
-            currentGroup = group.name
+            currentGroup = group.facultyName
         }
         
         let items = FacultyGroups.groups.enumerated().map { (index: Int, group: FacultyGroupModel) in
-            let groupItem = group.name
+            let groupItem = group.facultyName
             let actionHandler: UIActionHandler = { [weak self] _ in
                 DispatchQueue.main.async {
                     self?.scrollHandler?(index, 0)
                 }
             }
-            return UIAction(title: group.name.abbreviation(), state: currentGroup == groupItem ? .on : .off, handler: actionHandler)
+            return UIAction(title: group.facultyName.abbreviation(), state: currentGroup == groupItem ? .on : .off, handler: actionHandler)
         }
         let menu = UIMenu(title: "группы", options: .singleSelection, children: items)
         return menu

@@ -8,6 +8,7 @@
 import Foundation
 
 struct TimeTable: Codable {
+    
     let date, groupName: String
     var disciplines: [Discipline]
     

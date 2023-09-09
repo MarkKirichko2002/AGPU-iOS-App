@@ -18,4 +18,10 @@ final class FacultyCathedraTableViewCell: UITableViewCell {
         FacultyIcon.image = UIImage(named: faculty.icon)
         CathedraName.text = cathedra.name
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        CathedraName.textColor = .label
+        backgroundColor = .systemBackground
+    }
 }

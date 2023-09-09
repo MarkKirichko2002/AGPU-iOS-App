@@ -12,7 +12,7 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
     
     func getGroups(by faculty: AGPUFacultyModel) {
         for group in FacultyGroups.groups {
-            if group.name.abbreviation().contains(faculty.abbreviation) {
+            if group.facultyName.abbreviation().contains(faculty.abbreviation) {
                 self.groups.append(group)
                 self.isChanged.toggle()
             }
@@ -31,13 +31,13 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
     func selectGroup(section: Int, index: Int) {
         let group = groupItem(section: section, index: index)
         if let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
-            if groups[section].name.abbreviation().contains(faculty.abbreviation) {
+            if groups[section].facultyName.abbreviation().contains(faculty.abbreviation) {
                 UserDefaults.standard.setValue(group, forKey: "group")
                 self.isChanged.toggle()
                 HapticsManager.shared.hapticFeedback()
                 NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
             } else {
-                print("no \(groups[section].name) != \(faculty.abbreviation)")
+                print("no \(groups[section].facultyName) != \(faculty.abbreviation)")
             }
         }
     }
@@ -58,7 +58,7 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
         var currentGroup = ""
         
         if let group = self.groups.first(where: { $0.groups.contains(savedGroup)}) {
-            currentGroup = group.name
+            currentGroup = group.facultyName
         }
         
         let items = self.groups.enumerated().map { (section: Int, group: FacultyGroupModel) in
@@ -67,7 +67,7 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
                     self?.scrollHandler?(section, 0)
                 }
             }
-            return UIAction(title: group.name.abbreviation(), state: currentGroup == group.name ? .on : .off, handler: actionHandler)
+            return UIAction(title: group.facultyName.abbreviation(), state: currentGroup == group.facultyName ? .on : .off, handler: actionHandler)
         }
         let menu = UIMenu(title: "группы", options: .singleSelection, children: items)
         return menu

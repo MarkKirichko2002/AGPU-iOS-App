@@ -52,4 +52,10 @@ final class AGPUSubSectionTableViewCell: UITableViewCell {
     func configure(subsection: AGPUSubSectionModel) {
         AGPUSubSectionTitle.text = subsection.name
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        AGPUSubSectionTitle.textColor = .label
+        backgroundColor = .systemBackground
+    }
 }

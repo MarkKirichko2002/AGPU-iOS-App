@@ -19,4 +19,10 @@ final class AGPUFacultyTableViewCell: UITableViewCell {
         AGPUFacultyName.text = faculty.name
         self.backgroundColor = .clear
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        AGPUFacultyName.textColor = .label
+        backgroundColor = .systemBackground
+    }
 }

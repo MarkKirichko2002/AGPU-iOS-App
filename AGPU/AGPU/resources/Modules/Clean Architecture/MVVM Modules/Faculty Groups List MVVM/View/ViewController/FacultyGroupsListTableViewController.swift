@@ -86,7 +86,7 @@ final class FacultyGroupsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int)-> String? {
-        return viewModel.groups[section].name.abbreviation()
+        return viewModel.groups[section].facultyName.abbreviation()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

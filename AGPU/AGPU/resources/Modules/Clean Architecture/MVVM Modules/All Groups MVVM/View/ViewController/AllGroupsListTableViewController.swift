@@ -87,7 +87,7 @@ class AllGroupsListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int)-> String? {
-        return FacultyGroups.groups[section].name.abbreviation()
+        return FacultyGroups.groups[section].facultyName.abbreviation()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -110,7 +110,7 @@ class AllGroupsListTableViewController: UITableViewController {
         cell.tintColor = .systemGreen
         cell.GroupName.textColor = viewModel.isGroupSelected(section: indexPath.section, index: indexPath.row) ? .systemGreen : .label
         cell.accessoryType = viewModel.isGroupSelected(section: indexPath.section, index: indexPath.row) ? .checkmark : .none
-        cell.configure(facultyIcon: self.viewModel.currentFacultyIcon(section: indexPath.section, abbreviation: groupSection.name.abbreviation()), group: group)
+        cell.configure(facultyIcon: self.viewModel.currentFacultyIcon(section: indexPath.section, abbreviation: groupSection.facultyName.abbreviation()), group: group)
         return cell
     }
 }
