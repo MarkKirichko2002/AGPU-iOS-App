@@ -52,14 +52,15 @@ class AllWeeksListTableViewController: UITableViewController {
     private func setUpTable() {
         tableView.rowHeight = 130
         tableView.register(UINib(nibName: WeekTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: WeekTableViewCell.identifier)
+        tableView.isUserInteractionEnabled = false
     }
     
     private func setUpRefreshControl() {
         tableView.addSubview(self.refreshControll)
-        refreshControll.addTarget(self, action: #selector(refreshTimetable), for: .valueChanged)
+        refreshControll.addTarget(self, action: #selector(refreshWeeks), for: .valueChanged)
     }
     
-    @objc private func refreshTimetable() {
+    @objc private func refreshWeeks() {
         viewModel.GetWeeks()
     }
     
@@ -80,6 +81,11 @@ class AllWeeksListTableViewController: UITableViewController {
                 self.navigationItem.title = "Текущая неделя \(row + 1)"
             }
         }
+    }
+    
+    override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        print("прокрутка завершилась")
+        tableView.isUserInteractionEnabled = true
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

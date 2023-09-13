@@ -45,6 +45,11 @@ final class TimeTableWeekListTableViewController: UIViewController {
         setUpRefreshControl()
     }
     
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        print("прокрутка завершилась")
+        tableView.isUserInteractionEnabled = true
+    }
+    
     private func setUpNavigation() {
         navigationItem.title = "с \(week.from) до \(week.to)"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
@@ -83,15 +88,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: TimeTableTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimeTableTableViewCell.identifier)
         tableView.separatorStyle = .none
-    }
-    
-    private func setUpRefreshControl() {
-        tableView.addSubview(refreshControl)
-        refreshControl.addTarget(self, action: #selector(refreshTimetable), for: .valueChanged)
-    }
-    
-    @objc private func refreshTimetable() {
-        getTimeTable()
+        tableView.isUserInteractionEnabled = false
     }
     
     private func setUpLabel() {
@@ -159,6 +156,15 @@ final class TimeTableWeekListTableViewController: UIViewController {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    private func setUpRefreshControl() {
+        tableView.addSubview(refreshControl)
+        refreshControl.addTarget(self, action: #selector(refreshTimetable), for: .valueChanged)
+    }
+    
+    @objc private func refreshTimetable() {
+        getTimeTable()
     }
     
     func scrollToCurrentDay() {

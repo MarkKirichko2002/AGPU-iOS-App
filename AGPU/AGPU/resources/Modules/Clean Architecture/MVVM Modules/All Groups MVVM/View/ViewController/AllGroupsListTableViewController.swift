@@ -80,10 +80,11 @@ class AllGroupsListTableViewController: UITableViewController {
                 self.tableView.scrollToRow(at: IndexPath(row: index, section: section), at: .top, animated: true)
             }
         }
-        
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            self.tableView.isUserInteractionEnabled = true
-        }
+    }
+    
+    override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        print("прокрутка завершилась")
+        tableView.isUserInteractionEnabled = true
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int)-> String? {

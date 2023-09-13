@@ -77,12 +77,14 @@ final class FacultyGroupsListTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 let indexPath = IndexPath(row: index, section: section)
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                    self.tableView.isUserInteractionEnabled = true
-                }
             }
         }
         viewModel.scrollToSelectedGroup()
+    }
+    
+    override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        print("прокрутка завершилась")
+        tableView.isUserInteractionEnabled = true
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int)-> String? {

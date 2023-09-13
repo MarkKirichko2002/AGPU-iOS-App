@@ -169,10 +169,12 @@ extension SettingsListViewController: UITableViewDelegate {
         case 0:
             viewModel.chooseStatus(index: indexPath.row)
         case 1,2:
-            break
+            if indexPath.row == 1 {
+               
+            }
         case 3:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "info icon")
-            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 let vc = AppFeaturesListTableViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
