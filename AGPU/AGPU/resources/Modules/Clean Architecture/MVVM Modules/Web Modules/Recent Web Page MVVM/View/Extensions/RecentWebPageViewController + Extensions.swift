@@ -52,7 +52,7 @@ extension RecentWebPageViewController: WKNavigationDelegate {
     }
 }
 
-// MARK: - UIScrollViewDelegat
+// MARK: - UIScrollViewDelegate
 extension RecentWebPageViewController: UIScrollViewDelegate {
 
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {

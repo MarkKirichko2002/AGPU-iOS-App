@@ -17,7 +17,7 @@ struct AGPUFaculties {
             cathedra: FacultyCathedraList.cathedra["Институт русской и иностранной филологии"]!,
             icon: "icon1",
             abbreviation: "ИРиИФ",
-            url: "http://test.agpu.net/struktura-vuza/faculties-institutes/iriif/index.php",
+            url: "http://agpu.net/struktura-vuza/faculties-institutes/iriif/index.php",
             newsAbbreviation: "iriif",
             videoURL: "http://priem.agpu.net/video/stud/iriif.mp4",
             contacts: [],
@@ -30,7 +30,7 @@ struct AGPUFaculties {
             cathedra: FacultyCathedraList.cathedra["Институт прикладной информатики, математики и физики"]!,
             icon: "icon2",
             abbreviation: "ИПИМиФ",
-            url: "http://test.agpu.net/struktura-vuza/faculties-institutes/ipimif/index.php",
+            url: "http://agpu.net/struktura-vuza/faculties-institutes/ipimif/index.php",
             newsAbbreviation: "ipimif",
             videoURL: "http://priem.agpu.net/video/stud/ipimif.mp4",
             contacts: [
@@ -49,7 +49,7 @@ struct AGPUFaculties {
             cathedra: FacultyCathedraList.cathedra["Социально-психологический факультет"]!,
             icon: "icon3",
             abbreviation: "СПФ",
-            url: "http://test.agpu.net/struktura-vuza/faculties-institutes/spf/index.php",
+            url: "http://agpu.net/struktura-vuza/faculties-institutes/spf/index.php",
             newsAbbreviation: "spf",
             videoURL: "http://priem.agpu.net/video/stud/spf.mp4",
             contacts: [
@@ -98,7 +98,7 @@ struct AGPUFaculties {
             cathedra: FacultyCathedraList.cathedra["Факультет дошкольного и начального образования"]!,
             icon: "icon4",
             abbreviation: "ФДиНО",
-            url: "http://test.agpu.net/struktura-vuza/faculties-institutes/fdino/index.php",
+            url: "http://agpu.net/struktura-vuza/faculties-institutes/fdino/index.php",
             newsAbbreviation: "fdino",
             videoURL: "http://priem.agpu.net/video/stud/fdino.mp4",
             contacts: [
@@ -117,7 +117,7 @@ struct AGPUFaculties {
             cathedra: FacultyCathedraList.cathedra["Факультет технологии, экономики и дизайна"]!,
             icon: "icon5",
             abbreviation: "ФТЭиД",
-            url: "http://test.agpu.net/struktura-vuza/faculties-institutes/fteid/index.php",
+            url: "http://agpu.net/struktura-vuza/faculties-institutes/fteid/index.php",
             newsAbbreviation: "fteid",
             videoURL: "http://priem.agpu.net/video/stud/fteid.mp4",
             contacts: [
@@ -141,7 +141,7 @@ struct AGPUFaculties {
             cathedra: FacultyCathedraList.cathedra["Исторический факультет"]!,
             icon: "icon6",
             abbreviation: "ИстФак",
-            url: "http://test.agpu.net/struktura-vuza/faculties-institutes/istfak/index.php",
+            url: "http://agpu.net/struktura-vuza/faculties-institutes/istfak/index.php",
             newsAbbreviation: "istfak",
             videoURL: "http://priem.agpu.net/video/stud/istfak.mp4",
             contacts: [],

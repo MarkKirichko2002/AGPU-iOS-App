@@ -56,13 +56,13 @@ class ForEmployeeListTableViewController: UITableViewController {
         case 3:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                self.goToWeb(url: "http://test.agpu.net/struktura-vuza/index.php", image: ForEmployeeSections.sections[indexPath.row].icon, title: "Подразделения", isSheet: false)
+                self.goToWeb(url: "http://agpu.net/struktura-vuza/index.php", image: ForEmployeeSections.sections[indexPath.row].icon, title: "Подразделения", isSheet: false)
             }
             
         case 4:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                self.goToWeb(url: "http://test.agpu.net/sveden/document/index.php", image: ForEmployeeSections.sections[indexPath.row].icon, title: "Документы", isSheet: false)
+                self.goToWeb(url: "http://agpu.net/sveden/document/index.php", image: ForEmployeeSections.sections[indexPath.row].icon, title: "Документы", isSheet: false)
             }
             
         case 5:

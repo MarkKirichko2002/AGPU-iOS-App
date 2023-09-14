@@ -69,7 +69,7 @@ final class ForStudentListTableViewController: UITableViewController {
         case 4:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                self.goToWeb(url: "http://test.agpu.net/studentu/obshchezhitiya/index.php", image: ForStudentSections.sections[indexPath.row].icon, title: "Кампус и общежития", isSheet: false)
+                self.goToWeb(url: "http://agpu.net/studentu/obshchezhitiya/index.php", image: ForStudentSections.sections[indexPath.row].icon, title: "Кампус и общежития", isSheet: false)
             }
             
         case 5:
