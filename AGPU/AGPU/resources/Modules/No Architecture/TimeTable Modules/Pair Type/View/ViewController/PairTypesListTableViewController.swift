@@ -10,10 +10,12 @@ import UIKit
 class PairTypesListTableViewController: UITableViewController {
     
     private var type: PairType
+    private var viewModel: PairTypesListViewModel
     
     // MARK: - Init
     init(type: PairType) {
         self.type = type
+        self.viewModel = PairTypesListViewModel(type: type)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -25,6 +27,7 @@ class PairTypesListTableViewController: UITableViewController {
         super.viewDidLoad()
         setUpNavigation()
         setUpTable()
+        bindViewModel()
     }
     
     private func setUpNavigation() {
@@ -42,30 +45,32 @@ class PairTypesListTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let type = PairTypesList.list[indexPath.row]
-        NotificationCenter.default.post(name: Notification.Name("TypeWasSelected"), object: type.type)
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.dismiss(animated: true)
+    private func bindViewModel() {
+        viewModel.registerPairTypeSelectedHandler {
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.dismiss(animated: true)
+            }
+            self.tableView.reloadData()
         }
-        self.type = type.type
-        tableView.reloadData()
-        HapticsManager.shared.hapticFeedback()
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.choosePairType(index: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return PairTypesList.list.count
+        return viewModel.numberOfTypesInSection()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let type = PairTypesList.list[indexPath.row]
+        let type = viewModel.typeItem(index: indexPath.row)
         cell.tintColor = .systemGreen
         cell.textLabel?.text = type.name
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
-        cell.accessoryType = type.type == self.type ? .checkmark : .none
-        cell.textLabel?.textColor = type.type == self.type ? .systemGreen : .label
+        cell.accessoryType = viewModel.isCurrentType(index: indexPath.row) ? .checkmark : .none
+        cell.textLabel?.textColor = viewModel.isCurrentType(index: indexPath.row) ? .systemGreen : .label
         return cell
     }
 }

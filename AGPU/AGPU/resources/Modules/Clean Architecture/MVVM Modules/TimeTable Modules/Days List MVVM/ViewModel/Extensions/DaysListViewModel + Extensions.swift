@@ -11,9 +11,10 @@ import Foundation
 extension DaysListViewModel: DaysListViewModelProtocol {
     
     func setUpData() {
-        DaysList.days[0].date = currentDate
-        DaysList.days[1].date = DateManager().nextDay(date: currentDate)
-        DaysList.days[2].date = DateManager().previousDay(date: currentDate)
+        DaysList.days[0].date = dateManager.getCurrentDate()
+        DaysList.days[1].date = currentDate
+        DaysList.days[2].date = dateManager.nextDay(date: currentDate)
+        DaysList.days[3].date = dateManager.previousDay(date: currentDate)
         getTimetableInfo()
     }
     
@@ -23,12 +24,12 @@ extension DaysListViewModel: DaysListViewModelProtocol {
                 switch result {
                 case .success(let timetable):
                     if !timetable.disciplines.isEmpty {
-                        let day = DaysList.days.first { $0.date == day.date }
+                        let day = DaysList.days.first { $0.name == day.name }
                         let index = DaysList.days.firstIndex(of: day!)
                         DaysList.days[index!].info = "есть пары"
                         self?.dataChangedHandler?()
                     } else {
-                        let day = DaysList.days.first { $0.date == day.date }
+                        let day = DaysList.days.first { $0.name == day.name }
                         let index = DaysList.days.firstIndex(of: day!)
                         DaysList.days[index!].info = "нет пар"
                         self?.dataChangedHandler?()
@@ -43,6 +44,7 @@ extension DaysListViewModel: DaysListViewModelProtocol {
     func chooseDay(index: Int) {
         let day = DaysList.days[index]
         NotificationCenter.default.post(name: Notification.Name("DateWasSelected"), object: day.date)
+        HapticsManager.shared.hapticFeedback()
     }
     
     func registerDataChangedHandler(block: @escaping()->Void) {
