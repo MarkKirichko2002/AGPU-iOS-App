@@ -8,5 +8,8 @@
 import Foundation
 
 protocol DaysListViewModelProtocol {
-    
+    func setUpData()
+    func getTimetableInfo()
+    func chooseDay(index: Int)
+    func registerDataChangedHandler(block: @escaping()->Void)
 }

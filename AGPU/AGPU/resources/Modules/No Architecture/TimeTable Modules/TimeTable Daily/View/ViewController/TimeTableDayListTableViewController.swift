@@ -206,6 +206,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         NotificationCenter.default.addObserver(forName: Notification.Name("DateWasSelected"), object: nil, queue: .main) { notification in
             if let date = notification.object as? String {
                 self.date = date
+                self.type = .all
                 self.getTimeTable(group: self.group, date: date)
                 self.navigationItem.title = date
             }

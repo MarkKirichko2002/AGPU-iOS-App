@@ -2966,6 +2966,7 @@
 		82BCB5352AB3519300F3A321 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				82BCB53A2AB3521300F3A321 /* DaysListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2973,7 +2974,6 @@
 		82BCB5362AB3519500F3A321 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				82BCB53A2AB3521300F3A321 /* DaysListViewModel.swift */,
 				82BCB53C2AB3523400F3A321 /* DaysListViewModel + Extensions.swift */,
 			);
 			path = Extensions;
