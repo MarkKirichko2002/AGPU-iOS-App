@@ -37,10 +37,15 @@ struct AGPUFaculties {
                 ContactsModel(
                     name: "-",
                     degree: "-",
-                    phoneNumber: "+7(988)361-04-02"
+                    phoneNumber: "+7(861)373-35-17"
+                ),
+                ContactsModel(
+                    name: "-",
+                    degree: "-",
+                    phoneNumber: "+7(953)118-02-41"
                 )
             ],
-            email: "markkir123@gmail.com",
+            email: "ipimif2011@mail.ru",
             isSelected: false
         ),
         AGPUFacultyModel(
@@ -105,7 +110,7 @@ struct AGPUFaculties {
                 ContactsModel(
                     name: "деканат",
                     degree: "-",
-                    phoneNumber: "+7(86137)3-32-64"
+                    phoneNumber: "+7(861)373-32-64"
                 )
             ],
             email: "dekanat_fdino@mail.ru",
@@ -124,12 +129,12 @@ struct AGPUFaculties {
                 ContactsModel(
                     name: "Мукучян Размон Рубенович",
                     degree: "декан факультета",
-                    phoneNumber: "8(86137)2-80-94"
+                    phoneNumber: "8(861)372-80-94"
                 ),
                 ContactsModel(
                     name: "Мукучян Размон Рубенович",
                     degree: "декан факультета",
-                    phoneNumber: "8(86137)2-82-17"
+                    phoneNumber: "8(861)372-82-17"
                 )
             ],
             email: "dekanat.tekhfak@mail.ru",
