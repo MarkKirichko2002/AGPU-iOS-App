@@ -60,27 +60,14 @@ final class TimeTableDayListTableViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
-        // сегодняшний день
-        let current = UIAction(title: "сегодня") { _ in
-            let currentDay = self.dateManager.getCurrentDate()
-            self.getTimeTable(group: self.group, date: currentDay)
-            self.date = currentDay
-            self.navigationItem.title = self.date
+        // выбрать день
+        let days = UIAction(title: "выбрать день") { _ in
+            let vc = DaysListTableViewController(group: self.group, currentDate: self.date)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
         }
-        // следующий день
-        let next = UIAction(title: "завтра") { _ in
-            let nextDay = self.dateManager.nextDay(date: self.date)
-            self.getTimeTable(group: self.group, date: nextDay)
-            self.date = nextDay
-            self.navigationItem.title = self.date
-        }
-        // предыдущий день
-        let previous = UIAction(title: "вчера") { _ in
-            let previousDay = self.dateManager.previousDay(date: self.date)
-            self.getTimeTable(group: self.group, date: previousDay)
-            self.date = previousDay
-            self.navigationItem.title = self.date
-        }
+        
         // календарь
         let calendar = UIAction(title: "календарь") { _ in
             let vc = CalendarViewController()
@@ -88,16 +75,9 @@ final class TimeTableDayListTableViewController: UIViewController {
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
         }
-        // день
-        let day = UIMenu(title: "выбрать день", children: [
-            current,
-            next,
-            previous,
-            calendar
-        ])
         
-        // список недель
-        let weeksList = UIAction(title: "список недель") { _ in
+        // недели
+        let weeks = UIAction(title: "недели") { _ in
             let vc = AllWeeksListTableViewController(group: self.group, subgroup: self.subgroup)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -119,8 +99,9 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         let menu = UIMenu(title: "расписание", children: [
             groupList,
-            day,
-            weeksList,
+            days,
+            calendar,
+            weeks,
             pairTypesList,
             shareTimeTable
         ])

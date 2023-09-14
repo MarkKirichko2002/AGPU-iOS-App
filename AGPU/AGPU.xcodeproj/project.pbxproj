@@ -184,6 +184,12 @@
 		82BC3CFC2A56EDA000E49332 /* RecentWebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFB2A56EDA000E49332 /* RecentWebPageViewController.swift */; };
 		82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */; };
 		82BC3D002A56F5C400E49332 /* RecentWebPageViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC3CFF2A56F5C400E49332 /* RecentWebPageViewController + Extensions.swift */; };
+		82BCB5392AB351F400F3A321 /* DaysListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BCB5382AB351F400F3A321 /* DaysListViewModelProtocol.swift */; };
+		82BCB53B2AB3521300F3A321 /* DaysListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BCB53A2AB3521300F3A321 /* DaysListViewModel.swift */; };
+		82BCB53D2AB3523400F3A321 /* DaysListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BCB53C2AB3523400F3A321 /* DaysListViewModel + Extensions.swift */; };
+		82BCB53F2AB3528F00F3A321 /* DaysListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BCB53E2AB3528F00F3A321 /* DaysListTableViewController.swift */; };
+		82BCB5422AB35A7E00F3A321 /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BCB5412AB35A7E00F3A321 /* DayModel.swift */; };
+		82BCB5462AB35AF300F3A321 /* DaysList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BCB5452AB35AF300F3A321 /* DaysList.swift */; };
 		82BDFDB02A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BDFDAF2A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift */; };
 		82BEAD822A7414C300DD34C2 /* RecentWebPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BEAD812A7414C300DD34C2 /* RecentWebPageViewModel.swift */; };
 		82BEAD872A7417EC00DD34C2 /* RecentWebPageViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BEAD862A7417EC00DD34C2 /* RecentWebPageViewModelProtocol.swift */; };
@@ -418,6 +424,12 @@
 		82BC3CFB2A56EDA000E49332 /* RecentWebPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWebPageViewController.swift; sourceTree = "<group>"; };
 		82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController + Extensions.swift"; sourceTree = "<group>"; };
 		82BC3CFF2A56F5C400E49332 /* RecentWebPageViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentWebPageViewController + Extensions.swift"; sourceTree = "<group>"; };
+		82BCB5382AB351F400F3A321 /* DaysListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysListViewModelProtocol.swift; sourceTree = "<group>"; };
+		82BCB53A2AB3521300F3A321 /* DaysListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysListViewModel.swift; sourceTree = "<group>"; };
+		82BCB53C2AB3523400F3A321 /* DaysListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DaysListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		82BCB53E2AB3528F00F3A321 /* DaysListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysListTableViewController.swift; sourceTree = "<group>"; };
+		82BCB5412AB35A7E00F3A321 /* DayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayModel.swift; sourceTree = "<group>"; };
+		82BCB5452AB35AF300F3A321 /* DaysList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysList.swift; sourceTree = "<group>"; };
 		82BDFDAF2A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingsMapViewController.swift; sourceTree = "<group>"; };
 		82BEAD812A7414C300DD34C2 /* RecentWebPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWebPageViewModel.swift; sourceTree = "<group>"; };
 		82BEAD862A7417EC00DD34C2 /* RecentWebPageViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWebPageViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -1817,12 +1829,8 @@
 				821270572A7921DD0095D68E /* Web Modules */,
 				8228E3962A6C8EFD00C1B6AD /* Maps Modules */,
 				82B1C0BD2A805D5200520C14 /* Recent Moments List MVVM */,
-				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
-				82989ACB2A6E308F00F27858 /* Faculty Cathedra List */,
-				825634B62A6221C10082B7B8 /* Faculty Groups List MVVM */,
-				828321602A7C6A25008641A5 /* All Groups MVVM */,
-				82B24A6F2A817D69008B94E4 /* All Weeks MVVM */,
-				82B1C0C52A80702D00520C14 /* Sub Groups List MVVM */,
+				82BCB5312AB34FD000F3A321 /* Faculties Modules */,
+				82BCB5302AB34F9E00F3A321 /* TimeTable Modules */,
 				822158942A422A480088BDE5 /* Settings MVVM */,
 			);
 			path = "MVVM Modules";
@@ -2906,6 +2914,104 @@
 			path = "Recent Web Page MVVM";
 			sourceTree = "<group>";
 		};
+		82BCB5302AB34F9E00F3A321 /* TimeTable Modules */ = {
+			isa = PBXGroup;
+			children = (
+				828321602A7C6A25008641A5 /* All Groups MVVM */,
+				82B24A6F2A817D69008B94E4 /* All Weeks MVVM */,
+				82BCB5322AB3517400F3A321 /* Days List MVVM */,
+				82B1C0C52A80702D00520C14 /* Sub Groups List MVVM */,
+			);
+			path = "TimeTable Modules";
+			sourceTree = "<group>";
+		};
+		82BCB5312AB34FD000F3A321 /* Faculties Modules */ = {
+			isa = PBXGroup;
+			children = (
+				82E05D552A5DF0FD0060ADAA /* AGPU Faculties List MVVM */,
+				82989ACB2A6E308F00F27858 /* Faculty Cathedra List */,
+				825634B62A6221C10082B7B8 /* Faculty Groups List MVVM */,
+			);
+			path = "Faculties Modules";
+			sourceTree = "<group>";
+		};
+		82BCB5322AB3517400F3A321 /* Days List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82BCB5402AB35A5400F3A321 /* Model */,
+				82BCB5342AB3518500F3A321 /* View */,
+				82BCB5332AB3518200F3A321 /* ViewModel */,
+			);
+			path = "Days List MVVM";
+			sourceTree = "<group>";
+		};
+		82BCB5332AB3518200F3A321 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82BCB5372AB3519700F3A321 /* Protocol */,
+				82BCB5352AB3519300F3A321 /* ViewModel */,
+				82BCB5362AB3519500F3A321 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82BCB5342AB3518500F3A321 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82BCB53E2AB3528F00F3A321 /* DaysListTableViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82BCB5352AB3519300F3A321 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82BCB5362AB3519500F3A321 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82BCB53A2AB3521300F3A321 /* DaysListViewModel.swift */,
+				82BCB53C2AB3523400F3A321 /* DaysListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82BCB5372AB3519700F3A321 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82BCB5382AB351F400F3A321 /* DaysListViewModelProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		82BCB5402AB35A5400F3A321 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82BCB5432AB35ABB00F3A321 /* Model */,
+				82BCB5442AB35ABF00F3A321 /* List */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82BCB5432AB35ABB00F3A321 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82BCB5442AB35ABF00F3A321 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				82BCB5412AB35A7E00F3A321 /* DayModel.swift */,
+				82BCB5452AB35AF300F3A321 /* DaysList.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
 		82BEAD802A74148B00DD34C2 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -3683,10 +3789,12 @@
 				82C561622A6B772600514B00 /* AppFeaturesListTableViewController.swift in Sources */,
 				82E05D542A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift in Sources */,
 				8228E39F2A6C994D00C1B6AD /* AGPUBuildingsMapViewModel.swift in Sources */,
+				82BCB53D2AB3523400F3A321 /* DaysListViewModel + Extensions.swift in Sources */,
 				82B24A692A817AEC008B94E4 /* AllWeeksListTableViewController.swift in Sources */,
 				82BF4DB42A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift in Sources */,
 				82B1C0F12A8125E400520C14 /* VoiceDirectionModel.swift in Sources */,
 				82989ADE2A6E59BC00F27858 /* AGPUCurrentCathedraMapViewController + Extensions.swift in Sources */,
+				82BCB5462AB35AF300F3A321 /* DaysList.swift in Sources */,
 				828DC55C2A7B3887001EA324 /* FacultyGroups.swift in Sources */,
 				820E40952A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift in Sources */,
 				82807C712AA0FA5D00E9C884 /* PairTypesListTableViewController.swift in Sources */,
@@ -3720,6 +3828,7 @@
 				82989AEE2A6F6EB600F27858 /* FacultyCathedraListViewModel + Extensions.swift in Sources */,
 				822632412A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift in Sources */,
 				826F93892A91C46A00DE4FB1 /* NewsPagesListViewModel.swift in Sources */,
+				82BCB53B2AB3521300F3A321 /* DaysListViewModel.swift in Sources */,
 				828DC5592A7B3865001EA324 /* FacultyGroupModel.swift in Sources */,
 				821FCF072A87CE30006FFB26 /* NewsListViewController.swift in Sources */,
 				82BC2F482A8EFD7C00ADB239 /* NewsCategoriesListViewModel + Extensions.swift in Sources */,
@@ -3737,6 +3846,7 @@
 				82E4C5172A6B0D0200F65A67 /* ImageSaver + Extensions.swift in Sources */,
 				8241F9812A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift in Sources */,
 				8234E6032A88583E00ED354C /* WordRecentDocumentViewController.swift in Sources */,
+				82BCB5392AB351F400F3A321 /* DaysListViewModelProtocol.swift in Sources */,
 				82722D432A66462100149D06 /* AGPUBuildingPins.swift in Sources */,
 				82B24AA12A81C89E008B94E4 /* AGPUNewsListViewModel.swift in Sources */,
 				82FB5B642A7A8FF600728980 /* InteractiveView.swift in Sources */,
@@ -3821,6 +3931,7 @@
 				825634BA2A6222070082B7B8 /* FacultyGroupsListTableViewController.swift in Sources */,
 				826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */,
 				82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */,
+				82BCB5422AB35A7E00F3A321 /* DayModel.swift in Sources */,
 				822606082A853D310055925F /* RecentMomentsList.swift in Sources */,
 				82B24A782A8193B2008B94E4 /* AllWeeksListViewModelProtocol.swift in Sources */,
 				82320D832A49167000ECADEE /* AGPUFacultyModel.swift in Sources */,
@@ -3861,6 +3972,7 @@
 				8234E60F2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift in Sources */,
 				8228E3AD2A6C9E9E00C1B6AD /* AGPUCurrentBuildingMapViewModel + Extensions.swift in Sources */,
 				82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */,
+				82BCB53F2AB3528F00F3A321 /* DaysListTableViewController.swift in Sources */,
 				822605F62A8532410055925F /* RecentMomentsListViewModelProtocol.swift in Sources */,
 				822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */,
 				82B1C0EE2A8123F800520C14 /* VoiceDirections.swift in Sources */,
