@@ -15,7 +15,7 @@ struct FacultyCathedraList {
             FacultyCathedraModel(
                 name: "Кафедра русского языка, литературы и методики их преподавания",
                 url: "http://agpu.net/struktura-vuza/faculties-institutes/iriif/kafedra-ryalimip/index.php",
-                address: "ул.Р.Люксембург, 159, главн. корпус ФГБОУ ВО АГПУ",
+                address: "ул.Р.Люксембург, 159, главн. корпус ФГБОУ ВО АГПУ, ауд.№3",
                 coordinates: [
                     45.001817,
                     41.132393
@@ -57,7 +57,7 @@ struct FacultyCathedraList {
             FacultyCathedraModel(
                 name: "Кафедра информатики и информационных технологий обучения",
                 url: "http://agpu.net/struktura-vuza/faculties-institutes/ipimif/kafedra-infiITO/index.php",
-                address: "ул. Р. Люксембург 159, кабинет №13.",
+                address: "ул. Р. Люксембург 159, кабинет №13",
                 coordinates: [
                     45.001817,
                     41.132393
@@ -102,7 +102,7 @@ struct FacultyCathedraList {
             FacultyCathedraModel(
                 name: "Кафедра теории, истории педагогики и образовательной практики",
                 url: "http://agpu.net/struktura-vuza/faculties-institutes/fdino/kafedra-tipiop/index.php",
-                address: "ул. Р. Люксембург 159, кабинет №15",
+                address: "ул. Р. Люксембург 159, 2 этаж, кабинет №15",
                 coordinates: [
                     45.001817,
                     41.132393
@@ -115,7 +115,7 @@ struct FacultyCathedraList {
             FacultyCathedraModel(
                 name: "Кафедра педагогики и технологий дошкольного и начального образования",
                 url: "http://agpu.net/struktura-vuza/faculties-institutes/fdino/kafedra-pitdino/index.php",
-                address: "ул. Р. Люксембург 159, кабинет №1",
+                address: "ул. Р. Люксембург 159, 2 этаж, кабинет №14",
                 coordinates: [
                     45.001817,
                     41.132393
