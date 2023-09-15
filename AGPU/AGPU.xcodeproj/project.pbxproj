@@ -1575,7 +1575,6 @@
 			children = (
 				82D6C32D2A5E187400FB7F5D /* TimeTable Daily */,
 				82505F4C2A7FBD48001DE24A /* TimeTable Week */,
-				82807C6C2AA0FA0900E9C884 /* Pair Type */,
 			);
 			path = "TimeTable Modules";
 			sourceTree = "<group>";
@@ -1930,14 +1929,14 @@
 			path = List;
 			sourceTree = "<group>";
 		};
-		82807C6C2AA0FA0900E9C884 /* Pair Type */ = {
+		82807C6C2AA0FA0900E9C884 /* Pair Types MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				82807C722AA1029500E9C884 /* Model */,
 				82807C6E2AA0FA2200E9C884 /* View */,
 				82BCB56D2AB3AC7A00F3A321 /* ViewModel */,
 			);
-			path = "Pair Type";
+			path = "Pair Types MVVM";
 			sourceTree = "<group>";
 		};
 		82807C6E2AA0FA2200E9C884 /* View */ = {
@@ -2925,8 +2924,9 @@
 			isa = PBXGroup;
 			children = (
 				828321602A7C6A25008641A5 /* All Groups MVVM */,
-				82B24A6F2A817D69008B94E4 /* All Weeks MVVM */,
 				82BCB5322AB3517400F3A321 /* Days List MVVM */,
+				82B24A6F2A817D69008B94E4 /* All Weeks MVVM */,
+				82807C6C2AA0FA0900E9C884 /* Pair Types MVVM */,
 				82B1C0C52A80702D00520C14 /* Sub Groups List MVVM */,
 			);
 			path = "TimeTable Modules";
