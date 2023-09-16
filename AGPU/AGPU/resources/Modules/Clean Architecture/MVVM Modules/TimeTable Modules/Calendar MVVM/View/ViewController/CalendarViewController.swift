@@ -70,7 +70,18 @@ final class CalendarViewController: UIViewController {
         viewModel.registerDateSelectedHandler {
             self.dismiss(animated: true)
         }
-        viewModel.registerAlertHandler {
+        // алерты
+        // есть пары
+        viewModel.registerTimetableAlertHandler {
+            let choose = UIAlertAction(title: "выбрать", style: .default) { _ in
+                self.viewModel.sendNotificationDataWasSelected(date: self.viewModel.date)
+                self.dismiss(animated: true)
+            }
+            let cancel = UIAlertAction(title: "отмена", style: .default) { _ in}
+            self.showAlert(title: "У группы \(self.viewModel.group) есть расписание", message: "Хотите выбрать дату?", actions: [choose, cancel])
+        }
+        // нет пар
+        viewModel.registerNoTimetableAlertHandler {
             let choose = UIAlertAction(title: "выбрать", style: .default) { _ in
                 self.viewModel.sendNotificationDataWasSelected(date: self.viewModel.date)
                 self.dismiss(animated: true)

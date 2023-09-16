@@ -21,19 +21,23 @@ extension CalendarViewModel: CalendarViewModelProtocol {
             switch result {
             case .success(let data):
                 if !data.disciplines.isEmpty {
-                    self.sendNotificationDataWasSelected(date: date)
-                    self.dateSelectedHandler?()
+                    self.timetableHandler?()
                 } else {
-                    self.alertHandler?()
+                    self.noTimetableHandler?()
                 }
             case .failure(let error):
                 print(error)
             }
         }
+        HapticsManager.shared.hapticFeedback()
     }
     
-    func registerAlertHandler(block: @escaping()->Void) {
-        self.alertHandler = block
+    func registerTimetableAlertHandler(block: @escaping()->Void) {
+        self.timetableHandler = block
+    }
+    
+    func registerNoTimetableAlertHandler(block: @escaping()->Void) {
+        self.noTimetableHandler = block
     }
     
     func registerDateSelectedHandler(block: @escaping()->Void) {
