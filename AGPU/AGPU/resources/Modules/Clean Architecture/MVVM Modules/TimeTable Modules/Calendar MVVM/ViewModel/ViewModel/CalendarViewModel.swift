@@ -15,6 +15,7 @@ class CalendarViewModel {
     var alertHandler: (()->Void)?
     
     // MARK: - сервисы
+    let dateManager = DateManager()
     let service = TimeTableService()
     
     // MARK: - Init

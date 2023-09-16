@@ -23,15 +23,12 @@ extension DateManager: DateManagerProtocol {
         let timeString = dateFormatter.string(from: date)
         return timeString
     }
-    
-    func getDateFromOtherFormat(date: String)-> String {
+        
+    func getFormattedDate(date: Date)-> String {
+        var currentDate = ""
         dateFormatter.dateFormat = "dd.MM.yyyy"
-        if let formattedDate = dateFormatter.date(from: date) {
-            let formattedDateString = dateFormatter.string(from: formattedDate)
-            print("Дата: \(formattedDate)")
-            return formattedDateString
-        }
-        return ""
+        currentDate = dateFormatter.string(from: date)
+        return currentDate
     }
     
     func nextDay(date: String)-> String {

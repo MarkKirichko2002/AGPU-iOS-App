@@ -14,9 +14,10 @@ extension CalendarViewModel: CalendarViewModelProtocol {
         NotificationCenter.default.post(name: Notification.Name("DateWasSelected"), object: date)
     }
     
-    func checkTimetable(date: String) {
+    func checkTimetable(date: Date) {
+        let date = dateManager.getFormattedDate(date: date)
         self.date = date
-        service.getTimeTableDay(groupId: "ВМ-ИВТ-2-1", date: date) { result in
+        service.getTimeTableDay(groupId: group, date: date) { result in
             switch result {
             case .success(let data):
                 if !data.disciplines.isEmpty {

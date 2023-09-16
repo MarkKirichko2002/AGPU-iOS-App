@@ -11,9 +11,6 @@ import FSCalendar
 extension CalendarViewController: FSCalendarDelegate {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
-        let date = formatter.string(from: date)
         viewModel.checkTimetable(date: date)
     }
 }

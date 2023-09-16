@@ -76,7 +76,7 @@ final class CalendarViewController: UIViewController {
                 self.dismiss(animated: true)
             }
             let cancel = UIAlertAction(title: "отмена", style: .default) { _ in}
-            self.showAlert(title: "Нет расписания", message: "На дату \(self.viewModel.date) нет расписания.", actions: [choose, cancel])
+            self.showAlert(title: "У группы \(self.viewModel.group) нет расписания", message: "На дату \(self.viewModel.date) нет расписания.", actions: [choose, cancel])
         }
     }
 }
