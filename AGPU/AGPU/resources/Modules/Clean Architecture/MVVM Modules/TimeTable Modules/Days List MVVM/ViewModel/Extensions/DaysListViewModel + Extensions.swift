@@ -47,6 +47,15 @@ extension DaysListViewModel: DaysListViewModelProtocol {
         HapticsManager.shared.hapticFeedback()
     }
     
+    func checkDisciplinesExistence(index: Int)-> Bool {
+        let day = DaysList.days[index]
+        if day.info == "есть пары" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     func registerDataChangedHandler(block: @escaping()->Void) {
         self.dataChangedHandler = block
     }

@@ -14,7 +14,6 @@ extension CalendarViewController: FSCalendarDelegate {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
         let date = formatter.string(from: date)
-        NotificationCenter.default.post(name: Notification.Name("DateWasSelected"), object: date)
-        self.dismiss(animated: true)
+        viewModel.checkTimetable(date: date)
     }
 }

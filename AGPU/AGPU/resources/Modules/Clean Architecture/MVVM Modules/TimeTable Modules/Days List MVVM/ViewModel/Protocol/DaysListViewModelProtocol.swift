@@ -11,5 +11,6 @@ protocol DaysListViewModelProtocol {
     func setUpData()
     func getTimetableInfo()
     func chooseDay(index: Int)
+    func checkDisciplinesExistence(index: Int)-> Bool
     func registerDataChangedHandler(block: @escaping()->Void)
 }

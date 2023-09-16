@@ -63,14 +63,16 @@ class DaysListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DaysList.days.count
+        let daysCount = DaysList.days.count
+        return daysCount
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let day = DaysList.days[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
         cell.textLabel?.text = "\(day.name): \(day.date) (\(day.info))"
+        cell.textLabel?.textColor = viewModel.checkDisciplinesExistence(index: indexPath.row) ? .systemGreen : .systemGray
         return cell
     }
 }

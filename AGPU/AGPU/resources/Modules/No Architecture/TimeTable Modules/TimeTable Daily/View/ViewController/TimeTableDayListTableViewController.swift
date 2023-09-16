@@ -60,8 +60,8 @@ final class TimeTableDayListTableViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
-        // выбрать день
-        let days = UIAction(title: "выбрать день") { _ in
+        // день
+        let days = UIAction(title: "день") { _ in
             let vc = DaysListTableViewController(group: self.group, currentDate: self.date)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -70,7 +70,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         // календарь
         let calendar = UIAction(title: "календарь") { _ in
-            let vc = CalendarViewController()
+            let vc = CalendarViewController(group: self.group)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)

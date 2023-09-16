@@ -24,6 +24,9 @@
 		821365872A94F6A700A20E4E /* LaunchScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = 821365852A94F6A700A20E4E /* LaunchScreen.strings */; };
 		8213658B2A94F73100A20E4E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 821365892A94F73100A20E4E /* InfoPlist.strings */; };
 		8213658E2A94F7B700A20E4E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 821365902A94F7B700A20E4E /* InfoPlist.strings */; };
+		82162D882AB5CE5300840D90 /* CalendarViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82162D872AB5CE5300840D90 /* CalendarViewModelProtocol.swift */; };
+		82162D8A2AB5CE6200840D90 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82162D892AB5CE6200840D90 /* CalendarViewModel.swift */; };
+		82162D8C2AB5CE7700840D90 /* CalendarViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82162D8B2AB5CE7700840D90 /* CalendarViewModel + Extensions.swift */; };
 		8218F5872A688F8C00C94EB4 /* CustomActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218F5862A688F8C00C94EB4 /* CustomActivityItemSource.swift */; };
 		82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */; };
 		821C9E192A68DE8700EF0030 /* UITableView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C9E182A68DE8700EF0030 /* UITableView + Extensions.swift */; };
@@ -265,6 +268,9 @@
 		821365862A94F6A700A20E4E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = LaunchScreen.strings; sourceTree = "<group>"; };
 		8213658A2A94F73100A20E4E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = InfoPlist.strings; sourceTree = "<group>"; };
 		8213658F2A94F7B700A20E4E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		82162D872AB5CE5300840D90 /* CalendarViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModelProtocol.swift; sourceTree = "<group>"; };
+		82162D892AB5CE6200840D90 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		82162D8B2AB5CE7700840D90 /* CalendarViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		8218F5862A688F8C00C94EB4 /* CustomActivityItemSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityItemSource.swift; sourceTree = "<group>"; };
 		82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsListViewController + Extensions.swift"; sourceTree = "<group>"; };
 		821C892F2A510F5600BD756D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -860,6 +866,49 @@
 				821365902A94F7B700A20E4E /* InfoPlist.strings */,
 			);
 			path = en.Iproj;
+			sourceTree = "<group>";
+		};
+		82162D822AB5CDF700840D90 /* Calendar MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				8241F9862A5F3F78007DF628 /* View */,
+				82162D832AB5CE1B00840D90 /* ViewModel */,
+			);
+			path = "Calendar MVVM";
+			sourceTree = "<group>";
+		};
+		82162D832AB5CE1B00840D90 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82162D862AB5CE2F00840D90 /* Protocol */,
+				82162D852AB5CE2D00840D90 /* ViewModel */,
+				82162D842AB5CE2B00840D90 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82162D842AB5CE2B00840D90 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82162D8B2AB5CE7700840D90 /* CalendarViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82162D852AB5CE2D00840D90 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82162D892AB5CE6200840D90 /* CalendarViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82162D862AB5CE2F00840D90 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82162D872AB5CE5300840D90 /* CalendarViewModelProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		8218F5852A688F6B00C94EB4 /* ActivityItemSource */ = {
@@ -1785,7 +1834,6 @@
 				82C561602A6B770800514B00 /* App Features Modules */,
 				829522DB2A38AEBE00329713 /* Maps */,
 				82505F432A7F9A0D001DE24A /* TimeTable Modules */,
-				82D6C3422A5E33CD00FB7F5D /* Calendar */,
 			);
 			path = "No Architecture";
 			sourceTree = "<group>";
@@ -2925,6 +2973,7 @@
 			children = (
 				828321602A7C6A25008641A5 /* All Groups MVVM */,
 				82BCB5322AB3517400F3A321 /* Days List MVVM */,
+				82162D822AB5CDF700840D90 /* Calendar MVVM */,
 				82B24A6F2A817D69008B94E4 /* All Weeks MVVM */,
 				82807C6C2AA0FA0900E9C884 /* Pair Types MVVM */,
 				82B1C0C52A80702D00520C14 /* Sub Groups List MVVM */,
@@ -3202,14 +3251,6 @@
 				82D6C3392A5E282A00FB7F5D /* TimeTableTableViewCell.xib */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		82D6C3422A5E33CD00FB7F5D /* Calendar */ = {
-			isa = PBXGroup;
-			children = (
-				8241F9862A5F3F78007DF628 /* View */,
-			);
-			path = Calendar;
 			sourceTree = "<group>";
 		};
 		82E05D482A5DD52B0060ADAA /* For Student Screen */ = {
@@ -3844,6 +3885,7 @@
 				82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */,
 				8226060A2A853DEE0055925F /* RecentMomentsListTableViewController.swift in Sources */,
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
+				82162D882AB5CE5300840D90 /* CalendarViewModelProtocol.swift in Sources */,
 				826BADAF2A64D5A500022B45 /* AGPULocationDetailViewController.swift in Sources */,
 				82B1C0CF2A8070CE00520C14 /* SubGroupsListViewModelProtocol.swift in Sources */,
 				82426C942A71DD0100D5AA57 /* UserStatusList.swift in Sources */,
@@ -3981,6 +4023,7 @@
 				82BCB5742AB3AD0E00F3A321 /* PairTypesListViewModel.swift in Sources */,
 				82426C732A71476D00D5AA57 /* ForStudentSections.swift in Sources */,
 				82E4C5662A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift in Sources */,
+				82162D8C2AB5CE7700840D90 /* CalendarViewModel + Extensions.swift in Sources */,
 				82BF4DB22A5FA5B3008B751A /* AGPUWallpaperCollectionViewCell.swift in Sources */,
 				82BC2F462A8EFD6400ADB239 /* NewsCategoriesListViewModel.swift in Sources */,
 				82B24AAB2A82E45A008B94E4 /* NewsResponse.swift in Sources */,
@@ -3992,6 +4035,7 @@
 				82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */,
 				82989ACF2A6E35B200F27858 /* FacultyCathedraTableViewCell.swift in Sources */,
 				82505F502A7FBD7D001DE24A /* TimeTableWeekListTableViewController.swift in Sources */,
+				82162D8A2AB5CE6200840D90 /* CalendarViewModel.swift in Sources */,
 				829548992A43AE32007DEBA0 /* SettingsManagerProtocol.swift in Sources */,
 				82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */,
 				82875B002A5A1966007DB925 /* HapticsManagerProtocol.swift in Sources */,

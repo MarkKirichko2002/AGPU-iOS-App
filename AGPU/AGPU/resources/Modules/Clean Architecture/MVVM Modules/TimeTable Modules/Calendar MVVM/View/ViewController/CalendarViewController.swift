@@ -10,6 +10,10 @@ import FSCalendar
 
 final class CalendarViewController: UIViewController {
 
+    // MARK: - сервисы
+    let viewModel: CalendarViewModel
+    
+    // MARK: - UI
     private let Calendar: FSCalendar = {
         let calendar = FSCalendar()
         calendar.appearance.titleDefaultColor = .label
@@ -18,11 +22,22 @@ final class CalendarViewController: UIViewController {
         return calendar
     }()
     
+    // MARK: - Init
+    init(group: String) {
+        self.viewModel = CalendarViewModel(group: group)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setUpNavigation()
         setUpCalendar()
+        bindViewModel()
     }
     
     private func setUpNavigation() {
@@ -49,5 +64,19 @@ final class CalendarViewController: UIViewController {
             Calendar.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             Calendar.heightAnchor.constraint(equalToConstant: 300)
         ])
+    }
+    
+    private func bindViewModel() {
+        viewModel.registerDateSelectedHandler {
+            self.dismiss(animated: true)
+        }
+        viewModel.registerAlertHandler {
+            let choose = UIAlertAction(title: "выбрать", style: .default) { _ in
+                self.viewModel.sendNotificationDataWasSelected(date: self.viewModel.date)
+                self.dismiss(animated: true)
+            }
+            let cancel = UIAlertAction(title: "отмена", style: .default) { _ in}
+            self.showAlert(title: "Нет расписания", message: "На дату \(self.viewModel.date) нет расписания.", actions: [choose, cancel])
+        }
     }
 }
