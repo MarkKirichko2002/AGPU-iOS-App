@@ -61,6 +61,7 @@ final class NewsCollectionViewCell: UICollectionViewCell {
     }
     
     private func addConstaints() {
+        
         NSLayoutConstraint.activate([
             
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -86,9 +87,11 @@ final class NewsCollectionViewCell: UICollectionViewCell {
     }
     
     public func configure(with news: Article) {
-        imageView.sd_setImage(with: URL(string: news.previewImage ?? ""))
-        NewsTitle.text = news.title ?? ""
-        dateLabel.text = news.date ?? ""
+        DispatchQueue.main.async {
+            self.imageView.sd_setImage(with: URL(string: news.previewImage))
+            self.NewsTitle.text = news.title
+            self.dateLabel.text = news.date
+        }
     }
     
     func didTapCell(indexPath: IndexPath) {
