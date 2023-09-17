@@ -11,12 +11,14 @@ import UIKit
 extension AGPUWallpapersListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return AGPUThemes.themes.count
+        let imagesCount = AGPUThemes.themes.count
+        return imagesCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let image = AGPUThemes.themes[indexPath.row]
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AGPUWallpaperCollectionViewCell.identifier, for: indexPath) as? AGPUWallpaperCollectionViewCell else {return UICollectionViewCell()}
-        cell.configure(with: AGPUThemes.themes[indexPath.row])
+        cell.configure(with: image)
         return cell
     }
 }

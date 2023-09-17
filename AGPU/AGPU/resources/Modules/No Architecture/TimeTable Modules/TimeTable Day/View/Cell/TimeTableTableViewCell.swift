@@ -19,7 +19,7 @@ final class TimeTableTableViewCell: UITableViewCell {
     func configure(timetable: TimeTable, index: Int) {
         layer.borderWidth = 1
         TimeLabel.text = timetable.disciplines[index].time
-        DisciplineName.text = "\(timetable.disciplines[index].name) \n\(timetable.disciplines[index].teacherName), \(timetable.disciplines[index].audienceID) \n (\(timetable.groupName))"
+        DisciplineName.text = "\(timetable.disciplines[index].name) \n\(timetable.disciplines[index].teacherName), \(timetable.disciplines[index].audienceID) \n (\(pairType(type: timetable.disciplines[index].type)))"
         switch timetable.disciplines[index].subgroup {
         case 0:
             SubGroupId.text = ""
@@ -52,6 +52,31 @@ final class TimeTableTableViewCell: UITableViewCell {
             return UIColor.white
         case .all:
             return UIColor.white
+        }
+    }
+    
+    private func pairType(type: PairType)-> String {
+        switch type {
+        case .lec:
+            return "лекция"
+        case .prac:
+            return "практика"
+        case .exam:
+            return "экзамен"
+        case .lab:
+            return "лабораторная работа"
+        case .hol:
+            return "каникулы"
+        case .cred:
+            return "зачет"
+        case .fepo:
+            return "ФЭПО"
+        case .cons:
+            return "консультация"
+        case .none:
+            return "неизвестно"
+        case .all:
+            return ""
         }
     }
     

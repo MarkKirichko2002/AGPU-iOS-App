@@ -78,7 +78,7 @@ final class CalendarViewController: UIViewController {
                 self.dismiss(animated: true)
             }
             let cancel = UIAlertAction(title: "отмена", style: .default) { _ in}
-            self.showAlert(title: "У группы \(self.viewModel.group) есть расписание", message: "Хотите выбрать дату?", actions: [choose, cancel])
+            self.showAlert(title: "У группы \(self.viewModel.group) есть расписание", message: "Хотите выбрать дату \(self.viewModel.date)?", actions: [choose, cancel])
         }
         // нет пар
         viewModel.registerNoTimetableAlertHandler {
@@ -87,7 +87,7 @@ final class CalendarViewController: UIViewController {
                 self.dismiss(animated: true)
             }
             let cancel = UIAlertAction(title: "отмена", style: .default) { _ in}
-            self.showAlert(title: "У группы \(self.viewModel.group) нет расписания", message: "На дату \(self.viewModel.date) нет расписания.", actions: [choose, cancel])
+            self.showAlert(title: "У группы \(self.viewModel.group) нет расписания", message: "Все равно хотите выбрать дату \(self.viewModel.date)?", actions: [choose, cancel])
         }
     }
 }
