@@ -74,7 +74,7 @@ final class TimeTableTableViewCell: UITableViewCell {
         case .cons:
             return "консультация"
         case .none:
-            return "неизвестно"
+            return "другое"
         case .all:
             return ""
         }

@@ -39,7 +39,7 @@ struct PairTypesList {
             name: "Консультация",
             type: .cons),
         PairTypeModel(
-            name: "Неизвестно",
+            name: "Другое",
             type: .none)
     ]
 }
