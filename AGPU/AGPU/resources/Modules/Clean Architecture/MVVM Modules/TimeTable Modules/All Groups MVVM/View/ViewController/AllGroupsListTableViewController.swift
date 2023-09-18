@@ -54,12 +54,12 @@ class AllGroupsListTableViewController: UITableViewController {
     
     private func setUpTable() {
         tableView.register(UINib(nibName: FacultyGroupTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyGroupTableViewCell.identifier)
-        tableView.isUserInteractionEnabled = false
     }
     
     private func bindViewModel() {
         
         viewModel.scrollToSelectedGroup { section, index in
+            self.tableView.isUserInteractionEnabled = false
             DispatchQueue.main.async {
                 let indexPath = IndexPath(row: index, section: section)
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
