@@ -75,7 +75,6 @@ final class NewsListViewController: UIViewController {
         
         DispatchQueue.main.async {
             self.navigationItem.title = "загрузка новостей..."
-            self.collectionView.reloadData()
             options = UIBarButtonItem(image: UIImage(named: "sections"), menu: UIMenu())
             options.tintColor = .label
             self.navigationItem.rightBarButtonItem = options
@@ -91,11 +90,9 @@ final class NewsListViewController: UIViewController {
                 
                 if let faculty = faculty {
                     titleView = CustomTitleView(image: "\(faculty.icon)", title: "\(faculty.abbreviation) новости", frame: .zero)
-                    self.collectionView.reloadData()
                     self.spinner.stopAnimating()
                 } else {
                     titleView = CustomTitleView(image: "АГПУ", title: "АГПУ новости", frame: .zero)
-                    self.collectionView.reloadData()
                     self.spinner.stopAnimating()
                 }
                 
@@ -120,6 +117,7 @@ final class NewsListViewController: UIViewController {
                 options.tintColor = .label
                 self.navigationItem.titleView = titleView
                 self.navigationItem.rightBarButtonItem = options
+                self.collectionView.reloadData()
             }
         }
         

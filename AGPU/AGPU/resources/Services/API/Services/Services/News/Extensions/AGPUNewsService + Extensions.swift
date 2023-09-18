@@ -64,9 +64,9 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
     func urlForCurrentArticle(faculty: AGPUFacultyModel?, index: Int)-> String {
         var newsURL = ""
         if faculty != nil {
-            newsURL = "http://test.agpu.net/struktura-vuza/faculties-institutes/\(faculty?.newsAbbreviation ?? "")/news/news.php?ELEMENT_ID=\(index)"
+            newsURL = "http://agpu.net/struktura-vuza/faculties-institutes/\(faculty?.newsAbbreviation ?? "")/news/news.php?ELEMENT_ID=\(index)"
         } else {
-            newsURL = "http://test.agpu.net/news.php?ELEMENT_ID=\(index)"
+            newsURL = "http://agpu.net/news.php?ELEMENT_ID=\(index)"
         }
         return newsURL
     }

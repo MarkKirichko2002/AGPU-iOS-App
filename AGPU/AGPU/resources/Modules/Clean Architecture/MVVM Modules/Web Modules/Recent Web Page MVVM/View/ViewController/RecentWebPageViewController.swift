@@ -33,6 +33,7 @@ final class RecentWebPageViewController: UIViewController {
         super.viewDidLoad()
         setUpNavigation()
         setUpWebView()
+        setUpScroll()
         setUpIndicatorView()
     }
     
@@ -46,6 +47,11 @@ final class RecentWebPageViewController: UIViewController {
         WVWEBview.allowsBackForwardNavigationGestures = true
         WVWEBview.navigationDelegate = self
         WVWEBview.load(self.page.url)
+    }
+    
+    private func setUpScroll() {
+        WVWEBview.scrollView.delegate = self
+        WVWEBview.scrollView.isUserInteractionEnabled = false
     }
     
     private func setUpIndicatorView() {

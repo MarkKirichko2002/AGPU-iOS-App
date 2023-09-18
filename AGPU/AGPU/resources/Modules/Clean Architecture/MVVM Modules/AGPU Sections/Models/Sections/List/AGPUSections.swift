@@ -15,7 +15,7 @@ struct AGPUSections {
             id: 0,
             name: "Главное",
             icon: "home icon",
-            url: "http://test.agpu.net/",
+            url: "http://agpu.net/",
             subsections: AGPUSubSections.subsections["Главное"]!,
             voiceCommand: "главное"
         ),
@@ -23,7 +23,7 @@ struct AGPUSections {
         AGPUSectionModel(
             id: 1, name: "Университет",
             icon: "university",
-            url: "http://test.agpu.net/struktura-vuza/universitet.php",
+            url: "http://agpu.net/struktura-vuza/universitet.php",
             subsections: AGPUSubSections.subsections["Университет"]!,
             voiceCommand: "универ"
         ),
@@ -31,7 +31,7 @@ struct AGPUSections {
         AGPUSectionModel(
             id: 2, name: "Абитуриенту",
             icon: "user",
-            url: "http://test.agpu.net/abitur/index.php",
+            url: "http://agpu.net/abitur/index.php",
             subsections: AGPUSubSections.subsections["Абитуриенту"]!,
             voiceCommand: "абитуриент"
         ),
@@ -39,7 +39,7 @@ struct AGPUSections {
         AGPUSectionModel(
             id: 3, name: "Студенту",
             icon: "student",
-            url: "http://test.agpu.net/studentu/index.php",
+            url: "http://agpu.net/studentu/index.php",
             subsections: AGPUSubSections.subsections["Студенту"]!,
             voiceCommand: "студент"
         ),
@@ -48,7 +48,7 @@ struct AGPUSections {
             id: 4,
             name: "Сотрудникам",
             icon: "people",
-            url: "http://test.agpu.net/sotrudnikam/index.php",
+            url: "http://agpu.net/sotrudnikam/index.php",
             subsections: AGPUSubSections.subsections["Сотрудникам"]!,
             voiceCommand: "сотрудник"
         ),
@@ -57,7 +57,7 @@ struct AGPUSections {
             id: 5,
             name: "Наука",
             icon: "science",
-            url: "http://test.agpu.net/nauka/index.php",
+            url: "http://agpu.net/nauka/index.php",
             subsections: AGPUSubSections.subsections["Наука"]!,
             voiceCommand: "наук"
         ),
@@ -66,7 +66,7 @@ struct AGPUSections {
             id: 6,
             name: "Партнерам",
             icon: "paper plane",
-            url: "http://test.agpu.net/partneram/index.php",
+            url: "http://agpu.net/partneram/index.php",
             subsections: AGPUSubSections.subsections["Партнерам"]!,
             voiceCommand: "партнёр"
         ),
@@ -75,7 +75,7 @@ struct AGPUSections {
             id: 7,
             name: "МД",
             icon: "world",
-            url: "http://test.agpu.net/mezhdunarodnaya-deyatelnost/index.php",
+            url: "http://agpu.net/mezhdunarodnaya-deyatelnost/index.php",
             subsections: AGPUSubSections.subsections["Международная деятельность"]!,
             voiceCommand: "международная деятельность"
         ),
@@ -84,7 +84,7 @@ struct AGPUSections {
             id: 8,
             name: "Безопасность",
             icon: "security",
-            url: "http://test.agpu.net/bezopasnost/index.php",
+            url: "http://agpu.net/bezopasnost/index.php",
             subsections: AGPUSubSections.subsections["Безопасность"]!,
             voiceCommand: "безопасност"
         )

@@ -33,6 +33,7 @@ class WordRecentDocumentViewController: UIViewController {
         super.viewDidLoad()
         setUpNavigation()
         setUpWebView()
+        setUpScroll()
         setUpIndicatorView()
     }
     
@@ -58,6 +59,11 @@ class WordRecentDocumentViewController: UIViewController {
         WVWEBview.allowsBackForwardNavigationGestures = true
         WVWEBview.navigationDelegate = self
         WVWEBview.load(self.document.url)
+    }
+    
+    private func setUpScroll() {
+        WVWEBview.scrollView.delegate = self
+        WVWEBview.scrollView.isUserInteractionEnabled = false
     }
     
     private func setUpIndicatorView() {

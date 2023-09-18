@@ -51,3 +51,12 @@ extension RecentWebPageViewController: WKNavigationDelegate {
         }
     }
 }
+
+// MARK: - UIScrollViewDelegate
+extension RecentWebPageViewController: UIScrollViewDelegate {
+
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        print("прокрутка завершилась")
+        scrollView.isUserInteractionEnabled = true
+    }
+}

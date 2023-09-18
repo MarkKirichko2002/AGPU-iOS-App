@@ -18,4 +18,10 @@ class NewsCategoryTableViewCell: UITableViewCell {
         CategoryIcon.image = UIImage(named: category.icon)
         CategoryName.text = category.name
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        CategoryName.textColor = .label
+        backgroundColor = .systemBackground
+    }
 }

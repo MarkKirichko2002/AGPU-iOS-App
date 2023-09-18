@@ -35,7 +35,7 @@ extension AGPUSectionsListViewController: UITableViewDelegate {
             self.sectionSelected(index: section)
         }
         let imageView = SpringImageView(image: UIImage(named: AGPUSections.sections[section].icon))
-
+        imageView.tintColor = .label
         imageView.contentMode = .scaleAspectFit
         header.addSubview(imageView)
         imageView.frame = CGRect(x: 20, y: 0, width: 75, height: 75)

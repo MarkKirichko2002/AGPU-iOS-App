@@ -20,4 +20,12 @@ class ContactsTableViewCell: UITableViewCell {
         ContactInfo.text = contact.degree
         ContactPhoneNumber.text = contact.phoneNumber
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        ContactName.textColor = .label
+        ContactInfo.textColor = .label
+        ContactPhoneNumber.textColor = .label
+        backgroundColor = .systemBackground
+    }
 }

@@ -26,3 +26,11 @@ extension WordRecentDocumentViewController: WKNavigationDelegate {
     }
 }
 
+// MARK: - UIScrollViewDelegate
+extension WordRecentDocumentViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        print("прокрутка завершилась")
+        scrollView.isUserInteractionEnabled = true
+    }
+}

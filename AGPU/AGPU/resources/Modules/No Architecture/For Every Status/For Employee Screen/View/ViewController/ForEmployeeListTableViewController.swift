@@ -30,7 +30,7 @@ class ForEmployeeListTableViewController: UITableViewController {
             
         case 0:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
-            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 let vc = AGPUBuildingsMapViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -38,14 +38,14 @@ class ForEmployeeListTableViewController: UITableViewController {
             
         case 1:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
-            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 self.goToWeb(url: "http://vedomosti.agpu.net/", image: ForEmployeeSections.sections[indexPath.row].icon, title: "Ведомости ONLINE", isSheet: false)
             }
             
         case 2:
             if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
-                Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     self.goToWeb(url: cathedra.manualUrl, image: ForEmployeeSections.sections[indexPath.row].icon, title: "Метод. материалы", isSheet: false)
                 }
             } else {
@@ -55,19 +55,19 @@ class ForEmployeeListTableViewController: UITableViewController {
             
         case 3:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
-            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.goToWeb(url: "http://test.agpu.net/struktura-vuza/index.php", image: ForEmployeeSections.sections[indexPath.row].icon, title: "Подразделения", isSheet: false)
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                self.goToWeb(url: "http://agpu.net/struktura-vuza/index.php", image: ForEmployeeSections.sections[indexPath.row].icon, title: "Подразделения", isSheet: false)
             }
             
         case 4:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
-            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.goToWeb(url: "http://test.agpu.net/sveden/document/index.php", image: ForEmployeeSections.sections[indexPath.row].icon, title: "Документы", isSheet: false)
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                self.goToWeb(url: "http://agpu.net/sveden/document/index.php", image: ForEmployeeSections.sections[indexPath.row].icon, title: "Документы", isSheet: false)
             }
             
         case 5:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
-            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 let vc = AGPUSectionsListViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -75,7 +75,7 @@ class ForEmployeeListTableViewController: UITableViewController {
             
         case 6:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
-            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 let vc = AGPUWallpapersListViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
