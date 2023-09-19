@@ -50,7 +50,9 @@ final class TimeTableDayListTableViewController: UIViewController {
     
     private func setUpNavigation() {
         
-        navigationItem.title = "Сегодня: \(date)"
+        let dayOfWeek = dateManager.getCurrentDayOfWeek(date: date)
+        
+        navigationItem.title = "Сегодня: \(dayOfWeek) \(date) "
         
         // список групп
         let groupList = UIAction(title: "группы") { _ in
@@ -205,10 +207,11 @@ final class TimeTableDayListTableViewController: UIViewController {
     private func observeCalendar() {
         NotificationCenter.default.addObserver(forName: Notification.Name("DateWasSelected"), object: nil, queue: .main) { notification in
             if let date = notification.object as? String {
+                let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: date)
                 self.date = date
                 self.type = .all
                 self.getTimeTable(group: self.group, date: date)
-                self.navigationItem.title = date
+                self.navigationItem.title = "\(dayOfWeek) \(date) "
             }
         }
     }

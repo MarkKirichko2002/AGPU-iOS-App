@@ -12,4 +12,6 @@ final class DateManager {
     let date = Date()
     let dateFormatter = DateFormatter()
     
+    var daysOfWeek = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"]
+    
 }

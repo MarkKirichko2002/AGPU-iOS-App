@@ -23,7 +23,16 @@ extension DateManager: DateManagerProtocol {
         let timeString = dateFormatter.string(from: date)
         return timeString
     }
-        
+    
+    func getCurrentDayOfWeek(date: String)-> String {
+        let calendar = Calendar.current
+        if let date = dateFormatter.date(from: date) {
+            let dayOfWeek = calendar.component(.weekday, from: date)
+            return daysOfWeek[dayOfWeek - 1]
+        }
+        return ""
+    }
+    
     func getFormattedDate(date: Date)-> String {
         var currentDate = ""
         dateFormatter.dateFormat = "dd.MM.yyyy"
