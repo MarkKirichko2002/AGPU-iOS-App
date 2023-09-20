@@ -67,10 +67,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
             }
             
             let contactsAction = UIAction(title: "контакты", image: UIImage(named: "contacts")) { _ in
-                let vc = FacultyContactsListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
-                let navVC = UINavigationController(rootViewController: vc)
-                navVC.modalPresentationStyle = .fullScreen
-                self.present(navVC, animated: true)
+                self.goToWeb(url: self.viewModel.facultyItem(index: indexPath.row).contactsURL, image: self.viewModel.facultyItem(index: indexPath.row).icon, title: "Контакты \(self.viewModel.facultyItem(index: indexPath.row).abbreviation)", isSheet: false)
             }
             
             let emailAction = UIAction(title: "написать", image: UIImage(named: "mail")) { _ in
