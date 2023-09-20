@@ -44,7 +44,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         }
     }
     
-    // MARK: - Elected Faculty
+    // MARK: - Selected Faculty
     
     func facultiesListCount()-> Int {
         return AGPUFaculties.faculties.count

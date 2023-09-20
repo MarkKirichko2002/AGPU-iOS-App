@@ -65,7 +65,7 @@ extension SettingsListViewController: UITableViewDelegate {
         case 0:
             return "Ваш Статус"
         case 1:
-            return "Избранный Факультет"
+            return "Выбранный Факультет"
         case 2:
             return "Другие опции"
         case 3:

@@ -19,7 +19,7 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
         }
     }
     
-    // MARK: - Elected Faculty
+    // MARK: - Selected Faculty
     func groupsListCount(section: Int)-> Int {
         return groups.count
     }

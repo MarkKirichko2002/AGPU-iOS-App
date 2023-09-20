@@ -60,7 +60,7 @@ struct AGPUBuildingPins {
             subtitle: "Аудитории: 85, 85а, 86, Спортзал ФОК"
         ),
         
-        // (ИСТФАК)
+        // ИСТФАК
         MKPointAnnotation(
             __coordinate: CLLocationCoordinate2D(latitude: 44.989082, longitude: 41.126904),
             title: "ИСТФАК",

@@ -199,7 +199,7 @@ final class AGPUTabBarController: UITabBarController {
         }
     }
     
-    // MARK: - Elected Faculty
+    // MARK: - Selected Faculty
     private func observeFaculty() {
         NotificationCenter.default.addObserver(forName: Notification.Name("icon"), object: nil, queue: .main) { notification in
             if let icon = notification.object as? String {

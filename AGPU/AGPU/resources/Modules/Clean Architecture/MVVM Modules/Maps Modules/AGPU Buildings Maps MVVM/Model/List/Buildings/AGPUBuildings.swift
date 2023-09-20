@@ -246,6 +246,7 @@ struct AGPUBuildings {
             pin: AGPUBuildingPins.pins[7],
             voiceCommands: [
                 "истфак",
+                "ист фак",
                 "исторический факультет",
                 "факультет исторический"
             ]

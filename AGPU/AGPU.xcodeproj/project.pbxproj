@@ -598,19 +598,11 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
-		820D18E12A68F9BB00BFAA35 /* AGPU Buildings */ = {
-			isa = PBXGroup;
-			children = (
-				820D18E32A68F9CB00BFAA35 /* Model */,
-				820D18E22A68F9C900BFAA35 /* List */,
-			);
-			path = "AGPU Buildings";
-			sourceTree = "<group>";
-		};
 		820D18E22A68F9C900BFAA35 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				820D18E62A68FA7D00BFAA35 /* AGPUBuildings.swift */,
+				82EA0D2D2ABB57E900262303 /* Pins */,
+				82EA0D2E2ABB57F700262303 /* Buildings */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -618,7 +610,8 @@
 		820D18E32A68F9CB00BFAA35 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				820D18E42A68F9EE00BFAA35 /* AGPUBuildingModel.swift */,
+				82EA0D2B2ABB57B700262303 /* Building */,
+				82EA0D2C2ABB57C400262303 /* Building Type */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -914,6 +907,7 @@
 		822158942A422A480088BDE5 /* Settings MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				82EA0D2F2ABB581D00262303 /* Model */,
 				8221589A2A4233C50088BDE5 /* View */,
 				829AD6972A43817B0047609B /* ViewModel */,
 			);
@@ -1429,6 +1423,7 @@
 		82426C752A714CDD00D5AA57 /* For Every Status */ = {
 			isa = PBXGroup;
 			children = (
+				82426C6E2A71476D00D5AA57 /* For Every Status */,
 				82426C762A714CF400D5AA57 /* For Applicant Screen */,
 				82E05D482A5DD52B0060ADAA /* For Student Screen */,
 				82426C872A71CF8400D5AA57 /* For Employee Screen */,
@@ -1774,9 +1769,6 @@
 			isa = PBXGroup;
 			children = (
 				8228E39A2A6C920000C1B6AD /* Location */,
-				82426C8E2A71DCC000D5AA57 /* User Status */,
-				82426C6E2A71476D00D5AA57 /* For Every Status */,
-				826F93812A91005500DE4FB1 /* Map Models */,
 				82B1C0EB2A8123DF00520C14 /* Voice Directions */,
 			);
 			path = Models;
@@ -1839,16 +1831,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		826F93812A91005500DE4FB1 /* Map Models */ = {
-			isa = PBXGroup;
-			children = (
-				820D18E12A68F9BB00BFAA35 /* AGPU Buildings */,
-				82722D402A66460500149D06 /* AGPU Building Pins */,
-				82FEA7AB2A7ED59F00863453 /* Building Type */,
-			);
-			path = "Map Models";
-			sourceTree = "<group>";
-		};
 		826F93822A91C3A700DE4FB1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1891,22 +1873,6 @@
 				82E4C51D2A6B0DB500F65A67 /* Extensions */,
 			);
 			path = Date;
-			sourceTree = "<group>";
-		};
-		82722D402A66460500149D06 /* AGPU Building Pins */ = {
-			isa = PBXGroup;
-			children = (
-				82722D412A66461500149D06 /* List */,
-			);
-			path = "AGPU Building Pins";
-			sourceTree = "<group>";
-		};
-		82722D412A66461500149D06 /* List */ = {
-			isa = PBXGroup;
-			children = (
-				82722D422A66462100149D06 /* AGPUBuildingPins.swift */,
-			);
-			path = List;
 			sourceTree = "<group>";
 		};
 		82807C6C2AA0FA0900E9C884 /* Pair Types MVVM */ = {
@@ -3533,6 +3499,7 @@
 		82E4C58C2A6B254200F65A67 /* AGPU Buildings Maps MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				82EA0D2A2ABB573600262303 /* Model */,
 				8241F9832A5F3F4C007DF628 /* View */,
 				8228E39D2A6C98E300C1B6AD /* ViewModel */,
 			);
@@ -3594,6 +3561,55 @@
 				82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82EA0D2A2ABB573600262303 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				820D18E32A68F9CB00BFAA35 /* Model */,
+				820D18E22A68F9C900BFAA35 /* List */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82EA0D2B2ABB57B700262303 /* Building */ = {
+			isa = PBXGroup;
+			children = (
+				820D18E42A68F9EE00BFAA35 /* AGPUBuildingModel.swift */,
+			);
+			path = Building;
+			sourceTree = "<group>";
+		};
+		82EA0D2C2ABB57C400262303 /* Building Type */ = {
+			isa = PBXGroup;
+			children = (
+				82FEA7AD2A7ED5BB00863453 /* AGPUBuildingType.swift */,
+			);
+			path = "Building Type";
+			sourceTree = "<group>";
+		};
+		82EA0D2D2ABB57E900262303 /* Pins */ = {
+			isa = PBXGroup;
+			children = (
+				82722D422A66462100149D06 /* AGPUBuildingPins.swift */,
+			);
+			path = Pins;
+			sourceTree = "<group>";
+		};
+		82EA0D2E2ABB57F700262303 /* Buildings */ = {
+			isa = PBXGroup;
+			children = (
+				820D18E62A68FA7D00BFAA35 /* AGPUBuildings.swift */,
+			);
+			path = Buildings;
+			sourceTree = "<group>";
+		};
+		82EA0D2F2ABB581D00262303 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82426C8E2A71DCC000D5AA57 /* User Status */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		82ECABDF2A8151ED00FE7462 /* Model */ = {
@@ -3672,22 +3688,6 @@
 				82FB5B632A7A8FF600728980 /* InteractiveView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		82FEA7AB2A7ED59F00863453 /* Building Type */ = {
-			isa = PBXGroup;
-			children = (
-				82FEA7AC2A7ED5AD00863453 /* Model */,
-			);
-			path = "Building Type";
-			sourceTree = "<group>";
-		};
-		82FEA7AC2A7ED5AD00863453 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				82FEA7AD2A7ED5BB00863453 /* AGPUBuildingType.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -4186,7 +4186,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -4220,7 +4220,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
