@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AppThemesTableViewCell" rowHeight="99" id="XwJ-un-AGu" customClass="AppThemesTableViewCell" customModule="AGPU" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="412" height="99"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XwJ-un-AGu" id="oV1-wF-pgX">
+                <rect key="frame" x="0.0" y="0.0" width="412" height="99"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="theme" translatesAutoresizingMaskIntoConstraints="NO" id="ei7-Ir-A0z" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
+                        <rect key="frame" x="30" y="10" width="70" height="70"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="8kb-Tj-q0a"/>
+                            <constraint firstAttribute="height" constant="70" id="t49-pS-iiX"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="темы приложения" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFU-FR-DCg">
+                        <rect key="frame" x="110" y="15" width="292" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="ZTl-zw-dMU"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="CFU-FR-DCg" secondAttribute="trailing" constant="10" id="D49-Mu-DeI"/>
+                    <constraint firstItem="ei7-Ir-A0z" firstAttribute="leading" secondItem="oV1-wF-pgX" secondAttribute="leading" constant="30" id="Nc2-mi-BvU"/>
+                    <constraint firstAttribute="bottom" secondItem="ei7-Ir-A0z" secondAttribute="bottom" constant="10" id="PQD-0v-SH5"/>
+                    <constraint firstItem="CFU-FR-DCg" firstAttribute="top" secondItem="oV1-wF-pgX" secondAttribute="top" constant="15" id="QIv-qF-wrZ"/>
+                    <constraint firstItem="CFU-FR-DCg" firstAttribute="leading" secondItem="ei7-Ir-A0z" secondAttribute="trailing" constant="10" id="TVI-wc-I6t"/>
+                    <constraint firstItem="ei7-Ir-A0z" firstAttribute="top" secondItem="oV1-wF-pgX" secondAttribute="top" constant="10" id="Tf8-m3-SnE"/>
+                    <constraint firstAttribute="bottom" secondItem="CFU-FR-DCg" secondAttribute="bottom" constant="15" id="YOz-YV-upS"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="ThemeIcon" destination="ei7-Ir-A0z" id="8v1-bM-8fD"/>
+                <outlet property="TitleLabel" destination="CFU-FR-DCg" id="URa-bS-UKS"/>
+            </connections>
+            <point key="canvasLocation" x="167.93893129770993" y="1.0563380281690142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="theme" width="24" height="24"/>
+    </resources>
+</document>

@@ -21,7 +21,7 @@ extension SettingsListViewController: UITableViewDataSource {
         case 1:
             return AGPUFaculties.faculties.count
         case 2:
-            return 1
+            return 2
         case 3:
             return 1
         default:
@@ -46,8 +46,13 @@ extension SettingsListViewController: UITableViewDataSource {
             cell.configure(faculty: AGPUFaculties.faculties[indexPath.row])
             return cell
         case 2:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ShakeToRecallOptionTableViewCell.identifier, for: indexPath) as? ShakeToRecallOptionTableViewCell else {return UITableViewCell()}
-            return cell
+            if indexPath.row == 0 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: ShakeToRecallOptionTableViewCell.identifier, for: indexPath) as? ShakeToRecallOptionTableViewCell else {return UITableViewCell()}
+                return cell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: AppThemesTableViewCell.identifier, for: indexPath) as? AppThemesTableViewCell else {return UITableViewCell()}
+                return cell
+            }
         case 3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AppFeaturesTableViewCell.identifier, for: indexPath) as? AppFeaturesTableViewCell else {return UITableViewCell()}
             return cell
@@ -168,9 +173,14 @@ extension SettingsListViewController: UITableViewDelegate {
         switch indexPath.section {
         case 0:
             viewModel.chooseStatus(index: indexPath.row)
-        case 1,2:
+        case 1:
+            break
+        case 2:
             if indexPath.row == 1 {
-               
+               let vc = AppThemesListTableViewController()
+               let navVC = UINavigationController(rootViewController: vc)
+               navVC.modalPresentationStyle = .fullScreen
+               present(navVC, animated: true)
             }
         case 3:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "info icon")

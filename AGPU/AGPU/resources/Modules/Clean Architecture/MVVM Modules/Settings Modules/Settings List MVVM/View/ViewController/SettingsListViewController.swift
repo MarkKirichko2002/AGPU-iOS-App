@@ -33,6 +33,7 @@ final class SettingsListViewController: UIViewController {
         tableView.register(UINib(nibName: UserStatusTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: UserStatusTableViewCell.identifier)
         tableView.register(UINib(nibName: AGPUFacultyTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AGPUFacultyTableViewCell.identifier)
         tableView.register(UINib(nibName: ShakeToRecallOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ShakeToRecallOptionTableViewCell.identifier)
+        tableView.register(UINib(nibName: AppThemesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppThemesTableViewCell.identifier)
         tableView.register(UINib(nibName: AppFeaturesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppFeaturesTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self

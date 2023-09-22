@@ -75,8 +75,6 @@
 		82426C742A71476D00D5AA57 /* ForEveryStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C722A71476D00D5AA57 /* ForEveryStatusModel.swift */; };
 		82426C782A714D6A00D5AA57 /* ForApplicantListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C772A714D6A00D5AA57 /* ForApplicantListTableViewController.swift */; };
 		82426C7A2A714DEA00D5AA57 /* ForApplicantSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C792A714DEA00D5AA57 /* ForApplicantSections.swift */; };
-		82426C852A71603B00D5AA57 /* AppFeaturesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C832A71603B00D5AA57 /* AppFeaturesTableViewCell.swift */; };
-		82426C862A71603B00D5AA57 /* AppFeaturesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82426C842A71603B00D5AA57 /* AppFeaturesTableViewCell.xib */; };
 		82426C8B2A71CFC600D5AA57 /* ForEmployeeListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C8A2A71CFC600D5AA57 /* ForEmployeeListTableViewController.swift */; };
 		82426C8D2A71D26100D5AA57 /* ForEmployeeSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C8C2A71D26100D5AA57 /* ForEmployeeSections.swift */; };
 		82426C902A71DCDA00D5AA57 /* UserStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C8F2A71DCDA00D5AA57 /* UserStatusModel.swift */; };
@@ -102,6 +100,16 @@
 		8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5442A578452008ACADC /* DateManagerProtocol.swift */; };
 		8270A5482A5784A2008ACADC /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5472A5784A2008ACADC /* DateManager.swift */; };
 		82722D432A66462100149D06 /* AGPUBuildingPins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82722D422A66462100149D06 /* AGPUBuildingPins.swift */; };
+		82768AE22ABE12F30022FBE1 /* AppThemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82768AE12ABE12F30022FBE1 /* AppThemeModel.swift */; };
+		82768AE62ABE13550022FBE1 /* AppThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82768AE52ABE13550022FBE1 /* AppThemes.swift */; };
+		82768AE82ABE13B80022FBE1 /* AppThemesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82768AE72ABE13B80022FBE1 /* AppThemesListTableViewController.swift */; };
+		82768AED2ABE15080022FBE1 /* AppThemesListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82768AEC2ABE15080022FBE1 /* AppThemesListViewModelProtocol.swift */; };
+		82768AEF2ABE15230022FBE1 /* AppThemesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82768AEE2ABE15230022FBE1 /* AppThemesListViewModel.swift */; };
+		82768AF12ABE15450022FBE1 /* AppThemesListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82768AF02ABE15450022FBE1 /* AppThemesListViewModel + Extensions.swift */; };
+		82768AF52ABE1B360022FBE1 /* AppThemesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82768AF32ABE1B360022FBE1 /* AppThemesTableViewCell.swift */; };
+		82768AF62ABE1B360022FBE1 /* AppThemesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82768AF42ABE1B360022FBE1 /* AppThemesTableViewCell.xib */; };
+		82768AF92ABE1CE70022FBE1 /* AppFeaturesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82768AF72ABE1CE70022FBE1 /* AppFeaturesTableViewCell.xib */; };
+		82768AFA2ABE1CE70022FBE1 /* AppFeaturesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82768AF82ABE1CE70022FBE1 /* AppFeaturesTableViewCell.swift */; };
 		827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B62C22A425166008D241E /* UserDefaults + Extensions.swift */; };
 		82807C712AA0FA5D00E9C884 /* PairTypesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82807C702AA0FA5D00E9C884 /* PairTypesListTableViewController.swift */; };
 		82807C742AA102A600E9C884 /* PairTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82807C732AA102A600E9C884 /* PairTypeModel.swift */; };
@@ -315,8 +323,6 @@
 		82426C722A71476D00D5AA57 /* ForEveryStatusModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForEveryStatusModel.swift; sourceTree = "<group>"; };
 		82426C772A714D6A00D5AA57 /* ForApplicantListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForApplicantListTableViewController.swift; sourceTree = "<group>"; };
 		82426C792A714DEA00D5AA57 /* ForApplicantSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForApplicantSections.swift; sourceTree = "<group>"; };
-		82426C832A71603B00D5AA57 /* AppFeaturesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeaturesTableViewCell.swift; sourceTree = "<group>"; };
-		82426C842A71603B00D5AA57 /* AppFeaturesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppFeaturesTableViewCell.xib; sourceTree = "<group>"; };
 		82426C8A2A71CFC600D5AA57 /* ForEmployeeListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEmployeeListTableViewController.swift; sourceTree = "<group>"; };
 		82426C8C2A71D26100D5AA57 /* ForEmployeeSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEmployeeSections.swift; sourceTree = "<group>"; };
 		82426C8F2A71DCDA00D5AA57 /* UserStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusModel.swift; sourceTree = "<group>"; };
@@ -342,6 +348,16 @@
 		8270A5442A578452008ACADC /* DateManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerProtocol.swift; sourceTree = "<group>"; };
 		8270A5472A5784A2008ACADC /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		82722D422A66462100149D06 /* AGPUBuildingPins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingPins.swift; sourceTree = "<group>"; };
+		82768AE12ABE12F30022FBE1 /* AppThemeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeModel.swift; sourceTree = "<group>"; };
+		82768AE52ABE13550022FBE1 /* AppThemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemes.swift; sourceTree = "<group>"; };
+		82768AE72ABE13B80022FBE1 /* AppThemesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemesListTableViewController.swift; sourceTree = "<group>"; };
+		82768AEC2ABE15080022FBE1 /* AppThemesListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemesListViewModelProtocol.swift; sourceTree = "<group>"; };
+		82768AEE2ABE15230022FBE1 /* AppThemesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemesListViewModel.swift; sourceTree = "<group>"; };
+		82768AF02ABE15450022FBE1 /* AppThemesListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppThemesListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		82768AF32ABE1B360022FBE1 /* AppThemesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemesTableViewCell.swift; sourceTree = "<group>"; };
+		82768AF42ABE1B360022FBE1 /* AppThemesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppThemesTableViewCell.xib; sourceTree = "<group>"; };
+		82768AF72ABE1CE70022FBE1 /* AppFeaturesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppFeaturesTableViewCell.xib; sourceTree = "<group>"; };
+		82768AF82ABE1CE70022FBE1 /* AppFeaturesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFeaturesTableViewCell.swift; sourceTree = "<group>"; };
 		827B62C22A425166008D241E /* UserDefaults + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + Extensions.swift"; sourceTree = "<group>"; };
 		82807C702AA0FA5D00E9C884 /* PairTypesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairTypesListTableViewController.swift; sourceTree = "<group>"; };
 		82807C732AA102A600E9C884 /* PairTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairTypeModel.swift; sourceTree = "<group>"; };
@@ -904,14 +920,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		822158942A422A480088BDE5 /* Settings MVVM */ = {
+		822158942A422A480088BDE5 /* Settings Modules */ = {
 			isa = PBXGroup;
 			children = (
-				82EA0D2F2ABB581D00262303 /* Model */,
-				8221589A2A4233C50088BDE5 /* View */,
-				829AD6972A43817B0047609B /* ViewModel */,
+				82768ADC2ABE12B80022FBE1 /* Settings List MVVM */,
+				82768ADD2ABE12D30022FBE1 /* App Themes List MVVM */,
 			);
-			path = "Settings MVVM";
+			path = "Settings Modules";
 			sourceTree = "<group>";
 		};
 		8221589A2A4233C50088BDE5 /* View */ = {
@@ -997,6 +1012,7 @@
 			children = (
 				821EEAD32AA0B73D00AE517B /* User Status  */,
 				82423E3C2A991E11006FA7D2 /* Shake To Recall */,
+				82768AF22ABE1B0D0022FBE1 /* App Themes */,
 				82426C822A71600E00D5AA57 /* App Features */,
 			);
 			path = Cells;
@@ -1475,8 +1491,8 @@
 		82426C822A71600E00D5AA57 /* App Features */ = {
 			isa = PBXGroup;
 			children = (
-				82426C832A71603B00D5AA57 /* AppFeaturesTableViewCell.swift */,
-				82426C842A71603B00D5AA57 /* AppFeaturesTableViewCell.xib */,
+				82768AF82ABE1CE70022FBE1 /* AppFeaturesTableViewCell.swift */,
+				82768AF72ABE1CE70022FBE1 /* AppFeaturesTableViewCell.xib */,
 			);
 			path = "App Features";
 			sourceTree = "<group>";
@@ -1808,7 +1824,7 @@
 				82B1C0BD2A805D5200520C14 /* Recent Moments List MVVM */,
 				82BCB5312AB34FD000F3A321 /* Faculties Modules */,
 				82BCB5302AB34F9E00F3A321 /* TimeTable Modules */,
-				822158942A422A480088BDE5 /* Settings MVVM */,
+				822158942A422A480088BDE5 /* Settings Modules */,
 			);
 			path = "MVVM Modules";
 			sourceTree = "<group>";
@@ -1873,6 +1889,102 @@
 				82E4C51D2A6B0DB500F65A67 /* Extensions */,
 			);
 			path = Date;
+			sourceTree = "<group>";
+		};
+		82768ADC2ABE12B80022FBE1 /* Settings List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82EA0D2F2ABB581D00262303 /* Model */,
+				8221589A2A4233C50088BDE5 /* View */,
+				829AD6972A43817B0047609B /* ViewModel */,
+			);
+			path = "Settings List MVVM";
+			sourceTree = "<group>";
+		};
+		82768ADD2ABE12D30022FBE1 /* App Themes List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82768AE02ABE12E30022FBE1 /* Model */,
+				82768ADF2ABE12E10022FBE1 /* View */,
+				82768ADE2ABE12DF0022FBE1 /* ViewModel */,
+			);
+			path = "App Themes List MVVM";
+			sourceTree = "<group>";
+		};
+		82768ADE2ABE12DF0022FBE1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82768AEB2ABE14D30022FBE1 /* Protocol */,
+				82768AEA2ABE14D10022FBE1 /* ViewModel */,
+				82768AE92ABE14CF0022FBE1 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82768ADF2ABE12E10022FBE1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82768AE72ABE13B80022FBE1 /* AppThemesListTableViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82768AE02ABE12E30022FBE1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82768AE42ABE13200022FBE1 /* Model */,
+				82768AE32ABE131E0022FBE1 /* List */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82768AE32ABE131E0022FBE1 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				82768AE52ABE13550022FBE1 /* AppThemes.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		82768AE42ABE13200022FBE1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82768AE12ABE12F30022FBE1 /* AppThemeModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82768AE92ABE14CF0022FBE1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82768AF02ABE15450022FBE1 /* AppThemesListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82768AEA2ABE14D10022FBE1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82768AEE2ABE15230022FBE1 /* AppThemesListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82768AEB2ABE14D30022FBE1 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82768AEC2ABE15080022FBE1 /* AppThemesListViewModelProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		82768AF22ABE1B0D0022FBE1 /* App Themes */ = {
+			isa = PBXGroup;
+			children = (
+				82768AF32ABE1B360022FBE1 /* AppThemesTableViewCell.swift */,
+				82768AF42ABE1B360022FBE1 /* AppThemesTableViewCell.xib */,
+			);
+			path = "App Themes";
 			sourceTree = "<group>";
 		};
 		82807C6C2AA0FA0900E9C884 /* Pair Types MVVM */ = {
@@ -3759,7 +3871,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82768AF92ABE1CE70022FBE1 /* AppFeaturesTableViewCell.xib in Resources */,
 				826BADB12A64D5D100022B45 /* AGPULocationDetailViewController.storyboard in Resources */,
+				82768AF62ABE1B360022FBE1 /* AppThemesTableViewCell.xib in Resources */,
 				82D6C33B2A5E282A00FB7F5D /* TimeTableTableViewCell.xib in Resources */,
 				82B267062A8DAA8500043A6D /* NewsCategoryTableViewCell.xib in Resources */,
 				822632422A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib in Resources */,
@@ -3773,7 +3887,6 @@
 				82320D892A491FBC00ECADEE /* AGPUFacultyTableViewCell.xib in Resources */,
 				82E4C5972A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib in Resources */,
 				82989AF32A6F8CDF00F27858 /* ForEveryStatusTableViewCell.xib in Resources */,
-				82426C862A71603B00D5AA57 /* AppFeaturesTableViewCell.xib in Resources */,
 				822606012A853C110055925F /* RecentMomentTableViewCell.xib in Resources */,
 				82989AD42A6E36C700F27858 /* FacultyCathedraTableViewCell.xib in Resources */,
 				82B24A6E2A817BDE008B94E4 /* WeekTableViewCell.xib in Resources */,
@@ -3815,6 +3928,7 @@
 				82989ACD2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift in Sources */,
 				82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */,
 				8226060A2A853DEE0055925F /* RecentMomentsListTableViewController.swift in Sources */,
+				82768AED2ABE15080022FBE1 /* AppThemesListViewModelProtocol.swift in Sources */,
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
 				82162D882AB5CE5300840D90 /* CalendarViewModelProtocol.swift in Sources */,
 				826BADAF2A64D5A500022B45 /* AGPULocationDetailViewController.swift in Sources */,
@@ -3906,6 +4020,7 @@
 				829548922A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift in Sources */,
 				828321762A7D6503008641A5 /* SearchAGPUBuildingMapViewController + Extensions.swift in Sources */,
 				82E4C5432A6B10F900F65A67 /* WebViewModelProtocol.swift in Sources */,
+				82768AF12ABE15450022FBE1 /* AppThemesListViewModel + Extensions.swift in Sources */,
 				82E4E5592A57699E00314296 /* WKWebView + Extensions.swift in Sources */,
 				826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */,
 				821FCF052A87CDB8006FFB26 /* NewsCollectionViewCell.swift in Sources */,
@@ -3931,9 +4046,10 @@
 				82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */,
 				829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */,
 				82C5615F2A6B75B700514B00 /* AppFeaturesList.swift in Sources */,
+				82768AEF2ABE15230022FBE1 /* AppThemesListViewModel.swift in Sources */,
 				8234E5F52A8854DF00ED354C /* WordDocumenReaderViewModelProtocol.swift in Sources */,
 				82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */,
-				82426C852A71603B00D5AA57 /* AppFeaturesTableViewCell.swift in Sources */,
+				82768AF52ABE1B360022FBE1 /* AppThemesTableViewCell.swift in Sources */,
 				82BEAD892A74180D00DD34C2 /* RecentWebPageViewModel + Extensions.swift in Sources */,
 				82BCB5722AB3ACFF00F3A321 /* PairTypesListViewModelProtocol.swift in Sources */,
 				820E40932A7C365B007A1E0A /* AGPUCurrentCathedraMapViewModelProtocol.swift in Sources */,
@@ -3942,6 +4058,7 @@
 				82E4C55F2A6B147900F65A67 /* SettingsListViewModelProtocol.swift in Sources */,
 				82E4C5452A6B114000F65A67 /* WebViewModel + Extensions.swift in Sources */,
 				8234E5FC2A88557400ED354C /* WordDocumenReaderViewModel + Extensions.swift in Sources */,
+				82768AFA2ABE1CE70022FBE1 /* AppFeaturesTableViewCell.swift in Sources */,
 				825634BA2A6222070082B7B8 /* FacultyGroupsListTableViewController.swift in Sources */,
 				826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */,
 				82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */,
@@ -3950,6 +4067,7 @@
 				82B24A782A8193B2008B94E4 /* AllWeeksListViewModelProtocol.swift in Sources */,
 				82320D832A49167000ECADEE /* AGPUFacultyModel.swift in Sources */,
 				82B24A7D2A8195D2008B94E4 /* HostName.swift in Sources */,
+				82768AE22ABE12F30022FBE1 /* AppThemeModel.swift in Sources */,
 				82BCB5742AB3AD0E00F3A321 /* PairTypesListViewModel.swift in Sources */,
 				82426C732A71476D00D5AA57 /* ForStudentSections.swift in Sources */,
 				82E4C5662A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift in Sources */,
@@ -3984,6 +4102,7 @@
 				82B266FC2A8D91E400043A6D /* NewsCategoriesListTableViewController.swift in Sources */,
 				821FCF0A2A87CE79006FFB26 /* NewsListViewController + Extensions.swift in Sources */,
 				82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */,
+				82768AE82ABE13B80022FBE1 /* AppThemesListTableViewController.swift in Sources */,
 				8234E60F2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift in Sources */,
 				8228E3AD2A6C9E9E00C1B6AD /* AGPUCurrentBuildingMapViewModel + Extensions.swift in Sources */,
 				82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */,
@@ -4003,6 +4122,7 @@
 				82989AE62A6F6DEA00F27858 /* FacultyCathedraListViewModel.swift in Sources */,
 				826888582A33AB5600434219 /* AGPUSplashScreenViewController.swift in Sources */,
 				82E4C5892A6B20DE00F65A67 /* LocationManager.swift in Sources */,
+				82768AE62ABE13550022FBE1 /* AppThemes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
