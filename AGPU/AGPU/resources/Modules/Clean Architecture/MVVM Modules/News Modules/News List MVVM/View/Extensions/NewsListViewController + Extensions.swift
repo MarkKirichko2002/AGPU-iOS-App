@@ -21,7 +21,7 @@ extension NewsListViewController: UICollectionViewDelegate {
         }
         
         Timer.scheduledTimer(withTimeInterval: 1.1, repeats: false) { _ in
-            self.goToWeb(url: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))", image: "online", title: "\(self.viewModel.articleItem(index: indexPath.row).date ?? "")", isSheet: false)
+            self.goToWeb(url: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))", image: "online", title: "\(self.viewModel.articleItem(index: indexPath.row).date)", isSheet: false)
         }
     }
     
@@ -31,10 +31,10 @@ extension NewsListViewController: UICollectionViewDelegate {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
             let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
-                self.shareInfo(image: UIImage(named: self.viewModel.faculty?.icon ?? "АГПУ")!, title: "\(self.viewModel.articleItem(index: indexPath.row).title ?? "")", text: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))")
+                self.shareInfo(image: UIImage(named: self.viewModel.faculty?.icon ?? "АГПУ")!, title: "\(self.viewModel.articleItem(index: indexPath.row).title)", text: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))")
             }
             
-            return UIMenu(title: self.viewModel.articleItem(index: indexPath.row).title ?? "", children: [
+            return UIMenu(title: self.viewModel.articleItem(index: indexPath.row).title, children: [
                 shareAction
             ])
         }
