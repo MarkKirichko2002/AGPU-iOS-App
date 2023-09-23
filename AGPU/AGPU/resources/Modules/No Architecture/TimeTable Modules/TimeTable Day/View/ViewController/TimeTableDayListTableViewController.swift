@@ -92,7 +92,7 @@ final class TimeTableDayListTableViewController: UIViewController {
             do {
                 let json = try JSONEncoder().encode(self.timetable)
                 let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: self.date)
-                self.service.getTimeTableImage(json: json) { image in
+                self.service.getTimeTableDayImage(json: json) { image in
                     self.ShareImage(image: image, title: self.group, text: "\(dayOfWeek) \(self.date)")
                 }
             } catch {

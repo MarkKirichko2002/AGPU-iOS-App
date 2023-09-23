@@ -63,9 +63,32 @@ extension TimeTableService: TimeTableServicerProtocol {
         }
     }
     
-    func getTimeTableImage(json: Data, completion: @escaping(UIImage)->Void) {
+    func getTimeTableDayImage(json: Data, completion: @escaping(UIImage)->Void) {
         
         let url = "http://merqury.fun:8080/api/timetable/image/day?vertical"
+        
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = json
+        
+        AF.request(request).responseData { response in
+            
+            guard let data = response.data else {return}
+            
+            print(response.response?.statusCode)
+            
+            if let image = UIImage(data: data) {
+                completion(image)
+            } else {
+                print("нет")
+            }
+        }
+    }
+    
+    func getTimeTableWeekImage(json: Data, completion: @escaping(UIImage)->Void) {
+        
+        let url = "http://merqury.fun:8080/api/timetable/image/6days?horizontal"
         
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
