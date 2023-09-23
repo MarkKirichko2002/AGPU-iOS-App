@@ -31,13 +31,11 @@ extension AppThemesListViewModel: AppThemesListViewModelProtocol {
     
     func isThemeSelected(index: Int)-> Bool {
         let theme = AppThemes.themes[index]
-        if let savedTheme = UserDefaults.loadData(type: AppThemeModel.self, key: "theme") {
-            if savedTheme.name == theme.name {
-                return true
-            } else {
-                return false
-            }
+        let savedTheme = UserDefaults.loadData(type: AppThemeModel.self, key: "theme") ?? AppThemes.themes[0]
+        if savedTheme.name == theme.name {
+            return true
+        } else {
+            return false
         }
-        return false
     }
 }
