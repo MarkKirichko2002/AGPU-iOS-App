@@ -5,7 +5,7 @@
 //  Created by Марк Киричко on 12.07.2023.
 //
 
-import Foundation
+import UIKit
 import Alamofire
 
 // MARK: - TimeTableServicerProtocol
@@ -59,6 +59,29 @@ extension TimeTableService: TimeTableServicerProtocol {
                 completion(.success(timetable))
             } catch {
                 completion(.failure(error))
+            }
+        }
+    }
+    
+    func getTimeTableImage(json: Data, completion: @escaping(UIImage)->Void) {
+        
+        let url = "http://merqury.fun:8080/api/timetable/image/day?vertical"
+        
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = json
+        
+        AF.request(request).responseData { response in
+            
+            guard let data = response.data else {return}
+            
+            print(response.response?.statusCode)
+            
+            if let image = UIImage(data: data) {
+                completion(image)
+            } else {
+                print("нет")
             }
         }
     }

@@ -9,12 +9,12 @@ import Foundation
 
 struct Discipline: Codable {
     let time: String
-    let name, teacherName, audienceID: String
+    let name, groupName, teacherName, audienceID: String
     let subgroup: Int
     let type: PairType
 
     enum CodingKeys: String, CodingKey {
-        case time, name, teacherName
+        case time, name, groupName, teacherName
         case audienceID = "audienceId"
         case subgroup, type
     }

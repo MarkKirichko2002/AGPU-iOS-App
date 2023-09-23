@@ -49,10 +49,7 @@ extension UIViewController {
         }
     }
     
-    func shareTableViewAsImage(tableView: UITableView, title: String, text: String) {
-        
-        let image = tableView.toImage()!
-        
+    func ShareImage(image: UIImage, title: String, text: String) {
         let textToShare: [Any] = [
             CustomActivityItemSource(title: title, text: text, image: image, type: .image)
         ]

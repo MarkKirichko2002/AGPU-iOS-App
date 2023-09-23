@@ -25,7 +25,6 @@
 		82162D8C2AB5CE7700840D90 /* CalendarViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82162D8B2AB5CE7700840D90 /* CalendarViewModel + Extensions.swift */; };
 		8218F5872A688F8C00C94EB4 /* CustomActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218F5862A688F8C00C94EB4 /* CustomActivityItemSource.swift */; };
 		82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */; };
-		821C9E192A68DE8700EF0030 /* UITableView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C9E182A68DE8700EF0030 /* UITableView + Extensions.swift */; };
 		821EEAD62AA0B76F00AE517B /* UserStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821EEAD42AA0B76F00AE517B /* UserStatusTableViewCell.swift */; };
 		821EEAD72AA0B76F00AE517B /* UserStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821EEAD52AA0B76F00AE517B /* UserStatusTableViewCell.xib */; };
 		821FCF052A87CDB8006FFB26 /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FCF042A87CDB8006FFB26 /* NewsCollectionViewCell.swift */; };
@@ -274,7 +273,6 @@
 		8218F5862A688F8C00C94EB4 /* CustomActivityItemSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityItemSource.swift; sourceTree = "<group>"; };
 		82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsListViewController + Extensions.swift"; sourceTree = "<group>"; };
 		821C892F2A510F5600BD756D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		821C9E182A68DE8700EF0030 /* UITableView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extensions.swift"; sourceTree = "<group>"; };
 		821EEAD42AA0B76F00AE517B /* UserStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusTableViewCell.swift; sourceTree = "<group>"; };
 		821EEAD52AA0B76F00AE517B /* UserStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserStatusTableViewCell.xib; sourceTree = "<group>"; };
 		821FCF042A87CDB8006FFB26 /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -867,14 +865,6 @@
 				82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		821C9E172A68DE7400EF0030 /* UITableView */ = {
-			isa = PBXGroup;
-			children = (
-				821C9E182A68DE8700EF0030 /* UITableView + Extensions.swift */,
-			);
-			path = UITableView;
 			sourceTree = "<group>";
 		};
 		821EEAD32AA0B73D00AE517B /* User Status  */ = {
@@ -1756,7 +1746,6 @@
 			isa = PBXGroup;
 			children = (
 				8208E7562A63A4F100675EF1 /* UIView */,
-				821C9E172A68DE7400EF0030 /* UITableView */,
 				8208E7572A63A4F900675EF1 /* UIViewController */,
 				8208E7582A63A50C00675EF1 /* String */,
 				8208E7592A63A51B00675EF1 /* UserDefaults */,
@@ -4010,7 +3999,6 @@
 				82B24A732A8180AE008B94E4 /* AllWeeksListViewModel.swift in Sources */,
 				82B24A892A81BD30008B94E4 /* AGPUNewsService.swift in Sources */,
 				82989AF22A6F8CDF00F27858 /* ForEveryStatusTableViewCell.swift in Sources */,
-				821C9E192A68DE8700EF0030 /* UITableView + Extensions.swift in Sources */,
 				8270A5482A5784A2008ACADC /* DateManager.swift in Sources */,
 				8283217C2A7D67D4008641A5 /* SearchAGPUBuildingMapViewModelProtocol.swift in Sources */,
 				82BF4DB72A5FA807008B751A /* ImageSaver.swift in Sources */,

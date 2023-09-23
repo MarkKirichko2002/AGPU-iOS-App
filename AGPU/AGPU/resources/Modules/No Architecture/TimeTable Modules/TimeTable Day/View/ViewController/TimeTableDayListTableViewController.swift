@@ -88,7 +88,16 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         // поделиться
         let shareTimeTable = UIAction(title: "поделиться") { _ in
-            self.shareTableViewAsImage(tableView: self.tableView, title: self.date, text: self.group)
+            
+            do {
+                let json = try JSONEncoder().encode(self.timetable)
+                let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: self.date)
+                self.service.getTimeTableImage(json: json) { image in
+                    self.ShareImage(image: image, title: self.group, text: "\(dayOfWeek) \(self.date)")
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
         }
         
         // список типов пар
