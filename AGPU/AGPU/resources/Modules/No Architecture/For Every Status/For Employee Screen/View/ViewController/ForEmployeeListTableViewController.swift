@@ -25,7 +25,9 @@ class ForEmployeeListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         tableView.deselectRow(at: indexPath, animated: true)
+        
         switch indexPath.row {
             
         case 0:

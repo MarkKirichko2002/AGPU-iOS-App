@@ -177,11 +177,15 @@ extension SettingsListViewController: UITableViewDelegate {
             break
         case 2:
             if indexPath.row == 1 {
-               let vc = AppThemesListTableViewController()
-               let navVC = UINavigationController(rootViewController: vc)
-               navVC.modalPresentationStyle = .fullScreen
-               present(navVC, animated: true)
+              NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "theme")
+                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                    let vc = AppThemesListTableViewController()
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    self.present(navVC, animated: true)
+                }
             }
+            HapticsManager.shared.hapticFeedback()
         case 3:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "info icon")
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in

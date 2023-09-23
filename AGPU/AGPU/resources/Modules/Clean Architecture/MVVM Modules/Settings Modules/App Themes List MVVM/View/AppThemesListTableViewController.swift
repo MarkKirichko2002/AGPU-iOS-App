@@ -27,6 +27,7 @@ class AppThemesListTableViewController: UITableViewController {
     }
     
     @objc private func close() {
+        sendScreenWasClosedNotification()
         self.dismiss(animated: true)
     }
     
