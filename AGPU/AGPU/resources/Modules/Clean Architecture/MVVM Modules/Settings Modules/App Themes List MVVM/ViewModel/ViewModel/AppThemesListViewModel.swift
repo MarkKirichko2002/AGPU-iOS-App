@@ -5,10 +5,10 @@
 //  Created by Марк Киричко on 22.09.2023.
 //
 
-import Foundation
+import UIKit
 
 class AppThemesListViewModel {
     
-    var themeSelectedHandler: (()->Void)?
+    var themeSelectedHandler: ((UIUserInterfaceStyle)->Void)?
     
 }

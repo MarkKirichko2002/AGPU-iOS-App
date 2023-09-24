@@ -17,11 +17,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = vc
         window.overrideUserInterfaceStyle = UserDefaults.loadData(type: AppThemeModel.self, key: "theme")?.theme ?? .light
-        NotificationCenter.default.addObserver(forName: Notification.Name("App Theme Changed"), object: nil, queue: nil) { notification in
-            if let themeModel = notification.object as? AppThemeModel {
-                window.overrideUserInterfaceStyle = themeModel.theme
-            }
-        }
         window.makeKeyAndVisible()
         self.window = window
     }

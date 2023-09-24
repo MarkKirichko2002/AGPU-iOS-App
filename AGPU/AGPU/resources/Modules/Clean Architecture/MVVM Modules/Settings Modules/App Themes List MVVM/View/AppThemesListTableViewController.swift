@@ -36,9 +36,12 @@ class AppThemesListTableViewController: UITableViewController {
     }
     
     private func bindViewModel() {
-        viewModel.registerThemeSelectedHandler {
+        viewModel.registerThemeSelectedHandler { theme in
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+            }
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.view.window?.overrideUserInterfaceStyle = theme
             }
         }
     }
