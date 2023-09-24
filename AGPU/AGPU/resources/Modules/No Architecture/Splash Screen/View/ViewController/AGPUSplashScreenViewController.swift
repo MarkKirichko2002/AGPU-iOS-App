@@ -12,6 +12,18 @@ final class AGPUSplashScreenViewController: UIViewController {
     // MARK: - сервисы
     var animation: AnimationClassProtocol?
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        let theme = UserDefaults.loadData(type: AppThemeModel.self, key: "theme")?.theme ?? .light
+        switch theme {
+        case .unspecified:
+            return .default
+        case .light:
+            return .darkContent
+        case .dark:
+            return .lightContent
+        }
+    }
+    
     // MARK: - UI
     // иконка
     private let AGPUIcon: SpringImageView = {
