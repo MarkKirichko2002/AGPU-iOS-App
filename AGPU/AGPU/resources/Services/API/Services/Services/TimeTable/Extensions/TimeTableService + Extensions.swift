@@ -63,6 +63,24 @@ extension TimeTableService: TimeTableServicerProtocol {
         }
     }
     
+    func getTimeTableWeekForImage(groupId: String, startDate: String, endDate: String, completion: @escaping(Result<[TimeTable],Error>)->Void) {
+        
+        let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        
+        AF.request("http://\(HostName.host):8080/api/timetable/days?groupId=\(group)&startDate=\(startDate)&endDate=\(endDate)").responseData { response in
+            
+            guard let data = response.data else {return}
+            
+            do {
+                let timetable = try JSONDecoder().decode([TimeTable].self, from: data)
+                print("Расписание: \(timetable)")
+                completion(.success(timetable))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
     func getTimeTableDayImage(json: Data, completion: @escaping(UIImage)->Void) {
         
         let url = "http://merqury.fun:8080/api/timetable/image/day?vertical"

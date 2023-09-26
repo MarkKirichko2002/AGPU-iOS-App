@@ -54,7 +54,9 @@ extension UIViewController {
             CustomActivityItemSource(title: title, text: text, image: image, type: .image)
         ]
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-        present(activityViewController, animated: true)
+        DispatchQueue.main.async {
+            self.present(activityViewController, animated: true)
+        }
     }
     
     func shareInfo(image: UIImage, title: String, text: String) {
@@ -62,21 +64,14 @@ extension UIViewController {
             CustomActivityItemSource(title: title, text: text, image: image, type: .url)
         ]
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-        present(activityViewController, animated: true)
+        DispatchQueue.main.async {
+            self.present(activityViewController, animated: true)
+        }
     }
     
     func openSettings() {
         if let settingsURL = URL(string: UIApplication.openSettingsURLString + Bundle.main.bundleIdentifier!) {
             UIApplication.shared.open(settingsURL)
-        }
-    }
-    
-    func makePhoneCall(phoneNumber: String) {
-        if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
-            let application = UIApplication.shared
-            if application.canOpenURL(phoneCallURL) {
-                application.open(phoneCallURL)
-            }
         }
     }
     

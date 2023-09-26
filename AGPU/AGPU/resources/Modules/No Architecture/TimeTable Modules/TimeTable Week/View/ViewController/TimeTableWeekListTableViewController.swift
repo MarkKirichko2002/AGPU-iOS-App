@@ -51,7 +51,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        let share = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(share))
+        let share = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(getTimeTableImage))
         share.tintColor = .label
         navigationItem.title = "с \(week.from) до \(week.to)"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
@@ -61,17 +61,6 @@ final class TimeTableWeekListTableViewController: UIViewController {
         sections.tintColor = .label
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItems = [share, sections]
-    }
-    
-    @objc private func share() {
-        do {
-            let json = try JSONEncoder().encode(self.timetable)
-            self.service.getTimeTableWeekImage(json: json) { image in
-                self.ShareImage(image: image, title: self.group, text: "с \(self.week.from) до \(self.week.to)")
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
     }
     
     @objc private func closeScreen() {
@@ -126,7 +115,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         spinner.startAnimating()
     }
     
-    func getTimeTable() {
+    private func getTimeTable() {
         self.spinner.startAnimating()
         self.noTimeTableLabel.isHidden = true
         self.timetable = []
@@ -167,6 +156,26 @@ final class TimeTableWeekListTableViewController: UIViewController {
                 self.refreshControl.endRefreshing()
                 self.setUpNavigation()
                 print(error.localizedDescription)
+            }
+        }
+    }
+    
+    @objc private func getTimeTableImage() {
+        var timetable = [TimeTable]()
+        service.getTimeTableWeekForImage(groupId: self.group, startDate: self.week.from, endDate: dateManager.previousDay(date: self.week.to)) { result in
+            switch result {
+            case .success(let data):
+                timetable = data
+                do {
+                    let json = try JSONEncoder().encode(timetable)
+                    self.service.getTimeTableWeekImage(json: json) { image in
+                        self.ShareImage(image: image, title: self.group, text: "с \(self.week.from) до \(self.week.to)")
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                }
+            case .failure(let error):
+                print(error)
             }
         }
     }
