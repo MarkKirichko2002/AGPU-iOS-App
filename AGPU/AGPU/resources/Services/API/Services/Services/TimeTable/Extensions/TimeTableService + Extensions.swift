@@ -13,7 +13,7 @@ extension TimeTableService: TimeTableServicerProtocol {
     
     func getWeeks(completion: @escaping(Result<[WeekModel],Error>)->Void) {
         
-        AF.request("http://\(HostName.host):8080/api/timetable/weeks").responseData { response in
+        AF.request("http://\(HostName.host)/api/timetable/weeks").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -31,7 +31,7 @@ extension TimeTableService: TimeTableServicerProtocol {
         
         let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("http://\(HostName.host):8080/api/timetable/day?groupId=\(group)&date=\(date)").responseData { response in
+        AF.request("http://\(HostName.host)/api/timetable/day?groupId=\(group)&date=\(date)").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -49,7 +49,7 @@ extension TimeTableService: TimeTableServicerProtocol {
         
         let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("http://\(HostName.host):8080/api/timetable/days?groupId=\(group)&startDate=\(startDate)&endDate=\(endDate)&removeEmptyDays").responseData { response in
+        AF.request("http://\(HostName.host)/api/timetable/days?groupId=\(group)&startDate=\(startDate)&endDate=\(endDate)&removeEmptyDays").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -67,7 +67,7 @@ extension TimeTableService: TimeTableServicerProtocol {
         
         let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("http://\(HostName.host):8080/api/timetable/days?groupId=\(group)&startDate=\(startDate)&endDate=\(endDate)").responseData { response in
+        AF.request("http://\(HostName.host)/api/timetable/days?groupId=\(group)&startDate=\(startDate)&endDate=\(endDate)").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -83,7 +83,7 @@ extension TimeTableService: TimeTableServicerProtocol {
     
     func getTimeTableDayImage(json: Data, completion: @escaping(UIImage)->Void) {
         
-        let url = "http://merqury.fun:8080/api/timetable/image/day?vertical"
+        let url = "http://merqury.fun/api/timetable/image/day?vertical"
         
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
@@ -106,7 +106,7 @@ extension TimeTableService: TimeTableServicerProtocol {
     
     func getTimeTableWeekImage(json: Data, completion: @escaping(UIImage)->Void) {
         
-        let url = "http://merqury.fun:8080/api/timetable/image/6days?horizontal"
+        let url = "http://merqury.fun/api/timetable/image/6days?horizontal"
         
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"

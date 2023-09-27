@@ -14,7 +14,7 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
     // получить новости факультета
     func getFacultyNews(abbreviation: String, completion: @escaping(Result<NewsResponse, Error>)->Void) {
         
-        AF.request("http://\(HostName.host):8080/api/news/\(abbreviation)").responseData { response in
+        AF.request("http://\(HostName.host)/api/news/\(abbreviation)").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -30,7 +30,7 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
     // получить новости АГПУ
     func getAGPUNews(completion: @escaping(Result<NewsResponse, Error>)->Void) {
         
-        AF.request("http://\(HostName.host):8080/api/news").responseData { response in
+        AF.request("http://\(HostName.host)/api/news").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -75,11 +75,11 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
     func urlForPagination(faculty: AGPUFacultyModel?, page: Int)-> String {
         var url = ""
         if let faculty = faculty {
-            url = "http://\(HostName.host):8080/api/news/\(faculty.newsAbbreviation)?page=\(page)"
+            url = "http://\(HostName.host)/api/news/\(faculty.newsAbbreviation)?page=\(page)"
             print(url)
             return url
         } else {
-            url = "http://\(HostName.host):8080/api/news?page=\(page)"
+            url = "http://\(HostName.host)/api/news?page=\(page)"
             print(url)
             return url
         }
