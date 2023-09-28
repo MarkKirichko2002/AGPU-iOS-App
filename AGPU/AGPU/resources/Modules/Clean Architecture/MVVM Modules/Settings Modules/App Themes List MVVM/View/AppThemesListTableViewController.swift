@@ -40,9 +40,9 @@ class AppThemesListTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+            UIView.transition(with: self.view.window!, duration: 0.3, options: .transitionCrossDissolve, animations: {
                 self.view.window?.overrideUserInterfaceStyle = theme
-            }
+            }, completion: nil)
         }
     }
     
