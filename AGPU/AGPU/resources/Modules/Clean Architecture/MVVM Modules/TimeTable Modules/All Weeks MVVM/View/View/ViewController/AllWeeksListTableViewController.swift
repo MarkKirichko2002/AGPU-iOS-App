@@ -52,7 +52,6 @@ class AllWeeksListTableViewController: UITableViewController {
     private func setUpTable() {
         tableView.rowHeight = 130
         tableView.register(UINib(nibName: WeekTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: WeekTableViewCell.identifier)
-        tableView.isUserInteractionEnabled = false
     }
     
     private func setUpRefreshControl() {
@@ -75,6 +74,7 @@ class AllWeeksListTableViewController: UITableViewController {
         }
         
         self.viewModel.registerScrollHandler { row in
+            self.tableView.isUserInteractionEnabled = false
             DispatchQueue.main.async {
                 let indexPath = IndexPath(row: row, section: 0)
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)

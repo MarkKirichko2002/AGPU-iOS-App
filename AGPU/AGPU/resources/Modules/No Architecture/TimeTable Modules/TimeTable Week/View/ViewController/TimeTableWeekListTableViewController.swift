@@ -82,7 +82,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         let datesList = UIMenu(title: "дни недели", options: .singleSelection, children: actions)
         return datesList
     }
-        
+    
     private func setUpTable() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
@@ -90,7 +90,6 @@ final class TimeTableWeekListTableViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: TimeTableTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimeTableTableViewCell.identifier)
         tableView.separatorStyle = .none
-        tableView.isUserInteractionEnabled = false
     }
     
     private func setUpLabel() {
@@ -139,10 +138,9 @@ final class TimeTableWeekListTableViewController: UIViewController {
                         self.refreshControl.endRefreshing()
                         self.noTimeTableLabel.isHidden = true
                         self.setUpNavigation()
-                        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                            self.scrollToCurrentDay()
-                        }
+                        self.scrollToCurrentDay()
                     }
+                    
                 } else {
                     self.noTimeTableLabel.isHidden = false
                     self.spinner.stopAnimating()
@@ -196,9 +194,12 @@ final class TimeTableWeekListTableViewController: UIViewController {
         let currentDate = dateManager.getCurrentDate()
         timetable.enumerated().forEach { (index: Int, timetable: TimeTable) in
             if timetable.date == currentDate {
-                DispatchQueue.main.async {
-                    let indexPath = IndexPath(row: 0, section: index)
-                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                tableView.isUserInteractionEnabled = false
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    DispatchQueue.main.async {
+                        let indexPath = IndexPath(row: 0, section: index)
+                        self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                    }
                 }
             }
         }
