@@ -43,7 +43,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     private func setUpData() {
-        self.group = UserDefaults.standard.string(forKey: "group") ?? ""
+        self.group = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-2-1"
         self.subgroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
         date = dateManager.getCurrentDate()
     }
@@ -92,7 +92,7 @@ final class TimeTableDayListTableViewController: UIViewController {
             do {
                 let json = try JSONEncoder().encode(self.timetable)
                 let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: self.date)
-                self.service.getTimeTableImage(json: json) { image in
+                self.service.getTimeTableDayImage(json: json) { image in
                     self.ShareImage(image: image, title: self.group, text: "\(dayOfWeek) \(self.date)")
                 }
             } catch {
@@ -171,10 +171,10 @@ final class TimeTableDayListTableViewController: UIViewController {
         service.getTimeTableDay(groupId: group, date: date) { result in
             switch result {
             case .success(let timetable):
+                self.timetable = timetable
                 if !timetable.disciplines.isEmpty {
                     DispatchQueue.main.async {
                         let data = timetable.disciplines.filter { $0.subgroup == self.subgroup || $0.subgroup == 0 || (self.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
-                        self.timetable = timetable
                         self.timetable?.disciplines = data
                         self.allDisciplines = data
                         self.tableView.reloadData()
@@ -199,7 +199,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     
     private func observeGroupChange() {
         NotificationCenter.default.addObserver(forName: Notification.Name("group changed"), object: nil, queue: .main) { notification in
-            let group = notification.object as? String ?? ""
+            let group = notification.object as? String ?? "ВМ-ИВТ-2-1"
             self.getTimeTable(group: group, date: self.date)
             self.group = group
             print(self.group)

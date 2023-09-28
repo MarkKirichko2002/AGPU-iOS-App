@@ -36,10 +36,13 @@ class AppThemesListTableViewController: UITableViewController {
     }
     
     private func bindViewModel() {
-        viewModel.registerThemeSelectedHandler {
+        viewModel.registerThemeSelectedHandler { theme in
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+            UIView.transition(with: self.view.window!, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                self.view.window?.overrideUserInterfaceStyle = theme
+            }, completion: nil)
         }
     }
     

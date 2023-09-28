@@ -1566,7 +1566,6 @@
 			isa = PBXGroup;
 			children = (
 				82505F4D2A7FBD52001DE24A /* View */,
-				82505F512A7FBD98001DE24A /* Extensions */,
 			);
 			path = "TimeTable Week";
 			sourceTree = "<group>";
@@ -1575,6 +1574,7 @@
 			isa = PBXGroup;
 			children = (
 				82505F4E2A7FBD5F001DE24A /* ViewController */,
+				82505F512A7FBD98001DE24A /* Extensions */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4294,7 +4294,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -4328,7 +4328,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
