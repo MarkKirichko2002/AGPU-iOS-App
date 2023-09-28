@@ -1,55 +1,50 @@
 //
-//  SubGroupsListTableViewController.swift
+//  SavedSubGroupTableViewController.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 28.09.2023.
+//  Created by Марк Киричко on 07.08.2023.
 //
 
 import UIKit
 
-class SubGroupsListTableViewController: UITableViewController {
+class SavedSubGroupTableViewController: UITableViewController {
 
-    var subgroup: Int
-    
     // MARK: - сервисы
-    private let viewModel: SubGroupsListViewModel
-    
-    // MARK: - Init
-    init(subgroup: Int) {
-        self.subgroup = subgroup
-        self.viewModel = SubGroupsListViewModel(subgroup: subgroup)
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    private let viewModel = SavedSubGroupViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         setUpNavigation()
         bindViewModel()
+        setUpSwipeGesture()
     }
     
     private func setUpNavigation() {
+        
         navigationItem.title = "Подгруппы"
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
-        closeButton.tintColor = .label
-        navigationItem.rightBarButtonItem = closeButton
+        
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
+        
+        let button = UIButton()
+        button.tintColor = .label
+        button.setImage(UIImage(named: "back"), for: .normal)
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        
+        let backButton = UIBarButtonItem(customView: button)
+        
+        navigationItem.leftBarButtonItem = backButton
     }
     
-    @objc private func close() {
-        self.dismiss(animated: true)
+    @objc private func back() {
+        navigationController?.popViewController(animated: true)
     }
     
     private func bindViewModel() {
         viewModel.registerChangedHandler {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-            }
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.dismiss(animated: true)
             }
         }
     }

@@ -62,6 +62,14 @@ final class TimeTableDayListTableViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
+        // список подгрупп
+        let subGroupsList = UIAction(title: "подгруппы") { _ in
+            let vc = SubGroupsListTableViewController(subgroup: self.subgroup)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         // день
         let days = UIAction(title: "день") { _ in
             let vc = DaysListTableViewController(group: self.group, currentDate: self.date)
@@ -110,6 +118,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         let menu = UIMenu(title: "расписание", children: [
             groupList,
+            subGroupsList,
             days,
             calendar,
             weeks,
@@ -207,9 +216,11 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     private func observeSubGroupChange() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("subgroup changed"), object: nil, queue: .main) { _ in
-            self.subgroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
-            self.getTimeTable(group: self.group, date: self.date)
+        NotificationCenter.default.addObserver(forName: Notification.Name("subgroup changed"), object: nil, queue: .main) { notification in
+            if let subgroup = notification.object as? Int {
+                self.subgroup = subgroup
+                self.getTimeTable(group: self.group, date: self.date)
+            }
         }
     }
     

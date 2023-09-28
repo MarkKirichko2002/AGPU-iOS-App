@@ -1,13 +1,13 @@
 //
-//  SubGroupsListViewModelProtocol.swift
+//  SavedSubGroupViewModelProtocol.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 28.09.2023.
+//  Created by Марк Киричко on 07.08.2023.
 //
 
 import Foundation
 
-protocol SubGroupsListViewModelProtocol {
+protocol SavedSubGroupViewModelProtocol {
     func numberOfSubGroups()-> Int
     func subgroupItem(index: Int)-> SubGroupModel
     func selectSubGroup(index: Int)

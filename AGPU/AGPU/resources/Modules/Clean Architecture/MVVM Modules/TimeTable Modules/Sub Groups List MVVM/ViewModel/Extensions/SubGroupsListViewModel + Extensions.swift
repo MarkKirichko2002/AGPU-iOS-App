@@ -2,7 +2,7 @@
 //  SubGroupsListViewModel + Extensions.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 07.08.2023.
+//  Created by Марк Киричко on 28.09.2023.
 //
 
 import Foundation
@@ -20,18 +20,16 @@ extension SubGroupsListViewModel: SubGroupsListViewModelProtocol {
     }
     
     func selectSubGroup(index: Int) {
-        let subgroup = SubGroupsList.subgroups[index].number
-        UserDefaults.standard.setValue(subgroup, forKey: "subgroup")
-        NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: nil)
+        let subgroupItem = SubGroupsList.subgroups[index]
+        NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: subgroupItem.number)
+        subgroup = subgroupItem.number
         changedHandler?()
         HapticsManager.shared.hapticFeedback()
     }
     
     func isSubGroupSelected(index: Int)-> Bool {
-        let subgroup = SubGroupsList.subgroups[index]
-        let lastSubGroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
-        print(lastSubGroup)
-        if lastSubGroup == subgroup.number {
+        let subgroupItem = SubGroupsList.subgroups[index]
+        if subgroupItem.number == subgroup {
             return true
         } else {
             return false

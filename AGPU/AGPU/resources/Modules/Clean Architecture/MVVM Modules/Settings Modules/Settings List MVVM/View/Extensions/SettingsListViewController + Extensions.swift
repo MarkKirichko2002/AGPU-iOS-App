@@ -133,7 +133,7 @@ extension SettingsListViewController: UITableViewDelegate {
                 
                 let checkSubGroupAction = UIAction(title: self.viewModel.isSubGroupSelected(index: indexPath.row) ? "выбрана подгруппа" : "выбрать подгруппу", image: self.viewModel.isSubGroupSelected(index: indexPath.row) ? UIImage(named: "check") : nil) { _ in
                     if self.viewModel.isFacultySelected(index: indexPath.row) {
-                        let vc = SubGroupsListTableViewController()
+                        let vc = SavedSubGroupTableViewController()
                         vc.hidesBottomBarWhenPushed = true
                         self.navigationController?.pushViewController(vc, animated: true)
                     } else {

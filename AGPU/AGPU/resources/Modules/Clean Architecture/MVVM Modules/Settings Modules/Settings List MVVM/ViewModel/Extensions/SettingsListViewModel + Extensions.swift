@@ -78,7 +78,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
             }
             
             NotificationCenter.default.post(name: Notification.Name("group changed"), object: nil)
-            NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: 0)
         }
     }
     
@@ -130,7 +130,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
                         NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
                     }
                     NotificationCenter.default.post(name: Notification.Name("group changed"), object: nil)
-                    NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: nil)
+                    NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: 0)
                 }
             }
         }

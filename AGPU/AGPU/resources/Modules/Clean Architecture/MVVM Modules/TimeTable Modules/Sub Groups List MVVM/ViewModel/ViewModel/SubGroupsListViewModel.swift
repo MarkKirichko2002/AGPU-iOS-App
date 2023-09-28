@@ -2,7 +2,7 @@
 //  SubGroupsListViewModel.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 07.08.2023.
+//  Created by Марк Киричко on 28.09.2023.
 //
 
 import Foundation
@@ -10,5 +10,10 @@ import Foundation
 class SubGroupsListViewModel {
     
     var changedHandler: (()->Void)?
+    var subgroup: Int
     
+    // MARK: - Init
+    init(subgroup: Int) {
+        self.subgroup = subgroup
+    }
 }
