@@ -51,7 +51,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        let share = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(getTimeTableImage))
+        let share = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(shareTimetable))
         share.tintColor = .label
         navigationItem.title = "с \(week.from) до \(week.to)"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
@@ -160,22 +160,25 @@ final class TimeTableWeekListTableViewController: UIViewController {
         }
     }
     
-    @objc private func getTimeTableImage() {
-        var timetable = [TimeTable]()
-        service.getTimeTableWeekForImage(groupId: self.group, startDate: self.week.from, endDate: dateManager.previousDay(date: self.week.to)) { result in
-            switch result {
-            case .success(let data):
-                timetable = data
-                do {
-                    let json = try JSONEncoder().encode(timetable)
-                    self.service.getTimeTableWeekImage(json: json) { image in
-                        self.ShareImage(image: image, title: self.group, text: "с \(self.week.from) до \(self.week.to)")
-                    }
-                } catch {
-                    print(error.localizedDescription)
+    @objc private func shareTimetable() {
+        let emptyTimetable = [TimeTable(date: week.from, groupName: group, disciplines: [])]
+        if !self.timetable.isEmpty {
+            do {
+                let json = try JSONEncoder().encode(timetable)
+                service.getTimeTableWeekImage(json: json) { image in
+                    self.ShareImage(image: image, title: self.group, text: "с \(self.week.from) \(self.week.to)")
                 }
-            case .failure(let error):
-                print(error)
+            } catch {
+                print(error.localizedDescription)
+            }
+        } else {
+            do {
+                let json = try JSONEncoder().encode(emptyTimetable)
+                service.getTimeTableWeekImage(json: json) { image in
+                    self.ShareImage(image: image, title: self.group, text: "с \(self.week.from) \(self.week.to)")
+                }
+            } catch {
+                print(error.localizedDescription)
             }
         }
     }

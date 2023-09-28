@@ -11,6 +11,5 @@ protocol TimeTableServicerProtocol {
     func getWeeks(completion: @escaping(Result<[WeekModel],Error>)->Void)
     func getTimeTableDay(groupId: String, date: String, completion: @escaping(Result<TimeTable,Error>)->Void)
     func getTimeTableWeek(groupId: String, startDate: String, endDate: String, completion: @escaping(Result<[TimeTable],Error>)->Void)
-    func getTimeTableWeekForImage(groupId: String, startDate: String, endDate: String, completion: @escaping(Result<[TimeTable],Error>)->Void)
     func getTimeTableDayImage(json: Data, completion: @escaping(UIImage)->Void)
 }
