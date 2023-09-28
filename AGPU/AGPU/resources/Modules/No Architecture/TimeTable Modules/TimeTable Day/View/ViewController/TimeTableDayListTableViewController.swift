@@ -219,6 +219,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         NotificationCenter.default.addObserver(forName: Notification.Name("subgroup changed"), object: nil, queue: .main) { notification in
             if let subgroup = notification.object as? Int {
                 self.subgroup = subgroup
+                self.type = .all
                 self.getTimeTable(group: self.group, date: self.date)
             }
         }

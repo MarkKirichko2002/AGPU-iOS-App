@@ -70,11 +70,11 @@ class AllWeeksListTableViewController: UITableViewController {
                 self.tableView.reloadData()
                 self.refreshControll.endRefreshing()
                 self.viewModel.getCurrentWeek()
+                self.tableView.isUserInteractionEnabled = false
             }
         }
         
         self.viewModel.registerScrollHandler { row in
-            self.tableView.isUserInteractionEnabled = false
             DispatchQueue.main.async {
                 let indexPath = IndexPath(row: row, section: 0)
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
