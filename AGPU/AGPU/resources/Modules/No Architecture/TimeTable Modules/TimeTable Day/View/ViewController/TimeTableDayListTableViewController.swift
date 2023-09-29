@@ -181,11 +181,11 @@ final class TimeTableDayListTableViewController: UIViewController {
             switch result {
             case .success(let timetable):
                 self.timetable = timetable
+                self.allDisciplines = timetable.disciplines
                 if !timetable.disciplines.isEmpty {
                     DispatchQueue.main.async {
                         let data = timetable.disciplines.filter { $0.subgroup == self.subgroup || $0.subgroup == 0 || (self.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
                         self.timetable?.disciplines = data
-                        self.allDisciplines = data
                         self.tableView.reloadData()
                         self.spinner.stopAnimating()
                         self.refreshControl.endRefreshing()
@@ -218,14 +218,16 @@ final class TimeTableDayListTableViewController: UIViewController {
     private func observeSubGroupChange() {
         NotificationCenter.default.addObserver(forName: Notification.Name("subgroup changed"), object: nil, queue: .main) { notification in
             if let subgroup = notification.object as? Int {
-                self.subgroup = subgroup
                 
-                let filteredDisciplines = self.allDisciplines.filter { $0.subgroup == subgroup }
-                self.type = filteredDisciplines.first?.type ?? .all
+                self.subgroup = subgroup
                 
                 if self.allDisciplines.isEmpty {
                     self.allDisciplines = self.timetable!.disciplines
                 }
+                
+                let filteredDisciplines = self.allDisciplines.filter { $0.subgroup == subgroup }
+                
+                self.type = filteredDisciplines.first?.type ?? .all
                 
                 self.timetable?.disciplines = filteredDisciplines
                 self.tableView.reloadData()
