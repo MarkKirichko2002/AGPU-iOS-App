@@ -240,6 +240,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     private func observePairType() {
         
         NotificationCenter.default.addObserver(forName: Notification.Name("TypeWasSelected"), object: nil, queue: .main) { [weak self] notification in
+            
             guard let type = notification.object as? PairType, let self = self, let timetable = self.timetable else { return }
             
             self.type = type
