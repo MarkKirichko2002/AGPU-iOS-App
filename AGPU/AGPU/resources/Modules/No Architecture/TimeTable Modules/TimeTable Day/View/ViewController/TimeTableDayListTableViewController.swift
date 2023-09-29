@@ -219,8 +219,16 @@ final class TimeTableDayListTableViewController: UIViewController {
         NotificationCenter.default.addObserver(forName: Notification.Name("subgroup changed"), object: nil, queue: .main) { notification in
             if let subgroup = notification.object as? Int {
                 self.subgroup = subgroup
-                self.type = .all
-                self.getTimeTable(group: self.group, date: self.date)
+                
+                let filteredDisciplines = self.allDisciplines.filter { $0.subgroup == subgroup }
+                self.type = filteredDisciplines.first?.type ?? .all
+                
+                if self.allDisciplines.isEmpty {
+                    self.allDisciplines = self.timetable!.disciplines
+                }
+                
+                self.timetable?.disciplines = filteredDisciplines
+                self.tableView.reloadData()
             }
         }
     }
