@@ -272,11 +272,12 @@ final class TimeTableDayListTableViewController: UIViewController {
                 }
                 
                 if let type = notification.object as? PairType {
-                    let filteredDisciplines = self.allDisciplines.filter { $0.type == type && $0.subgroup == self.subgroup }
+                    let filteredDisciplines = self.allDisciplines.filter { $0.type == type }
                     if filteredDisciplines.isEmpty {
                         self.subgroup = 0
                     }
                     self.timetable?.disciplines = filteredDisciplines
+                    self.subgroup = filteredDisciplines.first?.subgroup ?? 0
                     self.tableView.reloadData()
                 } else {
                     self.timetable?.disciplines = self.allDisciplines
