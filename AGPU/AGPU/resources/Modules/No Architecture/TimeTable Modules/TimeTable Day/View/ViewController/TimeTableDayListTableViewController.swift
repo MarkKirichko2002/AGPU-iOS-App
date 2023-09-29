@@ -262,6 +262,7 @@ final class TimeTableDayListTableViewController: UIViewController {
                 }
                 
                 self.timetable?.disciplines = self.allDisciplines
+                self.subgroup = 0
                 self.tableView.reloadData()
                 
             } else {
