@@ -277,8 +277,15 @@ final class TimeTableDayListTableViewController: UIViewController {
                         self.subgroup = 0
                     }
                     self.timetable?.disciplines = filteredDisciplines
-                    self.subgroup = filteredDisciplines.first?.subgroup ?? 0
+                    
+                    if filteredDisciplines.first?.type == .lab {
+                        self.subgroup = 0
+                    } else {
+                        self.subgroup = filteredDisciplines.first?.subgroup ?? 0
+                    }
+                    
                     self.tableView.reloadData()
+                    
                 } else {
                     self.timetable?.disciplines = self.allDisciplines
                     self.tableView.reloadData()

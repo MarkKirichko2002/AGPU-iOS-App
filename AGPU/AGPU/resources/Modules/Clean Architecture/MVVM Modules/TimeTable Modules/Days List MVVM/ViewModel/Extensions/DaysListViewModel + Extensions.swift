@@ -27,13 +27,12 @@ extension DaysListViewModel: DaysListViewModelProtocol {
                         let day = DaysList.days.first { $0.name == day.name }
                         let index = DaysList.days.firstIndex(of: day!)
                         DaysList.days[index!].info = "есть пары"
-                        self?.dataChangedHandler?()
                     } else {
                         let day = DaysList.days.first { $0.name == day.name }
                         let index = DaysList.days.firstIndex(of: day!)
                         DaysList.days[index!].info = "нет пар"
-                        self?.dataChangedHandler?()
                     }
+                    self?.dataChangedHandler?()
                 case .failure(let error):
                     print(error)
                 }
