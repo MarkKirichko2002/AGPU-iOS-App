@@ -105,7 +105,7 @@ final class NewsListViewController: UIViewController {
                 
                  pagesAction = UIAction(title: "страницы") { _ in
                      if let currentPage = self.viewModel.newsResponse.currentPage, let countPages = self.viewModel.newsResponse.countPages {
-                         let vc = NewsPagesListTableViewController(currentPage: currentPage, countPages: countPages)
+                         let vc = NewsPagesListTableViewController(currentPage: currentPage, countPages: countPages, faculty: self.viewModel.faculty)
                         let navVC = UINavigationController(rootViewController: vc)
                         navVC.modalPresentationStyle = .fullScreen
                         self.present(navVC, animated: true)

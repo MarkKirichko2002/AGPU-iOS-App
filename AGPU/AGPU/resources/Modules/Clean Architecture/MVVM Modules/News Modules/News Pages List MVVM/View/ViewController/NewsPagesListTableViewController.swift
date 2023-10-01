@@ -11,15 +11,16 @@ class NewsPagesListTableViewController: UITableViewController {
     
     private var currentPage: Int = 0
     private var countPages: Int = 0
+    private var faculty: AGPUFacultyModel?
     
     // MARK: - сервисы
     private var viewModel: NewsPagesListViewModel!
     
     // MARK: - Init
-    init(currentPage: Int, countPages: Int) {
+    init(currentPage: Int, countPages: Int, faculty: AGPUFacultyModel?) {
         self.currentPage = currentPage
         self.countPages = countPages
-        self.viewModel = NewsPagesListViewModel(currentPage: currentPage, countPages: countPages)
+        self.viewModel = NewsPagesListViewModel(currentPage: currentPage, countPages: countPages, faculty: faculty)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -52,14 +53,20 @@ class NewsPagesListTableViewController: UITableViewController {
     private func bindViewModel() {
         viewModel.setUpData()
         viewModel.registerPageSelectedHandler { category in
-            self.navigationItem.title = category
+            
+            DispatchQueue.main.async {
+                self.navigationItem.title = category
+                self.tableView.reloadData()
+            }
+            
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.dismiss(animated: true)
+            }
         }
+        
         viewModel.registerDataChangedHandler {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-            }
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.dismiss(animated: true)
             }
         }
     }

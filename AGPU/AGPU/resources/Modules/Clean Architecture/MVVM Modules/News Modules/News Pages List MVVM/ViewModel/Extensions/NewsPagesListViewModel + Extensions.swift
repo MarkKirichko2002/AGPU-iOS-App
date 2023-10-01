@@ -11,11 +11,42 @@ import Foundation
 extension NewsPagesListViewModel: NewsPagesListViewModelProtocol {
     
     func setUpData() {
+        
         let countPages = self.countPages
+        let dispatchGroup = DispatchGroup()
+
         for i in 1...countPages {
-            pages.append(i)
+            pages.append(NewsPageModel(pageNumber: i, newsCount: 0))
         }
-        self.dataChangedHandler?()
+
+        for page in 0..<pages.count {
+            dispatchGroup.enter()
+            if let faculty = faculty {
+                newsService.getNews(by: page, faculty: faculty) { result in
+                    defer { dispatchGroup.leave() }
+                    switch result {
+                    case .success(let data):
+                        self.pages[page].newsCount = data.articles?.count ?? 0
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            } else {
+                newsService.getNews(by: page, faculty: nil) { result in
+                    defer { dispatchGroup.leave() }
+                    switch result {
+                    case .success(let data):
+                        self.pages[page].newsCount = data.articles?.count ?? 0
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            }
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            self.dataChangedHandler?()
+        }
     }
     
     func registerPageSelectedHandler(block: @escaping((String)->Void)) {
@@ -27,7 +58,7 @@ extension NewsPagesListViewModel: NewsPagesListViewModelProtocol {
     }
     
     func pageItem(index: Int)-> String {
-        let page = "страница \(pages[index])"
+        let page = "страница \(pages[index].pageNumber) (новостей: \(pages[index].newsCount))"
         return page
     }
     
@@ -37,9 +68,9 @@ extension NewsPagesListViewModel: NewsPagesListViewModelProtocol {
     
     func chooseNewsPage(index: Int) {
         let page = pages[index]
-        if currentPage != page {
+        if currentPage != page.pageNumber {
             NotificationCenter.default.post(name: Notification.Name("page"), object: page)
-            currentPage = page
+            currentPage = page.pageNumber
             self.dataChangedHandler?()
             self.pageSelectedHandler?("Выбрана страница \(page)")
             HapticsManager.shared.hapticFeedback()
@@ -50,7 +81,7 @@ extension NewsPagesListViewModel: NewsPagesListViewModelProtocol {
     
     func isCurrentPage(index: Int)-> Bool {
         let page = pages[index]
-        if page == currentPage {
+        if page.pageNumber == currentPage {
             return true
         } else {
             return false
