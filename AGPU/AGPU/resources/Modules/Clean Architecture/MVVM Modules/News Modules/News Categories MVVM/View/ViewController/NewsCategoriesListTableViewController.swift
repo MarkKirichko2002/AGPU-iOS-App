@@ -48,15 +48,26 @@ class NewsCategoriesListTableViewController: UITableViewController {
     }
     
     private func bindViewModel() {
+        
+        
         viewModel.registerCategorySelectedHandler { category in
-            self.navigationItem.title = category
-        }
-        viewModel.registerDataChangedHandler {
+            
             DispatchQueue.main.async {
+                self.navigationItem.title = category
                 self.tableView.reloadData()
             }
+            
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 self.dismiss(animated: true)
+            }
+        }
+        
+        viewModel.getNewsCategoriesInfo()
+        
+        viewModel.registerDataChangedHandler {
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
     }

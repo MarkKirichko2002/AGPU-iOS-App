@@ -16,7 +16,7 @@ class NewsCategoryTableViewCell: UITableViewCell {
     
     func configure(category: NewsCategoryModel) {
         CategoryIcon.image = UIImage(named: category.icon)
-        CategoryName.text = category.name
+        CategoryName.text = "\(category.name) (страниц: \(category.pagesCount))"
     }
     
     override func awakeFromNib() {

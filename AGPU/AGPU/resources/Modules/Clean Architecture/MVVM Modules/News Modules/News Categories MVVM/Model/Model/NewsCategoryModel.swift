@@ -8,6 +8,9 @@
 import Foundation
 
 struct NewsCategoryModel {
+    let id: Int
     let name: String
+    let newsAbbreviation: String
     let icon: String
+    var pagesCount: Int
 }

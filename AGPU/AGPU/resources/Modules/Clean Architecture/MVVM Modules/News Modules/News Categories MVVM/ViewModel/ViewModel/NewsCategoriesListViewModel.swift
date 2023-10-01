@@ -14,6 +14,9 @@ class NewsCategoriesListViewModel {
     var categorySelectedHandler: ((String)->Void)?
     var dataChangedHandler: (()->Void)?
     
+    // MARK: - сервисы
+    let newsService = AGPUNewsService()
+    
     // MARK: - Init
     init(currentCategory: String) {
         self.currentCategory = currentCategory
