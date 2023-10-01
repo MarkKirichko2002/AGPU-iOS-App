@@ -177,30 +177,30 @@ final class TimeTableDayListTableViewController: UIViewController {
         self.noTimeTableLabel.isHidden = true
         self.timetable?.disciplines = []
         self.tableView.reloadData()
-        service.getTimeTableDay(groupId: group, date: date) { result in
+        service.getTimeTableDay(groupId: group, date: date) { [weak self] result in
             switch result {
             case .success(let timetable):
-                self.timetable = timetable
-                self.allDisciplines = timetable.disciplines
+                self?.timetable = timetable
+                self?.allDisciplines = timetable.disciplines
                 if !timetable.disciplines.isEmpty {
                     DispatchQueue.main.async {
-                        let data = timetable.disciplines.filter { $0.subgroup == self.subgroup || $0.subgroup == 0 || (self.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
-                        self.timetable?.disciplines = data
-                        self.tableView.reloadData()
-                        self.spinner.stopAnimating()
-                        self.refreshControl.endRefreshing()
-                        self.noTimeTableLabel.isHidden = true
+                        let data = timetable.disciplines.filter { $0.subgroup == self?.subgroup || $0.subgroup == 0 || (self?.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
+                        self?.timetable?.disciplines = data
+                        self?.tableView.reloadData()
+                        self?.spinner.stopAnimating()
+                        self?.refreshControl.endRefreshing()
+                        self?.noTimeTableLabel.isHidden = true
                     }
                 } else {
-                    self.spinner.stopAnimating()
-                    self.refreshControl.endRefreshing()
-                    self.noTimeTableLabel.isHidden = false
+                    self?.spinner.stopAnimating()
+                    self?.refreshControl.endRefreshing()
+                    self?.noTimeTableLabel.isHidden = false
                 }
             case .failure(let error):
-                self.spinner.stopAnimating()
-                self.refreshControl.endRefreshing()
-                self.noTimeTableLabel.text = "Ошибка"
-                self.noTimeTableLabel.isHidden = false
+                self?.spinner.stopAnimating()
+                self?.refreshControl.endRefreshing()
+                self?.noTimeTableLabel.text = "Ошибка"
+                self?.noTimeTableLabel.isHidden = false
                 print(error.localizedDescription)
             }
         }

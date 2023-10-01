@@ -52,10 +52,10 @@ class NewsPagesListTableViewController: UITableViewController {
     
     private func bindViewModel() {
         viewModel.setUpData()
-        viewModel.registerPageSelectedHandler { category in
+        viewModel.registerPageSelectedHandler { page in
             
             DispatchQueue.main.async {
-                self.navigationItem.title = category
+                self.navigationItem.title = page
                 self.tableView.reloadData()
             }
             

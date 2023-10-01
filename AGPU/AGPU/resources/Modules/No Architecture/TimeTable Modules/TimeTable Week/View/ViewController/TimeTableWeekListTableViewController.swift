@@ -119,40 +119,40 @@ final class TimeTableWeekListTableViewController: UIViewController {
         self.noTimeTableLabel.isHidden = true
         self.timetable = []
         self.tableView.reloadData()
-        service.getTimeTableWeek(groupId: group, startDate: week.from, endDate: week.to) { result in
+        service.getTimeTableWeek(groupId: group, startDate: week.from, endDate: week.to) { [weak self] result in
             switch result {
             case .success(let timetable):
                 var arr = [TimeTable]()
                 if !timetable.isEmpty {
                     for timetable in timetable {
-                        let data = timetable.disciplines.filter { $0.subgroup == self.subgroup || $0.subgroup == 0 || (self.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
+                        let data = timetable.disciplines.filter { $0.subgroup == self?.subgroup || $0.subgroup == 0 || (self?.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
                         let timeTable = TimeTable(date: timetable.date, groupName: timetable.groupName, disciplines: data)
                         if !timetable.disciplines.isEmpty {
                             arr.append(timeTable)
                         }
                     }
                     DispatchQueue.main.async {
-                        self.timetable = arr
-                        self.tableView.reloadData()
-                        self.spinner.stopAnimating()
-                        self.refreshControl.endRefreshing()
-                        self.noTimeTableLabel.isHidden = true
-                        self.setUpNavigation()
-                        self.scrollToCurrentDay()
+                        self?.timetable = arr
+                        self?.tableView.reloadData()
+                        self?.spinner.stopAnimating()
+                        self?.refreshControl.endRefreshing()
+                        self?.noTimeTableLabel.isHidden = true
+                        self?.setUpNavigation()
+                        self?.scrollToCurrentDay()
                     }
                     
                 } else {
-                    self.noTimeTableLabel.isHidden = false
-                    self.spinner.stopAnimating()
-                    self.refreshControl.endRefreshing()
-                    self.setUpNavigation()
+                    self?.noTimeTableLabel.isHidden = false
+                    self?.spinner.stopAnimating()
+                    self?.refreshControl.endRefreshing()
+                    self?.setUpNavigation()
                 }
             case .failure(let error):
-                self.spinner.stopAnimating()
-                self.noTimeTableLabel.text = "Ошибка"
-                self.noTimeTableLabel.isHidden = false
-                self.refreshControl.endRefreshing()
-                self.setUpNavigation()
+                self?.spinner.stopAnimating()
+                self?.noTimeTableLabel.text = "Ошибка"
+                self?.noTimeTableLabel.isHidden = false
+                self?.refreshControl.endRefreshing()
+                self?.setUpNavigation()
                 print(error.localizedDescription)
             }
         }

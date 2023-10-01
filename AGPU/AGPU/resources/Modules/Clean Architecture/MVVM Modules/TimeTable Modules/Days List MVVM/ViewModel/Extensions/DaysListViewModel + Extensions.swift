@@ -19,8 +19,11 @@ extension DaysListViewModel: DaysListViewModelProtocol {
     }
     
     func getTimetableInfo() {
+        let dispatchGroup = DispatchGroup()
         for day in DaysList.days {
+            dispatchGroup.enter()
             timetableService.getTimeTableDay(groupId: group, date: day.date) { [weak self] result in
+                defer { dispatchGroup.leave() }
                 switch result {
                 case .success(let timetable):
                     if !timetable.disciplines.isEmpty {
@@ -32,11 +35,13 @@ extension DaysListViewModel: DaysListViewModelProtocol {
                         let index = DaysList.days.firstIndex(of: day!)
                         DaysList.days[index!].info = "нет пар"
                     }
-                    self?.dataChangedHandler?()
                 case .failure(let error):
                     print(error)
                 }
             }
+        }
+        dispatchGroup.notify(queue: .main) {
+            self.dataChangedHandler?()
         }
     }
     

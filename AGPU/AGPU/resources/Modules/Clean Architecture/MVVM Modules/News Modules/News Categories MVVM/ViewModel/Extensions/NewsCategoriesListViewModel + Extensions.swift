@@ -28,28 +28,36 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
     }
     
     func getNewsCategoriesInfo() {
+        
+        let dispatchGroup = DispatchGroup()
+        
         for category in NewsCategories.categories {
+            dispatchGroup.enter()
             if category.name != "АГПУ" {
-                newsService.getFacultyNews(abbreviation: category.newsAbbreviation) { result in
+                newsService.getFacultyNews(abbreviation: category.newsAbbreviation) { [weak self] result in
+                    defer { dispatchGroup.leave() }
                     switch result {
                     case .success(let data):
                         NewsCategories.categories[category.id].pagesCount = data.countPages ?? 0
-                        self.dataChangedHandler?()
                     case .failure(let error):
                         print(error)
                     }
                 }
             } else {
-                newsService.getAGPUNews { result in
+                newsService.getAGPUNews { [weak self] result in
+                    defer { dispatchGroup.leave() }
                     switch result {
                     case .success(let data):
                         NewsCategories.categories[0].pagesCount = data.countPages ?? 0
-                        self.dataChangedHandler?()
                     case .failure(let error):
                         print(error)
                     }
                 }
             }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            self.dataChangedHandler?()
         }
     }
     

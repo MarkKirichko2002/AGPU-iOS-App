@@ -27,11 +27,11 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     // получить новости АГПУ
     func getAGPUNews() {
-        newsService.getAGPUNews { result in
+        newsService.getAGPUNews { [weak self] result in
             switch result {
             case .success(let response):
-                self.newsResponse = response
-                self.dataChangedHandler?(nil)
+                self?.newsResponse = response
+                self?.dataChangedHandler?(nil)
             case .failure(let error):
                 print(error)
             }
@@ -41,11 +41,11 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     // получить новости факультета
     func getFacultyNews(faculty: AGPUFacultyModel) {
         self.faculty = faculty
-        newsService.getFacultyNews(abbreviation: faculty.newsAbbreviation) { result in
+        newsService.getFacultyNews(abbreviation: faculty.newsAbbreviation) { [weak self] result in
             switch result {
             case .success(let response):
-                self.newsResponse = response
-                self.dataChangedHandler?(faculty)
+                self?.newsResponse = response
+                self?.dataChangedHandler?(faculty)
             case .failure(let error):
                 print(error)
             }
@@ -54,11 +54,11 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     // получить новость по странице
     func getNews(by page: Int) {
-        newsService.getNews(by: page, faculty: faculty) { result in
+        newsService.getNews(by: page, faculty: faculty) { [weak self] result in
             switch result {
             case .success(let response):
-                self.newsResponse = response
-                self.dataChangedHandler?(self.faculty)
+                self?.newsResponse = response
+                self?.dataChangedHandler?(self?.faculty)
             case .failure(let error):
                 print(error)
             }
