@@ -36,7 +36,7 @@ extension DaysListViewModel: DaysListViewModelProtocol {
                     if !timetable.disciplines.isEmpty {
                         let day = DaysList.days.first { $0.name == day.name }
                         let index = DaysList.days.firstIndex(of: day!)
-                        DaysList.days[index!].info = "есть пары"
+                        DaysList.days[index!].info = "пар: \(self?.getPairsCount(pairs: timetable.disciplines) ?? 0)"
                     } else {
                         let day = DaysList.days.first { $0.name == day.name }
                         let index = DaysList.days.firstIndex(of: day!)
@@ -52,6 +52,21 @@ extension DaysListViewModel: DaysListViewModelProtocol {
         }
     }
     
+    func getPairsCount(pairs: [Discipline])-> Int {
+        
+        var uniqueTimes: Set<String> = Set()
+        
+        for pair in pairs {
+            
+            let times = pair.time.components(separatedBy: "-")
+            let startTime = times[0]
+            
+            uniqueTimes.insert(startTime)
+        }
+        
+        return uniqueTimes.count
+    }
+    
     func chooseDay(index: Int) {
         let day = DaysList.days[index]
         NotificationCenter.default.post(name: Notification.Name("DateWasSelected"), object: day.date)
@@ -60,7 +75,7 @@ extension DaysListViewModel: DaysListViewModelProtocol {
     
     func checkDisciplinesExistence(index: Int)-> Bool {
         let day = DaysList.days[index]
-        if day.info == "есть пары" {
+        if day.info.contains("пар:") {
             return true
         } else {
             return false
