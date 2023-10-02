@@ -11,10 +11,17 @@ import Foundation
 extension DaysListViewModel: DaysListViewModelProtocol {
     
     func setUpData() {
+        
         DaysList.days[0].date = dateManager.getCurrentDate()
         DaysList.days[1].date = currentDate
         DaysList.days[2].date = dateManager.nextDay(date: currentDate)
         DaysList.days[3].date = dateManager.previousDay(date: currentDate)
+        
+        DaysList.days[0].info = "загрузка..."
+        DaysList.days[1].info = "загрузка..."
+        DaysList.days[2].info = "загрузка..."
+        DaysList.days[3].info = "загрузка..."
+        
         getTimetableInfo()
     }
     
