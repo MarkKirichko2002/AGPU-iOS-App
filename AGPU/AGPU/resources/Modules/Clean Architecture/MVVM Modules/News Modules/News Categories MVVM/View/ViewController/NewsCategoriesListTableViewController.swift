@@ -62,14 +62,14 @@ class NewsCategoriesListTableViewController: UITableViewController {
             }
         }
         
-        viewModel.getNewsCategoriesInfo()
-        
         viewModel.registerDataChangedHandler {
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
+        
+        viewModel.getNewsCategoriesInfo()
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

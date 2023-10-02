@@ -51,7 +51,7 @@ class NewsPagesListTableViewController: UITableViewController {
     }
     
     private func bindViewModel() {
-        viewModel.setUpData()
+        
         viewModel.registerPageSelectedHandler { page in
             
             DispatchQueue.main.async {
@@ -69,6 +69,8 @@ class NewsPagesListTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
+        
+        viewModel.setUpData()
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

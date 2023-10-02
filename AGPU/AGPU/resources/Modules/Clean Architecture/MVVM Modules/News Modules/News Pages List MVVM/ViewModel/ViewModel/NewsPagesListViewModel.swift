@@ -19,6 +19,8 @@ class NewsPagesListViewModel {
     
     var faculty: AGPUFacultyModel?
     
+    var isStartLoading = false
+    
     // MARK: - сервисы
     let newsService = AGPUNewsService()
     

@@ -10,14 +10,6 @@ import Foundation
 // MARK: - NewsCategoriesListViewModelProtocol
 extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
     
-    func registerCategorySelectedHandler(block: @escaping((String)->Void)) {
-        self.categorySelectedHandler = block
-    }
-    
-    func registerDataChangedHandler(block: @escaping()->Void) {
-        self.dataChangedHandler = block
-    }
-    
     func categoryItem(index: Int)-> NewsCategoryModel {
         let category = NewsCategories.categories[index]
         return category
@@ -74,9 +66,7 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
                 HapticsManager.shared.hapticFeedback()
             }
             self.categorySelectedHandler?("Выбрана категория \(category.name)")
-        } else {
-            self.categorySelectedHandler?("Категория \(category.name) уже выбрана")
-        }
+        } else {}
     }
     
     func isCurrentCategory(index: Int)-> Bool {
@@ -86,5 +76,13 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
         } else {
             return false
         }
+    }
+    
+    func registerCategorySelectedHandler(block: @escaping((String)->Void)) {
+        self.categorySelectedHandler = block
+    }
+    
+    func registerDataChangedHandler(block: @escaping()->Void) {
+        self.dataChangedHandler = block
     }
 }
