@@ -11,10 +11,10 @@ class CalendarViewModel {
     
     var date: String = ""
     var group: String = ""
-    var dateSelectedHandler: (()->Void)?
     
-    var noTimetableHandler: (()->Void)?
-    var timetableHandler: (()->Void)?
+    var noTimetableHandler: ((String)->Void)?
+    var timetableHandler: ((String)->Void)?
+    var dateSelectedHandler: (()->Void)?
     
     // MARK: - сервисы
     let dateManager = DateManager()

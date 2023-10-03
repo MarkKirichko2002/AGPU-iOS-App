@@ -8,9 +8,10 @@
 import Foundation
 
 protocol CalendarViewModelProtocol {
-    func sendNotificationDataWasSelected(date: String)
     func checkTimetable(date: Date)
-    func registerTimetableAlertHandler(block: @escaping()->Void)
-    func registerNoTimetableAlertHandler(block: @escaping()->Void)
+    func getPairsCount(pairs: [Discipline])-> Int
+    func sendNotificationDataWasSelected(date: String)
+    func registerTimetableAlertHandler(block: @escaping(String)->Void)
+    func registerNoTimetableAlertHandler(block: @escaping(String)->Void)
     func registerDateSelectedHandler(block: @escaping()->Void)
 }

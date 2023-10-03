@@ -10,10 +10,6 @@ import Foundation
 // MARK: - CalendarViewModelProtocol
 extension CalendarViewModel: CalendarViewModelProtocol {
     
-    func sendNotificationDataWasSelected(date: String) {
-        NotificationCenter.default.post(name: Notification.Name("DateWasSelected"), object: date)
-    }
-    
     func checkTimetable(date: Date) {
         let date = dateManager.getFormattedDate(date: date)
         self.date = date
@@ -21,9 +17,9 @@ extension CalendarViewModel: CalendarViewModelProtocol {
             switch result {
             case .success(let data):
                 if !data.disciplines.isEmpty {
-                    self?.timetableHandler?()
+                    self?.timetableHandler?("\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date) количество пар: \(self?.getPairsCount(pairs: data.disciplines) ?? 0)")
                 } else {
-                    self?.noTimetableHandler?()
+                    self?.noTimetableHandler?("\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date) нет пар: \(self?.getPairsCount(pairs: data.disciplines) ?? 0)")
                 }
             case .failure(let error):
                 print(error)
@@ -32,11 +28,30 @@ extension CalendarViewModel: CalendarViewModelProtocol {
         HapticsManager.shared.hapticFeedback()
     }
     
-    func registerTimetableAlertHandler(block: @escaping()->Void) {
+    func getPairsCount(pairs: [Discipline])-> Int {
+        
+        var uniqueTimes: Set<String> = Set()
+        
+        for pair in pairs {
+            
+            let times = pair.time.components(separatedBy: "-")
+            let startTime = times[0]
+            
+            uniqueTimes.insert(startTime)
+        }
+        
+        return uniqueTimes.count
+    }
+    
+    func sendNotificationDataWasSelected(date: String) {
+        NotificationCenter.default.post(name: Notification.Name("DateWasSelected"), object: date)
+    }
+    
+    func registerTimetableAlertHandler(block: @escaping(String)->Void) {
         self.timetableHandler = block
     }
     
-    func registerNoTimetableAlertHandler(block: @escaping()->Void) {
+    func registerNoTimetableAlertHandler(block: @escaping(String)->Void) {
         self.noTimetableHandler = block
     }
     

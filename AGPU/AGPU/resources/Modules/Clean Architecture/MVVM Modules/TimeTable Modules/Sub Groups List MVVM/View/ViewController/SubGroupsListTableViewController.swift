@@ -47,23 +47,21 @@ class SubGroupsListTableViewController: UITableViewController {
     
     private func bindViewModel() {
         
-        viewModel.getPairsCount(pairs: disciplines)
-        
         viewModel.registerDataChangedHandler {
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.dismiss(animated: true)
-            }
         }
+        
+        viewModel.getPairsCount(pairs: disciplines)
         
         viewModel.registerSubGroupSelectedHandler {
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+            
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 self.dismiss(animated: true)
             }
