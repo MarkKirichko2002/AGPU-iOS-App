@@ -67,6 +67,7 @@ final class CalendarViewController: UIViewController {
     }
     
     private func bindViewModel() {
+        
         viewModel.registerDateSelectedHandler {
             self.dismiss(animated: true)
         }

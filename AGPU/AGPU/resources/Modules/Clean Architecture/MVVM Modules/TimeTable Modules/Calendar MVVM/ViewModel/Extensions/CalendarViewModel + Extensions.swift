@@ -19,7 +19,7 @@ extension CalendarViewModel: CalendarViewModelProtocol {
                 if !data.disciplines.isEmpty {
                     self?.timetableHandler?("\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date) количество пар: \(self?.getPairsCount(pairs: data.disciplines) ?? 0)")
                 } else {
-                    self?.noTimetableHandler?("\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date) нет пар: \(self?.getPairsCount(pairs: data.disciplines) ?? 0)")
+                    self?.noTimetableHandler?("\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date) нет пар")
                 }
             case .failure(let error):
                 print(error)
