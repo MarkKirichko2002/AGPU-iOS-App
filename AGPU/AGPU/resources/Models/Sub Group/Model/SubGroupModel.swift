@@ -10,4 +10,5 @@ import Foundation
 struct SubGroupModel {
     let name: String
     let number: Int
+    var pairsCount: Int
 }

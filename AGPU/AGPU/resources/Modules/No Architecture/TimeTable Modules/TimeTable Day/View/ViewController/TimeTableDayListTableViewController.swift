@@ -64,7 +64,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         // список подгрупп
         let subGroupsList = UIAction(title: "подгруппы") { _ in
-            let vc = SubGroupsListTableViewController(subgroup: self.subgroup)
+            let vc = SubGroupsListTableViewController(subgroup: self.subgroup, disciplines: self.allDisciplines)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -217,6 +217,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     
     private func observeSubGroupChange() {
         NotificationCenter.default.addObserver(forName: Notification.Name("subgroup changed"), object: nil, queue: .main) { notification in
+            
             if let subgroup = notification.object as? Int {
                 
                 self.subgroup = subgroup

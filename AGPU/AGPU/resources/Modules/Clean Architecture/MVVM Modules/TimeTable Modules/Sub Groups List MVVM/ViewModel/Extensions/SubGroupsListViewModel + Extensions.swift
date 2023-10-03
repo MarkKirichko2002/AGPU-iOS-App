@@ -14,16 +14,57 @@ extension SubGroupsListViewModel: SubGroupsListViewModelProtocol {
         return SubGroupsList.subgroups.count
     }
     
-    func subgroupItem(index: Int)-> SubGroupModel {
+    func subgroupItem(index: Int)-> String {
         let subgroup = SubGroupsList.subgroups[index]
-        return subgroup
+        return "\(subgroup.name) (пар: \(subgroup.pairsCount))"
+    }
+    
+    func getPairsCount(pairs: [Discipline]) {
+        
+        var firstSubGroupDisciplines: Set<String> = Set()
+        var secondSubGroupDisciplines: Set<String> = Set()
+        var noSubGroupDisciplines: Set<String> = Set()
+        
+        let firstSubGroupDisciplinesArr = pairs.filter { $0.subgroup == 1}
+        let secondSubGroupDisciplinesArr = pairs.filter { $0.subgroup == 2}
+        let noSubGroupDisciplinesArr = pairs.filter { $0.subgroup == 0}
+        
+        for pair in firstSubGroupDisciplinesArr {
+            
+            let times = pair.time.components(separatedBy: "-")
+            let startTime = times[0]
+            
+            firstSubGroupDisciplines.insert(startTime)
+        }
+        
+        for pair in secondSubGroupDisciplinesArr {
+            
+            let times = pair.time.components(separatedBy: "-")
+            let startTime = times[0]
+            
+            secondSubGroupDisciplines.insert(startTime)
+        }
+        
+        for pair in noSubGroupDisciplinesArr {
+            
+            let times = pair.time.components(separatedBy: "-")
+            let startTime = times[0]
+            
+            noSubGroupDisciplines.insert(startTime)
+        }
+        
+        SubGroupsList.subgroups[0].pairsCount = firstSubGroupDisciplines.count
+        SubGroupsList.subgroups[1].pairsCount = secondSubGroupDisciplines.count
+        SubGroupsList.subgroups[2].pairsCount = noSubGroupDisciplines.count
+        
+        dataChangedHandler?()
     }
     
     func selectSubGroup(index: Int) {
         let subgroupItem = SubGroupsList.subgroups[index]
         NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: subgroupItem.number)
         subgroup = subgroupItem.number
-        changedHandler?()
+        subGroupSelectedHandler?()
         HapticsManager.shared.hapticFeedback()
     }
     
@@ -36,7 +77,11 @@ extension SubGroupsListViewModel: SubGroupsListViewModelProtocol {
         }
     }
     
-    func registerChangedHandler(block: @escaping()->Void) {
-        self.changedHandler = block
+    func registerDataChangedHandler(block: @escaping()->Void) {
+        self.dataChangedHandler = block
+    }
+    
+    func registerSubGroupSelectedHandler(block: @escaping()->Void) {
+        self.subGroupSelectedHandler = block
     }
 }
