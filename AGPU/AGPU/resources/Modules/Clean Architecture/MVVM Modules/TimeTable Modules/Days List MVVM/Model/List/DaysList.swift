@@ -10,9 +10,30 @@ import Foundation
 struct DaysList {
     
     static var days = [
-        DayModel(name: "настоящий", date: "", info: ""),
-        DayModel(name: "текущий", date: "", info: ""),
-        DayModel(name: "следующий", date: "", info: ""),
-        DayModel(name: "предыдущий", date: "", info: ""),
+        
+        DayModel(
+            name: "настоящий", 
+            date: "",
+            dayOfWeek: "",
+            info: ""
+        ),
+        DayModel(
+            name: "текущий",
+            date: "",
+            dayOfWeek: "",
+            info: ""
+        ),
+        DayModel(
+            name: "следующий",
+            date: "",
+            dayOfWeek: "",
+            info: ""
+        ),
+        DayModel(
+            name: "предыдущий",
+            date: "",
+            dayOfWeek: "",
+            info: ""
+        ),
     ]
 }

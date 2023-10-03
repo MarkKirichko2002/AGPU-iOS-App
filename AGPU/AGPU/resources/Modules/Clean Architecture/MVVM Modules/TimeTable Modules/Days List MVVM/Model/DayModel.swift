@@ -10,5 +10,6 @@ import Foundation
 struct DayModel: Equatable {
     let name: String
     var date: String
+    var dayOfWeek: String
     var info: String
 }

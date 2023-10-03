@@ -12,11 +12,19 @@ extension DaysListViewModel: DaysListViewModelProtocol {
     
     func setUpData() {
         
+        // даты
         DaysList.days[0].date = dateManager.getCurrentDate()
         DaysList.days[1].date = currentDate
         DaysList.days[2].date = dateManager.nextDay(date: currentDate)
         DaysList.days[3].date = dateManager.previousDay(date: currentDate)
         
+        // дни недели
+        DaysList.days[0].dayOfWeek = dateManager.getCurrentDayOfWeek(date: dateManager.getCurrentDate())
+        DaysList.days[1].dayOfWeek = dateManager.getCurrentDayOfWeek(date: currentDate)
+        DaysList.days[2].dayOfWeek = dateManager.getCurrentDayOfWeek(date: dateManager.nextDay(date: currentDate))
+        DaysList.days[3].dayOfWeek = dateManager.getCurrentDayOfWeek(date: dateManager.previousDay(date: currentDate))
+        
+        // информация о количестве пар
         DaysList.days[0].info = "загрузка..."
         DaysList.days[1].info = "загрузка..."
         DaysList.days[2].info = "загрузка..."
