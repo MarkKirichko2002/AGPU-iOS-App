@@ -47,7 +47,7 @@ extension RecentWebPageViewController: WKNavigationDelegate {
         if let currentUrl = webView.url?.absoluteString {
             viewModel.getRecentPosition(currentUrl: currentUrl) { position in
                 if position.y > 0 {
-                    self.WVWEBview.scrollView.setContentOffset(position, animated: true)
+                    webView.scrollView.setContentOffset(position, animated: true)
                 } else {
                     webView.scrollView.isUserInteractionEnabled = true
                 }
