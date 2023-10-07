@@ -90,8 +90,10 @@ class FacultyCathedraListTableViewController: UITableViewController {
             let mapAction = UIAction(title: "найти кафедру", image: UIImage(named: "map icon")) { _ in
                 let vc = AGPUCurrentCathedraMapViewController(cathedra: self.faculty.cathedra[indexPath.row])
                 let navVC = UINavigationController(rootViewController: vc)
-                navVC.modalPresentationStyle = .fullScreen
-                self.present(navVC, animated: true)
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    navVC.modalPresentationStyle = .fullScreen
+                    self.present(navVC, animated: true)
+                }
             }
             
             let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in

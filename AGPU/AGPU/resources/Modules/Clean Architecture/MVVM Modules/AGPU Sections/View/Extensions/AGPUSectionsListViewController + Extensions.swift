@@ -61,6 +61,7 @@ extension AGPUSectionsListViewController: UITableViewDelegate {
         if let cell = tableView.cellForRow(at: indexPath) as? AGPUSubSectionTableViewCell {
             cell.didTapCell(indexPath: indexPath)
         }
+        HapticsManager.shared.hapticFeedback() 
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
             self.goToWeb(url: subsection.url, image: subsection.icon, title: "ФГБОУ ВО «АГПУ»", isSheet: false)
         }
