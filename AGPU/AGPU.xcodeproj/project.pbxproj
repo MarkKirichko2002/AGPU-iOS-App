@@ -1481,9 +1481,9 @@
 		82426C6F2A71476D00D5AA57 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				82426C792A714DEA00D5AA57 /* ForApplicantSections.swift */,
-				82426C702A71476D00D5AA57 /* ForStudentSections.swift */,
-				82426C8C2A71D26100D5AA57 /* ForEmployeeSections.swift */,
+				827DC0492AD1EC190017B07B /* For Applicant */,
+				827DC04A2AD1EC350017B07B /* For Student */,
+				827DC04B2AD1EC430017B07B /* For Employee */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -2045,6 +2045,30 @@
 				82768AF42ABE1B360022FBE1 /* AppThemesTableViewCell.xib */,
 			);
 			path = "App Themes";
+			sourceTree = "<group>";
+		};
+		827DC0492AD1EC190017B07B /* For Applicant */ = {
+			isa = PBXGroup;
+			children = (
+				82426C792A714DEA00D5AA57 /* ForApplicantSections.swift */,
+			);
+			path = "For Applicant";
+			sourceTree = "<group>";
+		};
+		827DC04A2AD1EC350017B07B /* For Student */ = {
+			isa = PBXGroup;
+			children = (
+				82426C702A71476D00D5AA57 /* ForStudentSections.swift */,
+			);
+			path = "For Student";
+			sourceTree = "<group>";
+		};
+		827DC04B2AD1EC430017B07B /* For Employee */ = {
+			isa = PBXGroup;
+			children = (
+				82426C8C2A71D26100D5AA57 /* ForEmployeeSections.swift */,
+			);
+			path = "For Employee";
 			sourceTree = "<group>";
 		};
 		82807C6C2AA0FA0900E9C884 /* Pair Types MVVM */ = {

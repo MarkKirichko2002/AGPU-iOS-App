@@ -12,8 +12,7 @@ class CalendarViewModel {
     var date: String = ""
     var group: String = ""
     
-    var noTimetableHandler: ((String)->Void)?
-    var timetableHandler: ((String)->Void)?
+    var timetableHandler: ((String, String)->Void)?
     var dateSelectedHandler: (()->Void)?
     
     // MARK: - сервисы
