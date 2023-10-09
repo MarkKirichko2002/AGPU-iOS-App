@@ -21,7 +21,7 @@ extension SettingsListViewController: UITableViewDataSource {
         case 1:
             return AGPUFaculties.faculties.count
         case 2:
-            return 2
+            return 3
         case 3:
             return 1
         default:
@@ -49,13 +49,22 @@ extension SettingsListViewController: UITableViewDataSource {
             if indexPath.row == 0 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ShakeToRecallOptionTableViewCell.identifier, for: indexPath) as? ShakeToRecallOptionTableViewCell else {return UITableViewCell()}
                 return cell
-            } else {
+                
+            } else if indexPath.row == 1 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AppThemesTableViewCell.identifier, for: indexPath) as? AppThemesTableViewCell else {return UITableViewCell()}
                 return cell
+                
+            } else if indexPath.row == 2 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: NotificationsTableViewCell.identifier, for: indexPath) as? NotificationsTableViewCell else {return UITableViewCell()}
+                return cell
             }
+            
+            return UITableViewCell()
+            
         case 3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AppFeaturesTableViewCell.identifier, for: indexPath) as? AppFeaturesTableViewCell else {return UITableViewCell()}
             return cell
+            
         default:
             return UITableViewCell()
         }
@@ -93,7 +102,7 @@ extension SettingsListViewController: UITableViewDelegate {
                 let chooseFacultyAction = UIAction(title: self.viewModel.isFacultySelected(index: indexPath.row) ? "выбран факультет" : "выбрать факультет", image: self.viewModel.isFacultySelected(index: indexPath.row) ? UIImage(named: "check") : nil) { action in
                     self.viewModel.chooseFaculty(index: indexPath.row)
                 }
-                                
+                
                 let chooseIconAction = UIAction(title: self.viewModel.isFacultyIconSelected(index: indexPath.row) ? "выбрана иконка" : "выбрать иконку", image: self.viewModel.isFacultyIconSelected(index: indexPath.row) ? UIImage(named: "check") : nil) { action in
                     if self.viewModel.isFacultySelected(index: indexPath.row) {
                         self.viewModel.chooseFacultyIcon(index: indexPath.row)
@@ -177,7 +186,16 @@ extension SettingsListViewController: UITableViewDelegate {
             break
         case 2:
             if indexPath.row == 1 {
-              NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "theme")
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "theme")
+                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                    let vc = AppThemesListTableViewController()
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    self.present(navVC, animated: true)
+                }
+            } else if indexPath.row == 2 {
+                
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "notification")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = AppThemesListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
@@ -185,7 +203,6 @@ extension SettingsListViewController: UITableViewDelegate {
                     self.present(navVC, animated: true)
                 }
             }
-            HapticsManager.shared.hapticFeedback()
         case 3:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "info icon")
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in

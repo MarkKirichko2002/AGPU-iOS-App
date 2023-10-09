@@ -27,6 +27,8 @@
 		82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */; };
 		821EEAD62AA0B76F00AE517B /* UserStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821EEAD42AA0B76F00AE517B /* UserStatusTableViewCell.swift */; };
 		821EEAD72AA0B76F00AE517B /* UserStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821EEAD52AA0B76F00AE517B /* UserStatusTableViewCell.xib */; };
+		821FBC6C2AD448110017D88B /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FBC6A2AD448110017D88B /* NotificationsTableViewCell.swift */; };
+		821FBC6D2AD448110017D88B /* NotificationsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821FBC6B2AD448110017D88B /* NotificationsTableViewCell.xib */; };
 		821FCF052A87CDB8006FFB26 /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FCF042A87CDB8006FFB26 /* NewsCollectionViewCell.swift */; };
 		821FCF072A87CE30006FFB26 /* NewsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FCF062A87CE30006FFB26 /* NewsListViewController.swift */; };
 		821FCF0A2A87CE79006FFB26 /* NewsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FCF092A87CE79006FFB26 /* NewsListViewController + Extensions.swift */; };
@@ -280,6 +282,8 @@
 		821C892F2A510F5600BD756D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		821EEAD42AA0B76F00AE517B /* UserStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusTableViewCell.swift; sourceTree = "<group>"; };
 		821EEAD52AA0B76F00AE517B /* UserStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserStatusTableViewCell.xib; sourceTree = "<group>"; };
+		821FBC6A2AD448110017D88B /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCell.swift; sourceTree = "<group>"; };
+		821FBC6B2AD448110017D88B /* NotificationsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationsTableViewCell.xib; sourceTree = "<group>"; };
 		821FCF042A87CDB8006FFB26 /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		821FCF062A87CE30006FFB26 /* NewsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewController.swift; sourceTree = "<group>"; };
 		821FCF092A87CE79006FFB26 /* NewsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsListViewController + Extensions.swift"; sourceTree = "<group>"; };
@@ -886,6 +890,15 @@
 			path = "User Status ";
 			sourceTree = "<group>";
 		};
+		821FBC692AD447DB0017D88B /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				821FBC6A2AD448110017D88B /* NotificationsTableViewCell.swift */,
+				821FBC6B2AD448110017D88B /* NotificationsTableViewCell.xib */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		821FCF002A87CD65006FFB26 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1014,6 +1027,7 @@
 				821EEAD32AA0B73D00AE517B /* User Status  */,
 				82423E3C2A991E11006FA7D2 /* Shake To Recall */,
 				82768AF22ABE1B0D0022FBE1 /* App Themes */,
+				821FBC692AD447DB0017D88B /* Notifications */,
 				82426C822A71600E00D5AA57 /* App Features */,
 			);
 			path = Cells;
@@ -3979,6 +3993,7 @@
 				82320D892A491FBC00ECADEE /* AGPUFacultyTableViewCell.xib in Resources */,
 				82E4C5972A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib in Resources */,
 				82989AF32A6F8CDF00F27858 /* ForEveryStatusTableViewCell.xib in Resources */,
+				821FBC6D2AD448110017D88B /* NotificationsTableViewCell.xib in Resources */,
 				822606012A853C110055925F /* RecentMomentTableViewCell.xib in Resources */,
 				82989AD42A6E36C700F27858 /* FacultyCathedraTableViewCell.xib in Resources */,
 				82B24A6E2A817BDE008B94E4 /* WeekTableViewCell.xib in Resources */,
@@ -4148,6 +4163,7 @@
 				82BCB5722AB3ACFF00F3A321 /* PairTypesListViewModelProtocol.swift in Sources */,
 				820E40932A7C365B007A1E0A /* AGPUCurrentCathedraMapViewModelProtocol.swift in Sources */,
 				82875B022A5A198A007DB925 /* HapticsManager + Extensions.swift in Sources */,
+				821FBC6C2AD448110017D88B /* NotificationsTableViewCell.swift in Sources */,
 				82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */,
 				82E4C55F2A6B147900F65A67 /* SettingsListViewModelProtocol.swift in Sources */,
 				82E4C5452A6B114000F65A67 /* WebViewModel + Extensions.swift in Sources */,
