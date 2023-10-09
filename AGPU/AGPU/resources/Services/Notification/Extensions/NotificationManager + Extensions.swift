@@ -14,6 +14,8 @@ extension NotificationManager: NotificationManagerProtocol {
         center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             if granted {
                 print("Разрешение на уведомление получено")
+                //TimeTableService().startLongPolling()
+                self.sendTimetableNotification()
             } else {
                 print("Разрешение на уведомление не получено")
             }
@@ -31,11 +33,11 @@ extension NotificationManager: NotificationManagerProtocol {
         // Создаем триггер для уведомления
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         
-        // Создаем запрос на уведомление
-        let request = UNNotificationRequest(identifier: "NotificationIdentifier", content: content, trigger: trigger)
+        let uniqueIdentifier = UUID().uuidString
+        let request = UNNotificationRequest(identifier: uniqueIdentifier, content: content, trigger: trigger)
         
         // Запланировать запрос уведомления
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+        center.add(request, withCompletionHandler: { error in
             if let error = error {
                 print("Ошибка при отправке уведомления: \(error.localizedDescription)")
             } else {

@@ -194,14 +194,8 @@ extension SettingsListViewController: UITableViewDelegate {
                     self.present(navVC, animated: true)
                 }
             } else if indexPath.row == 2 {
-                
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "notification")
-                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                    let vc = AppThemesListTableViewController()
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    self.present(navVC, animated: true)
-                }
+                TimeTableService().startLongPolling()
+                HapticsManager.shared.hapticFeedback()
             }
         case 3:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "info icon")

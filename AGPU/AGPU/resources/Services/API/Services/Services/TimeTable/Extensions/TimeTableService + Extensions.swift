@@ -112,7 +112,7 @@ extension TimeTableService: TimeTableServicerProtocol {
     func checkTimetableChanges(completion: @escaping () -> Void) {
         
         let group = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-2-1"
-        let url = "http://merqury.fun:8080/api/timetable/changes/day/check?groupId=\(group)&timeout=\(20)"
+        let url = "http://merqury.fun:8080/api/timetable/changes/day/check?groupId=\(group)&timeout=\(30)"
 
         print("Start polling")
 
@@ -143,7 +143,7 @@ extension TimeTableService: TimeTableServicerProtocol {
             if changes.thereAreChanges {
                 NotificationManager().sendTimetableNotification()
             } else {
-                // Handle the case when there are no changes
+               
             }
         }
 
@@ -157,9 +157,7 @@ extension TimeTableService: TimeTableServicerProtocol {
            
             while true {
                 
-                self.checkTimetableChanges {
-                    //Thread.sleep(forTimeInterval: 5)
-                }
+                self.checkTimetableChanges {}
             }
         }
     }
