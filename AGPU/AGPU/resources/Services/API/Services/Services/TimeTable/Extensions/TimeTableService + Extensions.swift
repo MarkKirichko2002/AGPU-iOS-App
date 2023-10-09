@@ -108,4 +108,59 @@ extension TimeTableService: TimeTableServicerProtocol {
             }
         }
     }
+    
+    func checkTimetableChanges(completion: @escaping () -> Void) {
+        
+        let group = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-2-1"
+        let url = "http://merqury.fun:8080/api/timetable/changes/day/check?groupId=\(group)&timeout=\(20)"
+
+        print("Start polling")
+
+        let semaphore = DispatchSemaphore(value: 0)
+
+        var changesResponse: ChangesResponse?
+
+        AF.request(url).responseData { response in
+            
+            defer {
+                semaphore.signal()
+            }
+
+            guard let data = response.data else { return }
+
+            do {
+                let changes = try JSONDecoder().decode(ChangesResponse.self, from: data)
+                print("Расписание: \(changes)")
+                changesResponse = changes
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+
+        semaphore.wait()
+
+        if let changes = changesResponse {
+            if changes.thereAreChanges {
+                NotificationManager().sendTimetableNotification()
+            } else {
+                // Handle the case when there are no changes
+            }
+        }
+
+        completion()
+    }
+
+    
+    func startLongPolling() {
+        
+        DispatchQueue.global().async {
+           
+            while true {
+                
+                self.checkTimetableChanges {
+                    //Thread.sleep(forTimeInterval: 5)
+                }
+            }
+        }
+    }
 }

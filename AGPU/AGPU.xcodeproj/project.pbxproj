@@ -29,6 +29,10 @@
 		821EEAD72AA0B76F00AE517B /* UserStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821EEAD52AA0B76F00AE517B /* UserStatusTableViewCell.xib */; };
 		821FBC6C2AD448110017D88B /* NotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FBC6A2AD448110017D88B /* NotificationsTableViewCell.swift */; };
 		821FBC6D2AD448110017D88B /* NotificationsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821FBC6B2AD448110017D88B /* NotificationsTableViewCell.xib */; };
+		821FBC8C2AD45E5F0017D88B /* NotificationManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FBC8B2AD45E5F0017D88B /* NotificationManagerProtocol.swift */; };
+		821FBC8E2AD45E7B0017D88B /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FBC8D2AD45E7B0017D88B /* NotificationManager.swift */; };
+		821FBC902AD45E8E0017D88B /* NotificationManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FBC8F2AD45E8E0017D88B /* NotificationManager + Extensions.swift */; };
+		821FBC922AD46B7F0017D88B /* ChangesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FBC912AD46B7F0017D88B /* ChangesResponse.swift */; };
 		821FCF052A87CDB8006FFB26 /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FCF042A87CDB8006FFB26 /* NewsCollectionViewCell.swift */; };
 		821FCF072A87CE30006FFB26 /* NewsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FCF062A87CE30006FFB26 /* NewsListViewController.swift */; };
 		821FCF0A2A87CE79006FFB26 /* NewsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FCF092A87CE79006FFB26 /* NewsListViewController + Extensions.swift */; };
@@ -284,6 +288,10 @@
 		821EEAD52AA0B76F00AE517B /* UserStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserStatusTableViewCell.xib; sourceTree = "<group>"; };
 		821FBC6A2AD448110017D88B /* NotificationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewCell.swift; sourceTree = "<group>"; };
 		821FBC6B2AD448110017D88B /* NotificationsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationsTableViewCell.xib; sourceTree = "<group>"; };
+		821FBC8B2AD45E5F0017D88B /* NotificationManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagerProtocol.swift; sourceTree = "<group>"; };
+		821FBC8D2AD45E7B0017D88B /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		821FBC8F2AD45E8E0017D88B /* NotificationManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationManager + Extensions.swift"; sourceTree = "<group>"; };
+		821FBC912AD46B7F0017D88B /* ChangesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangesResponse.swift; sourceTree = "<group>"; };
 		821FCF042A87CDB8006FFB26 /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		821FCF062A87CE30006FFB26 /* NewsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewController.swift; sourceTree = "<group>"; };
 		821FCF092A87CE79006FFB26 /* NewsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsListViewController + Extensions.swift"; sourceTree = "<group>"; };
@@ -899,6 +907,40 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
+		821FBC872AD45E210017D88B /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				821FBC8A2AD45E3C0017D88B /* Protocol */,
+				821FBC892AD45E3A0017D88B /* Service */,
+				821FBC882AD45E380017D88B /* Extensions */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		821FBC882AD45E380017D88B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				821FBC8F2AD45E8E0017D88B /* NotificationManager + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		821FBC892AD45E3A0017D88B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				821FBC8D2AD45E7B0017D88B /* NotificationManager.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		821FBC8A2AD45E3C0017D88B /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				821FBC8B2AD45E5F0017D88B /* NotificationManagerProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		821FCF002A87CD65006FFB26 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1198,6 +1240,7 @@
 				82EF23D12A3DED7F004A7B9C /* Animation */,
 				8295489A2A43AE6C007DEBA0 /* Settings */,
 				82C44DAC2A591907002A3864 /* Haptics */,
+				821FBC872AD45E210017D88B /* Notification */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -2964,6 +3007,7 @@
 			isa = PBXGroup;
 			children = (
 				82DB22C22AACD05D00F8F664 /* TimeTable.swift */,
+				821FBC912AD46B7F0017D88B /* ChangesResponse.swift */,
 			);
 			path = Timetable;
 			sourceTree = "<group>";
@@ -4029,6 +4073,7 @@
 				82989ADE2A6E59BC00F27858 /* AGPUCurrentCathedraMapViewController + Extensions.swift in Sources */,
 				82BCB5462AB35AF300F3A321 /* DaysList.swift in Sources */,
 				828DC55C2A7B3887001EA324 /* FacultyGroups.swift in Sources */,
+				821FBC8E2AD45E7B0017D88B /* NotificationManager.swift in Sources */,
 				820E40952A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift in Sources */,
 				82807C712AA0FA5D00E9C884 /* PairTypesListTableViewController.swift in Sources */,
 				8234E6122A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift in Sources */,
@@ -4070,6 +4115,7 @@
 				82BC2F482A8EFD7C00ADB239 /* NewsCategoriesListViewModel + Extensions.swift in Sources */,
 				826F938B2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
+				821FBC922AD46B7F0017D88B /* ChangesResponse.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
 				82807C742AA102A600E9C884 /* PairTypeModel.swift in Sources */,
 				82D6C3342A5E1DEC00FB7F5D /* Discipline.swift in Sources */,
@@ -4089,6 +4135,7 @@
 				828321802A7D687A008641A5 /* SearchAGPUBuildingMapViewModel + Extensions.swift in Sources */,
 				8228E3992A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift in Sources */,
 				8234E6082A8858C400ED354C /* WordRecentDocumentViewModelProtocol.swift in Sources */,
+				821FBC8C2AD45E5F0017D88B /* NotificationManagerProtocol.swift in Sources */,
 				829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */,
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
 				822FB2162AC5DF580083E016 /* SubGroupsListViewModel.swift in Sources */,
@@ -4103,6 +4150,7 @@
 				8228E3AB2A6C9E3B00C1B6AD /* AGPUCurrentBuildingMapViewModelProtocol.swift in Sources */,
 				82B1CA782A681F1D00D1FBA4 /* SpringImageView + Extensions.swift in Sources */,
 				82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */,
+				821FBC902AD45E8E0017D88B /* NotificationManager + Extensions.swift in Sources */,
 				82505F532A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift in Sources */,
 				82426C7A2A714DEA00D5AA57 /* ForApplicantSections.swift in Sources */,
 				82D6C32F2A5E189300FB7F5D /* TimeTableDayListTableViewController.swift in Sources */,

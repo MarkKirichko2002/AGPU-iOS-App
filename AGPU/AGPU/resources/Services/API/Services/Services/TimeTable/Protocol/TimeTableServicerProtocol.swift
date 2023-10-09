@@ -12,4 +12,5 @@ protocol TimeTableServicerProtocol {
     func getTimeTableDay(groupId: String, date: String, completion: @escaping(Result<TimeTable,Error>)->Void)
     func getTimeTableWeek(groupId: String, startDate: String, endDate: String, completion: @escaping(Result<[TimeTable],Error>)->Void)
     func getTimeTableDayImage(json: Data, completion: @escaping(UIImage)->Void)
+    func checkTimetableChanges(completion: @escaping()->Void)
 }
