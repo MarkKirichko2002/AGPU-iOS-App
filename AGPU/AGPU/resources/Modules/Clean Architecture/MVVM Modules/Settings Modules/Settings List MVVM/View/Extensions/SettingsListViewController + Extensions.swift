@@ -21,7 +21,7 @@ extension SettingsListViewController: UITableViewDataSource {
         case 1:
             return AGPUFaculties.faculties.count
         case 2:
-            return 2
+            return 3
         case 3:
             return 1
         default:
@@ -48,6 +48,9 @@ extension SettingsListViewController: UITableViewDataSource {
         case 2:
             if indexPath.row == 0 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ShakeToRecallOptionTableViewCell.identifier, for: indexPath) as? ShakeToRecallOptionTableViewCell else {return UITableViewCell()}
+                return cell
+            } else if indexPath.row == 1 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: AppIconTableViewCell.identifier, for: indexPath) as? AppIconTableViewCell else {return UITableViewCell()}
                 return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AppThemesTableViewCell.identifier, for: indexPath) as? AppThemesTableViewCell else {return UITableViewCell()}
@@ -176,7 +179,16 @@ extension SettingsListViewController: UITableViewDelegate {
         case 1:
             break
         case 2:
+            
             if indexPath.row == 1 {
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "photo icon")
+                  Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                      let vc = AppIconsListTableViewController()
+                      let navVC = UINavigationController(rootViewController: vc)
+                      navVC.modalPresentationStyle = .fullScreen
+                      self.present(navVC, animated: true)
+                  }
+            } else if indexPath.row == 2 {
               NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "theme")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = AppThemesListTableViewController()
@@ -185,7 +197,6 @@ extension SettingsListViewController: UITableViewDelegate {
                     self.present(navVC, animated: true)
                 }
             }
-            HapticsManager.shared.hapticFeedback()
         case 3:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "info icon")
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in

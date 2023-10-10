@@ -133,6 +133,16 @@
 		8283217C2A7D67D4008641A5 /* SearchAGPUBuildingMapViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283217B2A7D67D4008641A5 /* SearchAGPUBuildingMapViewModelProtocol.swift */; };
 		8283217E2A7D683F008641A5 /* SearchAGPUBuildingMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283217D2A7D683F008641A5 /* SearchAGPUBuildingMapViewModel.swift */; };
 		828321802A7D687A008641A5 /* SearchAGPUBuildingMapViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283217F2A7D687A008641A5 /* SearchAGPUBuildingMapViewModel + Extensions.swift */; };
+		8283975F2AD5BBF4000F355A /* AppIconTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283975D2AD5BBF4000F355A /* AppIconTableViewCell.swift */; };
+		828397602AD5BBF4000F355A /* AppIconTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8283975E2AD5BBF4000F355A /* AppIconTableViewCell.xib */; };
+		828397682AD5BEC2000F355A /* AppIconModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828397672AD5BEC2000F355A /* AppIconModel.swift */; };
+		8283976A2AD5BF0B000F355A /* AppIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828397692AD5BF0B000F355A /* AppIcons.swift */; };
+		828397702AD5C4B7000F355A /* AppIconsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283976F2AD5C4B7000F355A /* AppIconsListTableViewController.swift */; };
+		828397742AD5C706000F355A /* PersonalizedAppIconTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828397722AD5C706000F355A /* PersonalizedAppIconTableViewCell.swift */; };
+		828397752AD5C706000F355A /* PersonalizedAppIconTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 828397732AD5C706000F355A /* PersonalizedAppIconTableViewCell.xib */; };
+		828397772AD5C9E1000F355A /* AppIconsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828397762AD5C9E1000F355A /* AppIconsListViewModelProtocol.swift */; };
+		828397792AD5C9F8000F355A /* AppIconsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828397782AD5C9F8000F355A /* AppIconsListViewModel.swift */; };
+		8283977B2AD5CA11000F355A /* AppIconsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283977A2AD5CA11000F355A /* AppIconsListViewModel + Extensions.swift */; };
 		82875B002A5A1966007DB925 /* HapticsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875AFF2A5A1966007DB925 /* HapticsManagerProtocol.swift */; };
 		82875B022A5A198A007DB925 /* HapticsManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */; };
 		828CFA372A35F65700C7542D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA362A35F65700C7542D /* WebViewController.swift */; };
@@ -388,6 +398,16 @@
 		8283217B2A7D67D4008641A5 /* SearchAGPUBuildingMapViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAGPUBuildingMapViewModelProtocol.swift; sourceTree = "<group>"; };
 		8283217D2A7D683F008641A5 /* SearchAGPUBuildingMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAGPUBuildingMapViewModel.swift; sourceTree = "<group>"; };
 		8283217F2A7D687A008641A5 /* SearchAGPUBuildingMapViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchAGPUBuildingMapViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		8283975D2AD5BBF4000F355A /* AppIconTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconTableViewCell.swift; sourceTree = "<group>"; };
+		8283975E2AD5BBF4000F355A /* AppIconTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppIconTableViewCell.xib; sourceTree = "<group>"; };
+		828397672AD5BEC2000F355A /* AppIconModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconModel.swift; sourceTree = "<group>"; };
+		828397692AD5BF0B000F355A /* AppIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcons.swift; sourceTree = "<group>"; };
+		8283976F2AD5C4B7000F355A /* AppIconsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconsListTableViewController.swift; sourceTree = "<group>"; };
+		828397722AD5C706000F355A /* PersonalizedAppIconTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalizedAppIconTableViewCell.swift; sourceTree = "<group>"; };
+		828397732AD5C706000F355A /* PersonalizedAppIconTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalizedAppIconTableViewCell.xib; sourceTree = "<group>"; };
+		828397762AD5C9E1000F355A /* AppIconsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconsListViewModelProtocol.swift; sourceTree = "<group>"; };
+		828397782AD5C9F8000F355A /* AppIconsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconsListViewModel.swift; sourceTree = "<group>"; };
+		8283977A2AD5CA11000F355A /* AppIconsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppIconsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82875AFF2A5A1966007DB925 /* HapticsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManagerProtocol.swift; sourceTree = "<group>"; };
 		82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HapticsManager + Extensions.swift"; sourceTree = "<group>"; };
 		828CFA362A35F65700C7542D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -925,6 +945,7 @@
 			children = (
 				82768ADC2ABE12B80022FBE1 /* Settings List MVVM */,
 				82B1C0C52A80702D00520C14 /* Saved Sub Group MVVM */,
+				828397612AD5BE76000F355A /* App Icons List MVVM */,
 				82768ADD2ABE12D30022FBE1 /* App Themes List MVVM */,
 			);
 			path = "Settings Modules";
@@ -1013,6 +1034,7 @@
 			children = (
 				821EEAD32AA0B73D00AE517B /* User Status  */,
 				82423E3C2A991E11006FA7D2 /* Shake To Recall */,
+				8283975A2AD5BBAD000F355A /* App Icons */,
 				82768AF22ABE1B0D0022FBE1 /* App Themes */,
 				82426C822A71600E00D5AA57 /* App Features */,
 			);
@@ -2292,6 +2314,110 @@
 				8283217B2A7D67D4008641A5 /* SearchAGPUBuildingMapViewModelProtocol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		8283975A2AD5BBAD000F355A /* App Icons */ = {
+			isa = PBXGroup;
+			children = (
+				8283975D2AD5BBF4000F355A /* AppIconTableViewCell.swift */,
+				8283975E2AD5BBF4000F355A /* AppIconTableViewCell.xib */,
+			);
+			path = "App Icons";
+			sourceTree = "<group>";
+		};
+		828397612AD5BE76000F355A /* App Icons List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				828397642AD5BE94000F355A /* Model */,
+				828397632AD5BE91000F355A /* View */,
+				8283976B2AD5C023000F355A /* ViewModel */,
+			);
+			path = "App Icons List MVVM";
+			sourceTree = "<group>";
+		};
+		828397622AD5BE8F000F355A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8283976F2AD5C4B7000F355A /* AppIconsListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		828397632AD5BE91000F355A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				828397622AD5BE8F000F355A /* ViewController */,
+				828397712AD5C6ED000F355A /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		828397642AD5BE94000F355A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				828397662AD5BEAD000F355A /* Model */,
+				828397652AD5BEAB000F355A /* List */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		828397652AD5BEAB000F355A /* List */ = {
+			isa = PBXGroup;
+			children = (
+				828397692AD5BF0B000F355A /* AppIcons.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		828397662AD5BEAD000F355A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				828397672AD5BEC2000F355A /* AppIconModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8283976B2AD5C023000F355A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8283976E2AD5C039000F355A /* Protocol */,
+				8283976D2AD5C037000F355A /* ViewModel */,
+				8283976C2AD5C034000F355A /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8283976C2AD5C034000F355A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8283977A2AD5CA11000F355A /* AppIconsListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8283976D2AD5C037000F355A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				828397782AD5C9F8000F355A /* AppIconsListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8283976E2AD5C039000F355A /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				828397762AD5C9E1000F355A /* AppIconsListViewModelProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		828397712AD5C6ED000F355A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				828397722AD5C706000F355A /* PersonalizedAppIconTableViewCell.swift */,
+				828397732AD5C706000F355A /* PersonalizedAppIconTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		828CFA342A35F62400C7542D /* TabBar */ = {
@@ -3973,6 +4099,7 @@
 				822605EF2A84A0600055925F /* Assets.xcassets in Resources */,
 				8213658B2A94F73100A20E4E /* InfoPlist.strings in Resources */,
 				821EEAD72AA0B76F00AE517B /* UserStatusTableViewCell.xib in Resources */,
+				828397602AD5BBF4000F355A /* AppIconTableViewCell.xib in Resources */,
 				8213658E2A94F7B700A20E4E /* InfoPlist.strings in Resources */,
 				821365872A94F6A700A20E4E /* LaunchScreen.strings in Resources */,
 				82808E952A31F12500DEEB16 /* LaunchScreen.storyboard in Resources */,
@@ -3981,6 +4108,7 @@
 				82989AF32A6F8CDF00F27858 /* ForEveryStatusTableViewCell.xib in Resources */,
 				822606012A853C110055925F /* RecentMomentTableViewCell.xib in Resources */,
 				82989AD42A6E36C700F27858 /* FacultyCathedraTableViewCell.xib in Resources */,
+				828397752AD5C706000F355A /* PersonalizedAppIconTableViewCell.xib in Resources */,
 				82B24A6E2A817BDE008B94E4 /* WeekTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3997,6 +4125,7 @@
 				82B24A7A2A81945D008B94E4 /* AllWeeksListViewModel + Extensions.swift in Sources */,
 				820D18E72A68FA7D00BFAA35 /* AGPUBuildings.swift in Sources */,
 				82B267032A8D926400043A6D /* NewsCategories.swift in Sources */,
+				828397792AD5C9F8000F355A /* AppIconsListViewModel.swift in Sources */,
 				822606062A853D130055925F /* RecentMomentModel.swift in Sources */,
 				826888662A33B6E700434219 /* AGPUTabBarController.swift in Sources */,
 				82BF4DB02A5FA52B008B751A /* AGPUWallpapersListViewController.swift in Sources */,
@@ -4052,6 +4181,7 @@
 				82BCB53B2AB3521300F3A321 /* DaysListViewModel.swift in Sources */,
 				828DC5592A7B3865001EA324 /* FacultyGroupModel.swift in Sources */,
 				821FCF072A87CE30006FFB26 /* NewsListViewController.swift in Sources */,
+				8283977B2AD5CA11000F355A /* AppIconsListViewModel + Extensions.swift in Sources */,
 				82BC2F482A8EFD7C00ADB239 /* NewsCategoriesListViewModel + Extensions.swift in Sources */,
 				826F938B2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
@@ -4066,6 +4196,7 @@
 				822605F82A8532E20055925F /* RecentMomentsListViewModel.swift in Sources */,
 				82E4C5172A6B0D0200F65A67 /* ImageSaver + Extensions.swift in Sources */,
 				8241F9812A5F3C4D007DF628 /* TimeTableListTableViewController + Extensions.swift in Sources */,
+				828397742AD5C706000F355A /* PersonalizedAppIconTableViewCell.swift in Sources */,
 				8234E6032A88583E00ED354C /* WordRecentDocumentViewController.swift in Sources */,
 				82BCB5392AB351F400F3A321 /* DaysListViewModelProtocol.swift in Sources */,
 				82722D432A66462100149D06 /* AGPUBuildingPins.swift in Sources */,
@@ -4170,9 +4301,11 @@
 				82BE9D892ACA14D300C06CD5 /* NewsPageModel.swift in Sources */,
 				82BC2F462A8EFD6400ADB239 /* NewsCategoriesListViewModel.swift in Sources */,
 				82B24AAB2A82E45A008B94E4 /* NewsResponse.swift in Sources */,
+				8283975F2AD5BBF4000F355A /* AppIconTableViewCell.swift in Sources */,
 				82B24A912A81BE21008B94E4 /* AGPUNewsService + Extensions.swift in Sources */,
 				82C561672A6B7B0D00514B00 /* AppFeatureDetailViewController.swift in Sources */,
 				8234E60D2A885B6D00ED354C /* WordRecentDocumentViewModel.swift in Sources */,
+				8283976A2AD5BF0B000F355A /* AppIcons.swift in Sources */,
 				8283216E2A7D0932008641A5 /* AllGroupsListViewModel + Extensions.swift in Sources */,
 				82E4C5152A6B0C8F00F65A67 /* ImageSaverProtocol.swift in Sources */,
 				82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */,
@@ -4183,6 +4316,7 @@
 				82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */,
 				82875B002A5A1966007DB925 /* HapticsManagerProtocol.swift in Sources */,
 				8210CA092A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift in Sources */,
+				828397772AD5C9E1000F355A /* AppIconsListViewModelProtocol.swift in Sources */,
 				82320D812A4913FE00ECADEE /* AGPUFaculties.swift in Sources */,
 				822FB2182AC5DFA70083E016 /* SubGroupsListViewModel + Extensions.swift in Sources */,
 				826716C22A5A2AF600CD5C23 /* RecentWebPageModel.swift in Sources */,
@@ -4199,7 +4333,9 @@
 				821FCF0A2A87CE79006FFB26 /* NewsListViewController + Extensions.swift in Sources */,
 				82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */,
 				82768AE82ABE13B80022FBE1 /* AppThemesListTableViewController.swift in Sources */,
+				828397702AD5C4B7000F355A /* AppIconsListTableViewController.swift in Sources */,
 				8234E60F2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift in Sources */,
+				828397682AD5BEC2000F355A /* AppIconModel.swift in Sources */,
 				8228E3AD2A6C9E9E00C1B6AD /* AGPUCurrentBuildingMapViewModel + Extensions.swift in Sources */,
 				82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */,
 				82BCB53F2AB3528F00F3A321 /* DaysListTableViewController.swift in Sources */,
@@ -4380,8 +4516,10 @@
 		82808E9A2A31F12500DEEB16 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon6 AppIcon5 AppIcon4 AppIcon3 AppIcon2 AppIcon1 AppIcon8 AppIcon7";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 265GKHT32M;
@@ -4414,8 +4552,10 @@
 		82808E9B2A31F12500DEEB16 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon6 AppIcon5 AppIcon4 AppIcon3 AppIcon2 AppIcon1 AppIcon8 AppIcon7";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 265GKHT32M;

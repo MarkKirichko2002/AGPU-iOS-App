@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,13 +25,13 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shake To Recall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqh-nB-i1g">
-                        <rect key="frame" x="116" y="19" width="278" height="20.333333333333329"/>
+                        <rect key="frame" x="116" y="19" width="127.33333333333331" height="20.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i1S-ji-5kD">
-                        <rect key="frame" x="116" y="49.333333333333343" width="280" height="31"/>
+                        <rect key="frame" x="116" y="49.333333333333343" width="51" height="31"/>
                         <connections>
                             <action selector="switchAction:" destination="v0C-8U-7Tt" eventType="touchUpInside" id="F5x-tO-kgd"/>
                         </connections>
@@ -44,8 +44,6 @@
                     <constraint firstItem="i1S-ji-5kD" firstAttribute="leading" secondItem="fqh-nB-i1g" secondAttribute="leading" id="U5t-x0-fPS"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Taf-As-JFV" secondAttribute="bottom" constant="8" id="VI2-x6-R1F"/>
                     <constraint firstItem="fqh-nB-i1g" firstAttribute="top" secondItem="Taf-As-JFV" secondAttribute="top" id="XSG-1Y-6cw"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="fqh-nB-i1g" secondAttribute="trailing" constant="16" id="fnY-jJ-vaO"/>
-                    <constraint firstItem="i1S-ji-5kD" firstAttribute="trailing" secondItem="fqh-nB-i1g" secondAttribute="trailing" id="lQV-Zj-qQY"/>
                     <constraint firstItem="Taf-As-JFV" firstAttribute="leading" secondItem="uFH-IT-dZo" secondAttribute="leadingMargin" constant="10" id="nbX-lT-edl"/>
                 </constraints>
             </tableViewCellContentView>

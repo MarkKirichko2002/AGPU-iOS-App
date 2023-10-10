@@ -60,11 +60,15 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         faculty.isSelected = true
         
         if !isFacultySelected(index: index) {
+            
             UserDefaults.saveData(object: faculty, key: "faculty") {
+                
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     self.isChanged.toggle()
                 }
             }
+            
+            UIApplication.shared.setAlternateIconName("AppIcon 8")
             
             UserDefaults.standard.setValue(nil, forKey: "icon")
             UserDefaults.standard.setValue(nil, forKey: "cathedra")
@@ -118,6 +122,8 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
                             self.isChanged.toggle()
                         }
                     }
+                    
+                    UIApplication.shared.setAlternateIconName("AppIcon 8")
                     
                     UserDefaults.standard.setValue(nil, forKey: "icon")
                     UserDefaults.standard.setValue(nil, forKey: "group")
