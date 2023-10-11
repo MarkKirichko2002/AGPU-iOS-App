@@ -21,36 +21,17 @@ extension AppIconsListViewModel: AppIconsListViewModelProtocol {
     
     func getSelectedFacultyData() {
         if let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
-            AppIcons.icons[2].name = faculty.abbreviation
+            AppIcons.icons[2].name = "Ваш факультет(\(faculty.abbreviation))"
             AppIcons.icons[2].icon = faculty.icon
             AppIcons.icons[2].appIcon = faculty.AppIcon
             self.faculty = faculty
             self.dataChangedHandler?()
         } else {
-            AppIcons.icons[2].name = "Выбранный Факультет"
+            AppIcons.icons[2].name = "нет факультета"
             AppIcons.icons[2].icon = "АГПУ"
             AppIcons.icons[2].appIcon = ""
             self.faculty = nil
             self.dataChangedHandler?()
-        }
-    }
-    
-    func observedFacultyChanges() {
-        
-        NotificationCenter.default.addObserver(forName: Notification.Name("faculty"), object: self, queue: .main) { notification in
-            if let faculty = notification.object as? AGPUFacultyModel {
-                AppIcons.icons[2].name = faculty.abbreviation
-                AppIcons.icons[2].icon = faculty.icon
-                AppIcons.icons[2].appIcon = faculty.AppIcon
-                self.faculty = faculty
-                self.dataChangedHandler?()
-            } else {
-                AppIcons.icons[2].name = "Выбранный Факультет"
-                AppIcons.icons[2].icon = "АГПУ"
-                AppIcons.icons[2].appIcon = ""
-                self.faculty = nil
-                self.dataChangedHandler?()
-            }
         }
     }
     
@@ -64,7 +45,7 @@ extension AppIconsListViewModel: AppIconsListViewModelProtocol {
             
             if icon.id == 3 {
                 
-                if let faculty = faculty {
+                if let _ = faculty {
                     UIApplication.shared.setAlternateIconName(icon.appIcon)
                     self.iconSelectedHandler?()
                     HapticsManager.shared.hapticFeedback()
@@ -90,7 +71,7 @@ extension AppIconsListViewModel: AppIconsListViewModelProtocol {
             
             if icon.id == 3 {
                 
-                if let faculty = faculty {
+                if let _ = faculty {
                     UIApplication.shared.setAlternateIconName(icon.appIcon)
                     self.iconSelectedHandler?()
                     HapticsManager.shared.hapticFeedback()
@@ -99,13 +80,12 @@ extension AppIconsListViewModel: AppIconsListViewModelProtocol {
                     alertHandler?("Нет факультета", "Выберите свой факультет")
                 }
             } else {
-                if a != icon.appIcon {
+                if a != icon.appIcon && icon.id != 1 {
                     UIApplication.shared.setAlternateIconName(icon.appIcon)
                     self.iconSelectedHandler?()
                     HapticsManager.shared.hapticFeedback()
                 } else {
                     print("Текущая иконка приложения уже соответствует выбранной иконке")
-                    alertHandler?("Нет факультета", "Выберите свой факультет")
                 }
             }
         }
@@ -113,14 +93,19 @@ extension AppIconsListViewModel: AppIconsListViewModelProtocol {
     
     func isAppIconSelected(index: Int)-> Bool {
         
+        let icon = AppIcons.icons[index]
+        
         if let currentIconName = UIApplication.shared.alternateIconName {
-            
-            let icon = AppIcons.icons[index]
             
             if currentIconName == icon.appIcon {
                 return true
             } else {
                 return false
+            }
+        } else {
+            
+            if icon.id == 1 {
+                return true
             }
         }
         return false

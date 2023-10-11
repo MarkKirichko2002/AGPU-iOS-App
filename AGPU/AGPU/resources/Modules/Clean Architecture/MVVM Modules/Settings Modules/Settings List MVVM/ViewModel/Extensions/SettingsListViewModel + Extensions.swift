@@ -68,7 +68,11 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
                 }
             }
             
-            UIApplication.shared.setAlternateIconName("AppIcon 8")
+            if let currentIconName = UIApplication.shared.alternateIconName {
+                if currentIconName != "AppIcon 8" {
+                    UIApplication.shared.setAlternateIconName("AppIcon 8")
+                }
+            } else {}
             
             UserDefaults.standard.setValue(nil, forKey: "icon")
             UserDefaults.standard.setValue(nil, forKey: "cathedra")
@@ -123,7 +127,11 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
                         }
                     }
                     
-                    UIApplication.shared.setAlternateIconName("AppIcon 8")
+                    if let currentIconName = UIApplication.shared.alternateIconName {
+                        if currentIconName != "AppIcon 8" {
+                            UIApplication.shared.setAlternateIconName("AppIcon 8")
+                        }
+                    } else {}
                     
                     UserDefaults.standard.setValue(nil, forKey: "icon")
                     UserDefaults.standard.setValue(nil, forKey: "group")
