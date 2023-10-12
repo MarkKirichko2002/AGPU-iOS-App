@@ -46,14 +46,17 @@ extension AppIconsListViewModel: AppIconsListViewModelProtocol {
             if icon.id == 3 {
                 
                 if let _ = faculty {
-                    UIApplication.shared.setAlternateIconName(icon.appIcon)
-                    self.iconSelectedHandler?()
-                    HapticsManager.shared.hapticFeedback()
+                    if currentIconName != icon.appIcon {
+                        UIApplication.shared.setAlternateIconName(icon.appIcon)
+                        self.iconSelectedHandler?()
+                        HapticsManager.shared.hapticFeedback()
+                    }
                 } else {
                     print("нет факультета")
                     alertHandler?("Нет факультета", "Выберите свой факультет")
                 }
             } else {
+                
                 if currentIconName != icon.appIcon {
                     UIApplication.shared.setAlternateIconName(icon.appIcon)
                     self.iconSelectedHandler?()
@@ -80,6 +83,7 @@ extension AppIconsListViewModel: AppIconsListViewModelProtocol {
                     alertHandler?("Нет факультета", "Выберите свой факультет")
                 }
             } else {
+                
                 if a != icon.appIcon && icon.id != 1 {
                     UIApplication.shared.setAlternateIconName(icon.appIcon)
                     self.iconSelectedHandler?()
