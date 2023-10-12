@@ -30,13 +30,15 @@ final class SettingsListViewController: UIViewController {
     private func setUpTable() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
-        // MARK: - Your Status
-        tableView.register(UINib(nibName: UserStatusTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: UserStatusTableViewCell.identifier)
-        // MARK: - Selected Faculty
-        tableView.register(UINib(nibName: AGPUFacultyTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AGPUFacultyTableViewCell.identifier)
-        // MARK: - Shake To Recall
+        // MARK: - Секция "Основное"
+        // Your Status
+        tableView.register(UINib(nibName: YourStatusOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: YourStatusOptionTableViewCell.identifier)
+        // Selected Faculty
+        tableView.register(UINib(nibName: SelectedFacultyOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SelectedFacultyOptionTableViewCell.identifier)
+        // MARK: - Секция "Другие опции"
+        // Shake To Recall
         tableView.register(UINib(nibName: ShakeToRecallOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ShakeToRecallOptionTableViewCell.identifier)
-        // MARK: - Personalized App Icons
+        // Personalized App Icons
         tableView.register(UINib(nibName: AppIconTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppIconTableViewCell.identifier)
         // MARK: - Другое
         tableView.register(UINib(nibName: AppThemesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppThemesTableViewCell.identifier)

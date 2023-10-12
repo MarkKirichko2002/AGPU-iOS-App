@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="YourStatusOptionTableViewCell" rowHeight="99" id="8oH-Tg-ZYM" customClass="YourStatusOptionTableViewCell" customModule="AGPU" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="412" height="99"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8oH-Tg-ZYM" id="ONT-Le-f2U">
+                <rect key="frame" x="0.0" y="0.0" width="412" height="99"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile icon" translatesAutoresizingMaskIntoConstraints="NO" id="fqL-ko-vhN" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
+                        <rect key="frame" x="30" y="10" width="70" height="70"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="IIu-BI-g4d"/>
+                            <constraint firstAttribute="height" constant="70" id="eiW-cK-tQ9"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ваш Статус" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hxk-Ug-D6W">
+                        <rect key="frame" x="110" y="15" width="292" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="rlm-iY-a0B"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Hxk-Ug-D6W" secondAttribute="trailing" constant="10" id="0Z5-td-MD3"/>
+                    <constraint firstItem="fqL-ko-vhN" firstAttribute="leading" secondItem="ONT-Le-f2U" secondAttribute="leading" constant="30" id="Dza-Eh-RLI"/>
+                    <constraint firstItem="Hxk-Ug-D6W" firstAttribute="leading" secondItem="fqL-ko-vhN" secondAttribute="trailing" constant="10" id="GKI-gQ-RDE"/>
+                    <constraint firstItem="Hxk-Ug-D6W" firstAttribute="top" secondItem="ONT-Le-f2U" secondAttribute="top" constant="15" id="msa-Nc-PbQ"/>
+                    <constraint firstAttribute="bottom" secondItem="fqL-ko-vhN" secondAttribute="bottom" constant="10" id="q0X-P8-fsc"/>
+                    <constraint firstAttribute="bottom" secondItem="Hxk-Ug-D6W" secondAttribute="bottom" constant="15" id="sJU-wQ-BDo"/>
+                    <constraint firstItem="fqL-ko-vhN" firstAttribute="top" secondItem="ONT-Le-f2U" secondAttribute="top" constant="10" id="w6O-pM-i3p"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="TitleLabel" destination="Hxk-Ug-D6W" id="DoC-Jt-Xc2"/>
+                <outlet property="YourStatusIcon" destination="fqL-ko-vhN" id="IoM-JW-oBa"/>
+            </connections>
+            <point key="canvasLocation" x="151" y="-7"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="profile icon" width="48" height="48"/>
+    </resources>
+</document>

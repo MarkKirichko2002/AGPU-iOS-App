@@ -21,6 +21,7 @@ class UserStatusTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        tintColor = .systemGreen
         StatusIcon.tintColor = .label
         StatusName.tintColor = .label
     }

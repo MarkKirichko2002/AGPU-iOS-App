@@ -149,6 +149,18 @@
 		828CFA3C2A3680C700C7542D /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA3B2A3680C700C7542D /* String + Extensions.swift */; };
 		828DC5592A7B3865001EA324 /* FacultyGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DC5582A7B3865001EA324 /* FacultyGroupModel.swift */; };
 		828DC55C2A7B3887001EA324 /* FacultyGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DC55B2A7B3887001EA324 /* FacultyGroups.swift */; };
+		82920B652AD86EE600352CD8 /* YourStatusOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B632AD86EE600352CD8 /* YourStatusOptionTableViewCell.swift */; };
+		82920B662AD86EE600352CD8 /* YourStatusOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82920B642AD86EE600352CD8 /* YourStatusOptionTableViewCell.xib */; };
+		82920B6A2AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B682AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift */; };
+		82920B6B2AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82920B692AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.xib */; };
+		82920B752AD879DC00352CD8 /* UserStatusListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B742AD879DC00352CD8 /* UserStatusListTableViewController.swift */; };
+		82920B7C2AD87B8500352CD8 /* UserStatusListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B7B2AD87B8500352CD8 /* UserStatusListViewModelProtocol.swift */; };
+		82920B7E2AD87B9200352CD8 /* UserStatusListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B7D2AD87B9200352CD8 /* UserStatusListViewModel.swift */; };
+		82920B802AD87BA900352CD8 /* UserStatusListViewModel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B7F2AD87BA900352CD8 /* UserStatusListViewModel + Extension.swift */; };
+		82920B882AD8823000352CD8 /* SelectedFacultyListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B872AD8823000352CD8 /* SelectedFacultyListTableViewController.swift */; };
+		82920B8D2AD8871D00352CD8 /* SelectedFacultyListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B8C2AD8871D00352CD8 /* SelectedFacultyListViewModelProtocol.swift */; };
+		82920B8F2AD8872B00352CD8 /* SelectedFacultyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B8E2AD8872B00352CD8 /* SelectedFacultyListViewModel.swift */; };
+		82920B912AD8874100352CD8 /* SelectedFacultyListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B902AD8874100352CD8 /* SelectedFacultyListViewModel + Extensions.swift */; };
 		829548862A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548852A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift */; };
 		829548922A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548912A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift */; };
 		829548992A43AE32007DEBA0 /* SettingsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548982A43AE32007DEBA0 /* SettingsManagerProtocol.swift */; };
@@ -414,6 +426,18 @@
 		828CFA3B2A3680C700C7542D /* String + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extensions.swift"; sourceTree = "<group>"; };
 		828DC5582A7B3865001EA324 /* FacultyGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupModel.swift; sourceTree = "<group>"; };
 		828DC55B2A7B3887001EA324 /* FacultyGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroups.swift; sourceTree = "<group>"; };
+		82920B632AD86EE600352CD8 /* YourStatusOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourStatusOptionTableViewCell.swift; sourceTree = "<group>"; };
+		82920B642AD86EE600352CD8 /* YourStatusOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YourStatusOptionTableViewCell.xib; sourceTree = "<group>"; };
+		82920B682AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFacultyOptionTableViewCell.swift; sourceTree = "<group>"; };
+		82920B692AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedFacultyOptionTableViewCell.xib; sourceTree = "<group>"; };
+		82920B742AD879DC00352CD8 /* UserStatusListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusListTableViewController.swift; sourceTree = "<group>"; };
+		82920B7B2AD87B8500352CD8 /* UserStatusListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusListViewModelProtocol.swift; sourceTree = "<group>"; };
+		82920B7D2AD87B9200352CD8 /* UserStatusListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusListViewModel.swift; sourceTree = "<group>"; };
+		82920B7F2AD87BA900352CD8 /* UserStatusListViewModel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserStatusListViewModel + Extension.swift"; sourceTree = "<group>"; };
+		82920B872AD8823000352CD8 /* SelectedFacultyListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFacultyListTableViewController.swift; sourceTree = "<group>"; };
+		82920B8C2AD8871D00352CD8 /* SelectedFacultyListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFacultyListViewModelProtocol.swift; sourceTree = "<group>"; };
+		82920B8E2AD8872B00352CD8 /* SelectedFacultyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFacultyListViewModel.swift; sourceTree = "<group>"; };
+		82920B902AD8874100352CD8 /* SelectedFacultyListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectedFacultyListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		829548852A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUSectionsListViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829548912A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUBuildingsMapViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829548982A43AE32007DEBA0 /* SettingsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerProtocol.swift; sourceTree = "<group>"; };
@@ -897,15 +921,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		821EEAD32AA0B73D00AE517B /* User Status  */ = {
-			isa = PBXGroup;
-			children = (
-				821EEAD42AA0B76F00AE517B /* UserStatusTableViewCell.swift */,
-				821EEAD52AA0B76F00AE517B /* UserStatusTableViewCell.xib */,
-			);
-			path = "User Status ";
-			sourceTree = "<group>";
-		};
 		821FCF002A87CD65006FFB26 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -943,7 +958,9 @@
 		822158942A422A480088BDE5 /* Settings Modules */ = {
 			isa = PBXGroup;
 			children = (
-				82768ADC2ABE12B80022FBE1 /* Settings List MVVM */,
+				8221589A2A4233C50088BDE5 /* Settings List MVVM */,
+				82920B6E2AD877AA00352CD8 /* User Status List MVVM */,
+				82920B812AD881D100352CD8 /* Selected Faculty List MVVM */,
 				82B1C0C52A80702D00520C14 /* Saved Sub Group MVVM */,
 				828397612AD5BE76000F355A /* App Icons List MVVM */,
 				82768ADD2ABE12D30022FBE1 /* App Themes List MVVM */,
@@ -951,14 +968,14 @@
 			path = "Settings Modules";
 			sourceTree = "<group>";
 		};
-		8221589A2A4233C50088BDE5 /* View */ = {
+		8221589A2A4233C50088BDE5 /* Settings List MVVM */ = {
 			isa = PBXGroup;
 			children = (
-				82320D842A491F3700ECADEE /* ViewController */,
-				8226323C2A6CB31C0000E14C /* Cells */,
-				82194E532A459AF2009D2FB3 /* Extensions */,
+				82920B762AD87AD300352CD8 /* View */,
+				829AD6972A43817B0047609B /* ViewModel */,
 			);
-			path = View;
+			name = "Settings List MVVM";
+			path = "Settings List MVVM/Settings List MVVM";
 			sourceTree = "<group>";
 		};
 		822605F12A8532050055925F /* ViewModel */ = {
@@ -1032,11 +1049,7 @@
 		8226323C2A6CB31C0000E14C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				821EEAD32AA0B73D00AE517B /* User Status  */,
-				82423E3C2A991E11006FA7D2 /* Shake To Recall */,
-				8283975A2AD5BBAD000F355A /* App Icons */,
-				82768AF22ABE1B0D0022FBE1 /* App Themes */,
-				82426C822A71600E00D5AA57 /* App Features */,
+				82920B602AD86E9800352CD8 /* Sections */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1603,15 +1616,6 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		82426C8E2A71DCC000D5AA57 /* User Status */ = {
-			isa = PBXGroup;
-			children = (
-				82426C912A71DCEA00D5AA57 /* Model */,
-				82426C922A71DCF000D5AA57 /* List */,
-			);
-			path = "User Status";
-			sourceTree = "<group>";
-		};
 		82426C912A71DCEA00D5AA57 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1971,16 +1975,6 @@
 				82E4C51D2A6B0DB500F65A67 /* Extensions */,
 			);
 			path = Date;
-			sourceTree = "<group>";
-		};
-		82768ADC2ABE12B80022FBE1 /* Settings List MVVM */ = {
-			isa = PBXGroup;
-			children = (
-				82EA0D2F2ABB581D00262303 /* Model */,
-				8221589A2A4233C50088BDE5 /* View */,
-				829AD6972A43817B0047609B /* ViewModel */,
-			);
-			path = "Settings List MVVM";
 			sourceTree = "<group>";
 		};
 		82768ADD2ABE12D30022FBE1 /* App Themes List MVVM */ = {
@@ -2460,6 +2454,209 @@
 				82320D882A491FBC00ECADEE /* AGPUFacultyTableViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		82920B602AD86E9800352CD8 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				82920B612AD86E9E00352CD8 /* Main */,
+				82920B6C2AD8776F00352CD8 /* Other */,
+				82920B6D2AD8777800352CD8 /* About App */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
+		82920B612AD86E9E00352CD8 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				82920B622AD86EAA00352CD8 /* Your Status Option */,
+				82920B672AD872C400352CD8 /* Selected Faculty Option */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		82920B622AD86EAA00352CD8 /* Your Status Option */ = {
+			isa = PBXGroup;
+			children = (
+				82920B632AD86EE600352CD8 /* YourStatusOptionTableViewCell.swift */,
+				82920B642AD86EE600352CD8 /* YourStatusOptionTableViewCell.xib */,
+			);
+			path = "Your Status Option";
+			sourceTree = "<group>";
+		};
+		82920B672AD872C400352CD8 /* Selected Faculty Option */ = {
+			isa = PBXGroup;
+			children = (
+				82920B682AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift */,
+				82920B692AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.xib */,
+			);
+			path = "Selected Faculty Option";
+			sourceTree = "<group>";
+		};
+		82920B6C2AD8776F00352CD8 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				82423E3C2A991E11006FA7D2 /* Shake To Recall */,
+				8283975A2AD5BBAD000F355A /* App Icons */,
+				82768AF22ABE1B0D0022FBE1 /* App Themes */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		82920B6D2AD8777800352CD8 /* About App */ = {
+			isa = PBXGroup;
+			children = (
+				82426C822A71600E00D5AA57 /* App Features */,
+			);
+			path = "About App";
+			sourceTree = "<group>";
+		};
+		82920B6E2AD877AA00352CD8 /* User Status List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82920B712AD8797E00352CD8 /* Model */,
+				82920B702AD8797C00352CD8 /* View */,
+				82920B6F2AD8797A00352CD8 /* ViewModel */,
+			);
+			path = "User Status List MVVM";
+			sourceTree = "<group>";
+		};
+		82920B6F2AD8797A00352CD8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82920B7A2AD87B5100352CD8 /* Protocol */,
+				82920B782AD87B4500352CD8 /* ViewModel */,
+				82920B772AD87B4300352CD8 /* Extension */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82920B702AD8797C00352CD8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82920B722AD8798900352CD8 /* ViewController */,
+				82920B732AD879AB00352CD8 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82920B712AD8797E00352CD8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82426C912A71DCEA00D5AA57 /* Model */,
+				82426C922A71DCF000D5AA57 /* List */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82920B722AD8798900352CD8 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82920B742AD879DC00352CD8 /* UserStatusListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82920B732AD879AB00352CD8 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				821EEAD42AA0B76F00AE517B /* UserStatusTableViewCell.swift */,
+				821EEAD52AA0B76F00AE517B /* UserStatusTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		82920B762AD87AD300352CD8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82320D842A491F3700ECADEE /* ViewController */,
+				8226323C2A6CB31C0000E14C /* Cells */,
+				82194E532A459AF2009D2FB3 /* Extensions */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82920B772AD87B4300352CD8 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				82920B7F2AD87BA900352CD8 /* UserStatusListViewModel + Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		82920B782AD87B4500352CD8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82920B7D2AD87B9200352CD8 /* UserStatusListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82920B7A2AD87B5100352CD8 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82920B7B2AD87B8500352CD8 /* UserStatusListViewModelProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		82920B812AD881D100352CD8 /* Selected Faculty List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82920B832AD881EF00352CD8 /* View */,
+				82920B822AD881EC00352CD8 /* ViewModel */,
+			);
+			path = "Selected Faculty List MVVM";
+			sourceTree = "<group>";
+		};
+		82920B822AD881EC00352CD8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82920B8B2AD8870100352CD8 /* Protocol */,
+				82920B8A2AD886FF00352CD8 /* ViewModel */,
+				82920B892AD886FD00352CD8 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82920B832AD881EF00352CD8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82920B852AD8821400352CD8 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82920B852AD8821400352CD8 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82920B872AD8823000352CD8 /* SelectedFacultyListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82920B892AD886FD00352CD8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82920B902AD8874100352CD8 /* SelectedFacultyListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82920B8A2AD886FF00352CD8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82920B8E2AD8872B00352CD8 /* SelectedFacultyListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82920B8B2AD8870100352CD8 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82920B8C2AD8871D00352CD8 /* SelectedFacultyListViewModelProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		829522DB2A38AEBE00329713 /* Maps */ = {
@@ -3934,14 +4131,6 @@
 			path = Buildings;
 			sourceTree = "<group>";
 		};
-		82EA0D2F2ABB581D00262303 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				82426C8E2A71DCC000D5AA57 /* User Status */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		82ECABDF2A8151ED00FE7462 /* Sub Group */ = {
 			isa = PBXGroup;
 			children = (
@@ -4098,6 +4287,7 @@
 				82C561692A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard in Resources */,
 				822605EF2A84A0600055925F /* Assets.xcassets in Resources */,
 				8213658B2A94F73100A20E4E /* InfoPlist.strings in Resources */,
+				82920B662AD86EE600352CD8 /* YourStatusOptionTableViewCell.xib in Resources */,
 				821EEAD72AA0B76F00AE517B /* UserStatusTableViewCell.xib in Resources */,
 				828397602AD5BBF4000F355A /* AppIconTableViewCell.xib in Resources */,
 				8213658E2A94F7B700A20E4E /* InfoPlist.strings in Resources */,
@@ -4109,6 +4299,7 @@
 				822606012A853C110055925F /* RecentMomentTableViewCell.xib in Resources */,
 				82989AD42A6E36C700F27858 /* FacultyCathedraTableViewCell.xib in Resources */,
 				828397752AD5C706000F355A /* PersonalizedAppIconTableViewCell.xib in Resources */,
+				82920B6B2AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.xib in Resources */,
 				82B24A6E2A817BDE008B94E4 /* WeekTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4130,6 +4321,7 @@
 				826888662A33B6E700434219 /* AGPUTabBarController.swift in Sources */,
 				82BF4DB02A5FA52B008B751A /* AGPUWallpapersListViewController.swift in Sources */,
 				82D6C33A2A5E282A00FB7F5D /* TimeTableTableViewCell.swift in Sources */,
+				82920B802AD87BA900352CD8 /* UserStatusListViewModel + Extension.swift in Sources */,
 				822606002A853C110055925F /* RecentMomentTableViewCell.swift in Sources */,
 				82BC3CFC2A56EDA000E49332 /* RecentWebPageViewController.swift in Sources */,
 				8241F9852A5F3F73007DF628 /* CalendarViewController + Extensions.swift in Sources */,
@@ -4140,6 +4332,7 @@
 				82B24A692A817AEC008B94E4 /* AllWeeksListTableViewController.swift in Sources */,
 				82BF4DB42A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift in Sources */,
 				82B1C0F12A8125E400520C14 /* VoiceDirectionModel.swift in Sources */,
+				82920B752AD879DC00352CD8 /* UserStatusListTableViewController.swift in Sources */,
 				82989ADE2A6E59BC00F27858 /* AGPUCurrentCathedraMapViewController + Extensions.swift in Sources */,
 				82BCB5462AB35AF300F3A321 /* DaysList.swift in Sources */,
 				828DC55C2A7B3887001EA324 /* FacultyGroups.swift in Sources */,
@@ -4184,6 +4377,7 @@
 				8283977B2AD5CA11000F355A /* AppIconsListViewModel + Extensions.swift in Sources */,
 				82BC2F482A8EFD7C00ADB239 /* NewsCategoriesListViewModel + Extensions.swift in Sources */,
 				826F938B2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift in Sources */,
+				82920B7C2AD87B8500352CD8 /* UserStatusListViewModelProtocol.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
 				82807C742AA102A600E9C884 /* PairTypeModel.swift in Sources */,
@@ -4199,12 +4393,14 @@
 				828397742AD5C706000F355A /* PersonalizedAppIconTableViewCell.swift in Sources */,
 				8234E6032A88583E00ED354C /* WordRecentDocumentViewController.swift in Sources */,
 				82BCB5392AB351F400F3A321 /* DaysListViewModelProtocol.swift in Sources */,
+				82920B8F2AD8872B00352CD8 /* SelectedFacultyListViewModel.swift in Sources */,
 				82722D432A66462100149D06 /* AGPUBuildingPins.swift in Sources */,
 				82B24AA12A81C89E008B94E4 /* AGPUNewsListViewModel.swift in Sources */,
 				82FB5B642A7A8FF600728980 /* InteractiveView.swift in Sources */,
 				828321802A7D687A008641A5 /* SearchAGPUBuildingMapViewModel + Extensions.swift in Sources */,
 				8228E3992A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift in Sources */,
 				8234E6082A8858C400ED354C /* WordRecentDocumentViewModelProtocol.swift in Sources */,
+				82920B6A2AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift in Sources */,
 				829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */,
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
 				822FB2162AC5DF580083E016 /* SubGroupsListViewModel.swift in Sources */,
@@ -4293,6 +4489,7 @@
 				82320D832A49167000ECADEE /* AGPUFacultyModel.swift in Sources */,
 				82B24A7D2A8195D2008B94E4 /* HostName.swift in Sources */,
 				82768AE22ABE12F30022FBE1 /* AppThemeModel.swift in Sources */,
+				82920B882AD8823000352CD8 /* SelectedFacultyListTableViewController.swift in Sources */,
 				82BCB5742AB3AD0E00F3A321 /* PairTypesListViewModel.swift in Sources */,
 				82426C732A71476D00D5AA57 /* ForStudentSections.swift in Sources */,
 				82E4C5662A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift in Sources */,
@@ -4305,10 +4502,12 @@
 				82B24A912A81BE21008B94E4 /* AGPUNewsService + Extensions.swift in Sources */,
 				82C561672A6B7B0D00514B00 /* AppFeatureDetailViewController.swift in Sources */,
 				8234E60D2A885B6D00ED354C /* WordRecentDocumentViewModel.swift in Sources */,
+				82920B8D2AD8871D00352CD8 /* SelectedFacultyListViewModelProtocol.swift in Sources */,
 				8283976A2AD5BF0B000F355A /* AppIcons.swift in Sources */,
 				8283216E2A7D0932008641A5 /* AllGroupsListViewModel + Extensions.swift in Sources */,
 				82E4C5152A6B0C8F00F65A67 /* ImageSaverProtocol.swift in Sources */,
 				82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */,
+				82920B652AD86EE600352CD8 /* YourStatusOptionTableViewCell.swift in Sources */,
 				82989ACF2A6E35B200F27858 /* FacultyCathedraTableViewCell.swift in Sources */,
 				82505F502A7FBD7D001DE24A /* TimeTableWeekListTableViewController.swift in Sources */,
 				82162D8A2AB5CE6200840D90 /* CalendarViewModel.swift in Sources */,
@@ -4327,7 +4526,9 @@
 				82B24AA32A81C8C3008B94E4 /* AGPUNewsListViewModel + Extensions.swift in Sources */,
 				82B1C0D22A8070FF00520C14 /* SavedSubGroupViewModel + Extensions.swift in Sources */,
 				82DB22C32AACD05D00F8F664 /* TimeTable.swift in Sources */,
+				82920B7E2AD87B9200352CD8 /* UserStatusListViewModel.swift in Sources */,
 				82B24A8F2A81BDDD008B94E4 /* AGPUNewsServiceProtocol.swift in Sources */,
+				82920B912AD8874100352CD8 /* SelectedFacultyListViewModel + Extensions.swift in Sources */,
 				8234E5FA2A88553700ED354C /* WordDocumenReaderViewModel.swift in Sources */,
 				82B266FC2A8D91E400043A6D /* NewsCategoriesListTableViewController.swift in Sources */,
 				821FCF0A2A87CE79006FFB26 /* NewsListViewController + Extensions.swift in Sources */,
