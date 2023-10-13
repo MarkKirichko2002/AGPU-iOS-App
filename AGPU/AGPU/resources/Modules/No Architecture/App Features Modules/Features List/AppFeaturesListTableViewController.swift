@@ -12,7 +12,6 @@ final class AppFeaturesListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
-        setUpSwipeGesture()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     

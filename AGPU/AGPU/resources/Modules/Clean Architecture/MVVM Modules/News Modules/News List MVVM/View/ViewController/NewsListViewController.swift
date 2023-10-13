@@ -28,7 +28,6 @@ final class NewsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
-        setUpSwipeGesture()
         setUpCollectionView()
         setUpIndicatorView()
         bindViewModel()

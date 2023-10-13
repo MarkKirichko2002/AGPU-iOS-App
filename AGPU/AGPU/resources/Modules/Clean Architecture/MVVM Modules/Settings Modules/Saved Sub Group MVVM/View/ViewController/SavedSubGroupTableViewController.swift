@@ -17,7 +17,6 @@ class SavedSubGroupTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         setUpNavigation()
         bindViewModel()
-        setUpSwipeGesture()
     }
     
     private func setUpNavigation() {

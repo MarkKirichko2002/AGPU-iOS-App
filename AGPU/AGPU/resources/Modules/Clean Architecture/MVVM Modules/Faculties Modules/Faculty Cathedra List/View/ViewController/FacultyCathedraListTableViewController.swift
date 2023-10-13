@@ -27,7 +27,6 @@ class FacultyCathedraListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
-        setUpSwipeGesture()
         tableView.register(UINib(nibName: FacultyCathedraTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FacultyCathedraTableViewCell.identifier)
         bindViewModel()
     }

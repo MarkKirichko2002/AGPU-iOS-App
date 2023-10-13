@@ -26,7 +26,6 @@ final class FacultyGroupsListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpSwipeGesture()
         setUpTable()
         bindViewModel()
         setUpNavigation()
