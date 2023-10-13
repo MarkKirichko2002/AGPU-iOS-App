@@ -47,6 +47,7 @@ final class AGPUTabBarController: UITabBarController {
         observeArticleSelected()
         observeNewsRefreshed()
         becomeFirstResponder()
+        checkForUpdates()
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

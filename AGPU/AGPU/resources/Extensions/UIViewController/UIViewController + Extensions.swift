@@ -80,6 +80,53 @@ extension UIViewController {
             NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
         }
     }
+    
+    func checkForUpdates() {
+        if let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
+           let appStoreURL = URL(string: "your_app_store_url_here"),
+           let appStoreVersion = getAppStoreVersion(url: appStoreURL)
+        {
+            if currentVersion != appStoreVersion {
+                showUpdateAlert()
+            }
+        }
+    }
+    
+    func getAppStoreVersion(url: URL) -> String? {
+        do {
+            let appStoreInfo = try String(contentsOf: url)
+            let pattern = "\"version\":\"([^\"]*)\""
+            let regex = try NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+            let result = regex.firstMatch(in: appStoreInfo, options: .init(rawValue: 0), range: NSRange(location: 0, length: appStoreInfo.utf16.count))
+            
+            if let range = Range(result!.range(at: 1), in: appStoreInfo) {
+                return String(appStoreInfo[range])
+            }
+        } catch {
+            print(error)
+        }
+        
+        return nil
+    }
+    
+    func showUpdateAlert() {
+        let alert = UIAlertController(title: "Обновление доступно",
+                                      message: "Обнаружено новое обновление. Хотите обновить приложение сейчас?",
+                                      preferredStyle: .alert)
+        
+        let updateAction = UIAlertAction(title: "Обновить", style: .default) { _ in
+            if let appStoreURL = URL(string: "your_app_store_url_here") {
+                UIApplication.shared.open(appStoreURL)
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+        
+        alert.addAction(updateAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 // MARK: - MFMailComposeViewControllerDelegate
