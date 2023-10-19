@@ -53,5 +53,6 @@ final class SettingsListViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
+        viewModel.observeOptionSelection()
     }
 }

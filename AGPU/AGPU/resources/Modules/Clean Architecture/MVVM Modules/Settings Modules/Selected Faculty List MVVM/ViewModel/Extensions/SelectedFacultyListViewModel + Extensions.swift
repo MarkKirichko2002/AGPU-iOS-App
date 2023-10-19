@@ -29,6 +29,7 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                 
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     self.isChanged.toggle()
+                    NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
                 }
             }
             
@@ -88,6 +89,7 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                     UserDefaults.saveData(object: faculty, key: "faculty") {
                         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                             self.isChanged.toggle()
+                            NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
                         }
                     }
                     

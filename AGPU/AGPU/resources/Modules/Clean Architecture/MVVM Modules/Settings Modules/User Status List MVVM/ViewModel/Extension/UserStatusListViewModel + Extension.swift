@@ -26,6 +26,7 @@ extension UserStatusListViewModel: UserStatusListViewModelProtocol {
             status.isSelected = true
             UserDefaults.saveData(object: status, key: "user status") {
                 self.isChanged.toggle()
+                NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
                 HapticsManager.shared.hapticFeedback()
             }
             NotificationCenter.default.post(name: Notification.Name("user status"), object: status)

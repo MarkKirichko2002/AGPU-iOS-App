@@ -14,6 +14,14 @@ class SelectedFacultyOptionTableViewCell: UITableViewCell {
     @IBOutlet var SelectedFacultyIcon: SpringImageView!
     @IBOutlet var TitleLabel: UILabel!
     
+    func configure(faculty: AGPUFacultyModel?) {
+        if let faculty = faculty {
+            TitleLabel.text = "ваш факультет (\(faculty.abbreviation))"
+        } else {
+            TitleLabel.text = "нет факультета"
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         SelectedFacultyIcon.tintColor = .label

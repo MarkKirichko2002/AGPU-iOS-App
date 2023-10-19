@@ -14,6 +14,11 @@ class YourStatusOptionTableViewCell: UITableViewCell {
     @IBOutlet var YourStatusIcon: SpringImageView!
     @IBOutlet var TitleLabel: UILabel!
     
+    func configure(status: UserStatusModel) {
+        YourStatusIcon.image = UIImage(named: status.icon)
+        TitleLabel.text = "ваш статус (\(status.name))"
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         YourStatusIcon.tintColor = .label

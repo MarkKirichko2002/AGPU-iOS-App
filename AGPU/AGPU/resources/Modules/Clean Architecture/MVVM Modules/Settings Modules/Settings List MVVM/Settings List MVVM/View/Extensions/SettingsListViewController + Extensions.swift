@@ -32,9 +32,12 @@ extension SettingsListViewController: UITableViewDataSource {
         case 0:
             if indexPath.row == 0 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: YourStatusOptionTableViewCell.identifier, for: indexPath) as? YourStatusOptionTableViewCell else {return UITableViewCell()}
+                cell.configure(status: viewModel.getStatusInfo())
                 return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: SelectedFacultyOptionTableViewCell.identifier, for: indexPath) as? SelectedFacultyOptionTableViewCell else {return UITableViewCell()}
+                let faculty = viewModel.getSelectedFacultyInfo()
+                cell.configure(faculty: faculty)
                 return cell
             }
         case 1:
@@ -46,6 +49,7 @@ extension SettingsListViewController: UITableViewDataSource {
                 return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AppThemesTableViewCell.identifier, for: indexPath) as? AppThemesTableViewCell else {return UITableViewCell()}
+                cell.configure(theme: viewModel.getAppThemeInfo())
                 return cell
             }
         case 2:

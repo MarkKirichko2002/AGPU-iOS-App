@@ -17,6 +17,7 @@ class AppFeaturesTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         InfoIcon.tintColor = .label
+        TitleLabel.text = "фишки приложения (всего: \(AppFeaturesList.features.count))"
         TitleLabel.textColor = .label
     }
 }

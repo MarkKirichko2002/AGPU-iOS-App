@@ -19,6 +19,7 @@ extension AppThemesListViewModel: AppThemesListViewModelProtocol {
         let themeModel = AppThemes.themes[index]
         UserDefaults.saveData(object: themeModel, key: "theme") {
             self.themeSelectedHandler?(themeModel.theme)
+            NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
             HapticsManager.shared.hapticFeedback()
             print("выбрана тема")
         }

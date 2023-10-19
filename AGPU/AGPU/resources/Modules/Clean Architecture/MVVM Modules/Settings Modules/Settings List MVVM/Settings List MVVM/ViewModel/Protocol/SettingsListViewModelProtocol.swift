@@ -9,4 +9,8 @@ import Foundation
 
 protocol SettingsListViewModelProtocol {
     func sectionsCount()-> Int
+    func getStatusInfo()-> UserStatusModel
+    func getSelectedFacultyInfo()-> AGPUFacultyModel?
+    func getAppThemeInfo()-> AppThemeModel
+    func observeOptionSelection()
 }

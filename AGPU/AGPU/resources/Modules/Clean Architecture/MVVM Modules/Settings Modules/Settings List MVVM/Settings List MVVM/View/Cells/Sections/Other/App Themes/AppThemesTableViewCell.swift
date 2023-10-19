@@ -14,6 +14,10 @@ class AppThemesTableViewCell: UITableViewCell {
     @IBOutlet var ThemeIcon: SpringImageView!
     @IBOutlet var TitleLabel: UILabel!
     
+    func configure(theme: AppThemeModel) {
+        TitleLabel.text = "текущая тема (\(theme.name))"
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         ThemeIcon.tintColor = .label
