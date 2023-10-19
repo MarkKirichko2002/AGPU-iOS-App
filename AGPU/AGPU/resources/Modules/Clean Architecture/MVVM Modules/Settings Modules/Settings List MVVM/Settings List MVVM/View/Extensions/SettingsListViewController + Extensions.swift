@@ -116,8 +116,9 @@ extension SettingsListViewController: UITableViewDelegate {
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "info icon")
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 let vc = AppFeaturesListTableViewController()
-                vc.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(vc, animated: true)
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                self.present(navVC, animated: true)
             }
         default:
             break

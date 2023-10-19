@@ -207,6 +207,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     private func observeGroupChange() {
+        
         NotificationCenter.default.addObserver(forName: Notification.Name("group changed"), object: nil, queue: .main) { notification in
             let group = notification.object as? String ?? "ВМ-ИВТ-2-1"
             self.getTimeTable(group: group, date: self.date)
@@ -216,6 +217,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     private func observeSubGroupChange() {
+        
         NotificationCenter.default.addObserver(forName: Notification.Name("subgroup changed"), object: nil, queue: .main) { notification in
             
             if let subgroup = notification.object as? Int {
@@ -237,6 +239,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     private func observeCalendar() {
+        
         NotificationCenter.default.addObserver(forName: Notification.Name("DateWasSelected"), object: nil, queue: .main) { notification in
             if let date = notification.object as? String {
                 let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: date)

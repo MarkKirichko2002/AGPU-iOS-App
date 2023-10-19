@@ -16,24 +16,15 @@ final class AppFeaturesListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        
         navigationItem.title = "Фишки"
-        
-        navigationItem.leftBarButtonItem = nil
-        navigationItem.hidesBackButton = true
-        
-        let button = UIButton()
-        button.tintColor = .label
-        button.setImage(UIImage(named: "back"), for: .normal)
-        button.addTarget(self, action: #selector(back), for: .touchUpInside)
-        
-        let backButton = UIBarButtonItem(customView: button)
-        navigationItem.leftBarButtonItem = backButton
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
+        closeButton.tintColor = .label
+        navigationItem.rightBarButtonItem = closeButton
     }
     
-    @objc private func back() {
+    @objc private func close() {
         sendScreenWasClosedNotification()
-        navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
