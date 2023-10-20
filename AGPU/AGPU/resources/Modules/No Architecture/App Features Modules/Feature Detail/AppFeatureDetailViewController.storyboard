@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,13 +18,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dynamic Button" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8g7-Qg-6iQ">
-                                <rect key="frame" x="10" y="69" width="373" height="24"/>
+                                <rect key="frame" x="10" y="89" width="373" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6W3-Bq-VY1">
-                                <rect key="frame" x="30" y="123" width="333" height="665"/>
+                                <rect key="frame" x="30" y="143" width="333" height="645"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Voice Control - Вы можете совершать различные действия такие как открытие нужной страницы на сайте, прокрутка до раздела, а также прокрутка самой веб-страницы при помощи распознавание речи.</string>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -39,7 +39,7 @@
                             <constraint firstItem="6W3-Bq-VY1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="ACE-gO-l1K"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8g7-Qg-6iQ" secondAttribute="trailing" constant="10" id="Eic-G7-sB5"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="6W3-Bq-VY1" secondAttribute="trailing" constant="30" id="LCb-ab-RVs"/>
-                            <constraint firstItem="8g7-Qg-6iQ" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="10" id="OSe-fR-A5r"/>
+                            <constraint firstItem="8g7-Qg-6iQ" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="30" id="OSe-fR-A5r"/>
                             <constraint firstItem="6W3-Bq-VY1" firstAttribute="top" secondItem="8g7-Qg-6iQ" secondAttribute="bottom" constant="30" id="eis-Ny-VLQ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="6W3-Bq-VY1" secondAttribute="bottom" constant="30" id="qLr-hm-guV"/>
                         </constraints>
@@ -51,12 +51,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1" y="4"/>
+            <point key="canvasLocation" x="0.76335877862595414" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
