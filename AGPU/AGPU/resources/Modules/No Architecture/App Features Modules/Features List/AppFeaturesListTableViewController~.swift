@@ -16,7 +16,7 @@ final class AppFeaturesListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "info icon", title: "Фишки приложения", frame: .zero)
+        let titleView = CustomTitleView(image: "info icon", title: "Фишки", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .label
         navigationItem.titleView = titleView

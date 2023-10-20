@@ -19,9 +19,10 @@ class UserStatusListTableViewController: UITableViewController {
     }
 
     private func setUpNavigation() {
-        navigationItem.title = "Выберите статус"
+        let titleView = CustomTitleView(image: "profile icon", title: "Выберите статус", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .label
+        navigationItem.titleView = titleView
         navigationItem.rightBarButtonItem = closeButton
     }
     
