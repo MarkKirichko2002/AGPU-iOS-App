@@ -20,7 +20,9 @@ extension TimeTableDayListTableViewController: UITableViewDelegate {
                 let vc = PairInfoTableViewController(pair: self.timetable!.disciplines[indexPath.row], group: self.group)
                 let navVC = UINavigationController(rootViewController: vc)
                 navVC.modalPresentationStyle = .fullScreen
-                self.present(navVC, animated: true)
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self.present(navVC, animated: true)
+                }
             }
             
             let mapAction = UIAction(title: "найти корпус", image: UIImage(named: "map icon")) { _ in

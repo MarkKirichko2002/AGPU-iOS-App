@@ -74,13 +74,14 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
     }
     
     func checkIsCurrentGroup(index: Int)-> Bool {
-        if pairInfo[index].contains(pair.groupName) {
+        let savedGroup = UserDefaults.standard.string(forKey: "group") ?? ""
+        if pairInfo[index].contains(savedGroup) {
             return true
         } else {
             return false
         }
     }
-    
+        
     func registerDataChangedHandler(block: @escaping()->Void) {
         self.dataChangedHandler = block
     }
