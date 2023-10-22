@@ -9,11 +9,11 @@ import UIKit
 
 final class TimeTableDayListTableViewController: UIViewController {
     
-    private var group = ""
-    private var subgroup = 0
-    private var date = ""
-    private var allDisciplines: [Discipline] = []
-    private var type: PairType = .all
+    var group = ""
+    var subgroup = 0
+    var date = ""
+    var allDisciplines: [Discipline] = []
+    var type: PairType = .all
     
     var timetable: TimeTable?
     
