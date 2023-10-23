@@ -15,4 +15,6 @@ protocol DateManagerProtocol {
     func nextDay(date: String)-> String
     func previousDay(date: String)-> String
     func dateRange(startDate: String, endDate: String)-> Bool
+    func timeRange(startTime: String, endTime: String, currentTime: String)-> Bool
+    func compareDates(date1: String, date2: String)-> ComparisonResult
 }

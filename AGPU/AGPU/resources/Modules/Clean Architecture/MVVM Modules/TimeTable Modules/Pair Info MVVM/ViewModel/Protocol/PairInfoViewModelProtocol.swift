@@ -14,5 +14,9 @@ protocol PairInfoViewModelProtocol {
     func getPairType(type: PairType)-> String
     func checkSubGroup(subgroup: Int)-> String
     func checkIsCurrentGroup(index: Int)-> Bool
+    func startTimer()
+    func stopTimer()
+    func checkIsCurrentTime()
+    func getLeftTime()
     func registerDataChangedHandler(block: @escaping()->Void)
 }

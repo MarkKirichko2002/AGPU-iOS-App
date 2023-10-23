@@ -17,7 +17,7 @@ extension TimeTableDayListTableViewController: UITableViewDelegate {
             _ in
             
             let infoAction = UIAction(title: "подробнее", image: UIImage(named: "info")) { _ in
-                let vc = PairInfoTableViewController(pair: self.timetable!.disciplines[indexPath.row], group: self.group)
+                let vc = PairInfoTableViewController(pair: self.timetable!.disciplines[indexPath.row], group: self.group, date: self.date)
                 let navVC = UINavigationController(rootViewController: vc)
                 navVC.modalPresentationStyle = .fullScreen
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in

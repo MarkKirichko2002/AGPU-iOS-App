@@ -12,9 +12,8 @@ class PairInfoTableViewController: UITableViewController {
     private var viewModel: PairInfoViewModel
     
     // MARK: - Init
-    init(pair: Discipline, group: String) {
-        print(pair)
-        self.viewModel = PairInfoViewModel(pair: pair, group: group)
+    init(pair: Discipline, group: String, date: String) {
+        self.viewModel = PairInfoViewModel(pair: pair, group: group, date: date)
         super.init(nibName: nil, bundle: nil)
     }
     

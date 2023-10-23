@@ -15,6 +15,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         let endTime = getEndTime()
         let pairType = getPairType(type: pair.type)
         let subGroup = checkSubGroup(subgroup: pair.subgroup)
+        pairInfo.append("дата: \(date)")
         pairInfo.append("начало: \(startTime)")
         pairInfo.append("конец: \(endTime)")
         pairInfo.append("подгруппа: \(subGroup)")
@@ -23,7 +24,9 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         pairInfo.append("дисциплина: \(pair.name)")
         pairInfo.append("преподаватель: \(pair.teacherName)")
         pairInfo.append("группа: \(pair.groupName)")
+        pairInfo.append("до начала осталось: 0 часов 0 минут")
         dataChangedHandler?()
+        checkIsCurrentTime()
     }
     
     func getStartTime()-> String {
@@ -79,6 +82,76 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
             return true
         } else {
             return false
+        }
+    }
+    
+    func startTimer() {
+        timer?.fire()
+    }
+    
+    func stopTimer() {
+        timer?.invalidate()
+    }
+    
+    func checkIsCurrentTime() {
+        // текущая дата
+        let currentDate = dateManager.getCurrentDate()
+        // начало
+        let startTime = getStartTime()
+        // конец
+        let endTime = getEndTime()
+        // текущее время
+        let currentTime = dateManager.getCurrentTime()
+        // входит ли  в диапазон времени
+        let isCurrentTime = dateManager.timeRange(startTime: startTime, endTime: endTime, currentTime: currentTime)
+        // сравнение двух дат
+        let dateComparisonResult = dateManager.compareDates(date1: currentDate, date2: date)
+        // сравнени двух времен
+        let timeComparisonResult = dateManager.compareTimes(time1: currentTime, time2: startTime)
+        // количество дней
+        let daysCount = dateManager.compareDaysCount(date: currentDate, date2: date)
+        
+        if dateComparisonResult == .orderedSame && isCurrentTime && timeComparisonResult == .orderedAscending {
+            getLeftTime()
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                self.getLeftTime()
+            }
+        } else if dateComparisonResult == .orderedAscending {
+            pairInfo[9] = "пара будет через: \(daysCount) дня"
+        } else if dateComparisonResult == .orderedDescending {
+            pairInfo[9] = "пара закончилась еще \(daysCount) дня назад"
+        } else {
+            pairInfo[9] = "пара уже закончилась"
+        }
+    }
+        
+    func getLeftTime() {
+        
+        let calendar = Calendar.current
+        
+        let times = getStartTime().components(separatedBy: ":")
+        
+        let startHour = times[0]
+        let endHour = times[1]
+        
+        var components = DateComponents()
+        components.hour = Int(startHour)
+        components.minute = Int(endHour)
+        
+        let currentDate = Date()
+        
+        if let startDate = calendar.date(bySettingHour: components.hour!, minute: components.minute!, second: 0, of: currentDate) {
+            
+            let difference = calendar.dateComponents([.hour, .minute], from: currentDate, to: startDate)
+            
+            if let hours = difference.hour, let minutes = difference.minute {
+                self.pairInfo[9] = "до начала осталось: \(hours) часов \(minutes) минут"
+                self.dataChangedHandler?()
+            } else {
+                print("Ошибка")
+            }
+        } else {
+            print("Ошибка при установке времени начала пары")
         }
     }
         
