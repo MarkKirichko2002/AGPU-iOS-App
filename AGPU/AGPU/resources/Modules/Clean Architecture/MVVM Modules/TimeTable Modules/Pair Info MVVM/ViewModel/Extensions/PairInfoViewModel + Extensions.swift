@@ -96,14 +96,10 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
     func checkIsCurrentTime() {
         // текущая дата
         let currentDate = dateManager.getCurrentDate()
-        // начало
+        // начало пары
         let startTime = getStartTime()
-        // конец
-        let endTime = getEndTime()
         // текущее время
         let currentTime = dateManager.getCurrentTime()
-        // входит ли  в диапазон времени
-        let isCurrentTime = dateManager.timeRange(startTime: startTime, endTime: endTime, currentTime: currentTime)
         // сравнение двух дат
         let dateComparisonResult = dateManager.compareDates(date1: currentDate, date2: date)
         // сравнени двух времен
@@ -111,7 +107,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         // количество дней
         let daysCount = dateManager.compareDaysCount(date: currentDate, date2: date)
         
-        if dateComparisonResult == .orderedSame && isCurrentTime && timeComparisonResult == .orderedAscending {
+        if dateComparisonResult == .orderedSame && timeComparisonResult == .orderedAscending {
             getLeftTime()
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
                 self.getLeftTime()
@@ -119,7 +115,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         } else if dateComparisonResult == .orderedAscending {
             pairInfo[9] = "пара будет через: \(daysCount) дня"
         } else if dateComparisonResult == .orderedDescending {
-            pairInfo[9] = "пара закончилась еще \(daysCount) дня назад"
+            pairInfo[9] = "пара закончилась \(daysCount) дня назад"
         } else {
             pairInfo[9] = "пара уже закончилась"
         }
@@ -145,7 +141,11 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
             let difference = calendar.dateComponents([.hour, .minute], from: currentDate, to: startDate)
             
             if let hours = difference.hour, let minutes = difference.minute {
-                self.pairInfo[9] = "до начала осталось: \(hours) часов \(minutes) минут"
+                if hours < 0 && minutes < 0 {
+                    self.pairInfo[9] = "пара закончилась \(abs(hours)) часов \(abs(minutes)) минут назад"
+                } else {
+                    self.pairInfo[9] = "до начала осталось: \(hours) часов \(minutes) минут"
+                }
                 self.dataChangedHandler?()
             } else {
                 print("Ошибка")

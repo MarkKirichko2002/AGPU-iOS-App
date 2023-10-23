@@ -209,16 +209,6 @@ final class AGPUTabBarController: UITabBarController {
                 self.updateDynamicButton(icon: "АГПУ")
             }
         }
-        NotificationCenter.default.addObserver(forName: Notification.Name("group"), object: nil, queue: .main) { notification in
-            
-            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                self.updateDynamicButton(icon: "lock")
-            }
-            
-            Timer.scheduledTimer(withTimeInterval: 2.5, repeats: false) { _ in
-                self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
-            }
-        }
     }
     
     // MARK: - Adaptive News
