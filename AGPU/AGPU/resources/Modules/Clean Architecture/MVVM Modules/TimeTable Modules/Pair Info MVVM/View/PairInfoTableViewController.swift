@@ -28,6 +28,11 @@ class PairInfoTableViewController: UITableViewController {
         bindViewModel()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        viewModel.stopTimer()
+    }
+
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: "info", title: "Информация о паре", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))

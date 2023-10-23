@@ -142,7 +142,7 @@ extension DateManager: DateManagerProtocol {
     func compareTimes(time1: String, time2: String)-> ComparisonResult {
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:ss"
+        dateFormatter.dateFormat = "HH:mm:ss"
         
         let time1 = dateFormatter.date(from: time1)
         let time2 = dateFormatter.date(from: time2)

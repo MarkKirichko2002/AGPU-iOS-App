@@ -31,7 +31,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
     
     func getStartTime()-> String {
         let times = pair.time.components(separatedBy: "-")
-        let startTime = times[0]
+        let startTime = times[0] + ":00"
         return startTime
     }
     
@@ -86,10 +86,12 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
     }
     
     func startTimer() {
+        print("timer fired")
         timer?.fire()
     }
     
     func stopTimer() {
+        print("timer stopped")
         timer?.invalidate()
     }
     
@@ -108,8 +110,9 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         let daysCount = dateManager.compareDaysCount(date: currentDate, date2: date)
         
         if dateComparisonResult == .orderedSame && timeComparisonResult == .orderedAscending {
+            startTimer()
             getLeftTime()
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
                 self.getLeftTime()
             }
         } else if dateComparisonResult == .orderedAscending {
@@ -117,7 +120,11 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         } else if dateComparisonResult == .orderedDescending {
             pairInfo[9] = "пара закончилась \(daysCount) дня назад"
         } else {
-            pairInfo[9] = "пара уже закончилась"
+            startTimer()
+            getLeftTime()
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                self.getLeftTime()
+            }
         }
     }
         
