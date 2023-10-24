@@ -16,7 +16,8 @@ protocol PairInfoViewModelProtocol {
     func checkIsCurrentGroup(index: Int)-> Bool
     func startTimer()
     func stopTimer()
-    func checkIsCurrentTime()
-    func getLeftTime()
+    func checkCurrentTime()
+    func getTimeLeftToStart()
+    func getTimeLeftToEnd()
     func registerDataChangedHandler(block: @escaping()->Void)
 }

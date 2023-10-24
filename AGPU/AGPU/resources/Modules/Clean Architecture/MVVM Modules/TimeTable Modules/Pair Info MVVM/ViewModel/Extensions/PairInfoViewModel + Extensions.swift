@@ -26,7 +26,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         pairInfo.append("группа: \(pair.groupName)")
         pairInfo.append("до начала осталось: 0 часов 0 минут")
         dataChangedHandler?()
-        checkIsCurrentTime()
+        checkCurrentTime()
     }
     
     func getStartTime()-> String {
@@ -37,7 +37,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
     
     func getEndTime()-> String {
         let times = pair.time.components(separatedBy: "-")
-        let startTime = times[1]
+        let startTime = times[1] + ":00"
         return startTime
     }
     
@@ -95,7 +95,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         timer?.invalidate()
     }
     
-    func checkIsCurrentTime() {
+    func checkCurrentTime() {
         // текущая дата
         let currentDate = dateManager.getCurrentDate()
         // начало пары
@@ -111,9 +111,9 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         
         if dateComparisonResult == .orderedSame && timeComparisonResult == .orderedAscending {
             startTimer()
-            getLeftTime()
+            getTimeLeftToStart()
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                self.getLeftTime()
+                self.getTimeLeftToStart()
             }
         } else if dateComparisonResult == .orderedAscending {
             pairInfo[9] = "пара будет через: \(daysCount) дня"
@@ -121,14 +121,14 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
             pairInfo[9] = "пара закончилась \(daysCount) дня назад"
         } else {
             startTimer()
-            getLeftTime()
+            getTimeLeftToStart()
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                self.getLeftTime()
+                self.getTimeLeftToStart()
             }
         }
     }
         
-    func getLeftTime() {
+    func getTimeLeftToStart() {
         
         let calendar = Calendar.current
         
@@ -145,13 +145,47 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         
         if let startDate = calendar.date(bySettingHour: components.hour!, minute: components.minute!, second: 0, of: currentDate) {
             
-            let difference = calendar.dateComponents([.hour, .minute], from: currentDate, to: startDate)
+            let difference = calendar.dateComponents([.hour, .minute, .second], from: currentDate, to: startDate)
             
-            if let hours = difference.hour, let minutes = difference.minute {
-                if hours < 0 && minutes < 0 {
-                    self.pairInfo[9] = "пара закончилась \(abs(hours)) часов \(abs(minutes)) минут назад"
+            if let hours = difference.hour, let minutes = difference.minute, let seconds = difference.second {
+                if hours < 0 && minutes < 0 && seconds < 0 {
+                    self.pairInfo[9] = "пара началась"
+                    self.getTimeLeftToEnd()
                 } else {
                     self.pairInfo[9] = "до начала осталось: \(hours) часов \(minutes) минут"
+                }
+                self.dataChangedHandler?()
+            } else {
+                print("Ошибка")
+            }
+        } else {
+            print("Ошибка при установке времени начала пары")
+        }
+    }
+    
+    func getTimeLeftToEnd() {
+        
+        let calendar = Calendar.current
+        
+        let times = getEndTime().components(separatedBy: ":")
+        
+        let startHour = times[0]
+        let endHour = times[1]
+        
+        var components = DateComponents()
+        components.hour = Int(startHour)
+        components.minute = Int(endHour)
+        
+        let currentDate = Date()
+        
+        if let startDate = calendar.date(bySettingHour: components.hour!, minute: components.minute!, second: 0, of: currentDate) {
+            
+            let difference = calendar.dateComponents([.hour, .minute, .second], from: currentDate, to: startDate)
+            
+            if let hours = difference.hour, let minutes = difference.minute, let seconds = difference.second {
+                if hours <= 0 && minutes <= 0 && seconds <= 0 {
+                    self.pairInfo[9] = "пара закончилась"
+                    stopTimer()
                 }
                 self.dataChangedHandler?()
             } else {
