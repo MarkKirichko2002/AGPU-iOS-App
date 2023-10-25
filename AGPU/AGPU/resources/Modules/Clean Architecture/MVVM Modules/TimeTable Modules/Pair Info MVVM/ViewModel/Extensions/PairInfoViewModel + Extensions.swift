@@ -116,9 +116,9 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
                 self.getTimeLeftToStart()
             }
         } else if dateComparisonResult == .orderedAscending {
-            pairInfo[9] = "пара будет через: \(daysCount) дня"
+            pairInfo[9] = "до начала пары остаётся дней: \(daysCount)"
         } else if dateComparisonResult == .orderedDescending {
-            pairInfo[9] = "пара закончилась \(daysCount) дня назад"
+            pairInfo[9] = "прошло дней с окончания пары: \(daysCount)"
         } else {
             startTimer()
             getTimeLeftToStart()
@@ -137,6 +137,8 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         let startHour = times[0]
         let endHour = times[1]
         
+        let currentTime = dateManager.getCurrentTime()
+        
         var components = DateComponents()
         components.hour = Int(startHour)
         components.minute = Int(endHour)
@@ -148,13 +150,15 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
             let difference = calendar.dateComponents([.hour, .minute, .second], from: currentDate, to: startDate)
             
             if let hours = difference.hour, let minutes = difference.minute, let seconds = difference.second {
-                if hours < 0 && minutes < 0 && seconds < 0 {
-                    self.pairInfo[9] = "пара началась"
+                
+                if hours <= 0 && minutes <= 0 && seconds <= 0 {
+                    self.pairInfo[9] = "пара уже началась"
+                    self.dataChangedHandler?()
                     self.getTimeLeftToEnd()
                 } else {
-                    self.pairInfo[9] = "до начала осталось: \(hours) часов \(minutes) минут"
+                    self.pairInfo[9] = "до начала осталось: \(hours) часов \(minutes) минут \(seconds) секунд"
+                    self.dataChangedHandler?()
                 }
-                self.dataChangedHandler?()
             } else {
                 print("Ошибка")
             }
@@ -172,6 +176,8 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         let startHour = times[0]
         let endHour = times[1]
         
+        let currentTime = dateManager.getCurrentTime()
+        
         var components = DateComponents()
         components.hour = Int(startHour)
         components.minute = Int(endHour)
@@ -183,9 +189,17 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
             let difference = calendar.dateComponents([.hour, .minute, .second], from: currentDate, to: startDate)
             
             if let hours = difference.hour, let minutes = difference.minute, let seconds = difference.second {
-                if hours <= 0 && minutes <= 0 && seconds <= 0 {
-                    self.pairInfo[9] = "пара закончилась"
-                    stopTimer()
+                
+                if hours >= 0 && minutes >= 0 && seconds >= 0 {
+                    print(hours)
+                    print(minutes)
+                    print(seconds)
+                    self.pairInfo[9] = "до конца пары: \(hours) часов \(minutes) минут \(seconds) секунд"
+                } else if hours <= 0 && minutes <= 0 && seconds <= 0 {
+                    print(hours)
+                    print(minutes)
+                    print(seconds)
+                    self.pairInfo[9] = "пара закончилась: \(abs(hours)) часов \(abs(minutes)) минут назад"
                 }
                 self.dataChangedHandler?()
             } else {
