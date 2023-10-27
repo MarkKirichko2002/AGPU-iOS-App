@@ -38,7 +38,15 @@ extension AGPUWallpapersListViewController: UICollectionViewDelegate {
                     }
                 }
             }
-            return UIMenu(title: "", children: [save])
+            
+            let share = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
+                if let cell = collectionView.cellForItem(at: indexPath) as? AGPUWallpaperCollectionViewCell {
+                    if let image = cell.imageView.image {
+                        self.ShareImage(image: image, title: "АГПУ", text: "обоя")
+                    }
+                }
+            }
+            return UIMenu(title: "", children: [save, share])
         }
     }
 }
