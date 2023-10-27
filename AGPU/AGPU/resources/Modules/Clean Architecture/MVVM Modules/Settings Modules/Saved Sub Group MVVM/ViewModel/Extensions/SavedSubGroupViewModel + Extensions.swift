@@ -20,16 +20,21 @@ extension SavedSubGroupViewModel: SavedSubGroupViewModelProtocol {
     }
     
     func selectSubGroup(index: Int) {
-        let subgroup = SubGroupsList.subgroups[index].number
-        UserDefaults.standard.setValue(subgroup, forKey: "subgroup")
-        NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: subgroup)
-        changedHandler?()
-        HapticsManager.shared.hapticFeedback()
+        let lastSubGroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
+        let subgroup = subgroupItem(index: index).number
+        if subgroup != lastSubGroup {
+            UserDefaults.standard.setValue(subgroup, forKey: "subgroup")
+            NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: subgroup)
+            changedHandler?()
+            HapticsManager.shared.hapticFeedback()
+        } else {
+            print("подгруппа уже выбрана")
+        }
     }
     
     func isSubGroupSelected(index: Int)-> Bool {
-        let subgroup = SubGroupsList.subgroups[index]
         let lastSubGroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
+        let subgroup = SubGroupsList.subgroups[index]
         print(lastSubGroup)
         if lastSubGroup == subgroup.number {
             return true
