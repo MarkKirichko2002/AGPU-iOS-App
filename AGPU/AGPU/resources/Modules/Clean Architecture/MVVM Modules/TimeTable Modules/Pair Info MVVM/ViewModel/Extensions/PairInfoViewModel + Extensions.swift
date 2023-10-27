@@ -195,13 +195,14 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
                     print(minutes)
                     print(seconds)
                     self.pairInfo[9] = "до конца пары: \(hours) часов \(minutes) минут \(seconds) секунд"
+                    self.dataChangedHandler?()
                 } else if hours <= 0 && minutes <= 0 && seconds <= 0 {
                     print(hours)
                     print(minutes)
                     print(seconds)
                     self.pairInfo[9] = "пара закончилась: \(abs(hours)) часов \(abs(minutes)) минут назад"
+                    self.dataChangedHandler?()
                 }
-                self.dataChangedHandler?()
             } else {
                 print("Ошибка")
             }

@@ -21,15 +21,15 @@ extension AppIconsListViewModel: AppIconsListViewModelProtocol {
     
     func getSelectedFacultyData() {
         if let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
-            AppIcons.icons[2].name = "ваш факультет (\(faculty.abbreviation))"
-            AppIcons.icons[2].icon = faculty.icon
-            AppIcons.icons[2].appIcon = faculty.AppIcon
+            AppIcons.icons[3].name = "ваш факультет (\(faculty.abbreviation))"
+            AppIcons.icons[3].icon = faculty.icon
+            AppIcons.icons[3].appIcon = faculty.AppIcon
             self.faculty = faculty
             self.dataChangedHandler?()
         } else {
-            AppIcons.icons[2].name = "нет факультета"
-            AppIcons.icons[2].icon = "АГПУ"
-            AppIcons.icons[2].appIcon = ""
+            AppIcons.icons[3].name = "нет факультета"
+            AppIcons.icons[3].icon = "АГПУ"
+            AppIcons.icons[3].appIcon = ""
             self.faculty = nil
             self.dataChangedHandler?()
         }
@@ -43,7 +43,7 @@ extension AppIconsListViewModel: AppIconsListViewModelProtocol {
             
             print("Текущая иконка приложения: \(currentIconName)")
             
-            if icon.id == 3 {
+            if icon.id == 4 {
                 
                 if let _ = faculty {
                     if currentIconName != icon.appIcon {
@@ -72,7 +72,7 @@ extension AppIconsListViewModel: AppIconsListViewModelProtocol {
             
             let a = "AppIcon"
             
-            if icon.id == 3 {
+            if icon.id == 4 {
                 
                 if let _ = faculty {
                     UIApplication.shared.setAlternateIconName(icon.appIcon)
