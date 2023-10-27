@@ -30,12 +30,17 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
     
     func selectGroup(section: Int, index: Int) {
         let group = groupItem(section: section, index: index)
+        let savedGroup = UserDefaults.standard.object(forKey: "group") as? String ?? ""
         if let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
             if groups[section].facultyName.abbreviation().contains(faculty.abbreviation) {
-                UserDefaults.standard.setValue(group, forKey: "group")
-                self.isChanged.toggle()
-                HapticsManager.shared.hapticFeedback()
-                NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
+                if group != savedGroup {
+                    NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
+                    UserDefaults.standard.setValue(group, forKey: "group")
+                    self.isChanged.toggle()
+                    HapticsManager.shared.hapticFeedback()
+                } else {
+                    print("группа уже выбрана")
+                }
             } else {
                 print("no \(groups[section].facultyName) != \(faculty.abbreviation)")
             }
