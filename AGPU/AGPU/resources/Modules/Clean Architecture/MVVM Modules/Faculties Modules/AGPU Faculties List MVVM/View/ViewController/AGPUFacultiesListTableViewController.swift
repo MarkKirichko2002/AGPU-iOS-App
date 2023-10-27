@@ -19,7 +19,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
     
     private func setUpNavigation() {
                 
-        let titleView = CustomTitleView(image: "АГПУ", title: "Факультеты", frame: .zero)
+        let titleView = CustomTitleView(image: "university", title: "Факультеты", frame: .zero)
         
         let button = UIButton()
         button.tintColor = .label

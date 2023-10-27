@@ -44,7 +44,7 @@ struct ForStudentSections {
         ForEveryStatusModel(
             id: 7,
             icon: "sections icon",
-            name: "разделы"
+            name: "разделы сайта"
         ),
         ForEveryStatusModel(
             id: 8,
