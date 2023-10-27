@@ -14,7 +14,9 @@ extension AGPUCurrentBuildingMapViewController: MKMapViewDelegate {
         let storyboard = UIStoryboard(name: "AGPULocationDetailViewController", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "AGPULocationDetailViewController") as? AGPULocationDetailViewController {
             vc.annotation = view.annotation!
-            present(vc, animated: true)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            present(navVC, animated: true)
         }
     }
 }
