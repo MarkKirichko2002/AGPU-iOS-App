@@ -24,10 +24,12 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
     
     func selectGroup(section: Int, index: Int) {
         let group = groupItem(section: section, index: index)
-        NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
-        self.group = group
-        self.groupSelectedHandler?()
-        HapticsManager.shared.hapticFeedback()
+        if group != self.group {
+            NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
+            self.group = group
+            self.groupSelectedHandler?()
+            HapticsManager.shared.hapticFeedback()
+        }
     }
     
     func registerGroupSelectedHandler(block: @escaping()->Void) {
