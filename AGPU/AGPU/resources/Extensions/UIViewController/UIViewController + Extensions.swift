@@ -83,30 +83,45 @@ extension UIViewController {
     
     func checkForUpdates() {
         if let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
-           let appStoreURL = URL(string: "https://apps.apple.com/app/фгбоу-во-агпу/id6458836690"),
-           let appStoreVersion = getAppStoreVersion(url: appStoreURL)
+           let appStoreURL = URL(string: "https://itunes.apple.com/lookup?id=6458836690")
         {
-            if currentVersion != appStoreVersion {
-                showUpdateAlert()
+            getAppStoreVersion(url: appStoreURL) { (appStoreVersion) in
+                if let appStoreVersion = appStoreVersion {
+                    print(appStoreVersion)
+                    if currentVersion != appStoreVersion {
+                        self.showUpdateAlert()
+                    }
+                }
             }
         }
     }
     
-    func getAppStoreVersion(url: URL) -> String? {
-        do {
-            let appStoreInfo = try String(contentsOf: url)
-            let pattern = "\"version\":\"([^\"]*)\""
-            let regex = try NSRegularExpression(pattern: pattern, options: .caseInsensitive)
-            let result = regex.firstMatch(in: appStoreInfo, options: .init(rawValue: 0), range: NSRange(location: 0, length: appStoreInfo.utf16.count))
-            
-            if let range = Range(result!.range(at: 1), in: appStoreInfo) {
-                return String(appStoreInfo[range])
-            }
-        } catch {
-            print(error)
-        }
+    func getAppStoreVersion(url: URL, completion: @escaping (String?) -> Void) {
         
-        return nil
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                print("Data retrieval error: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let data = data else {
+                print("No data received")
+                return
+            }
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                let results = json["results"] as! [[String: Any]]
+                
+                if let appStoreVersion = results.first?["version"] as? String {
+                    print("App Store version: \(appStoreVersion)")
+                    completion(appStoreVersion)
+                }
+            } catch {
+                print("JSON parsing error: \(error.localizedDescription)")
+            }
+        }.resume()
+
     }
     
     func showUpdateAlert() {
@@ -115,7 +130,7 @@ extension UIViewController {
                                       preferredStyle: .alert)
         
         let updateAction = UIAlertAction(title: "Обновить", style: .default) { _ in
-            if let appStoreURL = URL(string: "your_app_store_url_here") {
+            if let appStoreURL = URL(string: "https://apps.apple.com/app/фгбоу-во-агпу/id6458836690") {
                 UIApplication.shared.open(appStoreURL)
             }
         }
@@ -125,7 +140,9 @@ extension UIViewController {
         alert.addAction(updateAction)
         alert.addAction(cancelAction)
         
-        present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
 
@@ -180,4 +197,8 @@ extension UIViewController: AVPlayerViewControllerDelegate {
             completionHandler(true)
         }
     }
+}
+
+struct AppStoreResponse: Decodable {
+    let version: String
 }
