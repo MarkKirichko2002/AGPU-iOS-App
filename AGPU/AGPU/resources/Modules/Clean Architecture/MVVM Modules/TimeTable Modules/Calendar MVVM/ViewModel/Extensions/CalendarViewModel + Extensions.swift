@@ -22,13 +22,27 @@ extension CalendarViewModel: CalendarViewModelProtocol {
                 }
                 
                 if data.disciplines.contains(where: { $0.name.contains("практика") }) {
-                    self?.timetableHandler?("В этот день есть практика", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date) количество пар: \(self?.getPairsCount(pairs: data.disciplines) ?? 0)")
+                    
+                    let startTimes = data.disciplines[0].time.components(separatedBy: "-")
+                    let startTime = startTimes[0]
+                    
+                    let endTimes = data.disciplines[data.disciplines.count - 1].time.components(separatedBy: "-")
+                    let endTime = endTimes[1]
+                    
+                    self?.timetableHandler?("В этот день есть практика", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), количество пар: \(self?.getPairsCount(pairs: data.disciplines) ?? 0), начало: \(startTime), конец: \(endTime)")
                 }
                 
                 if !data.disciplines.isEmpty {
-                    self?.timetableHandler?("У группы \(self?.group ?? "") есть расписание", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date) количество пар: \(self?.getPairsCount(pairs: data.disciplines) ?? 0)")
+                    
+                    let startTimes = data.disciplines[0].time.components(separatedBy: "-")
+                    let startTime = startTimes[0]
+                    
+                    let endTimes = data.disciplines[data.disciplines.count - 1].time.components(separatedBy: "-")
+                    let endTime = endTimes[1]
+                    
+                    self?.timetableHandler?("Расписание найдено", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), количество пар: \(self?.getPairsCount(pairs: data.disciplines) ?? 0), начало: \(startTime), конец: \(endTime)")
                 } else {
-                    self?.timetableHandler?("У группы \(self?.group ?? "") нет расписания", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date) нет пар")
+                    self?.timetableHandler?("Расписание отсутствует", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date) нет пар")
                 }
             case .failure(let error):
                 print(error)

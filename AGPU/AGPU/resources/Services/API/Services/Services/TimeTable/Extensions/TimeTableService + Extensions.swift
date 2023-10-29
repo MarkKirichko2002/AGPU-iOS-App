@@ -11,16 +11,33 @@ import Alamofire
 // MARK: - TimeTableServicerProtocol
 extension TimeTableService: TimeTableServicerProtocol {
     
-    func getWeeks(completion: @escaping(Result<[WeekModel],Error>)->Void) {
+    func getSearchResults(searchText: String, completion: @escaping(Result<[SearchResultModel],Error>)->Void) {
         
-        AF.request("http://\(HostName.host)/api/timetable/weeks").responseData { response in
+        AF.request("https://www.it-institut.ru/SearchString/KeySearch?Id=118&SearchProductName=\(searchText)").responseData { response in
             
             guard let data = response.data else {return}
             
             do {
-                let weeks = try JSONDecoder().decode([WeekModel].self, from: data)
-                print("Недели: \(weeks)")
-                completion(.success(weeks))
+                let results = try JSONDecoder().decode([SearchResultModel].self, from: data)
+                completion(.success(results))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getTimeTableDay(teacher: String, date: String, completion: @escaping(Result<TimeTable,Error>)->Void) {
+        
+        let teacher = teacher.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        
+        AF.request("http://\(HostName.host)/api/timetable/teacher/day?id=\(teacher)&date=\(date)").responseData { response in
+            
+            guard let data = response.data else {return}
+            
+            do {
+                let timetable = try JSONDecoder().decode(TimeTable.self, from: data)
+                print("Расписание: \(timetable)")
+                completion(.success(timetable))
             } catch {
                 completion(.failure(error))
             }
@@ -31,7 +48,7 @@ extension TimeTableService: TimeTableServicerProtocol {
         
         let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("http://\(HostName.host)/api/timetable/day?groupId=\(group)&date=\(date)").responseData { response in
+        AF.request("http://merqury.fun/api/timetable/day?groupId=\(group)&date=\(date)").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -57,6 +74,22 @@ extension TimeTableService: TimeTableServicerProtocol {
                 let timetable = try JSONDecoder().decode([TimeTable].self, from: data)
                 print("Расписание: \(timetable)")
                 completion(.success(timetable))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getWeeks(completion: @escaping(Result<[WeekModel],Error>)->Void) {
+        
+        AF.request("http://\(HostName.host)/api/timetable/weeks").responseData { response in
+            
+            guard let data = response.data else {return}
+            
+            do {
+                let weeks = try JSONDecoder().decode([WeekModel].self, from: data)
+                print("Недели: \(weeks)")
+                completion(.success(weeks))
             } catch {
                 completion(.failure(error))
             }

@@ -9,7 +9,7 @@ import UIKit
 
 final class TimeTableWeekListTableViewController: UIViewController {
     
-    private var group: String = ""
+    var group: String = ""
     private var subgroup: Int = 0
     var week: WeekModel!
     var timetable = [TimeTable]()

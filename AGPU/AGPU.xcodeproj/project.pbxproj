@@ -53,6 +53,9 @@
 		822FB2142AC5DECC0083E016 /* SubGroupsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822FB2132AC5DECC0083E016 /* SubGroupsListViewModelProtocol.swift */; };
 		822FB2162AC5DF580083E016 /* SubGroupsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822FB2152AC5DF580083E016 /* SubGroupsListViewModel.swift */; };
 		822FB2182AC5DFA70083E016 /* SubGroupsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822FB2172AC5DFA70083E016 /* SubGroupsListViewModel + Extensions.swift */; };
+		8231B0B72AED682900EB41EA /* TimeTableSearchListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8231B0B62AED682800EB41EA /* TimeTableSearchListTableViewController.swift */; };
+		8231B0B92AED693200EB41EA /* SearchResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8231B0B82AED693200EB41EA /* SearchResultModel.swift */; };
+		8231B0BB2AED97ED00EB41EA /* TeacherTimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8231B0BA2AED97ED00EB41EA /* TeacherTimeTable.swift */; };
 		82320D812A4913FE00ECADEE /* AGPUFaculties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82320D802A4913FE00ECADEE /* AGPUFaculties.swift */; };
 		82320D832A49167000ECADEE /* AGPUFacultyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82320D822A49167000ECADEE /* AGPUFacultyModel.swift */; };
 		82320D872A491F5700ECADEE /* AGPUFacultyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82320D862A491F5700ECADEE /* AGPUFacultyTableViewCell.swift */; };
@@ -331,6 +334,9 @@
 		822FB2132AC5DECC0083E016 /* SubGroupsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGroupsListViewModelProtocol.swift; sourceTree = "<group>"; };
 		822FB2152AC5DF580083E016 /* SubGroupsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGroupsListViewModel.swift; sourceTree = "<group>"; };
 		822FB2172AC5DFA70083E016 /* SubGroupsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubGroupsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		8231B0B62AED682800EB41EA /* TimeTableSearchListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSearchListTableViewController.swift; sourceTree = "<group>"; };
+		8231B0B82AED693200EB41EA /* SearchResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultModel.swift; sourceTree = "<group>"; };
+		8231B0BA2AED97ED00EB41EA /* TeacherTimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTimeTable.swift; sourceTree = "<group>"; };
 		82320D802A4913FE00ECADEE /* AGPUFaculties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFaculties.swift; sourceTree = "<group>"; };
 		82320D822A49167000ECADEE /* AGPUFacultyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultyModel.swift; sourceTree = "<group>"; };
 		82320D862A491F5700ECADEE /* AGPUFacultyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultyTableViewCell.swift; sourceTree = "<group>"; };
@@ -1208,6 +1214,30 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		8231B0B32AED67EF00EB41EA /* TimeTable Search */ = {
+			isa = PBXGroup;
+			children = (
+				8231B0B42AED67FC00EB41EA /* View */,
+			);
+			path = "TimeTable Search";
+			sourceTree = "<group>";
+		};
+		8231B0B42AED67FC00EB41EA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8231B0B52AED680200EB41EA /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8231B0B52AED680200EB41EA /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8231B0B62AED682800EB41EA /* TimeTableSearchListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		82320D842A491F3700ECADEE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1660,6 +1690,7 @@
 		82505F432A7F9A0D001DE24A /* TimeTable Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8231B0B32AED67EF00EB41EA /* TimeTable Search */,
 				82D6C32D2A5E187400FB7F5D /* TimeTable Day */,
 				82505F4C2A7FBD48001DE24A /* TimeTable Week */,
 			);
@@ -3332,6 +3363,8 @@
 			isa = PBXGroup;
 			children = (
 				82DB22C22AACD05D00F8F664 /* TimeTable.swift */,
+				8231B0BA2AED97ED00EB41EA /* TeacherTimeTable.swift */,
+				8231B0B82AED693200EB41EA /* SearchResultModel.swift */,
 			);
 			path = Timetable;
 			sourceTree = "<group>";
@@ -4378,6 +4411,7 @@
 				82B267032A8D926400043A6D /* NewsCategories.swift in Sources */,
 				828397792AD5C9F8000F355A /* AppIconsListViewModel.swift in Sources */,
 				825D567A2AE5CCAF004305C7 /* PairInfoViewModel.swift in Sources */,
+				8231B0B72AED682900EB41EA /* TimeTableSearchListTableViewController.swift in Sources */,
 				822606062A853D130055925F /* RecentMomentModel.swift in Sources */,
 				826888662A33B6E700434219 /* AGPUTabBarController.swift in Sources */,
 				82BF4DB02A5FA52B008B751A /* AGPUWallpapersListViewController.swift in Sources */,
@@ -4538,6 +4572,7 @@
 				820E40932A7C365B007A1E0A /* AGPUCurrentCathedraMapViewModelProtocol.swift in Sources */,
 				82875B022A5A198A007DB925 /* HapticsManager + Extensions.swift in Sources */,
 				82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */,
+				8231B0BB2AED97ED00EB41EA /* TeacherTimeTable.swift in Sources */,
 				82E4C55F2A6B147900F65A67 /* SettingsListViewModelProtocol.swift in Sources */,
 				82E4C5452A6B114000F65A67 /* WebViewModel + Extensions.swift in Sources */,
 				8234E5FC2A88557400ED354C /* WordDocumenReaderViewModel + Extensions.swift in Sources */,
@@ -4569,6 +4604,7 @@
 				8283976A2AD5BF0B000F355A /* AppIcons.swift in Sources */,
 				8283216E2A7D0932008641A5 /* AllGroupsListViewModel + Extensions.swift in Sources */,
 				82E4C5152A6B0C8F00F65A67 /* ImageSaverProtocol.swift in Sources */,
+				8231B0B92AED693200EB41EA /* SearchResultModel.swift in Sources */,
 				82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */,
 				82920B652AD86EE600352CD8 /* YourStatusOptionTableViewCell.swift in Sources */,
 				825D56732AE5CBEB004305C7 /* PairInfoTableViewController.swift in Sources */,
