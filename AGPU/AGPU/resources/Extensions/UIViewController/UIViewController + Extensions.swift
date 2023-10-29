@@ -83,7 +83,7 @@ extension UIViewController {
     
     func checkForUpdates() {
         if let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
-           let appStoreURL = URL(string: "your_app_store_url_here"),
+           let appStoreURL = URL(string: "https://apps.apple.com/app/фгбоу-во-агпу/id6458836690"),
            let appStoreVersion = getAppStoreVersion(url: appStoreURL)
         {
             if currentVersion != appStoreVersion {
