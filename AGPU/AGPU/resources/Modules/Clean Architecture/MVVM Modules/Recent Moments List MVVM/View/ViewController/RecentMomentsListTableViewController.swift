@@ -44,7 +44,6 @@ final class RecentMomentsListTableViewController: UITableViewController {
     
     private func checkLastWebPage() {
         viewModel.getLastWebPage { page in
-            HapticsManager.shared.hapticFeedback()
             self.showRecentPageScreen(page: page)
         }
     }
@@ -55,7 +54,6 @@ final class RecentMomentsListTableViewController: UITableViewController {
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             DispatchQueue.main.async {
-                HapticsManager.shared.hapticFeedback()
                 self.present(navVC, animated: true)
             }
         }
@@ -67,7 +65,17 @@ final class RecentMomentsListTableViewController: UITableViewController {
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             DispatchQueue.main.async {
-                HapticsManager.shared.hapticFeedback()
+                self.present(navVC, animated: true)
+            }
+        }
+    }
+    
+    private func checkLastTimetable() {
+        viewModel.getLastTimetable { group, date in
+            let vc = RecentTimeTableDayListTableViewController(group: group, date: date)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            DispatchQueue.main.async {
                 self.present(navVC, animated: true)
             }
         }
@@ -75,7 +83,6 @@ final class RecentMomentsListTableViewController: UITableViewController {
     
     private func checkLastVideo() {
         viewModel.getLastVideo { videoURL in
-            HapticsManager.shared.hapticFeedback()
             self.playVideo(url: videoURL)
         }
     }
@@ -89,6 +96,8 @@ final class RecentMomentsListTableViewController: UITableViewController {
         case 2:
             checkLastWordDocument()
         case 3:
+            checkLastTimetable()
+        case 4:
             checkLastVideo()
         default:
             break

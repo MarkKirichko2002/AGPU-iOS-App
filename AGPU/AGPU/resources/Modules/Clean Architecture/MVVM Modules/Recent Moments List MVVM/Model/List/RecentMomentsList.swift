@@ -13,6 +13,7 @@ struct RecentMomentsList {
         RecentMomentModel(name: "веб-страница", icon: "online"),
         RecentMomentModel(name: "PDF-документ", icon: "pdf"),
         RecentMomentModel(name: "Word-документ", icon: "word"),
+        RecentMomentModel(name: "расписание", icon: "calendar"),
         RecentMomentModel(name: "видео", icon: "play icon"),
     ]
 }

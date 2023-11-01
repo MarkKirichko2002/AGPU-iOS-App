@@ -173,6 +173,8 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     func getTimeTable(group: String, date: String) {
+        UserDefaults.standard.setValue(group, forKey: "recentGroup")
+        UserDefaults.standard.setValue(date, forKey: "recentDate")
         self.spinner.startAnimating()
         self.noTimeTableLabel.isHidden = true
         self.timetable?.disciplines = []
