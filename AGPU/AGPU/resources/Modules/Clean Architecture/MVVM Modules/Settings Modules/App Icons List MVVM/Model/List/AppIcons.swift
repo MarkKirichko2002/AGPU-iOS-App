@@ -13,6 +13,7 @@ struct AppIcons {
         AppIconModel(id: 1, name: "АГПУ", icon: "АГПУ", appIcon: "AppIcon 8"),
         AppIconModel(id: 2, name: "АГПУ 100 лет", icon: "АГПУ 100", appIcon: "AppIcon 7"),
         AppIconModel(id: 3, name: "кванториум", icon: "кванториум", appIcon: "AppIcon 9"),
-        AppIconModel(id: 4, name: "нет факультета", icon: "АГПУ", appIcon: "")
+        AppIconModel(id: 4, name: "техно парк", icon: "technopark", appIcon: "AppIcon 10"),
+        AppIconModel(id: 5, name: "нет факультета", icon: "АГПУ", appIcon: "")
     ]
 }
