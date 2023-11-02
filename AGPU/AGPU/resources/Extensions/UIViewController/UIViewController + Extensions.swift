@@ -125,6 +125,7 @@ extension UIViewController {
     }
     
     func showUpdateAlert() {
+        
         let alert = UIAlertController(title: "Обновление доступно",
                                       message: "Обнаружено новое обновление. Хотите обновить приложение сейчас?",
                                       preferredStyle: .alert)
@@ -137,8 +138,8 @@ extension UIViewController {
         
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
         
-        alert.addAction(updateAction)
         alert.addAction(cancelAction)
+        alert.addAction(updateAction)
         
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
