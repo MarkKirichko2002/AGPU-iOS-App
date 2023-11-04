@@ -17,7 +17,7 @@ extension SettingsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 2
+            return 3
         case 1:
             return 3
         case 2:
@@ -34,10 +34,13 @@ extension SettingsListViewController: UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: YourStatusOptionTableViewCell.identifier, for: indexPath) as? YourStatusOptionTableViewCell else {return UITableViewCell()}
                 cell.configure(status: viewModel.getStatusInfo())
                 return cell
-            } else {
+            } else if indexPath.row == 1 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: SelectedFacultyOptionTableViewCell.identifier, for: indexPath) as? SelectedFacultyOptionTableViewCell else {return UITableViewCell()}
                 let faculty = viewModel.getSelectedFacultyInfo()
                 cell.configure(faculty: faculty)
+                return cell
+            } else if indexPath.row == 2 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: AdaptiveNewsOptionTableViewCell.identifier, for: indexPath) as? AdaptiveNewsOptionTableViewCell else {return UITableViewCell()}
                 return cell
             }
         case 1:
@@ -58,6 +61,7 @@ extension SettingsListViewController: UITableViewDataSource {
         default:
             return UITableViewCell()
         }
+        return UITableViewCell()
     }
 }
 
@@ -93,6 +97,14 @@ extension SettingsListViewController: UITableViewDelegate {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "university")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = SelectedFacultyListTableViewController()
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    self.present(navVC, animated: true)
+                }
+            } else if indexPath.row == 2 {
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "news")
+                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                    let vc = SavedNewsCategoryTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)

@@ -25,7 +25,7 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
         
         for category in NewsCategories.categories {
             dispatchGroup.enter()
-            if category.name != "АГПУ" {
+            if category.newsAbbreviation != "" {
                 newsService.getFacultyNews(abbreviation: category.newsAbbreviation) { [weak self] result in
                     defer { dispatchGroup.leave() }
                     switch result {
@@ -55,23 +55,26 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
     
     func chooseNewsCategory(index: Int) {
         let category = categoryItem(index: index)
-        if category.name != currentCategory {
-            if let faculty = AGPUFaculties.faculties.first(where: { $0.abbreviation ==  category.name}) {
-                NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
-                self.currentCategory = category.name
+        if category.newsAbbreviation != currentCategory {
+            if let faculty = AGPUFaculties.faculties.first(where: { $0.newsAbbreviation ==  category.newsAbbreviation}) {
+                NotificationCenter.default.post(name: Notification.Name("category"), object: faculty.newsAbbreviation)
+                UserDefaults.standard.setValue(faculty.newsAbbreviation, forKey: "category")
+                self.currentCategory = category.newsAbbreviation
                 HapticsManager.shared.hapticFeedback()
             } else {
-                NotificationCenter.default.post(name: Notification.Name("faculty"), object: nil)
-                self.currentCategory = category.name
+                NotificationCenter.default.post(name: Notification.Name("category"), object: "")
+                UserDefaults.standard.setValue("", forKey: "category")
+                self.currentCategory = category.newsAbbreviation
                 HapticsManager.shared.hapticFeedback()
             }
+            print(category.newsAbbreviation)
             self.categorySelectedHandler?("Выбрана категория \(category.name)")
         } else {}
     }
     
     func isCurrentCategory(index: Int)-> Bool {
         let category = categoryItem(index: index)
-        if category.name == currentCategory {
+        if category.newsAbbreviation == currentCategory {
             return true
         } else {
             return false

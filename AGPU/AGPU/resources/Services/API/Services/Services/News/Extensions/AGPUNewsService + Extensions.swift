@@ -43,9 +43,9 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
         }
     }
     
-    func getNews(by page: Int, faculty: AGPUFacultyModel?, completion: @escaping(Result<NewsResponse, Error>)->Void) {
+    func getNews(by page: Int, abbreviation: String, completion: @escaping(Result<NewsResponse, Error>)->Void) {
         
-        let url = urlForPagination(faculty: faculty, page: page)
+        let url = urlForPagination(abbreviation: abbreviation, page: page)
         
         AF.request(url).responseData { response in
             
@@ -61,10 +61,10 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
     }
     
     // получить URL для конкретной статьи
-    func urlForCurrentArticle(faculty: AGPUFacultyModel?, index: Int)-> String {
+    func urlForCurrentArticle(abbreviation: String, index: Int)-> String {
         var newsURL = ""
-        if faculty != nil {
-            newsURL = "http://agpu.net/struktura-vuza/faculties-institutes/\(faculty?.newsAbbreviation ?? "")/news/news.php?ELEMENT_ID=\(index)"
+        if abbreviation != "" {
+            newsURL = "http://agpu.net/struktura-vuza/faculties-institutes/\(abbreviation)/news/news.php?ELEMENT_ID=\(index)"
         } else {
             newsURL = "http://agpu.net/news.php?ELEMENT_ID=\(index)"
         }
@@ -72,10 +72,10 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
     }
     
     // получить URL для пагинации
-    func urlForPagination(faculty: AGPUFacultyModel?, page: Int)-> String {
+    func urlForPagination(abbreviation: String, page: Int)-> String {
         var url = ""
-        if let faculty = faculty {
-            url = "http://\(HostName.host)/api/news/\(faculty.newsAbbreviation)?page=\(page)"
+        if abbreviation != "" {
+            url = "http://\(HostName.host)/api/news/\(abbreviation)?page=\(page)"
             print(url)
             return url
         } else {

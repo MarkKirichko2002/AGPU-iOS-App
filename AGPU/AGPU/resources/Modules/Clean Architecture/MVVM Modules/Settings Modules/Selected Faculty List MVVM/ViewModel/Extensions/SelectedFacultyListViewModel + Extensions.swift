@@ -29,6 +29,7 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                 
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     self.isChanged.toggle()
+                    UserDefaults.standard.setValue(faculty.newsAbbreviation, forKey: "category")
                     NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
                 }
             }
@@ -44,7 +45,7 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
             UserDefaults.standard.setValue(nil, forKey: "group")
             UserDefaults.standard.setValue(nil, forKey: "subgroup")
             
-            NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
+            NotificationCenter.default.post(name: Notification.Name("category"), object: faculty.newsAbbreviation)
             
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
@@ -89,6 +90,7 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                     UserDefaults.saveData(object: faculty, key: "faculty") {
                         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                             self.isChanged.toggle()
+                            UserDefaults.standard.setValue(faculty?.newsAbbreviation, forKey: "category")
                             NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
                         }
                     }
@@ -104,7 +106,7 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                     UserDefaults.standard.setValue(nil, forKey: "subgroup")
                     UserDefaults.standard.setValue(nil, forKey: "cathedra")
                     
-                    NotificationCenter.default.post(name: Notification.Name("faculty"), object: faculty)
+                    NotificationCenter.default.post(name: Notification.Name("category"), object: "")
                     
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                         NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)

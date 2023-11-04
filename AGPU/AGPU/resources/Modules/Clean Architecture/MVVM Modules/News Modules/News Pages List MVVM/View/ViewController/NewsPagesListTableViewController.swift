@@ -11,16 +11,16 @@ class NewsPagesListTableViewController: UITableViewController {
     
     private var currentPage: Int = 0
     private var countPages: Int = 0
-    private var faculty: AGPUFacultyModel?
+    private var abbreviation: String?
     
     // MARK: - сервисы
     private var viewModel: NewsPagesListViewModel!
     
     // MARK: - Init
-    init(currentPage: Int, countPages: Int, faculty: AGPUFacultyModel?) {
+    init(currentPage: Int, countPages: Int, abbreviation: String?) {
         self.currentPage = currentPage
         self.countPages = countPages
-        self.viewModel = NewsPagesListViewModel(currentPage: currentPage, countPages: countPages, faculty: faculty)
+        self.viewModel = NewsPagesListViewModel(currentPage: currentPage, countPages: countPages, abbreviation: abbreviation)
         super.init(nibName: nil, bundle: nil)
     }
     

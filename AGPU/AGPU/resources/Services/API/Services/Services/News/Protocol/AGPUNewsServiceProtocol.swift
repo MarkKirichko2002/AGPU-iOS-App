@@ -10,7 +10,7 @@ import Foundation
 protocol AGPUNewsServiceProtocol {
     func getFacultyNews(abbreviation: String, completion: @escaping(Result<NewsResponse, Error>)->Void)
     func getAGPUNews(completion: @escaping(Result<NewsResponse, Error>)->Void)
-    func getNews(by page: Int, faculty: AGPUFacultyModel?, completion: @escaping(Result<NewsResponse, Error>)->Void)
-    func urlForCurrentArticle(faculty: AGPUFacultyModel?, index: Int)-> String
-    func urlForPagination(faculty: AGPUFacultyModel?, page: Int)-> String
+    func getNews(by page: Int, abbreviation: String, completion: @escaping(Result<NewsResponse, Error>)->Void)
+    func urlForCurrentArticle(abbreviation: String, index: Int)-> String
+    func urlForPagination(abbreviation: String, page: Int)-> String
 }

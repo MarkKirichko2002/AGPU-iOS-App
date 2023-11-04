@@ -12,16 +12,12 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     // получить новости в зависимости от типа
     func getNewsByCurrentType() {
-        if let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
-            if !faculty.newsAbbreviation.isEmpty {
-                getFacultyNews(faculty: faculty)
-            } else {
-                getAGPUNews()
-                self.faculty = nil
-            }
+        let savedNewsCategory = UserDefaults.standard.object(forKey: "category") as? String ?? ""
+        if savedNewsCategory != "" {
+            getFacultyNews(abbreviation: savedNewsCategory)
         } else {
             getAGPUNews()
-            self.faculty = nil
+            abbreviation = ""
         }
     }
     
@@ -31,7 +27,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             switch result {
             case .success(let response):
                 self?.newsResponse = response
-                self?.dataChangedHandler?(nil)
+                self?.dataChangedHandler?("")
             case .failure(let error):
                 print(error)
             }
@@ -39,13 +35,13 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     }
     
     // получить новости факультета
-    func getFacultyNews(faculty: AGPUFacultyModel) {
-        self.faculty = faculty
-        newsService.getFacultyNews(abbreviation: faculty.newsAbbreviation) { [weak self] result in
+    func getFacultyNews(abbreviation: String) {
+        newsService.getFacultyNews(abbreviation: abbreviation) { [weak self] result in
             switch result {
             case .success(let response):
                 self?.newsResponse = response
-                self?.dataChangedHandler?(faculty)
+                self?.dataChangedHandler?(abbreviation)
+                self?.abbreviation = abbreviation
             case .failure(let error):
                 print(error)
             }
@@ -54,11 +50,11 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     // получить новость по странице
     func getNews(by page: Int) {
-        newsService.getNews(by: page, faculty: faculty) { [weak self] result in
+        newsService.getNews(by: page, abbreviation: abbreviation) { [weak self] result in
             switch result {
             case .success(let response):
                 self?.newsResponse = response
-                self?.dataChangedHandler?(self?.faculty)
+                self?.dataChangedHandler?(self?.abbreviation ?? "")
             case .failure(let error):
                 print(error)
             }
@@ -80,18 +76,22 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         return Article(id: 0, title: "", description: "", date: "", previewImage: "")
     }
     
-    func registerDataChangedHandler(block: @escaping(AGPUFacultyModel?)->Void) {
+    func registerCategoryChangedHandler(block: @escaping(String)->Void) {
         self.dataChangedHandler = block
     }
     
-    // следить за изменением факультета
-    func observeFacultyChanges() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("faculty"), object: nil, queue: .main) { notification in
-            if let faculty = notification.object as? AGPUFacultyModel {
-                self.getFacultyNews(faculty: faculty)
-            } else {
-                self.getAGPUNews()
-                self.faculty = nil
+    // следить за изменением категории
+    func observeCategoryChanges() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("category"), object: nil, queue: .main) { notification in
+            if let category = notification.object as? String {
+                print("category: \(category)")
+                if category != "" {
+                    self.getFacultyNews(abbreviation: category)
+                    self.abbreviation = category
+                } else {
+                    self.getAGPUNews()
+                    self.abbreviation = ""
+                }
             }
         }
     }
@@ -107,7 +107,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     // получить URL для конкретной статьи
     func makeUrlForCurrentArticle(index: Int)-> String {
-        let url = newsService.urlForCurrentArticle(faculty: self.faculty, index: articleItem(index: index).id)
+        let url = newsService.urlForCurrentArticle(abbreviation: abbreviation, index: articleItem(index: index).id)
         return url
     }
 }

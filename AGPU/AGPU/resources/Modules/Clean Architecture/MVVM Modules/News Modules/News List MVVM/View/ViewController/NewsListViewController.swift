@@ -81,22 +81,24 @@ final class NewsListViewController: UIViewController {
         
         viewModel.getNewsByCurrentType()
         
-        viewModel.registerDataChangedHandler { [weak self] faculty in
+        viewModel.registerCategoryChangedHandler { [weak self] abbreviation in
             
             guard let self = self else { return }
             
             DispatchQueue.main.async {
                 
-                if let faculty = faculty {
-                    titleView = CustomTitleView(image: "\(faculty.icon)", title: "\(faculty.abbreviation) новости", frame: .zero)
-                    self.spinner.stopAnimating()
+                if abbreviation != "" {
+                    if let faculty = AGPUFaculties.faculties.first(where: { $0.newsAbbreviation == abbreviation }) {
+                        titleView = CustomTitleView(image: "\(faculty.icon)", title: "\(faculty.abbreviation) новости", frame: .zero)
+                        self.spinner.stopAnimating()
+                    }
                 } else {
                     titleView = CustomTitleView(image: "АГПУ", title: "АГПУ новости", frame: .zero)
                     self.spinner.stopAnimating()
                 }
                 
                 categoriesAction = UIAction(title: "категории") { _ in
-                    let vc = NewsCategoriesListTableViewController(currentCategory: faculty?.abbreviation ?? "АГПУ")
+                    let vc = NewsCategoriesListTableViewController(currentCategory: self.viewModel.abbreviation)
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
@@ -104,7 +106,7 @@ final class NewsListViewController: UIViewController {
                 
                  pagesAction = UIAction(title: "страницы") { _ in
                      if let currentPage = self.viewModel.newsResponse.currentPage, let countPages = self.viewModel.newsResponse.countPages {
-                         let vc = NewsPagesListTableViewController(currentPage: currentPage, countPages: countPages, faculty: self.viewModel.faculty)
+                         let vc = NewsPagesListTableViewController(currentPage: currentPage, countPages: countPages, abbreviation: self.viewModel.abbreviation)
                         let navVC = UINavigationController(rootViewController: vc)
                         navVC.modalPresentationStyle = .fullScreen
                         self.present(navVC, animated: true)
@@ -120,7 +122,7 @@ final class NewsListViewController: UIViewController {
             }
         }
         
-        viewModel.observeFacultyChanges()
+        viewModel.observeCategoryChanges()
         viewModel.observePageChanges()
     }
 }

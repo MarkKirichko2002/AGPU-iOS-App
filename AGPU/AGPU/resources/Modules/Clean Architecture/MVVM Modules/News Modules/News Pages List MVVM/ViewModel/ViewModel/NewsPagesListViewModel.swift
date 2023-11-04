@@ -17,7 +17,7 @@ class NewsPagesListViewModel {
     var pageSelectedHandler: ((String)->Void)?
     var dataChangedHandler: (()->Void)?
     
-    var faculty: AGPUFacultyModel?
+    var abbreviation: String?
     
     var isStartLoading = false
     
@@ -25,9 +25,9 @@ class NewsPagesListViewModel {
     let newsService = AGPUNewsService()
     
     // MARK: - Init
-    init(currentPage: Int, countPages: Int, faculty: AGPUFacultyModel?) {
+    init(currentPage: Int, countPages: Int, abbreviation: String?) {
         self.currentPage = currentPage
         self.countPages = countPages
-        self.faculty = faculty
+        self.abbreviation = abbreviation
     }
 }
