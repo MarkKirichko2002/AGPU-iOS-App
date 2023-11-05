@@ -98,7 +98,7 @@ final class NewsListViewController: UIViewController {
                 }
                 
                 categoriesAction = UIAction(title: "категории") { _ in
-                    let vc = NewsCategoriesListTableViewController(currentCategory: self.viewModel.abbreviation)
+                    let vc = NewsCategoriesListTableViewController(currentCategory: abbreviation)
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
@@ -106,7 +106,7 @@ final class NewsListViewController: UIViewController {
                 
                  pagesAction = UIAction(title: "страницы") { _ in
                      if let currentPage = self.viewModel.newsResponse.currentPage, let countPages = self.viewModel.newsResponse.countPages {
-                         let vc = NewsPagesListTableViewController(currentPage: currentPage, countPages: countPages, abbreviation: self.viewModel.abbreviation)
+                         let vc = NewsPagesListTableViewController(currentPage: currentPage, countPages: countPages, abbreviation: abbreviation)
                         let navVC = UINavigationController(rootViewController: vc)
                         navVC.modalPresentationStyle = .fullScreen
                         self.present(navVC, animated: true)

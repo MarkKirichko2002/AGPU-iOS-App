@@ -41,6 +41,7 @@ extension SettingsListViewController: UITableViewDataSource {
                 return cell
             } else if indexPath.row == 2 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AdaptiveNewsOptionTableViewCell.identifier, for: indexPath) as? AdaptiveNewsOptionTableViewCell else {return UITableViewCell()}
+                cell.configure(category: viewModel.getSavedNewsCategoryInfo())
                 return cell
             }
         case 1:

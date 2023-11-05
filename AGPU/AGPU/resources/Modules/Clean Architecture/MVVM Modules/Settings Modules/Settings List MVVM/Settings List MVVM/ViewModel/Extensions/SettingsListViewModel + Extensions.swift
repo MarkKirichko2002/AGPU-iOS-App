@@ -29,6 +29,16 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         return nil
     }
     
+    func getSavedNewsCategoryInfo()-> String {
+        let savedNewsCategory = UserDefaults.standard.string(forKey: "category")
+        if savedNewsCategory != "" {
+            let category = NewsCategories.categories.first { $0.newsAbbreviation == savedNewsCategory}
+            return category?.name ?? ""
+        } else {
+            return "АГПУ"
+        }
+    }
+    
     func getAppThemeInfo()-> AppThemeModel {
         if let status = UserDefaults.loadData(type: AppThemeModel.self, key: "theme") {
             return status

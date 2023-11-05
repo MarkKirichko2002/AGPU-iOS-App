@@ -26,6 +26,7 @@ extension SavedNewsCategoryViewModel: SavedNewsCategoryViewModelProtocol {
         if category.newsAbbreviation != savedCategory {
             UserDefaults.standard.setValue(category.newsAbbreviation, forKey: "category")
             NotificationCenter.default.post(name: Notification.Name("category"), object: category.newsAbbreviation)
+            NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
             changedHandler?()
             HapticsManager.shared.hapticFeedback()
         } else {
