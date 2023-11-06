@@ -39,6 +39,27 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         }
     }
     
+    func getAppIconInfo()-> String {
+        
+        var iconName = ""
+        
+        if let currentIconName = UIApplication.shared.alternateIconName {
+            
+            if let icon = AppIcons.icons.first(where: {  $0.appIcon == currentIconName }) {
+                iconName = icon.name
+            } else {
+                if let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
+                    if let icon = AGPUFaculties.faculties.first(where: { $0.AppIcon == faculty.AppIcon }) {
+                        iconName = icon.abbreviation
+                    }
+                }
+            }
+        } else {
+            return "АГПУ"
+        }
+        return iconName
+    }
+    
     func getAppThemeInfo()-> AppThemeModel {
         if let status = UserDefaults.loadData(type: AppThemeModel.self, key: "theme") {
             return status

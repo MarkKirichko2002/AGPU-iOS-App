@@ -14,9 +14,8 @@ class AppIconTableViewCell: UITableViewCell {
     @IBOutlet var AppIcon: SpringImageView!
     @IBOutlet var AppIconName: UILabel!
     
-    func configure(type: UserStatusModel) {
-        AppIcon.image = UIImage(named: type.icon)
-        AppIconName.text = type.name
+    func configure(icon: String) {
+        AppIconName.text = "текущая иконка (\(icon))"
     }
     
     override func awakeFromNib() {
