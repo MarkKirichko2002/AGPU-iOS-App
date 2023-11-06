@@ -51,6 +51,25 @@ extension AGPUSectionsListViewController: UITableViewDelegate {
         return header
     }
     
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil,
+                                          previewProvider: nil,
+                                          actionProvider: {
+            _ in
+            
+            let section = AGPUSections.sections[indexPath.section]
+            let subsection = AGPUSections.sections[indexPath.section].subsections[indexPath.row]
+            
+            let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
+                self.shareInfo(image: UIImage(named: section.icon)!, title: subsection.name, text: subsection.url)
+            }
+            
+            return UIMenu(title: subsection.name, image: UIImage(named: section.icon), children: [
+                shareAction
+            ])
+        })
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 100
     }
