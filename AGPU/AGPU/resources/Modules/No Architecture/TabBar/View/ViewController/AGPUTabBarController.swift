@@ -142,7 +142,7 @@ final class AGPUTabBarController: UITabBarController {
                     let settingsAction = UIAlertAction(title: "перейти в настройки", style: .default) { _ in
                         self.openSettings()
                     }
-                    let cancel = UIAlertAction(title: "отмена", style: .default) { _ in
+                    let cancel = UIAlertAction(title: "отмена", style: .destructive) { _ in
                         self.DynamicButton.sendActions(for: .touchUpInside)
                     }
                     self.showAlert(title: "Микрофон выключен", message: "хотите включить в настройках?", actions: [settingsAction, cancel])

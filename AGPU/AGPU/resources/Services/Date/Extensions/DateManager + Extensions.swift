@@ -40,6 +40,14 @@ extension DateManager: DateManagerProtocol {
         return currentDate
     }
     
+    func getDateFromString(str: String)-> Date? {
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        if let currentDate = dateFormatter.date(from: str) {
+            return currentDate
+        }
+        return nil
+    }
+    
     func nextDay(date: String)-> String {
         
         let dateFormatter = DateFormatter()

@@ -80,7 +80,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         // календарь
         let calendar = UIAction(title: "календарь") { _ in
-            let vc = CalendarViewController(group: self.group)
+            let vc = CalendarViewController(group: self.group, date: self.date)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)

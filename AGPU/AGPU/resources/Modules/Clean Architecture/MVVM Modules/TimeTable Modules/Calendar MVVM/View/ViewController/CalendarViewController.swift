@@ -13,6 +13,8 @@ final class CalendarViewController: UIViewController {
     // MARK: - сервисы
     let viewModel: CalendarViewModel
     
+    var date: String = ""
+    
     // MARK: - UI
     private let Calendar: FSCalendar = {
         let calendar = FSCalendar()
@@ -23,8 +25,9 @@ final class CalendarViewController: UIViewController {
     }()
     
     // MARK: - Init
-    init(group: String) {
+    init(group: String, date: String) {
         self.viewModel = CalendarViewModel(group: group)
+        self.date = date
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -67,17 +70,16 @@ final class CalendarViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        
         // алерты
         viewModel.registerTimetableAlertHandler { title, message in
             let choose = UIAlertAction(title: "выбрать", style: .default) { _ in
                 self.viewModel.sendNotificationDataWasSelected(date: self.viewModel.date)
                 self.dismiss(animated: true)
             }
-            let cancel = UIAlertAction(title: "отмена", style: .default) { _ in}
+            let cancel = UIAlertAction(title: "отмена", style: .destructive) { _ in}
             self.showAlert(title: title, message: message, actions: [choose, cancel])
         }
-        
+        // дата выбрана
         viewModel.registerDateSelectedHandler {
             self.dismiss(animated: true)
         }
