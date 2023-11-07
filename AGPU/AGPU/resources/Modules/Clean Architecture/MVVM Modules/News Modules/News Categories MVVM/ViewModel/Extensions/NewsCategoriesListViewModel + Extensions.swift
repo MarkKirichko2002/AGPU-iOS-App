@@ -58,11 +58,13 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
         if category.newsAbbreviation != currentCategory {
             if let faculty = AGPUFaculties.faculties.first(where: { $0.newsAbbreviation ==  category.newsAbbreviation}) {
                 NotificationCenter.default.post(name: Notification.Name("category"), object: faculty.newsAbbreviation)
+                NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
                 UserDefaults.standard.setValue(faculty.newsAbbreviation, forKey: "category")
                 self.currentCategory = category.newsAbbreviation
                 HapticsManager.shared.hapticFeedback()
             } else {
                 NotificationCenter.default.post(name: Notification.Name("category"), object: "")
+                NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
                 UserDefaults.standard.setValue("", forKey: "category")
                 self.currentCategory = category.newsAbbreviation
                 HapticsManager.shared.hapticFeedback()
