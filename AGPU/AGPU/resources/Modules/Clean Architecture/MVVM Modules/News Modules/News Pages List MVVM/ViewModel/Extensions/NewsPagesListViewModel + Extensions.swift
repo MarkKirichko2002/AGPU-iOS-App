@@ -14,9 +14,9 @@ extension NewsPagesListViewModel: NewsPagesListViewModelProtocol {
         let page = pages[index]
         var pageItem = ""
         if isStartLoading {
-            pageItem = "страница \(page.pageNumber) (загрузка...)"
+            pageItem = "Страница \(page.pageNumber) (загрузка...)"
         } else {
-            pageItem = "страница \(page.pageNumber) (новостей: \(pages[index].newsCount))"
+            pageItem = "Страница \(page.pageNumber) (новостей: \(pages[index].newsCount))"
         }
         return pageItem
     }

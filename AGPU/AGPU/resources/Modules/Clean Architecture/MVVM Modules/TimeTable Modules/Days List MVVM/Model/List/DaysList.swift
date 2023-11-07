@@ -12,25 +12,25 @@ struct DaysList {
     static var days = [
         
         DayModel(
-            name: "настоящий", 
+            name: "Настоящий",
             date: "",
             dayOfWeek: "",
             info: ""
         ),
         DayModel(
-            name: "текущий",
+            name: "Текущий",
             date: "",
             dayOfWeek: "",
             info: ""
         ),
         DayModel(
-            name: "следующий",
+            name: "Следующий",
             date: "",
             dayOfWeek: "",
             info: ""
         ),
         DayModel(
-            name: "предыдущий",
+            name: "Предыдущий",
             date: "",
             dayOfWeek: "",
             info: ""
