@@ -46,10 +46,10 @@ class PDFDocumentReaderViewController: UIViewController {
     }
     
     private func makeMenu()-> UIMenu {
-        let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
+        let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
             self.shareInfo(image: UIImage(named: "pdf")!, title: "документ", text: self.url)
         }
-        let menu = UIMenu(title: "документ", children: [shareAction])
+        let menu = UIMenu(title: "Документ", children: [shareAction])
         return menu
     }
     

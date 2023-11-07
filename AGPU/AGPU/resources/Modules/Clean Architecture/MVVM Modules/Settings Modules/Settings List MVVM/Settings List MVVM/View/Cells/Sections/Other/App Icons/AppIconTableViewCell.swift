@@ -15,7 +15,7 @@ class AppIconTableViewCell: UITableViewCell {
     @IBOutlet var AppIconName: UILabel!
     
     func configure(icon: String) {
-        AppIconName.text = "текущая иконка (\(icon))"
+        AppIconName.text = "Текущая иконка (\(icon))"
     }
     
     override func awakeFromNib() {

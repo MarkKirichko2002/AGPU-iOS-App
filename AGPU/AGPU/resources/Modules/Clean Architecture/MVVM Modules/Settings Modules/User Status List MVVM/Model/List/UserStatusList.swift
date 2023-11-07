@@ -13,21 +13,21 @@ struct UserStatusList {
         
         UserStatusModel(
             id: 1,
-            name: "абитуриент",
+            name: "Абитуриент",
             icon: "applicant",
             isSelected: false
         ),
         
         UserStatusModel(
             id: 2,
-            name: "студент",
+            name: "Студент",
             icon: "student icon",
             isSelected: false
         ),
         
         UserStatusModel(
             id: 3,
-            name: "сотрудник",
+            name: "Сотрудник",
             icon: "computer",
             isSelected: false
         )

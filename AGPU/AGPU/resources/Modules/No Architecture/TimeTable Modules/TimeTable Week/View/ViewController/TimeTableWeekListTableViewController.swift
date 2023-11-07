@@ -77,9 +77,9 @@ final class TimeTableWeekListTableViewController: UIViewController {
             let actionHandler: UIActionHandler = { [weak self] _ in
                 self?.tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
             }
-            return UIAction(title: week.dayNames[date.date]!.lowercased(), state: currentDay == day ? .on : .off, handler: actionHandler)
+            return UIAction(title: week.dayNames[date.date]!, state: currentDay == day ? .on : .off, handler: actionHandler)
         }
-        let datesList = UIMenu(title: "дни недели", options: .singleSelection, children: actions)
+        let datesList = UIMenu(title: "Дни недели", options: .singleSelection, children: actions)
         return datesList
     }
     

@@ -67,13 +67,13 @@ final class NewsListViewController: UIViewController {
         
         var menu = UIMenu()
         
-        var categoriesAction = UIAction(title: "категории") { _ in}
-        var pagesAction = UIAction(title: "страницы") { _ in}
+        var categoriesAction = UIAction(title: "Категории") { _ in}
+        var pagesAction = UIAction(title: "Страницы") { _ in}
         
         var titleView = CustomTitleView(image: "АГПУ", title: "Новости АГПУ", frame: .zero)
         
         DispatchQueue.main.async {
-            self.navigationItem.title = "загрузка новостей..."
+            self.navigationItem.title = "Загрузка новостей..."
             options = UIBarButtonItem(image: UIImage(named: "sections"), menu: UIMenu())
             options.tintColor = .label
             self.navigationItem.rightBarButtonItem = options
@@ -97,14 +97,14 @@ final class NewsListViewController: UIViewController {
                     self.spinner.stopAnimating()
                 }
                 
-                categoriesAction = UIAction(title: "категории") { _ in
+                categoriesAction = UIAction(title: "Категории") { _ in
                     let vc = NewsCategoriesListTableViewController(currentCategory: abbreviation)
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
                 
-                 pagesAction = UIAction(title: "страницы") { _ in
+                 pagesAction = UIAction(title: "Страницы") { _ in
                      if let currentPage = self.viewModel.newsResponse.currentPage, let countPages = self.viewModel.newsResponse.countPages {
                          let vc = NewsPagesListTableViewController(currentPage: currentPage, countPages: countPages, abbreviation: abbreviation)
                         let navVC = UINavigationController(rootViewController: vc)
@@ -113,7 +113,7 @@ final class NewsListViewController: UIViewController {
                      }
                 }
                 
-                menu = UIMenu(title: "новости", children: [categoriesAction, pagesAction])
+                menu = UIMenu(title: "Новости", children: [categoriesAction, pagesAction])
                 options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
                 options.tintColor = .label
                 self.navigationItem.titleView = titleView

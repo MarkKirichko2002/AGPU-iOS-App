@@ -73,7 +73,7 @@ final class WordDocumentReaderViewController: UIViewController {
     }
     
     private func makeMenu()-> UIMenu {
-        let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
+        let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
             self.shareInfo(image: UIImage(named: "word")!, title: "Word-документ", text: self.url)
         }
         let menu = UIMenu(title: "Word-документ", children: [shareAction])

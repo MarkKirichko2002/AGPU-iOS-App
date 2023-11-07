@@ -60,7 +60,7 @@ extension AGPUSectionsListViewController: UITableViewDelegate {
             let section = AGPUSections.sections[indexPath.section]
             let subsection = AGPUSections.sections[indexPath.section].subsections[indexPath.row]
             
-            let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
+            let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
                 self.shareInfo(image: UIImage(named: section.icon)!, title: subsection.name, text: subsection.url)
             }
             

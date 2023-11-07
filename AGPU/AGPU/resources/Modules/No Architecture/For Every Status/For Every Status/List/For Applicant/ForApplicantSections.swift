@@ -14,32 +14,32 @@ struct ForApplicantSections {
         ForEveryStatusModel(
             id: 1,
             icon: "map icon",
-            name: "найти «АГПУ»"
+            name: "Найти «АГПУ»"
         ),
         ForEveryStatusModel(
             id: 2,
             icon: "university",
-            name: "институты/факультета"
+            name: "Институты/факультета"
         ),
         ForEveryStatusModel(
             id: 3,
             icon: "info icon",
-            name: "информация для поступающих"
+            name: "Информация для поступающих"
         ),
         ForEveryStatusModel(
             id: 4,
             icon: "question",
-            name: "вопросы и ответы"
+            name: "Вопросы и ответы"
         ),
         ForEveryStatusModel(
             id: 5,
             icon: "plus",
-            name: "дополнительное образование"
+            name: "Дополнительное образование"
         ),
         ForEveryStatusModel(
             id: 6,
             icon: "sections",
-            name: "разделы сайта"
+            name: "Разделы сайта"
         ),
     ]
 }

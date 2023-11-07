@@ -10,10 +10,10 @@ import Foundation
 struct RecentMomentsList {
     
     static let moments = [
-        RecentMomentModel(name: "веб-страница", icon: "online"),
+        RecentMomentModel(name: "Веб-страница", icon: "online"),
         RecentMomentModel(name: "PDF-документ", icon: "pdf"),
         RecentMomentModel(name: "Word-документ", icon: "word"),
-        RecentMomentModel(name: "расписание", icon: "calendar"),
-        RecentMomentModel(name: "видео", icon: "play icon"),
+        RecentMomentModel(name: "Расписание", icon: "calendar"),
+        RecentMomentModel(name: "Видео", icon: "play icon"),
     ]
 }

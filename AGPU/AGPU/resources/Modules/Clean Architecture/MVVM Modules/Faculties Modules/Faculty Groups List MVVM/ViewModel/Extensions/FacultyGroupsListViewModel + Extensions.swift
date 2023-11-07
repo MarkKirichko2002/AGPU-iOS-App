@@ -74,7 +74,7 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
             }
             return UIAction(title: group.facultyName.abbreviation(), state: currentGroup == group.facultyName ? .on : .off, handler: actionHandler)
         }
-        let menu = UIMenu(title: "группы", options: .singleSelection, children: items)
+        let menu = UIMenu(title: "Группы", options: .singleSelection, children: items)
         return menu
     }
     

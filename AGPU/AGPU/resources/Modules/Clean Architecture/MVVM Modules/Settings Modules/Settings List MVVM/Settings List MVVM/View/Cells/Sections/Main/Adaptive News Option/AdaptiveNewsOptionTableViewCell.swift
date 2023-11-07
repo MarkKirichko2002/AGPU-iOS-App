@@ -15,7 +15,7 @@ class AdaptiveNewsOptionTableViewCell: UITableViewCell {
     @IBOutlet var TitleLabel: UILabel!
     
     func configure(category: String) {
-        TitleLabel.text = "ваша категория (\(category))"
+        TitleLabel.text = "Ваша категория (\(category))"
     }
     
     override func awakeFromNib() {

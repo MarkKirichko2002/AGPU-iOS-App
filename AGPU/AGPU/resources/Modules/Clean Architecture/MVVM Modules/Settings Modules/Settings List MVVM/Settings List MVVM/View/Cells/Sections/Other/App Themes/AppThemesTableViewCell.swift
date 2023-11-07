@@ -15,7 +15,7 @@ class AppThemesTableViewCell: UITableViewCell {
     @IBOutlet var TitleLabel: UILabel!
     
     func configure(theme: AppThemeModel) {
-        TitleLabel.text = "текущая тема (\(theme.name))"
+        TitleLabel.text = "Текущая тема (\(theme.name))"
     }
     
     override func awakeFromNib() {

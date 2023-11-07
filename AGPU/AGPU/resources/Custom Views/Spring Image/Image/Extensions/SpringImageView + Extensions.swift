@@ -16,7 +16,7 @@ extension SpringImageView: UIContextMenuInteractionDelegate {
                                           previewProvider: nil,
                                           actionProvider: {
                 suggestedActions in
-            let saveAction = UIAction(title: "cохранить", image: UIImage(named: "download")) { _ in
+            let saveAction = UIAction(title: "Cохранить", image: UIImage(named: "download")) { _ in
                 if let image = self.image {
                     let imageSaver = ImageSaver()
                     imageSaver.writeToPhotoAlbum(image: image)

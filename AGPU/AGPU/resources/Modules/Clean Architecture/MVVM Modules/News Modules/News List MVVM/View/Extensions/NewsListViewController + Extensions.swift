@@ -30,7 +30,7 @@ extension NewsListViewController: UICollectionViewDelegate {
                                  point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
-            let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
+            let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
                 self.shareInfo(image: UIImage(named: "АГПУ")!, title: "\(self.viewModel.articleItem(index: indexPath.row).title)", text: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))")
             }
             

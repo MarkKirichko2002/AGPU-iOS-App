@@ -16,7 +16,7 @@ class YourStatusOptionTableViewCell: UITableViewCell {
     
     func configure(status: UserStatusModel) {
         YourStatusIcon.image = UIImage(named: status.icon)
-        TitleLabel.text = "ваш статус (\(status.name))"
+        TitleLabel.text = "Ваш статус (\(status.name))"
     }
     
     override func awakeFromNib() {

@@ -14,37 +14,37 @@ struct ForStudentSections {
         ForEveryStatusModel(
             id: 1,
             icon: "profile icon",
-            name: "личный кабинет ЭИОС"
+            name: "Личный кабинет ЭИОС"
         ),
         ForEveryStatusModel(
             id: 2,
             icon: "map icon",
-            name: "найти «АГПУ»"
+            name: "Найти «АГПУ»"
         ),
         ForEveryStatusModel(
             id: 3,
             icon: "university",
-            name: "факультеты и кафедры"
+            name: "Факультеты и кафедры"
         ),
         ForEveryStatusModel(
             id: 4,
             icon: "book",
-            name: "методические материалы"
+            name: "Методические материалы"
         ),
         ForEveryStatusModel(
             id: 5,
             icon: "plus",
-            name: "дополнительное образование"
+            name: "Дополнительное образование"
         ),
         ForEveryStatusModel(
             id: 6,
             icon: "group icon",
-            name: "кампус и общежития"
+            name: "Кампус и общежития"
         ),
         ForEveryStatusModel(
             id: 7,
             icon: "sections icon",
-            name: "разделы сайта"
+            name: "Разделы сайта"
         ),
         ForEveryStatusModel(
             id: 8,

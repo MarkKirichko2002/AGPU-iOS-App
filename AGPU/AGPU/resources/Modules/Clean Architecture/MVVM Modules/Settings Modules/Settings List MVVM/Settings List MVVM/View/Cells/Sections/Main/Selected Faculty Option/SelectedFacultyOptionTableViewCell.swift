@@ -16,7 +16,7 @@ class SelectedFacultyOptionTableViewCell: UITableViewCell {
     
     func configure(faculty: AGPUFacultyModel?) {
         if let faculty = faculty {
-            TitleLabel.text = "ваш факультет (\(faculty.abbreviation))"
+            TitleLabel.text = "Ваш факультет (\(faculty.abbreviation))"
         } else {
             TitleLabel.text = "нет факультета"
         }

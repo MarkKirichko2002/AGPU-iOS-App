@@ -55,7 +55,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         navigationItem.title = "Сегодня: \(dayOfWeek) \(date) "
         
         // список групп
-        let groupList = UIAction(title: "группы") { _ in
+        let groupList = UIAction(title: "Группы") { _ in
             let vc = AllGroupsListTableViewController(group: self.group)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -63,7 +63,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
         
         // список подгрупп
-        let subGroupsList = UIAction(title: "подгруппы") { _ in
+        let subGroupsList = UIAction(title: "Подгруппы") { _ in
             let vc = SubGroupsListTableViewController(subgroup: self.subgroup, disciplines: self.allDisciplines)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -71,7 +71,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
         
         // день
-        let days = UIAction(title: "день") { _ in
+        let days = UIAction(title: "День") { _ in
             let vc = DaysListTableViewController(group: self.group, currentDate: self.date)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -79,7 +79,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
         
         // календарь
-        let calendar = UIAction(title: "календарь") { _ in
+        let calendar = UIAction(title: "Календарь") { _ in
             let vc = CalendarViewController(group: self.group, date: self.date)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -87,7 +87,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
         
         // недели
-        let weeks = UIAction(title: "недели") { _ in
+        let weeks = UIAction(title: "Недели") { _ in
             let vc = AllWeeksListTableViewController(group: self.group, subgroup: self.subgroup)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -95,7 +95,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
         
         // поделиться
-        let shareTimeTable = UIAction(title: "поделиться") { _ in
+        let shareTimeTable = UIAction(title: "Поделиться") { _ in
             
             do {
                 let json = try JSONEncoder().encode(self.timetable)
@@ -109,14 +109,14 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
         
         // список типов пар
-        let pairTypesList = UIAction(title: "типы пары") { _ in
+        let pairTypesList = UIAction(title: "Типы пары") { _ in
             let vc = PairTypesListTableViewController(type: self.type)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
         }
         
-        let menu = UIMenu(title: "расписание", children: [
+        let menu = UIMenu(title: "Расписание", children: [
             groupList,
             subGroupsList,
             days,

@@ -139,13 +139,13 @@ final class AGPUTabBarController: UITabBarController {
                 case .notDetermined:
                     print("Разрешение на распознавание речи еще не было получено.")
                 case .denied:
-                    let settingsAction = UIAlertAction(title: "перейти в настройки", style: .default) { _ in
+                    let settingsAction = UIAlertAction(title: "Перейти в настройки", style: .default) { _ in
                         self.openSettings()
                     }
-                    let cancel = UIAlertAction(title: "отмена", style: .destructive) { _ in
+                    let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in
                         self.DynamicButton.sendActions(for: .touchUpInside)
                     }
-                    self.showAlert(title: "Микрофон выключен", message: "хотите включить в настройках?", actions: [settingsAction, cancel])
+                    self.showAlert(title: "Микрофон выключен", message: "Хотите включить в настройках?", actions: [settingsAction, cancel])
                     print("Доступ к распознаванию речи был отклонен.")
                 case .restricted:
                     print("Функциональность распознавания речи ограничена.")

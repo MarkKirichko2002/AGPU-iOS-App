@@ -14,37 +14,37 @@ struct ForEmployeeSections {
         ForEveryStatusModel(
             id: 1,
             icon: "profile icon",
-            name: "личный кабинет ЭИОС"
+            name: "Личный кабинет ЭИОС"
         ),
         ForEveryStatusModel(
             id: 2,
             icon: "map icon",
-            name: "найти «АГПУ»"
+            name: "Найти «АГПУ»"
         ),
         ForEveryStatusModel(
             id: 3,
             icon: "online",
-            name: "ведомости online"
+            name: "Ведомости online"
         ),
         ForEveryStatusModel(
             id: 4,
             icon: "book",
-            name: "методические материалы"
+            name: "Методические материалы"
         ),
         ForEveryStatusModel(
             id: 5,
             icon: "group icon",
-            name: "подразделения"
+            name: "Подразделения"
         ),
         ForEveryStatusModel(
             id: 6,
             icon: "document",
-            name: "документы"
+            name: "Документы"
         ),
         ForEveryStatusModel(
             id: 7,
             icon: "sections icon",
-            name: "разделы сайта"
+            name: "Разделы сайта"
         ),
         ForEveryStatusModel(
             id: 8,

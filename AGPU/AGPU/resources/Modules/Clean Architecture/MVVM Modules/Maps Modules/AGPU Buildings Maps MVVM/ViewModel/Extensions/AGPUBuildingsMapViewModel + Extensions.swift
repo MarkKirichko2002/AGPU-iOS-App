@@ -63,13 +63,13 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
     
     func makeOptionsMenu()-> UIMenu {
         
-        let all = UIAction(title: "все здания", state: .on) { _ in
+        let all = UIAction(title: "Все здания", state: .on) { _ in
             for building in AGPUBuildings.buildings {
                 self.choiceHandler?(true, building.pin)
             }
         }
         
-        let buildings = UIAction(title: "корпуса") { _ in
+        let buildings = UIAction(title: "Корпуса") { _ in
             for building in AGPUBuildings.buildings {
                 if building.type == .building || building.type == .buildingAndHostel {
                     self.choiceHandler?(true, building.pin)
@@ -79,7 +79,7 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
             }
         }
         
-        let hostels = UIAction(title: "общежития") { _ in
+        let hostels = UIAction(title: "Общежития") { _ in
             for building in AGPUBuildings.buildings {
                 if building.type == .hostel || building.type == .buildingAndHostel {
                     self.choiceHandler?(true, building.pin)
@@ -89,7 +89,7 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
             }
         }
         
-        let menu = UIMenu(title: "показать на карте", options: .singleSelection, children: [
+        let menu = UIMenu(title: "Показать на карте", options: .singleSelection, children: [
             all,
             buildings,
             hostels

@@ -66,27 +66,27 @@ class FacultyCathedraListTableViewController: UITableViewController {
                                           actionProvider: {
             _ in
             
-            let infoAction = UIAction(title: "узнать больше", image: UIImage(named: "info")) { _ in
+            let infoAction = UIAction(title: "Узнать больше", image: UIImage(named: "info")) { _ in
                 self.goToWeb(url: self.faculty.cathedra[indexPath.row].url, image: "info", title: "Кафедра \(self.faculty.abbreviation)", isSheet: false)
             }
             
-            let staffInfoAction = UIAction(title: "состав кафедры", image: UIImage(named: "group")) { _ in
+            let staffInfoAction = UIAction(title: "Состав кафедры", image: UIImage(named: "group")) { _ in
                 self.goToWeb(url: self.faculty.cathedra[indexPath.row].staffUrl, image: "group", title: "Состав кафедры", isSheet: false)
             }
             
-            let additionalEducationAction = UIAction(title: "дополнительное образование", image: UIImage(named: "plus")) { _ in
+            let additionalEducationAction = UIAction(title: "Дополнительное образование", image: UIImage(named: "plus")) { _ in
                 self.goToWeb(url: self.faculty.cathedra[indexPath.row].additionalEducationUrl, image: "plus", title: "Доп. образование", isSheet: false)
             }
             
-            let manualAction = UIAction(title: "методические материалы", image: UIImage(named: "manual")) { _ in
+            let manualAction = UIAction(title: "Методические материалы", image: UIImage(named: "manual")) { _ in
                 self.goToWeb(url: self.faculty.cathedra[indexPath.row].manualUrl, image: "manual", title: "Метод. материалы", isSheet: false)
             }
             
-            let emailAction = UIAction(title: "написать", image: UIImage(named: "mail")) { _ in
+            let emailAction = UIAction(title: "Написать", image: UIImage(named: "mail")) { _ in
                 self.showEmailComposer(email: self.faculty.cathedra[indexPath.row].email)
             }
             
-            let mapAction = UIAction(title: "найти кафедру", image: UIImage(named: "map icon")) { _ in
+            let mapAction = UIAction(title: "Найти кафедру", image: UIImage(named: "map icon")) { _ in
                 let vc = AGPUCurrentCathedraMapViewController(cathedra: self.faculty.cathedra[indexPath.row])
                 let navVC = UINavigationController(rootViewController: vc)
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
@@ -95,7 +95,7 @@ class FacultyCathedraListTableViewController: UITableViewController {
                 }
             }
             
-            let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
+            let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
                 self.shareInfo(image: UIImage(named: self.faculty.icon)!, title: self.faculty.abbreviation, text: self.faculty.cathedra[indexPath.row].url)
             }
             
