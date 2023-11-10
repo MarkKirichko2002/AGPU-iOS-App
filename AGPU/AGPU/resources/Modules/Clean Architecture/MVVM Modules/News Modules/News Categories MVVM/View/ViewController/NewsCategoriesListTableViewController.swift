@@ -84,10 +84,7 @@ class NewsCategoriesListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)-> UITableViewCell {
         let category = viewModel.categoryItem(index: indexPath.row)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsCategoryTableViewCell.identifier, for: indexPath) as? NewsCategoryTableViewCell else {return UITableViewCell()}
-        cell.tintColor = .systemGreen
-        cell.CategoryName.textColor = viewModel.isCurrentCategory(index: indexPath.row) ? .systemGreen : .label
-        cell.accessoryType = viewModel.isCurrentCategory(index: indexPath.row) ? .checkmark : .none
-        cell.configure(category: category)
+        cell.configure(viewModel: viewModel, category: category)
         return cell
     }
 }
