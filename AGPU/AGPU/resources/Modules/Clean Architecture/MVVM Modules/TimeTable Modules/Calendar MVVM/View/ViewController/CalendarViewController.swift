@@ -71,13 +71,24 @@ final class CalendarViewController: UIViewController {
     
     private func bindViewModel() {
         // алерты
-        viewModel.registerTimetableAlertHandler { title, message in
+        viewModel.registerTimetableAlertHandler { title, message, color in
+            
+            let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+            let customTitle = NSAttributedString(string: title, attributes: [
+                NSAttributedString.Key.foregroundColor: color
+            ])
+            
             let choose = UIAlertAction(title: "Выбрать", style: .default) { _ in
                 self.viewModel.sendNotificationDataWasSelected(date: self.viewModel.date)
                 self.dismiss(animated: true)
             }
             let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
-            self.showAlert(title: title, message: message, actions: [choose, cancel])
+            
+            alertVC.setValue(customTitle, forKey: "attributedTitle")
+            alertVC.addAction(choose)
+            alertVC.addAction(cancel)
+            self.present(alertVC, animated: true)
         }
         // дата выбрана
         viewModel.registerDateSelectedHandler {
