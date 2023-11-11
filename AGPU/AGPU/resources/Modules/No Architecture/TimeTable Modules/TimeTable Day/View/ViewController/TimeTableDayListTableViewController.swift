@@ -94,9 +94,29 @@ final class TimeTableDayListTableViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
-        // поделиться
+        // список типов пар
+        let pairTypesList = UIAction(title: "Типы пары") { _ in
+            let vc = PairTypesListTableViewController(type: self.type)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        // сохранить расписание
+        let saveTimetable = UIAction(title: "Сохранить") { _ in
+            do {
+                let json = try JSONEncoder().encode(self.timetable)
+                self.service.getTimeTableDayImage(json: json) { image in
+                    let imageSaver = ImageSaver()
+                    imageSaver.writeToPhotoAlbum(image: image)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        
+        // поделиться расписанием
         let shareTimeTable = UIAction(title: "Поделиться") { _ in
-            
             do {
                 let json = try JSONEncoder().encode(self.timetable)
                 let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: self.date)
@@ -108,14 +128,6 @@ final class TimeTableDayListTableViewController: UIViewController {
             }
         }
         
-        // список типов пар
-        let pairTypesList = UIAction(title: "Типы пары") { _ in
-            let vc = PairTypesListTableViewController(type: self.type)
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
         let menu = UIMenu(title: "Расписание", children: [
             groupList,
             subGroupsList,
@@ -123,6 +135,7 @@ final class TimeTableDayListTableViewController: UIViewController {
             calendar,
             weeks,
             pairTypesList,
+            saveTimetable,
             shareTimeTable
         ])
         

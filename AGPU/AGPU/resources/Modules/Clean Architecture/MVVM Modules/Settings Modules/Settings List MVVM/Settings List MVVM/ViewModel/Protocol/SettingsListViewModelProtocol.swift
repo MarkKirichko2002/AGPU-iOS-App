@@ -14,5 +14,6 @@ protocol SettingsListViewModelProtocol {
     func getSavedNewsCategoryInfo()-> String
     func getAppIconInfo()-> String
     func getAppThemeInfo()-> AppThemeModel
+    func getAppVersion()-> String
     func observeOptionSelection()
 }

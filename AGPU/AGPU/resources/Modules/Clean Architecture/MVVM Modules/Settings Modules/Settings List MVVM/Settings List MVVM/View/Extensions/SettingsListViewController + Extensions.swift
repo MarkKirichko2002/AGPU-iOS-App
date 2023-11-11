@@ -77,7 +77,7 @@ extension SettingsListViewController: UITableViewDelegate {
         case 1:
             return "Другие опции"
         case 2:
-            return "О приложение"
+            return "О приложение (версия: \(viewModel.getAppVersion()))"
         default:
             return ""
         }

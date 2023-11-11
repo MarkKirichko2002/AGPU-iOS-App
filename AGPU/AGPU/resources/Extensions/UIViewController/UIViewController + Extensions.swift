@@ -134,7 +134,7 @@ extension UIViewController {
         
         let cancelAction = UIAlertAction(title: "Отмена", style: .destructive)
         
-        self.showAlert(title: "Обновление доступно", message: "Обнаружено новое обновление. Хотите обновить приложение сейчас?", actions: [updateAction, cancelAction])
+        self.showAlert(title: "Обновление доступно!", message: "Обнаружено новое обновление! Хотите обновить приложение сейчас?", actions: [updateAction, cancelAction])
     }
 }
 

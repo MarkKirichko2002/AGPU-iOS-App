@@ -68,6 +68,14 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         }
     }
     
+    func getAppVersion()-> String {
+        var appVersion = ""
+        if let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            appVersion = currentVersion
+        }
+        return appVersion
+    }
+    
     func observeOptionSelection() {
         NotificationCenter.default.addObserver(forName: Notification.Name("option was selected"), object: nil, queue: .main) { _ in
             self.isChanged.toggle()
