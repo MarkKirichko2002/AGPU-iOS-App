@@ -106,8 +106,6 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         let dateComparisonResult = dateManager.compareDates(date1: currentDate, date2: date)
         // сравнени двух времен
         let timeComparisonResult = dateManager.compareTimes(time1: currentTime, time2: startTime)
-        // количество дней
-        let daysCount = dateManager.compareDaysCount(date: currentDate, date2: date)
         
         if dateComparisonResult == .orderedSame && timeComparisonResult == .orderedAscending {
             startTimer()
@@ -122,7 +120,11 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
                 self.getTimeLeftToStartInFuture()
             }
         } else if dateComparisonResult == .orderedDescending {
-            pairInfo[9] = "прошло дней с окончания пары: \(daysCount)"
+            startTimer()
+            getTimeEnded()
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                self.getTimeEnded()
+            }
         } else {
             startTimer()
             getTimeLeftToStart()
@@ -240,6 +242,35 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         let info = dateManager.getInfoFromDates(date: currentDate, date2: startDateString)
         
         self.pairInfo[9] = "до начала: \(abs(info.day ?? 0)) дней \(abs(info.hour ?? 0)) часов \(abs(info.minute ?? 0)) минут \(abs(info.second ?? 0)) секунд"
+        self.dataChangedHandler?()
+    }
+    
+    func getTimeEnded() {
+        
+        let calendar = Calendar.current
+        
+        let times = dateManager.getCurrentTime()
+        
+        let startTimes = getEndTime().components(separatedBy: ":")
+        let startHour = startTimes[0]
+        let endHour = startTimes[1]
+        
+        let dates = date.components(separatedBy: ".")
+        var components = DateComponents()
+        components.day = Int(dates[0])
+        components.month = Int(dates[1])
+        components.year = Int(dates[2])
+        
+        let currentDate = dateManager.getCurrentDate() + " \(times)"
+        let startDate = calendar.date(from: components)!
+        let startDateString = dateManager.getFormattedDate(date: startDate) + " \(startHour):\(endHour):00"
+        
+        print(currentDate)
+        print(startDateString)
+        
+        let info = dateManager.getInfoFromDates(date: currentDate, date2: startDateString)
+        
+        pairInfo[9] = "прошло с окончания пары: \(abs(info.day ?? 0)) дней \(abs(info.hour ?? 0)) часов \(abs(info.minute ?? 0)) минут \(abs(info.second ?? 0)) секунд"
         self.dataChangedHandler?()
     }
         
