@@ -17,4 +17,7 @@ protocol DateManagerProtocol {
     func dateRange(startDate: String, endDate: String)-> Bool
     func timeRange(startTime: String, endTime: String, currentTime: String)-> Bool
     func compareDates(date1: String, date2: String)-> ComparisonResult
+    func compareTimes(time1: String, time2: String)-> ComparisonResult
+    func compareDaysCount(date: String, date2: String)-> Int
+    func getInfoFromDates(date: String, date2: String)-> DateComponents
 }

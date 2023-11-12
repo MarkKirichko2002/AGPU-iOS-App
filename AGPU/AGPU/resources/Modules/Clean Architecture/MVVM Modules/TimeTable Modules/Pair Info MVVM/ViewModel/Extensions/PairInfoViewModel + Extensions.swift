@@ -116,7 +116,11 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
                 self.getTimeLeftToStart()
             }
         } else if dateComparisonResult == .orderedAscending {
-            pairInfo[9] = "до начала пары остаётся дней: \(daysCount)"
+            startTimer()
+            getTimeLeftToStartInFuture()
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                self.getTimeLeftToStartInFuture()
+            }
         } else if dateComparisonResult == .orderedDescending {
             pairInfo[9] = "прошло дней с окончания пары: \(daysCount)"
         } else {
@@ -127,7 +131,8 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
             }
         }
     }
-        
+    
+    // время до начала пары
     func getTimeLeftToStart() {
         
         let calendar = Calendar.current
@@ -136,8 +141,6 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         
         let startHour = times[0]
         let endHour = times[1]
-        
-        let currentTime = dateManager.getCurrentTime()
         
         var components = DateComponents()
         components.hour = Int(startHour)
@@ -156,7 +159,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
                     self.dataChangedHandler?()
                     self.getTimeLeftToEnd()
                 } else {
-                    self.pairInfo[9] = "до начала осталось: \(hours) часов \(minutes) минут \(seconds) секунд"
+                    self.pairInfo[9] = "до начала: \(hours) часов \(minutes) минут \(seconds) секунд"
                     self.dataChangedHandler?()
                 }
             } else {
@@ -167,6 +170,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         }
     }
     
+    // время до конца пары
     func getTimeLeftToEnd() {
         
         let calendar = Calendar.current
@@ -175,8 +179,6 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         
         let startHour = times[0]
         let endHour = times[1]
-        
-        let currentTime = dateManager.getCurrentTime()
         
         var components = DateComponents()
         components.hour = Int(startHour)
@@ -209,6 +211,36 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         } else {
             print("Ошибка при установке времени начала пары")
         }
+    }
+    
+    // время до начала пары в будущем
+    func getTimeLeftToStartInFuture() {
+        
+        let calendar = Calendar.current
+        
+        let times = dateManager.getCurrentTime()
+        
+        let startTimes = getStartTime().components(separatedBy: ":")
+        let startHour = startTimes[0]
+        let endHour = startTimes[1]
+        
+        let dates = date.components(separatedBy: ".")
+        var components = DateComponents()
+        components.day = Int(dates[0])
+        components.month = Int(dates[1])
+        components.year = Int(dates[2])
+        
+        let currentDate = dateManager.getCurrentDate() + " \(times)"
+        let startDate = calendar.date(from: components)!
+        let startDateString = dateManager.getFormattedDate(date: startDate) + " \(startHour):\(endHour):00"
+        
+        print(currentDate)
+        print(startDateString)
+        
+        let info = dateManager.getInfoFromDates(date: currentDate, date2: startDateString)
+        
+        self.pairInfo[9] = "до начала: \(abs(info.day ?? 0)) дней \(abs(info.hour ?? 0)) часов \(abs(info.minute ?? 0)) минут \(abs(info.second ?? 0)) секунд"
+        self.dataChangedHandler?()
     }
         
     func registerDataChangedHandler(block: @escaping()->Void) {

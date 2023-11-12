@@ -190,4 +190,36 @@ extension DateManager: DateManagerProtocol {
         }
         return 0
     }
+    
+    func getInfoFromDates(date: String, date2: String)-> DateComponents {
+        
+        let calendar = Calendar.current
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy HH:mm:ss"
+        
+        var info = DateComponents()
+        
+        if let firstDate = dateFormatter.date(from: date) ,
+           let startDate = dateFormatter.date(from: date2) {
+            
+            print(firstDate)
+            print(startDate)
+            
+            let components = calendar.dateComponents([.day, .hour, .minute, .second], from: firstDate, to: startDate)
+                        
+            if let days = components.day, let hours = components.hour, let minutes = components.minute, let seconds = components.second {
+                info.day = days
+                info.hour = hours
+                info.minute = minutes
+                info.second = seconds
+                print(seconds)
+            } else {
+                print("Ошибка при вычислении количества дней")
+            }
+        } else {
+            print("Ошибка при создании даты")
+        }
+        return info
+    }
 }
