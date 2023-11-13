@@ -213,7 +213,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
                     print(hours)
                     print(minutes)
                     print(seconds)
-                    self.pairInfo[9] = "пара закончилась: \(abs(hours)) часов \(abs(minutes)) минут назад"
+                    self.pairInfo[9] = "пара закончилась: \(abs(hours)) часов \(abs(minutes)) минут \(abs(seconds)) секунд назад"
                     self.dataChangedHandler?()
                 }
             } else {
@@ -250,7 +250,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         
         let info = dateManager.getInfoFromDates(date: currentDate, date2: startDateString)
         
-        self.pairInfo[9] = "до начала: \(abs(info.day ?? 0)) дней \(abs(info.hour ?? 0)) часов \(abs(info.minute ?? 0)) минут \(abs(info.second ?? 0)) секунд"
+        self.pairInfo[9] = "осталось: \(abs(info.day ?? 0)) дней \(abs(info.hour ?? 0)) часов \(abs(info.minute ?? 0)) минут \(abs(info.second ?? 0)) секунд"
         self.dataChangedHandler?()
     }
     
@@ -279,7 +279,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         
         let info = dateManager.getInfoFromDates(date: currentDate, date2: startDateString)
         
-        pairInfo[9] = "прошло с окончания пары: \(abs(info.day ?? 0)) дней \(abs(info.hour ?? 0)) часов \(abs(info.minute ?? 0)) минут \(abs(info.second ?? 0)) секунд"
+        pairInfo[9] = "прошло с окончания: \(abs(info.day ?? 0)) дней \(abs(info.hour ?? 0)) часов \(abs(info.minute ?? 0)) минут \(abs(info.second ?? 0)) секунд"
         self.dataChangedHandler?()
     }
         
