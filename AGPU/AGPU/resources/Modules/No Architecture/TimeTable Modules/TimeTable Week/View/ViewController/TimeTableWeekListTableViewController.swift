@@ -51,16 +51,26 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        let share = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(shareTimetable))
-        share.tintColor = .label
-        navigationItem.title = "с \(week.from) до \(week.to)"
+        
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
-        let menu = setUpDatesMenu()
-        let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
-        sections.tintColor = .label
+        
+        // поделиться
+        let share = UIAction(title: "Поделиться") { _ in
+            self.shareTimetable()
+        }
+        
+        // сохранить расписание
+        let saveTimetable = UIAction(title: "Сохранить") { _ in
+            self.showSaveImageAlert()
+        }
+        
+        let menu = UIMenu(title: "Расписание", children: [setUpDatesMenu(), share, saveTimetable])
+        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
+        options.tintColor = .label
         navigationItem.leftBarButtonItem = closeButton
-        navigationItem.rightBarButtonItems = [share, sections]
+        navigationItem.rightBarButtonItem = options
+        navigationItem.title = "с \(week.from) до \(week.to)"
     }
     
     @objc private func closeScreen() {
@@ -203,5 +213,27 @@ final class TimeTableWeekListTableViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    private func showSaveImageAlert() {
+        let saveAction = UIAlertAction(title: "Сохранить", style: .default) { _ in
+            do {
+                let json = try JSONEncoder().encode(self.timetable)
+                self.service.getTimeTableWeekImage(json: json) { image in
+                    let imageSaver = ImageSaver()
+                    imageSaver.writeToPhotoAlbum(image: image)
+                    self.showImageSavedAlert()
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
+        self.showAlert(title: "Сохранить расписание?", message: "Вы хотите сохранить изображение расписания в фото?", actions: [saveAction, cancel])
+    }
+    
+    private func showImageSavedAlert() {
+        let ok = UIAlertAction(title: "ОК", style: .default) { _ in}
+        self.showAlert(title: "Расписание сохранено!", message: "Изображение расписания успешно сохранено в фото", actions: [ok])
     }
 }
