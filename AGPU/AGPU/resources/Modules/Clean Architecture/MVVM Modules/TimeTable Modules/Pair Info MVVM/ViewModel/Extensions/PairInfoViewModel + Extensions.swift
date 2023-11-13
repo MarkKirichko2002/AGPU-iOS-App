@@ -29,6 +29,15 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         checkCurrentTime()
     }
     
+    func getFacultyIcon(group: String)-> String {
+        let group = FacultyGroups.groups.first { $0.groups.contains { $0 == group } }
+        if let faculty = AGPUFaculties.faculties.first(where: { $0.name == group?.facultyName.removeLastWords() }) {
+            print(faculty)
+            return faculty.icon
+        }
+        return "info"
+    }
+    
     func getStartTime()-> String {
         let times = pair.time.components(separatedBy: "-")
         let startTime = times[0] + ":00"

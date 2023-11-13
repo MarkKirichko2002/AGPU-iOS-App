@@ -203,9 +203,6 @@ extension DateManager: DateManagerProtocol {
         if let firstDate = dateFormatter.date(from: date) ,
            let startDate = dateFormatter.date(from: date2) {
             
-            print(firstDate)
-            print(startDate)
-            
             let components = calendar.dateComponents([.day, .hour, .minute, .second], from: firstDate, to: startDate)
                         
             if let days = components.day, let hours = components.hour, let minutes = components.minute, let seconds = components.second {

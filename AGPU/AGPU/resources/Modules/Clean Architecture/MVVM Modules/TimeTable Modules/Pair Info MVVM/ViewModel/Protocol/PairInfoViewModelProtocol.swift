@@ -9,6 +9,7 @@ import Foundation
 
 protocol PairInfoViewModelProtocol {
     func setUpData()
+    func getFacultyIcon(group: String)-> String
     func getStartTime()-> String
     func getEndTime()-> String
     func getPairType(type: PairType)-> String
@@ -19,5 +20,7 @@ protocol PairInfoViewModelProtocol {
     func checkCurrentTime()
     func getTimeLeftToStart()
     func getTimeLeftToEnd()
+    func getTimeLeftToStartInFuture()
+    func getTimeEnded()
     func registerDataChangedHandler(block: @escaping()->Void)
 }

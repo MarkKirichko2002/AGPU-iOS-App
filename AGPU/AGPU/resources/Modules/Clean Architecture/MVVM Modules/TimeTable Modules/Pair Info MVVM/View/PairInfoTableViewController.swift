@@ -34,7 +34,7 @@ class PairInfoTableViewController: UITableViewController {
     }
 
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "info", title: "Информация о паре", frame: .zero)
+        let titleView = CustomTitleView(image: viewModel.getFacultyIcon(group: viewModel.group), title: "Информация о паре", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.titleView = titleView
