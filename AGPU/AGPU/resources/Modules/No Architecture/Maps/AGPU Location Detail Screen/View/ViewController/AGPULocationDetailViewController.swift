@@ -27,6 +27,22 @@ final class AGPULocationDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpNavigation()
+        setUpView()
+    }
+    
+    private func setUpNavigation() {
+        navigationItem.title = "Найти «АГПУ»"
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        closeButton.tintColor = .label
+        navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    @objc private func closeScreen() {
+        dismiss(animated: true)
+    }
+    
+    private func setUpView() {
         LocationName.text = annotation.title!
         LocationDetail.text = annotation.subtitle!
     }

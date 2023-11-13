@@ -14,13 +14,12 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
-        setUpSwipeGesture()
         tableView.register(UINib(nibName: AGPUFacultyTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AGPUFacultyTableViewCell.identifier)
     }
     
     private func setUpNavigation() {
                 
-        let titleView = CustomTitleView(image: "АГПУ", title: "Факультеты", frame: .zero)
+        let titleView = CustomTitleView(image: "university", title: "Факультеты", frame: .zero)
         
         let button = UIButton()
         button.tintColor = .label
@@ -33,8 +32,6 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = backButton
-        
-        setUpSwipeGesture()
     }
     
     @objc private func back() {
@@ -48,37 +45,37 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
                                           actionProvider: {
             _ in
             
-            let infoAction = UIAction(title: "узнать больше", image: UIImage(named: "info")) { _ in
+            let infoAction = UIAction(title: "Узнать больше", image: UIImage(named: "info")) { _ in
                 self.goToWeb(url: self.viewModel.facultyItem(index: indexPath.row).url, image: self.viewModel.facultyItem(index: indexPath.row).icon, title: self.viewModel.facultyItem(index: indexPath.row).abbreviation, isSheet: false)
             }
             
-            let cathedraAction = UIAction(title: "кафедры", image: UIImage(named: "university")) { _ in
+            let cathedraAction = UIAction(title: "Кафедры", image: UIImage(named: "university")) { _ in
                 let vc = FacultyCathedraListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-            let groupsAction = UIAction(title: "список групп", image: UIImage(named: "group")) { _ in
+            let groupsAction = UIAction(title: "Список групп", image: UIImage(named: "group")) { _ in
                 let vc = FacultyGroupsListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-            let watchVideoAction = UIAction(title: "смотреть видео", image: UIImage(named: "play")) { _ in
+            let watchVideoAction = UIAction(title: "Смотреть видео", image: UIImage(named: "play")) { _ in
                 self.playVideo(url: self.viewModel.facultyItem(index: indexPath.row).videoURL)
             }
             
-            let contactsAction = UIAction(title: "контакты", image: UIImage(named: "contacts")) { _ in
+            let contactsAction = UIAction(title: "Контакты", image: UIImage(named: "contacts")) { _ in
                 self.goToWeb(url: self.viewModel.facultyItem(index: indexPath.row).contactsURL, image: self.viewModel.facultyItem(index: indexPath.row).icon, title: "Контакты \(self.viewModel.facultyItem(index: indexPath.row).abbreviation)", isSheet: false)
             }
             
-            let emailAction = UIAction(title: "написать", image: UIImage(named: "mail")) { _ in
+            let emailAction = UIAction(title: "Написать", image: UIImage(named: "mail")) { _ in
                 self.showEmailComposer(email: self.viewModel.facultyItem(index: indexPath.row).email)
             }
             
-            let enterAction = UIAction(title: "поступить", image: UIImage(named: "worksheet")) { _ in
+            let enterAction = UIAction(title: "Поступить", image: UIImage(named: "worksheet")) { _ in
                 self.goToWeb(url: "http://priem.agpu.net/anketa/index.php", image: "worksheet", title: "Анкета", isSheet: false)
             }
             
-            let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
+            let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
                 self.shareInfo(image: UIImage(named: self.viewModel.facultyItem(index: indexPath.row).icon)!, title: self.viewModel.facultyItem(index: indexPath.row).abbreviation, text: self.viewModel.facultyItem(index: indexPath.row).url)
             }
             

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PersonalizedAppIconTableViewCell" rowHeight="126" id="uxX-wo-fvC" customClass="PersonalizedAppIconTableViewCell" customModule="AGPU" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="126"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uxX-wo-fvC" id="bmL-lF-RI0">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="126"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon2" translatesAutoresizingMaskIntoConstraints="NO" id="H0O-So-1Jx" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
+                        <rect key="frame" x="10" y="10" width="100" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="jL2-lE-bZA"/>
+                            <constraint firstAttribute="width" constant="100" id="ui2-Bc-uGp"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ИПИМИФ" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pY-ah-t70">
+                        <rect key="frame" x="120" y="25" width="263" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="dY5-GD-gnG"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="H0O-So-1Jx" firstAttribute="top" secondItem="bmL-lF-RI0" secondAttribute="top" constant="10" id="3Nr-Uh-hk2"/>
+                    <constraint firstAttribute="bottom" secondItem="H0O-So-1Jx" secondAttribute="bottom" constant="10" id="BoT-Ed-1Yi"/>
+                    <constraint firstItem="H0O-So-1Jx" firstAttribute="leading" secondItem="bmL-lF-RI0" secondAttribute="leading" constant="10" id="Qfn-La-VDq"/>
+                    <constraint firstAttribute="trailing" secondItem="6pY-ah-t70" secondAttribute="trailing" constant="10" id="biI-m6-GmP"/>
+                    <constraint firstItem="6pY-ah-t70" firstAttribute="leading" secondItem="H0O-So-1Jx" secondAttribute="trailing" constant="10" id="cN6-go-842"/>
+                    <constraint firstItem="6pY-ah-t70" firstAttribute="top" secondItem="bmL-lF-RI0" secondAttribute="top" constant="25" id="yaZ-6K-wfO"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="PersonalizedAppIcon" destination="H0O-So-1Jx" id="e6F-2r-wHz"/>
+                <outlet property="PersonalizedAppIconName" destination="6pY-ah-t70" id="PPC-8y-RLL"/>
+            </connections>
+            <point key="canvasLocation" x="183.96946564885496" y="10.563380281690142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon2" width="300" height="320"/>
+    </resources>
+</document>

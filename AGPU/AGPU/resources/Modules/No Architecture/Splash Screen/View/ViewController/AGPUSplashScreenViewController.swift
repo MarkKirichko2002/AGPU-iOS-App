@@ -44,19 +44,10 @@ final class AGPUSplashScreenViewController: UIViewController {
         return label
     }()
     
-    // 1 год
-    private let AnniversaryLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .label
-        label.font = .systemFont(ofSize: 21, weight: .black)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        view.addSubviews(AGPUIcon, AGPUTitleLabel, AnniversaryLabel)
+        view.addSubviews(AGPUIcon, AGPUTitleLabel)
         setUpConstraints()
         showSplashScreen()
     }
@@ -81,11 +72,7 @@ final class AGPUSplashScreenViewController: UIViewController {
             AGPUTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             AGPUTitleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             AGPUTitleLabel.heightAnchor.constraint(equalToConstant: 30),
-            AGPUTitleLabel.topAnchor.constraint(equalTo: AGPUIcon.bottomAnchor, constant: 40),
-            // 1 год
-            AnniversaryLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            AnniversaryLabel.heightAnchor.constraint(equalToConstant: 30),
-            AnniversaryLabel.topAnchor.constraint(equalTo: AGPUTitleLabel.bottomAnchor, constant: 60),
+            AGPUTitleLabel.topAnchor.constraint(equalTo: AGPUIcon.bottomAnchor, constant: 50)
         ])
     }
     
@@ -98,15 +85,9 @@ final class AGPUSplashScreenViewController: UIViewController {
             self.animation?.springAnimation(view: self.AGPUTitleLabel)
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.AnniversaryLabel.text = "100 лет 🎉!!!"
-            self.animation?.springAnimation(view: self.AnniversaryLabel)
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
             let controller = AGPUTabBarController()
-            controller.modalTransitionStyle = .crossDissolve
-            controller.modalPresentationStyle = .currentContext
+            controller.modalPresentationStyle = .fullScreen
             self.present(controller, animated: false, completion: nil)
         }
     }

@@ -9,7 +9,7 @@ import UIKit
 
 final class TimeTableWeekListTableViewController: UIViewController {
     
-    private var group: String = ""
+    var group: String = ""
     private var subgroup: Int = 0
     var week: WeekModel!
     var timetable = [TimeTable]()
@@ -51,16 +51,26 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        let share = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(getTimeTableImage))
-        share.tintColor = .label
-        navigationItem.title = "с \(week.from) до \(week.to)"
+        
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
-        let menu = setUpDatesMenu()
-        let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
-        sections.tintColor = .label
+        
+        // поделиться
+        let share = UIAction(title: "Поделиться") { _ in
+            self.shareTimetable()
+        }
+        
+        // сохранить расписание
+        let saveTimetable = UIAction(title: "Сохранить") { _ in
+            self.showSaveImageAlert()
+        }
+        
+        let menu = UIMenu(title: "Расписание", children: [setUpDatesMenu(), share, saveTimetable])
+        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
+        options.tintColor = .label
         navigationItem.leftBarButtonItem = closeButton
-        navigationItem.rightBarButtonItems = [share, sections]
+        navigationItem.rightBarButtonItem = options
+        navigationItem.title = "с \(week.from) до \(week.to)"
     }
     
     @objc private func closeScreen() {
@@ -77,12 +87,12 @@ final class TimeTableWeekListTableViewController: UIViewController {
             let actionHandler: UIActionHandler = { [weak self] _ in
                 self?.tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
             }
-            return UIAction(title: week.dayNames[date.date]!.lowercased(), state: currentDay == day ? .on : .off, handler: actionHandler)
+            return UIAction(title: week.dayNames[date.date]!, state: currentDay == day ? .on : .off, handler: actionHandler)
         }
-        let datesList = UIMenu(title: "дни недели", options: .singleSelection, children: actions)
+        let datesList = UIMenu(title: "Дни недели", options: .singleSelection, children: actions)
         return datesList
     }
-        
+    
     private func setUpTable() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
@@ -90,7 +100,6 @@ final class TimeTableWeekListTableViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: TimeTableTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimeTableTableViewCell.identifier)
         tableView.separatorStyle = .none
-        tableView.isUserInteractionEnabled = false
     }
     
     private func setUpLabel() {
@@ -120,62 +129,64 @@ final class TimeTableWeekListTableViewController: UIViewController {
         self.noTimeTableLabel.isHidden = true
         self.timetable = []
         self.tableView.reloadData()
-        service.getTimeTableWeek(groupId: group, startDate: week.from, endDate: week.to) { result in
+        service.getTimeTableWeek(groupId: group, startDate: week.from, endDate: week.to) { [weak self] result in
             switch result {
             case .success(let timetable):
                 var arr = [TimeTable]()
                 if !timetable.isEmpty {
                     for timetable in timetable {
-                        let data = timetable.disciplines.filter { $0.subgroup == self.subgroup || $0.subgroup == 0 || (self.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
+                        let data = timetable.disciplines.filter { $0.subgroup == self?.subgroup || $0.subgroup == 0 || (self?.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
                         let timeTable = TimeTable(date: timetable.date, groupName: timetable.groupName, disciplines: data)
                         if !timetable.disciplines.isEmpty {
                             arr.append(timeTable)
                         }
                     }
                     DispatchQueue.main.async {
-                        self.timetable = arr
-                        self.tableView.reloadData()
-                        self.spinner.stopAnimating()
-                        self.refreshControl.endRefreshing()
-                        self.noTimeTableLabel.isHidden = true
-                        self.setUpNavigation()
-                        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                            self.scrollToCurrentDay()
-                        }
+                        self?.timetable = arr
+                        self?.tableView.reloadData()
+                        self?.spinner.stopAnimating()
+                        self?.refreshControl.endRefreshing()
+                        self?.noTimeTableLabel.isHidden = true
+                        self?.setUpNavigation()
+                        self?.scrollToCurrentDay()
                     }
+                    
                 } else {
-                    self.noTimeTableLabel.isHidden = false
-                    self.spinner.stopAnimating()
-                    self.refreshControl.endRefreshing()
-                    self.setUpNavigation()
+                    self?.noTimeTableLabel.isHidden = false
+                    self?.spinner.stopAnimating()
+                    self?.refreshControl.endRefreshing()
+                    self?.setUpNavigation()
                 }
             case .failure(let error):
-                self.spinner.stopAnimating()
-                self.noTimeTableLabel.text = "Ошибка"
-                self.noTimeTableLabel.isHidden = false
-                self.refreshControl.endRefreshing()
-                self.setUpNavigation()
+                self?.spinner.stopAnimating()
+                self?.noTimeTableLabel.text = "Ошибка"
+                self?.noTimeTableLabel.isHidden = false
+                self?.refreshControl.endRefreshing()
+                self?.setUpNavigation()
                 print(error.localizedDescription)
             }
         }
     }
     
-    @objc private func getTimeTableImage() {
-        var timetable = [TimeTable]()
-        service.getTimeTableWeekForImage(groupId: self.group, startDate: self.week.from, endDate: dateManager.previousDay(date: self.week.to)) { result in
-            switch result {
-            case .success(let data):
-                timetable = data
-                do {
-                    let json = try JSONEncoder().encode(timetable)
-                    self.service.getTimeTableWeekImage(json: json) { image in
-                        self.ShareImage(image: image, title: self.group, text: "с \(self.week.from) до \(self.week.to)")
-                    }
-                } catch {
-                    print(error.localizedDescription)
+    @objc private func shareTimetable() {
+        let emptyTimetable = [TimeTable(date: week.from, groupName: group, disciplines: [])]
+        if !self.timetable.isEmpty {
+            do {
+                let json = try JSONEncoder().encode(timetable)
+                service.getTimeTableWeekImage(json: json) { image in
+                    self.ShareImage(image: image, title: self.group, text: "с \(self.week.from) \(self.week.to)")
                 }
-            case .failure(let error):
-                print(error)
+            } catch {
+                print(error.localizedDescription)
+            }
+        } else {
+            do {
+                let json = try JSONEncoder().encode(emptyTimetable)
+                service.getTimeTableWeekImage(json: json) { image in
+                    self.ShareImage(image: image, title: self.group, text: "с \(self.week.from) \(self.week.to)")
+                }
+            } catch {
+                print(error.localizedDescription)
             }
         }
     }
@@ -193,11 +204,36 @@ final class TimeTableWeekListTableViewController: UIViewController {
         let currentDate = dateManager.getCurrentDate()
         timetable.enumerated().forEach { (index: Int, timetable: TimeTable) in
             if timetable.date == currentDate {
-                DispatchQueue.main.async {
-                    let indexPath = IndexPath(row: 0, section: index)
-                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                tableView.isUserInteractionEnabled = false
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    DispatchQueue.main.async {
+                        let indexPath = IndexPath(row: 0, section: index)
+                        self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                    }
                 }
             }
         }
+    }
+    
+    private func showSaveImageAlert() {
+        let saveAction = UIAlertAction(title: "Сохранить", style: .default) { _ in
+            do {
+                let json = try JSONEncoder().encode(self.timetable)
+                self.service.getTimeTableWeekImage(json: json) { image in
+                    let imageSaver = ImageSaver()
+                    imageSaver.writeToPhotoAlbum(image: image)
+                    self.showImageSavedAlert()
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
+        self.showAlert(title: "Сохранить расписание?", message: "Вы хотите сохранить изображение расписания в фото?", actions: [saveAction, cancel])
+    }
+    
+    private func showImageSavedAlert() {
+        let ok = UIAlertAction(title: "ОК", style: .default) { _ in}
+        self.showAlert(title: "Расписание сохранено!", message: "Изображение расписания успешно сохранено в фото", actions: [ok])
     }
 }

@@ -11,15 +11,16 @@ class NewsPagesListTableViewController: UITableViewController {
     
     private var currentPage: Int = 0
     private var countPages: Int = 0
+    private var abbreviation: String?
     
     // MARK: - сервисы
     private var viewModel: NewsPagesListViewModel!
     
     // MARK: - Init
-    init(currentPage: Int, countPages: Int) {
+    init(currentPage: Int, countPages: Int, abbreviation: String?) {
         self.currentPage = currentPage
         self.countPages = countPages
-        self.viewModel = NewsPagesListViewModel(currentPage: currentPage, countPages: countPages)
+        self.viewModel = NewsPagesListViewModel(currentPage: currentPage, countPages: countPages, abbreviation: abbreviation)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -50,18 +51,26 @@ class NewsPagesListTableViewController: UITableViewController {
     }
     
     private func bindViewModel() {
-        viewModel.setUpData()
-        viewModel.registerPageSelectedHandler { category in
-            self.navigationItem.title = category
-        }
-        viewModel.registerDataChangedHandler {
+        
+        viewModel.registerPageSelectedHandler { page in
+            
             DispatchQueue.main.async {
+                self.navigationItem.title = page
                 self.tableView.reloadData()
             }
+            
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 self.dismiss(animated: true)
             }
         }
+        
+        viewModel.registerDataChangedHandler {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        
+        viewModel.setUpData()
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

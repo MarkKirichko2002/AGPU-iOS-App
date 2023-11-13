@@ -9,13 +9,56 @@ import Foundation
 
 struct NewsCategories {
     
-    static let categories = [
-        NewsCategoryModel(name: "АГПУ", icon: "АГПУ"),
-        NewsCategoryModel(name: "ИРиИФ", icon: "icon1"),
-        NewsCategoryModel(name: "ИПИМиФ", icon: "icon2"),
-        NewsCategoryModel(name: "СПФ", icon: "icon3"),
-        NewsCategoryModel(name: "ФДиНО", icon: "icon4"),
-        NewsCategoryModel(name: "ФТЭиД", icon: "icon5"),
-        NewsCategoryModel(name: "ИстФак", icon: "icon6")
+    static var categories = [
+        
+        NewsCategoryModel(
+            id: 0,
+            name: "АГПУ",
+            newsAbbreviation: "",
+            icon: "АГПУ",
+            pagesCount: 0
+        ),
+        NewsCategoryModel(
+            id: 1,
+            name: "ИРиИФ",
+            newsAbbreviation: "iriif",
+            icon: "icon1",
+            pagesCount: 0
+        ),
+        NewsCategoryModel(
+            id: 2,
+            name: "ИПИМиФ",
+            newsAbbreviation: "ipimif",
+            icon: "icon2",
+            pagesCount: 0
+        ),
+        NewsCategoryModel(
+            id: 3,
+            name: "СПФ",
+            newsAbbreviation: "spf",
+            icon: "icon3",
+            pagesCount: 0
+        ),
+        NewsCategoryModel(
+            id: 4,
+            name: "ФДиНО",
+            newsAbbreviation: "fdino",
+            icon: "icon4",
+            pagesCount: 0
+        ),
+        NewsCategoryModel(
+            id: 5,
+            name: "ФТЭиД",
+            newsAbbreviation: "fteid",
+            icon: "icon5",
+            pagesCount: 0
+        ),
+        NewsCategoryModel(
+            id: 6,
+            name: "ИстФак",
+            newsAbbreviation: "istfak",
+            icon: "icon6",
+            pagesCount: 0
+        )
     ]
 }

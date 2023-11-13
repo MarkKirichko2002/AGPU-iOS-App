@@ -21,7 +21,18 @@ extension TimeTableWeekListTableViewController: UITableViewDelegate {
                                           actionProvider: {
             _ in
             
-            let mapAction = UIAction(title: "найти корпус", image: UIImage(named: "map icon")) { _ in
+            let discipline = self.timetable[indexPath.section].disciplines[indexPath.row]
+            
+            let infoAction = UIAction(title: "Подробнее", image: UIImage(named: "info")) { _ in
+                let vc = PairInfoTableViewController(pair: discipline, group: self.group, date: self.timetable[indexPath.section].date)
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self.present(navVC, animated: true)
+                }
+            }
+            
+            let mapAction = UIAction(title: "Найти корпус", image: UIImage(named: "map icon")) { _ in
                 let audience = self.timetable[indexPath.section].disciplines[indexPath.row].audienceID 
                     let vc = AGPUCurrentBuildingMapViewController(audienceID: audience)
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
@@ -36,6 +47,7 @@ extension TimeTableWeekListTableViewController: UITableViewDelegate {
             }
             
             return UIMenu(title: self.timetable[indexPath.section].disciplines[indexPath.row].name, children: [
+                infoAction,
                 mapAction
             ])
         })

@@ -5,12 +5,12 @@
 //  Created by Марк Киричко on 16.09.2023.
 //
 
-import Foundation
+import UIKit
 
 protocol CalendarViewModelProtocol {
-    func sendNotificationDataWasSelected(date: String)
     func checkTimetable(date: Date)
-    func registerTimetableAlertHandler(block: @escaping()->Void)
-    func registerNoTimetableAlertHandler(block: @escaping()->Void)
+    func getPairsCount(pairs: [Discipline])-> Int
+    func sendNotificationDataWasSelected(date: String)
+    func registerTimetableAlertHandler(block: @escaping(String, String, UIColor)->Void)
     func registerDateSelectedHandler(block: @escaping()->Void)
 }

@@ -11,11 +11,11 @@ import Foundation
 extension AllWeeksListViewModel: AllWeeksListViewModelProtocol {
     
     func GetWeeks() {
-        service.getWeeks { result in
+        service.getWeeks { [weak self] result in
             switch result {
             case .success(let weeks):
-                self.weeks = weeks
-                self.isChangedHandler?()
+                self?.weeks = weeks
+                self?.isChangedHandler?()
             case .failure(let error):
                 print(error.localizedDescription)
             }

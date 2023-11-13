@@ -64,15 +64,6 @@ struct AGPUSections {
         
         AGPUSectionModel(
             id: 6,
-            name: "Партнерам",
-            icon: "paper plane",
-            url: "http://agpu.net/partneram/index.php",
-            subsections: AGPUSubSections.subsections["Партнерам"]!,
-            voiceCommand: "партнёр"
-        ),
-        
-        AGPUSectionModel(
-            id: 7,
             name: "МД",
             icon: "world",
             url: "http://agpu.net/mezhdunarodnaya-deyatelnost/index.php",
@@ -81,7 +72,7 @@ struct AGPUSections {
         ),
         
         AGPUSectionModel(
-            id: 8,
+            id: 7,
             name: "Безопасность",
             icon: "security",
             url: "http://agpu.net/bezopasnost/index.php",

@@ -68,6 +68,7 @@ class WordRecentDocumentViewController: UIViewController {
     
     private func setUpIndicatorView() {
         view.addSubview(spinner)
+        spinner.color = UIColor.black
         spinner.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -76,7 +77,7 @@ class WordRecentDocumentViewController: UIViewController {
     }
     
     private func makeMenu()-> UIMenu {
-        let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
+        let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
             self.shareInfo(image: UIImage(named: "word")!, title: "Word-документ", text: self.document.url)
         }
         let menu = UIMenu(title: "Word-документ", children: [shareAction])

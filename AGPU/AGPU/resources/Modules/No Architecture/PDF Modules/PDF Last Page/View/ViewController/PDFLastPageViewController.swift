@@ -46,7 +46,7 @@ class PDFLastPageViewController: UIViewController {
     }
     
     private func makeMenu()-> UIMenu {
-        let shareAction = UIAction(title: "поделиться", image: UIImage(named: "share")) { _ in
+        let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
             self.shareInfo(image: UIImage(named: "pdf")!, title: "PDF-документ", text: self.pdf.url)
         }
         let menu = UIMenu(title: "PDF-документ", children: [shareAction])

@@ -22,6 +22,7 @@ final class AGPUFacultyTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        tintColor = .systemGreen
         AGPUFacultyName.textColor = .label
         backgroundColor = .systemBackground
     }

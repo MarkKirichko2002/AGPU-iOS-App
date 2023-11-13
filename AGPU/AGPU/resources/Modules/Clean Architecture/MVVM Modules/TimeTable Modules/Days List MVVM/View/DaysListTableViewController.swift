@@ -70,8 +70,8 @@ class DaysListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let day = DaysList.days[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = "\(day.name): \(day.dayOfWeek) \(day.date) (\(day.info))"
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
-        cell.textLabel?.text = "\(day.name): \(day.date) (\(day.info))"
         cell.textLabel?.textColor = viewModel.checkDisciplinesExistence(index: indexPath.row) ? .systemGreen : .systemGray
         return cell
     }

@@ -9,6 +9,18 @@ import Foundation
 
 extension String {
     
+    func removeLastWords()-> String {
+        if self.contains("(очная форма обучения)") {
+            let modifiedStroke = self.replacingOccurrences(of: "(очная форма обучения)", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
+            return modifiedStroke
+        }
+        if self.contains("(заочная форма обучения)") {
+            let modifiedStroke = self.replacingOccurrences(of: "(заочная форма обучения)", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
+            return modifiedStroke
+        }
+        return ""
+    }
+    
     func abbreviation()-> String {
         
         if self == "Аспирантура" {

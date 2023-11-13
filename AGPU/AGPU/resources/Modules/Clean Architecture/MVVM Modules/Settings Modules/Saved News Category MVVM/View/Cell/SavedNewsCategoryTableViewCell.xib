@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SavedNewsCategoryTableViewCell" rowHeight="126" id="ADH-Ws-fop" customClass="SavedNewsCategoryTableViewCell" customModule="AGPU" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="126"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ADH-Ws-fop" id="m9o-VW-mS3">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="126"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="АГПУ" translatesAutoresizingMaskIntoConstraints="NO" id="2Q6-Lc-va0" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
+                        <rect key="frame" x="10" y="10" width="100" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="iTD-s8-fjQ"/>
+                            <constraint firstAttribute="width" constant="100" id="po8-dI-0A9"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="АГПУ" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDZ-MI-Mc7">
+                        <rect key="frame" x="120" y="25" width="263" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="V9X-ab-4H2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="2Q6-Lc-va0" firstAttribute="top" secondItem="m9o-VW-mS3" secondAttribute="top" constant="10" id="04t-AA-2KN"/>
+                    <constraint firstAttribute="trailing" secondItem="SDZ-MI-Mc7" secondAttribute="trailing" constant="10" id="1Oc-7x-G3t"/>
+                    <constraint firstItem="SDZ-MI-Mc7" firstAttribute="leading" secondItem="2Q6-Lc-va0" secondAttribute="trailing" constant="10" id="2p8-cW-2Bo"/>
+                    <constraint firstAttribute="bottom" secondItem="2Q6-Lc-va0" secondAttribute="bottom" constant="10" id="PMi-cA-vyd"/>
+                    <constraint firstItem="SDZ-MI-Mc7" firstAttribute="top" secondItem="m9o-VW-mS3" secondAttribute="top" constant="25" id="ghX-rh-8ac"/>
+                    <constraint firstItem="2Q6-Lc-va0" firstAttribute="leading" secondItem="m9o-VW-mS3" secondAttribute="leading" constant="10" id="qNX-4N-Lmd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="NewsCategoryIcon" destination="2Q6-Lc-va0" id="aCd-Ro-ONk"/>
+                <outlet property="NewsCategoryName" destination="SDZ-MI-Mc7" id="MU7-3w-AQf"/>
+            </connections>
+            <point key="canvasLocation" x="183.96946564885496" y="10.563380281690142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="АГПУ" width="964" height="1024"/>
+    </resources>
+</document>

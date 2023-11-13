@@ -15,13 +15,12 @@ final class AGPUSectionsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
-        setUpSwipeGesture()
         setUpTable()
     }
     
     private func setUpNavigation() {
         
-        let titleView = CustomTitleView(image: "АГПУ", title: "Разделы", frame: .zero)
+        let titleView = CustomTitleView(image: "АГПУ", title: "Разделы сайта", frame: .zero)
         
         let button = UIButton()
         button.tintColor = .label
@@ -43,12 +42,12 @@ final class AGPUSectionsListViewController: UIViewController {
     
     private func setUpMenu()-> UIMenu {
         let items = AGPUSections.sections.map { section in
-            return UIAction(title: "\(section.id + 1)) \(section.name.lowercased())") { _ in
+            return UIAction(title: "\(section.id + 1)) \(section.name)") { _ in
                 let indexPath = IndexPath(row: 0, section: section.id)
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
             }
         }
-        let menu = UIMenu(title: "разделы", options: .singleSelection, children: items)
+        let menu = UIMenu(title: "Разделы сайта", options: .singleSelection, children: items)
         return menu
     }
     

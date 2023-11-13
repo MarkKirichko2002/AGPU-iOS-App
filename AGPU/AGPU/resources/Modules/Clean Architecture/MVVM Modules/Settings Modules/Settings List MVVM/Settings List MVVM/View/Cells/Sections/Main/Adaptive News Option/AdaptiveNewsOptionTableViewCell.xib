@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AdaptiveNewsOptionTableViewCell" rowHeight="99" id="gKg-C1-vDd" customClass="AdaptiveNewsOptionTableViewCell" customModule="AGPU" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="412" height="99"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gKg-C1-vDd" id="ioO-rL-L70">
+                <rect key="frame" x="0.0" y="0.0" width="412" height="99"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="news" translatesAutoresizingMaskIntoConstraints="NO" id="cRj-I6-xFl" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
+                        <rect key="frame" x="30" y="10" width="70" height="70"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="Gt1-0p-rev"/>
+                            <constraint firstAttribute="height" constant="70" id="zeF-aE-Np5"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="адаптивные новости" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWC-Op-vfc">
+                        <rect key="frame" x="110" y="15" width="292" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="9Kx-eo-xHE"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="cRj-I6-xFl" firstAttribute="top" secondItem="ioO-rL-L70" secondAttribute="top" constant="10" id="GZ8-s5-mp7"/>
+                    <constraint firstItem="cRj-I6-xFl" firstAttribute="leading" secondItem="ioO-rL-L70" secondAttribute="leading" constant="30" id="Iqt-Cn-sbH"/>
+                    <constraint firstItem="tWC-Op-vfc" firstAttribute="top" secondItem="ioO-rL-L70" secondAttribute="top" constant="15" id="LbL-yc-x0S"/>
+                    <constraint firstAttribute="trailing" secondItem="tWC-Op-vfc" secondAttribute="trailing" constant="10" id="e2c-np-FO6"/>
+                    <constraint firstItem="tWC-Op-vfc" firstAttribute="leading" secondItem="cRj-I6-xFl" secondAttribute="trailing" constant="10" id="fmb-Br-OLz"/>
+                    <constraint firstAttribute="bottom" secondItem="tWC-Op-vfc" secondAttribute="bottom" constant="15" id="ky6-mq-dS1"/>
+                    <constraint firstAttribute="bottom" secondItem="cRj-I6-xFl" secondAttribute="bottom" constant="10" id="vmQ-al-cLl"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="AdaptiveNewsIcon" destination="cRj-I6-xFl" id="OYq-gN-LOf"/>
+                <outlet property="TitleLabel" destination="tWC-Op-vfc" id="Ep2-KO-EmQ"/>
+            </connections>
+            <point key="canvasLocation" x="151" y="-7"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="news" width="48" height="48"/>
+    </resources>
+</document>

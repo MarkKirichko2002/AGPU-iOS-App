@@ -30,7 +30,7 @@ extension AGPUWallpapersListViewController: UICollectionViewDelegate {
                                  contextMenuConfigurationForItemAt indexPath: IndexPath,
                                  point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
-            let save = UIAction(title: "cохранить", image: UIImage(named: "download")) { _ in
+            let save = UIAction(title: "Сохранить", image: UIImage(named: "download")) { _ in
                 if let cell = collectionView.cellForItem(at: indexPath) as? AGPUWallpaperCollectionViewCell {
                     if let image = cell.imageView.image {
                         let imageSaver = ImageSaver()
@@ -38,7 +38,15 @@ extension AGPUWallpapersListViewController: UICollectionViewDelegate {
                     }
                 }
             }
-            return UIMenu(title: "", children: [save])
+            
+            let share = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
+                if let cell = collectionView.cellForItem(at: indexPath) as? AGPUWallpaperCollectionViewCell {
+                    if let image = cell.imageView.image {
+                        self.ShareImage(image: image, title: "АГПУ", text: "обоя")
+                    }
+                }
+            }
+            return UIMenu(title: "", children: [save, share])
         }
     }
 }

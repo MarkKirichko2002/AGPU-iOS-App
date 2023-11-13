@@ -80,7 +80,7 @@ struct FacultyCathedraList {
                 ],
                 email: "sspp2010@mail.ru",
                 staffUrl: "http://agpu.net/struktura-vuza/faculties-institutes/spf/kafedra-sspip/sostav-kafedry/index.php",
-                manualUrl: "http://agpu.net/struktura-vuza/faculties-institutes/spf/kafedra-sspip/MetodicheskoyeObespecheniye/index.php",
+                manualUrl: "http://www.agpu.net/struktura-vuza/faculties-institutes/spf/kafedra-sspip/metodicheskoye-obespecheniye/index.php",
                 additionalEducationUrl: "http://agpu.net/struktura-vuza/faculties-institutes/spf/kafedra-sspip/dopolnitelnoe-obrazovanie/index.php"
             ),
             FacultyCathedraModel(

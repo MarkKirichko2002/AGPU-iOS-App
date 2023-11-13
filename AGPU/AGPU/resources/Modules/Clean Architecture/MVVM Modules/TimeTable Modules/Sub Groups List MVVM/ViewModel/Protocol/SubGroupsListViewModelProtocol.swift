@@ -2,15 +2,17 @@
 //  SubGroupsListViewModelProtocol.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 07.08.2023.
+//  Created by Марк Киричко on 28.09.2023.
 //
 
 import Foundation
 
 protocol SubGroupsListViewModelProtocol {
     func numberOfSubGroups()-> Int
-    func subgroupItem(index: Int)-> SubGroupModel
+    func subgroupItem(index: Int)-> String
+    func getPairsCount(pairs: [Discipline])
     func selectSubGroup(index: Int)
     func isSubGroupSelected(index: Int)-> Bool
-    func registerChangedHandler(block: @escaping()->Void)
+    func registerDataChangedHandler(block: @escaping()->Void)
+    func registerSubGroupSelectedHandler(block: @escaping()->Void)
 }

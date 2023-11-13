@@ -22,7 +22,6 @@ final class AGPUWallpapersListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
-        setUpSwipeGesture()
         setUpCollectionView()
     }
     

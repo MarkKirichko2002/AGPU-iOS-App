@@ -34,6 +34,15 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
         }
     }
     
+    func getLastTimetable(completion: @escaping(String, String)->Void) {
+        if let recentGroup = UserDefaults.standard.string(forKey: "recentGroup"),
+           let recentDate = UserDefaults.standard.string(forKey: "recentDate") {
+            completion(recentGroup, recentDate)
+        } else {
+            alertHandler?("У вас нет недавнего расписания.", "Вы еше не смотрели расписание.")
+        }
+    }
+    
     func getLastVideo(completion: @escaping(String)->Void) {
         if let videoUrl = UserDefaults.standard.string(forKey: "last video") {
             completion(videoUrl)

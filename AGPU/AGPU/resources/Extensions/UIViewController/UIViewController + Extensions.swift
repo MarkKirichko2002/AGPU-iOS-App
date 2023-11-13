@@ -75,23 +75,66 @@ extension UIViewController {
         }
     }
     
-    func setUpSwipeGesture() {
-        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
-        swipeGesture.direction = .right
-        view.addGestureRecognizer(swipeGesture)
-    }
-    
-    @objc func handleSwipeGesture(_ gesture: UISwipeGestureRecognizer) {
-        sendScreenWasClosedNotification()
-        if let navigationController = navigationController {
-            navigationController.popViewController(animated: true)
-        }
-    }
-    
     func sendScreenWasClosedNotification() {
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
             NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
         }
+    }
+    
+    func checkForUpdates() {
+        if let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
+           let appStoreURL = URL(string: "https://itunes.apple.com/lookup?id=6458836690")
+        {
+            getAppStoreVersion(url: appStoreURL) { (appStoreVersion) in
+                if let appStoreVersion = appStoreVersion {
+                    print(appStoreVersion)
+                    if currentVersion != appStoreVersion {
+                        self.showUpdateAlert()
+                    }
+                }
+            }
+        }
+    }
+    
+    func getAppStoreVersion(url: URL, completion: @escaping (String?) -> Void) {
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                print("Data retrieval error: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let data = data else {
+                print("No data received")
+                return
+            }
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                let results = json["results"] as! [[String: Any]]
+                
+                if let appStoreVersion = results.first?["version"] as? String {
+                    print("App Store version: \(appStoreVersion)")
+                    completion(appStoreVersion)
+                }
+            } catch {
+                print("JSON parsing error: \(error.localizedDescription)")
+            }
+        }.resume()
+
+    }
+    
+    func showUpdateAlert() {
+        
+        let updateAction = UIAlertAction(title: "Обновить", style: .default) { _ in
+            if let appStoreURL = URL(string: "https://apps.apple.com/app/фгбоу-во-агпу/id6458836690") {
+                UIApplication.shared.open(appStoreURL)
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .destructive)
+        
+        self.showAlert(title: "Обновление доступно!", message: "Обнаружено новое обновление! Хотите обновить приложение сейчас?", actions: [updateAction, cancelAction])
     }
 }
 

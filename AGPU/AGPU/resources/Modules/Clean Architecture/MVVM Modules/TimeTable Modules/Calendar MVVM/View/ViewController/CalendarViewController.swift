@@ -13,6 +13,8 @@ final class CalendarViewController: UIViewController {
     // MARK: - сервисы
     let viewModel: CalendarViewModel
     
+    var date: String = ""
+    
     // MARK: - UI
     private let Calendar: FSCalendar = {
         let calendar = FSCalendar()
@@ -23,8 +25,9 @@ final class CalendarViewController: UIViewController {
     }()
     
     // MARK: - Init
-    init(group: String) {
+    init(group: String, date: String) {
         self.viewModel = CalendarViewModel(group: group)
+        self.date = date
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -67,27 +70,29 @@ final class CalendarViewController: UIViewController {
     }
     
     private func bindViewModel() {
+        // алерты
+        viewModel.registerTimetableAlertHandler { title, message, color in
+            
+            let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+            let customTitle = NSAttributedString(string: title, attributes: [
+                NSAttributedString.Key.foregroundColor: color
+            ])
+            
+            let choose = UIAlertAction(title: "Выбрать", style: .default) { _ in
+                self.viewModel.sendNotificationDataWasSelected(date: self.viewModel.date)
+                self.dismiss(animated: true)
+            }
+            let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
+            
+            alertVC.setValue(customTitle, forKey: "attributedTitle")
+            alertVC.addAction(choose)
+            alertVC.addAction(cancel)
+            self.present(alertVC, animated: true)
+        }
+        // дата выбрана
         viewModel.registerDateSelectedHandler {
             self.dismiss(animated: true)
-        }
-        // алерты
-        // есть пары
-        viewModel.registerTimetableAlertHandler {
-            let choose = UIAlertAction(title: "выбрать", style: .default) { _ in
-                self.viewModel.sendNotificationDataWasSelected(date: self.viewModel.date)
-                self.dismiss(animated: true)
-            }
-            let cancel = UIAlertAction(title: "отмена", style: .default) { _ in}
-            self.showAlert(title: "У группы \(self.viewModel.group) есть расписание", message: "Хотите выбрать дату \(self.viewModel.date)?", actions: [choose, cancel])
-        }
-        // нет пар
-        viewModel.registerNoTimetableAlertHandler {
-            let choose = UIAlertAction(title: "выбрать", style: .default) { _ in
-                self.viewModel.sendNotificationDataWasSelected(date: self.viewModel.date)
-                self.dismiss(animated: true)
-            }
-            let cancel = UIAlertAction(title: "отмена", style: .default) { _ in}
-            self.showAlert(title: "У группы \(self.viewModel.group) нет расписания", message: "Все равно хотите выбрать дату \(self.viewModel.date)?", actions: [choose, cancel])
         }
     }
 }

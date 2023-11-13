@@ -17,12 +17,17 @@ extension AppThemesListViewModel: AppThemesListViewModelProtocol {
     
     func selectTheme(index: Int) {
         let themeModel = AppThemes.themes[index]
-        UserDefaults.saveData(object: themeModel, key: "theme") {
-            self.themeSelectedHandler?(themeModel.theme)
-            HapticsManager.shared.hapticFeedback()
-            print("выбрана тема")
+        let savedTheme = UserDefaults.loadData(type: AppThemeModel.self, key: "theme") ?? AppThemes.themes[0]
+        if themeModel.theme != savedTheme.theme {
+            UserDefaults.saveData(object: themeModel, key: "theme") {
+                self.themeSelectedHandler?(themeModel.theme)
+                NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+                HapticsManager.shared.hapticFeedback()
+                print("выбрана тема")
+            }
+        } else {
+            print("тема уже выбрана")
         }
-        NotificationCenter.default.post(name: Notification.Name("App Theme Changed"), object: themeModel)
     }
     
     func registerThemeSelectedHandler(block: @escaping(UIUserInterfaceStyle)->Void) {

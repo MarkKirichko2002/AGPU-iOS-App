@@ -52,7 +52,6 @@ class AllWeeksListTableViewController: UITableViewController {
     private func setUpTable() {
         tableView.rowHeight = 130
         tableView.register(UINib(nibName: WeekTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: WeekTableViewCell.identifier)
-        tableView.isUserInteractionEnabled = false
     }
     
     private func setUpRefreshControl() {
@@ -71,6 +70,7 @@ class AllWeeksListTableViewController: UITableViewController {
                 self.tableView.reloadData()
                 self.refreshControll.endRefreshing()
                 self.viewModel.getCurrentWeek()
+                self.tableView.isUserInteractionEnabled = false
             }
         }
         

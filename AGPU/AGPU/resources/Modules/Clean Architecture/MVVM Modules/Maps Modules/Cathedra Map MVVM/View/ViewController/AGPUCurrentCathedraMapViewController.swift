@@ -72,13 +72,13 @@ class AGPUCurrentCathedraMapViewController: UIViewController {
     private func bindViewModel() {
         viewModel.alertHandler = { bool in
             if bool {
-                let goToSettings = UIAlertAction(title: "перейти в настройки", style: .default) { _ in
+                let goToSettings = UIAlertAction(title: "Перейти в настройки", style: .default) { _ in
                     self.openSettings()
                 }
-                let cancel = UIAlertAction(title: "отмена", style: .cancel) { _ in
+                let cancel = UIAlertAction(title: "Отмена", style: .cancel) { _ in
                     self.dismiss(animated: true)
                 }
-                self.showAlert(title: "Геопозиция выключена", message: "хотите включить в настройках?", actions: [goToSettings, cancel])
+                self.showAlert(title: "Геопозиция выключена", message: "Хотите включить в настройках?", actions: [goToSettings, cancel])
             } else {
                 fatalError()
             }

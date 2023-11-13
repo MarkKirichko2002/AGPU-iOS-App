@@ -56,6 +56,7 @@ final class RecentWebPageViewController: UIViewController {
     
     private func setUpIndicatorView() {
         view.addSubview(spinner)
+        spinner.color = UIColor.black
         spinner.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),

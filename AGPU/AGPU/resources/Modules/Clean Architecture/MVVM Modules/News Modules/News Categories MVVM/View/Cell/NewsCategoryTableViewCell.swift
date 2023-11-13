@@ -14,14 +14,21 @@ class NewsCategoryTableViewCell: UITableViewCell {
     @IBOutlet var CategoryIcon: SpringImageView!
     @IBOutlet var CategoryName: UILabel!
     
-    func configure(category: NewsCategoryModel) {
+    func configure(viewModel: NewsCategoriesListViewModel, category: NewsCategoryModel) {
         CategoryIcon.image = UIImage(named: category.icon)
-        CategoryName.text = category.name
+        if category.pagesCount != 0 {
+            CategoryName.text = "\(category.name) (страниц: \(category.pagesCount))"
+        } else {
+            CategoryName.text = "\(category.name) (загрузка...)"
+        }
+        CategoryName.textColor = viewModel.isCurrentCategory(index: category.id) ? .systemGreen : .label
+        accessoryType = viewModel.isCurrentCategory(index: category.id) ? .checkmark : .none
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         CategoryName.textColor = .label
         backgroundColor = .systemBackground
+        tintColor = .systemGreen
     }
 }
