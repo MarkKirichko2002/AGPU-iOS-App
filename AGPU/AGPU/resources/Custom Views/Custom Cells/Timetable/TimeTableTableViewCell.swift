@@ -92,5 +92,6 @@ final class TimeTableTableViewCell: UITableViewCell {
         animation.springAnimation(view: self.TimeLabel)
         animation.springAnimation(view: self.DisciplineName)
         animation.springAnimation(view: self.SubGroupId)
+        HapticsManager.shared.hapticFeedback()
     }
 }

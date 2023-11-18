@@ -1629,6 +1629,7 @@
 			isa = PBXGroup;
 			children = (
 				82426C7E2A7152F300D5AA57 /* For Every Status */,
+				82D6C33E2A5E32EA00FB7F5D /* Timetable */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -3882,7 +3883,6 @@
 			isa = PBXGroup;
 			children = (
 				82D6C33D2A5E32E300FB7F5D /* ViewController */,
-				82D6C33E2A5E32EA00FB7F5D /* Cell */,
 				8241F97F2A5F3C38007DF628 /* Extensions */,
 			);
 			path = View;
@@ -3896,13 +3896,13 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		82D6C33E2A5E32EA00FB7F5D /* Cell */ = {
+		82D6C33E2A5E32EA00FB7F5D /* Timetable */ = {
 			isa = PBXGroup;
 			children = (
 				82D6C3382A5E282A00FB7F5D /* TimeTableTableViewCell.swift */,
 				82D6C3392A5E282A00FB7F5D /* TimeTableTableViewCell.xib */,
 			);
-			path = Cell;
+			path = Timetable;
 			sourceTree = "<group>";
 		};
 		82E05D482A5DD52B0060ADAA /* For Student Screen */ = {
@@ -4985,7 +4985,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.8;
+				MARKETING_VERSION = 1.4.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -5021,7 +5021,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.8;
+				MARKETING_VERSION = 1.4.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
