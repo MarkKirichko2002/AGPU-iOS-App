@@ -42,6 +42,7 @@
 		8226060A2A853DEE0055925F /* RecentMomentsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822606092A853DEE0055925F /* RecentMomentsListTableViewController.swift */; };
 		822632412A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8226323F2A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift */; };
 		822632422A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822632402A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib */; };
+		8226D16D2B0948B500B0B9F0 /* AGPUTabBarController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8226D16C2B0948B500B0B9F0 /* AGPUTabBarController + Extensions.swift */; };
 		8228E3992A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E3982A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift */; };
 		8228E39C2A6C920D00C1B6AD /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E39B2A6C920D00C1B6AD /* LocationModel.swift */; };
 		8228E39F2A6C994D00C1B6AD /* AGPUBuildingsMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E39E2A6C994D00C1B6AD /* AGPUBuildingsMapViewModel.swift */; };
@@ -333,6 +334,7 @@
 		822606092A853DEE0055925F /* RecentMomentsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMomentsListTableViewController.swift; sourceTree = "<group>"; };
 		8226323F2A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeToRecallOptionTableViewCell.swift; sourceTree = "<group>"; };
 		822632402A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShakeToRecallOptionTableViewCell.xib; sourceTree = "<group>"; };
+		8226D16C2B0948B500B0B9F0 /* AGPUTabBarController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUTabBarController + Extensions.swift"; sourceTree = "<group>"; };
 		8228E3982A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUCurrentBuildingMapViewModel.swift; sourceTree = "<group>"; };
 		8228E39B2A6C920D00C1B6AD /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		8228E39E2A6C994D00C1B6AD /* AGPUBuildingsMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingsMapViewModel.swift; sourceTree = "<group>"; };
@@ -1089,6 +1091,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		8226D16B2B0948A400B0B9F0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8226D16C2B0948B500B0B9F0 /* AGPUTabBarController + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		8228E3962A6C8EFD00C1B6AD /* Maps Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -1523,6 +1533,7 @@
 			isa = PBXGroup;
 			children = (
 				8241F98C2A5F4001007DF628 /* ViewController */,
+				8226D16B2B0948A400B0B9F0 /* Extensions */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4573,6 +4584,7 @@
 				8234E6122A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift in Sources */,
 				82989ACD2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift in Sources */,
 				82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */,
+				8226D16D2B0948B500B0B9F0 /* AGPUTabBarController + Extensions.swift in Sources */,
 				8226060A2A853DEE0055925F /* RecentMomentsListTableViewController.swift in Sources */,
 				82768AED2ABE15080022FBE1 /* AppThemesListViewModelProtocol.swift in Sources */,
 				82AB6D252AF6C08A00F7B729 /* SavedNewsCategoryViewModel + Extensions.swift in Sources */,
