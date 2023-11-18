@@ -219,7 +219,7 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     private func observeNewsRefreshed() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("news refreshed"), object: nil, queue: .main) { _ in
+        NotificationCenter.default.addObserver(forName: Notification.Name("refreshed"), object: nil, queue: .main) { _ in
             self.updateDynamicButton(icon: "refresh icon")
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())

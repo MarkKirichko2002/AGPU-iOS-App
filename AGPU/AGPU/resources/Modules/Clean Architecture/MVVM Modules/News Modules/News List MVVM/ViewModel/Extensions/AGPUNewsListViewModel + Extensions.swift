@@ -64,7 +64,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     func refreshNews() {
         if let page = newsResponse.currentPage {
             getNews(by: page)
-            NotificationCenter.default.post(name: Notification.Name("news refreshed"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name("refreshed"), object: nil)
         }
     }
     
