@@ -25,6 +25,7 @@ extension SavedSubGroupViewModel: SavedSubGroupViewModelProtocol {
         if subgroup != lastSubGroup {
             UserDefaults.standard.setValue(subgroup, forKey: "subgroup")
             NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: subgroup)
+            NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
             changedHandler?()
             HapticsManager.shared.hapticFeedback()
         } else {

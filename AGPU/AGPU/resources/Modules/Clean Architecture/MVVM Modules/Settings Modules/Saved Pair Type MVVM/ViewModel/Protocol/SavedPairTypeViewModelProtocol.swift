@@ -1,13 +1,13 @@
 //
-//  PairTypesListViewModelProtocol.swift
+//  SavedPairTypeViewModelProtocol.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 15.09.2023.
+//  Created by Марк Киричко on 19.11.2023.
 //
 
 import Foundation
 
-protocol PairTypesListViewModelProtocol {
+protocol SavedPairTypeViewModelProtocol {
     func typeItem(index: Int)-> PairTypeModel
     func numberOfTypesInSection()-> Int
     func choosePairType(index: Int)

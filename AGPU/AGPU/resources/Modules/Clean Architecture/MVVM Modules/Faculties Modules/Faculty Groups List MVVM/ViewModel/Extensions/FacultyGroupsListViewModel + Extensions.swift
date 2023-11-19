@@ -34,8 +34,9 @@ extension FacultyGroupsListViewModel: FacultyGroupsListViewModelProtocol {
         if let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
             if groups[section].facultyName.abbreviation().contains(faculty.abbreviation) {
                 if group != savedGroup {
-                    NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
                     UserDefaults.standard.setValue(group, forKey: "group")
+                    NotificationCenter.default.post(name: Notification.Name("group changed"), object: group)
+                    NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
                     self.isChanged.toggle()
                     HapticsManager.shared.hapticFeedback()
                 } else {

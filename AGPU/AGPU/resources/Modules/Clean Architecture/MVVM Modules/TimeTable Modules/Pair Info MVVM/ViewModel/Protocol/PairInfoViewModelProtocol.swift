@@ -12,7 +12,6 @@ protocol PairInfoViewModelProtocol {
     func getFacultyIcon(group: String)-> String
     func getStartTime()-> String
     func getEndTime()-> String
-    func getPairType(type: PairType)-> String
     func checkSubGroup(subgroup: Int)-> String
     func checkIsCurrentGroup(index: Int)-> Bool
     func startTimer()

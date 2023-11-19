@@ -33,9 +33,10 @@ class NewsCategoriesListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Категории новостей"
+        let titleView = CustomTitleView(image: "news", title: "Категории новостей", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .label
+        navigationItem.titleView = titleView
         navigationItem.rightBarButtonItem = closeButton
     }
     

@@ -1,14 +1,14 @@
 //
-//  PairTypesListViewModel + Extensions.swift
+//  SavedPairTypeViewModel + Extensions.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 15.09.2023.
+//  Created by Марк Киричко on 19.11.2023.
 //
 
 import Foundation
 
-// MARK: - PairTypesListViewModelProtocol
-extension PairTypesListViewModel: PairTypesListViewModelProtocol {
+// MARK: - SavedPairTypeViewModelProtocol
+extension SavedPairTypeViewModel: SavedPairTypeViewModelProtocol {
     
     func typeItem(index: Int)-> PairTypeModel {
         return PairTypesList.list[index]
@@ -20,7 +20,11 @@ extension PairTypesListViewModel: PairTypesListViewModelProtocol {
     
     func choosePairType(index: Int) {
         let type = PairTypesList.list[index]
-        NotificationCenter.default.post(name: Notification.Name("TypeWasSelected"), object: type.type)
+        UserDefaults.saveData(object: type.type, key: "type") {
+            NotificationCenter.default.post(name: Notification.Name("TypeWasSelected"), object: type.type)
+            NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+            print("тип пары сохранен")
+        }
         self.type = type.type
         self.pairTypeSelectedHandler?()
         HapticsManager.shared.hapticFeedback()

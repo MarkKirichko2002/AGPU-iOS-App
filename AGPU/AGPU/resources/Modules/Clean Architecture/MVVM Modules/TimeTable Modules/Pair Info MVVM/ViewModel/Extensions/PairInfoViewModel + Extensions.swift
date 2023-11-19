@@ -13,7 +13,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
     func setUpData() {
         let startTime = getStartTime()
         let endTime = getEndTime()
-        let pairType = getPairType(type: pair.type)
+        let pairType = pair.type.title
         let subGroup = checkSubGroup(subgroup: pair.subgroup)
         pairInfo.append("дата: \(date)")
         pairInfo.append("начало: \(startTime)")
@@ -48,31 +48,6 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         let times = pair.time.components(separatedBy: "-")
         let startTime = times[1] + ":00"
         return startTime
-    }
-    
-    func getPairType(type: PairType)-> String {
-        switch type {
-        case .lec:
-            return "лекция"
-        case .prac:
-            return "практика"
-        case .exam:
-            return "экзамен"
-        case .lab:
-            return "лабораторная работа"
-        case .hol:
-            return "каникулы"
-        case .cred:
-            return "зачет"
-        case .fepo:
-            return "ФЭПО"
-        case .cons:
-            return "консультация"
-        case .none:
-            return "другое"
-        case .all:
-            return ""
-        }
     }
     
     func checkSubGroup(subgroup: Int)-> String {

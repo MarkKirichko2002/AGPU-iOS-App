@@ -17,7 +17,7 @@ extension SettingsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 3
+            return 4
         case 1:
             return 3
         case 2:
@@ -42,6 +42,9 @@ extension SettingsListViewController: UITableViewDataSource {
             } else if indexPath.row == 2 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AdaptiveNewsOptionTableViewCell.identifier, for: indexPath) as? AdaptiveNewsOptionTableViewCell else {return UITableViewCell()}
                 cell.configure(category: viewModel.getSavedNewsCategoryInfo())
+                return cell
+            } else if indexPath.row == 3 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: TimetableOptionTableViewCell.identifier, for: indexPath) as? TimetableOptionTableViewCell else {return UITableViewCell()}
                 return cell
             }
         case 1:
@@ -107,6 +110,14 @@ extension SettingsListViewController: UITableViewDelegate {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "news")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = SavedNewsCategoryTableViewController()
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    self.present(navVC, animated: true)
+                }
+            } else if indexPath.row == 3 {
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "timetable")
+                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                    let vc = TimetableOptionsTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)

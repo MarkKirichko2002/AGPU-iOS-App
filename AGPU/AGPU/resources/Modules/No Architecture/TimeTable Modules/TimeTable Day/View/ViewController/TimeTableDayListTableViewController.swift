@@ -45,9 +45,10 @@ final class TimeTableDayListTableViewController: UIViewController {
     private func setUpData() {
         self.group = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-2-1"
         self.subgroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
+        self.type = UserDefaults.loadData(type: PairType.self, key: "type") ?? .all
         date = dateManager.getCurrentDate()
     }
-    
+     
     private func setUpNavigation() {
         
         let dayOfWeek = dateManager.getCurrentDayOfWeek(date: date)
@@ -191,9 +192,11 @@ final class TimeTableDayListTableViewController: UIViewController {
                 self?.timetable = timetable
                 self?.allDisciplines = timetable.disciplines
                 if !timetable.disciplines.isEmpty {
+                    let data = timetable.disciplines.filter { $0.subgroup == self?.subgroup || $0.subgroup == 0 || (self?.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
+                    if self?.type != .all {
+                        self?.timetable?.disciplines = data.filter {$0.type == self?.type}
+                    }
                     DispatchQueue.main.async {
-                        let data = timetable.disciplines.filter { $0.subgroup == self?.subgroup || $0.subgroup == 0 || (self?.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
-                        self?.timetable?.disciplines = data
                         self?.tableView.reloadData()
                         self?.spinner.stopAnimating()
                         self?.refreshControl.endRefreshing()

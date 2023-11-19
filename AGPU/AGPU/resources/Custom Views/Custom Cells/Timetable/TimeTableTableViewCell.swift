@@ -17,67 +17,18 @@ final class TimeTableTableViewCell: UITableViewCell {
     @IBOutlet var SubGroupId: UILabel!
     
     func configure(timetable: TimeTable, index: Int) {
+        let discipline = timetable.disciplines[index]
         layer.borderWidth = 1
-        TimeLabel.text = timetable.disciplines[index].time
-        DisciplineName.text = "\(timetable.disciplines[index].name) \n\(timetable.disciplines[index].teacherName), \(timetable.disciplines[index].audienceID) \n (\(pairType(type: timetable.disciplines[index].type)))"
-        switch timetable.disciplines[index].subgroup {
+        TimeLabel.text = discipline.time
+        DisciplineName.text = "\(discipline.name) \n\(discipline.teacherName), \(discipline.audienceID) \n (\(discipline.type.title))"
+        switch discipline.subgroup {
         case 0:
             SubGroupId.text = ""
         default:
-            SubGroupId.text = "(подгруппа: \(timetable.disciplines[index].subgroup))"
+            SubGroupId.text = "(подгруппа: \(discipline.subgroup))"
         }
-        let color = pairСolor(type: timetable.disciplines[index].type)
+        let color = discipline.type.color
         self.backgroundColor = color
-    }
-    
-    private func pairСolor(type: PairType)-> UIColor {
-        switch type {
-        case .lec:
-            return UIColor(named: "lecture")!
-        case .prac:
-            return UIColor(named: "prac")!
-        case .exam:
-            return UIColor(named: "exam")!
-        case .lab:
-            return UIColor(named: "lab")!
-        case .hol:
-            return UIColor.white
-        case .cred:
-            return UIColor.white
-        case .fepo:
-            return UIColor.white
-        case .cons:
-            return UIColor.white
-        case .none:
-            return UIColor.white
-        case .all:
-            return UIColor.white
-        }
-    }
-    
-    private func pairType(type: PairType)-> String {
-        switch type {
-        case .lec:
-            return "лекция"
-        case .prac:
-            return "практика"
-        case .exam:
-            return "экзамен"
-        case .lab:
-            return "лабораторная работа"
-        case .hol:
-            return "каникулы"
-        case .cred:
-            return "зачет"
-        case .fepo:
-            return "ФЭПО"
-        case .cons:
-            return "консультация"
-        case .none:
-            return "другое"
-        case .all:
-            return ""
-        }
     }
     
     override func awakeFromNib() {
