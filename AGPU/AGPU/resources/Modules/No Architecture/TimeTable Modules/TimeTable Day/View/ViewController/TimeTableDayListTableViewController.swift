@@ -256,6 +256,7 @@ final class TimeTableDayListTableViewController: UIViewController {
                 let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: date)
                 self.date = date
                 self.type = .all
+                self.subgroup = 0
                 self.getTimeTable(group: self.group, date: date)
                 self.navigationItem.title = "\(dayOfWeek) \(date) "
             }
