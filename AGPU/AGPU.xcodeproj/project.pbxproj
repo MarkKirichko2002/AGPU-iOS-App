@@ -284,6 +284,7 @@
 		82D6C3412A5E33C200FB7F5D /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 82D6C3402A5E33C200FB7F5D /* FSCalendar */; };
 		82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3432A5E340300FB7F5D /* CalendarViewController.swift */; };
 		82DB22C32AACD05D00F8F664 /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DB22C22AACD05D00F8F664 /* TimeTable.swift */; };
+		82DD8DBE2B0EA104000863FF /* UIDevice + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DD8DBD2B0EA104000863FF /* UIDevice + Extensions.swift */; };
 		82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D492A5DD57B0060ADAA /* ForStudentListTableViewController.swift */; };
 		82E05D542A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D532A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift */; };
 		82E05D592A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D582A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift */; };
@@ -590,6 +591,7 @@
 		82D6C3392A5E282A00FB7F5D /* TimeTableTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeTableTableViewCell.xib; sourceTree = "<group>"; };
 		82D6C3432A5E340300FB7F5D /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		82DB22C22AACD05D00F8F664 /* TimeTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
+		82DD8DBD2B0EA104000863FF /* UIDevice + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice + Extensions.swift"; sourceTree = "<group>"; };
 		82E05D492A5DD57B0060ADAA /* ForStudentListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForStudentListTableViewController.swift; sourceTree = "<group>"; };
 		82E05D532A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultiesListTableViewController.swift; sourceTree = "<group>"; };
 		82E05D582A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultiesListViewModel.swift; sourceTree = "<group>"; };
@@ -2183,6 +2185,7 @@
 		8268885F2A33ACE800434219 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				82DD8DBC2B0EA0F1000863FF /* UIDevice */,
 				8208E7562A63A4F100675EF1 /* UIView */,
 				8208E7572A63A4F900675EF1 /* UIViewController */,
 				8208E7582A63A50C00675EF1 /* String */,
@@ -4102,6 +4105,14 @@
 			path = Timetable;
 			sourceTree = "<group>";
 		};
+		82DD8DBC2B0EA0F1000863FF /* UIDevice */ = {
+			isa = PBXGroup;
+			children = (
+				82DD8DBD2B0EA104000863FF /* UIDevice + Extensions.swift */,
+			);
+			path = UIDevice;
+			sourceTree = "<group>";
+		};
 		82E05D482A5DD52B0060ADAA /* For Student Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -4746,6 +4757,7 @@
 				82B267032A8D926400043A6D /* NewsCategories.swift in Sources */,
 				828397792AD5C9F8000F355A /* AppIconsListViewModel.swift in Sources */,
 				825D567A2AE5CCAF004305C7 /* PairInfoViewModel.swift in Sources */,
+				82DD8DBE2B0EA104000863FF /* UIDevice + Extensions.swift in Sources */,
 				8231B0B72AED682900EB41EA /* TimeTableSearchListTableViewController.swift in Sources */,
 				822606062A853D130055925F /* RecentMomentModel.swift in Sources */,
 				826888662A33B6E700434219 /* AGPUTabBarController.swift in Sources */,
@@ -5197,7 +5209,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -5233,7 +5245,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

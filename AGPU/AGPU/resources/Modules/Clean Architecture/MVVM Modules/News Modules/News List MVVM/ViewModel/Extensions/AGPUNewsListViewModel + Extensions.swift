@@ -76,10 +76,6 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         return Article(id: 0, title: "", description: "", date: "", previewImage: "")
     }
     
-    func registerCategoryChangedHandler(block: @escaping(String)->Void) {
-        self.dataChangedHandler = block
-    }
-    
     // следить за изменением категории
     func observeCategoryChanges() {
         NotificationCenter.default.addObserver(forName: Notification.Name("category"), object: nil, queue: .main) { notification in
@@ -109,5 +105,15 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     func makeUrlForCurrentArticle(index: Int)-> String {
         let url = newsService.urlForCurrentArticle(abbreviation: abbreviation, index: articleItem(index: index).id)
         return url
+    }
+    
+    func sendNotificationArticleWasSelected() {
+        Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+            NotificationCenter.default.post(name: Notification.Name("article selected"), object: nil)
+        }
+    }
+    
+    func registerCategoryChangedHandler(block: @escaping(String)->Void) {
+        self.dataChangedHandler = block
     }
 }

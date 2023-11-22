@@ -14,8 +14,9 @@ protocol AGPUNewsListViewModelProtocol {
     func getNews(by page: Int)
     func refreshNews()
     func articleItem(index: Int)-> Article
-    func registerCategoryChangedHandler(block: @escaping(String)->Void)
     func observeCategoryChanges()
     func observePageChanges()
     func makeUrlForCurrentArticle(index: Int)-> String
+    func sendNotificationArticleWasSelected()
+    func registerCategoryChangedHandler(block: @escaping(String)->Void)
 }

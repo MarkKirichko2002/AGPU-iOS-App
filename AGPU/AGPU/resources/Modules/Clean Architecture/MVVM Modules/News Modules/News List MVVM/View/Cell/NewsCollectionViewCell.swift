@@ -64,6 +64,7 @@ final class NewsCollectionViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             
+            // Изображение новости
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
@@ -87,8 +88,8 @@ final class NewsCollectionViewCell: UICollectionViewCell {
     }
     
     public func configure(with news: Article) {
+        self.imageView.sd_setImage(with: URL(string: news.previewImage))
         DispatchQueue.main.async {
-            self.imageView.sd_setImage(with: URL(string: news.previewImage))
             self.NewsTitle.text = news.title
             self.dateLabel.text = news.date
         }
