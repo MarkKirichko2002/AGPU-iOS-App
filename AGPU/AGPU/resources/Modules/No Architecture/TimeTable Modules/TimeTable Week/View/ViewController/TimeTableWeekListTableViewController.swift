@@ -15,8 +15,8 @@ final class TimeTableWeekListTableViewController: UIViewController {
     var timetable = [TimeTable]()
     
     // MARK: - сервисы
-    private let service = TimeTableService()
-    private let dateManager = DateManager()
+    let service = TimeTableService()
+    let dateManager = DateManager()
     
     // MARK: - UI
     let tableView = UITableView()
