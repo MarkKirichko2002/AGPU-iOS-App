@@ -54,11 +54,9 @@ class SavedNewsCategoryTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let news = NewsCategories.categories[indexPath.row]
+        let category = NewsCategories.categories[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SavedNewsCategoryTableViewCell.identifier, for: indexPath) as? SavedNewsCategoryTableViewCell else {return UITableViewCell()}
-        cell.NewsCategoryName.textColor = viewModel.isNewsCategorySelected(index: indexPath.row) ? .systemGreen : .label
-        cell.accessoryType = viewModel.isNewsCategorySelected(index: indexPath.row) ? .checkmark : .none
-        cell.configure(category: news)
+        cell.configure(category: category, viewModel: viewModel)
         return cell
     }
 }
