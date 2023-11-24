@@ -53,11 +53,9 @@ class UserStatusListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: UserStatusTableViewCell.identifier, for: indexPath) as? UserStatusTableViewCell else {return UITableViewCell()}
         let status = viewModel.statusItem(index: indexPath.row)
-        cell.StatusName.textColor = viewModel.isStatusSelected(index: indexPath.row) ? .systemGreen : .label
-        cell.accessoryType = viewModel.isStatusSelected(index: indexPath.row) ? .checkmark : .none
-        cell.configure(type: status)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: UserStatusTableViewCell.identifier, for: indexPath) as? UserStatusTableViewCell else {return UITableViewCell()}
+        cell.configure(status: status, viewModel: viewModel)
         return cell
     }
 }
