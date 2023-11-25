@@ -309,6 +309,9 @@
 		82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */; };
 		82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */; };
 		82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */; };
+		82F98B322B11998E00137D9A /* WeatherManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F98B312B11998E00137D9A /* WeatherManagerProtocol.swift */; };
+		82F98B342B1199B300137D9A /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F98B332B1199B300137D9A /* WeatherManager.swift */; };
+		82F98B362B119A0200137D9A /* WeatherManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F98B352B119A0200137D9A /* WeatherManager + Extensions.swift */; };
 		82FB5B642A7A8FF600728980 /* InteractiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FB5B632A7A8FF600728980 /* InteractiveView.swift */; };
 		82FEA7AE2A7ED5BB00863453 /* AGPUBuildingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FEA7AD2A7ED5BB00863453 /* AGPUBuildingType.swift */; };
 /* End PBXBuildFile section */
@@ -616,6 +619,10 @@
 		82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClassProtocol.swift; sourceTree = "<group>"; };
 		82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManagerProtocol.swift; sourceTree = "<group>"; };
 		82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringImageView.swift; sourceTree = "<group>"; };
+		82F98B2C2B11973500137D9A /* AGPU.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AGPU.entitlements; sourceTree = "<group>"; };
+		82F98B312B11998E00137D9A /* WeatherManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManagerProtocol.swift; sourceTree = "<group>"; };
+		82F98B332B1199B300137D9A /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+		82F98B352B119A0200137D9A /* WeatherManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherManager + Extensions.swift"; sourceTree = "<group>"; };
 		82FB5B632A7A8FF600728980 /* InteractiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveView.swift; sourceTree = "<group>"; };
 		82FEA7AD2A7ED5BB00863453 /* AGPUBuildingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1469,6 +1476,7 @@
 			children = (
 				82D6C3302A5E1DD100FB7F5D /* API */,
 				8270A5462A578491008ACADC /* Date */,
+				82F98B2D2B1198EA00137D9A /* Weather */,
 				82E4C5852A6B20B800F65A67 /* Location */,
 				82BF4DB52A5FA7F6008B751A /* Image Saver */,
 				82EF23D02A3DED73004A7B9C /* Speech Recognition */,
@@ -2502,6 +2510,7 @@
 		82808E872A31F12100DEEB16 /* AGPU */ = {
 			isa = PBXGroup;
 			children = (
+				82F98B2C2B11973500137D9A /* AGPU.entitlements */,
 				8258214C2A4649FE00CF0333 /* resources */,
 				8295489D2A43B0D3007DEBA0 /* sources */,
 			);
@@ -4628,6 +4637,40 @@
 			path = "Spring Image";
 			sourceTree = "<group>";
 		};
+		82F98B2D2B1198EA00137D9A /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				82F98B302B11996E00137D9A /* Protocol */,
+				82F98B2F2B11996B00137D9A /* Manager */,
+				82F98B2E2B11996100137D9A /* Extensions */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		82F98B2E2B11996100137D9A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82F98B352B119A0200137D9A /* WeatherManager + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82F98B2F2B11996B00137D9A /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				82F98B332B1199B300137D9A /* WeatherManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		82F98B302B11996E00137D9A /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82F98B312B11998E00137D9A /* WeatherManagerProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		82FB5B622A7A8FE500728980 /* Interactive View */ = {
 			isa = PBXGroup;
 			children = (
@@ -4892,6 +4935,7 @@
 				8226D17A2B095DA400B0B9F0 /* TimetableSettingsListViewModelProtocol.swift in Sources */,
 				827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */,
 				8234E5F32A88514600ED354C /* WordDocumentReaderViewController + Extensions.swift in Sources */,
+				82F98B322B11998E00137D9A /* WeatherManagerProtocol.swift in Sources */,
 				829548922A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift in Sources */,
 				828321762A7D6503008641A5 /* SearchAGPUBuildingMapViewController + Extensions.swift in Sources */,
 				82E4C5432A6B10F900F65A67 /* WebViewModelProtocol.swift in Sources */,
@@ -4926,6 +4970,7 @@
 				8226D1912B09704B00B0B9F0 /* SavedPairTypeViewModel + Extensions.swift in Sources */,
 				82C5615F2A6B75B700514B00 /* AppFeaturesList.swift in Sources */,
 				82768AEF2ABE15230022FBE1 /* AppThemesListViewModel.swift in Sources */,
+				82F98B362B119A0200137D9A /* WeatherManager + Extensions.swift in Sources */,
 				8234E5F52A8854DF00ED354C /* WordDocumenReaderViewModelProtocol.swift in Sources */,
 				82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */,
 				8226D1712B0958F600B0B9F0 /* TimetableOptionTableViewCell.swift in Sources */,
@@ -4959,6 +5004,7 @@
 				82162D8C2AB5CE7700840D90 /* CalendarViewModel + Extensions.swift in Sources */,
 				82BF4DB22A5FA5B3008B751A /* AGPUWallpaperCollectionViewCell.swift in Sources */,
 				825D56782AE5CC5F004305C7 /* PairInfoViewModelProtocol.swift in Sources */,
+				82F98B342B1199B300137D9A /* WeatherManager.swift in Sources */,
 				82BE9D892ACA14D300C06CD5 /* NewsPageModel.swift in Sources */,
 				82BC2F462A8EFD6400ADB239 /* NewsCategoriesListViewModel.swift in Sources */,
 				82B24AAB2A82E45A008B94E4 /* NewsResponse.swift in Sources */,
@@ -5189,6 +5235,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = AGPU/AGPU.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 265GKHT32M;
@@ -5204,7 +5251,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5225,6 +5272,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = AGPU/AGPU.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 265GKHT32M;
@@ -5240,7 +5288,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

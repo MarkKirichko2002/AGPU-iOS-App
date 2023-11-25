@@ -14,6 +14,7 @@ final class AGPULocationDetailViewController: UIViewController {
     
     @IBOutlet var LocationName: UILabel!
     @IBOutlet var LocationDetail: UILabel!
+    @IBOutlet var WeatherLabel: UILabel!
     
     // MARK: - Init
     init(annotation: MKAnnotation) {
@@ -43,8 +44,14 @@ final class AGPULocationDetailViewController: UIViewController {
     }
     
     private func setUpView() {
+        let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
         LocationName.text = annotation.title!
         LocationDetail.text = annotation.subtitle!
+        WeatherManager.shared.getWeather(location: location) { weather in
+            DispatchQueue.main.async {
+                self.WeatherLabel.text = "Погода: \(WeatherManager.shared.formatWeather(weather: weather))"
+            }
+        }
     }
     
     @IBAction func GoToMap() {
