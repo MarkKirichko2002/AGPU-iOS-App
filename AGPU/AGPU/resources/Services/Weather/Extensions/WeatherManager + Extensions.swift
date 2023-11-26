@@ -24,7 +24,7 @@ extension WeatherManager: WeatherManagerProtocol {
     func formatWeather(weather: Weather)-> String {
         var formattedWeather = ""
         var condition = ""
-        let temperature = weather.currentWeather.temperature
+        let temperature = weather.currentWeather.temperature.value
         switch weather.currentWeather.condition {
             case .blizzard:
                 condition =  "Метель"
@@ -97,7 +97,7 @@ extension WeatherManager: WeatherManagerProtocol {
         @unknown default:
             break
         }
-        formattedWeather = "\(temperature) " + condition
+        formattedWeather = "\(Int(round(temperature)))\u{00B0} " + condition
         return formattedWeather
     }
 }
