@@ -57,15 +57,15 @@ final class AGPULocationDetailViewController: UIViewController {
     }
     
     private func shareLocationWithAppleMaps() {
-        let title = annotation.title!
+        let title = annotation.title!! + " (Apple Maps)"
         let url = "http://maps.apple.com/?q=\(annotation.coordinate.latitude),\(annotation.coordinate.longitude)"
-        shareInfo(image: UIImage(named: "map icon")!, title: title!, text: "\(title!)-\(url)")
+        shareInfo(image: UIImage(named: "map icon")!, title: title, text: "\(title)-\(url)")
     }
     
     private func shareLocationWithGoogleMaps() {
-        let title = annotation.title!
+        let title = annotation.title!! + " (Google Maps)"
         let url = "https://www.google.com/maps/search/?api=1&query=\(annotation.coordinate.latitude),\(annotation.coordinate.longitude)"
-        shareInfo(image: UIImage(named: "map icon")!, title: title!, text: "\(title!)-\(url)")
+        shareInfo(image: UIImage(named: "map icon")!, title: title, text: "\(title)-\(url)")
     }
     
     private func setUpView() {
