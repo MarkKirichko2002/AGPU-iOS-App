@@ -21,7 +21,7 @@ extension SettingsListViewController: UITableViewDataSource {
         case 1:
             return 3
         case 2:
-            return 1
+            return 2
         default:
             return 0
         }
@@ -61,8 +61,15 @@ extension SettingsListViewController: UITableViewDataSource {
                 return cell
             }
         case 2:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: AppFeaturesTableViewCell.identifier, for: indexPath) as? AppFeaturesTableViewCell else {return UITableViewCell()}
-            return cell
+            if indexPath.row == 0 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: AppFeaturesTableViewCell.identifier, for: indexPath) as? AppFeaturesTableViewCell else {return UITableViewCell()}
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+                cell.textLabel?.text = " Weather - Источник данных о погоде"
+                cell.textLabel?.textAlignment = .center
+                return cell
+            }
         default:
             return UITableViewCell()
         }
@@ -142,12 +149,17 @@ extension SettingsListViewController: UITableViewDelegate {
                 }
             }
         case 2:
-            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "info icon")
-            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                let vc = AppFeaturesListTableViewController()
-                let navVC = UINavigationController(rootViewController: vc)
-                navVC.modalPresentationStyle = .fullScreen
-                self.present(navVC, animated: true)
+            if indexPath.row == 0 {
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "info icon")
+                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                    let vc = AppFeaturesListTableViewController()
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    self.present(navVC, animated: true)
+                }
+            } else {
+                HapticsManager.shared.hapticFeedback()
+                self.goToWeb(url: "https://developer.apple.com/weatherkit/data-source-attribution/", image: "info", title: " Weather", isSheet: false)
             }
         default:
             break

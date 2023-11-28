@@ -106,50 +106,43 @@ struct AGPUSubSections {
             ),
             AGPUSubSectionModel(
                 id: 2,
-                name: "Личный кабинет абитуриента",
-                icon: "user",
-                url: "http://abit.agpu.net/",
-                voiceCommand: "личныйкабинетабитуриента"
-            ),
-            AGPUSubSectionModel(
-                id: 3,
                 name: "Институты/Факультеты",
                 icon: "user",
                 url: "http://www.agpu.net/abitur/faculties-institutes/index.php",
                 voiceCommand: "факультеты"
             ),
             AGPUSubSectionModel(
-                id: 4,
+                id: 3,
                 name: "Официальные документы в соответствии с порядком приема в ВУЗы",
                 icon: "user",
                 url: "http://www.agpu.net/abitur/2024/index.php",
                 voiceCommand: "официальныедокументы"),
             AGPUSubSectionModel(
-                id: 5,
+                id: 4,
                 name: "Ежедневная информация приемной комиссии",
                 icon: "user",
                 url: "http://priem.agpu.net/every/priem2023/Default_previous.aspx",
                 voiceCommand: "приемнаякомисси"),
             AGPUSubSectionModel(
-                id: 6,
+                id: 5,
                 name: "Вопросы и ответы",
                 icon: "user",
                 url: "http://www.agpu.net/abitur/contact-form/Quest.php",
                 voiceCommand: "приемнаякомисси"),
             AGPUSubSectionModel(
-                id: 7,
+                id: 6,
                 name: "Анкета абитуриента",
                 icon: "user",
                 url: "http://www.agpu.net/abitur/Anketa/index.php",
                 voiceCommand: "анкетаабитуриента"),
             AGPUSubSectionModel(
-                id: 8,
+                id: 7,
                 name: "Калькулятор ЕГЭ",
                 icon: "user",
                 url: "http://www.agpu.net/abitur/Calc/index.php",
                 voiceCommand: "Калькуляторегэ"),
             AGPUSubSectionModel(
-                id: 9,
+                id: 8,
                 name: "Дополнительное образование",
                 icon: "user",
                 url: "https://niiro-agpu.ru/",
