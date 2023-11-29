@@ -134,7 +134,12 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         options.tintColor = .label
-        self.navigationItem.rightBarButtonItem = options
+        
+        let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshTimetable))
+        refreshButton.tintColor = .label
+        
+        navigationItem.leftBarButtonItem = refreshButton
+        navigationItem.rightBarButtonItem = options
     }
     
     @objc private func refreshTimetable() {
