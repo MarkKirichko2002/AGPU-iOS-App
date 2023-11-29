@@ -16,8 +16,11 @@ extension AGPUCurrentBuildingMapViewController: MKMapViewDelegate {
             vc.annotation = view.annotation!
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
-            present(navVC, animated: true)
+            DispatchQueue.main.async {
+                self.present(navVC, animated: true)
+            }
         }
+        HapticsManager.shared.hapticFeedback()
     }
 }
 

@@ -53,7 +53,8 @@ final class AGPULocationDetailViewController: UIViewController {
         let shareGoogleMaps = UIAlertAction(title: "С помощью Google Maps", style: .default) { _ in
             self.shareLocationWithGoogleMaps()
         }
-        self.showAlert(title: "Поделиться локацией", message: "Как вы хотите поделиться локацией?", actions: [shareAppleMaps, shareGoogleMaps])
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
+        self.showAlert(title: "Поделиться локацией", message: "Как вы хотите поделиться локацией?", actions: [shareAppleMaps, shareGoogleMaps, cancel])
     }
     
     private func shareLocationWithAppleMaps() {
