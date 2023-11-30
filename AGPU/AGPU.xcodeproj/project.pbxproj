@@ -306,6 +306,9 @@
 		82E4E5592A57699E00314296 /* WKWebView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4E5582A57699E00314296 /* WKWebView + Extensions.swift */; };
 		82ECABE12A81520A00FE7462 /* SubGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECABE02A81520A00FE7462 /* SubGroupModel.swift */; };
 		82ECABE52A81524500FE7462 /* SubGroupsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECABE42A81524500FE7462 /* SubGroupsList.swift */; };
+		82ECCC712B18299E00443ED8 /* AGPUBuildingDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECCC702B18299E00443ED8 /* AGPUBuildingDetailViewModelProtocol.swift */; };
+		82ECCC732B182A1700443ED8 /* AGPUBuildingDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECCC722B182A1700443ED8 /* AGPUBuildingDetailViewModel.swift */; };
+		82ECCC752B182A3200443ED8 /* AGPUBuildingDetailViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECCC742B182A3200443ED8 /* AGPUBuildingDetailViewModel + Extensions.swift */; };
 		82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */; };
 		82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */; };
 		82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */; };
@@ -616,6 +619,9 @@
 		82E4E5582A57699E00314296 /* WKWebView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView + Extensions.swift"; sourceTree = "<group>"; };
 		82ECABE02A81520A00FE7462 /* SubGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGroupModel.swift; sourceTree = "<group>"; };
 		82ECABE42A81524500FE7462 /* SubGroupsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGroupsList.swift; sourceTree = "<group>"; };
+		82ECCC702B18299E00443ED8 /* AGPUBuildingDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingDetailViewModelProtocol.swift; sourceTree = "<group>"; };
+		82ECCC722B182A1700443ED8 /* AGPUBuildingDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingDetailViewModel.swift; sourceTree = "<group>"; };
+		82ECCC742B182A3200443ED8 /* AGPUBuildingDetailViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUBuildingDetailViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClassProtocol.swift; sourceTree = "<group>"; };
 		82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManagerProtocol.swift; sourceTree = "<group>"; };
 		82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringImageView.swift; sourceTree = "<group>"; };
@@ -1300,6 +1306,7 @@
 				82989AD62A6E548B00F27858 /* Cathedra Map MVVM */,
 				8210CA022A664D5700D0BEEE /* Current Buiding MVVM */,
 				8283216F2A7D6403008641A5 /* Search AGPU Building Map MVVM */,
+				82ECCC6B2B1828EE00443ED8 /* AGPU Building Detail MVVM */,
 			);
 			path = "Maps Modules";
 			sourceTree = "<group>";
@@ -2213,7 +2220,6 @@
 				82808E9C2A31F2D400DEEB16 /* AGPU Sections */,
 				821270462A78925D0095D68E /* PDF Modules */,
 				82C561602A6B770800514B00 /* App Features Modules */,
-				829522DB2A38AEBE00329713 /* Maps */,
 				82505F432A7F9A0D001DE24A /* TimeTable Modules */,
 			);
 			path = "No Architecture";
@@ -2227,14 +2233,6 @@
 				82ECABDF2A8151ED00FE7462 /* Sub Group */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		826BADAD2A64D57B00022B45 /* AGPU Location Detail Screen */ = {
-			isa = PBXGroup;
-			children = (
-				826BADB22A64DA6300022B45 /* View */,
-			);
-			path = "AGPU Location Detail Screen";
 			sourceTree = "<group>";
 		};
 		826BADB22A64DA6300022B45 /* View */ = {
@@ -3013,14 +3011,6 @@
 				82920B8C2AD8871D00352CD8 /* SelectedFacultyListViewModelProtocol.swift */,
 			);
 			path = Protocol;
-			sourceTree = "<group>";
-		};
-		829522DB2A38AEBE00329713 /* Maps */ = {
-			isa = PBXGroup;
-			children = (
-				826BADAD2A64D57B00022B45 /* AGPU Location Detail Screen */,
-			);
-			path = Maps;
 			sourceTree = "<group>";
 		};
 		829548842A439D2A007DEBA0 /* Extensions */ = {
@@ -4600,6 +4590,49 @@
 			path = List;
 			sourceTree = "<group>";
 		};
+		82ECCC6B2B1828EE00443ED8 /* AGPU Building Detail MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				826BADB22A64DA6300022B45 /* View */,
+				82ECCC6C2B18293C00443ED8 /* ViewModel */,
+			);
+			path = "AGPU Building Detail MVVM";
+			sourceTree = "<group>";
+		};
+		82ECCC6C2B18293C00443ED8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82ECCC6F2B18294B00443ED8 /* Protocol */,
+				82ECCC6E2B18294900443ED8 /* ViewModel */,
+				82ECCC6D2B18294600443ED8 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82ECCC6D2B18294600443ED8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82ECCC742B182A3200443ED8 /* AGPUBuildingDetailViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82ECCC6E2B18294900443ED8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82ECCC722B182A1700443ED8 /* AGPUBuildingDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82ECCC6F2B18294B00443ED8 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82ECCC702B18299E00443ED8 /* AGPUBuildingDetailViewModelProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		82EF23D02A3DED73004A7B9C /* Speech Recognition */ = {
 			isa = PBXGroup;
 			children = (
@@ -4951,6 +4984,7 @@
 				82AB6D232AF6C07500F7B729 /* SavedNewsCategoryViewModel.swift in Sources */,
 				82BEAD872A7417EC00DD34C2 /* RecentWebPageViewModelProtocol.swift in Sources */,
 				82B1C0CA2A8070A100520C14 /* SavedSubGroupViewModel.swift in Sources */,
+				82ECCC752B182A3200443ED8 /* AGPUBuildingDetailViewModel + Extensions.swift in Sources */,
 				828321642A7C6A48008641A5 /* AllGroupsListTableViewController.swift in Sources */,
 				821EEAD62AA0B76F00AE517B /* UserStatusTableViewCell.swift in Sources */,
 				82426C782A714D6A00D5AA57 /* ForApplicantListTableViewController.swift in Sources */,
@@ -4982,6 +5016,7 @@
 				82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */,
 				8231B0BB2AED97ED00EB41EA /* TeacherTimeTable.swift in Sources */,
 				82E4C55F2A6B147900F65A67 /* SettingsListViewModelProtocol.swift in Sources */,
+				82ECCC732B182A1700443ED8 /* AGPUBuildingDetailViewModel.swift in Sources */,
 				8226D17E2B095E0900B0B9F0 /* TimetableSettingsListViewModel + Extensions.swift in Sources */,
 				82E4C5452A6B114000F65A67 /* WebViewModel + Extensions.swift in Sources */,
 				82AB6D2C2AF6C45700F7B729 /* SavedNewsCategoryTableViewCell.swift in Sources */,
@@ -5043,6 +5078,7 @@
 				82B24A8F2A81BDDD008B94E4 /* AGPUNewsServiceProtocol.swift in Sources */,
 				82920B912AD8874100352CD8 /* SelectedFacultyListViewModel + Extensions.swift in Sources */,
 				8234E5FA2A88553700ED354C /* WordDocumenReaderViewModel.swift in Sources */,
+				82ECCC712B18299E00443ED8 /* AGPUBuildingDetailViewModelProtocol.swift in Sources */,
 				82B266FC2A8D91E400043A6D /* NewsCategoriesListTableViewController.swift in Sources */,
 				821FCF0A2A87CE79006FFB26 /* NewsListViewController + Extensions.swift in Sources */,
 				82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */,

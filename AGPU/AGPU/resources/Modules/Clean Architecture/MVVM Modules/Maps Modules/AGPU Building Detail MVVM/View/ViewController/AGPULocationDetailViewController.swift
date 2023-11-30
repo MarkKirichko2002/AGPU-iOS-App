@@ -12,24 +12,19 @@ final class AGPULocationDetailViewController: UIViewController {
     
     var annotation: MKAnnotation!
     
+    // MARK: - сервисы
+    var viewModel: AGPUBuildingDetailViewModel!
+    
+    // MARK: - UI
     @IBOutlet var LocationName: UILabel!
     @IBOutlet var LocationDetail: UILabel!
     @IBOutlet var WeatherLabel: UILabel!
-    
-    // MARK: - Init
-    init(annotation: MKAnnotation) {
-        self.annotation = annotation
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
         setUpView()
+        bindViewModel()
     }
     
     private func setUpNavigation() {
@@ -70,12 +65,16 @@ final class AGPULocationDetailViewController: UIViewController {
     }
     
     private func setUpView() {
-        let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
         LocationName.text = annotation.title!
         LocationDetail.text = annotation.subtitle!
-        WeatherManager.shared.getWeather(location: location) { weather in
+    }
+    
+    private func bindViewModel() {
+        viewModel = AGPUBuildingDetailViewModel(location: CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude))
+        viewModel.getWeather()
+        viewModel.registerWeatherHandler { weatherInfo in
             DispatchQueue.main.async {
-                self.WeatherLabel.text = "Погода: \(WeatherManager.shared.formatWeather(weather: weather))"
+                self.WeatherLabel.text = weatherInfo
             }
         }
     }
