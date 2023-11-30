@@ -1,5 +1,5 @@
 //
-//  AGPULocationDetailViewController.swift
+//  AGPUBuildingDetailViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 17.07.2023.
@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-final class AGPULocationDetailViewController: UIViewController {
+final class AGPUBuildingDetailViewController: UIViewController {
     
     var annotation: MKAnnotation!
     

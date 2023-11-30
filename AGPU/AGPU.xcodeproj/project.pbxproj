@@ -119,8 +119,8 @@
 		826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888602A33ACF500434219 /* UIView + Extensions.swift */; };
 		826888662A33B6E700434219 /* AGPUTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888652A33B6E700434219 /* AGPUTabBarController.swift */; };
 		826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888682A3482DF00434219 /* AGPUSubSections.swift */; };
-		826BADAF2A64D5A500022B45 /* AGPULocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826BADAE2A64D5A500022B45 /* AGPULocationDetailViewController.swift */; };
-		826BADB12A64D5D100022B45 /* AGPULocationDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826BADB02A64D5D100022B45 /* AGPULocationDetailViewController.storyboard */; };
+		826BADAF2A64D5A500022B45 /* AGPUBuildingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826BADAE2A64D5A500022B45 /* AGPUBuildingDetailViewController.swift */; };
+		826BADB12A64D5D100022B45 /* AGPUBuildingDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826BADB02A64D5D100022B45 /* AGPUBuildingDetailViewController.storyboard */; };
 		826F93872A91C3D500DE4FB1 /* NewsPagesListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826F93862A91C3D500DE4FB1 /* NewsPagesListViewModelProtocol.swift */; };
 		826F93892A91C46A00DE4FB1 /* NewsPagesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826F93882A91C46A00DE4FB1 /* NewsPagesListViewModel.swift */; };
 		826F938B2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826F938A2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift */; };
@@ -432,8 +432,8 @@
 		826888602A33ACF500434219 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		826888652A33B6E700434219 /* AGPUTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUTabBarController.swift; sourceTree = "<group>"; };
 		826888682A3482DF00434219 /* AGPUSubSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSections.swift; sourceTree = "<group>"; };
-		826BADAE2A64D5A500022B45 /* AGPULocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPULocationDetailViewController.swift; sourceTree = "<group>"; };
-		826BADB02A64D5D100022B45 /* AGPULocationDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AGPULocationDetailViewController.storyboard; sourceTree = "<group>"; };
+		826BADAE2A64D5A500022B45 /* AGPUBuildingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingDetailViewController.swift; sourceTree = "<group>"; };
+		826BADB02A64D5D100022B45 /* AGPUBuildingDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AGPUBuildingDetailViewController.storyboard; sourceTree = "<group>"; };
 		826F93862A91C3D500DE4FB1 /* NewsPagesListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPagesListViewModelProtocol.swift; sourceTree = "<group>"; };
 		826F93882A91C46A00DE4FB1 /* NewsPagesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPagesListViewModel.swift; sourceTree = "<group>"; };
 		826F938A2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsPagesListViewModel + Extensions.swift"; sourceTree = "<group>"; };
@@ -2246,8 +2246,8 @@
 		826BADB32A64DA6800022B45 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				826BADAE2A64D5A500022B45 /* AGPULocationDetailViewController.swift */,
-				826BADB02A64D5D100022B45 /* AGPULocationDetailViewController.storyboard */,
+				826BADAE2A64D5A500022B45 /* AGPUBuildingDetailViewController.swift */,
+				826BADB02A64D5D100022B45 /* AGPUBuildingDetailViewController.storyboard */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -4790,7 +4790,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82768AF92ABE1CE70022FBE1 /* AppFeaturesTableViewCell.xib in Resources */,
-				826BADB12A64D5D100022B45 /* AGPULocationDetailViewController.storyboard in Resources */,
+				826BADB12A64D5D100022B45 /* AGPUBuildingDetailViewController.storyboard in Resources */,
 				82768AF62ABE1B360022FBE1 /* AppThemesTableViewCell.xib in Resources */,
 				82D6C33B2A5E282A00FB7F5D /* TimeTableTableViewCell.xib in Resources */,
 				82B267062A8DAA8500043A6D /* NewsCategoryTableViewCell.xib in Resources */,
@@ -4869,7 +4869,7 @@
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
 				822FB20F2AC5DCF20083E016 /* SubGroupsListTableViewController.swift in Sources */,
 				82162D882AB5CE5300840D90 /* CalendarViewModelProtocol.swift in Sources */,
-				826BADAF2A64D5A500022B45 /* AGPULocationDetailViewController.swift in Sources */,
+				826BADAF2A64D5A500022B45 /* AGPUBuildingDetailViewController.swift in Sources */,
 				82B1C0CF2A8070CE00520C14 /* SavedSubGroupViewModelProtocol.swift in Sources */,
 				82426C942A71DD0100D5AA57 /* UserStatusList.swift in Sources */,
 				828321732A7D643C008641A5 /* SearchAGPUBuildingMapViewController.swift in Sources */,
