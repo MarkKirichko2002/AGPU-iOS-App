@@ -55,7 +55,7 @@ class ForApplicantListTableViewController: UITableViewController {
         case 3:
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                self.goToWeb(url: "http://priem.agpu.net/contact-form/Quest.php", image: ForApplicantSections.sections[indexPath.row].icon, title: "Вопросы и ответы", isSheet: false)
+                self.goToWeb(url: "http://www.agpu.net/abitur/contact-form/Quest.php", image: ForApplicantSections.sections[indexPath.row].icon, title: "Вопросы и ответы", isSheet: false)
             }
             
         case 4:

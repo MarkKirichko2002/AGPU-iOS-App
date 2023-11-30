@@ -92,32 +92,61 @@ struct AGPUSubSections {
         ], "Абитуриенту" :  [
             AGPUSubSectionModel(
                 id: 0,
-                name: "Институты/Факультеты",
+                name: "Контакты",
                 icon: "user",
-                url: "http://agpu.net/abitur/faculties-institutes/index.php",
+                url: "http://www.agpu.net/abitur/kontakty/index.php",
                 voiceCommand: "факультеты"
             ),
             AGPUSubSectionModel(
                 id: 1,
-                name: "Информация для поступающих",
+                name: "Поступление в вуз онлайн: суперсервис портала Госуслуг",
                 icon: "user",
-                url: "http://priem.agpu.net/",
-                voiceCommand: "информациядляпоступающих"
+                url: "https://www.gosuslugi.ru/vuzonline/search?ids=1079&regionIds=23",
+                voiceCommand: "поступлениеввуз"
             ),
             AGPUSubSectionModel(
                 id: 2,
-                name: "Вопросы и ответы",
+                name: "Институты/Факультеты",
                 icon: "user",
-                url: "http://priem.agpu.net/contact-form/Quest.php",
-                voiceCommand: "вопросыиответы"
+                url: "http://www.agpu.net/abitur/faculties-institutes/index.php",
+                voiceCommand: "факультеты"
             ),
             AGPUSubSectionModel(
                 id: 3,
+                name: "Официальные документы в соответствии с порядком приема в ВУЗы",
+                icon: "user",
+                url: "http://www.agpu.net/abitur/2024/index.php",
+                voiceCommand: "официальныедокументы"),
+            AGPUSubSectionModel(
+                id: 4,
+                name: "Ежедневная информация приемной комиссии",
+                icon: "user",
+                url: "http://priem.agpu.net/every/priem2023/Default_previous.aspx",
+                voiceCommand: "приемнаякомисси"),
+            AGPUSubSectionModel(
+                id: 5,
+                name: "Вопросы и ответы",
+                icon: "user",
+                url: "http://www.agpu.net/abitur/contact-form/Quest.php",
+                voiceCommand: "приемнаякомисси"),
+            AGPUSubSectionModel(
+                id: 6,
+                name: "Анкета абитуриента",
+                icon: "user",
+                url: "http://www.agpu.net/abitur/Anketa/index.php",
+                voiceCommand: "анкетаабитуриента"),
+            AGPUSubSectionModel(
+                id: 7,
+                name: "Калькулятор ЕГЭ",
+                icon: "user",
+                url: "http://www.agpu.net/abitur/Calc/index.php",
+                voiceCommand: "Калькуляторегэ"),
+            AGPUSubSectionModel(
+                id: 8,
                 name: "Дополнительное образование",
                 icon: "user",
                 url: "https://niiro-agpu.ru/",
-                voiceCommand: "дополнительноеобразование"
-            )
+                voiceCommand: "дополнительноеобразование"),
         ], "Студенту" :  [
             AGPUSubSectionModel(
                 id: 0,

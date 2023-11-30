@@ -15,8 +15,8 @@ final class TimeTableWeekListTableViewController: UIViewController {
     var timetable = [TimeTable]()
     
     // MARK: - сервисы
-    private let service = TimeTableService()
-    private let dateManager = DateManager()
+    let service = TimeTableService()
+    let dateManager = DateManager()
     
     // MARK: - UI
     let tableView = UITableView()
@@ -47,6 +47,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         print("прокрутка завершилась")
+        HapticsManager.shared.hapticFeedback()
         tableView.isUserInteractionEnabled = true
     }
     
@@ -74,6 +75,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     @objc private func closeScreen() {
+        HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
     }
     

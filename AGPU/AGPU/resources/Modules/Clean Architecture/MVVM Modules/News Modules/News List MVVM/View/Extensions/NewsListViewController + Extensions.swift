@@ -16,9 +16,7 @@ extension NewsListViewController: UICollectionViewDelegate {
             cell.didTapCell(indexPath: indexPath)
         }
         
-        Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("article selected"), object: nil)
-        }
+        viewModel.sendNotificationArticleWasSelected()
         
         Timer.scheduledTimer(withTimeInterval: 1.1, repeats: false) { _ in
             self.goToWeb(url: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))", image: "online", title: "\(self.viewModel.articleItem(index: indexPath.row).date)", isSheet: false)
@@ -59,8 +57,16 @@ extension NewsListViewController: UICollectionViewDataSource {
 extension NewsListViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)-> CGSize {
-        let bounds = UIScreen.main.bounds
-        let width = (bounds.width - 30) / 2
-        return CGSize(width: width, height: width * 1.5)
+        let bounds = collectionView.bounds
+        let width: CGFloat
+        if UIDevice.isiPhone {
+            width = (bounds.width - 30)/2
+        } else {
+            width = (bounds.width - 50)/4
+        }
+        return CGSize(
+            width: width,
+            height: width * 1.5
+        )
     }
 }

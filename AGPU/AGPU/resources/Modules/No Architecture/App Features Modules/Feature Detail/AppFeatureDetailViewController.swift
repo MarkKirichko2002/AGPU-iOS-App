@@ -13,7 +13,7 @@ final class AppFeatureDetailViewController: UIViewController {
     
     @IBOutlet var FeatureName: UILabel!
     @IBOutlet var FeatureDescription: UITextView!
-
+    
     // MARK: - Init
     init(feature: AppFeatureModel) {
         self.feature = feature
@@ -41,6 +41,7 @@ final class AppFeatureDetailViewController: UIViewController {
     }
     
     @objc private func closeScreen() {
-         dismiss(animated: true)
+        HapticsManager.shared.hapticFeedback()
+        dismiss(animated: true)
     }
 }

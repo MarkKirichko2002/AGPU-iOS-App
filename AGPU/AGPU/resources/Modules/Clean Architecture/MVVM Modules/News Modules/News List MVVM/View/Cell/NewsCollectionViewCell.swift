@@ -64,6 +64,7 @@ final class NewsCollectionViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             
+            // Изображение новости
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),

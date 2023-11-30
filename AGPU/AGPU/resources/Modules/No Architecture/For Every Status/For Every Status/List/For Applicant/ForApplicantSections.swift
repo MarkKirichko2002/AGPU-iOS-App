@@ -10,7 +10,6 @@ import Foundation
 struct ForApplicantSections {
     
     static let sections = [
-        
         ForEveryStatusModel(
             id: 1,
             icon: "map icon",

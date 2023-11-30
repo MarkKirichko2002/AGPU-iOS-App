@@ -74,9 +74,6 @@ final class NewsListViewController: UIViewController {
         
         DispatchQueue.main.async {
             self.navigationItem.title = "Загрузка новостей..."
-            options = UIBarButtonItem(image: UIImage(named: "sections"), menu: UIMenu())
-            options.tintColor = .label
-            self.navigationItem.rightBarButtonItem = options
         }
         
         viewModel.getNewsByCurrentType()
@@ -86,7 +83,6 @@ final class NewsListViewController: UIViewController {
             guard let self = self else { return }
             
             DispatchQueue.main.async {
-                
                 if abbreviation != "" {
                     if let faculty = AGPUFaculties.faculties.first(where: { $0.newsAbbreviation == abbreviation }) {
                         titleView = CustomTitleView(image: "\(faculty.icon)", title: "\(faculty.abbreviation) новости", frame: .zero)
@@ -96,26 +92,29 @@ final class NewsListViewController: UIViewController {
                     titleView = CustomTitleView(image: "АГПУ", title: "АГПУ новости", frame: .zero)
                     self.spinner.stopAnimating()
                 }
-                
-                categoriesAction = UIAction(title: "Категории") { _ in
-                    let vc = NewsCategoriesListTableViewController(currentCategory: abbreviation)
+            }
+            
+            categoriesAction = UIAction(title: "Категории") { _ in
+                let vc = NewsCategoriesListTableViewController(currentCategory: abbreviation)
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                self.present(navVC, animated: true)
+            }
+            
+            pagesAction = UIAction(title: "Страницы") { _ in
+                if let currentPage = self.viewModel.newsResponse.currentPage, let countPages = self.viewModel.newsResponse.countPages {
+                    let vc = NewsPagesListTableViewController(currentPage: currentPage, countPages: countPages, abbreviation: abbreviation)
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
-                
-                 pagesAction = UIAction(title: "Страницы") { _ in
-                     if let currentPage = self.viewModel.newsResponse.currentPage, let countPages = self.viewModel.newsResponse.countPages {
-                         let vc = NewsPagesListTableViewController(currentPage: currentPage, countPages: countPages, abbreviation: abbreviation)
-                        let navVC = UINavigationController(rootViewController: vc)
-                        navVC.modalPresentationStyle = .fullScreen
-                        self.present(navVC, animated: true)
-                     }
-                }
-                
-                menu = UIMenu(title: "Новости", children: [categoriesAction, pagesAction])
-                options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
-                options.tintColor = .label
+            }
+            
+            menu = UIMenu(title: "Новости", children: [categoriesAction, pagesAction])
+            options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
+            options.tintColor = .label
+            
+            DispatchQueue.main.async {
                 self.navigationItem.titleView = titleView
                 self.navigationItem.rightBarButtonItem = options
                 self.collectionView.reloadData()

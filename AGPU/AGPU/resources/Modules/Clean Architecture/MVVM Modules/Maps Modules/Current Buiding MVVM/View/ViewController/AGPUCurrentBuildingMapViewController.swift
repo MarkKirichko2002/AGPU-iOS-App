@@ -35,10 +35,6 @@ final class AGPUCurrentBuildingMapViewController: UIViewController {
         setUpNavigation()
         setUpMap()
         makeConstraints()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         bindViewModel()
     }
     

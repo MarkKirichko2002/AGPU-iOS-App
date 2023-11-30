@@ -18,8 +18,8 @@ final class TimeTableDayListTableViewController: UIViewController {
     var timetable: TimeTable?
     
     // MARK: - сервисы
-    private let service = TimeTableService()
-    private let dateManager = DateManager()
+    let service = TimeTableService()
+    let dateManager = DateManager()
     
     // MARK: - UI
     let tableView = UITableView()
@@ -45,9 +45,10 @@ final class TimeTableDayListTableViewController: UIViewController {
     private func setUpData() {
         self.group = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-2-1"
         self.subgroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
+        self.type = UserDefaults.loadData(type: PairType.self, key: "type") ?? .all
         date = dateManager.getCurrentDate()
     }
-    
+     
     private func setUpNavigation() {
         
         let dayOfWeek = dateManager.getCurrentDayOfWeek(date: date)
@@ -133,12 +134,19 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         options.tintColor = .label
-        self.navigationItem.rightBarButtonItem = options
+        
+        let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshTimetable))
+        refreshButton.tintColor = .label
+        
+        navigationItem.leftBarButtonItem = refreshButton
+        navigationItem.rightBarButtonItem = options
     }
     
     @objc private func refreshTimetable() {
-        getTimeTable(group: group, date: date)
         self.type = .all
+        self.subgroup = 0
+        getTimeTable(group: group, date: date)
+        NotificationCenter.default.post(name: Notification.Name("refreshed"), object: nil)
     }
     
     private func setUpIndicatorView() {
@@ -190,9 +198,11 @@ final class TimeTableDayListTableViewController: UIViewController {
                 self?.timetable = timetable
                 self?.allDisciplines = timetable.disciplines
                 if !timetable.disciplines.isEmpty {
+                    let data = timetable.disciplines.filter { $0.subgroup == self?.subgroup || $0.subgroup == 0 || (self?.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
+                    if self?.type != .all {
+                        self?.timetable?.disciplines = data.filter {$0.type == self?.type}
+                    }
                     DispatchQueue.main.async {
-                        let data = timetable.disciplines.filter { $0.subgroup == self?.subgroup || $0.subgroup == 0 || (self?.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
-                        self?.timetable?.disciplines = data
                         self?.tableView.reloadData()
                         self?.spinner.stopAnimating()
                         self?.refreshControl.endRefreshing()
@@ -252,6 +262,7 @@ final class TimeTableDayListTableViewController: UIViewController {
                 let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: date)
                 self.date = date
                 self.type = .all
+                self.subgroup = 0
                 self.getTimeTable(group: self.group, date: date)
                 self.navigationItem.title = "\(dayOfWeek) \(date) "
             }

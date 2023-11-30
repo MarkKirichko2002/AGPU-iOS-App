@@ -45,12 +45,13 @@ final class CalendarViewController: UIViewController {
     
     private func setUpNavigation() {
         navigationItem.title = "Календарь"
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }
     
-    @objc private func close() {
+    @objc private func closeScreen() {
+        HapticsManager.shared.hapticFeedback()
         self.dismiss(animated: true)
     }
     
@@ -80,10 +81,13 @@ final class CalendarViewController: UIViewController {
             ])
             
             let choose = UIAlertAction(title: "Выбрать", style: .default) { _ in
+                HapticsManager.shared.hapticFeedback()
                 self.viewModel.sendNotificationDataWasSelected(date: self.viewModel.date)
                 self.dismiss(animated: true)
             }
-            let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
+            let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in
+                HapticsManager.shared.hapticFeedback()
+            }
             
             alertVC.setValue(customTitle, forKey: "attributedTitle")
             alertVC.addAction(choose)

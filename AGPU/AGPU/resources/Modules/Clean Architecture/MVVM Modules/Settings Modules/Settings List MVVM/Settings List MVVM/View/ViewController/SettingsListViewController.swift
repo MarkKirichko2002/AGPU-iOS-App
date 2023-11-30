@@ -37,14 +37,20 @@ final class SettingsListViewController: UIViewController {
         tableView.register(UINib(nibName: SelectedFacultyOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SelectedFacultyOptionTableViewCell.identifier)
         // Adaptive News
         tableView.register(UINib(nibName: AdaptiveNewsOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AdaptiveNewsOptionTableViewCell.identifier)
+        // Advanced Timetable
+        tableView.register(UINib(nibName: TimetableOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimetableOptionTableViewCell.identifier)
         // MARK: - Секция "Другие опции"
         // Shake To Recall
         tableView.register(UINib(nibName: ShakeToRecallOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ShakeToRecallOptionTableViewCell.identifier)
         // Personalized App Icons
         tableView.register(UINib(nibName: AppIconTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppIconTableViewCell.identifier)
-        // MARK: - Другое
+        // Темы приложения
         tableView.register(UINib(nibName: AppThemesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppThemesTableViewCell.identifier)
+        // MARK: - О приложении
+        // Фишки приложения
         tableView.register(UINib(nibName: AppFeaturesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppFeaturesTableViewCell.identifier)
+        // Погода
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.delegate = self
         tableView.dataSource = self
     }

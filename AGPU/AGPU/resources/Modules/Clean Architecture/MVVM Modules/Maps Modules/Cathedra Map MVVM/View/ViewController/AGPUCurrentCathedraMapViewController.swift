@@ -35,10 +35,6 @@ class AGPUCurrentCathedraMapViewController: UIViewController {
         setUpNavigation()
         setUpMap()
         makeConstraints()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         bindViewModel()
     }
     
@@ -51,6 +47,7 @@ class AGPUCurrentCathedraMapViewController: UIViewController {
     }
     
     @objc private func closeScreen() {
+        HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
     }
     

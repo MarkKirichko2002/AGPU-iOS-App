@@ -141,4 +141,27 @@ extension TimeTableService: TimeTableServicerProtocol {
             }
         }
     }
+    
+    func getDisciplineImage(json: Data, completion: @escaping(UIImage)->Void) {
+        
+        let url = "http://merqury.fun/api/timetable/image/discipline"
+        
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = json
+        
+        AF.request(request).responseData { response in
+            
+            guard let data = response.data else {return}
+            
+            print(response.response?.statusCode)
+            
+            if let image = UIImage(data: data) {
+                completion(image)
+            } else {
+                print("нет")
+            }
+        }
+    }
 }

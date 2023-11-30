@@ -40,12 +40,13 @@ class AllWeeksListTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         navigationItem.title = "Список недель"
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }
     
-    @objc private func close() {
+    @objc private func closeScreen() {
+        HapticsManager.shared.hapticFeedback()
         self.dismiss(animated: true)
     }
 
@@ -85,6 +86,7 @@ class AllWeeksListTableViewController: UITableViewController {
     
     override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         print("прокрутка завершилась")
+        HapticsManager.shared.hapticFeedback()
         tableView.isUserInteractionEnabled = true
     }
     

@@ -10,10 +10,6 @@ import Foundation
 // MARK: - PairTypesListViewModelProtocol
 extension PairTypesListViewModel: PairTypesListViewModelProtocol {
     
-    func registerPairTypeSelectedHandler(block: @escaping(()->Void)) {
-        self.pairTypeSelectedHandler = block
-    }
-    
     func typeItem(index: Int)-> PairTypeModel {
         return PairTypesList.list[index]
     }
@@ -37,5 +33,9 @@ extension PairTypesListViewModel: PairTypesListViewModelProtocol {
         } else {
             return false
         }
+    }
+    
+    func registerPairTypeSelectedHandler(block: @escaping(()->Void)) {
+        self.pairTypeSelectedHandler = block
     }
 }

@@ -8,9 +8,9 @@
 import Foundation
 
 protocol PairTypesListViewModelProtocol {
-    func registerPairTypeSelectedHandler(block: @escaping(()->Void))
     func typeItem(index: Int)-> PairTypeModel
     func numberOfTypesInSection()-> Int
     func choosePairType(index: Int)
     func isCurrentType(index: Int)-> Bool
+    func registerPairTypeSelectedHandler(block: @escaping(()->Void))
 }

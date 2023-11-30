@@ -11,13 +11,16 @@ import MapKit
 extension AGPUCurrentBuildingMapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        let storyboard = UIStoryboard(name: "AGPULocationDetailViewController", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: "AGPULocationDetailViewController") as? AGPULocationDetailViewController {
+        let storyboard = UIStoryboard(name: "AGPUBuildingDetailViewController", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "AGPUBuildingDetailViewController") as? AGPUBuildingDetailViewController {
             vc.annotation = view.annotation!
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
-            present(navVC, animated: true)
+            DispatchQueue.main.async {
+                self.present(navVC, animated: true)
+            }
         }
+        HapticsManager.shared.hapticFeedback()
     }
 }
 
