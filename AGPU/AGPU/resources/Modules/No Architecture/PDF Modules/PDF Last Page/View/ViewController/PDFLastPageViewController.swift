@@ -33,7 +33,7 @@ class PDFLastPageViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())
         sections.tintColor = .label
@@ -41,7 +41,8 @@ class PDFLastPageViewController: UIViewController {
         navigationItem.rightBarButtonItem = sections
     }
     
-    @objc private func close() {
+    @objc private func closeScreen() {
+        HapticsManager.shared.hapticFeedback()
         self.dismiss(animated: true)
     }
     

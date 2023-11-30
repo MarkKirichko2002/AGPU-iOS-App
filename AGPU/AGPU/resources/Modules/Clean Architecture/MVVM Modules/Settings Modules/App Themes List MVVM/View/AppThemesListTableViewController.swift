@@ -21,13 +21,13 @@ class AppThemesListTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: "theme", title: "Выберите тему", frame: .zero)
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.titleView = titleView
         navigationItem.rightBarButtonItem = closeButton
     }
     
-    @objc private func close() {
+    @objc private func closeScreen() {
         sendScreenWasClosedNotification()
         self.dismiss(animated: true)
     }

@@ -45,12 +45,13 @@ final class CalendarViewController: UIViewController {
     
     private func setUpNavigation() {
         navigationItem.title = "Календарь"
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(close))
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }
     
-    @objc private func close() {
+    @objc private func closeScreen() {
+        HapticsManager.shared.hapticFeedback()
         self.dismiss(animated: true)
     }
     

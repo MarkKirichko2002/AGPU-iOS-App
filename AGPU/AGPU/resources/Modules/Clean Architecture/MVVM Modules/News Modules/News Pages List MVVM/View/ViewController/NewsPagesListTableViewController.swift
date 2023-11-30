@@ -43,6 +43,7 @@ class NewsPagesListTableViewController: UITableViewController {
     }
     
     @objc private func closeScreen() {
+        HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
     }
     

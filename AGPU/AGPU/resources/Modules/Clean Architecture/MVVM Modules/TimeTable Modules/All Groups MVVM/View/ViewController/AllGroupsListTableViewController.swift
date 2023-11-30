@@ -36,7 +36,7 @@ class AllGroupsListTableViewController: UITableViewController {
         
         let titleView = CustomTitleView(image: "group", title: "Список групп", frame: .zero)
         
-        let closebutton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeButtonTapped))
+        let closebutton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
         closebutton.tintColor = .label
         let menu = viewModel.makeGroupsMenu()
 
@@ -48,7 +48,8 @@ class AllGroupsListTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = sections
     }
     
-    @objc private func closeButtonTapped() {
+    @objc private func closeScreen() {
+        HapticsManager.shared.hapticFeedback()
         self.dismiss(animated: true)
     }
     
