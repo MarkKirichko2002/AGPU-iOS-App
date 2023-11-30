@@ -84,6 +84,7 @@ class AllGroupsListTableViewController: UITableViewController {
     
     override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         print("прокрутка завершилась")
+        HapticsManager.shared.hapticFeedback()
         tableView.isUserInteractionEnabled = true
     }
 

@@ -35,6 +35,7 @@ extension WordRecentDocumentViewController: UIScrollViewDelegate {
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         print("прокрутка завершилась")
+        HapticsManager.shared.hapticFeedback()
         scrollView.isUserInteractionEnabled = true
     }
 }
