@@ -45,6 +45,7 @@ final class AGPUSectionsListViewController: UIViewController {
             return UIAction(title: "\(section.id + 1)) \(section.name)") { _ in
                 let indexPath = IndexPath(row: 0, section: section.id)
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                self.tableView.isUserInteractionEnabled = false
             }
         }
         let menu = UIMenu(title: "Разделы сайта", options: .singleSelection, children: items)

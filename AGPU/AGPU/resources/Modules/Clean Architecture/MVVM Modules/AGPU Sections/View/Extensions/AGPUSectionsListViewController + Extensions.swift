@@ -87,6 +87,16 @@ extension AGPUSectionsListViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - UIScrollViewDelegate
+extension AGPUSectionsListViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        print("прокрутка завершилась")
+        HapticsManager.shared.hapticFeedback()
+        scrollView.isUserInteractionEnabled = true
+    }
+}
+
 extension AGPUSectionsListViewController {
     
     func sectionSelected(index: Int) {
@@ -94,3 +104,4 @@ extension AGPUSectionsListViewController {
         self.goToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false)
     }
 }
+
