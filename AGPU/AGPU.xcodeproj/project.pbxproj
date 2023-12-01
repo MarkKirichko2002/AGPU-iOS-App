@@ -2217,7 +2217,7 @@
 				828CFA342A35F62400C7542D /* TabBar */,
 				82426C752A714CDD00D5AA57 /* For Every Status */,
 				82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */,
-				82808E9C2A31F2D400DEEB16 /* AGPU Sections */,
+				82808E9C2A31F2D400DEEB16 /* AGPU Website Sections */,
 				821270462A78925D0095D68E /* PDF Modules */,
 				82C561602A6B770800514B00 /* App Features Modules */,
 				82505F432A7F9A0D001DE24A /* TimeTable Modules */,
@@ -2515,14 +2515,14 @@
 			path = AGPU;
 			sourceTree = "<group>";
 		};
-		82808E9C2A31F2D400DEEB16 /* AGPU Sections */ = {
+		82808E9C2A31F2D400DEEB16 /* AGPU Website Sections */ = {
 			isa = PBXGroup;
 			children = (
 				826F937F2A90FE9000DE4FB1 /* Models */,
 				82808EA22A31F49B00DEEB16 /* View */,
 			);
-			name = "AGPU Sections";
-			path = "../Clean Architecture/MVVM Modules/AGPU Sections";
+			name = "AGPU Website Sections";
+			path = "../Clean Architecture/MVVM Modules/AGPU Website Sections";
 			sourceTree = "<group>";
 		};
 		82808EA22A31F49B00DEEB16 /* View */ = {
