@@ -22,7 +22,6 @@ extension SearchAGPUBuildingMapViewController: MKMapViewDelegate {
                     self.present(navVC, animated: true)
                 }
             }
-            HapticsManager.shared.hapticFeedback()
         }
     }
 }
