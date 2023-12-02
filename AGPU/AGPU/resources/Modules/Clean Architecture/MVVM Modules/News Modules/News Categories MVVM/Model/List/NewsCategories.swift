@@ -15,7 +15,7 @@ struct NewsCategories {
             id: 0,
             name: "АГПУ",
             newsAbbreviation: "",
-            icon: "АГПУ",
+            icon: "новый год",
             pagesCount: 0
         ),
         NewsCategoryModel(

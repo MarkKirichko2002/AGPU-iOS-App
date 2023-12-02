@@ -5,17 +5,25 @@
 //  Created by Марк Киричко on 30.11.2023.
 //
 
-import CoreLocation
 import WeatherKit
+import Foundation
+import MapKit
+import UIKit
 
 class AGPUBuildingDetailViewModel {
     
-    var location: CLLocation
+    var annotation: MKAnnotation!
     
+    var pairsHandler: ((String)->Void)?
+    var pairsColorHandler: ((UIColor)->Void)?
     var weatherHandler: ((String)->Void)?
     
+    // MARK: - сервисы
+    let dateManager = DateManager()
+    let timetableService = TimeTableService()
+    
     // MARK: - Init
-    init(location: CLLocation) {
-        self.location = location
+    init(annotation: MKAnnotation) {
+        self.annotation = annotation
     }
 }

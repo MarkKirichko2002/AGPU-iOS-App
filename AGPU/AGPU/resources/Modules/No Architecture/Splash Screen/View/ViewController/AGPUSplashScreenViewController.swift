@@ -28,7 +28,7 @@ final class AGPUSplashScreenViewController: UIViewController {
     // иконка
     private let AGPUIcon: SpringImageView = {
         let icon = SpringImageView()
-        icon.image = UIImage(named: "АГПУ")
+        icon.image = UIImage(named: "новый год")
         icon.isInteraction = false
         icon.contentMode = .scaleAspectFill
         icon.translatesAutoresizingMaskIntoConstraints = false

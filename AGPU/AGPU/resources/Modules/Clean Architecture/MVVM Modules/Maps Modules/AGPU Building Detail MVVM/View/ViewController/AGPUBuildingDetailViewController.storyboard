@@ -30,7 +30,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Xu-qn-aLQ">
-                                <rect key="frame" x="100" y="335.33333333333331" width="230" height="37"/>
+                                <rect key="frame" x="100" y="406.33333333333331" width="230" height="37"/>
                                 <color key="tintColor" systemColor="systemGreenColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="начать путь">
@@ -42,9 +42,15 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Получение погоды..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcc-QT-Zbk">
-                                <rect key="frame" x="30" y="255.00000000000003" width="370" height="20.333333333333343"/>
+                                <rect key="frame" x="30" y="326" width="370" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В данном корпусе сегодня есть пары" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2AC-ds-RoY">
+                                <rect key="frame" x="30" y="255" width="370" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -52,22 +58,26 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="pcc-QT-Zbk" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="0di-wK-CQ8"/>
+                            <constraint firstItem="2AC-ds-RoY" firstAttribute="top" secondItem="8E2-zP-KV8" secondAttribute="bottom" constant="50" id="1if-by-x4e"/>
                             <constraint firstItem="2Xu-qn-aLQ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="100" id="2zz-Ml-Jrf"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="pcc-QT-Zbk" secondAttribute="trailing" constant="30" id="8dA-uE-DJI"/>
                             <constraint firstItem="8E2-zP-KV8" firstAttribute="top" secondItem="Zgy-d6-06V" secondAttribute="bottom" constant="50" id="DLo-iO-Jh4"/>
                             <constraint firstItem="8E2-zP-KV8" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="NBA-RB-JSZ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8E2-zP-KV8" secondAttribute="trailing" constant="30" id="RpY-Iw-IIT"/>
-                            <constraint firstItem="pcc-QT-Zbk" firstAttribute="top" secondItem="8E2-zP-KV8" secondAttribute="bottom" constant="50" id="RyV-3m-lWt"/>
+                            <constraint firstItem="2AC-ds-RoY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="SGD-Dl-Tza"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Zgy-d6-06V" secondAttribute="trailing" constant="30" id="UEQ-lw-iAa"/>
                             <constraint firstItem="2Xu-qn-aLQ" firstAttribute="top" secondItem="pcc-QT-Zbk" secondAttribute="bottom" constant="60" id="VfC-LY-e0O"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="2AC-ds-RoY" secondAttribute="trailing" constant="30" id="g27-2y-xOi"/>
                             <constraint firstItem="Zgy-d6-06V" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="hWs-sX-Iiy"/>
                             <constraint firstItem="Zgy-d6-06V" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="30" id="sf6-9E-hkY"/>
+                            <constraint firstItem="pcc-QT-Zbk" firstAttribute="top" secondItem="2AC-ds-RoY" secondAttribute="bottom" constant="50" id="tia-Hs-wk2"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="2Xu-qn-aLQ" secondAttribute="trailing" constant="100" id="vlm-LU-LnW"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="LocationDetail" destination="8E2-zP-KV8" id="Prd-O6-gES"/>
                         <outlet property="LocationName" destination="Zgy-d6-06V" id="SUp-bf-SaY"/>
+                        <outlet property="PairsExistence" destination="2AC-ds-RoY" id="RnR-IP-ZqB"/>
                         <outlet property="WeatherLabel" destination="pcc-QT-Zbk" id="XAC-43-VXc"/>
                     </connections>
                 </viewController>
@@ -81,7 +91,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

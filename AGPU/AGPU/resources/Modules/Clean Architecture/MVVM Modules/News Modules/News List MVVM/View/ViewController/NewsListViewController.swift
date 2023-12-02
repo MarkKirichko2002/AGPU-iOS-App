@@ -70,7 +70,7 @@ final class NewsListViewController: UIViewController {
         var categoriesAction = UIAction(title: "Категории") { _ in}
         var pagesAction = UIAction(title: "Страницы") { _ in}
         
-        var titleView = CustomTitleView(image: "АГПУ", title: "Новости АГПУ", frame: .zero)
+        var titleView = CustomTitleView(image: "новый год", title: "Новости АГПУ", frame: .zero)
         
         DispatchQueue.main.async {
             self.navigationItem.title = "Загрузка новостей..."
@@ -89,7 +89,7 @@ final class NewsListViewController: UIViewController {
                         self.spinner.stopAnimating()
                     }
                 } else {
-                    titleView = CustomTitleView(image: "АГПУ", title: "АГПУ новости", frame: .zero)
+                    titleView = CustomTitleView(image: "новый год", title: "АГПУ новости", frame: .zero)
                     self.spinner.stopAnimating()
                 }
             }

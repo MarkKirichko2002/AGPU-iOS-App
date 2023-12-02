@@ -55,7 +55,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
                 }
             }
         } else {
-            return "АГПУ"
+            return "Новый год"
         }
         return iconName
     }

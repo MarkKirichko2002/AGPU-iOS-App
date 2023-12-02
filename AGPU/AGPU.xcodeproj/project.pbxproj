@@ -275,6 +275,11 @@
 		82C7B8422A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */; };
 		82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8432A50CCB800F9A552 /* AnimationClass + Extensions.swift */; };
 		82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8452A50CD4C00F9A552 /* SettingsManager + Extensions.swift */; };
+		82D0FC0D2B1B4A4A0056D94B /* CathedraBuildingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D0FC0B2B1B4A4A0056D94B /* CathedraBuildingDetailViewController.swift */; };
+		82D0FC102B1B4A640056D94B /* CathedraBuildingDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82D0FC0F2B1B4A640056D94B /* CathedraBuildingDetailViewController.storyboard */; };
+		82D0FC152B1B4C1E0056D94B /* CathedraBuildingDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D0FC142B1B4C1E0056D94B /* CathedraBuildingDetailViewModelProtocol.swift */; };
+		82D0FC172B1B4C600056D94B /* CathedraBuildingDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D0FC162B1B4C600056D94B /* CathedraBuildingDetailViewModel.swift */; };
+		82D0FC192B1B4C8B0056D94B /* CathedraBuildingDetailViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D0FC182B1B4C8B0056D94B /* CathedraBuildingDetailViewModel + Extensions.swift */; };
 		82D6C32F2A5E189300FB7F5D /* TimeTableDayListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C32E2A5E189300FB7F5D /* TimeTableDayListTableViewController.swift */; };
 		82D6C3322A5E1DE100FB7F5D /* TimeTableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3312A5E1DE100FB7F5D /* TimeTableService.swift */; };
 		82D6C3342A5E1DEC00FB7F5D /* Discipline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3332A5E1DEC00FB7F5D /* Discipline.swift */; };
@@ -590,6 +595,11 @@
 		82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpeechRecognitionManager + Extensions.swift"; sourceTree = "<group>"; };
 		82C7B8432A50CCB800F9A552 /* AnimationClass + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimationClass + Extensions.swift"; sourceTree = "<group>"; };
 		82C7B8452A50CD4C00F9A552 /* SettingsManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsManager + Extensions.swift"; sourceTree = "<group>"; };
+		82D0FC0B2B1B4A4A0056D94B /* CathedraBuildingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CathedraBuildingDetailViewController.swift; sourceTree = "<group>"; };
+		82D0FC0F2B1B4A640056D94B /* CathedraBuildingDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CathedraBuildingDetailViewController.storyboard; sourceTree = "<group>"; };
+		82D0FC142B1B4C1E0056D94B /* CathedraBuildingDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CathedraBuildingDetailViewModelProtocol.swift; sourceTree = "<group>"; };
+		82D0FC162B1B4C600056D94B /* CathedraBuildingDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CathedraBuildingDetailViewModel.swift; sourceTree = "<group>"; };
+		82D0FC182B1B4C8B0056D94B /* CathedraBuildingDetailViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CathedraBuildingDetailViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82D6C32E2A5E189300FB7F5D /* TimeTableDayListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableDayListTableViewController.swift; sourceTree = "<group>"; };
 		82D6C3312A5E1DE100FB7F5D /* TimeTableService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableService.swift; sourceTree = "<group>"; };
 		82D6C3332A5E1DEC00FB7F5D /* Discipline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discipline.swift; sourceTree = "<group>"; };
@@ -1307,6 +1317,7 @@
 				8210CA022A664D5700D0BEEE /* Current Buiding MVVM */,
 				8283216F2A7D6403008641A5 /* Search AGPU Building Map MVVM */,
 				82ECCC6B2B1828EE00443ED8 /* AGPU Building Detail MVVM */,
+				82D0FC072B1B49E10056D94B /* Cathedra Building Detail MVVM */,
 			);
 			path = "Maps Modules";
 			sourceTree = "<group>";
@@ -4060,6 +4071,66 @@
 			path = "Features List";
 			sourceTree = "<group>";
 		};
+		82D0FC072B1B49E10056D94B /* Cathedra Building Detail MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82D0FC092B1B4A070056D94B /* View */,
+				82D0FC082B1B4A050056D94B /* ViewModel */,
+			);
+			path = "Cathedra Building Detail MVVM";
+			sourceTree = "<group>";
+		};
+		82D0FC082B1B4A050056D94B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82D0FC132B1B4BF50056D94B /* Protocol */,
+				82D0FC122B1B4BEF0056D94B /* ViewModel */,
+				82D0FC112B1B4BEC0056D94B /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82D0FC092B1B4A070056D94B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82D0FC0A2B1B4A160056D94B /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82D0FC0A2B1B4A160056D94B /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82D0FC0B2B1B4A4A0056D94B /* CathedraBuildingDetailViewController.swift */,
+				82D0FC0F2B1B4A640056D94B /* CathedraBuildingDetailViewController.storyboard */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82D0FC112B1B4BEC0056D94B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82D0FC182B1B4C8B0056D94B /* CathedraBuildingDetailViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82D0FC122B1B4BEF0056D94B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82D0FC162B1B4C600056D94B /* CathedraBuildingDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82D0FC132B1B4BF50056D94B /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82D0FC142B1B4C1E0056D94B /* CathedraBuildingDetailViewModelProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		82D6C32D2A5E187400FB7F5D /* TimeTable Day */ = {
 			isa = PBXGroup;
 			children = (
@@ -4791,6 +4862,7 @@
 			files = (
 				82768AF92ABE1CE70022FBE1 /* AppFeaturesTableViewCell.xib in Resources */,
 				826BADB12A64D5D100022B45 /* AGPUBuildingDetailViewController.storyboard in Resources */,
+				82D0FC102B1B4A640056D94B /* CathedraBuildingDetailViewController.storyboard in Resources */,
 				82768AF62ABE1B360022FBE1 /* AppThemesTableViewCell.xib in Resources */,
 				82D6C33B2A5E282A00FB7F5D /* TimeTableTableViewCell.xib in Resources */,
 				82B267062A8DAA8500043A6D /* NewsCategoryTableViewCell.xib in Resources */,
@@ -4854,6 +4926,7 @@
 				82920B752AD879DC00352CD8 /* UserStatusListTableViewController.swift in Sources */,
 				82989ADE2A6E59BC00F27858 /* AGPUCurrentCathedraMapViewController + Extensions.swift in Sources */,
 				82BCB5462AB35AF300F3A321 /* DaysList.swift in Sources */,
+				82D0FC0D2B1B4A4A0056D94B /* CathedraBuildingDetailViewController.swift in Sources */,
 				828DC55C2A7B3887001EA324 /* FacultyGroups.swift in Sources */,
 				820E40952A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift in Sources */,
 				82807C712AA0FA5D00E9C884 /* PairTypesListTableViewController.swift in Sources */,
@@ -4878,6 +4951,7 @@
 				82BEAD822A7414C300DD34C2 /* RecentWebPageViewModel.swift in Sources */,
 				8226D17C2B095DF300B0B9F0 /* TimetableSettingsListViewModel.swift in Sources */,
 				82B24A642A816B54008B94E4 /* WeekModel.swift in Sources */,
+				82D0FC152B1B4C1E0056D94B /* CathedraBuildingDetailViewModelProtocol.swift in Sources */,
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
 				82AB6D212AF6C06800F7B729 /* SavedNewsCategoryViewModelProtocol.swift in Sources */,
 				82BDFDB02A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift in Sources */,
@@ -4947,6 +5021,7 @@
 				82505F532A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift in Sources */,
 				82426C7A2A714DEA00D5AA57 /* ForApplicantSections.swift in Sources */,
 				82D6C32F2A5E189300FB7F5D /* TimeTableDayListTableViewController.swift in Sources */,
+				82D0FC172B1B4C600056D94B /* CathedraBuildingDetailViewModel.swift in Sources */,
 				82989AE02A6E5B4F00F27858 /* AGPUCurrentCathedraMapViewModel.swift in Sources */,
 				8212704C2A7892910095D68E /* PDFDocumentReaderViewController.swift in Sources */,
 				824C56D92A6FE98F0074ADB7 /* FacultyCathedraList.swift in Sources */,
@@ -4964,6 +5039,7 @@
 				8283217C2A7D67D4008641A5 /* SearchAGPUBuildingMapViewModelProtocol.swift in Sources */,
 				82BF4DB72A5FA807008B751A /* ImageSaver.swift in Sources */,
 				82E05D592A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift in Sources */,
+				82D0FC192B1B4C8B0056D94B /* CathedraBuildingDetailViewModel + Extensions.swift in Sources */,
 				822FB2142AC5DECC0083E016 /* SubGroupsListViewModelProtocol.swift in Sources */,
 				8226D17A2B095DA400B0B9F0 /* TimetableSettingsListViewModelProtocol.swift in Sources */,
 				827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */,
@@ -5292,7 +5368,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.3;
+				MARKETING_VERSION = 1.5.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -5329,7 +5405,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.3;
+				MARKETING_VERSION = 1.5.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

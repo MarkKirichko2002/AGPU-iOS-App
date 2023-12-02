@@ -27,7 +27,7 @@ final class AGPUWallpapersListViewController: UIViewController {
     
     private func setUpNavigation() {
         
-        let titleView = CustomTitleView(image: "АГПУ", title: "АГПУ Обои", frame: .zero)
+        let titleView = CustomTitleView(image: "новый год", title: "АГПУ Обои", frame: .zero)
         
         let button = UIButton()
         button.tintColor = .label
