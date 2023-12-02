@@ -14,7 +14,6 @@ import UIKit
 extension AGPUBuildingDetailViewModel: AGPUBuildingDetailViewModelProtocol {
     
     func getTimetable() {
-        let group = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-2-1"
         let date = dateManager.getCurrentDate()
         timetableService.getTimeTableDay(groupId: group, date: date) { [weak self] result in
             switch result {
@@ -28,25 +27,40 @@ extension AGPUBuildingDetailViewModel: AGPUBuildingDetailViewModelProtocol {
         }
     }
     
+    func getWeather() {
+        let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
+        WeatherManager.shared.getWeather(location: location) { weather in
+            self.weatherHandler?("Погода: \(WeatherManager.shared.formatWeather(weather: weather))")
+        }
+    }
+    
+    func getPairsCount(pairs: [Discipline])-> Int {
+        var uniqueTimes: Set<String> = Set()
+        let currentBuilding = AGPUBuildings.buildings.first { $0.name == annotation.title! }
+        for audience in currentBuilding!.audiences {
+            for pair in pairs {
+                if audience == pair.audienceID {
+                    let times = pair.time.components(separatedBy: "-")
+                    let startTime = times[0]
+                    uniqueTimes.insert(startTime)
+                }
+            }
+        }
+        return uniqueTimes.count
+    }
+    
     func checkPairsExisting(pairs: [Discipline])-> String {
         let currentBuilding = AGPUBuildings.buildings.first { $0.name == annotation.title! }
         for audience in currentBuilding!.audiences {
             for pair in pairs {
                 if audience == pair.audienceID {
                     self.pairsColorHandler?(UIColor.systemGreen)
-                    return "есть пары"
+                    return "есть пары: \(getPairsCount(pairs: pairs))"
                 }
             }
         }
         self.pairsColorHandler?(UIColor.systemGray)
         return "нет пар"
-    }
-    
-    func getWeather() {
-        let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
-        WeatherManager.shared.getWeather(location: location) { weather in
-            self.weatherHandler?("Погода: \(WeatherManager.shared.formatWeather(weather: weather))")
-        }
     }
     
     func registerWeatherHandler(block: @escaping(String)->Void) {

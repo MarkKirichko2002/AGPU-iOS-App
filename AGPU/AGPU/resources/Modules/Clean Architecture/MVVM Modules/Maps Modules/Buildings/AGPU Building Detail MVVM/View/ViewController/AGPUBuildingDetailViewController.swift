@@ -1,16 +1,17 @@
 //
-//  CathedraBuildingDetailViewController.swift
+//  AGPUBuildingDetailViewController.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 02.12.2023.
+//  Created by Марк Киричко on 17.07.2023.
 //
 
 import UIKit
 import MapKit
 
-class CathedraBuildingDetailViewController: UIViewController {
-
+final class AGPUBuildingDetailViewController: UIViewController {
+    
     var annotation: MKAnnotation!
+    var group: String = ""
     
     // MARK: - сервисы
     var viewModel: AGPUBuildingDetailViewModel!
@@ -18,6 +19,7 @@ class CathedraBuildingDetailViewController: UIViewController {
     // MARK: - UI
     @IBOutlet var LocationName: UILabel!
     @IBOutlet var LocationDetail: UILabel!
+    @IBOutlet var PairsExistence: UILabel!
     @IBOutlet var WeatherLabel: UILabel!
     
     override func viewDidLoad() {
@@ -71,11 +73,23 @@ class CathedraBuildingDetailViewController: UIViewController {
         LocationName.textColor = UIColor.label
         LocationDetail.textColor = UIColor.label
         WeatherLabel.textColor = UIColor.label
+        PairsExistence.textColor = UIColor.label
     }
     
     private func bindViewModel() {
-        viewModel = AGPUBuildingDetailViewModel(annotation: annotation)
+        viewModel = AGPUBuildingDetailViewModel(annotation: annotation, group: group)
+        viewModel.getTimetable()
         viewModel.getWeather()
+        viewModel.registerPairsHandler { pairsInfo in
+            DispatchQueue.main.async {
+                self.PairsExistence.text = pairsInfo
+            }
+        }
+        viewModel.registerPairsColorHandler { color in
+            DispatchQueue.main.async {
+                self.PairsExistence.textColor = color
+            }
+        }
         viewModel.registerWeatherHandler { weatherInfo in
             DispatchQueue.main.async {
                 self.WeatherLabel.text = weatherInfo

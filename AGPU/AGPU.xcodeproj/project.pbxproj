@@ -1312,12 +1312,8 @@
 		8228E3962A6C8EFD00C1B6AD /* Maps Modules */ = {
 			isa = PBXGroup;
 			children = (
-				82E4C58C2A6B254200F65A67 /* AGPU Buildings Maps MVVM */,
-				82989AD62A6E548B00F27858 /* Cathedra Map MVVM */,
-				8210CA022A664D5700D0BEEE /* Current Buiding MVVM */,
-				8283216F2A7D6403008641A5 /* Search AGPU Building Map MVVM */,
-				82ECCC6B2B1828EE00443ED8 /* AGPU Building Detail MVVM */,
-				82D0FC072B1B49E10056D94B /* Cathedra Building Detail MVVM */,
+				82D0FC1B2B1B81F90056D94B /* Buildings */,
+				82D0FC1C2B1B82040056D94B /* Cathedra */,
 			);
 			path = "Maps Modules";
 			sourceTree = "<group>";
@@ -4129,6 +4125,26 @@
 				82D0FC142B1B4C1E0056D94B /* CathedraBuildingDetailViewModelProtocol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		82D0FC1B2B1B81F90056D94B /* Buildings */ = {
+			isa = PBXGroup;
+			children = (
+				82E4C58C2A6B254200F65A67 /* AGPU Buildings Maps MVVM */,
+				8210CA022A664D5700D0BEEE /* Current Buiding MVVM */,
+				8283216F2A7D6403008641A5 /* Search AGPU Building Map MVVM */,
+				82ECCC6B2B1828EE00443ED8 /* AGPU Building Detail MVVM */,
+			);
+			path = Buildings;
+			sourceTree = "<group>";
+		};
+		82D0FC1C2B1B82040056D94B /* Cathedra */ = {
+			isa = PBXGroup;
+			children = (
+				82989AD62A6E548B00F27858 /* Cathedra Map MVVM */,
+				82D0FC072B1B49E10056D94B /* Cathedra Building Detail MVVM */,
+			);
+			path = Cathedra;
 			sourceTree = "<group>";
 		};
 		82D6C32D2A5E187400FB7F5D /* TimeTable Day */ = {

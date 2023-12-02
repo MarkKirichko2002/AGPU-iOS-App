@@ -29,7 +29,7 @@ extension TimeTableDayListTableViewController: UITableViewDelegate {
             
             let mapAction = UIAction(title: "Найти корпус", image: UIImage(named: "map icon")) { _ in
                 if let audience = discipline?.audienceID {
-                    let vc = AGPUCurrentBuildingMapViewController(audienceID: audience)
+                    let vc = AGPUCurrentBuildingMapViewController(audienceID: audience, group: self.group)
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                         vc.hidesBottomBarWhenPushed = true
                         self.navigationController?.pushViewController(vc, animated: true)

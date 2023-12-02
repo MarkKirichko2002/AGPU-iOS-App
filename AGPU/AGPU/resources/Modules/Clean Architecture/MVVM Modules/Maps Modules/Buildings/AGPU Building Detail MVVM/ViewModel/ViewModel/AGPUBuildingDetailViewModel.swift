@@ -13,6 +13,7 @@ import UIKit
 class AGPUBuildingDetailViewModel {
     
     var annotation: MKAnnotation!
+    var group: String = ""
     
     var pairsHandler: ((String)->Void)?
     var pairsColorHandler: ((UIColor)->Void)?
@@ -23,7 +24,8 @@ class AGPUBuildingDetailViewModel {
     let timetableService = TimeTableService()
     
     // MARK: - Init
-    init(annotation: MKAnnotation) {
+    init(annotation: MKAnnotation, group: String) {
         self.annotation = annotation
+        self.group = group
     }
 }
