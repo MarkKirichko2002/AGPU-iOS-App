@@ -127,15 +127,12 @@ extension UIViewController {
     func showUpdateAlert() {
         
         let updateAction = UIAlertAction(title: "Обновить", style: .default) { _ in
-            HapticsManager.shared.hapticFeedback()
             if let appStoreURL = URL(string: "https://apps.apple.com/app/фгбоу-во-агпу/id6458836690") {
                 UIApplication.shared.open(appStoreURL)
             }
         }
         
-        let cancelAction = UIAlertAction(title: "Отмена", style: .destructive) { _ in
-            HapticsManager.shared.hapticFeedback()
-        }
+        let cancelAction = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
         
         self.showAlert(title: "Обновление доступно!", message: "Обнаружено новое обновление! Хотите обновить приложение сейчас?", actions: [updateAction, cancelAction])
     }

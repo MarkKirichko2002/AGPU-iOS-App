@@ -81,13 +81,10 @@ final class CalendarViewController: UIViewController {
             ])
             
             let choose = UIAlertAction(title: "Выбрать", style: .default) { _ in
-                HapticsManager.shared.hapticFeedback()
                 self.viewModel.sendNotificationDataWasSelected(date: self.viewModel.date)
                 self.dismiss(animated: true)
             }
-            let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in
-                HapticsManager.shared.hapticFeedback()
-            }
+            let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
             
             alertVC.setValue(customTitle, forKey: "attributedTitle")
             alertVC.addAction(choose)

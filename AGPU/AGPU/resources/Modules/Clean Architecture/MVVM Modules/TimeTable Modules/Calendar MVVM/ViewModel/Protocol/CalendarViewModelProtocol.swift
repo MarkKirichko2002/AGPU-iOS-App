@@ -10,6 +10,7 @@ import UIKit
 protocol CalendarViewModelProtocol {
     func checkTimetable(date: Date)
     func getPairsCount(pairs: [Discipline])-> Int
+    func getTestsCount(pairs: [Discipline])-> Int
     func sendNotificationDataWasSelected(date: String)
     func registerTimetableAlertHandler(block: @escaping(String, String, UIColor)->Void)
     func registerDateSelectedHandler(block: @escaping()->Void)

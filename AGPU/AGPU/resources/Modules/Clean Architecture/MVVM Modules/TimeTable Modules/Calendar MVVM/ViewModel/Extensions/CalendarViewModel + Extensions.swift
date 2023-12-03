@@ -40,7 +40,7 @@ extension CalendarViewModel: CalendarViewModelProtocol {
                     let endTimes = data.disciplines[data.disciplines.count - 1].time.components(separatedBy: "-")
                     let endTime = endTimes[1]
                     
-                    self?.timetableHandler?("В этот день есть зачёт!", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), пар: \(self?.getPairsCount(pairs: data.disciplines) ?? 0), зачетов: \(self?.getTestsCount(tests: data.disciplines) ?? 0), начало: \(startTime), конец: \(endTime)", UIColor.systemYellow)
+                    self?.timetableHandler?("В этот день есть зачёт!", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), пар: \(self?.getPairsCount(pairs: data.disciplines) ?? 0), зачётов: \(self?.getTestsCount(pairs: data.disciplines) ?? 0), начало: \(startTime), конец: \(endTime)", UIColor.systemYellow)
                 }
                 
                 if !data.disciplines.isEmpty {
@@ -80,11 +80,11 @@ extension CalendarViewModel: CalendarViewModelProtocol {
         return uniqueTimes.count
     }
     
-    func getTestsCount(tests: [Discipline])-> Int {
+    func getTestsCount(pairs: [Discipline])-> Int {
         
         var uniqueTimes: Set<String> = Set()
         
-        for pair in tests {
+        for pair in pairs {
             
             if pair.type == .cred {
                 
