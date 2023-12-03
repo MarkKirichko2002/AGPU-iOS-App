@@ -32,6 +32,17 @@ extension CalendarViewModel: CalendarViewModelProtocol {
                     self?.timetableHandler?("В этот день есть практика", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), количество пар: \(self?.getPairsCount(pairs: data.disciplines) ?? 0), начало: \(startTime), конец: \(endTime)", UIColor.systemGreen)
                 }
                 
+                if data.disciplines.contains(where: { $0.type == .cred }) {
+                    
+                    let startTimes = data.disciplines[0].time.components(separatedBy: "-")
+                    let startTime = startTimes[0]
+                    
+                    let endTimes = data.disciplines[data.disciplines.count - 1].time.components(separatedBy: "-")
+                    let endTime = endTimes[1]
+                    
+                    self?.timetableHandler?("В этот день есть зачёт!", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), пар: \(self?.getPairsCount(pairs: data.disciplines) ?? 0), зачетов: \(self?.getTestsCount(tests: data.disciplines) ?? 0), начало: \(startTime), конец: \(endTime)", UIColor.systemYellow)
+                }
+                
                 if !data.disciplines.isEmpty {
                     
                     let startTimes = data.disciplines[0].time.components(separatedBy: "-")
@@ -57,10 +68,31 @@ extension CalendarViewModel: CalendarViewModelProtocol {
         
         for pair in pairs {
             
-            let times = pair.time.components(separatedBy: "-")
-            let startTime = times[0]
+            if pair.type != .cred {
+                
+                let times = pair.time.components(separatedBy: "-")
+                let startTime = times[0]
+                
+                uniqueTimes.insert(startTime)
+            }
+        }
+        
+        return uniqueTimes.count
+    }
+    
+    func getTestsCount(tests: [Discipline])-> Int {
+        
+        var uniqueTimes: Set<String> = Set()
+        
+        for pair in tests {
             
-            uniqueTimes.insert(startTime)
+            if pair.type == .cred {
+                
+                let times = pair.time.components(separatedBy: "-")
+                let startTime = times[0]
+                
+                uniqueTimes.insert(startTime)
+            }
         }
         
         return uniqueTimes.count
