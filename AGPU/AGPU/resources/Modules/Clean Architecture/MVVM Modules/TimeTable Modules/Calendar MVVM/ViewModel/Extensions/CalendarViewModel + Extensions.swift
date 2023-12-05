@@ -29,7 +29,7 @@ extension CalendarViewModel: CalendarViewModelProtocol {
                     let endTimes = data.disciplines[data.disciplines.count - 1].time.components(separatedBy: "-")
                     let endTime = endTimes[1]
                     
-                    self?.timetableHandler?("В этот день есть практика", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), количество пар: \(self?.getPairsCount(pairs: data.disciplines) ?? 0), начало: \(startTime), конец: \(endTime)", UIColor.systemGreen)
+                    self?.timetableHandler?("В этот день есть практика!", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), количество пар: \(self?.getPairsCount(pairs: data.disciplines) ?? 0), начало: \(startTime), конец: \(endTime)", UIColor.systemYellow)
                 }
                 
                 if data.disciplines.contains(where: { $0.type == .cred }) {
