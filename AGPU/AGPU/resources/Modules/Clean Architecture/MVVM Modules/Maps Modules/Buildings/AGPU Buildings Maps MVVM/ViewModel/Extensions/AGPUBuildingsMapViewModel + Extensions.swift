@@ -54,7 +54,11 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
             currentpin.coordinate = coordinate
             currentpin.title = "Вы"
             
-            AGPUBuildingPins.pins.append(currentpin)
+            if !AGPUBuildingPins.pins.contains(where: { $0.title == "Вы" }) {
+                AGPUBuildingPins.pins.append(currentpin)
+            }
+            
+            print(AGPUBuildingPins.pins.count)
             
             let location = LocationModel(region: region, pins: AGPUBuildingPins.pins)
             self.locationHandler?(location)
