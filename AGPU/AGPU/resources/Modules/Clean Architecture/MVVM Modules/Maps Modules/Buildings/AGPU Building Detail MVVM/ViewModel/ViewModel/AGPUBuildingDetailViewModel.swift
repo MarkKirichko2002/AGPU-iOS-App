@@ -14,6 +14,7 @@ class AGPUBuildingDetailViewModel {
     
     var annotation: MKAnnotation!
     var group: String = ""
+    var disciplines = [Discipline]()
     
     var pairsHandler: ((String)->Void)?
     var pairsColorHandler: ((UIColor)->Void)?

@@ -26,6 +26,7 @@ final class AGPUBuildingDetailViewController: UIViewController {
         super.viewDidLoad()
         setUpNavigation()
         setUpView()
+        setUpLabel()
         bindViewModel()
     }
     
@@ -74,6 +75,22 @@ final class AGPUBuildingDetailViewController: UIViewController {
         LocationDetail.textColor = UIColor.label
         WeatherLabel.textColor = UIColor.label
         PairsExistence.textColor = UIColor.label
+    }
+    
+    private func setUpLabel() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showDetail))
+        PairsExistence.isUserInteractionEnabled = true
+        PairsExistence.addGestureRecognizer(tap)
+    }
+    
+    @objc private func showDetail() {
+        HapticsManager.shared.hapticFeedback()
+        let vc = TimeTableForCurrentBuildingViewController(timetable: viewModel.getTimeTableForBuilding(pairs: viewModel.disciplines))
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        DispatchQueue.main.async {
+            self.present(navVC, animated: true)
+        }
     }
     
     private func bindViewModel() {

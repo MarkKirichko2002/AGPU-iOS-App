@@ -21,6 +21,7 @@ extension AGPUBuildingDetailViewModel: AGPUBuildingDetailViewModelProtocol {
                 let pairs = data.disciplines
                 let existing = self?.checkPairsExisting(pairs: pairs)
                 self?.pairsHandler?("В данном корпусе сегодня \(existing ?? "")")
+                self?.disciplines = data.disciplines
             case .failure(let error):
                 print(error)
             }
@@ -47,6 +48,21 @@ extension AGPUBuildingDetailViewModel: AGPUBuildingDetailViewModelProtocol {
             }
         }
         return uniqueTimes.count
+    }
+    
+    func getTimeTableForBuilding(pairs: [Discipline])-> TimeTable {
+        var timetable = TimeTable(date: dateManager.getCurrentDate(), groupName: group, disciplines: [])
+        var disciplines = [Discipline]()
+        let currentBuilding = AGPUBuildings.buildings.first { $0.name == annotation.title! }
+        for audience in currentBuilding!.audiences {
+            for pair in pairs {
+                if audience == pair.audienceID {
+                    disciplines.append(pair)
+                }
+            }
+        }
+        timetable.disciplines = disciplines
+        return timetable
     }
     
     func checkPairsExisting(pairs: [Discipline])-> String {
