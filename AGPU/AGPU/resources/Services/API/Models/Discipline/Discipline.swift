@@ -7,7 +7,8 @@
 
 import UIKit
 
-struct Discipline: Codable, Hashable {
+struct Discipline: Codable {
+    
     let time: String
     let name, groupName, teacherName, audienceID: String
     let subgroup: Int

@@ -22,15 +22,15 @@ extension WebViewModel: WebViewModelProtocol {
             print(scrollPosition)
             
             if scrollPosition == "вверх" {
-                positionY -= 20
+                positionY -= 30
             } else if scrollPosition == "вниз" {
-                positionY += 20
+                positionY += 30
             }
             
             if scrollPosition.contains("лево") {
-                positionX -= 10
+                positionX -= 20
             } else if scrollPosition.contains("право") {
-                positionX += 10
+                positionX += 20
             }
             
             completion(CGPoint(x: positionX, y: positionY))

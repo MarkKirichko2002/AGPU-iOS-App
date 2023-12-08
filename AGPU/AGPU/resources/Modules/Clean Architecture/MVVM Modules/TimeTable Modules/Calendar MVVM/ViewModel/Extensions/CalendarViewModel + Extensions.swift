@@ -42,7 +42,20 @@ extension CalendarViewModel: CalendarViewModelProtocol {
                     let pairsCount = self?.getPairsCount(pairs: data.disciplines) ?? 0
                     let testsCount = self?.getTestsCount(pairs: data.disciplines) ?? 0
                     
-                    self?.timetableHandler?("В этот день есть \(testsCount > 1 ? "зачёты" : "зачёт")", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), пар: \(pairsCount), зачётов: \(testsCount), начало: \(startTime), конец: \(endTime)", UIColor.systemYellow)
+                    self?.timetableHandler?("В этот день есть \(testsCount > 1 ? "зачёты!" : "зачёт!")", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), пар: \(pairsCount), зачётов: \(testsCount), начало: \(startTime), конец: \(endTime)", UIColor.systemYellow)
+                }
+                
+                // консультация
+                if data.disciplines.contains(where: { $0.type == .cons }) {
+                    
+                    let startTimes = data.disciplines[0].time.components(separatedBy: "-")
+                    let startTime = startTimes[0]
+                    
+                    let endTimes = data.disciplines[data.disciplines.count - 1].time.components(separatedBy: "-")
+                    let endTime = endTimes[1]
+                    let consCount = self?.getConsCount(pairs: data.disciplines) ?? 0
+                    
+                    self?.timetableHandler?("В этот день консультация!", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), консультаций: \(consCount), \nначало: \(startTime), конец: \(endTime)", UIColor.systemYellow)
                 }
                 // экзамен
                 if data.disciplines.contains(where: { $0.type == .exam }) {
@@ -54,7 +67,7 @@ extension CalendarViewModel: CalendarViewModelProtocol {
                     let endTime = endTimes[1]
                     let examsCount = self?.getExamsCount(pairs: data.disciplines) ?? 0
                     
-                    self?.timetableHandler?("В этот день есть экзамен!", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), экзаменов: \(examsCount), \nначало: \(startTime), конец: \(endTime)", UIColor.systemRed)
+                    self?.timetableHandler?("В этот день есть \(examsCount > 1 ? "экзамены!" : "экзамен!")", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), экзаменов: \(examsCount), \nначало: \(startTime), конец: \(endTime)", UIColor.systemRed)
                 }
                 // расписание есть
                 if !data.disciplines.isEmpty {
@@ -114,6 +127,21 @@ extension CalendarViewModel: CalendarViewModelProtocol {
         }
         
         return uniqueTimes.count
+    }
+    
+    // подсчет консультаций
+    func getConsCount(pairs: [Discipline])-> Int {
+        
+        var uniqueCons: Set<String> = Set()
+        
+        for pair in pairs {
+            
+            if pair.type == .cons {
+                uniqueCons.insert(pair.name)
+            }
+        }
+        
+        return uniqueCons.count
     }
     
     // подсчет экзаменов
