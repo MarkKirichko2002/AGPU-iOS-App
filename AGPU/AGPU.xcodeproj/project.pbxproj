@@ -262,6 +262,8 @@
 		82BEAD822A7414C300DD34C2 /* RecentWebPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BEAD812A7414C300DD34C2 /* RecentWebPageViewModel.swift */; };
 		82BEAD872A7417EC00DD34C2 /* RecentWebPageViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BEAD862A7417EC00DD34C2 /* RecentWebPageViewModelProtocol.swift */; };
 		82BEAD892A74180D00DD34C2 /* RecentWebPageViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BEAD882A74180D00DD34C2 /* RecentWebPageViewModel + Extensions.swift */; };
+		82BF39E12B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF39DF2B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.swift */; };
+		82BF39E22B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82BF39E02B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.xib */; };
 		82BF4DB02A5FA52B008B751A /* AGPUWallpapersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF4DAF2A5FA52B008B751A /* AGPUWallpapersListViewController.swift */; };
 		82BF4DB22A5FA5B3008B751A /* AGPUWallpaperCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF4DB12A5FA5B3008B751A /* AGPUWallpaperCollectionViewCell.swift */; };
 		82BF4DB42A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF4DB32A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift */; };
@@ -584,6 +586,8 @@
 		82BEAD812A7414C300DD34C2 /* RecentWebPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWebPageViewModel.swift; sourceTree = "<group>"; };
 		82BEAD862A7417EC00DD34C2 /* RecentWebPageViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWebPageViewModelProtocol.swift; sourceTree = "<group>"; };
 		82BEAD882A74180D00DD34C2 /* RecentWebPageViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentWebPageViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		82BF39DF2B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyTimetableOptionTableViewCell.swift; sourceTree = "<group>"; };
+		82BF39E02B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnlyTimetableOptionTableViewCell.xib; sourceTree = "<group>"; };
 		82BF4DAF2A5FA52B008B751A /* AGPUWallpapersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUWallpapersListViewController.swift; sourceTree = "<group>"; };
 		82BF4DB12A5FA5B3008B751A /* AGPUWallpaperCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUWallpaperCollectionViewCell.swift; sourceTree = "<group>"; };
 		82BF4DB32A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUWallpapersListViewController + Extensions.swift"; sourceTree = "<group>"; };
@@ -2863,6 +2867,7 @@
 			isa = PBXGroup;
 			children = (
 				82423E3C2A991E11006FA7D2 /* Shake To Recall */,
+				82BF39DE2B24837000FADBD4 /* Only Timetable */,
 				8283975A2AD5BBAD000F355A /* App Icons */,
 				82768AF22ABE1B0D0022FBE1 /* App Themes */,
 			);
@@ -4000,6 +4005,15 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		82BF39DE2B24837000FADBD4 /* Only Timetable */ = {
+			isa = PBXGroup;
+			children = (
+				82BF39DF2B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.swift */,
+				82BF39E02B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.xib */,
+			);
+			path = "Only Timetable";
+			sourceTree = "<group>";
+		};
 		82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */ = {
 			isa = PBXGroup;
 			children = (
@@ -4926,6 +4940,7 @@
 				8213658B2A94F73100A20E4E /* InfoPlist.strings in Resources */,
 				82920B662AD86EE600352CD8 /* YourStatusOptionTableViewCell.xib in Resources */,
 				821EEAD72AA0B76F00AE517B /* UserStatusTableViewCell.xib in Resources */,
+				82BF39E22B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.xib in Resources */,
 				828397602AD5BBF4000F355A /* AppIconTableViewCell.xib in Resources */,
 				82AB6D2D2AF6C45700F7B729 /* SavedNewsCategoryTableViewCell.xib in Resources */,
 				8213658E2A94F7B700A20E4E /* InfoPlist.strings in Resources */,
@@ -5172,6 +5187,7 @@
 				825D56782AE5CC5F004305C7 /* PairInfoViewModelProtocol.swift in Sources */,
 				82F98B342B1199B300137D9A /* WeatherManager.swift in Sources */,
 				82BE9D892ACA14D300C06CD5 /* NewsPageModel.swift in Sources */,
+				82BF39E12B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.swift in Sources */,
 				82BC2F462A8EFD6400ADB239 /* NewsCategoriesListViewModel.swift in Sources */,
 				82B24AAB2A82E45A008B94E4 /* NewsResponse.swift in Sources */,
 				8283975F2AD5BBF4000F355A /* AppIconTableViewCell.swift in Sources */,

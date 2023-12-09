@@ -72,11 +72,24 @@ final class AGPUTabBarController: UITabBarController {
         let nav1VC = UINavigationController(rootViewController: newsVC)
         let nav3VC = UINavigationController(rootViewController: timetableVC)
         let nav4VC = UINavigationController(rootViewController: settingsVC)
-        setViewControllers([nav1VC, forEveryStatusVC, middleButton, nav3VC, nav4VC], animated: false)
+        
+        let onlyTimetable = UserDefaults.standard.object(forKey: "onOnlyTimetable") as? Bool ?? false
+        
+        if onlyTimetable {
+            setViewControllers([nav3VC, middleButton, nav4VC], animated: false)
+        } else {
+            setViewControllers([nav1VC, forEveryStatusVC, middleButton, nav3VC, nav4VC], animated: false)
+            selectedIndex = 0
+        }
     }
     
     private func setUpTab() {
         settingsManager.observeStatusChanged {
+            DispatchQueue.main.async {
+                self.setUpTabs()
+            }
+        }
+        settingsManager.observeOnlyTimetableChanged {
             DispatchQueue.main.async {
                 self.setUpTabs()
             }

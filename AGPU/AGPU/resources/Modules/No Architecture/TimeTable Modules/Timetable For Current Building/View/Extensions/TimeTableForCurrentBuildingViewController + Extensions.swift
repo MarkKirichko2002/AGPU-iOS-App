@@ -29,21 +29,20 @@ extension TimeTableForCurrentBuildingViewController: UITableViewDelegate {
                 }
             }
             
-            let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
-                do {
-                    let json = try JSONEncoder().encode([discipline])
-                    let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: date)
-                    self.service.getDisciplineImage(json: json) { image in
-                        self.ShareImage(image: image, title: group, text: "\(dayOfWeek) \(date)")
-                    }
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
+//            let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
+//                do {
+//                    let json = try JSONEncoder().encode([discipline])
+//                    let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: date)
+//                    self.service.getDisciplineImage(json: json) { image in
+//                        self.ShareImage(image: image, title: group, text: "\(dayOfWeek) \(date)")
+//                    }
+//                } catch {
+//                    print(error.localizedDescription)
+//                }
+//            }
             
             return UIMenu(title: self.timetable.disciplines[indexPath.row].name, children: [
-                infoAction,
-                shareAction
+                infoAction
             ])
         })
     }

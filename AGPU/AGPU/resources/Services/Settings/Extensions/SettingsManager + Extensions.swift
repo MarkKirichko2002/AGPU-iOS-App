@@ -59,4 +59,19 @@ extension SettingsManager: SettingsManagerProtocol {
             return false
         }
     }
+    
+    // MARK: - Only Timetable
+    func checkOnlyTimetableOption()-> Bool {
+        if let option = UserDefaults.standard.value(forKey: "onOnlyTimetable") as? Bool {
+            return option
+        } else {
+            return false
+        }
+    }
+    
+    func observeOnlyTimetableChanged(completion: @escaping()->Void) {
+        NotificationCenter.default.addObserver(forName: Notification.Name("only timetable"), object: nil, queue: .main) { _ in
+            completion()
+        }
+    }
 }

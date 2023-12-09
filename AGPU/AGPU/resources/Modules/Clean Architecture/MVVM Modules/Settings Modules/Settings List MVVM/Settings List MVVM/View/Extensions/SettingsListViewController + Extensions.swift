@@ -19,7 +19,7 @@ extension SettingsListViewController: UITableViewDataSource {
         case 0:
             return 4
         case 1:
-            return 3
+            return 4
         case 2:
             return 2
         default:
@@ -52,6 +52,9 @@ extension SettingsListViewController: UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ShakeToRecallOptionTableViewCell.identifier, for: indexPath) as? ShakeToRecallOptionTableViewCell else {return UITableViewCell()}
                 return cell
             } else if indexPath.row == 1 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: OnlyTimetableOptionTableViewCell.identifier, for: indexPath) as? OnlyTimetableOptionTableViewCell else {return UITableViewCell()}
+                return cell
+            } else if indexPath.row == 2 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AppIconTableViewCell.identifier, for: indexPath) as? AppIconTableViewCell else {return UITableViewCell()}
                 cell.configure(icon: viewModel.getAppIconInfo())
                 return cell
