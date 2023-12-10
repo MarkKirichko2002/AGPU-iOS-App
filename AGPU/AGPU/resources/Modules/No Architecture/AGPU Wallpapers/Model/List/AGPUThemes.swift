@@ -12,6 +12,7 @@ struct AGPUThemes {
         "agpu1",
         "agpu2",
         "agpu3",
-        "agpu4"
+        "agpu4",
+        "agpu5"
     ]
 }

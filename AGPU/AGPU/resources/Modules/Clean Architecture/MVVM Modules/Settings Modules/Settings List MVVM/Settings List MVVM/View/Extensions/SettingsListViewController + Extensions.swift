@@ -134,7 +134,7 @@ extension SettingsListViewController: UITableViewDelegate {
                 }
             }
         case 1:
-            if indexPath.row == 1 {
+            if indexPath.row == 2 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "photo icon")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = AppIconsListTableViewController()
@@ -142,7 +142,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
-            } else if indexPath.row == 2 {
+            } else if indexPath.row == 3 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "theme")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = AppThemesListTableViewController()
