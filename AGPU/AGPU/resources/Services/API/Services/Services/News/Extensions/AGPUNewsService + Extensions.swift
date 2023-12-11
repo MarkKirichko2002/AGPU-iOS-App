@@ -61,12 +61,19 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
     
     // получить URL для конкретной статьи
     func urlForCurrentArticle(abbreviation: String, index: Int)-> String {
+        
         var newsURL = ""
-        if abbreviation != "" {
-            newsURL = "http://agpu.net/struktura-vuza/faculties-institutes/\(abbreviation)/news/news.php?ELEMENT_ID=\(index)"
-        } else {
+        
+        if abbreviation == ""  {
             newsURL = "http://agpu.net/news.php?ELEMENT_ID=\(index)"
+        } else if abbreviation == "educationaltechnopark" {
+            newsURL = "http://www.agpu.net/struktura-vuza/educationaltechnopark/news/news.php?ELEMENT_ID=\(index)"
+        } else if abbreviation == "PedagogicalQuantorium"  {
+            newsURL = "http://www.agpu.net/struktura-vuza/PedagogicalQuantorium/news/news.php?ELEMENT_ID=\(index)"
+        } else if let faculty = AGPUFaculties.faculties.first(where: { $0.newsAbbreviation == abbreviation }) {
+            newsURL = "http://agpu.net/struktura-vuza/faculties-institutes/\(faculty.newsAbbreviation)/news/news.php?ELEMENT_ID=\(index)"
         }
+        
         return newsURL
     }
     

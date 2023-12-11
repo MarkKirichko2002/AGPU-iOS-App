@@ -30,7 +30,7 @@ extension TimeTableService: TimeTableServicerProtocol {
         
         let teacher = teacher.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("http://\(HostName.host)/api/timetable/teacher/day?id=\(teacher)&date=\(date)").responseData { response in
+        AF.request("http://merqury.fun/api/timetable/teacher/day?id=\(teacher)&date=\(date)").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -66,7 +66,7 @@ extension TimeTableService: TimeTableServicerProtocol {
         
         let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("http://\(HostName.host)/api/timetable/days?groupId=\(group)&startDate=\(startDate)&endDate=\(endDate)&removeEmptyDays").responseData { response in
+        AF.request("http://merqury.fun/api/timetable/days?groupId=\(group)&startDate=\(startDate)&endDate=\(endDate)&removeEmptyDays").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -82,7 +82,7 @@ extension TimeTableService: TimeTableServicerProtocol {
     
     func getWeeks(completion: @escaping(Result<[WeekModel],Error>)->Void) {
         
-        AF.request("http://\(HostName.host)/api/timetable/weeks").responseData { response in
+        AF.request("http://merqury.fun/api/timetable/weeks").responseData { response in
             
             guard let data = response.data else {return}
             
