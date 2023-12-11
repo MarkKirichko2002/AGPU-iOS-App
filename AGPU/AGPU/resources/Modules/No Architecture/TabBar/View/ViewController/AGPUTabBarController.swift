@@ -63,8 +63,6 @@ final class AGPUTabBarController: UITabBarController {
     private func setUpTabs() {
         // новости
         newsVC.tabBarItem = UITabBarItem(title: "Новости", image: UIImage(named: "mail"), selectedImage: UIImage(named: "mail selected"))
-        // для каждого статуса
-        forEveryStatusVC = settingsManager.checkCurrentStatus()
         // расписание
         timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: UIImage(named: "calendar"), selectedImage: UIImage(named: "calendar selected"))
         // настройки
@@ -78,6 +76,8 @@ final class AGPUTabBarController: UITabBarController {
         if onlyTimetable {
             setViewControllers([nav3VC, middleButton, nav4VC], animated: false)
         } else {
+            // для каждого статуса
+            forEveryStatusVC = settingsManager.checkCurrentStatus()
             setViewControllers([nav1VC, forEveryStatusVC, middleButton, nav3VC, nav4VC], animated: false)
             selectedIndex = 0
         }
@@ -87,6 +87,7 @@ final class AGPUTabBarController: UITabBarController {
         settingsManager.observeStatusChanged {
             DispatchQueue.main.async {
                 self.setUpTabs()
+                self.selectedIndex = 4
             }
         }
         settingsManager.observeOnlyTimetableChanged {

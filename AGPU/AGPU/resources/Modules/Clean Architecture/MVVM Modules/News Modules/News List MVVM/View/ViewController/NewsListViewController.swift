@@ -84,8 +84,8 @@ final class NewsListViewController: UIViewController {
             
             DispatchQueue.main.async {
                 if abbreviation != "" {
-                    if let faculty = AGPUFaculties.faculties.first(where: { $0.newsAbbreviation == abbreviation }) {
-                        titleView = CustomTitleView(image: "\(faculty.icon)", title: "\(faculty.abbreviation) новости", frame: .zero)
+                    if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == abbreviation }) {
+                        titleView = CustomTitleView(image: "\(newsCategory.icon)", title: "\(newsCategory.name) новости", frame: .zero)
                         self.spinner.stopAnimating()
                     }
                 } else {

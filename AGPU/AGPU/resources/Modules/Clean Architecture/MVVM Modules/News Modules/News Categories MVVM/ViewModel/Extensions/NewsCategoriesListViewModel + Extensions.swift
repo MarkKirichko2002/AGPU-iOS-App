@@ -26,7 +26,7 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
         for category in NewsCategories.categories {
             dispatchGroup.enter()
             if category.newsAbbreviation != "" {
-                newsService.getFacultyNews(abbreviation: category.newsAbbreviation) { [weak self] result in
+                newsService.getNews(abbreviation: category.newsAbbreviation) { [weak self] result in
                     defer { dispatchGroup.leave() }
                     switch result {
                     case .success(let data):
@@ -56,10 +56,10 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
     func chooseNewsCategory(index: Int) {
         let category = categoryItem(index: index)
         if category.newsAbbreviation != currentCategory {
-            if let faculty = AGPUFaculties.faculties.first(where: { $0.newsAbbreviation ==  category.newsAbbreviation}) {
-                NotificationCenter.default.post(name: Notification.Name("category"), object: faculty.newsAbbreviation)
+            if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation ==  category.newsAbbreviation}) {
+                NotificationCenter.default.post(name: Notification.Name("category"), object: newsCategory.newsAbbreviation)
                 NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-                UserDefaults.standard.setValue(faculty.newsAbbreviation, forKey: "category")
+                UserDefaults.standard.setValue(newsCategory.newsAbbreviation, forKey: "category")
                 self.currentCategory = category.newsAbbreviation
                 HapticsManager.shared.hapticFeedback()
             } else {

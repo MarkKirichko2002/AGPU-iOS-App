@@ -11,9 +11,8 @@ import Foundation
 // MARK: - AGPUNewsServiceProtocol
 extension AGPUNewsService: AGPUNewsServiceProtocol {
 
-    // получить новости факультета
-    func getFacultyNews(abbreviation: String, completion: @escaping(Result<NewsResponse, Error>)->Void) {
-        
+    // получить новости
+    func getNews(abbreviation: String, completion: @escaping(Result<NewsResponse, Error>)->Void) {
         AF.request("http://\(HostName.host)/api/news/\(abbreviation)").responseData { response in
             
             guard let data = response.data else {return}

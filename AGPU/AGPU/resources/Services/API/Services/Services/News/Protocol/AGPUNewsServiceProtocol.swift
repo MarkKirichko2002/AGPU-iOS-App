@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AGPUNewsServiceProtocol {
-    func getFacultyNews(abbreviation: String, completion: @escaping(Result<NewsResponse, Error>)->Void)
+    func getNews(abbreviation: String, completion: @escaping(Result<NewsResponse, Error>)->Void)
     func getAGPUNews(completion: @escaping(Result<NewsResponse, Error>)->Void)
     func getNews(by page: Int, abbreviation: String, completion: @escaping(Result<NewsResponse, Error>)->Void)
     func urlForCurrentArticle(abbreviation: String, index: Int)-> String

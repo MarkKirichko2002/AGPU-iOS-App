@@ -14,7 +14,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     func getNewsByCurrentType() {
         let savedNewsCategory = UserDefaults.standard.object(forKey: "category") as? String ?? ""
         if savedNewsCategory != "" {
-            getFacultyNews(abbreviation: savedNewsCategory)
+            getNews(abbreviation: savedNewsCategory)
         } else {
             getAGPUNews()
             abbreviation = ""
@@ -34,9 +34,9 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         }
     }
     
-    // получить новости факультета
-    func getFacultyNews(abbreviation: String) {
-        newsService.getFacultyNews(abbreviation: abbreviation) { [weak self] result in
+    // получить новости
+    func getNews(abbreviation: String) {
+        newsService.getNews(abbreviation: abbreviation) { [weak self] result in
             switch result {
             case .success(let response):
                 self?.newsResponse = response
@@ -82,7 +82,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             if let category = notification.object as? String {
                 print("category: \(category)")
                 if category != "" {
-                    self.getFacultyNews(abbreviation: category)
+                    self.getNews(abbreviation: category)
                     self.abbreviation = category
                 } else {
                     self.getAGPUNews()

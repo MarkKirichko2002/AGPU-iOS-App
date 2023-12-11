@@ -10,7 +10,7 @@ import Foundation
 protocol AGPUNewsListViewModelProtocol {
     func getNewsByCurrentType()
     func getAGPUNews()
-    func getFacultyNews(abbreviation: String)
+    func getNews(abbreviation: String)
     func getNews(by page: Int)
     func refreshNews()
     func articleItem(index: Int)-> Article
