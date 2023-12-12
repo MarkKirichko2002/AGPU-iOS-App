@@ -145,21 +145,6 @@ extension AGPUTabBarController {
         }
     }
     
-    // закрыть экран
-    func closeScreen(text: String) {
-        
-        if text.lowercased().contains("закр") {
-            
-            self.ResetSpeechRecognition()
-            
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.isOpened = false
-                self.updateDynamicButton(icon: "mic")
-                NotificationCenter.default.post(name: Notification.Name("actions"), object: Actions.closeScreen)
-            }
-        }
-    }
-    
     func ResetSpeechRecognition() {
         speechRecognitionManager.cancelSpeechRecognition()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

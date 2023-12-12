@@ -56,9 +56,11 @@ extension SearchAGPUBuildingMapViewModel: SearchAGPUBuildingMapViewModelProtocol
         self.locationHandler = block
     }
     
-    func observeActions(block: @escaping()->Void) {
-        NotificationCenter.default.addObserver(forName: Notification.Name("actions"), object: nil, queue: .main) { _ in
-            block()
+    func observeActions(block: @escaping(Actions)->Void) {
+        NotificationCenter.default.addObserver(forName: Notification.Name("actions"), object: nil, queue: .main) { notification in
+            if let action = notification.object as? Actions {
+                block(action)
+            }
         }
     }
     

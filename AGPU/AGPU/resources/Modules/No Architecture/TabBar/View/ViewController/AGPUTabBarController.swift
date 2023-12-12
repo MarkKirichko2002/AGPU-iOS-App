@@ -189,7 +189,6 @@ final class AGPUTabBarController: UITabBarController {
             ChangeBuilding(text: text.lowercased())
             ScrollWebScreen(text: text.lastWord())
             WebActions(text: text.lowercased())
-            closeScreen(text: text.lowercased())
         } else {
             searchSection(text: text.lowercased())
             GenerateRandomSection(text: text.lowercased())

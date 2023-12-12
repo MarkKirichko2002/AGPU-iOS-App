@@ -84,9 +84,16 @@ class SearchAGPUBuildingMapViewController: UIViewController {
                 self.mapView.showAnnotations(location.pins, animated: true)
             }
         }
-        viewModel.observeActions {
-            DispatchQueue.main.async {
-                self.dismiss(animated: true)
+        viewModel.observeActions { action in
+            switch action {
+            case .closeScreen:
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true)
+                }
+            case .forward:
+                break
+            case .back:
+                break
             }
         }
         viewModel.observeBuildingSelected { pin in

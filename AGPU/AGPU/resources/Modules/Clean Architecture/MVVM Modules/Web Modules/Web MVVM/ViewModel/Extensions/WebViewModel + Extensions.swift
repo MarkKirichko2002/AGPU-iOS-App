@@ -5,15 +5,15 @@
 //  Created by Марк Киричко on 21.07.2023.
 //
 
-import Foundation
+import UIKit
 
 // MARK: - WebViewModelProtocol
 extension WebViewModel: WebViewModelProtocol {
     
-    func observeScroll(completion: @escaping(CGPoint)->Void) {
+    func observeScroll(scrollView: UIScrollView, completion: @escaping(CGPoint)->Void) {
         
-        var positionX = 0
-        var positionY = 0
+        var positionX = scrollView.contentOffset.x
+        var positionY = scrollView.contentOffset.y
         var scrollPosition = ""
         
         NotificationCenter.default.addObserver(forName: Notification.Name("scroll web page"), object: nil, queue: .main) { notification in
