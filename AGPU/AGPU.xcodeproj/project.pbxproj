@@ -35,6 +35,7 @@
 		821FCF072A87CE30006FFB26 /* NewsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FCF062A87CE30006FFB26 /* NewsListViewController.swift */; };
 		821FCF0A2A87CE79006FFB26 /* NewsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FCF092A87CE79006FFB26 /* NewsListViewController + Extensions.swift */; };
 		822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822158952A422A650088BDE5 /* SettingsListViewController.swift */; };
+		822245922B28EC2B00DFCFA7 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822245912B28EC2B00DFCFA7 /* Actions.swift */; };
 		822605EF2A84A0600055925F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82808E912A31F12500DEEB16 /* Assets.xcassets */; };
 		822605F62A8532410055925F /* RecentMomentsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822605F52A8532410055925F /* RecentMomentsListViewModelProtocol.swift */; };
 		822605F82A8532E20055925F /* RecentMomentsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822605F72A8532E20055925F /* RecentMomentsListViewModel.swift */; };
@@ -358,6 +359,7 @@
 		821FCF062A87CE30006FFB26 /* NewsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewController.swift; sourceTree = "<group>"; };
 		821FCF092A87CE79006FFB26 /* NewsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsListViewController + Extensions.swift"; sourceTree = "<group>"; };
 		822158952A422A650088BDE5 /* SettingsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewController.swift; sourceTree = "<group>"; };
+		822245912B28EC2B00DFCFA7 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		822605F52A8532410055925F /* RecentMomentsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMomentsListViewModelProtocol.swift; sourceTree = "<group>"; };
 		822605F72A8532E20055925F /* RecentMomentsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMomentsListViewModel.swift; sourceTree = "<group>"; };
 		822605F92A8532F30055925F /* RecentMomentsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentMomentsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
@@ -1118,6 +1120,14 @@
 			);
 			name = "Settings List MVVM";
 			path = "Settings List MVVM/Settings List MVVM";
+			sourceTree = "<group>";
+		};
+		822245902B28EC1C00DFCFA7 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				822245912B28EC2B00DFCFA7 /* Actions.swift */,
+			);
+			path = Actions;
 			sourceTree = "<group>";
 		};
 		822605F12A8532050055925F /* ViewModel */ = {
@@ -2244,6 +2254,7 @@
 		8268886A2A34866D00434219 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				822245902B28EC1C00DFCFA7 /* Actions */,
 				8228E39A2A6C920000C1B6AD /* Location */,
 				82B1C0EB2A8123DF00520C14 /* Voice Directions */,
 				82ECABDF2A8151ED00FE7462 /* Sub Group */,
@@ -5216,6 +5227,7 @@
 				826716C22A5A2AF600CD5C23 /* RecentWebPageModel.swift in Sources */,
 				82B24A872A81BCE6008B94E4 /* Article.swift in Sources */,
 				82320D872A491F5700ECADEE /* AGPUFacultyTableViewCell.swift in Sources */,
+				822245922B28EC2B00DFCFA7 /* Actions.swift in Sources */,
 				82BC2F4D2A8F0B9500ADB239 /* NewsPagesListTableViewController.swift in Sources */,
 				82B2670B2A8DAB4900043A6D /* NewsCategoryModel.swift in Sources */,
 				82B24AA32A81C8C3008B94E4 /* AGPUNewsListViewModel + Extensions.swift in Sources */,

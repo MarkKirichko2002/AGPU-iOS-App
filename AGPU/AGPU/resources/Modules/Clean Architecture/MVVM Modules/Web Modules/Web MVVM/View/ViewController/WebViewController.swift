@@ -73,20 +73,38 @@ final class WebViewController: UIViewController {
     }
     
     private func bindViewModel() {
+        
         viewModel.observeScroll { position in
             self.WVWEBview.scrollView.setContentOffset(position, animated: true)
         }
-        viewModel.observeActions {
-            if self.navigationController?.viewControllers.first == self {
-                self.dismiss(animated: true)
-            } else {}
+        
+        viewModel.observeActions { action in
+            switch action {
+            case .closeScreen:
+                if self.navigationController?.viewControllers.first == self {
+                    self.dismiss(animated: true)
+                } else {}
+            case .forward:
+                self.forwardButtonTapped()
+            case .back:
+                self.backButtonTapped()
+            }
         }
+        
         viewModel.observeSectionSelected { section in
             self.titleView = CustomTitleView(image: section.icon, title: section.name, frame: .zero)
             DispatchQueue.main.async {
                 self.navigationItem.titleView = self.titleView
             }
             self.WVWEBview.load(section.url)
+        }
+        
+        viewModel.observeSubSectionSelected { subsection in
+            self.titleView = CustomTitleView(image: subsection.icon, title: "ФГБОУ ВО «АГПУ»", frame: .zero)
+            DispatchQueue.main.async {
+                self.navigationItem.titleView = self.titleView
+            }
+            self.WVWEBview.load(subsection.url)
         }
     }
     

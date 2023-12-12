@@ -184,9 +184,11 @@ final class AGPUTabBarController: UITabBarController {
     // MARK: - Voice Control
     private func checkVoiceCommands(text: String) {
         if isOpened {
-            ChangeSetion(text: text.lowercased())
+            ChangeSection(text: text.lowercased())
+            ChangeSubSection(text: text.lowercased())
             ChangeBuilding(text: text.lowercased())
             ScrollWebScreen(text: text.lastWord())
+            WebActions(text: text.lowercased())
             closeScreen(text: text.lowercased())
         } else {
             searchSection(text: text.lowercased())

@@ -29,7 +29,7 @@ extension AGPUTabBarController {
     }
     
     // измение раздела сайта
-    func ChangeSetion(text: String) {
+    func ChangeSection(text: String) {
         
         for section in AGPUSections.sections {
             
@@ -78,6 +78,21 @@ extension AGPUTabBarController {
         }
     }
     
+    // измение подраздела сайта
+    func ChangeSubSection(text: String) {
+        
+        for section in AGPUSections.sections {
+            
+            for subsection in section.subsections {
+                
+                if text.lowercased().contains(subsection.voiceCommand) {
+                    ResetSpeechRecognition()
+                    NotificationCenter.default.post(name: Notification.Name("subsection selected"), object: subsection)
+                }
+            }
+        }
+    }
+    
     // поиск корпуса
     func findBuilding(text: String) {
         
@@ -109,6 +124,27 @@ extension AGPUTabBarController {
         }
     }
     
+    func WebActions(text: String) {
+        
+        if text.lowercased().lastWord().contains("закр") {
+            self.ResetSpeechRecognition()
+            
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.isOpened = false
+                self.updateDynamicButton(icon: "mic")
+                NotificationCenter.default.post(name: Notification.Name("actions"), object: Actions.closeScreen)
+            }
+        } 
+        
+        if text.lowercased().lastWord().contains("назад") {
+            NotificationCenter.default.post(name: Notification.Name("actions"), object: Actions.back)
+        } 
+        
+        if text.lowercased().lastWord().contains("вперед") || text.lowercased().lastWord().contains("вперёд")  {
+            NotificationCenter.default.post(name: Notification.Name("actions"), object: Actions.forward)
+        }
+    }
+    
     // закрыть экран
     func closeScreen(text: String) {
         
@@ -119,7 +155,7 @@ extension AGPUTabBarController {
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 self.isOpened = false
                 self.updateDynamicButton(icon: "mic")
-                NotificationCenter.default.post(name: Notification.Name("close screen"), object: nil)
+                NotificationCenter.default.post(name: Notification.Name("actions"), object: Actions.closeScreen)
             }
         }
     }
@@ -137,7 +173,7 @@ extension AGPUTabBarController {
         if text.lowercased().contains("стоп") {
             
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("close screen"), object: nil)
+                NotificationCenter.default.post(name: Notification.Name("actions"), object: Actions.closeScreen)
             }
             
             self.DynamicButton.sendActions(for: .touchUpInside)

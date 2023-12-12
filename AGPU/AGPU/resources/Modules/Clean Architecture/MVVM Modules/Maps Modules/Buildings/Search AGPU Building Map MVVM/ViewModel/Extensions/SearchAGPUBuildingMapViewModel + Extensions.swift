@@ -57,7 +57,7 @@ extension SearchAGPUBuildingMapViewModel: SearchAGPUBuildingMapViewModelProtocol
     }
     
     func observeActions(block: @escaping()->Void) {
-        NotificationCenter.default.addObserver(forName: Notification.Name("close screen"), object: nil, queue: .main) { _ in
+        NotificationCenter.default.addObserver(forName: Notification.Name("actions"), object: nil, queue: .main) { _ in
             block()
         }
     }
