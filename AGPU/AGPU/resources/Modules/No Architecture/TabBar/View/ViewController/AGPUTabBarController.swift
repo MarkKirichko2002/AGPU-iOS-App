@@ -28,6 +28,8 @@ final class AGPUTabBarController: UITabBarController {
     
     var isRecording = false
     
+    var isOpened = false
+    
     // MARK: - Dynamic Button
     let DynamicButton: UIButton = {
         let button = UIButton()
@@ -181,15 +183,18 @@ final class AGPUTabBarController: UITabBarController {
     
     // MARK: - Voice Control
     private func checkVoiceCommands(text: String) {
-        searchSection(text: text.lowercased())
-        ChangeSetion(text: text.lowercased())
-        GenerateRandomSection(text: text.lowercased())
-        searchSubSection(text: text.lowercased())
-        findBuilding(text: text.lowercased())
-        ChangeBuilding(text: text.lowercased())
-        closeScreen(text: text.lowercased())
+        if isOpened {
+            ChangeSetion(text: text.lowercased())
+            ChangeBuilding(text: text.lowercased())
+            ScrollWebScreen(text: text.lastWord())
+            closeScreen(text: text.lowercased())
+        } else {
+            searchSection(text: text.lowercased())
+            GenerateRandomSection(text: text.lowercased())
+            searchSubSection(text: text.lowercased())
+            findBuilding(text: text.lowercased())
+        }
         turnOfMicrophone(text: text.lowercased())
-        ScrollWebScreen(text: text.lastWord())
     }
     
     private func observeForEveryStatus() {

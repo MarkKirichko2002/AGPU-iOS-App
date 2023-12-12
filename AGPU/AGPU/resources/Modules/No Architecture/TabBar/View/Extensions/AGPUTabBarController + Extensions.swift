@@ -21,6 +21,7 @@ extension AGPUTabBarController {
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                     self.goToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false)
                 }
+                isOpened = true
                 ResetSpeechRecognition()
                 break
             }
@@ -49,6 +50,7 @@ extension AGPUTabBarController {
             self.updateDynamicButton(icon: "dice")
             
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.isOpened = true
                 self.goToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false)
             }
             ResetSpeechRecognition()
@@ -67,6 +69,7 @@ extension AGPUTabBarController {
                     self.updateDynamicButton(icon: subsection.icon)
                     
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                        self.isOpened = true
                         self.goToWeb(url: subsection.url, image: subsection.icon, title: "ФГБОУ ВО «АГПУ»", isSheet: false)
                     }
                     break
@@ -87,6 +90,7 @@ extension AGPUTabBarController {
                 let navVC = UINavigationController(rootViewController: vc)
                 navVC.modalPresentationStyle = .fullScreen
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self.isOpened = true
                     self.present(navVC, animated: true)
                 }
                 break
@@ -113,6 +117,7 @@ extension AGPUTabBarController {
             self.ResetSpeechRecognition()
             
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.isOpened = false
                 self.updateDynamicButton(icon: "mic")
                 NotificationCenter.default.post(name: Notification.Name("close screen"), object: nil)
             }
