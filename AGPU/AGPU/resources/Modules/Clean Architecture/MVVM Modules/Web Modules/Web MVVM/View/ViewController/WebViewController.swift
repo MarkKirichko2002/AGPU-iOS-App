@@ -18,6 +18,7 @@ final class WebViewController: UIViewController {
     // MARK: - UI
     let WVWEBview = WKWebView(frame: .zero)
     let spinner = UIActivityIndicatorView(style: .large)
+    var titleView: CustomTitleView!
     
     // MARK: - Init
     init(url: String) {
@@ -79,6 +80,13 @@ final class WebViewController: UIViewController {
             if self.navigationController?.viewControllers.first == self {
                 self.dismiss(animated: true)
             } else {}
+        }
+        viewModel.observeSectionSelected { section in
+            self.titleView = CustomTitleView(image: section.icon, title: section.name, frame: .zero)
+            DispatchQueue.main.async {
+                self.navigationItem.titleView = self.titleView
+            }
+            self.WVWEBview.load(section.url)
         }
     }
     

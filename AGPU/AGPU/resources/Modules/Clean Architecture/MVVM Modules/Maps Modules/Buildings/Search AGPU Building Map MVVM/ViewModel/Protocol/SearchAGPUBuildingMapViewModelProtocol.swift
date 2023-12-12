@@ -13,4 +13,5 @@ protocol SearchAGPUBuildingMapViewModelProtocol {
     func getLocation()
     func registerLocationHandler(block: @escaping(LocationModel)->Void)
     func observeActions(block: @escaping()->Void)
+    func observeBuildingSelected(block: @escaping(MKAnnotation)->Void)
 }

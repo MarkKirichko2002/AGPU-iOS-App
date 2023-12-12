@@ -27,6 +27,18 @@ extension AGPUTabBarController {
         }
     }
     
+    // измение раздела сайта
+    func ChangeSetion(text: String) {
+        
+        for section in AGPUSections.sections {
+            
+            if text.lowercased().contains(section.voiceCommand) {
+                ResetSpeechRecognition()
+                NotificationCenter.default.post(name: Notification.Name("section selected"), object: section)
+            }
+        }
+    }
+    
     // случайный раздел
     func GenerateRandomSection(text: String) {
         
@@ -82,6 +94,17 @@ extension AGPUTabBarController {
         }
     }
     
+    // измение корпуса на карте
+    func ChangeBuilding(text: String) {
+        
+        for building in AGPUBuildings.buildings {
+            if building.voiceCommands.contains(where: { text.lowercased().range(of: $0.lowercased()) != nil }) {
+                ResetSpeechRecognition()
+                NotificationCenter.default.post(name: Notification.Name("building selected"), object: building.pin)
+            }
+        }
+    }
+    
     // закрыть экран
     func closeScreen(text: String) {
         
@@ -122,17 +145,6 @@ extension AGPUTabBarController {
         for direction in VoiceDirections.directions {
             if direction.name.contains(text.lastWord()) {
                 NotificationCenter.default.post(name: Notification.Name("scroll web page"), object: text.lastWord())
-            }
-        }
-    }
-    
-    // измение корпуса на карте
-    func ChangeBuilding(text: String) {
-        
-        for building in AGPUBuildings.buildings {
-            if building.voiceCommands.contains(where: { text.lowercased().range(of: $0.lowercased()) != nil }) {
-                ResetSpeechRecognition()
-                NotificationCenter.default.post(name: Notification.Name("building selected"), object: building.pin)
             }
         }
     }

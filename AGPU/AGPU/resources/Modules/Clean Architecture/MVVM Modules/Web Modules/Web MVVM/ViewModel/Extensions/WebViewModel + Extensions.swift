@@ -37,12 +37,6 @@ extension WebViewModel: WebViewModelProtocol {
         }
     }
     
-    func observeActions(block: @escaping()->Void) {
-        NotificationCenter.default.addObserver(forName: Notification.Name("close screen"), object: nil, queue: nil) { _ in
-            block()
-        }
-    }
-    
     func saveCurrentWebPage(url: String, position: CGPoint) {
         let dateManager = DateManager()
         let date = dateManager.getCurrentDate()
@@ -50,6 +44,20 @@ extension WebViewModel: WebViewModelProtocol {
         let page = RecentWebPageModel(date: date, time: time, url: url, position: position)
         UserDefaults.saveData(object: page, key: "last page") {
             print("сохранено: \(page)")
+        }
+    }
+    
+    func observeActions(block: @escaping()->Void) {
+        NotificationCenter.default.addObserver(forName: Notification.Name("close screen"), object: nil, queue: nil) { _ in
+            block()
+        }
+    }
+    
+    func observeSectionSelected(block: @escaping(AGPUSectionModel)->Void) {
+        NotificationCenter.default.addObserver(forName: Notification.Name("section selected"), object: nil, queue: .main) { notification in
+            if let url = notification.object as? AGPUSectionModel {
+                block(url)
+            }
         }
     }
 }
