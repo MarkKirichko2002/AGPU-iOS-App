@@ -75,17 +75,29 @@ class SearchAGPUBuildingMapViewController: UIViewController {
                     self.dismiss(animated: true)
                 }
                 self.showAlert(title: "Геопозиция выключена", message: "Хотите включить в настройках?", actions: [goToSettings, cancel])
-            } else {
-                
-            }
+            } else {}
         }
         viewModel.checkLocationAuthorizationStatus()
         viewModel.registerLocationHandler { location in
-            self.mapView.setRegion(location.region, animated: true)
-            self.mapView.showAnnotations(location.pins, animated: true)
+            DispatchQueue.main.async {
+                self.mapView.setRegion(location.region, animated: true)
+                self.mapView.showAnnotations(location.pins, animated: true)
+            }
         }
         viewModel.observeActions {
-            self.dismiss(animated: true)
+            DispatchQueue.main.async {
+                self.dismiss(animated: true)
+            }
+        }
+        viewModel.observeBuildingSelected { pin in
+            self.mapView.annotations.forEach { annotation in
+                if annotation.title != "Вы" {
+                    DispatchQueue.main.async {
+                        self.mapView.removeAnnotation(annotation)
+                        self.mapView.addAnnotation(pin)
+                    }
+                }
+            }
         }
     }
 }

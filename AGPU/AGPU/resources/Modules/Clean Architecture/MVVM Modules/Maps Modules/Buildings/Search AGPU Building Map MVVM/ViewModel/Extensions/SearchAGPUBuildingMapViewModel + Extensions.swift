@@ -61,4 +61,12 @@ extension SearchAGPUBuildingMapViewModel: SearchAGPUBuildingMapViewModelProtocol
             block()
         }
     }
+    
+    func observeBuildingSelected(block: @escaping(MKAnnotation)->Void) {
+        NotificationCenter.default.addObserver(forName: Notification.Name("building selected"), object: nil, queue: .main) { notification in
+            if let pin = notification.object as? MKAnnotation {
+                block(pin)
+            }
+        }
+    }
 }

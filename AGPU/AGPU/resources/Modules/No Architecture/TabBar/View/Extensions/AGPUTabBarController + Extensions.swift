@@ -126,6 +126,17 @@ extension AGPUTabBarController {
         }
     }
     
+    // измение корпуса на карте
+    func ChangeBuilding(text: String) {
+        
+        for building in AGPUBuildings.buildings {
+            if building.voiceCommands.contains(where: { text.lowercased().range(of: $0.lowercased()) != nil }) {
+                ResetSpeechRecognition()
+                NotificationCenter.default.post(name: Notification.Name("building selected"), object: building.pin)
+            }
+        }
+    }
+    
     // изменение Dynamic Button
     func updateDynamicButton(icon: String) {
         DispatchQueue.main.async {

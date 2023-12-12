@@ -12,6 +12,6 @@ struct AGPUBuildingModel {
     let image: String
     let type: AGPUBuildingType
     let audiences: [String]
-    let pin: MKAnnotation
+    var pin: MKAnnotation
     let voiceCommands: [String]
 }
