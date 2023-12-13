@@ -19,15 +19,7 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
             }
         }
     }
-    
-    func registerLocationHandler(block: @escaping(LocationModel)->Void) {
-        self.locationHandler = block
-    }
-    
-    func registerChoiceHandler(block: @escaping(Bool, MKAnnotation)->Void) {
-        self.choiceHandler = block
-    }
-    
+        
     func getLocation() {
         
         locationManager.getLocations()
@@ -65,39 +57,43 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
         }
     }
     
-    func makeOptionsMenu()-> UIMenu {
-        
-        let all = UIAction(title: "Все здания", state: .on) { _ in
-            for building in AGPUBuildings.buildings {
-                self.choiceHandler?(true, building.pin)
-            }
-        }
-        
-        let buildings = UIAction(title: "Корпуса") { _ in
-            for building in AGPUBuildings.buildings {
-                if building.type == .building || building.type == .buildingAndHostel {
-                    self.choiceHandler?(true, building.pin)
-                } else {
-                    self.choiceHandler?(false, building.pin)
+    func observeBuildingTypeSelected() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("building type selected"), object: nil, queue: .main) { notification in
+            if let type = notification.object as? AGPUBuildingType {
+                self.type = type
+                switch type {
+                case .all:
+                    for building in AGPUBuildings.buildings {
+                        self.choiceHandler?(true, building.pin)
+                    }
+                case .building:
+                    for building in AGPUBuildings.buildings {
+                        if building.type == .building || building.type == .buildingAndHostel {
+                            self.choiceHandler?(true, building.pin)
+                        } else {
+                            self.choiceHandler?(false, building.pin)
+                        }
+                    }
+                case .hostel:
+                    for building in AGPUBuildings.buildings {
+                        if building.type == .hostel || building.type == .buildingAndHostel {
+                            self.choiceHandler?(true, building.pin)
+                        } else {
+                            self.choiceHandler?(false, building.pin)
+                        }
+                    }
+                case .buildingAndHostel:
+                    break
                 }
             }
         }
-        
-        let hostels = UIAction(title: "Общежития") { _ in
-            for building in AGPUBuildings.buildings {
-                if building.type == .hostel || building.type == .buildingAndHostel {
-                    self.choiceHandler?(true, building.pin)
-                } else {
-                    self.choiceHandler?(false, building.pin)
-                }
-            }
-        }
-        
-        let menu = UIMenu(title: "Показать на карте", options: .singleSelection, children: [
-            all,
-            buildings,
-            hostels
-        ])
-        return menu
+    }
+    
+    func registerLocationHandler(block: @escaping(LocationModel)->Void) {
+        self.locationHandler = block
+    }
+    
+    func registerChoiceHandler(block: @escaping(Bool, MKAnnotation)->Void) {
+        self.choiceHandler = block
     }
 }

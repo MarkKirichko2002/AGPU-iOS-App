@@ -8,6 +8,7 @@
 import Foundation
 
 enum AGPUBuildingType {
+    case all
     case building
     case hostel
     case buildingAndHostel

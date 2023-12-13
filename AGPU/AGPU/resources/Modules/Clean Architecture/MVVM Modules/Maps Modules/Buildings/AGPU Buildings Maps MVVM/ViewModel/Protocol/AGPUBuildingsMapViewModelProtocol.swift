@@ -5,7 +5,6 @@
 //  Created by Марк Киричко on 23.07.2023.
 //
 
-import UIKit
 import MapKit
 
 protocol AGPUBuildingsMapViewModelProtocol {
@@ -13,7 +12,7 @@ protocol AGPUBuildingsMapViewModelProtocol {
     var choiceHandler: ((Bool, MKAnnotation)->Void)? {get set}
     func checkLocationAuthorizationStatus()
     func getLocation()
+    func observeBuildingTypeSelected()
     func registerLocationHandler(block: @escaping(LocationModel)->Void)
     func registerChoiceHandler(block: @escaping(Bool, MKAnnotation)->Void)
-    func makeOptionsMenu()-> UIMenu
 }

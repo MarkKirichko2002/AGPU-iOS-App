@@ -34,7 +34,16 @@ final class AGPUBuildingsMapViewController: UIViewController {
         
         let backButton = UIBarButtonItem(customView: button)
         
-        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: viewModel.makeOptionsMenu())
+        let typeList = UIAction(title: "Типы зданий") { _ in
+            let vc = AGPUBuildingTypesListTableViewController(type: self.viewModel.type)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let menu = UIMenu(title: "Карта", children: [typeList])
+        
+        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         options.tintColor = .label
         
         navigationItem.title = "Найти «АГПУ»"
@@ -66,6 +75,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
     }
     
     private func bindViewModel() {
+        viewModel.observeBuildingTypeSelected()
         viewModel.alertHandler = { bool in
             if bool {
                 let goToSettings = UIAlertAction(title: "Перейти в настройки", style: .default) { _ in
