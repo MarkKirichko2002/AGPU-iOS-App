@@ -63,10 +63,22 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                 self.type = type
                 switch type {
                 case .all:
+                    
+                    for pin in self.arr {
+                        self.choiceHandler?(false, pin)
+                        self.faculty = nil
+                    }
+                    
                     for building in AGPUBuildings.buildings {
                         self.choiceHandler?(true, building.pin)
                     }
                 case .building:
+                    
+                    for pin in self.arr {
+                        self.choiceHandler?(false, pin)
+                        self.faculty = nil
+                    }
+                    
                     for building in AGPUBuildings.buildings {
                         if building.type == .building || building.type == .buildingAndHostel {
                             self.choiceHandler?(true, building.pin)
@@ -75,6 +87,12 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                         }
                     }
                 case .hostel:
+                    
+                    for pin in self.arr {
+                        self.choiceHandler?(false, pin)
+                        self.faculty = nil
+                    }
+                    
                     for building in AGPUBuildings.buildings {
                         if building.type == .hostel || building.type == .buildingAndHostel {
                             self.choiceHandler?(true, building.pin)
@@ -85,6 +103,57 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                 case .buildingAndHostel:
                     break
                 }
+            }
+        }
+    }
+    
+    func observeFacultySelected() {
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name("faculty selected"), object: nil, queue: .main) { notification in
+            
+            if let faculty = notification.object as? AGPUFacultyModel {
+                
+                self.faculty = faculty
+                self.type = .all
+                
+                for pin in self.arr {
+                    self.choiceHandler?(false, pin)
+                }
+                
+                if !self.arr.isEmpty {
+                    self.arr.removeAll()
+                }
+                
+                for building in AGPUBuildings.buildings {
+                    self.choiceHandler?(false, building.pin)
+                }
+                
+                // 1 кафедра
+                let cathedraLocation1 = CLLocationCoordinate2D(
+                    latitude: faculty.cathedra[0].coordinates[0],
+                    longitude: faculty.cathedra[0].coordinates[1]
+                )
+                let cathedraPin1 = MKPointAnnotation(__coordinate: cathedraLocation1)
+                cathedraPin1.title = self.faculty?.cathedra[0].name
+                cathedraPin1.subtitle = self.faculty?.cathedra[0].address
+                
+                // 2 кафедра
+                let cathedraLocation2 = CLLocationCoordinate2D(
+                    latitude: faculty.cathedra[1].coordinates[0],
+                    longitude: faculty.cathedra[1].coordinates[1]
+                )
+                let cathedraPin2 = MKPointAnnotation(__coordinate: cathedraLocation2)
+                cathedraPin2.title = self.faculty?.cathedra[1].name
+                cathedraPin2.subtitle = self.faculty?.cathedra[1].address
+                
+                self.arr.append(cathedraPin1)
+                self.arr.append(cathedraPin2)
+                
+                for pin in self.arr {
+                    self.choiceHandler?(true, pin)
+                }
+                
+                print(self.arr.count)
             }
         }
     }

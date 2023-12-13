@@ -11,7 +11,7 @@ import MapKit
 final class AGPUBuildingsMapViewController: UIViewController {
     
     // MARK: - сервисы
-    private let viewModel = AGPUBuildingsMapViewModel()
+    let viewModel = AGPUBuildingsMapViewModel()
     
     // MARK: - UI
     private let mapView = MKMapView()
@@ -41,7 +41,14 @@ final class AGPUBuildingsMapViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
-        let menu = UIMenu(title: "Карта", children: [typeList])
+        let facultiesList = UIAction(title: "Кафедры") { _ in
+            let vc = FacultyCathedraMapListTableViewController(faculty: self.viewModel.faculty)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let menu = UIMenu(title: "Карта", children: [typeList, facultiesList])
         
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         options.tintColor = .label
@@ -76,6 +83,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel.observeBuildingTypeSelected()
+        viewModel.observeFacultySelected()
         viewModel.alertHandler = { bool in
             if bool {
                 let goToSettings = UIAlertAction(title: "Перейти в настройки", style: .default) { _ in
