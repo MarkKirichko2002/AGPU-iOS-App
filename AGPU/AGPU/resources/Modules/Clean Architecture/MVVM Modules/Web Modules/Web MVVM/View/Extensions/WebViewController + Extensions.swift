@@ -17,6 +17,9 @@ extension WebViewController: UIScrollViewDelegate {
         if let url = WVWEBview.url?.absoluteString {
             self.viewModel.saveCurrentWebPage(url: url, position: position)
         }
+        viewModel.observeScroll(scrollView: scrollView) { position in
+            scrollView.setContentOffset(position, animated: true)
+        }
     }
 }
 

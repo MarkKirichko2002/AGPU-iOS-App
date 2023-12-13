@@ -100,7 +100,7 @@ final class WebViewController: UIViewController {
         }
         
         viewModel.observeSubSectionSelected { subsection in
-            self.titleView = CustomTitleView(image: subsection.icon, title: "ФГБОУ ВО «АГПУ»", frame: .zero)
+            self.titleView = CustomTitleView(image: "новый год", title: "ФГБОУ ВО «АГПУ»", frame: .zero)
             DispatchQueue.main.async {
                 self.navigationItem.titleView = self.titleView
             }

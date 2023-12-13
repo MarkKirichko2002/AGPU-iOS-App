@@ -24,7 +24,7 @@ struct AGPUSubSections {
                 name: "Сведения об образовательной организации",
                 icon: "university",
                 url: "http://agpu.net/sveden/index.php",
-                voiceCommand: "образовательнаяорганизация"
+                voiceCommand: "образовательнаяорганизаци"
             ),
             AGPUSubSectionModel(
                 id: 1,
@@ -59,21 +59,21 @@ struct AGPUSubSections {
                 name: "Первичная профсоюзная организация",
                 icon: "university",
                 url: "http://agpu.net/profsouz/index.php",
-                voiceCommand: "профсоюзнаяорганизация"
+                voiceCommand: "профсоюзнаяорганизаци"
             ),
             AGPUSubSectionModel(
                 id: 6,
                 name: "История ВУЗа",
                 icon: "university",
                 url: "http://agpu.net/about/history.php",
-                voiceCommand: "история"
+                voiceCommand: "истори"
             ),
             AGPUSubSectionModel(
                 id: 7,
                 name: "Миссия и ценности",
                 icon: "university",
                 url: "http://agpu.net/contacts/missiya.php",
-                voiceCommand: "миссия"
+                voiceCommand: "мисси"
             ),
             AGPUSubSectionModel(
                 id: 8,
@@ -160,7 +160,7 @@ struct AGPUSubSections {
                 name: "Расписание занятий",
                 icon: "student",
                 url: "http://www.it-institut.ru/SearchString/Index/118",
-                voiceCommand: "-"
+                voiceCommand: "расписание"
             ),
             AGPUSubSectionModel(
                 id: 2,
@@ -252,7 +252,7 @@ struct AGPUSubSections {
                 name: "Расписание занятий",
                 icon: "people",
                 url: "http://www.it-institut.ru/SearchString/Index/118",
-                voiceCommand: "-"
+                voiceCommand: "расписание"
             ),
             AGPUSubSectionModel(
                 id: 2,

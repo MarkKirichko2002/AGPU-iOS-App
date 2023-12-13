@@ -20,6 +20,8 @@ extension WebViewModel: WebViewModelProtocol {
             scrollPosition = notification.object as? String ?? ""
             
             print(scrollPosition)
+            print(positionX)
+            print(positionY)
             
             if scrollPosition == "вверх" {
                 positionY -= 30
