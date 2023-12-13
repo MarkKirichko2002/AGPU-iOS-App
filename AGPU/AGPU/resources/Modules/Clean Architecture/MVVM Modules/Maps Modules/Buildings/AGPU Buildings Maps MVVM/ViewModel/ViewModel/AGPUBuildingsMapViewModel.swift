@@ -15,7 +15,7 @@ final class AGPUBuildingsMapViewModel {
     var arr = [MKAnnotation]()
     
     var faculty: AGPUFacultyModel?
-    var type = AGPUBuildingType.all
+    var type: AGPUBuildingType? = .all
     
     // MARK: - сервисы
     let locationManager = LocationManager()

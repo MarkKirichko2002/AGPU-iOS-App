@@ -12,7 +12,7 @@ class AGPUBuildingTypesListTableViewController: UITableViewController {
     var viewModel: AGPUBuildingTypesListViewModel!
     
     // MARK: - Init
-    init(type: AGPUBuildingType) {
+    init(type: AGPUBuildingType?) {
         self.viewModel = AGPUBuildingTypesListViewModel(type: type)
         super.init(nibName: nil, bundle: nil)
     }
@@ -29,7 +29,7 @@ class AGPUBuildingTypesListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Типы зданий"
+        navigationItem.title = "Корпуса"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton

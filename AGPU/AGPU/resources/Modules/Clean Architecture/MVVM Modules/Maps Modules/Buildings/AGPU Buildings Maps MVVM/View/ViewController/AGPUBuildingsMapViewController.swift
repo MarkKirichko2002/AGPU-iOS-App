@@ -34,7 +34,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
         
         let backButton = UIBarButtonItem(customView: button)
         
-        let typeList = UIAction(title: "Типы зданий") { _ in
+        let typeList = UIAction(title: "Корпуса") { _ in
             let vc = AGPUBuildingTypesListTableViewController(type: self.viewModel.type)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen

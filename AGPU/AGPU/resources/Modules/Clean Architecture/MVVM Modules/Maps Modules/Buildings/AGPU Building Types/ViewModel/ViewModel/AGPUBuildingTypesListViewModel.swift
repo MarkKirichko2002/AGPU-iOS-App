@@ -9,12 +9,12 @@ import Foundation
 
 class AGPUBuildingTypesListViewModel {
     
-    var type = AGPUBuildingType.all
+    var type: AGPUBuildingType?
     var dataChangedHandler: (()->Void)?
     var typeSelectedHandler: (()->Void)?
     
     // MARK: - Init
-    init(type: AGPUBuildingType) {
+    init(type: AGPUBuildingType?) {
         self.type = type
     }
 }

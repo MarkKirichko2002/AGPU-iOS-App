@@ -60,7 +60,9 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
     func observeBuildingTypeSelected() {
         NotificationCenter.default.addObserver(forName: Notification.Name("building type selected"), object: nil, queue: .main) { notification in
             if let type = notification.object as? AGPUBuildingType {
+                
                 self.type = type
+                
                 switch type {
                 case .all:
                     
@@ -114,7 +116,7 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
             if let faculty = notification.object as? AGPUFacultyModel {
                 
                 self.faculty = faculty
-                self.type = .all
+                self.type = nil
                 
                 for pin in self.arr {
                     self.choiceHandler?(false, pin)
