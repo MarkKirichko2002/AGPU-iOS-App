@@ -22,26 +22,26 @@ extension AGPUTabBarController {
                     self.goToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false)
                 }
                 isOpened = true
-                ResetSpeechRecognition()
+                resetSpeechRecognition()
                 break
             }
         }
     }
     
     // измение раздела сайта
-    func ChangeSection(text: String) {
+    func changeSection(text: String) {
         
         for section in AGPUSections.sections {
             
             if text.lowercased().contains(section.voiceCommand) {
-                ResetSpeechRecognition()
+                resetSpeechRecognition()
                 NotificationCenter.default.post(name: Notification.Name("section selected"), object: section)
             }
         }
     }
     
     // случайный раздел
-    func GenerateRandomSection(text: String) {
+    func generateRandomSection(text: String) {
         
         if text.lowercased().contains("случайный раздел") || text.lowercased().contains("случайно раздел") || text.lowercased().contains("рандомный раздел") || text.lowercased().contains("рандомно раздел") {
             
@@ -53,7 +53,15 @@ extension AGPUTabBarController {
                 self.isOpened = true
                 self.goToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false)
             }
-            ResetSpeechRecognition()
+            resetSpeechRecognition()
+        }
+    }
+    
+    func randomSectionOnScreen(text: String) {
+        if text.contains("случайный раздел") || text.contains("случайно раздел") || text.contains("рандомный раздел") || text.contains("рандомно раздел") {
+            let section = AGPUSections.sections[Int.random(in: 0..<AGPUSections.sections.count - 1)]
+            resetSpeechRecognition()
+            NotificationCenter.default.post(name: Notification.Name("section selected"), object: section)
         }
     }
     
@@ -65,7 +73,7 @@ extension AGPUTabBarController {
             for subsection in section.subsections {
                 
                 if text.noWhitespacesWord().contains(subsection.voiceCommand) && subsection.url != "" {
-                    ResetSpeechRecognition()
+                    resetSpeechRecognition()
                     self.updateDynamicButton(icon: subsection.icon)
                     
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
@@ -79,14 +87,14 @@ extension AGPUTabBarController {
     }
     
     // измение подраздела сайта
-    func ChangeSubSection(text: String) {
+    func changeSubSection(text: String) {
         
         for section in AGPUSections.sections {
             
             for subsection in section.subsections {
                 
                 if text.lowercased().contains(subsection.voiceCommand) {
-                    ResetSpeechRecognition()
+                    resetSpeechRecognition()
                     NotificationCenter.default.post(name: Notification.Name("subsection selected"), object: subsection)
                 }
             }
@@ -99,7 +107,7 @@ extension AGPUTabBarController {
         for building in AGPUBuildings.buildings {
             
             if building.voiceCommands.contains(where: { text.lowercased().range(of: $0.lowercased()) != nil }) {
-                ResetSpeechRecognition()
+                resetSpeechRecognition()
                 self.updateDynamicButton(icon: "map icon")
                 let vc = SearchAGPUBuildingMapViewController(building: building)
                 let navVC = UINavigationController(rootViewController: vc)
@@ -114,20 +122,20 @@ extension AGPUTabBarController {
     }
     
     // измение корпуса на карте
-    func ChangeBuilding(text: String) {
+    func changeBuilding(text: String) {
         
         for building in AGPUBuildings.buildings {
             if building.voiceCommands.contains(where: { text.lowercased().range(of: $0.lowercased()) != nil }) {
-                ResetSpeechRecognition()
+                resetSpeechRecognition()
                 NotificationCenter.default.post(name: Notification.Name("building selected"), object: building.pin)
             }
         }
     }
     
-    func WebActions(text: String) {
+    func webActions(text: String) {
         
         if text.lowercased().lastWord().contains("закр") {
-            self.ResetSpeechRecognition()
+            self.resetSpeechRecognition()
             
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 self.isOpened = false
@@ -145,7 +153,7 @@ extension AGPUTabBarController {
         }
     }
     
-    func ResetSpeechRecognition() {
+    func resetSpeechRecognition() {
         speechRecognitionManager.cancelSpeechRecognition()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.speechRecognitionManager.startRecognize()
@@ -167,7 +175,7 @@ extension AGPUTabBarController {
     }
     
     // прокрутка веб страницы
-    func ScrollWebScreen(text: String) {
+    func scrollWebScreen(text: String) {
         for direction in VoiceDirections.directions {
             if direction.name.contains(text.lastWord()) {
                 NotificationCenter.default.post(name: Notification.Name("scroll web page"), object: text.lastWord())

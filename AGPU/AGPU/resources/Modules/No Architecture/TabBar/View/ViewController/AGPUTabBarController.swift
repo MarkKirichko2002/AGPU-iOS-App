@@ -184,14 +184,15 @@ final class AGPUTabBarController: UITabBarController {
     // MARK: - Voice Control
     private func checkVoiceCommands(text: String) {
         if isOpened {
-            ChangeSection(text: text.lowercased())
-            ChangeSubSection(text: text.lowercased())
-            ChangeBuilding(text: text.lowercased())
-            ScrollWebScreen(text: text.lastWord())
-            WebActions(text: text.lowercased())
+            changeSection(text: text.lowercased())
+            randomSectionOnScreen(text: text.lowercased())
+            changeSubSection(text: text.lowercased())
+            changeBuilding(text: text.lowercased())
+            scrollWebScreen(text: text.lastWord())
+            webActions(text: text.lowercased())
         } else {
             searchSection(text: text.lowercased())
-            GenerateRandomSection(text: text.lowercased())
+            generateRandomSection(text: text.lowercased())
             searchSubSection(text: text.lowercased())
             findBuilding(text: text.lowercased())
         }
