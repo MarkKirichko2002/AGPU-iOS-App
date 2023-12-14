@@ -125,7 +125,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     self.present(navVC, animated: true)
                 }
             } else if indexPath.row == 3 {
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "timetable")
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "clock")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = TimetableOptionsTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)

@@ -1023,13 +1023,13 @@
 			path = en.Iproj;
 			sourceTree = "<group>";
 		};
-		82162D822AB5CDF700840D90 /* Calendar MVVM */ = {
+		82162D822AB5CDF700840D90 /* Smart Calendar MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				8241F9862A5F3F78007DF628 /* View */,
 				82162D832AB5CE1B00840D90 /* ViewModel */,
 			);
-			path = "Calendar MVVM";
+			path = "Smart Calendar MVVM";
 			sourceTree = "<group>";
 		};
 		82162D832AB5CE1B00840D90 /* ViewModel */ = {
@@ -4002,7 +4002,7 @@
 				828321602A7C6A25008641A5 /* All Groups MVVM */,
 				822FB20A2AC5DC160083E016 /* Sub Groups List MVVM */,
 				82BCB5322AB3517400F3A321 /* Days List MVVM */,
-				82162D822AB5CDF700840D90 /* Calendar MVVM */,
+				82162D822AB5CDF700840D90 /* Smart Calendar MVVM */,
 				82B24A6F2A817D69008B94E4 /* All Weeks MVVM */,
 				82807C6C2AA0FA0900E9C884 /* Pair Types MVVM */,
 			);
@@ -5620,7 +5620,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.2;
+				MARKETING_VERSION = 1.6.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -5657,7 +5657,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.2;
+				MARKETING_VERSION = 1.6.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

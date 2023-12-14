@@ -75,7 +75,9 @@ final class WebViewController: UIViewController {
     private func bindViewModel() {
         
         viewModel.observeScroll(scrollView: WVWEBview.scrollView) { position in
-            self.WVWEBview.scrollView.setContentOffset(position, animated: true)
+            DispatchQueue.main.async {
+                self.WVWEBview.scrollView.setContentOffset(position, animated: true)
+            }
         }
         
         viewModel.observeActions { action in

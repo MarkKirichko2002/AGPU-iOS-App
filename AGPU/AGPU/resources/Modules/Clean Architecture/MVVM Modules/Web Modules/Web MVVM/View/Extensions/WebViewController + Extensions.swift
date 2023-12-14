@@ -18,7 +18,9 @@ extension WebViewController: UIScrollViewDelegate {
             self.viewModel.saveCurrentWebPage(url: url, position: position)
         }
         viewModel.observeScroll(scrollView: scrollView) { position in
-            scrollView.setContentOffset(position, animated: true)
+            DispatchQueue.main.async {
+                scrollView.setContentOffset(position, animated: true)
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ class TimetableOptionsTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "timetable", title: "Расписание", frame: .zero)
+        let titleView = CustomTitleView(image: "clock", title: "Расписание", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.titleView = titleView

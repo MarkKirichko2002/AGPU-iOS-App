@@ -31,6 +31,23 @@ extension CalendarViewModel: CalendarViewModelProtocol {
                     
                     self?.timetableHandler?("В этот день есть практика!", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), количество пар: \(self?.getPairsCount(pairs: data.disciplines) ?? 0), начало: \(startTime), конец: \(endTime)", UIColor.systemYellow)
                 }
+                // курсовая
+                if data.disciplines.contains(where: { $0.name.contains("курсов.") }) {
+                    
+                    let startTimes = data.disciplines[0].time.components(separatedBy: "-")
+                    let startTime = startTimes[0]
+                    
+                    let endTimes = data.disciplines[data.disciplines.count - 1].time.components(separatedBy: "-")
+                    let endTime = endTimes[1]
+                    let pairsCount = self?.getPairsCount(pairs: data.disciplines) ?? 0
+                    let testsCount = self?.getTestsCount(pairs: data.disciplines) ?? 0
+                    
+                    if testsCount > 0 {
+                        self?.timetableHandler?("В этот день есть курсовая!", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), пар: \(pairsCount), зачётов: \(testsCount), начало: \(startTime), конец: \(endTime)", UIColor.systemRed)
+                    } else {
+                        self?.timetableHandler?("В этот день есть курсовая!", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), количество пар: \(pairsCount), начало: \(startTime), конец: \(endTime)", UIColor.systemYellow)
+                    }
+                }
                 // зачет
                 if data.disciplines.contains(where: { $0.type == .cred }) {
                     

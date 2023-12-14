@@ -23,15 +23,15 @@ extension WebViewModel: WebViewModelProtocol {
             print(positionX)
             print(positionY)
             
-            if scrollPosition == "вверх" {
+            if scrollPosition.contains("вверх") {
                 positionY -= 30
-            } else if scrollPosition == "вниз" {
+            } else if scrollPosition.contains("низ"){
                 positionY += 30
             }
             
-            if scrollPosition.contains("лево") {
+            if scrollPosition.contains("лев") {
                 positionX -= 20
-            } else if scrollPosition.contains("право") {
+            } else if scrollPosition.contains("прав") {
                 positionX += 20
             }
             

@@ -66,7 +66,7 @@ final class AGPUTabBarController: UITabBarController {
         // новости
         newsVC.tabBarItem = UITabBarItem(title: "Новости", image: UIImage(named: "mail"), selectedImage: UIImage(named: "mail selected"))
         // расписание
-        timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: UIImage(named: "calendar"), selectedImage: UIImage(named: "calendar selected"))
+        timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: UIImage(named: "time icon"), selectedImage: UIImage(named: "time icon selected"))
         // настройки
         settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(named: "settings"), selectedImage: UIImage(named: "settings selected"))
         let nav1VC = UINavigationController(rootViewController: newsVC)

@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="430" height="110"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timetable" translatesAutoresizingMaskIntoConstraints="NO" id="3Ao-hS-Hjd" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="3Ao-hS-Hjd" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
                         <rect key="frame" x="30" y="19" width="70" height="70"/>
                         <color key="tintColor" red="0.0564979439" green="0.0" blue="0.25830120280000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -57,6 +57,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="timetable" width="48" height="48"/>
+        <image name="clock" width="48" height="48"/>
     </resources>
 </document>

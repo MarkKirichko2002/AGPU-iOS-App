@@ -83,7 +83,9 @@ final class WordDocumentReaderViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel.observeScroll { position in
-            self.WVWEBview.scrollView.setContentOffset(position, animated: true)
+            DispatchQueue.main.async {
+                self.WVWEBview.scrollView.setContentOffset(position, animated: true)
+            }
         }
         viewModel.observeActions {
             if self.navigationController?.viewControllers.first == self {
