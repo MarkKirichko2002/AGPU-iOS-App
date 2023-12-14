@@ -1,5 +1,5 @@
 //
-//  SearchAGPUBuildingMapViewController.swift
+//  VoiceSearchAGPUBuildingMapViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 04.08.2023.
@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class SearchAGPUBuildingMapViewController: UIViewController {
+class VoiceSearchAGPUBuildingMapViewController: UIViewController {
     
     private var building: AGPUBuildingModel!
     
@@ -100,6 +100,7 @@ class SearchAGPUBuildingMapViewController: UIViewController {
             self.mapView.annotations.forEach { annotation in
                 if annotation.title != "Вы" {
                     DispatchQueue.main.async {
+                        self.navigationItem.title = pin.title!
                         self.mapView.removeAnnotation(annotation)
                         self.mapView.addAnnotation(pin)
                     }

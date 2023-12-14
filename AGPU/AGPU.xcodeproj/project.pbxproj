@@ -163,8 +163,8 @@
 		828321672A7D02E6008641A5 /* AllGroupsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828321662A7D02E6008641A5 /* AllGroupsListViewModel.swift */; };
 		8283216C2A7D090C008641A5 /* AllGroupsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283216B2A7D090C008641A5 /* AllGroupsListViewModelProtocol.swift */; };
 		8283216E2A7D0932008641A5 /* AllGroupsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283216D2A7D0932008641A5 /* AllGroupsListViewModel + Extensions.swift */; };
-		828321732A7D643C008641A5 /* SearchAGPUBuildingMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828321722A7D643C008641A5 /* SearchAGPUBuildingMapViewController.swift */; };
-		828321762A7D6503008641A5 /* SearchAGPUBuildingMapViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828321752A7D6503008641A5 /* SearchAGPUBuildingMapViewController + Extensions.swift */; };
+		828321732A7D643C008641A5 /* VoiceSearchAGPUBuildingMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828321722A7D643C008641A5 /* VoiceSearchAGPUBuildingMapViewController.swift */; };
+		828321762A7D6503008641A5 /* VoiceSearchAGPUBuildingMapViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828321752A7D6503008641A5 /* VoiceSearchAGPUBuildingMapViewController + Extensions.swift */; };
 		8283217C2A7D67D4008641A5 /* SearchAGPUBuildingMapViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283217B2A7D67D4008641A5 /* SearchAGPUBuildingMapViewModelProtocol.swift */; };
 		8283217E2A7D683F008641A5 /* SearchAGPUBuildingMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283217D2A7D683F008641A5 /* SearchAGPUBuildingMapViewModel.swift */; };
 		828321802A7D687A008641A5 /* SearchAGPUBuildingMapViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283217F2A7D687A008641A5 /* SearchAGPUBuildingMapViewModel + Extensions.swift */; };
@@ -499,8 +499,8 @@
 		828321662A7D02E6008641A5 /* AllGroupsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsListViewModel.swift; sourceTree = "<group>"; };
 		8283216B2A7D090C008641A5 /* AllGroupsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsListViewModelProtocol.swift; sourceTree = "<group>"; };
 		8283216D2A7D0932008641A5 /* AllGroupsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AllGroupsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
-		828321722A7D643C008641A5 /* SearchAGPUBuildingMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAGPUBuildingMapViewController.swift; sourceTree = "<group>"; };
-		828321752A7D6503008641A5 /* SearchAGPUBuildingMapViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchAGPUBuildingMapViewController + Extensions.swift"; sourceTree = "<group>"; };
+		828321722A7D643C008641A5 /* VoiceSearchAGPUBuildingMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceSearchAGPUBuildingMapViewController.swift; sourceTree = "<group>"; };
+		828321752A7D6503008641A5 /* VoiceSearchAGPUBuildingMapViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VoiceSearchAGPUBuildingMapViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8283217B2A7D67D4008641A5 /* SearchAGPUBuildingMapViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAGPUBuildingMapViewModelProtocol.swift; sourceTree = "<group>"; };
 		8283217D2A7D683F008641A5 /* SearchAGPUBuildingMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAGPUBuildingMapViewModel.swift; sourceTree = "<group>"; };
 		8283217F2A7D687A008641A5 /* SearchAGPUBuildingMapViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchAGPUBuildingMapViewModel + Extensions.swift"; sourceTree = "<group>"; };
@@ -2777,13 +2777,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		8283216F2A7D6403008641A5 /* Search AGPU Building Map MVVM */ = {
+		8283216F2A7D6403008641A5 /* Voice Search AGPU Building Map MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				828321702A7D6418008641A5 /* View */,
 				828321772A7D67A3008641A5 /* ViewModel */,
 			);
-			path = "Search AGPU Building Map MVVM";
+			path = "Voice Search AGPU Building Map MVVM";
 			sourceTree = "<group>";
 		};
 		828321702A7D6418008641A5 /* View */ = {
@@ -2798,7 +2798,7 @@
 		828321712A7D6424008641A5 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				828321722A7D643C008641A5 /* SearchAGPUBuildingMapViewController.swift */,
+				828321722A7D643C008641A5 /* VoiceSearchAGPUBuildingMapViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2806,7 +2806,7 @@
 		828321742A7D64F2008641A5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				828321752A7D6503008641A5 /* SearchAGPUBuildingMapViewController + Extensions.swift */,
+				828321752A7D6503008641A5 /* VoiceSearchAGPUBuildingMapViewController + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -4319,7 +4319,7 @@
 				82E4C58C2A6B254200F65A67 /* AGPU Buildings Maps MVVM */,
 				824EBF612B29CF300003E7E6 /* AGPU Building Types */,
 				8210CA022A664D5700D0BEEE /* Current Buiding MVVM */,
-				8283216F2A7D6403008641A5 /* Search AGPU Building Map MVVM */,
+				8283216F2A7D6403008641A5 /* Voice Search AGPU Building Map MVVM */,
 				82ECCC6B2B1828EE00443ED8 /* AGPU Building Detail MVVM */,
 			);
 			path = Buildings;
@@ -5186,7 +5186,7 @@
 				82B1C0CF2A8070CE00520C14 /* SavedSubGroupViewModelProtocol.swift in Sources */,
 				82426C942A71DD0100D5AA57 /* UserStatusList.swift in Sources */,
 				824EBF822B2A0F0D0003E7E6 /* FacultyCathedraMapListViewModel.swift in Sources */,
-				828321732A7D643C008641A5 /* SearchAGPUBuildingMapViewController.swift in Sources */,
+				828321732A7D643C008641A5 /* VoiceSearchAGPUBuildingMapViewController.swift in Sources */,
 				8228E39C2A6C920D00C1B6AD /* LocationModel.swift in Sources */,
 				820D18E52A68F9EE00BFAA35 /* AGPUBuildingModel.swift in Sources */,
 				82BEAD822A7414C300DD34C2 /* RecentWebPageViewModel.swift in Sources */,
@@ -5289,7 +5289,7 @@
 				8234E5F32A88514600ED354C /* WordDocumentReaderViewController + Extensions.swift in Sources */,
 				82F98B322B11998E00137D9A /* WeatherManagerProtocol.swift in Sources */,
 				829548922A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift in Sources */,
-				828321762A7D6503008641A5 /* SearchAGPUBuildingMapViewController + Extensions.swift in Sources */,
+				828321762A7D6503008641A5 /* VoiceSearchAGPUBuildingMapViewController + Extensions.swift in Sources */,
 				82E4C5432A6B10F900F65A67 /* WebViewModelProtocol.swift in Sources */,
 				82768AF12ABE15450022FBE1 /* AppThemesListViewModel + Extensions.swift in Sources */,
 				82E4E5592A57699E00314296 /* WKWebView + Extensions.swift in Sources */,

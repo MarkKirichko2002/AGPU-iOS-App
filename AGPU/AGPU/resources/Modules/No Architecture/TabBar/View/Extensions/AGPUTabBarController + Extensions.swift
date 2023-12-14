@@ -109,7 +109,7 @@ extension AGPUTabBarController {
             if building.voiceCommands.contains(where: { text.lowercased().range(of: $0.lowercased()) != nil }) {
                 resetSpeechRecognition()
                 self.updateDynamicButton(icon: "map icon")
-                let vc = SearchAGPUBuildingMapViewController(building: building)
+                let vc = VoiceSearchAGPUBuildingMapViewController(building: building)
                 let navVC = UINavigationController(rootViewController: vc)
                 navVC.modalPresentationStyle = .fullScreen
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in

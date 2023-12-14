@@ -33,11 +33,13 @@ extension AGPUBuildingTypesListViewModel: AGPUBuildingTypesListViewModelProtocol
     
     func chooseBuildingType(index: Int) {
         let buildingType = AGPUBuildingTypes.types[index]
-        NotificationCenter.default.post(name: Notification.Name("building type selected"), object: buildingType.type)
-        type = buildingType.type
-        self.dataChangedHandler?()
-        self.typeSelectedHandler?()
-        HapticsManager.shared.hapticFeedback()
+        if buildingType.type != type {
+            NotificationCenter.default.post(name: Notification.Name("building type selected"), object: buildingType.type)
+            type = buildingType.type
+            self.dataChangedHandler?()
+            self.typeSelectedHandler?()
+            HapticsManager.shared.hapticFeedback()
+        }
     }
     
     func isCurrentType(index: Int)-> Bool {

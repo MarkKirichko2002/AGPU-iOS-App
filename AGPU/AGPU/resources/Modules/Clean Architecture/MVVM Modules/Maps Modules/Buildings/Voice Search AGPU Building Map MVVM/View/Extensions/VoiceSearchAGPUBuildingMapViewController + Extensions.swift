@@ -1,5 +1,5 @@
 //
-//  SearchAGPUBuildingMapViewController + Extensions.swift
+//  VoiceSearchAGPUBuildingMapViewController + Extensions.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 04.08.2023.
@@ -8,7 +8,7 @@
 import MapKit
 
 // MARK: - MKMapViewDelegate
-extension SearchAGPUBuildingMapViewController: MKMapViewDelegate {
+extension VoiceSearchAGPUBuildingMapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if view.annotation?.title != "Вы" {
