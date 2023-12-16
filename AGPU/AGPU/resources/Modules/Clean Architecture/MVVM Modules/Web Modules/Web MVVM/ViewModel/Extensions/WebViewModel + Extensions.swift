@@ -10,23 +10,24 @@ import UIKit
 // MARK: - WebViewModelProtocol
 extension WebViewModel: WebViewModelProtocol {
     
-    func observeScroll(scrollView: UIScrollView, completion: @escaping(CGPoint)->Void) {
+    func observeScroll(completion: @escaping(CGPoint)->Void) {
         
-        var positionX = scrollView.contentOffset.x
-        var positionY = scrollView.contentOffset.y
-        var scrollPosition = ""
-        
-        NotificationCenter.default.addObserver(forName: Notification.Name("scroll web page"), object: nil, queue: .main) { notification in
+        NotificationCenter.default.addObserver(forName: Notification.Name("scroll web page"), object: nil, queue: nil) { notification in
+            
+            var scrollPosition = ""
+            var positionX = self.scrollView.contentOffset.x
+            var positionY = self.scrollView.contentOffset.y
+            
             scrollPosition = notification.object as? String ?? ""
             
             print(scrollPosition)
             print(positionX)
             print(positionY)
             
-            if scrollPosition.contains("вверх") {
-                positionY -= 30
+            if scrollPosition == "вверх" {
+                positionY -= 50
             } else if scrollPosition.contains("низ"){
-                positionY += 30
+                positionY += 50
             }
             
             if scrollPosition.contains("лев") {
