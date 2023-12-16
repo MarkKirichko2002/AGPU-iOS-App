@@ -12,7 +12,7 @@ class OnlyTimetableOptionTableViewCell: UITableViewCell {
     static let identifier = "OnlyTimetableOptionTableViewCell"
     
     var userDefaults = UserDefaults.standard
-    var animation = AnimationClass()
+    let animation = AnimationClass()
     
     @IBOutlet weak var Switch: UISwitch!
     @IBOutlet weak var OnlyTimetableIcon: UIImageView!
@@ -26,11 +26,15 @@ class OnlyTimetableOptionTableViewCell: UITableViewCell {
             print("on")
             userDefaults.set(true, forKey: "onOnlyTimetable")
             animation.springAnimation(view: OnlyTimetableIcon)
-            NotificationCenter.default.post(name: Notification.Name("only timetable"), object: nil)
+            Timer.scheduledTimer(withTimeInterval: 0.8, repeats: false) { _ in
+                NotificationCenter.default.post(name: Notification.Name("only timetable"), object: nil)
+            }
         } else if Switch.isOn == false {
             print("off")
             userDefaults.set(false, forKey: "onOnlyTimetable")
-            NotificationCenter.default.post(name: Notification.Name("only timetable"), object: nil)
+            Timer.scheduledTimer(withTimeInterval: 0.8, repeats: false) { _ in
+                NotificationCenter.default.post(name: Notification.Name("only timetable"), object: nil)
+            }
         }
     }
 

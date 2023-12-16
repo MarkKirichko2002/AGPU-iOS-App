@@ -3034,7 +3034,7 @@
 			isa = PBXGroup;
 			children = (
 				82423E3C2A991E11006FA7D2 /* Shake To Recall */,
-				82BF39DE2B24837000FADBD4 /* Only Timetable */,
+				82BF39DE2B24837000FADBD4 /* Only Schedule */,
 				8283975A2AD5BBAD000F355A /* App Icons */,
 				82768AF22ABE1B0D0022FBE1 /* App Themes */,
 			);
@@ -4172,13 +4172,13 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		82BF39DE2B24837000FADBD4 /* Only Timetable */ = {
+		82BF39DE2B24837000FADBD4 /* Only Schedule */ = {
 			isa = PBXGroup;
 			children = (
 				82BF39DF2B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.swift */,
 				82BF39E02B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.xib */,
 			);
-			path = "Only Timetable";
+			path = "Only Schedule";
 			sourceTree = "<group>";
 		};
 		82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */ = {
@@ -5620,7 +5620,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.3;
+				MARKETING_VERSION = 1.6.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -5657,7 +5657,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.3;
+				MARKETING_VERSION = 1.6.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
