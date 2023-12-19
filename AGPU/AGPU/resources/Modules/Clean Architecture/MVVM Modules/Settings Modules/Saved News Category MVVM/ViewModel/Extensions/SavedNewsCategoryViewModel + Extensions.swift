@@ -20,7 +20,7 @@ extension SavedNewsCategoryViewModel: SavedNewsCategoryViewModelProtocol {
     }
     
     func selectNewsCategory(index: Int) {
-        let savedCategory = UserDefaults.standard.object(forKey: "category") as? String ?? ""
+        let savedCategory = UserDefaults.standard.object(forKey: "category") as? String ?? "-"
         let category = newsCategoryItem(index: index)
         print(category.newsAbbreviation)
         if category.newsAbbreviation != savedCategory {
@@ -35,7 +35,7 @@ extension SavedNewsCategoryViewModel: SavedNewsCategoryViewModelProtocol {
     }
     
     func isNewsCategorySelected(index: Int)-> Bool {
-        let savedCategory = UserDefaults.standard.object(forKey: "category") as? String ?? ""
+        let savedCategory = UserDefaults.standard.object(forKey: "category") as? String ?? "-"
         let category = newsCategoryItem(index: index)
         if category.newsAbbreviation == savedCategory {
             return true

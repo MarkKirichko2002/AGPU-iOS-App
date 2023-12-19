@@ -30,8 +30,8 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
     }
     
     func getSavedNewsCategoryInfo()-> String {
-        let savedNewsCategory = UserDefaults.standard.object(forKey: "category") as? String ?? ""
-        if savedNewsCategory != "" {
+        let savedNewsCategory = UserDefaults.standard.object(forKey: "category") as? String ?? "-"
+        if savedNewsCategory != "-" {
             let category = NewsCategories.categories.first { $0.newsAbbreviation == savedNewsCategory}
             return category?.name ?? ""
         } else {

@@ -25,7 +25,7 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
         
         for category in NewsCategories.categories {
             dispatchGroup.enter()
-            if category.newsAbbreviation != "" {
+            if category.newsAbbreviation != "-" {
                 newsService.getNews(abbreviation: category.newsAbbreviation) { [weak self] result in
                     defer { dispatchGroup.leave() }
                     switch result {
@@ -57,17 +57,19 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
         let category = categoryItem(index: index)
         if category.newsAbbreviation != currentCategory {
             if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation ==  category.newsAbbreviation}) {
-                NotificationCenter.default.post(name: Notification.Name("category"), object: newsCategory.newsAbbreviation)
-                NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-                UserDefaults.standard.setValue(newsCategory.newsAbbreviation, forKey: "category")
-                self.currentCategory = category.newsAbbreviation
-                HapticsManager.shared.hapticFeedback()
-            } else {
-                NotificationCenter.default.post(name: Notification.Name("category"), object: "")
-                NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-                UserDefaults.standard.setValue("", forKey: "category")
-                self.currentCategory = category.newsAbbreviation
-                HapticsManager.shared.hapticFeedback()
+                if newsCategory.newsAbbreviation != "-" {
+                    NotificationCenter.default.post(name: Notification.Name("category"), object: newsCategory.newsAbbreviation)
+                    NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+                    UserDefaults.standard.setValue(newsCategory.newsAbbreviation, forKey: "category")
+                    self.currentCategory = category.newsAbbreviation
+                    HapticsManager.shared.hapticFeedback()
+                } else {
+                    NotificationCenter.default.post(name: Notification.Name("category"), object: "-")
+                    NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+                    UserDefaults.standard.setValue("-", forKey: "category")
+                    self.currentCategory = category.newsAbbreviation
+                    HapticsManager.shared.hapticFeedback()
+                }
             }
             print(category.newsAbbreviation)
             self.categorySelectedHandler?("Выбрана категория \(category.name)")

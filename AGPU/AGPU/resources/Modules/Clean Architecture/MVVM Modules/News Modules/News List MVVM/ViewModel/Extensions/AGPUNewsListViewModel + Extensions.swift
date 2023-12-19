@@ -12,12 +12,12 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     // получить новости в зависимости от типа
     func getNewsByCurrentType() {
-        let savedNewsCategory = UserDefaults.standard.object(forKey: "category") as? String ?? ""
-        if savedNewsCategory != "" {
+        let savedNewsCategory = UserDefaults.standard.object(forKey: "category") as? String ?? "-"
+        if savedNewsCategory != "-" {
             getNews(abbreviation: savedNewsCategory)
         } else {
             getAGPUNews()
-            abbreviation = ""
+            abbreviation = "-"
         }
     }
     
@@ -27,7 +27,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             switch result {
             case .success(let response):
                 self?.newsResponse = response
-                self?.dataChangedHandler?("")
+                self?.dataChangedHandler?("-")
             case .failure(let error):
                 print(error)
             }
@@ -54,7 +54,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             switch result {
             case .success(let response):
                 self?.newsResponse = response
-                self?.dataChangedHandler?(self?.abbreviation ?? "")
+                self?.dataChangedHandler?(self?.abbreviation ?? "-")
             case .failure(let error):
                 print(error)
             }
@@ -80,13 +80,13 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     func observeCategoryChanges() {
         NotificationCenter.default.addObserver(forName: Notification.Name("category"), object: nil, queue: .main) { notification in
             if let category = notification.object as? String {
-                print("category: \(category)")
-                if category != "" {
+                print("категория: \(category)")
+                if category != "-" {
                     self.getNews(abbreviation: category)
                     self.abbreviation = category
                 } else {
                     self.getAGPUNews()
-                    self.abbreviation = ""
+                    self.abbreviation = "-"
                 }
             }
         }

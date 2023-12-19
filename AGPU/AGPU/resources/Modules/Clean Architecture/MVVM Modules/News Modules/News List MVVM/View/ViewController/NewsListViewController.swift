@@ -83,7 +83,7 @@ final class NewsListViewController: UIViewController {
             guard let self = self else { return }
             
             DispatchQueue.main.async {
-                if abbreviation != "" {
+                if abbreviation != "-" {
                     if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == abbreviation }) {
                         titleView = CustomTitleView(image: "\(newsCategory.icon)", title: "\(newsCategory.name) новости", frame: .zero)
                         self.spinner.stopAnimating()

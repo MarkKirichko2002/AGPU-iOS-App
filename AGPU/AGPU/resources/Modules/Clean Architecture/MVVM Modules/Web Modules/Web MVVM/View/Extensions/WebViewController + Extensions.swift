@@ -25,8 +25,13 @@ extension WebViewController: UIScrollViewDelegate {
 extension WebViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        
         DispatchQueue.main.async {
             self.spinner.startAnimating()
+        }
+        
+        if let url = webView.url?.absoluteString {
+            self.viewModel.checkWebPage(url: url)
         }
     }
     

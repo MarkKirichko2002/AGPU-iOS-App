@@ -64,7 +64,7 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
         
         var newsURL = ""
         
-        if abbreviation == ""  {
+        if abbreviation == "-"  {
             newsURL = "http://agpu.net/news.php?ELEMENT_ID=\(index)"
         } else if abbreviation == "educationaltechnopark" {
             newsURL = "http://www.agpu.net/struktura-vuza/educationaltechnopark/news/news.php?ELEMENT_ID=\(index)"
