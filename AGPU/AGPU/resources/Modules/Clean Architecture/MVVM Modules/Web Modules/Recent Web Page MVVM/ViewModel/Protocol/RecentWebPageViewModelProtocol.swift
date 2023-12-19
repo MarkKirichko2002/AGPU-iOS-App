@@ -9,4 +9,5 @@ import Foundation
 
 protocol RecentWebPageViewModelProtocol {
     func getRecentPosition(currentUrl: String, completion: @escaping(CGPoint)->Void)
+    func checkWebPage(url: String)
 }
