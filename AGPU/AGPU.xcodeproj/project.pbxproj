@@ -88,6 +88,7 @@
 		8234E60D2A885B6D00ED354C /* WordRecentDocumentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E60C2A885B6D00ED354C /* WordRecentDocumentViewModel.swift */; };
 		8234E60F2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E60E2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift */; };
 		8234E6122A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234E6112A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift */; };
+		82377F9B2B3365D200FF5045 /* Hints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82377F9A2B3365D200FF5045 /* Hints.swift */; };
 		8241F9812A5F3C4D007DF628 /* TimeTableDayListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9802A5F3C4D007DF628 /* TimeTableDayListTableViewController + Extensions.swift */; };
 		8241F9852A5F3F73007DF628 /* CalendarViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9842A5F3F73007DF628 /* CalendarViewController + Extensions.swift */; };
 		8241F9932A5F4091007DF628 /* TimeTableServicerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8241F9922A5F4091007DF628 /* TimeTableServicerProtocol.swift */; };
@@ -421,6 +422,7 @@
 		8234E60C2A885B6D00ED354C /* WordRecentDocumentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRecentDocumentViewModel.swift; sourceTree = "<group>"; };
 		8234E60E2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WordRecentDocumentViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		8234E6112A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentWordDocumentViewController + Extensions.swift"; sourceTree = "<group>"; };
+		82377F9A2B3365D200FF5045 /* Hints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hints.swift; sourceTree = "<group>"; };
 		8241F9802A5F3C4D007DF628 /* TimeTableDayListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableDayListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8241F9842A5F3F73007DF628 /* CalendarViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8241F9922A5F4091007DF628 /* TimeTableServicerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableServicerProtocol.swift; sourceTree = "<group>"; };
@@ -1701,6 +1703,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		82377F992B3365C600FF5045 /* Hints */ = {
+			isa = PBXGroup;
+			children = (
+				82377F9A2B3365D200FF5045 /* Hints.swift */,
+			);
+			path = Hints;
+			sourceTree = "<group>";
+		};
 		8241F97F2A5F3C38007DF628 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -2410,6 +2420,7 @@
 		8268886A2A34866D00434219 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				82377F992B3365C600FF5045 /* Hints */,
 				822245902B28EC1C00DFCFA7 /* Actions */,
 				8228E39A2A6C920000C1B6AD /* Location */,
 				82B1C0EB2A8123DF00520C14 /* Voice Directions */,
@@ -5292,6 +5303,7 @@
 				828321762A7D6503008641A5 /* VoiceSearchAGPUBuildingMapViewController + Extensions.swift in Sources */,
 				82E4C5432A6B10F900F65A67 /* WebViewModelProtocol.swift in Sources */,
 				82768AF12ABE15450022FBE1 /* AppThemesListViewModel + Extensions.swift in Sources */,
+				82377F9B2B3365D200FF5045 /* Hints.swift in Sources */,
 				82E4E5592A57699E00314296 /* WKWebView + Extensions.swift in Sources */,
 				824EBF752B29FA530003E7E6 /* AGPUBuildingTypesListViewModel + Extensions.swift in Sources */,
 				8226D1882B096F5A00B0B9F0 /* SavedPairTypeTableViewController.swift in Sources */,
@@ -5620,7 +5632,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.4;
+				MARKETING_VERSION = 1.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -5657,7 +5669,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.4;
+				MARKETING_VERSION = 1.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

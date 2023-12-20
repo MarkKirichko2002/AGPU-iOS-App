@@ -136,6 +136,19 @@ extension UIViewController {
         
         self.showAlert(title: "Обновление доступно!", message: "Обнаружено новое обновление! Хотите обновить приложение сейчас?", actions: [updateAction, cancelAction])
     }
+    
+    func showHintAlert(type: Hints) {
+        
+        let ok = UIAlertAction(title: "ОК", style: .default) { _ in}
+        
+        switch type {
+            
+        case .faculty:
+            self.showAlert(title: "Подсказка 💡!", message: "Чтобы вызвать контекстное меню удерживайте ячейку факультета", actions: [ok])
+        case .cathedra:
+            self.showAlert(title: "Подсказка 💡!", message: "Чтобы вызвать контекстное меню удерживайте ячейку кафедры", actions: [ok])
+        }
+    }
 }
 
 // MARK: - MFMailComposeViewControllerDelegate

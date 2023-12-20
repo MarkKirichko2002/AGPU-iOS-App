@@ -65,7 +65,7 @@ class SelectedFacultyListTableViewController: UITableViewController {
             
             let cathedraAction = UIAction(title: self.viewModel.isCathedraSelected(index: indexPath.row) ? "Выбрана кафедра" : "\(!self.viewModel.facultyItem(index: indexPath.row).cathedra.isEmpty ? "Выбрать кафедру" : "кафедры отсутствуют")", image: self.viewModel.isCathedraSelected(index: indexPath.row) ? UIImage(named: "check") : nil) { action in
                 if self.viewModel.isFacultySelected(index: indexPath.row) && !self.viewModel.facultyItem(index: indexPath.row).cathedra.isEmpty {
-                    let vc = FacultyCathedraListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
+                    let vc = FacultyCathedraListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row), isSettings: true)
                     vc.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(vc, animated: true)
                 } else if self.viewModel.isFacultySelected(index: indexPath.row) &&  self.viewModel.facultyItem(index: indexPath.row).cathedra.isEmpty {
@@ -123,6 +123,8 @@ class SelectedFacultyListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.showHintAlert(type: .faculty)
+        HapticsManager.shared.hapticFeedback()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

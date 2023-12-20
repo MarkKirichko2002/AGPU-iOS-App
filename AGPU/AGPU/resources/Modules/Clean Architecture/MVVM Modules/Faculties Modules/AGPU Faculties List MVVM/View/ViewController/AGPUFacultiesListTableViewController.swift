@@ -50,7 +50,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
             }
             
             let cathedraAction = UIAction(title: "Кафедры", image: UIImage(named: "university")) { _ in
-                let vc = FacultyCathedraListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
+                let vc = FacultyCathedraListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row), isSettings: false)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
@@ -93,6 +93,8 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        showHintAlert(type: .faculty)
+        HapticsManager.shared.hapticFeedback()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -103,7 +105,6 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AGPUFacultyTableViewCell.identifier, for: indexPath) as? AGPUFacultyTableViewCell else {return UITableViewCell()}
         cell.accessoryType = viewModel.isFacultySelected(index: indexPath.row) ? .checkmark : .none
-        cell.tintColor = .systemGreen
         cell.AGPUFacultyName.textColor = viewModel.isFacultySelected(index: indexPath.row) ? .systemGreen : .label
         cell.configure(faculty: viewModel.facultyItem(index: indexPath.row))
         return cell
