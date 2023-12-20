@@ -20,13 +20,20 @@ extension FacultyCathedraListViewModel: FacultyCathedraListViewModelProtocol {
     
     func selectCathedra(index: Int) {
         let cathedraItem = cathedraItem(index: index)
-        guard let savedCathedra = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") else {return}
-        if savedCathedra.name != cathedraItem.name {
-            UserDefaults.saveData(object: cathedraItem, key: "cathedra") {
-                print("сохранено")
-                self.isChanged.toggle()
-                HapticsManager.shared.hapticFeedback()
+        if let savedCathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
+            if savedCathedra.name != cathedraItem.name  {
+                saveCathedra(cathedra: cathedraItem)
             }
+        } else {
+            saveCathedra(cathedra: cathedraItem)
+        }
+    }
+    
+    func saveCathedra(cathedra: FacultyCathedraModel) {
+        UserDefaults.saveData(object: cathedra, key: "cathedra") {
+            print("сохранено")
+            self.isChanged.toggle()
+            HapticsManager.shared.hapticFeedback()
         }
     }
     
