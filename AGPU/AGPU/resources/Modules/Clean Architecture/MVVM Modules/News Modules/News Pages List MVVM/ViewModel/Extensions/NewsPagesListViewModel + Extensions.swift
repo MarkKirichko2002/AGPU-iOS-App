@@ -42,7 +42,7 @@ extension NewsPagesListViewModel: NewsPagesListViewModelProtocol {
         for page in 0..<pages.count {
             isStartLoading = true
             dispatchGroup.enter()
-            if abbreviation != "" {
+            if abbreviation != "-" {
                 newsService.getNews(by: page, abbreviation: abbreviation ?? "") { [weak self] result in
                     defer { dispatchGroup.leave() }
                     switch result {
@@ -53,7 +53,7 @@ extension NewsPagesListViewModel: NewsPagesListViewModelProtocol {
                     }
                 }
             } else {
-                newsService.getNews(by: page, abbreviation: "") { [weak self] result in
+                newsService.getNews(by: page, abbreviation: "-") { [weak self] result in
                     defer { dispatchGroup.leave() }
                     switch result {
                     case .success(let data):

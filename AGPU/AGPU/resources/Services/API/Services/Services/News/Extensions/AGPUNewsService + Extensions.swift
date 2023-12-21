@@ -80,7 +80,7 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
     // получить URL для пагинации
     func urlForPagination(abbreviation: String, page: Int)-> String {
         var url = ""
-        if abbreviation != "" {
+        if abbreviation != "-" {
             url = "http://\(HostName.host)/api/news/\(abbreviation)?page=\(page)"
             print(url)
             return url
