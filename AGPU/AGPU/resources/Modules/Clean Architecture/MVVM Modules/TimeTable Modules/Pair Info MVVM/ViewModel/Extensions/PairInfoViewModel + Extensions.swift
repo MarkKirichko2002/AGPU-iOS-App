@@ -88,7 +88,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         let currentTime = dateManager.getCurrentTime()
         // сравнение двух дат
         let dateComparisonResult = dateManager.compareDates(date1: currentDate, date2: date)
-        // сравнени двух времен
+        // сравнение двух времен
         let timeComparisonResult = dateManager.compareTimes(time1: currentTime, time2: startTime)
         
         if dateComparisonResult == .orderedSame && timeComparisonResult == .orderedAscending {
