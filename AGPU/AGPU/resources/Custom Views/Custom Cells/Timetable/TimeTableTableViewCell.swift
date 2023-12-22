@@ -53,12 +53,12 @@ final class TimeTableTableViewCell: UITableViewCell {
             return true
         }
         
-        // время меньше
+        // время меньше и тот же день
         if compareTime == .orderedAscending && compareDate == .orderedSame {
             return true
         }
         
-        // время такое же
+        // время такое же и тот же день
         if compareTime == .orderedSame && compareDate == .orderedSame  {
             return true
         }

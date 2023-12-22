@@ -39,6 +39,9 @@ struct PairTypesList {
             name: "Консультация",
             type: .cons),
         PairTypeModel(
+            name: "Оставшаяся",
+            type: .leftToday),
+        PairTypeModel(
             name: "Другое",
             type: .none)
     ]

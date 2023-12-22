@@ -290,6 +290,22 @@ final class TimeTableDayListTableViewController: UIViewController {
                 self.subgroup = 0
                 self.tableView.reloadData()
                 
+            } else if type == .leftToday {
+                
+                let filteredDisciplines = self.filterLeftedPairs(pairs: self.allDisciplines)
+                if filteredDisciplines.isEmpty {
+                    self.subgroup = 0
+                }
+                self.timetable?.disciplines = filteredDisciplines
+                
+                if filteredDisciplines.first?.type == .lab {
+                    self.subgroup = 0
+                } else {
+                    self.subgroup = filteredDisciplines.first?.subgroup ?? 0
+                }
+                
+                self.tableView.reloadData()
+                
             } else {
                 
                 if self.allDisciplines.isEmpty {
@@ -297,6 +313,7 @@ final class TimeTableDayListTableViewController: UIViewController {
                 }
                 
                 if let type = notification.object as? PairType {
+                    
                     let filteredDisciplines = self.allDisciplines.filter { $0.type == type }
                     if filteredDisciplines.isEmpty {
                         self.subgroup = 0
@@ -317,6 +334,41 @@ final class TimeTableDayListTableViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    private func filterLeftedPairs(pairs: [Discipline])-> [Discipline] {
+        
+        var disciplines = [Discipline]()
+        
+        let currentDate = dateManager.getCurrentDate()
+        let currentTime = dateManager.getCurrentTime()
+        
+        for pair in pairs {
+            
+            let pairEndTime = "\(pair.time.components(separatedBy: "-")[1]):00"
+            
+            let timetableDate = timetable?.date ?? ""
+            
+            let compareDate = dateManager.compareDates(date1: timetableDate, date2: currentDate)
+            let compareTime = dateManager.compareTimes(time1: pairEndTime, time2: currentTime)
+            
+            // прошлый день
+            if compareDate == .orderedAscending {
+                return disciplines
+            }
+            
+            // время больше и тот же день
+            if compareTime == .orderedDescending && compareDate == .orderedSame {
+                disciplines.append(pair)
+            }
+            
+            // следующий день
+            if compareDate == .orderedDescending {
+                return allDisciplines
+            }
+        }
+        
+        return disciplines
     }
     
     private func showSaveImageAlert() {

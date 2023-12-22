@@ -31,6 +31,7 @@ enum PairType: String, Codable {
     case fepo
     case cons
     case none
+    case leftToday
     case all
     
     var title: String {
@@ -53,6 +54,8 @@ enum PairType: String, Codable {
             return "консультация"
         case .none:
             return "другое"
+        case .leftToday:
+            return "оставшаяся"
         case .all:
             return "все"
         }
@@ -77,6 +80,8 @@ enum PairType: String, Codable {
         case .cons:
             return UIColor.white
         case .none:
+            return UIColor.white
+        case .leftToday:
             return UIColor.white
         case .all:
             return UIColor.white
