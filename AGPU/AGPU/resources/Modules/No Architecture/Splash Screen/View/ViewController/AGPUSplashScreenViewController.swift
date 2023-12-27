@@ -21,6 +21,8 @@ final class AGPUSplashScreenViewController: UIViewController {
             return .darkContent
         case .dark:
             return .lightContent
+        @unknown default:
+            return .default
         }
     }
     
@@ -38,6 +40,7 @@ final class AGPUSplashScreenViewController: UIViewController {
     // название
     private let AGPUTitleLabel: UILabel = {
         let label = UILabel()
+        label.isUserInteractionEnabled = true
         label.textColor = .label
         label.font = .systemFont(ofSize: 21, weight: .black)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -46,8 +49,7 @@ final class AGPUSplashScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        view.addSubviews(AGPUIcon, AGPUTitleLabel)
+        setUpView()
         setUpConstraints()
         showSplashScreen()
     }
@@ -60,6 +62,23 @@ final class AGPUSplashScreenViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    private func setUpView() {
+        view.backgroundColor = .systemBackground
+        view.addSubviews(AGPUIcon, AGPUTitleLabel)
+        setUpLabel()
+    }
+    
+    private func setUpLabel() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(springLabel))
+        AGPUTitleLabel.addGestureRecognizer(tap)
+        springLabel()
+    }
+    
+    @objc private func springLabel() {
+        animation?.springAnimation(view: self.AGPUTitleLabel)
+        HapticsManager.shared.hapticFeedback()
     }
     
     private func setUpConstraints() {
