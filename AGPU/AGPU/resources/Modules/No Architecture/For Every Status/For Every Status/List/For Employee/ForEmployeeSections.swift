@@ -33,26 +33,16 @@ struct ForEmployeeSections {
         ),
         ForEveryStatusModel(
             id: 5,
-            icon: "group icon",
-            name: "Подразделения"
-        ),
-        ForEveryStatusModel(
-            id: 6,
-            icon: "document",
-            name: "Документы"
-        ),
-        ForEveryStatusModel(
-            id: 7,
             icon: "student",
             name: "Учебный план"
         ),
         ForEveryStatusModel(
-            id: 8,
+            id: 6,
             icon: "sections icon",
             name: "Разделы сайта"
         ),
         ForEveryStatusModel(
-            id: 9,
+            id: 7,
             icon: "photo icon",
             name: "АГПУ обои"
         )
