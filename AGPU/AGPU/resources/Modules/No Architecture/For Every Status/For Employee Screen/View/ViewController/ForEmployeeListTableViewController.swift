@@ -57,8 +57,8 @@ class ForEmployeeListTableViewController: UITableViewController {
                     self.goToWeb(url: cathedra.manualUrl, image: ForEmployeeSections.sections[indexPath.row].icon, title: "Метод. материалы", isSheet: false)
                 }
             } else {
-                let ok = UIAlertAction(title: "ОК", style: .default)
-                self.showAlert(title: "Вы не выбрали кафедру", message: "чтобы посмотреть методические материалы для вашей кафедры выберите ее в настройках", actions: [ok])
+                self.showHintAlert(type: .manuals)
+                HapticsManager.shared.hapticFeedback()
             }
             
         case 4:

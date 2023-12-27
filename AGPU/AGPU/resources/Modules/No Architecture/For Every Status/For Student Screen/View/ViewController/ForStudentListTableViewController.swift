@@ -59,8 +59,8 @@ final class ForStudentListTableViewController: UITableViewController {
                     self.goToWeb(url: cathedra.manualUrl, image: ForStudentSections.sections[indexPath.row].icon, title: "Метод. материалы", isSheet: false)
                 }
             } else {
-                let ok = UIAlertAction(title: "ОК", style: .default)
-                self.showAlert(title: "Вы не выбрали кафедру", message: "чтобы посмотреть методические материалы для вашей кафедры выберите ее в настройках", actions: [ok])
+                self.showHintAlert(type: .manuals)
+                HapticsManager.shared.hapticFeedback()
             }
             
         case 4:
@@ -70,8 +70,8 @@ final class ForStudentListTableViewController: UITableViewController {
                     self.goToWeb(url: cathedra.additionalEducationUrl, image: ForStudentSections.sections[indexPath.row].icon, title: "Доп. образование", isSheet: false)
                 }
             } else {
-                let ok = UIAlertAction(title: "ОК", style: .default)
-                self.showAlert(title: "Вы не выбрали кафедру", message: "чтобы посмотреть соответствующие материалы для вашей кафедры выберите ее в настройках", actions: [ok])
+                self.showHintAlert(type: .additionalEducation)
+                HapticsManager.shared.hapticFeedback()
             }
             
         case 5:
