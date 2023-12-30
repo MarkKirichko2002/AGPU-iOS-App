@@ -26,24 +26,6 @@ extension TimeTableService: TimeTableServicerProtocol {
         }
     }
     
-    func getTimeTableDay(teacher: String, date: String, completion: @escaping(Result<TimeTable,Error>)->Void) {
-        
-        let teacher = teacher.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        
-        AF.request("http://merqury.fun/api/timetable/teacher/day?id=\(teacher)&date=\(date)").responseData { response in
-            
-            guard let data = response.data else {return}
-            
-            do {
-                let timetable = try JSONDecoder().decode(TimeTable.self, from: data)
-                print("Расписание: \(timetable)")
-                completion(.success(timetable))
-            } catch {
-                completion(.failure(error))
-            }
-        }
-    }
-    
     func getTimeTableDay(groupId: String, date: String, completion: @escaping(Result<TimeTable,Error>)->Void) {
         
         let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
@@ -122,29 +104,6 @@ extension TimeTableService: TimeTableServicerProtocol {
     func getTimeTableWeekImage(json: Data, completion: @escaping(UIImage)->Void) {
         
         let url = "http://merqury.fun/api/timetable/image/6days?horizontal"
-        
-        var request = URLRequest(url: URL(string: url)!)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = json
-        
-        AF.request(request).responseData { response in
-            
-            guard let data = response.data else {return}
-            
-            print(response.response?.statusCode)
-            
-            if let image = UIImage(data: data) {
-                completion(image)
-            } else {
-                print("нет")
-            }
-        }
-    }
-    
-    func getDisciplineImage(json: Data, completion: @escaping(UIImage)->Void) {
-        
-        let url = "http://merqury.fun/api/timetable/image/discipline"
         
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
