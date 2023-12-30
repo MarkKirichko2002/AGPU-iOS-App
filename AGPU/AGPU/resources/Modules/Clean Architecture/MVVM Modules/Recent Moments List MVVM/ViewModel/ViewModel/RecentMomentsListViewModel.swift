@@ -11,7 +11,4 @@ class RecentMomentsListViewModel {
     
     var alertHandler: ((String, String)->Void)?
     
-    func registerAlertHandler(block: @escaping(String, String)->Void) {
-        self.alertHandler = block
-    }
 }

@@ -18,6 +18,14 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
         }
     }
     
+    func getLastWebArticle(completion: @escaping(RecentWebPageModel)->Void) {
+        if let article = UserDefaults.loadData(type: RecentWebPageModel.self, key: "last article") {
+            completion(article)
+        } else {
+            alertHandler?("Нет недавней новости.", "Вы еще не открывали не одной новости.")
+        }
+    }
+    
     func getLastWordDocument(completion: @escaping(RecentWordDocumentModel)->Void) {
         if let document = UserDefaults.loadData(type: RecentWordDocumentModel.self, key: "last word document") {
             completion(document)
@@ -49,5 +57,9 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
         } else {
             alertHandler?("Нет недавнего видео.", "Вы еще не смотрели не одного видео.")
         }
+    }
+    
+    func registerAlertHandler(block: @escaping(String, String)->Void) {
+        self.alertHandler = block
     }
 }

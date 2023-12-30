@@ -11,10 +11,18 @@ import Foundation
 extension RecentWebPageViewModel: RecentWebPageViewModelProtocol {
     
     func getRecentPosition(currentUrl: String, completion: @escaping(CGPoint)->Void) {
-        if let page = UserDefaults.loadData(type: RecentWebPageModel.self, key: "last page") {
+        if let page = UserDefaults.loadData(type: RecentWebPageModel.self, key: "last page")  {
             if currentUrl == page.url {
                 Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
                     completion(page.position)
+                }
+            }
+        } 
+        
+        if let article = UserDefaults.loadData(type: RecentWebPageModel.self, key: "last article") {
+            if currentUrl == article.url {
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    completion(article.position)
                 }
             }
         }

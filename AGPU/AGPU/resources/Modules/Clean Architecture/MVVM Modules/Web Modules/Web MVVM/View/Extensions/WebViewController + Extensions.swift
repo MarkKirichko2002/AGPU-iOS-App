@@ -16,7 +16,7 @@ extension WebViewController: UIScrollViewDelegate {
         let position = CGPoint(x: 0, y: yOffset)
         viewModel.scrollView = scrollView
         if let url = WVWEBview.url?.absoluteString {
-            self.viewModel.saveCurrentWebPage(url: url, position: position)
+            self.viewModel.checkWebType(url: url, position: position)
         }
     }
 }

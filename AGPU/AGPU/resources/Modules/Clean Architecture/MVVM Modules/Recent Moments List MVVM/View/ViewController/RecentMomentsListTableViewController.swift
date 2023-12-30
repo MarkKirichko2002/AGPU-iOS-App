@@ -49,6 +49,13 @@ final class RecentMomentsListTableViewController: UITableViewController {
         }
     }
     
+    private func checkLastArticle() {
+        viewModel.getLastWebArticle { article in
+            HapticsManager.shared.hapticFeedback()
+            self.showRecentPageScreen(page: article)
+        }
+    }
+    
     private func checkLastPDFDocument() {
         viewModel.getLastPDFDocument { pdf in
             let vc = PDFLastPageViewController(pdf: pdf)
@@ -97,12 +104,14 @@ final class RecentMomentsListTableViewController: UITableViewController {
         case 0:
             checkLastWebPage()
         case 1:
-            checkLastPDFDocument()
+            checkLastArticle()
         case 2:
-            checkLastWordDocument()
+            checkLastPDFDocument()
         case 3:
-            checkLastTimetable()
+            checkLastWordDocument()
         case 4:
+            checkLastTimetable()
+        case 5:
             checkLastVideo()
         default:
             break

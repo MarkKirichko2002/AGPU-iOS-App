@@ -20,6 +20,25 @@ extension WebViewModel: WebViewModelProtocol {
         }
     }
     
+    func saveCurrentWebArticle(url: String, position: CGPoint) {
+        let dateManager = DateManager()
+        let date = dateManager.getCurrentDate()
+        let time = dateManager.getCurrentTime()
+        let article = RecentWebPageModel(date: date, time: time, url: url, position: position)
+        UserDefaults.saveData(object: article, key: "last article") {
+            print("сохранено: \(article)")
+        }
+    }
+    
+    func checkWebType(url: String, position: CGPoint) {
+        if url.contains("news") {
+            saveCurrentWebArticle(url: url, position: position)
+        } else {
+            saveCurrentWebPage(url: url, position: position)
+        }
+    }
+    
+    
     func checkWebPage(url: String) {
         let items = url.components(separatedBy: "/")
         print(items)
