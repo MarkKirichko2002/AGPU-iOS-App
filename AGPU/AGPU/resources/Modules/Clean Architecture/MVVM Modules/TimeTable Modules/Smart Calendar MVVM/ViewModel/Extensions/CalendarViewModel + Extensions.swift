@@ -16,6 +16,7 @@ extension CalendarViewModel: CalendarViewModelProtocol {
         service.getTimeTableDay(groupId: group, date: date) { [weak self] result in
             switch result {
             case .success(let data):
+                AudioPlayerClass.shared.playSound(sound: "paper")
                 // выходной
                 if data.disciplines.contains(where: { $0.type == .hol }) {
                     self?.timetableHandler?("Праздничный выходной", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(self?.dateManager.getCurrentDate() ?? "") занятий нет", UIColor.systemGray)
@@ -47,6 +48,7 @@ extension CalendarViewModel: CalendarViewModelProtocol {
                     } else {
                         self?.timetableHandler?("В этот день есть курсовая!", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), количество пар: \(pairsCount), начало: \(startTime), конец: \(endTime)", UIColor.systemYellow)
                     }
+                    AudioPlayerClass.shared.playSound(sound: "danger")
                 }
                 // зачет
                 if data.disciplines.contains(where: { $0.type == .cred }) {
@@ -61,7 +63,6 @@ extension CalendarViewModel: CalendarViewModelProtocol {
                     
                     self?.timetableHandler?("В этот день есть \(testsCount > 1 ? "зачёты!" : "зачёт!")", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), пар: \(pairsCount), зачётов: \(testsCount), начало: \(startTime), конец: \(endTime)", UIColor.systemYellow)
                 }
-                
                 // консультация
                 if data.disciplines.contains(where: { $0.type == .cons }) {
                     
@@ -85,6 +86,7 @@ extension CalendarViewModel: CalendarViewModelProtocol {
                     let examsCount = self?.getExamsCount(pairs: data.disciplines) ?? 0
                     
                     self?.timetableHandler?("В этот день есть \(examsCount > 1 ? "экзамены!" : "экзамен!")", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), экзаменов: \(examsCount), \nначало: \(startTime), конец: \(endTime)", UIColor.systemRed)
+                    AudioPlayerClass.shared.playSound(sound: "danger")
                 }
                 // расписание есть
                 if !data.disciplines.isEmpty {

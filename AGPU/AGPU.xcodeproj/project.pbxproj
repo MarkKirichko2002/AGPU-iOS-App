@@ -309,10 +309,11 @@
 		82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D492A5DD57B0060ADAA /* ForStudentListTableViewController.swift */; };
 		82E05D542A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D532A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift */; };
 		82E05D592A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E05D582A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift */; };
-		82E3C3CB2B4370FD00F2FFA3 /* paper.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82E3C3CA2B4370FD00F2FFA3 /* paper.mp3 */; };
 		82E3C3D12B43715A00F2FFA3 /* AudioPlayerClassProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E3C3D02B43715A00F2FFA3 /* AudioPlayerClassProtocol.swift */; };
 		82E3C3D32B43719900F2FFA3 /* AudioPlayerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E3C3D22B43719900F2FFA3 /* AudioPlayerClass.swift */; };
 		82E3C3D52B4371AB00F2FFA3 /* AudioPlayerClass + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E3C3D42B4371AB00F2FFA3 /* AudioPlayerClass + Extensions.swift */; };
+		82E3C3DC2B4380F000F2FFA3 /* paper.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82E3C3DA2B4380EF00F2FFA3 /* paper.mp3 */; };
+		82E3C3DF2B43815500F2FFA3 /* danger.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82E3C3DE2B43815500F2FFA3 /* danger.mp3 */; };
 		82E4C5152A6B0C8F00F65A67 /* ImageSaverProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5142A6B0C8F00F65A67 /* ImageSaverProtocol.swift */; };
 		82E4C5172A6B0D0200F65A67 /* ImageSaver + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5162A6B0D0200F65A67 /* ImageSaver + Extensions.swift */; };
 		82E4C5432A6B10F900F65A67 /* WebViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5422A6B10F900F65A67 /* WebViewModelProtocol.swift */; };
@@ -647,10 +648,11 @@
 		82E05D492A5DD57B0060ADAA /* ForStudentListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForStudentListTableViewController.swift; sourceTree = "<group>"; };
 		82E05D532A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultiesListTableViewController.swift; sourceTree = "<group>"; };
 		82E05D582A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultiesListViewModel.swift; sourceTree = "<group>"; };
-		82E3C3CA2B4370FD00F2FFA3 /* paper.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = paper.mp3; path = ../../../../../../../Downloads/paper.mp3; sourceTree = "<group>"; };
 		82E3C3D02B43715A00F2FFA3 /* AudioPlayerClassProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerClassProtocol.swift; sourceTree = "<group>"; };
 		82E3C3D22B43719900F2FFA3 /* AudioPlayerClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerClass.swift; sourceTree = "<group>"; };
 		82E3C3D42B4371AB00F2FFA3 /* AudioPlayerClass + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayerClass + Extensions.swift"; sourceTree = "<group>"; };
+		82E3C3DA2B4380EF00F2FFA3 /* paper.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = paper.mp3; path = ../../../../../../paper.mp3; sourceTree = "<group>"; };
+		82E3C3DE2B43815500F2FFA3 /* danger.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = danger.mp3; path = ../../../../../../../Downloads/danger.mp3; sourceTree = "<group>"; };
 		82E4C5142A6B0C8F00F65A67 /* ImageSaverProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaverProtocol.swift; sourceTree = "<group>"; };
 		82E4C5162A6B0D0200F65A67 /* ImageSaver + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageSaver + Extensions.swift"; sourceTree = "<group>"; };
 		82E4C5422A6B10F900F65A67 /* WebViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -4489,7 +4491,8 @@
 		82E3C3C92B4370EF00F2FFA3 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
-				82E3C3CA2B4370FD00F2FFA3 /* paper.mp3 */,
+				82E3C3DA2B4380EF00F2FFA3 /* paper.mp3 */,
+				82E3C3DE2B43815500F2FFA3 /* danger.mp3 */,
 			);
 			path = sounds;
 			sourceTree = "<group>";
@@ -5171,7 +5174,7 @@
 				822605EF2A84A0600055925F /* Assets.xcassets in Resources */,
 				8213658B2A94F73100A20E4E /* InfoPlist.strings in Resources */,
 				82920B662AD86EE600352CD8 /* YourStatusOptionTableViewCell.xib in Resources */,
-				82E3C3CB2B4370FD00F2FFA3 /* paper.mp3 in Resources */,
+				82E3C3DC2B4380F000F2FFA3 /* paper.mp3 in Resources */,
 				821EEAD72AA0B76F00AE517B /* UserStatusTableViewCell.xib in Resources */,
 				82BF39E22B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.xib in Resources */,
 				828397602AD5BBF4000F355A /* AppIconTableViewCell.xib in Resources */,
@@ -5189,6 +5192,7 @@
 				82989AD42A6E36C700F27858 /* FacultyCathedraTableViewCell.xib in Resources */,
 				828397752AD5C706000F355A /* PersonalizedAppIconTableViewCell.xib in Resources */,
 				82920B6B2AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.xib in Resources */,
+				82E3C3DF2B43815500F2FFA3 /* danger.mp3 in Resources */,
 				82B24A6E2A817BDE008B94E4 /* WeekTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

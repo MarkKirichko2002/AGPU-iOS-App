@@ -162,7 +162,11 @@ extension DaysListViewModel: DaysListViewModelProtocol {
     func chooseDay(index: Int) {
         let day = DaysList.days[index]
         NotificationCenter.default.post(name: Notification.Name("DateWasSelected"), object: day.date)
-        AudioPlayerClass.shared.playSound(sound: "paper")
+        if day.info.contains("экз") || day.info.contains("курс") {
+            AudioPlayerClass.shared.playSound(sound: "danger")
+        } else {
+            AudioPlayerClass.shared.playSound(sound: "paper")
+        }
         HapticsManager.shared.hapticFeedback()
     }
     
