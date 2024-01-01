@@ -99,7 +99,7 @@ struct AGPUFaculties {
             id: 7,
             name: "Научно-исследовательский институт развития образования",
             cathedra: [],
-            icon: "новый год",
+            icon: "АГПУ",
             AppIcon: "AppIcon",
             abbreviation: "НИИРО",
             url: "https://niiro-agpu.ru/",

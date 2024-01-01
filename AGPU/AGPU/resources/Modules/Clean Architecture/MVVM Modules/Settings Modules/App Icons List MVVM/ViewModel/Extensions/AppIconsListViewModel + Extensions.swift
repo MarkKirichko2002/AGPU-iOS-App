@@ -112,7 +112,7 @@ extension AppIconsListViewModel: AppIconsListViewModelProtocol {
             }
         } else {
             
-            if icon.id == 5 {
+            if icon.id == 1 {
                 return true
             }
         }

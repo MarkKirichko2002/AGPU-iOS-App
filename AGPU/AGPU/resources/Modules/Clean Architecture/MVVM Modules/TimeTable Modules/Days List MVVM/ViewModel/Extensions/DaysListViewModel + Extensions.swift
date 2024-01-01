@@ -53,7 +53,7 @@ extension DaysListViewModel: DaysListViewModelProtocol {
                         let examsCount = self?.getExamsCount(pairs: timetable.disciplines) ?? 0
                         
                         if coursesCount > 0 {
-                            DaysList.days[index!].info = coursesCount > 1 ? "курсовые" : "курсовая"
+                            DaysList.days[index!].info = coursesCount > 1 ? "курсовые" : "курсовая!"
                         } else if testsCount > 0 {
                             DaysList.days[index!].info = testsCount > 1 ? "зачеты" : "зачет"
                         } else if consCount > 0 {

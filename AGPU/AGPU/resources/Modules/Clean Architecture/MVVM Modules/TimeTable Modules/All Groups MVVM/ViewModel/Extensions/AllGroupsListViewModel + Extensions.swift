@@ -65,7 +65,7 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
                 return faculty.icon
             }
         }
-        return "новый год"
+        return "АГПУ"
     }
     
     func makeGroupsMenu()-> UIMenu {

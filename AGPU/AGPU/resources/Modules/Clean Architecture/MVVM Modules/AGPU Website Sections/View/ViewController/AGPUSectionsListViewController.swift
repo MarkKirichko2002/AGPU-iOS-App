@@ -20,7 +20,7 @@ final class AGPUSectionsListViewController: UIViewController {
     
     private func setUpNavigation() {
         
-        let titleView = CustomTitleView(image: "новый год", title: "Разделы сайта", frame: .zero)
+        let titleView = CustomTitleView(image: "АГПУ", title: "Разделы сайта", frame: .zero)
         
         let button = UIButton()
         button.tintColor = .label

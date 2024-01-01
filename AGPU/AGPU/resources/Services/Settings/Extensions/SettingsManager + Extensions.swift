@@ -47,7 +47,7 @@ extension SettingsManager: SettingsManagerProtocol {
     
     // MARK: - Selected Faculty
     func checkCurrentIcon()-> String {
-        let icon = UserDefaults.standard.object(forKey: "icon") as? String ?? "новый год"
+        let icon = UserDefaults.standard.object(forKey: "icon") as? String ?? "АГПУ"
         return icon
     }
     

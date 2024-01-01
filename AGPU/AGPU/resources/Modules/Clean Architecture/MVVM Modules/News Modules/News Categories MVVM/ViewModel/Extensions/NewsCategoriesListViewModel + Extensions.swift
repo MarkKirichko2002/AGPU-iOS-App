@@ -73,7 +73,7 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
                     self.currentCategory = category.newsAbbreviation
                     HapticsManager.shared.hapticFeedback()
                     Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                        NotificationCenter.default.post(name: Notification.Name("icon"), object: "новый год")
+                        NotificationCenter.default.post(name: Notification.Name("icon"), object: "АГПУ")
                     }
                 }
             }

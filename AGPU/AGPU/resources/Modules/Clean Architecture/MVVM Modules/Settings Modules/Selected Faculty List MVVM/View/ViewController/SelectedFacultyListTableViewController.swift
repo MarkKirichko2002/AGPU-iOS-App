@@ -19,7 +19,7 @@ class SelectedFacultyListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "новый год", title: "Выберите факультет", frame: .zero)
+        let titleView = CustomTitleView(image: "АГПУ", title: "Выберите факультет", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.titleView = titleView

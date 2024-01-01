@@ -229,7 +229,7 @@ final class AGPUTabBarController: UITabBarController {
             if let icon = notification.object as? String {
                 self.updateDynamicButton(icon: icon)
             } else {
-                self.updateDynamicButton(icon: "новый год")
+                self.updateDynamicButton(icon: "АГПУ")
             }
         }
     }
