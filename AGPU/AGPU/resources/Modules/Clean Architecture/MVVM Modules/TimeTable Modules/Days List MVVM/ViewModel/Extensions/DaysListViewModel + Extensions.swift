@@ -5,7 +5,7 @@
 //  Created by Марк Киричко on 14.09.2023.
 //
 
-import Foundation
+import UIKit
 
 // MARK: - DaysListViewModelProtocol
 extension DaysListViewModel: DaysListViewModelProtocol {
@@ -42,9 +42,25 @@ extension DaysListViewModel: DaysListViewModelProtocol {
                 switch result {
                 case .success(let timetable):
                     if !timetable.disciplines.isEmpty {
+                        // просто расписание
                         let day = DaysList.days.first { $0.name == day.name }
                         let index = DaysList.days.firstIndex(of: day!)
                         DaysList.days[index!].info = "пар: \(self?.getPairsCount(pairs: timetable.disciplines) ?? 0)"
+                        // особые дни
+                        let coursesCount = self?.getCoursesCount(pairs: timetable.disciplines) ?? 0
+                        let testsCount = self?.getTestsCount(pairs: timetable.disciplines) ?? 0
+                        let consCount = self?.getConsCount(pairs: timetable.disciplines) ?? 0
+                        let examsCount = self?.getExamsCount(pairs: timetable.disciplines) ?? 0
+                        
+                        if coursesCount > 0 {
+                            DaysList.days[index!].info = coursesCount > 1 ? "курсовые" : "курсовая"
+                        } else if testsCount > 0 {
+                            DaysList.days[index!].info = testsCount > 1 ? "зачеты" : "зачет"
+                        } else if consCount > 0 {
+                            DaysList.days[index!].info = consCount > 1 ? "консультации" : "консультация"
+                        } else if examsCount > 0 {
+                            DaysList.days[index!].info = examsCount > 1 ? "экзамены!" : "экзамен!"
+                        }
                     } else {
                         let day = DaysList.days.first { $0.name == day.name }
                         let index = DaysList.days.firstIndex(of: day!)
@@ -60,19 +76,87 @@ extension DaysListViewModel: DaysListViewModelProtocol {
         }
     }
     
+    // подсчет пар
     func getPairsCount(pairs: [Discipline])-> Int {
         
         var uniqueTimes: Set<String> = Set()
         
         for pair in pairs {
             
-            let times = pair.time.components(separatedBy: "-")
-            let startTime = times[0]
-            
-            uniqueTimes.insert(startTime)
+            if pair.type != .cred {
+                
+                let times = pair.time.components(separatedBy: "-")
+                let startTime = times[0]
+                
+                uniqueTimes.insert(startTime)
+            }
         }
         
         return uniqueTimes.count
+    }
+    
+    // подсчет курсовых
+    func getCoursesCount(pairs: [Discipline])-> Int {
+        
+        var uniqueCourses: Set<String> = Set()
+        
+        for pair in pairs {
+            
+            if pair.name.contains("курсов.") {
+                uniqueCourses.insert(pair.name)
+            }
+        }
+        
+        return uniqueCourses.count
+    }
+    
+    // подсчет зачетов
+    func getTestsCount(pairs: [Discipline])-> Int {
+        
+        var uniqueTimes: Set<String> = Set()
+        
+        for pair in pairs {
+            
+            if pair.type == .cred {
+                
+                let times = pair.time.components(separatedBy: "-")
+                let startTime = times[0]
+                
+                uniqueTimes.insert(startTime)
+            }
+        }
+        
+        return uniqueTimes.count
+    }
+    
+    // подсчет консультаций
+    func getConsCount(pairs: [Discipline])-> Int {
+        
+        var uniqueCons: Set<String> = Set()
+        
+        for pair in pairs {
+            
+            if pair.type == .cons {
+                uniqueCons.insert(pair.name)
+            }
+        }
+        
+        return uniqueCons.count
+    }
+    
+    // подсчет экзаменов
+    func getExamsCount(pairs: [Discipline])-> Int {
+        
+        var uniqueExams: Set<String> = Set()
+        
+        for pair in pairs {
+            
+            if pair.type == .exam {
+                uniqueExams.insert(pair.name)
+            }
+        }
+        
+        return uniqueExams.count
     }
     
     func chooseDay(index: Int) {
@@ -81,12 +165,16 @@ extension DaysListViewModel: DaysListViewModelProtocol {
         HapticsManager.shared.hapticFeedback()
     }
     
-    func checkDisciplinesExistence(index: Int)-> Bool {
+    func timeTableColor(index: Int)-> UIColor {
         let day = DaysList.days[index]
         if day.info.contains("пар:") {
-            return true
+            return .systemGreen
+        } else if day.info.contains("зачет") || day.info.contains("конс")  {
+            return .systemYellow
+        } else if day.info.contains("экзамен") || day.info.contains("курс")  {
+            return .systemRed
         } else {
-            return false
+            return .systemGray
         }
     }
     

@@ -73,7 +73,7 @@ class DaysListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = "\(day.name): \(day.dayOfWeek) \(day.date) (\(day.info))"
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
-        cell.textLabel?.textColor = viewModel.checkDisciplinesExistence(index: indexPath.row) ? .systemGreen : .systemGray
+        cell.textLabel?.textColor = viewModel.timeTableColor(index: indexPath.row)
         return cell
     }
 }
