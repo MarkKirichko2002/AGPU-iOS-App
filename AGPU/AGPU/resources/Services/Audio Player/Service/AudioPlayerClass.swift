@@ -10,6 +10,7 @@ import AVFoundation
 class AudioPlayerClass: NSObject {
     
     var player: AVAudioPlayer?
+    var isPlaying = false
     
     static let shared = AudioPlayerClass()
     

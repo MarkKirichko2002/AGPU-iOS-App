@@ -98,13 +98,11 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         
         // если даты равны и текущее время меньше времени начала пары
         if dateComparisonResult == .orderedSame && timeComparisonResult == .orderedAscending {
-            AudioPlayerClass.shared.playSound(sound: "clock_sound")
             getTimeLeftToStart()
         } 
         
         // если даты равны и текущее время меньше времени окончания пары
         else if dateComparisonResult == .orderedSame && timeComparisonResult2 == .orderedAscending {
-            AudioPlayerClass.shared.playSound(sound: "clock_sound")
             getTimeLeftToEnd()
         }
         
@@ -115,7 +113,6 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
                 
         // если текущая дата меньше другой
         else if dateComparisonResult == .orderedAscending {
-            AudioPlayerClass.shared.playSound(sound: "clock_sound")
             getTimeLeftToStartInFuture()
         } 
         
@@ -141,6 +138,9 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         components.hour = Int(startHour)
         components.minute = Int(endHour)
         
+        AudioPlayerClass.shared.stopSound()
+        AudioPlayerClass.shared.playSound(sound: "clock_sound", isPlaying: true)
+        
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             
             let currentDate = Date()
@@ -150,9 +150,11 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
                 let difference = calendar.dateComponents([.hour, .minute, .second], from: currentDate, to: startDate)
                 
                 if let hours = difference.hour, let minutes = difference.minute, let seconds = difference.second {
-                    if hours >= 0 && minutes >= 0 && seconds >= 0 {
+                    if hours <= 0 && minutes <= 0 && seconds <= 0 {
                         self.stopTimer()
                         self.getTimeLeftToEnd()
+                        AudioPlayerClass.shared.stopSound()
+                        AudioPlayerClass.shared.playSound(sound: "ring", isPlaying: false)
                     } else {
                         self.pairInfo[9] = "до начала: \(hours) часов \(minutes) минут \(seconds) секунд"
                         self.dataChangedHandler?()
@@ -181,7 +183,9 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         components.minute = Int(endHour)
         
         AudioPlayerClass.shared.stopSound()
-        AudioPlayerClass.shared.playSound(sound: "clock_sound")
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+            AudioPlayerClass.shared.playSound(sound: "clock_sound", isPlaying: true)
+        }
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             
@@ -202,7 +206,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
                         self.stopTimer()
                         self.getTimeEnded()
                         AudioPlayerClass.shared.stopSound()
-                        AudioPlayerClass.shared.playSound(sound: "ring")
+                        AudioPlayerClass.shared.playSound(sound: "ring", isPlaying: false)
                     }
                 } else {
                     print("Ошибка")
@@ -217,6 +221,9 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
     func getTimeLeftToStartInFuture() {
         
         let calendar = Calendar.current
+        
+        AudioPlayerClass.shared.stopSound()
+        AudioPlayerClass.shared.playSound(sound: "clock_sound", isPlaying: true)
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             

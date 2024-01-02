@@ -163,9 +163,9 @@ extension DaysListViewModel: DaysListViewModelProtocol {
         let day = DaysList.days[index]
         NotificationCenter.default.post(name: Notification.Name("DateWasSelected"), object: day.date)
         if day.info.contains("экз") || day.info.contains("курс") {
-            AudioPlayerClass.shared.playSound(sound: "danger")
+            AudioPlayerClass.shared.playSound(sound: "danger", isPlaying: false)
         } else {
-            AudioPlayerClass.shared.playSound(sound: "paper")
+            AudioPlayerClass.shared.playSound(sound: "paper", isPlaying: false)
         }
         HapticsManager.shared.hapticFeedback()
     }
