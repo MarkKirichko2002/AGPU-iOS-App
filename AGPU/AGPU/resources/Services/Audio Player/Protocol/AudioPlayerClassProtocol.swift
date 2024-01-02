@@ -9,5 +9,5 @@ import Foundation
 
 protocol AudioPlayerClassProtocol {
     func playSound(sound: String)
-    func stopSound(sound: String)
+    func stopSound()
 }

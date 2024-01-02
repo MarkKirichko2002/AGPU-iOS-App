@@ -16,13 +16,24 @@ extension AudioPlayerClass: AudioPlayerClassProtocol {
         
         do {
             self.player = try AVAudioPlayer(contentsOf: soundURL)
+            player?.delegate = self
             player?.play()
         } catch {
             print(error)
         }
     }
     
-    func stopSound(sound: String) {
+    func stopSound() {
         player?.stop()
+    }
+}
+
+// MARK: - AVAudioPlayerDelegate
+extension AudioPlayerClass: AVAudioPlayerDelegate {
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        if flag {
+            player.play()
+        }
     }
 }
