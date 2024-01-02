@@ -24,7 +24,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         pairInfo.append("дисциплина: \(pair.name)")
         pairInfo.append("преподаватель: \(pair.teacherName)")
         pairInfo.append("группа: \(pair.groupName)")
-        pairInfo.append("до начала осталось: 0 часов 0 минут")
+        pairInfo.append("вычисляем время...")
         dataChangedHandler?()
         checkCurrentTime()
     }
