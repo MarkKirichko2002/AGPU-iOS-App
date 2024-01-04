@@ -19,7 +19,7 @@ extension SettingsListViewController: UITableViewDataSource {
         case 0:
             return 4
         case 1:
-            return 4
+            return 5
         case 2:
             return 2
         default:
@@ -55,6 +55,10 @@ extension SettingsListViewController: UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: OnlyTimetableOptionTableViewCell.identifier, for: indexPath) as? OnlyTimetableOptionTableViewCell else {return UITableViewCell()}
                 return cell
             } else if indexPath.row == 2 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: SplashScreenOptionTableViewCell.identifier, for: indexPath) as? SplashScreenOptionTableViewCell else {return UITableViewCell()}
+                cell.configure(name: viewModel.getSplashScreenInfo())
+                return cell
+            } else if indexPath.row == 3 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AppIconTableViewCell.identifier, for: indexPath) as? AppIconTableViewCell else {return UITableViewCell()}
                 cell.configure(icon: viewModel.getAppIconInfo())
                 return cell
@@ -135,6 +139,14 @@ extension SettingsListViewController: UITableViewDelegate {
             }
         case 1:
             if indexPath.row == 2 {
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "mobile")
+                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                    let vc = SplashScreensListTableViewController()
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    self.present(navVC, animated: true)
+                }
+            } else if indexPath.row == 3 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "photo icon")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = AppIconsListTableViewController()
@@ -142,7 +154,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
-            } else if indexPath.row == 3 {
+            } else if indexPath.row == 4 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "theme")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = AppThemesListTableViewController()

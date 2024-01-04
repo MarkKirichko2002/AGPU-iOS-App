@@ -139,6 +139,15 @@
 		8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5442A578452008ACADC /* DateManagerProtocol.swift */; };
 		8270A5482A5784A2008ACADC /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5472A5784A2008ACADC /* DateManager.swift */; };
 		82722D432A66462100149D06 /* AGPUBuildingPins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82722D422A66462100149D06 /* AGPUBuildingPins.swift */; };
+		82761A152B462C6100D9976F /* SelectedFacultySplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82761A142B462C6100D9976F /* SelectedFacultySplashScreenViewController.swift */; };
+		82761A192B46309A00D9976F /* AGPUNewYearSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82761A182B46309A00D9976F /* AGPUNewYearSplashScreenViewController.swift */; };
+		82761A1D2B46381500D9976F /* SplashScreenOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82761A1B2B46381500D9976F /* SplashScreenOptionTableViewCell.swift */; };
+		82761A1E2B46381500D9976F /* SplashScreenOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82761A1C2B46381500D9976F /* SplashScreenOptionTableViewCell.xib */; };
+		82761A282B463F1800D9976F /* SplashScreensListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82761A272B463F1800D9976F /* SplashScreensListTableViewController.swift */; };
+		82761A2B2B463F9900D9976F /* SplashScreenOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82761A2A2B463F9900D9976F /* SplashScreenOptions.swift */; };
+		82761A2D2B46428100D9976F /* SplashScreensListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82761A2C2B46428100D9976F /* SplashScreensListViewModelProtocol.swift */; };
+		82761A2F2B46429200D9976F /* SplashScreensListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82761A2E2B46429200D9976F /* SplashScreensListViewModel.swift */; };
+		82761A312B4642A300D9976F /* SplashScreensListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82761A302B4642A300D9976F /* SplashScreensListViewModel + Extensions.swift */; };
 		82768AE22ABE12F30022FBE1 /* AppThemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82768AE12ABE12F30022FBE1 /* AppThemeModel.swift */; };
 		82768AE62ABE13550022FBE1 /* AppThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82768AE52ABE13550022FBE1 /* AppThemes.swift */; };
 		82768AE82ABE13B80022FBE1 /* AppThemesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82768AE72ABE13B80022FBE1 /* AppThemesListTableViewController.swift */; };
@@ -480,6 +489,15 @@
 		8270A5442A578452008ACADC /* DateManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerProtocol.swift; sourceTree = "<group>"; };
 		8270A5472A5784A2008ACADC /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		82722D422A66462100149D06 /* AGPUBuildingPins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingPins.swift; sourceTree = "<group>"; };
+		82761A142B462C6100D9976F /* SelectedFacultySplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFacultySplashScreenViewController.swift; sourceTree = "<group>"; };
+		82761A182B46309A00D9976F /* AGPUNewYearSplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUNewYearSplashScreenViewController.swift; sourceTree = "<group>"; };
+		82761A1B2B46381500D9976F /* SplashScreenOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenOptionTableViewCell.swift; sourceTree = "<group>"; };
+		82761A1C2B46381500D9976F /* SplashScreenOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashScreenOptionTableViewCell.xib; sourceTree = "<group>"; };
+		82761A272B463F1800D9976F /* SplashScreensListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreensListTableViewController.swift; sourceTree = "<group>"; };
+		82761A2A2B463F9900D9976F /* SplashScreenOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenOptions.swift; sourceTree = "<group>"; };
+		82761A2C2B46428100D9976F /* SplashScreensListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreensListViewModelProtocol.swift; sourceTree = "<group>"; };
+		82761A2E2B46429200D9976F /* SplashScreensListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreensListViewModel.swift; sourceTree = "<group>"; };
+		82761A302B4642A300D9976F /* SplashScreensListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SplashScreensListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82768AE12ABE12F30022FBE1 /* AppThemeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeModel.swift; sourceTree = "<group>"; };
 		82768AE52ABE13550022FBE1 /* AppThemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemes.swift; sourceTree = "<group>"; };
 		82768AE72ABE13B80022FBE1 /* AppThemesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemesListTableViewController.swift; sourceTree = "<group>"; };
@@ -1142,6 +1160,7 @@
 				8226D1732B095D5500B0B9F0 /* Timetable Settings List MVVM */,
 				8226D1842B096F2A00B0B9F0 /* Saved Pair Type MVVM */,
 				82B1C0C52A80702D00520C14 /* Saved Sub Group MVVM */,
+				82761A1F2B463E9F00D9976F /* Splash Screens List MVVM */,
 				828397612AD5BE76000F355A /* App Icons List MVVM */,
 				82768ADD2ABE12D30022FBE1 /* App Themes List MVVM */,
 			);
@@ -1334,7 +1353,7 @@
 		8226D1862B096F4400B0B9F0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8226D1872B096F5A00B0B9F0 /* SavedPairTypeTableViewController.swift */,
+				82761A222B463EC700D9976F /* ViewController */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2386,12 +2405,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		826888562A33AB3C00434219 /* Splash Screen */ = {
+		826888562A33AB3C00434219 /* Splash Screens */ = {
 			isa = PBXGroup;
 			children = (
-				8241F98E2A5F4023007DF628 /* View */,
+				82761A112B462AC300D9976F /* Regular */,
+				82761A102B462AC000D9976F /* Faculty */,
+				82761A0F2B462ABA00D9976F /* New Year */,
 			);
-			path = "Splash Screen";
+			path = "Splash Screens";
 			sourceTree = "<group>";
 		};
 		8268885C2A33ACA800434219 /* Custom Views */ = {
@@ -2421,7 +2442,7 @@
 		826888672A33B87A00434219 /* No Architecture */ = {
 			isa = PBXGroup;
 			children = (
-				826888562A33AB3C00434219 /* Splash Screen */,
+				826888562A33AB3C00434219 /* Splash Screens */,
 				828CFA342A35F62400C7542D /* TabBar */,
 				82426C752A714CDD00D5AA57 /* For Every Status */,
 				82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */,
@@ -2536,6 +2557,147 @@
 				82E4C51D2A6B0DB500F65A67 /* Extensions */,
 			);
 			path = Date;
+			sourceTree = "<group>";
+		};
+		82761A0F2B462ABA00D9976F /* New Year */ = {
+			isa = PBXGroup;
+			children = (
+				82761A162B46304C00D9976F /* View */,
+			);
+			path = "New Year";
+			sourceTree = "<group>";
+		};
+		82761A102B462AC000D9976F /* Faculty */ = {
+			isa = PBXGroup;
+			children = (
+				82761A122B462C0A00D9976F /* View */,
+			);
+			path = Faculty;
+			sourceTree = "<group>";
+		};
+		82761A112B462AC300D9976F /* Regular */ = {
+			isa = PBXGroup;
+			children = (
+				8241F98E2A5F4023007DF628 /* View */,
+			);
+			path = Regular;
+			sourceTree = "<group>";
+		};
+		82761A122B462C0A00D9976F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82761A132B462C0F00D9976F /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82761A132B462C0F00D9976F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82761A142B462C6100D9976F /* SelectedFacultySplashScreenViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82761A162B46304C00D9976F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82761A172B46306400D9976F /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82761A172B46306400D9976F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82761A182B46309A00D9976F /* AGPUNewYearSplashScreenViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82761A1A2B4637DE00D9976F /* Splash Screens */ = {
+			isa = PBXGroup;
+			children = (
+				82761A1B2B46381500D9976F /* SplashScreenOptionTableViewCell.swift */,
+				82761A1C2B46381500D9976F /* SplashScreenOptionTableViewCell.xib */,
+			);
+			path = "Splash Screens";
+			sourceTree = "<group>";
+		};
+		82761A1F2B463E9F00D9976F /* Splash Screens List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82761A292B463F8A00D9976F /* Model */,
+				82761A212B463EB700D9976F /* View */,
+				82761A202B463EB500D9976F /* ViewModel */,
+			);
+			path = "Splash Screens List MVVM";
+			sourceTree = "<group>";
+		};
+		82761A202B463EB500D9976F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82761A262B463EF400D9976F /* Protocol */,
+				82761A252B463EF200D9976F /* ViewModel */,
+				82761A242B463EF000D9976F /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82761A212B463EB700D9976F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82761A232B463EE000D9976F /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82761A222B463EC700D9976F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8226D1872B096F5A00B0B9F0 /* SavedPairTypeTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82761A232B463EE000D9976F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82761A272B463F1800D9976F /* SplashScreensListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82761A242B463EF000D9976F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82761A302B4642A300D9976F /* SplashScreensListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82761A252B463EF200D9976F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82761A2E2B46429200D9976F /* SplashScreensListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82761A262B463EF400D9976F /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82761A2C2B46428100D9976F /* SplashScreensListViewModelProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		82761A292B463F8A00D9976F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82761A2A2B463F9900D9976F /* SplashScreenOptions.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		82768ADD2ABE12D30022FBE1 /* App Themes List MVVM */ = {
@@ -3062,6 +3224,7 @@
 			children = (
 				82423E3C2A991E11006FA7D2 /* Shake To Recall */,
 				82BF39DE2B24837000FADBD4 /* Only Schedule */,
+				82761A1A2B4637DE00D9976F /* Splash Screens */,
 				8283975A2AD5BBAD000F355A /* App Icons */,
 				82768AF22ABE1B0D0022FBE1 /* App Themes */,
 			);
@@ -5186,6 +5349,7 @@
 				821EEAD72AA0B76F00AE517B /* UserStatusTableViewCell.xib in Resources */,
 				82BF39E22B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.xib in Resources */,
 				828397602AD5BBF4000F355A /* AppIconTableViewCell.xib in Resources */,
+				82761A1E2B46381500D9976F /* SplashScreenOptionTableViewCell.xib in Resources */,
 				82AB6D2D2AF6C45700F7B729 /* SavedNewsCategoryTableViewCell.xib in Resources */,
 				8213658E2A94F7B700A20E4E /* InfoPlist.strings in Resources */,
 				8226D1722B0958F600B0B9F0 /* TimetableOptionTableViewCell.xib in Resources */,
@@ -5279,6 +5443,7 @@
 				8228E3A62A6C9DB300C1B6AD /* AGPUBuildingsMapViewModel + Extensions.swift in Sources */,
 				82989AD82A6E54AF00F27858 /* AGPUCurrentCathedraMapViewController.swift in Sources */,
 				822605FA2A8532F30055925F /* RecentMomentsListViewModel + Extensions.swift in Sources */,
+				82761A2B2B463F9900D9976F /* SplashScreenOptions.swift in Sources */,
 				82426C902A71DCDA00D5AA57 /* UserStatusModel.swift in Sources */,
 				82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */,
 				82E4C58B2A6B20FF00F65A67 /* LocationManager + Extensions.swift in Sources */,
@@ -5333,6 +5498,8 @@
 				82E4C54C2A6B121900F65A67 /* AGPUFacultiesListViewModel + Extensions.swift in Sources */,
 				8283217E2A7D683F008641A5 /* SearchAGPUBuildingMapViewModel.swift in Sources */,
 				8218F5872A688F8C00C94EB4 /* CustomActivityItemSource.swift in Sources */,
+				82761A152B462C6100D9976F /* SelectedFacultySplashScreenViewController.swift in Sources */,
+				82761A2F2B46429200D9976F /* SplashScreensListViewModel.swift in Sources */,
 				82C44DAE2A591915002A3864 /* HapticsManager.swift in Sources */,
 				8228E3AB2A6C9E3B00C1B6AD /* AGPUCurrentBuildingMapViewModelProtocol.swift in Sources */,
 				82B1CA782A681F1D00D1FBA4 /* SpringImageView + Extensions.swift in Sources */,
@@ -5357,12 +5524,14 @@
 				82B24A892A81BD30008B94E4 /* AGPUNewsService.swift in Sources */,
 				82989AF22A6F8CDF00F27858 /* ForEveryStatusTableViewCell.swift in Sources */,
 				8270A5482A5784A2008ACADC /* DateManager.swift in Sources */,
+				82761A2D2B46428100D9976F /* SplashScreensListViewModelProtocol.swift in Sources */,
 				8283217C2A7D67D4008641A5 /* SearchAGPUBuildingMapViewModelProtocol.swift in Sources */,
 				82BF4DB72A5FA807008B751A /* ImageSaver.swift in Sources */,
 				82E05D592A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift in Sources */,
 				82D0FC192B1B4C8B0056D94B /* CathedraBuildingDetailViewModel + Extensions.swift in Sources */,
 				822FB2142AC5DECC0083E016 /* SubGroupsListViewModelProtocol.swift in Sources */,
 				8226D17A2B095DA400B0B9F0 /* TimetableSettingsListViewModelProtocol.swift in Sources */,
+				82761A1D2B46381500D9976F /* SplashScreenOptionTableViewCell.swift in Sources */,
 				827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */,
 				8234E5F32A88514600ED354C /* WordDocumentReaderViewController + Extensions.swift in Sources */,
 				82F98B322B11998E00137D9A /* WeatherManagerProtocol.swift in Sources */,
@@ -5376,6 +5545,7 @@
 				8226D1882B096F5A00B0B9F0 /* SavedPairTypeTableViewController.swift in Sources */,
 				826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */,
 				821FCF052A87CDB8006FFB26 /* NewsCollectionViewCell.swift in Sources */,
+				82761A312B4642A300D9976F /* SplashScreensListViewModel + Extensions.swift in Sources */,
 				82B1C0D62A8071E500520C14 /* SavedSubGroupTableViewController.swift in Sources */,
 				82989AEB2A6F6E1B00F27858 /* FacultyCathedraListViewModelProtocol.swift in Sources */,
 				82E4C5682A6B154300F65A67 /* FacultyGroupsListViewModelProtocol.swift in Sources */,
@@ -5459,6 +5629,7 @@
 				8231B0B92AED693200EB41EA /* SearchResultModel.swift in Sources */,
 				82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */,
 				82920B652AD86EE600352CD8 /* YourStatusOptionTableViewCell.swift in Sources */,
+				82761A192B46309A00D9976F /* AGPUNewYearSplashScreenViewController.swift in Sources */,
 				825D56732AE5CBEB004305C7 /* PairInfoTableViewController.swift in Sources */,
 				82989ACF2A6E35B200F27858 /* FacultyCathedraTableViewCell.swift in Sources */,
 				82505F502A7FBD7D001DE24A /* TimeTableWeekListTableViewController.swift in Sources */,
@@ -5483,6 +5654,7 @@
 				82920B7E2AD87B9200352CD8 /* UserStatusListViewModel.swift in Sources */,
 				825D92EA2AF2E80F00B5E9DF /* RecentTimeTableDayListTableViewController.swift in Sources */,
 				82B24A8F2A81BDDD008B94E4 /* AGPUNewsServiceProtocol.swift in Sources */,
+				82761A282B463F1800D9976F /* SplashScreensListTableViewController.swift in Sources */,
 				82920B912AD8874100352CD8 /* SelectedFacultyListViewModel + Extensions.swift in Sources */,
 				8234E5FA2A88553700ED354C /* WordDocumenReaderViewModel.swift in Sources */,
 				82ECCC712B18299E00443ED8 /* AGPUBuildingDetailViewModelProtocol.swift in Sources */,
@@ -5700,7 +5872,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.9;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -5737,7 +5909,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.9;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

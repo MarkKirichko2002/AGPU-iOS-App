@@ -46,6 +46,8 @@ final class SettingsListViewController: UIViewController {
         tableView.register(UINib(nibName: OnlyTimetableOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: OnlyTimetableOptionTableViewCell.identifier)
         // Personalized App Icons
         tableView.register(UINib(nibName: AppIconTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppIconTableViewCell.identifier)
+        // Splash Screen
+        tableView.register(UINib(nibName: SplashScreenOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SplashScreenOptionTableViewCell.identifier)
         // Темы приложения
         tableView.register(UINib(nibName: AppThemesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppThemesTableViewCell.identifier)
         // MARK: - О приложении

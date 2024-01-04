@@ -12,13 +12,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        let vc = AGPUSplashScreenViewController(animation: AnimationClass())
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = vc
+        window.rootViewController = setUpSplashScreen()
         window.overrideUserInterfaceStyle = UserDefaults.loadData(type: AppThemeModel.self, key: "theme")?.theme ?? .light
         window.makeKeyAndVisible()
         self.window = window
+    }
+    
+    private func setUpSplashScreen()-> UIViewController {
+        let option = UserDefaults.loadData(type: SplashScreenOptions.self, key: "splash option") ?? .regular
+        switch option {
+        case .regular:
+            return AGPUSplashScreenViewController(animation: AnimationClass())
+        case .faculty:
+            return SelectedFacultySplashScreenViewController(animation: AnimationClass())
+        case .newyear:
+            return AGPUNewYearSplashScreenViewController(animation: AnimationClass())
+        case .none:
+            return AGPUTabBarController()
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

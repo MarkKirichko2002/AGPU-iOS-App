@@ -12,6 +12,7 @@ protocol SettingsListViewModelProtocol {
     func getStatusInfo()-> UserStatusModel
     func getSelectedFacultyInfo()-> AGPUFacultyModel?
     func getSavedNewsCategoryInfo()-> String
+    func getSplashScreenInfo()-> String
     func getAppIconInfo()-> String
     func getAppThemeInfo()-> AppThemeModel
     func getAppVersion()-> String
