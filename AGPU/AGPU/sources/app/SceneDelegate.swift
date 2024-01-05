@@ -22,15 +22,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func setUpSplashScreen()-> UIViewController {
         let option = UserDefaults.loadData(type: SplashScreenOptions.self, key: "splash option") ?? .regular
+        let regularVC = AGPUSplashScreenViewController(animation: AnimationClass())
+        let facultyVC = SelectedFacultySplashScreenViewController(animation: AnimationClass())
+        let newYearVC = AGPUNewYearSplashScreenViewController(animation: AnimationClass())
+        let tabBarVC = AGPUTabBarController()
         switch option {
         case .regular:
-            return AGPUSplashScreenViewController(animation: AnimationClass())
+            return regularVC
         case .faculty:
-            return SelectedFacultySplashScreenViewController(animation: AnimationClass())
+            return facultyVC
         case .newyear:
-            return AGPUNewYearSplashScreenViewController(animation: AnimationClass())
+            return newYearVC
+        case .random:
+            return [regularVC, facultyVC, newYearVC].randomElement()!
         case .none:
-            return AGPUTabBarController()
+            return tabBarVC
         }
     }
 
