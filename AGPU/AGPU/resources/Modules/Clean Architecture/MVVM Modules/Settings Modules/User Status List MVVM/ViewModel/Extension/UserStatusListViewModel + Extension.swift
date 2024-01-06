@@ -20,10 +20,9 @@ extension UserStatusListViewModel: UserStatusListViewModelProtocol {
     }
     
     func chooseStatus(index: Int) {
-        var status = UserStatusList.list[index]
+        let status = UserStatusList.list[index]
         let savedStatus = UserDefaults.loadData(type: UserStatusModel.self, key: "user status")
         if status.id != savedStatus?.id {
-            status.isSelected = true
             UserDefaults.saveData(object: status, key: "user status") {
                 self.isChanged.toggle()
                 NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
@@ -35,9 +34,8 @@ extension UserStatusListViewModel: UserStatusListViewModelProtocol {
     
     func isStatusSelected(index: Int)-> Bool {
         var defaultstatus = UserStatusList.list[0]
-        defaultstatus.isSelected = true
         let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status") ?? defaultstatus
-        if status.id == UserStatusList.list[index].id && status.isSelected == true {
+        if status.id == statusItem(index: index).id {
             return true
         } else {
             return false

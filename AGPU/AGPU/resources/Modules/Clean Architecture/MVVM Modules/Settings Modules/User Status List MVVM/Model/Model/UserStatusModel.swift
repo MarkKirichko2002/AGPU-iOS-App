@@ -11,5 +11,5 @@ struct UserStatusModel: Codable {
     let id: Int
     let name: String
     let icon: String
-    var isSelected: Bool
+    let iconSelected: String
 }

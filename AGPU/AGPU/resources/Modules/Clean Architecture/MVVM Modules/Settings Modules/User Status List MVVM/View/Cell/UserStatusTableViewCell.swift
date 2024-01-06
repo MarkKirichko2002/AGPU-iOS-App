@@ -15,7 +15,7 @@ class UserStatusTableViewCell: UITableViewCell {
     @IBOutlet var StatusName: UILabel!
     
     func configure(status: UserStatusModel, viewModel: UserStatusListViewModel) {
-        StatusIcon.image = UIImage(named: status.icon)
+        StatusIcon.image = UIImage(named: viewModel.isStatusSelected(index: status.id - 1) ? status.iconSelected : status.icon)
         StatusName.text = status.name
         StatusName.textColor = viewModel.isStatusSelected(index: status.id - 1) ? .systemGreen : .label
         accessoryType = viewModel.isStatusSelected(index: status.id - 1) ? .checkmark : .none
