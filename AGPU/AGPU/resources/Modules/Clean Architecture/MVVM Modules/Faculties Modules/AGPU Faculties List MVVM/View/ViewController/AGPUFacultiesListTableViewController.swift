@@ -104,8 +104,8 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AGPUFacultyTableViewCell.identifier, for: indexPath) as? AGPUFacultyTableViewCell else {return UITableViewCell()}
-        cell.accessoryType = viewModel.isFacultySelected(index: indexPath.row) ? .checkmark : .none
         cell.AGPUFacultyName.textColor = viewModel.isFacultySelected(index: indexPath.row) ? .systemGreen : .label
+        cell.accessoryType = viewModel.isFacultySelected(index: indexPath.row) ? .checkmark : .none
         cell.configure(faculty: viewModel.facultyItem(index: indexPath.row))
         return cell
     }

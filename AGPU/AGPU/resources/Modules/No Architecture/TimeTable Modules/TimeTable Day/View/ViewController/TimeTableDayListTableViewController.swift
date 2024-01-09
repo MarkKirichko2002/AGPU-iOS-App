@@ -24,7 +24,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     // MARK: - UI
     let tableView = UITableView()
     private let spinner = UIActivityIndicatorView(style: .large)
-    private let noTimeTableLabel = UILabel()
+    private let infoLabel = UILabel()
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -175,14 +175,14 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     private func setUpLabel() {
-        view.addSubview(noTimeTableLabel)
-        noTimeTableLabel.text = "Нет расписания"
-        noTimeTableLabel.font = .systemFont(ofSize: 18, weight: .medium)
-        noTimeTableLabel.isHidden = true
-        noTimeTableLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(infoLabel)
+        infoLabel.text = "Нет расписания"
+        infoLabel.font = .systemFont(ofSize: 18, weight: .medium)
+        infoLabel.isHidden = true
+        infoLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            noTimeTableLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            noTimeTableLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            infoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            infoLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
@@ -190,7 +190,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         UserDefaults.standard.setValue(group, forKey: "recentGroup")
         UserDefaults.standard.setValue(date, forKey: "recentDate")
         self.spinner.startAnimating()
-        self.noTimeTableLabel.isHidden = true
+        self.infoLabel.isHidden = true
         self.timetable?.disciplines = []
         self.tableView.reloadData()
         service.getTimeTableDay(groupId: group, date: date) { [weak self] result in
@@ -209,18 +209,18 @@ final class TimeTableDayListTableViewController: UIViewController {
                         self?.tableView.reloadData()
                         self?.spinner.stopAnimating()
                         self?.refreshControl.endRefreshing()
-                        self?.noTimeTableLabel.isHidden = true
+                        self?.infoLabel.isHidden = true
                     }
                 } else {
                     self?.spinner.stopAnimating()
                     self?.refreshControl.endRefreshing()
-                    self?.noTimeTableLabel.isHidden = false
+                    self?.infoLabel.isHidden = false
                 }
             case .failure(let error):
                 self?.spinner.stopAnimating()
                 self?.refreshControl.endRefreshing()
-                self?.noTimeTableLabel.text = "Ошибка"
-                self?.noTimeTableLabel.isHidden = false
+                self?.infoLabel.text = "Ошибка"
+                self?.infoLabel.isHidden = false
                 print(error.localizedDescription)
             }
         }

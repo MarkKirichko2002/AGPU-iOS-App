@@ -10,6 +10,14 @@ import Foundation
 // MARK: - AGPUNewsListViewModelProtocol
 extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
+    // вернуть элемент новости
+    func articleItem(index: Int)-> Article {
+        if let article = newsResponse.articles?[index] {
+            return article
+        }
+        return Article(id: 0, title: "", description: "", date: "", previewImage: "")
+    }
+    
     // получить новости в зависимости от типа
     func getNewsByCurrentType() {
         let savedNewsCategory = UserDefaults.standard.object(forKey: "category") as? String ?? "-"
@@ -68,19 +76,12 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         }
     }
     
-    // вернуть элемент новости
-    func articleItem(index: Int)-> Article {
-        if let article = newsResponse.articles?[index] {
-            return article
-        }
-        return Article(id: 0, title: "", description: "", date: "", previewImage: "")
-    }
-    
     // следить за изменением категории
     func observeCategoryChanges() {
         NotificationCenter.default.addObserver(forName: Notification.Name("category"), object: nil, queue: .main) { notification in
-            if let category = notification.object as? String {
-                print("категория: \(category)")
+            guard let category = notification.object as? String else {return}
+            print("категория: \(category)")
+            if category != self.abbreviation {
                 if category != "-" {
                     self.getNews(abbreviation: category)
                     self.abbreviation = category
@@ -104,6 +105,12 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     // получить URL для конкретной статьи
     func makeUrlForCurrentArticle(index: Int)-> String {
         let url = newsService.urlForCurrentArticle(abbreviation: abbreviation, index: articleItem(index: index).id)
+        return url
+    }
+    
+    // получить URL для конкретной веб-страницы
+    func makeUrlForCurrentWebPage()-> String {
+        let url = newsService.urlForCurrentWebPage(abbreviation: abbreviation, currentPage: newsResponse.currentPage ?? 0)
         return url
     }
     

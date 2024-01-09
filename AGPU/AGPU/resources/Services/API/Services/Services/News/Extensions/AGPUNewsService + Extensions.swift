@@ -77,6 +77,20 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
         return newsURL
     }
     
+    // получить URL для конкретной веб-страницы
+    func urlForCurrentWebPage(abbreviation: String, currentPage: Int)-> String {
+        if abbreviation == "-" {
+            return "http://www.agpu.net/news.php?PAGEN_1=\(currentPage)"
+        } else if abbreviation == "PedagogicalQuantorium" {
+            return "http://www.agpu.net/struktura-vuza/PedagogicalQuantorium/news/news.php?PAGEN_1=\(currentPage)"
+        } else if abbreviation == "educationaltechnopark" {
+            return "http://www.agpu.net/struktura-vuza/educationaltechnopark/news/news.php?PAGEN_1=\(currentPage)"
+        } else if abbreviation != "-" {
+            return "http://www.agpu.net/struktura-vuza/faculties-institutes/\(abbreviation)/news/news.php?PAGEN_1=\(currentPage)"
+        }
+        return "http://www.agpu.net/news.php?PAGEN_1=\(currentPage)"
+    }
+    
     // получить URL для пагинации
     func urlForPagination(abbreviation: String, page: Int)-> String {
         var url = ""

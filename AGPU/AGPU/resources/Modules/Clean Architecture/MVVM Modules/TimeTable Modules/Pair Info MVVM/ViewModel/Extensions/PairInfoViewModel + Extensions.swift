@@ -18,7 +18,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         pairInfo.append("дата: \(date)")
         pairInfo.append("начало: \(startTime)")
         pairInfo.append("конец: \(endTime)")
-        pairInfo.append("подгруппа: \(subGroup)")
+        pairInfo.append(subGroup)
         pairInfo.append("тип пары: \(pairType)")
         pairInfo.append("аудитория: \(pair.audienceID)")
         pairInfo.append("дисциплина: \(pair.name)")
@@ -51,12 +51,15 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
     }
     
     func checkSubGroup(subgroup: Int)-> String {
-        if subgroup == 0 && !pair.name.contains("Дисциплина по выбору") {
-            return "общая пара"
+        if subgroup == 0 && !pair.name.contains("Дисциплина по выбору") &&
+            pair.type != .exam {
+            return "подгруппа: общая пара"
         } else if pair.name.contains("Дисциплина по выбору") {
-            return "отсутствует"
+            return "подгруппа: отсутствует"
+        } else if pair.type == .exam {
+            return "какая подгруппа? Это экзамен!"
         } else {
-            return "\(subgroup)"
+            return "подгруппа: \(subgroup)"
         }
     }
     

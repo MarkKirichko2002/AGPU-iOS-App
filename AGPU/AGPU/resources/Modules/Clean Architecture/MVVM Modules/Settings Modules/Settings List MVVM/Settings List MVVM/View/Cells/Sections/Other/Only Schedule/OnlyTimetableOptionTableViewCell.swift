@@ -29,6 +29,7 @@ class OnlyTimetableOptionTableViewCell: UITableViewCell {
             Timer.scheduledTimer(withTimeInterval: 0.8, repeats: false) { _ in
                 NotificationCenter.default.post(name: Notification.Name("only timetable"), object: nil)
             }
+            AudioPlayerClass.shared.playSound(sound: "paper", isPlaying: false)
         } else if Switch.isOn == false {
             print("off")
             userDefaults.set(false, forKey: "onOnlyTimetable")
@@ -41,12 +42,12 @@ class OnlyTimetableOptionTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setUpView()
-        Switch.isOn = userDefaults.bool(forKey: "onOnlyTimetable")
     }
     
     private func setUpView() {
         OnlyTimetableIcon.tintColor = .label
         backgroundColor = .systemBackground
         OnlyTimetableLabel.textColor = .label
+        Switch.isOn = userDefaults.bool(forKey: "onOnlyTimetable")
     }
 }
