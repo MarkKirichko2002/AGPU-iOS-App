@@ -9,8 +9,9 @@ import UIKit
 
 final class TimeTableWeekListTableViewController: UIViewController {
     
-    var group: String = ""
+    var id: String = ""
     private var subgroup: Int = 0
+    var owner: String = ""
     var week: WeekModel!
     var timetable = [TimeTable]()
     
@@ -25,10 +26,11 @@ final class TimeTableWeekListTableViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     
     // MARK: - Init
-    init(group: String, subgroup: Int, week: WeekModel) {
-        self.group = group
+    init(id: String, subgroup: Int, week: WeekModel, owner: String) {
+        self.id = id
         self.subgroup = subgroup
         self.week = week
+        self.owner = owner
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -131,14 +133,14 @@ final class TimeTableWeekListTableViewController: UIViewController {
         self.noTimeTableLabel.isHidden = true
         self.timetable = []
         self.tableView.reloadData()
-        service.getTimeTableWeek(groupId: group, startDate: week.from, endDate: week.to) { [weak self] result in
+        service.getTimeTableWeek(id: id, startDate: week.from, endDate: week.to, owner: owner) { [weak self] result in
             switch result {
             case .success(let timetable):
                 var arr = [TimeTable]()
                 if !timetable.isEmpty {
                     for timetable in timetable {
                         let data = timetable.disciplines.filter { $0.subgroup == self?.subgroup || $0.subgroup == 0 || (self?.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
-                        let timeTable = TimeTable(date: timetable.date, groupName: timetable.groupName, disciplines: data)
+                        let timeTable = TimeTable(id: self?.id ?? "ВМ-ИВТ-2-1", date: timetable.date, disciplines: data)
                         if !timetable.disciplines.isEmpty {
                             arr.append(timeTable)
                         }
@@ -171,12 +173,12 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     @objc private func shareTimetable() {
-        let emptyTimetable = [TimeTable(date: week.from, groupName: group, disciplines: [])]
+        let emptyTimetable = [TimeTable(id: id, date: week.from, disciplines: [])]
         if !self.timetable.isEmpty {
             do {
                 let json = try JSONEncoder().encode(timetable)
                 service.getTimeTableWeekImage(json: json) { image in
-                    self.ShareImage(image: image, title: self.group, text: "с \(self.week.from) \(self.week.to)")
+                    self.ShareImage(image: image, title: self.id, text: "с \(self.week.from) \(self.week.to)")
                 }
             } catch {
                 print(error.localizedDescription)
@@ -185,7 +187,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
             do {
                 let json = try JSONEncoder().encode(emptyTimetable)
                 service.getTimeTableWeekImage(json: json) { image in
-                    self.ShareImage(image: image, title: self.group, text: "с \(self.week.from) \(self.week.to)")
+                    self.ShareImage(image: image, title: self.id, text: "с \(self.week.from) \(self.week.to)")
                 }
             } catch {
                 print(error.localizedDescription)

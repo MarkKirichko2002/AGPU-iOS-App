@@ -11,7 +11,8 @@ import MapKit
 final class AGPUCurrentBuildingMapViewController: UIViewController {
 
     private var audienceID: String!
-    var group: String = ""
+    var id: String = ""
+    var owner: String = ""
     
     // MARK: - сервисы
     private var viewModel: AGPUCurrentBuildingMapViewModel!
@@ -20,9 +21,10 @@ final class AGPUCurrentBuildingMapViewController: UIViewController {
     private let mapView = MKMapView()
     
     // MARK: - Init
-    init(audienceID: String, group: String) {
+    init(audienceID: String, id: String, owner: String) {
         self.audienceID = audienceID
-        self.group = group
+        self.id = id
+        self.owner = owner
         self.viewModel = AGPUCurrentBuildingMapViewModel(audienceID: audienceID)
         super.init(nibName: nil, bundle: nil)
     }

@@ -9,7 +9,7 @@ import UIKit
 
 class TimeTableForCurrentBuildingViewController: UIViewController {
     
-    var timetable = TimeTable(date: "", groupName: "", disciplines: []) {
+    var timetable = TimeTable(id: "", date: "", disciplines: []) {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -62,7 +62,7 @@ class TimeTableForCurrentBuildingViewController: UIViewController {
             let json = try JSONEncoder().encode(self.timetable)
             let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: self.timetable.date)
             self.service.getTimeTableDayImage(json: json) { image in
-                self.ShareImage(image: image, title: self.timetable.groupName, text: "\(dayOfWeek) \(self.timetable.date)")
+                self.ShareImage(image: image, title: self.timetable.id, text: "\(dayOfWeek) \(self.timetable.date)")
             }
         } catch {
             print(error.localizedDescription)

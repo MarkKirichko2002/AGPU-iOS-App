@@ -13,7 +13,9 @@ final class CalendarViewController: UIViewController {
     // MARK: - сервисы
     let viewModel: CalendarViewModel
     
+    var id: String = ""
     var date: String = ""
+    var owner: String = ""
     
     // MARK: - UI
     private let Calendar: FSCalendar = {
@@ -25,8 +27,8 @@ final class CalendarViewController: UIViewController {
     }()
     
     // MARK: - Init
-    init(group: String, date: String) {
-        self.viewModel = CalendarViewModel(group: group)
+    init(id: String, date: String, owner: String) {
+        self.viewModel = CalendarViewModel(id: id, owner: owner)
         self.date = date
         super.init(nibName: nil, bundle: nil)
     }

@@ -15,7 +15,8 @@ extension AGPUCurrentBuildingMapViewController: MKMapViewDelegate {
             let storyboard = UIStoryboard(name: "AGPUBuildingDetailViewController", bundle: nil)
             if let vc = storyboard.instantiateViewController(withIdentifier: "AGPUBuildingDetailViewController") as? AGPUBuildingDetailViewController {
                 vc.annotation = view.annotation!
-                vc.group = group
+                vc.id = id
+                vc.owner = owner
                 let navVC = UINavigationController(rootViewController: vc)
                 navVC.modalPresentationStyle = .fullScreen
                 DispatchQueue.main.async {

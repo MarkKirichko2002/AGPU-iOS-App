@@ -46,7 +46,7 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let teacher = results[indexPath.row]
-        NotificationCenter.default.post(name: Notification.Name("teacher selected"), object: teacher.ownerID)
+        NotificationCenter.default.post(name: Notification.Name("object selected"), object: teacher.searchContent)
         self.dismiss(animated: true)
         self.tableView.reloadData()
     }

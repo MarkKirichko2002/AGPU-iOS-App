@@ -26,11 +26,11 @@ extension TimeTableService: TimeTableServicerProtocol {
         }
     }
     
-    func getTimeTableDay(groupId: String, date: String, completion: @escaping(Result<TimeTable,Error>)->Void) {
+    func getTimeTableDay(id: String, date: String, owner: String, completion: @escaping(Result<TimeTable,Error>)->Void) {
         
-        let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let id = id.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("http://merqury.fun/api/timetable/day?groupId=\(group)&date=\(date)").responseData { response in
+        AF.request("http://agpu.merqury.fun/api/timetable/day?id=\(id)&date=\(date)&owner=\(owner)").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -44,11 +44,11 @@ extension TimeTableService: TimeTableServicerProtocol {
         }
     }
     
-    func getTimeTableWeek(groupId: String, startDate: String, endDate: String, completion: @escaping(Result<[TimeTable],Error>)->Void) {
+    func getTimeTableWeek(id: String, startDate: String, endDate: String, owner: String, completion: @escaping(Result<[TimeTable],Error>)->Void) {
         
-        let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let id = id.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("http://merqury.fun/api/timetable/days?groupId=\(group)&startDate=\(startDate)&endDate=\(endDate)&removeEmptyDays").responseData { response in
+        AF.request("http://agpu.merqury.fun/api/timetable/days?id=\(id)&startDate=\(startDate)&owner=\(owner)&endDate=\(endDate)&removeEmptyDays").responseData { response in
             
             guard let data = response.data else {return}
             

@@ -11,7 +11,8 @@ import MapKit
 final class AGPUBuildingDetailViewController: UIViewController {
     
     var annotation: MKAnnotation!
-    var group: String = ""
+    var id: String = ""
+    var owner: String = ""
     
     // MARK: - сервисы
     var viewModel: AGPUBuildingDetailViewModel!
@@ -94,7 +95,7 @@ final class AGPUBuildingDetailViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel = AGPUBuildingDetailViewModel(annotation: annotation, group: group)
+        viewModel = AGPUBuildingDetailViewModel(annotation: annotation, id: id, owner: owner)
         viewModel.getTimetable()
         viewModel.getWeather()
         viewModel.registerPairsHandler { pairsInfo in

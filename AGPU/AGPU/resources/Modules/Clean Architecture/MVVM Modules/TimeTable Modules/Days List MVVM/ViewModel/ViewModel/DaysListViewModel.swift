@@ -9,8 +9,10 @@ import Foundation
 
 class DaysListViewModel {
     
-    var group: String = ""
+    var id: String = ""
     var currentDate: String = ""
+    var owner: String = ""
+    
     var dataChangedHandler: (()->Void)?
     
     // MARK: - сервисы
@@ -18,8 +20,9 @@ class DaysListViewModel {
     let dateManager = DateManager()
     
     // MARK: - Init
-    init(group: String, currentDate: String) {
-        self.group = group
+    init(id: String, currentDate: String, owner: String) {
+        self.id = id
         self.currentDate = currentDate
+        self.owner = owner
     }
 }

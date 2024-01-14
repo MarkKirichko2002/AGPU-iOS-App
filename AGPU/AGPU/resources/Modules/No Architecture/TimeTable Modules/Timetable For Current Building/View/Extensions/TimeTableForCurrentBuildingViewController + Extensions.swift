@@ -17,11 +17,11 @@ extension TimeTableForCurrentBuildingViewController: UITableViewDelegate {
             _ in
             
             let discipline = self.timetable.disciplines[indexPath.row]
-            let group = self.timetable.groupName
+            let group = self.timetable.id
             let date = self.timetable.date
             
             let infoAction = UIAction(title: "Подробнее", image: UIImage(named: "info")) { _ in
-                let vc = PairInfoTableViewController(pair: discipline, group: group, date: date)
+                let vc = PairInfoTableViewController(pair: discipline, id: group, date: date)
                 let navVC = UINavigationController(rootViewController: vc)
                 navVC.modalPresentationStyle = .fullScreen
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in

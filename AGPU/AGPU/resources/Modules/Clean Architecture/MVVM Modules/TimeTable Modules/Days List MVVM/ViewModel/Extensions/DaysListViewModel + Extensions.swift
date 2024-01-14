@@ -37,7 +37,7 @@ extension DaysListViewModel: DaysListViewModelProtocol {
         let dispatchGroup = DispatchGroup()
         for day in DaysList.days {
             dispatchGroup.enter()
-            timetableService.getTimeTableDay(groupId: group, date: day.date) { [weak self] result in
+            timetableService.getTimeTableDay(id: id, date: currentDate, owner: owner) { [weak self] result in
                 defer { dispatchGroup.leave() }
                 switch result {
                 case .success(let timetable):

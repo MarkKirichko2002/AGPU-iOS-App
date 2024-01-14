@@ -42,10 +42,11 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
         }
     }
     
-    func getLastTimetable(completion: @escaping(String, String)->Void) {
+    func getLastTimetable(completion: @escaping(String, String, String)->Void) {
         if let recentGroup = UserDefaults.standard.string(forKey: "recentGroup"),
-           let recentDate = UserDefaults.standard.string(forKey: "recentDate") {
-            completion(recentGroup, recentDate)
+           let recentDate = UserDefaults.standard.string(forKey: "recentDate"),
+           let recentOwner = UserDefaults.standard.string(forKey: "recentOwner") {
+            completion(recentGroup, recentDate, recentOwner)
         } else {
             alertHandler?("У вас нет недавнего расписания.", "Вы еше не смотрели расписание.")
         }

@@ -9,8 +9,9 @@ import UIKit
 
 class AllWeeksListTableViewController: UITableViewController {
     
-    private var group: String = ""
+    private var id: String = ""
     private var subgroup: Int = 0
+    private var owner: String = ""
     
     // MARK: - сервисы
     private let viewModel = AllWeeksListViewModel()
@@ -19,9 +20,10 @@ class AllWeeksListTableViewController: UITableViewController {
     private let refreshControll = UIRefreshControl()
     
     // MARK: - Init
-    init(group: String, subgroup: Int) {
-        self.group = group
+    init(id: String, subgroup: Int, owner: String) {
+        self.id = id
         self.subgroup = subgroup
+        self.owner = owner
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -31,7 +33,7 @@ class AllWeeksListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("группа: \(self.group)")
+        print("\(self.id)")
         setUpNavigation()
         setUpTable()
         setUpRefreshControl()
@@ -92,7 +94,7 @@ class AllWeeksListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let week = viewModel.weekItem(index: indexPath.row)
-        let vc = TimeTableWeekListTableViewController(group: self.group, subgroup: self.subgroup, week: week)
+        let vc = TimeTableWeekListTableViewController(id: id, subgroup: subgroup, week: week, owner: owner)
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)

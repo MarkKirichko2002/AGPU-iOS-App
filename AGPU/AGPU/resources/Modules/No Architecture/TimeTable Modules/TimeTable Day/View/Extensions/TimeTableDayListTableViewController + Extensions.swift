@@ -19,7 +19,7 @@ extension TimeTableDayListTableViewController: UITableViewDelegate {
             let discipline = self.timetable?.disciplines[indexPath.row]
             
             let infoAction = UIAction(title: "Подробнее", image: UIImage(named: "info")) { _ in
-                let vc = PairInfoTableViewController(pair: discipline!, group: self.group, date: self.date)
+                let vc = PairInfoTableViewController(pair: discipline!, id: self.id, date: self.date)
                 let navVC = UINavigationController(rootViewController: vc)
                 navVC.modalPresentationStyle = .fullScreen
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
@@ -29,7 +29,7 @@ extension TimeTableDayListTableViewController: UITableViewDelegate {
             
             let mapAction = UIAction(title: "Найти корпус", image: UIImage(named: "map icon")) { _ in
                 if let audience = discipline?.audienceID {
-                    let vc = AGPUCurrentBuildingMapViewController(audienceID: audience, group: self.group)
+                    let vc = AGPUCurrentBuildingMapViewController(audienceID: audience, id: self.id, owner: self.owner)
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                         vc.hidesBottomBarWhenPushed = true
                         self.navigationController?.pushViewController(vc, animated: true)
@@ -39,23 +39,10 @@ extension TimeTableDayListTableViewController: UITableViewDelegate {
                     self.showAlert(title: "Корпус не найден!", message: "К сожалению у данной пары отсутствует аудитория", actions: [ok])
                 }
             }
-            
-//            let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
-//                do {
-//                    let json = try JSONEncoder().encode([discipline!])
-//                    let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: self.date)
-//                    self.service.getDisciplineImage(json: json) { image in
-//                        self.ShareImage(image: image, title: self.group, text: "\(dayOfWeek) \(self.date)")
-//                    }
-//                } catch {
-//                    print(error.localizedDescription)
-//                }
-//            }
-            
+                        
             return UIMenu(title: self.timetable?.disciplines[indexPath.row].name ?? "", children: [
                 infoAction,
                 mapAction
-                //shareAction
             ])
         })
     }

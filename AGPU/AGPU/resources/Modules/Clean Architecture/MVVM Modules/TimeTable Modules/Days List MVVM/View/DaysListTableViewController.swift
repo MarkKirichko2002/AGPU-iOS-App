@@ -9,15 +9,15 @@ import UIKit
 
 class DaysListTableViewController: UITableViewController {
 
-    private var group = ""
+    private var id = ""
     private var currentDate = ""
     private var viewModel: DaysListViewModel
     
     // MARK: - Init
-    init(group: String, currentDate: String) {
-        self.group = group
+    init(id: String, currentDate: String, owner: String) {
+        self.id = id
         self.currentDate = currentDate
-        self.viewModel = DaysListViewModel(group: group, currentDate: currentDate)
+        self.viewModel = DaysListViewModel(id: id, currentDate: currentDate, owner: owner)
         super.init(nibName: nil, bundle: nil)
     }
     

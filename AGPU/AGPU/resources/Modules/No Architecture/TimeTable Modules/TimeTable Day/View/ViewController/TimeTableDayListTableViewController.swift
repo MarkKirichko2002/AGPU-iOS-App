@@ -9,9 +9,10 @@ import UIKit
 
 final class TimeTableDayListTableViewController: UIViewController {
     
-    var group = ""
+    var id = ""
     var subgroup = 0
     var date = ""
+    var owner = ""
     var allDisciplines: [Discipline] = []
     var type: PairType = .all
     
@@ -35,18 +36,20 @@ final class TimeTableDayListTableViewController: UIViewController {
         setUpRefreshControl()
         setUpIndicatorView()
         setUpLabel()
-        getTimeTable(group: group, date: date)
+        getTimeTable(id: id, date: date, owner: owner)
         observeGroupChange()
         observeSubGroupChange()
+        observeObjectSelected()
         observeCalendar()
         observePairType()
     }
     
     private func setUpData() {
-        self.group = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-2-1"
+        self.id = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-2-1"
         self.subgroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
         self.type = UserDefaults.loadData(type: PairType.self, key: "type") ?? .all
         date = dateManager.getCurrentDate()
+        owner = "GROUP"
         print(self.subgroup)
     }
      
@@ -56,9 +59,16 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         navigationItem.title = "Сегодня: \(dayOfWeek) \(date) "
         
+        let searchAction = UIAction(title: "Поиск") { _ in
+            let vc = TimeTableSearchListTableViewController()
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         // список групп
         let groupList = UIAction(title: "Группы") { _ in
-            let vc = AllGroupsListTableViewController(group: self.group)
+            let vc = AllGroupsListTableViewController(group: self.id)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -74,7 +84,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         // день
         let days = UIAction(title: "День") { _ in
-            let vc = DaysListTableViewController(group: self.group, currentDate: self.date)
+            let vc = DaysListTableViewController(id: self.id, currentDate: self.date, owner: self.owner)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -82,7 +92,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         // календарь
         let calendar = UIAction(title: "Календарь") { _ in
-            let vc = CalendarViewController(group: self.group, date: self.date)
+            let vc = CalendarViewController(id: self.id, date: self.date, owner: self.owner)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -90,7 +100,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         // недели
         let weeks = UIAction(title: "Недели") { _ in
-            let vc = AllWeeksListTableViewController(group: self.group, subgroup: self.subgroup)
+            let vc = AllWeeksListTableViewController(id: self.id, subgroup: self.subgroup, owner: self.owner)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -115,7 +125,7 @@ final class TimeTableDayListTableViewController: UIViewController {
                 let json = try JSONEncoder().encode(self.timetable)
                 let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: self.date)
                 self.service.getTimeTableDayImage(json: json) { image in
-                    self.ShareImage(image: image, title: self.group, text: "\(dayOfWeek) \(self.date)")
+                    self.ShareImage(image: image, title: self.id, text: "\(dayOfWeek) \(self.date)")
                 }
             } catch {
                 print(error.localizedDescription)
@@ -123,6 +133,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
         
         let menu = UIMenu(title: "Расписание", children: [
+            searchAction,
             groupList,
             subGroupsList,
             days,
@@ -146,7 +157,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     @objc private func refreshTimetable() {
         self.type = .all
         self.subgroup = 0
-        getTimeTable(group: group, date: date)
+        getTimeTable(id: id, date: date, owner: owner)
         NotificationCenter.default.post(name: Notification.Name("refreshed"), object: nil)
     }
     
@@ -186,14 +197,15 @@ final class TimeTableDayListTableViewController: UIViewController {
         ])
     }
     
-    func getTimeTable(group: String, date: String) {
-        UserDefaults.standard.setValue(group, forKey: "recentGroup")
+    func getTimeTable(id: String, date: String, owner: String) {
+        UserDefaults.standard.setValue(id, forKey: "recentGroup")
         UserDefaults.standard.setValue(date, forKey: "recentDate")
+        UserDefaults.standard.setValue(owner, forKey: "recentOwner")
         self.spinner.startAnimating()
         self.infoLabel.isHidden = true
         self.timetable?.disciplines = []
         self.tableView.reloadData()
-        service.getTimeTableDay(groupId: group, date: date) { [weak self] result in
+        service.getTimeTableDay(id: id, date: date, owner: owner) { [weak self] result in
             switch result {
             case .success(let timetable):
                 self?.timetable = timetable
@@ -227,12 +239,12 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     private func observeGroupChange() {
-        
         NotificationCenter.default.addObserver(forName: Notification.Name("group changed"), object: nil, queue: .main) { notification in
-            let group = notification.object as? String ?? "ВМ-ИВТ-2-1"
-            self.getTimeTable(group: group, date: self.date)
-            self.group = group
-            print(self.group)
+            let id = notification.object as? String ?? "ВМ-ИВТ-2-1"
+            self.getTimeTable(id: id, date: self.date, owner: "GROUP")
+            self.id = id
+            self.owner = "GROUP"
+            print(self.id)
         }
     }
     
@@ -258,6 +270,16 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
     }
     
+    private func observeObjectSelected() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("object selected"), object: nil, queue: .main) { notification in
+            let object = notification.object as? String ?? "ВМ-ИВТ-2-1"
+            self.getTimeTable(id: object, date: self.date, owner: "TEACHER")
+            self.owner = "TEACHER"
+            self.id = object
+            print(self.owner)
+        }
+    }
+    
     private func observeCalendar() {
         
         NotificationCenter.default.addObserver(forName: Notification.Name("DateWasSelected"), object: nil, queue: .main) { notification in
@@ -266,7 +288,7 @@ final class TimeTableDayListTableViewController: UIViewController {
                 self.date = date
                 self.type = .all
                 self.subgroup = 0
-                self.getTimeTable(group: self.group, date: date)
+                self.getTimeTable(id: self.id, date: self.date, owner: self.owner)
                 self.navigationItem.title = "\(dayOfWeek) \(date) "
             }
         }

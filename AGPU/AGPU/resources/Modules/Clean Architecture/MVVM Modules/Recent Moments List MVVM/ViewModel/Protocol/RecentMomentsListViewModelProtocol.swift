@@ -12,7 +12,7 @@ protocol RecentMomentsListViewModelProtocol {
     func getLastWebArticle(completion: @escaping(RecentWebPageModel)->Void)
     func getLastWordDocument(completion: @escaping(RecentWordDocumentModel)->Void)
     func getLastPDFDocument(completion: @escaping(RecentPDFModel)->Void)
-    func getLastTimetable(completion: @escaping(String, String)->Void)
+    func getLastTimetable(completion: @escaping(String, String, String)->Void)
     func getLastVideo(completion: @escaping(String)->Void)
     func registerAlertHandler(block: @escaping(String, String)->Void)
 }

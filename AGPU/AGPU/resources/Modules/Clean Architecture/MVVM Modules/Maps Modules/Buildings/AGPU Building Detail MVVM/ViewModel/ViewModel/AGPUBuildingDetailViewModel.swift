@@ -13,7 +13,8 @@ import UIKit
 class AGPUBuildingDetailViewModel {
     
     var annotation: MKAnnotation!
-    var group: String = ""
+    var id: String = ""
+    var owner: String = ""
     var disciplines = [Discipline]()
     
     var pairsHandler: ((String)->Void)?
@@ -25,8 +26,9 @@ class AGPUBuildingDetailViewModel {
     let timetableService = TimeTableService()
     
     // MARK: - Init
-    init(annotation: MKAnnotation, group: String) {
+    init(annotation: MKAnnotation, id: String, owner: String) {
         self.annotation = annotation
-        self.group = group
+        self.id = id
+        self.owner = owner
     }
 }

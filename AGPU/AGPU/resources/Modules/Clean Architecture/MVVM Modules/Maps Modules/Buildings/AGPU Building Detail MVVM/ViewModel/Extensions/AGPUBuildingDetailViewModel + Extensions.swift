@@ -15,7 +15,7 @@ extension AGPUBuildingDetailViewModel: AGPUBuildingDetailViewModelProtocol {
     
     func getTimetable() {
         let date = dateManager.getCurrentDate()
-        timetableService.getTimeTableDay(groupId: group, date: date) { [weak self] result in
+        timetableService.getTimeTableDay(id: id, date: date, owner: owner) { [weak self] result in
             switch result {
             case .success(let data):
                 let pairs = data.disciplines
@@ -51,7 +51,7 @@ extension AGPUBuildingDetailViewModel: AGPUBuildingDetailViewModelProtocol {
     }
     
     func getTimeTableForBuilding(pairs: [Discipline])-> TimeTable {
-        var timetable = TimeTable(date: dateManager.getCurrentDate(), groupName: group, disciplines: [])
+        var timetable = TimeTable(id: id, date: dateManager.getCurrentDate(), disciplines: [])
         var disciplines = [Discipline]()
         let currentBuilding = AGPUBuildings.buildings.first { $0.name == annotation.title! }
         for audience in currentBuilding!.audiences {

@@ -9,9 +9,10 @@ import UIKit
 
 class RecentTimeTableDayListTableViewController: UIViewController {
 
-    var timetable = TimeTable(date: "", groupName: "", disciplines: [])
-    private var group: String = ""
+    var timetable = TimeTable(id: "", date: "", disciplines: [])
+    private var id: String = ""
     private var date: String = ""
+    private var owner: String = ""
     
     private let service = TimeTableService()
     private let dateManager = DateManager()
@@ -23,9 +24,10 @@ class RecentTimeTableDayListTableViewController: UIViewController {
     private let refresh = UIRefreshControl()
     
     // MARK: - Init
-    init(group: String, date: String) {
-        self.group = group
+    init(id: String, date: String, owner: String) {
+        self.id = id
         self.date = date
+        self.owner = owner
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -44,7 +46,7 @@ class RecentTimeTableDayListTableViewController: UIViewController {
     }
 
     private func setUpNavigation() {
-        navigationItem.title = "\(date) (\(group))"
+        navigationItem.title = "\(date) (\(id))"
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
@@ -99,7 +101,7 @@ class RecentTimeTableDayListTableViewController: UIViewController {
         self.spinner.startAnimating()
         self.noTimeTableLabel.isHidden = true
         self.tableView.reloadData()
-        service.getTimeTableDay(groupId: group, date: date) { [weak self] result in
+        service.getTimeTableDay(id: id, date: date, owner: owner) { [weak self] result in
             switch result {
             case .success(let timetable):
                 if !timetable.disciplines.isEmpty {

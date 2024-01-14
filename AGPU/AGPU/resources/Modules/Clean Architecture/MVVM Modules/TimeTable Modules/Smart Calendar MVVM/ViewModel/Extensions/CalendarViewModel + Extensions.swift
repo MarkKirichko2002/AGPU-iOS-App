@@ -13,7 +13,7 @@ extension CalendarViewModel: CalendarViewModelProtocol {
     func checkTimetable(date: Date) {
         let date = dateManager.getFormattedDate(date: date)
         self.date = date
-        service.getTimeTableDay(groupId: group, date: date) { [weak self] result in
+        service.getTimeTableDay(id: id, date: date, owner: owner) { [weak self] result in
             switch result {
             case .success(let data):
                 // выходной

@@ -9,8 +9,9 @@ import UIKit
 
 class CalendarViewModel {
     
+    var id: String = ""
     var date: String = ""
-    var group: String = ""
+    var owner: String = ""
     
     var timetableHandler: ((String, String, UIColor)->Void)?
     var dateSelectedHandler: (()->Void)?
@@ -20,7 +21,8 @@ class CalendarViewModel {
     let service = TimeTableService()
     
     // MARK: - Init
-    init(group: String) {
-        self.group = group
+    init(id: String, owner: String) {
+        self.id = id
+        self.owner = owner
     }
 }
