@@ -39,7 +39,10 @@ struct AGPUBuildings {
                 "18",
                 "21",
                 "22",
-                "23"
+                "23",
+                "23a",
+                "23б",
+                "23в"
             ],
             pin: AGPUBuildingPins.pins[0],
             voiceCommands: ["главный корпус"]
