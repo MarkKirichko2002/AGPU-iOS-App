@@ -192,6 +192,7 @@
 		82875B022A5A198A007DB925 /* HapticsManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */; };
 		828CFA372A35F65700C7542D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA362A35F65700C7542D /* WebViewController.swift */; };
 		828CFA3C2A3680C700C7542D /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA3B2A3680C700C7542D /* String + Extensions.swift */; };
+		828D8E5A2B53648F0022FDB3 /* SearchTimetableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828D8E592B53648F0022FDB3 /* SearchTimetableModel.swift */; };
 		828DC5592A7B3865001EA324 /* FacultyGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DC5582A7B3865001EA324 /* FacultyGroupModel.swift */; };
 		828DC55C2A7B3887001EA324 /* FacultyGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DC55B2A7B3887001EA324 /* FacultyGroups.swift */; };
 		82920B652AD86EE600352CD8 /* YourStatusOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B632AD86EE600352CD8 /* YourStatusOptionTableViewCell.swift */; };
@@ -545,6 +546,7 @@
 		82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HapticsManager + Extensions.swift"; sourceTree = "<group>"; };
 		828CFA362A35F65700C7542D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		828CFA3B2A3680C700C7542D /* String + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extensions.swift"; sourceTree = "<group>"; };
+		828D8E592B53648F0022FDB3 /* SearchTimetableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTimetableModel.swift; sourceTree = "<group>"; };
 		828DC5582A7B3865001EA324 /* FacultyGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupModel.swift; sourceTree = "<group>"; };
 		828DC55B2A7B3887001EA324 /* FacultyGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroups.swift; sourceTree = "<group>"; };
 		82920B632AD86EE600352CD8 /* YourStatusOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourStatusOptionTableViewCell.swift; sourceTree = "<group>"; };
@@ -2462,6 +2464,7 @@
 				8228E39A2A6C920000C1B6AD /* Location */,
 				82B1C0EB2A8123DF00520C14 /* Voice Directions */,
 				82ECABDF2A8151ED00FE7462 /* Sub Group */,
+				828D8E582B5364780022FDB3 /* Search */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3144,6 +3147,14 @@
 				8241F98D2A5F4004007DF628 /* View */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		828D8E582B5364780022FDB3 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				828D8E592B53648F0022FDB3 /* SearchTimetableModel.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		828DC5562A7B384C001EA324 /* Model */ = {
@@ -5481,6 +5492,7 @@
 				82BCB5392AB351F400F3A321 /* DaysListViewModelProtocol.swift in Sources */,
 				825D92EE2AF2F03000B5E9DF /* RecentTimeTableDayListTableViewController + Extensions.swift in Sources */,
 				82920B8F2AD8872B00352CD8 /* SelectedFacultyListViewModel.swift in Sources */,
+				828D8E5A2B53648F0022FDB3 /* SearchTimetableModel.swift in Sources */,
 				82722D432A66462100149D06 /* AGPUBuildingPins.swift in Sources */,
 				82B24AA12A81C89E008B94E4 /* AGPUNewsListViewModel.swift in Sources */,
 				82FB5B642A7A8FF600728980 /* InteractiveView.swift in Sources */,

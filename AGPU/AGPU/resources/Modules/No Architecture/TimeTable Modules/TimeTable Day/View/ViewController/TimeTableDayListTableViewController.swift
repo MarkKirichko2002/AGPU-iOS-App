@@ -272,11 +272,12 @@ final class TimeTableDayListTableViewController: UIViewController {
     
     private func observeObjectSelected() {
         NotificationCenter.default.addObserver(forName: Notification.Name("object selected"), object: nil, queue: .main) { notification in
-            let object = notification.object as? String ?? "ВМ-ИВТ-2-1"
-            self.getTimeTable(id: object, date: self.date, owner: "TEACHER")
-            self.owner = "TEACHER"
-            self.id = object
-            print(self.owner)
+            if let object = notification.object as? SearchTimetableModel {
+                self.getTimeTable(id: object.name, date: self.date, owner: object.owner)
+                self.id = object.name
+                self.owner = object.owner
+                print(self.owner)
+            }
         }
     }
     

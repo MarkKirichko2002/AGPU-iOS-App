@@ -27,7 +27,7 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
     private func setUpNavigation() {
         let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
-        navigationItem.title = "Поиск преподавателей"
+        navigationItem.title = "Поиск"
         navigationItem.rightBarButtonItem = closeButton
     }
     
@@ -45,8 +45,9 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let teacher = results[indexPath.row]
-        NotificationCenter.default.post(name: Notification.Name("object selected"), object: teacher.searchContent)
+        let object = results[indexPath.row]
+        let result = SearchTimetableModel(name: object.searchContent, owner: currentOwner(type: object.type))
+        NotificationCenter.default.post(name: Notification.Name("object selected"), object: result)
         self.dismiss(animated: true)
         self.tableView.reloadData()
     }
@@ -61,13 +62,24 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
         return cell
     }
     
+    private func currentOwner(type: SearchType)-> String {
+        switch type {
+        case .Teacher:
+            return "TEACHER"
+        case .Group:
+            return "GROUP"
+        case .Classroom:
+            return "CLASSROOM"
+        }
+    }
+    
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
         service.getSearchResults(searchText: text) { [weak self] result in
             switch result {
             case .success(let data):
-                let filteredData = data.filter { $0.type == .Teacher}
-                self?.results = filteredData
+                self?.results = data
+                print(data)
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                 }
