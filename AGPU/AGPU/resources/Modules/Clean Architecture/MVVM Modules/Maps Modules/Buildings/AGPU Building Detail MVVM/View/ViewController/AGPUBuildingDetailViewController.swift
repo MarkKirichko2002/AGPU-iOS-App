@@ -25,10 +25,25 @@ final class AGPUBuildingDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpNavigation()
         setUpView()
+        setUpNavigation()
         setUpLabel()
         bindViewModel()
+    }
+    
+    private func setUpView() {
+        LocationName.text = annotation.title!
+        LocationDetail.text = annotation.subtitle!
+        LocationName.textColor = UIColor.label
+        LocationDetail.textColor = UIColor.label
+        WeatherLabel.textColor = UIColor.label
+        PairsExistence.textColor = UIColor.label
+    }
+    
+    private func setUpLabel() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showDetail))
+        PairsExistence.isUserInteractionEnabled = true
+        PairsExistence.addGestureRecognizer(tap)
     }
     
     private func setUpNavigation() {
@@ -69,21 +84,6 @@ final class AGPUBuildingDetailViewController: UIViewController {
         shareInfo(image: UIImage(named: "map icon")!, title: title, text: "\(title)-\(url)")
     }
     
-    private func setUpView() {
-        LocationName.text = annotation.title!
-        LocationDetail.text = annotation.subtitle!
-        LocationName.textColor = UIColor.label
-        LocationDetail.textColor = UIColor.label
-        WeatherLabel.textColor = UIColor.label
-        PairsExistence.textColor = UIColor.label
-    }
-    
-    private func setUpLabel() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(showDetail))
-        PairsExistence.isUserInteractionEnabled = true
-        PairsExistence.addGestureRecognizer(tap)
-    }
-    
     @objc private func showDetail() {
         HapticsManager.shared.hapticFeedback()
         let vc = TimeTableForCurrentBuildingViewController(timetable: viewModel.getTimeTableForBuilding(pairs: viewModel.disciplines))
@@ -115,9 +115,35 @@ final class AGPUBuildingDetailViewController: UIViewController {
         }
     }
     
+    private func showChooseAppAlert() {
+        let openAppleMaps = UIAlertAction(title: "С помощью Apple Maps", style: .default) { _ in
+            let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: self.annotation.coordinate, addressDictionary: nil))
+            mapItem.name = self.annotation.title ?? ""
+            mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+        }
+        let openGoogleMaps = UIAlertAction(title: "С помощью Google Maps", style: .default) { _ in
+            let url = URL(string: "comgooglemaps://?q=\(self.annotation.coordinate.latitude),\(self.annotation.coordinate.longitude)")!
+            UIApplication.shared.open(url) { canOpen in
+                if canOpen {
+                    UIApplication.shared.open(url)
+                } else {
+                    self.showOpenWithGoogleMapsAlert()
+                }
+            }
+        }
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
+        self.showAlert(title: "Открыть карты", message: "Как вы хотите открыть карты?", actions: [openAppleMaps, openGoogleMaps, cancel])
+    }
+    
+    private func showOpenWithGoogleMapsAlert() {
+        let ok = UIAlertAction(title: "ОК", style: .default) { _ in
+            UIApplication.shared.open(URL(string: "https://apps.apple.com/app/google-maps-transit-food/id585027354")!)
+        }
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
+        self.showAlert(title: "Google Maps не установлено", message: "Хотите установить?", actions: [ok, cancel])
+    }
+    
     @IBAction func GoToMap() {
-        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: annotation.coordinate, addressDictionary: nil))
-        mapItem.name = annotation.title ?? ""
-        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+        showChooseAppAlert()
     }
 }
