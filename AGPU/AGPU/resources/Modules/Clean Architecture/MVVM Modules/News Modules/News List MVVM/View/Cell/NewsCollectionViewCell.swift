@@ -14,6 +14,7 @@ final class NewsCollectionViewCell: UICollectionViewCell {
     
     // MARK: - сервисы
     private let animation = AnimationClass()
+    private let dateManager = DateManager()
     
     // MARK: - UI
     let imageView: UIImageView = {
@@ -73,7 +74,7 @@ final class NewsCollectionViewCell: UICollectionViewCell {
             NewsTitle.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8),
             NewsTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 7),
             NewsTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -7),
-
+            
             // Дата
             dateLabel.topAnchor.constraint(equalTo: NewsTitle.bottomAnchor, constant: 4),
             dateLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 7),
@@ -87,11 +88,33 @@ final class NewsCollectionViewCell: UICollectionViewCell {
         setUpLayer()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.layer.borderWidth = 0
+        self.layer.borderColor = nil
+        self.imageView.image = nil
+        self.NewsTitle.text = nil
+        self.dateLabel.text = nil
+    }
+    
     public func configure(with news: Article) {
-        DispatchQueue.main.async {
-            self.imageView.sd_setImage(with: URL(string: news.previewImage))
-            self.NewsTitle.text = news.title
-            self.dateLabel.text = news.date
+        
+        let date = dateManager.getCurrentDate()
+        
+        if news.date == date {
+            self.layer.borderWidth = 1
+            self.layer.borderColor = UIColor.label.cgColor
+            DispatchQueue.main.async {
+                self.imageView.sd_setImage(with: URL(string: news.previewImage))
+                self.NewsTitle.text = news.title
+                self.dateLabel.text = "\(news.date) (сегодня!)"
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.imageView.sd_setImage(with: URL(string: news.previewImage))
+                self.NewsTitle.text = news.title
+                self.dateLabel.text = news.date
+            }
         }
     }
     

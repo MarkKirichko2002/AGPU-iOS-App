@@ -51,6 +51,7 @@ extension DaysListViewModel: DaysListViewModelProtocol {
                         let testsCount = self?.getTestsCount(pairs: timetable.disciplines) ?? 0
                         let consCount = self?.getConsCount(pairs: timetable.disciplines) ?? 0
                         let examsCount = self?.getExamsCount(pairs: timetable.disciplines) ?? 0
+                        let holidaysExisting = self?.checkHolidaysExisting(pairs: timetable.disciplines)
                         
                         if coursesCount > 0 {
                             DaysList.days[index!].info = coursesCount > 1 ? "курсовые" : "курсовая!"
@@ -60,6 +61,8 @@ extension DaysListViewModel: DaysListViewModelProtocol {
                             DaysList.days[index!].info = consCount > 1 ? "консультации" : "консультация"
                         } else if examsCount > 0 {
                             DaysList.days[index!].info = examsCount > 1 ? "экзамены!" : "экзамен!"
+                        } else if holidaysExisting ?? false {
+                            DaysList.days[index!].info = "каникулы!"
                         }
                     } else {
                         let day = DaysList.days.first { $0.name == day.name }
@@ -157,6 +160,17 @@ extension DaysListViewModel: DaysListViewModelProtocol {
         }
         
         return uniqueExams.count
+    }
+    
+    // подсчет каникул
+    func checkHolidaysExisting(pairs: [Discipline])-> Bool {
+        
+        for pair in pairs {
+            if pair.name.contains("Каникулы") {
+                return true
+            }
+        }
+        return false
     }
     
     func chooseDay(index: Int) {

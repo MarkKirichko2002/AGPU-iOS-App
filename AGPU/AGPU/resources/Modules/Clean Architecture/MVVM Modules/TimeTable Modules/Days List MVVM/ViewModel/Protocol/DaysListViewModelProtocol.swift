@@ -15,6 +15,7 @@ protocol DaysListViewModelProtocol {
     func getTestsCount(pairs: [Discipline])-> Int
     func getConsCount(pairs: [Discipline])-> Int
     func getExamsCount(pairs: [Discipline])-> Int
+    func checkHolidaysExisting(pairs: [Discipline])-> Bool 
     func chooseDay(index: Int)
     func timeTableColor(index: Int)-> UIColor
     func registerDataChangedHandler(block: @escaping()->Void)

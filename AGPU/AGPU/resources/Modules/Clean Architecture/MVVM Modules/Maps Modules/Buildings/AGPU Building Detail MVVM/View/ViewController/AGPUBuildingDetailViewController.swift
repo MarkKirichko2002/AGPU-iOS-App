@@ -116,18 +116,19 @@ final class AGPUBuildingDetailViewController: UIViewController {
     }
     
     private func showChooseAppAlert() {
+        
         let openAppleMaps = UIAlertAction(title: "С помощью Apple Maps", style: .default) { _ in
-            let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: self.annotation.coordinate, addressDictionary: nil))
-            mapItem.name = self.annotation.title ?? ""
-            mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+            let url = URL(string: "http://maps.apple.com/?q=\(self.annotation.coordinate.latitude),\(self.annotation.coordinate.longitude)")!
+            UIApplication.shared.open(url)
         }
+        
         let openGoogleMaps = UIAlertAction(title: "С помощью Google Maps", style: .default) { _ in
             let url = URL(string: "comgooglemaps://?q=\(self.annotation.coordinate.latitude),\(self.annotation.coordinate.longitude)")!
             UIApplication.shared.open(url) { canOpen in
                 if canOpen {
                     UIApplication.shared.open(url)
                 } else {
-                    self.showOpenWithGoogleMapsAlert()
+                    self.showNoGoogleMapsAlert()
                 }
             }
         }
@@ -135,12 +136,12 @@ final class AGPUBuildingDetailViewController: UIViewController {
         self.showAlert(title: "Открыть карты", message: "Как вы хотите открыть карты?", actions: [openAppleMaps, openGoogleMaps, cancel])
     }
     
-    private func showOpenWithGoogleMapsAlert() {
-        let ok = UIAlertAction(title: "ОК", style: .default) { _ in
+    private func showNoGoogleMapsAlert() {
+        let ok = UIAlertAction(title: "Показать в App Store", style: .default) { _ in
             UIApplication.shared.open(URL(string: "https://apps.apple.com/app/google-maps-transit-food/id585027354")!)
         }
         let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
-        self.showAlert(title: "Google Maps не установлено", message: "Хотите установить?", actions: [ok, cancel])
+        self.showAlert(title: "Google Maps не установлено", message: "Хотите установить в App Store?", actions: [ok, cancel])
     }
     
     @IBAction func GoToMap() {

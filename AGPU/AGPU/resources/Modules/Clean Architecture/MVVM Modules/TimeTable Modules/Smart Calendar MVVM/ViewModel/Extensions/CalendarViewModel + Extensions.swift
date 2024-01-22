@@ -88,8 +88,13 @@ extension CalendarViewModel: CalendarViewModelProtocol {
                     let endTime = endTimes[1]
                     let examsCount = self?.getExamsCount(pairs: data.disciplines) ?? 0
                     
-                    self?.timetableHandler?("В этот день есть \(examsCount > 1 ? "экзамены!" : "экзамен!")", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), экзаменов: \(examsCount), \nначало: \(startTime), конец: \(endTime)", UIColor.systemRed)
+                    self?.timetableHandler?("В этот день есть \(examsCount > 1 ? "экзамены 😱!" : "экзамен 😱!")", "\(self?.dateManager.getCurrentDayOfWeek(date: date) ?? "") \(date), экзаменов: \(examsCount), \nначало: \(startTime), конец: \(endTime)", UIColor.systemRed)
                     AudioPlayerClass.shared.playSound(sound: "danger", isPlaying: false)
+                } 
+                // каникулы
+                else if data.disciplines.contains(where: { $0.name.contains("Каникулы") }) {
+                    self?.timetableHandler?("Каникулы 🎉!", "Отдыхаем!", UIColor.systemGray)
+                    AudioPlayerClass.shared.playSound(sound: "paper", isPlaying: false)
                 }
                 // расписание есть
                 else if !data.disciplines.isEmpty {
