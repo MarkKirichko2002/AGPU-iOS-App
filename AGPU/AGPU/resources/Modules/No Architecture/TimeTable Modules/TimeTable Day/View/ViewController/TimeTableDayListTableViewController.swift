@@ -45,12 +45,11 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     private func setUpData() {
-        self.id = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-2-1"
-        self.subgroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
-        self.type = UserDefaults.loadData(type: PairType.self, key: "type") ?? .all
+        id = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-2-1"
+        subgroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
+        type = UserDefaults.loadData(type: PairType.self, key: "type") ?? .all
         date = dateManager.getCurrentDate()
-        owner = "GROUP"
-        print(self.subgroup)
+        owner = UserDefaults.standard.string(forKey: "recentOwner") ?? "GROUP"
     }
      
     private func setUpNavigation() {
@@ -201,6 +200,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         UserDefaults.standard.setValue(id, forKey: "recentGroup")
         UserDefaults.standard.setValue(date, forKey: "recentDate")
         UserDefaults.standard.setValue(owner, forKey: "recentOwner")
+        UserDefaults.standard.setValue(id, forKey: "group")
         self.spinner.startAnimating()
         self.infoLabel.isHidden = true
         self.timetable?.disciplines = []

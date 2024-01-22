@@ -50,7 +50,15 @@ final class AGPUSplashScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         setUpConstraints()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         showSplashScreen()
     }
     
@@ -97,6 +105,8 @@ final class AGPUSplashScreenViewController: UIViewController {
     
     private func showSplashScreen() {
         
+        let controller = AGPUTabBarController()
+        controller.modalPresentationStyle = .fullScreen
         animation?.springAnimation(view: AGPUIcon)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -105,8 +115,6 @@ final class AGPUSplashScreenViewController: UIViewController {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-            let controller = AGPUTabBarController()
-            controller.modalPresentationStyle = .fullScreen
             self.present(controller, animated: false, completion: nil)
         }
     }
