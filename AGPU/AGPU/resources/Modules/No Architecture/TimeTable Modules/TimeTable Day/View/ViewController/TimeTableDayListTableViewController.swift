@@ -9,6 +9,7 @@ import UIKit
 
 final class TimeTableDayListTableViewController: UIViewController {
     
+    var option = false
     var id = ""
     var subgroup = 0
     var date = ""
@@ -21,6 +22,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     // MARK: - сервисы
     let service = TimeTableService()
     let dateManager = DateManager()
+    let settingsManager = SettingsManager()
     
     // MARK: - UI
     let tableView = UITableView()
@@ -45,6 +47,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     private func setUpData() {
+        option = settingsManager.checkSaveRecentTimetableItem()
         id = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-2-1"
         subgroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
         type = UserDefaults.loadData(type: PairType.self, key: "type") ?? .all
@@ -200,7 +203,9 @@ final class TimeTableDayListTableViewController: UIViewController {
         UserDefaults.standard.setValue(id, forKey: "recentGroup")
         UserDefaults.standard.setValue(date, forKey: "recentDate")
         UserDefaults.standard.setValue(owner, forKey: "recentOwner")
-        UserDefaults.standard.setValue(id, forKey: "group")
+        if option == true {
+            UserDefaults.standard.setValue(id, forKey: "group")
+        }
         self.spinner.startAnimating()
         self.infoLabel.isHidden = true
         self.timetable?.disciplines = []

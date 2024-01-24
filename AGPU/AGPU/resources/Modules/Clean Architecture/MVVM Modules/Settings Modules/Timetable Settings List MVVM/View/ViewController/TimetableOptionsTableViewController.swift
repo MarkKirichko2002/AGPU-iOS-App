@@ -34,6 +34,7 @@ class TimetableOptionsTableViewController: UITableViewController {
     
     private func setUpTable() {
         tableView.register(UINib(nibName: TimetableOptionsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimetableOptionsTableViewCell.identifier)
+        tableView.register(UINib(nibName: SaveRecentTimetableItemOptionCell.identifier, bundle: nil), forCellReuseIdentifier: SaveRecentTimetableItemOptionCell.identifier)
     }
     
     private func bindViewModel() {
@@ -67,12 +68,18 @@ class TimetableOptionsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.options.count
+        return 4
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TimetableOptionsTableViewCell.identifier, for: indexPath) as? TimetableOptionsTableViewCell else {return UITableViewCell()}
-        cell.configure(option: viewModel.options[indexPath.row])
-        return cell
+        switch indexPath.row {
+        case 0,1,2:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TimetableOptionsTableViewCell.identifier, for: indexPath) as? TimetableOptionsTableViewCell else {return UITableViewCell()}
+            cell.configure(option: viewModel.options[indexPath.row])
+            return cell
+        default:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SaveRecentTimetableItemOptionCell.identifier, for: indexPath) as? SaveRecentTimetableItemOptionCell else {return UITableViewCell()}
+            return cell
+        }
     }
 }

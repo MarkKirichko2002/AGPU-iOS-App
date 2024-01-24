@@ -294,6 +294,8 @@
 		82C449F62B5F0B5F0039B0F3 /* ring.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82C449F22B5F0B5F0039B0F3 /* ring.mp3 */; };
 		82C449F72B5F0B5F0039B0F3 /* clock_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82C449F32B5F0B5F0039B0F3 /* clock_sound.mp3 */; };
 		82C449F82B5F0B5F0039B0F3 /* danger.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82C449F42B5F0B5F0039B0F3 /* danger.mp3 */; };
+		82C449FD2B616F650039B0F3 /* SaveRecentTimetableItemOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C449FB2B616F650039B0F3 /* SaveRecentTimetableItemOptionCell.swift */; };
+		82C449FE2B616F660039B0F3 /* SaveRecentTimetableItemOptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82C449FC2B616F650039B0F3 /* SaveRecentTimetableItemOptionCell.xib */; };
 		82C44DAE2A591915002A3864 /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C44DAD2A591915002A3864 /* HapticsManager.swift */; };
 		82C5615D2A6B757C00514B00 /* AppFeatureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C5615C2A6B757C00514B00 /* AppFeatureModel.swift */; };
 		82C5615F2A6B75B700514B00 /* AppFeaturesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C5615E2A6B75B700514B00 /* AppFeaturesList.swift */; };
@@ -647,6 +649,8 @@
 		82C449F22B5F0B5F0039B0F3 /* ring.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ring.mp3; sourceTree = "<group>"; };
 		82C449F32B5F0B5F0039B0F3 /* clock_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = clock_sound.mp3; sourceTree = "<group>"; };
 		82C449F42B5F0B5F0039B0F3 /* danger.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = danger.mp3; sourceTree = "<group>"; };
+		82C449FB2B616F650039B0F3 /* SaveRecentTimetableItemOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveRecentTimetableItemOptionCell.swift; sourceTree = "<group>"; };
+		82C449FC2B616F650039B0F3 /* SaveRecentTimetableItemOptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SaveRecentTimetableItemOptionCell.xib; sourceTree = "<group>"; };
 		82C44DAD2A591915002A3864 /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		82C5615C2A6B757C00514B00 /* AppFeatureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeatureModel.swift; sourceTree = "<group>"; };
 		82C5615E2A6B75B700514B00 /* AppFeaturesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeaturesList.swift; sourceTree = "<group>"; };
@@ -748,13 +752,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		82061CC72B09A5690073D727 /* Cell */ = {
+		82061CC72B09A5690073D727 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				82061CC92B09A5920073D727 /* TimetableOptionsTableViewCell.swift */,
-				82061CCA2B09A5920073D727 /* TimetableOptionsTableViewCell.xib */,
+				82C449FA2B616F0C0039B0F3 /* Timetable Option */,
+				82C449F92B616F0A0039B0F3 /* Recent Timetable Item Option */,
 			);
-			path = Cell;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		82061CC82B09A56B0073D727 /* ViewController */ = {
@@ -1304,7 +1308,7 @@
 			isa = PBXGroup;
 			children = (
 				82061CC82B09A56B0073D727 /* ViewController */,
-				82061CC72B09A5690073D727 /* Cell */,
+				82061CC72B09A5690073D727 /* Cells */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4401,6 +4405,24 @@
 			path = "Image Saver";
 			sourceTree = "<group>";
 		};
+		82C449F92B616F0A0039B0F3 /* Recent Timetable Item Option */ = {
+			isa = PBXGroup;
+			children = (
+				82C449FB2B616F650039B0F3 /* SaveRecentTimetableItemOptionCell.swift */,
+				82C449FC2B616F650039B0F3 /* SaveRecentTimetableItemOptionCell.xib */,
+			);
+			path = "Recent Timetable Item Option";
+			sourceTree = "<group>";
+		};
+		82C449FA2B616F0C0039B0F3 /* Timetable Option */ = {
+			isa = PBXGroup;
+			children = (
+				82061CC92B09A5920073D727 /* TimetableOptionsTableViewCell.swift */,
+				82061CCA2B09A5920073D727 /* TimetableOptionsTableViewCell.xib */,
+			);
+			path = "Timetable Option";
+			sourceTree = "<group>";
+		};
 		82C44DAC2A591907002A3864 /* Haptics */ = {
 			isa = PBXGroup;
 			children = (
@@ -5354,6 +5376,7 @@
 				82C561692A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard in Resources */,
 				822605EF2A84A0600055925F /* Assets.xcassets in Resources */,
 				8213658B2A94F73100A20E4E /* InfoPlist.strings in Resources */,
+				82C449FE2B616F660039B0F3 /* SaveRecentTimetableItemOptionCell.xib in Resources */,
 				82C449F72B5F0B5F0039B0F3 /* clock_sound.mp3 in Resources */,
 				82920B662AD86EE600352CD8 /* YourStatusOptionTableViewCell.xib in Resources */,
 				821EEAD72AA0B76F00AE517B /* UserStatusTableViewCell.xib in Resources */,
@@ -5652,6 +5675,7 @@
 				824EBF7B2B2A0B630003E7E6 /* FacultyCathedraMapListTableViewController.swift in Sources */,
 				8210CA092A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift in Sources */,
 				828397772AD5C9E1000F355A /* AppIconsListViewModelProtocol.swift in Sources */,
+				82C449FD2B616F650039B0F3 /* SaveRecentTimetableItemOptionCell.swift in Sources */,
 				82320D812A4913FE00ECADEE /* AGPUFaculties.swift in Sources */,
 				822FB2182AC5DFA70083E016 /* SubGroupsListViewModel + Extensions.swift in Sources */,
 				826716C22A5A2AF600CD5C23 /* RecentWebPageModel.swift in Sources */,

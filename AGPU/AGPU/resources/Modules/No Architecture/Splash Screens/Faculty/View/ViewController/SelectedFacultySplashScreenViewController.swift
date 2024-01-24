@@ -50,7 +50,15 @@ final class SelectedFacultySplashScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         setUpConstraints()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         showSplashScreen()
     }
     

@@ -57,8 +57,8 @@ final class AGPUSplashScreenViewController: UIViewController {
         setUpConstraints()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         showSplashScreen()
     }
     

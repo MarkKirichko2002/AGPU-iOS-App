@@ -60,9 +60,18 @@ extension SettingsManager: SettingsManagerProtocol {
         }
     }
     
-    // MARK: - Only Timetable
+    // MARK: - Only Schedule
     func checkOnlyTimetableOption()-> Bool {
         if let option = UserDefaults.standard.value(forKey: "onOnlyTimetable") as? Bool {
+            return option
+        } else {
+            return false
+        }
+    }
+    
+    // MARK: - Advanced Timetable
+    func checkSaveRecentTimetableItem()-> Bool {
+        if let option = UserDefaults.standard.value(forKey: "onSaveRecentTimetableItem") as? Bool {
             return option
         } else {
             return false

@@ -13,5 +13,6 @@ protocol SettingsManagerProtocol {
     func checkCurrentIcon()-> String
     func checkShakeToRecallOption()-> Bool
     func checkOnlyTimetableOption()-> Bool
+    func checkSaveRecentTimetableItem()-> Bool 
     func observeOnlyTimetableChanged(completion: @escaping()->Void)
 }
