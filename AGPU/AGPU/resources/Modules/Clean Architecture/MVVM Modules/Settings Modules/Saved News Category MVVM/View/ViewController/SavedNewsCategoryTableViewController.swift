@@ -21,7 +21,7 @@ class SavedNewsCategoryTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: "news", title: "Выберите категорию", frame: .zero)
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.titleView = titleView
         navigationItem.rightBarButtonItem = closeButton

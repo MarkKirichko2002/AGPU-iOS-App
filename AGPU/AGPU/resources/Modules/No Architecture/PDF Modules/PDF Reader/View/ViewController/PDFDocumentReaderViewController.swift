@@ -33,7 +33,7 @@ class PDFDocumentReaderViewController: UIViewController {
     
     private func setUpNavigation() {
         navigationItem.title = "PDF-документ"
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(closeScreen))
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())
         sections.tintColor = .label

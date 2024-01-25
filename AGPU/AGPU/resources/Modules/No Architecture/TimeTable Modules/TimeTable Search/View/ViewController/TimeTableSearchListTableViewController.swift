@@ -10,6 +10,7 @@ import UIKit
 class TimeTableSearchListTableViewController: UITableViewController, UISearchResultsUpdating {
    
     var results = [SearchResultModel]()
+    var isSettings = false
     
     private let service = TimeTableService()
     
@@ -25,10 +26,14 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
     }
     
     private func setUpNavigation() {
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
-        closeButton.tintColor = .label
-        navigationItem.title = "Поиск"
-        navigationItem.rightBarButtonItem = closeButton
+        if isSettings {
+            navigationItem.title = "Поиск"
+        } else {
+            let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
+            closeButton.tintColor = .label
+            navigationItem.title = "Поиск"
+            navigationItem.rightBarButtonItem = closeButton
+        }
     }
     
     @objc private func closeScreen() {
@@ -48,7 +53,11 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
         let object = results[indexPath.row]
         let result = SearchTimetableModel(name: object.searchContent, owner: currentOwner(type: object.type))
         NotificationCenter.default.post(name: Notification.Name("object selected"), object: result)
-        self.dismiss(animated: true)
+        if isSettings {
+            NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+        } else {
+            self.dismiss(animated: true)
+        }
         self.tableView.reloadData()
     }
     

@@ -114,7 +114,7 @@ extension TimeTableService: TimeTableServicerProtocol {
             
             guard let data = response.data else {return}
             
-            print(response.response?.statusCode)
+            print(response.response?.statusCode ?? 0)
             
             if let image = UIImage(data: data) {
                 completion(image)

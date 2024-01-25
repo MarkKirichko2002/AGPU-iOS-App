@@ -160,8 +160,6 @@
 		82768AFA2ABE1CE70022FBE1 /* AppFeaturesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82768AF82ABE1CE70022FBE1 /* AppFeaturesTableViewCell.swift */; };
 		827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B62C22A425166008D241E /* UserDefaults + Extensions.swift */; };
 		82807C712AA0FA5D00E9C884 /* PairTypesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82807C702AA0FA5D00E9C884 /* PairTypesListTableViewController.swift */; };
-		82807C742AA102A600E9C884 /* PairTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82807C732AA102A600E9C884 /* PairTypeModel.swift */; };
-		82807C782AA102DD00E9C884 /* PairTypesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82807C772AA102DD00E9C884 /* PairTypesList.swift */; };
 		82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E882A31F12100DEEB16 /* AppDelegate.swift */; };
 		82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E8A2A31F12100DEEB16 /* SceneDelegate.swift */; };
 		82808E8D2A31F12100DEEB16 /* AGPUSectionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E8C2A31F12100DEEB16 /* AGPUSectionsListViewController.swift */; };
@@ -513,8 +511,6 @@
 		82768AF82ABE1CE70022FBE1 /* AppFeaturesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFeaturesTableViewCell.swift; sourceTree = "<group>"; };
 		827B62C22A425166008D241E /* UserDefaults + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + Extensions.swift"; sourceTree = "<group>"; };
 		82807C702AA0FA5D00E9C884 /* PairTypesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairTypesListTableViewController.swift; sourceTree = "<group>"; };
-		82807C732AA102A600E9C884 /* PairTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairTypeModel.swift; sourceTree = "<group>"; };
-		82807C772AA102DD00E9C884 /* PairTypesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairTypesList.swift; sourceTree = "<group>"; };
 		82808E852A31F12100DEEB16 /* AGPU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGPU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82808E882A31F12100DEEB16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82808E8A2A31F12100DEEB16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -2820,7 +2816,6 @@
 		82807C6C2AA0FA0900E9C884 /* Pair Types MVVM */ = {
 			isa = PBXGroup;
 			children = (
-				82807C722AA1029500E9C884 /* Model */,
 				82807C6E2AA0FA2200E9C884 /* View */,
 				82BCB56D2AB3AC7A00F3A321 /* ViewModel */,
 			);
@@ -2841,31 +2836,6 @@
 				82807C702AA0FA5D00E9C884 /* PairTypesListTableViewController.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		82807C722AA1029500E9C884 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				82807C752AA102AA00E9C884 /* Model */,
-				82807C762AA102AD00E9C884 /* List */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		82807C752AA102AA00E9C884 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				82807C732AA102A600E9C884 /* PairTypeModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		82807C762AA102AD00E9C884 /* List */ = {
-			isa = PBXGroup;
-			children = (
-				82807C772AA102DD00E9C884 /* PairTypesList.swift */,
-			);
-			path = List;
 			sourceTree = "<group>";
 		};
 		82808E7C2A31F12100DEEB16 = {
@@ -5498,7 +5468,6 @@
 				82E3C3D32B43719900F2FFA3 /* AudioPlayerClass.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
-				82807C742AA102A600E9C884 /* PairTypeModel.swift in Sources */,
 				8226D18D2B096FFB00B0B9F0 /* SavedPairTypeViewModelProtocol.swift in Sources */,
 				82D6C3342A5E1DEC00FB7F5D /* Discipline.swift in Sources */,
 				82ECABE52A81524500FE7462 /* SubGroupsList.swift in Sources */,
@@ -5715,7 +5684,6 @@
 				82BCB5762AB3AD2600F3A321 /* PairTypesListViewModel + Extensions.swift in Sources */,
 				826F93872A91C3D500DE4FB1 /* NewsPagesListViewModelProtocol.swift in Sources */,
 				8241F99B2A5F415A007DF628 /* DateManager + Extensions.swift in Sources */,
-				82807C782AA102DD00E9C884 /* PairTypesList.swift in Sources */,
 				8255ADCF2A6732110012895E /* CustomTitleView.swift in Sources */,
 				82989AE62A6F6DEA00F27858 /* FacultyCathedraListViewModel.swift in Sources */,
 				826888582A33AB5600434219 /* AGPUSplashScreenViewController.swift in Sources */,

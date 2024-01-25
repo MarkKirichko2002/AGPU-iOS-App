@@ -70,11 +70,12 @@ final class RecentWebPageViewController: UIViewController {
         backbutton.tintColor = .label
         let forwardbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.right"), style: .plain, target: self, action: #selector(forwardButtonTapped))
         forwardbutton.tintColor = .label
-        let closebutton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        let shareAction =  UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(share))
+        shareAction.tintColor = .label
+        let closebutton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closebutton.tintColor = .label
-        
         self.navigationItem.titleView = titleView
-        self.navigationItem.rightBarButtonItems = [forwardbutton, backbutton]
+        self.navigationItem.rightBarButtonItems = [shareAction, forwardbutton, backbutton]
         self.navigationItem.leftBarButtonItem = closebutton
     }
     
@@ -88,6 +89,10 @@ final class RecentWebPageViewController: UIViewController {
         if WVWEBview.canGoForward {
             WVWEBview.goForward()
         }
+    }
+    
+    @objc private func share() {
+        shareInfo(image: UIImage(named: "online")!, title: "Веб-страница", text: WVWEBview.url!.absoluteString)
     }
     
     @objc private func closeScreen() {

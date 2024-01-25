@@ -21,7 +21,7 @@ class TimetableOptionsTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: "clock", title: "Расписание", frame: .zero)
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(closeScreen))
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.titleView = titleView
         navigationItem.rightBarButtonItem = closeButton
@@ -52,10 +52,8 @@ class TimetableOptionsTableViewController: UITableViewController {
         HapticsManager.shared.hapticFeedback()
         switch indexPath.row {
         case 0:
-            if let faculty = viewModel.getSavedFaculty() {
-                let vc = FacultyGroupsListTableViewController(faculty: faculty)
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
+            let vc = viewModel.checkCurrentOwner()
+            self.navigationController?.pushViewController(vc, animated: true)
         case 1:
             let vc = SavedSubGroupTableViewController()
             self.navigationController?.pushViewController(vc, animated: true)

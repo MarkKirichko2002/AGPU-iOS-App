@@ -11,5 +11,6 @@ class TimetableSettingsListViewModel {
     
     var options = TimetableOptions.options
     var dataChangedHandler: (()->Void)?
+    var ownerHandler: ((String)->Void)?
     
 }

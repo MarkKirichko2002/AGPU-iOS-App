@@ -10,29 +10,29 @@ import Foundation
 // MARK: - SavedPairTypeViewModelProtocol
 extension SavedPairTypeViewModel: SavedPairTypeViewModelProtocol {
     
-    func typeItem(index: Int)-> PairTypeModel {
-        return PairTypesList.list[index]
+    func typeItem(index: Int)-> PairType {
+        return PairType.allCases[index]
     }
     
     func numberOfTypesInSection()-> Int {
-        return PairTypesList.list.count
+        return PairType.allCases.count
     }
     
     func choosePairType(index: Int) {
-        let type = PairTypesList.list[index]
-        UserDefaults.saveData(object: type.type, key: "type") {
-            NotificationCenter.default.post(name: Notification.Name("TypeWasSelected"), object: type.type)
+        let type = typeItem(index: index)
+        UserDefaults.saveData(object: type, key: "type") {
+            NotificationCenter.default.post(name: Notification.Name("TypeWasSelected"), object: type)
             NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
             print("тип пары сохранен")
         }
-        self.type = type.type
+        self.type = type
         self.pairTypeSelectedHandler?()
         HapticsManager.shared.hapticFeedback()
     }
     
     func isCurrentType(index: Int)-> Bool {
-        let type = PairTypesList.list[index]
-        if type.type == self.type {
+        let type = typeItem(index: index)
+        if type == self.type {
             return true
         } else {
             return false

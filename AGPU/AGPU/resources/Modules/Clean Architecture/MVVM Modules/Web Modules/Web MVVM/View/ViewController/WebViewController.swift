@@ -47,9 +47,11 @@ final class WebViewController: UIViewController {
         backButton.tintColor = .label
         let forwardbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.right"), style: .plain, target: self, action: #selector(forwardButtonTapped))
         forwardbutton.tintColor = .label
-        let closebutton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        let shareAction =  UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(share))
+        shareAction.tintColor = .label
+        let closebutton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closebutton.tintColor = .label
-        self.navigationItem.rightBarButtonItems = [forwardbutton, backButton]
+        self.navigationItem.rightBarButtonItems = [shareAction, forwardbutton, backButton]
         self.navigationItem.leftBarButtonItem = closebutton
     }
     
@@ -101,7 +103,7 @@ final class WebViewController: UIViewController {
         }
         
         viewModel.observeSubSectionSelected { subsection in
-            self.titleView = CustomTitleView(image: "АГПУ", title: "ФГБОУ ВО «АГПУ»", frame: .zero)
+            self.titleView = CustomTitleView(image: "АГПУ", title: "АГПУ сайт", frame: .zero)
             DispatchQueue.main.async {
                 self.navigationItem.titleView = self.titleView
             }
@@ -119,6 +121,10 @@ final class WebViewController: UIViewController {
         if WVWEBview.canGoForward {
             WVWEBview.goForward()
         }
+    }
+    
+    @objc private func share() {
+        shareInfo(image: UIImage(named: "online")!, title: "Веб-страница", text: WVWEBview.url!.absoluteString)
     }
     
     @objc private func closeScreen() {

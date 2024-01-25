@@ -21,7 +21,7 @@ class AppIconsListTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: "photo icon", title: "Выберите иконку", frame: .zero)
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(closeScreen))
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.titleView = titleView
         navigationItem.rightBarButtonItem = closeButton

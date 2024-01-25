@@ -21,7 +21,7 @@ struct Discipline: Codable {
     }
 }
 
-enum PairType: String, Codable {
+enum PairType: String, CaseIterable, Codable {
     case lec
     case prac
     case exam
@@ -30,6 +30,7 @@ enum PairType: String, Codable {
     case cred
     case fepo
     case cons
+    case cours
     case none
     case leftToday
     case all
@@ -37,27 +38,29 @@ enum PairType: String, Codable {
     var title: String {
         switch self {
         case .lec:
-            return "лекция"
+            return "Лекция"
         case .prac:
-            return "практика"
+            return "Практика"
         case .exam:
-            return "экзамен"
+            return "Экзамен"
         case .lab:
-            return "лабораторная работа"
+            return "Лабораторная работа"
         case .hol:
-            return "каникулы"
+            return "Каникулы"
         case .cred:
-            return "зачет"
+            return "Зачет"
         case .fepo:
             return "ФЭПО"
         case .cons:
-            return "консультация"
+            return "Консультация"
+        case .cours:
+            return "Курсовая"
         case .none:
-            return "другое"
+            return "Другое"
         case .leftToday:
-            return "оставшаяся"
+            return "Оставшаяся"
         case .all:
-            return "все"
+            return "Все"
         }
     }
     
@@ -78,6 +81,8 @@ enum PairType: String, Codable {
         case .fepo:
             return UIColor.white
         case .cons:
+            return UIColor.white
+        case .cours:
             return UIColor.white
         case .none:
             return UIColor.white

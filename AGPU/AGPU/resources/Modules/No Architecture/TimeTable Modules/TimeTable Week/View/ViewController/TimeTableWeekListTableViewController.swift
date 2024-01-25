@@ -55,7 +55,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     
     private func setUpNavigation() {
         
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         
         // поделиться

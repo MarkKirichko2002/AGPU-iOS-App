@@ -78,7 +78,7 @@ extension AGPUTabBarController {
                     
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                         self.isOpened = true
-                        self.goToWeb(url: subsection.url, image: subsection.icon, title: "ФГБОУ ВО «АГПУ»", isSheet: false)
+                        self.goToWeb(url: subsection.url, image: subsection.icon, title: "АГПУ сайт", isSheet: false)
                     }
                     break
                 }

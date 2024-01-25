@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SavedPairTypeViewModelProtocol {
-    func typeItem(index: Int)-> PairTypeModel
+    func typeItem(index: Int)-> PairType
     func numberOfTypesInSection()-> Int
     func choosePairType(index: Int)
     func isCurrentType(index: Int)-> Bool

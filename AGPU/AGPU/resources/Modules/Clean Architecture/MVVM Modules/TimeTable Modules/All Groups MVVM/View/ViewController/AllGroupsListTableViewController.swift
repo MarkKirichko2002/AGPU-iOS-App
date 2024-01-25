@@ -36,7 +36,7 @@ class AllGroupsListTableViewController: UITableViewController {
         
         let titleView = CustomTitleView(image: "group", title: "Список групп", frame: .zero)
         
-        let closebutton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        let closebutton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closebutton.tintColor = .label
         let menu = viewModel.makeGroupsMenu()
 

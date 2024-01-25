@@ -9,7 +9,6 @@ import UIKit
 
 final class TimeTableDayListTableViewController: UIViewController {
     
-    var option = false
     var id = ""
     var subgroup = 0
     var date = ""
@@ -47,7 +46,6 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     private func setUpData() {
-        option = settingsManager.checkSaveRecentTimetableItem()
         id = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-2-1"
         subgroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
         type = UserDefaults.loadData(type: PairType.self, key: "type") ?? .all
@@ -63,6 +61,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         let searchAction = UIAction(title: "Поиск") { _ in
             let vc = TimeTableSearchListTableViewController()
+            vc.isSettings = false
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -200,6 +199,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     func getTimeTable(id: String, date: String, owner: String) {
+        let option = settingsManager.checkSaveRecentTimetableItem()
         UserDefaults.standard.setValue(id, forKey: "recentGroup")
         UserDefaults.standard.setValue(date, forKey: "recentDate")
         UserDefaults.standard.setValue(owner, forKey: "recentOwner")

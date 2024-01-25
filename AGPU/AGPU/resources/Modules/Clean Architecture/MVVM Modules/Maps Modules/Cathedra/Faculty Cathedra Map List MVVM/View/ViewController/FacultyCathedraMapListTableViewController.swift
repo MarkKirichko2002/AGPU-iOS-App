@@ -29,7 +29,7 @@ class FacultyCathedraMapListTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         navigationItem.title = "Выберите факультет"
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }

@@ -5,12 +5,13 @@
 //  Created by Марк Киричко on 19.11.2023.
 //
 
-import Foundation
+import UIKit
 
 // MARK: - TimetableSettingsListViewModelProtocol
 extension TimetableSettingsListViewModel: TimetableSettingsListViewModelProtocol {
     
     func getAllData() {
+        options[0].name = getSavedOwner()
         options[0].info = getSavedGroup()
         options[1].info = "\(getSavedSubGroup())"
         options[2].info = getSavedPairType().title
@@ -22,10 +23,21 @@ extension TimetableSettingsListViewModel: TimetableSettingsListViewModelProtocol
         return faculty
     }
     
+    func getSavedOwner()-> String {
+        let owner = UserDefaults.standard.object(forKey: "recentOwner") as? String ?? "GROUP"
+        if owner == "GROUP" {
+            return "Группа"
+        } else if owner == "TEACHER" {
+            return "Преподаватель"
+        } else if owner == "ROOM" {
+            return "Аудитория"
+        }
+        return "-"
+    }
+    
     func getSavedGroup()-> String {
-        let group = UserDefaults.standard.object(forKey: "group") as? String ?? "нет группы"
-        print("группа: \(group)")
-        return group
+        let value = (UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-2-1")
+        return value
     }
     
     func getSavedSubGroup()-> Int {
@@ -36,6 +48,24 @@ extension TimetableSettingsListViewModel: TimetableSettingsListViewModelProtocol
     func getSavedPairType()-> PairType {
         let type = UserDefaults.loadData(type: PairType.self, key: "type") ?? .all
         return type
+    }
+    
+    func checkCurrentOwner()-> UIViewController {
+        let owner = UserDefaults.standard.object(forKey: "recentOwner") as? String ?? "GROUP"
+        if owner == "GROUP" {
+            if let faculty = getSavedFaculty() {
+                let vc = FacultyGroupsListTableViewController(faculty: faculty)
+                return vc
+            }
+        } else if owner == "TEACHER" {
+            let vc = TimeTableSearchListTableViewController()
+            vc.isSettings = true
+            return vc
+        } else if owner == "ROOM" {
+            let vc = TimeTableSearchListTableViewController()
+            return vc
+        }
+        return UIViewController()
     }
     
     func observeOptionSelection() {

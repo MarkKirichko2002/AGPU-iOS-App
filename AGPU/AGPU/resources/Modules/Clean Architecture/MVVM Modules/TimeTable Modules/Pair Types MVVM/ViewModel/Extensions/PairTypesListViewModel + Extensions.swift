@@ -10,25 +10,25 @@ import Foundation
 // MARK: - PairTypesListViewModelProtocol
 extension PairTypesListViewModel: PairTypesListViewModelProtocol {
     
-    func typeItem(index: Int)-> PairTypeModel {
-        return PairTypesList.list[index]
+    func typeItem(index: Int)-> PairType {
+        return PairType.allCases[index]
     }
     
     func numberOfTypesInSection()-> Int {
-        return PairTypesList.list.count
+        return PairType.allCases.count
     }
     
     func choosePairType(index: Int) {
-        let type = PairTypesList.list[index]
-        NotificationCenter.default.post(name: Notification.Name("TypeWasSelected"), object: type.type)
-        self.type = type.type
+        let type = typeItem(index: index)
+        NotificationCenter.default.post(name: Notification.Name("TypeWasSelected"), object: type)
+        self.type = type
         self.pairTypeSelectedHandler?()
         HapticsManager.shared.hapticFeedback()
     }
     
     func isCurrentType(index: Int)-> Bool {
-        let type = PairTypesList.list[index]
-        if type.type == self.type {
+        let type = typeItem(index: index)
+        if type == self.type {
             return true
         } else {
             return false

@@ -10,6 +10,6 @@ import Foundation
 struct TimetableSettingsOptionModel {
     let id: Int
     let icon: String
-    let name: String
+    var name: String
     var info: String
 }
