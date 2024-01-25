@@ -14,7 +14,8 @@ protocol TimetableSettingsListViewModelProtocol {
     func getSavedGroup()-> String
     func getSavedSubGroup()-> Int
     func getSavedPairType()-> PairType
-    func checkCurrentOwner()-> UIViewController
+    func currentOwnerIcon()-> String 
+    func currentOwnerScreen()-> UIViewController
     func observeOptionSelection()
     func registerDataChangedHandler(block: @escaping()->Void)
 }

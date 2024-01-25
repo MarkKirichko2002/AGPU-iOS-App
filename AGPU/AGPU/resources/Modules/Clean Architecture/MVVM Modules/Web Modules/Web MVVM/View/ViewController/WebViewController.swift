@@ -43,9 +43,9 @@ final class WebViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
+        let backButton = UIBarButtonItem(image: UIImage(named: "left"), style: .plain, target: self, action: #selector(backButtonTapped))
         backButton.tintColor = .label
-        let forwardbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.right"), style: .plain, target: self, action: #selector(forwardButtonTapped))
+        let forwardbutton = UIBarButtonItem(image: UIImage(named: "right"), style: .plain, target: self, action: #selector(forwardButtonTapped))
         forwardbutton.tintColor = .label
         let shareAction =  UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(share))
         shareAction.tintColor = .label

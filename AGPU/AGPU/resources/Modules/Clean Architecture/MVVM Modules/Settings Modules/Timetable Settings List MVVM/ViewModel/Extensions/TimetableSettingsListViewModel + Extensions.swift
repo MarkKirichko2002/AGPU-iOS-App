@@ -11,6 +11,7 @@ import UIKit
 extension TimetableSettingsListViewModel: TimetableSettingsListViewModelProtocol {
     
     func getAllData() {
+        options[0].icon = currentOwnerIcon()
         options[0].name = getSavedOwner()
         options[0].info = getSavedGroup()
         options[1].info = "\(getSavedSubGroup())"
@@ -29,7 +30,7 @@ extension TimetableSettingsListViewModel: TimetableSettingsListViewModelProtocol
             return "Группа"
         } else if owner == "TEACHER" {
             return "Преподаватель"
-        } else if owner == "ROOM" {
+        } else if owner == "CLASSROOM" {
             return "Аудитория"
         }
         return "-"
@@ -50,7 +51,19 @@ extension TimetableSettingsListViewModel: TimetableSettingsListViewModelProtocol
         return type
     }
     
-    func checkCurrentOwner()-> UIViewController {
+    func currentOwnerIcon()-> String {
+        let owner = UserDefaults.standard.object(forKey: "recentOwner") as? String ?? "GROUP"
+        if owner == "GROUP" {
+            return "group"
+        } else if owner == "TEACHER" {
+            return "profile icon"
+        } else if owner == "CLASSROOM" {
+            return "door"
+        }
+        return ""
+    }
+    
+    func currentOwnerScreen()-> UIViewController {
         let owner = UserDefaults.standard.object(forKey: "recentOwner") as? String ?? "GROUP"
         if owner == "GROUP" {
             if let faculty = getSavedFaculty() {
@@ -61,7 +74,7 @@ extension TimetableSettingsListViewModel: TimetableSettingsListViewModelProtocol
             let vc = TimeTableSearchListTableViewController()
             vc.isSettings = true
             return vc
-        } else if owner == "ROOM" {
+        } else if owner == "CLASSROOM" {
             let vc = TimeTableSearchListTableViewController()
             return vc
         }

@@ -68,6 +68,7 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = results[indexPath.row].searchContent
+        cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
         return cell
     }
     

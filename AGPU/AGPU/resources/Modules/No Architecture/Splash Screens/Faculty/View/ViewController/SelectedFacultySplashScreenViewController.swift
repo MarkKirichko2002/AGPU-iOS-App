@@ -110,15 +110,16 @@ final class SelectedFacultySplashScreenViewController: UIViewController {
             AGPUIcon.image = UIImage(named: faculty.icon)
             animation?.springAnimation(view: AGPUIcon)
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
                 self.AGPUTitleLabel.text = faculty.abbreviation
                 self.animation?.springAnimation(view: self.AGPUTitleLabel)
             }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            Timer.scheduledTimer(withTimeInterval: 4, repeats: false) { _ in
                 let controller = AGPUTabBarController()
                 controller.modalPresentationStyle = .fullScreen
-                self.present(controller, animated: false, completion: nil)
+                controller.modalTransitionStyle = .crossDissolve
+                self.present(controller, animated: true, completion: nil)
             }
         }
     }

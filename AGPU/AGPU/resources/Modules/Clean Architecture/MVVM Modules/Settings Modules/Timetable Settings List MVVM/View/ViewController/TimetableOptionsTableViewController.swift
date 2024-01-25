@@ -52,7 +52,7 @@ class TimetableOptionsTableViewController: UITableViewController {
         HapticsManager.shared.hapticFeedback()
         switch indexPath.row {
         case 0:
-            let vc = viewModel.checkCurrentOwner()
+            let vc = viewModel.currentOwnerScreen()
             self.navigationController?.pushViewController(vc, animated: true)
         case 1:
             let vc = SavedSubGroupTableViewController()
