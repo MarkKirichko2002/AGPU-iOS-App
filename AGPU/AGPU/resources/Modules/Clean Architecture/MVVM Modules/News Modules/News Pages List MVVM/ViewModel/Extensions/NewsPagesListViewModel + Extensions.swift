@@ -42,25 +42,14 @@ extension NewsPagesListViewModel: NewsPagesListViewModelProtocol {
         for page in 0..<pages.count {
             isStartLoading = true
             dispatchGroup.enter()
-            if abbreviation != "-" {
-                newsService.getNews(by: page, abbreviation: abbreviation ?? "") { [weak self] result in
-                    defer { dispatchGroup.leave() }
-                    switch result {
-                    case .success(let data):
-                        self?.pages[page].newsCount = data.articles?.count ?? 0
-                    case .failure(let error):
-                        print(error)
-                    }
-                }
-            } else {
-                newsService.getNews(by: page, abbreviation: "-") { [weak self] result in
-                    defer { dispatchGroup.leave() }
-                    switch result {
-                    case .success(let data):
-                        self?.pages[page].newsCount = data.articles?.count ?? 0
-                    case .failure(let error):
-                        print(error)
-                    }
+            Task {
+                let result = try await newsService.getNews(by: page, abbreviation: abbreviation ?? "-")
+                defer { dispatchGroup.leave() }
+                switch result {
+                case .success(let data):
+                    self.pages[page].newsCount = data.articles?.count ?? 0
+                case .failure(let error):
+                    print(error)
                 }
             }
         }

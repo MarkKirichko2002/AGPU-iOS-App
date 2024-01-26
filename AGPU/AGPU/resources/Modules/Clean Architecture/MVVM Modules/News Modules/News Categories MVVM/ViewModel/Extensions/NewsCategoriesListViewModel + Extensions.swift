@@ -26,7 +26,8 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
         for category in NewsCategories.categories {
             dispatchGroup.enter()
             if category.newsAbbreviation != "-" {
-                newsService.getNews(abbreviation: category.newsAbbreviation) { [weak self] result in
+                Task {
+                    let result = try await newsService.getNews(abbreviation: category.newsAbbreviation)
                     defer { dispatchGroup.leave() }
                     switch result {
                     case .success(let data):
@@ -36,7 +37,8 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
                     }
                 }
             } else {
-                newsService.getAGPUNews { [weak self] result in
+                Task {
+                    let result = try await newsService.getAGPUNews()
                     defer { dispatchGroup.leave() }
                     switch result {
                     case .success(let data):

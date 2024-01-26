@@ -12,50 +12,49 @@ import Foundation
 extension AGPUNewsService: AGPUNewsServiceProtocol {
 
     // получить новости
-    func getNews(abbreviation: String, completion: @escaping(Result<NewsResponse, Error>)->Void) {
-        AF.request("http://\(HostName.host)/api/news/\(abbreviation)").responseData { response in
-            
-            guard let data = response.data else {return}
-            
-            do {
-                let response = try JSONDecoder().decode(NewsResponse.self, from: data)
-                completion(.success(response))
-            } catch {
-                completion(.failure(error))
-            }
+    func getNews(abbreviation: String) async throws -> Result<NewsResponse, Error> {
+        
+        let url = URL(string: "http://\(HostName.host)/api/news/\(abbreviation)")!
+        let request = URLRequest(url: url)
+        
+        let data = try await URLSession.shared.data(for: request)
+        
+        do {
+            let news = try JSONDecoder().decode(NewsResponse.self, from: data.0)
+            return .success(news)
+        } catch {
+            return .failure(error)
         }
     }
     
     // получить новости АГПУ
-    func getAGPUNews(completion: @escaping(Result<NewsResponse, Error>)->Void) {
+    func getAGPUNews() async throws -> Result<NewsResponse, Error> {
         
-        AF.request("http://\(HostName.host)/api/news").responseData { response in
-            
-            guard let data = response.data else {return}
-            
-            do {
-                let response = try JSONDecoder().decode(NewsResponse.self, from: data)
-                completion(.success(response))
-            } catch {
-                completion(.failure(error))
-            }
+        let url = URL(string: "http://\(HostName.host)/api/news")!
+        let request = URLRequest(url: url)
+        
+        let data = try await URLSession.shared.data(for: request)
+        
+        do {
+            let news = try JSONDecoder().decode(NewsResponse.self, from: data.0)
+            return .success(news)
+        } catch {
+            return .failure(error)
         }
     }
     
-    func getNews(by page: Int, abbreviation: String, completion: @escaping(Result<NewsResponse, Error>)->Void) {
+    func getNews(by page: Int, abbreviation: String) async throws -> Result<NewsResponse, Error> {
         
-        let url = urlForPagination(abbreviation: abbreviation, page: page)
+        let url = URL(string: urlForPagination(abbreviation: abbreviation, page: page))!
+        let request = URLRequest(url: url)
         
-        AF.request(url).responseData { response in
-            
-            guard let data = response.data else {return}
-            
-            do {
-                let response = try JSONDecoder().decode(NewsResponse.self, from: data)
-                completion(.success(response))
-            } catch {
-                completion(.failure(error))
-            }
+        let data = try await URLSession.shared.data(for: request)
+        
+        do {
+            let news = try JSONDecoder().decode(NewsResponse.self, from: data.0)
+            return .success(news)
+        } catch {
+            return .failure(error)
         }
     }
     

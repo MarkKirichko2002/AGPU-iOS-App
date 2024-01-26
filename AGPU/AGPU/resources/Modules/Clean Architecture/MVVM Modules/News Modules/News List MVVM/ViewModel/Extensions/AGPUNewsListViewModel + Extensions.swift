@@ -31,11 +31,12 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     // получить новости АГПУ
     func getAGPUNews() {
-        newsService.getAGPUNews { [weak self] result in
+        Task {
+            let result = try await newsService.getAGPUNews()
             switch result {
             case .success(let response):
-                self?.newsResponse = response
-                self?.dataChangedHandler?("-")
+                self.newsResponse = response
+                self.dataChangedHandler?("-")
             case .failure(let error):
                 print(error)
             }
@@ -44,12 +45,13 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     // получить новости
     func getNews(abbreviation: String) {
-        newsService.getNews(abbreviation: abbreviation) { [weak self] result in
+        Task {
+            let result = try await newsService.getNews(abbreviation: abbreviation)
             switch result {
             case .success(let response):
-                self?.newsResponse = response
-                self?.dataChangedHandler?(abbreviation)
-                self?.abbreviation = abbreviation
+                self.newsResponse = response
+                self.dataChangedHandler?(abbreviation)
+                self.abbreviation = abbreviation
             case .failure(let error):
                 print(error)
             }
@@ -58,11 +60,13 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     // получить новость по странице
     func getNews(by page: Int) {
-        newsService.getNews(by: page, abbreviation: abbreviation) { [weak self] result in
+        
+        Task {
+            let result = try await newsService.getNews(by: page, abbreviation: abbreviation)
             switch result {
             case .success(let response):
-                self?.newsResponse = response
-                self?.dataChangedHandler?(self?.abbreviation ?? "-")
+                self.newsResponse = response
+                self.dataChangedHandler?(self.abbreviation)
             case .failure(let error):
                 print(error)
             }
