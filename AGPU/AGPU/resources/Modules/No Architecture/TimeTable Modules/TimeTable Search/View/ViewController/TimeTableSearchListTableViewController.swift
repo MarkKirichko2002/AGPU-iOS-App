@@ -8,9 +8,10 @@
 import UIKit
 
 class TimeTableSearchListTableViewController: UITableViewController, UISearchResultsUpdating {
-   
+    
     var results = [SearchResultModel]()
     var isSettings = false
+    let search = UISearchController(searchResultsController: nil)
     
     private let service = TimeTableService()
     
@@ -42,29 +43,20 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
     }
     
     private func setUpSearchBar() {
-        let search = UISearchController(searchResultsController: nil)
         search.searchResultsUpdater = self
         search.obscuresBackgroundDuringPresentation = false
         search.searchBar.placeholder = "введите текст"
         navigationItem.searchController = search
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let object = results[indexPath.row]
-        let result = SearchTimetableModel(name: object.searchContent, owner: currentOwner(type: object.type))
-        NotificationCenter.default.post(name: Notification.Name("object selected"), object: result)
-        if isSettings {
-            NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-        } else {
-            self.dismiss(animated: true)
-        }
-        self.tableView.reloadData()
+        chooseResult(index: indexPath.row)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return results.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = results[indexPath.row].searchContent
@@ -89,7 +81,6 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
             switch result {
             case .success(let data):
                 self?.results = data
-                print(data)
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                 }
@@ -97,5 +88,23 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
                 print(error)
             }
         }
+    }
+}
+
+extension TimeTableSearchListTableViewController {
+    
+    func chooseResult(index: Int) {
+        let object = results[index]
+        let result = SearchTimetableModel(name: object.searchContent, owner: currentOwner(type: object.type))
+        if isSettings {
+            UserDefaults.standard.setValue(result.owner, forKey: "recentOwner")
+            UserDefaults.standard.setValue(result.name, forKey: "group")
+            NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true)
+        }
+        NotificationCenter.default.post(name: Notification.Name("object selected"), object: result)
+        self.tableView.reloadData()
     }
 }

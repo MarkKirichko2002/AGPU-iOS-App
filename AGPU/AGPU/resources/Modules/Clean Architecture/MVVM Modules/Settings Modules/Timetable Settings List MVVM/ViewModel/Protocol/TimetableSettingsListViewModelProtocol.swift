@@ -11,11 +11,11 @@ protocol TimetableSettingsListViewModelProtocol {
     func getAllData()
     func getSavedFaculty()-> AGPUFacultyModel?
     func getSavedOwner()-> String
+    func currentOwnerIcon()-> String
+    func currentOwnerScreen()-> UIViewController
     func getSavedGroup()-> String
     func getSavedSubGroup()-> Int
     func getSavedPairType()-> PairType
-    func currentOwnerIcon()-> String 
-    func currentOwnerScreen()-> UIViewController
     func observeOptionSelection()
     func registerDataChangedHandler(block: @escaping()->Void)
 }

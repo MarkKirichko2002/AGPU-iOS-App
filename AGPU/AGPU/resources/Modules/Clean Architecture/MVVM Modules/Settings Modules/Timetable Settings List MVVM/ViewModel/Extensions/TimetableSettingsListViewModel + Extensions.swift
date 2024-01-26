@@ -36,21 +36,6 @@ extension TimetableSettingsListViewModel: TimetableSettingsListViewModelProtocol
         return "-"
     }
     
-    func getSavedGroup()-> String {
-        let value = (UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-2-1")
-        return value
-    }
-    
-    func getSavedSubGroup()-> Int {
-        let subGroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
-        return subGroup
-    }
-    
-    func getSavedPairType()-> PairType {
-        let type = UserDefaults.loadData(type: PairType.self, key: "type") ?? .all
-        return type
-    }
-    
     func currentOwnerIcon()-> String {
         let owner = UserDefaults.standard.object(forKey: "recentOwner") as? String ?? "GROUP"
         if owner == "GROUP" {
@@ -76,9 +61,25 @@ extension TimetableSettingsListViewModel: TimetableSettingsListViewModelProtocol
             return vc
         } else if owner == "CLASSROOM" {
             let vc = TimeTableSearchListTableViewController()
+            vc.isSettings = true
             return vc
         }
         return UIViewController()
+    }
+    
+    func getSavedGroup()-> String {
+        let value = (UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-2-1")
+        return value
+    }
+    
+    func getSavedSubGroup()-> Int {
+        let subGroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
+        return subGroup
+    }
+    
+    func getSavedPairType()-> PairType {
+        let type = UserDefaults.loadData(type: PairType.self, key: "type") ?? .all
+        return type
     }
     
     func observeOptionSelection() {

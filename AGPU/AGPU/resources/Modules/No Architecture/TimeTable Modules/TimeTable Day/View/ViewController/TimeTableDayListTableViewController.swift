@@ -200,10 +200,10 @@ final class TimeTableDayListTableViewController: UIViewController {
     
     func getTimeTable(id: String, date: String, owner: String) {
         let option = settingsManager.checkSaveRecentTimetableItem()
-        UserDefaults.standard.setValue(id, forKey: "recentGroup")
-        UserDefaults.standard.setValue(date, forKey: "recentDate")
-        UserDefaults.standard.setValue(owner, forKey: "recentOwner")
         if option == true {
+            UserDefaults.standard.setValue(id, forKey: "recentGroup")
+            UserDefaults.standard.setValue(date, forKey: "recentDate")
+            UserDefaults.standard.setValue(owner, forKey: "recentOwner")
             UserDefaults.standard.setValue(id, forKey: "group")
         }
         self.spinner.startAnimating()
