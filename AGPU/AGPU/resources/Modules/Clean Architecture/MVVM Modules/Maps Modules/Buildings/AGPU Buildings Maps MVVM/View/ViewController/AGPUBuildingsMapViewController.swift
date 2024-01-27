@@ -27,7 +27,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
         setUpButtons()
         bindViewModel()
     }
-    
+        
     private func setUpNavigation() {
         
         let button = UIButton()
@@ -106,18 +106,12 @@ final class AGPUBuildingsMapViewController: UIViewController {
     }
     
     @objc private func nextLocation() {
-        if index < AGPUBuildingPins.pins.count - 1 {
+        if index < mapView.annotations.count - 1 {
             index += 1
             // Определение региона для прокрутки и увеличения
             let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001) // Задание масштаба
-            let region = MKCoordinateRegion(center: AGPUBuildingPins.pins[index].coordinate, span: span)
-            // Прокрутка и увеличение до метки на карте
-            UIView.animate(withDuration: 1) {
-                self.mapView.setRegion(region, animated: true)
-            } completion: { _ in
-                self.navigationItem.title = AGPUBuildingPins.pins[self.index].title
-                HapticsManager.shared.hapticFeedback()
-            }
+            let region = MKCoordinateRegion(center: mapView.annotations[index].coordinate, span: span)
+            setRegion(region: region)
         }
     }
     
@@ -126,14 +120,8 @@ final class AGPUBuildingsMapViewController: UIViewController {
             index -= 1
             // Определение региона для прокрутки и увеличения
             let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001) // Задание масштаба
-            let region = MKCoordinateRegion(center: AGPUBuildingPins.pins[index].coordinate, span: span)
-            // Прокрутка и увеличение до метки на карте
-            UIView.animate(withDuration: 1) {
-                self.mapView.setRegion(region, animated: true)
-            } completion: { _ in
-                self.navigationItem.title = AGPUBuildingPins.pins[self.index].title
-                HapticsManager.shared.hapticFeedback()
-            }
+            let region = MKCoordinateRegion(center: mapView.annotations[index].coordinate, span: span)
+            setRegion(region: region)
         }
     }
     
@@ -162,11 +150,22 @@ final class AGPUBuildingsMapViewController: UIViewController {
             self.mapView.showAnnotations(location.pins, animated: true)
         }
         viewModel.registerChoiceHandler { isBuildingType, annotation in
+            self.index = 0
+            self.navigationItem.title = "Найти «АГПУ»"
             if isBuildingType {
                 self.mapView.addAnnotation(annotation)
             } else {
                 self.mapView.removeAnnotation(annotation)
             }
+        }
+    }
+    
+    private func setRegion(region: MKCoordinateRegion) {
+        UIView.animate(withDuration: 1) {
+            self.mapView.setRegion(region, animated: true)
+        } completion: { _ in
+            self.navigationItem.title = self.mapView.annotations[self.index].title!
+            HapticsManager.shared.hapticFeedback()
         }
     }
 }
