@@ -16,12 +16,15 @@ final class AGPUBuildingsMapViewController: UIViewController {
     // MARK: - UI
     private let mapView = MKMapView()
     
+    var index = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setUpNavigation()
         setUpMap()
         makeConstraints()
+        setUpButtons()
         bindViewModel()
     }
     
@@ -79,6 +82,59 @@ final class AGPUBuildingsMapViewController: UIViewController {
             mapView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
+    }
+    
+    private func setUpButtons() {
+        
+        let leftButton = UIBarButtonItem(image: UIImage(named: "backward"), style: .plain, target: self, action: #selector(pastLocation))
+        leftButton.tintColor = .label
+        let rightButton = UIBarButtonItem(image: UIImage(named: "forward"), style: .plain, target: self, action: #selector(nextLocation))
+        rightButton.tintColor = .label
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        let toolbar = UIToolbar()
+        toolbar.items = [leftButton, flexibleSpace, rightButton]
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(toolbar)
+        
+        NSLayoutConstraint.activate([
+            toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            toolbar.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            toolbar.heightAnchor.constraint(equalToConstant: (view.bounds.height / 4) / 2 / 1.5)
+        ])
+    }
+    
+    @objc private func nextLocation() {
+        if index < AGPUBuildingPins.pins.count - 1 {
+            index += 1
+            // Определение региона для прокрутки и увеличения
+            let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001) // Задание масштаба
+            let region = MKCoordinateRegion(center: AGPUBuildingPins.pins[index].coordinate, span: span)
+            // Прокрутка и увеличение до метки на карте
+            UIView.animate(withDuration: 1) {
+                self.mapView.setRegion(region, animated: true)
+            } completion: { _ in
+                self.navigationItem.title = AGPUBuildingPins.pins[self.index].title
+                HapticsManager.shared.hapticFeedback()
+            }
+        }
+    }
+    
+    @objc private func pastLocation() {
+        if index > 0 {
+            index -= 1
+            // Определение региона для прокрутки и увеличения
+            let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001) // Задание масштаба
+            let region = MKCoordinateRegion(center: AGPUBuildingPins.pins[index].coordinate, span: span)
+            // Прокрутка и увеличение до метки на карте
+            UIView.animate(withDuration: 1) {
+                self.mapView.setRegion(region, animated: true)
+            } completion: { _ in
+                self.navigationItem.title = AGPUBuildingPins.pins[self.index].title
+                HapticsManager.shared.hapticFeedback()
+            }
+        }
     }
     
     private func bindViewModel() {
