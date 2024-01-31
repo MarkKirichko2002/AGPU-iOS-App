@@ -15,6 +15,13 @@ class ForApplicantListTableViewController: UITableViewController {
         setUpTable()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
+    
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: "profile icon", title: "Абитуриенту", frame: .zero)
         navigationItem.titleView = titleView
@@ -25,8 +32,6 @@ class ForApplicantListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.row {
             
@@ -75,6 +80,11 @@ class ForApplicantListTableViewController: UITableViewController {
         default:
             break
         }
+        
+        if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
+            cell.sectionSelected(indexPath: indexPath)
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

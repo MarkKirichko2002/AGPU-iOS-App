@@ -22,10 +22,7 @@ final class AGPUSubSectionTableViewCell: UITableViewCell {
     }()
     
     // MARK: - Init
-    override init(
-        style: UITableViewCell.CellStyle,
-        reuseIdentifier: String?
-    ) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(AGPUSubSectionTitle)
         self.backgroundColor = .clear
@@ -34,6 +31,12 @@ final class AGPUSubSectionTableViewCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        AGPUSubSectionTitle.text = nil
+        AGPUSubSectionTitle.textColor = .label
     }
     
     private func makeConstraints() {
@@ -47,6 +50,7 @@ final class AGPUSubSectionTableViewCell: UITableViewCell {
     
     func didTapCell(indexPath: IndexPath) {
         animation.springAnimation(view: AGPUSubSectionTitle)
+        AGPUSubSectionTitle.textColor = .systemGreen
     }
     
     func configure(subsection: AGPUSubSectionModel) {

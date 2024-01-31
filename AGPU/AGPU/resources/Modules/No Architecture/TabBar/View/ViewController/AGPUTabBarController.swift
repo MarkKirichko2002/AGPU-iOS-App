@@ -211,13 +211,13 @@ final class AGPUTabBarController: UITabBarController {
         NotificationCenter.default.addObserver(forName: Notification.Name("screen was closed"), object: nil, queue: .main) { _ in
             if self.isRecording {
                 if !self.tabBar.isHidden {
-                    DispatchQueue.main.async {
-                        self.updateDynamicButton(icon: "mic")
-                    }
+                    self.updateDynamicButton(icon: "mic")
                 }
             } else {
                 if !self.tabBar.isHidden {
                     self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
+                } else {
+                    print("sfkndgkjkn")
                 }
             }
         }

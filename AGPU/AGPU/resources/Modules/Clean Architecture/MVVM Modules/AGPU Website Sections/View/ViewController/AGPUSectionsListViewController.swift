@@ -18,6 +18,13 @@ final class AGPUSectionsListViewController: UIViewController {
         setUpTable()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
+    
     private func setUpNavigation() {
         
         let titleView = CustomTitleView(image: "АГПУ", title: "Разделы сайта", frame: .zero)

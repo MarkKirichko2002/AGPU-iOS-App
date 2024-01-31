@@ -61,8 +61,8 @@ final class SettingsListViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel.observation = observe(\.viewModel.isChanged) { _, _ in
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
             }
         }
         viewModel.observeOptionSelection()
