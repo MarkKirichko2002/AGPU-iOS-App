@@ -17,6 +17,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
     private let mapView = MKMapView()
     
     var index = 0
+    var isAction = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +35,13 @@ final class AGPUBuildingsMapViewController: UIViewController {
         button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
-        
         let backButton = UIBarButtonItem(customView: button)
+        
+        let button2 = UIButton()
+        button2.tintColor = .label
+        button2.setImage(UIImage(named: "cross"), for: .normal)
+        button2.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
+        let closeButton = UIBarButtonItem(customView: button2)
         
         let typeList = UIAction(title: "Корпуса") { _ in
             let vc = AGPUBuildingTypesListTableViewController(type: self.viewModel.type)
@@ -56,17 +62,26 @@ final class AGPUBuildingsMapViewController: UIViewController {
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         options.tintColor = .label
         
-        navigationItem.title = "Найти «АГПУ»"
+        navigationItem.title = "Найти кампус"
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
         
-        navigationItem.leftBarButtonItem = backButton
+        if isAction {
+            navigationItem.leftBarButtonItem = closeButton
+        } else {
+            navigationItem.leftBarButtonItem = backButton
+        }
         navigationItem.rightBarButtonItem = options
     }
     
     @objc private func back() {
         sendScreenWasClosedNotification()
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func closeScreen() {
+        HapticsManager.shared.hapticFeedback()
+        dismiss(animated: true)
     }
     
     private func setUpMap() {
@@ -151,7 +166,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
         }
         viewModel.registerChoiceHandler { isBuildingType, annotation in
             self.index = 0
-            self.navigationItem.title = "Найти «АГПУ»"
+            self.navigationItem.title = "Найти кампус"
             if isBuildingType {
                 self.mapView.addAnnotation(annotation)
             } else {

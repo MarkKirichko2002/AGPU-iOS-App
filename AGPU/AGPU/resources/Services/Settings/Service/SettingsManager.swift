@@ -7,6 +7,4 @@
 
 import Foundation
 
-final class SettingsManager {
-    
-}
+final class SettingsManager {}

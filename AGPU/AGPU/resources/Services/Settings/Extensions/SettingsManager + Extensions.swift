@@ -10,15 +10,6 @@ import UIKit
 // MARK: - SettingsManagerProtocol
 extension SettingsManager: SettingsManagerProtocol {
    
-    // MARK: - Your Status
-    func observeStatusChanged(completion: @escaping()->Void) {
-        NotificationCenter.default.addObserver(forName: Notification.Name("user status"), object: nil, queue: .main) { notification in
-            if let _ = notification.object as? UserStatusModel {
-                completion()
-            }
-        }
-    }
-    
     func checkCurrentStatus()-> UIViewController {
         let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status")
         switch status?.id {
@@ -81,6 +72,27 @@ extension SettingsManager: SettingsManagerProtocol {
     func observeOnlyTimetableChanged(completion: @escaping()->Void) {
         NotificationCenter.default.addObserver(forName: Notification.Name("only timetable"), object: nil, queue: .main) { _ in
             completion()
+        }
+    }
+    
+    // MARK: - ASPU Button
+    func checkDynamicButtonOption()-> DynamicButtonActions {
+        let action = UserDefaults.loadData(type: DynamicButtonActions.self, key: "action") ?? .speechRecognition
+        return action
+    }
+    
+    func observeDynamicButtonActionChanged(completion: @escaping()->Void) {
+        NotificationCenter.default.addObserver(forName: Notification.Name("action"), object: nil, queue: .main) { _ in
+            completion()
+        }
+    }
+    
+    // MARK: - Your Status
+    func observeStatusChanged(completion: @escaping()->Void) {
+        NotificationCenter.default.addObserver(forName: Notification.Name("user status"), object: nil, queue: .main) { notification in
+            if let _ = notification.object as? UserStatusModel {
+                completion()
+            }
         }
     }
 }

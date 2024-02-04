@@ -8,11 +8,13 @@
 import UIKit
 
 protocol SettingsManagerProtocol {
-    func observeStatusChanged(completion: @escaping()->Void)
     func checkCurrentStatus()-> UIViewController
     func checkCurrentIcon()-> String
     func checkShakeToRecallOption()-> Bool
     func checkOnlyTimetableOption()-> Bool
-    func checkSaveRecentTimetableItem()-> Bool 
+    func checkSaveRecentTimetableItem()-> Bool
     func observeOnlyTimetableChanged(completion: @escaping()->Void)
+    func checkDynamicButtonOption()-> DynamicButtonActions
+    func observeDynamicButtonActionChanged(completion: @escaping()->Void)
+    func observeStatusChanged(completion: @escaping()->Void)
 }

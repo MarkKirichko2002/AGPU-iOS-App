@@ -47,7 +47,7 @@ final class AGPUBuildingDetailViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Найти «АГПУ»"
+        navigationItem.title = "Найти кампус"
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         let shareButton = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(showShareAlert))
         closeButton.tintColor = .label

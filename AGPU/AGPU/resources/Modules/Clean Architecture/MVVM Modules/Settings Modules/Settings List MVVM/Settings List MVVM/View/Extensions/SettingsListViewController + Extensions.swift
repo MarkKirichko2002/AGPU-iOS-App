@@ -19,7 +19,7 @@ extension SettingsListViewController: UITableViewDataSource {
         case 0:
             return 4
         case 1:
-            return 5
+            return 6
         case 2:
             return 2
         default:
@@ -62,9 +62,13 @@ extension SettingsListViewController: UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AppIconTableViewCell.identifier, for: indexPath) as? AppIconTableViewCell else {return UITableViewCell()}
                 cell.configure(icon: viewModel.getAppIconInfo())
                 return cell
-            } else {
+            } else if indexPath.row == 4 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AppThemesTableViewCell.identifier, for: indexPath) as? AppThemesTableViewCell else {return UITableViewCell()}
                 cell.configure(theme: viewModel.getAppThemeInfo())
+                return cell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: DynamicButtonOptionsTableViewCell.identifier, for: indexPath) as? DynamicButtonOptionsTableViewCell else {return UITableViewCell()}
+                cell.configure(action: viewModel.getDynamicButtonActionInfo())
                 return cell
             }
         case 2:
@@ -158,6 +162,14 @@ extension SettingsListViewController: UITableViewDelegate {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "theme")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = AppThemesListTableViewController()
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    self.present(navVC, animated: true)
+                }
+            } else if indexPath.row == 5 {
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "button")
+                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                    let vc = DynamicButtonActionsListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)

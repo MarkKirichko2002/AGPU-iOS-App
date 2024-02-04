@@ -50,6 +50,8 @@ final class SettingsListViewController: UIViewController {
         tableView.register(UINib(nibName: SplashScreenOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SplashScreenOptionTableViewCell.identifier)
         // Темы приложения
         tableView.register(UINib(nibName: AppThemesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppThemesTableViewCell.identifier)
+        // ASPU Button
+        tableView.register(UINib(nibName: DynamicButtonOptionsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DynamicButtonOptionsTableViewCell.identifier)
         // MARK: - О приложении
         // Фишки приложения
         tableView.register(UINib(nibName: AppFeaturesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppFeaturesTableViewCell.identifier)

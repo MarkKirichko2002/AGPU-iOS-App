@@ -185,7 +185,7 @@ extension AGPUTabBarController {
         }
     }
     
-    // изменение Dynamic Button
+    // изменение ASPU Button
     func updateDynamicButton(icon: String) {
         DispatchQueue.main.async {
             self.DynamicButton.setImage(UIImage(named: icon), for: .normal)

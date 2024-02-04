@@ -8,7 +8,7 @@
 import UIKit
 
 class SelectedFacultyListTableViewController: UITableViewController {
-    
+
     @objc private let viewModel = SelectedFacultyListViewModel()
     
     override func viewDidLoad() {
@@ -135,9 +135,18 @@ class SelectedFacultyListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AGPUFacultyTableViewCell.identifier, for: indexPath) as? AGPUFacultyTableViewCell else {return UITableViewCell()}
         let faculty = viewModel.facultyItem(index: indexPath.row)
+        cell.delegate = self
         cell.AGPUFacultyName.textColor = viewModel.isFacultySelected(index: indexPath.row) ? .systemGreen : .label
         cell.accessoryType = viewModel.isFacultySelected(index: indexPath.row) ? .checkmark : .none
         cell.configure(faculty: faculty)
         return cell
+    }
+}
+
+extension SelectedFacultyListTableViewController: AGPUFacultyTableViewCellDelegate {
+    
+    func openFacultyInfo(faculty: AGPUFacultyModel) {
+        self.goToWeb(url: faculty.url, image: faculty.icon, title: faculty.abbreviation, isSheet: false)
+        HapticsManager.shared.hapticFeedback()
     }
 }

@@ -65,6 +65,7 @@ class FacultyCathedraMapListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AGPUFacultyTableViewCell.identifier, for: indexPath) as? AGPUFacultyTableViewCell else {return UITableViewCell()}
+        cell.delegate = self
         cell.AGPUFacultyName.textColor = viewModel?.isCurrentFaculty(index: indexPath.row) ?? false ? .systemGreen : .label
         cell.accessoryType = viewModel?.isCurrentFaculty(index: indexPath.row) ?? false ? .checkmark : .none
         cell.configure(faculty: AGPUFaculties.faculties[indexPath.row])
@@ -74,5 +75,13 @@ class FacultyCathedraMapListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel?.chooseFaculty(index: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension FacultyCathedraMapListTableViewController: AGPUFacultyTableViewCellDelegate {
+    
+    func openFacultyInfo(faculty: AGPUFacultyModel) {
+        self.goToWeb(url: faculty.url, image: faculty.icon, title: faculty.abbreviation, isSheet: false)
+        HapticsManager.shared.hapticFeedback()
     }
 }

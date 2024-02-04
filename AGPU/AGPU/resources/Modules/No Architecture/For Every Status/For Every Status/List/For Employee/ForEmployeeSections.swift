@@ -19,7 +19,7 @@ struct ForEmployeeSections {
         ForEveryStatusModel(
             id: 2,
             icon: "map icon",
-            name: "Найти «АГПУ»"
+            name: "Найти кампус"
         ),
         ForEveryStatusModel(
             id: 3,

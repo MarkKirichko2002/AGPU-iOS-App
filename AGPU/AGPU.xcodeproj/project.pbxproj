@@ -350,6 +350,14 @@
 		82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */; };
 		82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */; };
 		82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */; };
+		82F578772B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F578762B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift */; };
+		82F5787D2B6FE4B400BC64C1 /* DynamicButtonActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F5787C2B6FE4B400BC64C1 /* DynamicButtonActions.swift */; };
+		82F5787F2B6FE57100BC64C1 /* DynamicButtonActionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F5787E2B6FE57100BC64C1 /* DynamicButtonActionsListViewModel.swift */; };
+		82F578842B6FE5A800BC64C1 /* DynamicButtonActionsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F578832B6FE5A800BC64C1 /* DynamicButtonActionsListViewModelProtocol.swift */; };
+		82F578862B6FE64F00BC64C1 /* DynamicButtonActionsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F578852B6FE64F00BC64C1 /* DynamicButtonActionsListViewModel + Extensions.swift */; };
+		82F578892B6FE90A00BC64C1 /* DynamicButtonActionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F578882B6FE90A00BC64C1 /* DynamicButtonActionsListTableViewController.swift */; };
+		82F578902B6FEDFB00BC64C1 /* DynamicButtonOptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F5788E2B6FEDFB00BC64C1 /* DynamicButtonOptionsTableViewCell.swift */; };
+		82F578912B6FEDFB00BC64C1 /* DynamicButtonOptionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82F5788F2B6FEDFB00BC64C1 /* DynamicButtonOptionsTableViewCell.xib */; };
 		82F98B322B11998E00137D9A /* WeatherManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F98B312B11998E00137D9A /* WeatherManagerProtocol.swift */; };
 		82F98B342B1199B300137D9A /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F98B332B1199B300137D9A /* WeatherManager.swift */; };
 		82F98B362B119A0200137D9A /* WeatherManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F98B352B119A0200137D9A /* WeatherManager + Extensions.swift */; };
@@ -701,6 +709,14 @@
 		82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClassProtocol.swift; sourceTree = "<group>"; };
 		82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManagerProtocol.swift; sourceTree = "<group>"; };
 		82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringImageView.swift; sourceTree = "<group>"; };
+		82F578762B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultyTableViewCellDelegate.swift; sourceTree = "<group>"; };
+		82F5787C2B6FE4B400BC64C1 /* DynamicButtonActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicButtonActions.swift; sourceTree = "<group>"; };
+		82F5787E2B6FE57100BC64C1 /* DynamicButtonActionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicButtonActionsListViewModel.swift; sourceTree = "<group>"; };
+		82F578832B6FE5A800BC64C1 /* DynamicButtonActionsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicButtonActionsListViewModelProtocol.swift; sourceTree = "<group>"; };
+		82F578852B6FE64F00BC64C1 /* DynamicButtonActionsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DynamicButtonActionsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		82F578882B6FE90A00BC64C1 /* DynamicButtonActionsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicButtonActionsListTableViewController.swift; sourceTree = "<group>"; };
+		82F5788E2B6FEDFB00BC64C1 /* DynamicButtonOptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicButtonOptionsTableViewCell.swift; sourceTree = "<group>"; };
+		82F5788F2B6FEDFB00BC64C1 /* DynamicButtonOptionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DynamicButtonOptionsTableViewCell.xib; sourceTree = "<group>"; };
 		82F98B2C2B11973500137D9A /* AGPU.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AGPU.entitlements; sourceTree = "<group>"; };
 		82F98B312B11998E00137D9A /* WeatherManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManagerProtocol.swift; sourceTree = "<group>"; };
 		82F98B332B1199B300137D9A /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
@@ -858,6 +874,7 @@
 		820D18E02A68F9AE00BFAA35 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				82F578752B6FB83400BC64C1 /* Protocols */,
 				8218F5852A688F6B00C94EB4 /* ActivityItemSource */,
 			);
 			path = Other;
@@ -1156,15 +1173,7 @@
 			isa = PBXGroup;
 			children = (
 				8221589A2A4233C50088BDE5 /* Settings List MVVM */,
-				82920B6E2AD877AA00352CD8 /* User Status List MVVM */,
-				82920B812AD881D100352CD8 /* Selected Faculty List MVVM */,
-				82AB6D1A2AF6C01100F7B729 /* Saved News Category MVVM */,
-				8226D1732B095D5500B0B9F0 /* Timetable Settings List MVVM */,
-				8226D1842B096F2A00B0B9F0 /* Saved Pair Type MVVM */,
-				82B1C0C52A80702D00520C14 /* Saved Sub Group MVVM */,
-				82761A1F2B463E9F00D9976F /* Splash Screens List MVVM */,
-				828397612AD5BE76000F355A /* App Icons List MVVM */,
-				82768ADD2ABE12D30022FBE1 /* App Themes List MVVM */,
+				82F5788A2B6FED1E00BC64C1 /* Settings Sections */,
 			);
 			path = "Settings Modules";
 			sourceTree = "<group>";
@@ -3212,6 +3221,7 @@
 				82761A1A2B4637DE00D9976F /* Splash Screens */,
 				8283975A2AD5BBAD000F355A /* App Icons */,
 				82768AF22ABE1B0D0022FBE1 /* App Themes */,
+				82F5788D2B6FEDD200BC64C1 /* Dynamic Button Options */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -5216,6 +5226,124 @@
 			path = "Spring Image";
 			sourceTree = "<group>";
 		};
+		82F578752B6FB83400BC64C1 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				82F578762B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		82F578782B6FE48400BC64C1 /* Dynamic Button Actions List */ = {
+			isa = PBXGroup;
+			children = (
+				82F5787B2B6FE4A400BC64C1 /* Model */,
+				82F5787A2B6FE49B00BC64C1 /* View */,
+				82F578792B6FE49900BC64C1 /* ViewModel */,
+			);
+			path = "Dynamic Button Actions List";
+			sourceTree = "<group>";
+		};
+		82F578792B6FE49900BC64C1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82F578812B6FE57A00BC64C1 /* Protocol */,
+				82F578822B6FE57C00BC64C1 /* ViewModel */,
+				82F578802B6FE57800BC64C1 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82F5787A2B6FE49B00BC64C1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82F578872B6FE8E200BC64C1 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82F5787B2B6FE4A400BC64C1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82F5787C2B6FE4B400BC64C1 /* DynamicButtonActions.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82F578802B6FE57800BC64C1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82F578852B6FE64F00BC64C1 /* DynamicButtonActionsListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82F578812B6FE57A00BC64C1 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82F578832B6FE5A800BC64C1 /* DynamicButtonActionsListViewModelProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		82F578822B6FE57C00BC64C1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82F5787E2B6FE57100BC64C1 /* DynamicButtonActionsListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82F578872B6FE8E200BC64C1 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82F578882B6FE90A00BC64C1 /* DynamicButtonActionsListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82F5788A2B6FED1E00BC64C1 /* Settings Sections */ = {
+			isa = PBXGroup;
+			children = (
+				82F5788C2B6FED2500BC64C1 /* Main */,
+				82F5788B2B6FED2300BC64C1 /* Other */,
+			);
+			path = "Settings Sections";
+			sourceTree = "<group>";
+		};
+		82F5788B2B6FED2300BC64C1 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				82761A1F2B463E9F00D9976F /* Splash Screens List MVVM */,
+				828397612AD5BE76000F355A /* App Icons List MVVM */,
+				82768ADD2ABE12D30022FBE1 /* App Themes List MVVM */,
+				82F578782B6FE48400BC64C1 /* Dynamic Button Actions List */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		82F5788C2B6FED2500BC64C1 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				82920B6E2AD877AA00352CD8 /* User Status List MVVM */,
+				82920B812AD881D100352CD8 /* Selected Faculty List MVVM */,
+				82AB6D1A2AF6C01100F7B729 /* Saved News Category MVVM */,
+				8226D1732B095D5500B0B9F0 /* Timetable Settings List MVVM */,
+				8226D1842B096F2A00B0B9F0 /* Saved Pair Type MVVM */,
+				82B1C0C52A80702D00520C14 /* Saved Sub Group MVVM */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		82F5788D2B6FEDD200BC64C1 /* Dynamic Button Options */ = {
+			isa = PBXGroup;
+			children = (
+				82F5788E2B6FEDFB00BC64C1 /* DynamicButtonOptionsTableViewCell.swift */,
+				82F5788F2B6FEDFB00BC64C1 /* DynamicButtonOptionsTableViewCell.xib */,
+			);
+			path = "Dynamic Button Options";
+			sourceTree = "<group>";
+		};
 		82F98B2D2B1198EA00137D9A /* Weather */ = {
 			isa = PBXGroup;
 			children = (
@@ -5369,6 +5497,7 @@
 				82989AD42A6E36C700F27858 /* FacultyCathedraTableViewCell.xib in Resources */,
 				828397752AD5C706000F355A /* PersonalizedAppIconTableViewCell.xib in Resources */,
 				82920B6B2AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.xib in Resources */,
+				82F578912B6FEDFB00BC64C1 /* DynamicButtonOptionsTableViewCell.xib in Resources */,
 				82B24A6E2A817BDE008B94E4 /* WeekTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5384,6 +5513,7 @@
 				82E4C54A2A6B11BB00F65A67 /* AGPUFacultiesListViewModelProtocol.swift in Sources */,
 				82B24A7A2A81945D008B94E4 /* AllWeeksListViewModel + Extensions.swift in Sources */,
 				820D18E72A68FA7D00BFAA35 /* AGPUBuildings.swift in Sources */,
+				82F578902B6FEDFB00BC64C1 /* DynamicButtonOptionsTableViewCell.swift in Sources */,
 				82B267032A8D926400043A6D /* NewsCategories.swift in Sources */,
 				828397792AD5C9F8000F355A /* AppIconsListViewModel.swift in Sources */,
 				825D567A2AE5CCAF004305C7 /* PairInfoViewModel.swift in Sources */,
@@ -5413,6 +5543,7 @@
 				824EBF842B2A0F700003E7E6 /* FacultyCathedraMapListViewModel + Extensions.swift in Sources */,
 				820E40952A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift in Sources */,
 				82807C712AA0FA5D00E9C884 /* PairTypesListTableViewController.swift in Sources */,
+				82F5787F2B6FE57100BC64C1 /* DynamicButtonActionsListViewModel.swift in Sources */,
 				824EBF732B29FA380003E7E6 /* AGPUBuildingTypesListViewModel.swift in Sources */,
 				8234E6122A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift in Sources */,
 				82989ACD2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift in Sources */,
@@ -5439,14 +5570,17 @@
 				82D0FC152B1B4C1E0056D94B /* CathedraBuildingDetailViewModelProtocol.swift in Sources */,
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
 				82AB6D212AF6C06800F7B729 /* SavedNewsCategoryViewModelProtocol.swift in Sources */,
+				82F578862B6FE64F00BC64C1 /* DynamicButtonActionsListViewModel + Extensions.swift in Sources */,
 				82BDFDB02A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift in Sources */,
 				8234E60B2A88591300ED354C /* RecentWordDocumentModel.swift in Sources */,
 				8228E3A42A6C9D3700C1B6AD /* AGPUBuildingsMapViewModelProtocol.swift in Sources */,
 				824EBF6C2B29F9890003E7E6 /* AGPUBuildingTypes.swift in Sources */,
+				82F578842B6FE5A800BC64C1 /* DynamicButtonActionsListViewModelProtocol.swift in Sources */,
 				8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */,
 				8228E3A62A6C9DB300C1B6AD /* AGPUBuildingsMapViewModel + Extensions.swift in Sources */,
 				82989AD82A6E54AF00F27858 /* AGPUCurrentCathedraMapViewController.swift in Sources */,
 				822605FA2A8532F30055925F /* RecentMomentsListViewModel + Extensions.swift in Sources */,
+				82F578772B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift in Sources */,
 				82761A2B2B463F9900D9976F /* SplashScreenOptions.swift in Sources */,
 				82426C902A71DCDA00D5AA57 /* UserStatusModel.swift in Sources */,
 				82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */,
@@ -5465,6 +5599,7 @@
 				82BC2F482A8EFD7C00ADB239 /* NewsCategoriesListViewModel + Extensions.swift in Sources */,
 				826F938B2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift in Sources */,
 				82920B7C2AD87B8500352CD8 /* UserStatusListViewModelProtocol.swift in Sources */,
+				82F578892B6FE90A00BC64C1 /* DynamicButtonActionsListTableViewController.swift in Sources */,
 				82E3C3D32B43719900F2FFA3 /* AudioPlayerClass.swift in Sources */,
 				82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
@@ -5606,6 +5741,7 @@
 				82320D832A49167000ECADEE /* AGPUFacultyModel.swift in Sources */,
 				82B24A7D2A8195D2008B94E4 /* HostName.swift in Sources */,
 				82768AE22ABE12F30022FBE1 /* AppThemeModel.swift in Sources */,
+				82F5787D2B6FE4B400BC64C1 /* DynamicButtonActions.swift in Sources */,
 				82920B882AD8823000352CD8 /* SelectedFacultyListTableViewController.swift in Sources */,
 				82BCB5742AB3AD0E00F3A321 /* PairTypesListViewModel.swift in Sources */,
 				82426C732A71476D00D5AA57 /* ForStudentSections.swift in Sources */,
@@ -5876,7 +6012,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.6;
+				MARKETING_VERSION = 1.7.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -5913,7 +6049,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.6;
+				MARKETING_VERSION = 1.7.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -104,9 +104,18 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AGPUFacultyTableViewCell.identifier, for: indexPath) as? AGPUFacultyTableViewCell else {return UITableViewCell()}
+        cell.delegate = self
         cell.AGPUFacultyName.textColor = viewModel.isFacultySelected(index: indexPath.row) ? .systemGreen : .label
         cell.accessoryType = viewModel.isFacultySelected(index: indexPath.row) ? .checkmark : .none
         cell.configure(faculty: viewModel.facultyItem(index: indexPath.row))
         return cell
+    }
+}
+
+extension AGPUFacultiesListTableViewController: AGPUFacultyTableViewCellDelegate {
+    
+    func openFacultyInfo(faculty: AGPUFacultyModel) {
+        self.goToWeb(url: faculty.url, image: faculty.icon, title: faculty.abbreviation, isSheet: false)
+        HapticsManager.shared.hapticFeedback()
     }
 }
