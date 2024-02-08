@@ -188,6 +188,16 @@ extension CalendarViewModel: CalendarViewModelProtocol {
         return uniqueExams.count
     }
     
+    func compareDates(date1: String, date2: Date)-> UIColor? {
+        
+        let date = dateManager.getDateFromString(str: date1)
+        
+        if let selectedDate = date, Calendar.current.isDate(date2, inSameDayAs: selectedDate) {
+              return UIColor.systemBlue
+        }
+        return nil
+    }
+    
     func sendNotificationDataWasSelected(date: String) {
         NotificationCenter.default.post(name: Notification.Name("DateWasSelected"), object: date)
     }

@@ -13,6 +13,7 @@ protocol CalendarViewModelProtocol {
     func getTestsCount(pairs: [Discipline])-> Int
     func getConsCount(pairs: [Discipline])-> Int
     func getExamsCount(pairs: [Discipline])-> Int
+    func compareDates(date1: String, date2: Date)-> UIColor?
     func sendNotificationDataWasSelected(date: String)
     func registerTimetableAlertHandler(block: @escaping(String, String, UIColor)->Void)
     func registerDateSelectedHandler(block: @escaping()->Void)

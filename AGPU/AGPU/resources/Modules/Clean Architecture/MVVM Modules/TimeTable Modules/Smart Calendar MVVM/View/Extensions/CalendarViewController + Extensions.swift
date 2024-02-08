@@ -19,11 +19,8 @@ extension CalendarViewController: FSCalendarDelegate {
 extension CalendarViewController: FSCalendarDelegateAppearance {
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
-        let d = DateManager().getDateFromString(str: self.date)
-        if let selectedDate = d, Calendar.current.isDate(date, inSameDayAs: selectedDate) {
-              return UIColor.systemBlue
-        } 
-        return nil
+        let color = viewModel.compareDates(date1: self.date, date2: date)
+        return color
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {

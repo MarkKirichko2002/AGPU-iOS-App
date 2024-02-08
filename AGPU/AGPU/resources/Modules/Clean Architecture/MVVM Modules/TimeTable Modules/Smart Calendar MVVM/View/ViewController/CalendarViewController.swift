@@ -18,7 +18,7 @@ final class CalendarViewController: UIViewController {
     var owner: String = ""
     
     // MARK: - UI
-    private let Calendar: FSCalendar = {
+    private let calendar: FSCalendar = {
         let calendar = FSCalendar()
         calendar.appearance.titleDefaultColor = .label
         calendar.backgroundColor = .systemBackground
@@ -58,17 +58,17 @@ final class CalendarViewController: UIViewController {
     }
     
     private func setUpCalendar() {
-        view.addSubview(Calendar)
-        Calendar.delegate = self
+        view.addSubview(calendar)
+        calendar.delegate = self
         makeConstraints()
     }
     
     private func makeConstraints() {
         NSLayoutConstraint.activate([
-            Calendar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            Calendar.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-            Calendar.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            Calendar.heightAnchor.constraint(equalToConstant: 300)
+            calendar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            calendar.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            calendar.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            calendar.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
     
