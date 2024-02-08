@@ -128,6 +128,8 @@ final class AGPUTabBarController: UITabBarController {
             DynamicButton.addTarget(self, action: #selector(openStudyPlan), for: .touchUpInside)
         case .profile:
             DynamicButton.addTarget(self, action: #selector(openProfile), for: .touchUpInside)
+        case .manual:
+            DynamicButton.addTarget(self, action: #selector(openManual), for: .touchUpInside)
         }
     }
     
@@ -244,6 +246,15 @@ final class AGPUTabBarController: UITabBarController {
     
     @objc private func openProfile() {
         self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: "profile icon", title: "ЭИОС", isSheet: false)
+    }
+    
+    @objc private func openManual() {
+        if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
+            self.goToWeb(url: cathedra.manualUrl, image: "book", title: "Метод. материалы", isSheet: false)
+        } else {
+            self.showHintAlert(type: .manuals)
+            HapticsManager.shared.hapticFeedback()
+        }
     }
     
     private func observeForEveryStatus() {

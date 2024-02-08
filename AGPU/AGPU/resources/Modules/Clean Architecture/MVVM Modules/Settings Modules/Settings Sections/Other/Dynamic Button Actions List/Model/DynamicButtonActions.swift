@@ -13,4 +13,5 @@ enum DynamicButtonActions: String, CaseIterable, Codable {
     case campusMap = "Карта кампуса"
     case studyPlan = "Учебный план"
     case profile = "Личный кабинет ЭИОС"
+    case manual = "Методические материалы"
 }

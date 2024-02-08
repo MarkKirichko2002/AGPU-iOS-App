@@ -49,8 +49,8 @@ struct AppFeaturesList {
         
         AppFeatureModel(
             id: 7,
-            name: "University Wallpapers",
-            description: "University Wallpapers (университетские обои) - вы можете скачать и установить обои связанные с АГПУ на экран вашего устройства."
+            name: "ASPU Wallpapers",
+            description: "ASPU Wallpapers (АГПУ обои) - вы можете скачать и установить обои связанные с АГПУ на экран вашего устройства."
         ),
         
         AppFeatureModel(
