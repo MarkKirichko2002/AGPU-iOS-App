@@ -42,7 +42,7 @@ final class AGPUNewYearSplashScreenViewController: UIViewController {
         let label = UILabel()
         label.isUserInteractionEnabled = true
         label.textColor = .label
-        label.font = .systemFont(ofSize: 21, weight: .black)
+        label.font = .systemFont(ofSize: 20, weight: .black)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -93,8 +93,8 @@ final class AGPUNewYearSplashScreenViewController: UIViewController {
         NSLayoutConstraint.activate([
             // иконка
             AGPUIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            AGPUIcon.widthAnchor.constraint(equalToConstant: 200),
-            AGPUIcon.heightAnchor.constraint(equalToConstant: 200),
+            AGPUIcon.widthAnchor.constraint(equalToConstant: 180),
+            AGPUIcon.heightAnchor.constraint(equalToConstant: 180),
             // название
             AGPUTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             AGPUTitleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),

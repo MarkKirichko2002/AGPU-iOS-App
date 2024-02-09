@@ -23,11 +23,21 @@ extension SplashScreensListViewModel: SplashScreensListViewModelProtocol {
         let savedOption = UserDefaults.loadData(type: SplashScreenOptions.self, key: "splash option") ?? .regular
         let option = SplashScreenOptions.allCases[index]
         if savedOption.rawValue != option.rawValue {
-            if option == .faculty {
+            if option == .status {
+                getStatusInfo()
+            } else if option == .faculty {
                 getSelectedFacultyInfo()
             } else {
                 saveOption(option: option)
             }
+        }
+    }
+    
+    func getStatusInfo() {
+        if let _ = UserDefaults.loadData(type: UserStatusModel.self, key: "user status") {
+            saveOption(option: .status)
+        } else {
+            alertHandler?("Нет статуса", "Выберите свой статус")
         }
     }
     

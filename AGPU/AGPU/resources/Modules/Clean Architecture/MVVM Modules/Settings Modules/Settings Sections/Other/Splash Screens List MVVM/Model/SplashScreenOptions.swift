@@ -9,6 +9,7 @@ import Foundation
 
 enum SplashScreenOptions: String, CaseIterable, Codable {
     case regular = "Обычный"
+    case status = "Статус"
     case faculty = "Факультет"
     case newyear = "Новый год"
     case random = "Рандом"

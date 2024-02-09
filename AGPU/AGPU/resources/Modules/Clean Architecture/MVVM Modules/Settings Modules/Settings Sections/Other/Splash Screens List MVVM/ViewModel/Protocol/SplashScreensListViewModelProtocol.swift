@@ -11,6 +11,7 @@ protocol SplashScreensListViewModelProtocol {
     func splashScreenOptionItem(index: Int)-> String
     func numberOfSplashScreenOptionsInSection()-> Int
     func chooseSplashScreenOption(index: Int)
+    func getStatusInfo()
     func getSelectedFacultyInfo()
     func isCurrentSplashScreenOption(index: Int)-> Bool
     func registerAlertHandler(block: @escaping(String, String)->Void)

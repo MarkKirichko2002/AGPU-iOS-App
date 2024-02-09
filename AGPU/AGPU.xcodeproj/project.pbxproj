@@ -231,6 +231,7 @@
 		82AB6D272AF6C0CC00F7B729 /* SavedNewsCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AB6D262AF6C0CC00F7B729 /* SavedNewsCategoryTableViewController.swift */; };
 		82AB6D2C2AF6C45700F7B729 /* SavedNewsCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AB6D2A2AF6C45700F7B729 /* SavedNewsCategoryTableViewCell.swift */; };
 		82AB6D2D2AF6C45700F7B729 /* SavedNewsCategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82AB6D2B2AF6C45700F7B729 /* SavedNewsCategoryTableViewCell.xib */; };
+		82AC8EB22B76AE13006B29F9 /* YourStatusSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC8EB12B76AE13006B29F9 /* YourStatusSplashScreenViewController.swift */; };
 		82B1C0CA2A8070A100520C14 /* SavedSubGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1C0C92A8070A100520C14 /* SavedSubGroupViewModel.swift */; };
 		82B1C0CF2A8070CE00520C14 /* SavedSubGroupViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1C0CE2A8070CE00520C14 /* SavedSubGroupViewModelProtocol.swift */; };
 		82B1C0D22A8070FF00520C14 /* SavedSubGroupViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B1C0D12A8070FF00520C14 /* SavedSubGroupViewModel + Extensions.swift */; };
@@ -593,6 +594,7 @@
 		82AB6D262AF6C0CC00F7B729 /* SavedNewsCategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedNewsCategoryTableViewController.swift; sourceTree = "<group>"; };
 		82AB6D2A2AF6C45700F7B729 /* SavedNewsCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedNewsCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		82AB6D2B2AF6C45700F7B729 /* SavedNewsCategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavedNewsCategoryTableViewCell.xib; sourceTree = "<group>"; };
+		82AC8EB12B76AE13006B29F9 /* YourStatusSplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourStatusSplashScreenViewController.swift; sourceTree = "<group>"; };
 		82B1C0C92A8070A100520C14 /* SavedSubGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedSubGroupViewModel.swift; sourceTree = "<group>"; };
 		82B1C0CE2A8070CE00520C14 /* SavedSubGroupViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedSubGroupViewModelProtocol.swift; sourceTree = "<group>"; };
 		82B1C0D12A8070FF00520C14 /* SavedSubGroupViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedSubGroupViewModel + Extensions.swift"; sourceTree = "<group>"; };
@@ -2420,6 +2422,7 @@
 			isa = PBXGroup;
 			children = (
 				82761A112B462AC300D9976F /* Regular */,
+				82AC8EAE2B76ADE2006B29F9 /* Your Status */,
 				82761A102B462AC000D9976F /* Faculty */,
 				82761A0F2B462ABA00D9976F /* New Year */,
 			);
@@ -3641,6 +3644,30 @@
 				82AB6D2B2AF6C45700F7B729 /* SavedNewsCategoryTableViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		82AC8EAE2B76ADE2006B29F9 /* Your Status */ = {
+			isa = PBXGroup;
+			children = (
+				82AC8EAF2B76ADF2006B29F9 /* View */,
+			);
+			path = "Your Status";
+			sourceTree = "<group>";
+		};
+		82AC8EAF2B76ADF2006B29F9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82AC8EB02B76ADF6006B29F9 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82AC8EB02B76ADF6006B29F9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82AC8EB12B76AE13006B29F9 /* YourStatusSplashScreenViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		82B1C0BD2A805D5200520C14 /* Recent Moments List MVVM */ = {
@@ -5617,6 +5644,7 @@
 				8226D18F2B09703700B0B9F0 /* SavedPairTypeViewModel.swift in Sources */,
 				8234E6032A88583E00ED354C /* WordRecentDocumentViewController.swift in Sources */,
 				82BCB5392AB351F400F3A321 /* DaysListViewModelProtocol.swift in Sources */,
+				82AC8EB22B76AE13006B29F9 /* YourStatusSplashScreenViewController.swift in Sources */,
 				825D92EE2AF2F03000B5E9DF /* RecentTimeTableDayListTableViewController + Extensions.swift in Sources */,
 				82920B8F2AD8872B00352CD8 /* SelectedFacultyListViewModel.swift in Sources */,
 				828D8E5A2B53648F0022FDB3 /* SearchTimetableModel.swift in Sources */,
@@ -6012,7 +6040,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.8;
+				MARKETING_VERSION = 1.7.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -6049,7 +6077,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.8;
+				MARKETING_VERSION = 1.7.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

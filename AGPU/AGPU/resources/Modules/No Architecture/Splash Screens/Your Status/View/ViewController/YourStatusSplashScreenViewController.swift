@@ -1,13 +1,13 @@
 //
-//  SelectedFacultySplashScreenViewController.swift
+//  YourStatusSplashScreenViewController.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 04.01.2024.
+//  Created by Марк Киричко on 09.02.2024.
 //
 
 import UIKit
 
-final class SelectedFacultySplashScreenViewController: UIViewController {
+final class YourStatusSplashScreenViewController: UIViewController {
     
     // MARK: - сервисы
     var animation: AnimationClassProtocol?
@@ -28,9 +28,9 @@ final class SelectedFacultySplashScreenViewController: UIViewController {
     
     // MARK: - UI
     // иконка
-    private let AGPUIcon: SpringImageView = {
+    private let StatusIcon: SpringImageView = {
         let icon = SpringImageView()
-        //icon.image = UIImage(named: "АГПУ")
+        icon.tintColor = .label
         icon.isInteraction = false
         icon.contentMode = .scaleAspectFill
         icon.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +38,7 @@ final class SelectedFacultySplashScreenViewController: UIViewController {
     }()
     
     // название
-    private let AGPUTitleLabel: UILabel = {
+    private let StatusName: UILabel = {
         let label = UILabel()
         label.isUserInteractionEnabled = true
         label.textColor = .label
@@ -74,45 +74,45 @@ final class SelectedFacultySplashScreenViewController: UIViewController {
     
     private func setUpView() {
         view.backgroundColor = .systemBackground
-        view.addSubviews(AGPUIcon, AGPUTitleLabel)
+        view.addSubviews(StatusIcon, StatusName)
         setUpLabel()
     }
     
     private func setUpLabel() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(springLabel))
-        AGPUTitleLabel.addGestureRecognizer(tap)
+        StatusName.addGestureRecognizer(tap)
         springLabel()
     }
     
     @objc private func springLabel() {
-        animation?.springAnimation(view: self.AGPUTitleLabel)
+        animation?.springAnimation(view: self.StatusName)
         HapticsManager.shared.hapticFeedback()
     }
     
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
             // иконка
-            AGPUIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            AGPUIcon.widthAnchor.constraint(equalToConstant: 180),
-            AGPUIcon.heightAnchor.constraint(equalToConstant: 180),
+            StatusIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            StatusIcon.widthAnchor.constraint(equalToConstant: 100),
+            StatusIcon.heightAnchor.constraint(equalToConstant: 100),
             // название
-            AGPUTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            AGPUTitleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            AGPUTitleLabel.heightAnchor.constraint(equalToConstant: 30),
-            AGPUTitleLabel.topAnchor.constraint(equalTo: AGPUIcon.bottomAnchor, constant: 50)
+            StatusName.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            StatusName.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            StatusName.heightAnchor.constraint(equalToConstant: 30),
+            StatusName.topAnchor.constraint(equalTo: StatusIcon.bottomAnchor, constant: 50)
         ])
     }
     
     private func showSplashScreen() {
         
-        guard let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") else {return}
+        guard let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status") else {return}
         
-        AGPUIcon.image = UIImage(named: faculty.icon)
-        animation?.springAnimation(view: AGPUIcon)
+        StatusIcon.image = UIImage(named: status.icon)
+        animation?.springAnimation(view: StatusIcon)
         
         Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
-            self.AGPUTitleLabel.text = faculty.abbreviation
-            self.animation?.springAnimation(view: self.AGPUTitleLabel)
+            self.StatusName.text = status.name
+            self.animation?.springAnimation(view: self.StatusName)
         }
         
         Timer.scheduledTimer(withTimeInterval: 4, repeats: false) { _ in
@@ -123,3 +123,4 @@ final class SelectedFacultySplashScreenViewController: UIViewController {
         }
     }
 }
+
