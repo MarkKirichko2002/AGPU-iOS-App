@@ -28,6 +28,7 @@ final class AGPUBuildingDetailViewController: UIViewController {
         setUpView()
         setUpNavigation()
         setUpLabel()
+        setUpWeatherLabel()
         bindViewModel()
     }
     
@@ -41,9 +42,32 @@ final class AGPUBuildingDetailViewController: UIViewController {
     }
     
     private func setUpLabel() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(showDetail))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showTimetableDetail))
         PairsExistence.isUserInteractionEnabled = true
         PairsExistence.addGestureRecognizer(tap)
+    }
+    
+    @objc private func showTimetableDetail() {
+        HapticsManager.shared.hapticFeedback()
+        let vc = TimeTableForCurrentBuildingViewController(timetable: viewModel.getTimeTableForBuilding(pairs: viewModel.disciplines))
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        DispatchQueue.main.async {
+            self.present(navVC, animated: true)
+        }
+    }
+    
+    private func setUpWeatherLabel() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showWeatherDetail))
+        WeatherLabel.isUserInteractionEnabled = true
+        WeatherLabel.addGestureRecognizer(tap)
+    }
+    
+    @objc private func showWeatherDetail() {
+        let vc = LocationWeatherDetailViewController(annotation: annotation)
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
     }
     
     private func setUpNavigation() {
@@ -82,16 +106,6 @@ final class AGPUBuildingDetailViewController: UIViewController {
         let title = annotation.title!! + " (Google Maps)"
         let url = "https://www.google.com/maps/search/?api=1&query=\(annotation.coordinate.latitude),\(annotation.coordinate.longitude)"
         shareInfo(image: UIImage(named: "map icon")!, title: title, text: "\(title)-\(url)")
-    }
-    
-    @objc private func showDetail() {
-        HapticsManager.shared.hapticFeedback()
-        let vc = TimeTableForCurrentBuildingViewController(timetable: viewModel.getTimeTableForBuilding(pairs: viewModel.disciplines))
-        let navVC = UINavigationController(rootViewController: vc)
-        navVC.modalPresentationStyle = .fullScreen
-        DispatchQueue.main.async {
-            self.present(navVC, animated: true)
-        }
     }
     
     private func bindViewModel() {
