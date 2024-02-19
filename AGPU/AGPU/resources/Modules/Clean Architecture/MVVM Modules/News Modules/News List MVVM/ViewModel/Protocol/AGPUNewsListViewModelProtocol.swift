@@ -13,6 +13,7 @@ protocol AGPUNewsListViewModelProtocol {
     func getAGPUNews()
     func getNews(abbreviation: String)
     func getNews(by page: Int)
+    func getRandomNews()
     func refreshNews()
     func observeCategoryChanges()
     func observePageChanges()

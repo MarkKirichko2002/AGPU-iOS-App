@@ -19,7 +19,7 @@ class CurrentWeatherTableViewCell: UITableViewCell {
         return icon
     }()
     
-    private let cityLabel: UILabel = {
+    private let locationLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .label
@@ -66,7 +66,7 @@ class CurrentWeatherTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        cityLabel.text = nil
+        locationLabel.text = nil
         temperatureLabel.text = nil
         conditionLabel.text = nil
         maxMinTemperatureLabel.text = nil
@@ -74,7 +74,7 @@ class CurrentWeatherTableViewCell: UITableViewCell {
     
     private func setUpView() {
         contentView.addSubview(weatherIcon)
-        contentView.addSubview(cityLabel)
+        contentView.addSubview(locationLabel)
         contentView.addSubview(temperatureLabel)
         contentView.addSubview(conditionLabel)
         contentView.addSubview(maxMinTemperatureLabel)
@@ -90,13 +90,14 @@ class CurrentWeatherTableViewCell: UITableViewCell {
             maker.height.equalTo(80)
         }
         
-        cityLabel.snp.makeConstraints { maker in
+        locationLabel.snp.makeConstraints { maker in
             maker.top.equalToSuperview().inset(20)
+            maker.right.equalToSuperview().inset(80)
             maker.centerX.equalToSuperview()
         }
         
         temperatureLabel.snp.makeConstraints { maker in
-            maker.top.equalTo(cityLabel).inset(45)
+            maker.top.equalTo(locationLabel).inset(45)
             maker.centerX.equalToSuperview()
         }
         
@@ -114,7 +115,7 @@ class CurrentWeatherTableViewCell: UITableViewCell {
     
     func configure(weather: CurrentWeatherTableViewCellViewModel) {
         weatherIcon.image = UIImage(systemName: weather.icon)
-        cityLabel.text = weather.location
+        locationLabel.text = weather.location
         temperatureLabel.text = "\(weather.temperature)°"
         conditionLabel.text = weather.condition
         maxMinTemperatureLabel.text = "Макс: \(weather.maxTemperature)°, мин: \(weather.minTemperature)°"

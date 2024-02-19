@@ -10,5 +10,6 @@ target 'AGPU' do
   pod 'FSCalendar'
   pod 'SDWebImage'
   pod 'SnapKit'
+  pod 'RealmSwift'
 
 end

@@ -52,4 +52,8 @@ extension WordDocumenReaderViewModel: WordDocumenReaderViewModelProtocol {
             print("сохранено: \(page)")
         }
     }
+    
+    func saveCurrentDocument(document: DocumentModel) {
+        realmManager.saveDocument(document: document)
+    }
 }

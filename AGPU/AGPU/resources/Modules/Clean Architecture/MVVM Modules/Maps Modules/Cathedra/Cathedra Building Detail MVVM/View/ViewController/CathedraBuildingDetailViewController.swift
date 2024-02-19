@@ -22,9 +22,32 @@ class CathedraBuildingDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpNavigation()
         setUpView()
+        setUpNavigation()
+        setUpWeatherLabel()
         bindViewModel()
+    }
+    
+    private func setUpView() {
+        LocationName.text = annotation.title!
+        LocationDetail.text = annotation.subtitle!
+        LocationName.textColor = UIColor.label
+        LocationDetail.textColor = UIColor.label
+        WeatherLabel.textColor = UIColor.label
+    }
+    
+    private func setUpWeatherLabel() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showWeatherDetail))
+        WeatherLabel.isUserInteractionEnabled = true
+        WeatherLabel.addGestureRecognizer(tap)
+    }
+    
+    @objc private func showWeatherDetail() {
+        HapticsManager.shared.hapticFeedback()
+        let vc = LocationWeatherDetailViewController(annotation: annotation)
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
     }
     
     private func setUpNavigation() {
@@ -65,14 +88,6 @@ class CathedraBuildingDetailViewController: UIViewController {
         shareInfo(image: UIImage(named: "map icon")!, title: title, text: "\(title)-\(url)")
     }
     
-    private func setUpView() {
-        LocationName.text = annotation.title!
-        LocationDetail.text = annotation.subtitle!
-        LocationName.textColor = UIColor.label
-        LocationDetail.textColor = UIColor.label
-        WeatherLabel.textColor = UIColor.label
-    }
-    
     private func bindViewModel() {
         viewModel = CathedraBuildingDetailViewModel(annotation: annotation)
         viewModel.getWeather()
@@ -83,9 +98,36 @@ class CathedraBuildingDetailViewController: UIViewController {
         }
     }
     
+    private func showChooseAppAlert() {
+        
+        let openAppleMaps = UIAlertAction(title: "С помощью Apple Maps", style: .default) { _ in
+            let url = URL(string: "http://maps.apple.com/?q=\(self.annotation.coordinate.latitude),\(self.annotation.coordinate.longitude)")!
+            UIApplication.shared.open(url)
+        }
+        
+        let openGoogleMaps = UIAlertAction(title: "С помощью Google Maps", style: .default) { _ in
+            let url = URL(string: "comgooglemaps://?q=\(self.annotation.coordinate.latitude),\(self.annotation.coordinate.longitude)")!
+            UIApplication.shared.open(url) { canOpen in
+                if canOpen {
+                    UIApplication.shared.open(url)
+                } else {
+                    self.showNoGoogleMapsAlert()
+                }
+            }
+        }
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
+        self.showAlert(title: "Открыть карты", message: "Как вы хотите открыть карты?", actions: [openAppleMaps, openGoogleMaps, cancel])
+    }
+    
+    private func showNoGoogleMapsAlert() {
+        let ok = UIAlertAction(title: "Показать в App Store", style: .default) { _ in
+            UIApplication.shared.open(URL(string: "https://apps.apple.com/app/google-maps-transit-food/id585027354")!)
+        }
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
+        self.showAlert(title: "Google Maps не установлено", message: "Хотите установить в App Store?", actions: [ok, cancel])
+    }
+    
     @IBAction func GoToMap() {
-        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: annotation.coordinate, addressDictionary: nil))
-        mapItem.name = annotation.title ?? ""
-        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+        showChooseAppAlert()
     }
 }

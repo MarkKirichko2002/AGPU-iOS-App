@@ -1,6 +1,11 @@
 PODS:
   - Alamofire (5.8.1)
   - FSCalendar (2.8.4)
+  - Realm (10.47.0):
+    - Realm/Headers (= 10.47.0)
+  - Realm/Headers (10.47.0)
+  - RealmSwift (10.47.0):
+    - Realm (= 10.47.0)
   - SDWebImage (5.18.10):
     - SDWebImage/Core (= 5.18.10)
   - SDWebImage/Core (5.18.10)
@@ -9,6 +14,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - FSCalendar
+  - RealmSwift
   - SDWebImage
   - SnapKit
 
@@ -16,15 +22,19 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - FSCalendar
+    - Realm
+    - RealmSwift
     - SDWebImage
     - SnapKit
 
 SPEC CHECKSUMS:
   Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
+  Realm: e43fb540ae947497e3ea8a662443256920602060
+  RealmSwift: 8b06ed06b5d16749ae0c4d91c0cba414a9e28189
   SDWebImage: fc8f2d48bbfd72ef39d70e981bd24a3f3be53fec
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: a71038fbe086d9c90c273edab5fbd6ee700ab4e0
+PODFILE CHECKSUM: 8ea9e30c3d4f09c7c9872a4e28013d89416c68c8
 
 COCOAPODS: 1.14.3

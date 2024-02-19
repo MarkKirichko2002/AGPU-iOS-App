@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DocumentTableViewCell" rowHeight="91" id="anw-dI-EFv" customClass="DocumentTableViewCell" customModule="AGPU" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="91"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="anw-dI-EFv" id="U0w-td-isi">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="91"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pdf" translatesAutoresizingMaskIntoConstraints="NO" id="Cgb-8U-8qM" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
+                        <rect key="frame" x="10" y="10" width="65" height="65"/>
+                        <color key="tintColor" systemColor="systemRedColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="65" id="g4c-Fr-dq9"/>
+                            <constraint firstAttribute="height" constant="65" id="nwV-vg-UAG"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="document.pdf" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLy-QW-9cb">
+                        <rect key="frame" x="85" y="15" width="298" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="12t-Ij-IEL"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="cLy-QW-9cb" firstAttribute="top" secondItem="U0w-td-isi" secondAttribute="top" constant="15" id="7Sy-nG-yc7"/>
+                    <constraint firstItem="Cgb-8U-8qM" firstAttribute="top" secondItem="U0w-td-isi" secondAttribute="top" constant="10" id="7qX-Kl-xa6"/>
+                    <constraint firstItem="Cgb-8U-8qM" firstAttribute="leading" secondItem="U0w-td-isi" secondAttribute="leading" constant="10" id="913-Kj-z7F"/>
+                    <constraint firstAttribute="bottom" secondItem="cLy-QW-9cb" secondAttribute="bottom" constant="15" id="CV3-Vl-V8C"/>
+                    <constraint firstItem="cLy-QW-9cb" firstAttribute="leading" secondItem="Cgb-8U-8qM" secondAttribute="trailing" constant="10" id="Kll-43-Nf4"/>
+                    <constraint firstAttribute="bottom" secondItem="Cgb-8U-8qM" secondAttribute="bottom" constant="10" id="bsq-RU-phX"/>
+                    <constraint firstAttribute="trailing" secondItem="cLy-QW-9cb" secondAttribute="trailing" constant="10" id="yTM-1r-eyW"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="DocumentIcon" destination="Cgb-8U-8qM" id="iKr-Ub-CR3"/>
+                <outlet property="DocumentTitle" destination="cLy-QW-9cb" id="CFu-XS-p1b"/>
+            </connections>
+            <point key="canvasLocation" x="183.96946564885496" y="-1.7605633802816902"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="pdf" width="48" height="48"/>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

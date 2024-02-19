@@ -37,7 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         case .newyear:
             return newYearVC
         case .random:
-            return [regularVC, facultyVC, newYearVC].randomElement()!
+            return [regularVC, statusVC, facultyVC, newYearVC].randomElement()!
         case .none:
             return tabBarVC
         }

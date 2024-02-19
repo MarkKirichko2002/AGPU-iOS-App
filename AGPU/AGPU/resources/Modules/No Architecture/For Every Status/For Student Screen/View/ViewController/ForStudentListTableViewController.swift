@@ -90,20 +90,17 @@ final class ForStudentListTableViewController: UITableViewController {
             }
             
         case 4:
-            if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
-                
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
-                
-                if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
-                    cell.sectionSelected(indexPath: indexPath)
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                    self.goToWeb(url: cathedra.additionalEducationUrl, image: ForStudentSections.sections[indexPath.row].icon, title: "Доп. образование", isSheet: false)
-                }
-            } else {
-                self.showHintAlert(type: .additionalEducation)
-                HapticsManager.shared.hapticFeedback()
+            
+            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+            
+            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
+                cell.sectionSelected(indexPath: indexPath)
+            }
+            
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                let vc = DocumentsListTableViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             
         case 5:

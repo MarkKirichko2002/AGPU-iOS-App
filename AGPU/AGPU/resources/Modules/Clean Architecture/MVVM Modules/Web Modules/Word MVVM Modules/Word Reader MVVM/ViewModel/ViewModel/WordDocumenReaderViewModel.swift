@@ -9,4 +9,6 @@ import Foundation
 
 class WordDocumenReaderViewModel {
     
+    let realmManager = RealmManager()
+    
 }

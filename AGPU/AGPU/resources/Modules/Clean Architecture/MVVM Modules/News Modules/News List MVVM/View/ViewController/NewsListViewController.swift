@@ -70,6 +70,9 @@ final class NewsListViewController: UIViewController {
         var categoriesAction = UIAction(title: "Категории") { _ in}
         var pagesAction = UIAction(title: "Страницы") { _ in}
         var webAction = UIAction(title: "Веб-версия") { _ in}
+        let randomAction = UIAction(title: "Рандом категория") { _ in
+            self.viewModel.getRandomNews()
+        }
         
         var titleView = CustomTitleView(image: "АГПУ", title: "Новости АГПУ", frame: .zero)
         
@@ -115,7 +118,7 @@ final class NewsListViewController: UIViewController {
                 self.goToWeb(url: self.viewModel.makeUrlForCurrentWebPage(), image: "online", title: "Новости", isSheet: false)
             }
             
-            menu = UIMenu(title: "Новости", children: [categoriesAction, pagesAction, webAction])
+            menu = UIMenu(title: "Новости", children: [categoriesAction, pagesAction, webAction, randomAction])
             options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
             options.tintColor = .label
             

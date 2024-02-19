@@ -64,6 +64,7 @@ final class AGPUBuildingDetailViewController: UIViewController {
     }
     
     @objc private func showWeatherDetail() {
+        HapticsManager.shared.hapticFeedback()
         let vc = LocationWeatherDetailViewController(annotation: annotation)
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen

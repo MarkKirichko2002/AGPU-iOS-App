@@ -15,6 +15,8 @@ class PDFDocumentReaderViewController: UIViewController {
     private var currentPage: Int = 0
     private var url: String = ""
     
+    private let realmManager = RealmManager()
+    
     init(url: String) {
         self.url = url
         super.init(nibName: nil, bundle: nil)
@@ -50,7 +52,14 @@ class PDFDocumentReaderViewController: UIViewController {
         let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
             self.shareInfo(image: UIImage(named: "pdf")!, title: "документ", text: self.url)
         }
-        let menu = UIMenu(title: "Документ", children: [shareAction])
+        let saveAction = UIAction(title: "Сохранить", image: UIImage(named: "download")) { _ in
+            let document = DocumentModel()
+            document.name = URL(string: self.url)?.lastPathComponent ?? ""
+            document.format = URL(string: self.url)?.pathExtension ?? ""
+            document.url = self.url
+            self.realmManager.saveDocument(document: document)
+        }
+        let menu = UIMenu(title: "Документ", children: [shareAction, saveAction])
         return menu
     }
     

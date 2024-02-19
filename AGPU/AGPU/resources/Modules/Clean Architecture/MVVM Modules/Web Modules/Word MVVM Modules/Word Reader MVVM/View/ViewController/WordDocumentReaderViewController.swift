@@ -76,7 +76,14 @@ final class WordDocumentReaderViewController: UIViewController {
         let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
             self.shareInfo(image: UIImage(named: "word")!, title: "Word-документ", text: self.url)
         }
-        let menu = UIMenu(title: "Word-документ", children: [shareAction])
+        let saveAction = UIAction(title: "Сохранить", image: UIImage(named: "download")) { _ in
+            let document = DocumentModel()
+            document.name = URL(string: self.url)?.lastPathComponent ?? ""
+            document.format = URL(string: self.url)?.pathExtension ?? ""
+            document.url = self.url
+            self.viewModel.saveCurrentDocument(document: document)
+        }
+        let menu = UIMenu(title: "Word-документ", children: [shareAction, saveAction])
         return menu
     }
     

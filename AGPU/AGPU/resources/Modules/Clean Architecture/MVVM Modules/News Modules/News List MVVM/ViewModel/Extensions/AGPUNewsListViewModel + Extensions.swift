@@ -60,7 +60,6 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     // получить новость по странице
     func getNews(by page: Int) {
-        
         Task {
             let result = try await newsService.getNews(by: page, abbreviation: abbreviation)
             switch result {
@@ -70,6 +69,16 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             case .failure(let error):
                 print(error)
             }
+        }
+    }
+    
+    func getRandomNews() {
+        let abbreviation = NewsCategories.categories.randomElement()!.newsAbbreviation
+        if abbreviation != "-" {
+            getNews(abbreviation: abbreviation
+            )
+        } else {
+            getAGPUNews()
         }
     }
     

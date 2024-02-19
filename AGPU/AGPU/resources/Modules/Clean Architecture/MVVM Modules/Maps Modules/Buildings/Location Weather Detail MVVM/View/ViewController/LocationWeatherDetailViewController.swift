@@ -37,6 +37,10 @@ class LocationWeatherDetailViewController: UITableViewController {
     private var viewModel: LocationWeatherDetailViewModel
     var cancellable: AnyCancellable?
     
+    // MARK: - UI
+    let refresh = UIRefreshControl()
+    
+    // MARK: - Init
     init(annotation: MKAnnotation) {
         self.viewModel = LocationWeatherDetailViewModel(annotation: annotation)
         super.init(nibName: nil, bundle: nil)
@@ -50,6 +54,7 @@ class LocationWeatherDetailViewController: UITableViewController {
         super.viewDidLoad()
         setUpNavigation()
         setUpTable()
+        setUpRefreshControl()
         bindViewModel()
     }
     
@@ -80,10 +85,6 @@ class LocationWeatherDetailViewController: UITableViewController {
         return menu
     }
     
-    @objc private func refreshWeather() {
-        viewModel.refresh()
-    }
-    
     @objc private func closeScreen() {
         HapticsManager.shared.hapticFeedback()
         self.dismiss(animated: true)
@@ -93,6 +94,16 @@ class LocationWeatherDetailViewController: UITableViewController {
         tableView.register(CurrentWeatherTableViewCell.self, forCellReuseIdentifier: CurrentWeatherTableViewCell.identifier)
         tableView.register(HourlyWeatherTableViewCell.self, forCellReuseIdentifier: HourlyWeatherTableViewCell.identifier)
         tableView.register(DailyWeatherTableViewCell.self, forCellReuseIdentifier: DailyWeatherTableViewCell.identifier)
+    }
+    
+    private func setUpRefreshControl() {
+        tableView.addSubview(refresh)
+        refresh.addTarget(self, action: #selector(refreshWeather), for: .valueChanged)
+    }
+    
+    @objc private func refreshWeather() {
+        viewModel.refresh()
+        refresh.endRefreshing()
     }
     
     private func bindViewModel() {
