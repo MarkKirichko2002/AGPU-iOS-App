@@ -12,9 +12,11 @@ class PDFDocumentReaderViewController: UIViewController {
     
     private var pdfView: PDFView!
     private var document: PDFDocument!
-    private var currentPage: Int = 0
     private var url: String = ""
     
+    var currentPage: Int = 0
+    
+    // MARK: - сервисы
     private let realmManager = RealmManager()
     
     init(url: String) {
@@ -57,6 +59,7 @@ class PDFDocumentReaderViewController: UIViewController {
             document.name = URL(string: self.url)?.lastPathComponent ?? ""
             document.format = URL(string: self.url)?.pathExtension ?? ""
             document.url = self.url
+            document.page = self.currentPage
             self.realmManager.saveDocument(document: document)
         }
         let menu = UIMenu(title: "Документ", children: [shareAction, saveAction])
@@ -73,24 +76,24 @@ class PDFDocumentReaderViewController: UIViewController {
         }
         view.addSubview(pdfView)
         
+        pdfView.go(to: document.page(at: currentPage)!)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(handlePageChange), name: Notification.Name.PDFViewPageChanged, object: nil)
         
         UserDefaults.standard.setValue(url, forKey: "last pdf url")
     }
     
     @objc private func handlePageChange() {
-        let currentPage = document.index(for: pdfView.currentPage!) + 1
+        currentPage = document.index(for: pdfView.currentPage!)
+        realmManager.editDocumentPage(url: url, page: currentPage)
         let totalPageCount = pdfView.document?.pageCount
-        navigationItem.title = "Документ [\(currentPage)/\(totalPageCount ?? 0)]"
+        navigationItem.title = "Документ [\(currentPage + 1)/\(totalPageCount ?? 0)]"
         savePDF()
     }
     
     private func savePDF() {
-        var page = 0
-        guard let currentPage = pdfView.currentPage?.pageRef?.pageNumber else { return }
-        page = currentPage - 1
-       
-        let pdf = RecentPDFModel(url: url, pageNumber: page)
+               
+        let pdf = RecentPDFModel(url: url, pageNumber: currentPage)
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
             UserDefaults.saveData(object: pdf, key: "last pdf") {

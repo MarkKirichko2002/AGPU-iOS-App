@@ -60,14 +60,19 @@ class DocumentsListTableViewController: UITableViewController {
         let document = viewModel.documentItem(index: indexPath.row)
         if document.format == "pdf" {
             let vc = PDFDocumentReaderViewController(url: document.url)
+            vc.currentPage = document.page ?? 0
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
-            present(navVC, animated: true)
+            DispatchQueue.main.async {
+                self.present(navVC, animated: true)
+            }
         } else {
             let vc = WordDocumentReaderViewController(url: document.url)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
-            present(navVC, animated: true)
+            DispatchQueue.main.async {
+                self.present(navVC, animated: true)
+            }
         }
     }
     
@@ -112,10 +117,11 @@ extension DocumentsListTableViewController {
     
     func showEditAlert() {
         
-        let alertVC = UIAlertController(title: "Изменить документ", message: "Вы точно хотите изменить название документа", preferredStyle: .alert)
+        let alertVC = UIAlertController(title: "Изменить документ", message: "Вы точно хотите изменить название документа?", preferredStyle: .alert)
         
         alertVC.addTextField { (textField) in
             textField.placeholder = "Введите текст"
+            textField.text = self.document.name
         }
         
         let saveAction = UIAlertAction(title: "Сохранить", style: .default) { _ in

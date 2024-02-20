@@ -9,7 +9,8 @@ import Foundation
 
 protocol IRealmManager {
     func saveDocument(document: DocumentModel)
-    func editDocument(document: DocumentModel, name: String)
+    func editDocumentName(document: DocumentModel, name: String)
+    func editDocumentPage(url: String, page: Int)
     func deleteDocument(document: DocumentModel)
     func getDocuments()->[DocumentModel]
 }

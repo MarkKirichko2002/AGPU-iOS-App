@@ -88,5 +88,11 @@ struct AppFeaturesList {
             name: "My Splash Screen",
             description: "My Splash Screen (мой экран заставки) - выберите экран заставки приложения соответствующий вашим предпочтениям."
         ),
+        
+        AppFeatureModel(
+            id: 14,
+            name: "Important Documents",
+            description: "Important Documents — опция, позволяющая сохранять, редактировать, делиться и удалять документы. С легкостью организуйте свои документы и имейте к ним доступ всегда, где бы вы ни находились."
+        ),
     ]
 }

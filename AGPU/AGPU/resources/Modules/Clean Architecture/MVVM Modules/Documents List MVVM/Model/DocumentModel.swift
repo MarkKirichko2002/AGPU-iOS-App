@@ -11,4 +11,5 @@ class DocumentModel: Object {
     @Persisted var name: String
     @Persisted var format: String
     @Persisted(primaryKey: true) var url: String
+    @Persisted var page: Int?
 }

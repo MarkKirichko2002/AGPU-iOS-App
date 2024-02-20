@@ -24,7 +24,7 @@ extension DocumentsListViewModel: IDocumentsListViewModel {
     }
     
     func editDocument(document: DocumentModel, name: String) {
-        realmManager.editDocument(document: document, name: name)
+        realmManager.editDocumentName(document: document, name: name)
         getDocuments()
     }
     

@@ -15,6 +15,9 @@ class PDFLastPageViewController: UIViewController {
     private var currentPage: Int = 0
     private var pdf: RecentPDFModel!
     
+    // MARK: - сервисы
+    private let realmManager = RealmManager()
+    
     init(pdf: RecentPDFModel) {
         self.pdf = pdf
         super.init(nibName: nil, bundle: nil)
@@ -68,19 +71,16 @@ class PDFLastPageViewController: UIViewController {
     }
     
     @objc private func handlePageChange() {
-        let currentPage = document.index(for: pdfView.currentPage!) + 1
+        currentPage = document.index(for: pdfView.currentPage!)
+        realmManager.editDocumentPage(url: pdf.url, page: currentPage)
         let totalPageCount = pdfView.document?.pageCount
-        navigationItem.title = "Документ [\(currentPage)/\(totalPageCount ?? 0)]"
+        navigationItem.title = "Документ [\(currentPage + 1)/\(totalPageCount ?? 0)]"
         savePDF()
     }
     
     private func savePDF() {
-        
-        var page = 0
-        guard let currentPage = pdfView.currentPage?.pageRef?.pageNumber else { return }
-        page = currentPage - 1
-       
-        let pdf = RecentPDFModel(url: pdf.url, pageNumber: page)
+               
+        let pdf = RecentPDFModel(url: pdf.url, pageNumber: currentPage)
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
             UserDefaults.saveData(object: pdf, key: "last pdf") {

@@ -17,6 +17,7 @@ extension RealmManager: IRealmManager {
             newDocument.name = document.name
             newDocument.format = document.format
             newDocument.url = document.url
+            newDocument.page = document.page
             try! realm.write {
                 realm.add(newDocument)
             }
@@ -25,10 +26,17 @@ extension RealmManager: IRealmManager {
         }
     }
     
-    func editDocument(document: DocumentModel, name: String) {
+    func editDocumentName(document: DocumentModel, name: String) {
         let newDocument = realm.object(ofType: DocumentModel.self, forPrimaryKey: document.url)
         try! realm.write {
             newDocument?.name = name
+        }
+    }
+    
+    func editDocumentPage(url: String, page: Int) {
+        let newDocument = realm.object(ofType: DocumentModel.self, forPrimaryKey: url)
+        try! realm.write {
+            newDocument?.page = page
         }
     }
     
