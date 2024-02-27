@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 // MARK: - IRealmManager
 extension RealmManager: IRealmManager {
@@ -37,6 +38,30 @@ extension RealmManager: IRealmManager {
         let newDocument = realm.object(ofType: DocumentModel.self, forPrimaryKey: url)
         try! realm.write {
             newDocument?.page = page
+        }
+    }
+    
+    func updateDocuments(documents: [DocumentModel], _ index: Int, _ index2: Int) {
+        
+        var arr = [DocumentModel]()
+        
+        for document in documents {
+            let newDocument = DocumentModel()
+            newDocument.name = document.name
+            newDocument.format = document.format
+            newDocument.url = document.url
+            newDocument.page = document.page
+            arr.append(newDocument)
+        }
+        
+        arr.swapAt(index, index2)
+        
+        try! realm.write {
+            realm.deleteAll()
+        }
+        
+        try! realm.write {
+            realm.add(arr)
         }
     }
     

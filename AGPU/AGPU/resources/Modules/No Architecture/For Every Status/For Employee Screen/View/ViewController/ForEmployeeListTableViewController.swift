@@ -92,6 +92,20 @@ class ForEmployeeListTableViewController: UITableViewController {
             
         case 4:
             
+            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+            
+            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
+                cell.sectionSelected(indexPath: indexPath)
+            }
+            
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                let vc = DocumentsListTableViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+        case 5:
+            
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
             
             if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
@@ -102,7 +116,7 @@ class ForEmployeeListTableViewController: UITableViewController {
                 self.goToWeb(url: "http://plany.agpu.net/Plans/", image: ForEmployeeSections.sections[indexPath.row].icon, title: "Учебный план", isSheet: false)
             }
             
-        case 5:
+        case 6:
             
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
             
@@ -116,7 +130,7 @@ class ForEmployeeListTableViewController: UITableViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-        case 6:
+        case 7:
             
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
             

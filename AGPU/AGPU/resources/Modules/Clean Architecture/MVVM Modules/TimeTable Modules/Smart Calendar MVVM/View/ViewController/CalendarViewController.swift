@@ -11,7 +11,7 @@ import FSCalendar
 final class CalendarViewController: UIViewController {
 
     // MARK: - сервисы
-    let viewModel: CalendarViewModel
+    let viewModel = CalendarViewModel()
     
     var id: String = ""
     var date: String = ""
@@ -28,8 +28,9 @@ final class CalendarViewController: UIViewController {
     
     // MARK: - Init
     init(id: String, date: String, owner: String) {
-        self.viewModel = CalendarViewModel(id: id, owner: owner)
+        self.id = id
         self.date = date
+        self.owner = owner
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -42,7 +43,6 @@ final class CalendarViewController: UIViewController {
         view.backgroundColor = .systemBackground
         setUpNavigation()
         setUpCalendar()
-        bindViewModel()
     }
     
     private func setUpNavigation() {
@@ -70,32 +70,5 @@ final class CalendarViewController: UIViewController {
             calendar.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             calendar.heightAnchor.constraint(equalToConstant: 300)
         ])
-    }
-    
-    private func bindViewModel() {
-        // алерты
-        viewModel.registerTimetableAlertHandler { title, message, color in
-            
-            let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            
-            let customTitle = NSAttributedString(string: title, attributes: [
-                NSAttributedString.Key.foregroundColor: color
-            ])
-            
-            let choose = UIAlertAction(title: "Выбрать", style: .default) { _ in
-                self.viewModel.sendNotificationDataWasSelected(date: self.viewModel.date)
-                self.dismiss(animated: true)
-            }
-            let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
-            
-            alertVC.setValue(customTitle, forKey: "attributedTitle")
-            alertVC.addAction(choose)
-            alertVC.addAction(cancel)
-            self.present(alertVC, animated: true)
-        }
-        // дата выбрана
-        viewModel.registerDateSelectedHandler {
-            self.dismiss(animated: true)
-        }
     }
 }

@@ -28,6 +28,11 @@ extension DocumentsListViewModel: IDocumentsListViewModel {
         getDocuments()
     }
     
+    func updateDocuments(documents: [DocumentModel], _ index: Int, _ index2: Int) {
+        realmManager.updateDocuments(documents: documents, index, index2)
+        getDocuments()
+    }
+    
     func deleteDocument(document: DocumentModel) {
         realmManager.deleteDocument(document: document)
         getDocuments()

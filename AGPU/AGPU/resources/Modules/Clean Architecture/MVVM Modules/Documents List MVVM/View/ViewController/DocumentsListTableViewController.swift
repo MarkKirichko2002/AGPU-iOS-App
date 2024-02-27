@@ -31,15 +31,29 @@ class DocumentsListTableViewController: UITableViewController {
         
         let backButton = UIBarButtonItem(customView: button)
         
+        let moveButton = UIBarButtonItem(title: "Править", style: .done, target: self, action: #selector(moveDocuments))
+        moveButton.tintColor = .label
+        
         navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = backButton
+        navigationItem.rightBarButtonItem = moveButton
     }
     
     @objc private func back() {
         sendScreenWasClosedNotification()
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func moveDocuments() {
+        
+        if tableView.isEditing {
+            tableView.isEditing = false
+            //viewModel.updateDocuments(documents: viewModel.documents, <#T##Int#>, <#T##Int#>)
+        } else {
+            tableView.isEditing = true
+        }
     }
     
     private func setUpTable() {
@@ -58,21 +72,12 @@ class DocumentsListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let document = viewModel.documentItem(index: indexPath.row)
-        if document.format == "pdf" {
-            let vc = PDFDocumentReaderViewController(url: document.url)
-            vc.currentPage = document.page ?? 0
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            DispatchQueue.main.async {
-                self.present(navVC, animated: true)
-            }
-        } else {
-            let vc = WordDocumentReaderViewController(url: document.url)
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            DispatchQueue.main.async {
-                self.present(navVC, animated: true)
-            }
+        openDocument(document: document)
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        if !tableView.isEditing {
+            viewModel.updateDocuments(documents: viewModel.documents, sourceIndexPath.row, destinationIndexPath.row)
         }
     }
     
@@ -138,5 +143,24 @@ extension DocumentsListTableViewController {
         alertVC.addAction(cancel)
         
         present(alertVC, animated: true)
+    }
+    
+    func openDocument(document: DocumentModel) {
+        if document.format == "pdf" {
+            let vc = PDFDocumentReaderViewController(url: document.url)
+            vc.currentPage = document.page ?? 0
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            DispatchQueue.main.async {
+                self.present(navVC, animated: true)
+            }
+        } else {
+            let vc = WordDocumentReaderViewController(url: document.url)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            DispatchQueue.main.async {
+                self.present(navVC, animated: true)
+            }
+        }
     }
 }

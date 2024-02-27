@@ -103,9 +103,19 @@ class VoiceSearchAGPUBuildingMapViewController: UIViewController {
                         self.navigationItem.title = pin.title!
                         self.mapView.removeAnnotation(annotation)
                         self.mapView.addAnnotation(pin)
+                        let region = MKCoordinateRegion(center: pin.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001))
+                        self.setRegion(region: region)
                     }
                 }
             }
+        }
+    }
+    
+    private func setRegion(region: MKCoordinateRegion) {
+        UIView.animate(withDuration: 1) {
+            self.mapView.setRegion(region, animated: true)
+        } completion: { _ in
+            HapticsManager.shared.hapticFeedback()
         }
     }
 }

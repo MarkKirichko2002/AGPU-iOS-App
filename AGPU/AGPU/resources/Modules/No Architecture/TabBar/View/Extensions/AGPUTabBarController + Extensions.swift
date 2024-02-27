@@ -114,9 +114,7 @@ extension AGPUTabBarController {
                 navVC.modalPresentationStyle = .fullScreen
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                     self.isOpened = true
-                    DispatchQueue.main.async {
-                        self.present(navVC, animated: true)
-                    }
+                    self.present(navVC, animated: true)
                 }
                 break
             }

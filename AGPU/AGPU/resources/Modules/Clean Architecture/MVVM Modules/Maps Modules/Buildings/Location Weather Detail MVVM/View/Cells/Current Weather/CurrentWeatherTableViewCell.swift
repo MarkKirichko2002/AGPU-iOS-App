@@ -92,7 +92,6 @@ class CurrentWeatherTableViewCell: UITableViewCell {
         
         locationLabel.snp.makeConstraints { maker in
             maker.top.equalToSuperview().inset(20)
-            maker.right.equalToSuperview().inset(80)
             maker.centerX.equalToSuperview()
         }
         
