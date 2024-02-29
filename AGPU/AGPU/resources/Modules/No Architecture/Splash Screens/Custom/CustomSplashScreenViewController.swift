@@ -1,13 +1,36 @@
 //
-//  SelectedFacultySplashScreenViewController.swift
+//  CustomSplashScreenViewController.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 04.01.2024.
+//  Created by Марк Киричко on 28.02.2024.
 //
 
 import UIKit
 
-final class SelectedFacultySplashScreenViewController: UIViewController {
+final class CustomSplashScreenViewController: UIViewController {
+    
+    // MARK: - UI
+    // иконка
+    private let CustomIcon: SpringImageView = {
+        let icon = SpringImageView()
+        icon.clipsToBounds = true
+        icon.isInteraction = false
+        icon.contentMode = .scaleAspectFill
+        icon.translatesAutoresizingMaskIntoConstraints = false
+        return icon
+    }()
+    
+    // название
+    let CustomTitleLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.isUserInteractionEnabled = true
+        label.textColor = .label
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 20, weight: .black)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     // MARK: - сервисы
     var animation: AnimationClassProtocol?
@@ -25,26 +48,6 @@ final class SelectedFacultySplashScreenViewController: UIViewController {
             return .default
         }
     }
-    
-    // MARK: - UI
-    // иконка
-    private let AGPUIcon: SpringImageView = {
-        let icon = SpringImageView()
-        icon.isInteraction = false
-        icon.contentMode = .scaleAspectFill
-        icon.translatesAutoresizingMaskIntoConstraints = false
-        return icon
-    }()
-    
-    // название
-    private let AGPUTitleLabel: UILabel = {
-        let label = UILabel()
-        label.isUserInteractionEnabled = true
-        label.textColor = .label
-        label.font = .systemFont(ofSize: 20, weight: .black)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,45 +76,47 @@ final class SelectedFacultySplashScreenViewController: UIViewController {
     
     private func setUpView() {
         view.backgroundColor = .systemBackground
-        view.addSubviews(AGPUIcon, AGPUTitleLabel)
+        view.addSubviews(CustomIcon, CustomTitleLabel)
         setUpLabel()
     }
     
     private func setUpLabel() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(springLabel))
-        AGPUTitleLabel.addGestureRecognizer(tap)
+        CustomTitleLabel.addGestureRecognizer(tap)
         springLabel()
     }
     
     @objc private func springLabel() {
-        animation?.springAnimation(view: self.AGPUTitleLabel)
+        animation?.springAnimation(view: self.CustomTitleLabel)
         HapticsManager.shared.hapticFeedback()
     }
     
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
             // иконка
-            AGPUIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            AGPUIcon.widthAnchor.constraint(equalToConstant: 180),
-            AGPUIcon.heightAnchor.constraint(equalToConstant: 180),
+            CustomIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            CustomIcon.widthAnchor.constraint(equalToConstant: 180),
+            CustomIcon.heightAnchor.constraint(equalToConstant: 180),
             // название
-            AGPUTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            AGPUTitleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            AGPUTitleLabel.heightAnchor.constraint(equalToConstant: 30),
-            AGPUTitleLabel.topAnchor.constraint(equalTo: AGPUIcon.bottomAnchor, constant: 50)
+            CustomTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            CustomTitleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            CustomTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30),
+            CustomTitleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30),
+            CustomTitleLabel.heightAnchor.constraint(equalToConstant: 100),
+            CustomTitleLabel.topAnchor.constraint(equalTo: CustomIcon.bottomAnchor, constant: 50)
         ])
     }
     
     private func showSplashScreen() {
         
-        guard let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") else {return}
+        guard let screen = UserDefaults.loadData(type: CustomSplashScreenModel.self, key: "splash screen") else {return}
         
-        AGPUIcon.image = UIImage(named: faculty.icon)
-        animation?.springAnimation(view: AGPUIcon)
+        CustomIcon.image = UIImage(data: screen.image ?? Data())
+        animation?.springAnimation(view: CustomIcon)
         
         Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
-            self.AGPUTitleLabel.text = faculty.abbreviation
-            self.animation?.springAnimation(view: self.AGPUTitleLabel)
+            self.CustomTitleLabel.text = screen.title
+            self.animation?.springAnimation(view: self.CustomTitleLabel)
         }
         
         Timer.scheduledTimer(withTimeInterval: 4, repeats: false) { _ in

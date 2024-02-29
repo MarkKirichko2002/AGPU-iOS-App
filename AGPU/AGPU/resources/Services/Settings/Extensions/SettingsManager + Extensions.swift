@@ -81,6 +81,16 @@ extension SettingsManager: SettingsManagerProtocol {
         return action
     }
     
+    // MARK: - My Splash Screen
+    func saveCustomSplashScreen(screen: CustomSplashScreenModel) {
+        UserDefaults.saveData(object: screen, key: "splash screen") {}
+    }
+    
+    func getCustomSplashScreen()-> CustomSplashScreenModel? {
+        guard let screen = UserDefaults.loadData(type: CustomSplashScreenModel.self, key: "splash screen") else {return nil}
+        return screen
+    }
+    
     func observeDynamicButtonActionChanged(completion: @escaping()->Void) {
         NotificationCenter.default.addObserver(forName: Notification.Name("action"), object: nil, queue: .main) { _ in
             completion()

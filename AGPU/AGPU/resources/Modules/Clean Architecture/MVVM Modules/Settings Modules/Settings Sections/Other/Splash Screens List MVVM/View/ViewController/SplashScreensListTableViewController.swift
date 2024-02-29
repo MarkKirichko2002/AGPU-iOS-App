@@ -54,6 +54,10 @@ class SplashScreensListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.chooseSplashScreenOption(index: indexPath.row)
+        if SplashScreenOptions.allCases[indexPath.row] == .custom {
+            let vc = CustomSplashScreenEditorViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
