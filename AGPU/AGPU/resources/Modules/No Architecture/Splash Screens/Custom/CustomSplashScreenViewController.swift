@@ -34,6 +34,7 @@ final class CustomSplashScreenViewController: UIViewController {
     
     // MARK: - сервисы
     var animation: AnimationClassProtocol?
+    let realmManager = RealmManager()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         let theme = UserDefaults.loadData(type: AppThemeModel.self, key: "theme")?.theme ?? .light
@@ -109,7 +110,7 @@ final class CustomSplashScreenViewController: UIViewController {
     
     private func showSplashScreen() {
         
-        guard let screen = UserDefaults.loadData(type: CustomSplashScreenModel.self, key: "splash screen") else {return}
+        guard let screen = realmManager.getSplashScreen() else {return}
         
         CustomIcon.image = UIImage(data: screen.image ?? Data())
         animation?.springAnimation(view: CustomIcon)

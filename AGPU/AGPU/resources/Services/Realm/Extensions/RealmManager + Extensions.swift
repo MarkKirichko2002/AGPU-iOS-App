@@ -54,6 +54,8 @@ extension RealmManager: IRealmManager {
             arr.append(newDocument)
         }
         
+        print("\(index) and \(index2)")
+        
         arr.swapAt(index, index2)
         
         try! realm.write {
@@ -74,11 +76,33 @@ extension RealmManager: IRealmManager {
     }
     
     func getDocuments() -> [DocumentModel] {
-        var array = [DocumentModel]()
         let items = realm.objects(DocumentModel.self)
-        for item in items {
-            array.append(item)
+        return Array(items)
+    }
+    
+    func saveSplashScreen(screen: CustomSplashScreenModel) {
+        
+        let newScreen = CustomSplashScreenModel()
+        newScreen.id = 1
+        newScreen.image = screen.image
+        newScreen.title = screen.title
+        
+        if let oldScreen = realm.object(ofType: CustomSplashScreenModel.self, forPrimaryKey: 1) {
+            try! realm.write {
+                realm.delete(oldScreen)
+            }
+            try! realm.write {
+                realm.add(newScreen)
+            }
+        } else {
+            try! realm.write {
+                realm.add(newScreen)
+            }
         }
-        return array
+    }
+    
+    func getSplashScreen()-> CustomSplashScreenModel? {
+        let splashScreen = realm.object(ofType: CustomSplashScreenModel.self, forPrimaryKey: 1)
+        return splashScreen
     }
 }

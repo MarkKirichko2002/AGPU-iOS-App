@@ -5,9 +5,10 @@
 //  Created by Марк Киричко on 28.02.2024.
 //
 
-import Foundation
+import RealmSwift
 
-struct CustomSplashScreenModel: Codable {
-    var image: Data?
-    let title: String
+class CustomSplashScreenModel: Object {
+    @Persisted(primaryKey: true) var id: Int
+    @Persisted var image: Data?
+    @Persisted var title: String
 }

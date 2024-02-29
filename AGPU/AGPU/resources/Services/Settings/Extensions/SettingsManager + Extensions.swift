@@ -83,11 +83,11 @@ extension SettingsManager: SettingsManagerProtocol {
     
     // MARK: - My Splash Screen
     func saveCustomSplashScreen(screen: CustomSplashScreenModel) {
-        UserDefaults.saveData(object: screen, key: "splash screen") {}
+        realmManager.saveSplashScreen(screen: screen)
     }
     
     func getCustomSplashScreen()-> CustomSplashScreenModel? {
-        guard let screen = UserDefaults.loadData(type: CustomSplashScreenModel.self, key: "splash screen") else {return nil}
+        guard let screen = realmManager.getSplashScreen() else {return nil}
         return screen
     }
     

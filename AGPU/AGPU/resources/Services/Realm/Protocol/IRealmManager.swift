@@ -13,4 +13,6 @@ protocol IRealmManager {
     func editDocumentPage(url: String, page: Int)
     func deleteDocument(document: DocumentModel)
     func getDocuments()->[DocumentModel]
+    func saveSplashScreen(screen: CustomSplashScreenModel)
+    func getSplashScreen()-> CustomSplashScreenModel?
 }

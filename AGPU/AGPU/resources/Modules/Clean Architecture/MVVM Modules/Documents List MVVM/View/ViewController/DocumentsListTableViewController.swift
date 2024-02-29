@@ -76,7 +76,7 @@ class DocumentsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        if !tableView.isEditing {
+        if tableView.isEditing {
             viewModel.updateDocuments(documents: viewModel.documents, sourceIndexPath.row, destinationIndexPath.row)
         }
     }

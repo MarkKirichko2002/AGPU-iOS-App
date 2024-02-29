@@ -57,7 +57,9 @@ class CustomSplashScreenEditorViewController: UIViewController {
     }
     
     @objc private func saveScreen() {
-        let screen = CustomSplashScreenModel(image: CustomIcon.image?.jpegData(compressionQuality: 1.0) ?? Data(), title: CustomTitleLabel.text!)
+        let screen = CustomSplashScreenModel()
+        screen.image = CustomIcon.image?.jpegData(compressionQuality: 1.0)
+        screen.title = CustomTitleLabel.text!
         viewModel.saveCustomSplashScreen(screen: screen)
     }
     
@@ -95,7 +97,10 @@ class CustomSplashScreenEditorViewController: UIViewController {
         }
         
         let saveAction = UIAlertAction(title: "Сохранить", style: .default) { [weak self] _ in
-            let screen = CustomSplashScreenModel(image: self?.CustomIcon.image?.jpegData(compressionQuality: 1.0) ?? Data(), title: alertVC.textFields?[0].text ?? "")
+            let screen = CustomSplashScreenModel()
+            screen.id = 1
+            screen.image = self?.CustomIcon.image?.jpegData(compressionQuality: 1.0) ?? Data()
+            screen.title = alertVC.textFields?[0].text ?? ""
             self?.viewModel.saveCustomSplashScreen(screen: screen)
         }
         let cancel = UIAlertAction(title: "Отмена", style: .destructive)
