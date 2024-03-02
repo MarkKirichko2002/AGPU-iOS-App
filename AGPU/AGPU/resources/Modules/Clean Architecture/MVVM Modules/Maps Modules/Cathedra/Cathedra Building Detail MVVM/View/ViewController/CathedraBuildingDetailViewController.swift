@@ -53,7 +53,7 @@ class CathedraBuildingDetailViewController: UIViewController {
     private func setUpNavigation() {
         navigationItem.title = "Найти кампус"
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
-        let shareButton = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(showShareAlert))
+        let shareButton = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(showShareVC))
         closeButton.tintColor = .label
         shareButton.tintColor = .label
         navigationItem.leftBarButtonItem = closeButton
@@ -65,36 +65,9 @@ class CathedraBuildingDetailViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @objc private func showShareAlert() {
-        let shareAppleMaps = UIAlertAction(title: "С помощью Apple Maps", style: .default) { _ in
-            self.shareLocationWithAppleMaps()
-        }
-        let shareGoogleMaps = UIAlertAction(title: "С помощью Google Maps", style: .default) { _ in
-            self.shareLocationWithGoogleMaps()
-        }
-        let shareYandexMaps = UIAlertAction(title: "С помощью Яндекс Карты", style: .default) { _ in
-            self.shareLocationWithYandexMaps()
-        }
-        let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
-        self.showAlert(title: "Поделиться локацией", message: "Как вы хотите поделиться локацией?", actions: [shareAppleMaps, shareGoogleMaps, shareYandexMaps, cancel])
-    }
-    
-    private func shareLocationWithAppleMaps() {
-        let title = annotation.title!! + " (Apple Maps)"
-        let url = "http://maps.apple.com/?q=\(annotation.coordinate.latitude),\(annotation.coordinate.longitude)"
-        shareInfo(image: UIImage(named: "map icon")!, title: title, text: "\(title)-\(url)")
-    }
-    
-    private func shareLocationWithGoogleMaps() {
-        let title = annotation.title!! + " (Google Maps)"
-        let url = "https://www.google.com/maps/search/?api=1&query=\(annotation.coordinate.latitude),\(annotation.coordinate.longitude)"
-        shareInfo(image: UIImage(named: "map icon")!, title: title, text: "\(title)-\(url)")
-    }
-    
-    private func shareLocationWithYandexMaps() {
-        let title = annotation.title!! + " (Яндекс Карты)"
-        let url = "https://maps.yandex.ru/?pt=\(annotation.coordinate.latitude),\(annotation.coordinate.longitude)&z=14"
-        shareInfo(image: UIImage(named: "map icon")!, title: title, text: "\(title)-\(url)")
+    @objc private func showShareVC() {
+        let vc = ShareLocationAppsViewController(annotation: annotation)
+        present(vc, animated: true)
     }
     
     private func bindViewModel() {

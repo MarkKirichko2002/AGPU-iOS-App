@@ -291,6 +291,7 @@
 		82B267062A8DAA8500043A6D /* NewsCategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82B267052A8DAA8500043A6D /* NewsCategoryTableViewCell.xib */; };
 		82B267082A8DAAC100043A6D /* NewsCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B267072A8DAAC100043A6D /* NewsCategoryTableViewCell.swift */; };
 		82B2670B2A8DAB4900043A6D /* NewsCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B2670A2A8DAB4900043A6D /* NewsCategoryModel.swift */; };
+		82B97C112B93E17200770F00 /* ShareLocationAppsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B97C102B93E17200770F00 /* ShareLocationAppsViewController.swift */; };
 		82BA73B62A579B8D006B67DA /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BA73B52A579B8D006B67DA /* WebViewModel.swift */; };
 		82BC2F442A8EFD5500ADB239 /* NewsCategoriesListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC2F432A8EFD5500ADB239 /* NewsCategoriesListViewModelProtocol.swift */; };
 		82BC2F462A8EFD6400ADB239 /* NewsCategoriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC2F452A8EFD6400ADB239 /* NewsCategoriesListViewModel.swift */; };
@@ -686,6 +687,7 @@
 		82B267052A8DAA8500043A6D /* NewsCategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsCategoryTableViewCell.xib; sourceTree = "<group>"; };
 		82B267072A8DAAC100043A6D /* NewsCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		82B2670A2A8DAB4900043A6D /* NewsCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCategoryModel.swift; sourceTree = "<group>"; };
+		82B97C102B93E17200770F00 /* ShareLocationAppsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLocationAppsViewController.swift; sourceTree = "<group>"; };
 		82BA73B52A579B8D006B67DA /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		82BC2F432A8EFD5500ADB239 /* NewsCategoriesListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCategoriesListViewModelProtocol.swift; sourceTree = "<group>"; };
 		82BC2F452A8EFD6400ADB239 /* NewsCategoriesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCategoriesListViewModel.swift; sourceTree = "<group>"; };
@@ -2806,6 +2808,7 @@
 		826888672A33B87A00434219 /* No Architecture */ = {
 			isa = PBXGroup;
 			children = (
+				82B97C0D2B93E14300770F00 /* Share Apps */,
 				82FD79CE2B92678000E0DE61 /* Location Apps */,
 				826888562A33AB3C00434219 /* Splash Screens */,
 				828CFA342A35F62400C7542D /* TabBar */,
@@ -4532,6 +4535,30 @@
 			path = Timetable;
 			sourceTree = "<group>";
 		};
+		82B97C0D2B93E14300770F00 /* Share Apps */ = {
+			isa = PBXGroup;
+			children = (
+				82B97C0E2B93E14E00770F00 /* View */,
+			);
+			path = "Share Apps";
+			sourceTree = "<group>";
+		};
+		82B97C0E2B93E14E00770F00 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82B97C0F2B93E15300770F00 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82B97C0F2B93E15300770F00 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82B97C102B93E17200770F00 /* ShareLocationAppsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		82BA73B22A579B15006B67DA /* Web MVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -6068,6 +6095,7 @@
 				82BF4DB42A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift in Sources */,
 				82B1C0F12A8125E400520C14 /* VoiceDirectionModel.swift in Sources */,
 				82920B752AD879DC00352CD8 /* UserStatusListTableViewController.swift in Sources */,
+				82B97C112B93E17200770F00 /* ShareLocationAppsViewController.swift in Sources */,
 				82989ADE2A6E59BC00F27858 /* AGPUCurrentCathedraMapViewController + Extensions.swift in Sources */,
 				82BCB5462AB35AF300F3A321 /* DaysList.swift in Sources */,
 				82D0FC0D2B1B4A4A0056D94B /* CathedraBuildingDetailViewController.swift in Sources */,
