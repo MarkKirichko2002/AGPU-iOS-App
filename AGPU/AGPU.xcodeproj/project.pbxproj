@@ -391,6 +391,7 @@
 		82F98B342B1199B300137D9A /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F98B332B1199B300137D9A /* WeatherManager.swift */; };
 		82F98B362B119A0200137D9A /* WeatherManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F98B352B119A0200137D9A /* WeatherManager + Extensions.swift */; };
 		82FB5B642A7A8FF600728980 /* InteractiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FB5B632A7A8FF600728980 /* InteractiveView.swift */; };
+		82FD79D02B9267F000E0DE61 /* LocationAppsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FD79CF2B9267F000E0DE61 /* LocationAppsViewController.swift */; };
 		82FEA7AE2A7ED5BB00863453 /* AGPUBuildingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FEA7AD2A7ED5BB00863453 /* AGPUBuildingType.swift */; };
 		F1C2042A586A8CE8FF71BB78 /* Pods_AGPU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC70557E4368BEA941B2D453 /* Pods_AGPU.framework */; };
 /* End PBXBuildFile section */
@@ -786,6 +787,7 @@
 		82F98B332B1199B300137D9A /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		82F98B352B119A0200137D9A /* WeatherManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherManager + Extensions.swift"; sourceTree = "<group>"; };
 		82FB5B632A7A8FF600728980 /* InteractiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveView.swift; sourceTree = "<group>"; };
+		82FD79CF2B9267F000E0DE61 /* LocationAppsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAppsViewController.swift; sourceTree = "<group>"; };
 		82FEA7AD2A7ED5BB00863453 /* AGPUBuildingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingType.swift; sourceTree = "<group>"; };
 		EC70557E4368BEA941B2D453 /* Pods_AGPU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AGPU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1743,6 +1745,7 @@
 		8228E3962A6C8EFD00C1B6AD /* Maps Modules */ = {
 			isa = PBXGroup;
 			children = (
+				82184D732B7BD7A100F2588E /* Location Weather Detail MVVM */,
 				82D0FC1B2B1B81F90056D94B /* Buildings */,
 				82D0FC1C2B1B82040056D94B /* Cathedra */,
 			);
@@ -2803,6 +2806,7 @@
 		826888672A33B87A00434219 /* No Architecture */ = {
 			isa = PBXGroup;
 			children = (
+				82FD79CE2B92678000E0DE61 /* Location Apps */,
 				826888562A33AB3C00434219 /* Splash Screens */,
 				828CFA342A35F62400C7542D /* TabBar */,
 				82426C752A714CDD00D5AA57 /* For Every Status */,
@@ -4980,7 +4984,6 @@
 				824EBF612B29CF300003E7E6 /* AGPU Building Types */,
 				8210CA022A664D5700D0BEEE /* Current Buiding MVVM */,
 				82ECCC6B2B1828EE00443ED8 /* AGPU Building Detail MVVM */,
-				82184D732B7BD7A100F2588E /* Location Weather Detail MVVM */,
 				8283216F2A7D6403008641A5 /* Voice Search AGPU Building Map MVVM */,
 			);
 			path = Buildings;
@@ -5852,6 +5855,30 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		82FD79CE2B92678000E0DE61 /* Location Apps */ = {
+			isa = PBXGroup;
+			children = (
+				82FD79D12B9267FF00E0DE61 /* View */,
+			);
+			path = "Location Apps";
+			sourceTree = "<group>";
+		};
+		82FD79D12B9267FF00E0DE61 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82FD79D42B92682000E0DE61 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82FD79D42B92682000E0DE61 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82FD79CF2B9267F000E0DE61 /* LocationAppsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		CA361853D8E74D193DE115C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -6058,6 +6085,7 @@
 				8226060A2A853DEE0055925F /* RecentMomentsListTableViewController.swift in Sources */,
 				82061CC42B09A4F70073D727 /* TimetableOptions.swift in Sources */,
 				82768AED2ABE15080022FBE1 /* AppThemesListViewModelProtocol.swift in Sources */,
+				82FD79D02B9267F000E0DE61 /* LocationAppsViewController.swift in Sources */,
 				82AB6D252AF6C08A00F7B729 /* SavedNewsCategoryViewModel + Extensions.swift in Sources */,
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
 				822FB20F2AC5DCF20083E016 /* SubGroupsListTableViewController.swift in Sources */,
@@ -6547,7 +6575,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.2;
+				MARKETING_VERSION = 1.9.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -6585,7 +6613,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.2;
+				MARKETING_VERSION = 1.9.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

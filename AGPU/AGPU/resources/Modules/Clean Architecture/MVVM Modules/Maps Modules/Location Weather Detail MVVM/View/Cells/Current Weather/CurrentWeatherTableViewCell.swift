@@ -23,6 +23,7 @@ class CurrentWeatherTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .label
+        label.numberOfLines = 0
         label.font = .systemFont(ofSize: 17, weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -91,6 +92,8 @@ class CurrentWeatherTableViewCell: UITableViewCell {
         }
         
         locationLabel.snp.makeConstraints { maker in
+            maker.left.equalToSuperview().inset(30)
+            maker.right.equalToSuperview().inset(30)
             maker.top.equalToSuperview().inset(20)
             maker.centerX.equalToSuperview()
         }

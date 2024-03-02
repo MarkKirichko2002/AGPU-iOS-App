@@ -72,8 +72,11 @@ class CathedraBuildingDetailViewController: UIViewController {
         let shareGoogleMaps = UIAlertAction(title: "С помощью Google Maps", style: .default) { _ in
             self.shareLocationWithGoogleMaps()
         }
+        let shareYandexMaps = UIAlertAction(title: "С помощью Яндекс Карты", style: .default) { _ in
+            self.shareLocationWithYandexMaps()
+        }
         let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
-        self.showAlert(title: "Поделиться локацией", message: "Как вы хотите поделиться локацией?", actions: [shareAppleMaps, shareGoogleMaps, cancel])
+        self.showAlert(title: "Поделиться локацией", message: "Как вы хотите поделиться локацией?", actions: [shareAppleMaps, shareGoogleMaps, shareYandexMaps, cancel])
     }
     
     private func shareLocationWithAppleMaps() {
@@ -88,6 +91,12 @@ class CathedraBuildingDetailViewController: UIViewController {
         shareInfo(image: UIImage(named: "map icon")!, title: title, text: "\(title)-\(url)")
     }
     
+    private func shareLocationWithYandexMaps() {
+        let title = annotation.title!! + " (Яндекс Карты)"
+        let url = "https://maps.yandex.ru/?pt=\(annotation.coordinate.latitude),\(annotation.coordinate.longitude)&z=14"
+        shareInfo(image: UIImage(named: "map icon")!, title: title, text: "\(title)-\(url)")
+    }
+    
     private func bindViewModel() {
         viewModel = CathedraBuildingDetailViewModel(annotation: annotation)
         viewModel.getWeather()
@@ -98,36 +107,8 @@ class CathedraBuildingDetailViewController: UIViewController {
         }
     }
     
-    private func showChooseAppAlert() {
-        
-        let openAppleMaps = UIAlertAction(title: "С помощью Apple Maps", style: .default) { _ in
-            let url = URL(string: "http://maps.apple.com/?q=\(self.annotation.coordinate.latitude),\(self.annotation.coordinate.longitude)")!
-            UIApplication.shared.open(url)
-        }
-        
-        let openGoogleMaps = UIAlertAction(title: "С помощью Google Maps", style: .default) { _ in
-            let url = URL(string: "comgooglemaps://?q=\(self.annotation.coordinate.latitude),\(self.annotation.coordinate.longitude)")!
-            UIApplication.shared.open(url) { canOpen in
-                if canOpen {
-                    UIApplication.shared.open(url)
-                } else {
-                    self.showNoGoogleMapsAlert()
-                }
-            }
-        }
-        let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
-        self.showAlert(title: "Открыть карты", message: "Как вы хотите открыть карты?", actions: [openAppleMaps, openGoogleMaps, cancel])
-    }
-    
-    private func showNoGoogleMapsAlert() {
-        let ok = UIAlertAction(title: "Показать в App Store", style: .default) { _ in
-            UIApplication.shared.open(URL(string: "https://apps.apple.com/app/google-maps-transit-food/id585027354")!)
-        }
-        let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
-        self.showAlert(title: "Google Maps не установлено", message: "Хотите установить в App Store?", actions: [ok, cancel])
-    }
-    
     @IBAction func GoToMap() {
-        showChooseAppAlert()
+        let vc = LocationAppsViewController(annotation: annotation)
+        present(vc, animated: true)
     }
 }

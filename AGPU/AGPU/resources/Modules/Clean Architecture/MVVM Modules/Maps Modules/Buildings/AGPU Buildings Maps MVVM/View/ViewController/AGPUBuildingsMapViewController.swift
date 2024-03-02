@@ -123,8 +123,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
     @objc private func nextLocation() {
         if index < mapView.annotations.count - 1 {
             index += 1
-            // Определение региона для прокрутки и увеличения
-            let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001) // Задание масштаба
+            let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
             let region = MKCoordinateRegion(center: mapView.annotations[index].coordinate, span: span)
             setRegion(region: region)
         }
@@ -133,8 +132,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
     @objc private func pastLocation() {
         if index > 0 {
             index -= 1
-            // Определение региона для прокрутки и увеличения
-            let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001) // Задание масштаба
+            let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
             let region = MKCoordinateRegion(center: mapView.annotations[index].coordinate, span: span)
             setRegion(region: region)
         }
