@@ -20,7 +20,7 @@ final class TimeTableTableViewCell: UITableViewCell {
         let discipline = timetable.disciplines[index]
         layer.borderWidth = 1
         TimeLabel.text = discipline.time
-        DisciplineName.text = "\(discipline.name) \n\(discipline.teacherName), \(discipline.audienceID) \n (\(discipline.type.title))"
+        DisciplineName.text = "\(discipline.name) \n\(discipline.teacherName), \(discipline.audienceID) \n (\(discipline.groupName)) \n(\(discipline.type.title))"
         switch discipline.subgroup {
         case 0:
             SubGroupId.text = ""

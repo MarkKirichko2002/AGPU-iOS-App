@@ -11,12 +11,14 @@ class DaysListTableViewController: UITableViewController {
 
     private var id = ""
     private var currentDate = ""
+    private var owner = ""
     private var viewModel: DaysListViewModel
     
     // MARK: - Init
     init(id: String, currentDate: String, owner: String) {
         self.id = id
         self.currentDate = currentDate
+        self.owner = owner
         self.viewModel = DaysListViewModel(id: id, currentDate: currentDate, owner: owner)
         super.init(nibName: nil, bundle: nil)
     }
@@ -45,7 +47,7 @@ class DaysListTableViewController: UITableViewController {
     }
     
     private func setUpTable() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(DayTableViewCell.self, forCellReuseIdentifier: DayTableViewCell.identifier)
     }
     
     private func bindViewModel() {
@@ -70,10 +72,22 @@ class DaysListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let day = DaysList.days[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "\(day.name): \(day.dayOfWeek) \(day.date) (\(day.info))"
-        cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
-        cell.textLabel?.textColor = viewModel.timeTableColor(index: indexPath.row)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DayTableViewCell.identifier, for: indexPath) as? DayTableViewCell else {return UITableViewCell()}
+        cell.delegate = self
+        cell.configure(date: "\(day.name): \(day.dayOfWeek) \(day.date)", info: "(\(day.info))")
+        cell.dayName.textColor = viewModel.timeTableColor(index: indexPath.row)
         return cell
+    }
+}
+
+// MARK: - IDayTableViewCell
+extension DaysListTableViewController: IDayTableViewCell {
+    
+    func dateWasSelected(date: String) {
+        let date = date.components(separatedBy: " ").last!
+        let vc = RecentTimeTableDayListTableViewController(id: id, date: date, owner: owner)
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
     }
 }
