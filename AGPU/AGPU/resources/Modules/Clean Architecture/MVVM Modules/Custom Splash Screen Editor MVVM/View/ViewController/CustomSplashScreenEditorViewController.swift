@@ -72,18 +72,10 @@ class CustomSplashScreenEditorViewController: UIViewController {
     }
     
     private func setUpImageGesture() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(openPhoto))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showPhotoAlert))
         CustomIcon.addGestureRecognizer(tap)
     }
-    
-    @objc private func openPhoto() {
-        let vc = UIImagePickerController()
-        vc.delegate = self
-        vc.sourceType = .photoLibrary
-        vc.allowsEditing = true
-        present(vc, animated: true)
-    }
-    
+        
     private func setUpLabelGesture() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(showTitleAlert))
         CustomTitleLabel.addGestureRecognizer(tap)
@@ -99,7 +91,6 @@ class CustomSplashScreenEditorViewController: UIViewController {
         let saveAction = UIAlertAction(title: "Сохранить", style: .default) { [weak self] _ in
             let screen = CustomSplashScreenModel()
             screen.id = 1
-            screen.image = self?.CustomIcon.image?.jpegData(compressionQuality: 1.0) ?? Data()
             screen.title = alertVC.textFields?[0].text ?? ""
             self?.viewModel.saveCustomSplashScreen(screen: screen)
         }
@@ -142,11 +133,33 @@ class CustomSplashScreenEditorViewController: UIViewController {
         super.viewDidLoad()
         setUpNavigation()
         setUpView()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         bindViewModel()
+    }
+}
+
+extension CustomSplashScreenEditorViewController {
+    
+    @objc func showPhotoAlert() {
+        let alertVC = UIAlertController(title: "Выберите фото", message: "Выберите источник для загрузки фото", preferredStyle: .alert)
+        let vc = UIImagePickerController()
+        let photo = UIAlertAction(title: "Галерея", style: .default) { _ in
+            vc.delegate = self
+            vc.sourceType = .photoLibrary
+            vc.allowsEditing = true
+            self.present(vc, animated: true)
+        }
+        let camera = UIAlertAction(title: "Камера", style: .default) { _ in
+            vc.delegate = self
+            vc.sourceType = .camera
+            vc.allowsEditing = true
+            self.present(vc, animated: true)
+        }
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+        
+        alertVC.addAction(photo)
+        alertVC.addAction(camera)
+        alertVC.addAction(cancel)
+        present(alertVC, animated: true)
     }
 }
 
