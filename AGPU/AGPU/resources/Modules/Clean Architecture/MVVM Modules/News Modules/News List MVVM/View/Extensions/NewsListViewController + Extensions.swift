@@ -19,7 +19,10 @@ extension NewsListViewController: UICollectionViewDelegate {
         viewModel.sendNotificationArticleWasSelected()
         
         Timer.scheduledTimer(withTimeInterval: 1.1, repeats: false) { _ in
-            self.goToWeb(url: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))", image: "online", title: "\(self.viewModel.articleItem(index: indexPath.row).date)", isSheet: false)
+            let vc = NewsWebViewController(article: self.viewModel.articleItem(index: indexPath.row), url: self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
         }
     }
     

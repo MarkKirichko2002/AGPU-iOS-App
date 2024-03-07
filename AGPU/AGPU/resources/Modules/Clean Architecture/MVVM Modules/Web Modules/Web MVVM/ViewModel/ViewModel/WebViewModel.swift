@@ -11,4 +11,7 @@ final class WebViewModel {
         
     var scrollView = UIScrollView()
     
+    // MARK: - сервисы
+    let realmManager = RealmManager()
+    
 }

@@ -80,6 +80,32 @@ extension RealmManager: IRealmManager {
         return Array(items)
     }
     
+    func saveArticle(news: Article, model: NewsModel) {
+        let article = realm.object(ofType: NewsModel.self, forPrimaryKey: model.id)
+        if article == nil {
+            let newArticle = NewsModel()
+            newArticle.id = news.id
+            newArticle.offsetY = 0
+            try! realm.write {
+                realm.add(newArticle)
+            }
+        } else {
+            print("уже есть")
+        }
+    }
+    
+    func getArticle(id: Int)-> NewsModel? {
+        let article = realm.object(ofType: NewsModel.self, forPrimaryKey: id)
+        return article
+    }
+    
+    func editArticle(news: NewsModel, position: Double) {
+        let newArticle = realm.object(ofType: NewsModel.self, forPrimaryKey: news.id)
+        try! realm.write {
+            newArticle?.offsetY = position
+        }
+    }
+    
     func saveSplashScreen(screen: CustomSplashScreenModel) {
         
         let newScreen = CustomSplashScreenModel()

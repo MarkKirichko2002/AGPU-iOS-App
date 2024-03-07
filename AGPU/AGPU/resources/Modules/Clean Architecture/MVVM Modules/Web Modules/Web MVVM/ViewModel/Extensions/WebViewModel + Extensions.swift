@@ -38,7 +38,6 @@ extension WebViewModel: WebViewModelProtocol {
         }
     }
     
-    
     func checkWebPage(url: String) {
         let items = url.components(separatedBy: "/")
         print(items)

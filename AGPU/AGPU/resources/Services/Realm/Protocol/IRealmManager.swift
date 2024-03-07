@@ -13,6 +13,9 @@ protocol IRealmManager {
     func editDocumentPage(url: String, page: Int)
     func deleteDocument(document: DocumentModel)
     func getDocuments()->[DocumentModel]
+    func saveArticle(news: Article, model: NewsModel)
+    func getArticle(id: Int)-> NewsModel?
+    func editArticle(news: NewsModel, position: Double)
     func saveSplashScreen(screen: CustomSplashScreenModel)
     func getSplashScreen()-> CustomSplashScreenModel?
 }

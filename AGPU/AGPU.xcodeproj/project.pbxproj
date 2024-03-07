@@ -28,6 +28,12 @@
 		820E40952A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820E40942A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift */; };
 		8210CA052A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210CA042A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift */; };
 		8210CA092A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210CA082A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift */; };
+		821119F22B98BB7A007B61E5 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821119F12B98BB7A007B61E5 /* NewsModel.swift */; };
+		821119F92B990049007B61E5 /* NewsWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821119F82B990049007B61E5 /* NewsWebViewController.swift */; };
+		821119FB2B9900D6007B61E5 /* NewsWebViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821119FA2B9900D6007B61E5 /* NewsWebViewController + Extensions.swift */; };
+		82111A002B990138007B61E5 /* INewsWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821119FF2B990138007B61E5 /* INewsWebViewModel.swift */; };
+		82111A022B99015B007B61E5 /* NewsWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82111A012B99015B007B61E5 /* NewsWebViewModel.swift */; };
+		82111A042B99016E007B61E5 /* NewsWebViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82111A032B99016E007B61E5 /* NewsWebViewModel + Extensions.swift */; };
 		8212704C2A7892910095D68E /* PDFDocumentReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8212704B2A7892910095D68E /* PDFDocumentReaderViewController.swift */; };
 		821270512A7903930095D68E /* PDFLastPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821270502A7903930095D68E /* PDFLastPageViewController.swift */; };
 		8212705B2A792A610095D68E /* RecentPDFModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8212705A2A792A610095D68E /* RecentPDFModel.swift */; };
@@ -422,6 +428,12 @@
 		820E40942A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUCurrentCathedraMapViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		8210CA042A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUCurrentBuildingMapViewController.swift; sourceTree = "<group>"; };
 		8210CA082A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUCurrentBuildingMapViewController + Extensions.swift"; sourceTree = "<group>"; };
+		821119F12B98BB7A007B61E5 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
+		821119F82B990049007B61E5 /* NewsWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsWebViewController.swift; sourceTree = "<group>"; };
+		821119FA2B9900D6007B61E5 /* NewsWebViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsWebViewController + Extensions.swift"; sourceTree = "<group>"; };
+		821119FF2B990138007B61E5 /* INewsWebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INewsWebViewModel.swift; sourceTree = "<group>"; };
+		82111A012B99015B007B61E5 /* NewsWebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsWebViewModel.swift; sourceTree = "<group>"; };
+		82111A032B99016E007B61E5 /* NewsWebViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsWebViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		8212704B2A7892910095D68E /* PDFDocumentReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDocumentReaderViewController.swift; sourceTree = "<group>"; };
 		821270502A7903930095D68E /* PDFLastPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFLastPageViewController.swift; sourceTree = "<group>"; };
 		8212705A2A792A610095D68E /* RecentPDFModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPDFModel.swift; sourceTree = "<group>"; };
@@ -952,6 +964,7 @@
 		8209A0942B8389100013371D /* Realm */ = {
 			isa = PBXGroup;
 			children = (
+				821119F02B98BB6C007B61E5 /* Models */,
 				8209A0972B8389270013371D /* Protocol */,
 				8209A0962B8389260013371D /* Service */,
 				8209A0982B838A150013371D /* Extensions */,
@@ -1164,6 +1177,82 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		821119F02B98BB6C007B61E5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				821119F12B98BB7A007B61E5 /* NewsModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		821119F32B990000007B61E5 /* News Web MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				821119F52B99000E007B61E5 /* View */,
+				821119F42B99000C007B61E5 /* ViewModel */,
+			);
+			path = "News Web MVVM";
+			sourceTree = "<group>";
+		};
+		821119F42B99000C007B61E5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				821119FE2B99011B007B61E5 /* Protocol */,
+				821119FD2B990119007B61E5 /* ViewModel */,
+				821119FC2B990117007B61E5 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		821119F52B99000E007B61E5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				821119F72B99001F007B61E5 /* ViewController */,
+				821119F62B99001D007B61E5 /* Extensions */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		821119F62B99001D007B61E5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				821119FA2B9900D6007B61E5 /* NewsWebViewController + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		821119F72B99001F007B61E5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				821119F82B990049007B61E5 /* NewsWebViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		821119FC2B990117007B61E5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82111A032B99016E007B61E5 /* NewsWebViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		821119FD2B990119007B61E5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82111A012B99015B007B61E5 /* NewsWebViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		821119FE2B99011B007B61E5 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				821119FF2B990138007B61E5 /* INewsWebViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		821270452A783FA40095D68E /* Sections */ = {
 			isa = PBXGroup;
 			children = (
@@ -1234,6 +1323,7 @@
 		821270572A7921DD0095D68E /* Web Modules */ = {
 			isa = PBXGroup;
 			children = (
+				821119F32B990000007B61E5 /* News Web MVVM */,
 				82BA73B22A579B15006B67DA /* Web MVVM */,
 				82BC3CFA2A56ED7500E49332 /* Recent Web Page MVVM */,
 				8234E5FD2A8857A800ED354C /* Word MVVM Modules */,
@@ -6246,6 +6336,7 @@
 				824C56D92A6FE98F0074ADB7 /* FacultyCathedraList.swift in Sources */,
 				82B24A6D2A817BDE008B94E4 /* WeekTableViewCell.swift in Sources */,
 				82BC3D002A56F5C400E49332 /* RecentWebPageViewController + Extensions.swift in Sources */,
+				821119F92B990049007B61E5 /* NewsWebViewController.swift in Sources */,
 				82C5615D2A6B757C00514B00 /* AppFeatureModel.swift in Sources */,
 				82B267082A8DAAC100043A6D /* NewsCategoryTableViewCell.swift in Sources */,
 				82426C8B2A71CFC600D5AA57 /* ForEmployeeListTableViewController.swift in Sources */,
@@ -6264,6 +6355,7 @@
 				822FB2142AC5DECC0083E016 /* SubGroupsListViewModelProtocol.swift in Sources */,
 				8226D17A2B095DA400B0B9F0 /* TimetableSettingsListViewModelProtocol.swift in Sources */,
 				82761A1D2B46381500D9976F /* SplashScreenOptionTableViewCell.swift in Sources */,
+				82111A022B99015B007B61E5 /* NewsWebViewModel.swift in Sources */,
 				82184D882B7BD97600F2588E /* ILocationWeatherDetailViewModel.swift in Sources */,
 				827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */,
 				82184D7E2B7BD89A00F2588E /* CurrentWeatherTableViewCell.swift in Sources */,
@@ -6282,6 +6374,7 @@
 				826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */,
 				821FCF052A87CDB8006FFB26 /* NewsCollectionViewCell.swift in Sources */,
 				82761A312B4642A300D9976F /* SplashScreensListViewModel + Extensions.swift in Sources */,
+				82111A002B990138007B61E5 /* INewsWebViewModel.swift in Sources */,
 				82B1C0D62A8071E500520C14 /* SavedSubGroupTableViewController.swift in Sources */,
 				82989AEB2A6F6E1B00F27858 /* FacultyCathedraListViewModelProtocol.swift in Sources */,
 				82E4C5682A6B154300F65A67 /* FacultyGroupsListViewModelProtocol.swift in Sources */,
@@ -6312,6 +6405,7 @@
 				82AB6D272AF6C0CC00F7B729 /* SavedNewsCategoryTableViewController.swift in Sources */,
 				8226D1912B09704B00B0B9F0 /* SavedPairTypeViewModel + Extensions.swift in Sources */,
 				82C5615F2A6B75B700514B00 /* AppFeaturesList.swift in Sources */,
+				821119FB2B9900D6007B61E5 /* NewsWebViewController + Extensions.swift in Sources */,
 				82768AEF2ABE15230022FBE1 /* AppThemesListViewModel.swift in Sources */,
 				82F98B362B119A0200137D9A /* WeatherManager + Extensions.swift in Sources */,
 				8234E5F52A8854DF00ED354C /* WordDocumenReaderViewModelProtocol.swift in Sources */,
@@ -6333,7 +6427,9 @@
 				8234E5FC2A88557400ED354C /* WordDocumenReaderViewModel + Extensions.swift in Sources */,
 				82AB6D182AF6BD5F00F7B729 /* AdaptiveNewsOptionTableViewCell.swift in Sources */,
 				82768AFA2ABE1CE70022FBE1 /* AppFeaturesTableViewCell.swift in Sources */,
+				821119F22B98BB7A007B61E5 /* NewsModel.swift in Sources */,
 				825634BA2A6222070082B7B8 /* FacultyGroupsListTableViewController.swift in Sources */,
+				82111A042B99016E007B61E5 /* NewsWebViewModel + Extensions.swift in Sources */,
 				826888692A3482DF00434219 /* AGPUSubSections.swift in Sources */,
 				82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */,
 				82BCB5422AB35A7E00F3A321 /* DayModel.swift in Sources */,
@@ -6608,7 +6704,7 @@
 				DEVELOPMENT_TEAM = 265GKHT32M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AGPU/sources/app/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "ФГБОУ ВО АГПУ";
+				INFOPLIST_KEY_CFBundleDisplayName = "ФГБОУ ВО «АГПУ»";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Необходимо для точного определения вашего местоположения и предоставления персонализированной информации о ближайших корпусах университета. Постоянный доступ к геопозиции требуется для надежного отображения текущего местоположения и временной информации о зданиях, даже когда приложение неактивно.";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Для обеспечения постоянного отображения вашей геопозиции и уточнения расположения корпусов университета на карте даже в неактивном режиме приложения.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Для отображения вашей текущей геопозиции и указания расположения корпусов университета на карте.";
@@ -6623,7 +6719,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.3;
+				MARKETING_VERSION = 1.9.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -6646,7 +6742,7 @@
 				DEVELOPMENT_TEAM = 265GKHT32M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AGPU/sources/app/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "ФГБОУ ВО АГПУ";
+				INFOPLIST_KEY_CFBundleDisplayName = "ФГБОУ ВО «АГПУ»";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Необходимо для точного определения вашего местоположения и предоставления персонализированной информации о ближайших корпусах университета. Постоянный доступ к геопозиции требуется для надежного отображения текущего местоположения и временной информации о зданиях, даже когда приложение неактивно.";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Для обеспечения постоянного отображения вашей геопозиции и уточнения расположения корпусов университета на карте даже в неактивном режиме приложения.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Для отображения вашей текущей геопозиции и указания расположения корпусов университета на карте.";
@@ -6661,7 +6757,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.3;
+				MARKETING_VERSION = 1.9.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
