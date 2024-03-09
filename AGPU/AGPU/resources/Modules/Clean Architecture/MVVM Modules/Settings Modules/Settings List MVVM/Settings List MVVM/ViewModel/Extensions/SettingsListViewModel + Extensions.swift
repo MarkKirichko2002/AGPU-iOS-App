@@ -43,7 +43,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         if let option = UserDefaults.loadData(type: SplashScreenOptions.self, key: "splash option") {
             return option.rawValue
         }
-        return "обычный"
+        return "Обычный"
     }
     
     func getAppIconInfo()-> String {

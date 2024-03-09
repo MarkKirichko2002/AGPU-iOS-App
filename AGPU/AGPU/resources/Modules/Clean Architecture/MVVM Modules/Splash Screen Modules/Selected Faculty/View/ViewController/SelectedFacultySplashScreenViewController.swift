@@ -11,6 +11,7 @@ final class SelectedFacultySplashScreenViewController: UIViewController {
     
     // MARK: - сервисы
     var animation: AnimationClassProtocol?
+    var viewModel = SelectedFacultySplashScreenViewModel()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         let theme = UserDefaults.loadData(type: AppThemeModel.self, key: "theme")?.theme ?? .light
@@ -104,21 +105,24 @@ final class SelectedFacultySplashScreenViewController: UIViewController {
     
     private func showSplashScreen() {
         
-        guard let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") else {return}
-        
-        AGPUIcon.image = UIImage(named: faculty.icon)
-        animation?.springAnimation(view: AGPUIcon)
-        
-        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
-            self.AGPUTitleLabel.text = faculty.abbreviation
-            self.animation?.springAnimation(view: self.AGPUTitleLabel)
+        viewModel.registerFacultyHandler { faculty in
+            
+            self.AGPUIcon.image = UIImage(named: faculty.icon)
+            self.animation?.springAnimation(view: self.AGPUIcon)
+            
+            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+                self.AGPUTitleLabel.text = faculty.abbreviation
+                self.animation?.springAnimation(view: self.AGPUTitleLabel)
+            }
+            
+            Timer.scheduledTimer(withTimeInterval: 4, repeats: false) { _ in
+                let controller = AGPUTabBarController()
+                controller.modalPresentationStyle = .fullScreen
+                controller.modalTransitionStyle = .crossDissolve
+                self.present(controller, animated: true, completion: nil)
+            }
         }
         
-        Timer.scheduledTimer(withTimeInterval: 4, repeats: false) { _ in
-            let controller = AGPUTabBarController()
-            controller.modalPresentationStyle = .fullScreen
-            controller.modalTransitionStyle = .crossDissolve
-            self.present(controller, animated: true, completion: nil)
-        }
+        viewModel.getFaculty()
     }
 }
