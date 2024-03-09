@@ -10,16 +10,6 @@ import UIKit
 // MARK: - SettingsManagerProtocol
 extension SettingsManager: SettingsManagerProtocol {
    
-    // MARK: - Your Status
-    
-    func observeStatusChanged(completion: @escaping()->Void) {
-        NotificationCenter.default.addObserver(forName: Notification.Name("user status"), object: nil, queue: .main) { notification in
-            if let _ = notification.object as? UserStatusModel {
-                completion()
-            }
-        }
-    }
-    
     func checkCurrentStatus()-> UIViewController {
         let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status")
         switch status?.id {
@@ -58,6 +48,61 @@ extension SettingsManager: SettingsManagerProtocol {
             return option
         } else {
             return false
+        }
+    }
+    
+    // MARK: - Only Schedule
+    func checkOnlyTimetableOption()-> Bool {
+        if let option = UserDefaults.standard.value(forKey: "onOnlyTimetable") as? Bool {
+            return option
+        } else {
+            return false
+        }
+    }
+    
+    // MARK: - Advanced Timetable
+    func checkSaveRecentTimetableItem()-> Bool {
+        if let option = UserDefaults.standard.value(forKey: "onSaveRecentTimetableItem") as? Bool {
+            return option
+        } else {
+            return false
+        }
+    }
+    
+    func observeOnlyTimetableChanged(completion: @escaping()->Void) {
+        NotificationCenter.default.addObserver(forName: Notification.Name("only timetable"), object: nil, queue: .main) { _ in
+            completion()
+        }
+    }
+    
+    // MARK: - ASPU Button
+    func checkDynamicButtonOption()-> DynamicButtonActions {
+        let action = UserDefaults.loadData(type: DynamicButtonActions.self, key: "action") ?? .speechRecognition
+        return action
+    }
+    
+    // MARK: - My Splash Screen
+    func saveCustomSplashScreen(screen: CustomSplashScreenModel) {
+        realmManager.saveSplashScreen(screen: screen)
+    }
+    
+    func getCustomSplashScreen()-> CustomSplashScreenModel? {
+        guard let screen = realmManager.getSplashScreen() else {return nil}
+        return screen
+    }
+    
+    func observeDynamicButtonActionChanged(completion: @escaping()->Void) {
+        NotificationCenter.default.addObserver(forName: Notification.Name("action"), object: nil, queue: .main) { _ in
+            completion()
+        }
+    }
+    
+    // MARK: - Your Status
+    func observeStatusChanged(completion: @escaping()->Void) {
+        NotificationCenter.default.addObserver(forName: Notification.Name("user status"), object: nil, queue: .main) { notification in
+            if let _ = notification.object as? UserStatusModel {
+                completion()
+            }
         }
     }
 }

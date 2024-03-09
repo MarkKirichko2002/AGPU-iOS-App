@@ -38,7 +38,7 @@ extension WordDocumenReaderViewModel: WordDocumenReaderViewModelProtocol {
     }
     
     func observeActions(block: @escaping()->Void) {
-        NotificationCenter.default.addObserver(forName: Notification.Name("close screen"), object: nil, queue: nil) { _ in
+        NotificationCenter.default.addObserver(forName: Notification.Name("actions"), object: nil, queue: nil) { _ in
             block()
         }
     }
@@ -51,5 +51,9 @@ extension WordDocumenReaderViewModel: WordDocumenReaderViewModelProtocol {
         UserDefaults.saveData(object: page, key: "last word document") {
             print("сохранено: \(page)")
         }
+    }
+    
+    func saveCurrentDocument(document: DocumentModel) {
+        realmManager.saveDocument(document: document)
     }
 }

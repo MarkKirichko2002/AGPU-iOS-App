@@ -10,12 +10,14 @@ import UIKit
 class FacultyCathedraListTableViewController: UITableViewController {
     
     var faculty: AGPUFacultyModel
+    var isSettings = false
     
     @objc private let viewModel: FacultyCathedraListViewModel!
     
     // MARK: - Init
-    init(faculty: AGPUFacultyModel) {
+    init(faculty: AGPUFacultyModel, isSettings: Bool) {
         self.faculty = faculty
+        self.isSettings = isSettings
         self.viewModel = FacultyCathedraListViewModel(faculty: faculty)
         super.init(nibName: nil, bundle: nil)
     }
@@ -112,7 +114,12 @@ class FacultyCathedraListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.selectCathedra(index: indexPath.row)
+        if isSettings {
+            viewModel.selectCathedra(index: indexPath.row)
+        } else {
+            showHintAlert(type: .cathedra)
+            HapticsManager.shared.hapticFeedback()
+        }
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
     

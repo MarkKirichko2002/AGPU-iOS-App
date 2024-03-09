@@ -12,13 +12,38 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        let vc = AGPUSplashScreenViewController(animation: AnimationClass())
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = vc
+        window.rootViewController = setUpSplashScreen()
         window.overrideUserInterfaceStyle = UserDefaults.loadData(type: AppThemeModel.self, key: "theme")?.theme ?? .light
         window.makeKeyAndVisible()
         self.window = window
+    }
+    
+    private func setUpSplashScreen()-> UIViewController {
+        let option = UserDefaults.loadData(type: SplashScreenOptions.self, key: "splash option") ?? .regular
+        let regularVC = AGPUSplashScreenViewController(animation: AnimationClass())
+        let statusVC = YourStatusSplashScreenViewController(animation: AnimationClass())
+        let facultyVC = SelectedFacultySplashScreenViewController(animation: AnimationClass())
+        let newYearVC = AGPUNewYearSplashScreenViewController(animation: AnimationClass())
+        let customVC = CustomSplashScreenViewController(animation: AnimationClass())
+        let tabBarVC = AGPUTabBarController()
+        switch option {
+        case .regular:
+            return regularVC
+        case .status:
+            return statusVC
+        case .faculty:
+            return facultyVC
+        case .newyear:
+            return newYearVC
+        case .custom:
+            return customVC
+        case .random:
+            return [regularVC, statusVC, facultyVC, newYearVC, customVC].randomElement()!
+        case .none:
+            return tabBarVC
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

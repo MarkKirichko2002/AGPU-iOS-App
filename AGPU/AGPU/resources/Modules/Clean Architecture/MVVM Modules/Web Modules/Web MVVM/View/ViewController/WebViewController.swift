@@ -18,6 +18,7 @@ final class WebViewController: UIViewController {
     // MARK: - UI
     let WVWEBview = WKWebView(frame: .zero)
     let spinner = UIActivityIndicatorView(style: .large)
+    var titleView: CustomTitleView!
     
     // MARK: - Init
     init(url: String) {
@@ -42,11 +43,11 @@ final class WebViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
+        let backButton = UIBarButtonItem(image: UIImage(named: "left"), style: .plain, target: self, action: #selector(backButtonTapped))
         backButton.tintColor = .label
-        let forwardbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.right"), style: .plain, target: self, action: #selector(forwardButtonTapped))
+        let forwardbutton = UIBarButtonItem(image: UIImage(named: "right"), style: .plain, target: self, action: #selector(forwardButtonTapped))
         forwardbutton.tintColor = .label
-        let closebutton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        let closebutton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closebutton.tintColor = .label
         self.navigationItem.rightBarButtonItems = [forwardbutton, backButton]
         self.navigationItem.leftBarButtonItem = closebutton
@@ -73,12 +74,38 @@ final class WebViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel.observeScroll { position in
-            self.WVWEBview.scrollView.setContentOffset(position, animated: true)
+            DispatchQueue.main.async {
+                self.WVWEBview.scrollView.setContentOffset(position, animated: true)
+            }
         }
-        viewModel.observeActions {
-            if self.navigationController?.viewControllers.first == self {
-                self.dismiss(animated: true)
-            } else {}
+        
+        viewModel.observeActions { action in
+            switch action {
+            case .closeScreen:
+                if self.navigationController?.viewControllers.first == self {
+                    self.dismiss(animated: true)
+                } else {}
+            case .forward:
+                self.forwardButtonTapped()
+            case .back:
+                self.backButtonTapped()
+            }
+        }
+        
+        viewModel.observeSectionSelected { section in
+            self.titleView = CustomTitleView(image: section.icon, title: section.name, frame: .zero)
+            DispatchQueue.main.async {
+                self.navigationItem.titleView = self.titleView
+            }
+            self.WVWEBview.load(section.url)
+        }
+        
+        viewModel.observeSubSectionSelected { subsection in
+            self.titleView = CustomTitleView(image: "АГПУ", title: "АГПУ сайт", frame: .zero)
+            DispatchQueue.main.async {
+                self.navigationItem.titleView = self.titleView
+            }
+            self.WVWEBview.load(subsection.url)
         }
     }
     

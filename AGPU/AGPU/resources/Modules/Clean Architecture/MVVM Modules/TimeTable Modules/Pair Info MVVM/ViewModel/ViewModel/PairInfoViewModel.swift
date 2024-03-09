@@ -12,7 +12,7 @@ class PairInfoViewModel {
     var pairInfo = [String]()
     
     var pair: Discipline!
-    var group: String = ""
+    var id: String = ""
     var date: String = ""
     
     var timer: Timer?
@@ -20,9 +20,9 @@ class PairInfoViewModel {
     var dataChangedHandler: (()->Void)?
     
     // MARK: - Init
-    init(pair: Discipline, group: String, date: String) {
+    init(pair: Discipline, id: String, date: String) {
         self.pair = pair
-        self.group = group
+        self.id = id
         self.date = date
     }
     

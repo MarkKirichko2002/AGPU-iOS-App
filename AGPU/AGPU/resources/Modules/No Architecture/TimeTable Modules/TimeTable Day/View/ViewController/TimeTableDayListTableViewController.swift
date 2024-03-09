@@ -9,9 +9,10 @@ import UIKit
 
 final class TimeTableDayListTableViewController: UIViewController {
     
-    var group = ""
+    var id = ""
     var subgroup = 0
     var date = ""
+    var owner = ""
     var allDisciplines: [Discipline] = []
     var type: PairType = .all
     
@@ -20,11 +21,12 @@ final class TimeTableDayListTableViewController: UIViewController {
     // MARK: - сервисы
     let service = TimeTableService()
     let dateManager = DateManager()
+    let settingsManager = SettingsManager()
     
     // MARK: - UI
     let tableView = UITableView()
     private let spinner = UIActivityIndicatorView(style: .large)
-    private let noTimeTableLabel = UILabel()
+    private let infoLabel = UILabel()
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -35,18 +37,20 @@ final class TimeTableDayListTableViewController: UIViewController {
         setUpRefreshControl()
         setUpIndicatorView()
         setUpLabel()
-        getTimeTable(group: group, date: date)
+        getTimeTable(id: id, date: date, owner: owner)
         observeGroupChange()
         observeSubGroupChange()
+        observeObjectSelected()
         observeCalendar()
         observePairType()
     }
     
     private func setUpData() {
-        self.group = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-2-1"
-        self.subgroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
-        self.type = UserDefaults.loadData(type: PairType.self, key: "type") ?? .all
+        id = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-2-1"
+        subgroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
+        type = UserDefaults.loadData(type: PairType.self, key: "type") ?? .all
         date = dateManager.getCurrentDate()
+        owner = UserDefaults.standard.string(forKey: "recentOwner") ?? "GROUP"
     }
      
     private func setUpNavigation() {
@@ -55,9 +59,17 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         navigationItem.title = "Сегодня: \(dayOfWeek) \(date) "
         
+        let searchAction = UIAction(title: "Поиск") { _ in
+            let vc = TimeTableSearchListTableViewController()
+            vc.isSettings = false
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         // список групп
         let groupList = UIAction(title: "Группы") { _ in
-            let vc = AllGroupsListTableViewController(group: self.group)
+            let vc = AllGroupsListTableViewController(group: self.id)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -73,7 +85,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         // день
         let days = UIAction(title: "День") { _ in
-            let vc = DaysListTableViewController(group: self.group, currentDate: self.date)
+            let vc = DaysListTableViewController(id: self.id, currentDate: self.date, owner: self.owner)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -81,7 +93,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         // календарь
         let calendar = UIAction(title: "Календарь") { _ in
-            let vc = CalendarViewController(group: self.group, date: self.date)
+            let vc = CalendarViewController(id: self.id, date: self.date, owner: self.owner)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -89,7 +101,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         // недели
         let weeks = UIAction(title: "Недели") { _ in
-            let vc = AllWeeksListTableViewController(group: self.group, subgroup: self.subgroup)
+            let vc = AllWeeksListTableViewController(id: self.id, subgroup: self.subgroup, owner: self.owner)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -114,7 +126,7 @@ final class TimeTableDayListTableViewController: UIViewController {
                 let json = try JSONEncoder().encode(self.timetable)
                 let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: self.date)
                 self.service.getTimeTableDayImage(json: json) { image in
-                    self.ShareImage(image: image, title: self.group, text: "\(dayOfWeek) \(self.date)")
+                    self.ShareImage(image: image, title: self.id, text: "\(dayOfWeek) \(self.date)")
                 }
             } catch {
                 print(error.localizedDescription)
@@ -122,6 +134,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
         
         let menu = UIMenu(title: "Расписание", children: [
+            searchAction,
             groupList,
             subGroupsList,
             days,
@@ -145,7 +158,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     @objc private func refreshTimetable() {
         self.type = .all
         self.subgroup = 0
-        getTimeTable(group: group, date: date)
+        getTimeTable(id: id, date: date, owner: owner)
         NotificationCenter.default.post(name: Notification.Name("refreshed"), object: nil)
     }
     
@@ -174,25 +187,30 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     private func setUpLabel() {
-        view.addSubview(noTimeTableLabel)
-        noTimeTableLabel.text = "Нет расписания"
-        noTimeTableLabel.font = .systemFont(ofSize: 18, weight: .medium)
-        noTimeTableLabel.isHidden = true
-        noTimeTableLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(infoLabel)
+        infoLabel.text = "Нет расписания"
+        infoLabel.font = .systemFont(ofSize: 18, weight: .medium)
+        infoLabel.isHidden = true
+        infoLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            noTimeTableLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            noTimeTableLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            infoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            infoLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
-    func getTimeTable(group: String, date: String) {
-        UserDefaults.standard.setValue(group, forKey: "recentGroup")
-        UserDefaults.standard.setValue(date, forKey: "recentDate")
+    func getTimeTable(id: String, date: String, owner: String) {
+        let option = settingsManager.checkSaveRecentTimetableItem()
+        if option == true {
+            UserDefaults.standard.setValue(id, forKey: "recentGroup")
+            UserDefaults.standard.setValue(date, forKey: "recentDate")
+            UserDefaults.standard.setValue(owner, forKey: "recentOwner")
+            UserDefaults.standard.setValue(id, forKey: "group")
+        }
         self.spinner.startAnimating()
-        self.noTimeTableLabel.isHidden = true
+        self.infoLabel.isHidden = true
         self.timetable?.disciplines = []
         self.tableView.reloadData()
-        service.getTimeTableDay(groupId: group, date: date) { [weak self] result in
+        service.getTimeTableDay(id: id, date: date, owner: owner) { [weak self] result in
             switch result {
             case .success(let timetable):
                 self?.timetable = timetable
@@ -201,35 +219,37 @@ final class TimeTableDayListTableViewController: UIViewController {
                     let data = timetable.disciplines.filter { $0.subgroup == self?.subgroup || $0.subgroup == 0 || (self?.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
                     if self?.type != .all {
                         self?.timetable?.disciplines = data.filter {$0.type == self?.type}
+                    } else {
+                        self?.timetable?.disciplines = data
                     }
                     DispatchQueue.main.async {
                         self?.tableView.reloadData()
                         self?.spinner.stopAnimating()
                         self?.refreshControl.endRefreshing()
-                        self?.noTimeTableLabel.isHidden = true
+                        self?.infoLabel.isHidden = true
                     }
                 } else {
                     self?.spinner.stopAnimating()
                     self?.refreshControl.endRefreshing()
-                    self?.noTimeTableLabel.isHidden = false
+                    self?.infoLabel.isHidden = false
                 }
             case .failure(let error):
                 self?.spinner.stopAnimating()
                 self?.refreshControl.endRefreshing()
-                self?.noTimeTableLabel.text = "Ошибка"
-                self?.noTimeTableLabel.isHidden = false
+                self?.infoLabel.text = "Ошибка"
+                self?.infoLabel.isHidden = false
                 print(error.localizedDescription)
             }
         }
     }
     
     private func observeGroupChange() {
-        
         NotificationCenter.default.addObserver(forName: Notification.Name("group changed"), object: nil, queue: .main) { notification in
-            let group = notification.object as? String ?? "ВМ-ИВТ-2-1"
-            self.getTimeTable(group: group, date: self.date)
-            self.group = group
-            print(self.group)
+            let id = notification.object as? String ?? "ВМ-ИВТ-2-1"
+            self.getTimeTable(id: id, date: self.date, owner: "GROUP")
+            self.id = id
+            self.owner = "GROUP"
+            print(self.id)
         }
     }
     
@@ -255,6 +275,17 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
     }
     
+    private func observeObjectSelected() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("object selected"), object: nil, queue: .main) { notification in
+            if let object = notification.object as? SearchTimetableModel {
+                self.getTimeTable(id: object.name, date: self.date, owner: object.owner)
+                self.id = object.name
+                self.owner = object.owner
+                print(self.owner)
+            }
+        }
+    }
+    
     private func observeCalendar() {
         
         NotificationCenter.default.addObserver(forName: Notification.Name("DateWasSelected"), object: nil, queue: .main) { notification in
@@ -263,7 +294,7 @@ final class TimeTableDayListTableViewController: UIViewController {
                 self.date = date
                 self.type = .all
                 self.subgroup = 0
-                self.getTimeTable(group: self.group, date: date)
+                self.getTimeTable(id: self.id, date: self.date, owner: self.owner)
                 self.navigationItem.title = "\(dayOfWeek) \(date) "
             }
         }
@@ -287,6 +318,22 @@ final class TimeTableDayListTableViewController: UIViewController {
                 self.subgroup = 0
                 self.tableView.reloadData()
                 
+            } else if type == .leftToday {
+                
+                let filteredDisciplines = self.filterLeftedPairs(pairs: self.allDisciplines)
+                if filteredDisciplines.isEmpty {
+                    self.subgroup = 0
+                }
+                self.timetable?.disciplines = filteredDisciplines
+                
+                if filteredDisciplines.first?.type == .lab {
+                    self.subgroup = 0
+                } else {
+                    self.subgroup = filteredDisciplines.first?.subgroup ?? 0
+                }
+                
+                self.tableView.reloadData()
+                
             } else {
                 
                 if self.allDisciplines.isEmpty {
@@ -294,6 +341,7 @@ final class TimeTableDayListTableViewController: UIViewController {
                 }
                 
                 if let type = notification.object as? PairType {
+                    
                     let filteredDisciplines = self.allDisciplines.filter { $0.type == type }
                     if filteredDisciplines.isEmpty {
                         self.subgroup = 0
@@ -314,6 +362,41 @@ final class TimeTableDayListTableViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    private func filterLeftedPairs(pairs: [Discipline])-> [Discipline] {
+        
+        var disciplines = [Discipline]()
+        
+        let currentDate = dateManager.getCurrentDate()
+        let currentTime = dateManager.getCurrentTime()
+        
+        for pair in pairs {
+            
+            let pairEndTime = "\(pair.time.components(separatedBy: "-")[1]):00"
+            
+            let timetableDate = timetable?.date ?? ""
+            
+            let compareDate = dateManager.compareDates(date1: timetableDate, date2: currentDate)
+            let compareTime = dateManager.compareTimes(time1: pairEndTime, time2: currentTime)
+            
+            // прошлый день
+            if compareDate == .orderedAscending {
+                return disciplines
+            }
+            
+            // время больше и тот же день
+            if compareTime == .orderedDescending && compareDate == .orderedSame {
+                disciplines.append(pair)
+            }
+            
+            // следующий день
+            if compareDate == .orderedDescending {
+                return allDisciplines
+            }
+        }
+        
+        return disciplines
     }
     
     private func showSaveImageAlert() {

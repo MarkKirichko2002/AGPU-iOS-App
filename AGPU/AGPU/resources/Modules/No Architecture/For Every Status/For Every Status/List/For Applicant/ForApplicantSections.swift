@@ -13,7 +13,7 @@ struct ForApplicantSections {
         ForEveryStatusModel(
             id: 1,
             icon: "map icon",
-            name: "Найти «АГПУ»"
+            name: "Найти кампус"
         ),
         ForEveryStatusModel(
             id: 2,

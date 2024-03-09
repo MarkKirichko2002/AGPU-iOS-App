@@ -103,7 +103,7 @@ struct AGPUFaculties {
             AppIcon: "AppIcon",
             abbreviation: "НИИРО",
             url: "https://niiro-agpu.ru/",
-            newsAbbreviation: "",
+            newsAbbreviation: "-",
             videoURL: "",
             contactsURL: "",
             email: "NIIRO_AGPU@mail.ru",

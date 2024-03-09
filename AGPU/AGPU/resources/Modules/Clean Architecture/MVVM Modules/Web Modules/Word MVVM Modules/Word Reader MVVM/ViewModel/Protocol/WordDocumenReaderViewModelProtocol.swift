@@ -11,4 +11,5 @@ protocol WordDocumenReaderViewModelProtocol {
     func observeScroll(completion: @escaping(CGPoint)->Void)
     func observeActions(block: @escaping()->Void)
     func saveCurrentWordDocument(url: String, position: CGPoint)
+    func saveCurrentDocument(document: DocumentModel)
 }

@@ -5,8 +5,13 @@
 //  Created by Марк Киричко on 07.07.2023.
 //
 
-import Foundation
+import UIKit
 
 final class WebViewModel {
         
+    var scrollView = UIScrollView()
+    
+    // MARK: - сервисы
+    let realmManager = RealmManager()
+    
 }

@@ -32,7 +32,7 @@ class PairTypesListTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         navigationItem.title = "Типы пары"
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(closeScreen))
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }
@@ -68,7 +68,7 @@ class PairTypesListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let type = viewModel.typeItem(index: indexPath.row)
         cell.tintColor = .systemGreen
-        cell.textLabel?.text = type.name
+        cell.textLabel?.text = type.title
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
         cell.accessoryType = viewModel.isCurrentType(index: indexPath.row) ? .checkmark : .none
         cell.textLabel?.textColor = viewModel.isCurrentType(index: indexPath.row) ? .systemGreen : .label

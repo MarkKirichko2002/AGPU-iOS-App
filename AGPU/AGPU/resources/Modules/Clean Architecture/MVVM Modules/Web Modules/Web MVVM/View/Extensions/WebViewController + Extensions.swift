@@ -14,8 +14,9 @@ extension WebViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
         let position = CGPoint(x: 0, y: yOffset)
+        viewModel.scrollView = scrollView
         if let url = WVWEBview.url?.absoluteString {
-            self.viewModel.saveCurrentWebPage(url: url, position: position)
+            self.viewModel.checkWebType(url: url, position: position)
         }
     }
 }
@@ -24,8 +25,13 @@ extension WebViewController: UIScrollViewDelegate {
 extension WebViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        
         DispatchQueue.main.async {
             self.spinner.startAnimating()
+        }
+        
+        if let url = webView.url?.absoluteString {
+            self.viewModel.checkWebPage(url: url)
         }
     }
     

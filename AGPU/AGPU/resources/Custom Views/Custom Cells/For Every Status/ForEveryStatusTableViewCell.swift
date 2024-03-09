@@ -19,10 +19,26 @@ class ForEveryStatusTableViewCell: UITableViewCell {
         SectionName.text = status.name
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        SectionIcon.image = nil
+        SectionName.text = nil
+        SectionName.textColor = .label
+        SectionIcon.tintColor = .label
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         SectionIcon.tintColor = .label
         SectionName.textColor = .label
         backgroundColor = .systemBackground
+    }
+    
+    func sectionSelected(indexPath: IndexPath) {
+        let view = UIView()
+        view.backgroundColor = .clear
+        self.selectedBackgroundView = view
+        self.SectionIcon.tintColor = .systemGreen
+        self.SectionName.textColor = .systemGreen
     }
 }

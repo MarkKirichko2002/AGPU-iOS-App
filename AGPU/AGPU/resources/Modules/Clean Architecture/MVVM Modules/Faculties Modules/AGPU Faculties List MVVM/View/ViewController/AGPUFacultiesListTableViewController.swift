@@ -19,7 +19,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
     
     private func setUpNavigation() {
                 
-        let titleView = CustomTitleView(image: "university", title: "Факультеты", frame: .zero)
+        let titleView = CustomTitleView(image: "АГПУ", title: "Факультеты", frame: .zero)
         
         let button = UIButton()
         button.tintColor = .label
@@ -50,7 +50,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
             }
             
             let cathedraAction = UIAction(title: "Кафедры", image: UIImage(named: "university")) { _ in
-                let vc = FacultyCathedraListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row))
+                let vc = FacultyCathedraListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row), isSettings: false)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
@@ -93,6 +93,8 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        showHintAlert(type: .faculty)
+        HapticsManager.shared.hapticFeedback()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -102,10 +104,18 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AGPUFacultyTableViewCell.identifier, for: indexPath) as? AGPUFacultyTableViewCell else {return UITableViewCell()}
-        cell.accessoryType = viewModel.isFacultySelected(index: indexPath.row) ? .checkmark : .none
-        cell.tintColor = .systemGreen
+        cell.delegate = self
         cell.AGPUFacultyName.textColor = viewModel.isFacultySelected(index: indexPath.row) ? .systemGreen : .label
+        cell.accessoryType = viewModel.isFacultySelected(index: indexPath.row) ? .checkmark : .none
         cell.configure(faculty: viewModel.facultyItem(index: indexPath.row))
         return cell
+    }
+}
+
+extension AGPUFacultiesListTableViewController: AGPUFacultyTableViewCellDelegate {
+    
+    func openFacultyInfo(faculty: AGPUFacultyModel) {
+        self.goToWeb(url: faculty.url, image: faculty.icon, title: faculty.abbreviation, isSheet: false)
+        HapticsManager.shared.hapticFeedback()
     }
 }

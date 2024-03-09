@@ -11,7 +11,7 @@ protocol SpeechRecognitionManagerProtocol {
     func requestSpeechAuthorization()
     func startRecognize()
     func startRecording()-> Bool
-    func registerSpeechRecognitionHandler(block: @escaping(String)->Void)
     func startSpeechRecognition()
     func cancelSpeechRecognition()
+    func registerSpeechRecognitionHandler(block: @escaping(String)->Void)
 }

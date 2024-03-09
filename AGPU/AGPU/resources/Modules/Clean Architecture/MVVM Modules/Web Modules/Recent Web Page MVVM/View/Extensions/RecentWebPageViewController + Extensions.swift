@@ -11,8 +11,13 @@ import WebKit
 extension RecentWebPageViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        
         DispatchQueue.main.async {
             self.spinner.startAnimating()
+        }
+        
+        if let url = webView.url?.absoluteString {
+            self.viewModel.checkWebPage(url: url)
         }
     }
     
@@ -47,7 +52,9 @@ extension RecentWebPageViewController: WKNavigationDelegate {
         if let currentUrl = webView.url?.absoluteString {
             viewModel.getRecentPosition(currentUrl: currentUrl) { position in
                 if position.y > 0 {
-                    webView.scrollView.setContentOffset(position, animated: true)
+                    DispatchQueue.main.async {
+                        webView.scrollView.setContentOffset(position, animated: true)
+                    }
                 } else {
                     webView.scrollView.isUserInteractionEnabled = true
                 }

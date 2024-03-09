@@ -58,10 +58,6 @@ extension SpeechRecognitionManager: SpeechRecognitionManagerProtocol {
         }
     }
     
-    func registerSpeechRecognitionHandler(block: @escaping(String)->Void) {
-        self.speechRecognitionHandler = block
-    }
-    
     func startSpeechRecognition() {
         
         guard !tapInstalled else { return }
@@ -106,5 +102,9 @@ extension SpeechRecognitionManager: SpeechRecognitionManagerProtocol {
         
         tapInstalled = false
 
+    }
+    
+    func registerSpeechRecognitionHandler(block: @escaping(String)->Void) {
+        self.speechRecognitionHandler = block
     }
 }

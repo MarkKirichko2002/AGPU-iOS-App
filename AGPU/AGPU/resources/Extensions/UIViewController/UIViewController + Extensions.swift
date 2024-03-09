@@ -127,17 +127,31 @@ extension UIViewController {
     func showUpdateAlert() {
         
         let updateAction = UIAlertAction(title: "Обновить", style: .default) { _ in
-            HapticsManager.shared.hapticFeedback()
             if let appStoreURL = URL(string: "https://apps.apple.com/app/фгбоу-во-агпу/id6458836690") {
                 UIApplication.shared.open(appStoreURL)
             }
         }
         
-        let cancelAction = UIAlertAction(title: "Отмена", style: .destructive) { _ in
-            HapticsManager.shared.hapticFeedback()
-        }
+        let cancelAction = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
         
         self.showAlert(title: "Обновление доступно!", message: "Обнаружено новое обновление! Хотите обновить приложение сейчас?", actions: [updateAction, cancelAction])
+    }
+    
+    func showHintAlert(type: Hints) {
+        
+        let ok = UIAlertAction(title: "ОК", style: .default) { _ in}
+        
+        switch type {
+            
+        case .faculty:
+            self.showAlert(title: "Подсказка 💡!", message: "Чтобы вызвать контекстное меню удерживайте ячейку факультета", actions: [ok])
+        case .cathedra:
+            self.showAlert(title: "Подсказка 💡!", message: "Чтобы вызвать контекстное меню удерживайте ячейку кафедры", actions: [ok])
+        case .manuals:
+            self.showAlert(title: "Подсказка 💡!", message: "чтобы посмотреть методические материалы для вашей кафедры выберите ее в настройках", actions: [ok])
+        case .additionalEducation:
+            self.showAlert(title: "Подсказка 💡!", message: "чтобы посмотреть соответствующие материалы для вашей кафедры выберите ее в настройках", actions: [ok])
+        }
     }
 }
 

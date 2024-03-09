@@ -21,7 +21,7 @@ final class RecentMomentsListTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         navigationItem.title = "Недавние моменты"
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }
@@ -46,6 +46,13 @@ final class RecentMomentsListTableViewController: UITableViewController {
         viewModel.getLastWebPage { page in
             HapticsManager.shared.hapticFeedback()
             self.showRecentPageScreen(page: page)
+        }
+    }
+    
+    private func checkLastArticle() {
+        viewModel.getLastWebArticle { article in
+            HapticsManager.shared.hapticFeedback()
+            self.showRecentPageScreen(page: article)
         }
     }
     
@@ -74,8 +81,8 @@ final class RecentMomentsListTableViewController: UITableViewController {
     }
     
     private func checkLastTimetable() {
-        viewModel.getLastTimetable { group, date in
-            let vc = RecentTimeTableDayListTableViewController(group: group, date: date)
+        viewModel.getLastTimetable { group, date, owner in
+            let vc = RecentTimeTableDayListTableViewController(id: group, date: date, owner: owner)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             DispatchQueue.main.async {
@@ -97,12 +104,14 @@ final class RecentMomentsListTableViewController: UITableViewController {
         case 0:
             checkLastWebPage()
         case 1:
-            checkLastPDFDocument()
+            checkLastArticle()
         case 2:
-            checkLastWordDocument()
+            checkLastPDFDocument()
         case 3:
-            checkLastTimetable()
+            checkLastWordDocument()
         case 4:
+            checkLastTimetable()
+        case 5:
             checkLastVideo()
         default:
             break

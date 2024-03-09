@@ -26,11 +26,11 @@ extension TimeTableService: TimeTableServicerProtocol {
         }
     }
     
-    func getTimeTableDay(teacher: String, date: String, completion: @escaping(Result<TimeTable,Error>)->Void) {
+    func getTimeTableDay(id: String, date: String, owner: String, completion: @escaping(Result<TimeTable,Error>)->Void) {
         
-        let teacher = teacher.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let id = id.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("http://\(HostName.host)/api/timetable/teacher/day?id=\(teacher)&date=\(date)").responseData { response in
+        AF.request("http://agpu.merqury.fun/api/timetable/day?id=\(id)&date=\(date)&owner=\(owner)").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -44,29 +44,11 @@ extension TimeTableService: TimeTableServicerProtocol {
         }
     }
     
-    func getTimeTableDay(groupId: String, date: String, completion: @escaping(Result<TimeTable,Error>)->Void) {
+    func getTimeTableWeek(id: String, startDate: String, endDate: String, owner: String, completion: @escaping(Result<[TimeTable],Error>)->Void) {
         
-        let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let id = id.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("http://merqury.fun/api/timetable/day?groupId=\(group)&date=\(date)").responseData { response in
-            
-            guard let data = response.data else {return}
-            
-            do {
-                let timetable = try JSONDecoder().decode(TimeTable.self, from: data)
-                print("Расписание: \(timetable)")
-                completion(.success(timetable))
-            } catch {
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    func getTimeTableWeek(groupId: String, startDate: String, endDate: String, completion: @escaping(Result<[TimeTable],Error>)->Void) {
-        
-        let group = groupId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        
-        AF.request("http://\(HostName.host)/api/timetable/days?groupId=\(group)&startDate=\(startDate)&endDate=\(endDate)&removeEmptyDays").responseData { response in
+        AF.request("http://agpu.merqury.fun/api/timetable/days?id=\(id)&startDate=\(startDate)&owner=\(owner)&endDate=\(endDate)&removeEmptyDays").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -82,7 +64,7 @@ extension TimeTableService: TimeTableServicerProtocol {
     
     func getWeeks(completion: @escaping(Result<[WeekModel],Error>)->Void) {
         
-        AF.request("http://\(HostName.host)/api/timetable/weeks").responseData { response in
+        AF.request("http://merqury.fun/api/timetable/weeks").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -132,30 +114,7 @@ extension TimeTableService: TimeTableServicerProtocol {
             
             guard let data = response.data else {return}
             
-            print(response.response?.statusCode)
-            
-            if let image = UIImage(data: data) {
-                completion(image)
-            } else {
-                print("нет")
-            }
-        }
-    }
-    
-    func getDisciplineImage(json: Data, completion: @escaping(UIImage)->Void) {
-        
-        let url = "http://merqury.fun/api/timetable/image/discipline"
-        
-        var request = URLRequest(url: URL(string: url)!)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = json
-        
-        AF.request(request).responseData { response in
-            
-            guard let data = response.data else {return}
-            
-            print(response.response?.statusCode)
+            print(response.response?.statusCode ?? 0)
             
             if let image = UIImage(data: data) {
                 completion(image)

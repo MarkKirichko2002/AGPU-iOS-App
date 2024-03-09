@@ -70,9 +70,8 @@ final class RecentWebPageViewController: UIViewController {
         backbutton.tintColor = .label
         let forwardbutton = UIBarButtonItem(image: UIImage(systemName: "chevron.right"), style: .plain, target: self, action: #selector(forwardButtonTapped))
         forwardbutton.tintColor = .label
-        let closebutton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
+        let closebutton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closebutton.tintColor = .label
-        
         self.navigationItem.titleView = titleView
         self.navigationItem.rightBarButtonItems = [forwardbutton, backbutton]
         self.navigationItem.leftBarButtonItem = closebutton
@@ -89,7 +88,7 @@ final class RecentWebPageViewController: UIViewController {
             WVWEBview.goForward()
         }
     }
-    
+        
     @objc private func closeScreen() {
         HapticsManager.shared.hapticFeedback()
         self.dismiss(animated: true)

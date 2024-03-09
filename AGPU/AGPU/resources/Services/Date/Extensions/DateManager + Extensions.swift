@@ -33,6 +33,11 @@ extension DateManager: DateManagerProtocol {
         return ""
     }
     
+    func getCurrentDayOfWeek(day: Int)-> String {
+        let day = daysOfWeek[day]
+        return day
+    }
+    
     func getFormattedDate(date: Date)-> String {
         var currentDate = ""
         dateFormatter.dateFormat = "dd.MM.yyyy"

@@ -31,7 +31,7 @@ struct FacultyCathedraList {
                 address: "ул. Р. Люксембург 159, кабинет №12",
                 coordinates: [
                     45.001817,
-                    41.132393
+                    41.132293
                 ],
                 email: "angl_kaf_agpu@mail.ru",
                 staffUrl: "http://agpu.net/struktura-vuza/faculties-institutes/iriif/kafedra-iyaimip/sostav-kafedry/index.php",
@@ -60,7 +60,7 @@ struct FacultyCathedraList {
                 address: "ул. Р. Люксембург 159, кабинет №13",
                 coordinates: [
                     45.001817,
-                    41.132393
+                    41.132293
                 ],
                 email: "agpu_kaf_inf@mail.ru",
                 staffUrl: "http://agpu.net/struktura-vuza/faculties-institutes/ipimif/kafedra-infiITO/sostav-kafedry/index.php",
@@ -118,7 +118,7 @@ struct FacultyCathedraList {
                 address: "ул. Р. Люксембург 159, 2 этаж, кабинет №14",
                 coordinates: [
                     45.001817,
-                    41.132393
+                    41.132293
                 ],
                 email: "kaf_pitdino@mail.ru",
                 staffUrl: "http://agpu.net/struktura-vuza/faculties-institutes/fdino/kafedra-pitdino/sostav-kafedry/index.php",
@@ -147,7 +147,7 @@ struct FacultyCathedraList {
                 address: "ул. Комсомольская, 93",
                 coordinates: [
                     45.003697,
-                    41.122763
+                    41.122663
                 ],
                 email: "pshmahova_m@mail.ru",
                 staffUrl: "http://agpu.net/struktura-vuza/faculties-institutes/fteid/kafedra-eiu/sostav-kafedry/index.php",
@@ -176,7 +176,7 @@ struct FacultyCathedraList {
                 address: "ул. Володарского, д. 120б",
                 coordinates: [
                     44.989082,
-                    41.126904
+                    41.126804
                 ],
                 email: "kaffilosof@mail.ru",
                 staffUrl: "http://agpu.net/struktura-vuza/faculties-institutes/istfak/kafedra-fpisgn/sostav-kafedry/index.php",

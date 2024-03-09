@@ -39,11 +39,10 @@ final class WordDocumentReaderViewController: UIViewController {
     
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: "word", title: "Word-документ", frame: .zero)
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: #selector(closeScreen))
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())
         sections.tintColor = .label
-        
         navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = sections
@@ -77,13 +76,22 @@ final class WordDocumentReaderViewController: UIViewController {
         let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
             self.shareInfo(image: UIImage(named: "word")!, title: "Word-документ", text: self.url)
         }
-        let menu = UIMenu(title: "Word-документ", children: [shareAction])
+        let saveAction = UIAction(title: "Сохранить", image: UIImage(named: "download")) { _ in
+            let document = DocumentModel()
+            document.name = URL(string: self.url)?.lastPathComponent ?? ""
+            document.format = URL(string: self.url)?.pathExtension ?? ""
+            document.url = self.url
+            self.viewModel.saveCurrentDocument(document: document)
+        }
+        let menu = UIMenu(title: "Word-документ", children: [shareAction, saveAction])
         return menu
     }
     
     private func bindViewModel() {
         viewModel.observeScroll { position in
-            self.WVWEBview.scrollView.setContentOffset(position, animated: true)
+            DispatchQueue.main.async {
+                self.WVWEBview.scrollView.setContentOffset(position, animated: true)
+            }
         }
         viewModel.observeActions {
             if self.navigationController?.viewControllers.first == self {

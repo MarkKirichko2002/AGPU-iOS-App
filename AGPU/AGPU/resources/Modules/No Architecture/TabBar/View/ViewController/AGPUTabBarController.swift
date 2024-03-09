@@ -28,7 +28,9 @@ final class AGPUTabBarController: UITabBarController {
     
     var isRecording = false
     
-    // MARK: - Dynamic Button
+    var isOpened = false
+    
+    // MARK: - ASPU Button
     let DynamicButton: UIButton = {
         let button = UIButton()
         button.imageView?.contentMode = .scaleAspectFill
@@ -63,36 +65,72 @@ final class AGPUTabBarController: UITabBarController {
     private func setUpTabs() {
         // новости
         newsVC.tabBarItem = UITabBarItem(title: "Новости", image: UIImage(named: "mail"), selectedImage: UIImage(named: "mail selected"))
-        // для каждого статуса
-        forEveryStatusVC = settingsManager.checkCurrentStatus()
         // расписание
-        timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: UIImage(named: "calendar"), selectedImage: UIImage(named: "calendar selected"))
+        timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: UIImage(named: "time icon"), selectedImage: UIImage(named: "time icon selected"))
         // настройки
         settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(named: "settings"), selectedImage: UIImage(named: "settings selected"))
         let nav1VC = UINavigationController(rootViewController: newsVC)
         let nav3VC = UINavigationController(rootViewController: timetableVC)
         let nav4VC = UINavigationController(rootViewController: settingsVC)
-        setViewControllers([nav1VC, forEveryStatusVC, middleButton, nav3VC, nav4VC], animated: false)
+        
+        let onlyTimetable = UserDefaults.standard.object(forKey: "onOnlyTimetable") as? Bool ?? false
+        
+        if onlyTimetable {
+            setViewControllers([nav3VC, middleButton, nav4VC], animated: false)
+        } else {
+            // для каждого статуса
+            forEveryStatusVC = settingsManager.checkCurrentStatus()
+            setViewControllers([nav1VC, forEveryStatusVC, middleButton, nav3VC, nav4VC], animated: false)
+            selectedIndex = 0
+        }
     }
     
     private func setUpTab() {
         settingsManager.observeStatusChanged {
             DispatchQueue.main.async {
                 self.setUpTabs()
+                self.selectedIndex = 4
+            }
+        }
+        settingsManager.observeOnlyTimetableChanged {
+            DispatchQueue.main.async {
+                self.setUpTabs()
             }
         }
     }
     
-    // MARK: - Dynamic Button
+    // MARK: - ASPU Button
     private func createMiddleButton() {
         DynamicButton.setImage(UIImage(named: settingsManager.checkCurrentIcon()), for: .normal)
         DynamicButton.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
         // Устанавливаем положение кнопки по середине TabBar
         DynamicButton.center = CGPoint(x: tabBar.frame.width / 2, y: tabBar.frame.height / 2 - 5)
+        settingsManager.observeDynamicButtonActionChanged {
+            self.currentAction()
+        }
         // Назначаем действие для кнопки
-        DynamicButton.addTarget(self, action: #selector(VoiceCommands), for: .touchUpInside)
+        currentAction()
         // Добавляем кнопку на TabBar
         tabBar.addSubview(DynamicButton)
+    }
+     
+    private func currentAction() {
+        let action = settingsManager.checkDynamicButtonOption()
+        DynamicButton.removeTarget(nil, action: nil, for: .allEvents)
+        switch action {
+        case .speechRecognition:
+            DynamicButton.addTarget(self, action: #selector(VoiceCommands), for: .touchUpInside)
+        case .timetableWeeks:
+            DynamicButton.addTarget(self, action: #selector(openWeeksTimetable), for: .touchUpInside)
+        case .campusMap:
+            DynamicButton.addTarget(self, action: #selector(openCampusMap), for: .touchUpInside)
+        case .studyPlan:
+            DynamicButton.addTarget(self, action: #selector(openStudyPlan), for: .touchUpInside)
+        case .profile:
+            DynamicButton.addTarget(self, action: #selector(openProfile), for: .touchUpInside)
+        case .manual:
+            DynamicButton.addTarget(self, action: #selector(openManual), for: .touchUpInside)
+        }
     }
     
     // MARK: - Shake To Recall
@@ -167,13 +205,56 @@ final class AGPUTabBarController: UITabBarController {
     
     // MARK: - Voice Control
     private func checkVoiceCommands(text: String) {
-        searchSection(text: text.lowercased())
-        GenerateRandomSection(text: text.lowercased())
-        searchSubSection(text: text.lowercased())
-        findBuilding(text: text.lowercased())
-        closeScreen(text: text.lowercased())
+        if isOpened {
+            changeSection(text: text.lowercased())
+            randomSectionOnScreen(text: text.lowercased())
+            changeSubSection(text: text.lowercased())
+            changeBuilding(text: text.lowercased())
+            scrollWebScreen(text: text.lastWord())
+            webActions(text: text.lowercased())
+        } else {
+            searchSection(text: text.lowercased())
+            generateRandomSection(text: text.lowercased())
+            searchSubSection(text: text.lowercased())
+            findBuilding(text: text.lowercased())
+        }
         turnOfMicrophone(text: text.lowercased())
-        ScrollWebScreen(text: text.lastWord())
+    }
+    
+    @objc private func openWeeksTimetable() {
+        let id = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-2-1"
+        let subgroup = UserDefaults.standard.integer(forKey: "subgroup")
+        let owner = UserDefaults.standard.string(forKey: "recentOwner") ?? "GROUP"
+        let vc = AllWeeksListTableViewController(id: id, subgroup: subgroup, owner: owner)
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
+    }
+    
+    @objc private func openCampusMap() {
+        let vc = AGPUBuildingsMapViewController()
+        vc.isAction = true
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
+    }
+    
+    @objc private func openStudyPlan() {
+        self.goToWeb(url: "http://plany.agpu.net/Plans/", image: "student", title: "Учебный план", isSheet: false)
+    }
+    
+    
+    @objc private func openProfile() {
+        self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: "profile icon", title: "ЭИОС", isSheet: false)
+    }
+    
+    @objc private func openManual() {
+        if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
+            self.goToWeb(url: cathedra.manualUrl, image: "book", title: "Метод. материалы", isSheet: false)
+        } else {
+            self.showHintAlert(type: .manuals)
+            HapticsManager.shared.hapticFeedback()
+        }
     }
     
     private func observeForEveryStatus() {
@@ -188,13 +269,13 @@ final class AGPUTabBarController: UITabBarController {
         NotificationCenter.default.addObserver(forName: Notification.Name("screen was closed"), object: nil, queue: .main) { _ in
             if self.isRecording {
                 if !self.tabBar.isHidden {
-                    DispatchQueue.main.async {
-                        self.updateDynamicButton(icon: "mic")
-                    }
+                    self.updateDynamicButton(icon: "mic")
                 }
             } else {
                 if !self.tabBar.isHidden {
                     self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
+                } else {
+                    print("sfkndgkjkn")
                 }
             }
         }

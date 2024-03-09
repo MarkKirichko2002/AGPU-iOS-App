@@ -30,13 +30,20 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
     }
     
     func getSavedNewsCategoryInfo()-> String {
-        let savedNewsCategory = UserDefaults.standard.object(forKey: "category") as? String ?? ""
-        if savedNewsCategory != "" {
+        let savedNewsCategory = UserDefaults.standard.object(forKey: "category") as? String ?? "-"
+        if savedNewsCategory != "-" {
             let category = NewsCategories.categories.first { $0.newsAbbreviation == savedNewsCategory}
             return category?.name ?? ""
         } else {
             return "АГПУ"
         }
+    }
+    
+    func getSplashScreenInfo()-> String {
+        if let option = UserDefaults.loadData(type: SplashScreenOptions.self, key: "splash option") {
+            return option.rawValue
+        }
+        return "Обычный"
     }
     
     func getAppIconInfo()-> String {
@@ -66,6 +73,11 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         } else {
             return AppThemes.themes[0]
         }
+    }
+    
+    func getDynamicButtonActionInfo()-> DynamicButtonActions {
+        let action = UserDefaults.loadData(type: DynamicButtonActions.self, key: "action") ?? .speechRecognition
+        return action
     }
     
     func getAppVersion()-> String {

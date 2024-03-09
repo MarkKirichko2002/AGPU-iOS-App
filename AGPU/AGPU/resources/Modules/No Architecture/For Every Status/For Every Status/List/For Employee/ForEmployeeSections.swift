@@ -19,7 +19,7 @@ struct ForEmployeeSections {
         ForEveryStatusModel(
             id: 2,
             icon: "map icon",
-            name: "Найти «АГПУ»"
+            name: "Найти кампус"
         ),
         ForEveryStatusModel(
             id: 3,
@@ -33,13 +33,13 @@ struct ForEmployeeSections {
         ),
         ForEveryStatusModel(
             id: 5,
-            icon: "group icon",
-            name: "Подразделения"
+            icon: "document",
+            name: "Важные документы"
         ),
         ForEveryStatusModel(
             id: 6,
-            icon: "document",
-            name: "Документы"
+            icon: "student",
+            name: "Учебный план"
         ),
         ForEveryStatusModel(
             id: 7,

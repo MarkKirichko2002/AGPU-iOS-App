@@ -8,8 +8,10 @@
 import UIKit
 
 class TimeTableSearchListTableViewController: UITableViewController, UISearchResultsUpdating {
-   
+    
     var results = [SearchResultModel]()
+    var isSettings = false
+    let search = UISearchController(searchResultsController: nil)
     
     private let service = TimeTableService()
     
@@ -25,10 +27,14 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
     }
     
     private func setUpNavigation() {
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(closeScreen))
-        closeButton.tintColor = .label
-        navigationItem.title = "Поиск преподавателей"
-        navigationItem.rightBarButtonItem = closeButton
+        if isSettings {
+            navigationItem.title = "Поиск"
+        } else {
+            let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
+            closeButton.tintColor = .label
+            navigationItem.title = "Поиск"
+            navigationItem.rightBarButtonItem = closeButton
+        }
     }
     
     @objc private func closeScreen() {
@@ -37,28 +43,36 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
     }
     
     private func setUpSearchBar() {
-        let search = UISearchController(searchResultsController: nil)
         search.searchResultsUpdater = self
         search.obscuresBackgroundDuringPresentation = false
         search.searchBar.placeholder = "введите текст"
         navigationItem.searchController = search
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let teacher = results[indexPath.row]
-        NotificationCenter.default.post(name: Notification.Name("teacher selected"), object: teacher.ownerID)
-        self.dismiss(animated: true)
-        self.tableView.reloadData()
+        chooseResult(index: indexPath.row)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return results.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = results[indexPath.row].searchContent
+        cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
         return cell
+    }
+    
+    private func currentOwner(type: SearchType)-> String {
+        switch type {
+        case .Teacher:
+            return "TEACHER"
+        case .Group:
+            return "GROUP"
+        case .Classroom:
+            return "CLASSROOM"
+        }
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -66,8 +80,7 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
         service.getSearchResults(searchText: text) { [weak self] result in
             switch result {
             case .success(let data):
-                let filteredData = data.filter { $0.type == .Teacher}
-                self?.results = filteredData
+                self?.results = data
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                 }
@@ -75,5 +88,23 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
                 print(error)
             }
         }
+    }
+}
+
+extension TimeTableSearchListTableViewController {
+    
+    func chooseResult(index: Int) {
+        let object = results[index]
+        let result = SearchTimetableModel(name: object.searchContent, owner: currentOwner(type: object.type))
+        if isSettings {
+            UserDefaults.standard.setValue(result.owner, forKey: "recentOwner")
+            UserDefaults.standard.setValue(result.name, forKey: "group")
+            NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true)
+        }
+        NotificationCenter.default.post(name: Notification.Name("object selected"), object: result)
+        self.tableView.reloadData()
     }
 }
