@@ -16,8 +16,13 @@ extension NewsWebViewModel: INewsWebViewModel {
         } else {
             let model = NewsModel()
             model.id = article.id
+            model.title = article.title
+            model.articleDescription = article.description
+            model.url = url
             model.offsetY = 0
-            realmManager.saveArticle(news: article, model: model)
+            model.previewImage = article.previewImage
+            model.date = article.date
+            realmManager.saveArticle(model: model)
         }
     }
     

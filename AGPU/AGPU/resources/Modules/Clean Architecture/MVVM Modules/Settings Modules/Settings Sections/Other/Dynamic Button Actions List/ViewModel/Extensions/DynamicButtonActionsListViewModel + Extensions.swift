@@ -26,6 +26,7 @@ extension DynamicButtonActionsListViewModel: DynamicButtonActionsListViewModelPr
             UserDefaults.saveData(object: action, key: "action") {
                 NotificationCenter.default.post(name: Notification.Name("action"), object: nil)
                 NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+                HapticsManager.shared.hapticFeedback()
                 self.dataSelectedHandler?()
             }
         }

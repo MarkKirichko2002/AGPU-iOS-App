@@ -69,8 +69,8 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
             newsURL = "http://www.agpu.net/struktura-vuza/educationaltechnopark/news/news.php?ELEMENT_ID=\(index)"
         } else if abbreviation == "PedagogicalQuantorium"  {
             newsURL = "http://www.agpu.net/struktura-vuza/PedagogicalQuantorium/news/news.php?ELEMENT_ID=\(index)"
-        } else if let faculty = AGPUFaculties.faculties.first(where: { $0.newsAbbreviation == abbreviation }) {
-            newsURL = "http://agpu.net/struktura-vuza/faculties-institutes/\(faculty.newsAbbreviation)/news/news.php?ELEMENT_ID=\(index)"
+        } else {
+            newsURL = "http://agpu.net/struktura-vuza/faculties-institutes/\(abbreviation)/news/news.php?ELEMENT_ID=\(index)"
         }
         
         return newsURL

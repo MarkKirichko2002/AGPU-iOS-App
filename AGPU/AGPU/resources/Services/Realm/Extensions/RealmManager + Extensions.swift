@@ -11,6 +11,7 @@ import RealmSwift
 // MARK: - IRealmManager
 extension RealmManager: IRealmManager {
     
+    // MARK: - Important Documents
     func saveDocument(document: DocumentModel) {
         let doc = realm.object(ofType: DocumentModel.self, forPrimaryKey: document.url)
         if doc == nil {
@@ -80,12 +81,19 @@ extension RealmManager: IRealmManager {
         return Array(items)
     }
     
-    func saveArticle(news: Article, model: NewsModel) {
+    // MARK: - Adaptive News
+    func saveArticle(model: NewsModel) {
         let article = realm.object(ofType: NewsModel.self, forPrimaryKey: model.id)
         if article == nil {
             let newArticle = NewsModel()
-            newArticle.id = news.id
+            newArticle.id = model.id
+            newArticle.title = model.title
+            newArticle.articleDescription = model.articleDescription
+            newArticle.url = model.url
             newArticle.offsetY = 0
+            newArticle.previewImage = model.previewImage
+            newArticle.date = model.date
+            
             try! realm.write {
                 realm.add(newArticle)
             }
@@ -99,6 +107,11 @@ extension RealmManager: IRealmManager {
         return article
     }
     
+    func getArticles()-> [NewsModel] {
+        let items = realm.objects(NewsModel.self)
+        return Array(items)
+    }
+    
     func editArticle(news: NewsModel, position: Double) {
         let newArticle = realm.object(ofType: NewsModel.self, forPrimaryKey: news.id)
         try! realm.write {
@@ -106,6 +119,15 @@ extension RealmManager: IRealmManager {
         }
     }
     
+    func deleteArticle(news: NewsModel) {
+        let article = realm.object(ofType: NewsModel.self, forPrimaryKey: news.id)
+        guard let article = article else {return}
+        try! realm.write {
+            realm.delete(article)
+        }
+    }
+    
+    // MARK: - My Splash Screen
     func saveSplashScreen(screen: CustomSplashScreenModel) {
         
         let newScreen = CustomSplashScreenModel()
