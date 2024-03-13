@@ -250,6 +250,10 @@
 		82967C262BA0835E001059B2 /* IRecentNewsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82967C252BA0835E001059B2 /* IRecentNewsListViewModel.swift */; };
 		82967C282BA0836C001059B2 /* RecentNewsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82967C272BA0836C001059B2 /* RecentNewsListViewModel.swift */; };
 		82967C2A2BA08383001059B2 /* RecentNewsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82967C292BA08383001059B2 /* RecentNewsListViewModel + Extensions.swift */; };
+		82967C302BA2347B001059B2 /* TimeTableSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82967C2F2BA2347B001059B2 /* TimeTableSplashScreenViewController.swift */; };
+		82967C352BA236BF001059B2 /* ITimeTableSplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82967C342BA236BF001059B2 /* ITimeTableSplashScreenViewModel.swift */; };
+		82967C372BA236FB001059B2 /* TimeTableSplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82967C362BA236FB001059B2 /* TimeTableSplashScreenViewModel.swift */; };
+		82967C392BA2390E001059B2 /* TimeTableSplashScreenViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82967C382BA2390E001059B2 /* TimeTableSplashScreenViewModel + Extensions.swift */; };
 		82989ACA2A6E2D4500F27858 /* FacultyCathedraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82989AC92A6E2D4500F27858 /* FacultyCathedraModel.swift */; };
 		82989ACD2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82989ACC2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift */; };
 		82989ACF2A6E35B200F27858 /* FacultyCathedraTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82989ACE2A6E35B200F27858 /* FacultyCathedraTableViewCell.swift */; };
@@ -665,6 +669,10 @@
 		82967C252BA0835E001059B2 /* IRecentNewsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRecentNewsListViewModel.swift; sourceTree = "<group>"; };
 		82967C272BA0836C001059B2 /* RecentNewsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentNewsListViewModel.swift; sourceTree = "<group>"; };
 		82967C292BA08383001059B2 /* RecentNewsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentNewsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		82967C2F2BA2347B001059B2 /* TimeTableSplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSplashScreenViewController.swift; sourceTree = "<group>"; };
+		82967C342BA236BF001059B2 /* ITimeTableSplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITimeTableSplashScreenViewModel.swift; sourceTree = "<group>"; };
+		82967C362BA236FB001059B2 /* TimeTableSplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSplashScreenViewModel.swift; sourceTree = "<group>"; };
+		82967C382BA2390E001059B2 /* TimeTableSplashScreenViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableSplashScreenViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82989AC92A6E2D4500F27858 /* FacultyCathedraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyCathedraModel.swift; sourceTree = "<group>"; };
 		82989ACC2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyCathedraListTableViewController.swift; sourceTree = "<group>"; };
 		82989ACE2A6E35B200F27858 /* FacultyCathedraTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyCathedraTableViewCell.swift; sourceTree = "<group>"; };
@@ -4055,6 +4063,73 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		82967C2B2BA23165001059B2 /* TimeTable */ = {
+			isa = PBXGroup;
+			children = (
+				82967C2D2BA23170001059B2 /* View */,
+				82967C2C2BA2316E001059B2 /* ViewModel */,
+			);
+			path = TimeTable;
+			sourceTree = "<group>";
+		};
+		82967C2C2BA2316E001059B2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82967C332BA23698001059B2 /* Protocol */,
+				82967C322BA23695001059B2 /* ViewModel */,
+				82967C312BA23693001059B2 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82967C2D2BA23170001059B2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82967C2E2BA23390001059B2 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82967C2E2BA23390001059B2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82967C2F2BA2347B001059B2 /* TimeTableSplashScreenViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82967C312BA23693001059B2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82967C382BA2390E001059B2 /* TimeTableSplashScreenViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82967C322BA23695001059B2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82967C362BA236FB001059B2 /* TimeTableSplashScreenViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82967C332BA23698001059B2 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82967C342BA236BF001059B2 /* ITimeTableSplashScreenViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		82967C3A2BA24239001059B2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8299E3B72B8A323200D81472 /* TimetableDateDetailViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		82989ACB2A6E308F00F27858 /* Faculty Cathedra List */ = {
 			isa = PBXGroup;
 			children = (
@@ -4192,7 +4267,7 @@
 		8299E3AD2B8A319400D81472 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8299E3B72B8A323200D81472 /* TimetableDateDetailViewController.swift */,
+				82967C3A2BA24239001059B2 /* ViewController */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4250,6 +4325,7 @@
 		82A29F3B2B9BD4E200756F43 /* Splash Screen Modules */ = {
 			isa = PBXGroup;
 			children = (
+				82967C2B2BA23165001059B2 /* TimeTable */,
 				823F97D42B9D21FD00F60F39 /* Weather */,
 				82A29F3C2B9BD4FD00756F43 /* Selected Faculty */,
 			);
@@ -6501,12 +6577,14 @@
 				8241F9812A5F3C4D007DF628 /* TimeTableDayListTableViewController + Extensions.swift in Sources */,
 				828397742AD5C706000F355A /* PersonalizedAppIconTableViewCell.swift in Sources */,
 				8226D18F2B09703700B0B9F0 /* SavedPairTypeViewModel.swift in Sources */,
+				82967C352BA236BF001059B2 /* ITimeTableSplashScreenViewModel.swift in Sources */,
 				8234E6032A88583E00ED354C /* WordRecentDocumentViewController.swift in Sources */,
 				8209A09C2B838A470013371D /* DocumentModel.swift in Sources */,
 				82BCB5392AB351F400F3A321 /* DaysListViewModelProtocol.swift in Sources */,
 				82AC8EB22B76AE13006B29F9 /* YourStatusSplashScreenViewController.swift in Sources */,
 				825D92EE2AF2F03000B5E9DF /* RecentTimeTableDayListTableViewController + Extensions.swift in Sources */,
 				82920B8F2AD8872B00352CD8 /* SelectedFacultyListViewModel.swift in Sources */,
+				82967C372BA236FB001059B2 /* TimeTableSplashScreenViewModel.swift in Sources */,
 				828D8E5A2B53648F0022FDB3 /* SearchTimetableModel.swift in Sources */,
 				82722D432A66462100149D06 /* AGPUBuildingPins.swift in Sources */,
 				8209A0AC2B838D550013371D /* IDocumentsListViewModel.swift in Sources */,
@@ -6694,6 +6772,7 @@
 				824EBF7B2B2A0B630003E7E6 /* FacultyCathedraMapListTableViewController.swift in Sources */,
 				8210CA092A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift in Sources */,
 				828397772AD5C9E1000F355A /* AppIconsListViewModelProtocol.swift in Sources */,
+				82967C392BA2390E001059B2 /* TimeTableSplashScreenViewModel + Extensions.swift in Sources */,
 				82C449FD2B616F650039B0F3 /* SaveRecentTimetableItemOptionCell.swift in Sources */,
 				82320D812A4913FE00ECADEE /* AGPUFaculties.swift in Sources */,
 				822FB2182AC5DFA70083E016 /* SubGroupsListViewModel + Extensions.swift in Sources */,
@@ -6712,6 +6791,7 @@
 				825D92EA2AF2E80F00B5E9DF /* RecentTimeTableDayListTableViewController.swift in Sources */,
 				82B24A8F2A81BDDD008B94E4 /* AGPUNewsServiceProtocol.swift in Sources */,
 				82967C262BA0835E001059B2 /* IRecentNewsListViewModel.swift in Sources */,
+				82967C302BA2347B001059B2 /* TimeTableSplashScreenViewController.swift in Sources */,
 				82761A282B463F1800D9976F /* SplashScreensListTableViewController.swift in Sources */,
 				82920B912AD8874100352CD8 /* SelectedFacultyListViewModel + Extensions.swift in Sources */,
 				8234E5FA2A88553700ED354C /* WordDocumenReaderViewModel.swift in Sources */,
@@ -6935,7 +7015,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.6;
+				MARKETING_VERSION = 1.9.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -6973,7 +7053,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.6;
+				MARKETING_VERSION = 1.9.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -1,27 +1,29 @@
 //
-//  TimetableDateDetailViewModel + Extensions.swift
+//  TimeTableSplashScreenViewModel + Extensions.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 24.02.2024.
+//  Created by Марк Киричко on 13.03.2024.
 //
 
 import UIKit
 
-// MARK: - TimetableDateDetailViewModel
-extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
+extension TimeTableSplashScreenViewModel: ITimeTableSplashScreenViewModel {
     
-    func getTimeTableForDay() {
+    func getTimeTable() {
+        let id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-2-1"
+        let date = dateManager.getCurrentDate()
+        let owner = UserDefaults.standard.object(forKey: "recentOwner") as? String ?? "GROUP"
         timeTableService.getTimeTableDay(id: id, date: date, owner: owner) { [weak self] result in
             switch result {
             case .success(let data):
                 self?.pairs = data.disciplines
                 if !data.disciplines.isEmpty {
                     self?.getImage(json: data) { image in
-                        let model = TimeTableDateModel(image: image, description: "\(self?.date ?? "") есть пары: \(self?.getPairsCount() ?? 0)")
+                        let model = TimeTableDateModel(image: image, description: "Сегодня есть пары: \(self?.getPairsCount() ?? 0)")
                         self?.timeTableHandler?(model)
                     }
                 } else {
-                    let model = TimeTableDateModel(image: UIImage(), description: "\(self?.date ?? "") нет пар")
+                    let model = TimeTableDateModel(image: UIImage(), description: "Сегодня нет пар")
                     self?.timeTableHandler?(model)
                 }
             case .failure(let error):
@@ -64,7 +66,7 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
         }
     }
     
-    func registerTimeTableHandler(block: @escaping (TimeTableDateModel) -> Void) {
+    func registerTimeTableHandler(block: @escaping(TimeTableDateModel)->Void) {
         self.timeTableHandler = block
     }
 }
