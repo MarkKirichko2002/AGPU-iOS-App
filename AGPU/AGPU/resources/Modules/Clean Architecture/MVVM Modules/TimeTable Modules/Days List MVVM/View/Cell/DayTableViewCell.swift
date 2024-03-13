@@ -63,7 +63,7 @@ class DayTableViewCell: UITableViewCell {
     }
     
     func configure(date: String, info: String) {
-        dayName.text = date + info
+        dayName.text = "\(date) \(info)"
         self.date = date
     }
     
