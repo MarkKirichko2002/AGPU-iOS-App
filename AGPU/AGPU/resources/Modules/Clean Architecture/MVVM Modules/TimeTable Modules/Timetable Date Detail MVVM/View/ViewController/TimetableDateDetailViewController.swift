@@ -23,7 +23,6 @@ class TimetableDateDetailViewController: UIViewController {
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(named: "cross"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -31,7 +30,6 @@ class TimetableDateDetailViewController: UIViewController {
         let image = UIImageView()
         image.isUserInteractionEnabled = true
         image.backgroundColor = .label
-        image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
@@ -39,7 +37,6 @@ class TimetableDateDetailViewController: UIViewController {
         let label = UILabel()
         label.text = "Загрузка..."
         label.font = .systemFont(ofSize: 18, weight: .bold)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     

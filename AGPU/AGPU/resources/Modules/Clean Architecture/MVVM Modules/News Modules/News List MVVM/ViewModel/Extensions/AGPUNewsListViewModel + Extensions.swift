@@ -75,8 +75,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     func getRandomNews() {
         let abbreviation = NewsCategories.categories.randomElement()!.newsAbbreviation
         if abbreviation != "-" {
-            getNews(abbreviation: abbreviation
-            )
+            getNews(abbreviation: abbreviation)
         } else {
             getAGPUNews()
         }
@@ -98,9 +97,11 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                 if category != "-" {
                     self.getNews(abbreviation: category)
                     self.abbreviation = category
+                    UserDefaults.standard.setValue(category, forKey: "category")
                 } else {
                     self.getAGPUNews()
                     self.abbreviation = "-"
+                    UserDefaults.standard.setValue("-", forKey: "category")
                 }
             }
         }

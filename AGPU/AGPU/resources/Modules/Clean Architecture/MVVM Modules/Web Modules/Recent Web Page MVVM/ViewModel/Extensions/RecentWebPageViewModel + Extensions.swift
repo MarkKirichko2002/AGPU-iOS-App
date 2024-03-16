@@ -36,19 +36,16 @@ extension RecentWebPageViewModel: RecentWebPageViewModelProtocol {
                 if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == item }) {
                     NotificationCenter.default.post(name: Notification.Name("category"), object: item)
                     NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-                    UserDefaults.standard.setValue(item, forKey: "category")
                     print("Категория \(newsCategory.name) сохранена!")
                 }
             } else if item == "EducationalTechnopark" {
                 NotificationCenter.default.post(name: Notification.Name("category"), object: item.lowercased())
                 NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-                UserDefaults.standard.setValue(item.lowercased(), forKey: "category")
                 print("Категория сохранена!")
             } else {
                 if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == item }) {
                     NotificationCenter.default.post(name: Notification.Name("category"), object: item.lowercased())
                     NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-                    UserDefaults.standard.setValue(item.lowercased(), forKey: "category")
                     print("Категория \(newsCategory.name) сохранена!")
                 }
             }

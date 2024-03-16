@@ -73,6 +73,7 @@
 		822526CC2BA37FF700B66314 /* NewsDescriptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822526CB2BA37FF700B66314 /* NewsDescriptionModel.swift */; };
 		822526CE2BA3805400B66314 /* NewsSplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822526CD2BA3805400B66314 /* NewsSplashScreenViewModel.swift */; };
 		822526D02BA380AC00B66314 /* NewsSplashScreenViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822526CF2BA380AC00B66314 /* NewsSplashScreenViewModel + Extensions.swift */; };
+		822527562BA64D0100B66314 /* NewsCategoriesRandomizerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822527552BA64D0100B66314 /* NewsCategoriesRandomizerViewController.swift */; };
 		822605EF2A84A0600055925F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82808E912A31F12500DEEB16 /* Assets.xcassets */; };
 		822605F62A8532410055925F /* RecentMomentsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822605F52A8532410055925F /* RecentMomentsListViewModelProtocol.swift */; };
 		822605F82A8532E20055925F /* RecentMomentsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822605F72A8532E20055925F /* RecentMomentsListViewModel.swift */; };
@@ -495,6 +496,7 @@
 		822526CB2BA37FF700B66314 /* NewsDescriptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDescriptionModel.swift; sourceTree = "<group>"; };
 		822526CD2BA3805400B66314 /* NewsSplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSplashScreenViewModel.swift; sourceTree = "<group>"; };
 		822526CF2BA380AC00B66314 /* NewsSplashScreenViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsSplashScreenViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		822527552BA64D0100B66314 /* NewsCategoriesRandomizerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCategoriesRandomizerViewController.swift; sourceTree = "<group>"; };
 		822605F52A8532410055925F /* RecentMomentsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMomentsListViewModelProtocol.swift; sourceTree = "<group>"; };
 		822605F72A8532E20055925F /* RecentMomentsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMomentsListViewModel.swift; sourceTree = "<group>"; };
 		822605F92A8532F30055925F /* RecentMomentsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentMomentsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
@@ -1747,6 +1749,30 @@
 				822526CB2BA37FF700B66314 /* NewsDescriptionModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		822527462BA63D0500B66314 /* News Categories Randomizer */ = {
+			isa = PBXGroup;
+			children = (
+				822527482BA63D2C00B66314 /* View */,
+			);
+			path = "News Categories Randomizer";
+			sourceTree = "<group>";
+		};
+		822527482BA63D2C00B66314 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				822527492BA63D3600B66314 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		822527492BA63D3600B66314 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				822527552BA64D0100B66314 /* NewsCategoriesRandomizerViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		822605F12A8532050055925F /* ViewModel */ = {
@@ -3076,6 +3102,7 @@
 		826888672A33B87A00434219 /* No Architecture */ = {
 			isa = PBXGroup;
 			children = (
+				822527462BA63D0500B66314 /* News Categories Randomizer */,
 				82B97C0D2B93E14300770F00 /* Share Apps */,
 				82FD79CE2B92678000E0DE61 /* Location Apps */,
 				826888562A33AB3C00434219 /* Splash Screens */,
@@ -6783,6 +6810,7 @@
 				82768AEF2ABE15230022FBE1 /* AppThemesListViewModel.swift in Sources */,
 				82F98B362B119A0200137D9A /* WeatherManager + Extensions.swift in Sources */,
 				8234E5F52A8854DF00ED354C /* WordDocumenReaderViewModelProtocol.swift in Sources */,
+				822527562BA64D0100B66314 /* NewsCategoriesRandomizerViewController.swift in Sources */,
 				8217C3152B8FB7AF00A59412 /* ICustomSplashScreenEditorViewModel.swift in Sources */,
 				82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */,
 				8226D1712B0958F600B0B9F0 /* TimetableOptionTableViewCell.swift in Sources */,

@@ -35,20 +35,13 @@ final class RecentNewsListViewController: UIViewController {
     
     private func setUpNavigation() {
         navigationItem.title = "Недавние новости"
-        navigationItem.leftBarButtonItem = nil
-        navigationItem.hidesBackButton = true
-        
-        let button = UIButton()
-        button.tintColor = .label
-        button.setImage(UIImage(named: "back"), for: .normal)
-        button.addTarget(self, action: #selector(back), for: .touchUpInside)
-        
-        let backButton = UIBarButtonItem(customView: button)
-        navigationItem.leftBarButtonItem = backButton
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
+        closeButton.tintColor = .label
+        navigationItem.rightBarButtonItem = closeButton
     }
     
-    @objc private func back() {
-        navigationController?.popViewController(animated: true)
+    @objc private func closeScreen() {
+        dismiss(animated: true)
     }
     
     private func setUpCollectionView() {

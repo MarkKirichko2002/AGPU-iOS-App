@@ -62,7 +62,6 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
                 if newsCategory.newsAbbreviation != "-" {
                     NotificationCenter.default.post(name: Notification.Name("category"), object: newsCategory.newsAbbreviation)
                     NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-                    UserDefaults.standard.setValue(newsCategory.newsAbbreviation, forKey: "category")
                     self.currentCategory = category.newsAbbreviation
                     HapticsManager.shared.hapticFeedback()
                     Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
@@ -71,7 +70,6 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
                 } else {
                     NotificationCenter.default.post(name: Notification.Name("category"), object: "-")
                     NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-                    UserDefaults.standard.setValue("-", forKey: "category")
                     self.currentCategory = category.newsAbbreviation
                     HapticsManager.shared.hapticFeedback()
                     Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
