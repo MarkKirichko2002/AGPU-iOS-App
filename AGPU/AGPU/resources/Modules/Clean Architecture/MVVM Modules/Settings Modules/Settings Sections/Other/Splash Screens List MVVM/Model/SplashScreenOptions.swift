@@ -13,6 +13,7 @@ enum SplashScreenOptions: String, CaseIterable, Codable {
     case faculty = "Факультет"
     case newyear = "Новый год"
     case weather = "Погода"
+    case news = "Новости"
     case timetable = "Расписание"
     case custom = "Свой"
     case random = "Рандом"

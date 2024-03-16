@@ -27,6 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let facultyVC = SelectedFacultySplashScreenViewController(animation: AnimationClass())
         let newYearVC = AGPUNewYearSplashScreenViewController(animation: AnimationClass())
         let weatherVC = WeatherSplashScreenViewController(animation: AnimationClass())
+        let newsVC = NewsSplashScreenViewController(animation: AnimationClass())
         let timetableVC = TimeTableSplashScreenViewController(animation: AnimationClass())
         let customVC = CustomSplashScreenViewController(animation: AnimationClass())
         let tabBarVC = AGPUTabBarController()
@@ -41,12 +42,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return newYearVC
         case .weather:
             return weatherVC
+        case .news:
+            return newsVC
         case .timetable:
             return timetableVC
         case .custom:
             return customVC
         case .random:
-            return [regularVC, statusVC, facultyVC, newYearVC, weatherVC, customVC].randomElement()!
+            return [regularVC, statusVC, facultyVC, newYearVC, weatherVC, newsVC, timetableVC,  customVC].randomElement()!
         case .none:
             return tabBarVC
         }
