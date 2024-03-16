@@ -13,6 +13,7 @@ extension CalendarViewController: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         let date = DateManager().getFormattedDate(date: date)
         let vc = TimetableDateDetailViewController(id: self.id, date: date, owner: self.owner)
+        vc.modalPresentationStyle = .fullScreen
         vc.delegate = self
         present(vc, animated: true)
     }

@@ -19,6 +19,14 @@ class TimetableDateDetailViewController: UIViewController {
     var date: String = ""
     
     // MARK: - UI
+    private var closeButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = .label
+        button.setImage(UIImage(named: "cross"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     private let timetableImage: UIImageView = {
         let image = UIImageView()
         image.isUserInteractionEnabled = true
@@ -70,12 +78,15 @@ class TimetableDateDetailViewController: UIViewController {
     
     private func setUpView() {
         view.backgroundColor = .systemBackground
-        view.addSubviews(timetableImage)
-        view.addSubview(timetableDescription)
-        view.addSubview(selectDateButton)
+        view.addSubviews(closeButton, timetableImage, timetableDescription, selectDateButton)
+        closeButton.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
         selectDateButton.addTarget(self, action: #selector(selectDate), for: .touchUpInside)
         setUpTap()
         setUpPinchZoom()
+    }
+    
+    @objc private func closeScreen() {
+        dismiss(animated: true)
     }
     
     private func setUpTap() {
@@ -107,8 +118,13 @@ class TimetableDateDetailViewController: UIViewController {
     
     private func setUpConstraints() {
         
+        closeButton.snp.makeConstraints { maker in
+            maker.top.equalToSuperview().inset(60)
+            maker.right.equalToSuperview().inset(20)
+        }
+        
         timetableImage.snp.makeConstraints { maker in
-            maker.top.equalToSuperview().inset(50)
+            maker.top.equalTo(closeButton.snp.bottom).offset(20)
             maker.centerX.equalToSuperview()
             maker.width.equalTo(250)
             maker.height.equalTo(250)

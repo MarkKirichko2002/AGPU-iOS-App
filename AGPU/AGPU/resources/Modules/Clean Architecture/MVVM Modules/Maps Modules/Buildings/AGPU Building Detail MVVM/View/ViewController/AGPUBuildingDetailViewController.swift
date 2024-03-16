@@ -88,6 +88,7 @@ final class AGPUBuildingDetailViewController: UIViewController {
     
     @objc private func showShareVC() {
         let vc = ShareLocationAppsViewController(annotation: annotation)
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
     
@@ -114,6 +115,7 @@ final class AGPUBuildingDetailViewController: UIViewController {
     
     @IBAction func GoToMap() {
         let vc = LocationAppsViewController(annotation: annotation)
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
 }

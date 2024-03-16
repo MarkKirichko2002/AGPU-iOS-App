@@ -67,6 +67,7 @@ class CathedraBuildingDetailViewController: UIViewController {
     
     @objc private func showShareVC() {
         let vc = ShareLocationAppsViewController(annotation: annotation)
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
     
@@ -82,6 +83,7 @@ class CathedraBuildingDetailViewController: UIViewController {
     
     @IBAction func GoToMap() {
         let vc = LocationAppsViewController(annotation: annotation)
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
 }

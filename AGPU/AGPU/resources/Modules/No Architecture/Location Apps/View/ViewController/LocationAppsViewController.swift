@@ -11,6 +11,14 @@ import MapKit
 class LocationAppsViewController: UIViewController {
     
     // MARK: - UI
+    private var closeButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = .label
+        button.setImage(UIImage(named: "cross"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     private let QuestionLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -128,15 +136,20 @@ class LocationAppsViewController: UIViewController {
     
     private func setUpView() {
         view.backgroundColor = .systemBackground
-        view.addSubviews(QuestionLabel, locationName, AppleMapsButton, AppleMapsLabel, AppleMapsStack, GoogleMapsButton, GoogleMapsLabel, GoogleMapsStack, YandexMapsButton, YandexMapsLabel, YandexMapsStack)
+        view.addSubviews(closeButton, QuestionLabel, locationName, AppleMapsButton, AppleMapsLabel, AppleMapsStack, GoogleMapsButton, GoogleMapsLabel, GoogleMapsStack, YandexMapsButton, YandexMapsLabel, YandexMapsStack)
         locationName.text = annotation.title!!
         makeConstraints()
     }
     
     private func setUpButtons() {
+        closeButton.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
         AppleMapsButton.addTarget(self, action: #selector(openWithAppleMaps), for: .touchUpInside)
         GoogleMapsButton.addTarget(self, action: #selector(openWithGoogleMaps), for: .touchUpInside)
         YandexMapsButton.addTarget(self, action: #selector(openWithYandexMaps), for: .touchUpInside)
+    }
+    
+    @objc private func closeScreen() {
+        dismiss(animated: true)
     }
     
     private func setUpLabels() {
@@ -161,7 +174,10 @@ class LocationAppsViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             
-            QuestionLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
+            closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
+            closeButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            
+            QuestionLabel.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 30),
             QuestionLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30),
             QuestionLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30),
             
