@@ -58,6 +58,15 @@ final class TimeTableWeekListTableViewController: UIViewController {
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         
+        // список дней
+        let days = UIAction(title: "День") { _ in
+            let vc = WeekDaysListTableViewController(id: self.id, owner: self.owner, week: self.week, timetable: self.timetable)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         // поделиться
         let share = UIAction(title: "Поделиться") { _ in
             self.shareTimetable()
@@ -68,7 +77,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
             self.showSaveImageAlert()
         }
         
-        let menu = UIMenu(title: "Расписание", children: [setUpDatesMenu(), share, saveTimetable])
+        let menu = UIMenu(title: "Расписание", children: [days, share, saveTimetable])
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         options.tintColor = .label
         navigationItem.leftBarButtonItem = closeButton
@@ -80,23 +89,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
     }
-    
-    private func setUpDatesMenu()-> UIMenu {
         
-        let currentDay = dateManager.getCurrentDate()
-        
-        let actions = timetable.enumerated().map { (index: Int, date: TimeTable) -> UIAction in
-            let currentDay = week.dayNames[currentDay]
-            let day = week.dayNames[date.date]!
-            let actionHandler: UIActionHandler = { [weak self] _ in
-                self?.tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
-            }
-            return UIAction(title: week.dayNames[date.date]!, state: currentDay == day ? .on : .off, handler: actionHandler)
-        }
-        let datesList = UIMenu(title: "Дни недели", options: .singleSelection, children: actions)
-        return datesList
-    }
-    
     private func setUpTable() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
@@ -239,5 +232,12 @@ final class TimeTableWeekListTableViewController: UIViewController {
     private func showImageSavedAlert() {
         let ok = UIAlertAction(title: "ОК", style: .default) { _ in}
         self.showAlert(title: "Расписание сохранено!", message: "Изображение расписания успешно сохранено в фото", actions: [ok])
+    }
+}
+
+extension TimeTableWeekListTableViewController: WeekDaysListTableViewControllerDelegate {
+    
+    func dateWasSelected(index: Int) {
+        tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
     }
 }

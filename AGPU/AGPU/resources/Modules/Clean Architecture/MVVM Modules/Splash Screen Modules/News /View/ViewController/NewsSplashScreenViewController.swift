@@ -45,7 +45,7 @@ final class NewsSplashScreenViewController: UIViewController {
         label.isUserInteractionEnabled = true
         label.textColor = .label
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .systemFont(ofSize: 19, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

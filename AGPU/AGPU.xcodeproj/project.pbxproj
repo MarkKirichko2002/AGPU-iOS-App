@@ -74,6 +74,10 @@
 		822526CE2BA3805400B66314 /* NewsSplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822526CD2BA3805400B66314 /* NewsSplashScreenViewModel.swift */; };
 		822526D02BA380AC00B66314 /* NewsSplashScreenViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822526CF2BA380AC00B66314 /* NewsSplashScreenViewModel + Extensions.swift */; };
 		822527562BA64D0100B66314 /* NewsCategoriesRandomizerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822527552BA64D0100B66314 /* NewsCategoriesRandomizerViewController.swift */; };
+		8225275D2BA77E2C00B66314 /* WeekDaysListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8225275C2BA77E2C00B66314 /* WeekDaysListTableViewController.swift */; };
+		822527622BA77E7800B66314 /* IWeekDaysListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822527612BA77E7800B66314 /* IWeekDaysListViewModel.swift */; };
+		822527642BA77EB500B66314 /* WeekDaysListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822527632BA77EB500B66314 /* WeekDaysListViewModel.swift */; };
+		822527662BA77ECA00B66314 /* WeekDaysListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822527652BA77ECA00B66314 /* WeekDaysListViewModel + Extensions.swift */; };
 		822605EF2A84A0600055925F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82808E912A31F12500DEEB16 /* Assets.xcassets */; };
 		822605F62A8532410055925F /* RecentMomentsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822605F52A8532410055925F /* RecentMomentsListViewModelProtocol.swift */; };
 		822605F82A8532E20055925F /* RecentMomentsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822605F72A8532E20055925F /* RecentMomentsListViewModel.swift */; };
@@ -497,6 +501,10 @@
 		822526CD2BA3805400B66314 /* NewsSplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSplashScreenViewModel.swift; sourceTree = "<group>"; };
 		822526CF2BA380AC00B66314 /* NewsSplashScreenViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsSplashScreenViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		822527552BA64D0100B66314 /* NewsCategoriesRandomizerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCategoriesRandomizerViewController.swift; sourceTree = "<group>"; };
+		8225275C2BA77E2C00B66314 /* WeekDaysListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDaysListTableViewController.swift; sourceTree = "<group>"; };
+		822527612BA77E7800B66314 /* IWeekDaysListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWeekDaysListViewModel.swift; sourceTree = "<group>"; };
+		822527632BA77EB500B66314 /* WeekDaysListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDaysListViewModel.swift; sourceTree = "<group>"; };
+		822527652BA77ECA00B66314 /* WeekDaysListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeekDaysListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		822605F52A8532410055925F /* RecentMomentsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMomentsListViewModelProtocol.swift; sourceTree = "<group>"; };
 		822605F72A8532E20055925F /* RecentMomentsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMomentsListViewModel.swift; sourceTree = "<group>"; };
 		822605F92A8532F30055925F /* RecentMomentsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentMomentsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
@@ -1775,6 +1783,73 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		822527572BA77D8B00B66314 /* Week Days */ = {
+			isa = PBXGroup;
+			children = (
+				822527592BA77DBB00B66314 /* View */,
+				822527582BA77DB900B66314 /* ViewModel */,
+			);
+			path = "Week Days";
+			sourceTree = "<group>";
+		};
+		822527582BA77DB900B66314 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				822527602BA77E5D00B66314 /* Protocol */,
+				8225275F2BA77E5B00B66314 /* ViewModel */,
+				8225275E2BA77E5900B66314 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		822527592BA77DBB00B66314 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8225275B2BA77E0600B66314 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8225275A2BA77DDB00B66314 /* Day  */ = {
+			isa = PBXGroup;
+			children = (
+				82B97C142B9616FD00770F00 /* DayTableViewCell.swift */,
+			);
+			path = "Day ";
+			sourceTree = "<group>";
+		};
+		8225275B2BA77E0600B66314 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8225275C2BA77E2C00B66314 /* WeekDaysListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8225275E2BA77E5900B66314 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				822527652BA77ECA00B66314 /* WeekDaysListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8225275F2BA77E5B00B66314 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				822527632BA77EB500B66314 /* WeekDaysListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		822527602BA77E5D00B66314 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				822527612BA77E7800B66314 /* IWeekDaysListViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		822605F12A8532050055925F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -2589,8 +2664,9 @@
 		82426C7D2A7152DB00D5AA57 /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
-				82426C7E2A7152F300D5AA57 /* For Every Status */,
 				82D6C33E2A5E32EA00FB7F5D /* Timetable */,
+				8225275A2BA77DDB00B66314 /* Day  */,
+				82426C7E2A7152F300D5AA57 /* For Every Status */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -5036,14 +5112,6 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		82B97C122B9616DA00770F00 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				82B97C142B9616FD00770F00 /* DayTableViewCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
 		82B97C132B9616DD00770F00 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -5168,6 +5236,7 @@
 				828321602A7C6A25008641A5 /* All Groups MVVM */,
 				822FB20A2AC5DC160083E016 /* Sub Groups List MVVM */,
 				82BCB5322AB3517400F3A321 /* Days List MVVM */,
+				822527572BA77D8B00B66314 /* Week Days */,
 				8299E3AA2B8A317400D81472 /* Timetable Date Detail MVVM */,
 				82162D822AB5CDF700840D90 /* Smart Calendar MVVM */,
 				82B24A6F2A817D69008B94E4 /* All Weeks MVVM */,
@@ -5210,7 +5279,6 @@
 			isa = PBXGroup;
 			children = (
 				82B97C132B9616DD00770F00 /* ViewController */,
-				82B97C122B9616DA00770F00 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6578,6 +6646,7 @@
 				82920B802AD87BA900352CD8 /* UserStatusListViewModel + Extension.swift in Sources */,
 				822606002A853C110055925F /* RecentMomentTableViewCell.swift in Sources */,
 				825D567C2AE5CCBF004305C7 /* PairInfoViewModel + Extensions.swift in Sources */,
+				822527642BA77EB500B66314 /* WeekDaysListViewModel.swift in Sources */,
 				82BC3CFC2A56EDA000E49332 /* RecentWebPageViewController.swift in Sources */,
 				8241F9852A5F3F73007DF628 /* CalendarViewController + Extensions.swift in Sources */,
 				82C561622A6B772600514B00 /* AppFeaturesListTableViewController.swift in Sources */,
@@ -6589,6 +6658,7 @@
 				82B24A692A817AEC008B94E4 /* AllWeeksListTableViewController.swift in Sources */,
 				82BF4DB42A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift in Sources */,
 				82B1C0F12A8125E400520C14 /* VoiceDirectionModel.swift in Sources */,
+				8225275D2BA77E2C00B66314 /* WeekDaysListTableViewController.swift in Sources */,
 				82920B752AD879DC00352CD8 /* UserStatusListTableViewController.swift in Sources */,
 				82B97C112B93E17200770F00 /* ShareLocationAppsViewController.swift in Sources */,
 				82989ADE2A6E59BC00F27858 /* AGPUCurrentCathedraMapViewController + Extensions.swift in Sources */,
@@ -6785,6 +6855,7 @@
 				82ECCC752B182A3200443ED8 /* AGPUBuildingDetailViewModel + Extensions.swift in Sources */,
 				828321642A7C6A48008641A5 /* AllGroupsListTableViewController.swift in Sources */,
 				821EEAD62AA0B76F00AE517B /* UserStatusTableViewCell.swift in Sources */,
+				822527622BA77E7800B66314 /* IWeekDaysListViewModel.swift in Sources */,
 				82426C782A714D6A00D5AA57 /* ForApplicantListTableViewController.swift in Sources */,
 				829548862A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift in Sources */,
 				82D6C3322A5E1DE100FB7F5D /* TimeTableService.swift in Sources */,
@@ -6876,6 +6947,7 @@
 				82761A192B46309A00D9976F /* AGPUNewYearSplashScreenViewController.swift in Sources */,
 				825D56732AE5CBEB004305C7 /* PairInfoTableViewController.swift in Sources */,
 				82989ACF2A6E35B200F27858 /* FacultyCathedraTableViewCell.swift in Sources */,
+				822527662BA77ECA00B66314 /* WeekDaysListViewModel + Extensions.swift in Sources */,
 				82505F502A7FBD7D001DE24A /* TimeTableWeekListTableViewController.swift in Sources */,
 				82162D8A2AB5CE6200840D90 /* CalendarViewModel.swift in Sources */,
 				829548992A43AE32007DEBA0 /* SettingsManagerProtocol.swift in Sources */,

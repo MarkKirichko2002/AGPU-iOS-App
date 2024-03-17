@@ -43,12 +43,14 @@ class DayTableViewCell: UITableViewCell {
     }
     
     private func setUpUI() {
+        tintColor = .systemGreen
         contentView.addSubviews(dayName, infoButton)
         infoButton.addTarget(self, action: #selector(showInfo), for: .touchUpInside)
         makeConstraints()
     }
     
     private func makeConstraints() {
+        
         dayName.snp.makeConstraints { maker in
             maker.left.equalToSuperview().inset(20)
             maker.top.equalToSuperview().inset(10)
