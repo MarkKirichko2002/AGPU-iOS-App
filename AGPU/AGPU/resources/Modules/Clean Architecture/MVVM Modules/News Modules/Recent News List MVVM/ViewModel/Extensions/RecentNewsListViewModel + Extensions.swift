@@ -21,6 +21,10 @@ extension RecentNewsListViewModel: IRecentNewsListViewModel {
         dataChangedHandler?()
     }
     
+    func resetProgress(id: Int) {
+        realmManager.editArticle(news: news[id], position: 0)
+    }
+    
     func deleteArticle(id: Int) {
         let article = news[id]
         realmManager.deleteArticle(news: article)
