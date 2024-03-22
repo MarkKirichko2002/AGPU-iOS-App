@@ -1,5 +1,5 @@
 //
-//  TimetableOptionsTableViewController.swift
+//  TimetableOptionsListTableViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 19.11.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TimetableOptionsTableViewController: UITableViewController {
+class TimetableOptionsListTableViewController: UITableViewController {
     
     // MARK: - сервисы
     private let viewModel = TimetableSettingsListViewModel()

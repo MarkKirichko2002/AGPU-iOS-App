@@ -21,15 +21,20 @@ class SavedNewsCategoryTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: "news", title: "Выберите категорию", frame: .zero)
-        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
-        closeButton.tintColor = .label
+        let button = UIButton()
+        button.tintColor = .label
+        button.setImage(UIImage(named: "back"), for: .normal)
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        
+        let backButton = UIBarButtonItem(customView: button)
         navigationItem.titleView = titleView
-        navigationItem.rightBarButtonItem = closeButton
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
+        navigationItem.leftBarButtonItem = backButton
     }
     
-    @objc private func closeScreen() {
-        self.sendScreenWasClosedNotification()
-        dismiss(animated: true)
+    @objc private func back() {
+        navigationController?.popViewController(animated: true)
     }
     
     private func setUpTable() {

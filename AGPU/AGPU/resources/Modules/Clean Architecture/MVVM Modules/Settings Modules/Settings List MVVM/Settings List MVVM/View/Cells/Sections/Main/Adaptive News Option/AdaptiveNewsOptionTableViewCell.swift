@@ -14,10 +14,6 @@ class AdaptiveNewsOptionTableViewCell: UITableViewCell {
     @IBOutlet var AdaptiveNewsIcon: SpringImageView!
     @IBOutlet var TitleLabel: UILabel!
     
-    func configure(category: String) {
-        TitleLabel.text = "Ваша категория (\(category))"
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         AdaptiveNewsIcon.tintColor = .label
