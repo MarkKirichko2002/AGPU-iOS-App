@@ -89,7 +89,6 @@ final class WeatherSplashScreenViewController: UIViewController {
     
     @objc private func springLabel() {
         animation?.springAnimation(view: self.WeatherDescription)
-        HapticsManager.shared.hapticFeedback()
     }
     
     private func setUpConstraints() {

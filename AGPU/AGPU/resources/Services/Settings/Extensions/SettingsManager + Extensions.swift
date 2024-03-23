@@ -81,6 +81,12 @@ extension SettingsManager: SettingsManagerProtocol {
         return action
     }
     
+    func observeDynamicButtonActionChanged(completion: @escaping()->Void) {
+        NotificationCenter.default.addObserver(forName: Notification.Name("action"), object: nil, queue: .main) { _ in
+            completion()
+        }
+    }
+
     // MARK: - My Splash Screen
     func saveCustomSplashScreen(screen: CustomSplashScreenModel) {
         realmManager.saveSplashScreen(screen: screen)
@@ -91,18 +97,30 @@ extension SettingsManager: SettingsManagerProtocol {
         return screen
     }
     
-    func observeDynamicButtonActionChanged(completion: @escaping()->Void) {
-        NotificationCenter.default.addObserver(forName: Notification.Name("action"), object: nil, queue: .main) { _ in
+    // MARK: - Your Status
+    func getUserStatus()-> UserStatusModel {
+        if let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status") {
+            return status
+        } else {
+            return UserStatusList.list[0]
+        }
+    }
+    
+    func observeStatusChanged(completion: @escaping()->Void) {
+        NotificationCenter.default.addObserver(forName: Notification.Name("user status"), object: nil, queue: .main) { _ in
             completion()
         }
     }
     
-    // MARK: - Your Status
-    func observeStatusChanged(completion: @escaping()->Void) {
-        NotificationCenter.default.addObserver(forName: Notification.Name("user status"), object: nil, queue: .main) { notification in
-            if let _ = notification.object as? UserStatusModel {
-                completion()
-            }
+    // MARK: - Custom TabBar
+    func getTabsPosition()-> [Int] {
+        let position = UserDefaults.standard.object(forKey: "tabs") as? [Int] ?? [0,1,2,3]
+        return position
+    }
+    
+    func observeTabsChanged(completion: @escaping()->Void) {
+        NotificationCenter.default.addObserver(forName: Notification.Name("tabs changed"), object: nil, queue: .main) { _ in
+            completion()
         }
     }
 }

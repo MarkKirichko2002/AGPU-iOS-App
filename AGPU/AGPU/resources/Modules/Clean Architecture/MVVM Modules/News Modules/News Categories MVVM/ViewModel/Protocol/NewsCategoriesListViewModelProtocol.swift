@@ -11,6 +11,7 @@ protocol NewsCategoriesListViewModelProtocol {
     func categoryItem(index: Int)-> NewsCategoryModel
     func numberOfCategoriesInSection()-> Int
     func getNewsCategoriesInfo()
+    func countTodayNews(news: [Article])-> Int
     func chooseNewsCategory(index: Int)
     func isCurrentCategory(index: Int)-> Bool
     func registerCategorySelectedHandler(block: @escaping((String)->Void))

@@ -86,7 +86,6 @@ final class YourStatusSplashScreenViewController: UIViewController {
     
     @objc private func springLabel() {
         animation?.springAnimation(view: self.StatusName)
-        HapticsManager.shared.hapticFeedback()
     }
     
     private func setUpConstraints() {

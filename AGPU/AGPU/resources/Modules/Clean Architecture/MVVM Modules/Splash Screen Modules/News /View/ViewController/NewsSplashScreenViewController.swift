@@ -89,7 +89,6 @@ final class NewsSplashScreenViewController: UIViewController {
     
     @objc private func springLabel() {
         animation?.springAnimation(view: self.NewsCategoryDescription)
-        HapticsManager.shared.hapticFeedback()
     }
     
     private func setUpConstraints() {

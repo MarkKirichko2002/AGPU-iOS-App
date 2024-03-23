@@ -17,39 +17,56 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="АГПУ" translatesAutoresizingMaskIntoConstraints="NO" id="aQ3-Cb-ok1" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
-                        <rect key="frame" x="10" y="10" width="100" height="100"/>
+                        <rect key="frame" x="10" y="15" width="100" height="100"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="Nd4-i5-ndT"/>
                             <constraint firstAttribute="height" constant="100" id="il0-Ni-g2G"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="АГПУ" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2d6-Ca-N1Q">
-                        <rect key="frame" x="120" y="25" width="263" height="60"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="60" id="mgv-q6-CNL"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="АГПУ" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2d6-Ca-N1Q">
+                        <rect key="frame" x="125" y="20" width="258" height="19.333333333333329"/>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="страниц: 41" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wrn-x0-XxJ">
+                        <rect key="frame" x="125" y="54.333333333333336" width="258" height="19.333333333333336"/>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="сегодня новостей: 3" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqH-5c-Q6L">
+                        <rect key="frame" x="125" y="88.666666666666671" width="258" height="19.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="aQ3-Cb-ok1" firstAttribute="top" secondItem="ViX-HU-ZdR" secondAttribute="top" constant="10" id="09D-pp-sXh"/>
-                    <constraint firstItem="2d6-Ca-N1Q" firstAttribute="top" secondItem="ViX-HU-ZdR" secondAttribute="top" constant="25" id="2DX-4m-Upr"/>
+                    <constraint firstItem="aQ3-Cb-ok1" firstAttribute="top" secondItem="ViX-HU-ZdR" secondAttribute="top" constant="15" id="09D-pp-sXh"/>
+                    <constraint firstItem="2d6-Ca-N1Q" firstAttribute="top" secondItem="ViX-HU-ZdR" secondAttribute="top" constant="20" id="2DX-4m-Upr"/>
                     <constraint firstAttribute="trailing" secondItem="2d6-Ca-N1Q" secondAttribute="trailing" constant="10" id="K0q-Pe-LIs"/>
                     <constraint firstItem="aQ3-Cb-ok1" firstAttribute="leading" secondItem="ViX-HU-ZdR" secondAttribute="leading" constant="10" id="L6v-a3-gzp"/>
-                    <constraint firstItem="2d6-Ca-N1Q" firstAttribute="leading" secondItem="aQ3-Cb-ok1" secondAttribute="trailing" constant="10" id="pPo-DF-a4b"/>
+                    <constraint firstItem="Wrn-x0-XxJ" firstAttribute="top" secondItem="2d6-Ca-N1Q" secondAttribute="bottom" constant="15" id="eUC-id-ruX"/>
+                    <constraint firstItem="Wrn-x0-XxJ" firstAttribute="leading" secondItem="2d6-Ca-N1Q" secondAttribute="leading" id="eWd-vy-fYC"/>
+                    <constraint firstItem="wqH-5c-Q6L" firstAttribute="leading" secondItem="Wrn-x0-XxJ" secondAttribute="leading" id="hMM-Gv-TdZ"/>
+                    <constraint firstItem="Wrn-x0-XxJ" firstAttribute="trailing" secondItem="2d6-Ca-N1Q" secondAttribute="trailing" id="k49-Hx-Ioy"/>
+                    <constraint firstItem="wqH-5c-Q6L" firstAttribute="trailing" secondItem="Wrn-x0-XxJ" secondAttribute="trailing" id="kt9-pi-Pca"/>
+                    <constraint firstItem="2d6-Ca-N1Q" firstAttribute="leading" secondItem="aQ3-Cb-ok1" secondAttribute="trailing" constant="15" id="pPo-DF-a4b"/>
                     <constraint firstAttribute="bottom" secondItem="aQ3-Cb-ok1" secondAttribute="bottom" constant="10" id="xT4-IL-Xa3"/>
+                    <constraint firstItem="wqH-5c-Q6L" firstAttribute="top" secondItem="Wrn-x0-XxJ" secondAttribute="bottom" constant="15" id="zw8-Ap-USM"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="CategoryIcon" destination="aQ3-Cb-ok1" id="rNA-bL-Rrl"/>
                 <outlet property="CategoryName" destination="2d6-Ca-N1Q" id="HzO-5q-6hb"/>
+                <outlet property="DailyNewsCount" destination="wqH-5c-Q6L" id="TJO-6e-YEi"/>
+                <outlet property="PagesCount" destination="Wrn-x0-XxJ" id="aHS-W6-FdQ"/>
             </connections>
             <point key="canvasLocation" x="183.96946564885496" y="10.563380281690142"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="АГПУ" width="964" height="1024"/>
+        <image name="АГПУ" width="1024" height="1024"/>
     </resources>
 </document>

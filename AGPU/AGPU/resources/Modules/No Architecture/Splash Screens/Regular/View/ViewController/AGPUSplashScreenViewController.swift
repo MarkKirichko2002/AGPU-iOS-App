@@ -86,7 +86,6 @@ final class AGPUSplashScreenViewController: UIViewController {
     
     @objc private func springLabel() {
         animation?.springAnimation(view: self.AGPUTitleLabel)
-        HapticsManager.shared.hapticFeedback()
     }
     
     private func setUpConstraints() {

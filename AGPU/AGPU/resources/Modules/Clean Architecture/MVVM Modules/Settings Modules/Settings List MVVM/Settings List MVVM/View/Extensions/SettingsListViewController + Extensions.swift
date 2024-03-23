@@ -20,7 +20,7 @@ extension SettingsListViewController: UITableViewDataSource {
         case 0:
             return 4
         case 1:
-            return 6
+            return 7
         case 2:
             return 2
         default:
@@ -63,6 +63,9 @@ extension SettingsListViewController: UITableViewDataSource {
                 cell.configure(icon: viewModel.getAppIconInfo())
                 return cell
             } else if indexPath.row == 4 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTabBarOptionTableViewCell.identifier, for: indexPath) as? CustomTabBarOptionTableViewCell else {return UITableViewCell()}
+                return cell
+            } else if indexPath.row == 5 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AppThemesTableViewCell.identifier, for: indexPath) as? AppThemesTableViewCell else {return UITableViewCell()}
                 cell.configure(theme: viewModel.getAppThemeInfo())
                 return cell
@@ -159,6 +162,14 @@ extension SettingsListViewController: UITableViewDelegate {
                     self.present(navVC, animated: true)
                 }
             } else if indexPath.row == 4 {
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "profile icon")
+                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                    let vc = TabsListTableViewController()
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    self.present(navVC, animated: true)
+                }
+            } else if indexPath.row == 5 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "theme")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = AppThemesListTableViewController()

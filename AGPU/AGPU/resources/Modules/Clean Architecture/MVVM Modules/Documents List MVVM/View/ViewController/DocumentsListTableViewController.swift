@@ -50,7 +50,6 @@ class DocumentsListTableViewController: UITableViewController {
         
         if tableView.isEditing {
             tableView.isEditing = false
-            //viewModel.updateDocuments(documents: viewModel.documents, <#T##Int#>, <#T##Int#>)
         } else {
             tableView.isEditing = true
         }

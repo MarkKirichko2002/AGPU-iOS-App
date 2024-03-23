@@ -15,7 +15,7 @@ class SavedNewsCategoryOptionTableViewCell: UITableViewCell {
     @IBOutlet var NewsCategoryOptionName: UILabel!
     
     func configure(category: String) {
-        NewsCategoryOptionName.text = "категория: \(category)"
+        NewsCategoryOptionName.text = "Категория: \(category)"
     }
     
     override func awakeFromNib() {

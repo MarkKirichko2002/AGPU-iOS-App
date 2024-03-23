@@ -32,6 +32,7 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
                     switch result {
                     case .success(let data):
                         NewsCategories.categories[category.id].pagesCount = data.countPages ?? 0
+                        NewsCategories.categories[category.id].dailyNewsCount = countTodayNews(news: data.articles ?? [])
                     case .failure(let error):
                         print(error)
                     }
@@ -43,6 +44,7 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
                     switch result {
                     case .success(let data):
                         NewsCategories.categories[0].pagesCount = data.countPages ?? 0
+                        NewsCategories.categories[0].dailyNewsCount = countTodayNews(news: data.articles ?? [])
                     case .failure(let error):
                         print(error)
                     }
@@ -53,6 +55,17 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
         dispatchGroup.notify(queue: .main) {
             self.dataChangedHandler?()
         }
+    }
+    
+    func countTodayNews(news: [Article])-> Int {
+        let currentDate = dateManager.getCurrentDate()
+        var count = 0
+        for article in news {
+            if article.date == currentDate {
+                count += 1
+            }
+        }
+        return count
     }
     
     func chooseNewsCategory(index: Int) {

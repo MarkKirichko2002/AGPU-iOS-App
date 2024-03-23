@@ -12,6 +12,15 @@
 		82061CCB2B09A5920073D727 /* TimetableOptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82061CC92B09A5920073D727 /* TimetableOptionsTableViewCell.swift */; };
 		82061CCC2B09A5920073D727 /* TimetableOptionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82061CCA2B09A5920073D727 /* TimetableOptionsTableViewCell.xib */; };
 		8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8208E7542A63A3D300675EF1 /* AGPUThemes.swift */; };
+		820900792BAF612F0053F3BD /* TabModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820900782BAF612F0053F3BD /* TabModel.swift */; };
+		8209007B2BAF61600053F3BD /* TabsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209007A2BAF61600053F3BD /* TabsList.swift */; };
+		8209007D2BAF62650053F3BD /* TabsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209007C2BAF62650053F3BD /* TabsListTableViewController.swift */; };
+		820900812BAF62E50053F3BD /* TabItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820900802BAF62E50053F3BD /* TabItemTableViewCell.swift */; };
+		820900862BAF68990053F3BD /* ITabsListTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820900852BAF68990053F3BD /* ITabsListTableViewModel.swift */; };
+		820900882BAF68AF0053F3BD /* TabsListTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820900872BAF68AF0053F3BD /* TabsListTableViewModel.swift */; };
+		8209008A2BAF68C00053F3BD /* TabsListTableViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820900892BAF68C00053F3BD /* TabsListTableViewModel + Extensions.swift */; };
+		8209008E2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209008C2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.swift */; };
+		8209008F2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8209008D2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.xib */; };
 		8209A09A2B838A2A0013371D /* IRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209A0992B838A2A0013371D /* IRealmManager.swift */; };
 		8209A09C2B838A470013371D /* DocumentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209A09B2B838A470013371D /* DocumentModel.swift */; };
 		8209A09E2B838AD20013371D /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209A09D2B838AD20013371D /* RealmManager.swift */; };
@@ -446,6 +455,15 @@
 		82061CC92B09A5920073D727 /* TimetableOptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableOptionsTableViewCell.swift; sourceTree = "<group>"; };
 		82061CCA2B09A5920073D727 /* TimetableOptionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimetableOptionsTableViewCell.xib; sourceTree = "<group>"; };
 		8208E7542A63A3D300675EF1 /* AGPUThemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUThemes.swift; sourceTree = "<group>"; };
+		820900782BAF612F0053F3BD /* TabModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabModel.swift; sourceTree = "<group>"; };
+		8209007A2BAF61600053F3BD /* TabsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsList.swift; sourceTree = "<group>"; };
+		8209007C2BAF62650053F3BD /* TabsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsListTableViewController.swift; sourceTree = "<group>"; };
+		820900802BAF62E50053F3BD /* TabItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItemTableViewCell.swift; sourceTree = "<group>"; };
+		820900852BAF68990053F3BD /* ITabsListTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITabsListTableViewModel.swift; sourceTree = "<group>"; };
+		820900872BAF68AF0053F3BD /* TabsListTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsListTableViewModel.swift; sourceTree = "<group>"; };
+		820900892BAF68C00053F3BD /* TabsListTableViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabsListTableViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		8209008C2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarOptionTableViewCell.swift; sourceTree = "<group>"; };
+		8209008D2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTabBarOptionTableViewCell.xib; sourceTree = "<group>"; };
 		8209A0992B838A2A0013371D /* IRealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRealmManager.swift; sourceTree = "<group>"; };
 		8209A09B2B838A470013371D /* DocumentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentModel.swift; sourceTree = "<group>"; };
 		8209A09D2B838AD20013371D /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
@@ -1027,6 +1045,93 @@
 				82E4E5582A57699E00314296 /* WKWebView + Extensions.swift */,
 			);
 			path = WKWebView;
+			sourceTree = "<group>";
+		};
+		820900742BAF60CD0053F3BD /* Tabs List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				820900772BAF60F80053F3BD /* Model */,
+				820900762BAF60F40053F3BD /* View */,
+				820900752BAF60F10053F3BD /* ViewModel */,
+			);
+			path = "Tabs List MVVM";
+			sourceTree = "<group>";
+		};
+		820900752BAF60F10053F3BD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				820900842BAF687A0053F3BD /* Protocol */,
+				820900832BAF68780053F3BD /* ViewModel */,
+				820900822BAF68760053F3BD /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		820900762BAF60F40053F3BD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8209007F2BAF62C00053F3BD /* ViewController */,
+				8209007E2BAF62BE0053F3BD /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		820900772BAF60F80053F3BD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				820900782BAF612F0053F3BD /* TabModel.swift */,
+				8209007A2BAF61600053F3BD /* TabsList.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8209007E2BAF62BE0053F3BD /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				820900802BAF62E50053F3BD /* TabItemTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		8209007F2BAF62C00053F3BD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8209007C2BAF62650053F3BD /* TabsListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		820900822BAF68760053F3BD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				820900892BAF68C00053F3BD /* TabsListTableViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		820900832BAF68780053F3BD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				820900872BAF68AF0053F3BD /* TabsListTableViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		820900842BAF687A0053F3BD /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				820900852BAF68990053F3BD /* ITabsListTableViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		8209008B2BAF89A40053F3BD /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				8209008C2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.swift */,
+				8209008D2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.xib */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		8209A0942B8389100013371D /* Realm */ = {
@@ -4048,6 +4153,7 @@
 				82BF39DE2B24837000FADBD4 /* Only Schedule */,
 				82761A1A2B4637DE00D9976F /* Splash Screens */,
 				8283975A2AD5BBAD000F355A /* App Icons */,
+				8209008B2BAF89A40053F3BD /* TabBar */,
 				82768AF22ABE1B0D0022FBE1 /* App Themes */,
 				82F5788D2B6FEDD200BC64C1 /* Dynamic Button Options */,
 			);
@@ -6470,6 +6576,7 @@
 			children = (
 				82761A1F2B463E9F00D9976F /* Splash Screens List MVVM */,
 				828397612AD5BE76000F355A /* App Icons List MVVM */,
+				820900742BAF60CD0053F3BD /* Tabs List MVVM */,
 				82768ADD2ABE12D30022FBE1 /* App Themes List MVVM */,
 				82F578782B6FE48400BC64C1 /* Dynamic Button Actions List */,
 			);
@@ -6659,6 +6766,7 @@
 				82C449F72B5F0B5F0039B0F3 /* clock_sound.mp3 in Resources */,
 				82920B662AD86EE600352CD8 /* YourStatusOptionTableViewCell.xib in Resources */,
 				821EEAD72AA0B76F00AE517B /* UserStatusTableViewCell.xib in Resources */,
+				8209008F2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.xib in Resources */,
 				82BF39E22B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.xib in Resources */,
 				828397602AD5BBF4000F355A /* AppIconTableViewCell.xib in Resources */,
 				82761A1E2B46381500D9976F /* SplashScreenOptionTableViewCell.xib in Resources */,
@@ -6743,6 +6851,7 @@
 				82B267032A8D926400043A6D /* NewsCategories.swift in Sources */,
 				828397792AD5C9F8000F355A /* AppIconsListViewModel.swift in Sources */,
 				825D567A2AE5CCAF004305C7 /* PairInfoViewModel.swift in Sources */,
+				8209007B2BAF61600053F3BD /* TabsList.swift in Sources */,
 				82DD8DBE2B0EA104000863FF /* UIDevice + Extensions.swift in Sources */,
 				8231B0B72AED682900EB41EA /* TimeTableSearchListTableViewController.swift in Sources */,
 				822606062A853D130055925F /* RecentMomentModel.swift in Sources */,
@@ -6809,6 +6918,7 @@
 				82BDFDB02A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift in Sources */,
 				8234E60B2A88591300ED354C /* RecentWordDocumentModel.swift in Sources */,
 				8228E3A42A6C9D3700C1B6AD /* AGPUBuildingsMapViewModelProtocol.swift in Sources */,
+				8209007D2BAF62650053F3BD /* TabsListTableViewController.swift in Sources */,
 				824EBF6C2B29F9890003E7E6 /* AGPUBuildingTypes.swift in Sources */,
 				82F578842B6FE5A800BC64C1 /* DynamicButtonActionsListViewModelProtocol.swift in Sources */,
 				8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */,
@@ -6922,6 +7032,7 @@
 				82B24A892A81BD30008B94E4 /* AGPUNewsService.swift in Sources */,
 				82989AF22A6F8CDF00F27858 /* ForEveryStatusTableViewCell.swift in Sources */,
 				8270A5482A5784A2008ACADC /* DateManager.swift in Sources */,
+				820900862BAF68990053F3BD /* ITabsListTableViewModel.swift in Sources */,
 				82761A2D2B46428100D9976F /* SplashScreensListViewModelProtocol.swift in Sources */,
 				8283217C2A7D67D4008641A5 /* SearchAGPUBuildingMapViewModelProtocol.swift in Sources */,
 				82BF4DB72A5FA807008B751A /* ImageSaver.swift in Sources */,
@@ -6945,6 +7056,7 @@
 				82768AF12ABE15450022FBE1 /* AppThemesListViewModel + Extensions.swift in Sources */,
 				82377F9B2B3365D200FF5045 /* Hints.swift in Sources */,
 				822527A82BADAC5F00B66314 /* AdaptiveNewsOptionsListViewModel.swift in Sources */,
+				8209008A2BAF68C00053F3BD /* TabsListTableViewModel + Extensions.swift in Sources */,
 				82E4E5592A57699E00314296 /* WKWebView + Extensions.swift in Sources */,
 				824EBF752B29FA530003E7E6 /* AGPUBuildingTypesListViewModel + Extensions.swift in Sources */,
 				8226D1882B096F5A00B0B9F0 /* SavedPairTypeTableViewController.swift in Sources */,
@@ -7003,6 +7115,7 @@
 				82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */,
 				8231B0BB2AED97ED00EB41EA /* TeacherTimeTable.swift in Sources */,
 				82E4C55F2A6B147900F65A67 /* SettingsListViewModelProtocol.swift in Sources */,
+				8209008E2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.swift in Sources */,
 				82ECCC732B182A1700443ED8 /* AGPUBuildingDetailViewModel.swift in Sources */,
 				8226D17E2B095E0900B0B9F0 /* TimetableSettingsListViewModel + Extensions.swift in Sources */,
 				82E4C5452A6B114000F65A67 /* WebViewModel + Extensions.swift in Sources */,
@@ -7041,6 +7154,7 @@
 				82BC2F462A8EFD6400ADB239 /* NewsCategoriesListViewModel.swift in Sources */,
 				824EBF802B2A0EFC0003E7E6 /* FacultyCathedraMapListViewModelProtocol.swift in Sources */,
 				82B24AAB2A82E45A008B94E4 /* NewsResponse.swift in Sources */,
+				820900882BAF68AF0053F3BD /* TabsListTableViewModel.swift in Sources */,
 				8283975F2AD5BBF4000F355A /* AppIconTableViewCell.swift in Sources */,
 				82B24A912A81BE21008B94E4 /* AGPUNewsService + Extensions.swift in Sources */,
 				82C561672A6B7B0D00514B00 /* AppFeatureDetailViewController.swift in Sources */,
@@ -7076,6 +7190,7 @@
 				822527A32BACE4DA00B66314 /* AdaptToWebOptionTableViewCell.swift in Sources */,
 				82184D802B7BD8D700F2588E /* HourlyWeatherTableViewCell.swift in Sources */,
 				82320D872A491F5700ECADEE /* AGPUFacultyTableViewCell.swift in Sources */,
+				820900812BAF62E50053F3BD /* TabItemTableViewCell.swift in Sources */,
 				822245922B28EC2B00DFCFA7 /* Actions.swift in Sources */,
 				82BC2F4D2A8F0B9500ADB239 /* NewsPagesListTableViewController.swift in Sources */,
 				82B2670B2A8DAB4900043A6D /* NewsCategoryModel.swift in Sources */,
@@ -7119,6 +7234,7 @@
 				8255ADCF2A6732110012895E /* CustomTitleView.swift in Sources */,
 				8209A0B02B838DCA0013371D /* DocumentsListViewModel + Extensions.swift in Sources */,
 				82989AE62A6F6DEA00F27858 /* FacultyCathedraListViewModel.swift in Sources */,
+				820900792BAF612F0053F3BD /* TabModel.swift in Sources */,
 				826888582A33AB5600434219 /* AGPUSplashScreenViewController.swift in Sources */,
 				82E4C5892A6B20DE00F65A67 /* LocationManager.swift in Sources */,
 				823F97D92B9D224100F60F39 /* WeatherSplashScreenViewController.swift in Sources */,
@@ -7311,7 +7427,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.1;
+				MARKETING_VERSION = 2.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -7349,7 +7465,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.1;
+				MARKETING_VERSION = 2.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
