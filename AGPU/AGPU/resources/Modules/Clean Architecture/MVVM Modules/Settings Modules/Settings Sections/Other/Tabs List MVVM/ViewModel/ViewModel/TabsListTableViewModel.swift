@@ -9,6 +9,7 @@ import Foundation
 
 class TabsListTableViewModel {
     
+    var tabs = TabsList.tabs
     var dataChangedHandler: (()->Void)?
     
     // MARK: - сервисы

@@ -177,7 +177,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
-            } else if indexPath.row == 5 {
+            } else if indexPath.row == 6 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "button")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = DynamicButtonActionsListTableViewController()

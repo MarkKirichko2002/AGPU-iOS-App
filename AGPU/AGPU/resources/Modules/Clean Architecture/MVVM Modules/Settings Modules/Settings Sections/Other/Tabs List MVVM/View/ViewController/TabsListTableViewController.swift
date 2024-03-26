@@ -8,7 +8,7 @@
 import UIKit
 
 class TabsListTableViewController: UITableViewController {
-
+    
     // MARK: - сервисы
     private let viewModel = TabsListTableViewModel()
     
@@ -54,22 +54,22 @@ class TabsListTableViewController: UITableViewController {
             }
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        viewModel.saveTabsPosition(tabs: TabsList.tabs, sourceIndexPath.row, destinationIndexPath.row)
+        viewModel.saveTabsPosition(tabs: viewModel.tabs, sourceIndexPath.row, destinationIndexPath.row)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return TabsList.tabs.count
+        return viewModel.tabs.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TabItemTableViewCell.identifier, for: indexPath) as? TabItemTableViewCell else {return UITableViewCell()}
-        cell.configure(tab: TabsList.tabs[indexPath.row])
+        cell.configure(tab: viewModel.tabs[indexPath.row])
         return cell
     }
 }

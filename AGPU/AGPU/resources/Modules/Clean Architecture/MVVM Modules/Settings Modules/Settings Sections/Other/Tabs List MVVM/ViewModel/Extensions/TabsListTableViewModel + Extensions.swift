@@ -16,14 +16,14 @@ extension TabsListTableViewModel: ITabsListTableViewModel {
         let status = settingsManager.getUserStatus()
         let position = settingsManager.getTabsPosition()
         
-        TabsList.tabs[index].icon = status.icon
-        TabsList.tabs[index].name = status.name
+        tabs[index].icon = status.icon
+        tabs[index].name = status.name + "у"
         
-        for tab in TabsList.tabs {
+        for tab in tabs {
             
             for number in position {
-                let index = TabsList.tabs.firstIndex(of: tab)!
-                TabsList.tabs.swapAt(index, number)
+                let index = tabs.firstIndex(of: tab)!
+                tabs.swapAt(index, number)
             }
         }
         
