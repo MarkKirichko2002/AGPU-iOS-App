@@ -17,19 +17,23 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
                 self?.pairs = data.disciplines
                 if !data.disciplines.isEmpty {
                     self?.getImage(json: data) { image in
-                        let model = TimeTableDateModel(image: image, description: "\(self?.date ?? "") есть пары: \(self?.getPairsCount() ?? 0)")
+                        let model = TimeTableDateModel(id: data.id, date: self?.date ?? "", image: image, description: "\(self?.formattedDate() ?? "") пары: \(self?.getPairsCount() ?? 0)")
+                        self?.image = image
                         self?.timeTableHandler?(model)
                     }
                 } else {
-                    let model = TimeTableDateModel(image: UIImage(), description: "\(self?.date ?? "") нет пар")
-                    self?.timeTableHandler?(model)
+                    self?.getImage(json: data) { image in
+                        let model = TimeTableDateModel(id: data.id, date: self?.date ?? "", image: image, description: "\(self?.formattedDate() ?? "") нет пар")
+                        self?.image = image
+                        self?.timeTableHandler?(model)
+                    }
                 }
             case .failure(let error):
                 print(error)
             }
         }
     }
-    
+        
     func getImage(json: Codable, completion: @escaping(UIImage)->Void) {
         do {
             let json = try JSONEncoder().encode(json)
@@ -62,6 +66,11 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
         } else {
             return .systemGreen
         }
+    }
+    
+    func formattedDate()-> String {
+        let date = "\(dateManager.getCurrentDayOfWeek(date: date)) \(date)"
+        return date
     }
     
     func registerTimeTableHandler(block: @escaping (TimeTableDateModel) -> Void) {

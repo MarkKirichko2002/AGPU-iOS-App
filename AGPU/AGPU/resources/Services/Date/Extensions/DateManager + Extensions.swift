@@ -26,6 +26,7 @@ extension DateManager: DateManagerProtocol {
     
     func getCurrentDayOfWeek(date: String)-> String {
         let calendar = Calendar.current
+        dateFormatter.dateFormat = "dd.MM.yyyy"
         if let date = dateFormatter.date(from: date) {
             let dayOfWeek = calendar.component(.weekday, from: date)
             return daysOfWeek[dayOfWeek - 1]

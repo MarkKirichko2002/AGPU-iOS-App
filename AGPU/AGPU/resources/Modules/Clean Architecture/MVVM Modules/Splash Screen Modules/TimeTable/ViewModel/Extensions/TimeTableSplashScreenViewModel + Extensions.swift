@@ -19,11 +19,11 @@ extension TimeTableSplashScreenViewModel: ITimeTableSplashScreenViewModel {
                 self?.pairs = data.disciplines
                 if !data.disciplines.isEmpty {
                     self?.getImage(json: data) { image in
-                        let model = TimeTableDateModel(image: image, description: "Сегодня есть пары: \(self?.getPairsCount() ?? 0)")
+                        let model = TimeTableDateModel(id: "", date: "", image: image, description: "\(date) есть пары: \(self?.getPairsCount() ?? 0)")
                         self?.timeTableHandler?(model)
                     }
                 } else {
-                    let model = TimeTableDateModel(image: UIImage(), description: "Сегодня нет пар")
+                    let model = TimeTableDateModel(id: "", date: "", image: UIImage(), description: "\(date) нет пар")
                     self?.timeTableHandler?(model)
                 }
             case .failure(let error):

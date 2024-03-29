@@ -5,7 +5,7 @@
 //  Created by Марк Киричко on 24.02.2024.
 //
 
-import Foundation
+import UIKit
 
 class TimetableDateDetailViewModel {
 
@@ -15,9 +15,11 @@ class TimetableDateDetailViewModel {
     var id: String = ""
     var date: String = ""
     var owner: String = ""
+    var image: UIImage?
     
     // MARK: - сервисы
     let timeTableService = TimeTableService()
+    let dateManager = DateManager()
     
     // MARK: - Init
     init(id: String, date: String, owner: String) {
