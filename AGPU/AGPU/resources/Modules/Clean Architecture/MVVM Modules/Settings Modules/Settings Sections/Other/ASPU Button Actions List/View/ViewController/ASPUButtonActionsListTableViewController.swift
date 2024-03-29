@@ -1,5 +1,5 @@
 //
-//  DynamicButtonActionsListTableViewController.swift
+//  ASPUButtonActionsListTableViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 04.02.2024.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class DynamicButtonActionsListTableViewController: UITableViewController {
+class ASPUButtonActionsListTableViewController: UITableViewController {
 
-    private let viewModel = DynamicButtonActionsListViewModel()
+    private let viewModel = ASPUButtonActionsListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()

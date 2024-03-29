@@ -15,7 +15,7 @@ protocol SettingsListViewModelProtocol {
     func getSplashScreenInfo()-> String
     func getAppIconInfo()-> String
     func getAppThemeInfo()-> AppThemeModel
-    func getDynamicButtonActionInfo()-> DynamicButtonActions
+    func getDynamicButtonActionInfo()-> ASPUButtonActions
     func getAppVersion()-> String
     func observeOptionSelection()
 }

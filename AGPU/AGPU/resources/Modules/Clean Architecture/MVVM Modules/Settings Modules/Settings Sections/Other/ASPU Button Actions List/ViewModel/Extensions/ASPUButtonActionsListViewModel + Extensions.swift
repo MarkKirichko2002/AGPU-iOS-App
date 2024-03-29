@@ -1,5 +1,5 @@
 //
-//  DynamicButtonActionsListViewModel + Extensions.swift
+//  ASPUButtonActionsListViewModel + Extensions.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 04.02.2024.
@@ -7,20 +7,20 @@
 
 import Foundation
 
-// MARK: - DynamicButtonActionsListViewModelProtocol
-extension DynamicButtonActionsListViewModel: DynamicButtonActionsListViewModelProtocol {
+// MARK: - ASPUButtonActionsListViewModelProtocol
+extension ASPUButtonActionsListViewModel: ASPUButtonActionsListViewModelProtocol {
     
-    func actionItem(index: Int) -> DynamicButtonActions {
-        let action = DynamicButtonActions.allCases[index]
+    func actionItem(index: Int) -> ASPUButtonActions {
+        let action = ASPUButtonActions.allCases[index]
         return action
     }
     
     func actionItemsCount() -> Int {
-        return DynamicButtonActions.allCases.count
+        return ASPUButtonActions.allCases.count
     }
     
     func selectAction(index: Int) {
-        let savedAction = UserDefaults.loadData(type: DynamicButtonActions.self, key: "action") ?? .speechRecognition
+        let savedAction = UserDefaults.loadData(type: ASPUButtonActions.self, key: "action") ?? .speechRecognition
         let action = actionItem(index: index)
         if savedAction != action {
             UserDefaults.saveData(object: action, key: "action") {
@@ -33,7 +33,7 @@ extension DynamicButtonActionsListViewModel: DynamicButtonActionsListViewModelPr
     }
     
     func isActionSelected(index: Int) -> Bool {
-        let savedAction = UserDefaults.loadData(type: DynamicButtonActions.self, key: "action") ?? .speechRecognition
+        let savedAction = UserDefaults.loadData(type: ASPUButtonActions.self, key: "action") ?? .speechRecognition
         let action = actionItem(index: index)
         if savedAction == action {
             return true

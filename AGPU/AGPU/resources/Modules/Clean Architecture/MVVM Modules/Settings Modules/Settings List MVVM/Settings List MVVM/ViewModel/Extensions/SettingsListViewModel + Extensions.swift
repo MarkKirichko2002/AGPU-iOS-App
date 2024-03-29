@@ -75,8 +75,8 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         }
     }
     
-    func getDynamicButtonActionInfo()-> DynamicButtonActions {
-        let action = UserDefaults.loadData(type: DynamicButtonActions.self, key: "action") ?? .speechRecognition
+    func getDynamicButtonActionInfo()-> ASPUButtonActions {
+        let action = UserDefaults.loadData(type: ASPUButtonActions.self, key: "action") ?? .speechRecognition
         return action
     }
     

@@ -76,8 +76,8 @@ extension SettingsManager: SettingsManagerProtocol {
     }
     
     // MARK: - ASPU Button
-    func checkDynamicButtonOption()-> DynamicButtonActions {
-        let action = UserDefaults.loadData(type: DynamicButtonActions.self, key: "action") ?? .speechRecognition
+    func checkDynamicButtonOption()-> ASPUButtonActions {
+        let action = UserDefaults.loadData(type: ASPUButtonActions.self, key: "action") ?? .speechRecognition
         return action
     }
     

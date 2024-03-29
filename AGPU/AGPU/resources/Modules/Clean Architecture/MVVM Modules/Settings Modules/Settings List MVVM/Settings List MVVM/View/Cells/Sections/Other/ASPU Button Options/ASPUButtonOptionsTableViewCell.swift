@@ -1,5 +1,5 @@
 //
-//  DynamicButtonOptionsTableViewCell.swift
+//  ASPUButtonOptionsTableViewCell.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 04.02.2024.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class DynamicButtonOptionsTableViewCell: UITableViewCell {
+class ASPUButtonOptionsTableViewCell: UITableViewCell {
 
-    static let identifier = "DynamicButtonOptionsTableViewCell"
+    static let identifier = "ASPUButtonOptionsTableViewCell"
     
     @IBOutlet var OptionIcon: SpringImageView!
     @IBOutlet var TitleLabel: UILabel!
@@ -20,7 +20,7 @@ class DynamicButtonOptionsTableViewCell: UITableViewCell {
         TitleLabel.textColor = .label
     }
     
-    func configure(action: DynamicButtonActions) {
+    func configure(action: ASPUButtonActions) {
         TitleLabel.text = action.rawValue
     }
 }

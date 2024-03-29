@@ -53,7 +53,7 @@ final class SettingsListViewController: UIViewController {
         // Темы приложения
         tableView.register(UINib(nibName: AppThemesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppThemesTableViewCell.identifier)
         // ASPU Button
-        tableView.register(UINib(nibName: DynamicButtonOptionsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DynamicButtonOptionsTableViewCell.identifier)
+        tableView.register(UINib(nibName: ASPUButtonOptionsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ASPUButtonOptionsTableViewCell.identifier)
         // MARK: - О приложении
         // Фишки приложения
         tableView.register(UINib(nibName: AppFeaturesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppFeaturesTableViewCell.identifier)
