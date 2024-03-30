@@ -13,4 +13,7 @@ final class SettingsListViewModel: NSObject {
     
     var observation: NSKeyValueObservation?
     
+    // MARK: - сервисы
+    let settingsManager = SettingsManager()
+    
 }

@@ -75,11 +75,6 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         }
     }
     
-    func getDynamicButtonActionInfo()-> ASPUButtonActions {
-        let action = UserDefaults.loadData(type: ASPUButtonActions.self, key: "action") ?? .speechRecognition
-        return action
-    }
-    
     func getAppVersion()-> String {
         var appVersion = ""
         if let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {

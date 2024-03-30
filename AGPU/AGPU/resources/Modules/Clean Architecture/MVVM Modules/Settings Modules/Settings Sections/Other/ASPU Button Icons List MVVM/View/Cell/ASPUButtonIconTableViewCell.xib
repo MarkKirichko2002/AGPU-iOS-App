@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ASPUButtonIconTableViewCell" rowHeight="126" id="Nhq-pS-a5V" customClass="ASPUButtonIconTableViewCell" customModule="AGPU" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="388" height="126"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nhq-pS-a5V" id="Ahk-mK-DOB">
+                <rect key="frame" x="0.0" y="0.0" width="388" height="126"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon2" translatesAutoresizingMaskIntoConstraints="NO" id="WbL-JO-HQb" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
+                        <rect key="frame" x="10" y="10" width="100" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="E6H-6Y-8D9"/>
+                            <constraint firstAttribute="width" constant="100" id="nM6-9h-cuu"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ИПИМИФ" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdN-gR-43a">
+                        <rect key="frame" x="120" y="25" width="258" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="iRz-gN-hgz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="WbL-JO-HQb" secondAttribute="bottom" constant="10" id="8Nl-Yk-T0H"/>
+                    <constraint firstItem="WbL-JO-HQb" firstAttribute="top" secondItem="Ahk-mK-DOB" secondAttribute="top" constant="10" id="SyL-it-xPt"/>
+                    <constraint firstItem="rdN-gR-43a" firstAttribute="top" secondItem="Ahk-mK-DOB" secondAttribute="top" constant="25" id="awk-JM-xeY"/>
+                    <constraint firstItem="rdN-gR-43a" firstAttribute="leading" secondItem="WbL-JO-HQb" secondAttribute="trailing" constant="10" id="mMC-9q-Ezi"/>
+                    <constraint firstItem="WbL-JO-HQb" firstAttribute="leading" secondItem="Ahk-mK-DOB" secondAttribute="leading" constant="10" id="qpC-SA-iuk"/>
+                    <constraint firstAttribute="trailing" secondItem="rdN-gR-43a" secondAttribute="trailing" constant="10" id="qtK-t4-ywj"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="ASPUButtonIcon" destination="WbL-JO-HQb" id="Fty-jK-jjX"/>
+                <outlet property="ASPUButtonIconName" destination="rdN-gR-43a" id="zp8-w2-Xe9"/>
+            </connections>
+            <point key="canvasLocation" x="180.15267175572518" y="10.563380281690142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon2" width="300" height="320"/>
+    </resources>
+</document>

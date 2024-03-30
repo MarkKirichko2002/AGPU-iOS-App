@@ -1,5 +1,5 @@
 //
-//  ASPUButtonOptionsTableViewCell.swift
+//  ASPUButtonOptionTableViewCell.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 04.02.2024.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class ASPUButtonOptionsTableViewCell: UITableViewCell {
+class ASPUButtonOptionTableViewCell: UITableViewCell {
 
-    static let identifier = "ASPUButtonOptionsTableViewCell"
+    static let identifier = "ASPUButtonOptionTableViewCell"
     
     @IBOutlet var OptionIcon: SpringImageView!
     @IBOutlet var TitleLabel: UILabel!

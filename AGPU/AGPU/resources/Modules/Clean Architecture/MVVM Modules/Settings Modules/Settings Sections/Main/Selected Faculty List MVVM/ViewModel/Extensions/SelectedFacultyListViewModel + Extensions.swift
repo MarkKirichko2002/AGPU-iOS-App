@@ -40,6 +40,7 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
             } else {}
             
             UserDefaults.standard.setValue(nil, forKey: "icon")
+            UserDefaults.standard.setValue(nil, forKey: "icon name")
             UserDefaults.standard.setValue(nil, forKey: "cathedra")
             UserDefaults.standard.setValue(nil, forKey: "group")
             UserDefaults.standard.setValue(nil, forKey: "subgroup")
@@ -64,6 +65,7 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                 NotificationCenter.default.post(name: Notification.Name("icon"), object: faculty.icon)
             }
             UserDefaults.standard.setValue(faculty.icon, forKey: "icon")
+            UserDefaults.standard.setValue(faculty.abbreviation, forKey: "icon name")
         }
     }
     
@@ -74,6 +76,7 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                 NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
             }
             UserDefaults.standard.setValue(nil, forKey: "icon")
+            UserDefaults.standard.setValue(nil, forKey: "icon name")
         }
     }
     
@@ -85,7 +88,6 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                     var faculty: AGPUFacultyModel?
                     faculty = AGPUFaculties.faculties[index]
                     faculty = nil
-                    
                     UserDefaults.saveData(object: faculty, key: "faculty") {
                         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                             self.isChanged.toggle()
@@ -100,6 +102,7 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                     } else {}
                     
                     UserDefaults.standard.setValue(nil, forKey: "icon")
+                    UserDefaults.standard.setValue(nil, forKey: "icon name")
                     UserDefaults.standard.setValue(nil, forKey: "group")
                     UserDefaults.standard.setValue(nil, forKey: "subgroup")
                     UserDefaults.standard.setValue(nil, forKey: "cathedra")

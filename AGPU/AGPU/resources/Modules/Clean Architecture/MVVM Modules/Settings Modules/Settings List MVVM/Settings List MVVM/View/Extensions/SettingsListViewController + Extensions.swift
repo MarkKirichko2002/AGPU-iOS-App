@@ -70,8 +70,7 @@ extension SettingsListViewController: UITableViewDataSource {
                 cell.configure(theme: viewModel.getAppThemeInfo())
                 return cell
             } else {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: ASPUButtonOptionsTableViewCell.identifier, for: indexPath) as? ASPUButtonOptionsTableViewCell else {return UITableViewCell()}
-                cell.configure(action: viewModel.getDynamicButtonActionInfo())
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: ASPUButtonOptionTableViewCell.identifier, for: indexPath) as? ASPUButtonOptionTableViewCell else {return UITableViewCell()}
                 return cell
             }
         case 2:
@@ -180,7 +179,7 @@ extension SettingsListViewController: UITableViewDelegate {
             } else if indexPath.row == 6 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "button")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                    let vc = ASPUButtonActionsListTableViewController()
+                    let vc = ASPUButtonOptionsListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)

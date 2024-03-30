@@ -19,15 +19,23 @@ class ASPUButtonActionsListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Выберите действие"
-        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
-        closeButton.tintColor = .label
-        navigationItem.rightBarButtonItem = closeButton
+        
+        let titleView = CustomTitleView(image: "button", title: "Выберите действие", frame: .zero)
+        let button = UIButton()
+        button.tintColor = .label
+        button.setImage(UIImage(named: "back"), for: .normal)
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        
+        let backButton = UIBarButtonItem(customView: button)
+        
+        navigationItem.titleView = titleView
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
+        navigationItem.leftBarButtonItem = backButton
     }
     
-    @objc private func closeScreen() {
-        sendScreenWasClosedNotification()
-        dismiss(animated: true)
+    @objc private func back() {
+        navigationController?.popViewController(animated: true)
     }
     
     private func setUpTable() {
