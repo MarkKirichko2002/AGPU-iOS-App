@@ -39,23 +39,24 @@ extension ASPUButtonIconsListViewModel: IASPUButtonIconsListViewModel {
         let savedIcon = settingsManager.checkCurrentIcon()
         
         if savedIcon != icon.icon {
-            self.iconSelectedHandler?()
-            NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-            NotificationCenter.default.post(name: Notification.Name("icon"), object: icon.icon)
-            UserDefaults.standard.setValue(icon.icon, forKey: "icon")
-            UserDefaults.standard.setValue(icon.name, forKey: "icon name")
-            HapticsManager.shared.hapticFeedback()
-        } else if icon.id == 5 {
-            if let faculty = faculty {
+            if icon.id == 5 {
+                if let faculty = faculty {
+                    self.iconSelectedHandler?()
+                    NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+                    NotificationCenter.default.post(name: Notification.Name("icon"), object: faculty.icon)
+                    UserDefaults.standard.setValue(icon.icon, forKey: "icon")
+                    UserDefaults.standard.setValue(icon.name, forKey: "icon name")
+                    HapticsManager.shared.hapticFeedback()
+                } else {
+                    alertHandler?("Нет факультета", "Выберите свой факультет")
+                }
+            } else {
                 self.iconSelectedHandler?()
                 NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-                NotificationCenter.default.post(name: Notification.Name("icon"), object: faculty.icon)
+                NotificationCenter.default.post(name: Notification.Name("icon"), object: icon.icon)
                 UserDefaults.standard.setValue(icon.icon, forKey: "icon")
                 UserDefaults.standard.setValue(icon.name, forKey: "icon name")
                 HapticsManager.shared.hapticFeedback()
-            } else {
-                print("нет факультета")
-                alertHandler?("Нет факультета", "Выберите свой факультет")
             }
         }
     }
