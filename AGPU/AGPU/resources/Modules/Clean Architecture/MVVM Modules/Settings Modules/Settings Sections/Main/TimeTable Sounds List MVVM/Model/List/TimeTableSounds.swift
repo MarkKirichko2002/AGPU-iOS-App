@@ -9,9 +9,9 @@ import Foundation
 
 struct TimeTableSounds {
     static let sounds = [
-        TimeTableSoundModel(name: "звук часов", sound: "clock_sound"),
-        TimeTableSoundModel(name: "звук часов 2", sound: "clock_sound2"),
-        TimeTableSoundModel(name: "звук часов 3", sound: "clock_sound3"),
-        TimeTableSoundModel(name: "без звука", sound: ""),
+        TimeTableSoundModel(name: "Звук часов", sound: "clock_sound"),
+        TimeTableSoundModel(name: "Звук часов 2", sound: "clock_sound2"),
+        TimeTableSoundModel(name: "Звук часов 3", sound: "clock_sound3"),
+        TimeTableSoundModel(name: "Без звука", sound: ""),
     ]
 }

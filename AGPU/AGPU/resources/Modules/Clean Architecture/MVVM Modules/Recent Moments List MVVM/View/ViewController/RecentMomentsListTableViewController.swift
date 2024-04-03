@@ -94,8 +94,12 @@ final class RecentMomentsListTableViewController: UITableViewController {
     
     private func checkLastVideo() {
         viewModel.getLastVideo { videoURL in
-            HapticsManager.shared.hapticFeedback()
-            self.playVideo(url: videoURL)
+            if videoURL.contains("http") {
+                HapticsManager.shared.hapticFeedback()
+                self.playVideo(url: videoURL)
+            } else {
+                self.playLocalVideo(video: videoURL)
+            }
         }
     }
     

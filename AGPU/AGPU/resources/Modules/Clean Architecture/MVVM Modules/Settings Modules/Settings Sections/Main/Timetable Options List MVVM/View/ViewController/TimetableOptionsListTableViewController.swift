@@ -10,7 +10,7 @@ import UIKit
 class TimetableOptionsListTableViewController: UITableViewController {
     
     // MARK: - сервисы
-    private let viewModel = TimetableSettingsListViewModel()
+    private let viewModel = TimetableOptionsListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,31 +38,34 @@ class TimetableOptionsListTableViewController: UITableViewController {
     }
     
     private func bindViewModel() {
-        viewModel.getAllData()
-        viewModel.observeOptionSelection()
         viewModel.registerDataChangedHandler {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
+        viewModel.getAllData()
+        viewModel.observeOptionSelection()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        HapticsManager.shared.hapticFeedback()
         switch indexPath.row {
         case 0:
             let vc = viewModel.currentOwnerScreen()
             self.navigationController?.pushViewController(vc, animated: true)
+            HapticsManager.shared.hapticFeedback()
         case 1:
             let vc = SavedSubGroupTableViewController()
             self.navigationController?.pushViewController(vc, animated: true)
+            HapticsManager.shared.hapticFeedback()
         case 2:
             let vc = SavedPairTypeTableViewController(type: viewModel.getSavedPairType())
             self.navigationController?.pushViewController(vc, animated: true)
+            HapticsManager.shared.hapticFeedback()
         case 3:
             let vc = TimeTableSoundsListTableViewController()
             self.navigationController?.pushViewController(vc, animated: true)
+            HapticsManager.shared.hapticFeedback()
         default:
             break
         }

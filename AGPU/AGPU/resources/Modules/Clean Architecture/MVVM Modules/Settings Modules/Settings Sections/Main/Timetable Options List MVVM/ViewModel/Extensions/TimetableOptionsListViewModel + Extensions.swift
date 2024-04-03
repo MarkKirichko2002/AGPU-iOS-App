@@ -1,5 +1,5 @@
 //
-//  TimetableSettingsListViewModel + Extensions.swift
+//  TimetableOptionsListViewModel + Extensions.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 19.11.2023.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-// MARK: - TimetableSettingsListViewModelProtocol
-extension TimetableSettingsListViewModel: TimetableSettingsListViewModelProtocol {
+// MARK: - ITimetableOptionsListViewModel
+extension TimetableOptionsListViewModel: ITimetableOptionsListViewModel {
     
     func getAllData() {
         options[0].icon = currentOwnerIcon()

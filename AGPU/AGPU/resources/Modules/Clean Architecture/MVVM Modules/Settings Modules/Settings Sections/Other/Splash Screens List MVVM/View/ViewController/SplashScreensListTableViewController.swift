@@ -32,7 +32,7 @@ class SplashScreensListTableViewController: UITableViewController {
     }
 
     private func setUpTable() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(SplashScreenTableViewCell.self, forCellReuseIdentifier: SplashScreenTableViewCell.identifier)
     }
     
     private func bindViewModel() {
@@ -65,12 +65,18 @@ class SplashScreensListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.tintColor = .systemGreen
-        cell.textLabel?.text = SplashScreenOptions.allCases[indexPath.row].rawValue
-        cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
-        cell.textLabel?.textColor = viewModel.isCurrentSplashScreenOption(index: indexPath.row) ? .systemGreen : .label
-        cell.accessoryType = viewModel.isCurrentSplashScreenOption(index: indexPath.row) ? .checkmark : .none
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SplashScreenTableViewCell.identifier, for: indexPath) as? SplashScreenTableViewCell else {return UITableViewCell()}
+        cell.delegate = self
+        let screen = SplashScreenOptions.allCases[indexPath.row]
+        cell.configure(screen: screen, viewModel: viewModel)
         return cell
+    }
+}
+
+// MARK: - ISplashScreenTableViewCell
+extension SplashScreensListTableViewController: ISplashScreenTableViewCell {
+    
+    func infoWasTapped(video: String) {
+        self.playLocalVideo(video: video)
     }
 }

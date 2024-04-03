@@ -112,6 +112,7 @@ class TimetableDateDetailViewController: UIViewController {
     @objc private func share() {
         guard let image = viewModel.image else {return}
         self.ShareImage(image: image, title: id, text: viewModel.formattedDate())
+        HapticsManager.shared.hapticFeedback()
     }
     
     private func setUpTap() {

@@ -59,10 +59,6 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-            let watchVideoAction = UIAction(title: "Смотреть видео", image: UIImage(named: "play")) { _ in
-                self.playVideo(url: self.viewModel.facultyItem(index: indexPath.row).videoURL)
-            }
-            
             let contactsAction = UIAction(title: "Контакты", image: UIImage(named: "contacts")) { _ in
                 self.goToWeb(url: self.viewModel.facultyItem(index: indexPath.row).contactsURL, image: self.viewModel.facultyItem(index: indexPath.row).icon, title: "Контакты \(self.viewModel.facultyItem(index: indexPath.row).abbreviation)", isSheet: false)
             }
@@ -83,7 +79,6 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
                 infoAction,
                 cathedraAction,
                 groupsAction,
-                watchVideoAction,
                 contactsAction,
                 emailAction,
                 enterAction,

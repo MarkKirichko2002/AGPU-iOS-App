@@ -48,7 +48,7 @@ class RecentTimeTableDayListTableViewController: UIViewController {
     private func setUpNavigation() {
         navigationItem.title = "\(date) (\(id))"
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
-        let shareButton = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(refreshData))
+        let shareButton = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(shareImage))
         closeButton.tintColor = .label
         shareButton.tintColor = .label
         navigationItem.leftBarButtonItem = closeButton
@@ -60,7 +60,7 @@ class RecentTimeTableDayListTableViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @objc private func refreshData() {
+    @objc private func shareImage() {
         do {
             let json = try JSONEncoder().encode(self.timetable)
             let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: self.date)
@@ -70,6 +70,7 @@ class RecentTimeTableDayListTableViewController: UIViewController {
         } catch {
             print(error.localizedDescription)
         }
+        HapticsManager.shared.hapticFeedback()
     }
     
     @objc private func refreshTimetable() {

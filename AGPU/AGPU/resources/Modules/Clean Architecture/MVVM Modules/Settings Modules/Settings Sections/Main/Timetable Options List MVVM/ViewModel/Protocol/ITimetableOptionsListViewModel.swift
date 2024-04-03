@@ -1,5 +1,5 @@
 //
-//  TimetableSettingsListViewModelProtocol.swift
+//  ITimetableOptionsListViewModel.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 19.11.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol TimetableSettingsListViewModelProtocol {
+protocol ITimetableOptionsListViewModel {
     func getAllData()
     func getSavedFaculty()-> AGPUFacultyModel?
     func getSavedOwner()-> String

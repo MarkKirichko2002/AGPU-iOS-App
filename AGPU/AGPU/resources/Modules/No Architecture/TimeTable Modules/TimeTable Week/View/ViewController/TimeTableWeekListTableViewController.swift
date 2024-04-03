@@ -14,6 +14,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     var owner: String = ""
     var week: WeekModel!
     var timetable = [TimeTable]()
+    var currentDate = ""
     
     // MARK: - сервисы
     let service = TimeTableService()
@@ -60,7 +61,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         
         // список дней
         let days = UIAction(title: "День") { _ in
-            let vc = WeekDaysListTableViewController(id: self.id, owner: self.owner, week: self.week, timetable: self.timetable)
+            let vc = WeekDaysListTableViewController(id: self.id, owner: self.owner, week: self.week, timetable: self.timetable, currentDate: self.currentDate)
             vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -206,6 +207,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
                     DispatchQueue.main.async {
                         let indexPath = IndexPath(row: 0, section: index)
                         self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                        self.currentDate = timetable.date
                     }
                 }
             }
@@ -238,6 +240,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
 extension TimeTableWeekListTableViewController: WeekDaysListTableViewControllerDelegate {
     
     func dateWasSelected(index: Int) {
+        currentDate = timetable[index].date
         tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
     }
 }

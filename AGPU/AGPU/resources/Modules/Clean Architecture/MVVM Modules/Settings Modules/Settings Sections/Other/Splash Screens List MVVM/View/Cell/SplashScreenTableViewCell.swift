@@ -1,26 +1,26 @@
 //
-//  DayTableViewCell.swift
+//  SplashScreenTableViewCell.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 04.03.2024.
+//  Created by Марк Киричко on 03.04.2024.
 //
 
 import UIKit
 import SnapKit
 
-protocol IDayTableViewCell: AnyObject {
-    func dateWasSelected(date: String)
+protocol ISplashScreenTableViewCell: AnyObject {
+    func infoWasTapped(video: String)
 }
 
-class DayTableViewCell: UITableViewCell {
+class SplashScreenTableViewCell: UITableViewCell {
     
-    static let identifier = "DayTableViewCell"
+    static let identifier = "SplashScreenTableViewCell"
     
-    weak var delegate: IDayTableViewCell?
+    weak var delegate: ISplashScreenTableViewCell?
     
-    var date: String = ""
+    var video: String = ""
     
-    let dayName: UILabel = {
+    let splashScreenName: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .black)
         return label
@@ -44,14 +44,14 @@ class DayTableViewCell: UITableViewCell {
     
     private func setUpUI() {
         tintColor = .systemGreen
-        contentView.addSubviews(dayName, infoButton)
+        contentView.addSubviews(splashScreenName, infoButton)
         infoButton.addTarget(self, action: #selector(showInfo), for: .touchUpInside)
         makeConstraints()
     }
     
     private func makeConstraints() {
         
-        dayName.snp.makeConstraints { maker in
+        splashScreenName.snp.makeConstraints { maker in
             maker.left.equalToSuperview().inset(20)
             maker.top.equalToSuperview().inset(10)
             maker.bottom.equalToSuperview().inset(10)
@@ -64,19 +64,16 @@ class DayTableViewCell: UITableViewCell {
         }
     }
     
-    func configure(date: String, info: String, currentDate: String) {
-        let formattedDate = date.components(separatedBy: " ").last!
-        print("\(currentDate) \(date)")
-        if currentDate == formattedDate {
-            dayName.text = "\(date) \(info) ✅"
-        } else {
-            dayName.text = "\(date) \(info)"
-        }
-        self.date = date
+    func configure(screen: SplashScreenOptions, viewModel: SplashScreensListViewModel) {
+        let index = SplashScreenOptions.allCases.firstIndex(of: screen)!
+        let isSelected = viewModel.isCurrentSplashScreenOption(index: index)
+        splashScreenName.text = isSelected ? "\(screen.rawValue) ✅" : screen.rawValue
+        splashScreenName.textColor = isSelected ? .systemGreen : .label
+        self.video = screen.video
     }
     
     @objc private func showInfo() {
         HapticsManager.shared.hapticFeedback()
-        delegate?.dateWasSelected(date: date)
+        delegate?.infoWasTapped(video: video)
     }
 }

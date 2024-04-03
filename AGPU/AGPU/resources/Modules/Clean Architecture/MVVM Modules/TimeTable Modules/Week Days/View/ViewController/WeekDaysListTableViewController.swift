@@ -15,15 +15,17 @@ class WeekDaysListTableViewController: UITableViewController {
 
     private var id = ""
     private var owner = ""
+    private var currentDate = ""
     
     weak var delegate: WeekDaysListTableViewControllerDelegate?
     
     private var viewModel: WeekDaysListViewModel
     
     // MARK: - Init
-    init(id: String, owner: String, week: WeekModel, timetable: [TimeTable]) {
+    init(id: String, owner: String, week: WeekModel, timetable: [TimeTable], currentDate: String) {
         self.id = id
         self.owner = owner
+        self.currentDate = currentDate
         self.viewModel = WeekDaysListViewModel(id: id, owner: owner, week: week, timetable: timetable)
         super.init(nibName: nil, bundle: nil)
     }
@@ -70,6 +72,7 @@ class WeekDaysListTableViewController: UITableViewController {
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
             self.delegate?.dateWasSelected(index: indexPath.row)
         }
+        HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -83,7 +86,7 @@ class WeekDaysListTableViewController: UITableViewController {
         let day = viewModel.days[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DayTableViewCell.identifier, for: indexPath) as? DayTableViewCell else {return UITableViewCell()}
         cell.delegate = self
-        cell.configure(date: "\(day.dayOfWeek): \(day.date)", info: "(\(day.info))")
+        cell.configure(date: "\(day.dayOfWeek): \(day.date)", info: "(\(day.info))", currentDate: currentDate)
         cell.dayName.textColor = viewModel.timeTableColor(index: indexPath.row)
         return cell
     }
@@ -94,7 +97,6 @@ extension WeekDaysListTableViewController: IDayTableViewCell {
     
     func dateWasSelected(date: String) {
         let date = date.components(separatedBy: " ").last!
-        print(date)
         let vc = RecentTimeTableDayListTableViewController(id: id, date: date, owner: owner)
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen

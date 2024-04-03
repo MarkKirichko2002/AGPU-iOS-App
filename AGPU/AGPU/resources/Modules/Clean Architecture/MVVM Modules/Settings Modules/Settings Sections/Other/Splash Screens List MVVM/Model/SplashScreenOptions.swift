@@ -18,4 +18,29 @@ enum SplashScreenOptions: String, CaseIterable, Codable {
     case custom = "Свой"
     case random = "Рандом"
     case none = "Без заставки"
+    
+    var video: String {
+        switch self {
+        case .regular:
+            return "regular"
+        case .status:
+            return "status"
+        case .faculty:
+            return "faculty"
+        case .newyear:
+            return "new year"
+        case .weather:
+            return "weather"
+        case .news:
+            return "news"
+        case .timetable:
+            return "timetable"
+        case .custom:
+            return "custom"
+        case .random:
+            return ""
+        case .none:
+            return ""
+        }
+    }
 }

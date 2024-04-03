@@ -74,7 +74,7 @@ class DaysListTableViewController: UITableViewController {
         let day = DaysList.days[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DayTableViewCell.identifier, for: indexPath) as? DayTableViewCell else {return UITableViewCell()}
         cell.delegate = self
-        cell.configure(date: "\(day.name): \(day.dayOfWeek) \(day.date)", info: "(\(day.info))")
+        cell.configure(date: "\(day.name): \(day.dayOfWeek) \(day.date)", info: "(\(day.info))", currentDate: "")
         cell.dayName.textColor = viewModel.timeTableColor(index: indexPath.row)
         return cell
     }
