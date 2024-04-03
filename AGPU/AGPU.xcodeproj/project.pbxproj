@@ -466,6 +466,7 @@
 		82F98B342B1199B300137D9A /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F98B332B1199B300137D9A /* WeatherManager.swift */; };
 		82F98B362B119A0200137D9A /* WeatherManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F98B352B119A0200137D9A /* WeatherManager + Extensions.swift */; };
 		82FB5B642A7A8FF600728980 /* InteractiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FB5B632A7A8FF600728980 /* InteractiveView.swift */; };
+		82FC87F12BBDDFC600A2EF59 /* DocumentsListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FC87F02BBDDFC600A2EF59 /* DocumentsListTableViewController + Extensions.swift */; };
 		82FD79D02B9267F000E0DE61 /* LocationAppsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FD79CF2B9267F000E0DE61 /* LocationAppsViewController.swift */; };
 		82FEA7AE2A7ED5BB00863453 /* AGPUBuildingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FEA7AD2A7ED5BB00863453 /* AGPUBuildingType.swift */; };
 		F1C2042A586A8CE8FF71BB78 /* Pods_AGPU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC70557E4368BEA941B2D453 /* Pods_AGPU.framework */; };
@@ -937,6 +938,7 @@
 		82F98B332B1199B300137D9A /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		82F98B352B119A0200137D9A /* WeatherManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherManager + Extensions.swift"; sourceTree = "<group>"; };
 		82FB5B632A7A8FF600728980 /* InteractiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveView.swift; sourceTree = "<group>"; };
+		82FC87F02BBDDFC600A2EF59 /* DocumentsListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentsListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		82FD79CF2B9267F000E0DE61 /* LocationAppsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAppsViewController.swift; sourceTree = "<group>"; };
 		82FEA7AD2A7ED5BB00863453 /* AGPUBuildingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingType.swift; sourceTree = "<group>"; };
 		EC70557E4368BEA941B2D453 /* Pods_AGPU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AGPU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1242,6 +1244,7 @@
 			children = (
 				8209A0B12B838EEB0013371D /* ViewController */,
 				8209A0B42B839BFC0013371D /* Cell */,
+				82FC87EF2BBDDFB200A2EF59 /* Extensions */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6976,6 +6979,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		82FC87EF2BBDDFB200A2EF59 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82FC87F02BBDDFC600A2EF59 /* DocumentsListTableViewController + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		82FD79CE2B92678000E0DE61 /* Location Apps */ = {
 			isa = PBXGroup;
 			children = (
@@ -7296,6 +7307,7 @@
 				82426C742A71476D00D5AA57 /* ForEveryStatusModel.swift in Sources */,
 				82426C8D2A71D26100D5AA57 /* ForEmployeeSections.swift in Sources */,
 				82BC2F442A8EFD5500ADB239 /* NewsCategoriesListViewModelProtocol.swift in Sources */,
+				82FC87F12BBDDFC600A2EF59 /* DocumentsListTableViewController + Extensions.swift in Sources */,
 				8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */,
 				82184D912B7BDA5A00F2588E /* LocationDetailWeatherViewModel.swift in Sources */,
 				822605F82A8532E20055925F /* RecentMomentsListViewModel.swift in Sources */,

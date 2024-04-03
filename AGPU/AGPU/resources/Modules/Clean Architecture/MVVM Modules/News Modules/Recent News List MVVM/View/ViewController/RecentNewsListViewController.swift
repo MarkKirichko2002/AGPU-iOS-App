@@ -23,6 +23,8 @@ final class RecentNewsListViewController: UIViewController {
         return collectionView
     }()
     
+    private let noNewsLabel = UILabel()
+    
     private let spinner = UIActivityIndicatorView(style: .large)
     
     override func viewDidLoad() {
@@ -30,6 +32,7 @@ final class RecentNewsListViewController: UIViewController {
         setUpNavigation()
         setUpCollectionView()
         setUpIndicatorView()
+        setUpLabel()
         bindViewModel()
     }
     
@@ -62,11 +65,28 @@ final class RecentNewsListViewController: UIViewController {
         spinner.startAnimating()
     }
     
+    private func setUpLabel() {
+        view.addSubview(noNewsLabel)
+        noNewsLabel.text = "Нет новостей"
+        noNewsLabel.font = .systemFont(ofSize: 18, weight: .medium)
+        noNewsLabel.isHidden = true
+        noNewsLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            noNewsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            noNewsLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    
     private func bindViewModel() {
         viewModel.registerDataChangedHandler {
             DispatchQueue.main.async {
                 self.spinner.stopAnimating()
                 self.collectionView.reloadData()
+            }
+            if !self.viewModel.news.isEmpty {
+                self.noNewsLabel.isHidden = true
+            } else {
+                self.noNewsLabel.isHidden = false
             }
         }
         viewModel.getNews()

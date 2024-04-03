@@ -15,6 +15,7 @@ extension CalendarViewController: FSCalendarDelegate {
         let vc = TimetableDateDetailViewController(id: self.id, date: date, owner: self.owner)
         vc.modalPresentationStyle = .fullScreen
         vc.delegate = self
+        HapticsManager.shared.hapticFeedback()
         present(vc, animated: true)
     }
 }
