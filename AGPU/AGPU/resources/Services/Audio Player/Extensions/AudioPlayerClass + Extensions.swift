@@ -11,15 +11,16 @@ import AVFoundation
 extension AudioPlayerClass: AudioPlayerClassProtocol {
     
     func playSound(sound: String, isPlaying: Bool) {
-        
-        guard let soundURL = Bundle.main.url(forResource: sound, withExtension: "mp3") else {return}
-        do {
-            self.player = try AVAudioPlayer(contentsOf: soundURL)
-            self.isPlaying = isPlaying
-            player?.delegate = self
-            player?.play()
-        } catch {
-            print(error)
+        if sound != "" {
+            guard let soundURL = Bundle.main.url(forResource: sound, withExtension: "mp3") else {return}
+            do {
+                self.player = try AVAudioPlayer(contentsOf: soundURL)
+                self.isPlaying = isPlaying
+                player?.delegate = self
+                player?.play()
+            } catch {
+                print(error)
+            }
         }
     }
     

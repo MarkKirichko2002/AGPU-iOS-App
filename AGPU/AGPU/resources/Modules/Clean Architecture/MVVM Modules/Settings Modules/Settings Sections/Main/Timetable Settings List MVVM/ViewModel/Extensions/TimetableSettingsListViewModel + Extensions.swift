@@ -49,19 +49,8 @@ extension TimetableSettingsListViewModel: TimetableSettingsListViewModelProtocol
     }
     
     func currentOwnerScreen()-> UIViewController {
-        let owner = UserDefaults.standard.object(forKey: "recentOwner") as? String ?? "GROUP"
         let searchVC = TimeTableSearchListTableViewController()
         searchVC.isSettings = true
-        if owner == "GROUP" {
-            if let faculty = getSavedFaculty() {
-                let vc = FacultyGroupsListTableViewController(faculty: faculty)
-                return vc
-            }
-        } else if owner == "TEACHER" {
-            return searchVC
-        } else if owner == "CLASSROOM" {
-            return searchVC
-        }
         return searchVC
     }
     

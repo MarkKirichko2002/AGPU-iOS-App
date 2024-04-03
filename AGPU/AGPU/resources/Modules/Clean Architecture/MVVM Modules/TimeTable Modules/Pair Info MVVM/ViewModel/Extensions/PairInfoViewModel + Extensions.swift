@@ -142,7 +142,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         components.minute = Int(endHour)
         
         AudioPlayerClass.shared.stopSound()
-        AudioPlayerClass.shared.playSound(sound: "clock_sound", isPlaying: true)
+        AudioPlayerClass.shared.playSound(sound: sound, isPlaying: true)
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             
@@ -187,7 +187,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         
         AudioPlayerClass.shared.stopSound()
         Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
-            AudioPlayerClass.shared.playSound(sound: "clock_sound", isPlaying: true)
+            AudioPlayerClass.shared.playSound(sound: self.sound, isPlaying: true)
         }
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
@@ -226,7 +226,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         let calendar = Calendar.current
         
         AudioPlayerClass.shared.stopSound()
-        AudioPlayerClass.shared.playSound(sound: "clock_sound", isPlaying: true)
+        AudioPlayerClass.shared.playSound(sound: sound, isPlaying: true)
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             

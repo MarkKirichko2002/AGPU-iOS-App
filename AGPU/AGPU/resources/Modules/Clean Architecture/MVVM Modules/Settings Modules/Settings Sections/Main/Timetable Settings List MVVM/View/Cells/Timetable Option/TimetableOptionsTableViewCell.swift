@@ -16,7 +16,11 @@ class TimetableOptionsTableViewCell: UITableViewCell {
     
     func configure(option: TimetableSettingsOptionModel) {
         OptionIcon.image = UIImage(named: option.icon)
-        OptionName.text = "\(option.name) (\(option.info))"
+        if option.info != "" {
+            OptionName.text = "\(option.name) (\(option.info))"
+        } else {
+            OptionName.text = option.name
+        }
     }
     
     override func awakeFromNib() {

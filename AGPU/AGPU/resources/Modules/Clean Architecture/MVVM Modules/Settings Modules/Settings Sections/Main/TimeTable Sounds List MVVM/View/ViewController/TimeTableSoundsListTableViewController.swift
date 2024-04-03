@@ -1,28 +1,32 @@
 //
-//  SavedSubGroupTableViewController.swift
+//  TimeTableSoundsListTableViewController.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 07.08.2023.
+//  Created by Марк Киричко on 02.04.2024.
 //
 
 import UIKit
 
-class SavedSubGroupTableViewController: UITableViewController {
+class TimeTableSoundsListTableViewController: UITableViewController {
 
     // MARK: - сервисы
-    private let viewModel = SavedSubGroupViewModel()
+    private let viewModel = TimeTableSoundsListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         setUpNavigation()
+        setUpTable()
         bindViewModel()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        viewModel.stopSound()
+    }
+    
     private func setUpNavigation() {
+        let titleView = CustomTitleView(image: "sound", title: "Звуки", frame: .zero)
         
-        let titleView = CustomTitleView(image: "group icon", title: "Подгруппы", frame: .zero)
-       
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
         
@@ -40,30 +44,33 @@ class SavedSubGroupTableViewController: UITableViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    private func setUpTable() {
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    }
+    
     private func bindViewModel() {
-        viewModel.registerChangedHandler {
+        viewModel.registerDataChangedHandler {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.selectSound(index: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
-        viewModel.selectSubGroup(index: indexPath.row)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfSubGroups()
+        return viewModel.numberOfItems()
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.tintColor = .systemGreen
-        cell.textLabel?.text = viewModel.subgroupItem(index: indexPath.row).name
+        cell.textLabel?.text = viewModel.soundItem(index: indexPath.row).name
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
-        cell.textLabel?.textColor = viewModel.isSubGroupSelected(index: indexPath.row) ? .systemGreen : .label
-        cell.accessoryType = viewModel.isSubGroupSelected(index: indexPath.row) ? .checkmark : .none
+        cell.accessoryType = viewModel.isSoundSelected(index: indexPath.row) ? .checkmark : .none
         return cell
     }
 }

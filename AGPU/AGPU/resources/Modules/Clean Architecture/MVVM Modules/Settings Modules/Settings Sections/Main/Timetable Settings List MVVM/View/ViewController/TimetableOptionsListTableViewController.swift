@@ -60,18 +60,21 @@ class TimetableOptionsListTableViewController: UITableViewController {
         case 2:
             let vc = SavedPairTypeTableViewController(type: viewModel.getSavedPairType())
             self.navigationController?.pushViewController(vc, animated: true)
+        case 3:
+            let vc = TimeTableSoundsListTableViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
-        case 0,1,2:
+        case 0,1,2,3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TimetableOptionsTableViewCell.identifier, for: indexPath) as? TimetableOptionsTableViewCell else {return UITableViewCell()}
             cell.configure(option: viewModel.options[indexPath.row])
             return cell
