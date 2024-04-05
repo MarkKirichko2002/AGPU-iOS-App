@@ -76,6 +76,13 @@ final class NewsListViewController: UIViewController {
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
         }
+        let filterOptions = UIAction(title: "Фильтрация") { _ in
+            print(self.viewModel.option)
+            let vc = NewsOptionsFilterListTableViewController(option: self.viewModel.option)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
         let randomAction = UIAction(title: "Рандомайзер") { _ in
             let vc = NewsCategoriesRandomizerViewController(category: self.viewModel.abbreviation)
             vc.modalPresentationStyle = .fullScreen
@@ -88,7 +95,7 @@ final class NewsListViewController: UIViewController {
             self.navigationItem.title = "Загрузка новостей..."
         }
         
-        viewModel.getNewsByCurrentType()
+        viewModel.checkSettings()
         
         viewModel.registerCategoryChangedHandler { [weak self] abbreviation in
             
@@ -126,7 +133,14 @@ final class NewsListViewController: UIViewController {
                 self.goToWeb(url: self.viewModel.makeUrlForCurrentWebPage(), image: "online", title: "Новости", isSheet: false)
             }
             
-            menu = UIMenu(title: "Новости", children: [categoriesAction, pagesAction, webAction, recentNews, randomAction])
+            menu = UIMenu(title: "Новости", children: [
+                categoriesAction,
+                pagesAction,
+                webAction,
+                recentNews,
+                filterOptions,
+                randomAction
+            ])
             options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
             options.tintColor = .label
             
@@ -139,5 +153,6 @@ final class NewsListViewController: UIViewController {
         
         viewModel.observeCategoryChanges()
         viewModel.observePageChanges()
+        viewModel.observeFilterOption()
     }
 }

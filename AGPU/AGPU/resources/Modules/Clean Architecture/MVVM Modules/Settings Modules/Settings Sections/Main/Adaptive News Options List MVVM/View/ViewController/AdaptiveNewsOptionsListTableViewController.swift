@@ -22,6 +22,7 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
     private func setUpTable() {
         tableView.register(UINib(nibName: SavedNewsCategoryOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SavedNewsCategoryOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: AdaptToWebOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AdaptToWebOptionTableViewCell.identifier)
+        tableView.register(UINib(nibName: ShowOnlyDailyNewsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ShowOnlyDailyNewsTableViewCell.identifier)
     }
     
     private func setUpNavigation() {
@@ -58,7 +59,7 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -66,8 +67,11 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SavedNewsCategoryOptionTableViewCell.identifier, for: indexPath) as? SavedNewsCategoryOptionTableViewCell else {return UITableViewCell()}
             cell.configure(category: viewModel.getSavedNewsCategoryInfo())
             return cell
-        } else {
+        } else if indexPath.row == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AdaptToWebOptionTableViewCell.identifier, for: indexPath) as? AdaptToWebOptionTableViewCell else {return UITableViewCell()}
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ShowOnlyDailyNewsTableViewCell.identifier, for: indexPath) as? ShowOnlyDailyNewsTableViewCell else {return UITableViewCell()}
             return cell
         }
     }

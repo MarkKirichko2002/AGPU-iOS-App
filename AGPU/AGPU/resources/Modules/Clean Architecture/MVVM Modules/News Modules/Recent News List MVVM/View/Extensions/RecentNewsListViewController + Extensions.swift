@@ -29,7 +29,7 @@ extension RecentNewsListViewController: UICollectionViewDelegate {
                         point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
-            let resetAction = UIAction(title: "Сбросить позицию", image: UIImage(named: "restart")) { _ in
+            let resetAction = UIAction(title: "Сбросить позицию", image: UIImage(named: "refresh")) { _ in
                 let alertVC = UIAlertController(title: "Сбросить позицию чтения", message: "Вы уверены что хотите сбросить позицию чтения?", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "ОК", style: .default) { _ in
                     self.viewModel.resetProgress(id: indexPath.row)
