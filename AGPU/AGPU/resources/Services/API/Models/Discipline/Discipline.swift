@@ -75,21 +75,21 @@ enum PairType: String, CaseIterable, Codable {
         case .lab:
             return UIColor(named: "lab")!
         case .hol:
-            return UIColor.label
+            return UIColor.white
         case .cred:
-            return UIColor.label
+            return UIColor.white
         case .fepo:
-            return UIColor.label
+            return UIColor.white
         case .cons:
-            return UIColor.label
+            return UIColor.white
         case .cours:
-            return UIColor.label
+            return UIColor.white
         case .none:
-            return UIColor.label
+            return UIColor.white
         case .leftToday:
-            return UIColor.label
+            return UIColor.white
         case .all:
-            return UIColor.label
+            return UIColor.white
         }
     }
 }

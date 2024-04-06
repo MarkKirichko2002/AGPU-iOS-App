@@ -22,10 +22,14 @@ extension NewsOptionsFilterListViewModel: INewsOptionsFilterListViewModel {
     
     func chooseOption(index: Int) {
         let item = optionItem(index: index)
-        option = item
-        optionSelectedHandler?()
-        HapticsManager.shared.hapticFeedback()
-        NotificationCenter.default.post(name: Notification.Name("news filter option"), object: item)
+        if option != item {
+            option = item
+            optionSelectedHandler?()
+            HapticsManager.shared.hapticFeedback()
+            NotificationCenter.default.post(name: Notification.Name("news filter option"), object: item)
+        } else {
+            print("уже выбрана")
+        }
     }
     
     func isCurrentOption(index: Int)-> Bool {

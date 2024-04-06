@@ -12,7 +12,7 @@ extension CalendarViewModel: CalendarViewModelProtocol {
                 
     func compareDates(date1: String, date2: Date)-> UIColor? {
         
-        let date = dateManager.getDateFromString(str: date1)
+        let date = dateManager.getDateFromString(str: date1, withTime: false)
         
         if let selectedDate = date, Calendar.current.isDate(date2, inSameDayAs: selectedDate) {
               return UIColor.systemBlue
