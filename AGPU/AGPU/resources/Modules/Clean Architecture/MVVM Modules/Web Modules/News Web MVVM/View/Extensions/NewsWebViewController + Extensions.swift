@@ -15,6 +15,9 @@ extension NewsWebViewController: UIScrollViewDelegate {
         let yOffset = scrollView.contentOffset.y
         if !decelerate {
             viewModel.saveArticlePosition(position: yOffset)
+            if let url = WVWEBview.url?.absoluteString {
+                self.viewModel.saveCurrentWebArticle(url: url, position: scrollView.contentOffset)
+            }
             print("scrolling...")
         }
     }
