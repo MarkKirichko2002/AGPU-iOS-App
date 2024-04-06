@@ -82,6 +82,8 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
     
     func cancelFaculty(index: Int) {
         
+        let icon = UserDefaults.standard.string(forKey: "icon")
+        
         if isFacultySelected(index: index) {
             if let data = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
                 if data.id == AGPUFaculties.faculties[index].id && data.isSelected {
@@ -109,8 +111,10 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                     
                     NotificationCenter.default.post(name: Notification.Name("category"), object: "-")
                     
-                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                        NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
+                    if icon != faculty?.icon {
+                        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                            NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
+                        }
                     }
                     
                     NotificationCenter.default.post(name: Notification.Name("group changed"), object: nil)
