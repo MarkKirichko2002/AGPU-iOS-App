@@ -18,7 +18,7 @@ class SelectedFacultyOptionTableViewCell: UITableViewCell {
         if let faculty = faculty {
             TitleLabel.text = "Ваш факультет (\(faculty.abbreviation))"
         } else {
-            TitleLabel.text = "нет факультета"
+            TitleLabel.text = "Нет факультета"
         }
     }
     

@@ -26,7 +26,7 @@ extension ASPUButtonIconsListViewModel: IASPUButtonIconsListViewModel {
             self.faculty = faculty
             self.dataChangedHandler?()
         } else {
-            ASPUButtonIcons.icons[4].name = "нет факультета"
+            ASPUButtonIcons.icons[4].name = "Нет факультета"
             ASPUButtonIcons.icons[4].icon = ""
             self.faculty = nil
             self.dataChangedHandler?()

@@ -27,7 +27,7 @@ extension AppIconsListViewModel: AppIconsListViewModelProtocol {
             self.faculty = faculty
             self.dataChangedHandler?()
         } else {
-            AppIcons.icons[5].name = "нет факультета"
+            AppIcons.icons[5].name = "Нет факультета"
             AppIcons.icons[5].icon = "АГПУ"
             AppIcons.icons[5].appIcon = ""
             self.faculty = nil
