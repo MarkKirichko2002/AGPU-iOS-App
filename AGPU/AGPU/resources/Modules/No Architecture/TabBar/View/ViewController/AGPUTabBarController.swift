@@ -78,9 +78,21 @@ final class AGPUTabBarController: UITabBarController {
         if onlyTimetable {
             setViewControllers([nav3VC, middleButton, nav4VC], animated: false)
         } else {
-            // для каждого статуса
+            let position = settingsManager.getTabsPosition()
             forEveryStatusVC = settingsManager.checkCurrentStatus()
-            setViewControllers([nav1VC, forEveryStatusVC, middleButton, nav3VC, nav4VC], animated: false)
+            var tabs = [nav1VC, forEveryStatusVC, nav3VC, nav4VC]
+           
+            for tab in tabs {
+                
+                for number in position {
+                    let index = tabs.firstIndex(of: tab)!
+                    tabs.swapAt(index, number)
+                }
+            }
+            
+            tabs.insert(middleButton, at: 2)
+            
+            setViewControllers(tabs, animated: false)
             selectedIndex = 0
         }
     }
@@ -93,6 +105,11 @@ final class AGPUTabBarController: UITabBarController {
             }
         }
         settingsManager.observeOnlyTimetableChanged {
+            DispatchQueue.main.async {
+                self.setUpTabs()
+            }
+        }
+        settingsManager.observeTabsChanged {
             DispatchQueue.main.async {
                 self.setUpTabs()
             }

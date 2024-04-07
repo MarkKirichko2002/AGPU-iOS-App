@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 // MARK: - UITableViewDataSource
 extension SettingsListViewController: UITableViewDataSource {
@@ -19,7 +20,7 @@ extension SettingsListViewController: UITableViewDataSource {
         case 0:
             return 4
         case 1:
-            return 6
+            return 7
         case 2:
             return 2
         default:
@@ -41,7 +42,6 @@ extension SettingsListViewController: UITableViewDataSource {
                 return cell
             } else if indexPath.row == 2 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AdaptiveNewsOptionTableViewCell.identifier, for: indexPath) as? AdaptiveNewsOptionTableViewCell else {return UITableViewCell()}
-                cell.configure(category: viewModel.getSavedNewsCategoryInfo())
                 return cell
             } else if indexPath.row == 3 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: TimetableOptionTableViewCell.identifier, for: indexPath) as? TimetableOptionTableViewCell else {return UITableViewCell()}
@@ -63,12 +63,14 @@ extension SettingsListViewController: UITableViewDataSource {
                 cell.configure(icon: viewModel.getAppIconInfo())
                 return cell
             } else if indexPath.row == 4 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTabBarOptionTableViewCell.identifier, for: indexPath) as? CustomTabBarOptionTableViewCell else {return UITableViewCell()}
+                return cell
+            } else if indexPath.row == 5 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AppThemesTableViewCell.identifier, for: indexPath) as? AppThemesTableViewCell else {return UITableViewCell()}
                 cell.configure(theme: viewModel.getAppThemeInfo())
                 return cell
             } else {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: DynamicButtonOptionsTableViewCell.identifier, for: indexPath) as? DynamicButtonOptionsTableViewCell else {return UITableViewCell()}
-                cell.configure(action: viewModel.getDynamicButtonActionInfo())
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: ASPUButtonOptionTableViewCell.identifier, for: indexPath) as? ASPUButtonOptionTableViewCell else {return UITableViewCell()}
                 return cell
             }
         case 2:
@@ -127,7 +129,7 @@ extension SettingsListViewController: UITableViewDelegate {
             } else if indexPath.row == 2 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "news")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                    let vc = SavedNewsCategoryTableViewController()
+                    let vc = AdaptiveNewsOptionsListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
@@ -135,7 +137,7 @@ extension SettingsListViewController: UITableViewDelegate {
             } else if indexPath.row == 3 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "clock")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                    let vc = TimetableOptionsTableViewController()
+                    let vc = TimetableOptionsListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
@@ -159,6 +161,14 @@ extension SettingsListViewController: UITableViewDelegate {
                     self.present(navVC, animated: true)
                 }
             } else if indexPath.row == 4 {
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "profile icon")
+                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                    let vc = TabsListTableViewController()
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    self.present(navVC, animated: true)
+                }
+            } else if indexPath.row == 5 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "theme")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = AppThemesListTableViewController()
@@ -166,10 +176,10 @@ extension SettingsListViewController: UITableViewDelegate {
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
-            } else if indexPath.row == 5 {
+            } else if indexPath.row == 6 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "button")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                    let vc = DynamicButtonActionsListTableViewController()
+                    let vc = ASPUButtonOptionsListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
@@ -186,7 +196,8 @@ extension SettingsListViewController: UITableViewDelegate {
                 }
             } else {
                 HapticsManager.shared.hapticFeedback()
-                self.goToWeb(url: "https://developer.apple.com/weatherkit/data-source-attribution/", image: "info", title: " Weather", isSheet: false)
+                let vc = SFSafariViewController(url: URL(string: "https://developer.apple.com/weatherkit/data-source-attribution/")!)
+                present(vc, animated: true)
             }
         default:
             break

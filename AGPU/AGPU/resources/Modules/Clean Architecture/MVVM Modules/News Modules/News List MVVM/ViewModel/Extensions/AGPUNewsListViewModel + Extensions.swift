@@ -18,13 +18,21 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         return Article(id: 0, title: "", description: "", date: "", previewImage: "")
     }
     
+    func checkSettings() {
+        registerDataIsLoadedHandler {
+            self.option = UserDefaults.loadData(type: NewsOptionsFilters.self, key: "news filter") ?? .all
+            self.filterNews(option: self.option)
+        }
+        getNewsByCurrentType()
+    }
+    
     // получить новости в зависимости от типа
     func getNewsByCurrentType() {
         let savedNewsCategory = UserDefaults.standard.object(forKey: "category") as? String ?? "-"
         if savedNewsCategory != "-" {
-            getNews(abbreviation: savedNewsCategory)
+            getFilteredNews(abbreviation: savedNewsCategory)
         } else {
-            getAGPUNews()
+            getFilteredAGPUNews()
             abbreviation = "-"
         }
     }
@@ -36,6 +44,8 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             switch result {
             case .success(let response):
                 self.newsResponse = response
+                self.allNews = response.articles ?? []
+                self.option = .all
                 self.dataChangedHandler?("-")
             case .failure(let error):
                 print(error)
@@ -50,8 +60,44 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             switch result {
             case .success(let response):
                 self.newsResponse = response
-                self.dataChangedHandler?(abbreviation)
+                self.allNews = response.articles ?? []
+                self.option = .all
                 self.abbreviation = abbreviation
+                self.dataChangedHandler?(abbreviation)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func getFilteredAGPUNews() {
+        Task {
+            let result = try await newsService.getAGPUNews()
+            switch result {
+            case .success(let response):
+                self.newsResponse = response
+                self.allNews = response.articles ?? []
+                self.option = .all
+                self.dataChangedHandler?("-")
+                self.dataIsLoadedHandler?()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    // получить новости
+    func getFilteredNews(abbreviation: String) {
+        Task {
+            let result = try await newsService.getNews(abbreviation: abbreviation)
+            switch result {
+            case .success(let response):
+                self.newsResponse = response
+                self.allNews = response.articles ?? []
+                self.option = .all
+                self.abbreviation = abbreviation
+                self.dataChangedHandler?(abbreviation)
+                self.dataIsLoadedHandler?()
             case .failure(let error):
                 print(error)
             }
@@ -65,6 +111,8 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             switch result {
             case .success(let response):
                 self.newsResponse = response
+                self.allNews = response.articles ?? []
+                self.option = .all
                 self.dataChangedHandler?(self.abbreviation)
             case .failure(let error):
                 print(error)
@@ -75,8 +123,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     func getRandomNews() {
         let abbreviation = NewsCategories.categories.randomElement()!.newsAbbreviation
         if abbreviation != "-" {
-            getNews(abbreviation: abbreviation
-            )
+            getNews(abbreviation: abbreviation)
         } else {
             getAGPUNews()
         }
@@ -93,14 +140,17 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     func observeCategoryChanges() {
         NotificationCenter.default.addObserver(forName: Notification.Name("category"), object: nil, queue: .main) { notification in
             guard let category = notification.object as? String else {return}
-            print("категория: \(category)")
             if category != self.abbreviation {
                 if category != "-" {
                     self.getNews(abbreviation: category)
+                    self.option = .all
                     self.abbreviation = category
+                    UserDefaults.standard.setValue(category, forKey: "category")
                 } else {
                     self.getAGPUNews()
+                    self.option = .all
                     self.abbreviation = "-"
+                    UserDefaults.standard.setValue("-", forKey: "category")
                 }
             }
         }
@@ -112,6 +162,34 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             if let page = notification.object as? Int {
                 self.getNews(by: page)
             }
+        }
+    }
+    
+    func observeFilterOption() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("news filter option"), object: nil, queue: .main) { notification in
+            if let option = notification.object as? NewsOptionsFilters {
+                self.option = option
+                self.filterNews(option: option)
+            }
+        }
+    }
+    
+    func filterNews(option: NewsOptionsFilters) {
+        switch option {
+        case .today:
+            let date = dateManager.getCurrentDate()
+            let filteredNews = allNews.filter({ $0.date == date})
+            newsResponse.articles = filteredNews
+            dataChangedHandler?(abbreviation)
+        case .yesterday:
+            let date = dateManager.getCurrentDate()
+            let yesterday = dateManager.previousDay(date: date)
+            let filteredNews = allNews.filter({ $0.date == yesterday})
+            newsResponse.articles = filteredNews
+            dataChangedHandler?(abbreviation)
+        case .all:
+            newsResponse.articles = allNews
+            dataChangedHandler?(abbreviation)
         }
     }
     
@@ -135,5 +213,9 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     func registerCategoryChangedHandler(block: @escaping(String)->Void) {
         self.dataChangedHandler = block
+    }
+    
+    private func registerDataIsLoadedHandler(block: @escaping()->Void) {
+        self.dataIsLoadedHandler = block
     }
 }

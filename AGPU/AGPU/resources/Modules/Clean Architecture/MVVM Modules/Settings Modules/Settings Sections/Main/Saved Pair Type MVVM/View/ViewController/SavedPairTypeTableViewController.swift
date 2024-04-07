@@ -32,7 +32,7 @@ class SavedPairTypeTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         
-        navigationItem.title = "Типы пары"
+        let titleView = CustomTitleView(image: "clock", title: "Типы пары", frame: .zero)
         
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
@@ -43,6 +43,7 @@ class SavedPairTypeTableViewController: UITableViewController {
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         
         let backButton = UIBarButtonItem(customView: button)
+        navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = backButton
     }
     

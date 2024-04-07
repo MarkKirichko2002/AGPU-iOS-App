@@ -67,6 +67,7 @@ class TimeTableForCurrentBuildingViewController: UIViewController {
         } catch {
             print(error.localizedDescription)
         }
+        HapticsManager.shared.hapticFeedback()
     }
     
     private func setUpTable() {

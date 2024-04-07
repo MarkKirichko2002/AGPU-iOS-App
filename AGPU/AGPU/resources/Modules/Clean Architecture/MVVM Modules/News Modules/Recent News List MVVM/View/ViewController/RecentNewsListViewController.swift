@@ -23,6 +23,8 @@ final class RecentNewsListViewController: UIViewController {
         return collectionView
     }()
     
+    private let noNewsLabel = UILabel()
+    
     private let spinner = UIActivityIndicatorView(style: .large)
     
     override func viewDidLoad() {
@@ -30,25 +32,20 @@ final class RecentNewsListViewController: UIViewController {
         setUpNavigation()
         setUpCollectionView()
         setUpIndicatorView()
+        setUpLabel()
         bindViewModel()
     }
     
     private func setUpNavigation() {
         navigationItem.title = "Недавние новости"
-        navigationItem.leftBarButtonItem = nil
-        navigationItem.hidesBackButton = true
-        
-        let button = UIButton()
-        button.tintColor = .label
-        button.setImage(UIImage(named: "back"), for: .normal)
-        button.addTarget(self, action: #selector(back), for: .touchUpInside)
-        
-        let backButton = UIBarButtonItem(customView: button)
-        navigationItem.leftBarButtonItem = backButton
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
+        closeButton.tintColor = .label
+        navigationItem.rightBarButtonItem = closeButton
     }
     
-    @objc private func back() {
-        navigationController?.popViewController(animated: true)
+    @objc private func closeScreen() {
+        HapticsManager.shared.hapticFeedback()
+        dismiss(animated: true)
     }
     
     private func setUpCollectionView() {
@@ -68,11 +65,28 @@ final class RecentNewsListViewController: UIViewController {
         spinner.startAnimating()
     }
     
+    private func setUpLabel() {
+        view.addSubview(noNewsLabel)
+        noNewsLabel.text = "Нет новостей"
+        noNewsLabel.font = .systemFont(ofSize: 18, weight: .medium)
+        noNewsLabel.isHidden = true
+        noNewsLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            noNewsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            noNewsLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    
     private func bindViewModel() {
         viewModel.registerDataChangedHandler {
             DispatchQueue.main.async {
                 self.spinner.stopAnimating()
                 self.collectionView.reloadData()
+            }
+            if !self.viewModel.news.isEmpty {
+                self.noNewsLabel.isHidden = true
+            } else {
+                self.noNewsLabel.isHidden = false
             }
         }
         viewModel.getNews()

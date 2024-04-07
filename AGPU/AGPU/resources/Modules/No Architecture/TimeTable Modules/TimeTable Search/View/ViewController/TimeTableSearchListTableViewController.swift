@@ -27,14 +27,25 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
     }
     
     private func setUpNavigation() {
+        navigationItem.title = "Поиск"
         if isSettings {
-            navigationItem.title = "Поиск"
+            navigationItem.leftBarButtonItem = nil
+            navigationItem.hidesBackButton = true
+            let button = UIButton()
+            button.tintColor = .label
+            button.setImage(UIImage(named: "back"), for: .normal)
+            button.addTarget(self, action: #selector(back), for: .touchUpInside)
+            let backButton = UIBarButtonItem(customView: button)
+            navigationItem.leftBarButtonItem = backButton
         } else {
             let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
             closeButton.tintColor = .label
-            navigationItem.title = "Поиск"
             navigationItem.rightBarButtonItem = closeButton
         }
+    }
+    
+    @objc private func back() {
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func closeScreen() {

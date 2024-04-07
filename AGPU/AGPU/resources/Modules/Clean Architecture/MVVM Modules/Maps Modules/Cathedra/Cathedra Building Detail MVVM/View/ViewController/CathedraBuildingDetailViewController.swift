@@ -69,6 +69,7 @@ class CathedraBuildingDetailViewController: UIViewController {
         let vc = ShareLocationAppsViewController(annotation: annotation)
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
+        HapticsManager.shared.hapticFeedback()
     }
     
     private func bindViewModel() {

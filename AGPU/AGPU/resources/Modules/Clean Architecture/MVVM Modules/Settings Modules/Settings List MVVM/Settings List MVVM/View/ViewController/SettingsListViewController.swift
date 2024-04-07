@@ -44,14 +44,16 @@ final class SettingsListViewController: UIViewController {
         tableView.register(UINib(nibName: ShakeToRecallOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ShakeToRecallOptionTableViewCell.identifier)
         // Only Timetable
         tableView.register(UINib(nibName: OnlyTimetableOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: OnlyTimetableOptionTableViewCell.identifier)
+        // My Splash Screen
+        tableView.register(UINib(nibName: SplashScreenOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SplashScreenOptionTableViewCell.identifier)
         // Personalized App Icons
         tableView.register(UINib(nibName: AppIconTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppIconTableViewCell.identifier)
-        // Splash Screen
-        tableView.register(UINib(nibName: SplashScreenOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SplashScreenOptionTableViewCell.identifier)
+        // Custom TabBar
+        tableView.register(UINib(nibName: CustomTabBarOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CustomTabBarOptionTableViewCell.identifier)
         // Темы приложения
         tableView.register(UINib(nibName: AppThemesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppThemesTableViewCell.identifier)
         // ASPU Button
-        tableView.register(UINib(nibName: DynamicButtonOptionsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DynamicButtonOptionsTableViewCell.identifier)
+        tableView.register(UINib(nibName: ASPUButtonOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ASPUButtonOptionTableViewCell.identifier)
         // MARK: - О приложении
         // Фишки приложения
         tableView.register(UINib(nibName: AppFeaturesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppFeaturesTableViewCell.identifier)

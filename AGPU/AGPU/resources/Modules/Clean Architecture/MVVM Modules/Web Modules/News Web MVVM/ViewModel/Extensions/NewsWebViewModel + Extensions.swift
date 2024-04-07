@@ -35,6 +35,16 @@ extension NewsWebViewModel: INewsWebViewModel {
         }
     }
     
+    func saveCurrentWebArticle(url: String, position: CGPoint) {
+        let dateManager = DateManager()
+        let date = dateManager.getCurrentDate()
+        let time = dateManager.getCurrentTime()
+        let article = RecentWebPageModel(date: date, time: time, url: url, position: position)
+        UserDefaults.saveData(object: article, key: "last article") {
+            print("сохранено: \(article)")
+        }
+    }
+    
     func registerScrollPositionHandler(block: @escaping(Double)->Void) {
         self.scrollPositionHandler = block
     }

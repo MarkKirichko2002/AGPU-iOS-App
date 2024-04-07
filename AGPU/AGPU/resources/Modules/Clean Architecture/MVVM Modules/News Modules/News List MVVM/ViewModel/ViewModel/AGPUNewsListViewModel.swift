@@ -12,9 +12,14 @@ class AGPUNewsListViewModel {
     var newsResponse = NewsResponse(currentPage: 0, countPages: 0, articles: [])
     
     var abbreviation: String = ""
+    var option = NewsOptionsFilters.all
+    var isLoaded = false
+    var allNews = [Article]()
     var dataChangedHandler: ((String)->Void)?
-   
+    var dataIsLoadedHandler: (()->Void)?
+    
     // MARK: - сервисы
     let newsService = AGPUNewsService()
+    let dateManager = DateManager()
     
 }

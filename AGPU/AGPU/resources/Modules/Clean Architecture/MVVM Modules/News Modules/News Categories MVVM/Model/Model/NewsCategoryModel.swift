@@ -13,4 +13,5 @@ struct NewsCategoryModel {
     let newsAbbreviation: String
     let icon: String
     var pagesCount: Int
+    var dailyNewsCount: Int
 }

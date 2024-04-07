@@ -13,16 +13,27 @@ class NewsCategoryTableViewCell: UITableViewCell {
     
     @IBOutlet var CategoryIcon: SpringImageView!
     @IBOutlet var CategoryName: UILabel!
+    @IBOutlet var PagesCount: UILabel!
+    @IBOutlet var DailyNewsCount: UILabel!
     
     func configure(viewModel: NewsCategoriesListViewModel, category: NewsCategoryModel) {
         CategoryIcon.image = UIImage(named: category.icon)
-        if category.pagesCount != 0 {
-            CategoryName.text = "\(category.name) (страниц: \(category.pagesCount))"
-        } else {
-            CategoryName.text = "\(category.name) (загрузка...)"
-        }
-        CategoryName.textColor = viewModel.isCurrentCategory(index: category.id) ? .systemGreen : .label
+        CategoryName.text = category.name
+        displayCategoryInfo(category: category)
         accessoryType = viewModel.isCurrentCategory(index: category.id) ? .checkmark : .none
+    }
+    
+    private func displayCategoryInfo(category: NewsCategoryModel) {
+        if category.pagesCount < 0 {
+            PagesCount.text = "Страниц: ..."
+        } else {
+            PagesCount.text = "Страниц: \(category.pagesCount)"
+        }
+        if category.dailyNewsCount < 0 {
+            DailyNewsCount.text = "Сегодня новостей: ..."
+        } else {
+            DailyNewsCount.text = "Сегодня новостей: \(category.dailyNewsCount)"
+        }
     }
     
     override func awakeFromNib() {

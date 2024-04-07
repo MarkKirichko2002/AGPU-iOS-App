@@ -8,6 +8,8 @@
 import UIKit
 
 struct TimeTableDateModel {
+    let id: String
+    let date: String
     let image: UIImage
     let description: String
 }

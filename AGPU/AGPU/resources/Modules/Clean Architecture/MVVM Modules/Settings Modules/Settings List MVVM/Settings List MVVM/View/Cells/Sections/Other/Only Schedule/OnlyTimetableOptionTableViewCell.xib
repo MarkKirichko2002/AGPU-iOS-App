@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,21 +17,21 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="3Ao-hS-Hjd" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
-                        <rect key="frame" x="30" y="19" width="70" height="70"/>
+                        <rect key="frame" x="30" y="19" width="65" height="65"/>
                         <color key="tintColor" red="0.0564979439" green="0.0" blue="0.25830120280000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="70" id="Z5O-VY-kda"/>
-                            <constraint firstAttribute="width" constant="70" id="ecw-fj-m5u"/>
+                            <constraint firstAttribute="height" constant="65" id="Z5O-VY-kda"/>
+                            <constraint firstAttribute="width" constant="65" id="ecw-fj-m5u"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Только расписание" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBF-Xy-c0Q">
-                        <rect key="frame" x="116" y="19" width="167" height="20.333333333333329"/>
+                        <rect key="frame" x="111" y="19" width="167" height="20.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="muM-84-nYm">
-                        <rect key="frame" x="116" y="49.333333333333343" width="51" height="31"/>
+                        <rect key="frame" x="111" y="49.333333333333343" width="51" height="31"/>
                         <connections>
                             <action selector="switchAction:" destination="myM-Ud-13r" eventType="touchUpInside" id="C9W-S4-HNi"/>
                         </connections>

@@ -29,6 +29,17 @@ extension RecentNewsListViewController: UICollectionViewDelegate {
                         point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
+            let resetAction = UIAction(title: "Сбросить позицию", image: UIImage(named: "refresh")) { _ in
+                let alertVC = UIAlertController(title: "Сбросить позицию чтения", message: "Вы уверены что хотите сбросить позицию чтения?", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "ОК", style: .default) { _ in
+                    self.viewModel.resetProgress(id: indexPath.row)
+                }
+                let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+                alertVC.addAction(ok)
+                alertVC.addAction(cancel)
+                self.present(alertVC, animated: true)
+            }
+            
             let deleteAction = UIAction(title: "Удалить", image: UIImage(named: "delete")) { _ in
                 self.viewModel.deleteArticle(id: indexPath.row)
             }
@@ -38,6 +49,7 @@ extension RecentNewsListViewController: UICollectionViewDelegate {
             }
             
             return UIMenu(title: self.viewModel.articleItem(index: indexPath.row).title, children: [
+                resetAction,
                 deleteAction,
                 shareAction
             ])

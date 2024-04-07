@@ -26,6 +26,7 @@ extension DateManager: DateManagerProtocol {
     
     func getCurrentDayOfWeek(date: String)-> String {
         let calendar = Calendar.current
+        dateFormatter.dateFormat = "dd.MM.yyyy"
         if let date = dateFormatter.date(from: date) {
             let dayOfWeek = calendar.component(.weekday, from: date)
             return daysOfWeek[dayOfWeek - 1]
@@ -45,8 +46,12 @@ extension DateManager: DateManagerProtocol {
         return currentDate
     }
     
-    func getDateFromString(str: String)-> Date? {
-        dateFormatter.dateFormat = "dd.MM.yyyy"
+    func getDateFromString(str: String, withTime: Bool)-> Date? {
+        if withTime {
+            dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
+        } else {
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+        }
         if let currentDate = dateFormatter.date(from: str) {
             return currentDate
         }
@@ -209,7 +214,7 @@ extension DateManager: DateManagerProtocol {
            let startDate = dateFormatter.date(from: date2) {
             
             let components = calendar.dateComponents([.day, .hour, .minute, .second], from: firstDate, to: startDate)
-                        
+            
             if let days = components.day, let hours = components.hour, let minutes = components.minute, let seconds = components.second {
                 info.day = days
                 info.hour = hours

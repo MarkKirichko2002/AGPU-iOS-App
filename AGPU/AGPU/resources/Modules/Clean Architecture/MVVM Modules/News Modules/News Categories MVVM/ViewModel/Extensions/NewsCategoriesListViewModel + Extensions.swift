@@ -32,6 +32,7 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
                     switch result {
                     case .success(let data):
                         NewsCategories.categories[category.id].pagesCount = data.countPages ?? 0
+                        NewsCategories.categories[category.id].dailyNewsCount = countTodayNews(news: data.articles ?? [])
                     case .failure(let error):
                         print(error)
                     }
@@ -43,6 +44,7 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
                     switch result {
                     case .success(let data):
                         NewsCategories.categories[0].pagesCount = data.countPages ?? 0
+                        NewsCategories.categories[0].dailyNewsCount = countTodayNews(news: data.articles ?? [])
                     case .failure(let error):
                         print(error)
                     }
@@ -55,6 +57,17 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
         }
     }
     
+    func countTodayNews(news: [Article])-> Int {
+        let currentDate = dateManager.getCurrentDate()
+        var count = 0
+        for article in news {
+            if article.date == currentDate {
+                count += 1
+            }
+        }
+        return count
+    }
+    
     func chooseNewsCategory(index: Int) {
         let category = categoryItem(index: index)
         if category.newsAbbreviation != currentCategory {
@@ -62,7 +75,6 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
                 if newsCategory.newsAbbreviation != "-" {
                     NotificationCenter.default.post(name: Notification.Name("category"), object: newsCategory.newsAbbreviation)
                     NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-                    UserDefaults.standard.setValue(newsCategory.newsAbbreviation, forKey: "category")
                     self.currentCategory = category.newsAbbreviation
                     HapticsManager.shared.hapticFeedback()
                     Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
@@ -71,7 +83,6 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
                 } else {
                     NotificationCenter.default.post(name: Notification.Name("category"), object: "-")
                     NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-                    UserDefaults.standard.setValue("-", forKey: "category")
                     self.currentCategory = category.newsAbbreviation
                     HapticsManager.shared.hapticFeedback()
                     Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in

@@ -29,7 +29,6 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                 
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     self.isChanged.toggle()
-                    UserDefaults.standard.setValue(faculty.newsAbbreviation, forKey: "category")
                     NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
                 }
             }
@@ -40,19 +39,20 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                 }
             } else {}
             
-            UserDefaults.standard.setValue(nil, forKey: "icon")
+            //UserDefaults.standard.setValue(nil, forKey: "icon")
+            //UserDefaults.standard.setValue(nil, forKey: "icon name")
             UserDefaults.standard.setValue(nil, forKey: "cathedra")
             UserDefaults.standard.setValue(nil, forKey: "group")
             UserDefaults.standard.setValue(nil, forKey: "subgroup")
             
             NotificationCenter.default.post(name: Notification.Name("category"), object: faculty.newsAbbreviation)
             
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
-            }
+//            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+//                NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
+//            }
             
             NotificationCenter.default.post(name: Notification.Name("group changed"), object: nil)
-            NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: 0)
+            //NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: 0)
         }
     }
     
@@ -65,6 +65,7 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                 NotificationCenter.default.post(name: Notification.Name("icon"), object: faculty.icon)
             }
             UserDefaults.standard.setValue(faculty.icon, forKey: "icon")
+            UserDefaults.standard.setValue(faculty.abbreviation, forKey: "icon name")
         }
     }
     
@@ -75,10 +76,13 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                 NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
             }
             UserDefaults.standard.setValue(nil, forKey: "icon")
+            UserDefaults.standard.setValue(nil, forKey: "icon name")
         }
     }
     
     func cancelFaculty(index: Int) {
+        
+        let icon = UserDefaults.standard.string(forKey: "icon")
         
         if isFacultySelected(index: index) {
             if let data = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
@@ -86,11 +90,9 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                     var faculty: AGPUFacultyModel?
                     faculty = AGPUFaculties.faculties[index]
                     faculty = nil
-                    
                     UserDefaults.saveData(object: faculty, key: "faculty") {
                         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                             self.isChanged.toggle()
-                            UserDefaults.standard.setValue(faculty?.newsAbbreviation, forKey: "category")
                             NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
                         }
                     }
@@ -102,17 +104,21 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                     } else {}
                     
                     UserDefaults.standard.setValue(nil, forKey: "icon")
+                    UserDefaults.standard.setValue(nil, forKey: "icon name")
                     UserDefaults.standard.setValue(nil, forKey: "group")
                     UserDefaults.standard.setValue(nil, forKey: "subgroup")
                     UserDefaults.standard.setValue(nil, forKey: "cathedra")
                     
-                    NotificationCenter.default.post(name: Notification.Name("category"), object: "")
+                    NotificationCenter.default.post(name: Notification.Name("category"), object: "-")
                     
-                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                        NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
+                    if icon != faculty?.icon {
+                        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                            NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
+                        }
                     }
+                    
                     NotificationCenter.default.post(name: Notification.Name("group changed"), object: nil)
-                    NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: 0)
+                    //NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: 0)
                 }
             }
         }

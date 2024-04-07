@@ -137,6 +137,11 @@ extension UIViewController {
         self.showAlert(title: "Обновление доступно!", message: "Обнаружено новое обновление! Хотите обновить приложение сейчас?", actions: [updateAction, cancelAction])
     }
     
+    func showNoVideoAlert() {
+        let ok = UIAlertAction(title: "ОК", style: .default)
+        self.showAlert(title: "Видео отсутствует", message: "У данного экрана заставки нет видео", actions: [ok])
+    }
+    
     func showHintAlert(type: Hints) {
         
         let ok = UIAlertAction(title: "ОК", style: .default) { _ in}
@@ -198,6 +203,25 @@ extension UIViewController: AVPlayerViewControllerDelegate {
             playerViewController.player?.play()
         }
         UserDefaults.standard.setValue(url, forKey: "last video")
+    }
+    
+    func playLocalVideo(video: String) {
+        if video != "" {
+            guard let path = Bundle.main.path(forResource: video, ofType: "mp4") else {return print("не работает")}
+            let videoURL = URL(fileURLWithPath: path)
+            // Создаем AVPlayerViewController
+            let playerViewController = AVPlayerViewController()
+            let player = AVPlayer(url: videoURL)
+            playerViewController.player = player
+            playerViewController.delegate = self
+            // Воспроизводим видео
+            present(playerViewController, animated: true) {
+                playerViewController.player?.play()
+            }
+            UserDefaults.standard.setValue(video, forKey: "last video")
+        } else {
+            showNoVideoAlert()
+        }
     }
     
     public func playerViewController(_ playerViewController: AVPlayerViewController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {

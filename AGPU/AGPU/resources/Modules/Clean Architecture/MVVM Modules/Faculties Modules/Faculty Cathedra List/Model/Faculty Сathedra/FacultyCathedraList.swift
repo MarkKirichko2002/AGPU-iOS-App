@@ -28,10 +28,10 @@ struct FacultyCathedraList {
             FacultyCathedraModel(
                 name: "Кафедра иностранных языков и методики их преподавания",
                 url: "http://agpu.net/struktura-vuza/faculties-institutes/iriif/kafedra-iyaimip/index.php",
-                address: "ул. Р. Люксембург 159, кабинет №12",
+                address: "ул. Ефремова, 35",
                 coordinates: [
-                    45.001817,
-                    41.132293
+                    45.003372,
+                    41.121397
                 ],
                 email: "angl_kaf_agpu@mail.ru",
                 staffUrl: "http://agpu.net/struktura-vuza/faculties-institutes/iriif/kafedra-iyaimip/sostav-kafedry/index.php",

@@ -29,29 +29,33 @@ extension RecentWebPageViewModel: RecentWebPageViewModelProtocol {
     }
     
     func checkWebPage(url: String) {
-        let items = url.components(separatedBy: "/")
-        print(items)
-        for item in items {
-            if item == "PedagogicalQuantorium" {
-                if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == item }) {
-                    NotificationCenter.default.post(name: Notification.Name("category"), object: item)
-                    NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-                    UserDefaults.standard.setValue(item, forKey: "category")
-                    print("Категория \(newsCategory.name) сохранена!")
-                }
-            } else if item == "EducationalTechnopark" {
-                NotificationCenter.default.post(name: Notification.Name("category"), object: item.lowercased())
-                NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-                UserDefaults.standard.setValue(item.lowercased(), forKey: "category")
-                print("Категория сохранена!")
-            } else {
-                if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == item }) {
+        
+        let isAdapt = UserDefaults.standard.object(forKey: "onAdaptToWeb") as? Bool ?? true
+        
+        if isAdapt {
+            let items = url.components(separatedBy: "/")
+            print(items)
+            for item in items {
+                if item == "PedagogicalQuantorium" {
+                    if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == item }) {
+                        NotificationCenter.default.post(name: Notification.Name("category"), object: item)
+                        NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+                        print("Категория \(newsCategory.name) сохранена!")
+                    }
+                } else if item == "EducationalTechnopark" {
                     NotificationCenter.default.post(name: Notification.Name("category"), object: item.lowercased())
                     NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-                    UserDefaults.standard.setValue(item.lowercased(), forKey: "category")
-                    print("Категория \(newsCategory.name) сохранена!")
+                    print("Категория сохранена!")
+                } else {
+                    if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == item }) {
+                        NotificationCenter.default.post(name: Notification.Name("category"), object: item.lowercased())
+                        NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+                        print("Категория \(newsCategory.name) сохранена!")
+                    }
                 }
             }
+        } else {
+            print("NO")
         }
     }
 }

@@ -89,7 +89,6 @@ final class TimeTableSplashScreenViewController: UIViewController {
     
     @objc private func springLabel() {
         animation?.springAnimation(view: self.TimeTableDescription)
-        HapticsManager.shared.hapticFeedback()
     }
     
     private func setUpConstraints() {

@@ -16,6 +16,7 @@ class PairInfoViewModel {
     var date: String = ""
     
     var timer: Timer?
+    var sound = UserDefaults.standard.object(forKey: "timetable sound") as? String ?? "clock_sound"
     
     var dataChangedHandler: (()->Void)?
     

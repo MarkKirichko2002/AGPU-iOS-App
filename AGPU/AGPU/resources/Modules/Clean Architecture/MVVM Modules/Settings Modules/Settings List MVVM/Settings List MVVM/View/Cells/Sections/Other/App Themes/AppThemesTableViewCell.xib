@@ -12,20 +12,20 @@
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AppThemesTableViewCell" rowHeight="99" id="XwJ-un-AGu" customClass="AppThemesTableViewCell" customModule="AGPU" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="412" height="99"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XwJ-un-AGu" id="oV1-wF-pgX">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XwJ-un-AGu" id="oV1-wF-pgX">
                 <rect key="frame" x="0.0" y="0.0" width="412" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="theme" translatesAutoresizingMaskIntoConstraints="NO" id="ei7-Ir-A0z" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
-                        <rect key="frame" x="30" y="10" width="70" height="70"/>
+                        <rect key="frame" x="30" y="10" width="65" height="65"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="70" id="8kb-Tj-q0a"/>
-                            <constraint firstAttribute="height" constant="70" id="t49-pS-iiX"/>
+                            <constraint firstAttribute="width" constant="65" id="8kb-Tj-q0a"/>
+                            <constraint firstAttribute="height" constant="65" id="t49-pS-iiX"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="темы приложения" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFU-FR-DCg">
-                        <rect key="frame" x="110" y="15" width="292" height="60"/>
+                        <rect key="frame" x="105" y="15" width="297" height="60"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="ZTl-zw-dMU"/>
                         </constraints>

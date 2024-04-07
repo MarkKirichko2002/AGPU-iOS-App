@@ -20,7 +20,6 @@ struct AGPUFaculties {
             abbreviation: "ИРиИФ",
             url: "http://agpu.net/struktura-vuza/faculties-institutes/iriif/index.php",
             newsAbbreviation: "iriif",
-            videoURL: "http://priem.agpu.net/video/stud/iriif.mp4",
             contactsURL: "http://www.agpu.net/struktura-vuza/faculties-institutes/iriif/kontakty/index.php",
             email: "markkir123@gmail.com",
             isSelected: false
@@ -34,7 +33,6 @@ struct AGPUFaculties {
             abbreviation: "ИПИМиФ",
             url: "http://agpu.net/struktura-vuza/faculties-institutes/ipimif/index.php",
             newsAbbreviation: "ipimif",
-            videoURL: "http://priem.agpu.net/video/stud/ipimif.mp4",
             contactsURL: "http://www.agpu.net/struktura-vuza/faculties-institutes/ipimif/kontakty/index.php",
             email: "ipimif2011@mail.ru",
             isSelected: false
@@ -48,7 +46,6 @@ struct AGPUFaculties {
             abbreviation: "СПФ",
             url: "http://agpu.net/struktura-vuza/faculties-institutes/spf/index.php",
             newsAbbreviation: "spf",
-            videoURL: "http://priem.agpu.net/video/stud/spf.mp4",
             contactsURL: "http://www.agpu.net/struktura-vuza/faculties-institutes/spf/kontakty/index.php",
             email: "pedfak_agpu@mail.ru",
             isSelected: false
@@ -62,7 +59,6 @@ struct AGPUFaculties {
             abbreviation: "ФДиНО",
             url: "http://agpu.net/struktura-vuza/faculties-institutes/fdino/index.php",
             newsAbbreviation: "fdino",
-            videoURL: "http://priem.agpu.net/video/stud/fdino.mp4",
             contactsURL: "http://www.agpu.net/struktura-vuza/faculties-institutes/fdino/kontakty/index.php",
             email: "dekanat_fdino@mail.ru",
             isSelected: false
@@ -76,7 +72,6 @@ struct AGPUFaculties {
             abbreviation: "ФТЭиД",
             url: "http://agpu.net/struktura-vuza/faculties-institutes/fteid/index.php",
             newsAbbreviation: "fteid",
-            videoURL: "http://priem.agpu.net/video/stud/fteid.mp4",
             contactsURL: "http://www.agpu.net/struktura-vuza/faculties-institutes/fteid/kontakty/index.php",
             email: "dekanat.tekhfak@mail.ru",
             isSelected: false
@@ -90,7 +85,6 @@ struct AGPUFaculties {
             abbreviation: "ИстФак",
             url: "http://agpu.net/struktura-vuza/faculties-institutes/istfak/index.php",
             newsAbbreviation: "istfak",
-            videoURL: "http://priem.agpu.net/video/stud/istfak.mp4",
             contactsURL: "http://www.agpu.net/struktura-vuza/faculties-institutes/istfak/kontakty/index.php",
             email: "markkir123@gmail.com",
             isSelected: false
@@ -104,7 +98,6 @@ struct AGPUFaculties {
             abbreviation: "НИИРО",
             url: "https://niiro-agpu.ru/",
             newsAbbreviation: "-",
-            videoURL: "",
             contactsURL: "",
             email: "NIIRO_AGPU@mail.ru",
             isSelected: false

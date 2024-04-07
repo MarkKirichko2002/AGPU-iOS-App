@@ -89,7 +89,6 @@ final class CustomSplashScreenViewController: UIViewController {
     
     @objc private func springLabel() {
         animation?.springAnimation(view: self.CustomTitleLabel)
-        HapticsManager.shared.hapticFeedback()
     }
     
     private func setUpConstraints() {

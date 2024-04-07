@@ -21,8 +21,8 @@ class SavedSubGroupTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         
-        navigationItem.title = "Подгруппы"
-        
+        let titleView = CustomTitleView(image: "group icon", title: "Подгруппы", frame: .zero)
+       
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
         
@@ -32,7 +32,7 @@ class SavedSubGroupTableViewController: UITableViewController {
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         
         let backButton = UIBarButtonItem(customView: button)
-        
+        navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = backButton
     }
     

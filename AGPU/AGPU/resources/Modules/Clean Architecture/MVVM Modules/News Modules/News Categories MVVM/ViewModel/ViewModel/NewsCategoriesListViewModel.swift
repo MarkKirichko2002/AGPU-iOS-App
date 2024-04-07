@@ -16,6 +16,7 @@ class NewsCategoriesListViewModel {
     
     // MARK: - сервисы
     let newsService = AGPUNewsService()
+    let dateManager = DateManager()
     
     // MARK: - Init
     init(currentCategory: String) {

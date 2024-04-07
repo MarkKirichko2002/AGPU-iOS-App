@@ -16,6 +16,7 @@ class TimetableDateDetailViewController: UIViewController {
     
     let viewModel: TimetableDateDetailViewModel
     weak var delegate: TimetableDateDetailViewControllerDelegate?
+    var id: String = ""
     var date: String = ""
     
     // MARK: - UI
@@ -27,12 +28,28 @@ class TimetableDateDetailViewController: UIViewController {
         return button
     }()
     
+    private var shareButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = .label
+        button.setImage(UIImage(named: "share"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     private let timetableImage: UIImageView = {
         let image = UIImageView()
         image.isUserInteractionEnabled = true
         image.backgroundColor = .label
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
+    }()
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Загрузка..."
+        label.font = .systemFont(ofSize: 18, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     private let timetableDescription: UILabel = {
@@ -56,6 +73,7 @@ class TimetableDateDetailViewController: UIViewController {
     
     // MARK: - Init
     init(id: String, date: String, owner: String) {
+        self.id = id
         self.date = date
         self.viewModel = TimetableDateDetailViewModel(id: id, date: date, owner: owner)
         super.init(nibName: nil, bundle: nil)
@@ -78,15 +96,23 @@ class TimetableDateDetailViewController: UIViewController {
     
     private func setUpView() {
         view.backgroundColor = .systemBackground
-        view.addSubviews(closeButton, timetableImage, timetableDescription, selectDateButton)
+        view.addSubviews(closeButton, shareButton, timetableImage, titleLabel, timetableDescription, selectDateButton)
         closeButton.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
+        shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
         selectDateButton.addTarget(self, action: #selector(selectDate), for: .touchUpInside)
         setUpTap()
         setUpPinchZoom()
     }
     
     @objc private func closeScreen() {
+        HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
+    }
+    
+    @objc private func share() {
+        guard let image = viewModel.image else {return}
+        self.ShareImage(image: image, title: id, text: viewModel.formattedDate())
+        HapticsManager.shared.hapticFeedback()
     }
     
     private func setUpTap() {
@@ -118,20 +144,30 @@ class TimetableDateDetailViewController: UIViewController {
     
     private func setUpConstraints() {
         
-        closeButton.snp.makeConstraints { maker in
+        shareButton.snp.makeConstraints { maker in
             maker.top.equalToSuperview().inset(60)
             maker.right.equalToSuperview().inset(20)
         }
         
+        closeButton.snp.makeConstraints { maker in
+            maker.top.equalToSuperview().inset(60)
+            maker.left.equalToSuperview().inset(20)
+        }
+        
         timetableImage.snp.makeConstraints { maker in
-            maker.top.equalTo(closeButton.snp.bottom).offset(20)
+            maker.top.equalTo(shareButton.snp.bottom).offset(20)
             maker.centerX.equalToSuperview()
             maker.width.equalTo(250)
             maker.height.equalTo(250)
         }
         
-        timetableDescription.snp.makeConstraints { maker in
+        titleLabel.snp.makeConstraints { maker in
             maker.top.equalTo(timetableImage.snp.bottom).offset(50)
+            maker.centerX.equalToSuperview()
+        }
+        
+        timetableDescription.snp.makeConstraints { maker in
+            maker.top.equalTo(titleLabel.snp.bottom).offset(50)
             maker.centerX.equalToSuperview()
         }
         
@@ -143,7 +179,8 @@ class TimetableDateDetailViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel.getTimeTableForDay()
-        self.timetableDescription.textColor = self.viewModel.textColor()
+        timetableDescription.textColor = viewModel.textColor()
+        titleLabel.text = id
         viewModel.registerTimeTableHandler { [weak self] timetable in
             self?.timetableImage.image = timetable.image
             self?.timetableDescription.text = timetable.description
