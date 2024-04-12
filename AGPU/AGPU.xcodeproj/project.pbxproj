@@ -223,6 +223,7 @@
 		82768AF92ABE1CE70022FBE1 /* AppFeaturesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82768AF72ABE1CE70022FBE1 /* AppFeaturesTableViewCell.xib */; };
 		82768AFA2ABE1CE70022FBE1 /* AppFeaturesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82768AF82ABE1CE70022FBE1 /* AppFeaturesTableViewCell.swift */; };
 		827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B62C22A425166008D241E /* UserDefaults + Extensions.swift */; };
+		827E907D2BC8788600FD8168 /* AppFeaturesListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E907C2BC8788600FD8168 /* AppFeaturesListTableViewCell.swift */; };
 		82807C712AA0FA5D00E9C884 /* PairTypesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82807C702AA0FA5D00E9C884 /* PairTypesListTableViewController.swift */; };
 		82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E882A31F12100DEEB16 /* AppDelegate.swift */; };
 		82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E8A2A31F12100DEEB16 /* SceneDelegate.swift */; };
@@ -707,6 +708,7 @@
 		82768AF72ABE1CE70022FBE1 /* AppFeaturesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppFeaturesTableViewCell.xib; sourceTree = "<group>"; };
 		82768AF82ABE1CE70022FBE1 /* AppFeaturesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFeaturesTableViewCell.swift; sourceTree = "<group>"; };
 		827B62C22A425166008D241E /* UserDefaults + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + Extensions.swift"; sourceTree = "<group>"; };
+		827E907C2BC8788600FD8168 /* AppFeaturesListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeaturesListTableViewCell.swift; sourceTree = "<group>"; };
 		82807C702AA0FA5D00E9C884 /* PairTypesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairTypesListTableViewController.swift; sourceTree = "<group>"; };
 		82808E852A31F12100DEEB16 /* AGPU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGPU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82808E882A31F12100DEEB16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -3839,6 +3841,37 @@
 			path = "For Employee";
 			sourceTree = "<group>";
 		};
+		827E905A2BC8773000FD8168 /* splash screens */ = {
+			isa = PBXGroup;
+			children = (
+				82FC88162BBDFB5800A2EF59 /* custom.mp4 */,
+				82FC88152BBDFB5800A2EF59 /* faculty.mp4 */,
+				82FC88142BBDFB5800A2EF59 /* new year.mp4 */,
+				82FC88172BBDFB5800A2EF59 /* news.mp4 */,
+				82FC88182BBDFB5800A2EF59 /* regular.mp4 */,
+				82FC88132BBDFB5800A2EF59 /* status.mp4 */,
+				82FC88112BBDFB5800A2EF59 /* timetable.mp4 */,
+				82FC88122BBDFB5800A2EF59 /* weather.mp4 */,
+			);
+			path = "splash screens";
+			sourceTree = "<group>";
+		};
+		827E907A2BC8786B00FD8168 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				827E907C2BC8788600FD8168 /* AppFeaturesListTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		827E907B2BC8786D00FD8168 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82C561612A6B772600514B00 /* AppFeaturesListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		82807C6C2AA0FA0900E9C884 /* Pair Types MVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -6065,7 +6098,8 @@
 		82C561652A6B7AEA00514B00 /* Features List */ = {
 			isa = PBXGroup;
 			children = (
-				82C561612A6B772600514B00 /* AppFeaturesListTableViewController.swift */,
+				827E907B2BC8786D00FD8168 /* ViewController */,
+				827E907A2BC8786B00FD8168 /* Cell */,
 			);
 			path = "Features List";
 			sourceTree = "<group>";
@@ -7111,14 +7145,7 @@
 		82FC88082BBDFA0300A2EF59 /* videos */ = {
 			isa = PBXGroup;
 			children = (
-				82FC88162BBDFB5800A2EF59 /* custom.mp4 */,
-				82FC88152BBDFB5800A2EF59 /* faculty.mp4 */,
-				82FC88142BBDFB5800A2EF59 /* new year.mp4 */,
-				82FC88172BBDFB5800A2EF59 /* news.mp4 */,
-				82FC88182BBDFB5800A2EF59 /* regular.mp4 */,
-				82FC88132BBDFB5800A2EF59 /* status.mp4 */,
-				82FC88112BBDFB5800A2EF59 /* timetable.mp4 */,
-				82FC88122BBDFB5800A2EF59 /* weather.mp4 */,
+				827E905A2BC8773000FD8168 /* splash screens */,
 			);
 			path = videos;
 			sourceTree = "<group>";
@@ -7376,6 +7403,7 @@
 				828D51142BB86B2600848FF8 /* ASPUButtonIconOptionTableViewCell.swift in Sources */,
 				82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */,
 				8226D16D2B0948B500B0B9F0 /* AGPUTabBarController + Extensions.swift in Sources */,
+				827E907D2BC8788600FD8168 /* AppFeaturesListTableViewCell.swift in Sources */,
 				8226D1832B09655700B0B9F0 /* TimetableOptionsListTableViewController.swift in Sources */,
 				8226060A2A853DEE0055925F /* RecentMomentsListTableViewController.swift in Sources */,
 				82061CC42B09A4F70073D727 /* TimetableOptions.swift in Sources */,
@@ -7935,7 +7963,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.5;
+				MARKETING_VERSION = 2.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -7973,7 +8001,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.5;
+				MARKETING_VERSION = 2.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

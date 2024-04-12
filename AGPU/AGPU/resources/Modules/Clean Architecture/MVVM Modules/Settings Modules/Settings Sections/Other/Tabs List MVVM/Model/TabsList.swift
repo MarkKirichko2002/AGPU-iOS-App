@@ -10,9 +10,9 @@ import Foundation
 struct TabsList {
     
     static var tabs = [
-        TabModel(id: 0, name: "Новости", icon: "mail"),
-        TabModel(id: 1, name: "Абитуриенту", icon: "applicant"),
-        TabModel(id: 2, name: "Расписание", icon: "clock"),
-        TabModel(id: 3, name: "Настройки", icon: "settings"),
+        TabModel(id: 1, name: "Новости", icon: "mail"),
+        TabModel(id: 2, name: "Абитуриенту", icon: "applicant"),
+        TabModel(id: 3, name: "Расписание", icon: "clock"),
+        TabModel(id: 4, name: "Настройки", icon: "settings"),
     ]
 }

@@ -31,4 +31,9 @@ extension UserDefaults {
         }
         return nil
     }
+    
+    static func saveArray(array: [Any], key: String, completion: @escaping()->Void) {
+        UserDefaults.standard.setValue(array, forKey: key)
+        completion()
+    }
 }
