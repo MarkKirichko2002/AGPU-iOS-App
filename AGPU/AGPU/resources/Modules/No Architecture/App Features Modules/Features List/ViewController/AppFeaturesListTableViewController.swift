@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import SafariServices
 
 final class AppFeaturesListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        setUpTable()
     }
     
     private func setUpNavigation() {
@@ -21,6 +22,10 @@ final class AppFeaturesListTableViewController: UITableViewController {
         closeButton.tintColor = .label
         navigationItem.titleView = titleView
         navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    private func setUpTable() {
+        tableView.register(AppFeaturesListTableViewCell.self, forCellReuseIdentifier: AppFeaturesListTableViewCell.identifier)
     }
     
     @objc private func closeScreen() {
@@ -46,9 +51,19 @@ final class AppFeaturesListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let feature = AppFeaturesList.features[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "\(feature.id)) \(feature.name)"
-        cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AppFeaturesListTableViewCell.identifier, for: indexPath) as? AppFeaturesListTableViewCell else {return UITableViewCell()}
+        cell.delegate = self
+        cell.configure(feature: feature)
         return cell
+    }
+}
+
+// MARK: - IAppFeaturesListTableViewCell
+extension AppFeaturesListTableViewController: IAppFeaturesListTableViewCell {
+    
+    func infoWasTapped() {
+        guard let url = URL(string: "https://www.youtube.com/watch?v=u-n5iBWaOWQ") else {return}
+        let vc = SFSafariViewController(url: url)
+        self.present(vc, animated: true)
     }
 }

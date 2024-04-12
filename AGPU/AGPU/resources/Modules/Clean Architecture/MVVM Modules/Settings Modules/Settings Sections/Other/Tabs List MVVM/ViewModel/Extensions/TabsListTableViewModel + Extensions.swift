@@ -12,7 +12,9 @@ extension TabsListTableViewModel: ITabsListTableViewModel {
     
     func getData() {
         
-        let index = TabsList.tabs.firstIndex { $0.id == 1}!
+        tabs = TabsList.tabs
+        
+        let index = tabs.firstIndex { $0.id == 2}!
         let status = settingsManager.getUserStatus()
         let position = settingsManager.getTabsPosition()
         
@@ -20,9 +22,9 @@ extension TabsListTableViewModel: ITabsListTableViewModel {
         tabs[index].name = status.name + "у"
         
         for tab in tabs {
-            
             for number in position {
                 let index = tabs.firstIndex(of: tab)!
+                print("индекс: \(index) позиция: \(number)")
                 tabs.swapAt(index, number)
             }
         }
@@ -30,23 +32,23 @@ extension TabsListTableViewModel: ITabsListTableViewModel {
         dataChangedHandler?()
     }
     
-    func saveTabsPosition(tabs: [TabModel], _ index: Int, _ index2: Int) {
+    func saveTabsPosition(_ index: Int, _ index2: Int) {
         
         var arr = tabs
         
         arr.swapAt(index, index2)
         
-        let index1 = arr.firstIndex { $0.id == 0 }
-        let index2 = arr.firstIndex { $0.id == 1 }
-        let index3 = arr.firstIndex { $0.id == 2 }
-        let index4 = arr.firstIndex { $0.id == 3 }
+        let index1 = arr.firstIndex { $0.id == 1 }
+        let index2 = arr.firstIndex { $0.id == 2 }
+        let index3 = arr.firstIndex { $0.id == 3 }
+        let index4 = arr.firstIndex { $0.id == 4 }
         
         let numbers = [index1, index2, index3, index4]
         
         UserDefaults.standard.setValue(numbers, forKey: "tabs")
         
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
+        UserDefaults.saveArray(array: numbers as! [Int], key: "tabs") {
+            self.getData()
         }
     }
     

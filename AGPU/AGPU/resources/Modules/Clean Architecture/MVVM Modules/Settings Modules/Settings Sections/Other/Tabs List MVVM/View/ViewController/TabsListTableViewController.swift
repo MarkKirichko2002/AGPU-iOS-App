@@ -19,6 +19,11 @@ class TabsListTableViewController: UITableViewController {
         bindViewModel()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
+    }
+    
     private func setUpNavigation() {
         navigationItem.title = "Список вкладок"
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(closeScreen))
@@ -60,7 +65,9 @@ class TabsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        viewModel.saveTabsPosition(tabs: viewModel.tabs, sourceIndexPath.row, destinationIndexPath.row)
+        if tableView.isEditing {
+            viewModel.saveTabsPosition(sourceIndexPath.row, destinationIndexPath.row)
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
