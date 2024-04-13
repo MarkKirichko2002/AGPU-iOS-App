@@ -16,7 +16,7 @@ extension CustomSplashScreenEditorViewModel: ICustomSplashScreenEditorViewModel 
     }
     
     func getCustomSplashScreen() {
-        guard let screen = settingsManager.getCustomSplashScreen() else {return}
+        let screen = settingsManager.getCustomSplashScreen()
         screenUpdatedHandler?(screen)
     }
     

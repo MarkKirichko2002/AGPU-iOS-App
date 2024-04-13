@@ -17,5 +17,5 @@ protocol IRealmManager {
     func getArticle(id: Int)-> NewsModel?
     func editArticle(news: NewsModel, position: Double)
     func saveSplashScreen(screen: CustomSplashScreenModel)
-    func getSplashScreen()-> CustomSplashScreenModel?
+    func getSplashScreen()-> CustomSplashScreenModel
 }

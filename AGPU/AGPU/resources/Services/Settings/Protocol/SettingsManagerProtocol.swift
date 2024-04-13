@@ -17,7 +17,7 @@ protocol SettingsManagerProtocol {
     func checkDynamicButtonOption()-> ASPUButtonActions
     func observeDynamicButtonActionChanged(completion: @escaping()->Void)
     func saveCustomSplashScreen(screen: CustomSplashScreenModel)
-    func getCustomSplashScreen()-> CustomSplashScreenModel?
+    func getCustomSplashScreen()-> CustomSplashScreenModel
     func getUserStatus()-> UserStatusModel
     func observeStatusChanged(completion: @escaping()->Void)
     func getTabsPosition()-> [Int] 

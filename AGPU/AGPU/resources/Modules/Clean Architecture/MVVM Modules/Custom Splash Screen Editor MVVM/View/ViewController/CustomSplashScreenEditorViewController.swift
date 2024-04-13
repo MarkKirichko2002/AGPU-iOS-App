@@ -87,10 +87,10 @@ class CustomSplashScreenEditorViewController: UIViewController {
             textField.text = self?.CustomTitleLabel.text!
             textField.placeholder = "введите текст..."
         }
-        
         let saveAction = UIAlertAction(title: "Сохранить", style: .default) { [weak self] _ in
             let screen = CustomSplashScreenModel()
             screen.id = 1
+            screen.image = self?.CustomIcon.image?.jpegData(compressionQuality: 1.0)
             screen.title = alertVC.textFields?[0].text ?? ""
             self?.viewModel.saveCustomSplashScreen(screen: screen)
         }

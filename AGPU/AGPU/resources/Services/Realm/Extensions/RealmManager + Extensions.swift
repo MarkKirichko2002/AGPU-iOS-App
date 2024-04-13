@@ -149,8 +149,11 @@ extension RealmManager: IRealmManager {
         }
     }
     
-    func getSplashScreen()-> CustomSplashScreenModel? {
-        let splashScreen = realm.object(ofType: CustomSplashScreenModel.self, forPrimaryKey: 1)
+    func getSplashScreen()-> CustomSplashScreenModel {
+        let defaultScreen = CustomSplashScreenModel()
+        defaultScreen.image = UIImage(named: "АГПУ")?.pngData()
+        defaultScreen.title = "Ваш Текст"
+        let splashScreen = realm.object(ofType: CustomSplashScreenModel.self, forPrimaryKey: 1) ?? defaultScreen
         return splashScreen
     }
 }

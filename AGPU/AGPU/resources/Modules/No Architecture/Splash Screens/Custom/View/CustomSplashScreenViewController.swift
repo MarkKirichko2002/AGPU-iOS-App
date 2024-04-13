@@ -109,7 +109,7 @@ final class CustomSplashScreenViewController: UIViewController {
     
     private func showSplashScreen() {
         
-        guard let screen = realmManager.getSplashScreen() else {return}
+        let screen = realmManager.getSplashScreen()
         
         CustomIcon.image = UIImage(data: screen.image ?? Data())
         animation?.springAnimation(view: CustomIcon)

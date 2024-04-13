@@ -92,8 +92,8 @@ extension SettingsManager: SettingsManagerProtocol {
         realmManager.saveSplashScreen(screen: screen)
     }
     
-    func getCustomSplashScreen()-> CustomSplashScreenModel? {
-        guard let screen = realmManager.getSplashScreen() else {return nil}
+    func getCustomSplashScreen()-> CustomSplashScreenModel {
+        let screen = realmManager.getSplashScreen()
         return screen
     }
     
