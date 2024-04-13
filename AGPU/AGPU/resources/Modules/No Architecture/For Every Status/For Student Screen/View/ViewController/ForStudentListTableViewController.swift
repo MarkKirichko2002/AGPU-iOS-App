@@ -43,7 +43,7 @@ final class ForStudentListTableViewController: UITableViewController {
             }
             
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: ForStudentSections.sections[indexPath.row].icon, title: "ЭИОС", isSheet: false)
+                self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: ForStudentSections.sections[indexPath.row].icon, title: "ЭИОС", isSheet: false, isNotify: true)
             }
             
         case 1:
@@ -82,7 +82,7 @@ final class ForStudentListTableViewController: UITableViewController {
                 }
                 
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                    self.goToWeb(url: cathedra.manualUrl, image: ForStudentSections.sections[indexPath.row].icon, title: "Метод. материалы", isSheet: false)
+                    self.goToWeb(url: cathedra.manualUrl, image: ForStudentSections.sections[indexPath.row].icon, title: "Метод. материалы", isSheet: false, isNotify: true)
                 }
             } else {
                 self.showHintAlert(type: .manuals)
@@ -112,7 +112,7 @@ final class ForStudentListTableViewController: UITableViewController {
             }
             
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                self.goToWeb(url: "http://plany.agpu.net/Plans/", image: ForStudentSections.sections[indexPath.row].icon, title: "Учебный план", isSheet: false)
+                self.goToWeb(url: "http://plany.agpu.net/Plans/", image: ForStudentSections.sections[indexPath.row].icon, title: "Учебный план", isSheet: false, isNotify: true)
             }
             
         case 6:

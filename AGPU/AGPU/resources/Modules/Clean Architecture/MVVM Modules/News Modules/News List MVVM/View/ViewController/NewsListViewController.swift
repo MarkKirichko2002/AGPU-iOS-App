@@ -130,7 +130,7 @@ final class NewsListViewController: UIViewController {
             }
             
             webAction = UIAction(title: "Веб-версия") { _ in
-                self.goToWeb(url: self.viewModel.makeUrlForCurrentWebPage(), image: "online", title: "Новости", isSheet: false)
+                self.goToWeb(url: self.viewModel.makeUrlForCurrentWebPage(), image: "online", title: "Новости", isSheet: false, isNotify: true)
             }
             
             menu = UIMenu(title: "Новости", children: [

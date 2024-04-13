@@ -146,7 +146,7 @@ class SelectedFacultyListTableViewController: UITableViewController {
 extension SelectedFacultyListTableViewController: AGPUFacultyTableViewCellDelegate {
     
     func openFacultyInfo(faculty: AGPUFacultyModel) {
-        self.goToWeb(url: faculty.url, image: faculty.icon, title: faculty.abbreviation, isSheet: false)
+        self.goToWeb(url: faculty.url, image: faculty.icon, title: faculty.abbreviation, isSheet: false, isNotify: false)
         HapticsManager.shared.hapticFeedback()
     }
 }

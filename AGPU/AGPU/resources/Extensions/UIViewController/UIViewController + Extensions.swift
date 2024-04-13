@@ -11,8 +11,8 @@ import MessageUI
 
 extension UIViewController {
     
-    func goToWeb(url: String, image: String, title: String?, isSheet: Bool) {
-        let vc = WebViewController(url: url)
+    func goToWeb(url: String, image: String, title: String?, isSheet: Bool, isNotify: Bool) {
+        let vc = WebViewController(url: url, isNotify: isNotify)
         let navVC = UINavigationController(rootViewController: vc)
         if title != nil {
             let titleView = CustomTitleView(image: image, title: title ?? "", frame: .zero)

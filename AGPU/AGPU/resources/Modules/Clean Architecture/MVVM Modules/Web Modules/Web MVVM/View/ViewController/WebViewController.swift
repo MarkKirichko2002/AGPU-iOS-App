@@ -11,6 +11,7 @@ import WebKit
 final class WebViewController: UIViewController {
 
     var url: String
+    var isNotify: Bool
     
     // MARK: - сервисы
     let viewModel = WebViewModel()
@@ -21,8 +22,9 @@ final class WebViewController: UIViewController {
     var titleView: CustomTitleView!
     
     // MARK: - Init
-    init(url: String) {
+    init(url: String, isNotify: Bool) {
         self.url = url
+        self.isNotify = isNotify
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -123,7 +125,9 @@ final class WebViewController: UIViewController {
     
     @objc private func closeScreen() {
         HapticsManager.shared.hapticFeedback()
-        sendScreenWasClosedNotification()
+        if isNotify {
+            sendScreenWasClosedNotification()
+        }
         self.dismiss(animated: true)
     }
 }

@@ -82,7 +82,7 @@ extension AGPUSectionsListViewController: UITableViewDelegate {
         }
         HapticsManager.shared.hapticFeedback() 
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.goToWeb(url: subsection.url, image: subsection.icon, title: "АГПУ сайт", isSheet: false)
+            self.goToWeb(url: subsection.url, image: subsection.icon, title: "АГПУ сайт", isSheet: false, isNotify: false)
         }
     }
 }
@@ -101,7 +101,6 @@ extension AGPUSectionsListViewController {
     
     func sectionSelected(index: Int) {
         let section = AGPUSections.sections[index]
-        self.goToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false)
+        self.goToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false, isNotify: false)
     }
 }
-

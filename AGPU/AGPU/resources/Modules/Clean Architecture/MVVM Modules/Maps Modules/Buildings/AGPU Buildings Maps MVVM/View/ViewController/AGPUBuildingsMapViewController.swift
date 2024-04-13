@@ -148,7 +148,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
                 }
                 let cancel = UIAlertAction(title: "Отмена", style: .cancel) { _ in
                     Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                        NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
+                        self.sendScreenWasClosedNotification()
                     }
                     self.navigationController?.popViewController(animated: true)
                 }

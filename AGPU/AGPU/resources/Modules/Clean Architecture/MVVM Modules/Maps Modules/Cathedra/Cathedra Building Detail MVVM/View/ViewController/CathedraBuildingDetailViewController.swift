@@ -25,6 +25,7 @@ class CathedraBuildingDetailViewController: UIViewController {
         setUpView()
         setUpNavigation()
         setUpWeatherLabel()
+        setUpTitleLabel()
         bindViewModel()
     }
     
@@ -34,6 +35,24 @@ class CathedraBuildingDetailViewController: UIViewController {
         LocationName.textColor = UIColor.label
         LocationDetail.textColor = UIColor.label
         WeatherLabel.textColor = UIColor.label
+    }
+    
+    private func setUpTitleLabel() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showCathedraInfo))
+        LocationName.isUserInteractionEnabled = true
+        LocationName.addGestureRecognizer(tap)
+    }
+    
+    @objc private func showCathedraInfo() {
+        for faculty in AGPUFaculties.faculties {
+            for cathedra in faculty.cathedra {
+                if cathedra.name == annotation.title! {
+                    HapticsManager.shared.hapticFeedback()
+                    self.goToWeb(url: cathedra.url, image: faculty.icon, title: "Кафедра \(faculty.abbreviation)", isSheet: false, isNotify: false)
+                    break
+                }
+            }
+        }
     }
     
     private func setUpWeatherLabel() {

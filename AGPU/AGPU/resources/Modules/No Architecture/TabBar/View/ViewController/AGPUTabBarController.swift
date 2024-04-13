@@ -44,7 +44,7 @@ final class AGPUTabBarController: UITabBarController {
         setUpTab()
         createMiddleButton()
         observeForEveryStatus()
-        observeWebScreen()
+        observeScreen()
         observeFaculty()
         observeArticleSelected()
         observeDataRefreshed()
@@ -257,17 +257,17 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     @objc private func openStudyPlan() {
-        self.goToWeb(url: "http://plany.agpu.net/Plans/", image: "student", title: "Учебный план", isSheet: false)
+        self.goToWeb(url: "http://plany.agpu.net/Plans/", image: "student", title: "Учебный план", isSheet: false, isNotify: true)
     }
     
     
     @objc private func openProfile() {
-        self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: "profile icon", title: "ЭИОС", isSheet: false)
+        self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: "profile icon", title: "ЭИОС", isSheet: false, isNotify: true)
     }
     
     @objc private func openManual() {
         if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
-            self.goToWeb(url: cathedra.manualUrl, image: "book", title: "Метод. материалы", isSheet: false)
+            self.goToWeb(url: cathedra.manualUrl, image: "book", title: "Метод. материалы", isSheet: false, isNotify: true)
         } else {
             self.showHintAlert(type: .manuals)
             HapticsManager.shared.hapticFeedback()
@@ -282,7 +282,7 @@ final class AGPUTabBarController: UITabBarController {
         }
     }
     
-    private func observeWebScreen() {
+    private func observeScreen() {
         NotificationCenter.default.addObserver(forName: Notification.Name("screen was closed"), object: nil, queue: .main) { _ in
             if self.isRecording {
                 if !self.tabBar.isHidden {
@@ -291,8 +291,6 @@ final class AGPUTabBarController: UITabBarController {
             } else {
                 if !self.tabBar.isHidden {
                     self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
-                } else {
-                    print("sfkndgkjkn")
                 }
             }
         }
