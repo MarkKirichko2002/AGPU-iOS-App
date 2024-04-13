@@ -1,16 +1,21 @@
 //
-//  AGPUNewYearSplashScreenViewController.swift
+//  RegularSplashScreenViewController.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 04.01.2024.
+//  Created by Марк Киричко on 09.06.2023.
 //
 
 import UIKit
 
-final class AGPUNewYearSplashScreenViewController: UIViewController {
+final class RegularSplashScreenViewController: UIViewController {
     
     // MARK: - сервисы
     var animation: AnimationClassProtocol?
+    
+    var icon: String = ""
+    var text: String = ""
+    var width: CGFloat = 0.0
+    var height: CGFloat = 0.0
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         let theme = UserDefaults.loadData(type: AppThemeModel.self, key: "theme")?.theme ?? .light
@@ -30,7 +35,6 @@ final class AGPUNewYearSplashScreenViewController: UIViewController {
     // иконка
     private let AGPUIcon: SpringImageView = {
         let icon = SpringImageView()
-        icon.image = UIImage(named: "новый год")
         icon.isInteraction = false
         icon.contentMode = .scaleAspectFill
         icon.translatesAutoresizingMaskIntoConstraints = false
@@ -63,8 +67,12 @@ final class AGPUNewYearSplashScreenViewController: UIViewController {
     }
     
     // MARK: - Init
-    init(animation: AnimationClassProtocol?) {
+    init(animation: AnimationClassProtocol?, icon: String, text: String, width: CGFloat, height: CGFloat) {
         self.animation = animation
+        self.icon = icon
+        self.text = text
+        self.width = width
+        self.height = height
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -75,6 +83,7 @@ final class AGPUNewYearSplashScreenViewController: UIViewController {
     private func setUpView() {
         view.backgroundColor = .systemBackground
         view.addSubviews(AGPUIcon, AGPUTitleLabel)
+        AGPUIcon.image = UIImage(named: icon)
         setUpLabel()
     }
     
@@ -92,8 +101,8 @@ final class AGPUNewYearSplashScreenViewController: UIViewController {
         NSLayoutConstraint.activate([
             // иконка
             AGPUIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            AGPUIcon.widthAnchor.constraint(equalToConstant: 180),
-            AGPUIcon.heightAnchor.constraint(equalToConstant: 180),
+            AGPUIcon.widthAnchor.constraint(equalToConstant: width),
+            AGPUIcon.heightAnchor.constraint(equalToConstant: height),
             // название
             AGPUTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             AGPUTitleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -107,10 +116,10 @@ final class AGPUNewYearSplashScreenViewController: UIViewController {
         animation?.springAnimation(view: AGPUIcon)
         
         Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
-            self.AGPUTitleLabel.text = "ФГБОУ ВО «АГПУ»"
+            self.AGPUTitleLabel.text = self.text
             self.animation?.springAnimation(view: self.AGPUTitleLabel)
         }
-        
+            
         Timer.scheduledTimer(withTimeInterval: 4, repeats: false) { _ in
             let controller = AGPUTabBarController()
             controller.modalPresentationStyle = .fullScreen
