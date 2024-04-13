@@ -113,12 +113,14 @@ final class WebViewController: UIViewController {
     
     @objc private func backButtonTapped() {
         if WVWEBview.canGoBack {
+            HapticsManager.shared.hapticFeedback()
             WVWEBview.goBack()
         }
     }
     
     @objc private func forwardButtonTapped() {
         if WVWEBview.canGoForward {
+            HapticsManager.shared.hapticFeedback()
             WVWEBview.goForward()
         }
     }
