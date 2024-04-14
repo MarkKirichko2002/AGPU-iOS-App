@@ -44,9 +44,13 @@ final class NewsListViewController: UIViewController {
     }
     
     @objc private func refreshNews() {
+        viewModel.newsResponse.articles = []
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+            self.noNewsLabel.isHidden = true
+            self.spinner.startAnimating()
+        }
         viewModel.refreshNews()
-        noNewsLabel.isHidden = true
-        spinner.startAnimating()
     }
     
     private func setUpCollectionView() {
