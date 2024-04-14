@@ -23,6 +23,8 @@ final class NewsListViewController: UIViewController {
         return collectionView
     }()
     
+    private let noNewsLabel = UILabel()
+    
     private let spinner = UIActivityIndicatorView(style: .large)
     
     override func viewDidLoad() {
@@ -30,6 +32,7 @@ final class NewsListViewController: UIViewController {
         setUpNavigation()
         setUpCollectionView()
         setUpIndicatorView()
+        setUpLabel()
         bindViewModel()
     }
     
@@ -42,6 +45,8 @@ final class NewsListViewController: UIViewController {
     
     @objc private func refreshNews() {
         viewModel.refreshNews()
+        noNewsLabel.isHidden = true
+        spinner.startAnimating()
     }
     
     private func setUpCollectionView() {
@@ -59,6 +64,18 @@ final class NewsListViewController: UIViewController {
             spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         spinner.startAnimating()
+    }
+    
+    private func setUpLabel() {
+        view.addSubview(noNewsLabel)
+        noNewsLabel.text = "Нет новостей"
+        noNewsLabel.font = .systemFont(ofSize: 18, weight: .medium)
+        noNewsLabel.isHidden = true
+        noNewsLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            noNewsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            noNewsLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
     private func bindViewModel() {
@@ -148,6 +165,14 @@ final class NewsListViewController: UIViewController {
                 self.navigationItem.titleView = titleView
                 self.navigationItem.rightBarButtonItem = options
                 self.collectionView.reloadData()
+            }
+            
+            DispatchQueue.main.async {
+                if !(self.viewModel.newsResponse.articles?.isEmpty ?? false) {
+                    self.noNewsLabel.isHidden = true
+                } else {
+                    self.noNewsLabel.isHidden = false
+                }
             }
         }
         
