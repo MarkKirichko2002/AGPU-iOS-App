@@ -38,16 +38,16 @@ extension AGPUSectionsListViewController: UITableViewDelegate {
         imageView.tintColor = .label
         imageView.contentMode = .scaleAspectFit
         header.addSubview(imageView)
-        imageView.frame = CGRect(x: 20, y: 0, width: 75, height: 75)
+        imageView.frame = CGRect(x: 20, y: 10, width: 75, height: 75)
         
-        let label = UILabel(frame: CGRect(x: 30 + imageView.frame.size.width, y: 0,
+        let label = UILabel(frame: CGRect(x: 35 + imageView.frame.size.width, y: 5,
                                           width: header.frame.size.width - 15 - imageView.frame.size.width,
                                           height: header.frame.size.height-10))
         label.numberOfLines = 0
         header.addSubview(label)
         label.text = AGPUSections.sections[section].name
         label.textColor = .label
-        label.font = .systemFont(ofSize: 16, weight: .black)
+        label.font = .systemFont(ofSize: 17, weight: .black)
         return header
     }
     
@@ -71,7 +71,7 @@ extension AGPUSectionsListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 100
+        return 120
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
