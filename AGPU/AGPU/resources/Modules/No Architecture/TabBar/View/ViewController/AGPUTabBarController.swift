@@ -53,7 +53,10 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        animation.tabBarItemAnimation(item: item)
+        let isOnAnimation = settingsManager.checkTabsAnimationOption()
+        if isOnAnimation {
+            animation.tabBarItemAnimation(item: item)
+        }
     }
     
     private func setUpView() {
@@ -93,7 +96,6 @@ final class AGPUTabBarController: UITabBarController {
             tabs.insert(middleButton, at: 2)
             
             setViewControllers(tabs, animated: false)
-            selectedIndex = 0
         }
     }
     

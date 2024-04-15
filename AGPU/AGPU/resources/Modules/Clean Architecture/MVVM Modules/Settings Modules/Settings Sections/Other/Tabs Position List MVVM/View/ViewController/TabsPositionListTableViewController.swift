@@ -1,5 +1,5 @@
 //
-//  TabsListTableViewController.swift
+//  TabsPositionListTableViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 23.03.2024.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class TabsListTableViewController: UITableViewController {
+class TabsPositionListTableViewController: UITableViewController {
     
     // MARK: - сервисы
-    private let viewModel = TabsListTableViewModel()
+    private let viewModel = TabsPositionListTableViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,24 +19,24 @@ class TabsListTableViewController: UITableViewController {
         bindViewModel()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
-    }
-    
     private func setUpNavigation() {
         navigationItem.title = "Список вкладок"
-        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(closeScreen))
+        let button = UIButton()
+        button.tintColor = .label
+        button.setImage(UIImage(named: "back"), for: .normal)
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        let backButton = UIBarButtonItem(customView: button)
         let moveButton = UIBarButtonItem(title: "Править", style: .done, target: self, action: #selector(moveTabs))
         moveButton.tintColor = .label
-        closeButton.tintColor = .label
-        navigationItem.leftBarButtonItem = closeButton
+        backButton.tintColor = .label
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
+        navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItem = moveButton
     }
     
-    @objc private func closeScreen() {
-        sendScreenWasClosedNotification()
-        dismiss(animated: true)
+    @objc private func back() {
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func moveTabs() {

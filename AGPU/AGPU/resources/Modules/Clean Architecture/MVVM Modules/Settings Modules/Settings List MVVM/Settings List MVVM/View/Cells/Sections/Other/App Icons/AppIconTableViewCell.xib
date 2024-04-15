@@ -24,7 +24,7 @@
                             <constraint firstAttribute="width" constant="65" id="PsY-Br-fvF"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="персональные иконки приложения" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwc-vE-S1F">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Персональные иконки приложения" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwc-vE-S1F">
                         <rect key="frame" x="95" y="15" width="307" height="60"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="gCh-F2-PWi"/>
@@ -48,7 +48,7 @@
                 <outlet property="AppIcon" destination="tzo-Rh-RsG" id="0PQ-J4-UHQ"/>
                 <outlet property="AppIconName" destination="rwc-vE-S1F" id="Xfe-Qc-7Au"/>
             </connections>
-            <point key="canvasLocation" x="167.93893129770993" y="1.0563380281690142"/>
+            <point key="canvasLocation" x="166.40000000000001" y="0.44977511244377816"/>
         </tableViewCell>
     </objects>
     <resources>

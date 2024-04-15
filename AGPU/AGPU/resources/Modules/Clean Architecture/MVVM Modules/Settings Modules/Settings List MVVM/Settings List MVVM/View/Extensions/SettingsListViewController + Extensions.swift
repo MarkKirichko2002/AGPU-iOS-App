@@ -163,7 +163,7 @@ extension SettingsListViewController: UITableViewDelegate {
             } else if indexPath.row == 4 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "profile icon")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                    let vc = TabsListTableViewController()
+                    let vc = TabsOptionsListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)

@@ -118,6 +118,11 @@ extension SettingsManager: SettingsManagerProtocol {
         return position
     }
     
+    func checkTabsAnimationOption()-> Bool {
+        let option = UserDefaults.standard.object(forKey: "onTabsAnimation") as? Bool ?? true
+        return option
+    }
+    
     func observeTabsChanged(completion: @escaping()->Void) {
         NotificationCenter.default.addObserver(forName: Notification.Name("tabs changed"), object: nil, queue: .main) { _ in
             completion()

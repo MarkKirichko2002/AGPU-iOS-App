@@ -1,5 +1,5 @@
 //
-//  TabsListTableViewModel + Extensions.swift
+//  TabsPositionListTableViewModel + Extensions.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 23.03.2024.
@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - ITabsListTableViewModel
-extension TabsListTableViewModel: ITabsListTableViewModel {
+extension TabsPositionListTableViewModel: ITabsPositionListTableViewModel {
     
     func getData() {
         

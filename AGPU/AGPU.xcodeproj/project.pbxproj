@@ -14,11 +14,11 @@
 		8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8208E7542A63A3D300675EF1 /* AGPUThemes.swift */; };
 		820900792BAF612F0053F3BD /* TabModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820900782BAF612F0053F3BD /* TabModel.swift */; };
 		8209007B2BAF61600053F3BD /* TabsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209007A2BAF61600053F3BD /* TabsList.swift */; };
-		8209007D2BAF62650053F3BD /* TabsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209007C2BAF62650053F3BD /* TabsListTableViewController.swift */; };
+		8209007D2BAF62650053F3BD /* TabsPositionListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209007C2BAF62650053F3BD /* TabsPositionListTableViewController.swift */; };
 		820900812BAF62E50053F3BD /* TabItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820900802BAF62E50053F3BD /* TabItemTableViewCell.swift */; };
-		820900862BAF68990053F3BD /* ITabsListTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820900852BAF68990053F3BD /* ITabsListTableViewModel.swift */; };
+		820900862BAF68990053F3BD /* ITabsPositionListTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820900852BAF68990053F3BD /* ITabsPositionListTableViewModel.swift */; };
 		820900882BAF68AF0053F3BD /* TabsListTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820900872BAF68AF0053F3BD /* TabsListTableViewModel.swift */; };
-		8209008A2BAF68C00053F3BD /* TabsListTableViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820900892BAF68C00053F3BD /* TabsListTableViewModel + Extensions.swift */; };
+		8209008A2BAF68C00053F3BD /* TabsPositionListTableViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820900892BAF68C00053F3BD /* TabsPositionListTableViewModel + Extensions.swift */; };
 		8209008E2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209008C2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.swift */; };
 		8209008F2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8209008D2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.xib */; };
 		8209A09A2B838A2A0013371D /* IRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209A0992B838A2A0013371D /* IRealmManager.swift */; };
@@ -252,6 +252,11 @@
 		828397772AD5C9E1000F355A /* AppIconsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828397762AD5C9E1000F355A /* AppIconsListViewModelProtocol.swift */; };
 		828397792AD5C9F8000F355A /* AppIconsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828397782AD5C9F8000F355A /* AppIconsListViewModel.swift */; };
 		8283977B2AD5CA11000F355A /* AppIconsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283977A2AD5CA11000F355A /* AppIconsListViewModel + Extensions.swift */; };
+		8286D1542BCDADC9006BB6B3 /* TabsOptionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286D1532BCDADC9006BB6B3 /* TabsOptionsListTableViewController.swift */; };
+		8286D1582BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286D1562BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.swift */; };
+		8286D1592BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8286D1572BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.xib */; };
+		8286D15D2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286D15B2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.swift */; };
+		8286D15E2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8286D15C2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.xib */; };
 		82875B002A5A1966007DB925 /* HapticsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875AFF2A5A1966007DB925 /* HapticsManagerProtocol.swift */; };
 		82875B022A5A198A007DB925 /* HapticsManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */; };
 		828CFA372A35F65700C7542D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA362A35F65700C7542D /* WebViewController.swift */; };
@@ -500,11 +505,11 @@
 		8208E7542A63A3D300675EF1 /* AGPUThemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUThemes.swift; sourceTree = "<group>"; };
 		820900782BAF612F0053F3BD /* TabModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabModel.swift; sourceTree = "<group>"; };
 		8209007A2BAF61600053F3BD /* TabsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsList.swift; sourceTree = "<group>"; };
-		8209007C2BAF62650053F3BD /* TabsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsListTableViewController.swift; sourceTree = "<group>"; };
+		8209007C2BAF62650053F3BD /* TabsPositionListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsPositionListTableViewController.swift; sourceTree = "<group>"; };
 		820900802BAF62E50053F3BD /* TabItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItemTableViewCell.swift; sourceTree = "<group>"; };
-		820900852BAF68990053F3BD /* ITabsListTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITabsListTableViewModel.swift; sourceTree = "<group>"; };
+		820900852BAF68990053F3BD /* ITabsPositionListTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITabsPositionListTableViewModel.swift; sourceTree = "<group>"; };
 		820900872BAF68AF0053F3BD /* TabsListTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsListTableViewModel.swift; sourceTree = "<group>"; };
-		820900892BAF68C00053F3BD /* TabsListTableViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabsListTableViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		820900892BAF68C00053F3BD /* TabsPositionListTableViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabsPositionListTableViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		8209008C2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarOptionTableViewCell.swift; sourceTree = "<group>"; };
 		8209008D2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTabBarOptionTableViewCell.xib; sourceTree = "<group>"; };
 		8209A0992B838A2A0013371D /* IRealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRealmManager.swift; sourceTree = "<group>"; };
@@ -741,6 +746,11 @@
 		828397762AD5C9E1000F355A /* AppIconsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconsListViewModelProtocol.swift; sourceTree = "<group>"; };
 		828397782AD5C9F8000F355A /* AppIconsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconsListViewModel.swift; sourceTree = "<group>"; };
 		8283977A2AD5CA11000F355A /* AppIconsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppIconsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		8286D1532BCDADC9006BB6B3 /* TabsOptionsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsOptionsListTableViewController.swift; sourceTree = "<group>"; };
+		8286D1562BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsPositionOptionTableViewCell.swift; sourceTree = "<group>"; };
+		8286D1572BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabsPositionOptionTableViewCell.xib; sourceTree = "<group>"; };
+		8286D15B2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsAnimationOptionTableViewCell.swift; sourceTree = "<group>"; };
+		8286D15C2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabsAnimationOptionTableViewCell.xib; sourceTree = "<group>"; };
 		82875AFF2A5A1966007DB925 /* HapticsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManagerProtocol.swift; sourceTree = "<group>"; };
 		82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HapticsManager + Extensions.swift"; sourceTree = "<group>"; };
 		828CFA362A35F65700C7542D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -1133,14 +1143,14 @@
 			path = WKWebView;
 			sourceTree = "<group>";
 		};
-		820900742BAF60CD0053F3BD /* Tabs List MVVM */ = {
+		820900742BAF60CD0053F3BD /* Tabs Position List MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				820900772BAF60F80053F3BD /* Model */,
 				820900762BAF60F40053F3BD /* View */,
 				820900752BAF60F10053F3BD /* ViewModel */,
 			);
-			path = "Tabs List MVVM";
+			path = "Tabs Position List MVVM";
 			sourceTree = "<group>";
 		};
 		820900752BAF60F10053F3BD /* ViewModel */ = {
@@ -1182,7 +1192,7 @@
 		8209007F2BAF62C00053F3BD /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				8209007C2BAF62650053F3BD /* TabsListTableViewController.swift */,
+				8209007C2BAF62650053F3BD /* TabsPositionListTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1190,7 +1200,7 @@
 		820900822BAF68760053F3BD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				820900892BAF68C00053F3BD /* TabsListTableViewModel + Extensions.swift */,
+				820900892BAF68C00053F3BD /* TabsPositionListTableViewModel + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1206,7 +1216,7 @@
 		820900842BAF687A0053F3BD /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				820900852BAF68990053F3BD /* ITabsListTableViewModel.swift */,
+				820900852BAF68990053F3BD /* ITabsPositionListTableViewModel.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -4155,6 +4165,66 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		8286D14E2BCDAD6B006BB6B3 /* Tabs Options List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				8286D1502BCDAD86006BB6B3 /* View */,
+				8286D14F2BCDAD84006BB6B3 /* ViewModel */,
+			);
+			path = "Tabs Options List MVVM";
+			sourceTree = "<group>";
+		};
+		8286D14F2BCDAD84006BB6B3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8286D1502BCDAD86006BB6B3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8286D1522BCDAD9A006BB6B3 /* ViewController */,
+				8286D1512BCDAD98006BB6B3 /* Cells */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8286D1512BCDAD98006BB6B3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8286D1552BCDADEA006BB6B3 /* Tabs Position */,
+				8286D15A2BCDB3A8006BB6B3 /* Tabs Animation */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		8286D1522BCDAD9A006BB6B3 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8286D1532BCDADC9006BB6B3 /* TabsOptionsListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8286D1552BCDADEA006BB6B3 /* Tabs Position */ = {
+			isa = PBXGroup;
+			children = (
+				8286D1562BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.swift */,
+				8286D1572BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.xib */,
+			);
+			path = "Tabs Position";
+			sourceTree = "<group>";
+		};
+		8286D15A2BCDB3A8006BB6B3 /* Tabs Animation */ = {
+			isa = PBXGroup;
+			children = (
+				8286D15B2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.swift */,
+				8286D15C2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.xib */,
+			);
+			path = "Tabs Animation";
+			sourceTree = "<group>";
+		};
 		828CFA342A35F62400C7542D /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -6945,7 +7015,8 @@
 			children = (
 				82761A1F2B463E9F00D9976F /* Splash Screens List MVVM */,
 				828397612AD5BE76000F355A /* App Icons List MVVM */,
-				820900742BAF60CD0053F3BD /* Tabs List MVVM */,
+				8286D14E2BCDAD6B006BB6B3 /* Tabs Options List MVVM */,
+				820900742BAF60CD0053F3BD /* Tabs Position List MVVM */,
 				82768ADD2ABE12D30022FBE1 /* App Themes List MVVM */,
 				828D51052BB85E4D00848FF8 /* ASPU Button Options List */,
 				828D511F2BB892CE00848FF8 /* ASPU Button Icons List MVVM */,
@@ -7257,6 +7328,7 @@
 				8213658E2A94F7B700A20E4E /* InfoPlist.strings in Resources */,
 				8209A0B82B839C0C0013371D /* DocumentTableViewCell.xib in Resources */,
 				82FC881E2BBDFC4A00A2EF59 /* status.mp4 in Resources */,
+				8286D1592BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.xib in Resources */,
 				829D489A2BBC1E2B00F6D256 /* clock_sound2.mp3 in Resources */,
 				8226D1722B0958F600B0B9F0 /* TimetableOptionTableViewCell.xib in Resources */,
 				82FC881A2BBDFC4000A2EF59 /* faculty.mp4 in Resources */,
@@ -7266,6 +7338,7 @@
 				8225279E2BACDCA200B66314 /* SavedNewsCategoryOptionTableViewCell.xib in Resources */,
 				82808E952A31F12500DEEB16 /* LaunchScreen.storyboard in Resources */,
 				82C449F52B5F0B5F0039B0F3 /* paper.mp3 in Resources */,
+				8286D15E2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.xib in Resources */,
 				82320D892A491FBC00ECADEE /* AGPUFacultyTableViewCell.xib in Resources */,
 				82C449F62B5F0B5F0039B0F3 /* ring.mp3 in Resources */,
 				82E4C5972A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib in Resources */,
@@ -7337,6 +7410,7 @@
 				82B24A7A2A81945D008B94E4 /* AllWeeksListViewModel + Extensions.swift in Sources */,
 				820D18E72A68FA7D00BFAA35 /* AGPUBuildings.swift in Sources */,
 				82F578902B6FEDFB00BC64C1 /* ASPUButtonOptionTableViewCell.swift in Sources */,
+				8286D1542BCDADC9006BB6B3 /* TabsOptionsListTableViewController.swift in Sources */,
 				82B267032A8D926400043A6D /* NewsCategories.swift in Sources */,
 				828D51282BB89FE200848FF8 /* ASPUButtonIconModel.swift in Sources */,
 				828397792AD5C9F8000F355A /* AppIconsListViewModel.swift in Sources */,
@@ -7415,7 +7489,7 @@
 				82BDFDB02A404BA0002DBB89 /* AGPUBuildingsMapViewController.swift in Sources */,
 				8234E60B2A88591300ED354C /* RecentWordDocumentModel.swift in Sources */,
 				8228E3A42A6C9D3700C1B6AD /* AGPUBuildingsMapViewModelProtocol.swift in Sources */,
-				8209007D2BAF62650053F3BD /* TabsListTableViewController.swift in Sources */,
+				8209007D2BAF62650053F3BD /* TabsPositionListTableViewController.swift in Sources */,
 				824EBF6C2B29F9890003E7E6 /* AGPUBuildingTypes.swift in Sources */,
 				82F578842B6FE5A800BC64C1 /* ASPUButtonActionsListViewModelProtocol.swift in Sources */,
 				8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */,
@@ -7536,7 +7610,7 @@
 				82B24A892A81BD30008B94E4 /* AGPUNewsService.swift in Sources */,
 				82989AF22A6F8CDF00F27858 /* ForEveryStatusTableViewCell.swift in Sources */,
 				8270A5482A5784A2008ACADC /* DateManager.swift in Sources */,
-				820900862BAF68990053F3BD /* ITabsListTableViewModel.swift in Sources */,
+				820900862BAF68990053F3BD /* ITabsPositionListTableViewModel.swift in Sources */,
 				82761A2D2B46428100D9976F /* SplashScreensListViewModelProtocol.swift in Sources */,
 				82FC22F52BC03722008709DA /* ShowOnlyDailyNewsTableViewCell.swift in Sources */,
 				8283217C2A7D67D4008641A5 /* SearchAGPUBuildingMapViewModelProtocol.swift in Sources */,
@@ -7562,7 +7636,7 @@
 				82768AF12ABE15450022FBE1 /* AppThemesListViewModel + Extensions.swift in Sources */,
 				82377F9B2B3365D200FF5045 /* Hints.swift in Sources */,
 				822527A82BADAC5F00B66314 /* AdaptiveNewsOptionsListViewModel.swift in Sources */,
-				8209008A2BAF68C00053F3BD /* TabsListTableViewModel + Extensions.swift in Sources */,
+				8209008A2BAF68C00053F3BD /* TabsPositionListTableViewModel + Extensions.swift in Sources */,
 				82E4E5592A57699E00314296 /* WKWebView + Extensions.swift in Sources */,
 				824EBF752B29FA530003E7E6 /* AGPUBuildingTypesListViewModel + Extensions.swift in Sources */,
 				8226D1882B096F5A00B0B9F0 /* SavedPairTypeTableViewController.swift in Sources */,
@@ -7702,6 +7776,7 @@
 				822FB2182AC5DFA70083E016 /* SubGroupsListViewModel + Extensions.swift in Sources */,
 				826716C22A5A2AF600CD5C23 /* RecentWebPageModel.swift in Sources */,
 				82B24A872A81BCE6008B94E4 /* Article.swift in Sources */,
+				8286D15D2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.swift in Sources */,
 				822527A32BACE4DA00B66314 /* AdaptToWebOptionTableViewCell.swift in Sources */,
 				82184D802B7BD8D700F2588E /* HourlyWeatherTableViewCell.swift in Sources */,
 				82320D872A491F5700ECADEE /* AGPUFacultyTableViewCell.swift in Sources */,
@@ -7754,6 +7829,7 @@
 				826888582A33AB5600434219 /* RegularSplashScreenViewController.swift in Sources */,
 				82E4C5892A6B20DE00F65A67 /* LocationManager.swift in Sources */,
 				823F97D92B9D224100F60F39 /* WeatherSplashScreenViewController.swift in Sources */,
+				8286D1582BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.swift in Sources */,
 				82768AE62ABE13550022FBE1 /* AppThemes.swift in Sources */,
 				82061CCB2B09A5920073D727 /* TimetableOptionsTableViewCell.swift in Sources */,
 			);

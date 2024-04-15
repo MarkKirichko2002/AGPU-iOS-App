@@ -21,5 +21,6 @@ protocol SettingsManagerProtocol {
     func getUserStatus()-> UserStatusModel
     func observeStatusChanged(completion: @escaping()->Void)
     func getTabsPosition()-> [Int] 
+    func checkTabsAnimationOption()-> Bool
     func observeTabsChanged(completion: @escaping()->Void)
 }
