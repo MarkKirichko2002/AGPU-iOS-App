@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="student icon" translatesAutoresizingMaskIntoConstraints="NO" id="ycJ-Eg-bMj" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
-                        <rect key="frame" x="10" y="10" width="65" height="65"/>
+                        <rect key="frame" x="20" y="15" width="65" height="65"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="65" id="15O-fd-wzg"/>
@@ -25,7 +25,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="студент" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ttj-05-rv7">
-                        <rect key="frame" x="85" y="15" width="298" height="60"/>
+                        <rect key="frame" x="95" y="15" width="288" height="60"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="6ag-EC-VLC"/>
                         </constraints>
@@ -36,10 +36,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="ttj-05-rv7" firstAttribute="top" secondItem="7Ul-NM-JeT" secondAttribute="top" constant="15" id="E9k-lT-CC5"/>
-                    <constraint firstItem="ycJ-Eg-bMj" firstAttribute="top" secondItem="7Ul-NM-JeT" secondAttribute="top" constant="10" id="Ecf-ww-aEB"/>
+                    <constraint firstItem="ycJ-Eg-bMj" firstAttribute="top" secondItem="7Ul-NM-JeT" secondAttribute="top" constant="15" id="Ecf-ww-aEB"/>
                     <constraint firstAttribute="trailing" secondItem="ttj-05-rv7" secondAttribute="trailing" constant="10" id="G1Q-4N-Po7"/>
-                    <constraint firstAttribute="bottom" secondItem="ycJ-Eg-bMj" secondAttribute="bottom" constant="10" id="QVZ-ba-lkq"/>
-                    <constraint firstItem="ycJ-Eg-bMj" firstAttribute="leading" secondItem="7Ul-NM-JeT" secondAttribute="leading" constant="10" id="T0G-wb-DGz"/>
+                    <constraint firstAttribute="bottom" secondItem="ycJ-Eg-bMj" secondAttribute="bottom" constant="15" id="QVZ-ba-lkq"/>
+                    <constraint firstItem="ycJ-Eg-bMj" firstAttribute="leading" secondItem="7Ul-NM-JeT" secondAttribute="leading" constant="20" id="T0G-wb-DGz"/>
                     <constraint firstAttribute="bottom" secondItem="ttj-05-rv7" secondAttribute="bottom" constant="15" id="Za3-aA-Dbs"/>
                     <constraint firstItem="ttj-05-rv7" firstAttribute="leading" secondItem="ycJ-Eg-bMj" secondAttribute="trailing" constant="10" id="i3c-Fm-Sks"/>
                 </constraints>

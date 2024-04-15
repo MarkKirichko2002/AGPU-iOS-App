@@ -9,15 +9,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SaveRecentTimetableItemOptionCell" rowHeight="82" id="ef1-FG-mdy" customClass="SaveRecentTimetableItemOptionCell" customModule="AGPU" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="430" height="82"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SaveRecentTimetableItemOptionCell" rowHeight="104" id="ef1-FG-mdy" customClass="SaveRecentTimetableItemOptionCell" customModule="AGPU" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="430" height="104"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ef1-FG-mdy" id="4VP-AP-vhQ">
-                <rect key="frame" x="0.0" y="0.0" width="430" height="82"/>
+                <rect key="frame" x="0.0" y="0.0" width="430" height="104"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time.past" translatesAutoresizingMaskIntoConstraints="NO" id="2KE-j7-hv7" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
-                        <rect key="frame" x="10" y="10" width="65" height="65"/>
+                        <rect key="frame" x="20" y="15" width="65" height="65"/>
                         <color key="tintColor" red="0.0564979439" green="0.0" blue="0.25830120280000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="65" id="Gd1-8D-e8o"/>
@@ -25,13 +25,13 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сохранять недавний выбор" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lgo-Ws-EpB">
-                        <rect key="frame" x="85.000000000000014" y="9.9999999999999982" width="239.33333333333337" height="20.333333333333329"/>
+                        <rect key="frame" x="95.000000000000014" y="14.999999999999998" width="239.33333333333337" height="20.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OUV-2C-XwJ">
-                        <rect key="frame" x="85" y="40.333333333333336" width="51" height="31.000000000000007"/>
+                        <rect key="frame" x="95" y="45.333333333333336" width="51" height="31.000000000000007"/>
                         <connections>
                             <action selector="switchAction:" destination="ef1-FG-mdy" eventType="touchUpInside" id="Q01-2K-VS7"/>
                         </connections>
@@ -39,11 +39,11 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="OUV-2C-XwJ" firstAttribute="top" secondItem="Lgo-Ws-EpB" secondAttribute="bottom" constant="10" id="0X8-RX-xh5"/>
-                    <constraint firstItem="2KE-j7-hv7" firstAttribute="leading" secondItem="4VP-AP-vhQ" secondAttribute="leading" constant="10" id="3tk-us-sXQ"/>
+                    <constraint firstItem="2KE-j7-hv7" firstAttribute="leading" secondItem="4VP-AP-vhQ" secondAttribute="leading" constant="20" id="3tk-us-sXQ"/>
                     <constraint firstItem="OUV-2C-XwJ" firstAttribute="leading" secondItem="Lgo-Ws-EpB" secondAttribute="leading" id="9uD-Z7-hYp"/>
                     <constraint firstItem="Lgo-Ws-EpB" firstAttribute="leading" secondItem="2KE-j7-hv7" secondAttribute="trailing" constant="10" id="MfJ-VN-Bvg"/>
-                    <constraint firstAttribute="bottom" secondItem="2KE-j7-hv7" secondAttribute="bottom" constant="10" id="RHr-SH-ivR"/>
-                    <constraint firstItem="2KE-j7-hv7" firstAttribute="top" secondItem="4VP-AP-vhQ" secondAttribute="top" constant="10" id="aYx-3M-7We"/>
+                    <constraint firstAttribute="bottom" secondItem="2KE-j7-hv7" secondAttribute="bottom" constant="15" id="RHr-SH-ivR"/>
+                    <constraint firstItem="2KE-j7-hv7" firstAttribute="top" secondItem="4VP-AP-vhQ" secondAttribute="top" constant="15" id="aYx-3M-7We"/>
                     <constraint firstItem="Lgo-Ws-EpB" firstAttribute="top" secondItem="2KE-j7-hv7" secondAttribute="top" id="pbf-Uu-MlX"/>
                 </constraints>
             </tableViewCellContentView>
@@ -53,7 +53,7 @@
                 <outlet property="Switch" destination="OUV-2C-XwJ" id="Pws-w9-9qz"/>
                 <outlet property="TitleLabel" destination="Lgo-Ws-EpB" id="nIr-t1-iQd"/>
             </connections>
-            <point key="canvasLocation" x="48.854961832061065" y="-22.535211267605636"/>
+            <point key="canvasLocation" x="48.854961832061065" y="-14.788732394366198"/>
         </tableViewCell>
     </objects>
     <resources>

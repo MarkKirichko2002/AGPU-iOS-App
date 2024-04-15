@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="news" translatesAutoresizingMaskIntoConstraints="NO" id="cRj-I6-xFl" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
-                        <rect key="frame" x="30" y="10" width="65" height="65"/>
+                        <rect key="frame" x="20" y="10" width="65" height="65"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="65" id="Gt1-0p-rev"/>
@@ -25,7 +25,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Адаптивные новости" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWC-Op-vfc">
-                        <rect key="frame" x="105" y="15" width="297" height="60"/>
+                        <rect key="frame" x="95" y="15" width="307" height="60"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="9Kx-eo-xHE"/>
                         </constraints>
@@ -36,7 +36,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="cRj-I6-xFl" firstAttribute="top" secondItem="ioO-rL-L70" secondAttribute="top" constant="10" id="GZ8-s5-mp7"/>
-                    <constraint firstItem="cRj-I6-xFl" firstAttribute="leading" secondItem="ioO-rL-L70" secondAttribute="leading" constant="30" id="Iqt-Cn-sbH"/>
+                    <constraint firstItem="cRj-I6-xFl" firstAttribute="leading" secondItem="ioO-rL-L70" secondAttribute="leading" constant="20" id="Iqt-Cn-sbH"/>
                     <constraint firstItem="tWC-Op-vfc" firstAttribute="top" secondItem="ioO-rL-L70" secondAttribute="top" constant="15" id="LbL-yc-x0S"/>
                     <constraint firstAttribute="trailing" secondItem="tWC-Op-vfc" secondAttribute="trailing" constant="10" id="e2c-np-FO6"/>
                     <constraint firstItem="tWC-Op-vfc" firstAttribute="leading" secondItem="cRj-I6-xFl" secondAttribute="trailing" constant="10" id="fmb-Br-OLz"/>
