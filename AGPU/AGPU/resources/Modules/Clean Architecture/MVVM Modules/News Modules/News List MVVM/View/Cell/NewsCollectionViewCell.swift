@@ -119,6 +119,6 @@ final class NewsCollectionViewCell: UICollectionViewCell {
     }
     
     func didTapCell(indexPath: IndexPath) {
-        animation.flipAnimation(view: self) {}
+        animation.flipAnimation(view: self, option: .transitionFlipFromRight) {}
     }
 }

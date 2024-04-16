@@ -56,11 +56,11 @@ extension AnimationClass: AnimationClassProtocol {
     }
    
     // анимация переворота
-    func flipAnimation<T: UIView>(view: T, completion: @escaping()->Void) {
+    func flipAnimation<T: UIView>(view: T, option: UIView.AnimationOptions, completion: @escaping()->Void) {
         UIView.transition(
             with: view,
             duration: 0.5,
-            options: .transitionFlipFromRight,
+            options: option,
             animations: {},
             completion: { finished in
                 if finished {

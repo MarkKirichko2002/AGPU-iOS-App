@@ -16,7 +16,7 @@ extension AGPUTabBarController {
             
             if text.lowercased().contains(section.voiceCommand) {
                 
-                self.updateDynamicButton(icon: section.icon)
+                self.updateASPUButton(icon: section.icon)
                 
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                     self.goToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false, isNotify: true)
@@ -47,7 +47,7 @@ extension AGPUTabBarController {
             
             let section = AGPUSections.sections[Int.random(in: 0..<AGPUSections.sections.count - 1)]
             
-            self.updateDynamicButton(icon: "dice")
+            self.updateASPUButton(icon: "dice")
             
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 self.isOpened = true
@@ -74,7 +74,7 @@ extension AGPUTabBarController {
                 
                 if text.noWhitespacesWord().contains(subsection.voiceCommand) && subsection.url != "" {
                     resetSpeechRecognition()
-                    self.updateDynamicButton(icon: subsection.icon)
+                    self.updateASPUButton(icon: subsection.icon)
                     
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                         self.isOpened = true
@@ -108,7 +108,7 @@ extension AGPUTabBarController {
             
             if building.voiceCommands.contains(where: { text.lowercased().range(of: $0.lowercased()) != nil }) {
                 resetSpeechRecognition()
-                self.updateDynamicButton(icon: "map icon")
+                self.updateASPUButton(icon: "map icon")
                 let vc = VoiceSearchAGPUBuildingMapViewController(building: building)
                 let navVC = UINavigationController(rootViewController: vc)
                 navVC.modalPresentationStyle = .fullScreen
@@ -139,7 +139,7 @@ extension AGPUTabBarController {
             
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 self.isOpened = false
-                self.updateDynamicButton(icon: "mic")
+                self.updateASPUButton(icon: "mic")
                 NotificationCenter.default.post(name: Notification.Name("actions"), object: Actions.closeScreen)
             }
         } 
@@ -169,7 +169,7 @@ extension AGPUTabBarController {
                 NotificationCenter.default.post(name: Notification.Name("actions"), object: Actions.closeScreen)
             }
             
-            self.DynamicButton.sendActions(for: .touchUpInside)
+            self.ASPUButton.sendActions(for: .touchUpInside)
             
         }
     }
@@ -184,11 +184,31 @@ extension AGPUTabBarController {
     }
     
     // изменение ASPU Button
-    func updateDynamicButton(icon: String) {
+    func updateASPUButton(icon: String) {
+        let option = settingsManager.checkASPUButtonAnimationOption()
         DispatchQueue.main.async {
-            self.DynamicButton.setImage(UIImage(named: icon), for: .normal)
-            self.animation.springAnimation(view: self.DynamicButton)
-            HapticsManager.shared.hapticFeedback()
+            self.ASPUButton.setImage(UIImage(named: icon), for: .normal)
+            switch option {
+            case .spring:
+                self.animation.springAnimation(view: self.ASPUButton)
+                HapticsManager.shared.hapticFeedback()
+            case .flipFromTop:
+                self.animation.flipAnimation(view: self.ASPUButton, option: .transitionFlipFromTop) {
+                    HapticsManager.shared.hapticFeedback()
+                }
+            case .flipFromRight:
+                self.animation.flipAnimation(view: self.ASPUButton, option: .transitionFlipFromRight) {
+                    HapticsManager.shared.hapticFeedback()
+                }
+            case .flipFromLeft:
+                self.animation.flipAnimation(view: self.ASPUButton, option: .transitionFlipFromLeft) {
+                    HapticsManager.shared.hapticFeedback()
+                }
+            case .flipFromBottom:
+                self.animation.flipAnimation(view: self.ASPUButton, option: .transitionFlipFromBottom) {
+                    HapticsManager.shared.hapticFeedback()
+                }
+            }
         }
     }
 }

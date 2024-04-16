@@ -16,8 +16,13 @@ extension ASPUButtonOptionsListViewModel: IASPUButtonOptionsListViewModel {
     }
     
     func getASPUButtonActionInfo()-> String {
-        let action = settingsManager.checkDynamicButtonOption()
+        let action = settingsManager.checkASPUButtonOption()
         return action.rawValue
+    }
+    
+    func getASPUButtonAnimationOptionInfo()-> String {
+        let option = settingsManager.checkASPUButtonAnimationOption()
+        return option.rawValue
     }
     
     func observeOptionSelected() {

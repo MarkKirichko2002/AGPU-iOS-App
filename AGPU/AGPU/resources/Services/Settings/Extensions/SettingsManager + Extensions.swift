@@ -76,15 +76,20 @@ extension SettingsManager: SettingsManagerProtocol {
     }
     
     // MARK: - ASPU Button
-    func checkDynamicButtonOption()-> ASPUButtonActions {
+    func checkASPUButtonOption()-> ASPUButtonActions {
         let action = UserDefaults.loadData(type: ASPUButtonActions.self, key: "action") ?? .speechRecognition
         return action
     }
     
-    func observeDynamicButtonActionChanged(completion: @escaping()->Void) {
+    func observeASPUButtonActionChanged(completion: @escaping()->Void) {
         NotificationCenter.default.addObserver(forName: Notification.Name("action"), object: nil, queue: .main) { _ in
             completion()
         }
+    }
+    
+    func checkASPUButtonAnimationOption()-> ASPUButtonAnimationOptions {
+        let option = UserDefaults.loadData(type: ASPUButtonAnimationOptions.self, key: "animation") ?? .spring
+        return option
     }
 
     // MARK: - My Splash Screen

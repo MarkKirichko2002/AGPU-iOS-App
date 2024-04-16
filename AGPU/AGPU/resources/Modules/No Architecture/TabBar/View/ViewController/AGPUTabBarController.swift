@@ -31,7 +31,7 @@ final class AGPUTabBarController: UITabBarController {
     var isOpened = false
     
     // MARK: - ASPU Button
-    let DynamicButton: UIButton = {
+    let ASPUButton: UIButton = {
         let button = UIButton()
         button.imageView?.contentMode = .scaleAspectFill
         return button
@@ -120,35 +120,35 @@ final class AGPUTabBarController: UITabBarController {
     
     // MARK: - ASPU Button
     private func createMiddleButton() {
-        DynamicButton.setImage(UIImage(named: settingsManager.checkCurrentIcon()), for: .normal)
-        DynamicButton.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
+        ASPUButton.setImage(UIImage(named: settingsManager.checkCurrentIcon()), for: .normal)
+        ASPUButton.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
         // Устанавливаем положение кнопки по середине TabBar
-        DynamicButton.center = CGPoint(x: tabBar.frame.width / 2, y: tabBar.frame.height / 2 - 5)
-        settingsManager.observeDynamicButtonActionChanged {
+        ASPUButton.center = CGPoint(x: tabBar.frame.width / 2, y: tabBar.frame.height / 2 - 5)
+        settingsManager.observeASPUButtonActionChanged {
             self.currentAction()
         }
         // Назначаем действие для кнопки
         currentAction()
         // Добавляем кнопку на TabBar
-        tabBar.addSubview(DynamicButton)
+        tabBar.addSubview(ASPUButton)
     }
      
     private func currentAction() {
-        let action = settingsManager.checkDynamicButtonOption()
-        DynamicButton.removeTarget(nil, action: nil, for: .allEvents)
+        let action = settingsManager.checkASPUButtonOption()
+        ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
         switch action {
         case .speechRecognition:
-            DynamicButton.addTarget(self, action: #selector(VoiceCommands), for: .touchUpInside)
+            ASPUButton.addTarget(self, action: #selector(VoiceCommands), for: .touchUpInside)
         case .timetableWeeks:
-            DynamicButton.addTarget(self, action: #selector(openWeeksTimetable), for: .touchUpInside)
+            ASPUButton.addTarget(self, action: #selector(openWeeksTimetable), for: .touchUpInside)
         case .campusMap:
-            DynamicButton.addTarget(self, action: #selector(openCampusMap), for: .touchUpInside)
+            ASPUButton.addTarget(self, action: #selector(openCampusMap), for: .touchUpInside)
         case .studyPlan:
-            DynamicButton.addTarget(self, action: #selector(openStudyPlan), for: .touchUpInside)
+            ASPUButton.addTarget(self, action: #selector(openStudyPlan), for: .touchUpInside)
         case .profile:
-            DynamicButton.addTarget(self, action: #selector(openProfile), for: .touchUpInside)
+            ASPUButton.addTarget(self, action: #selector(openProfile), for: .touchUpInside)
         case .manual:
-            DynamicButton.addTarget(self, action: #selector(openManual), for: .touchUpInside)
+            ASPUButton.addTarget(self, action: #selector(openManual), for: .touchUpInside)
         }
     }
     
@@ -161,11 +161,11 @@ final class AGPUTabBarController: UITabBarController {
         if settingsManager.checkShakeToRecallOption() {
             ShakeToRecall(motion: motion)
         } else {
-            self.updateDynamicButton(icon: "info icon")
+            self.updateASPUButton(icon: "info icon")
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let ok = UIAlertAction(title: "ОК", style: .default)
                 self.showAlert(title: "Вы отключили фишку Shake To Recall!", message: "чтобы дальше пользоваться данной фишкой включите ее в настройках.", actions: [ok])
-                self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
+                self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
             }
         }
     }
@@ -177,7 +177,7 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     private func ShakeToRecall() {
-        self.updateDynamicButton(icon: "time.past")
+        self.updateASPUButton(icon: "time.past")
         let vc = RecentMomentsListTableViewController()
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
@@ -189,7 +189,7 @@ final class AGPUTabBarController: UITabBarController {
     @objc private func VoiceCommands() {
         isRecording = !isRecording
         if isRecording {
-            self.updateDynamicButton(icon: "mic")
+            self.updateASPUButton(icon: "mic")
             speechRecognitionManager.requestSpeechAndMicrophonePermission()
             speechRecognitionManager.registerSpeechAuthorizationHandler { auth in
                 switch auth {
@@ -200,7 +200,7 @@ final class AGPUTabBarController: UITabBarController {
                         self.openSettings()
                     }
                     let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in
-                        self.DynamicButton.sendActions(for: .touchUpInside)
+                        self.ASPUButton.sendActions(for: .touchUpInside)
                     }
                     self.showAlert(title: "Микрофон выключен", message: "Хотите включить в настройках?", actions: [settingsAction, cancel])
                     print("Доступ к распознаванию речи был отклонен.")
@@ -217,7 +217,7 @@ final class AGPUTabBarController: UITabBarController {
                 self.checkVoiceCommands(text: text)
             }
         } else {
-            self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
+            self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
             speechRecognitionManager.cancelSpeechRecognition()
         }
     }
@@ -279,7 +279,7 @@ final class AGPUTabBarController: UITabBarController {
     private func observeForEveryStatus() {
         NotificationCenter.default.addObserver(forName: Notification.Name("for every status selected"), object: nil, queue: .main) { notification in
             if let icon = notification.object as? String {
-                self.updateDynamicButton(icon: icon)
+                self.updateASPUButton(icon: icon)
             }
         }
     }
@@ -288,11 +288,11 @@ final class AGPUTabBarController: UITabBarController {
         NotificationCenter.default.addObserver(forName: Notification.Name("screen was closed"), object: nil, queue: .main) { _ in
             if self.isRecording {
                 if !self.tabBar.isHidden {
-                    self.updateDynamicButton(icon: "mic")
+                    self.updateASPUButton(icon: "mic")
                 }
             } else {
                 if !self.tabBar.isHidden {
-                    self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
+                    self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
                 }
             }
         }
@@ -302,9 +302,9 @@ final class AGPUTabBarController: UITabBarController {
     private func observeFaculty() {
         NotificationCenter.default.addObserver(forName: Notification.Name("icon"), object: nil, queue: .main) { notification in
             if let icon = notification.object as? String {
-                self.updateDynamicButton(icon: icon)
+                self.updateASPUButton(icon: icon)
             } else {
-                self.updateDynamicButton(icon: "АГПУ")
+                self.updateASPUButton(icon: "АГПУ")
             }
         }
     }
@@ -312,15 +312,15 @@ final class AGPUTabBarController: UITabBarController {
     // MARK: - Adaptive News
     private func observeArticleSelected() {
         NotificationCenter.default.addObserver(forName: Notification.Name("article selected"), object: nil, queue: .main) { _ in
-            self.updateDynamicButton(icon: "info icon")
+            self.updateASPUButton(icon: "info icon")
         }
     }
     
     private func observeDataRefreshed() {
         NotificationCenter.default.addObserver(forName: Notification.Name("refreshed"), object: nil, queue: .main) { _ in
-            self.updateDynamicButton(icon: "refresh icon")
+            self.updateASPUButton(icon: "refresh icon")
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
+                self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
             }
         }
     }

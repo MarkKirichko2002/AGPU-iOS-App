@@ -10,6 +10,7 @@ import Foundation
 protocol IASPUButtonOptionsListViewModel {
     func getASPUButtonIconInfo()-> String
     func getASPUButtonActionInfo()-> String
+    func getASPUButtonAnimationOptionInfo()-> String
     func observeOptionSelected()
     func registerDataChangedHandler(block: @escaping()->Void)
 }

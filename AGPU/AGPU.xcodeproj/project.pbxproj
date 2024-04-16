@@ -413,6 +413,13 @@
 		82C561622A6B772600514B00 /* AppFeaturesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C561612A6B772600514B00 /* AppFeaturesListTableViewController.swift */; };
 		82C561672A6B7B0D00514B00 /* AppFeatureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C561662A6B7B0D00514B00 /* AppFeatureDetailViewController.swift */; };
 		82C561692A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82C561682A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard */; };
+		82C5B7882BCEF4E800F907CB /* ASPUButtonAnimationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C5B7872BCEF4E800F907CB /* ASPUButtonAnimationOptions.swift */; };
+		82C5B78B2BCEF6E900F907CB /* ASPUButtonAnimationOptionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C5B78A2BCEF6E900F907CB /* ASPUButtonAnimationOptionsListTableViewController.swift */; };
+		82C5B78F2BCEF81600F907CB /* ASPUButtonAnimationOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C5B78D2BCEF81600F907CB /* ASPUButtonAnimationOptionTableViewCell.swift */; };
+		82C5B7902BCEF81600F907CB /* ASPUButtonAnimationOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82C5B78E2BCEF81600F907CB /* ASPUButtonAnimationOptionTableViewCell.xib */; };
+		82C5B7952BCEFBE900F907CB /* IASPUButtonAnimationOptionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C5B7942BCEFBE900F907CB /* IASPUButtonAnimationOptionsListViewModel.swift */; };
+		82C5B7972BCEFC2300F907CB /* ASPUButtonAnimationOptionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C5B7962BCEFC2300F907CB /* ASPUButtonAnimationOptionsListViewModel.swift */; };
+		82C5B7992BCEFC3E00F907CB /* ASPUButtonAnimationOptionsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C5B7982BCEFC3E00F907CB /* ASPUButtonAnimationOptionsListViewModel + Extensions.swift */; };
 		82C7B8422A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */; };
 		82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8432A50CCB800F9A552 /* AnimationClass + Extensions.swift */; };
 		82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8452A50CD4C00F9A552 /* SettingsManager + Extensions.swift */; };
@@ -907,6 +914,13 @@
 		82C561612A6B772600514B00 /* AppFeaturesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeaturesListTableViewController.swift; sourceTree = "<group>"; };
 		82C561662A6B7B0D00514B00 /* AppFeatureDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeatureDetailViewController.swift; sourceTree = "<group>"; };
 		82C561682A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppFeatureDetailViewController.storyboard; sourceTree = "<group>"; };
+		82C5B7872BCEF4E800F907CB /* ASPUButtonAnimationOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonAnimationOptions.swift; sourceTree = "<group>"; };
+		82C5B78A2BCEF6E900F907CB /* ASPUButtonAnimationOptionsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonAnimationOptionsListTableViewController.swift; sourceTree = "<group>"; };
+		82C5B78D2BCEF81600F907CB /* ASPUButtonAnimationOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonAnimationOptionTableViewCell.swift; sourceTree = "<group>"; };
+		82C5B78E2BCEF81600F907CB /* ASPUButtonAnimationOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ASPUButtonAnimationOptionTableViewCell.xib; sourceTree = "<group>"; };
+		82C5B7942BCEFBE900F907CB /* IASPUButtonAnimationOptionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IASPUButtonAnimationOptionsListViewModel.swift; sourceTree = "<group>"; };
+		82C5B7962BCEFC2300F907CB /* ASPUButtonAnimationOptionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonAnimationOptionsListViewModel.swift; sourceTree = "<group>"; };
+		82C5B7982BCEFC3E00F907CB /* ASPUButtonAnimationOptionsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASPUButtonAnimationOptionsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpeechRecognitionManager + Extensions.swift"; sourceTree = "<group>"; };
 		82C7B8432A50CCB800F9A552 /* AnimationClass + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimationClass + Extensions.swift"; sourceTree = "<group>"; };
 		82C7B8452A50CD4C00F9A552 /* SettingsManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsManager + Extensions.swift"; sourceTree = "<group>"; };
@@ -4274,6 +4288,7 @@
 			children = (
 				828D51112BB86AFD00848FF8 /* ASPU Button Icon Option */,
 				828D51102BB866E100848FF8 /* ASPU Button Actions Option */,
+				82C5B78C2BCEF7F500F907CB /* ASPU Button Animation Option */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -6153,6 +6168,83 @@
 			path = "Features List";
 			sourceTree = "<group>";
 		};
+		82C5B7832BCEF45C00F907CB /* ASPU Button Animation Options List */ = {
+			isa = PBXGroup;
+			children = (
+				82C5B7862BCEF47E00F907CB /* Model */,
+				82C5B7852BCEF47C00F907CB /* View */,
+				82C5B7842BCEF47900F907CB /* ViewModel */,
+			);
+			path = "ASPU Button Animation Options List";
+			sourceTree = "<group>";
+		};
+		82C5B7842BCEF47900F907CB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82C5B7932BCEFBC700F907CB /* Protocol */,
+				82C5B7922BCEFBC500F907CB /* ViewModel */,
+				82C5B7912BCEFBC300F907CB /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82C5B7852BCEF47C00F907CB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82C5B7892BCEF5B900F907CB /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82C5B7862BCEF47E00F907CB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82C5B7872BCEF4E800F907CB /* ASPUButtonAnimationOptions.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82C5B7892BCEF5B900F907CB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82C5B78A2BCEF6E900F907CB /* ASPUButtonAnimationOptionsListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82C5B78C2BCEF7F500F907CB /* ASPU Button Animation Option */ = {
+			isa = PBXGroup;
+			children = (
+				82C5B78D2BCEF81600F907CB /* ASPUButtonAnimationOptionTableViewCell.swift */,
+				82C5B78E2BCEF81600F907CB /* ASPUButtonAnimationOptionTableViewCell.xib */,
+			);
+			path = "ASPU Button Animation Option";
+			sourceTree = "<group>";
+		};
+		82C5B7912BCEFBC300F907CB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82C5B7982BCEFC3E00F907CB /* ASPUButtonAnimationOptionsListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82C5B7922BCEFBC500F907CB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82C5B7962BCEFC2300F907CB /* ASPUButtonAnimationOptionsListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82C5B7932BCEFBC700F907CB /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82C5B7942BCEFBE900F907CB /* IASPUButtonAnimationOptionsListViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		82D0FC072B1B49E10056D94B /* Cathedra Building Detail MVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -7021,6 +7113,7 @@
 				828D51052BB85E4D00848FF8 /* ASPU Button Options List */,
 				828D511F2BB892CE00848FF8 /* ASPU Button Icons List MVVM */,
 				82F578782B6FE48400BC64C1 /* ASPU Button Actions List */,
+				82C5B7832BCEF45C00F907CB /* ASPU Button Animation Options List */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -7305,6 +7398,7 @@
 				82B267062A8DAA8500043A6D /* NewsCategoryTableViewCell.xib in Resources */,
 				82FC881B2BBDFC4300A2EF59 /* new year.mp4 in Resources */,
 				822632422A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib in Resources */,
+				82C5B7902BCEF81600F907CB /* ASPUButtonAnimationOptionTableViewCell.xib in Resources */,
 				82C449F82B5F0B5F0039B0F3 /* danger.mp3 in Resources */,
 				82C561692A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard in Resources */,
 				822DA7182BCACDC000CB4A21 /* technopark.mp4 in Resources */,
@@ -7553,6 +7647,7 @@
 				82967C352BA236BF001059B2 /* ITimeTableSplashScreenViewModel.swift in Sources */,
 				8234E6032A88583E00ED354C /* WordRecentDocumentViewController.swift in Sources */,
 				8209A09C2B838A470013371D /* DocumentModel.swift in Sources */,
+				82C5B7882BCEF4E800F907CB /* ASPUButtonAnimationOptions.swift in Sources */,
 				82BCB5392AB351F400F3A321 /* DaysListViewModelProtocol.swift in Sources */,
 				82AC8EB22B76AE13006B29F9 /* YourStatusSplashScreenViewController.swift in Sources */,
 				825D92EE2AF2F03000B5E9DF /* RecentTimeTableDayListTableViewController + Extensions.swift in Sources */,
@@ -7565,6 +7660,7 @@
 				82B24AA12A81C89E008B94E4 /* AGPUNewsListViewModel.swift in Sources */,
 				82FB5B642A7A8FF600728980 /* InteractiveView.swift in Sources */,
 				828321802A7D687A008641A5 /* SearchAGPUBuildingMapViewModel + Extensions.swift in Sources */,
+				82C5B7972BCEFC2300F907CB /* ASPUButtonAnimationOptionsListViewModel.swift in Sources */,
 				8228E3992A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift in Sources */,
 				8234E6082A8858C400ED354C /* WordRecentDocumentViewModelProtocol.swift in Sources */,
 				82920B6A2AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift in Sources */,
@@ -7572,6 +7668,7 @@
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
 				82967C1F2BA081F9001059B2 /* RecentNewsListViewController.swift in Sources */,
 				822FB2162AC5DF580083E016 /* SubGroupsListViewModel.swift in Sources */,
+				82C5B78B2BCEF6E900F907CB /* ASPUButtonAnimationOptionsListTableViewController.swift in Sources */,
 				8268885B2A33AC6000434219 /* AnimationClass.swift in Sources */,
 				82B24A9F2A81C859008B94E4 /* AGPUNewsListViewModelProtocol.swift in Sources */,
 				8241F9992A5F40EB007DF628 /* TimeTableService + Extensions.swift in Sources */,
@@ -7667,6 +7764,7 @@
 				8210CA052A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift in Sources */,
 				82989ACA2A6E2D4500F27858 /* FacultyCathedraModel.swift in Sources */,
 				82FC22EE2BC01BF1008709DA /* NewsOptionsFilterListTableViewController.swift in Sources */,
+				82C5B78F2BCEF81600F907CB /* ASPUButtonAnimationOptionTableViewCell.swift in Sources */,
 				82ECABE12A81520A00FE7462 /* SubGroupModel.swift in Sources */,
 				82A29F472B9BD5EF00756F43 /* SelectedFacultySplashScreenViewModel + Extensions.swift in Sources */,
 				8299E3B82B8A323200D81472 /* TimetableDateDetailViewController.swift in Sources */,
@@ -7746,6 +7844,7 @@
 				829D489D2BBC1E8C00F6D256 /* TimeTableSoundsListTableViewController.swift in Sources */,
 				82B24A912A81BE21008B94E4 /* AGPUNewsService + Extensions.swift in Sources */,
 				82C561672A6B7B0D00514B00 /* AppFeatureDetailViewController.swift in Sources */,
+				82C5B7952BCEFBE900F907CB /* IASPUButtonAnimationOptionsListViewModel.swift in Sources */,
 				8234E60D2A885B6D00ED354C /* WordRecentDocumentViewModel.swift in Sources */,
 				82920B8D2AD8871D00352CD8 /* SelectedFacultyListViewModelProtocol.swift in Sources */,
 				823F97E02B9D228C00F60F39 /* WeatherSplashScreenViewModel.swift in Sources */,
@@ -7790,6 +7889,7 @@
 				82184D8F2B7BDA3F00F2588E /* HourlyWeatherCollectionViewCellViewModel.swift in Sources */,
 				82DB22C32AACD05D00F8F664 /* TimeTable.swift in Sources */,
 				82920B7E2AD87B9200352CD8 /* UserStatusListViewModel.swift in Sources */,
+				82C5B7992BCEFC3E00F907CB /* ASPUButtonAnimationOptionsListViewModel + Extensions.swift in Sources */,
 				825D92EA2AF2E80F00B5E9DF /* RecentTimeTableDayListTableViewController.swift in Sources */,
 				82B24A8F2A81BDDD008B94E4 /* AGPUNewsServiceProtocol.swift in Sources */,
 				82967C262BA0835E001059B2 /* IRecentNewsListViewModel.swift in Sources */,
@@ -8019,7 +8119,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.7;
+				MARKETING_VERSION = 2.1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -8057,7 +8157,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.7;
+				MARKETING_VERSION = 2.1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

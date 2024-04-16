@@ -24,7 +24,7 @@
                             <constraint firstAttribute="width" constant="65" id="U3c-Oz-h1W"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Карта кампуса " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaA-I8-xHf">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Действие (Карта кампуса)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaA-I8-xHf">
                         <rect key="frame" x="95" y="15" width="288" height="60"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="Fhp-Cf-QPk"/>

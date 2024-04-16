@@ -14,8 +14,9 @@ protocol SettingsManagerProtocol {
     func checkOnlyTimetableOption()-> Bool
     func checkSaveRecentTimetableItem()-> Bool
     func observeOnlyTimetableChanged(completion: @escaping()->Void)
-    func checkDynamicButtonOption()-> ASPUButtonActions
-    func observeDynamicButtonActionChanged(completion: @escaping()->Void)
+    func checkASPUButtonOption()-> ASPUButtonActions
+    func observeASPUButtonActionChanged(completion: @escaping()->Void)
+    func checkASPUButtonAnimationOption()-> ASPUButtonAnimationOptions
     func saveCustomSplashScreen(screen: CustomSplashScreenModel)
     func getCustomSplashScreen()-> CustomSplashScreenModel
     func getUserStatus()-> UserStatusModel
