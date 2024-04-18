@@ -14,6 +14,7 @@ enum TabColors: CaseIterable, Codable {
     case lab
     case lecture
     case prac
+    case aspu
     
     var title: String {
         switch self {
@@ -27,6 +28,8 @@ enum TabColors: CaseIterable, Codable {
             return "Лекция"
         case .prac:
             return "Практика"
+        case .aspu:
+            return "АГПУ"
         }
     }
     
@@ -42,6 +45,8 @@ enum TabColors: CaseIterable, Codable {
             return UIColor(named: "lecture") ?? .label
         case .prac:
             return UIColor(named: "prac") ?? .label
+        case .aspu:
+            return UIColor(named: "aspu") ?? .label
         }
     }
 }

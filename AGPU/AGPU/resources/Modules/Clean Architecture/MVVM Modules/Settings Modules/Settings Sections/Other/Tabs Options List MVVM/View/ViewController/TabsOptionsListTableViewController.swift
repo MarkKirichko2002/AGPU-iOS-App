@@ -19,11 +19,6 @@ class TabsOptionsListTableViewController: UITableViewController {
         bindViewModel()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
-    }
-
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: "applicant", title: "Панель вкладок", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
@@ -33,6 +28,7 @@ class TabsOptionsListTableViewController: UITableViewController {
     }
     
     @objc private func closeScreen() {
+        NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
         sendScreenWasClosedNotification()
         self.dismiss(animated: true)
     }

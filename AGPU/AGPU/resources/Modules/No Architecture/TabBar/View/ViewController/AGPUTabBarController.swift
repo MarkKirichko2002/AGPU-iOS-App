@@ -61,7 +61,6 @@ final class AGPUTabBarController: UITabBarController {
     
     private func setUpView() {
         view.backgroundColor = .systemBackground
-        UITabBar.appearance().tintColor = settingsManager.getTabsColor().color
         UITabBar.appearance().backgroundColor = .systemBackground
     }
     
@@ -79,7 +78,6 @@ final class AGPUTabBarController: UITabBarController {
         }
         settingsManager.observeTabsChanged {
             DispatchQueue.main.async {
-                UITabBar.appearance().tintColor = self.settingsManager.getTabsColor().color
                 self.setUpTabs()
             }
         }
@@ -117,6 +115,7 @@ final class AGPUTabBarController: UITabBarController {
             
             setViewControllers(tabs, animated: false)
         }
+        UITabBar.appearance().tintColor = self.settingsManager.getTabsColor().color
     }
     
     // MARK: - ASPU Button
