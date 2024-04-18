@@ -40,8 +40,8 @@ final class AGPUTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
-        setUpTabs()
         setUpTab()
+        setUpTabs()
         createMiddleButton()
         observeForEveryStatus()
         observeScreen()
@@ -61,8 +61,28 @@ final class AGPUTabBarController: UITabBarController {
     
     private func setUpView() {
         view.backgroundColor = .systemBackground
-        UITabBar.appearance().tintColor = UIColor.label
+        UITabBar.appearance().tintColor = settingsManager.getTabsColor().color
         UITabBar.appearance().backgroundColor = .systemBackground
+    }
+    
+    private func setUpTab() {
+        settingsManager.observeStatusChanged {
+            DispatchQueue.main.async {
+                self.setUpTabs()
+                self.selectedIndex = 4
+            }
+        }
+        settingsManager.observeOnlyTimetableChanged {
+            DispatchQueue.main.async {
+                self.setUpTabs()
+            }
+        }
+        settingsManager.observeTabsChanged {
+            DispatchQueue.main.async {
+                UITabBar.appearance().tintColor = self.settingsManager.getTabsColor().color
+                self.setUpTabs()
+            }
+        }
     }
     
     private func setUpTabs() {
@@ -77,7 +97,7 @@ final class AGPUTabBarController: UITabBarController {
         let nav4VC = UINavigationController(rootViewController: settingsVC)
         
         let onlyTimetable = UserDefaults.standard.object(forKey: "onOnlyTimetable") as? Bool ?? false
-        
+                
         if onlyTimetable {
             setViewControllers([nav3VC, middleButton, nav4VC], animated: false)
         } else {
@@ -96,25 +116,6 @@ final class AGPUTabBarController: UITabBarController {
             tabs.insert(middleButton, at: 2)
             
             setViewControllers(tabs, animated: false)
-        }
-    }
-    
-    private func setUpTab() {
-        settingsManager.observeStatusChanged {
-            DispatchQueue.main.async {
-                self.setUpTabs()
-                self.selectedIndex = 4
-            }
-        }
-        settingsManager.observeOnlyTimetableChanged {
-            DispatchQueue.main.async {
-                self.setUpTabs()
-            }
-        }
-        settingsManager.observeTabsChanged {
-            DispatchQueue.main.async {
-                self.setUpTabs()
-            }
         }
     }
     

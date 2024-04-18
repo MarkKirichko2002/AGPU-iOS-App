@@ -123,6 +123,11 @@ extension SettingsManager: SettingsManagerProtocol {
         return position
     }
     
+    func getTabsColor()-> TabColors {
+        let color = UserDefaults.loadData(type: TabColors.self, key: "tabs color") ?? .system
+        return color
+    }
+    
     func checkTabsAnimationOption()-> Bool {
         let option = UserDefaults.standard.object(forKey: "onTabsAnimation") as? Bool ?? true
         return option
