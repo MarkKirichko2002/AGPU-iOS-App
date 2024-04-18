@@ -41,6 +41,7 @@ class TabsPositionListTableViewController: UITableViewController {
     
     @objc private func moveTabs() {
         if tableView.isEditing {
+            NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
             tableView.isEditing = false
         } else {
             tableView.isEditing = true

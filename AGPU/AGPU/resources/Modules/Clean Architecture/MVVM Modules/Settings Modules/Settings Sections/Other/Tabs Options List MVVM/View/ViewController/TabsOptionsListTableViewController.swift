@@ -28,7 +28,6 @@ class TabsOptionsListTableViewController: UITableViewController {
     }
     
     @objc private func closeScreen() {
-        NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
         sendScreenWasClosedNotification()
         self.dismiss(animated: true)
     }
