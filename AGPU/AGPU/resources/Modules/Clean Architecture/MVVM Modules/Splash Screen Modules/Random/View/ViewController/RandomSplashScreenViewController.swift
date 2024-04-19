@@ -43,8 +43,7 @@ class RandomSplashScreenViewController: UIViewController {
     private let RandomDescription: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.isUserInteractionEnabled = true
-        label.text = "Нажмите на дайс чтобы сгенерировать случайный экран заставки."
+        label.text = "Нажмите на дайс для случайного выбора экрана заставки."
         label.textColor = .label
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 18, weight: .black)

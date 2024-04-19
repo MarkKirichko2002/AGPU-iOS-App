@@ -9,6 +9,6 @@ import Foundation
 
 final class SelectedFacultySplashScreenViewModel {
     
-    var facultyHandler: ((AGPUFacultyModel)->Void)?
+    var facultyHandler: ((AGPUFacultyModel?)->Void)?
     
 }

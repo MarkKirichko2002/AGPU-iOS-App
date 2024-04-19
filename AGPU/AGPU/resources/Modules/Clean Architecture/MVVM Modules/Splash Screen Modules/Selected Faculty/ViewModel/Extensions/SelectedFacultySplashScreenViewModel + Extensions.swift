@@ -11,11 +11,14 @@ import Foundation
 extension SelectedFacultySplashScreenViewModel: ISelectedFacultySplashScreenViewModel {
     
     func getFaculty() {
-        guard let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") else {return}
-        self.facultyHandler?(faculty)
+        if let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
+            self.facultyHandler?(faculty)
+        } else {
+            self.facultyHandler?(nil)
+        }
     }
     
-    func registerFacultyHandler(block: @escaping(AGPUFacultyModel)->Void) {
+    func registerFacultyHandler(block: @escaping(AGPUFacultyModel?)->Void) {
         self.facultyHandler = block
     }
 }

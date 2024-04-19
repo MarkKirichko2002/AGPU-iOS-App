@@ -44,7 +44,7 @@ enum SplashScreenOptions: String, CaseIterable, Codable {
         case .custom:
             return "custom"
         case .random:
-            return ""
+            return "random"
         case .none:
             return ""
         }

@@ -83,6 +83,7 @@
 		821B728D2BD2ECD4000460E2 /* IRandomSplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B728C2BD2ECD4000460E2 /* IRandomSplashScreenViewModel.swift */; };
 		821B72922BD2ECFB000460E2 /* RandomSplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B72912BD2ECFB000460E2 /* RandomSplashScreenViewModel.swift */; };
 		821B72942BD2ED0B000460E2 /* RandomSplashScreenViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B72932BD2ED0B000460E2 /* RandomSplashScreenViewModel + Extensions.swift */; };
+		821B72962BD2F9C9000460E2 /* random.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 821B72952BD2F9C9000460E2 /* random.mp4 */; };
 		821EEAD62AA0B76F00AE517B /* UserStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821EEAD42AA0B76F00AE517B /* UserStatusTableViewCell.swift */; };
 		821EEAD72AA0B76F00AE517B /* UserStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821EEAD52AA0B76F00AE517B /* UserStatusTableViewCell.xib */; };
 		821FCF052A87CDB8006FFB26 /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FCF042A87CDB8006FFB26 /* NewsCollectionViewCell.swift */; };
@@ -596,6 +597,7 @@
 		821B728C2BD2ECD4000460E2 /* IRandomSplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRandomSplashScreenViewModel.swift; sourceTree = "<group>"; };
 		821B72912BD2ECFB000460E2 /* RandomSplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomSplashScreenViewModel.swift; sourceTree = "<group>"; };
 		821B72932BD2ED0B000460E2 /* RandomSplashScreenViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RandomSplashScreenViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		821B72952BD2F9C9000460E2 /* random.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = random.mp4; sourceTree = "<group>"; };
 		821C892F2A510F5600BD756D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		821EEAD42AA0B76F00AE517B /* UserStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusTableViewCell.swift; sourceTree = "<group>"; };
 		821EEAD52AA0B76F00AE517B /* UserStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserStatusTableViewCell.xib; sourceTree = "<group>"; };
@@ -4034,6 +4036,7 @@
 				82FC88112BBDFB5800A2EF59 /* timetable.mp4 */,
 				822DA7152BCACDBF00CB4A21 /* quantorium.mp4 */,
 				822DA7162BCACDC000CB4A21 /* technopark.mp4 */,
+				821B72952BD2F9C9000460E2 /* random.mp4 */,
 				82FC88122BBDFB5800A2EF59 /* weather.mp4 */,
 			);
 			path = "splash screens";
@@ -7645,6 +7648,7 @@
 				821365872A94F6A700A20E4E /* LaunchScreen.strings in Resources */,
 				8225279E2BACDCA200B66314 /* SavedNewsCategoryOptionTableViewCell.xib in Resources */,
 				82808E952A31F12500DEEB16 /* LaunchScreen.storyboard in Resources */,
+				821B72962BD2F9C9000460E2 /* random.mp4 in Resources */,
 				82C449F52B5F0B5F0039B0F3 /* paper.mp3 in Resources */,
 				8286D15E2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.xib in Resources */,
 				82320D892A491FBC00ECADEE /* AGPUFacultyTableViewCell.xib in Resources */,
