@@ -9,8 +9,8 @@ import Foundation
 
 enum ASPUButtonAnimationOptions: String, CaseIterable, Codable  {
     case spring = "Пружинная"
-    case flipFromTop = "Вращение сверху"
-    case flipFromRight = "Вращение слева"
-    case flipFromLeft = "Вращение справа"
-    case flipFromBottom = "Вращение снизу"
+    case flipFromTop = "Поворот сверху"
+    case flipFromRight = "Поворот слева"
+    case flipFromLeft = "Поворот справа"
+    case flipFromBottom = "Поворот снизу"
 }

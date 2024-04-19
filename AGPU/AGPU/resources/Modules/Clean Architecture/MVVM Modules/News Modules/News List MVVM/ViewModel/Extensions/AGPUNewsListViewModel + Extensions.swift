@@ -187,6 +187,13 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             let filteredNews = allNews.filter({ $0.date == yesterday})
             newsResponse.articles = filteredNews
             dataChangedHandler?(abbreviation)
+        case .dayBeforeYesterday:
+            let date = dateManager.getCurrentDate()
+            let yesterday = dateManager.previousDay(date: date)
+            let beforeYesterday = dateManager.previousDay(date: yesterday)
+            let filteredNews = allNews.filter({ $0.date == beforeYesterday})
+            newsResponse.articles = filteredNews
+            dataChangedHandler?(abbreviation)
         case .all:
             newsResponse.articles = allNews
             dataChangedHandler?(abbreviation)

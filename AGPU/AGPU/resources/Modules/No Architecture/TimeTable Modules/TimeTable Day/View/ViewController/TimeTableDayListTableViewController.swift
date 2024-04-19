@@ -287,7 +287,6 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     private func observeCalendar() {
-        
         NotificationCenter.default.addObserver(forName: Notification.Name("DateWasSelected"), object: nil, queue: .main) { notification in
             if let date = notification.object as? String {
                 let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: date)

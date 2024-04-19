@@ -30,6 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let newsVC = NewsSplashScreenViewController(animation: AnimationClass())
         let timetableVC = TimeTableSplashScreenViewController(animation: AnimationClass())
         let customVC = CustomSplashScreenViewController(animation: AnimationClass())
+        let randomVC = RandomSplashScreenViewController()
         let tabBarVC = AGPUTabBarController()
         switch option {
         case .regular:
@@ -53,7 +54,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         case .custom:
             return customVC
         case .random:
-            return [regularVC, statusVC, facultyVC, newYearVC, weatherVC, newsVC, timetableVC,  customVC].randomElement()!
+            return randomVC
         case .none:
             return tabBarVC
         }

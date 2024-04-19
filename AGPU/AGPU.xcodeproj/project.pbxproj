@@ -79,6 +79,10 @@
 		821B727B2BD17490000460E2 /* ITabColorsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B727A2BD17490000460E2 /* ITabColorsListViewModel.swift */; };
 		821B727D2BD174B6000460E2 /* TabColorsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B727C2BD174B6000460E2 /* TabColorsListViewModel.swift */; };
 		821B727F2BD174F0000460E2 /* TabColorsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B727E2BD174F0000460E2 /* TabColorsListViewModel + Extensions.swift */; };
+		821B728B2BD2ECB5000460E2 /* RandomSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B728A2BD2ECB5000460E2 /* RandomSplashScreenViewController.swift */; };
+		821B728D2BD2ECD4000460E2 /* IRandomSplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B728C2BD2ECD4000460E2 /* IRandomSplashScreenViewModel.swift */; };
+		821B72922BD2ECFB000460E2 /* RandomSplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B72912BD2ECFB000460E2 /* RandomSplashScreenViewModel.swift */; };
+		821B72942BD2ED0B000460E2 /* RandomSplashScreenViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B72932BD2ED0B000460E2 /* RandomSplashScreenViewModel + Extensions.swift */; };
 		821EEAD62AA0B76F00AE517B /* UserStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821EEAD42AA0B76F00AE517B /* UserStatusTableViewCell.swift */; };
 		821EEAD72AA0B76F00AE517B /* UserStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821EEAD52AA0B76F00AE517B /* UserStatusTableViewCell.xib */; };
 		821FCF052A87CDB8006FFB26 /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FCF042A87CDB8006FFB26 /* NewsCollectionViewCell.swift */; };
@@ -588,6 +592,10 @@
 		821B727A2BD17490000460E2 /* ITabColorsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITabColorsListViewModel.swift; sourceTree = "<group>"; };
 		821B727C2BD174B6000460E2 /* TabColorsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabColorsListViewModel.swift; sourceTree = "<group>"; };
 		821B727E2BD174F0000460E2 /* TabColorsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabColorsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		821B728A2BD2ECB5000460E2 /* RandomSplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomSplashScreenViewController.swift; sourceTree = "<group>"; };
+		821B728C2BD2ECD4000460E2 /* IRandomSplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRandomSplashScreenViewModel.swift; sourceTree = "<group>"; };
+		821B72912BD2ECFB000460E2 /* RandomSplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomSplashScreenViewModel.swift; sourceTree = "<group>"; };
+		821B72932BD2ED0B000460E2 /* RandomSplashScreenViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RandomSplashScreenViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		821C892F2A510F5600BD756D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		821EEAD42AA0B76F00AE517B /* UserStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusTableViewCell.swift; sourceTree = "<group>"; };
 		821EEAD52AA0B76F00AE517B /* UserStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserStatusTableViewCell.xib; sourceTree = "<group>"; };
@@ -1970,6 +1978,65 @@
 			isa = PBXGroup;
 			children = (
 				821B727A2BD17490000460E2 /* ITabColorsListViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		821B72862BD2EC6F000460E2 /* Random */ = {
+			isa = PBXGroup;
+			children = (
+				821B72882BD2EC8D000460E2 /* View */,
+				821B72872BD2EC8B000460E2 /* ViewModel */,
+			);
+			path = Random;
+			sourceTree = "<group>";
+		};
+		821B72872BD2EC8B000460E2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				821B72902BD2ECE4000460E2 /* Protocol */,
+				821B728F2BD2ECE2000460E2 /* ViewModel */,
+				821B728E2BD2ECE0000460E2 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		821B72882BD2EC8D000460E2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				821B72892BD2EC9F000460E2 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		821B72892BD2EC9F000460E2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				821B728A2BD2ECB5000460E2 /* RandomSplashScreenViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		821B728E2BD2ECE0000460E2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				821B72932BD2ED0B000460E2 /* RandomSplashScreenViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		821B728F2BD2ECE2000460E2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				821B72912BD2ECFB000460E2 /* RandomSplashScreenViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		821B72902BD2ECE4000460E2 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				821B728C2BD2ECD4000460E2 /* IRandomSplashScreenViewModel.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -5313,6 +5380,7 @@
 				82967C2B2BA23165001059B2 /* TimeTable */,
 				823F97D42B9D21FD00F60F39 /* Weather */,
 				82A29F3C2B9BD4FD00756F43 /* Selected Faculty */,
+				821B72862BD2EC6F000460E2 /* Random */,
 			);
 			path = "Splash Screen Modules";
 			sourceTree = "<group>";
@@ -7765,6 +7833,7 @@
 				82E030162B2020590068D2B7 /* TimeTableForCurrentBuildingViewController + Extensions.swift in Sources */,
 				821FCF072A87CE30006FFB26 /* NewsListViewController.swift in Sources */,
 				822526C92BA37EEB00B66314 /* INewsSplashScreenViewModel.swift in Sources */,
+				821B728D2BD2ECD4000460E2 /* IRandomSplashScreenViewModel.swift in Sources */,
 				8283977B2AD5CA11000F355A /* AppIconsListViewModel + Extensions.swift in Sources */,
 				82BC2F482A8EFD7C00ADB239 /* NewsCategoriesListViewModel + Extensions.swift in Sources */,
 				826F938B2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift in Sources */,
@@ -7922,6 +7991,7 @@
 				8299E3B82B8A323200D81472 /* TimetableDateDetailViewController.swift in Sources */,
 				821270512A7903930095D68E /* PDFLastPageViewController.swift in Sources */,
 				8225279D2BACDCA200B66314 /* SavedNewsCategoryOptionTableViewCell.swift in Sources */,
+				821B72922BD2ECFB000460E2 /* RandomSplashScreenViewModel.swift in Sources */,
 				82184D8D2B7BDA2100F2588E /* DailyWeatherTableViewCellViewModel.swift in Sources */,
 				82808E8D2A31F12100DEEB16 /* AGPUSectionsListViewController.swift in Sources */,
 				8217C30F2B8FB74100A59412 /* CustomSplashScreenViewController.swift in Sources */,
@@ -7976,6 +8046,7 @@
 				82768AE22ABE12F30022FBE1 /* AppThemeModel.swift in Sources */,
 				82F5787D2B6FE4B400BC64C1 /* ASPUButtonActions.swift in Sources */,
 				8299E3B62B8A31F800D81472 /* TimetableDateDetailViewModel + Extensions.swift in Sources */,
+				821B72942BD2ED0B000460E2 /* RandomSplashScreenViewModel + Extensions.swift in Sources */,
 				82920B882AD8823000352CD8 /* SelectedFacultyListTableViewController.swift in Sources */,
 				82BCB5742AB3AD0E00F3A321 /* PairTypesListViewModel.swift in Sources */,
 				82426C732A71476D00D5AA57 /* ForStudentSections.swift in Sources */,
@@ -8085,6 +8156,7 @@
 				826888582A33AB5600434219 /* RegularSplashScreenViewController.swift in Sources */,
 				82E4C5892A6B20DE00F65A67 /* LocationManager.swift in Sources */,
 				823F97D92B9D224100F60F39 /* WeatherSplashScreenViewController.swift in Sources */,
+				821B728B2BD2ECB5000460E2 /* RandomSplashScreenViewController.swift in Sources */,
 				8286D1582BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.swift in Sources */,
 				82768AE62ABE13550022FBE1 /* AppThemes.swift in Sources */,
 				82061CCB2B09A5920073D727 /* TimetableOptionsTableViewCell.swift in Sources */,
@@ -8276,7 +8348,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.9;
+				MARKETING_VERSION = 2.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -8315,7 +8387,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.9;
+				MARKETING_VERSION = 2.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

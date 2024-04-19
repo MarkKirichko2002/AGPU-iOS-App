@@ -10,38 +10,6 @@ import UIKit
 // MARK: - SettingsManagerProtocol
 extension SettingsManager: SettingsManagerProtocol {
    
-    func checkCurrentStatus()-> UIViewController {
-        let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status")
-        switch status?.id {
-        case 1:
-            let vc = ForApplicantListTableViewController()
-            vc.tabBarItem = UITabBarItem(title: "Абитуриенту", image: UIImage(named: "applicant"), selectedImage: UIImage(named: "applicant selected"))
-            let navVC = UINavigationController(rootViewController: vc)
-            return navVC
-        case 2:
-            let vc = ForStudentListTableViewController()
-            vc.tabBarItem = UITabBarItem(title: "Студенту", image: UIImage(named: "student icon"), selectedImage: UIImage(named: "student icon selected"))
-            let navVC = UINavigationController(rootViewController: vc)
-            return navVC
-        case 3:
-            let vc = ForEmployeeListTableViewController()
-            vc.tabBarItem = UITabBarItem(title: "Сотруднику", image: UIImage(named: "computer"), selectedImage: UIImage(named: "computer selected"))
-            let navVC = UINavigationController(rootViewController: vc)
-            return navVC
-        default:
-            let vc = ForApplicantListTableViewController()
-            vc.tabBarItem = UITabBarItem(title: "Абитуриенту", image: UIImage(named: "applicant"), selectedImage: UIImage(named: "applicant selected"))
-            let navVC = UINavigationController(rootViewController: vc)
-            return navVC
-        }
-    }
-    
-    // MARK: - Selected Faculty
-    func checkCurrentIcon()-> String {
-        let icon = UserDefaults.standard.object(forKey: "icon") as? String ?? "АГПУ"
-        return icon
-    }
-    
     // MARK: - Shake To Recall
     func checkShakeToRecallOption()-> Bool {
         if let option = UserDefaults.standard.value(forKey: "onShakeToRecallOption") as? Bool {
@@ -76,6 +44,11 @@ extension SettingsManager: SettingsManagerProtocol {
     }
     
     // MARK: - ASPU Button
+    func checkCurrentIcon()-> String {
+        let icon = UserDefaults.standard.object(forKey: "icon") as? String ?? "АГПУ"
+        return icon
+    }
+    
     func checkASPUButtonOption()-> ASPUButtonActions {
         let action = UserDefaults.loadData(type: ASPUButtonActions.self, key: "action") ?? .speechRecognition
         return action
@@ -103,6 +76,32 @@ extension SettingsManager: SettingsManagerProtocol {
     }
     
     // MARK: - Your Status
+    func checkCurrentStatus()-> UIViewController {
+        let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status")
+        switch status?.id {
+        case 1:
+            let vc = ForApplicantListTableViewController()
+            vc.tabBarItem = UITabBarItem(title: "Абитуриенту", image: UIImage(named: "applicant"), selectedImage: UIImage(named: "applicant selected"))
+            let navVC = UINavigationController(rootViewController: vc)
+            return navVC
+        case 2:
+            let vc = ForStudentListTableViewController()
+            vc.tabBarItem = UITabBarItem(title: "Студенту", image: UIImage(named: "student icon"), selectedImage: UIImage(named: "student icon selected"))
+            let navVC = UINavigationController(rootViewController: vc)
+            return navVC
+        case 3:
+            let vc = ForEmployeeListTableViewController()
+            vc.tabBarItem = UITabBarItem(title: "Сотруднику", image: UIImage(named: "computer"), selectedImage: UIImage(named: "computer selected"))
+            let navVC = UINavigationController(rootViewController: vc)
+            return navVC
+        default:
+            let vc = ForApplicantListTableViewController()
+            vc.tabBarItem = UITabBarItem(title: "Абитуриенту", image: UIImage(named: "applicant"), selectedImage: UIImage(named: "applicant selected"))
+            let navVC = UINavigationController(rootViewController: vc)
+            return navVC
+        }
+    }
+    
     func getUserStatus()-> UserStatusModel {
         if let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status") {
             return status
