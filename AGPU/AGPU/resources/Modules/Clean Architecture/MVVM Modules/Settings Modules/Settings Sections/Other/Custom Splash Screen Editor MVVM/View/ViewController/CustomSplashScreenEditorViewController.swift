@@ -61,7 +61,7 @@ class CustomSplashScreenEditorViewController: UIViewController {
         screen.id = 1
         screen.image = CustomIcon.image?.jpegData(compressionQuality: 1.0)
         screen.title = CustomTitleLabel.text!
-        screen.color = viewModel.color
+        screen.color = viewModel.colorOption.title
         viewModel.saveCustomSplashScreen(screen: screen)
     }
     
@@ -107,34 +107,32 @@ class CustomSplashScreenEditorViewController: UIViewController {
         alertVC.addAction(photo)
         alertVC.addAction(camera)
         alertVC.addAction(cancel)
+        HapticsManager.shared.hapticFeedback()
         present(alertVC, animated: true)
     }
     
     @objc private func showTitleAlert() {
-        let alertVC = UIAlertController(title: "Изменение названия", message: "сохранить изменение?", preferredStyle: .alert)
+        let alertVC = UIAlertController(title: "Изменение названия", message: "Хотите изменить название?", preferredStyle: .alert)
         alertVC.addTextField { [weak self] textField in
             textField.text = self?.CustomTitleLabel.text!
             textField.placeholder = "введите текст..."
         }
-        let saveAction = UIAlertAction(title: "Сохранить", style: .default) { [weak self] _ in
-            let screen = CustomSplashScreenModel()
-            screen.id = 1
-            screen.image = self?.CustomIcon.image?.jpegData(compressionQuality: 1.0)
-            screen.title = alertVC.textFields?[0].text ?? ""
-            screen.color = self?.viewModel.color ?? ""
-            self?.viewModel.saveCustomSplashScreen(screen: screen)
+        let changeAction = UIAlertAction(title: "Изменить", style: .default) { [weak self] _ in
+            self?.CustomTitleLabel.text = alertVC.textFields?[0].text ?? ""
         }
         let cancel = UIAlertAction(title: "Отмена", style: .destructive)
-        alertVC.addAction(saveAction)
+        alertVC.addAction(changeAction)
         alertVC.addAction(cancel)
+        HapticsManager.shared.hapticFeedback()
         present(alertVC, animated: true)
     }
     
     @objc private func showColorsListVC() {
-        let vc = SplashScreenBackgroundColorsListTableViewController()
+        let vc = SplashScreenBackgroundColorsListTableViewController(colorOption: viewModel.colorOption)
         vc.delegate = self
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
+        HapticsManager.shared.hapticFeedback()
         present(navVC, animated: true)
     }
     

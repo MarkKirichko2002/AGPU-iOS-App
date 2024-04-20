@@ -19,21 +19,21 @@ extension SplashScreenBackgroundColorsListViewModel: ISplashScreenBackgroundColo
     }
     
     func selectColor(index: Int) {
-        let savedColor = settingsManager.getSplashScreenBackgroundColor()
+        
         let color = colorOptionItem(index: index)
         
-        if savedColor.color != color.color {
-            UserDefaults.saveData(object: color, key: "splash screen background color") {}
+        if colorOption.color != color.color {
+            colorOption = color
             HapticsManager.shared.hapticFeedback()
             colorSelectedHandler?(color)
         }
     }
     
     func isColorSelected(index: Int)-> Bool {
-        let savedColor = settingsManager.getSplashScreenBackgroundColor()
+        
         let color = colorOptionItem(index: index)
         
-        if savedColor.color == color.color {
+        if colorOption.color == color.color {
             return true
         }
         return false
@@ -43,4 +43,3 @@ extension SplashScreenBackgroundColorsListViewModel: ISplashScreenBackgroundColo
         self.colorSelectedHandler = block
     }
 }
-

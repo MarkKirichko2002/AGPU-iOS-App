@@ -12,6 +12,6 @@ class CustomSplashScreenEditorViewModel {
     // MARK: - сервисы
     let settingsManager = SettingsManager()
     
-    var color = ""
+    var colorOption = BackgroundColors.system
     var screenUpdatedHandler: ((CustomSplashScreenModel)->Void)?
 }

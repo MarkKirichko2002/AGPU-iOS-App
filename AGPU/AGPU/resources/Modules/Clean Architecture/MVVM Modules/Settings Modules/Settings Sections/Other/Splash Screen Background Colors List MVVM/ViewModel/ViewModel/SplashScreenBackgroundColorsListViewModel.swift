@@ -13,5 +13,9 @@ class SplashScreenBackgroundColorsListViewModel {
     let settingsManager = SettingsManager()
     
     var colorSelectedHandler: ((BackgroundColors)->Void)?
+    var colorOption: BackgroundColors
     
+    init(colorOption: BackgroundColors) {
+        self.colorOption = colorOption
+    }
 }

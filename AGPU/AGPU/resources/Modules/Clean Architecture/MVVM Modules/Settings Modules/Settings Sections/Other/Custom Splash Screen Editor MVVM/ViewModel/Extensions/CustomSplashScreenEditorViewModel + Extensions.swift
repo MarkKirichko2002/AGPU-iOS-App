@@ -17,7 +17,8 @@ extension CustomSplashScreenEditorViewModel: ICustomSplashScreenEditorViewModel 
     
     func getCustomSplashScreen() {
         let screen = settingsManager.getCustomSplashScreen()
-        color = screen.color
+        let color = BackgroundColors.allCases.first { $0.title == screen.color }!
+        colorOption = color
         screenUpdatedHandler?(screen)
     }
     

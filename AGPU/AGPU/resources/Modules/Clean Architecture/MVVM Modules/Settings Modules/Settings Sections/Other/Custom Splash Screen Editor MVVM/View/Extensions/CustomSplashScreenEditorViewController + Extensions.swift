@@ -22,12 +22,7 @@ extension CustomSplashScreenEditorViewController: SplashScreenBackgroundColorsLi
     
     func colorWasSelected(color: BackgroundColors) {
         CustomTitleLabel.textColor = .white
-        viewModel.color = color.title
-        let screen = CustomSplashScreenModel()
-        screen.id = 1
-        screen.image = CustomIcon.image?.jpegData(compressionQuality: 1.0)
-        screen.title = CustomTitleLabel.text!
-        screen.color = color.title
-        viewModel.saveCustomSplashScreen(screen: screen)
+        view.backgroundColor = color.color
+        viewModel.colorOption = color
     }
 }

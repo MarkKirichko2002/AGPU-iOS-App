@@ -23,11 +23,12 @@ extension TabColorsListViewModel: ITabColorsListViewModel {
         let color = colorOptionItem(index: index)
         
         if savedColor.color != color.color {
-            UserDefaults.saveData(object: color, key: "tabs color") {}
-            NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
-            NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-            HapticsManager.shared.hapticFeedback()
-            dataChangedHandler?()
+            UserDefaults.saveData(object: color, key: "tabs color") {
+                NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
+                NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+                HapticsManager.shared.hapticFeedback()
+                self.dataChangedHandler?()
+            }
         }
     }
     

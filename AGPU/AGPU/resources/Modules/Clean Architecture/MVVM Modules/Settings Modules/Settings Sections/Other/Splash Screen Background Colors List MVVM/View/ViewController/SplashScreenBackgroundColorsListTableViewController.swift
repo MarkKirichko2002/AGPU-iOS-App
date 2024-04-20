@@ -14,9 +14,19 @@ protocol SplashScreenBackgroundColorsListTableViewControllerDelegate: AnyObject 
 class SplashScreenBackgroundColorsListTableViewController: UITableViewController {
     
     // MARK: - сервисы
-    private let viewModel = SplashScreenBackgroundColorsListViewModel()
+    private let viewModel: SplashScreenBackgroundColorsListViewModel
     
     weak var delegate: SplashScreenBackgroundColorsListTableViewControllerDelegate?
+    
+    // MARK: - Init
+    init(colorOption: BackgroundColors) {
+        self.viewModel = SplashScreenBackgroundColorsListViewModel(colorOption: colorOption)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
