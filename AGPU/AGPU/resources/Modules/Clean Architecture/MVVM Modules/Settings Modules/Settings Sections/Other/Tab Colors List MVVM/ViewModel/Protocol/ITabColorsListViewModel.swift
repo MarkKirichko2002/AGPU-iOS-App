@@ -9,7 +9,7 @@ import Foundation
 
 protocol ITabColorsListViewModel {
     func colorsCount()-> Int
-    func colorOptionItem(index: Int)-> TabColors
+    func colorOptionItem(index: Int)-> Colors
     func selectColor(index: Int)
     func isColorSelected(index: Int)-> Bool
     func registerDataChangedHandler(block: @escaping()->Void)

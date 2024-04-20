@@ -8,6 +8,6 @@
 import Foundation
 
 protocol ITabsOptionsListViewModel {
-    func getTabsColor()-> TabColors
+    func getTabsColor()-> Colors
     func observeOptionSelection()
 }

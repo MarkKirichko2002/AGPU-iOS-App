@@ -1,14 +1,14 @@
 //
-//  TabColorsListViewModel + Extensions.swift
+//  SplashScreenBackgroundColorsListViewModel + Extensions.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 18.04.2024.
+//  Created by Марк Киричко on 20.04.2024.
 //
 
 import Foundation
 
 // MARK: - ITabColorsListViewModel
-extension TabColorsListViewModel: ITabColorsListViewModel {
+extension SplashScreenBackgroundColorsListViewModel: ISplashScreenBackgroundColorsListViewModel {
     
     func colorsCount()-> Int {
         return Colors.allCases.count
@@ -19,20 +19,18 @@ extension TabColorsListViewModel: ITabColorsListViewModel {
     }
     
     func selectColor(index: Int) {
-        let savedColor = settingsManager.getTabsColor()
+        let savedColor = settingsManager.getSplashScreenBackgroundColor()
         let color = colorOptionItem(index: index)
         
         if savedColor.color != color.color {
-            UserDefaults.saveData(object: color, key: "tabs color") {}
-            NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
-            NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+            UserDefaults.saveData(object: color, key: "splash screen background color") {}
             HapticsManager.shared.hapticFeedback()
-            dataChangedHandler?()
+            colorSelectedHandler?(color)
         }
     }
     
     func isColorSelected(index: Int)-> Bool {
-        let savedColor = settingsManager.getTabsColor()
+        let savedColor = settingsManager.getSplashScreenBackgroundColor()
         let color = colorOptionItem(index: index)
         
         if savedColor.color == color.color {
@@ -41,7 +39,8 @@ extension TabColorsListViewModel: ITabColorsListViewModel {
         return false
     }
     
-    func registerDataChangedHandler(block: @escaping()->Void) {
-        self.dataChangedHandler = block
+    func registerColorSelectedHandler(block: @escaping(Colors)->Void) {
+        self.colorSelectedHandler = block
     }
 }
+

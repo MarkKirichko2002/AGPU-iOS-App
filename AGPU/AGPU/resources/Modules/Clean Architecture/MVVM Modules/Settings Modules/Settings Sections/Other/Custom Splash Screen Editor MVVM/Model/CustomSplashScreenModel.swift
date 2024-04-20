@@ -11,4 +11,5 @@ class CustomSplashScreenModel: Object {
     @Persisted(primaryKey: true) var id: Int
     @Persisted var image: Data?
     @Persisted var title: String
+    @Persisted var color: String
 }

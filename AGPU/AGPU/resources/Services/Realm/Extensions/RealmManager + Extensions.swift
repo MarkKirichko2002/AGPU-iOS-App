@@ -134,6 +134,7 @@ extension RealmManager: IRealmManager {
         newScreen.id = 1
         newScreen.image = screen.image
         newScreen.title = screen.title
+        newScreen.color = screen.color
         
         if let oldScreen = realm.object(ofType: CustomSplashScreenModel.self, forPrimaryKey: 1) {
             try! realm.write {

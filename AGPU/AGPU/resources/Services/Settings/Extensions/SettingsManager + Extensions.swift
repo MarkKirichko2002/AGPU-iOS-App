@@ -75,6 +75,11 @@ extension SettingsManager: SettingsManagerProtocol {
         return screen
     }
     
+    func getSplashScreenBackgroundColor()-> Colors {
+        let color = UserDefaults.loadData(type: Colors.self, key: "splash screen background color") ?? .system
+        return color
+    }
+    
     // MARK: - Your Status
     func checkCurrentStatus()-> UIViewController {
         let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status")
@@ -122,8 +127,8 @@ extension SettingsManager: SettingsManagerProtocol {
         return position
     }
     
-    func getTabsColor()-> TabColors {
-        let color = UserDefaults.loadData(type: TabColors.self, key: "tabs color") ?? .system
+    func getTabsColor()-> Colors {
+        let color = UserDefaults.loadData(type: Colors.self, key: "tabs color") ?? .system
         return color
     }
     

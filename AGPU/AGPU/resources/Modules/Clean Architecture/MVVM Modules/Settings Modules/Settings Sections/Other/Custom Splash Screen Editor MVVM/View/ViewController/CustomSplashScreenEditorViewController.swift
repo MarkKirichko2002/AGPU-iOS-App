@@ -35,7 +35,7 @@ class CustomSplashScreenEditorViewController: UIViewController {
     }()
     
     // MARK: - сервисы
-    private let viewModel = CustomSplashScreenEditorViewModel()
+    let viewModel = CustomSplashScreenEditorViewModel()
     
     private func setUpNavigation() {
         navigationItem.title = "Экран заставки"
@@ -58,16 +58,17 @@ class CustomSplashScreenEditorViewController: UIViewController {
     
     @objc private func saveScreen() {
         let screen = CustomSplashScreenModel()
+        screen.id = 1
         screen.image = CustomIcon.image?.jpegData(compressionQuality: 1.0)
         screen.title = CustomTitleLabel.text!
+        screen.color = viewModel.color
         viewModel.saveCustomSplashScreen(screen: screen)
     }
     
     private func setUpView() {
         view.backgroundColor = .systemBackground
         view.addSubviews(CustomIcon, CustomTitleLabel)
-        setUpImageGesture()
-        setUpLabelGesture()
+        setUpViewGesture()
         setUpConstraints()
     }
     
@@ -81,63 +82,10 @@ class CustomSplashScreenEditorViewController: UIViewController {
         CustomTitleLabel.addGestureRecognizer(tap)
     }
     
-    @objc private func showTitleAlert() {
-        let alertVC = UIAlertController(title: "Изменение названия", message: "сохранить изменение?", preferredStyle: .alert)
-        alertVC.addTextField { [weak self] textField in
-            textField.text = self?.CustomTitleLabel.text!
-            textField.placeholder = "введите текст..."
-        }
-        let saveAction = UIAlertAction(title: "Сохранить", style: .default) { [weak self] _ in
-            let screen = CustomSplashScreenModel()
-            screen.id = 1
-            screen.image = self?.CustomIcon.image?.jpegData(compressionQuality: 1.0)
-            screen.title = alertVC.textFields?[0].text ?? ""
-            self?.viewModel.saveCustomSplashScreen(screen: screen)
-        }
-        let cancel = UIAlertAction(title: "Отмена", style: .destructive)
-        alertVC.addAction(saveAction)
-        alertVC.addAction(cancel)
-        present(alertVC, animated: true)
+    private func setUpViewGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showColorsListVC))
+        view.addGestureRecognizer(tap)
     }
-    
-    private func setUpConstraints() {
-        NSLayoutConstraint.activate([
-            // иконка
-            CustomIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            CustomIcon.widthAnchor.constraint(equalToConstant: 180),
-            CustomIcon.heightAnchor.constraint(equalToConstant: 180),
-            // название
-            CustomTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            CustomTitleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            CustomTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30),
-            CustomTitleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30),
-            CustomTitleLabel.heightAnchor.constraint(equalToConstant: 100),
-            CustomTitleLabel.topAnchor.constraint(equalTo: CustomIcon.bottomAnchor, constant: 50)
-        ])
-        print(UIScreen.main.bounds.width / 4)
-    }
-    
-    private func bindViewModel() {
-        viewModel.registerScreenUpdatedHandler { [weak self] screen in
-            if let image = screen.image {
-                DispatchQueue.main.async {
-                    self?.CustomIcon.image = UIImage(data: image)
-                }
-            } else {}
-            self?.CustomTitleLabel.text = screen.title
-        }
-        viewModel.getCustomSplashScreen()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setUpNavigation()
-        setUpView()
-        bindViewModel()
-    }
-}
-
-extension CustomSplashScreenEditorViewController {
     
     @objc func showPhotoAlert() {
         let alertVC = UIAlertController(title: "Выберите фото", message: "Выберите источник для загрузки фото", preferredStyle: .alert)
@@ -161,13 +109,77 @@ extension CustomSplashScreenEditorViewController {
         alertVC.addAction(cancel)
         present(alertVC, animated: true)
     }
-}
-
-extension CustomSplashScreenEditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[.editedImage] as? UIImage else {return}
-        CustomIcon.image = image
-        self.dismiss(animated: true)
+    @objc private func showTitleAlert() {
+        let alertVC = UIAlertController(title: "Изменение названия", message: "сохранить изменение?", preferredStyle: .alert)
+        alertVC.addTextField { [weak self] textField in
+            textField.text = self?.CustomTitleLabel.text!
+            textField.placeholder = "введите текст..."
+        }
+        let saveAction = UIAlertAction(title: "Сохранить", style: .default) { [weak self] _ in
+            let screen = CustomSplashScreenModel()
+            screen.id = 1
+            screen.image = self?.CustomIcon.image?.jpegData(compressionQuality: 1.0)
+            screen.title = alertVC.textFields?[0].text ?? ""
+            screen.color = self?.viewModel.color ?? ""
+            self?.viewModel.saveCustomSplashScreen(screen: screen)
+        }
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+        alertVC.addAction(saveAction)
+        alertVC.addAction(cancel)
+        present(alertVC, animated: true)
+    }
+    
+    @objc private func showColorsListVC() {
+        let vc = SplashScreenBackgroundColorsListTableViewController()
+        vc.delegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
+    }
+    
+    private func setUpConstraints() {
+        NSLayoutConstraint.activate([
+            // иконка
+            CustomIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            CustomIcon.widthAnchor.constraint(equalToConstant: 180),
+            CustomIcon.heightAnchor.constraint(equalToConstant: 180),
+            // название
+            CustomTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            CustomTitleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            CustomTitleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30),
+            CustomTitleLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30),
+            CustomTitleLabel.heightAnchor.constraint(equalToConstant: 100),
+            CustomTitleLabel.topAnchor.constraint(equalTo: CustomIcon.bottomAnchor, constant: 50)
+        ])
+        print(UIScreen.main.bounds.width / 4)
+    }
+    
+    private func bindViewModel() {
+        viewModel.registerScreenUpdatedHandler { [weak self] screen in
+            let color = Colors.allCases.first { $0.title == screen.color }
+            if let image = screen.image {
+                DispatchQueue.main.async {
+                    self?.CustomIcon.image = UIImage(data: image)
+                }
+            } else {}
+            self?.view.backgroundColor = color?.color ?? .systemBackground
+            self?.CustomTitleLabel.textColor = color == nil ? .label : .white
+            self?.CustomTitleLabel.text = screen.title
+        }
+        viewModel.getCustomSplashScreen()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpNavigation()
+        setUpView()
+        bindViewModel()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setUpImageGesture()
+        setUpLabelGesture()
     }
 }

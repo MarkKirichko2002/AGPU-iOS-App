@@ -9,8 +9,9 @@ import Foundation
 
 class CustomSplashScreenEditorViewModel {
     
-    var screenUpdatedHandler: ((CustomSplashScreenModel)->Void)?
-    
+    // MARK: - сервисы
     let settingsManager = SettingsManager()
     
+    var color = ""
+    var screenUpdatedHandler: ((CustomSplashScreenModel)->Void)?
 }

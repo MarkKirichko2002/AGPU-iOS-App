@@ -1,5 +1,5 @@
 //
-//  TabColors.swift
+//  Colors.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 18.04.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum TabColors: CaseIterable, Codable {
+enum Colors: CaseIterable, Codable {
     
     case system
     case exam

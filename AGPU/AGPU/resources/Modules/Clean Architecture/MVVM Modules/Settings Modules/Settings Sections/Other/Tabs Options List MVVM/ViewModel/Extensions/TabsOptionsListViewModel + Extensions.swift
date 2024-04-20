@@ -10,7 +10,7 @@ import Foundation
 // MARK: - ITabsOptionsListViewModel
 extension TabsOptionsListViewModel: ITabsOptionsListViewModel {
     
-    func getTabsColor()-> TabColors {
+    func getTabsColor()-> Colors {
         let color = settingsManager.getTabsColor()
         return color
     }

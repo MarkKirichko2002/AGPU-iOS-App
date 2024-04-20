@@ -111,11 +111,15 @@ final class CustomSplashScreenViewController: UIViewController {
         
         let screen = realmManager.getSplashScreen()
         
+        let color = Colors.allCases.first { $0.title == screen.color }
+        view.backgroundColor = color?.color ?? .systemBackground
+        
         CustomIcon.image = UIImage(data: screen.image ?? Data())
         animation?.springAnimation(view: CustomIcon)
         
         Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
             self.CustomTitleLabel.text = screen.title
+            self.CustomTitleLabel.textColor = color == nil ? .label : .white
             self.animation?.springAnimation(view: self.CustomTitleLabel)
         }
         
