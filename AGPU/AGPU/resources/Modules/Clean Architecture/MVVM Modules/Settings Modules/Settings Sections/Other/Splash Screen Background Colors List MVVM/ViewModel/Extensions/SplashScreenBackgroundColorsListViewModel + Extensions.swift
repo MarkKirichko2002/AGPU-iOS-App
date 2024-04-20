@@ -11,11 +11,11 @@ import Foundation
 extension SplashScreenBackgroundColorsListViewModel: ISplashScreenBackgroundColorsListViewModel {
     
     func colorsCount()-> Int {
-        return Colors.allCases.count
+        return BackgroundColors.allCases.count
     }
     
-    func colorOptionItem(index: Int)-> Colors {
-        return Colors.allCases[index]
+    func colorOptionItem(index: Int)-> BackgroundColors {
+        return BackgroundColors.allCases[index]
     }
     
     func selectColor(index: Int) {
@@ -39,7 +39,7 @@ extension SplashScreenBackgroundColorsListViewModel: ISplashScreenBackgroundColo
         return false
     }
     
-    func registerColorSelectedHandler(block: @escaping(Colors)->Void) {
+    func registerColorSelectedHandler(block: @escaping(BackgroundColors)->Void) {
         self.colorSelectedHandler = block
     }
 }

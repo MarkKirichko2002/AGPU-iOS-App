@@ -20,9 +20,8 @@ extension CustomSplashScreenEditorViewController: UIImagePickerControllerDelegat
 // MARK: - SplashScreenBackgroundColorsListTableViewControllerDelegate
 extension CustomSplashScreenEditorViewController: SplashScreenBackgroundColorsListTableViewControllerDelegate {
     
-    func colorWasSelected(color: Colors) {
+    func colorWasSelected(color: BackgroundColors) {
         CustomTitleLabel.textColor = .white
-        self.navigationController?.navigationItem.rightBarButtonItem?.tintColor = .white
         viewModel.color = color.title
         let screen = CustomSplashScreenModel()
         screen.id = 1

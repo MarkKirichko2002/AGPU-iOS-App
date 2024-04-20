@@ -157,15 +157,19 @@ class CustomSplashScreenEditorViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel.registerScreenUpdatedHandler { [weak self] screen in
-            let color = Colors.allCases.first { $0.title == screen.color }
+            let color = BackgroundColors.allCases.first { $0.title == screen.color }
             if let image = screen.image {
                 DispatchQueue.main.async {
                     self?.CustomIcon.image = UIImage(data: image)
                 }
             } else {}
-            self?.view.backgroundColor = color?.color ?? .systemBackground
-            self?.CustomTitleLabel.textColor = color == nil ? .label : .white
+            if color != .system {
+                self?.CustomTitleLabel.textColor = color == nil ? .label : .white
+            } else {
+                self?.CustomTitleLabel.textColor = .label
+            }
             self?.CustomTitleLabel.text = screen.title
+            self?.view.backgroundColor = color?.color ?? .systemBackground
         }
         viewModel.getCustomSplashScreen()
     }

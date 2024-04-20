@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SplashScreenBackgroundColorsListTableViewControllerDelegate: AnyObject {
-    func colorWasSelected(color: Colors)
+    func colorWasSelected(color: BackgroundColors)
 }
 
 class SplashScreenBackgroundColorsListTableViewController: UITableViewController {
@@ -62,9 +62,15 @@ class SplashScreenBackgroundColorsListTableViewController: UITableViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let colorOption = viewModel.colorOptionItem(index: indexPath.row)
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.tintColor = viewModel.isColorSelected(index: indexPath.row) ? colorOption.color : .label
-        cell.textLabel?.text = colorOption.title
-        cell.textLabel?.textColor = viewModel.isColorSelected(index: indexPath.row) ? colorOption.color : .label
+        if colorOption != .system {
+            cell.tintColor = viewModel.isColorSelected(index: indexPath.row) ? colorOption.color : .label
+            cell.textLabel?.text = colorOption.title
+            cell.textLabel?.textColor = viewModel.isColorSelected(index: indexPath.row) ? colorOption.color : .label
+        } else {
+            cell.tintColor = .label
+            cell.textLabel?.text = colorOption.title
+            cell.textLabel?.textColor = .label
+        }
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
         cell.accessoryType = viewModel.isColorSelected(index: indexPath.row) ? .checkmark : .none
         return cell

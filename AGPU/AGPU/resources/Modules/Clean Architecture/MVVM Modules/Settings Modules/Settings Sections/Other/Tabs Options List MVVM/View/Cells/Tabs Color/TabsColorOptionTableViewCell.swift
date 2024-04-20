@@ -14,7 +14,7 @@ class TabsColorOptionTableViewCell: UITableViewCell {
     @IBOutlet var OptionIcon: SpringImageView!
     @IBOutlet var OptionName: UILabel!
     
-    func configure(color: Colors) {
+    func configure(color: TabColors) {
         OptionIcon.tintColor = color.color
         OptionName.text = "Цвет (\(color.title))"
     }

@@ -22,7 +22,7 @@ protocol SettingsManagerProtocol {
     func getUserStatus()-> UserStatusModel
     func observeStatusChanged(completion: @escaping()->Void)
     func getTabsPosition()-> [Int] 
-    func getTabsColor()-> Colors
+    func getTabsColor()-> TabColors
     func checkTabsAnimationOption()-> Bool
     func observeTabsChanged(completion: @escaping()->Void)
 }

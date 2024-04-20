@@ -75,8 +75,8 @@ extension SettingsManager: SettingsManagerProtocol {
         return screen
     }
     
-    func getSplashScreenBackgroundColor()-> Colors {
-        let color = UserDefaults.loadData(type: Colors.self, key: "splash screen background color") ?? .system
+    func getSplashScreenBackgroundColor()-> BackgroundColors {
+        let color = UserDefaults.loadData(type: BackgroundColors.self, key: "splash screen background color") ?? .system
         return color
     }
     
@@ -127,8 +127,8 @@ extension SettingsManager: SettingsManagerProtocol {
         return position
     }
     
-    func getTabsColor()-> Colors {
-        let color = UserDefaults.loadData(type: Colors.self, key: "tabs color") ?? .system
+    func getTabsColor()-> TabColors {
+        let color = UserDefaults.loadData(type: TabColors.self, key: "tabs color") ?? .system
         return color
     }
     

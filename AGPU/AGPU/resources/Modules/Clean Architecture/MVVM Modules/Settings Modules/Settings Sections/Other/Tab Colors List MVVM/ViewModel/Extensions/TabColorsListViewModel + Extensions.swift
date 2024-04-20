@@ -11,11 +11,11 @@ import Foundation
 extension TabColorsListViewModel: ITabColorsListViewModel {
     
     func colorsCount()-> Int {
-        return Colors.allCases.count
+        return TabColors.allCases.count
     }
     
-    func colorOptionItem(index: Int)-> Colors {
-        return Colors.allCases[index]
+    func colorOptionItem(index: Int)-> TabColors {
+        return TabColors.allCases[index]
     }
     
     func selectColor(index: Int) {

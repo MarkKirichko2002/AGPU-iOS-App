@@ -9,8 +9,8 @@ import Foundation
 
 protocol ISplashScreenBackgroundColorsListViewModel {
     func colorsCount()-> Int
-    func colorOptionItem(index: Int)-> Colors
+    func colorOptionItem(index: Int)-> BackgroundColors
     func selectColor(index: Int)
     func isColorSelected(index: Int)-> Bool
-    func registerColorSelectedHandler(block: @escaping(Colors)->Void)
+    func registerColorSelectedHandler(block: @escaping(BackgroundColors)->Void)
 }

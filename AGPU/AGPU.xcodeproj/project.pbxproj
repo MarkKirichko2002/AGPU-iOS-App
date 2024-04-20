@@ -70,7 +70,7 @@
 		82184D912B7BDA5A00F2588E /* LocationDetailWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82184D902B7BDA5A00F2588E /* LocationDetailWeatherViewModel.swift */; };
 		8218F5872A688F8C00C94EB4 /* CustomActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218F5862A688F8C00C94EB4 /* CustomActivityItemSource.swift */; };
 		82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */; };
-		821B72672BD16D9D000460E2 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B72662BD16D9D000460E2 /* Colors.swift */; };
+		821B72672BD16D9D000460E2 /* TabColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B72662BD16D9D000460E2 /* TabColors.swift */; };
 		821B726A2BD1707A000460E2 /* UIColor + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B72692BD1707A000460E2 /* UIColor + Extensions.swift */; };
 		821B726F2BD17160000460E2 /* ITabsOptionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B726E2BD17160000460E2 /* ITabsOptionsListViewModel.swift */; };
 		821B72712BD17196000460E2 /* TabsOptionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B72702BD17196000460E2 /* TabsOptionsListViewModel.swift */; };
@@ -224,6 +224,7 @@
 		82754C672BD3DB900021E76A /* ISplashScreenBackgroundColorsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82754C662BD3DB900021E76A /* ISplashScreenBackgroundColorsListViewModel.swift */; };
 		82754C692BD3DBB30021E76A /* SplashScreenBackgroundColorsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82754C682BD3DBB30021E76A /* SplashScreenBackgroundColorsListViewModel.swift */; };
 		82754C6B2BD3DBEC0021E76A /* SplashScreenBackgroundColorsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82754C6A2BD3DBEC0021E76A /* SplashScreenBackgroundColorsListViewModel + Extensions.swift */; };
+		82754C6F2BD40CAE0021E76A /* BackgroundColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82754C6E2BD40CAE0021E76A /* BackgroundColors.swift */; };
 		82761A152B462C6100D9976F /* SelectedFacultySplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82761A142B462C6100D9976F /* SelectedFacultySplashScreenViewController.swift */; };
 		82761A1D2B46381500D9976F /* SplashScreenOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82761A1B2B46381500D9976F /* SplashScreenOptionTableViewCell.swift */; };
 		82761A1E2B46381500D9976F /* SplashScreenOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82761A1C2B46381500D9976F /* SplashScreenOptionTableViewCell.xib */; };
@@ -589,7 +590,7 @@
 		82184D902B7BDA5A00F2588E /* LocationDetailWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailWeatherViewModel.swift; sourceTree = "<group>"; };
 		8218F5862A688F8C00C94EB4 /* CustomActivityItemSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityItemSource.swift; sourceTree = "<group>"; };
 		82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsListViewController + Extensions.swift"; sourceTree = "<group>"; };
-		821B72662BD16D9D000460E2 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		821B72662BD16D9D000460E2 /* TabColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabColors.swift; sourceTree = "<group>"; };
 		821B72692BD1707A000460E2 /* UIColor + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extensions.swift"; sourceTree = "<group>"; };
 		821B726E2BD17160000460E2 /* ITabsOptionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITabsOptionsListViewModel.swift; sourceTree = "<group>"; };
 		821B72702BD17196000460E2 /* TabsOptionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsOptionsListViewModel.swift; sourceTree = "<group>"; };
@@ -743,6 +744,7 @@
 		82754C662BD3DB900021E76A /* ISplashScreenBackgroundColorsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISplashScreenBackgroundColorsListViewModel.swift; sourceTree = "<group>"; };
 		82754C682BD3DBB30021E76A /* SplashScreenBackgroundColorsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenBackgroundColorsListViewModel.swift; sourceTree = "<group>"; };
 		82754C6A2BD3DBEC0021E76A /* SplashScreenBackgroundColorsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SplashScreenBackgroundColorsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		82754C6E2BD40CAE0021E76A /* BackgroundColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColors.swift; sourceTree = "<group>"; };
 		82761A142B462C6100D9976F /* SelectedFacultySplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFacultySplashScreenViewController.swift; sourceTree = "<group>"; };
 		82761A1B2B46381500D9976F /* SplashScreenOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenOptionTableViewCell.swift; sourceTree = "<group>"; };
 		82761A1C2B46381500D9976F /* SplashScreenOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashScreenOptionTableViewCell.xib; sourceTree = "<group>"; };
@@ -3706,7 +3708,6 @@
 				8228E39A2A6C920000C1B6AD /* Location */,
 				82B1C0EB2A8123DF00520C14 /* Voice Directions */,
 				82ECABDF2A8151ED00FE7462 /* Sub Group */,
-				82754C622BD3DB0E0021E76A /* Colors */,
 				828D8E582B5364780022FDB3 /* Search */,
 			);
 			path = Models;
@@ -3818,6 +3819,7 @@
 		82754C5C2BD3D9370021E76A /* Splash Screen Background Colors List MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				82754C6D2BD40C9F0021E76A /* Model */,
 				82754C5E2BD3D9650021E76A /* View */,
 				82754C5D2BD3D9630021E76A /* ViewModel */,
 			);
@@ -3850,14 +3852,6 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		82754C622BD3DB0E0021E76A /* Colors */ = {
-			isa = PBXGroup;
-			children = (
-				821B72662BD16D9D000460E2 /* Colors.swift */,
-			);
-			path = Colors;
-			sourceTree = "<group>";
-		};
 		82754C632BD3DB540021E76A /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -3880,6 +3874,22 @@
 				82754C682BD3DBB30021E76A /* SplashScreenBackgroundColorsListViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82754C6C2BD40C7F0021E76A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				821B72662BD16D9D000460E2 /* TabColors.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82754C6D2BD40C9F0021E76A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82754C6E2BD40CAE0021E76A /* BackgroundColors.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		82761A112B462AC300D9976F /* Regular */ = {
@@ -4740,6 +4750,7 @@
 		828E102F2BD1697E00ECC5F4 /* Tab Colors List MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				82754C6C2BD40C7F0021E76A /* Model */,
 				821B72642BD16D55000460E2 /* View */,
 				821B72622BD16D47000460E2 /* ViewModel */,
 			);
@@ -4810,8 +4821,8 @@
 				82761A1A2B4637DE00D9976F /* Splash Screens */,
 				8283975A2AD5BBAD000F355A /* App Icons */,
 				8209008B2BAF89A40053F3BD /* TabBar */,
-				82768AF22ABE1B0D0022FBE1 /* App Themes */,
 				82F5788D2B6FEDD200BC64C1 /* ASPU Button Options */,
+				82768AF22ABE1B0D0022FBE1 /* App Themes */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -7885,7 +7896,7 @@
 				8209007D2BAF62650053F3BD /* TabsPositionListTableViewController.swift in Sources */,
 				824EBF6C2B29F9890003E7E6 /* AGPUBuildingTypes.swift in Sources */,
 				82F578842B6FE5A800BC64C1 /* ASPUButtonActionsListViewModelProtocol.swift in Sources */,
-				821B72672BD16D9D000460E2 /* Colors.swift in Sources */,
+				821B72672BD16D9D000460E2 /* TabColors.swift in Sources */,
 				8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */,
 				8228E3A62A6C9DB300C1B6AD /* AGPUBuildingsMapViewModel + Extensions.swift in Sources */,
 				82754C5B2BD3D84B0021E76A /* CustomSplashScreenEditorViewController + Extensions.swift in Sources */,
@@ -8087,6 +8098,7 @@
 				8226D1912B09704B00B0B9F0 /* SavedPairTypeViewModel + Extensions.swift in Sources */,
 				82A29F452B9BD5D600756F43 /* SelectedFacultySplashScreenViewModel.swift in Sources */,
 				82C5615F2A6B75B700514B00 /* AppFeaturesList.swift in Sources */,
+				82754C6F2BD40CAE0021E76A /* BackgroundColors.swift in Sources */,
 				821119FB2B9900D6007B61E5 /* NewsWebViewController + Extensions.swift in Sources */,
 				82768AEF2ABE15230022FBE1 /* AppThemesListViewModel.swift in Sources */,
 				82F98B362B119A0200137D9A /* WeatherManager + Extensions.swift in Sources */,
@@ -8436,7 +8448,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 2.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -8475,7 +8487,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 2.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
