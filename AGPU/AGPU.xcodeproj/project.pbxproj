@@ -225,6 +225,8 @@
 		82754C692BD3DBB30021E76A /* SplashScreenBackgroundColorsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82754C682BD3DBB30021E76A /* SplashScreenBackgroundColorsListViewModel.swift */; };
 		82754C6B2BD3DBEC0021E76A /* SplashScreenBackgroundColorsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82754C6A2BD3DBEC0021E76A /* SplashScreenBackgroundColorsListViewModel + Extensions.swift */; };
 		82754C6F2BD40CAE0021E76A /* BackgroundColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82754C6E2BD40CAE0021E76A /* BackgroundColors.swift */; };
+		82754C732BD45C1B0021E76A /* BorderForDailyNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82754C712BD45C1B0021E76A /* BorderForDailyNewsTableViewCell.swift */; };
+		82754C742BD45C1B0021E76A /* BorderForDailyNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82754C722BD45C1B0021E76A /* BorderForDailyNewsTableViewCell.xib */; };
 		82761A152B462C6100D9976F /* SelectedFacultySplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82761A142B462C6100D9976F /* SelectedFacultySplashScreenViewController.swift */; };
 		82761A1D2B46381500D9976F /* SplashScreenOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82761A1B2B46381500D9976F /* SplashScreenOptionTableViewCell.swift */; };
 		82761A1E2B46381500D9976F /* SplashScreenOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82761A1C2B46381500D9976F /* SplashScreenOptionTableViewCell.xib */; };
@@ -745,6 +747,8 @@
 		82754C682BD3DBB30021E76A /* SplashScreenBackgroundColorsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenBackgroundColorsListViewModel.swift; sourceTree = "<group>"; };
 		82754C6A2BD3DBEC0021E76A /* SplashScreenBackgroundColorsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SplashScreenBackgroundColorsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82754C6E2BD40CAE0021E76A /* BackgroundColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundColors.swift; sourceTree = "<group>"; };
+		82754C712BD45C1B0021E76A /* BorderForDailyNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderForDailyNewsTableViewCell.swift; sourceTree = "<group>"; };
+		82754C722BD45C1B0021E76A /* BorderForDailyNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BorderForDailyNewsTableViewCell.xib; sourceTree = "<group>"; };
 		82761A142B462C6100D9976F /* SelectedFacultySplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFacultySplashScreenViewController.swift; sourceTree = "<group>"; };
 		82761A1B2B46381500D9976F /* SplashScreenOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenOptionTableViewCell.swift; sourceTree = "<group>"; };
 		82761A1C2B46381500D9976F /* SplashScreenOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashScreenOptionTableViewCell.xib; sourceTree = "<group>"; };
@@ -2334,6 +2338,7 @@
 				8225279F2BACE48F00B66314 /* Saved News Category */,
 				822527A02BACE4A400B66314 /* Adapt To Web */,
 				82FC22F22BC036D7008709DA /* Daily News */,
+				82754C702BD45BCC0021E76A /* Border For Daily News */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -3890,6 +3895,15 @@
 				82754C6E2BD40CAE0021E76A /* BackgroundColors.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		82754C702BD45BCC0021E76A /* Border For Daily News */ = {
+			isa = PBXGroup;
+			children = (
+				82754C712BD45C1B0021E76A /* BorderForDailyNewsTableViewCell.swift */,
+				82754C722BD45C1B0021E76A /* BorderForDailyNewsTableViewCell.xib */,
+			);
+			path = "Border For Daily News";
 			sourceTree = "<group>";
 		};
 		82761A112B462AC300D9976F /* Regular */ = {
@@ -7706,6 +7720,7 @@
 				822632422A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib in Resources */,
 				82C5B7902BCEF81600F907CB /* ASPUButtonAnimationOptionTableViewCell.xib in Resources */,
 				82C449F82B5F0B5F0039B0F3 /* danger.mp3 in Resources */,
+				82754C742BD45C1B0021E76A /* BorderForDailyNewsTableViewCell.xib in Resources */,
 				82C561692A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard in Resources */,
 				822DA7182BCACDC000CB4A21 /* technopark.mp4 in Resources */,
 				822605EF2A84A0600055925F /* Assets.xcassets in Resources */,
@@ -8189,6 +8204,7 @@
 				828D511E2BB86D1700848FF8 /* ASPUButtonOptionsListViewModel + Extensions.swift in Sources */,
 				82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */,
 				82875B002A5A1966007DB925 /* HapticsManagerProtocol.swift in Sources */,
+				82754C732BD45C1B0021E76A /* BorderForDailyNewsTableViewCell.swift in Sources */,
 				824EBF7B2B2A0B630003E7E6 /* FacultyCathedraMapListTableViewController.swift in Sources */,
 				8210CA092A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift in Sources */,
 				828397772AD5C9E1000F355A /* AppIconsListViewModelProtocol.swift in Sources */,

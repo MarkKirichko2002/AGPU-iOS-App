@@ -182,6 +182,7 @@ final class NewsListViewController: UIViewController {
         
         viewModel.observeCategoryChanges()
         viewModel.observePageChanges()
+        viewModel.observeStrokeOption()
         viewModel.observeFilterOption()
     }
 }

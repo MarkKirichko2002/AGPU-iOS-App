@@ -173,6 +173,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
                 let json = try JSONEncoder().encode(timetable)
                 service.getTimeTableWeekImage(json: json) { image in
                     self.ShareImage(image: image, title: self.id, text: "с \(self.week.from) \(self.week.to)")
+                    HapticsManager.shared.hapticFeedback()
                 }
             } catch {
                 print(error.localizedDescription)

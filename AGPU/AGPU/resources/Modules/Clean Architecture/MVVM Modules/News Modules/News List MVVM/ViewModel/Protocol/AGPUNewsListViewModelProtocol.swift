@@ -17,6 +17,9 @@ protocol AGPUNewsListViewModelProtocol {
     func refreshNews()
     func observeCategoryChanges()
     func observePageChanges()
+    func observeFilterOption()
+    func observeStrokeOption()
+    func filterNews(option: NewsOptionsFilters)
     func makeUrlForCurrentArticle(index: Int)-> String
     func makeUrlForCurrentWebPage()-> String
     func sendNotificationArticleWasSelected()

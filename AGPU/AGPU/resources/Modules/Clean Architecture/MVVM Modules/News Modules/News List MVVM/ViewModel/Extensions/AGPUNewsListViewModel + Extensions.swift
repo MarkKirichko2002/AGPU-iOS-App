@@ -174,6 +174,12 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         }
     }
     
+    func observeStrokeOption() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("daily news border option"), object: nil, queue: .main) { _ in
+            self.dataChangedHandler?(self.abbreviation)
+        }
+    }
+    
     func filterNews(option: NewsOptionsFilters) {
         switch option {
         case .today:

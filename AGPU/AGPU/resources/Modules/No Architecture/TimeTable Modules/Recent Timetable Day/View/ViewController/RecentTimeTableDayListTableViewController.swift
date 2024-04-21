@@ -66,11 +66,11 @@ class RecentTimeTableDayListTableViewController: UIViewController {
             let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: self.date)
             self.service.getTimeTableDayImage(json: json) { image in
                 self.ShareImage(image: image, title: self.id, text: "\(dayOfWeek) \(self.date)")
+                HapticsManager.shared.hapticFeedback()
             }
         } catch {
             print(error.localizedDescription)
         }
-        HapticsManager.shared.hapticFeedback()
     }
     
     @objc private func refreshTimetable() {

@@ -21,7 +21,11 @@ extension CustomSplashScreenEditorViewController: UIImagePickerControllerDelegat
 extension CustomSplashScreenEditorViewController: SplashScreenBackgroundColorsListTableViewControllerDelegate {
     
     func colorWasSelected(color: BackgroundColors) {
-        CustomTitleLabel.textColor = .white
+        if color != .system {
+            CustomTitleLabel.textColor = .white
+        } else {
+            CustomTitleLabel.textColor = .label
+        }
         view.backgroundColor = color.color
         viewModel.colorOption = color
     }
