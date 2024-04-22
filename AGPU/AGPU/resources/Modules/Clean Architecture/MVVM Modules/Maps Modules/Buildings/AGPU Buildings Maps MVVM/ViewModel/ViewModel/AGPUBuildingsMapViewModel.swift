@@ -9,13 +9,15 @@ import MapKit
 
 final class AGPUBuildingsMapViewModel {
     
+    var arr = [MKAnnotation]()
+    var index = 0
+    var faculty: AGPUFacultyModel?
+    var type: AGPUBuildingType? = .all
+    var location = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    
     var locationHandler: ((LocationModel)->Void)?
     var choiceHandler: ((Bool, MKAnnotation)->Void)?
     var alertHandler: ((Bool)->Void)?
-    var arr = [MKAnnotation]()
-    
-    var faculty: AGPUFacultyModel?
-    var type: AGPUBuildingType? = .all
     
     // MARK: - сервисы
     let locationManager = LocationManager()

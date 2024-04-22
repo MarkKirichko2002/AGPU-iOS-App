@@ -41,29 +41,72 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                 span: span
             )
             
-            // текущая геопозиция
-            let currentpin = MKPointAnnotation()
-            currentpin.coordinate = coordinate
-            currentpin.title = "Вы"
-            
-            if !AGPUBuildingPins.pins.contains(where: { $0.title == "Вы" }) {
-                AGPUBuildingPins.pins.append(currentpin)
+            if !self.arr.isEmpty {
+                self.arr.removeAll()
             }
             
-            print(AGPUBuildingPins.pins.count)
-            
             let location = LocationModel(region: region, pins: AGPUBuildingPins.pins)
+            self.location = coordinate
+            self.currentLocation(coordinate: coordinate)
+            
+            self.arr.append(AGPUBuildingPins.pins.last!)
+            for building in AGPUBuildings.buildings {
+                self.index = 0
+                self.arr.append(building.pin)
+                //self.choiceHandler?(true, building.pin)
+            }
+            
             self.locationHandler?(location)
         }
     }
     
+    func currentLocation(coordinate: CLLocationCoordinate2D) {
+        // текущая геопозиция
+        let currentpin = MKPointAnnotation()
+        currentpin.coordinate = coordinate
+        currentpin.title = "Вы"
+        
+        if !AGPUBuildingPins.pins.contains(where: { $0.title == "Вы" }) {
+            AGPUBuildingPins.pins.append(currentpin)
+        }
+    }
+    
+    func defaultLocation()-> MKCoordinateRegion {
+        let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
+        let region = MKCoordinateRegion(center: arr[index].coordinate, span: span)
+        return region
+    }
+    
+    func nextLocation()-> MKCoordinateRegion? {
+        if index < arr.count - 1 {
+            index += 1
+            let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
+            let region = MKCoordinateRegion(center: arr[index].coordinate, span: span)
+            return region
+        }
+        return nil
+    }
+    
+    func pastLocation()-> MKCoordinateRegion? {
+        if index > 0 {
+            index -= 1
+            let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
+            let region = MKCoordinateRegion(center: arr[index].coordinate, span: span)
+            return region
+        }
+        return nil
+    }
+    
     func observeBuildingTypeSelected() {
+        
         NotificationCenter.default.addObserver(forName: Notification.Name("building type selected"), object: nil, queue: .main) { notification in
+            
             if let type = notification.object as? AGPUBuildingType {
                 
                 self.type = type
                 
                 switch type {
+                    
                 case .all:
                     
                     for pin in self.arr {
@@ -71,9 +114,22 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                         self.faculty = nil
                     }
                     
-                    for building in AGPUBuildings.buildings {
-                        self.choiceHandler?(true, building.pin)
+                    if !self.arr.isEmpty {
+                        self.arr.removeAll()
                     }
+                    
+                    self.arr.append(AGPUBuildingPins.pins.last!)
+                    
+                    for building in AGPUBuildings.buildings {
+                        self.index = 0
+                        self.arr.append(building.pin)
+                        //self.choiceHandler?(true, building.pin)
+                    }
+                    
+                    for pin in self.arr {
+                        self.choiceHandler?(true, pin)
+                    }
+                    
                 case .building:
                     
                     for pin in self.arr {
@@ -81,13 +137,26 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                         self.faculty = nil
                     }
                     
+                    if !self.arr.isEmpty {
+                        self.arr.removeAll()
+                    }
+                    
+                    self.arr.append(AGPUBuildingPins.pins.last!)
+                    
                     for building in AGPUBuildings.buildings {
                         if building.type == .building || building.type == .buildingAndHostel {
-                            self.choiceHandler?(true, building.pin)
+                            self.index = 0
+                            self.arr.append(building.pin)
+                            //self.choiceHandler?(true, building.pin)
                         } else {
                             self.choiceHandler?(false, building.pin)
                         }
                     }
+                   
+                    for pin in self.arr {
+                        self.choiceHandler?(true, pin)
+                    }
+                    
                 case .hostel:
                     
                     for pin in self.arr {
@@ -95,13 +164,26 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                         self.faculty = nil
                     }
                     
+                    if !self.arr.isEmpty {
+                        self.arr.removeAll()
+                    }
+                    
+                    self.arr.append(AGPUBuildingPins.pins.last!)
+                    
                     for building in AGPUBuildings.buildings {
                         if building.type == .hostel || building.type == .buildingAndHostel {
-                            self.choiceHandler?(true, building.pin)
+                            self.index = 0
+                            self.arr.append(building.pin)
+                            //self.choiceHandler?(true, building.pin)
                         } else {
                             self.choiceHandler?(false, building.pin)
                         }
                     }
+                    
+                    for pin in self.arr {
+                        self.choiceHandler?(true, pin)
+                    }
+                    
                 case .buildingAndHostel:
                     break
                 }
@@ -136,7 +218,7 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                     longitude: faculty.cathedra[0].coordinates[1]
                 )
                 let cathedraPin1 = MKPointAnnotation(__coordinate: cathedraLocation1)
-                cathedraPin1.title = self.faculty?.cathedra[0].name
+                cathedraPin1.title = "Кафедра \(faculty.abbreviation) №1"
                 cathedraPin1.subtitle = self.faculty?.cathedra[0].address
                 
                 // 2 кафедра
@@ -145,17 +227,18 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                     longitude: faculty.cathedra[1].coordinates[1]
                 )
                 let cathedraPin2 = MKPointAnnotation(__coordinate: cathedraLocation2)
-                cathedraPin2.title = self.faculty?.cathedra[1].name
+                cathedraPin2.title = "Кафедра \(faculty.abbreviation) №2"
                 cathedraPin2.subtitle = self.faculty?.cathedra[1].address
                 
+                self.arr.append(AGPUBuildingPins.pins.last!)
                 self.arr.append(cathedraPin1)
                 self.arr.append(cathedraPin2)
+                
+                self.index = 0
                 
                 for pin in self.arr {
                     self.choiceHandler?(true, pin)
                 }
-                
-                print(self.arr.count)
             }
         }
     }
