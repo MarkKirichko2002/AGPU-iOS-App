@@ -185,8 +185,13 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     func observeFilterOption() {
         NotificationCenter.default.addObserver(forName: Notification.Name("news filter option"), object: nil, queue: .main) { notification in
             if let option = notification.object as? NewsOptionsFilters {
-                self.option = option
-                self.filterNews(option: option)
+                switch self.displayMode {
+                case .grid:
+                    self.option = option
+                    self.filterNews(option: option)
+                case .webpage:
+                    break
+                }
             }
         }
     }

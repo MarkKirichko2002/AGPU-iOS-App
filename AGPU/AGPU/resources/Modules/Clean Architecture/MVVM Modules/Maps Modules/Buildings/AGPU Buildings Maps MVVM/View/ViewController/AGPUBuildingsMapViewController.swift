@@ -30,7 +30,9 @@ final class AGPUBuildingsMapViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setRegion(region: viewModel.defaultLocation())
+        if !viewModel.arr.isEmpty {
+            setRegion(region: viewModel.defaultLocation())
+        }
     }
         
     private func setUpNavigation() {
@@ -155,7 +157,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
         }
         viewModel.checkLocationAuthorizationStatus()
         viewModel.registerLocationHandler { location in
-            self.navigationItem.title = "Поиск..."
+            self.navigationItem.title = "Найти кампус"
             self.mapView.showAnnotations(location.pins, animated: true)
         }
         viewModel.registerChoiceHandler { isBuildingType, annotation in
