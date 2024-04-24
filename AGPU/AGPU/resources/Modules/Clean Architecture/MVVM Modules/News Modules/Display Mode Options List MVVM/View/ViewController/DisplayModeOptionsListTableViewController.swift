@@ -30,7 +30,7 @@ class DisplayModeOptionsListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Фильтрация"
+        navigationItem.title = "Выберите вид"
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton

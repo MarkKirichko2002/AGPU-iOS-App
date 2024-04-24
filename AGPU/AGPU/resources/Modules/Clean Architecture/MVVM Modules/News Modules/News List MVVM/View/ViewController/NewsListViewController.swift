@@ -26,6 +26,7 @@ final class NewsListViewController: UIViewController {
     
     private let webView: WKWebView = {
         let webView = WKWebView()
+        webView.translatesAutoresizingMaskIntoConstraints = false
         webView.allowsBackForwardNavigationGestures = true
         return webView
     }()
@@ -45,23 +46,30 @@ final class NewsListViewController: UIViewController {
     
     private func setUpNavigation() {
         navigationItem.title = "Новости АГПУ"
+        navigationController?.navigationBar.isTranslucent = false
         let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshNews))
         refreshButton.tintColor = .label
         navigationItem.leftBarButtonItem = refreshButton
     }
     
     @objc private func refreshNews() {
-        viewModel.newsResponse.articles = []
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-            self.noNewsLabel.isHidden = true
-            self.spinner.startAnimating()
+        switch viewModel.displayMode {
+        case .grid:
+            viewModel.newsResponse.articles = []
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.noNewsLabel.isHidden = true
+                self.spinner.startAnimating()
+            }
+            viewModel.refreshNews()
+        case .webpage:
+            viewModel.refreshNews()
         }
-        viewModel.refreshNews()
     }
     
     private func setUpCollectionView() {
         view.addSubview(collectionView)
+        spinner.tintColor = .label
         collectionView.frame = view.bounds
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -69,7 +77,7 @@ final class NewsListViewController: UIViewController {
     
     private func setUpWebView() {
         view.addSubview(webView)
-        view = webView
+        webView.frame = view.bounds
         webView.load(viewModel.makeUrlForCurrentWebPage())
     }
     
@@ -103,7 +111,7 @@ final class NewsListViewController: UIViewController {
         
         var categoriesAction = UIAction(title: "Категории") { _ in}
         var pagesAction = UIAction(title: "Страницы") { _ in}
-        let displayModes = UIAction(title: "Отображение") { _ in
+        let displayModes = UIAction(title: "Вид") { _ in
             let vc = DisplayModeOptionsListTableViewController(option: self.viewModel.displayMode)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -199,14 +207,16 @@ final class NewsListViewController: UIViewController {
             case .grid:
                 self.webView.removeFromSuperview()
                 self.setUpCollectionView()
+                self.setUpIndicatorView()
+                self.spinner.stopAnimating()
             case .webpage:
                 self.collectionView.removeFromSuperview()
-                self.view = nil
                 self.setUpWebView()
             }
         }
         
         viewModel.registerWebModeHandler {
+            print(self.viewModel.newsResponse.currentPage ?? 0)
             self.webView.load(self.viewModel.makeUrlForCurrentWebPage())
         }
         

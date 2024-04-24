@@ -122,13 +122,14 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             let result = try await newsService.getNews(by: page, abbreviation: abbreviation)
             switch result {
             case .success(let response):
-                self.newsResponse = response
                 switch displayMode {
                 case .grid:
+                    self.newsResponse = response
                     self.allNews = response.articles ?? []
                     self.option = .all
                     self.dataChangedHandler?(self.abbreviation)
                 case .webpage:
+                    self.newsResponse = response
                     self.webModeHandler?()
                 }
             case .failure(let error):
