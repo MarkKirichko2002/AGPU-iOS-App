@@ -111,14 +111,14 @@ final class NewsListViewController: UIViewController {
         
         var categoriesAction = UIAction(title: "Категории") { _ in}
         var pagesAction = UIAction(title: "Страницы") { _ in}
-        let displayModes = UIAction(title: "Вид") { _ in
-            let vc = DisplayModeOptionsListTableViewController(option: self.viewModel.displayMode)
+        let recentNews = UIAction(title: "Недавние") { _ in
+            let vc = RecentNewsListViewController()
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
         }
-        let recentNews = UIAction(title: "Недавние") { _ in
-            let vc = RecentNewsListViewController()
+        let displayModes = UIAction(title: "Вид") { _ in
+            let vc = DisplayModeOptionsListTableViewController(option: self.viewModel.displayMode)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -179,8 +179,8 @@ final class NewsListViewController: UIViewController {
             menu = UIMenu(title: "Новости", children: [
                 categoriesAction,
                 pagesAction,
-                displayModes,
                 recentNews,
+                displayModes,
                 filterOptions,
                 randomAction
             ])
@@ -208,7 +208,9 @@ final class NewsListViewController: UIViewController {
                 self.webView.removeFromSuperview()
                 self.setUpCollectionView()
                 self.setUpIndicatorView()
-                self.spinner.stopAnimating()
+                Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
+                    self.viewModel.refreshNews()
+                }
             case .webpage:
                 self.collectionView.removeFromSuperview()
                 self.setUpWebView()
