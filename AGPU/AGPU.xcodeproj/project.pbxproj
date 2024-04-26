@@ -182,6 +182,7 @@
 		82426C8D2A71D26100D5AA57 /* ForEmployeeSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C8C2A71D26100D5AA57 /* ForEmployeeSections.swift */; };
 		82426C902A71DCDA00D5AA57 /* UserStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C8F2A71DCDA00D5AA57 /* UserStatusModel.swift */; };
 		82426C942A71DD0100D5AA57 /* UserStatusList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C932A71DD0100D5AA57 /* UserStatusList.swift */; };
+		824302B62BDB0658004F1742 /* TimeTableTableViewCell + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824302B52BDB0658004F1742 /* TimeTableTableViewCell + Extensions.swift */; };
 		824C56D92A6FE98F0074ADB7 /* FacultyCathedraList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */; };
 		824EBF652B29CF6B0003E7E6 /* AGPUBuildingTypesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824EBF642B29CF6B0003E7E6 /* AGPUBuildingTypesListTableViewController.swift */; };
 		824EBF6A2B29F9530003E7E6 /* AGPUBuildingTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824EBF692B29F9530003E7E6 /* AGPUBuildingTypeModel.swift */; };
@@ -343,6 +344,7 @@
 		82989AEE2A6F6EB600F27858 /* FacultyCathedraListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82989AED2A6F6EB600F27858 /* FacultyCathedraListViewModel + Extensions.swift */; };
 		82989AF22A6F8CDF00F27858 /* ForEveryStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82989AF02A6F8CDF00F27858 /* ForEveryStatusTableViewCell.swift */; };
 		82989AF32A6F8CDF00F27858 /* ForEveryStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82989AF12A6F8CDF00F27858 /* ForEveryStatusTableViewCell.xib */; };
+		829952432BDB8999003AFB14 /* TimeTableFavouriteItemsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829952422BDB8999003AFB14 /* TimeTableFavouriteItemsListTableViewController.swift */; };
 		8299E3B22B8A31CE00D81472 /* ITimetableDateDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299E3B12B8A31CE00D81472 /* ITimetableDateDetailViewModel.swift */; };
 		8299E3B42B8A31E600D81472 /* TimetableDateDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299E3B32B8A31E600D81472 /* TimetableDateDetailViewModel.swift */; };
 		8299E3B62B8A31F800D81472 /* TimetableDateDetailViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299E3B52B8A31F800D81472 /* TimetableDateDetailViewModel + Extensions.swift */; };
@@ -709,6 +711,7 @@
 		82426C8C2A71D26100D5AA57 /* ForEmployeeSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEmployeeSections.swift; sourceTree = "<group>"; };
 		82426C8F2A71DCDA00D5AA57 /* UserStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusModel.swift; sourceTree = "<group>"; };
 		82426C932A71DD0100D5AA57 /* UserStatusList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatusList.swift; sourceTree = "<group>"; };
+		824302B52BDB0658004F1742 /* TimeTableTableViewCell + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableTableViewCell + Extensions.swift"; sourceTree = "<group>"; };
 		824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyCathedraList.swift; sourceTree = "<group>"; };
 		824EBF642B29CF6B0003E7E6 /* AGPUBuildingTypesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingTypesListTableViewController.swift; sourceTree = "<group>"; };
 		824EBF692B29F9530003E7E6 /* AGPUBuildingTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingTypeModel.swift; sourceTree = "<group>"; };
@@ -873,6 +876,7 @@
 		82989AED2A6F6EB600F27858 /* FacultyCathedraListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FacultyCathedraListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82989AF02A6F8CDF00F27858 /* ForEveryStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEveryStatusTableViewCell.swift; sourceTree = "<group>"; };
 		82989AF12A6F8CDF00F27858 /* ForEveryStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForEveryStatusTableViewCell.xib; sourceTree = "<group>"; };
+		829952422BDB8999003AFB14 /* TimeTableFavouriteItemsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableFavouriteItemsListTableViewController.swift; sourceTree = "<group>"; };
 		8299E3B12B8A31CE00D81472 /* ITimetableDateDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITimetableDateDetailViewModel.swift; sourceTree = "<group>"; };
 		8299E3B32B8A31E600D81472 /* TimetableDateDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDateDetailViewModel.swift; sourceTree = "<group>"; };
 		8299E3B52B8A31F800D81472 /* TimetableDateDetailViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimetableDateDetailViewModel + Extensions.swift"; sourceTree = "<group>"; };
@@ -3250,6 +3254,23 @@
 			path = List;
 			sourceTree = "<group>";
 		};
+		824302B32BDB0631004F1742 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				82D6C3382A5E282A00FB7F5D /* TimeTableTableViewCell.swift */,
+				82D6C3392A5E282A00FB7F5D /* TimeTableTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		824302B42BDB063B004F1742 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				824302B52BDB0658004F1742 /* TimeTableTableViewCell + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		824C56D62A6FE9660074ADB7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -5378,6 +5399,38 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		8299523E2BDB893A003AFB14 /* TimeTable Favourite Items List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				829952402BDB896A003AFB14 /* View */,
+				8299523F2BDB8968003AFB14 /* ViewModel */,
+			);
+			path = "TimeTable Favourite Items List MVVM";
+			sourceTree = "<group>";
+		};
+		8299523F2BDB8968003AFB14 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		829952402BDB896A003AFB14 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				829952412BDB8979003AFB14 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		829952412BDB8979003AFB14 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				829952422BDB8999003AFB14 /* TimeTableFavouriteItemsListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		8299E3AA2B8A317400D81472 /* Timetable Date Detail MVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -6761,8 +6814,8 @@
 		82D6C33E2A5E32EA00FB7F5D /* Timetable */ = {
 			isa = PBXGroup;
 			children = (
-				82D6C3382A5E282A00FB7F5D /* TimeTableTableViewCell.swift */,
-				82D6C3392A5E282A00FB7F5D /* TimeTableTableViewCell.xib */,
+				824302B32BDB0631004F1742 /* Cell */,
+				824302B42BDB063B004F1742 /* Extensions */,
 			);
 			path = Timetable;
 			sourceTree = "<group>";
@@ -7528,6 +7581,7 @@
 				82B1C0C52A80702D00520C14 /* Saved Sub Group MVVM */,
 				8226D1842B096F2A00B0B9F0 /* Saved Pair Type MVVM */,
 				829632C02BBC17F0007CAB65 /* TimeTable Sounds List MVVM */,
+				8299523E2BDB893A003AFB14 /* TimeTable Favourite Items List MVVM */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -7990,6 +8044,7 @@
 				8228E3A42A6C9D3700C1B6AD /* AGPUBuildingsMapViewModelProtocol.swift in Sources */,
 				8209007D2BAF62650053F3BD /* TabsPositionListTableViewController.swift in Sources */,
 				824EBF6C2B29F9890003E7E6 /* AGPUBuildingTypes.swift in Sources */,
+				824302B62BDB0658004F1742 /* TimeTableTableViewCell + Extensions.swift in Sources */,
 				82F578842B6FE5A800BC64C1 /* ASPUButtonActionsListViewModelProtocol.swift in Sources */,
 				821B72672BD16D9D000460E2 /* TabColors.swift in Sources */,
 				8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */,
@@ -8154,6 +8209,7 @@
 				8226D1882B096F5A00B0B9F0 /* SavedPairTypeTableViewController.swift in Sources */,
 				826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */,
 				821FCF052A87CDB8006FFB26 /* NewsCollectionViewCell.swift in Sources */,
+				829952432BDB8999003AFB14 /* TimeTableFavouriteItemsListTableViewController.swift in Sources */,
 				828D51382BB8A3BF00848FF8 /* ASPUButtonIconTableViewCell.swift in Sources */,
 				82761A312B4642A300D9976F /* SplashScreensListViewModel + Extensions.swift in Sources */,
 				82111A002B990138007B61E5 /* INewsWebViewModel.swift in Sources */,
@@ -8548,7 +8604,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.2;
+				MARKETING_VERSION = 2.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -8587,7 +8643,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.2;
+				MARKETING_VERSION = 2.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

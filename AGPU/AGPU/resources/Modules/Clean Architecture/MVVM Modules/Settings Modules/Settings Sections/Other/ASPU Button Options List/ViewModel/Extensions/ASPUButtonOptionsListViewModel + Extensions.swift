@@ -20,9 +20,9 @@ extension ASPUButtonOptionsListViewModel: IASPUButtonOptionsListViewModel {
         return action.rawValue
     }
     
-    func getASPUButtonAnimationOptionInfo()-> String {
+    func getASPUButtonAnimationOptionInfo()-> ASPUButtonAnimationOptions {
         let option = settingsManager.checkASPUButtonAnimationOption()
-        return option.rawValue
+        return option
     }
     
     func observeOptionSelected() {

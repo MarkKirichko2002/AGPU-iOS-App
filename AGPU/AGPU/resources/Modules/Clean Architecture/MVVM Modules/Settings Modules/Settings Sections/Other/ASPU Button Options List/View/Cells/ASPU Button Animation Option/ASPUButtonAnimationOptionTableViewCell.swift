@@ -14,8 +14,9 @@ class ASPUButtonAnimationOptionTableViewCell: UITableViewCell {
     @IBOutlet var OptionIcon: SpringImageView!
     @IBOutlet var OptionName: UILabel!
     
-    func configure(action: String) {
-        OptionName.text = "Анимация (\(action))"
+    func configure(option: ASPUButtonAnimationOptions) {
+        OptionName.text = "Анимация (\(option.rawValue))"
+        OptionIcon.option = option
     }
     
     override func awakeFromNib() {

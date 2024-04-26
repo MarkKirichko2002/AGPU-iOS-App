@@ -157,4 +157,32 @@ extension RealmManager: IRealmManager {
         let splashScreen = realm.object(ofType: CustomSplashScreenModel.self, forPrimaryKey: 1) ?? defaultScreen
         return splashScreen
     }
+    
+    func saveTimetableItem(item: SearchTimetableModel) {
+        let a = realm.object(ofType: SearchTimetableModel.self, forPrimaryKey: item.id)
+        if a == nil {
+            let newItem = SearchTimetableModel()
+            newItem.id = item.id
+            newItem.name = item.name
+            newItem.owner = item.owner
+            try! realm.write {
+                realm.add(newItem)
+            }
+        } else {
+            print("уже есть")
+        }
+    }
+    
+    func deleteTimetableItem(item: SearchTimetableModel) {
+        let item = realm.object(ofType: SearchTimetableModel.self, forPrimaryKey: item.id)
+        guard let item = item else {return}
+        try! realm.write {
+            realm.delete(item)
+        }
+    }
+    
+    func getTimetableItems()->[SearchTimetableModel] {
+        let items = realm.objects(SearchTimetableModel.self)
+        return Array(items)
+    }
 }

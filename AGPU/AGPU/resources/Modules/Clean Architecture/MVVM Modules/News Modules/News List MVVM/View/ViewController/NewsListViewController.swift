@@ -69,7 +69,6 @@ final class NewsListViewController: UIViewController {
     
     private func setUpCollectionView() {
         view.addSubview(collectionView)
-        spinner.tintColor = .label
         collectionView.frame = view.bounds
         collectionView.delegate = self
         collectionView.dataSource = self

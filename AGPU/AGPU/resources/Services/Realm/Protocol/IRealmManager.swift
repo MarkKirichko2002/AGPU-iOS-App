@@ -18,4 +18,7 @@ protocol IRealmManager {
     func editArticle(news: NewsModel, position: Double)
     func saveSplashScreen(screen: CustomSplashScreenModel)
     func getSplashScreen()-> CustomSplashScreenModel
+    func saveTimetableItem(item: SearchTimetableModel)
+    func deleteTimetableItem(item: SearchTimetableModel)
+    func getTimetableItems()-> [SearchTimetableModel]
 }

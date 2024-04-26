@@ -10,10 +10,14 @@ import UIKit
 class TimeTableSearchListTableViewController: UITableViewController, UISearchResultsUpdating {
     
     var results = [SearchResultModel]()
-    var isSettings = false
     let search = UISearchController(searchResultsController: nil)
     
+    var isSettings = false
+    var isFavourite = false
+    
+    // MARK: - сервисы
     private let service = TimeTableService()
+    private let realmManager = RealmManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +32,7 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
     
     private func setUpNavigation() {
         navigationItem.title = "Поиск"
-        if isSettings {
+        if isSettings || isFavourite {
             navigationItem.leftBarButtonItem = nil
             navigationItem.hidesBackButton = true
             let button = UIButton()
@@ -106,16 +110,22 @@ extension TimeTableSearchListTableViewController {
     
     func chooseResult(index: Int) {
         let object = results[index]
-        let result = SearchTimetableModel(name: object.searchContent, owner: currentOwner(type: object.type))
+        let result = SearchTimetableModel()
+        result.name = object.searchContent
+        result.owner = currentOwner(type: object.type)
+        result.id = object.searchID
         if isSettings {
             UserDefaults.standard.setValue(result.owner, forKey: "recentOwner")
             UserDefaults.standard.setValue(result.name, forKey: "group")
             NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
             self.navigationController?.popViewController(animated: true)
+        } else if isFavourite {
+            realmManager.saveTimetableItem(item: result)
+            self.navigationController?.popViewController(animated: true)
         } else {
+            NotificationCenter.default.post(name: Notification.Name("object selected"), object: result)
             self.dismiss(animated: true)
         }
-        NotificationCenter.default.post(name: Notification.Name("object selected"), object: result)
         self.tableView.reloadData()
     }
 }

@@ -83,6 +83,14 @@ final class TimeTableDayListTableViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
+        // избранное
+        let favouritesList = UIAction(title: "Избранное") { _ in
+            let vc = TimeTableFavouriteItemsListTableViewController()
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         // день
         let days = UIAction(title: "День") { _ in
             let vc = DaysListTableViewController(id: self.id, currentDate: self.date, owner: self.owner)
@@ -91,17 +99,17 @@ final class TimeTableDayListTableViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
-        // календарь
-        let calendar = UIAction(title: "Календарь") { _ in
-            let vc = CalendarViewController(id: self.id, date: self.date, owner: self.owner)
+        // недели
+        let weeks = UIAction(title: "Недели") { _ in
+            let vc = AllWeeksListTableViewController(id: self.id, subgroup: self.subgroup, owner: self.owner)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
         }
         
-        // недели
-        let weeks = UIAction(title: "Недели") { _ in
-            let vc = AllWeeksListTableViewController(id: self.id, subgroup: self.subgroup, owner: self.owner)
+        // календарь
+        let calendar = UIAction(title: "Календарь") { _ in
+            let vc = CalendarViewController(id: self.id, date: self.date, owner: self.owner)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -138,9 +146,10 @@ final class TimeTableDayListTableViewController: UIViewController {
             searchAction,
             groupList,
             subGroupsList,
+            favouritesList,
             days,
-            calendar,
             weeks,
+            calendar,
             pairTypesList,
             saveTimetable,
             shareTimeTable

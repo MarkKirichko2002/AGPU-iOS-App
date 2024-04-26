@@ -7,10 +7,22 @@
 
 import UIKit
 
+// MARK: - ITimeTableTableViewCell
+protocol ITimeTableTableViewCell: AnyObject {
+    func cellTapped(pair: Discipline, id: String, date: String)
+}
+
 final class TimeTableTableViewCell: UITableViewCell {
     
     static let identifier = "TimeTableTableViewCell"
+    
+    // MARK: - сервисы
     private let animation = AnimationClass()
+    
+    weak var delegate: ITimeTableTableViewCell?
+    private var pair = Discipline(time: "", name: "", groupName: "", teacherName: "", audienceID: "", subgroup: 0, type: .all)
+    private var id = ""
+    private var date = ""
     
     @IBOutlet var TimeLabel: UILabel!
     @IBOutlet var DisciplineName: UILabel!
@@ -30,6 +42,9 @@ final class TimeTableTableViewCell: UITableViewCell {
         let color = isEnded(date: timetable.date, time: discipline.time.components(separatedBy: "-")[1]) ? .gray : discipline.type.color
         self.backgroundColor = color
         self.TimeLabel.text = self.isEnded(date: timetable.date, time: discipline.time.components(separatedBy: "-")[1]) ? "(завершено)" : discipline.time
+        self.pair = discipline
+        self.id = timetable.id
+        self.date = timetable.date
     }
     
     override func awakeFromNib() {
@@ -40,36 +55,10 @@ final class TimeTableTableViewCell: UITableViewCell {
         backgroundColor = .systemBackground
     }
     
-    func isEnded(date: String, time: String)-> Bool  {
-        
-        let currentTime = DateManager().getCurrentTime()
-        let currentDate = DateManager().getCurrentDate()
-        
-        let compareTime = DateManager().compareTimes(time1: "\(time):00", time2: currentTime)
-        let compareDate = DateManager().compareDates(date1: date, date2: currentDate)
-        
-        // прошлый день
-        if compareDate == .orderedAscending {
-            return true
-        }
-        
-        // время меньше и тот же день
-        if compareTime == .orderedAscending && compareDate == .orderedSame {
-            return true
-        }
-        
-        // время такое же и тот же день
-        if compareTime == .orderedSame && compareDate == .orderedSame  {
-            return true
-        }
-        
-        return false
-    }
-    
     func didTapCell(indexPath: IndexPath) {
-        animation.springAnimation(view: self.TimeLabel)
-        animation.springAnimation(view: self.DisciplineName)
-        animation.springAnimation(view: self.SubGroupId)
-        HapticsManager.shared.hapticFeedback()
+        animation.flipAnimation(view: self, option: .transitionFlipFromRight) {
+            self.delegate?.cellTapped(pair: self.pair, id: self.id, date: self.date)
+            HapticsManager.shared.hapticFeedback()
+        }
     }
 }

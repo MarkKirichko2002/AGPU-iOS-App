@@ -79,7 +79,7 @@ class ASPUButtonOptionsListTableViewController: UITableViewController {
             return cell
         } else if indexPath.row == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ASPUButtonAnimationOptionTableViewCell.identifier, for: indexPath) as? ASPUButtonAnimationOptionTableViewCell else {return UITableViewCell()}
-            cell.configure(action: viewModel.getASPUButtonAnimationOptionInfo())
+            cell.configure(option: viewModel.getASPUButtonAnimationOptionInfo())
             return cell
         } else {
             return UITableViewCell()
