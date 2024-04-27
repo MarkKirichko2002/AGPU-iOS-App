@@ -43,6 +43,7 @@ extension ASPUButtonFavouriteActionsListViewModel: IASPUButtonFavouriteActionsLi
         if let index = actions.firstIndex(where: { $0 == action }) {
             actions.remove(at: index)
         }
+        HapticsManager.shared.hapticFeedback()
         saveArray(array: actions)
     }
     

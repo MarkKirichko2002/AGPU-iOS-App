@@ -190,18 +190,37 @@ extension AGPUTabBarController: ASPUButtonFavouriteActionsListTableViewControlle
     }
     
     func handleAction(action: ASPUButtonActions) {
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(openFavouritesList))
+        doubleTap.numberOfTapsRequired = 2
         switch action {
         case .speechRecognition:
-            VoiceCommands()
+            ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
+            ASPUButton.addTarget(self, action: #selector(VoiceCommands), for: .touchUpInside)
+            ASPUButton.addGestureRecognizer(doubleTap)
         case .timetableWeeks:
+            ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
+            ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
+            ASPUButton.removeGestureRecognizer(doubleTap)
             openWeeksTimetable()
         case .campusMap:
+            ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
+            ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
+            ASPUButton.removeGestureRecognizer(doubleTap)
             openCampusMap()
         case .studyPlan:
+            ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
+            ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
+            ASPUButton.removeGestureRecognizer(doubleTap)
             openStudyPlan()
         case .profile:
+            ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
+            ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
+            ASPUButton.removeGestureRecognizer(doubleTap)
             openProfile()
         case .manual:
+            ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
+            ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
+            ASPUButton.removeGestureRecognizer(doubleTap)
             openManual()
         case .favourite:
             break

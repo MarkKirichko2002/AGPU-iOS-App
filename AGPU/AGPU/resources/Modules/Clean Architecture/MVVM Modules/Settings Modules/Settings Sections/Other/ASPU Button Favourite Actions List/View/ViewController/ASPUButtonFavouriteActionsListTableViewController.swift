@@ -11,10 +11,14 @@ protocol ASPUButtonFavouriteActionsListTableViewControllerDelegate: AnyObject {
     func actionWasSelected(action: ASPUButtonActions)
 }
 
-class ASPUButtonFavouriteActionsListTableViewController: UITableViewController {
+class ASPUButtonFavouriteActionsListTableViewController: UIViewController {
     
     var isSettings = false
     weak var delegate: ASPUButtonFavouriteActionsListTableViewControllerDelegate?
+    
+    // MARK: - UI
+    private let noActionsLabel = UILabel()
+    private let tableView = UITableView()
     
     // MARK: - ASPUButtonFavouriteActionsListViewModel
     let viewModel = ASPUButtonFavouriteActionsListViewModel()
@@ -23,6 +27,7 @@ class ASPUButtonFavouriteActionsListTableViewController: UITableViewController {
         super.viewDidLoad()
         setUpNavigation()
         setUpTable()
+        setUpLabel()
         bindViewModel()
     }
     
@@ -72,43 +77,36 @@ class ASPUButtonFavouriteActionsListTableViewController: UITableViewController {
     }
     
     private func setUpTable() {
+        view.addSubview(tableView)
+        tableView.frame = view.bounds
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
+    private func setUpLabel() {
+        view.addSubview(noActionsLabel)
+        noActionsLabel.text = "Нет действий"
+        noActionsLabel.font = .systemFont(ofSize: 18, weight: .medium)
+        noActionsLabel.isHidden = true
+        noActionsLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            noActionsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            noActionsLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    
     private func bindViewModel() {
-        viewModel.getActions()
         viewModel.registerDataChangedHandler {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+            if !self.viewModel.actions.isEmpty {
+                self.noActionsLabel.isHidden = true
+            } else {
+                self.noActionsLabel.isHidden = false
+            }
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let action = viewModel.actionItem(index: indexPath.row)
-            viewModel.deleteAction(action: action)
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let action = viewModel.actionItem(index: indexPath.row)
-        if !isSettings {
-            delegate?.actionWasSelected(action: action)
-            dismiss(animated: true)
-        }
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.actionsCount()
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let action = viewModel.actionItem(index: indexPath.row)
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = action.rawValue
-        cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
-        return cell
+        viewModel.getActions()
     }
 }

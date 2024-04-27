@@ -49,6 +49,7 @@ extension ASPUButtonAllActionsListViewModel: IASPUButtonAllActionsListViewModel 
         do {
             let arr = try JSONEncoder().encode(array)
             UserDefaults.standard.setValue(arr, forKey: "button actions")
+            HapticsManager.shared.hapticFeedback()
         } catch {
             print(error)
         }
