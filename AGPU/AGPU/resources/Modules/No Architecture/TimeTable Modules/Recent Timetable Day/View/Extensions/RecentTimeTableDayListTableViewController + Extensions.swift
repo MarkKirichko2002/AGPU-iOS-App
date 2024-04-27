@@ -32,7 +32,19 @@ extension RecentTimeTableDayListTableViewController: UITableViewDataSource {
         let selectedView = UIView()
         selectedView.backgroundColor = UIColor.clear
         cell.selectedBackgroundView = selectedView
+        cell.delegate = self
         cell.configure(timetable: timetable, index: indexPath.row)
         return cell
+    }
+}
+
+// MARK: - ITimeTableTableViewCell
+extension RecentTimeTableDayListTableViewController: ITimeTableTableViewCell {
+    
+    func cellTapped(pair: Discipline, id: String, date: String) {
+        let vc = PairInfoTableViewController(pair: pair, id: id, date: date)
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
     }
 }

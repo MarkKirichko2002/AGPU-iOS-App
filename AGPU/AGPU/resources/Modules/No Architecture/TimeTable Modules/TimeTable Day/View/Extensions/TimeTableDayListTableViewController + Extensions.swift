@@ -70,10 +70,10 @@ extension TimeTableDayListTableViewController: UITableViewDataSource {
         let selectedView = UIView()
         selectedView.backgroundColor = UIColor.clear
         cell.selectedBackgroundView = selectedView
+        cell.delegate = self
         if let timetable = timetable {
             cell.configure(timetable: timetable, index: indexPath.row)
         }
-        cell.delegate = self
         return cell
     }
 }
