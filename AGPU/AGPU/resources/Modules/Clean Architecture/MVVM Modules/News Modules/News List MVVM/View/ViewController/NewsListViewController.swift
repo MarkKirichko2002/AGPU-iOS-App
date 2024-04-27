@@ -46,7 +46,6 @@ final class NewsListViewController: UIViewController {
     
     private func setUpNavigation() {
         navigationItem.title = "Новости АГПУ"
-        navigationController?.navigationBar.isTranslucent = false
         let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshNews))
         refreshButton.tintColor = .label
         navigationItem.leftBarButtonItem = refreshButton
@@ -72,12 +71,14 @@ final class NewsListViewController: UIViewController {
         collectionView.frame = view.bounds
         collectionView.delegate = self
         collectionView.dataSource = self
+        navigationController?.navigationBar.isTranslucent = true
     }
     
     private func setUpWebView() {
         view.addSubview(webView)
         webView.frame = view.bounds
         webView.load(viewModel.makeUrlForCurrentWebPage())
+        navigationController?.navigationBar.isTranslucent = false
     }
     
     private func setUpIndicatorView() {
@@ -217,7 +218,6 @@ final class NewsListViewController: UIViewController {
         }
         
         viewModel.registerWebModeHandler {
-            print(self.viewModel.newsResponse.currentPage ?? 0)
             self.webView.load(self.viewModel.makeUrlForCurrentWebPage())
         }
         
