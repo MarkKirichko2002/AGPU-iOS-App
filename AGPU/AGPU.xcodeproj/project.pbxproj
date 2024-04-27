@@ -350,6 +350,15 @@
 		8299524E2BDC9935003AFB14 /* ITimeTableFavouriteItemsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299524D2BDC9935003AFB14 /* ITimeTableFavouriteItemsListViewModel.swift */; };
 		829952502BDC9A07003AFB14 /* TimeTableFavouriteItemsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299524F2BDC9A07003AFB14 /* TimeTableFavouriteItemsListViewModel.swift */; };
 		829952522BDC9A2C003AFB14 /* TimeTableFavouriteItemsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829952512BDC9A2C003AFB14 /* TimeTableFavouriteItemsListViewModel + Extensions.swift */; };
+		829952582BDCB5CC003AFB14 /* ASPUButtonFavouriteActionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829952572BDCB5CC003AFB14 /* ASPUButtonFavouriteActionsListTableViewController.swift */; };
+		8299525D2BDCB61A003AFB14 /* IASPUButtonFavouriteActionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299525C2BDCB61A003AFB14 /* IASPUButtonFavouriteActionsListViewModel.swift */; };
+		8299525F2BDCB660003AFB14 /* ASPUButtonFavouriteActionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299525E2BDCB660003AFB14 /* ASPUButtonFavouriteActionsListViewModel.swift */; };
+		829952612BDCB67C003AFB14 /* ASPUButtonFavouriteActionsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829952602BDCB67C003AFB14 /* ASPUButtonFavouriteActionsListViewModel + Extensions.swift */; };
+		829952672BDCBB9A003AFB14 /* ASPUButtonAllActionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829952662BDCBB9A003AFB14 /* ASPUButtonAllActionsListTableViewController.swift */; };
+		8299526A2BDCBE1F003AFB14 /* ASPUButtonFavouriteActionsListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829952692BDCBE1F003AFB14 /* ASPUButtonFavouriteActionsListTableViewController + Extensions.swift */; };
+		8299526F2BDCBEEB003AFB14 /* IASPUButtonAllActionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299526E2BDCBEEB003AFB14 /* IASPUButtonAllActionsListViewModel.swift */; };
+		829952712BDCBF32003AFB14 /* ASPUButtonAllActionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829952702BDCBF32003AFB14 /* ASPUButtonAllActionsListViewModel.swift */; };
+		829952732BDCBF71003AFB14 /* ASPUButtonAllActionsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829952722BDCBF71003AFB14 /* ASPUButtonAllActionsListViewModel + Extensions.swift */; };
 		8299E3B22B8A31CE00D81472 /* ITimetableDateDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299E3B12B8A31CE00D81472 /* ITimetableDateDetailViewModel.swift */; };
 		8299E3B42B8A31E600D81472 /* TimetableDateDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299E3B32B8A31E600D81472 /* TimetableDateDetailViewModel.swift */; };
 		8299E3B62B8A31F800D81472 /* TimetableDateDetailViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299E3B52B8A31F800D81472 /* TimetableDateDetailViewModel + Extensions.swift */; };
@@ -887,6 +896,15 @@
 		8299524D2BDC9935003AFB14 /* ITimeTableFavouriteItemsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITimeTableFavouriteItemsListViewModel.swift; sourceTree = "<group>"; };
 		8299524F2BDC9A07003AFB14 /* TimeTableFavouriteItemsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableFavouriteItemsListViewModel.swift; sourceTree = "<group>"; };
 		829952512BDC9A2C003AFB14 /* TimeTableFavouriteItemsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableFavouriteItemsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		829952572BDCB5CC003AFB14 /* ASPUButtonFavouriteActionsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonFavouriteActionsListTableViewController.swift; sourceTree = "<group>"; };
+		8299525C2BDCB61A003AFB14 /* IASPUButtonFavouriteActionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IASPUButtonFavouriteActionsListViewModel.swift; sourceTree = "<group>"; };
+		8299525E2BDCB660003AFB14 /* ASPUButtonFavouriteActionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonFavouriteActionsListViewModel.swift; sourceTree = "<group>"; };
+		829952602BDCB67C003AFB14 /* ASPUButtonFavouriteActionsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASPUButtonFavouriteActionsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		829952662BDCBB9A003AFB14 /* ASPUButtonAllActionsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonAllActionsListTableViewController.swift; sourceTree = "<group>"; };
+		829952692BDCBE1F003AFB14 /* ASPUButtonFavouriteActionsListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASPUButtonFavouriteActionsListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
+		8299526E2BDCBEEB003AFB14 /* IASPUButtonAllActionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IASPUButtonAllActionsListViewModel.swift; sourceTree = "<group>"; };
+		829952702BDCBF32003AFB14 /* ASPUButtonAllActionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonAllActionsListViewModel.swift; sourceTree = "<group>"; };
+		829952722BDCBF71003AFB14 /* ASPUButtonAllActionsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASPUButtonAllActionsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		8299E3B12B8A31CE00D81472 /* ITimetableDateDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITimetableDateDetailViewModel.swift; sourceTree = "<group>"; };
 		8299E3B32B8A31E600D81472 /* TimetableDateDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDateDetailViewModel.swift; sourceTree = "<group>"; };
 		8299E3B52B8A31F800D81472 /* TimetableDateDetailViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimetableDateDetailViewModel + Extensions.swift"; sourceTree = "<group>"; };
@@ -5486,6 +5504,133 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		829952532BDCB57F003AFB14 /* ASPU Button Favourite Actions List */ = {
+			isa = PBXGroup;
+			children = (
+				829952552BDCB5A9003AFB14 /* View */,
+				829952542BDCB5A7003AFB14 /* ViewModel */,
+			);
+			path = "ASPU Button Favourite Actions List";
+			sourceTree = "<group>";
+		};
+		829952542BDCB5A7003AFB14 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8299525B2BDCB5F8003AFB14 /* Protocol */,
+				8299525A2BDCB5F7003AFB14 /* ViewModel */,
+				829952592BDCB5F5003AFB14 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		829952552BDCB5A9003AFB14 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				829952562BDCB5B2003AFB14 /* ViewController */,
+				829952682BDCBE04003AFB14 /* Extensions */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		829952562BDCB5B2003AFB14 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				829952572BDCB5CC003AFB14 /* ASPUButtonFavouriteActionsListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		829952592BDCB5F5003AFB14 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				829952602BDCB67C003AFB14 /* ASPUButtonFavouriteActionsListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8299525A2BDCB5F7003AFB14 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8299525E2BDCB660003AFB14 /* ASPUButtonFavouriteActionsListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8299525B2BDCB5F8003AFB14 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				8299525C2BDCB61A003AFB14 /* IASPUButtonFavouriteActionsListViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		829952622BDCBB5A003AFB14 /* ASPU Button All Actions List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				829952642BDCBB75003AFB14 /* View */,
+				829952632BDCBB72003AFB14 /* ViewModel */,
+			);
+			path = "ASPU Button All Actions List MVVM";
+			sourceTree = "<group>";
+		};
+		829952632BDCBB72003AFB14 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8299526D2BDCBEAC003AFB14 /* Protocol */,
+				8299526C2BDCBEA9003AFB14 /* ViewModel */,
+				8299526B2BDCBEA4003AFB14 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		829952642BDCBB75003AFB14 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				829952652BDCBB80003AFB14 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		829952652BDCBB80003AFB14 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				829952662BDCBB9A003AFB14 /* ASPUButtonAllActionsListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		829952682BDCBE04003AFB14 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				829952692BDCBE1F003AFB14 /* ASPUButtonFavouriteActionsListTableViewController + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8299526B2BDCBEA4003AFB14 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				829952722BDCBF71003AFB14 /* ASPUButtonAllActionsListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8299526C2BDCBEA9003AFB14 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				829952702BDCBF32003AFB14 /* ASPUButtonAllActionsListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8299526D2BDCBEAC003AFB14 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				8299526E2BDCBEEB003AFB14 /* IASPUButtonAllActionsListViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		8299E3AA2B8A317400D81472 /* Timetable Date Detail MVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -7620,6 +7765,8 @@
 				828D51052BB85E4D00848FF8 /* ASPU Button Options List */,
 				828D511F2BB892CE00848FF8 /* ASPU Button Icons List MVVM */,
 				82F578782B6FE48400BC64C1 /* ASPU Button Actions List */,
+				829952532BDCB57F003AFB14 /* ASPU Button Favourite Actions List */,
+				829952622BDCBB5A003AFB14 /* ASPU Button All Actions List MVVM */,
 				82C5B7832BCEF45C00F907CB /* ASPU Button Animation Options List */,
 			);
 			path = Other;
@@ -8032,6 +8179,7 @@
 				82920B802AD87BA900352CD8 /* UserStatusListViewModel + Extension.swift in Sources */,
 				828D512A2BB8A00500848FF8 /* ASPUButtonIcons.swift in Sources */,
 				822606002A853C110055925F /* RecentMomentTableViewCell.swift in Sources */,
+				829952732BDCBF71003AFB14 /* ASPUButtonAllActionsListViewModel + Extensions.swift in Sources */,
 				825D567C2AE5CCBF004305C7 /* PairInfoViewModel + Extensions.swift in Sources */,
 				822527642BA77EB500B66314 /* WeekDaysListViewModel.swift in Sources */,
 				82BC3CFC2A56EDA000E49332 /* RecentWebPageViewController.swift in Sources */,
@@ -8099,6 +8247,7 @@
 				8228E3A42A6C9D3700C1B6AD /* AGPUBuildingsMapViewModelProtocol.swift in Sources */,
 				8209007D2BAF62650053F3BD /* TabsPositionListTableViewController.swift in Sources */,
 				824EBF6C2B29F9890003E7E6 /* AGPUBuildingTypes.swift in Sources */,
+				8299525D2BDCB61A003AFB14 /* IASPUButtonFavouriteActionsListViewModel.swift in Sources */,
 				824302B62BDB0658004F1742 /* TimeTableTableViewCell + Extensions.swift in Sources */,
 				82F578842B6FE5A800BC64C1 /* ASPUButtonActionsListViewModelProtocol.swift in Sources */,
 				821B72672BD16D9D000460E2 /* TabColors.swift in Sources */,
@@ -8128,6 +8277,7 @@
 				82A29F432B9BD58800756F43 /* ISelectedFacultySplashScreenViewModel.swift in Sources */,
 				822526C42BA37D7F00B66314 /* NewsSplashScreenViewController.swift in Sources */,
 				8299E3BB2B8A350D00D81472 /* TimeTableDateModel.swift in Sources */,
+				829952612BDCB67C003AFB14 /* ASPUButtonFavouriteActionsListViewModel + Extensions.swift in Sources */,
 				822526CE2BA3805400B66314 /* NewsSplashScreenViewModel.swift in Sources */,
 				828DC5592A7B3865001EA324 /* FacultyGroupModel.swift in Sources */,
 				821B727D2BD174B6000460E2 /* TabColorsListViewModel.swift in Sources */,
@@ -8204,6 +8354,7 @@
 				82761A2F2B46429200D9976F /* SplashScreensListViewModel.swift in Sources */,
 				82C44DAE2A591915002A3864 /* HapticsManager.swift in Sources */,
 				8228E3AB2A6C9E3B00C1B6AD /* AGPUCurrentBuildingMapViewModelProtocol.swift in Sources */,
+				8299526F2BDCBEEB003AFB14 /* IASPUButtonAllActionsListViewModel.swift in Sources */,
 				82B1CA782A681F1D00D1FBA4 /* SpringImageView + Extensions.swift in Sources */,
 				82061CC22B09A4B70073D727 /* TimetableSettingsOptionModel.swift in Sources */,
 				82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */,
@@ -8222,6 +8373,7 @@
 				821119F92B990049007B61E5 /* NewsWebViewController.swift in Sources */,
 				82C5615D2A6B757C00514B00 /* AppFeatureModel.swift in Sources */,
 				82B267082A8DAAC100043A6D /* NewsCategoryTableViewCell.swift in Sources */,
+				8299525F2BDCB660003AFB14 /* ASPUButtonFavouriteActionsListViewModel.swift in Sources */,
 				82426C8B2A71CFC600D5AA57 /* ForEmployeeListTableViewController.swift in Sources */,
 				82BC3CFE2A56F37500E49332 /* WebViewController + Extensions.swift in Sources */,
 				8212705B2A792A610095D68E /* RecentPDFModel.swift in Sources */,
@@ -8249,11 +8401,14 @@
 				82C26C792BD7F0D20039D86D /* DisplayModes.swift in Sources */,
 				8234E5F32A88514600ED354C /* WordDocumentReaderViewController + Extensions.swift in Sources */,
 				82F98B322B11998E00137D9A /* WeatherManagerProtocol.swift in Sources */,
+				829952712BDCBF32003AFB14 /* ASPUButtonAllActionsListViewModel.swift in Sources */,
 				829548922A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift in Sources */,
 				8209A0B72B839C0C0013371D /* DocumentTableViewCell.swift in Sources */,
 				828321762A7D6503008641A5 /* VoiceSearchAGPUBuildingMapViewController + Extensions.swift in Sources */,
+				829952582BDCB5CC003AFB14 /* ASPUButtonFavouriteActionsListTableViewController.swift in Sources */,
 				82184D822B7BD8EC00F2588E /* HourlyWeatherCollectionViewCell.swift in Sources */,
 				82E4C5432A6B10F900F65A67 /* WebViewModelProtocol.swift in Sources */,
+				8299526A2BDCBE1F003AFB14 /* ASPUButtonFavouriteActionsListTableViewController + Extensions.swift in Sources */,
 				821B727F2BD174F0000460E2 /* TabColorsListViewModel + Extensions.swift in Sources */,
 				82768AF12ABE15450022FBE1 /* AppThemesListViewModel + Extensions.swift in Sources */,
 				82377F9B2B3365D200FF5045 /* Hints.swift in Sources */,
@@ -8394,6 +8549,7 @@
 				8209A09E2B838AD20013371D /* RealmManager.swift in Sources */,
 				825D56732AE5CBEB004305C7 /* PairInfoTableViewController.swift in Sources */,
 				82989ACF2A6E35B200F27858 /* FacultyCathedraTableViewCell.swift in Sources */,
+				829952672BDCBB9A003AFB14 /* ASPUButtonAllActionsListTableViewController.swift in Sources */,
 				822527662BA77ECA00B66314 /* WeekDaysListViewModel + Extensions.swift in Sources */,
 				821B72762BD17358000460E2 /* TabColorsListTableViewController.swift in Sources */,
 				82754C692BD3DBB30021E76A /* SplashScreenBackgroundColorsListViewModel.swift in Sources */,

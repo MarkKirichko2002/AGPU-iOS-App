@@ -149,6 +149,8 @@ final class AGPUTabBarController: UITabBarController {
             ASPUButton.addTarget(self, action: #selector(openProfile), for: .touchUpInside)
         case .manual:
             ASPUButton.addTarget(self, action: #selector(openManual), for: .touchUpInside)
+        case .favourite:
+            ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
         }
     }
     
@@ -186,7 +188,7 @@ final class AGPUTabBarController: UITabBarController {
         }
     }
     
-    @objc private func VoiceCommands() {
+    @objc func VoiceCommands() {
         isRecording = !isRecording
         if isRecording {
             self.updateASPUButton(icon: "mic")
@@ -240,7 +242,7 @@ final class AGPUTabBarController: UITabBarController {
         turnOfMicrophone(text: text.lowercased())
     }
     
-    @objc private func openWeeksTimetable() {
+    @objc func openWeeksTimetable() {
         let id = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-2-1"
         let subgroup = UserDefaults.standard.integer(forKey: "subgroup")
         let owner = UserDefaults.standard.string(forKey: "recentOwner") ?? "GROUP"
@@ -250,7 +252,7 @@ final class AGPUTabBarController: UITabBarController {
         present(navVC, animated: true)
     }
     
-    @objc private func openCampusMap() {
+    @objc func openCampusMap() {
         let vc = AGPUBuildingsMapViewController()
         vc.isAction = true
         let navVC = UINavigationController(rootViewController: vc)
@@ -258,22 +260,30 @@ final class AGPUTabBarController: UITabBarController {
         present(navVC, animated: true)
     }
     
-    @objc private func openStudyPlan() {
+    @objc func openStudyPlan() {
         self.goToWeb(url: "http://plany.agpu.net/Plans/", image: "student", title: "Учебный план", isSheet: false, isNotify: true)
     }
     
     
-    @objc private func openProfile() {
+    @objc func openProfile() {
         self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: "profile icon", title: "ЭИОС", isSheet: false, isNotify: true)
     }
     
-    @objc private func openManual() {
+    @objc func openManual() {
         if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
             self.goToWeb(url: cathedra.manualUrl, image: "book", title: "Метод. материалы", isSheet: false, isNotify: true)
         } else {
             self.showHintAlert(type: .manuals)
             HapticsManager.shared.hapticFeedback()
         }
+    }
+    
+    @objc func openFavouritesList() {
+        let vc = ASPUButtonFavouriteActionsListTableViewController()
+        vc.delegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
     }
     
     private func observeForEveryStatus() {

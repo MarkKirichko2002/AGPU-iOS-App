@@ -1,15 +1,22 @@
 //
-//  ASPUButtonActionsListTableViewController.swift
+//  ASPUButtonAllActionsListTableViewController.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 04.02.2024.
+//  Created by Марк Киричко on 27.04.2024.
 //
 
 import UIKit
 
-class ASPUButtonActionsListTableViewController: UITableViewController {
+protocol ASPUButtonAllActionsListTableViewControllerDelegate: AnyObject {
+    func actionWasAdded()
+}
 
-    private let viewModel = ASPUButtonActionsListViewModel()
+class ASPUButtonAllActionsListTableViewController: UITableViewController {
+
+    // MARK: - сервисы
+    private let viewModel = ASPUButtonAllActionsListViewModel()
+    
+    weak var delegate: ASPUButtonAllActionsListTableViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +27,8 @@ class ASPUButtonActionsListTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         
-        let titleView = CustomTitleView(image: "button", title: "Выберите действие", frame: .zero)
+        let titleView = CustomTitleView(image: "plus", title: "Добавить действие", frame: .zero)
+        
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)
@@ -43,36 +51,28 @@ class ASPUButtonActionsListTableViewController: UITableViewController {
     }
     
     private func bindViewModel() {
-        viewModel.registerDataSelectedHandler {
-            DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
+        viewModel.registerItemSelectedHandler {
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
             }
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let action = viewModel.actionItem(index: indexPath.row)
-        if action == .favourite {
-            let vc = ASPUButtonFavouriteActionsListTableViewController()
-            vc.isSettings = true
-            navigationController?.pushViewController(vc, animated: true)
-            viewModel.selectAction(index: indexPath.row)
-        } else {
-            viewModel.selectAction(index: indexPath.row)
-        }
+        viewModel.selectAction(index: indexPath.row)
+        delegate?.actionWasAdded()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.actionItemsCount()
+        return viewModel.actionsCount()
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.tintColor = .systemGreen
-        cell.textLabel?.text = viewModel.actionItem(index: indexPath.row).rawValue
+        let action = viewModel.actionItem(index: indexPath.row)
+        cell.textLabel?.text = action.rawValue
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
-        cell.accessoryType = viewModel.isActionSelected(index: indexPath.row) ? .checkmark : .none
         return cell
     }
 }

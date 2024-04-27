@@ -7,8 +7,8 @@
 
 import UIKit
 
-extension AGPUTabBarController {
-    
+extension AGPUTabBarController: ASPUButtonFavouriteActionsListTableViewControllerDelegate {
+
     // поиск раздела
     func searchSection(text: String) {
         
@@ -180,6 +180,31 @@ extension AGPUTabBarController {
             if direction.name.contains(text.lastWord()) {
                 NotificationCenter.default.post(name: Notification.Name("scroll web page"), object: text.lastWord())
             }
+        }
+    }
+    
+    func actionWasSelected(action: ASPUButtonActions) {
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.handleAction(action: action)
+        }
+    }
+    
+    func handleAction(action: ASPUButtonActions) {
+        switch action {
+        case .speechRecognition:
+            VoiceCommands()
+        case .timetableWeeks:
+            openWeeksTimetable()
+        case .campusMap:
+            openCampusMap()
+        case .studyPlan:
+            openStudyPlan()
+        case .profile:
+            openProfile()
+        case .manual:
+            openManual()
+        case .favourite:
+            break
         }
     }
     
