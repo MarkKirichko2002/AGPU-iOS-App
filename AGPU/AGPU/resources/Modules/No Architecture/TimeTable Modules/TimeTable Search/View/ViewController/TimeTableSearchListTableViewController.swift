@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol TimeTableSearchListTableViewControllerDelegate: AnyObject {
+    func itemWasSelected()
+}
+
 class TimeTableSearchListTableViewController: UITableViewController, UISearchResultsUpdating {
     
     var results = [SearchResultModel]()
@@ -14,6 +18,8 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
     
     var isSettings = false
     var isFavourite = false
+    
+    weak var delegate: TimeTableSearchListTableViewControllerDelegate?
     
     // MARK: - сервисы
     private let service = TimeTableService()
@@ -121,6 +127,7 @@ extension TimeTableSearchListTableViewController {
             self.navigationController?.popViewController(animated: true)
         } else if isFavourite {
             realmManager.saveTimetableItem(item: result)
+            delegate?.itemWasSelected()
             self.navigationController?.popViewController(animated: true)
         } else {
             NotificationCenter.default.post(name: Notification.Name("object selected"), object: result)

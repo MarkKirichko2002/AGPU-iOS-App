@@ -9,21 +9,16 @@ import UIKit
 
 class TimeTableFavouriteItemsListTableViewController: UITableViewController {
 
-    var items = [SearchTimetableModel]()
     var isSettings = false
     
     // MARK: - сервисы
-    private let realmManager = RealmManager()
+    let viewModel = TimeTableFavouriteItemsListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
         setUpTable()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        refreshData()
+        bindViewModel()
     }
     
     private func setUpNavigation() {
@@ -68,45 +63,53 @@ class TimeTableFavouriteItemsListTableViewController: UITableViewController {
     
     @objc private func addButtonTapped() {
         let vc = TimeTableSearchListTableViewController()
+        vc.delegate = self
         vc.isFavourite = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     private func setUpTable() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        refreshData()
+        tableView.register(TimeTableFavouriteItemTableViewCell.self, forCellReuseIdentifier: TimeTableFavouriteItemTableViewCell.identifier)
     }
     
-    private func refreshData() {
-        items = realmManager.getTimetableItems()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+    private func bindViewModel() {
+        viewModel.getItems()
+        viewModel.registerDataChangedHandler {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        viewModel.registerItemSelectedHandler {
+            DispatchQueue.main.async {
+                self.dismiss(animated: true)
+            }
         }
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            realmManager.deleteTimetableItem(item: items[indexPath.row])
-            refreshData()
+            let item = viewModel.favouriteItem(index: indexPath.row)
+            viewModel.deleteItem(item: item)
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !isSettings {
-            NotificationCenter.default.post(name: Notification.Name("object selected"), object: items[indexPath.row])
-            dismiss(animated: true)
+            let item = viewModel.favouriteItem(index: indexPath.row)
+            viewModel.selectItem(item: item)
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return viewModel.itemsCount()
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = items[indexPath.row].name
-        cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
+        let item = viewModel.favouriteItem(index: indexPath.row)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TimeTableFavouriteItemTableViewCell.identifier, for: indexPath) as? TimeTableFavouriteItemTableViewCell else {return UITableViewCell()}
+        cell.delegate = self
+        cell.configure(item: item)
         return cell
     }
 }

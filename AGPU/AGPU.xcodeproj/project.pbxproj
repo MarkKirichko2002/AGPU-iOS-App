@@ -345,6 +345,11 @@
 		82989AF22A6F8CDF00F27858 /* ForEveryStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82989AF02A6F8CDF00F27858 /* ForEveryStatusTableViewCell.swift */; };
 		82989AF32A6F8CDF00F27858 /* ForEveryStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82989AF12A6F8CDF00F27858 /* ForEveryStatusTableViewCell.xib */; };
 		829952432BDB8999003AFB14 /* TimeTableFavouriteItemsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829952422BDB8999003AFB14 /* TimeTableFavouriteItemsListTableViewController.swift */; };
+		829952462BDC95D1003AFB14 /* TimeTableFavouriteItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829952452BDC95D1003AFB14 /* TimeTableFavouriteItemTableViewCell.swift */; };
+		829952492BDC97D9003AFB14 /* TimeTableFavouriteItemsListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829952482BDC97D9003AFB14 /* TimeTableFavouriteItemsListTableViewController + Extensions.swift */; };
+		8299524E2BDC9935003AFB14 /* ITimeTableFavouriteItemsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299524D2BDC9935003AFB14 /* ITimeTableFavouriteItemsListViewModel.swift */; };
+		829952502BDC9A07003AFB14 /* TimeTableFavouriteItemsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299524F2BDC9A07003AFB14 /* TimeTableFavouriteItemsListViewModel.swift */; };
+		829952522BDC9A2C003AFB14 /* TimeTableFavouriteItemsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829952512BDC9A2C003AFB14 /* TimeTableFavouriteItemsListViewModel + Extensions.swift */; };
 		8299E3B22B8A31CE00D81472 /* ITimetableDateDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299E3B12B8A31CE00D81472 /* ITimetableDateDetailViewModel.swift */; };
 		8299E3B42B8A31E600D81472 /* TimetableDateDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299E3B32B8A31E600D81472 /* TimetableDateDetailViewModel.swift */; };
 		8299E3B62B8A31F800D81472 /* TimetableDateDetailViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299E3B52B8A31F800D81472 /* TimetableDateDetailViewModel + Extensions.swift */; };
@@ -877,6 +882,11 @@
 		82989AF02A6F8CDF00F27858 /* ForEveryStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEveryStatusTableViewCell.swift; sourceTree = "<group>"; };
 		82989AF12A6F8CDF00F27858 /* ForEveryStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForEveryStatusTableViewCell.xib; sourceTree = "<group>"; };
 		829952422BDB8999003AFB14 /* TimeTableFavouriteItemsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableFavouriteItemsListTableViewController.swift; sourceTree = "<group>"; };
+		829952452BDC95D1003AFB14 /* TimeTableFavouriteItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableFavouriteItemTableViewCell.swift; sourceTree = "<group>"; };
+		829952482BDC97D9003AFB14 /* TimeTableFavouriteItemsListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableFavouriteItemsListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
+		8299524D2BDC9935003AFB14 /* ITimeTableFavouriteItemsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITimeTableFavouriteItemsListViewModel.swift; sourceTree = "<group>"; };
+		8299524F2BDC9A07003AFB14 /* TimeTableFavouriteItemsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableFavouriteItemsListViewModel.swift; sourceTree = "<group>"; };
+		829952512BDC9A2C003AFB14 /* TimeTableFavouriteItemsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableFavouriteItemsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		8299E3B12B8A31CE00D81472 /* ITimetableDateDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITimetableDateDetailViewModel.swift; sourceTree = "<group>"; };
 		8299E3B32B8A31E600D81472 /* TimetableDateDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDateDetailViewModel.swift; sourceTree = "<group>"; };
 		8299E3B52B8A31F800D81472 /* TimetableDateDetailViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimetableDateDetailViewModel + Extensions.swift"; sourceTree = "<group>"; };
@@ -2219,13 +2229,13 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		822527572BA77D8B00B66314 /* Week Days */ = {
+		822527572BA77D8B00B66314 /* Week Days List MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				822527592BA77DBB00B66314 /* View */,
 				822527582BA77DB900B66314 /* ViewModel */,
 			);
-			path = "Week Days";
+			path = "Week Days List MVVM";
 			sourceTree = "<group>";
 		};
 		822527582BA77DB900B66314 /* ViewModel */ = {
@@ -5411,6 +5421,9 @@
 		8299523F2BDB8968003AFB14 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				8299524C2BDC991B003AFB14 /* Protocol */,
+				8299524B2BDC9917003AFB14 /* ViewModel */,
+				8299524A2BDC9915003AFB14 /* Extensions */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -5419,6 +5432,8 @@
 			isa = PBXGroup;
 			children = (
 				829952412BDB8979003AFB14 /* ViewController */,
+				829952442BDC95A4003AFB14 /* Cell */,
+				829952472BDC9711003AFB14 /* Extensions */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5429,6 +5444,46 @@
 				829952422BDB8999003AFB14 /* TimeTableFavouriteItemsListTableViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		829952442BDC95A4003AFB14 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				829952452BDC95D1003AFB14 /* TimeTableFavouriteItemTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		829952472BDC9711003AFB14 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				829952482BDC97D9003AFB14 /* TimeTableFavouriteItemsListTableViewController + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8299524A2BDC9915003AFB14 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				829952512BDC9A2C003AFB14 /* TimeTableFavouriteItemsListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8299524B2BDC9917003AFB14 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8299524F2BDC9A07003AFB14 /* TimeTableFavouriteItemsListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8299524C2BDC991B003AFB14 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				8299524D2BDC9935003AFB14 /* ITimeTableFavouriteItemsListViewModel.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		8299E3AA2B8A317400D81472 /* Timetable Date Detail MVVM */ = {
@@ -6277,7 +6332,7 @@
 				828321602A7C6A25008641A5 /* All Groups MVVM */,
 				822FB20A2AC5DC160083E016 /* Sub Groups List MVVM */,
 				82BCB5322AB3517400F3A321 /* Days List MVVM */,
-				822527572BA77D8B00B66314 /* Week Days */,
+				822527572BA77D8B00B66314 /* Week Days List MVVM */,
 				8299E3AA2B8A317400D81472 /* Timetable Date Detail MVVM */,
 				82162D822AB5CDF700840D90 /* Smart Calendar MVVM */,
 				82B24A6F2A817D69008B94E4 /* All Weeks MVVM */,
@@ -8208,6 +8263,7 @@
 				824EBF752B29FA530003E7E6 /* AGPUBuildingTypesListViewModel + Extensions.swift in Sources */,
 				8226D1882B096F5A00B0B9F0 /* SavedPairTypeTableViewController.swift in Sources */,
 				826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */,
+				829952502BDC9A07003AFB14 /* TimeTableFavouriteItemsListViewModel.swift in Sources */,
 				821FCF052A87CDB8006FFB26 /* NewsCollectionViewCell.swift in Sources */,
 				829952432BDB8999003AFB14 /* TimeTableFavouriteItemsListTableViewController.swift in Sources */,
 				828D51382BB8A3BF00848FF8 /* ASPUButtonIconTableViewCell.swift in Sources */,
@@ -8215,6 +8271,7 @@
 				82111A002B990138007B61E5 /* INewsWebViewModel.swift in Sources */,
 				82B1C0D62A8071E500520C14 /* SavedSubGroupTableViewController.swift in Sources */,
 				82989AEB2A6F6E1B00F27858 /* FacultyCathedraListViewModelProtocol.swift in Sources */,
+				829952462BDC95D1003AFB14 /* TimeTableFavouriteItemTableViewCell.swift in Sources */,
 				82E4C5682A6B154300F65A67 /* FacultyGroupsListViewModelProtocol.swift in Sources */,
 				828D512F2BB8A08B00848FF8 /* IASPUButtonIconsListViewModel.swift in Sources */,
 				8241F9932A5F4091007DF628 /* TimeTableServicerProtocol.swift in Sources */,
@@ -8304,6 +8361,7 @@
 				82C26C802BD7F13D0039D86D /* DisplayModeOptionsListViewModel .swift in Sources */,
 				82426C732A71476D00D5AA57 /* ForStudentSections.swift in Sources */,
 				82E4C5662A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift in Sources */,
+				829952522BDC9A2C003AFB14 /* TimeTableFavouriteItemsListViewModel + Extensions.swift in Sources */,
 				82162D8C2AB5CE7700840D90 /* CalendarViewModel + Extensions.swift in Sources */,
 				82BF4DB22A5FA5B3008B751A /* AGPUWallpaperCollectionViewCell.swift in Sources */,
 				825D56782AE5CC5F004305C7 /* PairInfoViewModelProtocol.swift in Sources */,
@@ -8313,6 +8371,7 @@
 				82BE9D892ACA14D300C06CD5 /* NewsPageModel.swift in Sources */,
 				82BF39E12B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.swift in Sources */,
 				82BC2F462A8EFD6400ADB239 /* NewsCategoriesListViewModel.swift in Sources */,
+				829952492BDC97D9003AFB14 /* TimeTableFavouriteItemsListTableViewController + Extensions.swift in Sources */,
 				824EBF802B2A0EFC0003E7E6 /* FacultyCathedraMapListViewModelProtocol.swift in Sources */,
 				82B24AAB2A82E45A008B94E4 /* NewsResponse.swift in Sources */,
 				820900882BAF68AF0053F3BD /* TabsListTableViewModel.swift in Sources */,
@@ -8342,6 +8401,7 @@
 				82162D8A2AB5CE6200840D90 /* CalendarViewModel.swift in Sources */,
 				829548992A43AE32007DEBA0 /* SettingsManagerProtocol.swift in Sources */,
 				828D511E2BB86D1700848FF8 /* ASPUButtonOptionsListViewModel + Extensions.swift in Sources */,
+				8299524E2BDC9935003AFB14 /* ITimeTableFavouriteItemsListViewModel.swift in Sources */,
 				82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */,
 				82875B002A5A1966007DB925 /* HapticsManagerProtocol.swift in Sources */,
 				82754C732BD45C1B0021E76A /* BorderForDailyNewsTableViewCell.swift in Sources */,
@@ -8604,7 +8664,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.3;
+				MARKETING_VERSION = 2.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -8643,7 +8703,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.3;
+				MARKETING_VERSION = 2.2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
