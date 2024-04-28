@@ -13,6 +13,8 @@ final class SpringImageView: UIImageView {
     var isInteraction = true
     var option = ASPUButtonAnimationOptions.spring
     
+    weak var delegate: SpringImageViewDelegate?
+    
     override func layoutSubviews() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         self.isUserInteractionEnabled = true
@@ -28,6 +30,7 @@ final class SpringImageView: UIImageView {
     }
     
     @objc private func tapFunction(sender: UITapGestureRecognizer) {
+        delegate?.imageWasTapped()
         switch option {
         case .spring:
             self.animation.springAnimation(view: self)
@@ -48,6 +51,8 @@ final class SpringImageView: UIImageView {
             self.animation.flipAnimation(view: self, option: .transitionFlipFromBottom) {
                 HapticsManager.shared.hapticFeedback()
             }
+        case .none:
+            HapticsManager.shared.hapticFeedback()
         }
     }
 }

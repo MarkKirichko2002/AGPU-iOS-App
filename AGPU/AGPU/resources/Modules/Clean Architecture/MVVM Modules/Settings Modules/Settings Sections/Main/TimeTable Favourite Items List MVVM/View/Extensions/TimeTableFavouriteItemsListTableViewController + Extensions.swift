@@ -12,7 +12,7 @@ extension TimeTableFavouriteItemsListTableViewController: ITimeTableFavouriteIte
     
     func itemWasSelected(item: SearchTimetableModel) {
         let date = DateManager().getCurrentDate()
-        let vc = RecentTimeTableDayListTableViewController(id: item.name, date: date, owner: item.owner)
+        let vc = CurrentDateTimeTableDayListTableViewController(id: item.name, date: date, owner: item.owner)
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)

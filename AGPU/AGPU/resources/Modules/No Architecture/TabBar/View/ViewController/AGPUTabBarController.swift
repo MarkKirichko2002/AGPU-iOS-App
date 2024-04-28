@@ -52,10 +52,25 @@ final class AGPUTabBarController: UITabBarController {
         checkForUpdates()
     }
     
+    override var selectedViewController: UIViewController? {
+        didSet {
+            handleTab(index: selectedIndex)
+        }
+    }
+    
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         let isOnAnimation = settingsManager.checkTabsAnimationOption()
         if isOnAnimation {
-            animation.tabBarItemAnimation(item: item)
+            animation.tabBarItemSpringAnimation(item: item)
+        }
+    }
+    
+    private func handleTab(index: Int) {
+        let isRecentTab = UserDefaults.standard.object(forKey: "onRecentTab") as? Bool ?? true
+        if isRecentTab {
+            UserDefaults.standard.setValue(selectedIndex, forKey: "index")
+        } else {
+            print("выключено")
         }
     }
     
@@ -112,8 +127,8 @@ final class AGPUTabBarController: UITabBarController {
             }
             
             tabs.insert(middleButton, at: 2)
-            
             setViewControllers(tabs, animated: false)
+            selectedIndex = UserDefaults.standard.integer(forKey: "index")
         }
         UITabBar.appearance().tintColor = self.settingsManager.getTabsColor().color
     }
@@ -261,17 +276,17 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     @objc func openStudyPlan() {
-        self.goToWeb(url: "http://plany.agpu.net/Plans/", image: "student", title: "Учебный план", isSheet: false, isNotify: true)
+        self.goToWeb(url: "http://plany.agpu.net/Plans/", image: "student", title: "Учебный план", isSheet: false, isNotify: false)
     }
     
     
     @objc func openProfile() {
-        self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: "profile icon", title: "ЭИОС", isSheet: false, isNotify: true)
+        self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: "profile icon", title: "ЭИОС", isSheet: false, isNotify: false)
     }
     
     @objc func openManual() {
         if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
-            self.goToWeb(url: cathedra.manualUrl, image: "book", title: "Метод. материалы", isSheet: false, isNotify: true)
+            self.goToWeb(url: cathedra.manualUrl, image: "book", title: "Метод. материалы", isSheet: false, isNotify: false)
         } else {
             self.showHintAlert(type: .manuals)
             HapticsManager.shared.hapticFeedback()

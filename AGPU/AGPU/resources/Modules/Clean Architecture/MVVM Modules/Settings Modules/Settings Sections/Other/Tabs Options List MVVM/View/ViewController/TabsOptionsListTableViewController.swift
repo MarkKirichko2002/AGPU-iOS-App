@@ -36,6 +36,7 @@ class TabsOptionsListTableViewController: UITableViewController {
         tableView.register(UINib(nibName: TabsPositionOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TabsPositionOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: TabsColorOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TabsColorOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: TabsAnimationOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TabsAnimationOptionTableViewCell.identifier)
+        tableView.register(UINib(nibName: RecentTabOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RecentTabOptionTableViewCell.identifier)
     }
     
     private func bindViewModel() {
@@ -62,7 +63,7 @@ class TabsOptionsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -76,7 +77,9 @@ class TabsOptionsListTableViewController: UITableViewController {
         } else if indexPath.row == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TabsAnimationOptionTableViewCell.identifier, for: indexPath) as? TabsAnimationOptionTableViewCell else {return UITableViewCell()}
             return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: RecentTabOptionTableViewCell.identifier, for: indexPath) as? RecentTabOptionTableViewCell else {return UITableViewCell()}
+            return cell
         }
-        return UITableViewCell()
     }
 }

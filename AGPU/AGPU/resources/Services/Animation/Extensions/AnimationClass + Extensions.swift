@@ -43,7 +43,8 @@ extension AnimationClass: AnimationClassProtocol {
     }
    
     // анимация TabBarItem
-    func tabBarItemAnimation(item: UITabBarItem) {
+    func tabBarItemSpringAnimation(item: UITabBarItem) {
+        
         guard let barItemView = item.value(forKey: "view") as? UIView else { return }
         
         let timeInterval: TimeInterval = 0.3

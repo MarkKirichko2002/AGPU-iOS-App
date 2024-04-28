@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: - UITableViewDelegate
-extension RecentTimeTableDayListTableViewController: UITableViewDelegate {
+extension CurrentDateTimeTableDayListTableViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -21,7 +21,7 @@ extension RecentTimeTableDayListTableViewController: UITableViewDelegate {
 }
 
 // MARK: - UITableViewDataSource
-extension RecentTimeTableDayListTableViewController: UITableViewDataSource {
+extension CurrentDateTimeTableDayListTableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return timetable.disciplines.count
@@ -39,7 +39,7 @@ extension RecentTimeTableDayListTableViewController: UITableViewDataSource {
 }
 
 // MARK: - ITimeTableTableViewCell
-extension RecentTimeTableDayListTableViewController: ITimeTableTableViewCell {
+extension CurrentDateTimeTableDayListTableViewController: ITimeTableTableViewCell {
     
     func cellTapped(pair: Discipline, id: String, date: String) {
         let vc = PairInfoTableViewController(pair: pair, id: id, date: date)

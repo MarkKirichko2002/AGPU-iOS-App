@@ -13,4 +13,5 @@ enum ASPUButtonAnimationOptions: String, CaseIterable, Codable  {
     case flipFromRight = "Поворот слева"
     case flipFromLeft = "Поворот справа"
     case flipFromBottom = "Поворот снизу"
+    case none = "Без анимации"
 }

@@ -203,7 +203,7 @@
 		825D56782AE5CC5F004305C7 /* PairInfoViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D56772AE5CC5F004305C7 /* PairInfoViewModelProtocol.swift */; };
 		825D567A2AE5CCAF004305C7 /* PairInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D56792AE5CCAF004305C7 /* PairInfoViewModel.swift */; };
 		825D567C2AE5CCBF004305C7 /* PairInfoViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D567B2AE5CCBF004305C7 /* PairInfoViewModel + Extensions.swift */; };
-		825D92EA2AF2E80F00B5E9DF /* RecentTimeTableDayListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D92E92AF2E80F00B5E9DF /* RecentTimeTableDayListTableViewController.swift */; };
+		825D92EA2AF2E80F00B5E9DF /* CurrentDateTimeTableDayListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D92E92AF2E80F00B5E9DF /* CurrentDateTimeTableDayListTableViewController.swift */; };
 		825D92EE2AF2F03000B5E9DF /* RecentTimeTableDayListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D92ED2AF2F03000B5E9DF /* RecentTimeTableDayListTableViewController + Extensions.swift */; };
 		826716C22A5A2AF600CD5C23 /* RecentWebPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826716C12A5A2AF600CD5C23 /* RecentWebPageModel.swift */; };
 		826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826888522A33A91200434219 /* AGPUSubSectionTableViewCell.swift */; };
@@ -359,6 +359,9 @@
 		8299526F2BDCBEEB003AFB14 /* IASPUButtonAllActionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299526E2BDCBEEB003AFB14 /* IASPUButtonAllActionsListViewModel.swift */; };
 		829952712BDCBF32003AFB14 /* ASPUButtonAllActionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829952702BDCBF32003AFB14 /* ASPUButtonAllActionsListViewModel.swift */; };
 		829952732BDCBF71003AFB14 /* ASPUButtonAllActionsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829952722BDCBF71003AFB14 /* ASPUButtonAllActionsListViewModel + Extensions.swift */; };
+		829952772BDEEB7D003AFB14 /* RecentTabOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829952752BDEEB7D003AFB14 /* RecentTabOptionTableViewCell.swift */; };
+		829952782BDEEB7D003AFB14 /* RecentTabOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 829952762BDEEB7D003AFB14 /* RecentTabOptionTableViewCell.xib */; };
+		8299527B2BDEF599003AFB14 /* SpringImageViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299527A2BDEF599003AFB14 /* SpringImageViewDelegate.swift */; };
 		8299E3B22B8A31CE00D81472 /* ITimetableDateDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299E3B12B8A31CE00D81472 /* ITimetableDateDetailViewModel.swift */; };
 		8299E3B42B8A31E600D81472 /* TimetableDateDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299E3B32B8A31E600D81472 /* TimetableDateDetailViewModel.swift */; };
 		8299E3B62B8A31F800D81472 /* TimetableDateDetailViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299E3B52B8A31F800D81472 /* TimetableDateDetailViewModel + Extensions.swift */; };
@@ -746,7 +749,7 @@
 		825D56772AE5CC5F004305C7 /* PairInfoViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairInfoViewModelProtocol.swift; sourceTree = "<group>"; };
 		825D56792AE5CCAF004305C7 /* PairInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairInfoViewModel.swift; sourceTree = "<group>"; };
 		825D567B2AE5CCBF004305C7 /* PairInfoViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PairInfoViewModel + Extensions.swift"; sourceTree = "<group>"; };
-		825D92E92AF2E80F00B5E9DF /* RecentTimeTableDayListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTimeTableDayListTableViewController.swift; sourceTree = "<group>"; };
+		825D92E92AF2E80F00B5E9DF /* CurrentDateTimeTableDayListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDateTimeTableDayListTableViewController.swift; sourceTree = "<group>"; };
 		825D92ED2AF2F03000B5E9DF /* RecentTimeTableDayListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentTimeTableDayListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		826716C12A5A2AF600CD5C23 /* RecentWebPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWebPageModel.swift; sourceTree = "<group>"; };
 		826888522A33A91200434219 /* AGPUSubSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSectionTableViewCell.swift; sourceTree = "<group>"; };
@@ -905,6 +908,9 @@
 		8299526E2BDCBEEB003AFB14 /* IASPUButtonAllActionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IASPUButtonAllActionsListViewModel.swift; sourceTree = "<group>"; };
 		829952702BDCBF32003AFB14 /* ASPUButtonAllActionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonAllActionsListViewModel.swift; sourceTree = "<group>"; };
 		829952722BDCBF71003AFB14 /* ASPUButtonAllActionsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASPUButtonAllActionsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		829952752BDEEB7D003AFB14 /* RecentTabOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTabOptionTableViewCell.swift; sourceTree = "<group>"; };
+		829952762BDEEB7D003AFB14 /* RecentTabOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentTabOptionTableViewCell.xib; sourceTree = "<group>"; };
+		8299527A2BDEF599003AFB14 /* SpringImageViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringImageViewDelegate.swift; sourceTree = "<group>"; };
 		8299E3B12B8A31CE00D81472 /* ITimetableDateDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITimetableDateDetailViewModel.swift; sourceTree = "<group>"; };
 		8299E3B32B8A31E600D81472 /* TimetableDateDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDateDetailViewModel.swift; sourceTree = "<group>"; };
 		8299E3B52B8A31F800D81472 /* TimetableDateDetailViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimetableDateDetailViewModel + Extensions.swift"; sourceTree = "<group>"; };
@@ -3458,7 +3464,7 @@
 				82D6C32D2A5E187400FB7F5D /* TimeTable Day */,
 				82505F4C2A7FBD48001DE24A /* TimeTable Week */,
 				8231B0B32AED67EF00EB41EA /* TimeTable Search */,
-				825D92E72AF2E7CA00B5E9DF /* Recent Timetable Day */,
+				825D92E72AF2E7CA00B5E9DF /* Current Date Timetable Day */,
 				82E0300E2B201F0C0068D2B7 /* Timetable For Current Building */,
 			);
 			path = "TimeTable Modules";
@@ -3614,18 +3620,18 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		825D92E72AF2E7CA00B5E9DF /* Recent Timetable Day */ = {
+		825D92E72AF2E7CA00B5E9DF /* Current Date Timetable Day */ = {
 			isa = PBXGroup;
 			children = (
 				825D92EB2AF2F00E00B5E9DF /* View */,
 			);
-			path = "Recent Timetable Day";
+			path = "Current Date Timetable Day";
 			sourceTree = "<group>";
 		};
 		825D92E82AF2E7D900B5E9DF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				825D92E92AF2E80F00B5E9DF /* RecentTimeTableDayListTableViewController.swift */,
+				825D92E92AF2E80F00B5E9DF /* CurrentDateTimeTableDayListTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -4557,6 +4563,7 @@
 				8286D1552BCDADEA006BB6B3 /* Tabs Position */,
 				828E10302BD1699500ECC5F4 /* Tabs Color */,
 				8286D15A2BCDB3A8006BB6B3 /* Tabs Animation */,
+				829952742BDEEB58003AFB14 /* Recent Tab */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -5631,6 +5638,23 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		829952742BDEEB58003AFB14 /* Recent Tab */ = {
+			isa = PBXGroup;
+			children = (
+				829952752BDEEB7D003AFB14 /* RecentTabOptionTableViewCell.swift */,
+				829952762BDEEB7D003AFB14 /* RecentTabOptionTableViewCell.xib */,
+			);
+			path = "Recent Tab";
+			sourceTree = "<group>";
+		};
+		829952792BDEF58B003AFB14 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				8299527A2BDEF599003AFB14 /* SpringImageViewDelegate.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		8299E3AA2B8A317400D81472 /* Timetable Date Detail MVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -6036,6 +6060,7 @@
 		82B1CA762A681F0400D1FBA4 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				829952792BDEF58B003AFB14 /* Protocol */,
 				82B1CA742A681EE400D1FBA4 /* View */,
 				82B1CA752A681EEE00D1FBA4 /* Extensions */,
 			);
@@ -8051,6 +8076,7 @@
 				82D6C33B2A5E282A00FB7F5D /* TimeTableTableViewCell.xib in Resources */,
 				82FC881C2BBDFC4500A2EF59 /* news.mp4 in Resources */,
 				82B267062A8DAA8500043A6D /* NewsCategoryTableViewCell.xib in Resources */,
+				829952782BDEEB7D003AFB14 /* RecentTabOptionTableViewCell.xib in Resources */,
 				82FC881B2BBDFC4300A2EF59 /* new year.mp4 in Resources */,
 				822632422A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib in Resources */,
 				82C5B7902BCEF81600F907CB /* ASPUButtonAnimationOptionTableViewCell.xib in Resources */,
@@ -8278,6 +8304,7 @@
 				822526C42BA37D7F00B66314 /* NewsSplashScreenViewController.swift in Sources */,
 				8299E3BB2B8A350D00D81472 /* TimeTableDateModel.swift in Sources */,
 				829952612BDCB67C003AFB14 /* ASPUButtonFavouriteActionsListViewModel + Extensions.swift in Sources */,
+				8299527B2BDEF599003AFB14 /* SpringImageViewDelegate.swift in Sources */,
 				822526CE2BA3805400B66314 /* NewsSplashScreenViewModel.swift in Sources */,
 				828DC5592A7B3865001EA324 /* FacultyGroupModel.swift in Sources */,
 				821B727D2BD174B6000460E2 /* TabColorsListViewModel.swift in Sources */,
@@ -8398,6 +8425,7 @@
 				82184D882B7BD97600F2588E /* ILocationWeatherDetailViewModel.swift in Sources */,
 				827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */,
 				82184D7E2B7BD89A00F2588E /* CurrentWeatherTableViewCell.swift in Sources */,
+				829952772BDEEB7D003AFB14 /* RecentTabOptionTableViewCell.swift in Sources */,
 				82C26C792BD7F0D20039D86D /* DisplayModes.swift in Sources */,
 				8234E5F32A88514600ED354C /* WordDocumentReaderViewController + Extensions.swift in Sources */,
 				82F98B322B11998E00137D9A /* WeatherManagerProtocol.swift in Sources */,
@@ -8586,7 +8614,7 @@
 				82DB22C32AACD05D00F8F664 /* TimeTable.swift in Sources */,
 				82920B7E2AD87B9200352CD8 /* UserStatusListViewModel.swift in Sources */,
 				82C5B7992BCEFC3E00F907CB /* ASPUButtonAnimationOptionsListViewModel + Extensions.swift in Sources */,
-				825D92EA2AF2E80F00B5E9DF /* RecentTimeTableDayListTableViewController.swift in Sources */,
+				825D92EA2AF2E80F00B5E9DF /* CurrentDateTimeTableDayListTableViewController.swift in Sources */,
 				82B24A8F2A81BDDD008B94E4 /* AGPUNewsServiceProtocol.swift in Sources */,
 				82967C262BA0835E001059B2 /* IRecentNewsListViewModel.swift in Sources */,
 				82967C302BA2347B001059B2 /* TimeTableSplashScreenViewController.swift in Sources */,
@@ -8820,7 +8848,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.4;
+				MARKETING_VERSION = 2.2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -8859,7 +8887,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.4;
+				MARKETING_VERSION = 2.2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -1,5 +1,5 @@
 //
-//  RecentTimeTableDayListTableViewController.swift
+//  CurrentDateTimeTableDayListTableViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 01.11.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecentTimeTableDayListTableViewController: UIViewController {
+class CurrentDateTimeTableDayListTableViewController: UIViewController {
 
     var timetable = TimeTable(id: "", date: "", disciplines: [])
     private var id: String = ""

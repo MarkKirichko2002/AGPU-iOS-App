@@ -184,7 +184,7 @@ extension AGPUTabBarController: ASPUButtonFavouriteActionsListTableViewControlle
     }
     
     func actionWasSelected(action: ASPUButtonActions) {
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
             self.handleAction(action: action)
         }
     }
@@ -252,6 +252,8 @@ extension AGPUTabBarController: ASPUButtonFavouriteActionsListTableViewControlle
                 self.animation.flipAnimation(view: self.ASPUButton, option: .transitionFlipFromBottom) {
                     HapticsManager.shared.hapticFeedback()
                 }
+            case .none:
+                HapticsManager.shared.hapticFeedback()
             }
         }
     }
