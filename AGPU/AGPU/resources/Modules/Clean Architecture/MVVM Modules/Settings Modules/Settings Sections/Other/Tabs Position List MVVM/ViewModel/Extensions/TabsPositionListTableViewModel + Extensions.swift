@@ -28,7 +28,7 @@ extension TabsPositionListTableViewModel: ITabsPositionListTableViewModel {
                 tabs.swapAt(index, number)
             }
         }
-        
+        NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
         dataChangedHandler?()
     }
     

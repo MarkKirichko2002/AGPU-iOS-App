@@ -362,6 +362,7 @@
 		829952772BDEEB7D003AFB14 /* RecentTabOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829952752BDEEB7D003AFB14 /* RecentTabOptionTableViewCell.swift */; };
 		829952782BDEEB7D003AFB14 /* RecentTabOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 829952762BDEEB7D003AFB14 /* RecentTabOptionTableViewCell.xib */; };
 		8299527B2BDEF599003AFB14 /* SpringImageViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299527A2BDEF599003AFB14 /* SpringImageViewDelegate.swift */; };
+		8299527F2BDF0099003AFB14 /* TabsPositionOptionTableViewCell + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299527E2BDF0099003AFB14 /* TabsPositionOptionTableViewCell + Extensions.swift */; };
 		8299E3B22B8A31CE00D81472 /* ITimetableDateDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299E3B12B8A31CE00D81472 /* ITimetableDateDetailViewModel.swift */; };
 		8299E3B42B8A31E600D81472 /* TimetableDateDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299E3B32B8A31E600D81472 /* TimetableDateDetailViewModel.swift */; };
 		8299E3B62B8A31F800D81472 /* TimetableDateDetailViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299E3B52B8A31F800D81472 /* TimetableDateDetailViewModel + Extensions.swift */; };
@@ -911,6 +912,7 @@
 		829952752BDEEB7D003AFB14 /* RecentTabOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTabOptionTableViewCell.swift; sourceTree = "<group>"; };
 		829952762BDEEB7D003AFB14 /* RecentTabOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentTabOptionTableViewCell.xib; sourceTree = "<group>"; };
 		8299527A2BDEF599003AFB14 /* SpringImageViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringImageViewDelegate.swift; sourceTree = "<group>"; };
+		8299527E2BDF0099003AFB14 /* TabsPositionOptionTableViewCell + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabsPositionOptionTableViewCell + Extensions.swift"; sourceTree = "<group>"; };
 		8299E3B12B8A31CE00D81472 /* ITimetableDateDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITimetableDateDetailViewModel.swift; sourceTree = "<group>"; };
 		8299E3B32B8A31E600D81472 /* TimetableDateDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDateDetailViewModel.swift; sourceTree = "<group>"; };
 		8299E3B52B8A31F800D81472 /* TimetableDateDetailViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimetableDateDetailViewModel + Extensions.swift"; sourceTree = "<group>"; };
@@ -4579,8 +4581,8 @@
 		8286D1552BCDADEA006BB6B3 /* Tabs Position */ = {
 			isa = PBXGroup;
 			children = (
-				8286D1562BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.swift */,
-				8286D1572BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.xib */,
+				8299527C2BDF0078003AFB14 /* Cell */,
+				8299527D2BDF0084003AFB14 /* Extensions */,
 			);
 			path = "Tabs Position";
 			sourceTree = "<group>";
@@ -5653,6 +5655,23 @@
 				8299527A2BDEF599003AFB14 /* SpringImageViewDelegate.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		8299527C2BDF0078003AFB14 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8286D1562BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.swift */,
+				8286D1572BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		8299527D2BDF0084003AFB14 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8299527E2BDF0099003AFB14 /* TabsPositionOptionTableViewCell + Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		8299E3AA2B8A317400D81472 /* Timetable Date Detail MVVM */ = {
@@ -8376,6 +8395,7 @@
 				82E4C54C2A6B121900F65A67 /* AGPUFacultiesListViewModel + Extensions.swift in Sources */,
 				8283217E2A7D683F008641A5 /* SearchAGPUBuildingMapViewModel.swift in Sources */,
 				828D511A2BB86CEF00848FF8 /* IASPUButtonOptionsListViewModel.swift in Sources */,
+				8299527F2BDF0099003AFB14 /* TabsPositionOptionTableViewCell + Extensions.swift in Sources */,
 				8218F5872A688F8C00C94EB4 /* CustomActivityItemSource.swift in Sources */,
 				82761A152B462C6100D9976F /* SelectedFacultySplashScreenViewController.swift in Sources */,
 				82761A2F2B46429200D9976F /* SplashScreensListViewModel.swift in Sources */,
