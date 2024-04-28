@@ -24,6 +24,8 @@ class OnlyTimetableOptionTableViewCell: UITableViewCell {
         
         if Switch.isOn == true {
             print("on")
+            OnlyTimetableIcon.tintColor = .label
+            OnlyTimetableLabel.textColor = .label
             userDefaults.set(true, forKey: "onOnlyTimetable")
             animation.springAnimation(view: OnlyTimetableIcon)
             Timer.scheduledTimer(withTimeInterval: 0.8, repeats: false) { _ in
@@ -32,6 +34,8 @@ class OnlyTimetableOptionTableViewCell: UITableViewCell {
             AudioPlayerClass.shared.playSound(sound: "paper", isPlaying: false)
         } else if Switch.isOn == false {
             print("off")
+            OnlyTimetableIcon.tintColor = .systemGray
+            OnlyTimetableLabel.textColor = .systemGray
             userDefaults.set(false, forKey: "onOnlyTimetable")
             Timer.scheduledTimer(withTimeInterval: 0.8, repeats: false) { _ in
                 NotificationCenter.default.post(name: Notification.Name("only timetable"), object: nil)
@@ -48,6 +52,13 @@ class OnlyTimetableOptionTableViewCell: UITableViewCell {
         OnlyTimetableIcon.tintColor = .label
         backgroundColor = .systemBackground
         OnlyTimetableLabel.textColor = .label
-        Switch.isOn = userDefaults.bool(forKey: "onOnlyTimetable")
+        setUpState()
+    }
+    
+    private func setUpState() {
+        let isOnlyTimetable = userDefaults.object(forKey: "onOnlyTimetable") as? Bool ?? false
+        Switch.isOn = userDefaults.object(forKey: "onOnlyTimetable") as? Bool ?? false
+        OnlyTimetableIcon.tintColor = isOnlyTimetable == true ? .label : .systemGray
+        OnlyTimetableLabel.textColor = isOnlyTimetable == true ? .label : .systemGray
     }
 }

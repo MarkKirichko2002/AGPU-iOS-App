@@ -24,11 +24,15 @@ class BorderForDailyNewsTableViewCell: UITableViewCell {
         
         if Switch.isOn == true {
             print("on")
+            OptionIcon.tintColor = .label
+            TitleLabel.textColor = .label
             userDefaults.set(true, forKey: "onBorderForDailyNews")
             animation.springAnimation(view: OptionIcon)
             saveOption(option: .today)
         } else if Switch.isOn == false {
             print("off")
+            OptionIcon.tintColor = .systemGray
+            TitleLabel.textColor = .systemGray
             userDefaults.set(false, forKey: "onBorderForDailyNews")
             saveOption(option: .all)
         }
@@ -51,6 +55,13 @@ class BorderForDailyNewsTableViewCell: UITableViewCell {
         OptionIcon.tintColor = .label
         backgroundColor = .systemBackground
         TitleLabel.textColor = .label
-        Switch.isOn = userDefaults.object(forKey: "onBorderForDailyNews") as? Bool ?? true
+        setUpState()
+    }
+    
+    private func setUpState() {
+        let isBorderForDailyNews = userDefaults.object(forKey: "onBorderForDailyNews") as? Bool ?? true
+        Switch.isOn = isBorderForDailyNews
+        OptionIcon.tintColor = isBorderForDailyNews == true ? .label : .systemGray
+        TitleLabel.textColor = isBorderForDailyNews == true ? .label : .systemGray
     }
 }

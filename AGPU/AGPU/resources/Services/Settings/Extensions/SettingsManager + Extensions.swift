@@ -12,7 +12,7 @@ extension SettingsManager: SettingsManagerProtocol {
    
     // MARK: - Shake To Recall
     func checkShakeToRecallOption()-> Bool {
-        if let option = UserDefaults.standard.value(forKey: "onShakeToRecallOption") as? Bool {
+        if let option = UserDefaults.standard.value(forKey: "onShakeToRecall") as? Bool {
             return option
         } else {
             return false

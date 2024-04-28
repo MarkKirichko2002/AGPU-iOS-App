@@ -24,10 +24,14 @@ class RecentTabOptionTableViewCell: UITableViewCell {
         
         if Switch.isOn == true {
             print("on")
+            OptionIcon.tintColor = .label
+            TitleLabel.textColor = .label
             userDefaults.set(true, forKey: "onRecentTab")
             animation.springAnimation(view: OptionIcon)
         } else if Switch.isOn == false {
             print("off")
+            OptionIcon.tintColor = .systemGray
+            TitleLabel.textColor = .systemGray
             userDefaults.setValue(0, forKey: "index")
             userDefaults.set(false, forKey: "onRecentTab")
         }
@@ -42,6 +46,13 @@ class RecentTabOptionTableViewCell: UITableViewCell {
         OptionIcon.tintColor = .label
         backgroundColor = .systemBackground
         TitleLabel.textColor = .label
-        Switch.isOn = userDefaults.object(forKey: "onRecentTab") as? Bool ?? true
+        setUpState()
+    }
+    
+    private func setUpState() {
+        let isRecentTab = userDefaults.object(forKey: "onRecentTab") as? Bool ?? true
+        Switch.isOn = isRecentTab
+        OptionIcon.tintColor = isRecentTab == true ? .label : .systemGray
+        TitleLabel.textColor = isRecentTab == true ? .label : .systemGray
     }
 }

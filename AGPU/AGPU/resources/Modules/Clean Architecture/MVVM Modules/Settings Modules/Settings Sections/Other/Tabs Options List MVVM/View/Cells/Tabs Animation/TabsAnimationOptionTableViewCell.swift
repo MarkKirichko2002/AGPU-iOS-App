@@ -24,10 +24,14 @@ class TabsAnimationOptionTableViewCell: UITableViewCell {
         
         if Switch.isOn == true {
             print("on")
+            OptionIcon.tintColor = .label
+            TitleLabel.textColor = .label
             userDefaults.set(true, forKey: "onTabsAnimation")
             animation.springAnimation(view: OptionIcon)
         } else if Switch.isOn == false {
             print("off")
+            OptionIcon.tintColor = .systemGray
+            TitleLabel.textColor = .systemGray
             userDefaults.set(false, forKey: "onTabsAnimation")
         }
     }
@@ -41,6 +45,13 @@ class TabsAnimationOptionTableViewCell: UITableViewCell {
         OptionIcon.tintColor = .label
         backgroundColor = .systemBackground
         TitleLabel.textColor = .label
-        Switch.isOn = userDefaults.object(forKey: "onTabsAnimation") as? Bool ?? true
+        setUpState()
+    }
+    
+    private func setUpState() {
+        let isTabsAnimation = userDefaults.object(forKey: "onTabsAnimation") as? Bool ?? true
+        Switch.isOn = isTabsAnimation
+        OptionIcon.tintColor = isTabsAnimation == true ? .label : .systemGray
+        TitleLabel.textColor = isTabsAnimation == true ? .label : .systemGray
     }
 }

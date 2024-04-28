@@ -21,15 +21,18 @@ final class ShakeToRecallOptionTableViewCell: UITableViewCell {
     @IBAction func switchAction(_ sender: UISwitch) {
         
         userDefaults.set(sender.isOn, forKey: "onShakeToRecall")
-        userDefaults.set(sender.isOn, forKey: "offShakeToRecall")
         
         if Switch.isOn == true {
             print("on")
-            userDefaults.set(true, forKey: "onShakeToRecallOption")
+            ShakeToRecallIcon.tintColor = .label
+            ShakeToRecallLabel.textColor = .label
+            userDefaults.set(true, forKey: "onShakeToRecall")
             animation.springAnimation(view: ShakeToRecallIcon)
         } else if Switch.isOn == false {
             print("off")
-            userDefaults.set(false, forKey: "onShakeToRecallOption")
+            ShakeToRecallIcon.tintColor = .systemGray
+            ShakeToRecallLabel.textColor = .systemGray
+            userDefaults.set(false, forKey: "onShakeToRecall")
         }
     }
 
@@ -37,12 +40,19 @@ final class ShakeToRecallOptionTableViewCell: UITableViewCell {
         super.awakeFromNib()
         setUpView()
         Switch.isOn = userDefaults.bool(forKey: "onShakeToRecall")
-        Switch.isOn = userDefaults.bool(forKey: "offShakeToRecall")
     }
     
     private func setUpView() {
         ShakeToRecallIcon.tintColor = .label
         backgroundColor = .systemBackground
         ShakeToRecallLabel.textColor = .label
+        setUpState()
+    }
+    
+    private func setUpState() {
+        let isShakeToRecall = userDefaults.object(forKey: "onShakeToRecall") as? Bool ?? true
+        Switch.isOn = isShakeToRecall
+        ShakeToRecallIcon.tintColor = isShakeToRecall == true ? .label : .systemGray
+        ShakeToRecallLabel.textColor = isShakeToRecall == true ? .label : .systemGray
     }
 }

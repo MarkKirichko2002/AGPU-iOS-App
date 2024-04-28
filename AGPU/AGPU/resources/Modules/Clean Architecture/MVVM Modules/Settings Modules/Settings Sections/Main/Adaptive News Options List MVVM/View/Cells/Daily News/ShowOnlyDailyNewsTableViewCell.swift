@@ -24,11 +24,15 @@ class ShowOnlyDailyNewsTableViewCell: UITableViewCell {
         
         if Switch.isOn == true {
             print("on")
+            OptionIcon.tintColor = .label
+            TitleLabel.textColor = .label
             userDefaults.set(true, forKey: "onShowOnlyDailyNews")
             animation.springAnimation(view: OptionIcon)
             saveOption(option: .today)
         } else if Switch.isOn == false {
             print("off")
+            OptionIcon.tintColor = .systemGray
+            TitleLabel.textColor = .systemGray
             userDefaults.set(false, forKey: "onShowOnlyDailyNews")
             saveOption(option: .all)
         }
@@ -51,6 +55,13 @@ class ShowOnlyDailyNewsTableViewCell: UITableViewCell {
         OptionIcon.tintColor = .label
         backgroundColor = .systemBackground
         TitleLabel.textColor = .label
-        Switch.isOn = userDefaults.object(forKey: "onShowOnlyDailyNews") as? Bool ?? false
+        setUpState()
+    }
+    
+    private func setUpState() {
+        let isShowOnlyDailyNews = userDefaults.object(forKey: "onShowOnlyDailyNews") as? Bool ?? true
+        Switch.isOn = isShowOnlyDailyNews
+        OptionIcon.tintColor = isShowOnlyDailyNews == true ? .label : .systemGray
+        TitleLabel.textColor = isShowOnlyDailyNews == true ? .label : .systemGray
     }
 }
