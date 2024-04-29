@@ -39,7 +39,6 @@ final class ShakeToRecallOptionTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setUpView()
-        Switch.isOn = userDefaults.bool(forKey: "onShakeToRecall")
     }
     
     private func setUpView() {

@@ -28,6 +28,7 @@ extension ASPUButtonAllActionsListViewModel: IASPUButtonAllActionsListViewModel 
     func saveAction(action: ASPUButtonActions) {
         var actions = loadActions()
         if !actions.contains(action) {
+            HapticsManager.shared.hapticFeedback()
             actions.append(action)
         }
         saveArray(array: actions)
@@ -49,7 +50,6 @@ extension ASPUButtonAllActionsListViewModel: IASPUButtonAllActionsListViewModel 
         do {
             let arr = try JSONEncoder().encode(array)
             UserDefaults.standard.setValue(arr, forKey: "button actions")
-            HapticsManager.shared.hapticFeedback()
         } catch {
             print(error)
         }
