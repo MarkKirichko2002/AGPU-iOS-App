@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo icon" translatesAutoresizingMaskIntoConstraints="NO" id="tO7-Qo-ZyP" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
-                        <rect key="frame" x="10" y="10" width="65" height="65"/>
+                        <rect key="frame" x="20" y="15" width="65" height="65"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="65" id="KhR-wp-XC8"/>
@@ -25,7 +25,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Кванториум" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpk-wu-tCt">
-                        <rect key="frame" x="85" y="15" width="298" height="60"/>
+                        <rect key="frame" x="95" y="15" width="288" height="60"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="U4h-R0-RQS"/>
                         </constraints>
@@ -35,10 +35,10 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="tO7-Qo-ZyP" secondAttribute="bottom" constant="10" id="Amd-ZM-32V"/>
+                    <constraint firstAttribute="bottom" secondItem="tO7-Qo-ZyP" secondAttribute="bottom" constant="15" id="Amd-ZM-32V"/>
                     <constraint firstItem="bpk-wu-tCt" firstAttribute="top" secondItem="dzm-BR-MvU" secondAttribute="top" constant="15" id="DHv-wt-FzC"/>
-                    <constraint firstItem="tO7-Qo-ZyP" firstAttribute="top" secondItem="dzm-BR-MvU" secondAttribute="top" constant="10" id="IPz-UH-OM0"/>
-                    <constraint firstItem="tO7-Qo-ZyP" firstAttribute="leading" secondItem="dzm-BR-MvU" secondAttribute="leading" constant="10" id="KYn-34-1BS"/>
+                    <constraint firstItem="tO7-Qo-ZyP" firstAttribute="top" secondItem="dzm-BR-MvU" secondAttribute="top" constant="15" id="IPz-UH-OM0"/>
+                    <constraint firstItem="tO7-Qo-ZyP" firstAttribute="leading" secondItem="dzm-BR-MvU" secondAttribute="leading" constant="20" id="KYn-34-1BS"/>
                     <constraint firstAttribute="trailing" secondItem="bpk-wu-tCt" secondAttribute="trailing" constant="10" id="Kcz-o0-UwA"/>
                     <constraint firstItem="bpk-wu-tCt" firstAttribute="leading" secondItem="tO7-Qo-ZyP" secondAttribute="trailing" constant="10" id="i60-h0-gJo"/>
                     <constraint firstAttribute="bottom" secondItem="bpk-wu-tCt" secondAttribute="bottom" constant="15" id="v9s-ZL-Gaf"/>

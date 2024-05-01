@@ -46,7 +46,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
             _ in
             
             let infoAction = UIAction(title: "Узнать больше", image: UIImage(named: "info")) { _ in
-                self.goToWeb(url: self.viewModel.facultyItem(index: indexPath.row).url, image: self.viewModel.facultyItem(index: indexPath.row).icon, title: self.viewModel.facultyItem(index: indexPath.row).abbreviation, isSheet: false)
+                self.goToWeb(url: self.viewModel.facultyItem(index: indexPath.row).url, image: self.viewModel.facultyItem(index: indexPath.row).icon, title: self.viewModel.facultyItem(index: indexPath.row).abbreviation, isSheet: false, isNotify: false)
             }
             
             let cathedraAction = UIAction(title: "Кафедры", image: UIImage(named: "university")) { _ in
@@ -60,7 +60,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
             }
             
             let contactsAction = UIAction(title: "Контакты", image: UIImage(named: "contacts")) { _ in
-                self.goToWeb(url: self.viewModel.facultyItem(index: indexPath.row).contactsURL, image: self.viewModel.facultyItem(index: indexPath.row).icon, title: "Контакты \(self.viewModel.facultyItem(index: indexPath.row).abbreviation)", isSheet: false)
+                self.goToWeb(url: self.viewModel.facultyItem(index: indexPath.row).contactsURL, image: self.viewModel.facultyItem(index: indexPath.row).icon, title: "Контакты \(self.viewModel.facultyItem(index: indexPath.row).abbreviation)", isSheet: false, isNotify: false)
             }
             
             let emailAction = UIAction(title: "Написать", image: UIImage(named: "mail")) { _ in
@@ -68,7 +68,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
             }
             
             let enterAction = UIAction(title: "Поступить", image: UIImage(named: "worksheet")) { _ in
-                self.goToWeb(url: "http://priem.agpu.net/anketa/index.php", image: "worksheet", title: "Анкета", isSheet: false)
+                self.goToWeb(url: "http://priem.agpu.net/anketa/index.php", image: "worksheet", title: "Анкета", isSheet: false, isNotify: false)
             }
             
             let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
@@ -110,7 +110,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
 extension AGPUFacultiesListTableViewController: AGPUFacultyTableViewCellDelegate {
     
     func openFacultyInfo(faculty: AGPUFacultyModel) {
-        self.goToWeb(url: faculty.url, image: faculty.icon, title: faculty.abbreviation, isSheet: false)
+        self.goToWeb(url: faculty.url, image: faculty.icon, title: faculty.abbreviation, isSheet: false, isNotify: false)
         HapticsManager.shared.hapticFeedback()
     }
 }

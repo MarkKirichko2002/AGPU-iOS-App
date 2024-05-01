@@ -23,6 +23,7 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
         tableView.register(UINib(nibName: SavedNewsCategoryOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SavedNewsCategoryOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: AdaptToWebOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AdaptToWebOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: ShowOnlyDailyNewsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ShowOnlyDailyNewsTableViewCell.identifier)
+        tableView.register(UINib(nibName: BorderForDailyNewsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: BorderForDailyNewsTableViewCell.identifier)
     }
     
     private func setUpNavigation() {
@@ -59,7 +60,7 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -70,8 +71,11 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
         } else if indexPath.row == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AdaptToWebOptionTableViewCell.identifier, for: indexPath) as? AdaptToWebOptionTableViewCell else {return UITableViewCell()}
             return cell
-        } else {
+        } else if indexPath.row == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ShowOnlyDailyNewsTableViewCell.identifier, for: indexPath) as? ShowOnlyDailyNewsTableViewCell else {return UITableViewCell()}
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: BorderForDailyNewsTableViewCell.identifier, for: indexPath) as? BorderForDailyNewsTableViewCell else {return UITableViewCell()}
             return cell
         }
     }

@@ -33,7 +33,7 @@ extension UserStatusListViewModel: UserStatusListViewModelProtocol {
     }
     
     func isStatusSelected(index: Int)-> Bool {
-        var defaultstatus = UserStatusList.list[0]
+        let defaultstatus = UserStatusList.list[0]
         let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status") ?? defaultstatus
         if status.id == statusItem(index: index).id {
             return true

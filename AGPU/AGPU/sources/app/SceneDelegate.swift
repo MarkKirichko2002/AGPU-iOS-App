@@ -22,14 +22,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func setUpSplashScreen()-> UIViewController {
         let option = UserDefaults.loadData(type: SplashScreenOptions.self, key: "splash option") ?? .regular
-        let regularVC = AGPUSplashScreenViewController(animation: AnimationClass())
+        let regularVC = RegularSplashScreenViewController(animation:  AnimationClass(), icon: "АГПУ", text: "ФГБОУ ВО «АГПУ»", width: 180, height: 180)
         let statusVC = YourStatusSplashScreenViewController(animation: AnimationClass())
         let facultyVC = SelectedFacultySplashScreenViewController(animation: AnimationClass())
-        let newYearVC = AGPUNewYearSplashScreenViewController(animation: AnimationClass())
+        let newYearVC = RegularSplashScreenViewController(animation:  AnimationClass(), icon: "новый год", text: "ФГБОУ ВО «АГПУ»", width: 180, height: 180)
         let weatherVC = WeatherSplashScreenViewController(animation: AnimationClass())
         let newsVC = NewsSplashScreenViewController(animation: AnimationClass())
         let timetableVC = TimeTableSplashScreenViewController(animation: AnimationClass())
         let customVC = CustomSplashScreenViewController(animation: AnimationClass())
+        let randomVC = RandomSplashScreenViewController()
         let tabBarVC = AGPUTabBarController()
         switch option {
         case .regular:
@@ -46,10 +47,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return newsVC
         case .timetable:
             return timetableVC
+        case .technopark:
+            return RegularSplashScreenViewController(animation:  AnimationClass(), icon: "technopark", text: "Технопарк", width: 180, height: 180)
+        case .quantorium:
+            return RegularSplashScreenViewController(animation:  AnimationClass(), icon: "кванториум", text: "Кванториум", width: 160, height: 160)
         case .custom:
             return customVC
         case .random:
-            return [regularVC, statusVC, facultyVC, newYearVC, weatherVC, newsVC, timetableVC,  customVC].randomElement()!
+            return randomVC
         case .none:
             return tabBarVC
         }

@@ -31,7 +31,7 @@ final class AGPUTabBarController: UITabBarController {
     var isOpened = false
     
     // MARK: - ASPU Button
-    let DynamicButton: UIButton = {
+    let ASPUButton: UIButton = {
         let button = UIButton()
         button.imageView?.contentMode = .scaleAspectFill
         return button
@@ -40,11 +40,11 @@ final class AGPUTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
-        setUpTabs()
         setUpTab()
+        setUpTabs()
         createMiddleButton()
         observeForEveryStatus()
-        observeWebScreen()
+        observeScreen()
         observeFaculty()
         observeArticleSelected()
         observeDataRefreshed()
@@ -52,49 +52,31 @@ final class AGPUTabBarController: UITabBarController {
         checkForUpdates()
     }
     
+    override var selectedViewController: UIViewController? {
+        didSet {
+            handleTab(index: selectedIndex)
+        }
+    }
+    
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        animation.tabBarItemAnimation(item: item)
+        let isOnAnimation = settingsManager.checkTabsAnimationOption()
+        if isOnAnimation {
+            animation.tabBarItemSpringAnimation(item: item)
+        }
+    }
+    
+    private func handleTab(index: Int) {
+        let isRecentTab = UserDefaults.standard.object(forKey: "onRecentTab") as? Bool ?? true
+        if isRecentTab {
+            UserDefaults.standard.setValue(selectedIndex, forKey: "index")
+        } else {
+            print("выключено")
+        }
     }
     
     private func setUpView() {
         view.backgroundColor = .systemBackground
-        UITabBar.appearance().tintColor = UIColor.label
         UITabBar.appearance().backgroundColor = .systemBackground
-    }
-    
-    private func setUpTabs() {
-        // новости
-        newsVC.tabBarItem = UITabBarItem(title: "Новости", image: UIImage(named: "mail"), selectedImage: UIImage(named: "mail selected"))
-        // расписание
-        timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: UIImage(named: "time icon"), selectedImage: UIImage(named: "time icon selected"))
-        // настройки
-        settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(named: "settings"), selectedImage: UIImage(named: "settings selected"))
-        let nav1VC = UINavigationController(rootViewController: newsVC)
-        let nav3VC = UINavigationController(rootViewController: timetableVC)
-        let nav4VC = UINavigationController(rootViewController: settingsVC)
-        
-        let onlyTimetable = UserDefaults.standard.object(forKey: "onOnlyTimetable") as? Bool ?? false
-        
-        if onlyTimetable {
-            setViewControllers([nav3VC, middleButton, nav4VC], animated: false)
-        } else {
-            let position = settingsManager.getTabsPosition()
-            forEveryStatusVC = settingsManager.checkCurrentStatus()
-            var tabs = [nav1VC, forEveryStatusVC, nav3VC, nav4VC]
-           
-            for tab in tabs {
-                
-                for number in position {
-                    let index = tabs.firstIndex(of: tab)!
-                    tabs.swapAt(index, number)
-                }
-            }
-            
-            tabs.insert(middleButton, at: 2)
-            
-            setViewControllers(tabs, animated: false)
-            selectedIndex = 0
-        }
     }
     
     private func setUpTab() {
@@ -116,37 +98,74 @@ final class AGPUTabBarController: UITabBarController {
         }
     }
     
+    private func setUpTabs() {
+        // новости
+        newsVC.tabBarItem = UITabBarItem(title: "Новости", image: UIImage(named: "mail"), selectedImage: UIImage(named: "mail selected"))
+        // расписание
+        timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: UIImage(named: "time icon"), selectedImage: UIImage(named: "time icon selected"))
+        // настройки
+        settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(named: "settings"), selectedImage: UIImage(named: "settings selected"))
+        let nav1VC = UINavigationController(rootViewController: newsVC)
+        let nav3VC = UINavigationController(rootViewController: timetableVC)
+        let nav4VC = UINavigationController(rootViewController: settingsVC)
+        
+        let onlyTimetable = UserDefaults.standard.object(forKey: "onOnlyTimetable") as? Bool ?? false
+                
+        if onlyTimetable {
+            setViewControllers([nav3VC, middleButton, nav4VC], animated: false)
+        } else {
+            let position = settingsManager.getTabsPosition()
+            forEveryStatusVC = settingsManager.checkCurrentStatus()
+            var tabs = [nav1VC, forEveryStatusVC, nav3VC, nav4VC]
+           
+            for tab in tabs {
+                
+                for number in position {
+                    let index = tabs.firstIndex(of: tab)!
+                    tabs.swapAt(index, number)
+                }
+            }
+            
+            tabs.insert(middleButton, at: 2)
+            setViewControllers(tabs, animated: false)
+            selectedIndex = UserDefaults.standard.integer(forKey: "index")
+        }
+        UITabBar.appearance().tintColor = self.settingsManager.getTabsColor().color
+    }
+    
     // MARK: - ASPU Button
     private func createMiddleButton() {
-        DynamicButton.setImage(UIImage(named: settingsManager.checkCurrentIcon()), for: .normal)
-        DynamicButton.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
+        ASPUButton.setImage(UIImage(named: settingsManager.checkCurrentIcon()), for: .normal)
+        ASPUButton.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
         // Устанавливаем положение кнопки по середине TabBar
-        DynamicButton.center = CGPoint(x: tabBar.frame.width / 2, y: tabBar.frame.height / 2 - 5)
-        settingsManager.observeDynamicButtonActionChanged {
+        ASPUButton.center = CGPoint(x: tabBar.frame.width / 2, y: tabBar.frame.height / 2 - 5)
+        settingsManager.observeASPUButtonActionChanged {
             self.currentAction()
         }
         // Назначаем действие для кнопки
         currentAction()
         // Добавляем кнопку на TabBar
-        tabBar.addSubview(DynamicButton)
+        tabBar.addSubview(ASPUButton)
     }
      
     private func currentAction() {
-        let action = settingsManager.checkDynamicButtonOption()
-        DynamicButton.removeTarget(nil, action: nil, for: .allEvents)
+        let action = settingsManager.checkASPUButtonOption()
+        ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
         switch action {
         case .speechRecognition:
-            DynamicButton.addTarget(self, action: #selector(VoiceCommands), for: .touchUpInside)
+            ASPUButton.addTarget(self, action: #selector(VoiceCommands), for: .touchUpInside)
         case .timetableWeeks:
-            DynamicButton.addTarget(self, action: #selector(openWeeksTimetable), for: .touchUpInside)
+            ASPUButton.addTarget(self, action: #selector(openWeeksTimetable), for: .touchUpInside)
         case .campusMap:
-            DynamicButton.addTarget(self, action: #selector(openCampusMap), for: .touchUpInside)
+            ASPUButton.addTarget(self, action: #selector(openCampusMap), for: .touchUpInside)
         case .studyPlan:
-            DynamicButton.addTarget(self, action: #selector(openStudyPlan), for: .touchUpInside)
+            ASPUButton.addTarget(self, action: #selector(openStudyPlan), for: .touchUpInside)
         case .profile:
-            DynamicButton.addTarget(self, action: #selector(openProfile), for: .touchUpInside)
+            ASPUButton.addTarget(self, action: #selector(openProfile), for: .touchUpInside)
         case .manual:
-            DynamicButton.addTarget(self, action: #selector(openManual), for: .touchUpInside)
+            ASPUButton.addTarget(self, action: #selector(openManual), for: .touchUpInside)
+        case .favourite:
+            ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
         }
     }
     
@@ -159,11 +178,11 @@ final class AGPUTabBarController: UITabBarController {
         if settingsManager.checkShakeToRecallOption() {
             ShakeToRecall(motion: motion)
         } else {
-            self.updateDynamicButton(icon: "info icon")
+            self.updateASPUButton(icon: "info icon")
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let ok = UIAlertAction(title: "ОК", style: .default)
                 self.showAlert(title: "Вы отключили фишку Shake To Recall!", message: "чтобы дальше пользоваться данной фишкой включите ее в настройках.", actions: [ok])
-                self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
+                self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
             }
         }
     }
@@ -175,7 +194,7 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     private func ShakeToRecall() {
-        self.updateDynamicButton(icon: "time.past")
+        self.updateASPUButton(icon: "time.past")
         let vc = RecentMomentsListTableViewController()
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
@@ -184,10 +203,10 @@ final class AGPUTabBarController: UITabBarController {
         }
     }
     
-    @objc private func VoiceCommands() {
+    @objc func VoiceCommands() {
         isRecording = !isRecording
         if isRecording {
-            self.updateDynamicButton(icon: "mic")
+            self.updateASPUButton(icon: "mic")
             speechRecognitionManager.requestSpeechAndMicrophonePermission()
             speechRecognitionManager.registerSpeechAuthorizationHandler { auth in
                 switch auth {
@@ -198,7 +217,7 @@ final class AGPUTabBarController: UITabBarController {
                         self.openSettings()
                     }
                     let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in
-                        self.DynamicButton.sendActions(for: .touchUpInside)
+                        self.ASPUButton.sendActions(for: .touchUpInside)
                     }
                     self.showAlert(title: "Микрофон выключен", message: "Хотите включить в настройках?", actions: [settingsAction, cancel])
                     print("Доступ к распознаванию речи был отклонен.")
@@ -215,7 +234,7 @@ final class AGPUTabBarController: UITabBarController {
                 self.checkVoiceCommands(text: text)
             }
         } else {
-            self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
+            self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
             speechRecognitionManager.cancelSpeechRecognition()
         }
     }
@@ -238,7 +257,7 @@ final class AGPUTabBarController: UITabBarController {
         turnOfMicrophone(text: text.lowercased())
     }
     
-    @objc private func openWeeksTimetable() {
+    @objc func openWeeksTimetable() {
         let id = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-2-1"
         let subgroup = UserDefaults.standard.integer(forKey: "subgroup")
         let owner = UserDefaults.standard.string(forKey: "recentOwner") ?? "GROUP"
@@ -248,7 +267,7 @@ final class AGPUTabBarController: UITabBarController {
         present(navVC, animated: true)
     }
     
-    @objc private func openCampusMap() {
+    @objc func openCampusMap() {
         let vc = AGPUBuildingsMapViewController()
         vc.isAction = true
         let navVC = UINavigationController(rootViewController: vc)
@@ -256,43 +275,49 @@ final class AGPUTabBarController: UITabBarController {
         present(navVC, animated: true)
     }
     
-    @objc private func openStudyPlan() {
-        self.goToWeb(url: "http://plany.agpu.net/Plans/", image: "student", title: "Учебный план", isSheet: false)
+    @objc func openStudyPlan() {
+        self.goToWeb(url: "http://plany.agpu.net/Plans/", image: "student", title: "Учебный план", isSheet: false, isNotify: false)
     }
     
     
-    @objc private func openProfile() {
-        self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: "profile icon", title: "ЭИОС", isSheet: false)
+    @objc func openProfile() {
+        self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: "profile icon", title: "ЭИОС", isSheet: false, isNotify: false)
     }
     
-    @objc private func openManual() {
+    @objc func openManual() {
         if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
-            self.goToWeb(url: cathedra.manualUrl, image: "book", title: "Метод. материалы", isSheet: false)
+            self.goToWeb(url: cathedra.manualUrl, image: "book", title: "Метод. материалы", isSheet: false, isNotify: false)
         } else {
             self.showHintAlert(type: .manuals)
             HapticsManager.shared.hapticFeedback()
         }
     }
     
+    @objc func openFavouritesList() {
+        let vc = ASPUButtonFavouriteActionsListTableViewController()
+        vc.delegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
+    }
+    
     private func observeForEveryStatus() {
         NotificationCenter.default.addObserver(forName: Notification.Name("for every status selected"), object: nil, queue: .main) { notification in
             if let icon = notification.object as? String {
-                self.updateDynamicButton(icon: icon)
+                self.updateASPUButton(icon: icon)
             }
         }
     }
     
-    private func observeWebScreen() {
+    private func observeScreen() {
         NotificationCenter.default.addObserver(forName: Notification.Name("screen was closed"), object: nil, queue: .main) { _ in
             if self.isRecording {
                 if !self.tabBar.isHidden {
-                    self.updateDynamicButton(icon: "mic")
+                    self.updateASPUButton(icon: "mic")
                 }
             } else {
                 if !self.tabBar.isHidden {
-                    self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
-                } else {
-                    print("sfkndgkjkn")
+                    self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
                 }
             }
         }
@@ -302,9 +327,9 @@ final class AGPUTabBarController: UITabBarController {
     private func observeFaculty() {
         NotificationCenter.default.addObserver(forName: Notification.Name("icon"), object: nil, queue: .main) { notification in
             if let icon = notification.object as? String {
-                self.updateDynamicButton(icon: icon)
+                self.updateASPUButton(icon: icon)
             } else {
-                self.updateDynamicButton(icon: "АГПУ")
+                self.updateASPUButton(icon: "АГПУ")
             }
         }
     }
@@ -312,15 +337,15 @@ final class AGPUTabBarController: UITabBarController {
     // MARK: - Adaptive News
     private func observeArticleSelected() {
         NotificationCenter.default.addObserver(forName: Notification.Name("article selected"), object: nil, queue: .main) { _ in
-            self.updateDynamicButton(icon: "info icon")
+            self.updateASPUButton(icon: "info icon")
         }
     }
     
     private func observeDataRefreshed() {
         NotificationCenter.default.addObserver(forName: Notification.Name("refreshed"), object: nil, queue: .main) { _ in
-            self.updateDynamicButton(icon: "refresh icon")
+            self.updateASPUButton(icon: "refresh icon")
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                self.updateDynamicButton(icon: self.settingsManager.checkCurrentIcon())
+                self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
             }
         }
     }

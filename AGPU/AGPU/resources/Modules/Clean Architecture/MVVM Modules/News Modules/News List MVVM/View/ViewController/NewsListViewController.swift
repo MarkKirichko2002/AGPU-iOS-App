@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WebKit
 
 final class NewsListViewController: UIViewController {
     
@@ -23,6 +24,15 @@ final class NewsListViewController: UIViewController {
         return collectionView
     }()
     
+    private let webView: WKWebView = {
+        let webView = WKWebView()
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.allowsBackForwardNavigationGestures = true
+        return webView
+    }()
+    
+    private let noNewsLabel = UILabel()
+    
     private let spinner = UIActivityIndicatorView(style: .large)
     
     override func viewDidLoad() {
@@ -30,6 +40,7 @@ final class NewsListViewController: UIViewController {
         setUpNavigation()
         setUpCollectionView()
         setUpIndicatorView()
+        setUpLabel()
         bindViewModel()
     }
     
@@ -41,7 +52,18 @@ final class NewsListViewController: UIViewController {
     }
     
     @objc private func refreshNews() {
-        viewModel.refreshNews()
+        switch viewModel.displayMode {
+        case .grid:
+            viewModel.newsResponse.articles = []
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.noNewsLabel.isHidden = true
+                self.spinner.startAnimating()
+            }
+            viewModel.refreshNews()
+        case .webpage:
+            viewModel.refreshNews()
+        }
     }
     
     private func setUpCollectionView() {
@@ -49,6 +71,14 @@ final class NewsListViewController: UIViewController {
         collectionView.frame = view.bounds
         collectionView.delegate = self
         collectionView.dataSource = self
+        navigationController?.navigationBar.isTranslucent = true
+    }
+    
+    private func setUpWebView() {
+        view.addSubview(webView)
+        webView.frame = view.bounds
+        webView.load(viewModel.makeUrlForCurrentWebPage())
+        navigationController?.navigationBar.isTranslucent = false
     }
     
     private func setUpIndicatorView() {
@@ -61,6 +91,18 @@ final class NewsListViewController: UIViewController {
         spinner.startAnimating()
     }
     
+    private func setUpLabel() {
+        view.addSubview(noNewsLabel)
+        noNewsLabel.text = "Нет новостей"
+        noNewsLabel.font = .systemFont(ofSize: 18, weight: .medium)
+        noNewsLabel.isHidden = true
+        noNewsLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            noNewsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            noNewsLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    
     private func bindViewModel() {
         
         var options = UIBarButtonItem(image: UIImage(named: "sections"), menu: UIMenu())
@@ -69,9 +111,14 @@ final class NewsListViewController: UIViewController {
         
         var categoriesAction = UIAction(title: "Категории") { _ in}
         var pagesAction = UIAction(title: "Страницы") { _ in}
-        var webAction = UIAction(title: "Веб-версия") { _ in}
         let recentNews = UIAction(title: "Недавние") { _ in
             let vc = RecentNewsListViewController()
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        let displayModes = UIAction(title: "Вид") { _ in
+            let vc = DisplayModeOptionsListTableViewController(option: self.viewModel.displayMode)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -129,15 +176,11 @@ final class NewsListViewController: UIViewController {
                 }
             }
             
-            webAction = UIAction(title: "Веб-версия") { _ in
-                self.goToWeb(url: self.viewModel.makeUrlForCurrentWebPage(), image: "online", title: "Новости", isSheet: false)
-            }
-            
             menu = UIMenu(title: "Новости", children: [
                 categoriesAction,
                 pagesAction,
-                webAction,
                 recentNews,
+                displayModes,
                 filterOptions,
                 randomAction
             ])
@@ -149,10 +192,39 @@ final class NewsListViewController: UIViewController {
                 self.navigationItem.rightBarButtonItem = options
                 self.collectionView.reloadData()
             }
+            
+            DispatchQueue.main.async {
+                if !(self.viewModel.newsResponse.articles?.isEmpty ?? false) {
+                    self.noNewsLabel.isHidden = true
+                } else {
+                    self.noNewsLabel.isHidden = false
+                }
+            }
+        }
+        
+        viewModel.registerDislayModeHandler { mode in
+            switch mode {
+            case .grid:
+                self.webView.removeFromSuperview()
+                self.setUpCollectionView()
+                self.setUpIndicatorView()
+                Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
+                    self.viewModel.refreshNews()
+                }
+            case .webpage:
+                self.collectionView.removeFromSuperview()
+                self.setUpWebView()
+            }
+        }
+        
+        viewModel.registerWebModeHandler {
+            self.webView.load(self.viewModel.makeUrlForCurrentWebPage())
         }
         
         viewModel.observeCategoryChanges()
         viewModel.observePageChanges()
+        viewModel.observeDisplayMode()
+        viewModel.observeStrokeOption()
         viewModel.observeFilterOption()
     }
 }

@@ -5,10 +5,12 @@
 //  Created by Марк Киричко on 14.01.2024.
 //
 
+import RealmSwift
 import Foundation
 
-struct SearchTimetableModel {
-    let name: String
-    let owner: String
+class SearchTimetableModel: Object {
+    @Persisted(primaryKey: true) var id: Int
+    @Persisted var name: String
+    @Persisted var owner: String
 }
 

@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserStatusTableViewCell" rowHeight="91" id="X56-nw-X4M" customClass="UserStatusTableViewCell" customModule="AGPU" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserStatusTableViewCell" rowHeight="91" id="1Mp-K3-jdE" customClass="UserStatusTableViewCell" customModule="AGPU" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="393" height="91"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="X56-nw-X4M" id="7Ul-NM-JeT">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1Mp-K3-jdE" id="yRr-44-Y6z">
                 <rect key="frame" x="0.0" y="0.0" width="393" height="91"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="student icon" translatesAutoresizingMaskIntoConstraints="NO" id="ycJ-Eg-bMj" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
-                        <rect key="frame" x="10" y="10" width="65" height="65"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile icon" translatesAutoresizingMaskIntoConstraints="NO" id="2eI-JE-HDI" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
+                        <rect key="frame" x="20" y="15" width="65" height="65"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="65" id="15O-fd-wzg"/>
-                            <constraint firstAttribute="width" constant="65" id="sas-8y-h4J"/>
+                            <constraint firstAttribute="height" constant="65" id="CQJ-Sp-lnp"/>
+                            <constraint firstAttribute="width" constant="65" id="yBp-34-ykR"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="студент" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ttj-05-rv7">
-                        <rect key="frame" x="85" y="15" width="298" height="60"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Абитуриент" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yaj-5b-4xo">
+                        <rect key="frame" x="95" y="15" width="288" height="60"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="60" id="6ag-EC-VLC"/>
+                            <constraint firstAttribute="height" constant="60" id="AEf-lN-UhO"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
                         <nil key="textColor"/>
@@ -35,23 +35,23 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ttj-05-rv7" firstAttribute="top" secondItem="7Ul-NM-JeT" secondAttribute="top" constant="15" id="E9k-lT-CC5"/>
-                    <constraint firstItem="ycJ-Eg-bMj" firstAttribute="top" secondItem="7Ul-NM-JeT" secondAttribute="top" constant="10" id="Ecf-ww-aEB"/>
-                    <constraint firstAttribute="trailing" secondItem="ttj-05-rv7" secondAttribute="trailing" constant="10" id="G1Q-4N-Po7"/>
-                    <constraint firstAttribute="bottom" secondItem="ycJ-Eg-bMj" secondAttribute="bottom" constant="10" id="QVZ-ba-lkq"/>
-                    <constraint firstItem="ycJ-Eg-bMj" firstAttribute="leading" secondItem="7Ul-NM-JeT" secondAttribute="leading" constant="10" id="T0G-wb-DGz"/>
-                    <constraint firstAttribute="bottom" secondItem="ttj-05-rv7" secondAttribute="bottom" constant="15" id="Za3-aA-Dbs"/>
-                    <constraint firstItem="ttj-05-rv7" firstAttribute="leading" secondItem="ycJ-Eg-bMj" secondAttribute="trailing" constant="10" id="i3c-Fm-Sks"/>
+                    <constraint firstAttribute="trailing" secondItem="yaj-5b-4xo" secondAttribute="trailing" constant="10" id="FW1-Zo-5qY"/>
+                    <constraint firstItem="yaj-5b-4xo" firstAttribute="leading" secondItem="2eI-JE-HDI" secondAttribute="trailing" constant="10" id="fdu-2e-6Uq"/>
+                    <constraint firstItem="yaj-5b-4xo" firstAttribute="top" secondItem="yRr-44-Y6z" secondAttribute="top" constant="15" id="jdm-uy-q8d"/>
+                    <constraint firstAttribute="bottom" secondItem="yaj-5b-4xo" secondAttribute="bottom" constant="15" id="k4L-T7-8ox"/>
+                    <constraint firstItem="2eI-JE-HDI" firstAttribute="leading" secondItem="yRr-44-Y6z" secondAttribute="leading" constant="20" id="mHH-au-ryM"/>
+                    <constraint firstAttribute="bottom" secondItem="2eI-JE-HDI" secondAttribute="bottom" constant="15" id="y08-lv-hJR"/>
+                    <constraint firstItem="2eI-JE-HDI" firstAttribute="top" secondItem="yRr-44-Y6z" secondAttribute="top" constant="15" id="yL1-rI-E6k"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="StatusIcon" destination="ycJ-Eg-bMj" id="xSU-bN-8dj"/>
-                <outlet property="StatusName" destination="ttj-05-rv7" id="0dx-40-yla"/>
+                <outlet property="StatusIcon" destination="2eI-JE-HDI" id="yKa-aW-gjX"/>
+                <outlet property="StatusName" destination="yaj-5b-4xo" id="YLs-RX-Opq"/>
             </connections>
             <point key="canvasLocation" x="183.96946564885496" y="-1.7605633802816902"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="student icon" width="24" height="24"/>
+        <image name="profile icon" width="48" height="48"/>
     </resources>
 </document>

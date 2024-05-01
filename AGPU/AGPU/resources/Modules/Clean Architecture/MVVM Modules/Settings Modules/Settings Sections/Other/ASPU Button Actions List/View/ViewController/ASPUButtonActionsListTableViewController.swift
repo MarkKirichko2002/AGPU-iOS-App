@@ -51,7 +51,15 @@ class ASPUButtonActionsListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.selectAction(index: indexPath.row)
+        let action = viewModel.actionItem(index: indexPath.row)
+        if action == .favourite {
+            let vc = ASPUButtonFavouriteActionsListTableViewController()
+            vc.isSettings = true
+            navigationController?.pushViewController(vc, animated: true)
+            viewModel.selectAction(index: indexPath.row)
+        } else {
+            viewModel.selectAction(index: indexPath.row)
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

@@ -9,5 +9,5 @@ import Foundation
 
 protocol ISelectedFacultySplashScreenViewModel {
     func getFaculty()
-    func registerFacultyHandler(block: @escaping(AGPUFacultyModel)->Void)
+    func registerFacultyHandler(block: @escaping(AGPUFacultyModel?)->Void)
 }

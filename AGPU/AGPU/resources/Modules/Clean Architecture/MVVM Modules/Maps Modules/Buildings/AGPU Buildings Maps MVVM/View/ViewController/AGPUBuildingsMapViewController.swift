@@ -16,7 +16,6 @@ final class AGPUBuildingsMapViewController: UIViewController {
     // MARK: - UI
     private let mapView = MKMapView()
     
-    var index = 0
     var isAction = false
     
     override func viewDidLoad() {
@@ -27,6 +26,13 @@ final class AGPUBuildingsMapViewController: UIViewController {
         makeConstraints()
         setUpButtons()
         bindViewModel()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !viewModel.arr.isEmpty {
+            setRegion(region: viewModel.defaultLocation())
+        }
     }
         
     private func setUpNavigation() {
@@ -62,7 +68,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         options.tintColor = .label
         
-        navigationItem.title = "Найти кампус"
+        navigationItem.title = "Текущая локация..."
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
         
@@ -121,21 +127,13 @@ final class AGPUBuildingsMapViewController: UIViewController {
     }
     
     @objc private func nextLocation() {
-        if index < mapView.annotations.count - 1 {
-            index += 1
-            let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
-            let region = MKCoordinateRegion(center: mapView.annotations[index].coordinate, span: span)
-            setRegion(region: region)
-        }
+        guard let region = viewModel.nextLocation() else {return}
+        setRegion(region: region)
     }
     
     @objc private func pastLocation() {
-        if index > 0 {
-            index -= 1
-            let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
-            let region = MKCoordinateRegion(center: mapView.annotations[index].coordinate, span: span)
-            setRegion(region: region)
-        }
+        guard let region = viewModel.pastLocation() else {return}
+        setRegion(region: region)
     }
     
     private func bindViewModel() {
@@ -148,7 +146,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
                 }
                 let cancel = UIAlertAction(title: "Отмена", style: .cancel) { _ in
                     Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                        NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
+                        self.sendScreenWasClosedNotification()
                     }
                     self.navigationController?.popViewController(animated: true)
                 }
@@ -159,12 +157,11 @@ final class AGPUBuildingsMapViewController: UIViewController {
         }
         viewModel.checkLocationAuthorizationStatus()
         viewModel.registerLocationHandler { location in
-            self.mapView.setRegion(location.region, animated: true)
+            self.navigationItem.title = "Найти кампус"
             self.mapView.showAnnotations(location.pins, animated: true)
         }
         viewModel.registerChoiceHandler { isBuildingType, annotation in
-            self.index = 0
-            self.navigationItem.title = "Найти кампус"
+            self.navigationItem.title = "Поиск..."
             if isBuildingType {
                 self.mapView.addAnnotation(annotation)
             } else {
@@ -177,7 +174,11 @@ final class AGPUBuildingsMapViewController: UIViewController {
         UIView.animate(withDuration: 1) {
             self.mapView.setRegion(region, animated: true)
         } completion: { _ in
-            self.navigationItem.title = self.mapView.annotations[self.index].title!
+            if self.viewModel.index == 0 {
+                self.navigationItem.title = "Текущая локация"
+            } else {
+                self.navigationItem.title = "\(self.viewModel.arr[self.viewModel.index].title! ?? "") (\(self.viewModel.index)/\(self.viewModel.arr.count - 1))"
+            }
             HapticsManager.shared.hapticFeedback()
         }
     }

@@ -109,13 +109,20 @@ final class CustomSplashScreenViewController: UIViewController {
     
     private func showSplashScreen() {
         
-        guard let screen = realmManager.getSplashScreen() else {return}
+        let screen = realmManager.getSplashScreen()
+        
+        let color = BackgroundColors.allCases.first { $0.title == screen.color }
         
         CustomIcon.image = UIImage(data: screen.image ?? Data())
         animation?.springAnimation(view: CustomIcon)
         
         Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
             self.CustomTitleLabel.text = screen.title
+            if color != .system {
+                self.CustomTitleLabel.textColor = color == nil ? .label : .white
+            } else {
+                self.CustomTitleLabel.textColor = .label
+            }
             self.animation?.springAnimation(view: self.CustomTitleLabel)
         }
         
@@ -125,5 +132,6 @@ final class CustomSplashScreenViewController: UIViewController {
             controller.modalTransitionStyle = .crossDissolve
             self.present(controller, animated: true, completion: nil)
         }
+        view.backgroundColor = color?.color ?? .systemBackground
     }
 }

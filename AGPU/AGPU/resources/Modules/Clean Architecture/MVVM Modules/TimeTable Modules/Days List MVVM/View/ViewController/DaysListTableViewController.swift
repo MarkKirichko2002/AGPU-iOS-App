@@ -85,7 +85,7 @@ extension DaysListTableViewController: IDayTableViewCell {
     
     func dateWasSelected(date: String) {
         let date = date.components(separatedBy: " ").last!
-        let vc = RecentTimeTableDayListTableViewController(id: id, date: date, owner: owner)
+        let vc = CurrentDateTimeTableDayListTableViewController(id: id, date: date, owner: owner)
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)

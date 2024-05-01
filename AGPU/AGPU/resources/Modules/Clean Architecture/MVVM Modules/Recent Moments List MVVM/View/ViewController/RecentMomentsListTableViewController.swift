@@ -82,7 +82,7 @@ final class RecentMomentsListTableViewController: UITableViewController {
     
     private func checkLastTimetable() {
         viewModel.getLastTimetable { group, date, owner in
-            let vc = RecentTimeTableDayListTableViewController(id: group, date: date, owner: owner)
+            let vc = CurrentDateTimeTableDayListTableViewController(id: group, date: date, owner: owner)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             DispatchQueue.main.async {

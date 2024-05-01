@@ -106,12 +106,24 @@ final class SelectedFacultySplashScreenViewController: UIViewController {
         
         viewModel.registerFacultyHandler { faculty in
             
-            self.AGPUIcon.image = UIImage(named: faculty.icon)
-            self.animation?.springAnimation(view: self.AGPUIcon)
-            
-            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
-                self.AGPUTitleLabel.text = faculty.abbreviation
-                self.animation?.springAnimation(view: self.AGPUTitleLabel)
+            if let faculty = faculty {
+                
+                self.AGPUIcon.image = UIImage(named: faculty.icon)
+                self.animation?.springAnimation(view: self.AGPUIcon)
+                
+                Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+                    self.AGPUTitleLabel.text = faculty.abbreviation
+                    self.animation?.springAnimation(view: self.AGPUTitleLabel)
+                }
+            } else {
+                
+                self.AGPUIcon.image = UIImage(named: "АГПУ")
+                self.animation?.springAnimation(view: self.AGPUIcon)
+                
+                Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+                    self.AGPUTitleLabel.text = "Нет факультета"
+                    self.animation?.springAnimation(view: self.AGPUTitleLabel)
+                }
             }
             
             Timer.scheduledTimer(withTimeInterval: 4, repeats: false) { _ in

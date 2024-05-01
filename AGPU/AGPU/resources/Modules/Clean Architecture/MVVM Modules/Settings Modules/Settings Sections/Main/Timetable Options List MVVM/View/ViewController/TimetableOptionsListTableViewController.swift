@@ -66,18 +66,23 @@ class TimetableOptionsListTableViewController: UITableViewController {
             let vc = TimeTableSoundsListTableViewController()
             self.navigationController?.pushViewController(vc, animated: true)
             HapticsManager.shared.hapticFeedback()
+        case 4:
+            let vc = TimeTableFavouriteItemsListTableViewController()
+            vc.isSettings = true
+            self.navigationController?.pushViewController(vc, animated: true)
+            HapticsManager.shared.hapticFeedback()
         default:
             break
         }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
-        case 0,1,2,3:
+        case 0,1,2,3,4:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TimetableOptionsTableViewCell.identifier, for: indexPath) as? TimetableOptionsTableViewCell else {return UITableViewCell()}
             cell.configure(option: viewModel.options[indexPath.row])
             return cell

@@ -24,10 +24,14 @@ class SaveRecentTimetableItemOptionCell: UITableViewCell {
         
         if Switch.isOn == true {
             print("on")
+            OptionIcon.tintColor = .label
+            TitleLabel.textColor = .label
             userDefaults.set(true, forKey: "onSaveRecentTimetableItem")
             animation.springAnimation(view: OptionIcon)
         } else if Switch.isOn == false {
             print("off")
+            OptionIcon.tintColor = .systemGray
+            TitleLabel.textColor = .systemGray
             userDefaults.set(false, forKey: "onSaveRecentTimetableItem")
         }
     }
@@ -41,6 +45,13 @@ class SaveRecentTimetableItemOptionCell: UITableViewCell {
         OptionIcon.tintColor = .label
         backgroundColor = .systemBackground
         TitleLabel.textColor = .label
-        Switch.isOn = userDefaults.bool(forKey: "onSaveRecentTimetableItem")
+        setUpState()
+    }
+    
+    private func setUpState() {
+        let isSaveRecentTimetableItem = userDefaults.object(forKey: "onSaveRecentTimetableItem") as? Bool ?? true
+        Switch.isOn = isSaveRecentTimetableItem
+        OptionIcon.tintColor = isSaveRecentTimetableItem == true ? .label : .systemGray
+        TitleLabel.textColor = isSaveRecentTimetableItem == true ? .label : .systemGray
     }
 }

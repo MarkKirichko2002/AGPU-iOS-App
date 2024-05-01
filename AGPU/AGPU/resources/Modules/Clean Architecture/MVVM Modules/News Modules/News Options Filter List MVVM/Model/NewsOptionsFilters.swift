@@ -10,5 +10,6 @@ import Foundation
 enum NewsOptionsFilters: String, CaseIterable, Codable {
     case today = "Сегодня"
     case yesterday = "Вчера"
+    case dayBeforeYesterday = "Позавчера"
     case all = "Все новости"
 }

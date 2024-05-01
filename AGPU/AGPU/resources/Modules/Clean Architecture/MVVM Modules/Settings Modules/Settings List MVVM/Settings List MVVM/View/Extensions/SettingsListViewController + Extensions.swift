@@ -66,11 +66,11 @@ extension SettingsListViewController: UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTabBarOptionTableViewCell.identifier, for: indexPath) as? CustomTabBarOptionTableViewCell else {return UITableViewCell()}
                 return cell
             } else if indexPath.row == 5 {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: AppThemesTableViewCell.identifier, for: indexPath) as? AppThemesTableViewCell else {return UITableViewCell()}
-                cell.configure(theme: viewModel.getAppThemeInfo())
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: ASPUButtonOptionTableViewCell.identifier, for: indexPath) as? ASPUButtonOptionTableViewCell else {return UITableViewCell()}
                 return cell
             } else {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: ASPUButtonOptionTableViewCell.identifier, for: indexPath) as? ASPUButtonOptionTableViewCell else {return UITableViewCell()}
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: AppThemesTableViewCell.identifier, for: indexPath) as? AppThemesTableViewCell else {return UITableViewCell()}
+                cell.configure(theme: viewModel.getAppThemeInfo())
                 return cell
             }
         case 2:
@@ -163,23 +163,23 @@ extension SettingsListViewController: UITableViewDelegate {
             } else if indexPath.row == 4 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "profile icon")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                    let vc = TabsListTableViewController()
+                    let vc = TabsOptionsListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
             } else if indexPath.row == 5 {
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "theme")
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "button")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                    let vc = AppThemesListTableViewController()
+                    let vc = ASPUButtonOptionsListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
             } else if indexPath.row == 6 {
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "button")
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "theme")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                    let vc = ASPUButtonOptionsListTableViewController()
+                    let vc = AppThemesListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)

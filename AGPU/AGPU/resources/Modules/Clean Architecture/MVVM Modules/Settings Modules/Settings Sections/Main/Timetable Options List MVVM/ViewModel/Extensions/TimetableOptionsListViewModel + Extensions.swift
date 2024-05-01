@@ -39,7 +39,7 @@ extension TimetableOptionsListViewModel: ITimetableOptionsListViewModel {
     func currentOwnerIcon()-> String {
         let owner = UserDefaults.standard.object(forKey: "recentOwner") as? String ?? "GROUP"
         if owner == "GROUP" {
-            return "group"
+            return "group icon"
         } else if owner == "TEACHER" {
             return "profile icon"
         } else if owner == "CLASSROOM" {

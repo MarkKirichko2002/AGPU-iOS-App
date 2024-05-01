@@ -50,10 +50,10 @@ final class SettingsListViewController: UIViewController {
         tableView.register(UINib(nibName: AppIconTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppIconTableViewCell.identifier)
         // Custom TabBar
         tableView.register(UINib(nibName: CustomTabBarOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CustomTabBarOptionTableViewCell.identifier)
-        // Темы приложения
-        tableView.register(UINib(nibName: AppThemesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppThemesTableViewCell.identifier)
         // ASPU Button
         tableView.register(UINib(nibName: ASPUButtonOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ASPUButtonOptionTableViewCell.identifier)
+        // Темы приложения
+        tableView.register(UINib(nibName: AppThemesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppThemesTableViewCell.identifier)
         // MARK: - О приложении
         // Фишки приложения
         tableView.register(UINib(nibName: AppFeaturesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppFeaturesTableViewCell.identifier)

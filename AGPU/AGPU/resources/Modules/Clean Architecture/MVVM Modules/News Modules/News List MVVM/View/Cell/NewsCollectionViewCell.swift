@@ -99,6 +99,21 @@ final class NewsCollectionViewCell: UICollectionViewCell {
     
     public func configure(with news: Article) {
         
+        let isStroke = UserDefaults.standard.object(forKey: "onBorderForDailyNews") as? Bool ?? true
+        
+        if isStroke {
+            setStroke(for: news)
+        } else {
+            DispatchQueue.main.async {
+                self.imageView.sd_setImage(with: URL(string: news.previewImage))
+                self.NewsTitle.text = news.title
+                self.dateLabel.text = news.date
+            }
+        }
+    }
+    
+    private func setStroke(for news: Article) {
+        
         let date = dateManager.getCurrentDate()
         
         if news.date == date {
@@ -119,6 +134,6 @@ final class NewsCollectionViewCell: UICollectionViewCell {
     }
     
     func didTapCell(indexPath: IndexPath) {
-        animation.flipAnimation(view: self) {}
+        animation.flipAnimation(view: self, option: .transitionFlipFromRight) {}
     }
 }

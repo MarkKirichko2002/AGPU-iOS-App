@@ -39,7 +39,7 @@ class AGPUCurrentCathedraMapViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "\(viewModel.getCurrentFaculty().icon)", title: "\(viewModel.getCurrentFaculty().abbreviation) кафедра", frame: .zero)
+        let titleView = CustomTitleView(image: "\(viewModel.getCurrentFaculty().icon)", title: "Кафедра \(viewModel.getCurrentFaculty().abbreviation)", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.titleView = titleView

@@ -45,7 +45,7 @@ final class AGPUFacultyTableViewCell: UITableViewCell {
     
     @objc private func openInfo() {
         if let faculty = faculty {
-            animation.flipAnimation(view: self.AGPUFacultyIcon) {
+            animation.flipAnimation(view: self.AGPUFacultyIcon, option: .transitionFlipFromRight) {
                 self.delegate?.openFacultyInfo(faculty: faculty)
             }
         }

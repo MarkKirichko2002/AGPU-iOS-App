@@ -44,9 +44,15 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             switch result {
             case .success(let response):
                 self.newsResponse = response
-                self.allNews = response.articles ?? []
-                self.option = .all
-                self.dataChangedHandler?("-")
+                switch displayMode {
+                case .grid:
+                    allNews = response.articles ?? []
+                    option = .all
+                    dataChangedHandler?("-")
+                case .webpage:
+                    dataChangedHandler?("-")
+                    webModeHandler?()
+                }
             case .failure(let error):
                 print(error)
             }
@@ -60,10 +66,16 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             switch result {
             case .success(let response):
                 self.newsResponse = response
-                self.allNews = response.articles ?? []
-                self.option = .all
                 self.abbreviation = abbreviation
-                self.dataChangedHandler?(abbreviation)
+                switch displayMode {
+                case .grid:
+                    allNews = response.articles ?? []
+                    option = .all
+                    dataChangedHandler?(abbreviation)
+                case .webpage:
+                    dataChangedHandler?(abbreviation)
+                    webModeHandler?()
+                }
             case .failure(let error):
                 print(error)
             }
@@ -110,22 +122,19 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             let result = try await newsService.getNews(by: page, abbreviation: abbreviation)
             switch result {
             case .success(let response):
-                self.newsResponse = response
-                self.allNews = response.articles ?? []
-                self.option = .all
-                self.dataChangedHandler?(self.abbreviation)
+                switch displayMode {
+                case .grid:
+                    self.newsResponse = response
+                    self.allNews = response.articles ?? []
+                    self.option = .all
+                    self.dataChangedHandler?(self.abbreviation)
+                case .webpage:
+                    self.newsResponse = response
+                    self.webModeHandler?()
+                }
             case .failure(let error):
                 print(error)
             }
-        }
-    }
-    
-    func getRandomNews() {
-        let abbreviation = NewsCategories.categories.randomElement()!.newsAbbreviation
-        if abbreviation != "-" {
-            getNews(abbreviation: abbreviation)
-        } else {
-            getAGPUNews()
         }
     }
     
@@ -165,12 +174,32 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         }
     }
     
+    func observeDisplayMode() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("display mode option"), object: nil, queue: .main) { notification in
+            if let displayMode = notification.object as? DisplayModes {
+                self.displayMode = displayMode
+                self.dislayModeHandler?(displayMode)
+            }
+        }
+    }
+    
     func observeFilterOption() {
         NotificationCenter.default.addObserver(forName: Notification.Name("news filter option"), object: nil, queue: .main) { notification in
             if let option = notification.object as? NewsOptionsFilters {
-                self.option = option
-                self.filterNews(option: option)
+                switch self.displayMode {
+                case .grid:
+                    self.option = option
+                    self.filterNews(option: option)
+                case .webpage:
+                    break
+                }
             }
+        }
+    }
+    
+    func observeStrokeOption() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("daily news border option"), object: nil, queue: .main) { _ in
+            self.dataChangedHandler?(self.abbreviation)
         }
     }
     
@@ -185,6 +214,13 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             let date = dateManager.getCurrentDate()
             let yesterday = dateManager.previousDay(date: date)
             let filteredNews = allNews.filter({ $0.date == yesterday})
+            newsResponse.articles = filteredNews
+            dataChangedHandler?(abbreviation)
+        case .dayBeforeYesterday:
+            let date = dateManager.getCurrentDate()
+            let yesterday = dateManager.previousDay(date: date)
+            let beforeYesterday = dateManager.previousDay(date: yesterday)
+            let filteredNews = allNews.filter({ $0.date == beforeYesterday})
             newsResponse.articles = filteredNews
             dataChangedHandler?(abbreviation)
         case .all:
@@ -217,5 +253,13 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     private func registerDataIsLoadedHandler(block: @escaping()->Void) {
         self.dataIsLoadedHandler = block
+    }
+    
+    func registerDislayModeHandler(block: @escaping(DisplayModes)->Void) {
+        self.dislayModeHandler = block
+    }
+    
+    func registerWebModeHandler(block: @escaping()->Void) {
+        self.webModeHandler = block
     }
 }

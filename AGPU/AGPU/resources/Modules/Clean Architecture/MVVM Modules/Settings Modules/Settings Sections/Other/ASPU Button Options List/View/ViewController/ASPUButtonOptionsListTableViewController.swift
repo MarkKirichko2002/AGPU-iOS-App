@@ -35,6 +35,7 @@ class ASPUButtonOptionsListTableViewController: UITableViewController {
     private func setUpTable() {
         tableView.register(UINib(nibName: ASPUButtonIconOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ASPUButtonIconOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: ASPUButtonActionsOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ASPUButtonActionsOptionTableViewCell.identifier)
+        tableView.register(UINib(nibName: ASPUButtonAnimationOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ASPUButtonAnimationOptionTableViewCell.identifier)
     }
     
     private func bindViewModel() {
@@ -54,6 +55,9 @@ class ASPUButtonOptionsListTableViewController: UITableViewController {
         case 1:
             let vc = ASPUButtonActionsListTableViewController()
             navigationController?.pushViewController(vc, animated: true)
+        case 2:
+            let vc = ASPUButtonAnimationOptionsListTableViewController()
+            navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }
@@ -61,7 +65,7 @@ class ASPUButtonOptionsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)-> Int {
-        return 2
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)-> UITableViewCell {
@@ -72,6 +76,10 @@ class ASPUButtonOptionsListTableViewController: UITableViewController {
         } else if indexPath.row == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ASPUButtonActionsOptionTableViewCell.identifier, for: indexPath) as? ASPUButtonActionsOptionTableViewCell else {return UITableViewCell()}
             cell.configure(action: viewModel.getASPUButtonActionInfo())
+            return cell
+        } else if indexPath.row == 2 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ASPUButtonAnimationOptionTableViewCell.identifier, for: indexPath) as? ASPUButtonAnimationOptionTableViewCell else {return UITableViewCell()}
+            cell.configure(option: viewModel.getASPUButtonAnimationOptionInfo())
             return cell
         } else {
             return UITableViewCell()

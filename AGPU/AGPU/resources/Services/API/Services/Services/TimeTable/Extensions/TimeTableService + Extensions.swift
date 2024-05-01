@@ -64,7 +64,7 @@ extension TimeTableService: TimeTableServicerProtocol {
     
     func getWeeks(completion: @escaping(Result<[WeekModel],Error>)->Void) {
         
-        AF.request("http://merqury.fun/api/timetable/weeks").responseData { response in
+        AF.request("http://agpu.merqury.fun/api/timetable/weeks").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -80,7 +80,7 @@ extension TimeTableService: TimeTableServicerProtocol {
     
     func getTimeTableDayImage(json: Data, completion: @escaping(UIImage)->Void) {
         
-        let url = "http://merqury.fun/api/timetable/image/day?vertical"
+        let url = "http://agpu.merqury.fun/api/timetable/image/day?vertical"
         
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
@@ -103,7 +103,7 @@ extension TimeTableService: TimeTableServicerProtocol {
     
     func getTimeTableWeekImage(json: Data, completion: @escaping(UIImage)->Void) {
         
-        let url = "http://merqury.fun/api/timetable/image/6days?horizontal"
+        let url = "http://agpu.merqury.fun/api/timetable/image/6days?horizontal"
         
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"

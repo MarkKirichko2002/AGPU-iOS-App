@@ -8,6 +8,7 @@
 import Foundation
 
 protocol CathedraBuildingDetailViewModelProtocol {
+    func getInfo()-> (FacultyCathedraModel, AGPUFacultyModel)
     func getWeather()
     func registerWeatherHandler(block: @escaping(String)->Void)
 }

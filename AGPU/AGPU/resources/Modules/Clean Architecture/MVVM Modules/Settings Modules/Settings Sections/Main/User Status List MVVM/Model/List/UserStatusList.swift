@@ -14,7 +14,7 @@ struct UserStatusList {
         UserStatusModel(
             id: 1,
             name: "Абитуриент",
-            icon: "applicant",
+            icon: "profile icon",
             iconSelected: "applicant selected"
         ),
         
