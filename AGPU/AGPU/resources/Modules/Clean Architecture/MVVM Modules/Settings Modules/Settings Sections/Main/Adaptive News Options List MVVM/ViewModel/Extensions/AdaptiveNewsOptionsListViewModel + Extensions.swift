@@ -26,8 +26,12 @@ extension AdaptiveNewsOptionsListViewModel: IAdaptiveNewsOptionsListViewModel {
         }
     }
     
+    func getDisplayModeInfo()-> String {
+        let savedDisplayMode = UserDefaults.loadData(type: DisplayModes.self, key: "display mode") ?? .grid
+        return savedDisplayMode.rawValue
+    }
+    
     func registerDataHandler(block: @escaping()->Void) {
         self.dataChangedHandler = block
     }
-    
 }

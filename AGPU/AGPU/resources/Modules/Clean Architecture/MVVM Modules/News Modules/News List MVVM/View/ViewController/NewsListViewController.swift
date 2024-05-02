@@ -38,7 +38,6 @@ final class NewsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
-        setUpCollectionView()
         setUpIndicatorView()
         setUpLabel()
         bindViewModel()
@@ -187,17 +186,27 @@ final class NewsListViewController: UIViewController {
             options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
             options.tintColor = .label
             
-            DispatchQueue.main.async {
-                self.navigationItem.titleView = titleView
-                self.navigationItem.rightBarButtonItem = options
-                self.collectionView.reloadData()
-            }
             
-            DispatchQueue.main.async {
-                if !(self.viewModel.newsResponse.articles?.isEmpty ?? false) {
-                    self.noNewsLabel.isHidden = true
-                } else {
-                    self.noNewsLabel.isHidden = false
+            if viewModel.displayMode == .grid {
+                
+                DispatchQueue.main.async {
+                    self.navigationItem.titleView = titleView
+                    self.navigationItem.rightBarButtonItem = options
+                    self.collectionView.reloadData()
+                }
+                
+                DispatchQueue.main.async {
+                    if !(self.viewModel.newsResponse.articles?.isEmpty ?? false) {
+                        self.noNewsLabel.isHidden = true
+                    } else {
+                        self.noNewsLabel.isHidden = false
+                    }
+                }
+            } else {
+                
+                DispatchQueue.main.async {
+                    self.navigationItem.titleView = titleView
+                    self.navigationItem.rightBarButtonItem = options
                 }
             }
         }
@@ -205,15 +214,17 @@ final class NewsListViewController: UIViewController {
         viewModel.registerDislayModeHandler { mode in
             switch mode {
             case .grid:
-                self.webView.removeFromSuperview()
-                self.setUpCollectionView()
-                self.setUpIndicatorView()
-                Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
-                    self.viewModel.refreshNews()
+                DispatchQueue.main.async {
+                    self.webView.removeFromSuperview()
+                    self.setUpCollectionView()
+                    self.setUpIndicatorView()
+                    self.spinner.stopAnimating()
                 }
             case .webpage:
-                self.collectionView.removeFromSuperview()
-                self.setUpWebView()
+                DispatchQueue.main.async {
+                    self.collectionView.removeFromSuperview()
+                    self.setUpWebView()
+                }
             }
         }
         

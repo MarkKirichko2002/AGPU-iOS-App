@@ -305,6 +305,12 @@
 		828DC55C2A7B3887001EA324 /* FacultyGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DC55B2A7B3887001EA324 /* FacultyGroups.swift */; };
 		828E10332BD169CA00ECC5F4 /* TabsColorOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828E10312BD169CA00ECC5F4 /* TabsColorOptionTableViewCell.swift */; };
 		828E10372BD16AD700ECC5F4 /* TabsColorOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 828E10362BD16AD700ECC5F4 /* TabsColorOptionTableViewCell.xib */; };
+		828E691E2BE2DBF80097FAAD /* DisplayModeOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828E691C2BE2DBF80097FAAD /* DisplayModeOptionTableViewCell.swift */; };
+		828E691F2BE2DBF80097FAAD /* DisplayModeOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 828E691D2BE2DBF80097FAAD /* DisplayModeOptionTableViewCell.xib */; };
+		828E69242BE2E2FF0097FAAD /* SavedDisplayModeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828E69232BE2E2FF0097FAAD /* SavedDisplayModeTableViewController.swift */; };
+		828E692A2BE2E3CB0097FAAD /* ISavedDisplayModeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828E69292BE2E3CB0097FAAD /* ISavedDisplayModeViewModel.swift */; };
+		828E692C2BE2E4080097FAAD /* SavedDisplayModeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828E692B2BE2E4080097FAAD /* SavedDisplayModeViewModel.swift */; };
+		828E692E2BE2E4250097FAAD /* SavedDisplayModeViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828E692D2BE2E4250097FAAD /* SavedDisplayModeViewModel + Extensions.swift */; };
 		82920B652AD86EE600352CD8 /* YourStatusOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B632AD86EE600352CD8 /* YourStatusOptionTableViewCell.swift */; };
 		82920B662AD86EE600352CD8 /* YourStatusOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82920B642AD86EE600352CD8 /* YourStatusOptionTableViewCell.xib */; };
 		82920B6A2AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B682AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift */; };
@@ -855,6 +861,12 @@
 		828DC55B2A7B3887001EA324 /* FacultyGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroups.swift; sourceTree = "<group>"; };
 		828E10312BD169CA00ECC5F4 /* TabsColorOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsColorOptionTableViewCell.swift; sourceTree = "<group>"; };
 		828E10362BD16AD700ECC5F4 /* TabsColorOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabsColorOptionTableViewCell.xib; sourceTree = "<group>"; };
+		828E691C2BE2DBF80097FAAD /* DisplayModeOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayModeOptionTableViewCell.swift; sourceTree = "<group>"; };
+		828E691D2BE2DBF80097FAAD /* DisplayModeOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisplayModeOptionTableViewCell.xib; sourceTree = "<group>"; };
+		828E69232BE2E2FF0097FAAD /* SavedDisplayModeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDisplayModeTableViewController.swift; sourceTree = "<group>"; };
+		828E69292BE2E3CB0097FAAD /* ISavedDisplayModeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISavedDisplayModeViewModel.swift; sourceTree = "<group>"; };
+		828E692B2BE2E4080097FAAD /* SavedDisplayModeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDisplayModeViewModel.swift; sourceTree = "<group>"; };
+		828E692D2BE2E4250097FAAD /* SavedDisplayModeViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedDisplayModeViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82920B632AD86EE600352CD8 /* YourStatusOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourStatusOptionTableViewCell.swift; sourceTree = "<group>"; };
 		82920B642AD86EE600352CD8 /* YourStatusOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YourStatusOptionTableViewCell.xib; sourceTree = "<group>"; };
 		82920B682AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFacultyOptionTableViewCell.swift; sourceTree = "<group>"; };
@@ -2386,6 +2398,7 @@
 			isa = PBXGroup;
 			children = (
 				8225279F2BACE48F00B66314 /* Saved News Category */,
+				828E691B2BE2DBE00097FAAD /* Display Mode Option */,
 				822527A02BACE4A400B66314 /* Adapt To Web */,
 				82FC22F22BC036D7008709DA /* Daily News */,
 				82754C702BD45BCC0021E76A /* Border For Daily News */,
@@ -3593,7 +3606,7 @@
 		825D56702AE5CBA8004305C7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				825D56722AE5CBEB004305C7 /* PairInfoTableViewController.swift */,
+				828E692F2BE306AB0097FAAD /* ViewController */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4852,6 +4865,82 @@
 			isa = PBXGroup;
 			children = (
 				82768AE72ABE13B80022FBE1 /* AppThemesListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		828E691B2BE2DBE00097FAAD /* Display Mode Option */ = {
+			isa = PBXGroup;
+			children = (
+				828E691C2BE2DBF80097FAAD /* DisplayModeOptionTableViewCell.swift */,
+				828E691D2BE2DBF80097FAAD /* DisplayModeOptionTableViewCell.xib */,
+			);
+			path = "Display Mode Option";
+			sourceTree = "<group>";
+		};
+		828E69202BE2E2980097FAAD /* Saved Display Mode MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				828E69222BE2E2C90097FAAD /* View */,
+				828E69212BE2E2C50097FAAD /* ViewModel */,
+			);
+			path = "Saved Display Mode MVVM";
+			sourceTree = "<group>";
+		};
+		828E69212BE2E2C50097FAAD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				828E69282BE2E3A70097FAAD /* Protocol */,
+				828E69272BE2E3A50097FAAD /* ViewModel */,
+				828E69262BE2E3A30097FAAD /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		828E69222BE2E2C90097FAAD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				828E69252BE2E3930097FAAD /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		828E69252BE2E3930097FAAD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				828E69232BE2E2FF0097FAAD /* SavedDisplayModeTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		828E69262BE2E3A30097FAAD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				828E692D2BE2E4250097FAAD /* SavedDisplayModeViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		828E69272BE2E3A50097FAAD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				828E692B2BE2E4080097FAAD /* SavedDisplayModeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		828E69282BE2E3A70097FAAD /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				828E69292BE2E3CB0097FAAD /* ISavedDisplayModeViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		828E692F2BE306AB0097FAAD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				825D56722AE5CBEB004305C7 /* PairInfoTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -7823,6 +7912,7 @@
 				82920B812AD881D100352CD8 /* Selected Faculty List MVVM */,
 				8225278F2BACD6C600B66314 /* Adaptive News Options List MVVM */,
 				82AB6D1A2AF6C01100F7B729 /* Saved News Category MVVM */,
+				828E69202BE2E2980097FAAD /* Saved Display Mode MVVM */,
 				8226D1732B095D5500B0B9F0 /* Timetable Options List MVVM */,
 				82B1C0C52A80702D00520C14 /* Saved Sub Group MVVM */,
 				8226D1842B096F2A00B0B9F0 /* Saved Pair Type MVVM */,
@@ -8105,6 +8195,7 @@
 				822DA7182BCACDC000CB4A21 /* technopark.mp4 in Resources */,
 				822605EF2A84A0600055925F /* Assets.xcassets in Resources */,
 				8213658B2A94F73100A20E4E /* InfoPlist.strings in Resources */,
+				828E691F2BE2DBF80097FAAD /* DisplayModeOptionTableViewCell.xib in Resources */,
 				82C449FE2B616F660039B0F3 /* SaveRecentTimetableItemOptionCell.xib in Resources */,
 				82FC22F62BC03722008709DA /* ShowOnlyDailyNewsTableViewCell.xib in Resources */,
 				822DA7172BCACDC000CB4A21 /* quantorium.mp4 in Resources */,
@@ -8300,6 +8391,7 @@
 				8228E3A62A6C9DB300C1B6AD /* AGPUBuildingsMapViewModel + Extensions.swift in Sources */,
 				82754C5B2BD3D84B0021E76A /* CustomSplashScreenEditorViewController + Extensions.swift in Sources */,
 				82989AD82A6E54AF00F27858 /* AGPUCurrentCathedraMapViewController.swift in Sources */,
+				828E691E2BE2DBF80097FAAD /* DisplayModeOptionTableViewCell.swift in Sources */,
 				822605FA2A8532F30055925F /* RecentMomentsListViewModel + Extensions.swift in Sources */,
 				8209A0AE2B838DBB0013371D /* DocumentsListViewModel.swift in Sources */,
 				82184D8B2B7BD9E500F2588E /* CurrentWeatherTableViewCellViewModel.swift in Sources */,
@@ -8386,6 +8478,7 @@
 				829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */,
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
 				82967C1F2BA081F9001059B2 /* RecentNewsListViewController.swift in Sources */,
+				828E69242BE2E2FF0097FAAD /* SavedDisplayModeTableViewController.swift in Sources */,
 				822FB2162AC5DF580083E016 /* SubGroupsListViewModel.swift in Sources */,
 				82C5B78B2BCEF6E900F907CB /* ASPUButtonAnimationOptionsListTableViewController.swift in Sources */,
 				8268885B2A33AC6000434219 /* AnimationClass.swift in Sources */,
@@ -8454,6 +8547,7 @@
 				8209A0B72B839C0C0013371D /* DocumentTableViewCell.swift in Sources */,
 				828321762A7D6503008641A5 /* VoiceSearchAGPUBuildingMapViewController + Extensions.swift in Sources */,
 				829952582BDCB5CC003AFB14 /* ASPUButtonFavouriteActionsListTableViewController.swift in Sources */,
+				828E692C2BE2E4080097FAAD /* SavedDisplayModeViewModel.swift in Sources */,
 				82184D822B7BD8EC00F2588E /* HourlyWeatherCollectionViewCell.swift in Sources */,
 				82E4C5432A6B10F900F65A67 /* WebViewModelProtocol.swift in Sources */,
 				8299526A2BDCBE1F003AFB14 /* ASPUButtonFavouriteActionsListTableViewController + Extensions.swift in Sources */,
@@ -8471,6 +8565,7 @@
 				829952432BDB8999003AFB14 /* TimeTableFavouriteItemsListTableViewController.swift in Sources */,
 				828D51382BB8A3BF00848FF8 /* ASPUButtonIconTableViewCell.swift in Sources */,
 				82761A312B4642A300D9976F /* SplashScreensListViewModel + Extensions.swift in Sources */,
+				828E692E2BE2E4250097FAAD /* SavedDisplayModeViewModel + Extensions.swift in Sources */,
 				82111A002B990138007B61E5 /* INewsWebViewModel.swift in Sources */,
 				82B1C0D62A8071E500520C14 /* SavedSubGroupTableViewController.swift in Sources */,
 				82989AEB2A6F6E1B00F27858 /* FacultyCathedraListViewModelProtocol.swift in Sources */,
@@ -8627,6 +8722,7 @@
 				822245922B28EC2B00DFCFA7 /* Actions.swift in Sources */,
 				82BC2F4D2A8F0B9500ADB239 /* NewsPagesListTableViewController.swift in Sources */,
 				821B727B2BD17490000460E2 /* ITabColorsListViewModel.swift in Sources */,
+				828E692A2BE2E3CB0097FAAD /* ISavedDisplayModeViewModel.swift in Sources */,
 				82B2670B2A8DAB4900043A6D /* NewsCategoryModel.swift in Sources */,
 				82B24AA32A81C8C3008B94E4 /* AGPUNewsListViewModel + Extensions.swift in Sources */,
 				82B1C0D22A8070FF00520C14 /* SavedSubGroupViewModel + Extensions.swift in Sources */,
@@ -8868,7 +8964,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.5;
+				MARKETING_VERSION = 2.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -8907,7 +9003,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.5;
+				MARKETING_VERSION = 2.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

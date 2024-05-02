@@ -19,10 +19,8 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     }
     
     func checkSettings() {
-        registerDataIsLoadedHandler {
-            self.option = UserDefaults.loadData(type: NewsOptionsFilters.self, key: "news filter") ?? .all
-            self.filterNews(option: self.option)
-        }
+        option = UserDefaults.loadData(type: NewsOptionsFilters.self, key: "news filter") ?? .all
+        displayMode = UserDefaults.loadData(type: DisplayModes.self, key: "display mode") ?? .grid
         getNewsByCurrentType()
     }
     
@@ -30,9 +28,9 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     func getNewsByCurrentType() {
         let savedNewsCategory = UserDefaults.standard.object(forKey: "category") as? String ?? "-"
         if savedNewsCategory != "-" {
-            getFilteredNews(abbreviation: savedNewsCategory)
+           getNews(abbreviation: savedNewsCategory)
         } else {
-            getFilteredAGPUNews()
+            getAGPUNews()
             abbreviation = "-"
         }
     }
@@ -47,10 +45,10 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                 switch displayMode {
                 case .grid:
                     allNews = response.articles ?? []
-                    option = .all
-                    dataChangedHandler?("-")
+                    filterNews(option: option)
                 case .webpage:
                     dataChangedHandler?("-")
+                    dislayModeHandler?(.webpage)
                     webModeHandler?()
                 }
             case .failure(let error):
@@ -70,46 +68,12 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                 switch displayMode {
                 case .grid:
                     allNews = response.articles ?? []
-                    option = .all
-                    dataChangedHandler?(abbreviation)
+                    filterNews(option: option)
                 case .webpage:
                     dataChangedHandler?(abbreviation)
+                    dislayModeHandler?(.webpage)
                     webModeHandler?()
                 }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    func getFilteredAGPUNews() {
-        Task {
-            let result = try await newsService.getAGPUNews()
-            switch result {
-            case .success(let response):
-                self.newsResponse = response
-                self.allNews = response.articles ?? []
-                self.option = .all
-                self.dataChangedHandler?("-")
-                self.dataIsLoadedHandler?()
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    // получить новости
-    func getFilteredNews(abbreviation: String) {
-        Task {
-            let result = try await newsService.getNews(abbreviation: abbreviation)
-            switch result {
-            case .success(let response):
-                self.newsResponse = response
-                self.allNews = response.articles ?? []
-                self.option = .all
-                self.abbreviation = abbreviation
-                self.dataChangedHandler?(abbreviation)
-                self.dataIsLoadedHandler?()
             case .failure(let error):
                 print(error)
             }
@@ -128,8 +92,10 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                     self.allNews = response.articles ?? []
                     self.option = .all
                     self.dataChangedHandler?(self.abbreviation)
+                    self.dislayModeHandler?(.grid)
                 case .webpage:
                     self.newsResponse = response
+                    self.dislayModeHandler?(displayMode)
                     self.webModeHandler?()
                 }
             case .failure(let error):
@@ -178,7 +144,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         NotificationCenter.default.addObserver(forName: Notification.Name("display mode option"), object: nil, queue: .main) { notification in
             if let displayMode = notification.object as? DisplayModes {
                 self.displayMode = displayMode
-                self.dislayModeHandler?(displayMode)
+                self.getNews(by: self.newsResponse.currentPage ?? 0)
             }
         }
     }

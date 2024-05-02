@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum DisplayModes: String, CaseIterable {
+enum DisplayModes: String, CaseIterable, Codable {
     case grid = "Сетка"
     case webpage = "Веб-страница"
 }
