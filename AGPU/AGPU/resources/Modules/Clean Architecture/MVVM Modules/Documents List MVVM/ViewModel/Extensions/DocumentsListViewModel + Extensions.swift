@@ -23,6 +23,11 @@ extension DocumentsListViewModel: IDocumentsListViewModel {
         dataChangedHandler?()
     }
     
+    func addDocument(document: DocumentModel) {
+        realmManager.saveDocument(document: document)
+        getDocuments()
+    }
+    
     func editDocument(document: DocumentModel, name: String) {
         realmManager.editDocumentName(document: document, name: name)
         getDocuments()
