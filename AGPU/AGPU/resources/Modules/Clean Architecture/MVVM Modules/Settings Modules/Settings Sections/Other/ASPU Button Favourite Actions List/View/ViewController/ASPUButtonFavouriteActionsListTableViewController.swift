@@ -70,10 +70,27 @@ class ASPUButtonFavouriteActionsListTableViewController: UIViewController {
         dismiss(animated: true)
     }
     
+    func setUpAddButton() {
+        let addButton = UIBarButtonItem(image: UIImage(named: "add"), style: .done, target: self, action: #selector(addButtonTapped))
+        addButton.tintColor = .label
+        navigationItem.rightBarButtonItem = addButton
+    }
+    
     @objc private func addButtonTapped() {
         let vc = ASPUButtonAllActionsListTableViewController()
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func setUpEditButton(title: String) {
+        let moveButton = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(moveActions))
+        moveButton.tintColor = .label
+        navigationItem.rightBarButtonItem = moveButton
+    }
+    
+    @objc private func moveActions() {
+        tableView.isEditing.toggle()
+        setUpAddButton()
     }
     
     private func setUpTable() {

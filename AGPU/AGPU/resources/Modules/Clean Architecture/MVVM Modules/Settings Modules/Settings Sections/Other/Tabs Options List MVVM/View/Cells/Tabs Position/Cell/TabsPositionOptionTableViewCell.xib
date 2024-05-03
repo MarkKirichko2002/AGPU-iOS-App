@@ -24,7 +24,7 @@
                             <constraint firstAttribute="height" constant="65" id="Szm-7X-2cu"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Позиция вкладок" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4b-4a-e1B">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Порядок вкладок" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4b-4a-e1B">
                         <rect key="frame" x="95" y="15" width="288" height="60"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="gbx-M9-AqF"/>

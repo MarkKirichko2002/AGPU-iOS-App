@@ -40,7 +40,7 @@ extension DocumentsListTableViewController: UITableViewDelegate {
                 self.showEditAlert()
             }
             
-            let positionAction = UIAction(title: "Позиция", image: UIImage(named: "one")) { _ in
+            let positionAction = UIAction(title: "Позиция", image: UIImage(named: "number")) { _ in
                 tableView.isEditing.toggle()
                 self.setUpEditButton()
             }
