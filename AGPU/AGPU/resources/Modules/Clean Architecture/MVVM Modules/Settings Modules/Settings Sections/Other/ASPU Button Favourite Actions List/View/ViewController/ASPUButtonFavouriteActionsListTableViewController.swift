@@ -67,6 +67,7 @@ class ASPUButtonFavouriteActionsListTableViewController: UIViewController {
     
     @objc private func closeScreen() {
         HapticsManager.shared.hapticFeedback()
+        sendScreenWasClosedNotification()
         dismiss(animated: true)
     }
     

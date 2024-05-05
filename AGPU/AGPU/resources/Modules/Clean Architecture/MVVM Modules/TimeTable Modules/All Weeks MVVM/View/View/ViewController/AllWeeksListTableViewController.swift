@@ -13,6 +13,8 @@ class AllWeeksListTableViewController: UITableViewController {
     private var subgroup: Int = 0
     private var owner: String = ""
     
+    var isNotify = false
+    
     // MARK: - сервисы
     private let viewModel = AllWeeksListViewModel()
     
@@ -49,6 +51,9 @@ class AllWeeksListTableViewController: UITableViewController {
     
     @objc private func closeScreen() {
         HapticsManager.shared.hapticFeedback()
+        if isNotify {
+            sendScreenWasClosedNotification()
+        }
         self.dismiss(animated: true)
     }
 

@@ -194,10 +194,10 @@ final class AGPUTabBarController: UITabBarController {
     }
     
      @objc func openRecentMoments() {
-        self.updateASPUButton(icon: "time.past")
         let vc = RecentMomentsListTableViewController()
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
+        self.updateASPUButton(icon: "time.past")
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
             self.present(navVC, animated: true)
         }
@@ -262,9 +262,13 @@ final class AGPUTabBarController: UITabBarController {
         let subgroup = UserDefaults.standard.integer(forKey: "subgroup")
         let owner = UserDefaults.standard.string(forKey: "recentOwner") ?? "GROUP"
         let vc = AllWeeksListTableViewController(id: id, subgroup: subgroup, owner: owner)
+        vc.isNotify = true
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
-        present(navVC, animated: true)
+        self.updateASPUButton(icon: "clock")
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.present(navVC, animated: true)
+        }
     }
     
     @objc func openCampusMap() {
@@ -272,21 +276,33 @@ final class AGPUTabBarController: UITabBarController {
         vc.isAction = true
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
-        present(navVC, animated: true)
+        self.updateASPUButton(icon: "map icon")
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.present(navVC, animated: true)
+        }
     }
     
     @objc func openStudyPlan() {
-        self.goToWeb(url: "http://plany.agpu.net/Plans/", image: "student", title: "Учебный план", isSheet: false, isNotify: false)
+        self.updateASPUButton(icon: "student")
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.goToWeb(url: "http://plany.agpu.net/Plans/", image: "student", title: "Учебный план", isSheet: false, isNotify: true)
+        }
     }
     
     
     @objc func openProfile() {
-        self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: "profile icon", title: "ЭИОС", isSheet: false, isNotify: false)
+        self.updateASPUButton(icon: "profile icon")
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: "profile icon", title: "ЭИОС", isSheet: false, isNotify: true)
+        }
     }
     
     @objc func openManual() {
         if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
-            self.goToWeb(url: cathedra.manualUrl, image: "book", title: "Метод. материалы", isSheet: false, isNotify: false)
+            self.updateASPUButton(icon: "book")
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.goToWeb(url: cathedra.manualUrl, image: "book", title: "Метод. материалы", isSheet: false, isNotify: true)
+            }
         } else {
             self.showHintAlert(type: .manuals)
             HapticsManager.shared.hapticFeedback()
@@ -298,7 +314,10 @@ final class AGPUTabBarController: UITabBarController {
         vc.delegate = self
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
-        present(navVC, animated: true)
+        self.updateASPUButton(icon: "star")
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.present(navVC, animated: true)
+        }
     }
     
     private func observeForEveryStatus() {
