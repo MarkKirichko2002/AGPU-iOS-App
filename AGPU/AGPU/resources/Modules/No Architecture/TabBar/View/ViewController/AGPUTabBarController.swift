@@ -164,36 +164,36 @@ final class AGPUTabBarController: UITabBarController {
             ASPUButton.addTarget(self, action: #selector(openProfile), for: .touchUpInside)
         case .manual:
             ASPUButton.addTarget(self, action: #selector(openManual), for: .touchUpInside)
+        case .recent:
+            ASPUButton.addTarget(self, action: #selector(openRecentMoments), for: .touchUpInside)
         case .favourite:
             ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
         }
     }
     
-    // MARK: - Shake To Recall
+    // MARK: - Action To Recall
     override var canBecomeFirstResponder: Bool {
         return true
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        checkActionToRecall()
+    }
+    
+    func checkActionToRecall() {
         if settingsManager.checkShakeToRecallOption() {
-            ShakeToRecall(motion: motion)
+            openRecentMoments()
         } else {
             self.updateASPUButton(icon: "info icon")
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let ok = UIAlertAction(title: "ОК", style: .default)
-                self.showAlert(title: "Вы отключили фишку Shake To Recall!", message: "чтобы дальше пользоваться данной фишкой включите ее в настройках.", actions: [ok])
+                self.showAlert(title: "Вы отключили фишку Action To Recall!", message: "чтобы дальше пользоваться данной фишкой включите ее в настройках.", actions: [ok])
                 self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
             }
         }
     }
     
-    private func ShakeToRecall(motion: UIEvent.EventSubtype) {
-        if motion == .motionShake {
-            ShakeToRecall()
-        }
-    }
-    
-    private func ShakeToRecall() {
+     @objc func openRecentMoments() {
         self.updateASPUButton(icon: "time.past")
         let vc = RecentMomentsListTableViewController()
         let navVC = UINavigationController(rootViewController: vc)

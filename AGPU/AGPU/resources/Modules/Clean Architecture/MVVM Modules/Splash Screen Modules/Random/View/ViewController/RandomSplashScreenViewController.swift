@@ -43,7 +43,7 @@ class RandomSplashScreenViewController: UIViewController {
     private let RandomDescription: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "Нажмите на дайс для случайного выбора экрана заставки."
+        label.text = "Нажмите на дайс или встряхните ваш \(UIDevice.name) для случайного выбора экрана заставки."
         label.textColor = .label
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 18, weight: .black)
@@ -60,6 +60,12 @@ class RandomSplashScreenViewController: UIViewController {
         super.viewWillLayoutSubviews()
         setUpConstraints()
     }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            showRandomScreen()
+        }
+    }
         
     private func setUpView() {
         view.backgroundColor = .systemBackground
@@ -68,11 +74,11 @@ class RandomSplashScreenViewController: UIViewController {
     }
     
     private func setUpIcon() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(generateScreen))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showRandomScreen))
         DiceIcon.addGestureRecognizer(tap)
     }
     
-    @objc private func generateScreen() {
+    @objc private func showRandomScreen() {
         animation.flipAnimation(view: self.DiceIcon, option: .transitionFlipFromRight) {
             let randomVC = self.viewModel.generateRandomScreen()
             randomVC.modalPresentationStyle = .fullScreen

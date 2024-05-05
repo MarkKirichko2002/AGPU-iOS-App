@@ -10,7 +10,7 @@ import UIKit
 // MARK: - SettingsManagerProtocol
 extension SettingsManager: SettingsManagerProtocol {
    
-    // MARK: - Shake To Recall
+    // MARK: - Action To Recall
     func checkShakeToRecallOption()-> Bool {
         if let option = UserDefaults.standard.value(forKey: "onShakeToRecall") as? Bool {
             return option

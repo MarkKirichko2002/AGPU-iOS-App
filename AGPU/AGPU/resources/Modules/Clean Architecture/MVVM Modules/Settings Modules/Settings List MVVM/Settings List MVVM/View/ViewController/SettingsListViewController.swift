@@ -40,7 +40,7 @@ final class SettingsListViewController: UIViewController {
         // Advanced Timetable
         tableView.register(UINib(nibName: TimetableOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimetableOptionTableViewCell.identifier)
         // MARK: - Секция "Другие опции"
-        // Shake To Recall
+        // Action To Recall
         tableView.register(UINib(nibName: ShakeToRecallOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ShakeToRecallOptionTableViewCell.identifier)
         // Only Timetable
         tableView.register(UINib(nibName: OnlyTimetableOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: OnlyTimetableOptionTableViewCell.identifier)
