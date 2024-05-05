@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WebKit
 
 // MARK: - UICollectionViewDelegate
 extension NewsListViewController: UICollectionViewDelegate {
@@ -71,5 +72,21 @@ extension NewsListViewController: UICollectionViewDelegateFlowLayout {
             width: width,
             height: width * 1.5
         )
+    }
+}
+
+// MARK: - WKNavigationDelegate
+extension NewsListViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        DispatchQueue.main.async {
+            self.navigationController?.navigationBar.isTranslucent = true
+        }
+    }
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        DispatchQueue.main.async {
+            self.navigationController?.navigationBar.isTranslucent = true
+        }
     }
 }

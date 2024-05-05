@@ -33,20 +33,27 @@ final class NewsListViewController: UIViewController {
     
     private let noNewsLabel = UILabel()
     
-    private let spinner = UIActivityIndicatorView(style: .large)
+    let spinner = UIActivityIndicatorView(style: .large)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
-        setUpIndicatorView()
         setUpLabel()
+        setUpIndicatorView()
         bindViewModel()
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Новости АГПУ"
         let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshNews))
         refreshButton.tintColor = .label
+       
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemBackground
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
         navigationItem.leftBarButtonItem = refreshButton
     }
     
@@ -70,14 +77,16 @@ final class NewsListViewController: UIViewController {
         collectionView.frame = view.bounds
         collectionView.delegate = self
         collectionView.dataSource = self
-        navigationController?.navigationBar.isTranslucent = true
+        spinner.color = .label
     }
     
     private func setUpWebView() {
         view.addSubview(webView)
         webView.frame = view.bounds
+        webView.navigationDelegate = self
+        webView.scrollView.delegate = self
+        spinner.color = .black
         webView.load(viewModel.makeUrlForCurrentWebPage())
-        navigationController?.navigationBar.isTranslucent = false
     }
     
     private func setUpIndicatorView() {
@@ -224,6 +233,7 @@ final class NewsListViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.collectionView.removeFromSuperview()
                     self.setUpWebView()
+                    self.setUpIndicatorView()
                 }
             }
         }
