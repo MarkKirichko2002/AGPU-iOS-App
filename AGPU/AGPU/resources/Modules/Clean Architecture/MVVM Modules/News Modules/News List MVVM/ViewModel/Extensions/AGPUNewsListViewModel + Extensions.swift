@@ -176,12 +176,14 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             let filteredNews = allNews.filter({ $0.date == date})
             newsResponse.articles = filteredNews
             dataChangedHandler?(abbreviation)
+            dislayModeHandler?(.grid)
         case .yesterday:
             let date = dateManager.getCurrentDate()
             let yesterday = dateManager.previousDay(date: date)
             let filteredNews = allNews.filter({ $0.date == yesterday})
             newsResponse.articles = filteredNews
             dataChangedHandler?(abbreviation)
+            dislayModeHandler?(.grid)
         case .dayBeforeYesterday:
             let date = dateManager.getCurrentDate()
             let yesterday = dateManager.previousDay(date: date)
@@ -189,9 +191,11 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             let filteredNews = allNews.filter({ $0.date == beforeYesterday})
             newsResponse.articles = filteredNews
             dataChangedHandler?(abbreviation)
+            dislayModeHandler?(.grid)
         case .all:
             newsResponse.articles = allNews
             dataChangedHandler?(abbreviation)
+            dislayModeHandler?(.grid)
         }
     }
     

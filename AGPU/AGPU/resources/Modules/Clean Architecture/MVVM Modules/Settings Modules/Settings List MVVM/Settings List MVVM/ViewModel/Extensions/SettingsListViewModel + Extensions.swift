@@ -43,7 +43,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         if let variant = UserDefaults.loadData(type: OnlyMainVariants.self, key: "variant") {
             return "Вариант (\(variant.rawValue))"
         }
-        return "Только главное"
+        return "Вариант (По умолчанию)"
     }
     
     func getSplashScreenInfo()-> String {
