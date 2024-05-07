@@ -196,6 +196,13 @@
 		824EBF842B2A0F700003E7E6 /* FacultyCathedraMapListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824EBF832B2A0F700003E7E6 /* FacultyCathedraMapListViewModel + Extensions.swift */; };
 		82505F502A7FBD7D001DE24A /* TimeTableWeekListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82505F4F2A7FBD7D001DE24A /* TimeTableWeekListTableViewController.swift */; };
 		82505F532A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82505F522A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift */; };
+		82519B8A2BEAA35C00F136F8 /* OnlyMainOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82519B882BEAA35C00F136F8 /* OnlyMainOptionTableViewCell.swift */; };
+		82519B8B2BEAA35C00F136F8 /* OnlyMainOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82519B892BEAA35C00F136F8 /* OnlyMainOptionTableViewCell.xib */; };
+		82519B912BEAA56B00F136F8 /* OnlyMainVariants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82519B902BEAA56B00F136F8 /* OnlyMainVariants.swift */; };
+		82519B942BEAA63F00F136F8 /* OnlyMainVariantsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82519B932BEAA63F00F136F8 /* OnlyMainVariantsListTableViewController.swift */; };
+		82519B992BEAA86600F136F8 /* IOnlyMainVariantsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82519B982BEAA86600F136F8 /* IOnlyMainVariantsListViewModel.swift */; };
+		82519B9B2BEAA87A00F136F8 /* OnlyMainVariantsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82519B9A2BEAA87A00F136F8 /* OnlyMainVariantsListViewModel.swift */; };
+		82519B9D2BEAA89000F136F8 /* OnlyMainVariantsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82519B9C2BEAA89000F136F8 /* OnlyMainVariantsListViewModel + Extensions.swift */; };
 		8255ADCF2A6732110012895E /* CustomTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255ADCE2A6732110012895E /* CustomTitleView.swift */; };
 		825634BA2A6222070082B7B8 /* FacultyGroupsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825634B92A6222070082B7B8 /* FacultyGroupsListTableViewController.swift */; };
 		825634BC2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825634BB2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift */; };
@@ -445,8 +452,6 @@
 		82BEAD822A7414C300DD34C2 /* RecentWebPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BEAD812A7414C300DD34C2 /* RecentWebPageViewModel.swift */; };
 		82BEAD872A7417EC00DD34C2 /* RecentWebPageViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BEAD862A7417EC00DD34C2 /* RecentWebPageViewModelProtocol.swift */; };
 		82BEAD892A74180D00DD34C2 /* RecentWebPageViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BEAD882A74180D00DD34C2 /* RecentWebPageViewModel + Extensions.swift */; };
-		82BF39E12B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF39DF2B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.swift */; };
-		82BF39E22B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82BF39E02B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.xib */; };
 		82BF4DB02A5FA52B008B751A /* AGPUWallpapersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF4DAF2A5FA52B008B751A /* AGPUWallpapersListViewController.swift */; };
 		82BF4DB22A5FA5B3008B751A /* AGPUWallpaperCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF4DB12A5FA5B3008B751A /* AGPUWallpaperCollectionViewCell.swift */; };
 		82BF4DB42A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BF4DB32A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift */; };
@@ -749,6 +754,13 @@
 		824EBF832B2A0F700003E7E6 /* FacultyCathedraMapListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FacultyCathedraMapListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82505F4F2A7FBD7D001DE24A /* TimeTableWeekListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableWeekListTableViewController.swift; sourceTree = "<group>"; };
 		82505F522A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableWeekListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
+		82519B882BEAA35C00F136F8 /* OnlyMainOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyMainOptionTableViewCell.swift; sourceTree = "<group>"; };
+		82519B892BEAA35C00F136F8 /* OnlyMainOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnlyMainOptionTableViewCell.xib; sourceTree = "<group>"; };
+		82519B902BEAA56B00F136F8 /* OnlyMainVariants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyMainVariants.swift; sourceTree = "<group>"; };
+		82519B932BEAA63F00F136F8 /* OnlyMainVariantsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyMainVariantsListTableViewController.swift; sourceTree = "<group>"; };
+		82519B982BEAA86600F136F8 /* IOnlyMainVariantsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOnlyMainVariantsListViewModel.swift; sourceTree = "<group>"; };
+		82519B9A2BEAA87A00F136F8 /* OnlyMainVariantsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyMainVariantsListViewModel.swift; sourceTree = "<group>"; };
+		82519B9C2BEAA89000F136F8 /* OnlyMainVariantsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnlyMainVariantsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		8255ADCE2A6732110012895E /* CustomTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTitleView.swift; sourceTree = "<group>"; };
 		825634B92A6222070082B7B8 /* FacultyGroupsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupsListTableViewController.swift; sourceTree = "<group>"; };
 		825634BB2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupsListViewModel.swift; sourceTree = "<group>"; };
@@ -1001,8 +1013,6 @@
 		82BEAD812A7414C300DD34C2 /* RecentWebPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWebPageViewModel.swift; sourceTree = "<group>"; };
 		82BEAD862A7417EC00DD34C2 /* RecentWebPageViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWebPageViewModelProtocol.swift; sourceTree = "<group>"; };
 		82BEAD882A74180D00DD34C2 /* RecentWebPageViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentWebPageViewModel + Extensions.swift"; sourceTree = "<group>"; };
-		82BF39DF2B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyTimetableOptionTableViewCell.swift; sourceTree = "<group>"; };
-		82BF39E02B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnlyTimetableOptionTableViewCell.xib; sourceTree = "<group>"; };
 		82BF4DAF2A5FA52B008B751A /* AGPUWallpapersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUWallpapersListViewController.swift; sourceTree = "<group>"; };
 		82BF4DB12A5FA5B3008B751A /* AGPUWallpaperCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUWallpaperCollectionViewCell.swift; sourceTree = "<group>"; };
 		82BF4DB32A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUWallpapersListViewController + Extensions.swift"; sourceTree = "<group>"; };
@@ -3518,6 +3528,74 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		82519B8C2BEAA53E00F136F8 /* Only Main Variants List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82519B8F2BEAA55200F136F8 /* Model */,
+				82519B8E2BEAA55000F136F8 /* View */,
+				82519B8D2BEAA54E00F136F8 /* ViewModel */,
+			);
+			path = "Only Main Variants List MVVM";
+			sourceTree = "<group>";
+		};
+		82519B8D2BEAA54E00F136F8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82519B972BEAA83700F136F8 /* Protocol */,
+				82519B962BEAA83500F136F8 /* ViewModel */,
+				82519B952BEAA83300F136F8 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82519B8E2BEAA55000F136F8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82519B922BEAA62100F136F8 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82519B8F2BEAA55200F136F8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82519B902BEAA56B00F136F8 /* OnlyMainVariants.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82519B922BEAA62100F136F8 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82519B932BEAA63F00F136F8 /* OnlyMainVariantsListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82519B952BEAA83300F136F8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82519B9C2BEAA89000F136F8 /* OnlyMainVariantsListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82519B962BEAA83500F136F8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82519B9A2BEAA87A00F136F8 /* OnlyMainVariantsListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82519B972BEAA83700F136F8 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82519B982BEAA86600F136F8 /* IOnlyMainVariantsListViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		8255ADCD2A6731F50012895E /* Title View */ = {
 			isa = PBXGroup;
 			children = (
@@ -4988,7 +5066,7 @@
 			isa = PBXGroup;
 			children = (
 				82423E3C2A991E11006FA7D2 /* Shake To Recall */,
-				82BF39DE2B24837000FADBD4 /* Only Schedule */,
+				82BF39DE2B24837000FADBD4 /* Only Main */,
 				82761A1A2B4637DE00D9976F /* Splash Screens */,
 				8283975A2AD5BBAD000F355A /* App Icons */,
 				8209008B2BAF89A40053F3BD /* TabBar */,
@@ -6782,13 +6860,13 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		82BF39DE2B24837000FADBD4 /* Only Schedule */ = {
+		82BF39DE2B24837000FADBD4 /* Only Main */ = {
 			isa = PBXGroup;
 			children = (
-				82BF39DF2B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.swift */,
-				82BF39E02B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.xib */,
+				82519B882BEAA35C00F136F8 /* OnlyMainOptionTableViewCell.swift */,
+				82519B892BEAA35C00F136F8 /* OnlyMainOptionTableViewCell.xib */,
 			);
-			path = "Only Schedule";
+			path = "Only Main";
 			sourceTree = "<group>";
 		};
 		82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */ = {
@@ -7887,6 +7965,7 @@
 		82F5788B2B6FED2300BC64C1 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				82519B8C2BEAA53E00F136F8 /* Only Main Variants List MVVM */,
 				82761A1F2B463E9F00D9976F /* Splash Screens List MVVM */,
 				8217C3082B8FB69900A59412 /* Custom Splash Screen Editor MVVM */,
 				82754C5C2BD3D9370021E76A /* Splash Screen Background Colors List MVVM */,
@@ -8206,7 +8285,6 @@
 				82FC88192BBDFC3E00A2EF59 /* custom.mp4 in Resources */,
 				821EEAD72AA0B76F00AE517B /* UserStatusTableViewCell.xib in Resources */,
 				8209008F2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.xib in Resources */,
-				82BF39E22B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.xib in Resources */,
 				828397602AD5BBF4000F355A /* AppIconTableViewCell.xib in Resources */,
 				82761A1E2B46381500D9976F /* SplashScreenOptionTableViewCell.xib in Resources */,
 				822D57842BBC29050026962F /* clock_sound3.mp3 in Resources */,
@@ -8229,6 +8307,7 @@
 				8286D15E2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.xib in Resources */,
 				82320D892A491FBC00ECADEE /* AGPUFacultyTableViewCell.xib in Resources */,
 				82C449F62B5F0B5F0039B0F3 /* ring.mp3 in Resources */,
+				82519B8B2BEAA35C00F136F8 /* OnlyMainOptionTableViewCell.xib in Resources */,
 				82E4C5972A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib in Resources */,
 				82989AF32A6F8CDF00F27858 /* ForEveryStatusTableViewCell.xib in Resources */,
 				822606012A853C110055925F /* RecentMomentTableViewCell.xib in Resources */,
@@ -8298,6 +8377,7 @@
 				82B24A7A2A81945D008B94E4 /* AllWeeksListViewModel + Extensions.swift in Sources */,
 				820D18E72A68FA7D00BFAA35 /* AGPUBuildings.swift in Sources */,
 				82F578902B6FEDFB00BC64C1 /* ASPUButtonOptionTableViewCell.swift in Sources */,
+				82519B9D2BEAA89000F136F8 /* OnlyMainVariantsListViewModel + Extensions.swift in Sources */,
 				821B726A2BD1707A000460E2 /* UIColor + Extensions.swift in Sources */,
 				8286D1542BCDADC9006BB6B3 /* TabsOptionsListTableViewController.swift in Sources */,
 				82B267032A8D926400043A6D /* NewsCategories.swift in Sources */,
@@ -8338,6 +8418,7 @@
 				828DC55C2A7B3887001EA324 /* FacultyGroups.swift in Sources */,
 				824EBF842B2A0F700003E7E6 /* FacultyCathedraMapListViewModel + Extensions.swift in Sources */,
 				820E40952A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift in Sources */,
+				82519B992BEAA86600F136F8 /* IOnlyMainVariantsListViewModel.swift in Sources */,
 				829D48A42BBC1EE300F6D256 /* TimeTableSoundsListViewModel.swift in Sources */,
 				82807C712AA0FA5D00E9C884 /* PairTypesListTableViewController.swift in Sources */,
 				82F5787F2B6FE57100BC64C1 /* ASPUButtonActionsListViewModel.swift in Sources */,
@@ -8550,6 +8631,7 @@
 				828E692C2BE2E4080097FAAD /* SavedDisplayModeViewModel.swift in Sources */,
 				82184D822B7BD8EC00F2588E /* HourlyWeatherCollectionViewCell.swift in Sources */,
 				82E4C5432A6B10F900F65A67 /* WebViewModelProtocol.swift in Sources */,
+				82519B912BEAA56B00F136F8 /* OnlyMainVariants.swift in Sources */,
 				8299526A2BDCBE1F003AFB14 /* ASPUButtonFavouriteActionsListTableViewController + Extensions.swift in Sources */,
 				821B727F2BD174F0000460E2 /* TabColorsListViewModel + Extensions.swift in Sources */,
 				82768AF12ABE15450022FBE1 /* AppThemesListViewModel + Extensions.swift in Sources */,
@@ -8587,6 +8669,7 @@
 				82C7B8422A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift in Sources */,
 				828CFA3C2A3680C700C7542D /* String + Extensions.swift in Sources */,
 				8234E5EF2A88506400ED354C /* WordDocumentReaderViewController.swift in Sources */,
+				82519B8A2BEAA35C00F136F8 /* OnlyMainOptionTableViewCell.swift in Sources */,
 				8210CA052A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift in Sources */,
 				82989ACA2A6E2D4500F27858 /* FacultyCathedraModel.swift in Sources */,
 				82FC22EE2BC01BF1008709DA /* NewsOptionsFilterListTableViewController.swift in Sources */,
@@ -8667,7 +8750,6 @@
 				82F98B342B1199B300137D9A /* WeatherManager.swift in Sources */,
 				824EBF652B29CF6B0003E7E6 /* AGPUBuildingTypesListTableViewController.swift in Sources */,
 				82BE9D892ACA14D300C06CD5 /* NewsPageModel.swift in Sources */,
-				82BF39E12B2483B300FADBD4 /* OnlyTimetableOptionTableViewCell.swift in Sources */,
 				82BC2F462A8EFD6400ADB239 /* NewsCategoriesListViewModel.swift in Sources */,
 				829952492BDC97D9003AFB14 /* TimeTableFavouriteItemsListTableViewController + Extensions.swift in Sources */,
 				824EBF802B2A0EFC0003E7E6 /* FacultyCathedraMapListViewModelProtocol.swift in Sources */,
@@ -8703,6 +8785,7 @@
 				8299524E2BDC9935003AFB14 /* ITimeTableFavouriteItemsListViewModel.swift in Sources */,
 				82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */,
 				82875B002A5A1966007DB925 /* HapticsManagerProtocol.swift in Sources */,
+				82519B9B2BEAA87A00F136F8 /* OnlyMainVariantsListViewModel.swift in Sources */,
 				82754C732BD45C1B0021E76A /* BorderForDailyNewsTableViewCell.swift in Sources */,
 				824EBF7B2B2A0B630003E7E6 /* FacultyCathedraMapListTableViewController.swift in Sources */,
 				8210CA092A66531C00D0BEEE /* AGPUCurrentBuildingMapViewController + Extensions.swift in Sources */,
@@ -8768,6 +8851,7 @@
 				8209A0B02B838DCA0013371D /* DocumentsListViewModel + Extensions.swift in Sources */,
 				82989AE62A6F6DEA00F27858 /* FacultyCathedraListViewModel.swift in Sources */,
 				820900792BAF612F0053F3BD /* TabModel.swift in Sources */,
+				82519B942BEAA63F00F136F8 /* OnlyMainVariantsListTableViewController.swift in Sources */,
 				826888582A33AB5600434219 /* RegularSplashScreenViewController.swift in Sources */,
 				82E4C5892A6B20DE00F65A67 /* LocationManager.swift in Sources */,
 				823F97D92B9D224100F60F39 /* WeatherSplashScreenViewController.swift in Sources */,
@@ -8964,7 +9048,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.7;
+				MARKETING_VERSION = 2.2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -9003,7 +9087,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.7;
+				MARKETING_VERSION = 2.2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

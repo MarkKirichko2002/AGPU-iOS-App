@@ -80,13 +80,13 @@ extension NewsListViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         DispatchQueue.main.async {
-            self.navigationController?.navigationBar.isTranslucent = true
+            self.spinner.startAnimating()
         }
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         DispatchQueue.main.async {
-            self.navigationController?.navigationBar.isTranslucent = true
+            self.spinner.stopAnimating()
         }
     }
 }

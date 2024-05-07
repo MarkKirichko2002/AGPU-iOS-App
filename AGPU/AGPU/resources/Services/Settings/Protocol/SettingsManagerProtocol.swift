@@ -11,9 +11,9 @@ protocol SettingsManagerProtocol {
     func checkCurrentStatus()-> UIViewController
     func checkCurrentIcon()-> String
     func checkShakeToRecallOption()-> Bool
-    func checkOnlyTimetableOption()-> Bool
+    func checkOnlyMainOption()-> OnlyMainVariants
+    func observeOnlyMainChangedOption(completion: @escaping()->Void)
     func checkSaveRecentTimetableItem()-> Bool
-    func observeOnlyTimetableChanged(completion: @escaping()->Void)
     func checkASPUButtonOption()-> ASPUButtonActions
     func observeASPUButtonActionChanged(completion: @escaping()->Void)
     func checkASPUButtonAnimationOption()-> ASPUButtonAnimationOptions

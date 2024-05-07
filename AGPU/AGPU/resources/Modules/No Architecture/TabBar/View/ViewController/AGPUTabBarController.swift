@@ -86,7 +86,7 @@ final class AGPUTabBarController: UITabBarController {
                 self.selectedIndex = 4
             }
         }
-        settingsManager.observeOnlyTimetableChanged {
+        settingsManager.observeOnlyMainChangedOption {
             DispatchQueue.main.async {
                 self.setUpTabs()
             }
@@ -109,11 +109,14 @@ final class AGPUTabBarController: UITabBarController {
         let nav3VC = UINavigationController(rootViewController: timetableVC)
         let nav4VC = UINavigationController(rootViewController: settingsVC)
         
-        let onlyTimetable = UserDefaults.standard.object(forKey: "onOnlyTimetable") as? Bool ?? false
-                
-        if onlyTimetable {
+        let onlyMain = UserDefaults.loadData(type: OnlyMainVariants.self, key: "variant") ?? .none
+              
+        switch onlyMain {
+        case .schedule:
             setViewControllers([nav3VC, middleButton, nav4VC], animated: false)
-        } else {
+        case .news:
+            setViewControllers([nav1VC, middleButton, nav4VC], animated: false)
+        case .none:
             let position = settingsManager.getTabsPosition()
             forEveryStatusVC = settingsManager.checkCurrentStatus()
             var tabs = [nav1VC, forEveryStatusVC, nav3VC, nav4VC]
@@ -125,11 +128,11 @@ final class AGPUTabBarController: UITabBarController {
                     tabs.swapAt(index, number)
                 }
             }
-            
             tabs.insert(middleButton, at: 2)
             setViewControllers(tabs, animated: false)
             selectedIndex = UserDefaults.standard.integer(forKey: "index")
         }
+        
         UITabBar.appearance().tintColor = self.settingsManager.getTabsColor().color
     }
     
