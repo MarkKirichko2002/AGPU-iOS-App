@@ -99,7 +99,7 @@ class ForEmployeeListTableViewController: UITableViewController {
             }
             
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                let vc = DocumentsListTableViewController()
+                let vc = ThingsCategoriesListTableViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             }

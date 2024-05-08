@@ -47,7 +47,6 @@ class DocumentsListTableViewController: UIViewController {
     }
     
     @objc private func back() {
-        sendScreenWasClosedNotification()
         navigationController?.popViewController(animated: true)
     }
     

@@ -488,6 +488,17 @@
 		82D0FC152B1B4C1E0056D94B /* CathedraBuildingDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D0FC142B1B4C1E0056D94B /* CathedraBuildingDetailViewModelProtocol.swift */; };
 		82D0FC172B1B4C600056D94B /* CathedraBuildingDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D0FC162B1B4C600056D94B /* CathedraBuildingDetailViewModel.swift */; };
 		82D0FC192B1B4C8B0056D94B /* CathedraBuildingDetailViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D0FC182B1B4C8B0056D94B /* CathedraBuildingDetailViewModel + Extensions.swift */; };
+		82D37FBA2BEC11080035CB57 /* ThingCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D37FB92BEC11080035CB57 /* ThingCategories.swift */; };
+		82D37FBD2BEC119D0035CB57 /* ThingsCategoriesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D37FBC2BEC119D0035CB57 /* ThingsCategoriesListTableViewController.swift */; };
+		82D37FC32BEC18540035CB57 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D37FC22BEC18540035CB57 /* ImageModel.swift */; };
+		82D37FC72BEC1A0B0035CB57 /* SavedImagesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D37FC62BEC1A0B0035CB57 /* SavedImagesListTableViewController.swift */; };
+		82D37FCB2BEC25B10035CB57 /* SavedImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D37FC92BEC25B10035CB57 /* SavedImageTableViewCell.swift */; };
+		82D37FCE2BEC27E50035CB57 /* SavedImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82D37FCD2BEC27E50035CB57 /* SavedImageTableViewCell.xib */; };
+		82D37FD32BEC29820035CB57 /* ISavedImagesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D37FD22BEC29820035CB57 /* ISavedImagesListViewModel.swift */; };
+		82D37FD52BEC29D90035CB57 /* SavedImagesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D37FD42BEC29D90035CB57 /* SavedImagesListViewModel.swift */; };
+		82D37FD72BEC29FD0035CB57 /* SavedImagesListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D37FD62BEC29FD0035CB57 /* SavedImagesListViewModel + Extensions.swift */; };
+		82D37FDA2BEC2B690035CB57 /* SavedImagesListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D37FD92BEC2B690035CB57 /* SavedImagesListTableViewController + Extensions.swift */; };
+		82D37FDD2BEC2F470035CB57 /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D37FDC2BEC2F470035CB57 /* ImageDetailViewController.swift */; };
 		82D6C32F2A5E189300FB7F5D /* TimeTableDayListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C32E2A5E189300FB7F5D /* TimeTableDayListTableViewController.swift */; };
 		82D6C3322A5E1DE100FB7F5D /* TimeTableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3312A5E1DE100FB7F5D /* TimeTableService.swift */; };
 		82D6C3342A5E1DEC00FB7F5D /* Discipline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3332A5E1DEC00FB7F5D /* Discipline.swift */; };
@@ -1049,6 +1060,17 @@
 		82D0FC142B1B4C1E0056D94B /* CathedraBuildingDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CathedraBuildingDetailViewModelProtocol.swift; sourceTree = "<group>"; };
 		82D0FC162B1B4C600056D94B /* CathedraBuildingDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CathedraBuildingDetailViewModel.swift; sourceTree = "<group>"; };
 		82D0FC182B1B4C8B0056D94B /* CathedraBuildingDetailViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CathedraBuildingDetailViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		82D37FB92BEC11080035CB57 /* ThingCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThingCategories.swift; sourceTree = "<group>"; };
+		82D37FBC2BEC119D0035CB57 /* ThingsCategoriesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThingsCategoriesListTableViewController.swift; sourceTree = "<group>"; };
+		82D37FC22BEC18540035CB57 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
+		82D37FC62BEC1A0B0035CB57 /* SavedImagesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedImagesListTableViewController.swift; sourceTree = "<group>"; };
+		82D37FC92BEC25B10035CB57 /* SavedImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedImageTableViewCell.swift; sourceTree = "<group>"; };
+		82D37FCD2BEC27E50035CB57 /* SavedImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavedImageTableViewCell.xib; sourceTree = "<group>"; };
+		82D37FD22BEC29820035CB57 /* ISavedImagesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISavedImagesListViewModel.swift; sourceTree = "<group>"; };
+		82D37FD42BEC29D90035CB57 /* SavedImagesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedImagesListViewModel.swift; sourceTree = "<group>"; };
+		82D37FD62BEC29FD0035CB57 /* SavedImagesListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedImagesListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		82D37FD92BEC2B690035CB57 /* SavedImagesListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedImagesListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
+		82D37FDC2BEC2F470035CB57 /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
 		82D6C32E2A5E189300FB7F5D /* TimeTableDayListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableDayListTableViewController.swift; sourceTree = "<group>"; };
 		82D6C3312A5E1DE100FB7F5D /* TimeTableService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableService.swift; sourceTree = "<group>"; };
 		82D6C3332A5E1DEC00FB7F5D /* Discipline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discipline.swift; sourceTree = "<group>"; };
@@ -1402,7 +1424,6 @@
 		8209A0A12B838CC40013371D /* Documents List MVVM */ = {
 			isa = PBXGroup;
 			children = (
-				8209A0A72B838D0C0013371D /* Model */,
 				8209A0A62B838D0A0013371D /* View */,
 				8209A0A52B838D090013371D /* ViewModel */,
 			);
@@ -1427,14 +1448,6 @@
 				82FC87EF2BBDDFB200A2EF59 /* Extensions */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		8209A0A72B838D0C0013371D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				8209A09B2B838A470013371D /* DocumentModel.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		8209A0A82B838D340013371D /* Extensions */ = {
@@ -1585,6 +1598,8 @@
 			isa = PBXGroup;
 			children = (
 				821119F12B98BB7A007B61E5 /* NewsModel.swift */,
+				8209A09B2B838A470013371D /* DocumentModel.swift */,
+				82D37FC22BEC18540035CB57 /* ImageModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3849,6 +3864,8 @@
 			isa = PBXGroup;
 			children = (
 				822527462BA63D0500B66314 /* News Categories Randomizer */,
+				82D37FB52BEC10D20035CB57 /* Things Categories List */,
+				82D37FDB2BEC2F290035CB57 /* Image Detail */,
 				82B97C0D2B93E14300770F00 /* Share Apps */,
 				82FD79CE2B92678000E0DE61 /* Location Apps */,
 				826888562A33AB3C00434219 /* Splash Screens */,
@@ -3900,6 +3917,7 @@
 				82BC2F3F2A8EFC5D00ADB239 /* News Modules */,
 				821270572A7921DD0095D68E /* Web Modules */,
 				8209A0A12B838CC40013371D /* Documents List MVVM */,
+				82D37FBE2BEC17D80035CB57 /* Saved Images List MVVM */,
 				8228E3962A6C8EFD00C1B6AD /* Maps Modules */,
 				82B1C0BD2A805D5200520C14 /* Recent Moments List MVVM */,
 				82BCB5312AB34FD000F3A321 /* Faculties Modules */,
@@ -7187,6 +7205,125 @@
 			path = Cathedra;
 			sourceTree = "<group>";
 		};
+		82D37FB52BEC10D20035CB57 /* Things Categories List */ = {
+			isa = PBXGroup;
+			children = (
+				82D37FB82BEC10EA0035CB57 /* Model */,
+				82D37FB72BEC10E80035CB57 /* View */,
+			);
+			path = "Things Categories List";
+			sourceTree = "<group>";
+		};
+		82D37FB72BEC10E80035CB57 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82D37FBB2BEC11780035CB57 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82D37FB82BEC10EA0035CB57 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82D37FB92BEC11080035CB57 /* ThingCategories.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82D37FBB2BEC11780035CB57 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82D37FBC2BEC119D0035CB57 /* ThingsCategoriesListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82D37FBE2BEC17D80035CB57 /* Saved Images List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82D37FC02BEC18370035CB57 /* View */,
+				82D37FBF2BEC18340035CB57 /* ViewModel */,
+			);
+			path = "Saved Images List MVVM";
+			sourceTree = "<group>";
+		};
+		82D37FBF2BEC18340035CB57 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82D37FD12BEC29570035CB57 /* Protocol */,
+				82D37FD02BEC29550035CB57 /* ViewModel */,
+				82D37FCF2BEC29530035CB57 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82D37FC02BEC18370035CB57 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82D37FC52BEC19C40035CB57 /* ViewController */,
+				82D37FC82BEC259C0035CB57 /* Cell */,
+				82D37FD82BEC2B530035CB57 /* Extensions */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82D37FC52BEC19C40035CB57 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82D37FC62BEC1A0B0035CB57 /* SavedImagesListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82D37FC82BEC259C0035CB57 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				82D37FC92BEC25B10035CB57 /* SavedImageTableViewCell.swift */,
+				82D37FCD2BEC27E50035CB57 /* SavedImageTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		82D37FCF2BEC29530035CB57 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82D37FD62BEC29FD0035CB57 /* SavedImagesListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82D37FD02BEC29550035CB57 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82D37FD42BEC29D90035CB57 /* SavedImagesListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82D37FD12BEC29570035CB57 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82D37FD22BEC29820035CB57 /* ISavedImagesListViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		82D37FD82BEC2B530035CB57 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82D37FD92BEC2B690035CB57 /* SavedImagesListTableViewController + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82D37FDB2BEC2F290035CB57 /* Image Detail */ = {
+			isa = PBXGroup;
+			children = (
+				82D37FDC2BEC2F470035CB57 /* ImageDetailViewController.swift */,
+			);
+			path = "Image Detail";
+			sourceTree = "<group>";
+		};
 		82D6C32D2A5E187400FB7F5D /* TimeTable Day */ = {
 			isa = PBXGroup;
 			children = (
@@ -8292,6 +8429,7 @@
 				8213658E2A94F7B700A20E4E /* InfoPlist.strings in Resources */,
 				8209A0B82B839C0C0013371D /* DocumentTableViewCell.xib in Resources */,
 				82FC881E2BBDFC4A00A2EF59 /* status.mp4 in Resources */,
+				82D37FCE2BEC27E50035CB57 /* SavedImageTableViewCell.xib in Resources */,
 				8286D1592BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.xib in Resources */,
 				829D489A2BBC1E2B00F6D256 /* clock_sound2.mp3 in Resources */,
 				8226D1722B0958F600B0B9F0 /* TimetableOptionTableViewCell.xib in Resources */,
@@ -8406,6 +8544,7 @@
 				8209A0A02B838AE90013371D /* RealmManager + Extensions.swift in Sources */,
 				8228E39F2A6C994D00C1B6AD /* AGPUBuildingsMapViewModel.swift in Sources */,
 				82BCB53D2AB3523400F3A321 /* DaysListViewModel + Extensions.swift in Sources */,
+				82D37FD72BEC29FD0035CB57 /* SavedImagesListViewModel + Extensions.swift in Sources */,
 				82B24A692A817AEC008B94E4 /* AllWeeksListTableViewController.swift in Sources */,
 				82BF4DB42A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift in Sources */,
 				82B1C0F12A8125E400520C14 /* VoiceDirectionModel.swift in Sources */,
@@ -8448,6 +8587,7 @@
 				824EBF822B2A0F0D0003E7E6 /* FacultyCathedraMapListViewModel.swift in Sources */,
 				828321732A7D643C008641A5 /* VoiceSearchAGPUBuildingMapViewController.swift in Sources */,
 				8228E39C2A6C920D00C1B6AD /* LocationModel.swift in Sources */,
+				82D37FBA2BEC11080035CB57 /* ThingCategories.swift in Sources */,
 				82C26C7E2BD7F12E0039D86D /* IDisplayModeOptionsListViewModel.swift in Sources */,
 				8217C3172B8FB7CD00A59412 /* CustomSplashScreenEditorViewModel.swift in Sources */,
 				820D18E52A68F9EE00BFAA35 /* AGPUBuildingModel.swift in Sources */,
@@ -8474,6 +8614,7 @@
 				82989AD82A6E54AF00F27858 /* AGPUCurrentCathedraMapViewController.swift in Sources */,
 				828E691E2BE2DBF80097FAAD /* DisplayModeOptionTableViewCell.swift in Sources */,
 				822605FA2A8532F30055925F /* RecentMomentsListViewModel + Extensions.swift in Sources */,
+				82D37FC72BEC1A0B0035CB57 /* SavedImagesListTableViewController.swift in Sources */,
 				8209A0AE2B838DBB0013371D /* DocumentsListViewModel.swift in Sources */,
 				82184D8B2B7BD9E500F2588E /* CurrentWeatherTableViewCellViewModel.swift in Sources */,
 				82F578772B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift in Sources */,
@@ -8673,6 +8814,7 @@
 				8210CA052A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift in Sources */,
 				82989ACA2A6E2D4500F27858 /* FacultyCathedraModel.swift in Sources */,
 				82FC22EE2BC01BF1008709DA /* NewsOptionsFilterListTableViewController.swift in Sources */,
+				82D37FBD2BEC119D0035CB57 /* ThingsCategoriesListTableViewController.swift in Sources */,
 				82C5B78F2BCEF81600F907CB /* ASPUButtonAnimationOptionTableViewCell.swift in Sources */,
 				82ECABE12A81520A00FE7462 /* SubGroupModel.swift in Sources */,
 				82A29F472B9BD5EF00756F43 /* SelectedFacultySplashScreenViewModel + Extensions.swift in Sources */,
@@ -8702,6 +8844,7 @@
 				82768AF52ABE1B360022FBE1 /* AppThemesTableViewCell.swift in Sources */,
 				828D51232BB8932300848FF8 /* ASPUButtonIconsListTableViewController.swift in Sources */,
 				82BEAD892A74180D00DD34C2 /* RecentWebPageViewModel + Extensions.swift in Sources */,
+				82D37FCB2BEC25B10035CB57 /* SavedImageTableViewCell.swift in Sources */,
 				82BCB5722AB3ACFF00F3A321 /* PairTypesListViewModelProtocol.swift in Sources */,
 				820E40932A7C365B007A1E0A /* AGPUCurrentCathedraMapViewModelProtocol.swift in Sources */,
 				828D51332BB8A0B300848FF8 /* ASPUButtonIconsListViewModel + Extensions.swift in Sources */,
@@ -8720,6 +8863,7 @@
 				823F97DE2B9D227500F60F39 /* IWeatherSplashScreenViewModel.swift in Sources */,
 				8234E5FC2A88557400ED354C /* WordDocumenReaderViewModel + Extensions.swift in Sources */,
 				828D511C2BB86CFE00848FF8 /* ASPUButtonOptionsListViewModel.swift in Sources */,
+				82D37FD32BEC29820035CB57 /* ISavedImagesListViewModel.swift in Sources */,
 				82AB6D182AF6BD5F00F7B729 /* AdaptiveNewsOptionTableViewCell.swift in Sources */,
 				82768AFA2ABE1CE70022FBE1 /* AppFeaturesTableViewCell.swift in Sources */,
 				821119F22B98BB7A007B61E5 /* NewsModel.swift in Sources */,
@@ -8774,6 +8918,7 @@
 				8209A09E2B838AD20013371D /* RealmManager.swift in Sources */,
 				825D56732AE5CBEB004305C7 /* PairInfoTableViewController.swift in Sources */,
 				82989ACF2A6E35B200F27858 /* FacultyCathedraTableViewCell.swift in Sources */,
+				82D37FD52BEC29D90035CB57 /* SavedImagesListViewModel.swift in Sources */,
 				829952672BDCBB9A003AFB14 /* ASPUButtonAllActionsListTableViewController.swift in Sources */,
 				822527662BA77ECA00B66314 /* WeekDaysListViewModel + Extensions.swift in Sources */,
 				821B72762BD17358000460E2 /* TabColorsListTableViewController.swift in Sources */,
@@ -8828,6 +8973,7 @@
 				82768AE82ABE13B80022FBE1 /* AppThemesListTableViewController.swift in Sources */,
 				828E10332BD169CA00ECC5F4 /* TabsColorOptionTableViewCell.swift in Sources */,
 				828397702AD5C4B7000F355A /* AppIconsListTableViewController.swift in Sources */,
+				82D37FDA2BEC2B690035CB57 /* SavedImagesListTableViewController + Extensions.swift in Sources */,
 				8234E60F2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift in Sources */,
 				828397682AD5BEC2000F355A /* AppIconModel.swift in Sources */,
 				8228E3AD2A6C9E9E00C1B6AD /* AGPUCurrentBuildingMapViewModel + Extensions.swift in Sources */,
@@ -8836,6 +8982,7 @@
 				82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */,
 				82BCB53F2AB3528F00F3A321 /* DaysListTableViewController.swift in Sources */,
 				822605F62A8532410055925F /* RecentMomentsListViewModelProtocol.swift in Sources */,
+				82D37FC32BEC18540035CB57 /* ImageModel.swift in Sources */,
 				822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */,
 				82B97C152B9616FD00770F00 /* DayTableViewCell.swift in Sources */,
 				82B1C0EE2A8123F800520C14 /* VoiceDirections.swift in Sources */,
@@ -8856,6 +9003,7 @@
 				82E4C5892A6B20DE00F65A67 /* LocationManager.swift in Sources */,
 				823F97D92B9D224100F60F39 /* WeatherSplashScreenViewController.swift in Sources */,
 				821B728B2BD2ECB5000460E2 /* RandomSplashScreenViewController.swift in Sources */,
+				82D37FDD2BEC2F470035CB57 /* ImageDetailViewController.swift in Sources */,
 				8286D1582BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.swift in Sources */,
 				82768AE62ABE13550022FBE1 /* AppThemes.swift in Sources */,
 				82061CCB2B09A5920073D727 /* TimetableOptionsTableViewCell.swift in Sources */,
@@ -9048,7 +9196,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.9;
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -9087,7 +9235,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2.9;
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

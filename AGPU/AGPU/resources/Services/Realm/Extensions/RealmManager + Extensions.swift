@@ -11,7 +11,7 @@ import RealmSwift
 // MARK: - IRealmManager
 extension RealmManager: IRealmManager {
     
-    // MARK: - Important Documents
+    // MARK: - Important Things
     func saveDocument(document: DocumentModel) {
         let doc = realm.object(ofType: DocumentModel.self, forPrimaryKey: document.url)
         if doc == nil {
@@ -78,6 +78,34 @@ extension RealmManager: IRealmManager {
     
     func getDocuments() -> [DocumentModel] {
         let items = realm.objects(DocumentModel.self)
+        return Array(items)
+    }
+    
+    func saveImage(image: ImageModel) {
+        let img = realm.object(ofType: ImageModel.self, forPrimaryKey: image.id)
+        if img == nil {
+            let newImage = ImageModel()
+            newImage.id = UUID()
+            newImage.image = image.image
+            newImage.date = image.date
+            try! realm.write {
+                realm.add(newImage)
+            }
+        } else {
+            print("уже есть")
+        }
+    }
+    
+    func deleteImage(image: ImageModel) {
+        let newImage = realm.object(ofType: ImageModel.self, forPrimaryKey: image.id)
+        guard let newImage = newImage else {return}
+        try! realm.write {
+            realm.delete(newImage)
+        }
+    }
+    
+    func getImages()->[ImageModel] {
+        let items = realm.objects(ImageModel.self)
         return Array(items)
     }
     

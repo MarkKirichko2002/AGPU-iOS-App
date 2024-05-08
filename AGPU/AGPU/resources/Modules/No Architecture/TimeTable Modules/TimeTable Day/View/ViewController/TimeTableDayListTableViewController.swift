@@ -21,6 +21,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     // MARK: - сервисы
     let service = TimeTableService()
     let dateManager = DateManager()
+    let realmManager = RealmManager()
     let settingsManager = SettingsManager()
     
     // MARK: - UI
@@ -406,27 +407,5 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
         
         return disciplines
-    }
-    
-    private func showSaveImageAlert() {
-        let saveAction = UIAlertAction(title: "Сохранить", style: .default) { _ in
-            do {
-                let json = try JSONEncoder().encode(self.timetable)
-                self.service.getTimeTableDayImage(json: json) { image in
-                    let imageSaver = ImageSaver()
-                    imageSaver.writeToPhotoAlbum(image: image)
-                    self.showImageSavedAlert()
-                }
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
-        self.showAlert(title: "Сохранить расписание?", message: "Вы хотите сохранить изображение расписания в фото?", actions: [saveAction, cancel])
-    }
-    
-    private func showImageSavedAlert() {
-        let ok = UIAlertAction(title: "ОК", style: .default) { _ in}
-        self.showAlert(title: "Расписание сохранено!", message: "Изображение расписания успешно сохранено в фото", actions: [ok])
     }
 }

@@ -13,6 +13,9 @@ protocol IRealmManager {
     func editDocumentPage(url: String, page: Int)
     func deleteDocument(document: DocumentModel)
     func getDocuments()->[DocumentModel]
+    func saveImage(image: ImageModel)
+    func deleteImage(image: ImageModel)
+    func getImages()->[ImageModel]
     func saveArticle(model: NewsModel)
     func getArticle(id: Int)-> NewsModel?
     func editArticle(news: NewsModel, position: Double)

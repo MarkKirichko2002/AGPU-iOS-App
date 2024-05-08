@@ -34,7 +34,7 @@ struct ForEmployeeSections {
         ForEveryStatusModel(
             id: 5,
             icon: "document",
-            name: "Важные документы"
+            name: "Важные вещи"
         ),
         ForEveryStatusModel(
             id: 6,
