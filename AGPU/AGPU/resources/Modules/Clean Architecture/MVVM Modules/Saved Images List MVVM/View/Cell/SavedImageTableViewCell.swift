@@ -26,8 +26,10 @@ class SavedImageTableViewCell: UITableViewCell {
     
     private func setUpImage() {
         SavedImage.clipsToBounds = true
+        SavedImage.layer.cornerRadius = 8
+        SavedImage.layer.borderWidth = 2
+        SavedImage.layer.borderColor = UIColor.label.cgColor
         SavedImage.isInteraction = false
         SavedImage.contentMode = .scaleAspectFill
-        SavedImage.translatesAutoresizingMaskIntoConstraints = false
     }
 }

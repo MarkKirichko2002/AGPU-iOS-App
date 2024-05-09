@@ -24,7 +24,6 @@ class TimetableDateDetailViewController: UIViewController {
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(named: "cross"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -32,15 +31,16 @@ class TimetableDateDetailViewController: UIViewController {
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(named: "share"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private let timetableImage: UIImageView = {
         let image = UIImageView()
         image.isUserInteractionEnabled = true
-        image.backgroundColor = .label
-        image.translatesAutoresizingMaskIntoConstraints = false
+        image.clipsToBounds = true
+        image.layer.cornerRadius = 8
+        image.layer.borderWidth = 2
+        image.layer.borderColor = UIColor.label.cgColor
         return image
     }()
     
@@ -48,7 +48,6 @@ class TimetableDateDetailViewController: UIViewController {
         let label = UILabel()
         label.text = "Загрузка..."
         label.font = .systemFont(ofSize: 18, weight: .bold)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -56,7 +55,6 @@ class TimetableDateDetailViewController: UIViewController {
         let label = UILabel()
         label.text = "Загрузка..."
         label.font = .systemFont(ofSize: 18, weight: .bold)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -180,6 +178,7 @@ class TimetableDateDetailViewController: UIViewController {
     private func bindViewModel() {
         viewModel.getTimeTableForDay()
         timetableDescription.textColor = viewModel.textColor()
+        timetableImage.layer.borderColor = viewModel.textColor().cgColor
         titleLabel.text = id
         viewModel.registerTimeTableHandler { [weak self] timetable in
             self?.timetableImage.image = timetable.image

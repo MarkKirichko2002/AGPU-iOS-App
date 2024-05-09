@@ -33,7 +33,7 @@ struct ForStudentSections {
         ),
         ForEveryStatusModel(
             id: 5,
-            icon: "document",
+            icon: "exclamation",
             name: "Важные вещи"
         ),
         ForEveryStatusModel(

@@ -7319,9 +7319,17 @@
 		82D37FDB2BEC2F290035CB57 /* Image Detail */ = {
 			isa = PBXGroup;
 			children = (
-				82D37FDC2BEC2F470035CB57 /* ImageDetailViewController.swift */,
+				82D37FDE2BECE6670035CB57 /* ViewController */,
 			);
 			path = "Image Detail";
+			sourceTree = "<group>";
+		};
+		82D37FDE2BECE6670035CB57 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82D37FDC2BEC2F470035CB57 /* ImageDetailViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		82D6C32D2A5E187400FB7F5D /* TimeTable Day */ = {

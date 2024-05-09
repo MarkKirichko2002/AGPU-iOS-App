@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ImageDetailViewController: UIViewController {
 
@@ -16,7 +17,6 @@ class ImageDetailViewController: UIViewController {
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(named: "cross"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -24,23 +24,18 @@ class ImageDetailViewController: UIViewController {
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(named: "share"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private let currentImage: UIImageView = {
         let image = UIImageView()
         image.isUserInteractionEnabled = true
-        image.backgroundColor = .label
-        image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
     private let dateLabel: UILabel = {
         let label = UILabel()
-        label.text = "Загрузка..."
         label.font = .systemFont(ofSize: 18, weight: .bold)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -60,13 +55,17 @@ class ImageDetailViewController: UIViewController {
         setUpConstraints()
     }
     
-    private func setUpView() {
-        view.backgroundColor = .systemBackground
-        view.addSubviews(closeButton, shareButton, currentImage, dateLabel)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         setUpImage()
         setUpTitle()
         closeButton.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
         shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
+    }
+    
+    private func setUpView() {
+        view.backgroundColor = .systemBackground
+        view.addSubviews(closeButton, shareButton, currentImage, dateLabel)
     }
     
     private func setUpImage() {
