@@ -12,4 +12,5 @@ struct AppIconModel {
     var name: String
     var icon: String
     var appIcon: String
+    var url: String
 }
