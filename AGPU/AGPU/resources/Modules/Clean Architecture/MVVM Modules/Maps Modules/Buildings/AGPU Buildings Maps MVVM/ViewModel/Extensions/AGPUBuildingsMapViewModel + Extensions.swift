@@ -123,7 +123,6 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                     for building in AGPUBuildings.buildings {
                         self.index = 0
                         self.arr.append(building.pin)
-                        //self.choiceHandler?(true, building.pin)
                     }
                     
                     for pin in self.arr {
@@ -147,7 +146,6 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                         if building.type == .building || building.type == .buildingAndHostel {
                             self.index = 0
                             self.arr.append(building.pin)
-                            //self.choiceHandler?(true, building.pin)
                         } else {
                             self.choiceHandler?(false, building.pin)
                         }
@@ -174,7 +172,6 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                         if building.type == .hostel || building.type == .buildingAndHostel {
                             self.index = 0
                             self.arr.append(building.pin)
-                            //self.choiceHandler?(true, building.pin)
                         } else {
                             self.choiceHandler?(false, building.pin)
                         }

@@ -25,7 +25,12 @@ extension BuildingsListViewModel: IBuildingsListViewModel {
         let distance = locationA.distance(from: locationB)
         let kilometers = Int(distance) / 1000
         let metres = Int(distance.truncatingRemainder(dividingBy: 1000))
-        return "\(item.title!!) (\(kilometers) км \(metres) м)"
+        
+        if locationA.coordinate.longitude == locationB.coordinate.longitude {
+            return "\(item.title!!) (Выбрано)"
+        } else {
+            return "\(item.title!!) (\(kilometers) км \(metres) м)"
+        }
     }
     
     func selectBuilding(index: Int) {
@@ -38,9 +43,9 @@ extension BuildingsListViewModel: IBuildingsListViewModel {
         }
     }
     
-    func isBuildingSelected(index: Int) -> Bool {
+    func isBuildingSelected(index: Int)-> Bool {
         let item = buildingItem(index: index)
-        if item.title! == currentLocation?.title! {
+        if item.title! == currentLocation?.title! && item.coordinate.longitude == currentLocation?.coordinate.longitude {
             return true
         }
         return false
