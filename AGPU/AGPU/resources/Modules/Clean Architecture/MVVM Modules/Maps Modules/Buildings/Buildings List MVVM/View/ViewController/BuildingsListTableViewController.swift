@@ -74,11 +74,11 @@ class BuildingsListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let building = viewModel.buildingItem(index: indexPath.row)
         cell.tintColor = .systemGreen
-        cell.textLabel?.text = building.title!
+        cell.textLabel?.text = viewModel.getInfo(for: indexPath.row)
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
         cell.textLabel?.textColor = viewModel.isBuildingSelected(index: indexPath.row) ? .systemGreen : .label
+        cell.textLabel?.numberOfLines = 0
         cell.accessoryType = viewModel.isBuildingSelected(index: indexPath.row) ? .checkmark : .none
         return cell
     }

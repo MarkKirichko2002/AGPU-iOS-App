@@ -18,8 +18,14 @@ extension BuildingsListViewModel: IBuildingsListViewModel {
         return buildings.count
     }
     
-    func setUpData() {
-        
+    func getInfo(for building: Int)-> String {
+        let item = buildingItem(index: building)
+        let locationA = CLLocation(latitude: currentLocation?.coordinate.latitude ?? 0, longitude: currentLocation?.coordinate.longitude ?? 0)
+        let locationB = CLLocation(latitude: item.coordinate.latitude, longitude: item.coordinate.longitude)
+        let distance = locationA.distance(from: locationB)
+        let kilometers = Int(distance) / 1000
+        let metres = Int(distance.truncatingRemainder(dividingBy: 1000))
+        return "\(item.title!!) (\(kilometers) км \(metres) м)"
     }
     
     func selectBuilding(index: Int) {

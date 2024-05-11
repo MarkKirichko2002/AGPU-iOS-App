@@ -10,7 +10,7 @@ import MapKit
 protocol IBuildingsListViewModel {
     func buildingItem(index: Int)-> MKAnnotation
     func buildingItemsCountInSection()-> Int
-    func setUpData()
+    func getInfo(for building: Int)-> String
     func selectBuilding(index: Int)
     func isBuildingSelected(index: Int)-> Bool
     func registerSelectedHandler(block: @escaping()->Void)
