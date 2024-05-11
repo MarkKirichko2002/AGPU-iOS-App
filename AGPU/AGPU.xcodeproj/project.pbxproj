@@ -383,6 +383,10 @@
 		8299E3BB2B8A350D00D81472 /* TimeTableDateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299E3BA2B8A350D00D81472 /* TimeTableDateModel.swift */; };
 		829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6902A4327D40047609B /* UIViewController + Extensions.swift */; };
 		829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6982A43818A0047609B /* SettingsListViewModel.swift */; };
+		829CEF7E2BEF88FB00FA32EF /* BuildingsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829CEF7D2BEF88FB00FA32EF /* BuildingsListTableViewController.swift */; };
+		829CEF802BEF9BE500FA32EF /* IBuildingsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829CEF7F2BEF9BE500FA32EF /* IBuildingsListViewModel.swift */; };
+		829CEF822BEF9C5D00FA32EF /* BuildingsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829CEF812BEF9C5D00FA32EF /* BuildingsListViewModel.swift */; };
+		829CEF842BEF9CBB00FA32EF /* BuildingsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829CEF832BEF9CBB00FA32EF /* BuildingsListViewModel + Extensions.swift */; };
 		829D489A2BBC1E2B00F6D256 /* clock_sound2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 829D48992BBC1E2B00F6D256 /* clock_sound2.mp3 */; };
 		829D489D2BBC1E8C00F6D256 /* TimeTableSoundsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829D489C2BBC1E8C00F6D256 /* TimeTableSoundsListTableViewController.swift */; };
 		829D48A22BBC1ED300F6D256 /* ITimeTableSoundsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829D48A12BBC1ED300F6D256 /* ITimeTableSoundsListViewModel.swift */; };
@@ -955,6 +959,10 @@
 		8299E3BA2B8A350D00D81472 /* TimeTableDateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableDateModel.swift; sourceTree = "<group>"; };
 		829AD6902A4327D40047609B /* UIViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829AD6982A43818A0047609B /* SettingsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewModel.swift; sourceTree = "<group>"; };
+		829CEF7D2BEF88FB00FA32EF /* BuildingsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingsListTableViewController.swift; sourceTree = "<group>"; };
+		829CEF7F2BEF9BE500FA32EF /* IBuildingsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBuildingsListViewModel.swift; sourceTree = "<group>"; };
+		829CEF812BEF9C5D00FA32EF /* BuildingsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingsListViewModel.swift; sourceTree = "<group>"; };
+		829CEF832BEF9CBB00FA32EF /* BuildingsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BuildingsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		829D48992BBC1E2B00F6D256 /* clock_sound2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = clock_sound2.mp3; sourceTree = "<group>"; };
 		829D489C2BBC1E8C00F6D256 /* TimeTableSoundsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSoundsListTableViewController.swift; sourceTree = "<group>"; };
 		829D48A12BBC1ED300F6D256 /* ITimeTableSoundsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITimeTableSoundsListViewModel.swift; sourceTree = "<group>"; };
@@ -5937,6 +5945,65 @@
 			path = "Clean Architecture";
 			sourceTree = "<group>";
 		};
+		829CEF762BEF88AF00FA32EF /* Buildings List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				829CEF782BEF88BD00FA32EF /* View */,
+				829CEF772BEF88BB00FA32EF /* ViewModel */,
+			);
+			path = "Buildings List MVVM";
+			sourceTree = "<group>";
+		};
+		829CEF772BEF88BB00FA32EF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				829CEF7C2BEF88DB00FA32EF /* Protocol */,
+				829CEF7B2BEF88D900FA32EF /* ViewModel */,
+				829CEF7A2BEF88D700FA32EF /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		829CEF782BEF88BD00FA32EF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				829CEF792BEF88CE00FA32EF /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		829CEF792BEF88CE00FA32EF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				829CEF7D2BEF88FB00FA32EF /* BuildingsListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		829CEF7A2BEF88D700FA32EF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				829CEF832BEF9CBB00FA32EF /* BuildingsListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		829CEF7B2BEF88D900FA32EF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				829CEF812BEF9C5D00FA32EF /* BuildingsListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		829CEF7C2BEF88DB00FA32EF /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				829CEF7F2BEF9BE500FA32EF /* IBuildingsListViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		829D489B2BBC1E7500F6D256 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -7189,6 +7256,7 @@
 				82E4C58C2A6B254200F65A67 /* AGPU Buildings Maps MVVM */,
 				824EBF612B29CF300003E7E6 /* AGPU Building Types */,
 				8210CA022A664D5700D0BEEE /* Current Buiding MVVM */,
+				829CEF762BEF88AF00FA32EF /* Buildings List MVVM */,
 				82ECCC6B2B1828EE00443ED8 /* AGPU Building Detail MVVM */,
 				8283216F2A7D6403008641A5 /* Voice Search AGPU Building Map MVVM */,
 			);
@@ -8572,6 +8640,7 @@
 				824EBF732B29FA380003E7E6 /* AGPUBuildingTypesListViewModel.swift in Sources */,
 				82FC22EA2BC01BA6008709DA /* NewsOptionsFilterListViewModel.swift in Sources */,
 				8234E6122A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift in Sources */,
+				829CEF802BEF9BE500FA32EF /* IBuildingsListViewModel.swift in Sources */,
 				82989ACD2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift in Sources */,
 				828D51142BB86B2600848FF8 /* ASPUButtonIconOptionTableViewCell.swift in Sources */,
 				82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */,
@@ -8912,6 +8981,7 @@
 				82B24A912A81BE21008B94E4 /* AGPUNewsService + Extensions.swift in Sources */,
 				82C561672A6B7B0D00514B00 /* AppFeatureDetailViewController.swift in Sources */,
 				82C5B7952BCEFBE900F907CB /* IASPUButtonAnimationOptionsListViewModel.swift in Sources */,
+				829CEF7E2BEF88FB00FA32EF /* BuildingsListTableViewController.swift in Sources */,
 				8234E60D2A885B6D00ED354C /* WordRecentDocumentViewModel.swift in Sources */,
 				82920B8D2AD8871D00352CD8 /* SelectedFacultyListViewModelProtocol.swift in Sources */,
 				823F97E02B9D228C00F60F39 /* WeatherSplashScreenViewModel.swift in Sources */,
@@ -8927,6 +8997,7 @@
 				825D56732AE5CBEB004305C7 /* PairInfoTableViewController.swift in Sources */,
 				82989ACF2A6E35B200F27858 /* FacultyCathedraTableViewCell.swift in Sources */,
 				82D37FD52BEC29D90035CB57 /* SavedImagesListViewModel.swift in Sources */,
+				829CEF822BEF9C5D00FA32EF /* BuildingsListViewModel.swift in Sources */,
 				829952672BDCBB9A003AFB14 /* ASPUButtonAllActionsListTableViewController.swift in Sources */,
 				822527662BA77ECA00B66314 /* WeekDaysListViewModel + Extensions.swift in Sources */,
 				821B72762BD17358000460E2 /* TabColorsListTableViewController.swift in Sources */,
@@ -8997,6 +9068,7 @@
 				8295489C2A43AE7E007DEBA0 /* SettingsManager.swift in Sources */,
 				828CFA372A35F65700C7542D /* WebViewController.swift in Sources */,
 				82E4C5842A6B201600F65A67 /* LocationManagerProtocol.swift in Sources */,
+				829CEF842BEF9CBB00FA32EF /* BuildingsListViewModel + Extensions.swift in Sources */,
 				828321672A7D02E6008641A5 /* AllGroupsListViewModel.swift in Sources */,
 				82BCB5762AB3AD2600F3A321 /* PairTypesListViewModel + Extensions.swift in Sources */,
 				8209A0B32B838EFE0013371D /* DocumentsListTableViewController.swift in Sources */,

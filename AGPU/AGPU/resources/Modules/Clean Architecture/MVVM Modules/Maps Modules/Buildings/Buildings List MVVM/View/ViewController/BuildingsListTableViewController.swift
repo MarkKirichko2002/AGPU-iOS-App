@@ -1,19 +1,26 @@
 //
-//  AGPUBuildingTypesListTableViewController.swift
+//  BuildingsListTableViewController.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 13.12.2023.
+//  Created by Марк Киричко on 11.05.2024.
 //
 
 import UIKit
+import MapKit
 
-class AGPUBuildingTypesListTableViewController: UITableViewController {
+protocol BuildingsListTableViewControllerDelegate: AnyObject {
+    func buildingWasSelected(location: (MKAnnotation, Int))
+}
 
-    var viewModel: AGPUBuildingTypesListViewModel!
+class BuildingsListTableViewController: UITableViewController {
+    
+    weak var delegate: BuildingsListTableViewControllerDelegate?
+    
+    private let viewModel: BuildingsListViewModel
     
     // MARK: - Init
-    init(type: AGPUBuildingType?) {
-        self.viewModel = AGPUBuildingTypesListViewModel(type: type)
+    init(currentLocation: MKAnnotation, annotations:[MKAnnotation]) {
+        self.viewModel = BuildingsListViewModel(currentLocation: currentLocation, buildings: annotations)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -29,15 +36,15 @@ class AGPUBuildingTypesListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Фильтрация"
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
+        navigationItem.title = "Здания"
         navigationItem.rightBarButtonItem = closeButton
     }
     
     @objc private func closeScreen() {
         HapticsManager.shared.hapticFeedback()
-        dismiss(animated: true)
+        self.dismiss(animated: true)
     }
     
     private func setUpTable() {
@@ -45,39 +52,34 @@ class AGPUBuildingTypesListTableViewController: UITableViewController {
     }
     
     private func bindViewModel() {
-        viewModel.getTypesInfo()
-        viewModel.registerDataChangedHandler {
+        viewModel.registerSelectedHandler {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-        }
-        viewModel.registerTypeSelectedHandler {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            self.delegate?.buildingWasSelected(location: (self.viewModel.currentLocation!, self.viewModel.index))
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 self.dismiss(animated: true)
             }
         }
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.selectBuilding(index: indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfTypesInSection()
+        return viewModel.buildingItemsCountInSection()
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let type = viewModel.typeItem(index: indexPath.row)
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let building = viewModel.buildingItem(index: indexPath.row)
         cell.tintColor = .systemGreen
-        cell.textLabel?.text = "\(type.name) (всего: \(type.count))"
+        cell.textLabel?.text = building.title!
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
-        cell.textLabel?.textColor = viewModel.isCurrentType(index: indexPath.row) ? .systemGreen : .label
-        cell.accessoryType = viewModel.isCurrentType(index: indexPath.row) ? .checkmark : .none
+        cell.textLabel?.textColor = viewModel.isBuildingSelected(index: indexPath.row) ? .systemGreen : .label
+        cell.accessoryType = viewModel.isBuildingSelected(index: indexPath.row) ? .checkmark : .none
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.chooseBuildingType(index: indexPath.row)
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

@@ -49,7 +49,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
         button2.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
         let closeButton = UIBarButtonItem(customView: button2)
         
-        let typeList = UIAction(title: "Корпуса") { _ in
+        let typeList = UIAction(title: "Фильтрация") { _ in
             let vc = AGPUBuildingTypesListTableViewController(type: self.viewModel.type)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -63,7 +63,15 @@ final class AGPUBuildingsMapViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
-        let menu = UIMenu(title: "Карта", children: [typeList, facultiesList])
+        let buidlingsList = UIAction(title: "Здания") { _ in
+            let vc = BuildingsListTableViewController(currentLocation: self.viewModel.arr[self.viewModel.index], annotations: self.viewModel.arr)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let menu = UIMenu(title: "Карта", children: [typeList, facultiesList, buidlingsList])
         
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         options.tintColor = .label
@@ -171,7 +179,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
         }
     }
     
-    private func setRegion(region: MKCoordinateRegion) {
+    func setRegion(region: MKCoordinateRegion) {
         UIView.animate(withDuration: 1) {
             self.mapView.setRegion(region, animated: true)
         } completion: { _ in

@@ -41,3 +41,15 @@ extension AGPUBuildingsMapViewController: MKMapViewDelegate {
         }
     }
 }
+
+// MARK: - BuildingListTableViewControllerDelegate
+extension AGPUBuildingsMapViewController: BuildingsListTableViewControllerDelegate {
+    
+    func buildingWasSelected(location: (MKAnnotation, Int)) {
+        let region = MKCoordinateRegion(center: location.0.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001))
+        viewModel.index = location.1
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+            self.setRegion(region: region)
+        }
+    }
+}
