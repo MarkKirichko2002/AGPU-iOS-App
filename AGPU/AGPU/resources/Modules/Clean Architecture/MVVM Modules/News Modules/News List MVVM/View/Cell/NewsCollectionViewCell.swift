@@ -134,6 +134,8 @@ final class NewsCollectionViewCell: UICollectionViewCell {
     }
     
     func didTapCell(indexPath: IndexPath) {
-        animation.flipAnimation(view: self, option: .transitionFlipFromRight) {}
+        animation.flipAnimation(view: self, option: .transitionFlipFromRight) {
+            HapticsManager.shared.hapticFeedback()
+        }
     }
 }

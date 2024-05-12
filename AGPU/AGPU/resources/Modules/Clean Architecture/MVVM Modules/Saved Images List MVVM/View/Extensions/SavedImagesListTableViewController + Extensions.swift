@@ -50,7 +50,7 @@ extension SavedImagesListTableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let image = viewModel.imageItem(index: indexPath.row)
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SavedImageTableViewCell.identifier, for: indexPath) as? SavedImageTableViewCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SavedImageTableViewCell.identifier, for: indexPath) as? SavedImageTableViewCell else {fatalError()}
         cell.configure(image: image)
         return cell
     }

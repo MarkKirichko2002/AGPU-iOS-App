@@ -73,6 +73,7 @@ extension RealmManager: IRealmManager {
         guard let newDocument = newDocument else {return}
         try! realm.write {
             realm.delete(newDocument)
+            HapticsManager.shared.hapticFeedback()
         }
     }
     
@@ -101,6 +102,7 @@ extension RealmManager: IRealmManager {
         guard let newImage = newImage else {return}
         try! realm.write {
             realm.delete(newImage)
+            HapticsManager.shared.hapticFeedback()
         }
     }
     
@@ -152,6 +154,7 @@ extension RealmManager: IRealmManager {
         guard let article = article else {return}
         try! realm.write {
             realm.delete(article)
+            HapticsManager.shared.hapticFeedback()
         }
     }
     
@@ -206,6 +209,7 @@ extension RealmManager: IRealmManager {
         guard let item = item else {return}
         try! realm.write {
             realm.delete(item)
+            HapticsManager.shared.hapticFeedback()
         }
     }
     

@@ -61,7 +61,7 @@ class SavedImagesListTableViewController: UIViewController {
         tableView.frame = view.bounds
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: SavedImageTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SavedImageTableViewCell.identifier)
+        tableView.register(SavedImageTableViewCell.self, forCellReuseIdentifier: SavedImageTableViewCell.identifier)
     }
     
     private func setUpLabel() {
