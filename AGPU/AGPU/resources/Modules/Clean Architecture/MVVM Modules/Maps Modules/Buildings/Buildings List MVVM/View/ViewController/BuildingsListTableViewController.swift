@@ -67,6 +67,41 @@ class BuildingsListTableViewController: UITableViewController {
         viewModel.selectBuilding(index: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil,
+                                          previewProvider: nil,
+                                          actionProvider: {
+            _ in
+            
+            let infoAction = UIAction(title: "Подробнее", image: UIImage(named: "info")) { _ in
+                let storyboard = UIStoryboard(name: "AGPUBuildingDetailViewController", bundle: nil)
+                if let vc = storyboard.instantiateViewController(withIdentifier: "AGPUBuildingDetailViewController") as? AGPUBuildingDetailViewController {
+                    vc.annotation = self.viewModel.buildingItem(index: indexPath.row)
+                    vc.id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-2-1"
+                    vc.owner = "GROUP"
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                        self.present(navVC, animated: true)
+                    }
+                }
+            }
+            
+            let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
+                let vc = ShareLocationAppsViewController(annotation: self.viewModel.buildingItem(index: indexPath.row))
+                vc.modalPresentationStyle = .fullScreen
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self.present(vc, animated: true)
+                }
+            }
+            
+            return UIMenu(title: "Здание", children: [
+                infoAction,
+                shareAction
+            ])
+        })
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.buildingItemsCountInSection()
