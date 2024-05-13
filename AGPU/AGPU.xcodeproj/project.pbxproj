@@ -263,6 +263,7 @@
 		82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E9D2A31F2F800DEEB16 /* AGPUSectionModel.swift */; };
 		82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E9F2A31F44500DEEB16 /* AGPUSubSectionModel.swift */; };
 		82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808EA82A32236E00DEEB16 /* AGPUSections.swift */; };
+		82822E2D2BF2672D0060DD43 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82822E2C2BF2672D0060DD43 /* NewsTableViewCell.swift */; };
 		828321642A7C6A48008641A5 /* AllGroupsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828321632A7C6A48008641A5 /* AllGroupsListTableViewController.swift */; };
 		828321672A7D02E6008641A5 /* AllGroupsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828321662A7D02E6008641A5 /* AllGroupsListViewModel.swift */; };
 		8283216C2A7D090C008641A5 /* AllGroupsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8283216B2A7D090C008641A5 /* AllGroupsListViewModelProtocol.swift */; };
@@ -838,6 +839,7 @@
 		82808E9D2A31F2F800DEEB16 /* AGPUSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSectionModel.swift; sourceTree = "<group>"; };
 		82808E9F2A31F44500DEEB16 /* AGPUSubSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSubSectionModel.swift; sourceTree = "<group>"; };
 		82808EA82A32236E00DEEB16 /* AGPUSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSections.swift; sourceTree = "<group>"; };
+		82822E2C2BF2672D0060DD43 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		828321632A7C6A48008641A5 /* AllGroupsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsListTableViewController.swift; sourceTree = "<group>"; };
 		828321662A7D02E6008641A5 /* AllGroupsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsListViewModel.swift; sourceTree = "<group>"; };
 		8283216B2A7D090C008641A5 /* AllGroupsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsListViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -2149,18 +2151,19 @@
 			isa = PBXGroup;
 			children = (
 				821FCF032A87CD78006FFB26 /* ViewController */,
-				821FCF012A87CD72006FFB26 /* Cell */,
+				821FCF012A87CD72006FFB26 /* Cells */,
 				821FCF082A87CE63006FFB26 /* Extensions */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		821FCF012A87CD72006FFB26 /* Cell */ = {
+		821FCF012A87CD72006FFB26 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				821FCF042A87CDB8006FFB26 /* NewsCollectionViewCell.swift */,
+				82822E2C2BF2672D0060DD43 /* NewsTableViewCell.swift */,
 			);
-			path = Cell;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		821FCF032A87CD78006FFB26 /* ViewController */ = {
@@ -8769,6 +8772,7 @@
 				82C5B7972BCEFC2300F907CB /* ASPUButtonAnimationOptionsListViewModel.swift in Sources */,
 				8228E3992A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift in Sources */,
 				8234E6082A8858C400ED354C /* WordRecentDocumentViewModelProtocol.swift in Sources */,
+				82822E2D2BF2672D0060DD43 /* NewsTableViewCell.swift in Sources */,
 				82920B6A2AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift in Sources */,
 				829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */,
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
@@ -9272,7 +9276,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3.1;
+				MARKETING_VERSION = 2.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -9311,7 +9315,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3.1;
+				MARKETING_VERSION = 2.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

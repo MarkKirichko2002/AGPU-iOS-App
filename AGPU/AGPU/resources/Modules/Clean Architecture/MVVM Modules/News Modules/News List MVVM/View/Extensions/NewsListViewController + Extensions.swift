@@ -75,6 +75,37 @@ extension NewsListViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - UITableViewDelegate
+extension NewsListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        viewModel.sendNotificationArticleWasSelected()
+        
+        Timer.scheduledTimer(withTimeInterval: 1.1, repeats: false) { _ in
+            let vc = NewsWebViewController(article: self.viewModel.articleItem(index: indexPath.row), url: self.viewModel.makeUrlForCurrentArticle(index: indexPath.row), isNotify: true)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension NewsListViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.newsResponse.articles?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifier, for: indexPath) as? NewsTableViewCell else {fatalError()}
+        cell.configure(article: viewModel.articleItem(index: indexPath.row))
+        return cell
+    }
+}
+
 // MARK: - WKNavigationDelegate
 extension NewsListViewController: WKNavigationDelegate {
     

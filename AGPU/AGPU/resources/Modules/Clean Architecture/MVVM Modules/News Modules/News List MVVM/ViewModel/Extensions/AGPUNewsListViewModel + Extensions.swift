@@ -46,6 +46,9 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                 case .grid:
                     allNews = response.articles ?? []
                     filterNews(option: option)
+                case .table:
+                    allNews = response.articles ?? []
+                    filterNews(option: option)
                 case .webpage:
                     dataChangedHandler?("-")
                     dislayModeHandler?(.webpage)
@@ -67,6 +70,9 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                 self.abbreviation = abbreviation
                 switch displayMode {
                 case .grid:
+                    allNews = response.articles ?? []
+                    filterNews(option: option)
+                case .table:
                     allNews = response.articles ?? []
                     filterNews(option: option)
                 case .webpage:
@@ -92,7 +98,13 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                     self.allNews = response.articles ?? []
                     self.option = .all
                     self.dataChangedHandler?(self.abbreviation)
-                    self.dislayModeHandler?(.grid)
+                    self.dislayModeHandler?(displayMode)
+                case .table:
+                    self.newsResponse = response
+                    self.allNews = response.articles ?? []
+                    self.option = .all
+                    self.dataChangedHandler?(self.abbreviation)
+                    self.dislayModeHandler?(displayMode)
                 case .webpage:
                     self.newsResponse = response
                     self.dislayModeHandler?(displayMode)
@@ -156,6 +168,9 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                 case .grid:
                     self.option = option
                     self.filterNews(option: option)
+                case .table:
+                    self.option = option
+                    self.filterNews(option: option)
                 case .webpage:
                     break
                 }
@@ -176,14 +191,14 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             let filteredNews = allNews.filter({ $0.date == date})
             newsResponse.articles = filteredNews
             dataChangedHandler?(abbreviation)
-            dislayModeHandler?(.grid)
+            dislayModeHandler?(displayMode)
         case .yesterday:
             let date = dateManager.getCurrentDate()
             let yesterday = dateManager.previousDay(date: date)
             let filteredNews = allNews.filter({ $0.date == yesterday})
             newsResponse.articles = filteredNews
             dataChangedHandler?(abbreviation)
-            dislayModeHandler?(.grid)
+            dislayModeHandler?(displayMode)
         case .dayBeforeYesterday:
             let date = dateManager.getCurrentDate()
             let yesterday = dateManager.previousDay(date: date)
@@ -191,11 +206,11 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             let filteredNews = allNews.filter({ $0.date == beforeYesterday})
             newsResponse.articles = filteredNews
             dataChangedHandler?(abbreviation)
-            dislayModeHandler?(.grid)
+            dislayModeHandler?(displayMode)
         case .all:
             newsResponse.articles = allNews
             dataChangedHandler?(abbreviation)
-            dislayModeHandler?(.grid)
+            dislayModeHandler?(displayMode)
         }
     }
     

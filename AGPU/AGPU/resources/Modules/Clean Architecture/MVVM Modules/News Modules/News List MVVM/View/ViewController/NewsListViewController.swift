@@ -19,9 +19,14 @@ final class NewsListViewController: UIViewController {
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(NewsCollectionViewCell.self, forCellWithReuseIdentifier: NewsCollectionViewCell.identifier)
         return collectionView
+    }()
+    
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.identifier)
+        return tableView
     }()
     
     private let webView: WKWebView = {
@@ -67,6 +72,14 @@ final class NewsListViewController: UIViewController {
                 self.spinner.startAnimating()
             }
             viewModel.refreshNews()
+        case .table:
+            viewModel.newsResponse.articles = []
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.noNewsLabel.isHidden = true
+                self.spinner.startAnimating()
+            }
+            viewModel.refreshNews()
         case .webpage:
             viewModel.refreshNews()
         }
@@ -77,6 +90,14 @@ final class NewsListViewController: UIViewController {
         collectionView.frame = view.bounds
         collectionView.delegate = self
         collectionView.dataSource = self
+        spinner.color = .label
+    }
+    
+    private func setUpTableView() {
+        view.addSubview(tableView)
+        tableView.frame = view.bounds
+        tableView.delegate = self
+        tableView.dataSource = self
         spinner.color = .label
     }
     
@@ -196,8 +217,9 @@ final class NewsListViewController: UIViewController {
             options.tintColor = .label
             
             
-            if viewModel.displayMode == .grid {
+            switch viewModel.displayMode {
                 
+            case .grid:
                 DispatchQueue.main.async {
                     self.navigationItem.titleView = titleView
                     self.navigationItem.rightBarButtonItem = options
@@ -211,8 +233,23 @@ final class NewsListViewController: UIViewController {
                         self.noNewsLabel.isHidden = false
                     }
                 }
-            } else {
+            
+            case .table:
+                DispatchQueue.main.async {
+                    self.navigationItem.titleView = titleView
+                    self.navigationItem.rightBarButtonItem = options
+                    self.tableView.reloadData()
+                }
                 
+                DispatchQueue.main.async {
+                    if !(self.viewModel.newsResponse.articles?.isEmpty ?? false) {
+                        self.noNewsLabel.isHidden = true
+                    } else {
+                        self.noNewsLabel.isHidden = false
+                    }
+                }
+            
+            case .webpage:
                 DispatchQueue.main.async {
                     self.navigationItem.titleView = titleView
                     self.navigationItem.rightBarButtonItem = options
@@ -226,6 +263,13 @@ final class NewsListViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.webView.removeFromSuperview()
                     self.setUpCollectionView()
+                    self.setUpIndicatorView()
+                    self.spinner.stopAnimating()
+                }
+            case .table:
+                DispatchQueue.main.async {
+                    self.webView.removeFromSuperview()
+                    self.setUpTableView()
                     self.setUpIndicatorView()
                     self.spinner.stopAnimating()
                 }
