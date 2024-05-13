@@ -11,6 +11,21 @@ import WebKit
 // MARK: - UICollectionViewDelegate
 extension NewsListViewController: UICollectionViewDelegate {
         
+    func collectionView(_ collectionView: UICollectionView,
+                                 contextMenuConfigurationForItemAt indexPath: IndexPath,
+                                 point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+            
+            let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
+                self.shareInfo(image: UIImage(named: "АГПУ")!, title: "\(self.viewModel.articleItem(index: indexPath.row).title)", text: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))")
+            }
+            
+            return UIMenu(title: self.viewModel.articleItem(index: indexPath.row).title, children: [
+                shareAction
+            ])
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if let cell = collectionView.cellForItem(at: indexPath) as? NewsCollectionViewCell {
@@ -24,21 +39,6 @@ extension NewsListViewController: UICollectionViewDelegate {
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                                 contextMenuConfigurationForItemAt indexPath: IndexPath,
-                                 point: CGPoint) -> UIContextMenuConfiguration? {
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
-            
-            let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
-                self.shareInfo(image: UIImage(named: "АГПУ")!, title: "\(self.viewModel.articleItem(index: indexPath.row).title)", text: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))")
-            }
-            
-            return UIMenu(title: self.viewModel.articleItem(index: indexPath.row).title, children: [
-                shareAction
-            ])
         }
     }
 }
@@ -77,6 +77,19 @@ extension NewsListViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - UITableViewDelegate
 extension NewsListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+            
+            let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
+                self.shareInfo(image: UIImage(named: "АГПУ")!, title: "\(self.viewModel.articleItem(index: indexPath.row).title)", text: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))")
+            }
+            
+            return UIMenu(title: self.viewModel.articleItem(index: indexPath.row).title, children: [
+                shareAction
+            ])
+        }
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
