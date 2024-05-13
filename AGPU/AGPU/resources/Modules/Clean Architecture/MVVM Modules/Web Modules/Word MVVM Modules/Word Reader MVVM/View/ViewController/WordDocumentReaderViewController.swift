@@ -43,6 +43,14 @@ final class WordDocumentReaderViewController: UIViewController {
         closeButton.tintColor = .label
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())
         sections.tintColor = .label
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemBackground
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
         navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = sections
