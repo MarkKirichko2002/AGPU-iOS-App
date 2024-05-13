@@ -14,6 +14,7 @@ class NewsTableViewCell: UITableViewCell {
     static let identifier = "NewsTableViewCell"
     
     // MARK: - сервисы
+    private let animation = AnimationClass()
     private let dateManager = DateManager()
     
     private let newsImage: SpringImageView = {
@@ -39,6 +40,14 @@ class NewsTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        newsImage.layer.borderWidth = 0
+        newsImage.layer.borderColor = nil
+        newsImage.image = nil
+        articleTitle.text = nil
     }
     
     private func setUpView() {
@@ -99,6 +108,12 @@ class NewsTableViewCell: UITableViewCell {
                 self.newsImage.sd_setImage(with: URL(string: news.previewImage))
                 self.articleTitle.text = news.title
             }
+        }
+    }
+    
+    func didTapCell(indexPath: IndexPath) {
+        animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
+            HapticsManager.shared.hapticFeedback()
         }
     }
 }

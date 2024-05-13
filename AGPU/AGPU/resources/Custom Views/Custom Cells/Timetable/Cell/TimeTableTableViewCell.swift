@@ -56,7 +56,7 @@ final class TimeTableTableViewCell: UITableViewCell {
     }
     
     func didTapCell(indexPath: IndexPath) {
-        animation.flipAnimation(view: self, option: .transitionFlipFromRight) {
+        animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
             self.delegate?.cellTapped(pair: self.pair, id: self.id, date: self.date)
             HapticsManager.shared.hapticFeedback()
         }

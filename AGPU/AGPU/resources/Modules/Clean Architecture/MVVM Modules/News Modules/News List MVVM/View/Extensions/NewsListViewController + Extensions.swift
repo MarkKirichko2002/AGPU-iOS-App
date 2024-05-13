@@ -80,6 +80,10 @@ extension NewsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        if let cell = tableView.cellForRow(at: indexPath) as? NewsTableViewCell {
+            cell.didTapCell(indexPath: indexPath)
+        }
+        
         viewModel.sendNotificationArticleWasSelected()
         
         Timer.scheduledTimer(withTimeInterval: 1.1, repeats: false) { _ in
