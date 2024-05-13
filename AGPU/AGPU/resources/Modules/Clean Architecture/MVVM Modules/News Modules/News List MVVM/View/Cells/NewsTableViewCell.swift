@@ -27,9 +27,16 @@ class NewsTableViewCell: UITableViewCell {
     
     private let articleTitle: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
         label.textColor = .label
-        label.font = .systemFont(ofSize: 15, weight: .black)
+        label.numberOfLines = 4
+        label.font = .systemFont(ofSize: 14, weight: .black)
+        return label
+    }()
+    
+    private let articleDate: UILabel = {
+        let label = UILabel()
+        label.textColor = .label
+        label.font = .systemFont(ofSize: 15, weight: .medium)
         return label
     }()
     
@@ -51,7 +58,7 @@ class NewsTableViewCell: UITableViewCell {
     }
     
     private func setUpView() {
-        contentView.addSubviews(newsImage, articleTitle)
+        contentView.addSubviews(newsImage, articleTitle, articleDate)
         makeConstraints()
         setUpImage()
     }
@@ -76,6 +83,12 @@ class NewsTableViewCell: UITableViewCell {
             maker.right.equalToSuperview().inset(15)
             maker.bottom.equalToSuperview().inset(15)
         }
+        articleDate.snp.makeConstraints { maker in
+            maker.top.equalTo(articleTitle.snp.bottom).offset(-10)
+            maker.left.equalTo(newsImage.snp.right).offset(15)
+            maker.right.equalToSuperview().inset(15)
+            maker.bottom.equalToSuperview().inset(10)
+        }
     }
     
     func configure(article: Article) {
@@ -88,6 +101,7 @@ class NewsTableViewCell: UITableViewCell {
             DispatchQueue.main.async {
                 self.newsImage.sd_setImage(with: URL(string: article.previewImage))
                 self.articleTitle.text = article.title
+                self.articleDate.text = article.date
             }
         }
     }
@@ -102,11 +116,13 @@ class NewsTableViewCell: UITableViewCell {
             DispatchQueue.main.async {
                 self.newsImage.sd_setImage(with: URL(string: news.previewImage))
                 self.articleTitle.text = news.title
+                self.articleDate.text = "\(news.date) (сегодня!)"
             }
         } else {
             DispatchQueue.main.async {
                 self.newsImage.sd_setImage(with: URL(string: news.previewImage))
                 self.articleTitle.text = news.title
+                self.articleDate.text = news.date
             }
         }
     }
