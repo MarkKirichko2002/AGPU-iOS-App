@@ -226,14 +226,6 @@ final class NewsListViewController: UIViewController {
                     self.collectionView.reloadData()
                 }
                 
-                DispatchQueue.main.async {
-                    if !(self.viewModel.newsResponse.articles?.isEmpty ?? false) {
-                        self.noNewsLabel.isHidden = true
-                    } else {
-                        self.noNewsLabel.isHidden = false
-                    }
-                }
-            
             case .table:
                 DispatchQueue.main.async {
                     self.navigationItem.titleView = titleView
@@ -241,18 +233,22 @@ final class NewsListViewController: UIViewController {
                     self.tableView.reloadData()
                 }
                 
-                DispatchQueue.main.async {
-                    if !(self.viewModel.newsResponse.articles?.isEmpty ?? false) {
-                        self.noNewsLabel.isHidden = true
-                    } else {
-                        self.noNewsLabel.isHidden = false
-                    }
-                }
-            
             case .webpage:
                 DispatchQueue.main.async {
                     self.navigationItem.titleView = titleView
                     self.navigationItem.rightBarButtonItem = options
+                }
+            }
+            
+            DispatchQueue.main.async {
+                if !(self.viewModel.newsResponse.articles?.isEmpty ?? false) {
+                    self.noNewsLabel.isHidden = true
+                    self.tableView.isHidden = false
+                    self.collectionView.isHidden = false
+                } else {
+                    self.noNewsLabel.isHidden = false
+                    self.tableView.isHidden = true
+                    self.collectionView.isHidden = true
                 }
             }
         }
@@ -261,21 +257,28 @@ final class NewsListViewController: UIViewController {
             switch mode {
             case .grid:
                 DispatchQueue.main.async {
-                    self.webView.removeFromSuperview()
+                    self.view.subviews.forEach {
+                        if $0 != self.noNewsLabel {$0.removeFromSuperview()}
+                    }
                     self.setUpCollectionView()
                     self.setUpIndicatorView()
                     self.spinner.stopAnimating()
                 }
             case .table:
                 DispatchQueue.main.async {
-                    self.webView.removeFromSuperview()
+                    self.view.subviews.forEach {
+                        if $0 != self.noNewsLabel {$0.removeFromSuperview()}
+                    }
                     self.setUpTableView()
                     self.setUpIndicatorView()
                     self.spinner.stopAnimating()
                 }
+                
             case .webpage:
                 DispatchQueue.main.async {
-                    self.collectionView.removeFromSuperview()
+                    self.view.subviews.forEach {
+                        if $0 != self.noNewsLabel {$0.removeFromSuperview()}
+                    }
                     self.setUpWebView()
                     self.setUpIndicatorView()
                 }
