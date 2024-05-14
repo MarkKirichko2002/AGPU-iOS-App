@@ -37,9 +37,10 @@ final class RecentNewsListViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Недавние новости"
+        let titleView = CustomTitleView(image: "time", title: "Недавние новости", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
+        navigationItem.titleView = titleView
         navigationItem.rightBarButtonItem = closeButton
     }
     

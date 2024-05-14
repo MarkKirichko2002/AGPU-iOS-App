@@ -114,8 +114,10 @@ final class AGPUTabBarController: UITabBarController {
         switch onlyMain {
         case .schedule:
             setViewControllers([nav3VC, middleButton, nav4VC], animated: false)
+            selectedIndex = 0
         case .news:
             setViewControllers([nav1VC, middleButton, nav4VC], animated: false)
+            selectedIndex = 0
         case .none:
             let position = settingsManager.getTabsPosition()
             forEveryStatusVC = settingsManager.checkCurrentStatus()
