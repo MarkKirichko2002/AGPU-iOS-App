@@ -166,11 +166,13 @@ final class AGPUBuildingsMapViewController: UIViewController {
         }
         viewModel.checkLocationAuthorizationStatus()
         viewModel.registerLocationHandler { location in
-            self.navigationItem.title = "Найти кампус"
+            let titleView = CustomTitleView(image: "marker", title: "Найти кампус", frame: .zero)
+            self.navigationItem.titleView = titleView
             self.mapView.showAnnotations(location.pins, animated: true)
         }
         viewModel.registerChoiceHandler { isBuildingType, annotation in
-            self.navigationItem.title = "Поиск..."
+            let titleView = CustomTitleView(image: "search", title: "Поиск...", frame: .zero)
+            self.navigationItem.titleView = titleView
             if isBuildingType {
                 self.mapView.addAnnotation(annotation)
             } else {
@@ -184,9 +186,11 @@ final class AGPUBuildingsMapViewController: UIViewController {
             self.mapView.setRegion(region, animated: true)
         } completion: { _ in
             if self.viewModel.index == 0 {
-                self.navigationItem.title = "Текущая локация"
+                let titleView = CustomTitleView(image: "marker", title: "Текущая локация", frame: .zero)
+                self.navigationItem.titleView = titleView
             } else {
-                self.navigationItem.title = "\(self.viewModel.arr[self.viewModel.index].title! ?? "") (\(self.viewModel.index)/\(self.viewModel.arr.count - 1))"
+                let titleView = CustomTitleView(image: "marker", title: "\(self.viewModel.arr[self.viewModel.index].title! ?? "") (\(self.viewModel.index)/\(self.viewModel.arr.count - 1))", frame: .zero)
+                self.navigationItem.titleView = titleView
             }
             HapticsManager.shared.hapticFeedback()
         }

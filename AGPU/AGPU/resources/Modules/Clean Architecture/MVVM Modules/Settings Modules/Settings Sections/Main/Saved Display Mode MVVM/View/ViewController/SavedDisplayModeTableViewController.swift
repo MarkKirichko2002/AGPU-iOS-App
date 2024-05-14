@@ -20,13 +20,14 @@ class SavedDisplayModeTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Выберите вид"
+        let titleView = CustomTitleView(image: "mobile", title: "Выберите вид", frame: .zero)
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         
         let backButton = UIBarButtonItem(customView: button)
+        navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = backButton

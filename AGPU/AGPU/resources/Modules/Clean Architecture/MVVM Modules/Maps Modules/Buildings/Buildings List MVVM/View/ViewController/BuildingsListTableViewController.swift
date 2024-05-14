@@ -36,9 +36,10 @@ class BuildingsListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
+        let titleView = CustomTitleView(image: "marker", title: "Здания", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
-        navigationItem.title = "Здания"
+        navigationItem.titleView = titleView
         navigationItem.rightBarButtonItem = closeButton
     }
     
