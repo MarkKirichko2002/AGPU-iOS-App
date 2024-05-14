@@ -37,7 +37,7 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Поиск"
+        let titleView = CustomTitleView(image: "search", title: "Поиск", frame: .zero)
         if isSettings || isFavourite {
             navigationItem.leftBarButtonItem = nil
             navigationItem.hidesBackButton = true
@@ -46,10 +46,12 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
             button.setImage(UIImage(named: "back"), for: .normal)
             button.addTarget(self, action: #selector(back), for: .touchUpInside)
             let backButton = UIBarButtonItem(customView: button)
+            navigationItem.titleView = titleView
             navigationItem.leftBarButtonItem = backButton
         } else {
             let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
             closeButton.tintColor = .label
+            navigationItem.titleView = titleView
             navigationItem.rightBarButtonItem = closeButton
         }
     }

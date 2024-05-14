@@ -20,8 +20,9 @@ class SplashScreensListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Выберите экран заставки"
+        let titleView = CustomTitleView(image: "mobile", title: "Экраны заставки", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
+        navigationItem.titleView = titleView
         closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }

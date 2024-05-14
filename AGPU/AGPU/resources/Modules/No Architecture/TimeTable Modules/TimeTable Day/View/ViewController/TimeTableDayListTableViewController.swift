@@ -116,8 +116,8 @@ final class TimeTableDayListTableViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
-        // список типов пар
-        let pairTypesList = UIAction(title: "Типы пары") { _ in
+        // фильтрация
+        let pairTypesList = UIAction(title: "Фильтрация") { _ in
             let vc = PairTypesListTableViewController(type: self.type)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
