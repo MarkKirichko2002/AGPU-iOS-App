@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ForEveryStatusModel {
+struct ForEveryStatusModel: Equatable {
     let id: Int
     let icon: String
     let name: String

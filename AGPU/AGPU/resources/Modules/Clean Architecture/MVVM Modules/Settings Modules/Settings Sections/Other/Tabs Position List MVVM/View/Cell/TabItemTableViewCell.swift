@@ -46,8 +46,8 @@ class TabItemTableViewCell: UITableViewCell {
             maker.top.equalToSuperview().inset(10)
             maker.left.equalToSuperview().inset(20)
             maker.bottom.equalToSuperview().inset(10)
-            maker.width.equalTo(60)
-            maker.height.equalTo(60)
+            maker.width.equalTo(65)
+            maker.height.equalTo(65)
         }
         
         tabName.snp.makeConstraints { maker in

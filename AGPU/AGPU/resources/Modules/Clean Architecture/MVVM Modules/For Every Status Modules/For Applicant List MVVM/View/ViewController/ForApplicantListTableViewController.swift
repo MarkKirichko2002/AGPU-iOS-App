@@ -7,70 +7,118 @@
 
 import UIKit
 
-class ForApplicantListTableViewController: UITableViewController {
+final class ForApplicantListTableViewController: UITableViewController {
+    
+    // MARK: - сервисы
+    private let viewModel = ForApplicantListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
         setUpTable()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        DispatchQueue.main.async { [weak self] in
-            self?.tableView.reloadData()
-        }
+        bindViewModel()
     }
     
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: "profile icon", title: "Абитуриенту", frame: .zero)
         navigationItem.titleView = titleView
+        setUpRestartButton()
+        setUpEditButton(title: "Править")
+    }
+    
+    func setUpRestartButton() {
+        let restartButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .done, target: self, action: #selector(restart))
+        restartButton.tintColor = .label
+        navigationItem.leftBarButtonItem = restartButton
+    }
+    
+    @objc private func restart() {
+        viewModel.restartPosition()
+    }
+    
+    func setUpEditButton(title: String) {
+        let moveButton = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(moveTabs))
+        moveButton.tintColor = .label
+        navigationItem.rightBarButtonItem = moveButton
+    }
+    
+    @objc private func moveTabs() {
+        if tableView.isEditing {
+            setUpEditButton(title: "Править")
+            tableView.isEditing = false
+        } else {
+            setUpEditButton(title: "Готово")
+            tableView.isEditing = true
+        }
     }
     
     private func setUpTable() {
-        tableView.register(UINib(nibName: ForEveryStatusTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ForEveryStatusTableViewCell.identifier)
+        tableView.register(ForEveryStatusTableViewCell.self, forCellReuseIdentifier: ForEveryStatusTableViewCell.identifier)
+    }
+    
+    private func bindViewModel() {
+        viewModel.getData()
+        viewModel.registerDataChangedHandler {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        switch indexPath.row {
+        let item = viewModel.sectionItem(index: indexPath.row)
+        
+        switch item.id {
             
-        case 0:
+        case 1:
+            
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
+            
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 let vc = AGPUBuildingsMapViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-        case 1:
+        case 2:
+            
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
+            
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 let vc = AGPUFacultiesListTableViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-        case 2:
+        case 3:
+            
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
+            
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 self.goToWeb(url: "http://priem.agpu.net/", image: ForApplicantSections.sections[indexPath.row].icon, title: "Информация для поступающих", isSheet: false, isNotify: false)
             }
             
-        case 3:
+        case 4:
+            
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
+            
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 self.goToWeb(url: "http://www.agpu.net/abitur/contact-form/Quest.php", image: ForApplicantSections.sections[indexPath.row].icon, title: "Вопросы и ответы", isSheet: false, isNotify: false)
             }
             
-        case 4:
+        case 5:
+            
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
+            
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 self.goToWeb(url: "https://niiro-agpu.ru/", image: ForApplicantSections.sections[indexPath.row].icon, title: "Доп. образование", isSheet: false, isNotify: false)
             }
             
-        case 5:
+        case 6:
+            
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
+            
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 let vc = AGPUSectionsListViewController()
                 vc.hidesBottomBarWhenPushed = true
@@ -81,19 +129,23 @@ class ForApplicantListTableViewController: UITableViewController {
             break
         }
         
-        if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
-            cell.sectionSelected(indexPath: indexPath)
-        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        if tableView.isEditing {
+            viewModel.saveSectionsPosition(sourceIndexPath.row, destinationIndexPath.row)
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ForApplicantSections.sections.count
+        return viewModel.numberOfItemsInSection()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = viewModel.sectionItem(index: indexPath.row)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ForEveryStatusTableViewCell.identifier, for: indexPath) as? ForEveryStatusTableViewCell else {return UITableViewCell()}
-        cell.configure(for: ForApplicantSections.sections[indexPath.row])
+        cell.configure(for: item)
         return cell
     }
 }

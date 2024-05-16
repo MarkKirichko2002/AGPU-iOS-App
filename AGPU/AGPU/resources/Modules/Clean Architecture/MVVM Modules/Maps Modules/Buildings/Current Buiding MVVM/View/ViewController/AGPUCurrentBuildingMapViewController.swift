@@ -44,7 +44,7 @@ final class AGPUCurrentBuildingMapViewController: UIViewController {
     
     private func setUpNavigation() {
         
-        navigationItem.title = viewModel.currentBuilding().title!
+        let titleView = CustomTitleView(image: "marker", title: viewModel.currentBuilding().title!!, frame: .zero)
         
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
@@ -55,6 +55,7 @@ final class AGPUCurrentBuildingMapViewController: UIViewController {
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         
         let backButton = UIBarButtonItem(customView: button)
+        navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = backButton
     }
     

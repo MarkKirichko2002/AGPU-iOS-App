@@ -9,49 +9,79 @@ import UIKit
 
 final class ForStudentListTableViewController: UITableViewController {
     
+    // MARK: - сервисы
+    private let viewModel = ForStudentListViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
         setUpTable()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        DispatchQueue.main.async { [weak self] in
-            self?.tableView.reloadData()
-        }
+        bindViewModel()
     }
     
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: "student icon", title: "Студенту", frame: .zero)
         navigationItem.titleView = titleView
+        setUpRestartButton()
+        setUpEditButton(title: "Править")
+    }
+    
+    func setUpRestartButton() {
+        let restartButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .done, target: self, action: #selector(restart))
+        restartButton.tintColor = .label
+        navigationItem.leftBarButtonItem = restartButton
+    }
+    
+    @objc private func restart() {
+        viewModel.restartPosition()
+    }
+    
+    func setUpEditButton(title: String) {
+        let moveButton = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(moveTabs))
+        moveButton.tintColor = .label
+        navigationItem.rightBarButtonItem = moveButton
+    }
+    
+    @objc private func moveTabs() {
+        if tableView.isEditing {
+            setUpEditButton(title: "Править")
+            tableView.isEditing = false
+        } else {
+            setUpEditButton(title: "Готово")
+            tableView.isEditing = true
+        }
     }
     
     private func setUpTable() {
-        tableView.register(UINib(nibName: ForEveryStatusTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ForEveryStatusTableViewCell.identifier)
+        tableView.register(ForEveryStatusTableViewCell.self, forCellReuseIdentifier: ForEveryStatusTableViewCell.identifier)
+    }
+    
+    private func bindViewModel() {
+        viewModel.getData()
+        viewModel.registerDataChangedHandler {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
-        switch indexPath.row {
+        let item = viewModel.sectionItem(index: indexPath.row)
+        
+        switch item.id {
             
-        case 0:
+        case 1:
+            
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
         
-            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
-                cell.sectionSelected(indexPath: indexPath)
-            }
-            
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: ForStudentSections.sections[indexPath.row].icon, title: "ЭИОС", isSheet: false, isNotify: true)
             }
             
-        case 1:
-            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+        case 2:
             
-            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
-                cell.sectionSelected(indexPath: indexPath)
-            }
+            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
             
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 let vc = AGPUBuildingsMapViewController()
@@ -59,12 +89,9 @@ final class ForStudentListTableViewController: UITableViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-        case 2:
-            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+        case 3:
             
-            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
-                cell.sectionSelected(indexPath: indexPath)
-            }
+            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
             
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 let vc = AGPUFacultiesListTableViewController()
@@ -72,14 +99,11 @@ final class ForStudentListTableViewController: UITableViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-        case 3:
+        case 4:
+            
             if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
                 
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
-                
-                if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
-                    cell.sectionSelected(indexPath: indexPath)
-                }
                 
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     self.goToWeb(url: cathedra.manualUrl, image: ForStudentSections.sections[indexPath.row].icon, title: "Метод. материалы", isSheet: false, isNotify: true)
@@ -89,13 +113,9 @@ final class ForStudentListTableViewController: UITableViewController {
                 HapticsManager.shared.hapticFeedback()
             }
             
-        case 4:
+        case 5:
             
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
-            
-            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
-                cell.sectionSelected(indexPath: indexPath)
-            }
             
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 let vc = ThingsCategoriesListTableViewController()
@@ -103,25 +123,17 @@ final class ForStudentListTableViewController: UITableViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-        case 5:
+        case 6:
             
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
-            
-            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
-                cell.sectionSelected(indexPath: indexPath)
-            }
             
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 self.goToWeb(url: "http://plany.agpu.net/Plans/", image: ForStudentSections.sections[indexPath.row].icon, title: "Учебный план", isSheet: false, isNotify: true)
             }
             
-        case 6:
+        case 7:
             
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
-            
-            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
-                cell.sectionSelected(indexPath: indexPath)
-            }
             
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 let vc = AGPUSectionsListViewController()
@@ -129,13 +141,9 @@ final class ForStudentListTableViewController: UITableViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-        case 7:
+        case 8:
             
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
-            
-            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
-                cell.sectionSelected(indexPath: indexPath)
-            }
             
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                 let vc = AGPUWallpapersListViewController()
@@ -149,13 +157,20 @@ final class ForStudentListTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        if tableView.isEditing {
+            viewModel.saveSectionsPosition(sourceIndexPath.row, destinationIndexPath.row)
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ForStudentSections.sections.count
+        return viewModel.numberOfItemsInSection()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = viewModel.sectionItem(index: indexPath.row)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ForEveryStatusTableViewCell.identifier, for: indexPath) as? ForEveryStatusTableViewCell else {return UITableViewCell()}
-        cell.configure(for: ForStudentSections.sections[indexPath.row])
+        cell.configure(for: item)
         return cell
     }
 }

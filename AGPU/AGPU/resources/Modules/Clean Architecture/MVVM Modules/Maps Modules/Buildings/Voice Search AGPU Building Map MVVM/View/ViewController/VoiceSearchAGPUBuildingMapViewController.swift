@@ -39,9 +39,10 @@ class VoiceSearchAGPUBuildingMapViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = building.name
+        let titleView = CustomTitleView(image: "marker", title: building.name, frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
+        navigationItem.titleView = titleView
         navigationItem.rightBarButtonItem = closeButton
     }
     
@@ -100,7 +101,8 @@ class VoiceSearchAGPUBuildingMapViewController: UIViewController {
             self.mapView.annotations.forEach { annotation in
                 if annotation.title != "Вы" {
                     DispatchQueue.main.async {
-                        self.navigationItem.title = pin.title!
+                        let titleView = CustomTitleView(image: "marker", title: pin.title!!, frame: .zero)
+                        self.navigationItem.titleView = titleView
                         self.mapView.removeAnnotation(annotation)
                         self.mapView.addAnnotation(pin)
                         let region = MKCoordinateRegion(center: pin.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001))
