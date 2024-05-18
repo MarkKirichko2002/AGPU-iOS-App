@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol TimeTableFavouriteItemsListTableViewControllerDelegate: AnyObject {
+    func WasSelected(result: SearchTimetableModel)
+}
+
 class TimeTableFavouriteItemsListTableViewController: UITableViewController {
 
     var isSettings = false
+    weak var delegate: TimeTableFavouriteItemsListTableViewControllerDelegate?
     
     // MARK: - сервисы
     let viewModel = TimeTableFavouriteItemsListViewModel()
@@ -79,11 +84,6 @@ class TimeTableFavouriteItemsListTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-        viewModel.registerItemSelectedHandler {
-            DispatchQueue.main.async {
-                self.dismiss(animated: true)
-            }
-        }
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -96,7 +96,8 @@ class TimeTableFavouriteItemsListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !isSettings {
             let item = viewModel.favouriteItem(index: indexPath.row)
-            viewModel.selectItem(item: item)
+            delegate?.WasSelected(result: item)
+            self.dismiss(animated: true)
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }

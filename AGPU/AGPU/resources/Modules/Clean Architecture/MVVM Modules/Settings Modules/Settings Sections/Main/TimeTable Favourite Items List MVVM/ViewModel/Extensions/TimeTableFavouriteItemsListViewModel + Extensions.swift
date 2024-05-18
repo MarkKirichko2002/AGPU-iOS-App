@@ -24,11 +24,6 @@ extension TimeTableFavouriteItemsListViewModel: ITimeTableFavouriteItemsListView
         dataChangedHandler?()
     }
     
-    func selectItem(item: SearchTimetableModel) {
-        NotificationCenter.default.post(name: Notification.Name("object selected"), object: item)
-        itemSelectedHandler?()
-    }
-    
     func deleteItem(item: SearchTimetableModel) {
         realmManager.deleteTimetableItem(item: item)
         getItems()
@@ -37,9 +32,5 @@ extension TimeTableFavouriteItemsListViewModel: ITimeTableFavouriteItemsListView
     
     func registerDataChangedHandler(block: @escaping () -> Void) {
         self.dataChangedHandler = block
-    }
-    
-    func registerItemSelectedHandler(block: @escaping()->Void) {
-        self.itemSelectedHandler = block
     }
 }

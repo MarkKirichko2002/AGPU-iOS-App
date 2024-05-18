@@ -11,8 +11,6 @@ protocol ITimeTableFavouriteItemsListViewModel {
     func itemsCount()-> Int
     func favouriteItem(index: Int)-> SearchTimetableModel
     func getItems()
-    func selectItem(item: SearchTimetableModel)
     func deleteItem(item: SearchTimetableModel)
     func registerDataChangedHandler(block: @escaping()->Void)
-    func registerItemSelectedHandler(block: @escaping()->Void)
 }

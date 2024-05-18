@@ -41,7 +41,6 @@ final class TimeTableDayListTableViewController: UIViewController {
         getTimeTable(id: id, date: date, owner: owner)
         observeGroupChange()
         observeSubGroupChange()
-        observeObjectSelected()
         observeCalendar()
         observePairType()
     }
@@ -63,6 +62,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         let searchAction = UIAction(title: "Поиск") { _ in
             let vc = TimeTableSearchListTableViewController()
             vc.isSettings = false
+            vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -87,6 +87,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         // избранное
         let favouritesList = UIAction(title: "Избранное") { _ in
             let vc = TimeTableFavouriteItemsListTableViewController()
+            vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -282,17 +283,6 @@ final class TimeTableDayListTableViewController: UIViewController {
                 
                 self.timetable?.disciplines = filteredDisciplines
                 self.tableView.reloadData()
-            }
-        }
-    }
-    
-    private func observeObjectSelected() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("object selected"), object: nil, queue: .main) { notification in
-            if let object = notification.object as? SearchTimetableModel {
-                self.getTimeTable(id: object.name, date: self.date, owner: object.owner)
-                self.id = object.name
-                self.owner = object.owner
-                print(self.owner)
             }
         }
     }

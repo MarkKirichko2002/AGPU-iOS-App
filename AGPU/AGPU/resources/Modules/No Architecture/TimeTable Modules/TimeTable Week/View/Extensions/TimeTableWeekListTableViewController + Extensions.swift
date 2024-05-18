@@ -87,3 +87,32 @@ extension TimeTableWeekListTableViewController: UITableViewDataSource {
         return cell
     }
 }
+
+// MARK: - WeekDaysListTableViewControllerDelegate
+extension TimeTableWeekListTableViewController: WeekDaysListTableViewControllerDelegate {
+    
+    func dateWasSelected(index: Int) {
+        currentDate = timetable[index].date
+        tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
+    }
+}
+
+// MARK: - TimeTableSearchListTableViewControllerDelegate
+extension TimeTableWeekListTableViewController: TimeTableSearchListTableViewControllerDelegate {
+    
+    func itemWasSelected(result: SearchTimetableModel) {
+        self.id = result.name
+        self.owner = result.owner
+        self.getTimeTable()
+    }
+}
+
+// MARK: - TimeTableFavouriteItemsListTableViewControllerDelegate
+extension TimeTableWeekListTableViewController: TimeTableFavouriteItemsListTableViewControllerDelegate {
+    
+    func WasSelected(result: SearchTimetableModel) {
+        self.id = result.name
+        self.owner = result.owner
+        self.getTimeTable()
+    }
+}

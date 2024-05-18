@@ -89,6 +89,28 @@ extension TimeTableDayListTableViewController: ITimeTableTableViewCell {
     }
 }
 
+// MARK: - TimeTableSearchListTableViewControllerDelegate
+extension TimeTableDayListTableViewController: TimeTableSearchListTableViewControllerDelegate {
+    
+    func itemWasSelected(result: SearchTimetableModel) {
+        self.getTimeTable(id: result.name, date: self.date, owner: result.owner)
+        self.id = result.name
+        self.owner = result.owner
+        print(self.owner)
+    }
+}
+
+// MARK: - TimeTableFavouriteItemsListTableViewControllerDelegate
+extension TimeTableDayListTableViewController: TimeTableFavouriteItemsListTableViewControllerDelegate {
+    
+    func WasSelected(result: SearchTimetableModel) {
+        self.getTimeTable(id: result.name, date: self.date, owner: result.owner)
+        self.id = result.name
+        self.owner = result.owner
+        print(self.owner)
+    }
+}
+
 extension TimeTableDayListTableViewController {
     
     func showSaveImageAlert() {
