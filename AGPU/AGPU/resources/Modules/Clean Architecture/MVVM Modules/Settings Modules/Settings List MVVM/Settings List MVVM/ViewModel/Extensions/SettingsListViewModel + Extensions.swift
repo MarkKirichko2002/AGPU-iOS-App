@@ -39,6 +39,13 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         }
     }
     
+    func getOnlyMainVariantInfo()-> String {
+        if let variant = UserDefaults.loadData(type: OnlyMainVariants.self, key: "variant") {
+            return "Вариант (\(variant.rawValue))"
+        }
+        return "Вариант (По умолчанию)"
+    }
+    
     func getSplashScreenInfo()-> String {
         if let option = UserDefaults.loadData(type: SplashScreenOptions.self, key: "splash option") {
             return option.rawValue

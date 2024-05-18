@@ -10,5 +10,6 @@ import Foundation
 protocol IAdaptiveNewsOptionsListViewModel {
     func observeCategorySelected()
     func getSavedNewsCategoryInfo()-> String
+    func getDisplayModeInfo()-> String
     func registerDataHandler(block: @escaping()->Void)
 }

@@ -22,7 +22,7 @@ extension TimeTableFavouriteItemsListTableViewController: ITimeTableFavouriteIte
 // MARK: - TimeTableSearchListTableViewControllerDelegate
 extension TimeTableFavouriteItemsListTableViewController: TimeTableSearchListTableViewControllerDelegate {
     
-    func itemWasSelected() {
+    func itemWasSelected(result: SearchTimetableModel) {
         viewModel.getItems()
     }
 }

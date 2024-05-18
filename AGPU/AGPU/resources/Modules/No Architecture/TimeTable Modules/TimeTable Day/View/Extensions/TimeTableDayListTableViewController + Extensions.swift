@@ -39,7 +39,7 @@ extension TimeTableDayListTableViewController: UITableViewDelegate {
                     self.showAlert(title: "Корпус не найден!", message: "К сожалению у данной пары отсутствует аудитория", actions: [ok])
                 }
             }
-                        
+            
             return UIMenu(title: self.timetable?.disciplines[indexPath.row].name ?? "", children: [
                 infoAction,
                 mapAction
@@ -86,5 +86,63 @@ extension TimeTableDayListTableViewController: ITimeTableTableViewCell {
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
+    }
+}
+
+// MARK: - TimeTableSearchListTableViewControllerDelegate
+extension TimeTableDayListTableViewController: TimeTableSearchListTableViewControllerDelegate {
+    
+    func itemWasSelected(result: SearchTimetableModel) {
+        self.getTimeTable(id: result.name, date: self.date, owner: result.owner)
+        self.id = result.name
+        self.owner = result.owner
+        print(self.owner)
+    }
+}
+
+// MARK: - TimeTableFavouriteItemsListTableViewControllerDelegate
+extension TimeTableDayListTableViewController: TimeTableFavouriteItemsListTableViewControllerDelegate {
+    
+    func WasSelected(result: SearchTimetableModel) {
+        self.getTimeTable(id: result.name, date: self.date, owner: result.owner)
+        self.id = result.name
+        self.owner = result.owner
+        print(self.owner)
+    }
+}
+
+extension TimeTableDayListTableViewController {
+    
+    func showSaveImageAlert() {
+        let saveAction = UIAlertAction(title: "Сохранить в фото", style: .default) { _ in
+            do {
+                let json = try JSONEncoder().encode(self.timetable)
+                self.service.getTimeTableDayImage(json: json) { image in
+                    let imageSaver = ImageSaver()
+                    imageSaver.writeToPhotoAlbum(image: image)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        
+        let saveAction2 = UIAlertAction(title: "Сохранить в \"Важные вещи\"", style: .default) { _ in
+            do {
+                let json = try JSONEncoder().encode(self.timetable)
+                self.service.getTimeTableDayImage(json: json) { image in
+                    if let imageData = image.jpegData(compressionQuality: 1.0) {
+                        let model = ImageModel()
+                        model.date = self.dateManager.getCurrentDate()
+                        model.image = imageData
+                        self.realmManager.saveImage(image: model)
+                    }
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
+        self.showAlert(title: "Сохранить расписание?", message: "Вы хотите сохранить изображение расписания?", actions: [saveAction2, saveAction, cancel])
     }
 }

@@ -36,27 +36,39 @@ class DocumentsListTableViewController: UIViewController {
         
         let backButton = UIBarButtonItem(customView: button)
         
-        let moveButton = UIBarButtonItem(title: "Править", style: .done, target: self, action: #selector(moveDocuments))
-        moveButton.tintColor = .label
-        
+        let addButton = UIBarButtonItem(image: UIImage(named: "add"), style: .done, target: self, action: #selector(addButtonTapped))
+        addButton.tintColor = .label
+       
         navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = backButton
-        navigationItem.rightBarButtonItem = moveButton
+        navigationItem.rightBarButtonItem = addButton
     }
     
     @objc private func back() {
-        sendScreenWasClosedNotification()
         navigationController?.popViewController(animated: true)
     }
     
+    func setUpAddButton() {
+        let addButton = UIBarButtonItem(image: UIImage(named: "add"), style: .done, target: self, action: #selector(addButtonTapped))
+        addButton.tintColor = .label
+        navigationItem.rightBarButtonItem = addButton
+    }
+    
+    @objc private func addButtonTapped() {
+        showAddDocumentAlert()
+    }
+    
+    func setUpEditButton() {
+        let moveButton = UIBarButtonItem(title: "Готово", style: .done, target: self, action: #selector(moveDocuments))
+        moveButton.tintColor = .label
+        navigationItem.rightBarButtonItem = moveButton
+    }
+    
     @objc private func moveDocuments() {
-        if tableView.isEditing {
-            tableView.isEditing = false
-        } else {
-            tableView.isEditing = true
-        }
+        tableView.isEditing.toggle()
+        setUpAddButton()
     }
     
     private func setUpTable() {

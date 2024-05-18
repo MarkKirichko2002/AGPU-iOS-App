@@ -46,6 +46,7 @@ final class AGPUFacultyTableViewCell: UITableViewCell {
     @objc private func openInfo() {
         if let faculty = faculty {
             animation.flipAnimation(view: self.AGPUFacultyIcon, option: .transitionFlipFromRight) {
+                HapticsManager.shared.hapticFeedback()
                 self.delegate?.openFacultyInfo(faculty: faculty)
             }
         }

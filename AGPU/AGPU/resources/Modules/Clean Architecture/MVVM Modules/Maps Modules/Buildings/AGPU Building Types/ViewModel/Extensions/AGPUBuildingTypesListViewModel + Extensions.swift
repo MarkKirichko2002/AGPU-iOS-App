@@ -36,7 +36,6 @@ extension AGPUBuildingTypesListViewModel: AGPUBuildingTypesListViewModelProtocol
         if buildingType.type != type {
             NotificationCenter.default.post(name: Notification.Name("building type selected"), object: buildingType.type)
             type = buildingType.type
-            self.dataChangedHandler?()
             self.typeSelectedHandler?()
             HapticsManager.shared.hapticFeedback()
         }

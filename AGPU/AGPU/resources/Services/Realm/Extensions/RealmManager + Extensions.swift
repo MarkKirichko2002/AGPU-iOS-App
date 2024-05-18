@@ -11,7 +11,7 @@ import RealmSwift
 // MARK: - IRealmManager
 extension RealmManager: IRealmManager {
     
-    // MARK: - Important Documents
+    // MARK: - Important Things
     func saveDocument(document: DocumentModel) {
         let doc = realm.object(ofType: DocumentModel.self, forPrimaryKey: document.url)
         if doc == nil {
@@ -73,11 +73,41 @@ extension RealmManager: IRealmManager {
         guard let newDocument = newDocument else {return}
         try! realm.write {
             realm.delete(newDocument)
+            HapticsManager.shared.hapticFeedback()
         }
     }
     
     func getDocuments() -> [DocumentModel] {
         let items = realm.objects(DocumentModel.self)
+        return Array(items)
+    }
+    
+    func saveImage(image: ImageModel) {
+        let img = realm.object(ofType: ImageModel.self, forPrimaryKey: image.id)
+        if img == nil {
+            let newImage = ImageModel()
+            newImage.id = UUID()
+            newImage.image = image.image
+            newImage.date = image.date
+            try! realm.write {
+                realm.add(newImage)
+            }
+        } else {
+            print("уже есть")
+        }
+    }
+    
+    func deleteImage(image: ImageModel) {
+        let newImage = realm.object(ofType: ImageModel.self, forPrimaryKey: image.id)
+        guard let newImage = newImage else {return}
+        try! realm.write {
+            realm.delete(newImage)
+            HapticsManager.shared.hapticFeedback()
+        }
+    }
+    
+    func getImages()->[ImageModel] {
+        let items = realm.objects(ImageModel.self)
         return Array(items)
     }
     
@@ -124,6 +154,7 @@ extension RealmManager: IRealmManager {
         guard let article = article else {return}
         try! realm.write {
             realm.delete(article)
+            HapticsManager.shared.hapticFeedback()
         }
     }
     
@@ -178,6 +209,7 @@ extension RealmManager: IRealmManager {
         guard let item = item else {return}
         try! realm.write {
             realm.delete(item)
+            HapticsManager.shared.hapticFeedback()
         }
     }
     

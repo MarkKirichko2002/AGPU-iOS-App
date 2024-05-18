@@ -8,6 +8,7 @@
 import Foundation
 
 protocol NewsPagesListViewModelProtocol {
+    func currentNewsCategoryIcon()-> String
     func pageItem(index: Int)-> String
     func numberOfPagesInSection()-> Int
     func setUpData()

@@ -72,9 +72,19 @@ class AppIconsListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let icon = viewModel.appIconItem(index: indexPath.row)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PersonalizedAppIconTableViewCell.identifier, for: indexPath) as? PersonalizedAppIconTableViewCell else {return UITableViewCell()}
+        cell.PersonalizedAppIcon.layer.borderColor = viewModel.isAppIconSelected(index: indexPath.row) ? UIColor.systemGreen.cgColor : UIColor.label.cgColor
         cell.PersonalizedAppIconName.textColor = viewModel.isAppIconSelected(index: indexPath.row) ? .systemGreen : .label
         cell.accessoryType = viewModel.isAppIconSelected(index: indexPath.row) ? .checkmark : .none
+        cell.delegate = self
         cell.configure(icon: icon)
         return cell
+    }
+}
+
+// MARK: - IPersonalizedAppIconTableViewCell
+extension AppIconsListTableViewController: IPersonalizedAppIconTableViewCell {
+    
+    func didIconTapped(icon: AppIconModel) {
+        goToWeb(url: icon.url, image: "info icon", title: "Информация", isSheet: false, isNotify: false)
     }
 }

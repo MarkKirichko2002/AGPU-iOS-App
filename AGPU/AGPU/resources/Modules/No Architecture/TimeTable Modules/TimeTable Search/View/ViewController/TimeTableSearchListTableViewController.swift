@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TimeTableSearchListTableViewControllerDelegate: AnyObject {
-    func itemWasSelected()
+    func itemWasSelected(result: SearchTimetableModel)
 }
 
 class TimeTableSearchListTableViewController: UITableViewController, UISearchResultsUpdating {
@@ -37,7 +37,7 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Поиск"
+        let titleView = CustomTitleView(image: "search", title: "Поиск", frame: .zero)
         if isSettings || isFavourite {
             navigationItem.leftBarButtonItem = nil
             navigationItem.hidesBackButton = true
@@ -46,10 +46,12 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
             button.setImage(UIImage(named: "back"), for: .normal)
             button.addTarget(self, action: #selector(back), for: .touchUpInside)
             let backButton = UIBarButtonItem(customView: button)
+            navigationItem.titleView = titleView
             navigationItem.leftBarButtonItem = backButton
         } else {
             let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
             closeButton.tintColor = .label
+            navigationItem.titleView = titleView
             navigationItem.rightBarButtonItem = closeButton
         }
     }
@@ -124,14 +126,18 @@ extension TimeTableSearchListTableViewController {
             UserDefaults.standard.setValue(result.owner, forKey: "recentOwner")
             UserDefaults.standard.setValue(result.name, forKey: "group")
             NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name("object selected"), object: result)
             self.navigationController?.popViewController(animated: true)
         } else if isFavourite {
             realmManager.saveTimetableItem(item: result)
-            delegate?.itemWasSelected()
+            delegate?.itemWasSelected(result: result)
             self.navigationController?.popViewController(animated: true)
         } else {
-            NotificationCenter.default.post(name: Notification.Name("object selected"), object: result)
             self.dismiss(animated: true)
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.delegate?.itemWasSelected(result: result)
+                self.dismiss(animated: true)
+            }
         }
         self.tableView.reloadData()
     }

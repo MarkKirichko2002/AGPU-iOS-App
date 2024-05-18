@@ -19,9 +19,14 @@ final class NewsListViewController: UIViewController {
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(NewsCollectionViewCell.self, forCellWithReuseIdentifier: NewsCollectionViewCell.identifier)
         return collectionView
+    }()
+    
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.identifier)
+        return tableView
     }()
     
     private let webView: WKWebView = {
@@ -33,21 +38,27 @@ final class NewsListViewController: UIViewController {
     
     private let noNewsLabel = UILabel()
     
-    private let spinner = UIActivityIndicatorView(style: .large)
+    let spinner = UIActivityIndicatorView(style: .large)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
-        setUpCollectionView()
-        setUpIndicatorView()
         setUpLabel()
+        setUpIndicatorView()
         bindViewModel()
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Новости АГПУ"
         let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshNews))
         refreshButton.tintColor = .label
+       
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemBackground
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
         navigationItem.leftBarButtonItem = refreshButton
     }
     
@@ -57,6 +68,14 @@ final class NewsListViewController: UIViewController {
             viewModel.newsResponse.articles = []
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
+                self.noNewsLabel.isHidden = true
+                self.spinner.startAnimating()
+            }
+            viewModel.refreshNews()
+        case .table:
+            viewModel.newsResponse.articles = []
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
                 self.noNewsLabel.isHidden = true
                 self.spinner.startAnimating()
             }
@@ -71,14 +90,24 @@ final class NewsListViewController: UIViewController {
         collectionView.frame = view.bounds
         collectionView.delegate = self
         collectionView.dataSource = self
-        navigationController?.navigationBar.isTranslucent = true
+        spinner.color = .label
+    }
+    
+    private func setUpTableView() {
+        view.addSubview(tableView)
+        tableView.frame = view.bounds
+        tableView.delegate = self
+        tableView.dataSource = self
+        spinner.color = .label
     }
     
     private func setUpWebView() {
         view.addSubview(webView)
         webView.frame = view.bounds
+        webView.navigationDelegate = self
+        webView.scrollView.delegate = self
+        spinner.color = .black
         webView.load(viewModel.makeUrlForCurrentWebPage())
-        navigationController?.navigationBar.isTranslucent = false
     }
     
     private func setUpIndicatorView() {
@@ -187,17 +216,39 @@ final class NewsListViewController: UIViewController {
             options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
             options.tintColor = .label
             
-            DispatchQueue.main.async {
-                self.navigationItem.titleView = titleView
-                self.navigationItem.rightBarButtonItem = options
-                self.collectionView.reloadData()
+            
+            switch viewModel.displayMode {
+                
+            case .grid:
+                DispatchQueue.main.async {
+                    self.navigationItem.titleView = titleView
+                    self.navigationItem.rightBarButtonItem = options
+                    self.collectionView.reloadData()
+                }
+                
+            case .table:
+                DispatchQueue.main.async {
+                    self.navigationItem.titleView = titleView
+                    self.navigationItem.rightBarButtonItem = options
+                    self.tableView.reloadData()
+                }
+                
+            case .webpage:
+                DispatchQueue.main.async {
+                    self.navigationItem.titleView = titleView
+                    self.navigationItem.rightBarButtonItem = options
+                }
             }
             
             DispatchQueue.main.async {
                 if !(self.viewModel.newsResponse.articles?.isEmpty ?? false) {
                     self.noNewsLabel.isHidden = true
+                    self.tableView.isHidden = false
+                    self.collectionView.isHidden = false
                 } else {
                     self.noNewsLabel.isHidden = false
+                    self.tableView.isHidden = true
+                    self.collectionView.isHidden = true
                 }
             }
         }
@@ -205,15 +256,32 @@ final class NewsListViewController: UIViewController {
         viewModel.registerDislayModeHandler { mode in
             switch mode {
             case .grid:
-                self.webView.removeFromSuperview()
-                self.setUpCollectionView()
-                self.setUpIndicatorView()
-                Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
-                    self.viewModel.refreshNews()
+                DispatchQueue.main.async {
+                    self.view.subviews.forEach {
+                        if $0 != self.noNewsLabel {$0.removeFromSuperview()}
+                    }
+                    self.setUpCollectionView()
+                    self.setUpIndicatorView()
+                    self.spinner.stopAnimating()
                 }
+            case .table:
+                DispatchQueue.main.async {
+                    self.view.subviews.forEach {
+                        if $0 != self.noNewsLabel {$0.removeFromSuperview()}
+                    }
+                    self.setUpTableView()
+                    self.setUpIndicatorView()
+                    self.spinner.stopAnimating()
+                }
+                
             case .webpage:
-                self.collectionView.removeFromSuperview()
-                self.setUpWebView()
+                DispatchQueue.main.async {
+                    self.view.subviews.forEach {
+                        if $0 != self.noNewsLabel {$0.removeFromSuperview()}
+                    }
+                    self.setUpWebView()
+                    self.setUpIndicatorView()
+                }
             }
         }
         

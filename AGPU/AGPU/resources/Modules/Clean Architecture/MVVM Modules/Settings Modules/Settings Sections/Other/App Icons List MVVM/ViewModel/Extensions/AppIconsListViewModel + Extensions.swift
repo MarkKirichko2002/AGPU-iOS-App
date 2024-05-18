@@ -22,8 +22,9 @@ extension AppIconsListViewModel: AppIconsListViewModelProtocol {
     func getSelectedFacultyData() {
         if let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
             AppIcons.icons[5].name = "\(faculty.abbreviation)"
-            AppIcons.icons[5].icon = faculty.icon
+            AppIcons.icons[5].icon = faculty.newsAbbreviation
             AppIcons.icons[5].appIcon = faculty.AppIcon
+            AppIcons.icons[5].url = faculty.url
             self.faculty = faculty
             self.dataChangedHandler?()
         } else {

@@ -12,7 +12,6 @@ extension TabsPositionOptionTableViewCell: SpringImageViewDelegate {
     
     func observeOption() {
         NotificationCenter.default.addObserver(forName: Notification.Name("option was selected"), object: nil, queue: .main) { _ in
-            print("dgnkdgkn")
             self.setPosition()
             self.displayPositionInfo()
         }

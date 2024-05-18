@@ -45,8 +45,6 @@ extension TabsPositionListTableViewModel: ITabsPositionListTableViewModel {
         
         let numbers = [index1, index2, index3, index4]
         
-        UserDefaults.standard.setValue(numbers, forKey: "tabs")
-        
         UserDefaults.saveArray(array: numbers as! [Int], key: "tabs") {
             self.getData()
         }

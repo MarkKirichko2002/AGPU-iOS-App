@@ -123,7 +123,6 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                     for building in AGPUBuildings.buildings {
                         self.index = 0
                         self.arr.append(building.pin)
-                        //self.choiceHandler?(true, building.pin)
                     }
                     
                     for pin in self.arr {
@@ -147,7 +146,6 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                         if building.type == .building || building.type == .buildingAndHostel {
                             self.index = 0
                             self.arr.append(building.pin)
-                            //self.choiceHandler?(true, building.pin)
                         } else {
                             self.choiceHandler?(false, building.pin)
                         }
@@ -174,7 +172,6 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                         if building.type == .hostel || building.type == .buildingAndHostel {
                             self.index = 0
                             self.arr.append(building.pin)
-                            //self.choiceHandler?(true, building.pin)
                         } else {
                             self.choiceHandler?(false, building.pin)
                         }
@@ -218,7 +215,7 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                     longitude: faculty.cathedra[0].coordinates[1]
                 )
                 let cathedraPin1 = MKPointAnnotation(__coordinate: cathedraLocation1)
-                cathedraPin1.title = "Кафедра \(faculty.abbreviation) №1"
+                cathedraPin1.title = self.faculty?.cathedra[0].name
                 cathedraPin1.subtitle = self.faculty?.cathedra[0].address
                 
                 // 2 кафедра
@@ -227,7 +224,7 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                     longitude: faculty.cathedra[1].coordinates[1]
                 )
                 let cathedraPin2 = MKPointAnnotation(__coordinate: cathedraLocation2)
-                cathedraPin2.title = "Кафедра \(faculty.abbreviation) №2"
+                cathedraPin2.title = self.faculty?.cathedra[1].name
                 cathedraPin2.subtitle = self.faculty?.cathedra[1].address
                 
                 self.arr.append(AGPUBuildingPins.pins.last!)

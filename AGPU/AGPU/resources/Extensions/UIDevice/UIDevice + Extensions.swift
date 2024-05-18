@@ -9,4 +9,5 @@ import UIKit
 
 extension UIDevice {
     static let isiPhone = UIDevice.current.userInterfaceIdiom == .phone
+    static let name = UIDevice.current.model
 }

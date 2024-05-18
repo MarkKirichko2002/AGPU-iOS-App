@@ -30,7 +30,7 @@ extension TimeTableService: TimeTableServicerProtocol {
         
         let id = id.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("http://agpu.merqury.fun/api/timetable/day?id=\(id)&date=\(date)&owner=\(owner)").responseData { response in
+        AF.request("http://agpu.merqury.fun/api/v2/timetable/day?id=\(id)&date=\(date)&owner=\(owner)").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -48,7 +48,7 @@ extension TimeTableService: TimeTableServicerProtocol {
         
         let id = id.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("http://agpu.merqury.fun/api/timetable/days?id=\(id)&startDate=\(startDate)&owner=\(owner)&endDate=\(endDate)&removeEmptyDays").responseData { response in
+        AF.request("http://agpu.merqury.fun/api/v2/timetable/days?id=\(id)&startDate=\(startDate)&owner=\(owner)&endDate=\(endDate)&removeEmptyDays").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -64,7 +64,7 @@ extension TimeTableService: TimeTableServicerProtocol {
     
     func getWeeks(completion: @escaping(Result<[WeekModel],Error>)->Void) {
         
-        AF.request("http://agpu.merqury.fun/api/timetable/weeks").responseData { response in
+        AF.request("http://agpu.merqury.fun/api/v2/timetable/weeks").responseData { response in
             
             guard let data = response.data else {return}
             

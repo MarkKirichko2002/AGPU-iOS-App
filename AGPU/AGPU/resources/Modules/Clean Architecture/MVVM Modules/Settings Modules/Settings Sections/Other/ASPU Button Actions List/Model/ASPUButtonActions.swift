@@ -14,5 +14,7 @@ enum ASPUButtonActions: String, CaseIterable, Codable {
     case studyPlan = "Учебный план"
     case profile = "Личный кабинет ЭИОС"
     case manual = "Методические материалы"
+    case sections = "Разделы сайта АГПУ"
+    case recent = "Недавние моменты"
     case favourite = "Избранное"
 }

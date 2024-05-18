@@ -86,7 +86,7 @@ final class AGPUTabBarController: UITabBarController {
                 self.selectedIndex = 4
             }
         }
-        settingsManager.observeOnlyTimetableChanged {
+        settingsManager.observeOnlyMainChangedOption {
             DispatchQueue.main.async {
                 self.setUpTabs()
             }
@@ -109,11 +109,16 @@ final class AGPUTabBarController: UITabBarController {
         let nav3VC = UINavigationController(rootViewController: timetableVC)
         let nav4VC = UINavigationController(rootViewController: settingsVC)
         
-        let onlyTimetable = UserDefaults.standard.object(forKey: "onOnlyTimetable") as? Bool ?? false
-                
-        if onlyTimetable {
+        let onlyMain = UserDefaults.loadData(type: OnlyMainVariants.self, key: "variant") ?? .none
+              
+        switch onlyMain {
+        case .schedule:
             setViewControllers([nav3VC, middleButton, nav4VC], animated: false)
-        } else {
+            selectedIndex = 0
+        case .news:
+            setViewControllers([nav1VC, middleButton, nav4VC], animated: false)
+            selectedIndex = 0
+        case .none:
             let position = settingsManager.getTabsPosition()
             forEveryStatusVC = settingsManager.checkCurrentStatus()
             var tabs = [nav1VC, forEveryStatusVC, nav3VC, nav4VC]
@@ -125,11 +130,11 @@ final class AGPUTabBarController: UITabBarController {
                     tabs.swapAt(index, number)
                 }
             }
-            
             tabs.insert(middleButton, at: 2)
             setViewControllers(tabs, animated: false)
             selectedIndex = UserDefaults.standard.integer(forKey: "index")
         }
+        
         UITabBar.appearance().tintColor = self.settingsManager.getTabsColor().color
     }
     
@@ -164,40 +169,42 @@ final class AGPUTabBarController: UITabBarController {
             ASPUButton.addTarget(self, action: #selector(openProfile), for: .touchUpInside)
         case .manual:
             ASPUButton.addTarget(self, action: #selector(openManual), for: .touchUpInside)
+        case .sections:
+            ASPUButton.addTarget(self, action: #selector(openSectionsList), for: .touchUpInside)
+        case .recent:
+            ASPUButton.addTarget(self, action: #selector(openRecentMoments), for: .touchUpInside)
         case .favourite:
             ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
         }
     }
     
-    // MARK: - Shake To Recall
+    // MARK: - Action To Recall
     override var canBecomeFirstResponder: Bool {
         return true
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        checkActionToRecall()
+    }
+    
+    func checkActionToRecall() {
         if settingsManager.checkShakeToRecallOption() {
-            ShakeToRecall(motion: motion)
+            openRecentMoments()
         } else {
             self.updateASPUButton(icon: "info icon")
             Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
                 let ok = UIAlertAction(title: "ОК", style: .default)
-                self.showAlert(title: "Вы отключили фишку Shake To Recall!", message: "чтобы дальше пользоваться данной фишкой включите ее в настройках.", actions: [ok])
+                self.showAlert(title: "Вы отключили фишку Action To Recall!", message: "чтобы дальше пользоваться данной фишкой включите ее в настройках.", actions: [ok])
                 self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
             }
         }
     }
     
-    private func ShakeToRecall(motion: UIEvent.EventSubtype) {
-        if motion == .motionShake {
-            ShakeToRecall()
-        }
-    }
-    
-    private func ShakeToRecall() {
-        self.updateASPUButton(icon: "time.past")
+     @objc func openRecentMoments() {
         let vc = RecentMomentsListTableViewController()
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
+        self.updateASPUButton(icon: "time.past")
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
             self.present(navVC, animated: true)
         }
@@ -262,9 +269,13 @@ final class AGPUTabBarController: UITabBarController {
         let subgroup = UserDefaults.standard.integer(forKey: "subgroup")
         let owner = UserDefaults.standard.string(forKey: "recentOwner") ?? "GROUP"
         let vc = AllWeeksListTableViewController(id: id, subgroup: subgroup, owner: owner)
+        vc.isNotify = true
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
-        present(navVC, animated: true)
+        self.updateASPUButton(icon: "clock")
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.present(navVC, animated: true)
+        }
     }
     
     @objc func openCampusMap() {
@@ -272,24 +283,47 @@ final class AGPUTabBarController: UITabBarController {
         vc.isAction = true
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
-        present(navVC, animated: true)
+        self.updateASPUButton(icon: "map icon")
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.present(navVC, animated: true)
+        }
     }
     
     @objc func openStudyPlan() {
-        self.goToWeb(url: "http://plany.agpu.net/Plans/", image: "student", title: "Учебный план", isSheet: false, isNotify: false)
+        self.updateASPUButton(icon: "student")
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.goToWeb(url: "http://plany.agpu.net/Plans/", image: "student", title: "Учебный план", isSheet: false, isNotify: true)
+        }
     }
     
     
     @objc func openProfile() {
-        self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: "profile icon", title: "ЭИОС", isSheet: false, isNotify: false)
+        self.updateASPUButton(icon: "profile icon")
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: "profile icon", title: "ЭИОС", isSheet: false, isNotify: true)
+        }
     }
     
     @objc func openManual() {
         if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
-            self.goToWeb(url: cathedra.manualUrl, image: "book", title: "Метод. материалы", isSheet: false, isNotify: false)
+            self.updateASPUButton(icon: "book")
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.goToWeb(url: cathedra.manualUrl, image: "book", title: "Метод. материалы", isSheet: false, isNotify: true)
+            }
         } else {
             self.showHintAlert(type: .manuals)
             HapticsManager.shared.hapticFeedback()
+        }
+    }
+    
+    @objc func openSectionsList() {
+        let vc = AGPUSectionsListViewController()
+        vc.isAction = true
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.updateASPUButton(icon: "sections icon")
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.present(navVC, animated: true)
         }
     }
     
@@ -298,7 +332,10 @@ final class AGPUTabBarController: UITabBarController {
         vc.delegate = self
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
-        present(navVC, animated: true)
+        self.updateASPUButton(icon: "star")
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.present(navVC, animated: true)
+        }
     }
     
     private func observeForEveryStatus() {

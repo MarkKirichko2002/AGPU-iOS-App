@@ -24,6 +24,21 @@ extension ASPUButtonFavouriteActionsListViewModel: IASPUButtonFavouriteActionsLi
         dataChangedHandler?()
     }
     
+    func updateActions(actions: [ASPUButtonActions], _ index: Int, _ index2: Int) {
+        
+        var arr = [ASPUButtonActions]()
+        
+        for action in actions {
+            arr.append(action)
+        }
+        
+        print("\(index) and \(index2)")
+        
+        arr.swapAt(index, index2)
+        
+        saveArray(array: arr)
+    }
+    
     func loadActions()-> [ASPUButtonActions] {
         var data = [ASPUButtonActions]()
         if let result = UserDefaults.standard.object(forKey: "button actions") as? Data {

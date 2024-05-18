@@ -21,6 +21,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     // MARK: - сервисы
     let service = TimeTableService()
     let dateManager = DateManager()
+    let realmManager = RealmManager()
     let settingsManager = SettingsManager()
     
     // MARK: - UI
@@ -52,7 +53,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         date = dateManager.getCurrentDate()
         owner = UserDefaults.standard.string(forKey: "recentOwner") ?? "GROUP"
     }
-     
+    
     private func setUpNavigation() {
         
         let dayOfWeek = dateManager.getCurrentDayOfWeek(date: date)
@@ -62,6 +63,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         let searchAction = UIAction(title: "Поиск") { _ in
             let vc = TimeTableSearchListTableViewController()
             vc.isSettings = false
+            vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -86,6 +88,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         // избранное
         let favouritesList = UIAction(title: "Избранное") { _ in
             let vc = TimeTableFavouriteItemsListTableViewController()
+            vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -115,8 +118,8 @@ final class TimeTableDayListTableViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
-        // список типов пар
-        let pairTypesList = UIAction(title: "Типы пары") { _ in
+        // фильтрация
+        let pairTypesList = UIAction(title: "Фильтрация") { _ in
             let vc = PairTypesListTableViewController(type: self.type)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -406,27 +409,5 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
         
         return disciplines
-    }
-    
-    private func showSaveImageAlert() {
-        let saveAction = UIAlertAction(title: "Сохранить", style: .default) { _ in
-            do {
-                let json = try JSONEncoder().encode(self.timetable)
-                self.service.getTimeTableDayImage(json: json) { image in
-                    let imageSaver = ImageSaver()
-                    imageSaver.writeToPhotoAlbum(image: image)
-                    self.showImageSavedAlert()
-                }
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
-        self.showAlert(title: "Сохранить расписание?", message: "Вы хотите сохранить изображение расписания в фото?", actions: [saveAction, cancel])
-    }
-    
-    private func showImageSavedAlert() {
-        let ok = UIAlertAction(title: "ОК", style: .default) { _ in}
-        self.showAlert(title: "Расписание сохранено!", message: "Изображение расписания успешно сохранено в фото", actions: [ok])
     }
 }

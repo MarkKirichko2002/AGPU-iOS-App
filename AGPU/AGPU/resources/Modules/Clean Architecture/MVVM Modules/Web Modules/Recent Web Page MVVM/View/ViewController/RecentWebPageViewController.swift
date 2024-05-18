@@ -72,6 +72,14 @@ final class RecentWebPageViewController: UIViewController {
         forwardbutton.tintColor = .label
         let closebutton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closebutton.tintColor = .label
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemBackground
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
         self.navigationItem.titleView = titleView
         self.navigationItem.rightBarButtonItems = [forwardbutton, backbutton]
         self.navigationItem.leftBarButtonItem = closebutton

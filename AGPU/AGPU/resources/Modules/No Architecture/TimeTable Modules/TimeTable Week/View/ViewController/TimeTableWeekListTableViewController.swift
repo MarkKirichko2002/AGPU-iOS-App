@@ -59,9 +59,27 @@ final class TimeTableWeekListTableViewController: UIViewController {
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         
+        let searchAction = UIAction(title: "Поиск") { _ in
+            let vc = TimeTableSearchListTableViewController()
+            vc.isSettings = false
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         // список дней
         let days = UIAction(title: "День") { _ in
             let vc = WeekDaysListTableViewController(id: self.id, owner: self.owner, week: self.week, timetable: self.timetable, currentDate: self.currentDate)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        // избранное
+        let favouritesList = UIAction(title: "Избранное") { _ in
+            let vc = TimeTableFavouriteItemsListTableViewController()
             vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -78,7 +96,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
             self.showSaveImageAlert()
         }
         
-        let menu = UIMenu(title: "Расписание", children: [days, share, saveTimetable])
+        let menu = UIMenu(title: "Расписание", children: [searchAction, days, favouritesList, saveTimetable, share])
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         options.tintColor = .label
         navigationItem.leftBarButtonItem = closeButton
@@ -122,7 +140,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         spinner.startAnimating()
     }
     
-    private func getTimeTable() {
+    func getTimeTable() {
         self.spinner.startAnimating()
         self.noTimeTableLabel.isHidden = true
         self.timetable = []
@@ -146,9 +164,10 @@ final class TimeTableWeekListTableViewController: UIViewController {
                         self?.refreshControl.endRefreshing()
                         self?.noTimeTableLabel.isHidden = true
                         self?.setUpNavigation()
-                        self?.scrollToCurrentDay()
+                        if !(self?.timetable.isEmpty ?? false) {
+                            self?.scrollToCurrentDay()
+                        }
                     }
-                    
                 } else {
                     self?.noTimeTableLabel.isHidden = false
                     self?.spinner.stopAnimating()
@@ -235,13 +254,5 @@ final class TimeTableWeekListTableViewController: UIViewController {
     private func showImageSavedAlert() {
         let ok = UIAlertAction(title: "ОК", style: .default) { _ in}
         self.showAlert(title: "Расписание сохранено!", message: "Изображение расписания успешно сохранено в фото", actions: [ok])
-    }
-}
-
-extension TimeTableWeekListTableViewController: WeekDaysListTableViewControllerDelegate {
-    
-    func dateWasSelected(index: Int) {
-        currentDate = timetable[index].date
-        tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
     }
 }

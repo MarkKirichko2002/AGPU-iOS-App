@@ -16,5 +16,4 @@ class TimeTableFavouriteItemsListViewModel {
     let realmManager = RealmManager()
     
     var dataChangedHandler: (()->Void)?
-    var itemSelectedHandler: (()->Void)?
 }

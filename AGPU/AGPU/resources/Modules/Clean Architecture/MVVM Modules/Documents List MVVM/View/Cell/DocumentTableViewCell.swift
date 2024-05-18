@@ -29,8 +29,9 @@ class DocumentTableViewCell: UITableViewCell {
             return "pdf"
         } else if format.contains("doc") {
             return "word"
+        } else {
+            return "question"
         }
-        return ""
     }
     
     private func getColorForIcon(format: String)-> UIColor {
@@ -38,7 +39,8 @@ class DocumentTableViewCell: UITableViewCell {
             return .systemRed
         } else if format.contains("doc") {
             return .systemBlue
+        } else {
+            return .label
         }
-        return .label
     }
 }

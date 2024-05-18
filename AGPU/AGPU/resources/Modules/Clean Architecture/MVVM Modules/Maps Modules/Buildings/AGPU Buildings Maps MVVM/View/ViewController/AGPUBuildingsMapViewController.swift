@@ -49,7 +49,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
         button2.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
         let closeButton = UIBarButtonItem(customView: button2)
         
-        let typeList = UIAction(title: "Корпуса") { _ in
+        let typeList = UIAction(title: "Фильтрация") { _ in
             let vc = AGPUBuildingTypesListTableViewController(type: self.viewModel.type)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -63,7 +63,15 @@ final class AGPUBuildingsMapViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
-        let menu = UIMenu(title: "Карта", children: [typeList, facultiesList])
+        let buidlingsList = UIAction(title: "Здания") { _ in
+            let vc = BuildingsListTableViewController(currentLocation: self.viewModel.arr[self.viewModel.index], annotations: self.viewModel.arr)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let menu = UIMenu(title: "Карта", children: [typeList, facultiesList, buidlingsList])
         
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         options.tintColor = .label
@@ -87,6 +95,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
     
     @objc private func closeScreen() {
         HapticsManager.shared.hapticFeedback()
+        sendScreenWasClosedNotification()
         dismiss(animated: true)
     }
     
@@ -157,11 +166,13 @@ final class AGPUBuildingsMapViewController: UIViewController {
         }
         viewModel.checkLocationAuthorizationStatus()
         viewModel.registerLocationHandler { location in
-            self.navigationItem.title = "Найти кампус"
+            let titleView = CustomTitleView(image: "marker", title: "Найти кампус", frame: .zero)
+            self.navigationItem.titleView = titleView
             self.mapView.showAnnotations(location.pins, animated: true)
         }
         viewModel.registerChoiceHandler { isBuildingType, annotation in
-            self.navigationItem.title = "Поиск..."
+            let titleView = CustomTitleView(image: "search", title: "Поиск...", frame: .zero)
+            self.navigationItem.titleView = titleView
             if isBuildingType {
                 self.mapView.addAnnotation(annotation)
             } else {
@@ -170,14 +181,16 @@ final class AGPUBuildingsMapViewController: UIViewController {
         }
     }
     
-    private func setRegion(region: MKCoordinateRegion) {
+    func setRegion(region: MKCoordinateRegion) {
         UIView.animate(withDuration: 1) {
             self.mapView.setRegion(region, animated: true)
         } completion: { _ in
             if self.viewModel.index == 0 {
-                self.navigationItem.title = "Текущая локация"
+                let titleView = CustomTitleView(image: "marker", title: "Текущая локация", frame: .zero)
+                self.navigationItem.titleView = titleView
             } else {
-                self.navigationItem.title = "\(self.viewModel.arr[self.viewModel.index].title! ?? "") (\(self.viewModel.index)/\(self.viewModel.arr.count - 1))"
+                let titleView = CustomTitleView(image: "marker", title: "\(self.viewModel.arr[self.viewModel.index].title! ?? "") (\(self.viewModel.index)/\(self.viewModel.arr.count - 1))", frame: .zero)
+                self.navigationItem.titleView = titleView
             }
             HapticsManager.shared.hapticFeedback()
         }

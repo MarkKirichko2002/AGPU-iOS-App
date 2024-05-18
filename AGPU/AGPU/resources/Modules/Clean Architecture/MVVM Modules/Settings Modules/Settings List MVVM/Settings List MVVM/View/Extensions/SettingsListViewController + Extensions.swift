@@ -52,7 +52,8 @@ extension SettingsListViewController: UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ShakeToRecallOptionTableViewCell.identifier, for: indexPath) as? ShakeToRecallOptionTableViewCell else {return UITableViewCell()}
                 return cell
             } else if indexPath.row == 1 {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: OnlyTimetableOptionTableViewCell.identifier, for: indexPath) as? OnlyTimetableOptionTableViewCell else {return UITableViewCell()}
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: OnlyMainOptionTableViewCell.identifier, for: indexPath) as? OnlyMainOptionTableViewCell else {return UITableViewCell()}
+                cell.configure(name: viewModel.getOnlyMainVariantInfo())
                 return cell
             } else if indexPath.row == 2 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: SplashScreenOptionTableViewCell.identifier, for: indexPath) as? SplashScreenOptionTableViewCell else {return UITableViewCell()}
@@ -144,7 +145,15 @@ extension SettingsListViewController: UITableViewDelegate {
                 }
             }
         case 1:
-            if indexPath.row == 2 {
+            if indexPath.row == 1 {
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "home icon")
+                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                    let vc = OnlyMainVariantsListTableViewController()
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    self.present(navVC, animated: true)
+                }
+            } else if indexPath.row == 2 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "mobile")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = SplashScreensListTableViewController()

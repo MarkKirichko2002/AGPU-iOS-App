@@ -31,9 +31,10 @@ class PairTypesListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Типы пары"
+        let titleView = CustomTitleView(image: "filter", title: "Фильтрация", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
+        navigationItem.titleView = titleView
         navigationItem.rightBarButtonItem = closeButton
     }
     

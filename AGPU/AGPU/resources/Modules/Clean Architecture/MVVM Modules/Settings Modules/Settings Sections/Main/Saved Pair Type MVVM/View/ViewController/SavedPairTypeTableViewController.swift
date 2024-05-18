@@ -32,7 +32,7 @@ class SavedPairTypeTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         
-        let titleView = CustomTitleView(image: "clock", title: "Типы пары", frame: .zero)
+        let titleView = CustomTitleView(image: "filter", title: "Фильтрация", frame: .zero)
         
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true

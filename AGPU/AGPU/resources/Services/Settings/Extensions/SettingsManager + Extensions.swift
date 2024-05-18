@@ -10,21 +10,21 @@ import UIKit
 // MARK: - SettingsManagerProtocol
 extension SettingsManager: SettingsManagerProtocol {
    
-    // MARK: - Shake To Recall
+    // MARK: - Action To Recall
     func checkShakeToRecallOption()-> Bool {
-        if let option = UserDefaults.standard.value(forKey: "onShakeToRecall") as? Bool {
-            return option
-        } else {
-            return false
-        }
+        let option = UserDefaults.standard.value(forKey: "onShakeToRecall") as? Bool ?? true
+        return option
     }
     
-    // MARK: - Only Schedule
-    func checkOnlyTimetableOption()-> Bool {
-        if let option = UserDefaults.standard.value(forKey: "onOnlyTimetable") as? Bool {
-            return option
-        } else {
-            return false
+    // MARK: - Only Main
+    func checkOnlyMainOption()-> OnlyMainVariants {
+        let variant = UserDefaults.loadData(type: OnlyMainVariants.self, key: "variant") ?? .none
+        return variant
+    }
+    
+    func observeOnlyMainChangedOption(completion: @escaping()->Void) {
+        NotificationCenter.default.addObserver(forName: Notification.Name("only main"), object: nil, queue: .main) { _ in
+            completion()
         }
     }
     
@@ -34,12 +34,6 @@ extension SettingsManager: SettingsManagerProtocol {
             return option
         } else {
             return false
-        }
-    }
-    
-    func observeOnlyTimetableChanged(completion: @escaping()->Void) {
-        NotificationCenter.default.addObserver(forName: Notification.Name("only timetable"), object: nil, queue: .main) { _ in
-            completion()
         }
     }
     

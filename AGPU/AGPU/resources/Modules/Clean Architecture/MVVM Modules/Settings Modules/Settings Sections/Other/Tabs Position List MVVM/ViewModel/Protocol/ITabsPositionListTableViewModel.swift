@@ -9,5 +9,6 @@ import Foundation
 
 protocol ITabsPositionListTableViewModel {
     func getData()
+    func saveTabsPosition(_ index: Int, _ index2: Int)
     func registerDataChangedHandler(block: @escaping()->Void)
 }

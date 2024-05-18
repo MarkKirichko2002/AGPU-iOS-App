@@ -10,6 +10,9 @@ import WebKit
 
 final class NewsWebViewController: UIViewController {
 
+    var url: String
+    var isNotify: Bool
+    
     // MARK: - сервисы
     let viewModel: NewsWebViewModel
     
@@ -18,12 +21,11 @@ final class NewsWebViewController: UIViewController {
     let spinner = UIActivityIndicatorView(style: .large)
     var titleView: CustomTitleView!
     
-    var url: String
-    
     // MARK: - Init
-    init(article: Article, url: String) {
+    init(article: Article, url: String, isNotify: Bool) {
         self.url = url
         self.viewModel = NewsWebViewModel(article: article, url: url)
+        self.isNotify = isNotify
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -51,6 +53,14 @@ final class NewsWebViewController: UIViewController {
         forwardbutton.tintColor = .label
         let closebutton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closebutton.tintColor = .label
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemBackground
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
         self.navigationItem.titleView = titleView
         self.navigationItem.rightBarButtonItems = [forwardbutton, backButton]
         self.navigationItem.leftBarButtonItem = closebutton
@@ -96,7 +106,9 @@ final class NewsWebViewController: UIViewController {
     
     @objc private func closeScreen() {
         HapticsManager.shared.hapticFeedback()
-        sendScreenWasClosedNotification()
+        if isNotify {
+            sendScreenWasClosedNotification()
+        }
         self.dismiss(animated: true)
     }
 }

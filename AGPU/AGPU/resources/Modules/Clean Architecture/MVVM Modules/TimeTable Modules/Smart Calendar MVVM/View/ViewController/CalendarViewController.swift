@@ -46,9 +46,10 @@ final class CalendarViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Календарь"
+        let titleView = CustomTitleView(image: "calendar icon", title: "Календарь", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
+        navigationItem.titleView = titleView
         navigationItem.rightBarButtonItem = closeButton
     }
     

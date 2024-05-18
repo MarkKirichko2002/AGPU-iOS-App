@@ -10,6 +10,11 @@ import Foundation
 // MARK: - NewsPagesListViewModelProtocol
 extension NewsPagesListViewModel: NewsPagesListViewModelProtocol {
     
+    func currentNewsCategoryIcon()-> String {
+        let category = NewsCategories.categories.first { $0.newsAbbreviation == abbreviation }
+        return category?.icon ?? ""
+    }
+    
     func pageItem(index: Int)-> String {
         let page = pages[index]
         var pageItem = ""

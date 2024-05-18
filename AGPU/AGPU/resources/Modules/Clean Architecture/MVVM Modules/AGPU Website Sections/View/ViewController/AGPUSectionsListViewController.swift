@@ -9,6 +9,7 @@ import UIKit
 
 final class AGPUSectionsListViewController: UIViewController {
 
+    var isAction = false
     // MARK: - UI
     private let tableView = UITableView()
 
@@ -29,22 +30,32 @@ final class AGPUSectionsListViewController: UIViewController {
         
         let titleView = CustomTitleView(image: "АГПУ", title: "Разделы сайта", frame: .zero)
         
-        let button = UIButton()
-        button.tintColor = .label
-        button.setImage(UIImage(named: "back"), for: .normal)
-        button.addTarget(self, action: #selector(back), for: .touchUpInside)
-        
-        let backButton = UIBarButtonItem(customView: button)
-        
-        let list = UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpMenu())
-        list.tintColor = .label
-        
-        navigationItem.titleView = titleView
-        navigationItem.leftBarButtonItem = nil
-        navigationItem.hidesBackButton = true
-        
-        navigationItem.leftBarButtonItem = backButton
-        navigationItem.rightBarButtonItem = list
+        if isAction {
+            let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
+            closeButton.tintColor = .label
+            
+            let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpMenu())
+            sections.tintColor = .label
+            navigationItem.titleView = titleView
+            navigationItem.leftBarButtonItem = closeButton
+            navigationItem.rightBarButtonItem = sections
+        } else {
+            let button = UIButton()
+            button.tintColor = .label
+            button.setImage(UIImage(named: "back"), for: .normal)
+            button.addTarget(self, action: #selector(back), for: .touchUpInside)
+            
+            let backButton = UIBarButtonItem(customView: button)
+            backButton.tintColor = .label
+            
+            let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpMenu())
+            sections.tintColor = .label
+            navigationItem.titleView = titleView
+            navigationItem.leftBarButtonItem = nil
+            navigationItem.hidesBackButton = true
+            navigationItem.leftBarButtonItem = backButton
+            navigationItem.rightBarButtonItem = sections
+        }
     }
     
     private func setUpMenu()-> UIMenu {
@@ -62,6 +73,12 @@ final class AGPUSectionsListViewController: UIViewController {
     @objc private func back() {
         sendScreenWasClosedNotification()
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func closeScreen() {
+        HapticsManager.shared.hapticFeedback()
+        sendScreenWasClosedNotification()
+        dismiss(animated: true)
     }
     
     private func setUpTable() {

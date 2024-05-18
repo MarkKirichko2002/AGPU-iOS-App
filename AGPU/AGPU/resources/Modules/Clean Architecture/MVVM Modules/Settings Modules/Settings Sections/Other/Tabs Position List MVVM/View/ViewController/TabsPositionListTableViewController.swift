@@ -20,30 +20,44 @@ class TabsPositionListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Список вкладок"
+        setUpNavigationTitle()
+        setUpBackButton()
+        setUpEditButton(title: "Править")
+    }
+    
+    func setUpNavigationTitle() {
+        navigationItem.title = "Порядок вкладок"
+    }
+    
+    func setUpBackButton() {
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         let backButton = UIBarButtonItem(customView: button)
-        let moveButton = UIBarButtonItem(title: "Править", style: .done, target: self, action: #selector(moveTabs))
-        moveButton.tintColor = .label
         backButton.tintColor = .label
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = backButton
-        navigationItem.rightBarButtonItem = moveButton
     }
     
     @objc private func back() {
         navigationController?.popViewController(animated: true)
     }
     
+    func setUpEditButton(title: String) {
+        let moveButton = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(moveTabs))
+        moveButton.tintColor = .label
+        navigationItem.rightBarButtonItem = moveButton
+    }
+    
     @objc private func moveTabs() {
         if tableView.isEditing {
             NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
+            setUpEditButton(title: "Править")
             tableView.isEditing = false
         } else {
+            setUpEditButton(title: "Готово")
             tableView.isEditing = true
         }
     }

@@ -13,6 +13,8 @@ class AllWeeksListTableViewController: UITableViewController {
     private var subgroup: Int = 0
     private var owner: String = ""
     
+    var isNotify = false
+    
     // MARK: - сервисы
     private let viewModel = AllWeeksListViewModel()
     
@@ -41,14 +43,18 @@ class AllWeeksListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Список недель"
+        let titleView = CustomTitleView(image: "calendar icon", title: "Недели", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
+        navigationItem.titleView = titleView
         navigationItem.rightBarButtonItem = closeButton
     }
     
     @objc private func closeScreen() {
         HapticsManager.shared.hapticFeedback()
+        if isNotify {
+            sendScreenWasClosedNotification()
+        }
         self.dismiss(animated: true)
     }
 

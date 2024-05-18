@@ -40,9 +40,15 @@ extension DocumentsListTableViewController: UITableViewDelegate {
                 self.showEditAlert()
             }
             
+            let positionAction = UIAction(title: "Позиция", image: UIImage(named: "number")) { _ in
+                tableView.isEditing.toggle()
+                self.setUpEditButton()
+            }
+            
             return UIMenu(title: self.viewModel.documentItem(index: indexPath.row).name, children: [
                 shareAction,
-                editAction
+                editAction,
+                positionAction
             ])
         }
     }
@@ -78,6 +84,36 @@ extension DocumentsListTableViewController {
             if let name = alertVC.textFields![0].text {
                 if !name.isEmpty {
                     self.viewModel.editDocument(document: self.document, name: name)
+                }
+            }
+        }
+        
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+        
+        alertVC.addAction(saveAction)
+        alertVC.addAction(cancel)
+        
+        present(alertVC, animated: true)
+    }
+    
+    func showAddDocumentAlert() {
+        
+        let alertVC = UIAlertController(title: "Добавить документ", message: "Введите URL для документа", preferredStyle: .alert)
+        
+        alertVC.addTextField { (textField) in
+            textField.placeholder = "Введите URL"
+            textField.text = self.document.name
+        }
+        
+        let saveAction = UIAlertAction(title: "Сохранить", style: .default) { _ in
+            if let url = alertVC.textFields![0].text {
+                if let urlPath = URL(string: url) {
+                    let document = DocumentModel()
+                    document.url = urlPath.absoluteString
+                    document.name = urlPath.lastPathComponent
+                    document.format = urlPath.pathExtension
+                    document.page = 0
+                    self.viewModel.addDocument(document: document)
                 }
             }
         }

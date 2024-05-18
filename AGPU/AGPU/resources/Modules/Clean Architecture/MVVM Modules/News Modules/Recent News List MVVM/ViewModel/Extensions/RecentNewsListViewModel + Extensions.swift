@@ -28,7 +28,7 @@ extension RecentNewsListViewModel: IRecentNewsListViewModel {
     func deleteArticle(id: Int) {
         let article = news[id]
         realmManager.deleteArticle(news: article)
-        Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
             self.getNews()
         }
     }

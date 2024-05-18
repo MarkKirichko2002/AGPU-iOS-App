@@ -36,9 +36,10 @@ class NewsPagesListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Выберите страницу"
+        let titleView = CustomTitleView(image: viewModel.currentNewsCategoryIcon(), title: "Выберите страницу", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
+        navigationItem.titleView = titleView
         navigationItem.rightBarButtonItem = closeButton
     }
     

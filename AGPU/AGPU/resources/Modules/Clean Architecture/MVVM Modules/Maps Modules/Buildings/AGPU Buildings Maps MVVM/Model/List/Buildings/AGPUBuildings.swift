@@ -48,9 +48,9 @@ struct AGPUBuildings {
             voiceCommands: ["главный корпус"]
         ),
         
-        // Корпус №1 и Общежитие №1
+        // Корпус и Общежитие №1
         AGPUBuildingModel(
-            name: "Корпус №1 и Общежитие №1",
+            name: "Корпус и Общежитие №1",
             image: "",
             type: .buildingAndHostel,
             audiences: [
