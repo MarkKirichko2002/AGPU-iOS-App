@@ -126,14 +126,18 @@ extension TimeTableSearchListTableViewController {
             UserDefaults.standard.setValue(result.owner, forKey: "recentOwner")
             UserDefaults.standard.setValue(result.name, forKey: "group")
             NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name("object selected"), object: result)
             self.navigationController?.popViewController(animated: true)
         } else if isFavourite {
             realmManager.saveTimetableItem(item: result)
             delegate?.itemWasSelected(result: result)
             self.navigationController?.popViewController(animated: true)
         } else {
-            delegate?.itemWasSelected(result: result)
             self.dismiss(animated: true)
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.delegate?.itemWasSelected(result: result)
+                self.dismiss(animated: true)
+            }
         }
         self.tableView.reloadData()
     }

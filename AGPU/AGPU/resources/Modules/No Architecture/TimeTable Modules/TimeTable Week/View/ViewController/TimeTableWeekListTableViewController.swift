@@ -168,7 +168,6 @@ final class TimeTableWeekListTableViewController: UIViewController {
                             self?.scrollToCurrentDay()
                         }
                     }
-                    
                 } else {
                     self?.noTimeTableLabel.isHidden = false
                     self?.spinner.stopAnimating()

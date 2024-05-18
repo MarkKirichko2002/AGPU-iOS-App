@@ -97,6 +97,7 @@ class TimeTableFavouriteItemsListTableViewController: UITableViewController {
         if !isSettings {
             let item = viewModel.favouriteItem(index: indexPath.row)
             delegate?.WasSelected(result: item)
+            HapticsManager.shared.hapticFeedback()
             self.dismiss(animated: true)
         }
         tableView.deselectRow(at: indexPath, animated: true)

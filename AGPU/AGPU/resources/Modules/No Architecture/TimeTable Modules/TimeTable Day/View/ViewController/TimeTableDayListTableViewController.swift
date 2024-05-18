@@ -41,6 +41,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         getTimeTable(id: id, date: date, owner: owner)
         observeGroupChange()
         observeSubGroupChange()
+        observeObjectSelected()
         observeCalendar()
         observePairType()
     }
@@ -52,7 +53,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         date = dateManager.getCurrentDate()
         owner = UserDefaults.standard.string(forKey: "recentOwner") ?? "GROUP"
     }
-     
+    
     private func setUpNavigation() {
         
         let dayOfWeek = dateManager.getCurrentDayOfWeek(date: date)
@@ -283,6 +284,17 @@ final class TimeTableDayListTableViewController: UIViewController {
                 
                 self.timetable?.disciplines = filteredDisciplines
                 self.tableView.reloadData()
+            }
+        }
+    }
+    
+    private func observeObjectSelected() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("object selected"), object: nil, queue: .main) { notification in
+            if let object = notification.object as? SearchTimetableModel {
+                self.getTimeTable(id: object.name, date: self.date, owner: object.owner)
+                self.id = object.name
+                self.owner = object.owner
+                print(self.owner)
             }
         }
     }
