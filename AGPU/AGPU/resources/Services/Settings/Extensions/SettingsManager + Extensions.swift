@@ -30,11 +30,8 @@ extension SettingsManager: SettingsManagerProtocol {
     
     // MARK: - Advanced Timetable
     func checkSaveRecentTimetableItem()-> Bool {
-        if let option = UserDefaults.standard.value(forKey: "onSaveRecentTimetableItem") as? Bool {
-            return option
-        } else {
-            return false
-        }
+        let option = UserDefaults.standard.value(forKey: "onSaveRecentTimetableItem") as? Bool ?? true
+        return option
     }
     
     // MARK: - ASPU Button
