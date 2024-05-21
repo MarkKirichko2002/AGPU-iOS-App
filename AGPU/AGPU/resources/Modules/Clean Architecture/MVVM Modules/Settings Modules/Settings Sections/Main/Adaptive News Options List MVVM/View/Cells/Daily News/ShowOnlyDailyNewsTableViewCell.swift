@@ -59,7 +59,7 @@ class ShowOnlyDailyNewsTableViewCell: UITableViewCell {
     }
     
     private func setUpState() {
-        let isShowOnlyDailyNews = userDefaults.object(forKey: "onShowOnlyDailyNews") as? Bool ?? true
+        let isShowOnlyDailyNews = userDefaults.object(forKey: "onShowOnlyDailyNews") as? Bool ?? false
         Switch.isOn = isShowOnlyDailyNews
         OptionIcon.tintColor = isShowOnlyDailyNews == true ? .label : .systemGray
         TitleLabel.textColor = isShowOnlyDailyNews == true ? .label : .systemGray
