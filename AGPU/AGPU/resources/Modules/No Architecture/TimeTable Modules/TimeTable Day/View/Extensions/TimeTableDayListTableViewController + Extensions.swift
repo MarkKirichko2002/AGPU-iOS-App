@@ -67,6 +67,7 @@ extension TimeTableDayListTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TimeTableTableViewCell.identifier, for: indexPath) as? TimeTableTableViewCell else {return UITableViewCell()}
+        
         let selectedView = UIView()
         selectedView.backgroundColor = UIColor.clear
         cell.selectedBackgroundView = selectedView

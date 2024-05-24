@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SafariServices
 
 final class AppFeaturesListTableViewController: UITableViewController {
 
@@ -55,15 +54,5 @@ final class AppFeaturesListTableViewController: UITableViewController {
         cell.delegate = self
         cell.configure(feature: feature)
         return cell
-    }
-}
-
-// MARK: - IAppFeaturesListTableViewCell
-extension AppFeaturesListTableViewController: IAppFeaturesListTableViewCell {
-    
-    func infoWasTapped() {
-        guard let url = URL(string: "https://www.youtube.com/watch?v=u-n5iBWaOWQ") else {return}
-        let vc = SFSafariViewController(url: url)
-        self.present(vc, animated: true)
     }
 }

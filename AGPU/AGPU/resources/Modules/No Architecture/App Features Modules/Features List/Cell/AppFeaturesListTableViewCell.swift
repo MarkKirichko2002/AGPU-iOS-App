@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol IAppFeaturesListTableViewCell: AnyObject {
-    func infoWasTapped()
+    func infoWasTapped(url: String)
 }
 
 class AppFeaturesListTableViewCell: UITableViewCell {
@@ -17,6 +17,7 @@ class AppFeaturesListTableViewCell: UITableViewCell {
     static let identifier = "AppFeaturesListTableViewCell"
     
     weak var delegate: IAppFeaturesListTableViewCell?
+    var url: String = ""
     
     let featureName: UILabel = {
         let label = UILabel()
@@ -64,10 +65,11 @@ class AppFeaturesListTableViewCell: UITableViewCell {
     
     func configure(feature: AppFeatureModel) {
         featureName.text = "\(feature.id)) \(feature.name)"
+        url = feature.videoURL
     }
     
     @objc private func showInfo() {
         HapticsManager.shared.hapticFeedback()
-        delegate?.infoWasTapped()
+        delegate?.infoWasTapped(url: url)
     }
 }

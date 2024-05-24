@@ -401,6 +401,7 @@
 		829D48A22BBC1ED300F6D256 /* ITimeTableSoundsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829D48A12BBC1ED300F6D256 /* ITimeTableSoundsListViewModel.swift */; };
 		829D48A42BBC1EE300F6D256 /* TimeTableSoundsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829D48A32BBC1EE300F6D256 /* TimeTableSoundsListViewModel.swift */; };
 		829D48A62BBC1EF100F6D256 /* TimeTableSoundsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829D48A52BBC1EF100F6D256 /* TimeTableSoundsListViewModel + Extensions.swift */; };
+		829E26C82C01202F0093E45C /* AppFeaturesListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E26C72C01202F0093E45C /* AppFeaturesListTableViewController + Extensions.swift */; };
 		82A29F432B9BD58800756F43 /* ISelectedFacultySplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A29F422B9BD58800756F43 /* ISelectedFacultySplashScreenViewModel.swift */; };
 		82A29F452B9BD5D600756F43 /* SelectedFacultySplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A29F442B9BD5D600756F43 /* SelectedFacultySplashScreenViewModel.swift */; };
 		82A29F472B9BD5EF00756F43 /* SelectedFacultySplashScreenViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A29F462B9BD5EF00756F43 /* SelectedFacultySplashScreenViewModel + Extensions.swift */; };
@@ -985,6 +986,7 @@
 		829D48A12BBC1ED300F6D256 /* ITimeTableSoundsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITimeTableSoundsListViewModel.swift; sourceTree = "<group>"; };
 		829D48A32BBC1EE300F6D256 /* TimeTableSoundsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSoundsListViewModel.swift; sourceTree = "<group>"; };
 		829D48A52BBC1EF100F6D256 /* TimeTableSoundsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableSoundsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		829E26C72C01202F0093E45C /* AppFeaturesListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppFeaturesListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		82A29F422B9BD58800756F43 /* ISelectedFacultySplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISelectedFacultySplashScreenViewModel.swift; sourceTree = "<group>"; };
 		82A29F442B9BD5D600756F43 /* SelectedFacultySplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFacultySplashScreenViewModel.swift; sourceTree = "<group>"; };
 		82A29F462B9BD5EF00756F43 /* SelectedFacultySplashScreenViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectedFacultySplashScreenViewModel + Extensions.swift"; sourceTree = "<group>"; };
@@ -6171,6 +6173,14 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		829E26C62C0120160093E45C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				829E26C72C01202F0093E45C /* AppFeaturesListTableViewController + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		82A29F3B2B9BD4E200756F43 /* Splash Screen Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -7244,6 +7254,7 @@
 			children = (
 				827E907B2BC8786D00FD8168 /* ViewController */,
 				827E907A2BC8786B00FD8168 /* Cell */,
+				829E26C62C0120160093E45C /* Extensions */,
 			);
 			path = "Features List";
 			sourceTree = "<group>";
@@ -9082,6 +9093,7 @@
 				823F97DE2B9D227500F60F39 /* IWeatherSplashScreenViewModel.swift in Sources */,
 				8234E5FC2A88557400ED354C /* WordDocumenReaderViewModel + Extensions.swift in Sources */,
 				828D511C2BB86CFE00848FF8 /* ASPUButtonOptionsListViewModel.swift in Sources */,
+				829E26C82C01202F0093E45C /* AppFeaturesListTableViewController + Extensions.swift in Sources */,
 				82D37FD32BEC29820035CB57 /* ISavedImagesListViewModel.swift in Sources */,
 				82AB6D182AF6BD5F00F7B729 /* AdaptiveNewsOptionTableViewCell.swift in Sources */,
 				82768AFA2ABE1CE70022FBE1 /* AppFeaturesTableViewCell.swift in Sources */,
@@ -9420,7 +9432,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3.4;
+				MARKETING_VERSION = 2.3.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -9459,7 +9471,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.3.4;
+				MARKETING_VERSION = 2.3.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
