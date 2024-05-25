@@ -22,6 +22,26 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         option = UserDefaults.loadData(type: NewsOptionsFilters.self, key: "news filter") ?? .all
         displayMode = UserDefaults.loadData(type: DisplayModes.self, key: "display mode") ?? .grid
         getNewsByCurrentType()
+        checkWhatsNew()
+    }
+    
+    func checkWhatsNew() {
+        Task {
+            let result = try await newsService.getAGPUNews()
+            switch result {
+            case .success(let response):
+                guard let news = response.articles else {return}
+                let currentDate = self.dateManager.getCurrentDate()
+                for article in news {
+                    if article.date == currentDate {
+                        whatsNewHandler?()
+                        break
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     // получить новости в зависимости от типа
@@ -236,15 +256,15 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         self.dataChangedHandler = block
     }
     
-    private func registerDataIsLoadedHandler(block: @escaping()->Void) {
-        self.dataIsLoadedHandler = block
-    }
-    
     func registerDislayModeHandler(block: @escaping(DisplayModes)->Void) {
         self.dislayModeHandler = block
     }
     
     func registerWebModeHandler(block: @escaping()->Void) {
         self.webModeHandler = block
+    }
+    
+    func registerWhatsNewHandler(block: @escaping()->Void) {
+        self.whatsNewHandler = block
     }
 }

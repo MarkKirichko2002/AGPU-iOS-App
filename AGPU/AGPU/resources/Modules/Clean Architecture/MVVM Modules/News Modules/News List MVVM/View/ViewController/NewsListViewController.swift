@@ -139,6 +139,11 @@ final class NewsListViewController: UIViewController {
         var menu = UIMenu()
         
         var categoriesAction = UIAction(title: "Категории") { _ in}
+        
+        let whatsNewAction = UIAction(title: "Что нового?") { _ in
+            self.showWhatsNewVC()
+        }
+        
         var pagesAction = UIAction(title: "Страницы") { _ in}
         let recentNews = UIAction(title: "Недавние") { _ in
             let vc = RecentNewsListViewController()
@@ -207,6 +212,7 @@ final class NewsListViewController: UIViewController {
             
             menu = UIMenu(title: "Новости", children: [
                 categoriesAction,
+                whatsNewAction,
                 pagesAction,
                 recentNews,
                 displayModes,
@@ -287,6 +293,12 @@ final class NewsListViewController: UIViewController {
         
         viewModel.registerWebModeHandler {
             self.webView.load(self.viewModel.makeUrlForCurrentWebPage())
+        }
+        
+        viewModel.registerWhatsNewHandler {
+            DispatchQueue.main.async {
+                self.showWhatsNewVC()
+            }
         }
         
         viewModel.observeCategoryChanges()

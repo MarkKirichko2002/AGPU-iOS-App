@@ -115,5 +115,12 @@ struct AppFeaturesList {
             description: "Custom TabBar (своя панель вкладок) - у вас есть возможность настроить панель вкладок по своему усмотрению. Например, вы можете настроить порядок вкладок, выбрать цвет или включить/выключить анимацию для них.",
             videoURL: "https://youtu.be/GFn-5phP5UU?si=n0GD1qtBirSuIomY"
         ),
+        
+        AppFeatureModel(
+            id: 16,
+            name: "Visual Changes",
+            description: "Visual Changes (наглядные изменения) - показывает что произошло нового для интересующегося вас контента.",
+            videoURL: ""
+        )
     ]
 }

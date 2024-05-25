@@ -158,6 +158,13 @@ extension UIViewController {
             self.showAlert(title: "Подсказка 💡!", message: "чтобы посмотреть соответствующие материалы для вашей кафедры выберите ее в настройках", actions: [ok])
         }
     }
+    
+    @objc func showWhatsNewVC() {
+        let vc = TodayNewsListTableViewController()
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
+    }
 }
 
 // MARK: - MFMailComposeViewControllerDelegate

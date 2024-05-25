@@ -49,7 +49,6 @@ final class AGPUTabBarController: UITabBarController {
         observeArticleSelected()
         observeDataRefreshed()
         becomeFirstResponder()
-        checkForUpdates()
     }
     
     override var selectedViewController: UIViewController? {
@@ -173,6 +172,8 @@ final class AGPUTabBarController: UITabBarController {
             ASPUButton.addTarget(self, action: #selector(openSectionsList), for: .touchUpInside)
         case .recent:
             ASPUButton.addTarget(self, action: #selector(openRecentMoments), for: .touchUpInside)
+        case .whatsNew:
+            ASPUButton.addTarget(self, action: #selector(openWhatsNew), for: .touchUpInside)
         case .favourite:
             ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
         }
@@ -205,6 +206,17 @@ final class AGPUTabBarController: UITabBarController {
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         self.updateASPUButton(icon: "time.past")
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.present(navVC, animated: true)
+        }
+    }
+    
+    @objc func openWhatsNew() {
+        let vc = TodayNewsListTableViewController()
+        vc.isNotify = true
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.updateASPUButton(icon: "question")
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
             self.present(navVC, animated: true)
         }
