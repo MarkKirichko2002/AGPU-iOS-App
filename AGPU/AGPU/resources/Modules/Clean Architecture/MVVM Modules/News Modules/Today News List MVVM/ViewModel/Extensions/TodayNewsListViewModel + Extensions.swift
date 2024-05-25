@@ -40,7 +40,7 @@ extension TodayNewsListViewModel: ITodayNewsListViewModel {
                     case .success(let data):
                         let news = checkTodayNews(news: data.articles ?? [])
                         if !news.isEmpty {
-                            let model = TodayNewsSectionModel(name: category.name, news: news)
+                            let model = TodayNewsSectionModel(name: category.name, abbreviation: category.newsAbbreviation, news: news)
                             sections.append(model)
                         }
                     case .failure(let error):
@@ -55,7 +55,7 @@ extension TodayNewsListViewModel: ITodayNewsListViewModel {
                     case .success(let data):
                         let news = checkTodayNews(news: data.articles ?? [])
                         if !news.isEmpty {
-                            let model = TodayNewsSectionModel(name: category.name, news: news)
+                            let model = TodayNewsSectionModel(name: category.name, abbreviation: category.newsAbbreviation, news: news)
                             sections.append(model)
                         }
                     case .failure(let error):
@@ -75,11 +75,15 @@ extension TodayNewsListViewModel: ITodayNewsListViewModel {
         var articles = [Article]()
         for article in news {
             if article.date == currentDate {
-                print("НОВОСТЬ!!!")
                 articles.append(article)
             }
         }
         return articles
+    }
+    
+    func makeUrlForCurrentArticle(section: Int, index: Int)-> String {
+        let url = newsService.urlForCurrentArticle(abbreviation: sections[section].abbreviation, index: newsItemAtSection(section: section, index: index).id)
+        return url
     }
         
     func registerDataChangedHandler(block: @escaping()->Void) {

@@ -9,5 +9,6 @@ import Foundation
 
 struct TodayNewsSectionModel {
     let name: String
+    let abbreviation: String
     let news: [Article]
 }

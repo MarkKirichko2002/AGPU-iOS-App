@@ -14,7 +14,31 @@ extension TodayNewsListTableViewController: UITableViewDelegate {
         return viewModel.titleForHeaderInSection(section: section)
     }
     
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+            
+            let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
+                self.shareInfo(image: UIImage(named: "АГПУ")!, title: "\(self.viewModel.newsItemAtSection(section: indexPath.section, index: indexPath.row).title)", text: "\(self.viewModel.makeUrlForCurrentArticle(section: indexPath.section, index: indexPath.row))")
+            }
+            
+            return UIMenu(title: self.viewModel.newsItemAtSection(section: indexPath.section, index: indexPath.row).title, children: [
+                shareAction
+            ])
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let cell = tableView.cellForRow(at: indexPath) as? NewsTableViewCell {
+            cell.didTapCell(indexPath: indexPath)
+        }
+        
+        Timer.scheduledTimer(withTimeInterval: 1.1, repeats: false) { _ in
+            let vc = NewsWebViewController(article: self.viewModel.newsItemAtSection(section: indexPath.section, index: indexPath.row), url: self.viewModel.makeUrlForCurrentArticle(section: indexPath.section, index: indexPath.row), isNotify: false)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
