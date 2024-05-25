@@ -118,8 +118,8 @@
 		822606062A853D130055925F /* RecentMomentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822606052A853D130055925F /* RecentMomentModel.swift */; };
 		822606082A853D310055925F /* RecentMomentsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822606072A853D310055925F /* RecentMomentsList.swift */; };
 		8226060A2A853DEE0055925F /* RecentMomentsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822606092A853DEE0055925F /* RecentMomentsListTableViewController.swift */; };
-		822632412A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8226323F2A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift */; };
-		822632422A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822632402A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib */; };
+		822632412A6CB37E0000E14C /* ActionToRecallOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8226323F2A6CB37E0000E14C /* ActionToRecallOptionTableViewCell.swift */; };
+		822632422A6CB37E0000E14C /* ActionToRecallOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822632402A6CB37E0000E14C /* ActionToRecallOptionTableViewCell.xib */; };
 		8226D16D2B0948B500B0B9F0 /* AGPUTabBarController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8226D16C2B0948B500B0B9F0 /* AGPUTabBarController + Extensions.swift */; };
 		8226D1712B0958F600B0B9F0 /* TimetableOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8226D16F2B0958F500B0B9F0 /* TimetableOptionTableViewCell.swift */; };
 		8226D1722B0958F600B0B9F0 /* TimetableOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8226D1702B0958F500B0B9F0 /* TimetableOptionTableViewCell.xib */; };
@@ -215,6 +215,8 @@
 		8255ADCF2A6732110012895E /* CustomTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255ADCE2A6732110012895E /* CustomTitleView.swift */; };
 		825634BA2A6222070082B7B8 /* FacultyGroupsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825634B92A6222070082B7B8 /* FacultyGroupsListTableViewController.swift */; };
 		825634BC2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825634BB2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift */; };
+		8258198D2C0297090022D17F /* VisualChangesOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8258198B2C0297090022D17F /* VisualChangesOptionTableViewCell.swift */; };
+		8258198E2C0297090022D17F /* VisualChangesOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8258198C2C0297090022D17F /* VisualChangesOptionTableViewCell.xib */; };
 		825D56732AE5CBEB004305C7 /* PairInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D56722AE5CBEB004305C7 /* PairInfoTableViewController.swift */; };
 		825D56782AE5CC5F004305C7 /* PairInfoViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D56772AE5CC5F004305C7 /* PairInfoViewModelProtocol.swift */; };
 		825D567A2AE5CCAF004305C7 /* PairInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D56792AE5CCAF004305C7 /* PairInfoViewModel.swift */; };
@@ -706,8 +708,8 @@
 		822606052A853D130055925F /* RecentMomentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMomentModel.swift; sourceTree = "<group>"; };
 		822606072A853D310055925F /* RecentMomentsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMomentsList.swift; sourceTree = "<group>"; };
 		822606092A853DEE0055925F /* RecentMomentsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMomentsListTableViewController.swift; sourceTree = "<group>"; };
-		8226323F2A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeToRecallOptionTableViewCell.swift; sourceTree = "<group>"; };
-		822632402A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShakeToRecallOptionTableViewCell.xib; sourceTree = "<group>"; };
+		8226323F2A6CB37E0000E14C /* ActionToRecallOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionToRecallOptionTableViewCell.swift; sourceTree = "<group>"; };
+		822632402A6CB37E0000E14C /* ActionToRecallOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionToRecallOptionTableViewCell.xib; sourceTree = "<group>"; };
 		8226D16C2B0948B500B0B9F0 /* AGPUTabBarController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUTabBarController + Extensions.swift"; sourceTree = "<group>"; };
 		8226D16F2B0958F500B0B9F0 /* TimetableOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableOptionTableViewCell.swift; sourceTree = "<group>"; };
 		8226D1702B0958F500B0B9F0 /* TimetableOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimetableOptionTableViewCell.xib; sourceTree = "<group>"; };
@@ -803,6 +805,8 @@
 		8255ADCE2A6732110012895E /* CustomTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTitleView.swift; sourceTree = "<group>"; };
 		825634B92A6222070082B7B8 /* FacultyGroupsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupsListTableViewController.swift; sourceTree = "<group>"; };
 		825634BB2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupsListViewModel.swift; sourceTree = "<group>"; };
+		8258198B2C0297090022D17F /* VisualChangesOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualChangesOptionTableViewCell.swift; sourceTree = "<group>"; };
+		8258198C2C0297090022D17F /* VisualChangesOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisualChangesOptionTableViewCell.xib; sourceTree = "<group>"; };
 		825D56722AE5CBEB004305C7 /* PairInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairInfoTableViewController.swift; sourceTree = "<group>"; };
 		825D56772AE5CC5F004305C7 /* PairInfoViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairInfoViewModelProtocol.swift; sourceTree = "<group>"; };
 		825D56792AE5CCAF004305C7 /* PairInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairInfoViewModel.swift; sourceTree = "<group>"; };
@@ -3388,13 +3392,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		82423E3C2A991E11006FA7D2 /* Shake To Recall */ = {
+		82423E3C2A991E11006FA7D2 /* Action To Recall */ = {
 			isa = PBXGroup;
 			children = (
-				8226323F2A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift */,
-				822632402A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib */,
+				8226323F2A6CB37E0000E14C /* ActionToRecallOptionTableViewCell.swift */,
+				822632402A6CB37E0000E14C /* ActionToRecallOptionTableViewCell.xib */,
 			);
-			path = "Shake To Recall";
+			path = "Action To Recall";
 			sourceTree = "<group>";
 		};
 		82426C6E2A71476D00D5AA57 /* For Every Status */ = {
@@ -3826,6 +3830,15 @@
 				82E4C5932A6B2CA300F65A67 /* Cell */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		8258198A2C02968D0022D17F /* Visual Changes */ = {
+			isa = PBXGroup;
+			children = (
+				8258198B2C0297090022D17F /* VisualChangesOptionTableViewCell.swift */,
+				8258198C2C0297090022D17F /* VisualChangesOptionTableViewCell.xib */,
+			);
+			path = "Visual Changes";
 			sourceTree = "<group>";
 		};
 		8258214B2A46494E00CF0333 /* app */ = {
@@ -5317,7 +5330,8 @@
 		82920B6C2AD8776F00352CD8 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				82423E3C2A991E11006FA7D2 /* Shake To Recall */,
+				82423E3C2A991E11006FA7D2 /* Action To Recall */,
+				8258198A2C02968D0022D17F /* Visual Changes */,
 				82BF39DE2B24837000FADBD4 /* Only Main */,
 				82761A1A2B4637DE00D9976F /* Splash Screens */,
 				8283975A2AD5BBAD000F355A /* App Icons */,
@@ -8716,7 +8730,7 @@
 				82B267062A8DAA8500043A6D /* NewsCategoryTableViewCell.xib in Resources */,
 				829952782BDEEB7D003AFB14 /* RecentTabOptionTableViewCell.xib in Resources */,
 				82FC881B2BBDFC4300A2EF59 /* new year.mp4 in Resources */,
-				822632422A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.xib in Resources */,
+				822632422A6CB37E0000E14C /* ActionToRecallOptionTableViewCell.xib in Resources */,
 				82C5B7902BCEF81600F907CB /* ASPUButtonAnimationOptionTableViewCell.xib in Resources */,
 				82C449F82B5F0B5F0039B0F3 /* danger.mp3 in Resources */,
 				82754C742BD45C1B0021E76A /* BorderForDailyNewsTableViewCell.xib in Resources */,
@@ -8736,6 +8750,7 @@
 				821EEAD72AA0B76F00AE517B /* UserStatusTableViewCell.xib in Resources */,
 				8209008F2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.xib in Resources */,
 				828397602AD5BBF4000F355A /* AppIconTableViewCell.xib in Resources */,
+				8258198E2C0297090022D17F /* VisualChangesOptionTableViewCell.xib in Resources */,
 				82761A1E2B46381500D9976F /* SplashScreenOptionTableViewCell.xib in Resources */,
 				822D57842BBC29050026962F /* clock_sound3.mp3 in Resources */,
 				82AB6D2D2AF6C45700F7B729 /* SavedNewsCategoryTableViewCell.xib in Resources */,
@@ -8943,8 +8958,9 @@
 				823F97E22B9D22A400F60F39 /* WeatherSplashScreenViewModel + Extensions.swift in Sources */,
 				82989AEE2A6F6EB600F27858 /* FacultyCathedraListViewModel + Extensions.swift in Sources */,
 				82FC22E82BC01B7F008709DA /* INewsOptionsFilterListViewModel.swift in Sources */,
+				8258198D2C0297090022D17F /* VisualChangesOptionTableViewCell.swift in Sources */,
 				8299E3B42B8A31E600D81472 /* TimetableDateDetailViewModel.swift in Sources */,
-				822632412A6CB37E0000E14C /* ShakeToRecallOptionTableViewCell.swift in Sources */,
+				822632412A6CB37E0000E14C /* ActionToRecallOptionTableViewCell.swift in Sources */,
 				826F93892A91C46A00DE4FB1 /* NewsPagesListViewModel.swift in Sources */,
 				82BCB53B2AB3521300F3A321 /* DaysListViewModel.swift in Sources */,
 				82A29F432B9BD58800756F43 /* ISelectedFacultySplashScreenViewModel.swift in Sources */,

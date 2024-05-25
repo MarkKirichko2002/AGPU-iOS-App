@@ -30,11 +30,12 @@ class TodayNewsListTableViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Что нового?"
+        let titleView = CustomTitleView(image: "question", title: "Что нового?", frame: .zero)
         let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshNews))
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         refreshButton.tintColor = .label
         closeButton.tintColor = .label
+        navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = refreshButton
         navigationItem.rightBarButtonItem = closeButton
     }

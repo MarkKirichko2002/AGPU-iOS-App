@@ -1,5 +1,5 @@
 //
-//  ShakeToRecallOptionTableViewCell.swift
+//  ActionToRecallOptionTableViewCell.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 23.07.2023.
@@ -7,16 +7,16 @@
 
 import UIKit
 
-final class ShakeToRecallOptionTableViewCell: UITableViewCell {
+final class ActionToRecallOptionTableViewCell: UITableViewCell {
 
-    static let identifier = "ShakeToRecallOptionTableViewCell"
+    static let identifier = "ActionToRecallOptionTableViewCell"
     
     var userDefaults = UserDefaults.standard
     var animation = AnimationClass()
     
     @IBOutlet weak var Switch: UISwitch!
-    @IBOutlet weak var ShakeToRecallIcon: UIImageView!
-    @IBOutlet weak var ShakeToRecallLabel: UILabel!
+    @IBOutlet weak var ActionToRecallIcon: UIImageView!
+    @IBOutlet weak var ActionToRecallLabel: UILabel!
     
     @IBAction func switchAction(_ sender: UISwitch) {
         
@@ -24,14 +24,14 @@ final class ShakeToRecallOptionTableViewCell: UITableViewCell {
         
         if Switch.isOn == true {
             print("on")
-            ShakeToRecallIcon.tintColor = .label
-            ShakeToRecallLabel.textColor = .label
+            ActionToRecallIcon.tintColor = .label
+            ActionToRecallLabel.textColor = .label
             userDefaults.set(true, forKey: "onShakeToRecall")
-            animation.springAnimation(view: ShakeToRecallIcon)
+            animation.springAnimation(view: ActionToRecallIcon)
         } else if Switch.isOn == false {
             print("off")
-            ShakeToRecallIcon.tintColor = .systemGray
-            ShakeToRecallLabel.textColor = .systemGray
+            ActionToRecallIcon.tintColor = .systemGray
+            ActionToRecallLabel.textColor = .systemGray
             userDefaults.set(false, forKey: "onShakeToRecall")
         }
     }
@@ -42,16 +42,16 @@ final class ShakeToRecallOptionTableViewCell: UITableViewCell {
     }
     
     private func setUpView() {
-        ShakeToRecallIcon.tintColor = .label
+        ActionToRecallIcon.tintColor = .label
         backgroundColor = .systemBackground
-        ShakeToRecallLabel.textColor = .label
+        ActionToRecallLabel.textColor = .label
         setUpState()
     }
     
     private func setUpState() {
         let isShakeToRecall = userDefaults.object(forKey: "onShakeToRecall") as? Bool ?? true
         Switch.isOn = isShakeToRecall
-        ShakeToRecallIcon.tintColor = isShakeToRecall == true ? .label : .systemGray
-        ShakeToRecallLabel.textColor = isShakeToRecall == true ? .label : .systemGray
+        ActionToRecallIcon.tintColor = isShakeToRecall == true ? .label : .systemGray
+        ActionToRecallLabel.textColor = isShakeToRecall == true ? .label : .systemGray
     }
 }

@@ -41,7 +41,9 @@ final class SettingsListViewController: UIViewController {
         tableView.register(UINib(nibName: TimetableOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimetableOptionTableViewCell.identifier)
         // MARK: - Секция "Другие опции"
         // Action To Recall
-        tableView.register(UINib(nibName: ShakeToRecallOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ShakeToRecallOptionTableViewCell.identifier)
+        tableView.register(UINib(nibName: ActionToRecallOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ActionToRecallOptionTableViewCell.identifier)
+        // Visual Changes
+        tableView.register(UINib(nibName: VisualChangesOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: VisualChangesOptionTableViewCell.identifier)
         // Only Main
         tableView.register(UINib(nibName: OnlyMainOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: OnlyMainOptionTableViewCell.identifier)
         // My Splash Screen

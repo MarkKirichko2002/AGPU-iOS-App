@@ -19,10 +19,13 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     }
     
     func checkSettings() {
+        let isVisualChanges = UserDefaults.standard.object(forKey: "onVisualChanges") as? Bool ?? false
+        if isVisualChanges {
+            checkWhatsNew()
+        }
         option = UserDefaults.loadData(type: NewsOptionsFilters.self, key: "news filter") ?? .all
         displayMode = UserDefaults.loadData(type: DisplayModes.self, key: "display mode") ?? .grid
         getNewsByCurrentType()
-        checkWhatsNew()
     }
     
     func checkWhatsNew() {
@@ -181,6 +184,18 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         }
     }
     
+    func observeStrokeOption() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("daily news border option"), object: nil, queue: .main) { _ in
+            self.dataChangedHandler?(self.abbreviation)
+        }
+    }
+    
+    func observeVisualChangesOption() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("visual changes option"), object: nil, queue: .main) { _ in
+            self.checkWhatsNew()
+        }
+    }
+    
     func observeFilterOption() {
         NotificationCenter.default.addObserver(forName: Notification.Name("news filter option"), object: nil, queue: .main) { notification in
             if let option = notification.object as? NewsOptionsFilters {
@@ -195,12 +210,6 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                     break
                 }
             }
-        }
-    }
-    
-    func observeStrokeOption() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("daily news border option"), object: nil, queue: .main) { _ in
-            self.dataChangedHandler?(self.abbreviation)
         }
     }
     

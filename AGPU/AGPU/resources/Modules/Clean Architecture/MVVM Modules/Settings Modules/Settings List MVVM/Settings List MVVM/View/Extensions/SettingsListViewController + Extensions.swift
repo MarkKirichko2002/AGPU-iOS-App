@@ -20,7 +20,7 @@ extension SettingsListViewController: UITableViewDataSource {
         case 0:
             return 4
         case 1:
-            return 7
+            return 8
         case 2:
             return 2
         default:
@@ -49,24 +49,27 @@ extension SettingsListViewController: UITableViewDataSource {
             }
         case 1:
             if indexPath.row == 0 {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: ShakeToRecallOptionTableViewCell.identifier, for: indexPath) as? ShakeToRecallOptionTableViewCell else {return UITableViewCell()}
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: ActionToRecallOptionTableViewCell.identifier, for: indexPath) as? ActionToRecallOptionTableViewCell else {return UITableViewCell()}
                 return cell
             } else if indexPath.row == 1 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: VisualChangesOptionTableViewCell.identifier, for: indexPath) as? VisualChangesOptionTableViewCell else {return UITableViewCell()}
+                return cell
+            } else if indexPath.row == 2 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: OnlyMainOptionTableViewCell.identifier, for: indexPath) as? OnlyMainOptionTableViewCell else {return UITableViewCell()}
                 cell.configure(name: viewModel.getOnlyMainVariantInfo())
                 return cell
-            } else if indexPath.row == 2 {
+            } else if indexPath.row == 3 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: SplashScreenOptionTableViewCell.identifier, for: indexPath) as? SplashScreenOptionTableViewCell else {return UITableViewCell()}
                 cell.configure(name: viewModel.getSplashScreenInfo())
                 return cell
-            } else if indexPath.row == 3 {
+            } else if indexPath.row == 4 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AppIconTableViewCell.identifier, for: indexPath) as? AppIconTableViewCell else {return UITableViewCell()}
                 cell.configure(icon: viewModel.getAppIconInfo())
                 return cell
-            } else if indexPath.row == 4 {
+            } else if indexPath.row == 5 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTabBarOptionTableViewCell.identifier, for: indexPath) as? CustomTabBarOptionTableViewCell else {return UITableViewCell()}
                 return cell
-            } else if indexPath.row == 5 {
+            } else if indexPath.row == 6 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ASPUButtonOptionTableViewCell.identifier, for: indexPath) as? ASPUButtonOptionTableViewCell else {return UITableViewCell()}
                 return cell
             } else {
@@ -145,7 +148,7 @@ extension SettingsListViewController: UITableViewDelegate {
                 }
             }
         case 1:
-            if indexPath.row == 1 {
+            if indexPath.row == 2 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "home icon")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = OnlyMainVariantsListTableViewController()

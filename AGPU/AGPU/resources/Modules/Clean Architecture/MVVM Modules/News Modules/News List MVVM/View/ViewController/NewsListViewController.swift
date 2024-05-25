@@ -306,5 +306,6 @@ final class NewsListViewController: UIViewController {
         viewModel.observeDisplayMode()
         viewModel.observeStrokeOption()
         viewModel.observeFilterOption()
+        viewModel.observeVisualChangesOption()
     }
 }
