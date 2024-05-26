@@ -217,6 +217,7 @@
 		825634BC2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825634BB2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift */; };
 		8258198D2C0297090022D17F /* VisualChangesOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8258198B2C0297090022D17F /* VisualChangesOptionTableViewCell.swift */; };
 		8258198E2C0297090022D17F /* VisualChangesOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8258198C2C0297090022D17F /* VisualChangesOptionTableViewCell.xib */; };
+		825819922C02AE1C0022D17F /* AppUpdateAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825819912C02AE1C0022D17F /* AppUpdateAlertViewController.swift */; };
 		825D56732AE5CBEB004305C7 /* PairInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D56722AE5CBEB004305C7 /* PairInfoTableViewController.swift */; };
 		825D56782AE5CC5F004305C7 /* PairInfoViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D56772AE5CC5F004305C7 /* PairInfoViewModelProtocol.swift */; };
 		825D567A2AE5CCAF004305C7 /* PairInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D56792AE5CCAF004305C7 /* PairInfoViewModel.swift */; };
@@ -807,6 +808,7 @@
 		825634BB2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupsListViewModel.swift; sourceTree = "<group>"; };
 		8258198B2C0297090022D17F /* VisualChangesOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualChangesOptionTableViewCell.swift; sourceTree = "<group>"; };
 		8258198C2C0297090022D17F /* VisualChangesOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisualChangesOptionTableViewCell.xib; sourceTree = "<group>"; };
+		825819912C02AE1C0022D17F /* AppUpdateAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateAlertViewController.swift; sourceTree = "<group>"; };
 		825D56722AE5CBEB004305C7 /* PairInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairInfoTableViewController.swift; sourceTree = "<group>"; };
 		825D56772AE5CC5F004305C7 /* PairInfoViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairInfoViewModelProtocol.swift; sourceTree = "<group>"; };
 		825D56792AE5CCAF004305C7 /* PairInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairInfoViewModel.swift; sourceTree = "<group>"; };
@@ -3841,6 +3843,22 @@
 			path = "Visual Changes";
 			sourceTree = "<group>";
 		};
+		8258198F2C02ADF70022D17F /* App Update */ = {
+			isa = PBXGroup;
+			children = (
+				825819902C02AE020022D17F /* ViewController */,
+			);
+			path = "App Update";
+			sourceTree = "<group>";
+		};
+		825819902C02AE020022D17F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				825819912C02AE1C0022D17F /* AppUpdateAlertViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		8258214B2A46494E00CF0333 /* app */ = {
 			isa = PBXGroup;
 			children = (
@@ -4133,6 +4151,7 @@
 		826888672A33B87A00434219 /* No Architecture */ = {
 			isa = PBXGroup;
 			children = (
+				8258198F2C02ADF70022D17F /* App Update */,
 				822527462BA63D0500B66314 /* News Categories Randomizer */,
 				82D37FB52BEC10D20035CB57 /* Things Categories List */,
 				82D37FDB2BEC2F290035CB57 /* Image Detail */,
@@ -9135,6 +9154,7 @@
 				82E4C5682A6B154300F65A67 /* FacultyGroupsListViewModelProtocol.swift in Sources */,
 				828D512F2BB8A08B00848FF8 /* IASPUButtonIconsListViewModel.swift in Sources */,
 				8241F9932A5F4091007DF628 /* TimeTableServicerProtocol.swift in Sources */,
+				825819922C02AE1C0022D17F /* AppUpdateAlertViewController.swift in Sources */,
 				8217C30D2B8FB6D600A59412 /* CustomSplashScreenModel.swift in Sources */,
 				82AB6D232AF6C07500F7B729 /* SavedNewsCategoryViewModel.swift in Sources */,
 				82BEAD872A7417EC00DD34C2 /* RecentWebPageViewModelProtocol.swift in Sources */,

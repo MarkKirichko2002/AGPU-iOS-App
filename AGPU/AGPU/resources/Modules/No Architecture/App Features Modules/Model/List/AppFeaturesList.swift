@@ -119,7 +119,7 @@ struct AppFeaturesList {
         AppFeatureModel(
             id: 16,
             name: "Visual Changes",
-            description: "Visual Changes (наглядные изменения) - показывает что произошло нового для интересующегося вас контента.",
+            description: "Visual Changes (наглядные изменения) - показывает, что изменилось для интересующего вас контента. Например, вы будете знать, какие новости появились за сегодня.",
             videoURL: ""
         )
     ]

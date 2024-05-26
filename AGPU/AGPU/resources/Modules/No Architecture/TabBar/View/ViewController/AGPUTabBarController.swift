@@ -48,6 +48,7 @@ final class AGPUTabBarController: UITabBarController {
         observeFaculty()
         observeArticleSelected()
         observeDataRefreshed()
+        checkForUpdates()
         becomeFirstResponder()
     }
     
