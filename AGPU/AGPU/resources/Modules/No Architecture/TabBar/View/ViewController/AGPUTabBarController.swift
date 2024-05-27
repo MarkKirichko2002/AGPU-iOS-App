@@ -194,10 +194,11 @@ final class AGPUTabBarController: UITabBarController {
             openRecentMoments()
         } else {
             self.updateASPUButton(icon: "info icon")
-            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                let ok = UIAlertAction(title: "ОК", style: .default)
-                self.showAlert(title: "Вы отключили фишку Action To Recall!", message: "чтобы дальше пользоваться данной фишкой включите ее в настройках.", actions: [ok])
-                self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                let vc = HintViewController(info: "Вы отключили фишку Action To Recall! Чтобы дальше пользоваться данной фишкой включите ее в настройках.")
+                vc.isNotify = true
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
             }
         }
     }
@@ -214,12 +215,29 @@ final class AGPUTabBarController: UITabBarController {
     
     @objc func openWhatsNew() {
         let vc = TodayNewsListTableViewController()
-        vc.isNotify = true
         let navVC = UINavigationController(rootViewController: vc)
-        navVC.modalPresentationStyle = .fullScreen
-        self.updateASPUButton(icon: "question")
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.present(navVC, animated: true)
+        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
+        switch style {
+        case .fullScreen:
+            navVC.modalPresentationStyle = .fullScreen
+            self.updateASPUButton(icon: "question")
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.present(navVC, animated: true)
+            }
+        case .sheet:
+            navVC.modalPresentationStyle = .pageSheet
+            self.updateASPUButton(icon: "question")
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.present(navVC, animated: true)
+            }
+        case .notShow:
+            let vc = HintViewController(info: "Чтобы увидеть экран, выберите его отображение в настройках опции \"Наглядные изменения\"")
+            vc.isNotify = true
+            vc.modalPresentationStyle = .fullScreen
+            self.updateASPUButton(icon: "info icon")
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.present(vc, animated: true)
+            }
         }
     }
     

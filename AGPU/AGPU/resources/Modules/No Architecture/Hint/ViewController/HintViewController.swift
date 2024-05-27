@@ -45,7 +45,7 @@ class HintViewController: UIViewController {
     }()
         
     var info: String
-    
+    var isNotify = false
     
     // MARK: - Init
     init(info: String) {
@@ -73,6 +73,9 @@ class HintViewController: UIViewController {
     
     @objc private func closeScreen() {
         HapticsManager.shared.hapticFeedback()
+        if isNotify {
+            sendScreenWasClosedNotification()
+        }
         dismiss(animated: true)
     }
             

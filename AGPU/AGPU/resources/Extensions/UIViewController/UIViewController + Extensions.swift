@@ -177,7 +177,9 @@ extension UIViewController {
             navVC.modalPresentationStyle = .pageSheet
             present(navVC, animated: true)
         case .notShow:
-            break
+            let vc = HintViewController(info: "Чтобы увидеть экран, выберите его отображение в настройках опции \"Наглядные изменения\"")
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
         }
     }
 }
