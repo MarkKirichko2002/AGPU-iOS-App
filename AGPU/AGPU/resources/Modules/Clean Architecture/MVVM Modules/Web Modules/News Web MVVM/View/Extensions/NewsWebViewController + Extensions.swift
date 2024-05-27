@@ -34,12 +34,14 @@ extension NewsWebViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         DispatchQueue.main.async {
-            self.spinner.startAnimating()
+            self.animation.startRotateAnimation(view: self.spinner)
+            self.spinner.isHidden = false
         }
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        self.spinner.stopAnimating()
+        self.animation.stopRotateAnimation(view: self.spinner)
+        self.spinner.isHidden = true
         viewModel.registerScrollPositionHandler{ position in
             print(position)
             if position > 0 && webView.url?.absoluteString == self.url {

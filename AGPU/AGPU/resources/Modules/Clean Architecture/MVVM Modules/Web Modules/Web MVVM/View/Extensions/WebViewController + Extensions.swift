@@ -27,7 +27,8 @@ extension WebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         
         DispatchQueue.main.async {
-            self.spinner.startAnimating()
+            self.animation.startRotateAnimation(view: self.spinner)
+            self.spinner.isHidden = false
         }
         
         if let url = webView.url?.absoluteString {
@@ -64,7 +65,8 @@ extension WebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         
         DispatchQueue.main.async {
-            self.spinner.stopAnimating()
+            self.animation.stopRotateAnimation(view: self.spinner)
+            self.spinner.isHidden = true
         }
     }
 }

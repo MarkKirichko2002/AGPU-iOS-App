@@ -13,7 +13,8 @@ extension RecentWebPageViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         
         DispatchQueue.main.async {
-            self.spinner.startAnimating()
+            self.spinner.isHidden = false
+            self.animation.startRotateAnimation(view: self.spinner)
         }
         
         if let url = webView.url?.absoluteString {
@@ -48,7 +49,8 @@ extension RecentWebPageViewController: WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        self.spinner.stopAnimating()
+        self.spinner.isHidden = true
+        self.animation.stopRotateAnimation(view: self.spinner)
         if let currentUrl = webView.url?.absoluteString {
             viewModel.getRecentPosition(currentUrl: currentUrl) { position in
                 if position.y > 0 {

@@ -15,10 +15,16 @@ final class NewsWebViewController: UIViewController {
     
     // MARK: - сервисы
     let viewModel: NewsWebViewModel
+    let animation = AnimationClass()
     
     // MARK: - UI
     let WVWEBview = WKWebView(frame: .zero)
-    let spinner = UIActivityIndicatorView(style: .large)
+    let spinner: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "АГПУ")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     var titleView: CustomTitleView!
     
     // MARK: - Init
@@ -82,11 +88,12 @@ final class NewsWebViewController: UIViewController {
     
     private func setUpIndicatorView() {
         view.addSubview(spinner)
-        spinner.color = UIColor.black
-        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.image = UIImage(named: viewModel.getCategoryIcon())
         NSLayoutConstraint.activate([
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            spinner.widthAnchor.constraint(equalToConstant: 75),
+            spinner.heightAnchor.constraint(equalToConstant: 75)
         ])
     }
     

@@ -14,10 +14,16 @@ final class WordDocumentReaderViewController: UIViewController {
     
     // MARK: - сервисы
     let viewModel = WordDocumenReaderViewModel()
+    let animation = AnimationClass()
     
     // MARK: - UI
     let WVWEBview = WKWebView(frame: .zero)
-    let spinner = UIActivityIndicatorView(style: .large)
+    let spinner: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "word")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     
     // MARK: - Init
     init(url: String) {
@@ -72,11 +78,11 @@ final class WordDocumentReaderViewController: UIViewController {
     
     private func setUpIndicatorView() {
         view.addSubview(spinner)
-        spinner.color = UIColor.black
-        spinner.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            spinner.widthAnchor.constraint(equalToConstant: 75),
+            spinner.heightAnchor.constraint(equalToConstant: 75)
         ])
     }
     
