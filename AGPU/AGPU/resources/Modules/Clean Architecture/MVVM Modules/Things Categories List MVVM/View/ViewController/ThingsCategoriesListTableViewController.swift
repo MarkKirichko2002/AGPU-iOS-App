@@ -9,10 +9,14 @@ import UIKit
 
 class ThingsCategoriesListTableViewController: UITableViewController {
 
+    // MARK: - сервисы
+    private let viewModel = ThingsCategoriesListViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
         setUpTable()
+        bindViewModel()
     }
     
     private func setUpNavigation() {
@@ -36,7 +40,16 @@ class ThingsCategoriesListTableViewController: UITableViewController {
     }
     
     private func setUpTable() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(ThingCategoryTableViewCell.self, forCellReuseIdentifier: ThingCategoryTableViewCell.identifier)
+    }
+    
+    private func bindViewModel() {
+        viewModel.registerDataChangedHandler {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        viewModel.getCategoriesData()
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -53,14 +66,12 @@ class ThingsCategoriesListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ThingCategories.allCases.count
+        return viewModel.categoriesCount()
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let category = ThingCategories.allCases[indexPath.row]
-        cell.textLabel?.text = category.rawValue
-        cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ThingCategoryTableViewCell.identifier, for: indexPath) as? ThingCategoryTableViewCell else {return UITableViewCell()}
+        cell.configure(category: viewModel.categoryItem(index: indexPath.row))
         return cell
     }
 }
