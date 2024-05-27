@@ -19,8 +19,8 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     }
     
     func checkSettings() {
-        let isVisualChanges = UserDefaults.standard.object(forKey: "onVisualChanges") as? Bool ?? false
-        if isVisualChanges {
+        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style")
+        if style != .notShow {
             checkWhatsNew()
         }
         option = UserDefaults.loadData(type: NewsOptionsFilters.self, key: "news filter") ?? .all

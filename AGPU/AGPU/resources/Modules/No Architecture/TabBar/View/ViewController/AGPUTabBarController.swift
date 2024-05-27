@@ -215,6 +215,7 @@ final class AGPUTabBarController: UITabBarController {
     
     @objc func openWhatsNew() {
         let vc = TodayNewsListTableViewController()
+        vc.isNotify = true
         let navVC = UINavigationController(rootViewController: vc)
         let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
         switch style {

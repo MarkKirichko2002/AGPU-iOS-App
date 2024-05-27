@@ -82,7 +82,7 @@ extension UIViewController {
     }
     
     func checkForUpdates() {
-        let isVisualChanges = UserDefaults.standard.object(forKey: "onVisualChanges") as? Bool ?? false
+        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style")
         if let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
            let appStoreURL = URL(string: "https://itunes.apple.com/lookup?id=6458836690")
         {
@@ -90,7 +90,7 @@ extension UIViewController {
                 if let appStoreVersion = appStoreVersion {
                     print(appStoreVersion)
                     if currentVersion != appStoreVersion {
-                        if !isVisualChanges {
+                        if style == .notShow {
                             DispatchQueue.main.async {
                                 self.showUpdateAlert()
                             }
