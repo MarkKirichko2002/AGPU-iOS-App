@@ -53,6 +53,7 @@ extension SettingsListViewController: UITableViewDataSource {
                 return cell
             } else if indexPath.row == 1 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: VisualChangesOptionTableViewCell.identifier, for: indexPath) as? VisualChangesOptionTableViewCell else {return UITableViewCell()}
+                cell.configure(name: viewModel.getScreenPresentationStyleInfo())
                 return cell
             } else if indexPath.row == 2 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: OnlyMainOptionTableViewCell.identifier, for: indexPath) as? OnlyMainOptionTableViewCell else {return UITableViewCell()}
@@ -148,7 +149,15 @@ extension SettingsListViewController: UITableViewDelegate {
                 }
             }
         case 1:
-            if indexPath.row == 2 {
+            if indexPath.row == 1 {
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "eye")
+                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                    let vc = ScreenPresentationStylesTableViewController()
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    self.present(navVC, animated: true)
+                }
+            } else if indexPath.row == 2 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "home icon")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = OnlyMainVariantsListTableViewController()

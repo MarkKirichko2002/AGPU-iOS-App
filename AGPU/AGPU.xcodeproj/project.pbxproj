@@ -68,6 +68,12 @@
 		82184D8D2B7BDA2100F2588E /* DailyWeatherTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82184D8C2B7BDA2100F2588E /* DailyWeatherTableViewCellViewModel.swift */; };
 		82184D8F2B7BDA3F00F2588E /* HourlyWeatherCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82184D8E2B7BDA3F00F2588E /* HourlyWeatherCollectionViewCellViewModel.swift */; };
 		82184D912B7BDA5A00F2588E /* LocationDetailWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82184D902B7BDA5A00F2588E /* LocationDetailWeatherViewModel.swift */; };
+		82187C9C2C04F1D90033E6DC /* ScreenPresentationStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82187C9B2C04F1D90033E6DC /* ScreenPresentationStyles.swift */; };
+		82187C9F2C04F2340033E6DC /* ScreenPresentationStylesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82187C9E2C04F2330033E6DC /* ScreenPresentationStylesTableViewController.swift */; };
+		82187CA42C04F2710033E6DC /* IScreenPresentationStylesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82187CA32C04F2710033E6DC /* IScreenPresentationStylesListViewModel.swift */; };
+		82187CA62C04F2840033E6DC /* ScreenPresentationStylesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82187CA52C04F2840033E6DC /* ScreenPresentationStylesListViewModel.swift */; };
+		82187CA82C04F2AE0033E6DC /* ScreenPresentationStylesListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82187CA72C04F2AE0033E6DC /* ScreenPresentationStylesListViewModel + Extensions.swift */; };
+		82187CAC2C04FDA20033E6DC /* HintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82187CAB2C04FDA20033E6DC /* HintViewController.swift */; };
 		8218F5872A688F8C00C94EB4 /* CustomActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8218F5862A688F8C00C94EB4 /* CustomActivityItemSource.swift */; };
 		82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */; };
 		821B72672BD16D9D000460E2 /* TabColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B72662BD16D9D000460E2 /* TabColors.swift */; };
@@ -659,6 +665,12 @@
 		82184D8C2B7BDA2100F2588E /* DailyWeatherTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		82184D8E2B7BDA3F00F2588E /* HourlyWeatherCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		82184D902B7BDA5A00F2588E /* LocationDetailWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailWeatherViewModel.swift; sourceTree = "<group>"; };
+		82187C9B2C04F1D90033E6DC /* ScreenPresentationStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPresentationStyles.swift; sourceTree = "<group>"; };
+		82187C9E2C04F2330033E6DC /* ScreenPresentationStylesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPresentationStylesTableViewController.swift; sourceTree = "<group>"; };
+		82187CA32C04F2710033E6DC /* IScreenPresentationStylesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IScreenPresentationStylesListViewModel.swift; sourceTree = "<group>"; };
+		82187CA52C04F2840033E6DC /* ScreenPresentationStylesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenPresentationStylesListViewModel.swift; sourceTree = "<group>"; };
+		82187CA72C04F2AE0033E6DC /* ScreenPresentationStylesListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScreenPresentationStylesListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		82187CAB2C04FDA20033E6DC /* HintViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintViewController.swift; sourceTree = "<group>"; };
 		8218F5862A688F8C00C94EB4 /* CustomActivityItemSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityItemSource.swift; sourceTree = "<group>"; };
 		82194E542A459B28009D2FB3 /* SettingsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsListViewController + Extensions.swift"; sourceTree = "<group>"; };
 		821B72662BD16D9D000460E2 /* TabColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabColors.swift; sourceTree = "<group>"; };
@@ -2024,6 +2036,90 @@
 				82184D872B7BD97600F2588E /* ILocationWeatherDetailViewModel.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		82187C972C04F0E70033E6DC /* Screen Presentation Styles List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82187C9A2C04F1970033E6DC /* Model */,
+				82187C992C04F1920033E6DC /* View */,
+				82187C982C04F18F0033E6DC /* ViewModel */,
+			);
+			path = "Screen Presentation Styles List MVVM";
+			sourceTree = "<group>";
+		};
+		82187C982C04F18F0033E6DC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82187CA22C04F2550033E6DC /* Protocol */,
+				82187CA12C04F2530033E6DC /* ViewModel */,
+				82187CA02C04F2510033E6DC /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82187C992C04F1920033E6DC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82187C9D2C04F2200033E6DC /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82187C9A2C04F1970033E6DC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82187C9B2C04F1D90033E6DC /* ScreenPresentationStyles.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82187C9D2C04F2200033E6DC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82187C9E2C04F2330033E6DC /* ScreenPresentationStylesTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82187CA02C04F2510033E6DC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82187CA72C04F2AE0033E6DC /* ScreenPresentationStylesListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82187CA12C04F2530033E6DC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82187CA52C04F2840033E6DC /* ScreenPresentationStylesListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82187CA22C04F2550033E6DC /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82187CA32C04F2710033E6DC /* IScreenPresentationStylesListViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		82187CA92C04FD7B0033E6DC /* Hint */ = {
+			isa = PBXGroup;
+			children = (
+				82187CAA2C04FD920033E6DC /* ViewController */,
+			);
+			path = Hint;
+			sourceTree = "<group>";
+		};
+		82187CAA2C04FD920033E6DC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82187CAB2C04FDA20033E6DC /* HintViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		8218F5852A688F6B00C94EB4 /* ActivityItemSource */ = {
@@ -4151,6 +4247,7 @@
 		826888672A33B87A00434219 /* No Architecture */ = {
 			isa = PBXGroup;
 			children = (
+				82187CA92C04FD7B0033E6DC /* Hint */,
 				8258198F2C02ADF70022D17F /* App Update */,
 				822527462BA63D0500B66314 /* News Categories Randomizer */,
 				82D37FB52BEC10D20035CB57 /* Things Categories List */,
@@ -8448,6 +8545,7 @@
 		82F5788B2B6FED2300BC64C1 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				82187C972C04F0E70033E6DC /* Screen Presentation Styles List MVVM */,
 				82519B8C2BEAA53E00F136F8 /* Only Main Variants List MVVM */,
 				82761A1F2B463E9F00D9976F /* Splash Screens List MVVM */,
 				8217C3082B8FB69900A59412 /* Custom Splash Screen Editor MVVM */,
@@ -8859,6 +8957,7 @@
 				82E4C54A2A6B11BB00F65A67 /* AGPUFacultiesListViewModelProtocol.swift in Sources */,
 				82B24A7A2A81945D008B94E4 /* AllWeeksListViewModel + Extensions.swift in Sources */,
 				820D18E72A68FA7D00BFAA35 /* AGPUBuildings.swift in Sources */,
+				82187C9F2C04F2340033E6DC /* ScreenPresentationStylesTableViewController.swift in Sources */,
 				82F578902B6FEDFB00BC64C1 /* ASPUButtonOptionTableViewCell.swift in Sources */,
 				82519B9D2BEAA89000F136F8 /* OnlyMainVariantsListViewModel + Extensions.swift in Sources */,
 				821B726A2BD1707A000460E2 /* UIColor + Extensions.swift in Sources */,
@@ -8913,6 +9012,7 @@
 				829CEF802BEF9BE500FA32EF /* IBuildingsListViewModel.swift in Sources */,
 				82989ACD2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift in Sources */,
 				828D51142BB86B2600848FF8 /* ASPUButtonIconOptionTableViewCell.swift in Sources */,
+				82187CA62C04F2840033E6DC /* ScreenPresentationStylesListViewModel.swift in Sources */,
 				82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */,
 				8226D16D2B0948B500B0B9F0 /* AGPUTabBarController + Extensions.swift in Sources */,
 				827E907D2BC8788600FD8168 /* AppFeaturesListTableViewCell.swift in Sources */,
@@ -9138,6 +9238,7 @@
 				82E4E5592A57699E00314296 /* WKWebView + Extensions.swift in Sources */,
 				824EBF752B29FA530003E7E6 /* AGPUBuildingTypesListViewModel + Extensions.swift in Sources */,
 				8226D1882B096F5A00B0B9F0 /* SavedPairTypeTableViewController.swift in Sources */,
+				82187C9C2C04F1D90033E6DC /* ScreenPresentationStyles.swift in Sources */,
 				826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */,
 				829952502BDC9A07003AFB14 /* TimeTableFavouriteItemsListViewModel.swift in Sources */,
 				823746D32BF64FDF004758CB /* ForApplicantListViewModel.swift in Sources */,
@@ -9177,6 +9278,7 @@
 				82C5B78F2BCEF81600F907CB /* ASPUButtonAnimationOptionTableViewCell.swift in Sources */,
 				82ECABE12A81520A00FE7462 /* SubGroupModel.swift in Sources */,
 				82A29F472B9BD5EF00756F43 /* SelectedFacultySplashScreenViewModel + Extensions.swift in Sources */,
+				82187CAC2C04FDA20033E6DC /* HintViewController.swift in Sources */,
 				8299E3B82B8A323200D81472 /* TimetableDateDetailViewController.swift in Sources */,
 				821270512A7903930095D68E /* PDFLastPageViewController.swift in Sources */,
 				8225279D2BACDCA200B66314 /* SavedNewsCategoryOptionTableViewCell.swift in Sources */,
@@ -9317,6 +9419,7 @@
 				821B727B2BD17490000460E2 /* ITabColorsListViewModel.swift in Sources */,
 				828E692A2BE2E3CB0097FAAD /* ISavedDisplayModeViewModel.swift in Sources */,
 				82B2670B2A8DAB4900043A6D /* NewsCategoryModel.swift in Sources */,
+				82187CA42C04F2710033E6DC /* IScreenPresentationStylesListViewModel.swift in Sources */,
 				82B24AA32A81C8C3008B94E4 /* AGPUNewsListViewModel + Extensions.swift in Sources */,
 				82B1C0D22A8070FF00520C14 /* SavedSubGroupViewModel + Extensions.swift in Sources */,
 				82184D8F2B7BDA3F00F2588E /* HourlyWeatherCollectionViewCellViewModel.swift in Sources */,
@@ -9371,6 +9474,7 @@
 				82E4C5892A6B20DE00F65A67 /* LocationManager.swift in Sources */,
 				823F97D92B9D224100F60F39 /* WeatherSplashScreenViewController.swift in Sources */,
 				821B728B2BD2ECB5000460E2 /* RandomSplashScreenViewController.swift in Sources */,
+				82187CA82C04F2AE0033E6DC /* ScreenPresentationStylesListViewModel + Extensions.swift in Sources */,
 				82D37FDD2BEC2F470035CB57 /* ImageDetailViewController.swift in Sources */,
 				8286D1582BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.swift in Sources */,
 				82768AE62ABE13550022FBE1 /* AppThemes.swift in Sources */,
@@ -9564,7 +9668,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.0;
+				MARKETING_VERSION = 2.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -9603,7 +9707,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.0;
+				MARKETING_VERSION = 2.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

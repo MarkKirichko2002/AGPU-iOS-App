@@ -39,6 +39,13 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         }
     }
     
+    func getScreenPresentationStyleInfo()-> String {
+        if let savedStyle = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") {
+            return savedStyle.rawValue
+        }
+        return "Не показывать"
+    }
+    
     func getOnlyMainVariantInfo()-> String {
         if let variant = UserDefaults.loadData(type: OnlyMainVariants.self, key: "variant") {
             return "Вариант (\(variant.rawValue))"

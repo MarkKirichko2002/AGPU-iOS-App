@@ -147,21 +147,38 @@ extension UIViewController {
         switch type {
             
         case .faculty:
-            self.showAlert(title: "Подсказка 💡!", message: "Чтобы вызвать контекстное меню удерживайте ячейку факультета", actions: [ok])
+            let vc = HintViewController(info: "Чтобы вызвать контекстное меню удерживайте ячейку факультета")
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
         case .cathedra:
-            self.showAlert(title: "Подсказка 💡!", message: "Чтобы вызвать контекстное меню удерживайте ячейку кафедры", actions: [ok])
+            let vc = HintViewController(info: "Чтобы вызвать контекстное меню удерживайте ячейку кафедры")
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
         case .manuals:
-            self.showAlert(title: "Подсказка 💡!", message: "чтобы посмотреть методические материалы для вашей кафедры выберите ее в настройках", actions: [ok])
+            let vc = HintViewController(info: "Чтобы посмотреть методические материалы для вашей кафедры выберите ее в настройках")
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
         case .additionalEducation:
-            self.showAlert(title: "Подсказка 💡!", message: "чтобы посмотреть соответствующие материалы для вашей кафедры выберите ее в настройках", actions: [ok])
+            let vc = HintViewController(info: "Чтобы посмотреть соответствующие материалы для вашей кафедры выберите ее в настройках")
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
         }
     }
     
     @objc func showWhatsNewVC() {
         let vc = TodayNewsListTableViewController()
         let navVC = UINavigationController(rootViewController: vc)
-        navVC.modalPresentationStyle = .fullScreen
-        present(navVC, animated: true)
+        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
+        switch style {
+        case .fullScreen:
+            navVC.modalPresentationStyle = .fullScreen
+            present(navVC, animated: true)
+        case .sheet:
+            navVC.modalPresentationStyle = .pageSheet
+            present(navVC, animated: true)
+        case .notShow:
+            break
+        }
     }
 }
 

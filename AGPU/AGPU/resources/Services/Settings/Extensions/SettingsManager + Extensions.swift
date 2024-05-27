@@ -55,6 +55,12 @@ extension SettingsManager: SettingsManagerProtocol {
         let option = UserDefaults.loadData(type: ASPUButtonAnimationOptions.self, key: "animation") ?? .spring
         return option
     }
+    
+    // MARK: - Visual Changes
+    func checkScreenPresentationStyleOption()-> ScreenPresentationStyles {
+        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
+        return style
+    }
 
     // MARK: - My Splash Screen
     func saveCustomSplashScreen(screen: CustomSplashScreenModel) {
