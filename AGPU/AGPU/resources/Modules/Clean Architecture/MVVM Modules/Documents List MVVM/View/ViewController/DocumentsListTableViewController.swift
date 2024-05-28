@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol DocumentsListTableViewControllerDelegate: AnyObject {
+    func dataChanged()
+}
+
 class DocumentsListTableViewController: UIViewController {
 
     // MARK: - сервисы
@@ -17,6 +21,8 @@ class DocumentsListTableViewController: UIViewController {
     private let noDocsLabel = UILabel()
     
     var document = DocumentModel()
+    
+    weak var delegate: DocumentsListTableViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,6 +107,7 @@ class DocumentsListTableViewController: UIViewController {
             } else {
                 self.noDocsLabel.isHidden = false
             }
+            self.delegate?.dataChanged()
         }
         viewModel.getDocuments()
     }

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SavedImagesListTableViewControllerDelegate: AnyObject {
+    func dataUpdated()
+}
+
 class SavedImagesListTableViewController: UIViewController {
 
     // MARK: - сервисы
@@ -15,6 +19,8 @@ class SavedImagesListTableViewController: UIViewController {
     // MARK: - UI
     let tableView = UITableView()
     private let noImagesLabel = UILabel()
+    
+    weak var delegate: SavedImagesListTableViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +92,7 @@ class SavedImagesListTableViewController: UIViewController {
             } else {
                 self.noImagesLabel.isHidden = false
             }
+            self.delegate?.dataUpdated()
         }
         viewModel.getImages()
     }

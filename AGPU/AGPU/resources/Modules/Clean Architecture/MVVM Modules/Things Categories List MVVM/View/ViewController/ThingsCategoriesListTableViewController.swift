@@ -56,9 +56,11 @@ class ThingsCategoriesListTableViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             let vc = DocumentsListTableViewController()
+            vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
         default:
             let vc = SavedImagesListTableViewController()
+            vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
         }
         HapticsManager.shared.hapticFeedback()
@@ -73,5 +75,21 @@ class ThingsCategoriesListTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ThingCategoryTableViewCell.identifier, for: indexPath) as? ThingCategoryTableViewCell else {return UITableViewCell()}
         cell.configure(category: viewModel.categoryItem(index: indexPath.row))
         return cell
+    }
+}
+
+// MARK: - DocumentsListTableViewControllerDelegate
+extension ThingsCategoriesListTableViewController: DocumentsListTableViewControllerDelegate {
+    
+    func dataChanged() {
+        viewModel.getCategoriesData()
+    }
+}
+
+// MARK: - SavedImagesListTableViewControllerDelegate
+extension ThingsCategoriesListTableViewController: SavedImagesListTableViewControllerDelegate {
+    
+    func dataUpdated() {
+        viewModel.getCategoriesData()
     }
 }

@@ -21,6 +21,7 @@ extension ThingsCategoriesListViewModel: IThingsCategoriesListViewModel {
     func getCategoriesData() {
         ThingCategories.categories[0].itemsCount = realmManager.getDocuments().count
         ThingCategories.categories[1].itemsCount = realmManager.getImages().count
+        dataChangedHandler?()
     }
     
     func registerDataChangedHandler(block: @escaping()->Void) {
