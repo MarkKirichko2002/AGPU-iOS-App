@@ -136,7 +136,7 @@ final class ForStudentListTableViewController: UITableViewController {
             NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
             
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                let vc = AGPUSectionsListViewController()
+                let vc = ASPUWebsiteSectionsListViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             }

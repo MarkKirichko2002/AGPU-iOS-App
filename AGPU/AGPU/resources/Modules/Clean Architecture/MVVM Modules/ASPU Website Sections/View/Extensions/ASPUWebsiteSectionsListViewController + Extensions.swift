@@ -1,5 +1,5 @@
 //
-//  AGPUSectionsListViewController + Extensions.swift
+//  ASPUWebsiteSectionsListViewController + Extensions.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 22.06.2023.
@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: - UITableViewDataSource
-extension AGPUSectionsListViewController: UITableViewDataSource {
+extension ASPUWebsiteSectionsListViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return AGPUSections.sections.count
@@ -26,7 +26,7 @@ extension AGPUSectionsListViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension AGPUSectionsListViewController: UITableViewDelegate {
+extension ASPUWebsiteSectionsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = InteractiveView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
@@ -88,7 +88,7 @@ extension AGPUSectionsListViewController: UITableViewDelegate {
 }
 
 // MARK: - UIScrollViewDelegate
-extension AGPUSectionsListViewController: UIScrollViewDelegate {
+extension ASPUWebsiteSectionsListViewController: UIScrollViewDelegate {
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         print("прокрутка завершилась")
@@ -97,7 +97,7 @@ extension AGPUSectionsListViewController: UIScrollViewDelegate {
     }
 }
 
-extension AGPUSectionsListViewController {
+extension ASPUWebsiteSectionsListViewController {
     
     func sectionSelected(index: Int) {
         let section = AGPUSections.sections[index]

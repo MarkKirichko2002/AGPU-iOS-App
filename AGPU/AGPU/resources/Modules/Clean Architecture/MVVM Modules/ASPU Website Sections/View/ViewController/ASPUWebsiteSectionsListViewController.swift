@@ -1,5 +1,5 @@
 //
-//  AGPUSectionsListViewController.swift
+//  ASPUWebsiteSectionsListViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 08.06.2023.
@@ -7,9 +7,11 @@
 
 import UIKit
 
-final class AGPUSectionsListViewController: UIViewController {
+final class ASPUWebsiteSectionsListViewController: UIViewController {
 
     var isAction = false
+    var isMain = false
+    
     // MARK: - UI
     private let tableView = UITableView()
 
@@ -38,6 +40,11 @@ final class AGPUSectionsListViewController: UIViewController {
             sections.tintColor = .label
             navigationItem.titleView = titleView
             navigationItem.leftBarButtonItem = closeButton
+            navigationItem.rightBarButtonItem = sections
+        } else if isMain {
+            let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpMenu())
+            sections.tintColor = .label
+            navigationItem.titleView = titleView
             navigationItem.rightBarButtonItem = sections
         } else {
             let button = UIButton()

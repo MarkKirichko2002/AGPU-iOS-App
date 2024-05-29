@@ -118,6 +118,13 @@ final class AGPUTabBarController: UITabBarController {
         case .news:
             setViewControllers([nav1VC, middleButton, nav4VC], animated: false)
             selectedIndex = 0
+        case .sections:
+            let vc = ASPUWebsiteSectionsListViewController()
+            vc.isMain = true
+            vc.tabBarItem = UITabBarItem(title: "Разделы", image: UIImage(named: "sections"), selectedImage: UIImage(named: "sections"))
+            let navVC = UINavigationController(rootViewController: vc)
+            setViewControllers([navVC, middleButton, nav4VC], animated: false)
+            selectedIndex = 0
         case .none:
             let position = settingsManager.getTabsPosition()
             forEveryStatusVC = settingsManager.checkCurrentStatus()
@@ -349,7 +356,7 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     @objc func openSectionsList() {
-        let vc = AGPUSectionsListViewController()
+        let vc = ASPUWebsiteSectionsListViewController()
         vc.isAction = true
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen

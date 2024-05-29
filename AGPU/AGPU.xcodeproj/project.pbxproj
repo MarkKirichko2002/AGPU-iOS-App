@@ -282,7 +282,7 @@
 		82807C712AA0FA5D00E9C884 /* PairTypesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82807C702AA0FA5D00E9C884 /* PairTypesListTableViewController.swift */; };
 		82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E882A31F12100DEEB16 /* AppDelegate.swift */; };
 		82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E8A2A31F12100DEEB16 /* SceneDelegate.swift */; };
-		82808E8D2A31F12100DEEB16 /* AGPUSectionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E8C2A31F12100DEEB16 /* AGPUSectionsListViewController.swift */; };
+		82808E8D2A31F12100DEEB16 /* ASPUWebsiteSectionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E8C2A31F12100DEEB16 /* ASPUWebsiteSectionsListViewController.swift */; };
 		82808E952A31F12500DEEB16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82808E932A31F12500DEEB16 /* LaunchScreen.storyboard */; };
 		82808E9E2A31F2F800DEEB16 /* AGPUSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E9D2A31F2F800DEEB16 /* AGPUSectionModel.swift */; };
 		82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82808E9F2A31F44500DEEB16 /* AGPUSubSectionModel.swift */; };
@@ -361,7 +361,7 @@
 		82920B8D2AD8871D00352CD8 /* SelectedFacultyListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B8C2AD8871D00352CD8 /* SelectedFacultyListViewModelProtocol.swift */; };
 		82920B8F2AD8872B00352CD8 /* SelectedFacultyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B8E2AD8872B00352CD8 /* SelectedFacultyListViewModel.swift */; };
 		82920B912AD8874100352CD8 /* SelectedFacultyListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B902AD8874100352CD8 /* SelectedFacultyListViewModel + Extensions.swift */; };
-		829548862A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548852A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift */; };
+		829548862A439D8C007DEBA0 /* ASPUWebsiteSectionsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548852A439D8C007DEBA0 /* ASPUWebsiteSectionsListViewController + Extensions.swift */; };
 		829548922A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548912A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift */; };
 		829548992A43AE32007DEBA0 /* SettingsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548982A43AE32007DEBA0 /* SettingsManagerProtocol.swift */; };
 		8295489C2A43AE7E007DEBA0 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8295489B2A43AE7E007DEBA0 /* SettingsManager.swift */; };
@@ -885,7 +885,7 @@
 		82808E852A31F12100DEEB16 /* AGPU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGPU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82808E882A31F12100DEEB16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82808E8A2A31F12100DEEB16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		82808E8C2A31F12100DEEB16 /* AGPUSectionsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUSectionsListViewController.swift; sourceTree = "<group>"; };
+		82808E8C2A31F12100DEEB16 /* ASPUWebsiteSectionsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUWebsiteSectionsListViewController.swift; sourceTree = "<group>"; };
 		82808E912A31F12500DEEB16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82808E942A31F12500DEEB16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		82808E962A31F12500DEEB16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -966,7 +966,7 @@
 		82920B8C2AD8871D00352CD8 /* SelectedFacultyListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFacultyListViewModelProtocol.swift; sourceTree = "<group>"; };
 		82920B8E2AD8872B00352CD8 /* SelectedFacultyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFacultyListViewModel.swift; sourceTree = "<group>"; };
 		82920B902AD8874100352CD8 /* SelectedFacultyListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectedFacultyListViewModel + Extensions.swift"; sourceTree = "<group>"; };
-		829548852A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUSectionsListViewController + Extensions.swift"; sourceTree = "<group>"; };
+		829548852A439D8C007DEBA0 /* ASPUWebsiteSectionsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASPUWebsiteSectionsListViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829548912A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUBuildingsMapViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829548982A43AE32007DEBA0 /* SettingsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerProtocol.swift; sourceTree = "<group>"; };
 		8295489B2A43AE7E007DEBA0 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
@@ -4206,7 +4206,7 @@
 		826888502A33A8EE00434219 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				82808E8C2A31F12100DEEB16 /* AGPUSectionsListViewController.swift */,
+				82808E8C2A31F12100DEEB16 /* ASPUWebsiteSectionsListViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -4266,7 +4266,7 @@
 				826888562A33AB3C00434219 /* Splash Screens */,
 				828CFA342A35F62400C7542D /* TabBar */,
 				82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */,
-				82808E9C2A31F2D400DEEB16 /* AGPU Website Sections */,
+				82808E9C2A31F2D400DEEB16 /* ASPU Website Sections */,
 				821270462A78925D0095D68E /* PDF Modules */,
 				82C561602A6B770800514B00 /* App Features Modules */,
 				82505F432A7F9A0D001DE24A /* TimeTable Modules */,
@@ -4762,14 +4762,14 @@
 			path = AGPU;
 			sourceTree = "<group>";
 		};
-		82808E9C2A31F2D400DEEB16 /* AGPU Website Sections */ = {
+		82808E9C2A31F2D400DEEB16 /* ASPU Website Sections */ = {
 			isa = PBXGroup;
 			children = (
 				826F937F2A90FE9000DE4FB1 /* Models */,
 				82808EA22A31F49B00DEEB16 /* View */,
 			);
-			name = "AGPU Website Sections";
-			path = "../Clean Architecture/MVVM Modules/AGPU Website Sections";
+			name = "ASPU Website Sections";
+			path = "../Clean Architecture/MVVM Modules/ASPU Website Sections";
 			sourceTree = "<group>";
 		};
 		82808EA22A31F49B00DEEB16 /* View */ = {
@@ -5703,7 +5703,7 @@
 		829548842A439D2A007DEBA0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				829548852A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift */,
+				829548852A439D8C007DEBA0 /* ASPUWebsiteSectionsListViewController + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -9337,7 +9337,7 @@
 				821EEAD62AA0B76F00AE517B /* UserStatusTableViewCell.swift in Sources */,
 				822527622BA77E7800B66314 /* IWeekDaysListViewModel.swift in Sources */,
 				82426C782A714D6A00D5AA57 /* ForApplicantListTableViewController.swift in Sources */,
-				829548862A439D8C007DEBA0 /* AGPUSectionsListViewController + Extensions.swift in Sources */,
+				829548862A439D8C007DEBA0 /* ASPUWebsiteSectionsListViewController + Extensions.swift in Sources */,
 				82D6C3322A5E1DE100FB7F5D /* TimeTableService.swift in Sources */,
 				82C7B8422A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift in Sources */,
 				828CFA3C2A3680C700C7542D /* String + Extensions.swift in Sources */,
@@ -9356,7 +9356,7 @@
 				8225279D2BACDCA200B66314 /* SavedNewsCategoryOptionTableViewCell.swift in Sources */,
 				821B72922BD2ECFB000460E2 /* RandomSplashScreenViewModel.swift in Sources */,
 				82184D8D2B7BDA2100F2588E /* DailyWeatherTableViewCellViewModel.swift in Sources */,
-				82808E8D2A31F12100DEEB16 /* AGPUSectionsListViewController.swift in Sources */,
+				82808E8D2A31F12100DEEB16 /* ASPUWebsiteSectionsListViewController.swift in Sources */,
 				8217C30F2B8FB74100A59412 /* CustomSplashScreenViewController.swift in Sources */,
 				82C26C852BD7F2060039D86D /* DisplayModeOptionsListTableViewController.swift in Sources */,
 				82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */,
