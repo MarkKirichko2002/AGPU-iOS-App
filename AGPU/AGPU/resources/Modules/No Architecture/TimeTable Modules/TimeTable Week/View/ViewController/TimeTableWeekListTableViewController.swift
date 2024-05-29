@@ -19,6 +19,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     // MARK: - сервисы
     let service = TimeTableService()
     let dateManager = DateManager()
+    let realmManager = RealmManager()
     
     // MARK: - UI
     let tableView = UITableView()
@@ -235,20 +236,36 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     private func showSaveImageAlert() {
-        let saveAction = UIAlertAction(title: "Сохранить", style: .default) { _ in
+        let saveAction = UIAlertAction(title: "Сохранить в фото", style: .default) { _ in
             do {
                 let json = try JSONEncoder().encode(self.timetable)
                 self.service.getTimeTableWeekImage(json: json) { image in
                     let imageSaver = ImageSaver()
                     imageSaver.writeToPhotoAlbum(image: image)
-                    self.showImageSavedAlert()
                 }
             } catch {
                 print(error.localizedDescription)
             }
         }
+        
+        let saveAction2 = UIAlertAction(title: "Сохранить в \"Важные вещи\"", style: .default) { _ in
+            do {
+                let json = try JSONEncoder().encode(self.timetable)
+                self.service.getTimeTableWeekImage(json: json) { image in
+                    if let imageData = image.jpegData(compressionQuality: 1.0) {
+                        let model = ImageModel()
+                        model.date = self.dateManager.getCurrentDate()
+                        model.image = imageData
+                        self.realmManager.saveImage(image: model)
+                    }
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        
         let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
-        self.showAlert(title: "Сохранить расписание?", message: "Вы хотите сохранить изображение расписания в фото?", actions: [saveAction, cancel])
+        self.showAlert(title: "Сохранить расписание?", message: "Вы хотите сохранить изображение расписания?", actions: [saveAction2, saveAction, cancel])
     }
     
     private func showImageSavedAlert() {
