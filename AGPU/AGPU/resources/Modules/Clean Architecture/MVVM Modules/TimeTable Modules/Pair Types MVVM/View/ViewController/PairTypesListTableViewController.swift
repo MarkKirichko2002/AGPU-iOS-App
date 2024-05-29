@@ -9,13 +9,14 @@ import UIKit
 
 class PairTypesListTableViewController: UITableViewController {
     
-    private var type: PairType
     private var viewModel: PairTypesListViewModel
     
+    private var type: PairType
+    
     // MARK: - Init
-    init(type: PairType) {
+    init(type: PairType, disciplines: [Discipline]) {
         self.type = type
-        self.viewModel = PairTypesListViewModel(type: type)
+        self.viewModel = PairTypesListViewModel(type: type, disciplines: disciplines)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -69,7 +70,7 @@ class PairTypesListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let type = viewModel.typeItem(index: indexPath.row)
         cell.tintColor = .systemGreen
-        cell.textLabel?.text = type.title
+        cell.textLabel?.text = "\(type.title) (\(viewModel.countForPairType(index: indexPath.row)))"
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
         cell.accessoryType = viewModel.isCurrentType(index: indexPath.row) ? .checkmark : .none
         cell.textLabel?.textColor = viewModel.isCurrentType(index: indexPath.row) ? .systemGreen : .label

@@ -10,6 +10,7 @@ import Foundation
 protocol PairTypesListViewModelProtocol {
     func typeItem(index: Int)-> PairType
     func numberOfTypesInSection()-> Int
+    func countForPairType(index: Int)-> Int
     func choosePairType(index: Int)
     func isCurrentType(index: Int)-> Bool
     func registerPairTypeSelectedHandler(block: @escaping(()->Void))

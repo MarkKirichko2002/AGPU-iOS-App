@@ -18,6 +18,29 @@ extension PairTypesListViewModel: PairTypesListViewModelProtocol {
         return PairType.allCases.count
     }
     
+    func countForPairType(index: Int)-> Int {
+        let type = typeItem(index: index)
+        var filteredData = [Discipline]()
+        var uniqueTimes: Set<String> = Set()
+        
+        if type != .all {
+            filteredData = disciplines.filter({ $0.type == type })
+        } else {
+            filteredData = disciplines
+        }
+        
+        for pair in filteredData {
+            
+            let times = pair.time.components(separatedBy: "-")
+            let startTime = times[0]
+            
+            uniqueTimes.insert(startTime)
+        }
+        
+        return uniqueTimes.count
+        
+    }
+    
     func choosePairType(index: Int) {
         let type = typeItem(index: index)
         NotificationCenter.default.post(name: Notification.Name("TypeWasSelected"), object: type)
