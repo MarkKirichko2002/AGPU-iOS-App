@@ -11,7 +11,7 @@ import SafariServices
 // MARK: - UITableViewDataSource
 extension SettingsListViewController: UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView)-> Int {
         return viewModel.sectionsCount()
     }
     
@@ -165,7 +165,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
-            } else if indexPath.row == 2 {
+            } else if indexPath.row == 3 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "mobile")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = SplashScreensListTableViewController()
@@ -173,7 +173,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
-            } else if indexPath.row == 3 {
+            } else if indexPath.row == 4 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "photo icon")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = AppIconsListTableViewController()
@@ -181,7 +181,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
-            } else if indexPath.row == 4 {
+            } else if indexPath.row == 5 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "profile icon")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = TabsOptionsListTableViewController()
@@ -189,7 +189,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
-            } else if indexPath.row == 5 {
+            } else if indexPath.row == 6 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "button")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = ASPUButtonOptionsListTableViewController()
@@ -197,7 +197,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
-            } else if indexPath.row == 6 {
+            } else if indexPath.row == 7 {
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "theme")
                 Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
                     let vc = AppThemesListTableViewController()
