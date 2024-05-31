@@ -159,7 +159,7 @@ final class NewsListViewController: UIViewController {
         }
         let filterOptions = UIAction(title: "Фильтрация") { _ in
             print(self.viewModel.option)
-            let vc = NewsOptionsFilterListTableViewController(option: self.viewModel.option)
+            let vc = NewsOptionsFilterListTableViewController(option: self.viewModel.option, news: self.viewModel.allNews)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)

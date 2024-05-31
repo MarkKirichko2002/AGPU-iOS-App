@@ -10,6 +10,7 @@ import Foundation
 protocol INewsOptionsFilterListViewModel {
     func optionItem(index: Int)-> NewsOptionsFilters
     func numberOfOptionsInSection()-> Int
+    func countForOption(index: Int)-> Int
     func chooseOption(index: Int)
     func isCurrentOption(index: Int)-> Bool
     func registerOptionSelectedHandler(block: @escaping(()->Void))

@@ -13,8 +13,8 @@ class NewsOptionsFilterListTableViewController: UITableViewController {
     private let viewModel: NewsOptionsFilterListViewModel
     
     // MARK: - Init
-    init(option: NewsOptionsFilters) {
-        self.viewModel = NewsOptionsFilterListViewModel(option: option)
+    init(option: NewsOptionsFilters, news: [Article]) {
+        self.viewModel = NewsOptionsFilterListViewModel(option: option, news: news)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -69,7 +69,7 @@ class NewsOptionsFilterListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.tintColor = .systemGreen
-        cell.textLabel?.text = viewModel.optionItem(index: indexPath.row).rawValue
+        cell.textLabel?.text = "\(viewModel.optionItem(index: indexPath.row).rawValue) (\(viewModel.countForOption(index: indexPath.row)))"
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
         cell.accessoryType = viewModel.isCurrentOption(index: indexPath.row) ? .checkmark : .none
         return cell
