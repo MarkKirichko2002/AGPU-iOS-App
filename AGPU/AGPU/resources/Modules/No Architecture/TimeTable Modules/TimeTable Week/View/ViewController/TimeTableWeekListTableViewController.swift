@@ -20,10 +20,17 @@ final class TimeTableWeekListTableViewController: UIViewController {
     let service = TimeTableService()
     let dateManager = DateManager()
     let realmManager = RealmManager()
+    let animation = AnimationClass()
     
     // MARK: - UI
     let tableView = UITableView()
-    private let spinner = UIActivityIndicatorView(style: .large)
+    private let spinner: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "clock")
+        imageView.tintColor = .label
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     private let noTimeTableLabel = UILabel()
     private let refreshControl = UIRefreshControl()
     
@@ -138,11 +145,13 @@ final class TimeTableWeekListTableViewController: UIViewController {
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        spinner.startAnimating()
+        self.spinner.isHidden = false
+        self.animation.startRotateAnimation(view: self.spinner)
     }
     
     func getTimeTable() {
-        self.spinner.startAnimating()
+        self.spinner.isHidden = false
+        self.animation.startRotateAnimation(view: self.spinner)
         self.noTimeTableLabel.isHidden = true
         self.timetable = []
         self.tableView.reloadData()
@@ -161,7 +170,8 @@ final class TimeTableWeekListTableViewController: UIViewController {
                     DispatchQueue.main.async {
                         self?.timetable = arr
                         self?.tableView.reloadData()
-                        self?.spinner.stopAnimating()
+                        self?.spinner.isHidden = true
+                        self?.animation.stopRotateAnimation(view: self!.spinner)
                         self?.refreshControl.endRefreshing()
                         self?.noTimeTableLabel.isHidden = true
                         self?.setUpNavigation()
@@ -171,12 +181,14 @@ final class TimeTableWeekListTableViewController: UIViewController {
                     }
                 } else {
                     self?.noTimeTableLabel.isHidden = false
-                    self?.spinner.stopAnimating()
+                    self?.spinner.isHidden = true
+                    self?.animation.stopRotateAnimation(view: self!.spinner)
                     self?.refreshControl.endRefreshing()
                     self?.setUpNavigation()
                 }
             case .failure(let error):
-                self?.spinner.stopAnimating()
+                self?.spinner.isHidden = true
+                self?.animation.stopRotateAnimation(view: self!.spinner)
                 self?.noTimeTableLabel.text = "Ошибка"
                 self?.noTimeTableLabel.isHidden = false
                 self?.refreshControl.endRefreshing()

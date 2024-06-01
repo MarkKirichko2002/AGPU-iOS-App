@@ -29,7 +29,7 @@ final class CustomTitleView: UIView {
     }()
     
     // MARK: - Init
-    init(image: String, title: String,frame: CGRect) {
+    init(image: String, title: String, frame: CGRect) {
         super.init(frame: frame)
         self.image = image
         self.title = title

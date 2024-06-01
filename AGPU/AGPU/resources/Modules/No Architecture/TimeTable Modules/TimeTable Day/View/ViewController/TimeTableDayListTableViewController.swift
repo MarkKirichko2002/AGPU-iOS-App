@@ -23,10 +23,17 @@ final class TimeTableDayListTableViewController: UIViewController {
     let dateManager = DateManager()
     let realmManager = RealmManager()
     let settingsManager = SettingsManager()
+    let animation = AnimationClass()
     
     // MARK: - UI
     let tableView = UITableView()
-    private let spinner = UIActivityIndicatorView(style: .large)
+    private let spinner: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "clock")
+        imageView.tintColor = .label
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     private let infoLabel = UILabel()
     private let refreshControl = UIRefreshControl()
     
@@ -182,7 +189,8 @@ final class TimeTableDayListTableViewController: UIViewController {
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        spinner.startAnimating()
+        self.spinner.isHidden = false
+        self.animation.startRotateAnimation(view: self.spinner)
     }
     
     private func setUpTable() {
@@ -219,7 +227,8 @@ final class TimeTableDayListTableViewController: UIViewController {
             UserDefaults.standard.setValue(owner, forKey: "recentOwner")
             UserDefaults.standard.setValue(id, forKey: "group")
         }
-        self.spinner.startAnimating()
+        self.spinner.isHidden = false
+        self.animation.startRotateAnimation(view: self.spinner)
         self.infoLabel.isHidden = true
         self.timetable?.disciplines = []
         self.tableView.reloadData()
@@ -237,17 +246,20 @@ final class TimeTableDayListTableViewController: UIViewController {
                     }
                     DispatchQueue.main.async {
                         self?.tableView.reloadData()
-                        self?.spinner.stopAnimating()
+                        self?.spinner.isHidden = true
+                        self?.animation.stopRotateAnimation(view: self!.spinner)
                         self?.refreshControl.endRefreshing()
                         self?.infoLabel.isHidden = true
                     }
                 } else {
-                    self?.spinner.stopAnimating()
+                    self?.spinner.isHidden = true
+                    self?.animation.stopRotateAnimation(view: self!.spinner)
                     self?.refreshControl.endRefreshing()
                     self?.infoLabel.isHidden = false
                 }
             case .failure(let error):
-                self?.spinner.stopAnimating()
+                self?.spinner.isHidden = true
+                self?.animation.stopRotateAnimation(view: self!.spinner)
                 self?.refreshControl.endRefreshing()
                 self?.infoLabel.text = "Ошибка"
                 self?.infoLabel.isHidden = false

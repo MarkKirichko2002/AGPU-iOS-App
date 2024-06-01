@@ -16,10 +16,17 @@ class CurrentDateTimeTableDayListTableViewController: UIViewController {
     
     private let service = TimeTableService()
     private let dateManager = DateManager()
+    private let animation = AnimationClass()
     
     // MARK: - UI
     let tableView = UITableView()
-    private let spinner = UIActivityIndicatorView(style: .large)
+    private let spinner: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "clock")
+        imageView.tintColor = .label
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     private let noTimeTableLabel = UILabel()
     private let refresh = UIRefreshControl()
     
@@ -74,7 +81,7 @@ class CurrentDateTimeTableDayListTableViewController: UIViewController {
     }
     
     @objc private func refreshTimetable() {
-        setUpRefreshControl()
+        getRecentTimetable()
     }
     
     private func setUpIndicatorView() {
@@ -84,7 +91,8 @@ class CurrentDateTimeTableDayListTableViewController: UIViewController {
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        spinner.startAnimating()
+        self.spinner.isHidden = false
+        self.animation.startRotateAnimation(view: self.spinner)
     }
     
     private func setUpTable() {
@@ -114,8 +122,10 @@ class CurrentDateTimeTableDayListTableViewController: UIViewController {
     }
     
     func getRecentTimetable() {
-        self.spinner.startAnimating()
+        self.spinner.isHidden = false
+        self.animation.startRotateAnimation(view: self.spinner)
         self.noTimeTableLabel.isHidden = true
+        self.timetable.disciplines = []
         self.tableView.reloadData()
         service.getTimeTableDay(id: id, date: date, owner: owner) { [weak self] result in
             switch result {
@@ -124,20 +134,23 @@ class CurrentDateTimeTableDayListTableViewController: UIViewController {
                     DispatchQueue.main.async {
                         self?.timetable = timetable
                         self?.tableView.reloadData()
-                        self?.spinner.stopAnimating()
+                        self?.spinner.isHidden = true
+                        self?.animation.stopRotateAnimation(view: self!.spinner)
                         self?.refresh.endRefreshing()
                         self?.noTimeTableLabel.isHidden = true
                     }
                 } else {
                     DispatchQueue.main.async {
-                        self?.spinner.stopAnimating()
+                        self?.spinner.isHidden = true
+                        self?.animation.stopRotateAnimation(view: self!.spinner)
                         self?.refresh.endRefreshing()
                         self?.noTimeTableLabel.isHidden = false
                     }
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self?.spinner.stopAnimating()
+                    self?.spinner.isHidden = true
+                    self?.animation.stopRotateAnimation(view: self!.spinner)
                     self?.refresh.endRefreshing()
                     self?.noTimeTableLabel.text = "Ошибка"
                     self?.noTimeTableLabel.isHidden = false

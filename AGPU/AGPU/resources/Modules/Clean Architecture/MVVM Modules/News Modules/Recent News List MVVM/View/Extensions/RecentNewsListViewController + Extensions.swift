@@ -7,12 +7,31 @@
 
 import UIKit
 
-// MARK: - UICollectionViewDelegate
-extension RecentNewsListViewController: UICollectionViewDelegate {
+// MARK: - UITableViewDelegate
+extension RecentNewsListViewController: UITableViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            viewModel.deleteArticle(id: indexPath.row)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+            
+            let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
+                self.shareInfo(image: UIImage(named: "АГПУ")!, title: "\(self.viewModel.articleItem(index: indexPath.row).title)", text: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))")
+            }
+            
+            return UIMenu(title: self.viewModel.articleItem(index: indexPath.row).title, children: [
+                shareAction
+            ])
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let cell = collectionView.cellForItem(at: indexPath) as? NewsCollectionViewCell {
+        if let cell = tableView.cellForRow(at: indexPath) as? NewsTableViewCell {
             cell.didTapCell(indexPath: indexPath)
         }
         
@@ -22,69 +41,20 @@ extension RecentNewsListViewController: UICollectionViewDelegate {
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        contextMenuConfigurationForItemAt indexPath: IndexPath,
-                        point: CGPoint) -> UIContextMenuConfiguration? {
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
-            
-            let resetAction = UIAction(title: "Сбросить позицию", image: UIImage(named: "refresh")) { _ in
-                let alertVC = UIAlertController(title: "Сбросить позицию чтения", message: "Вы уверены что хотите сбросить позицию чтения?", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "ОК", style: .default) { _ in
-                    self.viewModel.resetProgress(id: indexPath.row)
-                }
-                let cancel = UIAlertAction(title: "Отмена", style: .destructive)
-                alertVC.addAction(ok)
-                alertVC.addAction(cancel)
-                self.present(alertVC, animated: true)
-            }
-            
-            let deleteAction = UIAction(title: "Удалить", image: UIImage(named: "delete")) { _ in
-                self.viewModel.deleteArticle(id: indexPath.row)
-            }
-            
-            let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
-                self.shareInfo(image: UIImage(named: "АГПУ")!, title: "\(self.viewModel.articleItem(index: indexPath.row).title)", text: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))")
-            }
-            
-            return UIMenu(title: self.viewModel.articleItem(index: indexPath.row).title, children: [
-                resetAction,
-                deleteAction,
-                shareAction
-            ])
-        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
-// MARK: - UICollectionViewDataSource
-extension RecentNewsListViewController: UICollectionViewDataSource {
+// MARK: - UITableViewDataSource
+extension RecentNewsListViewController: UITableViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.news.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsCollectionViewCell.identifier, for: indexPath) as? NewsCollectionViewCell else {return UICollectionViewCell()}
-        cell.configure(with: viewModel.articleItem(index: indexPath.row))
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifier, for: indexPath) as? NewsTableViewCell else {fatalError()}
+        cell.configure(article: viewModel.articleItem(index: indexPath.row))
         return cell
-    }
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-extension RecentNewsListViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath)-> CGSize {
-        let bounds = collectionView.bounds
-        let width: CGFloat
-        if UIDevice.isiPhone {
-            width = (bounds.width - 30)/2
-        } else {
-            width = (bounds.width - 50)/4
-        }
-        return CGSize(
-            width: width,
-            height: width * 1.5
-        )
     }
 }
