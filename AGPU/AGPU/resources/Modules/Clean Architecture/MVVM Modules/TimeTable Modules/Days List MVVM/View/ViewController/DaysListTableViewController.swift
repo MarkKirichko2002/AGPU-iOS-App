@@ -7,12 +7,18 @@
 
 import UIKit
 
+protocol DaysListTableViewControllerDelegate: AnyObject {
+    func dateSelected(date: String)
+}
+
 class DaysListTableViewController: UITableViewController {
 
     private var id = ""
     private var currentDate = ""
     private var owner = ""
     private var viewModel: DaysListViewModel
+    
+    weak var delegate: DaysListTableViewControllerDelegate?
     
     // MARK: - Init
     init(id: String, currentDate: String, owner: String) {
@@ -62,17 +68,17 @@ class DaysListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.chooseDay(index: indexPath.row)
+        delegate?.dateSelected(date: viewModel.dayItem(index: indexPath.row).date)
         dismiss(animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let daysCount = DaysList.days.count
-        return daysCount
+        return viewModel.dayItemsCount()
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let day = DaysList.days[indexPath.row]
+        let day = viewModel.dayItem(index: indexPath.row)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DayTableViewCell.identifier, for: indexPath) as? DayTableViewCell else {return UITableViewCell()}
         cell.delegate = self
         cell.configure(date: "\(day.name): \(day.dayOfWeek) \(day.date)", info: "(\(day.info))", currentDate: "")

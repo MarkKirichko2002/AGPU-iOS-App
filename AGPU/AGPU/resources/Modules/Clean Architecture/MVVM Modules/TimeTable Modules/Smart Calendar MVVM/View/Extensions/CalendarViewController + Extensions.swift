@@ -37,7 +37,7 @@ extension CalendarViewController: FSCalendarDelegateAppearance {
 extension CalendarViewController: TimetableDateDetailViewControllerDelegate {
     
     func dateWasSelected(date: String) {
-        viewModel.sendNotificationDataWasSelected(date: date)
+        delegate?.dateWasSelected(date: date)
         self.dismiss(animated: true)
     }
 }

@@ -112,6 +112,32 @@ extension TimeTableDayListTableViewController: TimeTableFavouriteItemsListTableV
     }
 }
 
+// MARK: - DaysListTableViewControllerDelegate
+extension TimeTableDayListTableViewController: DaysListTableViewControllerDelegate {
+    
+    func dateSelected(date: String) {
+        let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: date)
+        self.date = date
+        self.type = .all
+        self.subgroup = 0
+        self.getTimeTable(id: self.id, date: self.date, owner: self.owner)
+        self.navigationItem.title = "\(dayOfWeek) \(date)"
+    }
+}
+
+// MARK: - CalendarViewControllerDelegate
+extension TimeTableDayListTableViewController: CalendarViewControllerDelegate {
+    
+    func dateWasSelected(date: String) {
+        let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: date)
+        self.date = date
+        self.type = .all
+        self.subgroup = 0
+        self.getTimeTable(id: self.id, date: self.date, owner: self.owner)
+        self.navigationItem.title = "\(dayOfWeek) \(date)"
+    }
+}
+
 extension TimeTableDayListTableViewController {
     
     func showSaveImageAlert() {

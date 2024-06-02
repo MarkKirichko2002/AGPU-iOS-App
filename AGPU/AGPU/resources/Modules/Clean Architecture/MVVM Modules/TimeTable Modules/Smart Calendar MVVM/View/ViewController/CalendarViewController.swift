@@ -8,6 +8,10 @@
 import UIKit
 import FSCalendar
 
+protocol CalendarViewControllerDelegate: AnyObject {
+    func dateWasSelected(date: String)
+}
+
 final class CalendarViewController: UIViewController {
 
     // MARK: - сервисы
@@ -16,6 +20,8 @@ final class CalendarViewController: UIViewController {
     var id: String = ""
     var date: String = ""
     var owner: String = ""
+    
+    weak var delegate: CalendarViewControllerDelegate?
     
     // MARK: - UI
     private let calendar: FSCalendar = {

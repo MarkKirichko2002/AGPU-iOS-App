@@ -10,8 +10,15 @@ import UIKit
 // MARK: - DaysListViewModelProtocol
 extension DaysListViewModel: DaysListViewModelProtocol {
     
+    func dayItem(index: Int)-> DayModel {
+        return DaysList.days[index]
+    }
+    
+    func dayItemsCount()-> Int {
+        return  DaysList.days.count
+    }
+    
     func setUpData() {
-        
         // даты
         DaysList.days[0].date = dateManager.getCurrentDate()
         DaysList.days[1].date = currentDate
@@ -183,8 +190,7 @@ extension DaysListViewModel: DaysListViewModelProtocol {
     }
     
     func chooseDay(index: Int) {
-        let day = DaysList.days[index]
-        NotificationCenter.default.post(name: Notification.Name("DateWasSelected"), object: day.date)
+        let day = dayItem(index: index)
         if day.info.contains("экз") || day.info.contains("курс") {
             AudioPlayerClass.shared.playSound(sound: "danger", isPlaying: false)
         } else {

@@ -8,6 +8,8 @@
 import UIKit
 
 protocol DaysListViewModelProtocol {
+    func dayItem(index: Int)-> DayModel
+    func dayItemsCount()-> Int
     func setUpData()
     func getTimetableInfo()
     func getPairsCount(pairs: [Discipline])-> Int

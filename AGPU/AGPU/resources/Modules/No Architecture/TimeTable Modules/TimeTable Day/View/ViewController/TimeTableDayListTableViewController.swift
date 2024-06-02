@@ -49,7 +49,6 @@ final class TimeTableDayListTableViewController: UIViewController {
         observeGroupChange()
         observeSubGroupChange()
         observeObjectSelected()
-        observeCalendar()
         observePairType()
     }
     
@@ -104,6 +103,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         // день
         let days = UIAction(title: "День") { _ in
             let vc = DaysListTableViewController(id: self.id, currentDate: self.date, owner: self.owner)
+            vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -120,6 +120,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         // календарь
         let calendar = UIAction(title: "Календарь") { _ in
             let vc = CalendarViewController(id: self.id, date: self.date, owner: self.owner)
+            vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -306,19 +307,6 @@ final class TimeTableDayListTableViewController: UIViewController {
                 self.id = object.name
                 self.owner = object.owner
                 print(self.owner)
-            }
-        }
-    }
-    
-    private func observeCalendar() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("DateWasSelected"), object: nil, queue: .main) { notification in
-            if let date = notification.object as? String {
-                let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: date)
-                self.date = date
-                self.type = .all
-                self.subgroup = 0
-                self.getTimeTable(id: self.id, date: self.date, owner: self.owner)
-                self.navigationItem.title = "\(dayOfWeek) \(date) "
             }
         }
     }

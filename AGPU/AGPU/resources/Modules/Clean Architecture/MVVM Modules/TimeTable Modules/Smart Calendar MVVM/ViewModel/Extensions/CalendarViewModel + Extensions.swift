@@ -19,8 +19,4 @@ extension CalendarViewModel: CalendarViewModelProtocol {
         }
         return nil
     }
-    
-    func sendNotificationDataWasSelected(date: String) {
-        NotificationCenter.default.post(name: Notification.Name("DateWasSelected"), object: date)
-    }
 }
