@@ -8,7 +8,7 @@
 import UIKit
 
 class ThingsCategoriesListTableViewController: UITableViewController {
-
+    
     // MARK: - сервисы
     private let viewModel = ThingsCategoriesListViewModel()
     
@@ -51,15 +51,19 @@ class ThingsCategoriesListTableViewController: UITableViewController {
         }
         viewModel.getCategoriesData()
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
             let vc = DocumentsListTableViewController()
             vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
-        default:
+        case 1:
             let vc = SavedImagesListTableViewController()
+            vc.delegate = self
+            navigationController?.pushViewController(vc, animated: true)
+        default:
+            let vc = SavedVideosListTableViewController()
             vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
         }
@@ -70,7 +74,7 @@ class ThingsCategoriesListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.categoriesCount()
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ThingCategoryTableViewCell.identifier, for: indexPath) as? ThingCategoryTableViewCell else {return UITableViewCell()}
         cell.configure(category: viewModel.categoryItem(index: indexPath.row))
@@ -90,6 +94,14 @@ extension ThingsCategoriesListTableViewController: DocumentsListTableViewControl
 extension ThingsCategoriesListTableViewController: SavedImagesListTableViewControllerDelegate {
     
     func dataUpdated() {
+        viewModel.getCategoriesData()
+    }
+}
+
+// MARK: - SavedVideosListTableViewControllerDelegate
+extension ThingsCategoriesListTableViewController: SavedVideosListTableViewControllerDelegate {
+    
+    func listUpdated() {
         viewModel.getCategoriesData()
     }
 }

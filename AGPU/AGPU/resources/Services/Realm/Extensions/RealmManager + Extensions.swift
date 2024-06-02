@@ -77,7 +77,7 @@ extension RealmManager: IRealmManager {
         }
     }
     
-    func getDocuments() -> [DocumentModel] {
+    func getDocuments()-> [DocumentModel] {
         let items = realm.objects(DocumentModel.self)
         return Array(items)
     }
@@ -108,6 +108,43 @@ extension RealmManager: IRealmManager {
     
     func getImages()->[ImageModel] {
         let items = realm.objects(ImageModel.self)
+        return Array(items)
+    }
+    
+    func saveVideo(video: VideoModel) {
+        let vid = realm.object(ofType: VideoModel.self, forPrimaryKey: video.id)
+        if vid == nil {
+            let newVideo = VideoModel()
+            newVideo.id = UUID()
+            newVideo.url = video.url
+            newVideo.name = video.name
+            newVideo.date = video.date
+            try! realm.write {
+                realm.add(newVideo)
+            }
+        } else {
+            print("уже есть")
+        }
+    }
+    
+    func editVideoName(video: VideoModel, name: String) {
+        let newVideo = realm.object(ofType: VideoModel.self, forPrimaryKey: video.id)
+        try! realm.write {
+            newVideo?.name = name
+        }
+    }
+    
+    func deleteVideo(video: VideoModel) {
+        let newVideo = realm.object(ofType: VideoModel.self, forPrimaryKey: video.id)
+        guard let newVideo = newVideo else {return}
+        try! realm.write {
+            realm.delete(newVideo)
+            HapticsManager.shared.hapticFeedback()
+        }
+    }
+    
+    func getVideos()-> [VideoModel] {
+        let items = realm.objects(VideoModel.self)
         return Array(items)
     }
     

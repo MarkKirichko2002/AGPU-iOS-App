@@ -19,7 +19,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     }
     
     func checkSettings() {
-        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style")
+        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
         if style != .notShow {
             checkWhatsNew()
         }

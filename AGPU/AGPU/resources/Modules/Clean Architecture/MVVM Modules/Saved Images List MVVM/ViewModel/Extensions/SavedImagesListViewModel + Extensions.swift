@@ -10,11 +10,11 @@ import Foundation
 // MARK: - ISavedImagesListViewModel
 extension SavedImagesListViewModel: ISavedImagesListViewModel {
     
-    func imagesCount() -> Int {
+    func imagesCount()-> Int {
         return images.count
     }
     
-    func imageItem(index: Int) -> ImageModel {
+    func imageItem(index: Int)-> ImageModel {
         return images[index]
     }
     

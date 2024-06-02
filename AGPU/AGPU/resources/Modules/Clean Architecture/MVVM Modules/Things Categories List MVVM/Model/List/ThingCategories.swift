@@ -10,7 +10,8 @@ import Foundation
 struct ThingCategories {
     
     static var categories = [
-        ThingCategoryModel(name: "Документы", icon: "document", itemsCount: -1),
-        ThingCategoryModel(name: "Изображения", icon: "photo icon", itemsCount: -1)
+        ThingCategoryModel(name: "Документы", icon: "document", itemsCount: 0),
+        ThingCategoryModel(name: "Изображения", icon: "photo icon", itemsCount: 0),
+        ThingCategoryModel(name: "Видео", icon: "play icon", itemsCount: 0),
     ]
 }

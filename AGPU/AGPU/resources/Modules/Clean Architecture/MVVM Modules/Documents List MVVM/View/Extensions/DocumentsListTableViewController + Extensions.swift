@@ -31,10 +31,6 @@ extension DocumentsListTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
-            let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
-                self.shareInfo(image: UIImage(named: "document")!, title: "\(self.viewModel.documentItem(index: indexPath.row).name)", text: "\(self.viewModel.documentItem(index: indexPath.row).url)")
-            }
-            
             let editAction = UIAction(title: "Редактировать", image: UIImage(named: "edit")) { _ in
                 self.document = self.viewModel.documentItem(index: indexPath.row)
                 self.showEditAlert()
@@ -45,10 +41,14 @@ extension DocumentsListTableViewController: UITableViewDelegate {
                 self.setUpEditButton()
             }
             
+            let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
+                self.shareInfo(image: UIImage(named: "document")!, title: "\(self.viewModel.documentItem(index: indexPath.row).name)", text: "\(self.viewModel.documentItem(index: indexPath.row).url)")
+            }
+            
             return UIMenu(title: self.viewModel.documentItem(index: indexPath.row).name, children: [
-                shareAction,
                 editAction,
-                positionAction
+                positionAction,
+                shareAction
             ])
         }
     }

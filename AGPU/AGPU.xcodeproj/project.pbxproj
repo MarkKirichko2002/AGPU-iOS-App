@@ -423,6 +423,13 @@
 		829D48A42BBC1EE300F6D256 /* TimeTableSoundsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829D48A32BBC1EE300F6D256 /* TimeTableSoundsListViewModel.swift */; };
 		829D48A62BBC1EF100F6D256 /* TimeTableSoundsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829D48A52BBC1EF100F6D256 /* TimeTableSoundsListViewModel + Extensions.swift */; };
 		829E26C82C01202F0093E45C /* AppFeaturesListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E26C72C01202F0093E45C /* AppFeaturesListTableViewController + Extensions.swift */; };
+		82A1CDC02C0CDBDF005A3338 /* SavedVideosListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A1CDBF2C0CDBDF005A3338 /* SavedVideosListTableViewController.swift */; };
+		82A1CDC22C0CDC30005A3338 /* SavedVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A1CDC12C0CDC30005A3338 /* SavedVideoTableViewCell.swift */; };
+		82A1CDC52C0CDCB6005A3338 /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A1CDC42C0CDCB6005A3338 /* VideoModel.swift */; };
+		82A1CDC72C0CDD72005A3338 /* SavedVideosListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A1CDC62C0CDD72005A3338 /* SavedVideosListTableViewController + Extensions.swift */; };
+		82A1CDC92C0CDE04005A3338 /* ISavedVideosListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A1CDC82C0CDE04005A3338 /* ISavedVideosListViewModel.swift */; };
+		82A1CDCB2C0CDE4C005A3338 /* SavedVideosListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A1CDCA2C0CDE4C005A3338 /* SavedVideosListViewModel.swift */; };
+		82A1CDCD2C0CDE82005A3338 /* SavedVideosListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A1CDCC2C0CDE82005A3338 /* SavedVideosListViewModel + Extensions.swift */; };
 		82A29F432B9BD58800756F43 /* ISelectedFacultySplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A29F422B9BD58800756F43 /* ISelectedFacultySplashScreenViewModel.swift */; };
 		82A29F452B9BD5D600756F43 /* SelectedFacultySplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A29F442B9BD5D600756F43 /* SelectedFacultySplashScreenViewModel.swift */; };
 		82A29F472B9BD5EF00756F43 /* SelectedFacultySplashScreenViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A29F462B9BD5EF00756F43 /* SelectedFacultySplashScreenViewModel + Extensions.swift */; };
@@ -1028,6 +1035,13 @@
 		829D48A32BBC1EE300F6D256 /* TimeTableSoundsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSoundsListViewModel.swift; sourceTree = "<group>"; };
 		829D48A52BBC1EF100F6D256 /* TimeTableSoundsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableSoundsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		829E26C72C01202F0093E45C /* AppFeaturesListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppFeaturesListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
+		82A1CDBF2C0CDBDF005A3338 /* SavedVideosListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVideosListTableViewController.swift; sourceTree = "<group>"; };
+		82A1CDC12C0CDC30005A3338 /* SavedVideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVideoTableViewCell.swift; sourceTree = "<group>"; };
+		82A1CDC42C0CDCB6005A3338 /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
+		82A1CDC62C0CDD72005A3338 /* SavedVideosListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedVideosListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
+		82A1CDC82C0CDE04005A3338 /* ISavedVideosListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISavedVideosListViewModel.swift; sourceTree = "<group>"; };
+		82A1CDCA2C0CDE4C005A3338 /* SavedVideosListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVideosListViewModel.swift; sourceTree = "<group>"; };
+		82A1CDCC2C0CDE82005A3338 /* SavedVideosListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedVideosListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82A29F422B9BD58800756F43 /* ISelectedFacultySplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISelectedFacultySplashScreenViewModel.swift; sourceTree = "<group>"; };
 		82A29F442B9BD5D600756F43 /* SelectedFacultySplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFacultySplashScreenViewModel.swift; sourceTree = "<group>"; };
 		82A29F462B9BD5EF00756F43 /* SelectedFacultySplashScreenViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectedFacultySplashScreenViewModel + Extensions.swift"; sourceTree = "<group>"; };
@@ -1666,6 +1680,7 @@
 				821119F12B98BB7A007B61E5 /* NewsModel.swift */,
 				8209A09B2B838A470013371D /* DocumentModel.swift */,
 				82D37FC22BEC18540035CB57 /* ImageModel.swift */,
+				82A1CDC42C0CDCB6005A3338 /* VideoModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -4315,6 +4330,7 @@
 				82D37FB52BEC10D20035CB57 /* Things Categories List MVVM */,
 				8209A0A12B838CC40013371D /* Documents List MVVM */,
 				82D37FBE2BEC17D80035CB57 /* Saved Images List MVVM */,
+				82A1CDB62C0CDB7C005A3338 /* Saved Videos List MVVM */,
 				8228E3962A6C8EFD00C1B6AD /* Maps Modules */,
 				82B1C0BD2A805D5200520C14 /* Recent Moments List MVVM */,
 				82BCB5312AB34FD000F3A321 /* Faculties Modules */,
@@ -6468,6 +6484,83 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		82A1CDB62C0CDB7C005A3338 /* Saved Videos List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82A1CDB82C0CDB96005A3338 /* View */,
+				82A1CDB72C0CDB91005A3338 /* ViewModel */,
+			);
+			path = "Saved Videos List MVVM";
+			sourceTree = "<group>";
+		};
+		82A1CDB72C0CDB91005A3338 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82A1CDBE2C0CDBBB005A3338 /* Protocol */,
+				82A1CDBD2C0CDBBA005A3338 /* ViewModel */,
+				82A1CDBC2C0CDBB8005A3338 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82A1CDB82C0CDB96005A3338 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82A1CDBB2C0CDBA6005A3338 /* ViewController */,
+				82A1CDBA2C0CDBA4005A3338 /* Cell */,
+				82A1CDB92C0CDBA2005A3338 /* Extensions */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82A1CDB92C0CDBA2005A3338 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82A1CDC62C0CDD72005A3338 /* SavedVideosListTableViewController + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82A1CDBA2C0CDBA4005A3338 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				82A1CDC12C0CDC30005A3338 /* SavedVideoTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		82A1CDBB2C0CDBA6005A3338 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82A1CDBF2C0CDBDF005A3338 /* SavedVideosListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82A1CDBC2C0CDBB8005A3338 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82A1CDCC2C0CDE82005A3338 /* SavedVideosListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82A1CDBD2C0CDBBA005A3338 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82A1CDCA2C0CDE4C005A3338 /* SavedVideosListViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		82A1CDBE2C0CDBBB005A3338 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82A1CDC82C0CDE04005A3338 /* ISavedVideosListViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		82A29F3B2B9BD4E200756F43 /* Splash Screen Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -7207,8 +7300,8 @@
 				822FB20A2AC5DC160083E016 /* Sub Groups List MVVM */,
 				82BCB5322AB3517400F3A321 /* Days List MVVM */,
 				822527572BA77D8B00B66314 /* Week Days List MVVM */,
-				8299E3AA2B8A317400D81472 /* Timetable Date Detail MVVM */,
 				82162D822AB5CDF700840D90 /* Smart Calendar MVVM */,
+				8299E3AA2B8A317400D81472 /* Timetable Date Detail MVVM */,
 				82B24A6F2A817D69008B94E4 /* All Weeks MVVM */,
 				82807C6C2AA0FA0900E9C884 /* Pair Types MVVM */,
 			);
@@ -9030,6 +9123,7 @@
 				820D18E72A68FA7D00BFAA35 /* AGPUBuildings.swift in Sources */,
 				82187C9F2C04F2340033E6DC /* ScreenPresentationStylesTableViewController.swift in Sources */,
 				82F578902B6FEDFB00BC64C1 /* ASPUButtonOptionTableViewCell.swift in Sources */,
+				82A1CDC92C0CDE04005A3338 /* ISavedVideosListViewModel.swift in Sources */,
 				82519B9D2BEAA89000F136F8 /* OnlyMainVariantsListViewModel + Extensions.swift in Sources */,
 				821B726A2BD1707A000460E2 /* UIColor + Extensions.swift in Sources */,
 				8286D1542BCDADC9006BB6B3 /* TabsOptionsListTableViewController.swift in Sources */,
@@ -9075,6 +9169,7 @@
 				820E40952A7C368B007A1E0A /* AGPUCurrentCathedraMapViewModel + Extensions.swift in Sources */,
 				82519B992BEAA86600F136F8 /* IOnlyMainVariantsListViewModel.swift in Sources */,
 				829D48A42BBC1EE300F6D256 /* TimeTableSoundsListViewModel.swift in Sources */,
+				82A1CDC22C0CDC30005A3338 /* SavedVideoTableViewCell.swift in Sources */,
 				82807C712AA0FA5D00E9C884 /* PairTypesListTableViewController.swift in Sources */,
 				82F5787F2B6FE57100BC64C1 /* ASPUButtonActionsListViewModel.swift in Sources */,
 				824EBF732B29FA380003E7E6 /* AGPUBuildingTypesListViewModel.swift in Sources */,
@@ -9122,6 +9217,7 @@
 				828F47972C0532C300AF7C3D /* IThingsCategoriesListViewModel.swift in Sources */,
 				8209007D2BAF62650053F3BD /* TabsPositionListTableViewController.swift in Sources */,
 				824EBF6C2B29F9890003E7E6 /* AGPUBuildingTypes.swift in Sources */,
+				82A1CDC72C0CDD72005A3338 /* SavedVideosListTableViewController + Extensions.swift in Sources */,
 				8299525D2BDCB61A003AFB14 /* IASPUButtonFavouriteActionsListViewModel.swift in Sources */,
 				824302B62BDB0658004F1742 /* TimeTableTableViewCell + Extensions.swift in Sources */,
 				82F578842B6FE5A800BC64C1 /* ASPUButtonActionsListViewModelProtocol.swift in Sources */,
@@ -9141,6 +9237,7 @@
 				82426C902A71DCDA00D5AA57 /* UserStatusModel.swift in Sources */,
 				82184D752B7BD7C900F2588E /* LocationWeatherDetailViewController.swift in Sources */,
 				82194E552A459B28009D2FB3 /* SettingsListViewController + Extensions.swift in Sources */,
+				82A1CDC52C0CDCB6005A3338 /* VideoModel.swift in Sources */,
 				82E4C58B2A6B20FF00F65A67 /* LocationManager + Extensions.swift in Sources */,
 				82BA73B62A579B8D006B67DA /* WebViewModel.swift in Sources */,
 				8283216C2A7D090C008641A5 /* AllGroupsListViewModelProtocol.swift in Sources */,
@@ -9188,6 +9285,7 @@
 				82FC22EC2BC01BC6008709DA /* NewsOptionsFilterListViewModel + Extensions.swift in Sources */,
 				8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */,
 				82184D912B7BDA5A00F2588E /* LocationDetailWeatherViewModel.swift in Sources */,
+				82A1CDC02C0CDBDF005A3338 /* SavedVideosListTableViewController.swift in Sources */,
 				822605F82A8532E20055925F /* RecentMomentsListViewModel.swift in Sources */,
 				82754C672BD3DB900021E76A /* ISplashScreenBackgroundColorsListViewModel.swift in Sources */,
 				822526CC2BA37FF700B66314 /* NewsDescriptionModel.swift in Sources */,
@@ -9387,6 +9485,7 @@
 				822527992BACD99400B66314 /* AdaptiveNewsOptionsListTableViewController.swift in Sources */,
 				8263AA1E2C021552001A903B /* TodayNewsListTableViewController.swift in Sources */,
 				82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */,
+				82A1CDCD2C0CDE82005A3338 /* SavedVideosListViewModel + Extensions.swift in Sources */,
 				8231B0BB2AED97ED00EB41EA /* TeacherTimeTable.swift in Sources */,
 				82E4C55F2A6B147900F65A67 /* SettingsListViewModelProtocol.swift in Sources */,
 				8209008E2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.swift in Sources */,
@@ -9493,6 +9592,7 @@
 				821B727B2BD17490000460E2 /* ITabColorsListViewModel.swift in Sources */,
 				828E692A2BE2E3CB0097FAAD /* ISavedDisplayModeViewModel.swift in Sources */,
 				82B2670B2A8DAB4900043A6D /* NewsCategoryModel.swift in Sources */,
+				82A1CDCB2C0CDE4C005A3338 /* SavedVideosListViewModel.swift in Sources */,
 				82187CA42C04F2710033E6DC /* IScreenPresentationStylesListViewModel.swift in Sources */,
 				82B24AA32A81C8C3008B94E4 /* AGPUNewsListViewModel + Extensions.swift in Sources */,
 				82B1C0D22A8070FF00520C14 /* SavedSubGroupViewModel + Extensions.swift in Sources */,
