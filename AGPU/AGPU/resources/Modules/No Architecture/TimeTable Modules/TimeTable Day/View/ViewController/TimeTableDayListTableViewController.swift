@@ -184,7 +184,6 @@ final class TimeTableDayListTableViewController: UIViewController {
     
     private func setUpIndicatorView() {
         view.addSubview(spinner)
-        spinner.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)

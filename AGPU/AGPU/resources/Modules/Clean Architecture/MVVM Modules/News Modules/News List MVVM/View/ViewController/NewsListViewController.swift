@@ -12,6 +12,7 @@ final class NewsListViewController: UIViewController {
     
     // MARK: - сервисы
     let viewModel = AGPUNewsListViewModel()
+    let animation = AnimationClass()
     
     // MARK: - UI
     private let collectionView: UICollectionView = {
@@ -38,7 +39,13 @@ final class NewsListViewController: UIViewController {
     
     private let noNewsLabel = UILabel()
     
-    let spinner = UIActivityIndicatorView(style: .large)
+    let spinner: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "mail icon")
+        imageView.tintColor = .label
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +76,8 @@ final class NewsListViewController: UIViewController {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 self.noNewsLabel.isHidden = true
-                self.spinner.startAnimating()
+                self.spinner.isHidden = false
+                self.animation.startRotateAnimation(view: self.spinner)
             }
             viewModel.refreshNews()
         case .table:
@@ -77,7 +85,8 @@ final class NewsListViewController: UIViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.noNewsLabel.isHidden = true
-                self.spinner.startAnimating()
+                self.spinner.isHidden = false
+                self.animation.startRotateAnimation(view: self.spinner)
             }
             viewModel.refreshNews()
         case .webpage:
@@ -90,7 +99,7 @@ final class NewsListViewController: UIViewController {
         collectionView.frame = view.bounds
         collectionView.delegate = self
         collectionView.dataSource = self
-        spinner.color = .label
+        spinner.tintColor = .label
     }
     
     private func setUpTableView() {
@@ -98,7 +107,7 @@ final class NewsListViewController: UIViewController {
         tableView.frame = view.bounds
         tableView.delegate = self
         tableView.dataSource = self
-        spinner.color = .label
+        spinner.tintColor = .label
     }
     
     private func setUpWebView() {
@@ -106,7 +115,7 @@ final class NewsListViewController: UIViewController {
         webView.frame = view.bounds
         webView.navigationDelegate = self
         webView.scrollView.delegate = self
-        spinner.color = .black
+        spinner.tintColor = .black
         webView.load(viewModel.makeUrlForCurrentWebPage())
     }
     
@@ -117,7 +126,8 @@ final class NewsListViewController: UIViewController {
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        spinner.startAnimating()
+        self.spinner.isHidden = false
+        self.animation.startRotateAnimation(view: self.spinner)
     }
     
     private func setUpLabel() {
@@ -186,11 +196,13 @@ final class NewsListViewController: UIViewController {
                 if abbreviation != "-" {
                     if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == abbreviation }) {
                         titleView = CustomTitleView(image: "\(newsCategory.icon)", title: "\(newsCategory.name) новости", frame: .zero)
-                        self.spinner.stopAnimating()
+                        self.spinner.isHidden = true
+                        self.animation.stopRotateAnimation(view: self.spinner)
                     }
                 } else {
                     titleView = CustomTitleView(image: "АГПУ", title: "АГПУ новости", frame: .zero)
-                    self.spinner.stopAnimating()
+                    self.spinner.isHidden = true
+                    self.animation.stopRotateAnimation(view: self.spinner)
                 }
             }
             
@@ -268,7 +280,8 @@ final class NewsListViewController: UIViewController {
                     }
                     self.setUpCollectionView()
                     self.setUpIndicatorView()
-                    self.spinner.stopAnimating()
+                    self.spinner.isHidden = true
+                    self.animation.stopRotateAnimation(view: self.spinner)
                 }
             case .table:
                 DispatchQueue.main.async {
@@ -277,7 +290,8 @@ final class NewsListViewController: UIViewController {
                     }
                     self.setUpTableView()
                     self.setUpIndicatorView()
-                    self.spinner.stopAnimating()
+                    self.spinner.isHidden = true
+                    self.animation.stopRotateAnimation(view: self.spinner)
                 }
                 
             case .webpage:

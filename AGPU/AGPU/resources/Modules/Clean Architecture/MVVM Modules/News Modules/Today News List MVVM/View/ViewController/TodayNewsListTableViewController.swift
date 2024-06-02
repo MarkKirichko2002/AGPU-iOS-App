@@ -11,11 +11,18 @@ class TodayNewsListTableViewController: UIViewController {
 
     // MARK: - сервисы
     let viewModel = TodayNewsListViewModel()
+    let animation = AnimationClass()
     
     // MARK: - UI
     let tableView = UITableView()
     private let noNewsLabel = UILabel()
-    private let spinner = UIActivityIndicatorView(style: .large)
+    private let spinner: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "mail icon")
+        imageView.tintColor = .label
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     
     var isNotify = false
     
@@ -45,7 +52,8 @@ class TodayNewsListTableViewController: UIViewController {
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.noNewsLabel.isHidden = true
-            self.spinner.startAnimating()
+            self.spinner.isHidden = false
+            self.animation.startRotateAnimation(view: self.spinner)
         }
         viewModel.getNews()
     }
@@ -68,12 +76,12 @@ class TodayNewsListTableViewController: UIViewController {
     
     private func setUpIndicatorView() {
         view.addSubview(spinner)
-        spinner.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        spinner.startAnimating()
+        self.spinner.isHidden = false
+        self.animation.startRotateAnimation(view: self.spinner)
     }
     
     private func setUpLabel() {
@@ -91,7 +99,8 @@ class TodayNewsListTableViewController: UIViewController {
     private func bindViewModel() {
         viewModel.registerDataChangedHandler {
             DispatchQueue.main.async {
-                self.spinner.stopAnimating()
+                self.spinner.isHidden = true
+                self.animation.stopRotateAnimation(view: self.spinner)
                 self.tableView.reloadData()
             }
             if !self.viewModel.sections.isEmpty {
