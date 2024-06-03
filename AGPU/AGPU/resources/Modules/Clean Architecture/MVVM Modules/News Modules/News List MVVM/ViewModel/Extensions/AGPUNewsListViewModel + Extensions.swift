@@ -29,22 +29,47 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     }
     
     func checkWhatsNew() {
-        Task {
-            let result = try await newsService.getAGPUNews()
-            switch result {
-            case .success(let response):
-                guard let news = response.articles else {return}
-                let currentDate = self.dateManager.getCurrentDate()
-                for article in news {
-                    if article.date == currentDate {
-                        whatsNewHandler?()
-                        break
+        
+        for category in NewsCategories.categories {
+            
+            if category.newsAbbreviation != "-" {
+                Task {
+                    let result = try await newsService.getNews(abbreviation: category.newsAbbreviation)
+                    switch result {
+                    case .success(let data):
+                        if checkTodayNews(news: data.articles ?? []) {
+                            self.whatsNewHandler?()
+                        }
+                    case .failure(let error):
+                        print(error)
                     }
                 }
-            case .failure(let error):
-                print(error)
+            } else {
+                Task {
+                    let result = try await newsService.getAGPUNews()
+                    switch result {
+                    case .success(let data):
+                        if checkTodayNews(news: data.articles ?? []) {
+                            self.whatsNewHandler?()
+                        }
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
             }
         }
+    }
+    
+    func checkTodayNews(news: [Article])-> Bool {
+        let currentDate = dateManager.getCurrentDate()
+        var articles = [Article]()
+        for article in news {
+            if article.date == currentDate {
+                print("есть новости за сегодня!")
+                return true
+            }
+        }
+        return false
     }
     
     // получить новости в зависимости от типа
