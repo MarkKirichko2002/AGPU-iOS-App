@@ -13,5 +13,6 @@ struct ThingCategories {
         ThingCategoryModel(name: "Документы", icon: "document", itemsCount: 0),
         ThingCategoryModel(name: "Изображения", icon: "photo icon", itemsCount: 0),
         ThingCategoryModel(name: "Видео", icon: "play icon", itemsCount: 0),
+        ThingCategoryModel(name: "Контакты", icon: "contacts icon", itemsCount: 0),
     ]
 }

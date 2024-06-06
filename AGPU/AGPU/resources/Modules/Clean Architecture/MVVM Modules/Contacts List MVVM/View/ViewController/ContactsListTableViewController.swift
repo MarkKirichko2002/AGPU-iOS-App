@@ -1,27 +1,28 @@
 //
-//  SavedVideosListTableViewController.swift
+//  ContactsListTableViewController.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 02.06.2024.
+//  Created by Марк Киричко on 05.06.2024.
 //
 
 import UIKit
 
-protocol SavedVideosListTableViewControllerDelegate: AnyObject {
-    func contactsUpdated()
+protocol ContactsListTableViewControllerDelegate: AnyObject {
+    func listUpdated()
 }
 
-class SavedVideosListTableViewController: UIViewController {
+class ContactsListTableViewController: UIViewController {
 
     // MARK: - сервисы
-    let viewModel = SavedVideosListViewModel()
+    let viewModel = ContactsListViewModel()
     
     // MARK: - UI
     let tableView = UITableView()
-    private let noVideosLabel = UILabel()
+    private let noContactsLabel = UILabel()
     
-    weak var delegate: SavedVideosListTableViewControllerDelegate?
-    var video = VideoModel()
+    var contact = ContactModel()
+    
+    weak var delegate: ContactsListTableViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,7 @@ class SavedVideosListTableViewController: UIViewController {
     
     private func setUpNavigation() {
         
-        let titleView = CustomTitleView(image: "play icon", title: "Видео", frame: .zero)
+        let titleView = CustomTitleView(image: "contacts icon", title: "Контакты", frame: .zero)
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)
@@ -41,7 +42,7 @@ class SavedVideosListTableViewController: UIViewController {
         
         let backButton = UIBarButtonItem(customView: button)
         
-        let addButton = UIBarButtonItem(image: UIImage(named: "add"), style: .done, target: self, action: #selector(showAddVideoAlert))
+        let addButton = UIBarButtonItem(image: UIImage(named: "add"), style: .done, target: self, action: #selector(showAddContactAlert))
         addButton.tintColor = .label
         
         navigationItem.titleView = titleView
@@ -60,18 +61,18 @@ class SavedVideosListTableViewController: UIViewController {
         tableView.frame = view.bounds
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(SavedVideoTableViewCell.self, forCellReuseIdentifier: SavedVideoTableViewCell.identifier)
+        tableView.register(ContactsListTableViewCell.self, forCellReuseIdentifier: ContactsListTableViewCell.identifier)
     }
     
     private func setUpLabel() {
-        view.addSubview(noVideosLabel)
-        noVideosLabel.text = "Нет видео"
-        noVideosLabel.font = .systemFont(ofSize: 18, weight: .medium)
-        noVideosLabel.isHidden = true
-        noVideosLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(noContactsLabel)
+        noContactsLabel.text = "Нет контактов"
+        noContactsLabel.font = .systemFont(ofSize: 18, weight: .medium)
+        noContactsLabel.isHidden = true
+        noContactsLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            noVideosLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            noVideosLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            noContactsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            noContactsLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
@@ -80,13 +81,13 @@ class SavedVideosListTableViewController: UIViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-            if !self.viewModel.videos.isEmpty {
-                self.noVideosLabel.isHidden = true
+            if !self.viewModel.contacts.isEmpty {
+                self.noContactsLabel.isHidden = true
             } else {
-                self.noVideosLabel.isHidden = false
+                self.noContactsLabel.isHidden = false
             }
-            self.delegate?.contactsUpdated()
+            self.delegate?.listUpdated()
         }
-        viewModel.getVideos()
+        viewModel.getContacts()
     }
 }

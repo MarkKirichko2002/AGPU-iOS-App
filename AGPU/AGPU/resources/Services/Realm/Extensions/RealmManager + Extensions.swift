@@ -148,6 +148,43 @@ extension RealmManager: IRealmManager {
         return Array(items)
     }
     
+    func saveContact(contact: ContactModel) {
+        let con = realm.object(ofType: ContactModel.self, forPrimaryKey: contact.id)
+        if con == nil {
+            let newContact = ContactModel()
+            newContact.id = UUID()
+            newContact.name = contact.name
+            newContact.number = contact.number
+            try! realm.write {
+                realm.add(newContact)
+            }
+        } else {
+            print("уже есть")
+        }
+    }
+    
+    func editContact(contact: ContactModel, name: String, number: String) {
+        let newContact = realm.object(ofType: ContactModel.self, forPrimaryKey: contact.id)
+        try! realm.write {
+            contact.name = name
+            contact.number = number
+        }
+    }
+    
+    func deleteContact(contact: ContactModel) {
+        let newContact = realm.object(ofType: ContactModel.self, forPrimaryKey: contact.id)
+        guard let newContact = newContact else {return}
+        try! realm.write {
+            realm.delete(newContact)
+            HapticsManager.shared.hapticFeedback()
+        }
+    }
+    
+    func getContacts()-> [ContactModel] {
+        let items = realm.objects(ContactModel.self)
+        return Array(items)
+    }
+    
     // MARK: - Adaptive News
     func saveArticle(model: NewsModel) {
         let article = realm.object(ofType: NewsModel.self, forPrimaryKey: model.id)

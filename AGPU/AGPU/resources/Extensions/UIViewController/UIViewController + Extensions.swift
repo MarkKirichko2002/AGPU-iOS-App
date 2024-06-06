@@ -30,6 +30,14 @@ extension UIViewController {
         }
     }
     
+    func callNumber(number: String) {
+        if let phoneURL = URL(string: "tel://\(number)") {
+            if UIApplication.shared.canOpenURL(phoneURL) {
+                UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
     func showRecentPageScreen(page: RecentWebPageModel) {
         let vc = RecentWebPageViewController(page: page)
         let navVC = UINavigationController(rootViewController: vc)

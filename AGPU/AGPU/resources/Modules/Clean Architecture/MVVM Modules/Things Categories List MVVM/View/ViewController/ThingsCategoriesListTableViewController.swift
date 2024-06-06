@@ -62,6 +62,14 @@ class ThingsCategoriesListTableViewController: UITableViewController {
             let vc = SavedImagesListTableViewController()
             vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
+        case 2:
+            let vc = SavedVideosListTableViewController()
+            vc.delegate = self
+            navigationController?.pushViewController(vc, animated: true)
+        case 3:
+            let vc = ContactsListTableViewController()
+            vc.delegate = self
+            navigationController?.pushViewController(vc, animated: true)
         default:
             let vc = SavedVideosListTableViewController()
             vc.delegate = self
@@ -102,6 +110,14 @@ extension ThingsCategoriesListTableViewController: SavedImagesListTableViewContr
 extension ThingsCategoriesListTableViewController: SavedVideosListTableViewControllerDelegate {
     
     func listUpdated() {
+        viewModel.getCategoriesData()
+    }
+}
+
+// MARK: - ContactsListTableViewControllerDelegate
+extension ThingsCategoriesListTableViewController: ContactsListTableViewControllerDelegate {
+    
+    func contactsUpdated() {
         viewModel.getCategoriesData()
     }
 }

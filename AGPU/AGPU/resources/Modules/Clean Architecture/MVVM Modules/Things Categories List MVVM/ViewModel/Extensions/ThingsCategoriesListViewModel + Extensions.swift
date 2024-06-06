@@ -22,6 +22,7 @@ extension ThingsCategoriesListViewModel: IThingsCategoriesListViewModel {
         ThingCategories.categories[0].itemsCount = realmManager.getDocuments().count
         ThingCategories.categories[1].itemsCount = realmManager.getImages().count
         ThingCategories.categories[2].itemsCount = realmManager.getVideos().count
+        ThingCategories.categories[3].itemsCount = realmManager.getContacts().count
         dataChangedHandler?()
     }
     
