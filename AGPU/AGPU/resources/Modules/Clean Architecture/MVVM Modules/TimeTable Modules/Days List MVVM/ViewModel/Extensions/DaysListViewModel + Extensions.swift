@@ -73,8 +73,8 @@ extension DaysListViewModel: DaysListViewModelProtocol {
                         } 
                         
                         if consCount > 0 {
-                            DaysList.days[index!].info = consCount > 1 ? "консультации" : "консультация"
-                        } 
+                            DaysList.days[index!].info = "конс."
+                        }
                         
                         if examsCount > 0 {
                             DaysList.days[index!].info = examsCount > 1 ? "экзамены!" : "экзамен!"

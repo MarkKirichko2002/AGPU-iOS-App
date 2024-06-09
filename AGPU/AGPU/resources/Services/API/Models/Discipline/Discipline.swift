@@ -44,7 +44,7 @@ enum PairType: String, CaseIterable, Codable {
         case .exam:
             return "Экзамен"
         case .lab:
-            return "Лабораторная работа"
+            return "Лаб. работа"
         case .hol:
             return "Каникулы"
         case .cred:

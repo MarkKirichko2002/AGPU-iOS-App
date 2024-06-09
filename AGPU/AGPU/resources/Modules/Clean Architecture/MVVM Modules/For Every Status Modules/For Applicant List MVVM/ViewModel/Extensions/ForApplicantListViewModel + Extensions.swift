@@ -37,9 +37,13 @@ extension ForApplicantListViewModel: IForApplicantListViewModel {
     func restartPosition() {
         
         let numbers = [0,1,2,3,4,5]
+        let position = UserDefaults.standard.object(forKey: "for applicant") as? [Int] ?? [0,1,2,3,4,5]
         
-        UserDefaults.saveArray(array: numbers, key: "for applicant") {
-            self.getData()
+        if numbers != position {
+            UserDefaults.saveArray(array: numbers, key: "for applicant") {
+                NotificationCenter.default.post(name: Notification.Name("refreshed"), object: nil)
+                self.getData()
+            }
         }
     }
     

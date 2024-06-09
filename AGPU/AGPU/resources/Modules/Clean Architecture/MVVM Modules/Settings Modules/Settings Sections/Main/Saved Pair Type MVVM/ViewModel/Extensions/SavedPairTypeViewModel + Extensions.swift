@@ -23,11 +23,10 @@ extension SavedPairTypeViewModel: SavedPairTypeViewModelProtocol {
         UserDefaults.saveData(object: type, key: "type") {
             NotificationCenter.default.post(name: Notification.Name("TypeWasSelected"), object: type)
             NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-            print("тип пары сохранен")
+            self.type = type
+            self.pairTypeSelectedHandler?()
+            HapticsManager.shared.hapticFeedback()
         }
-        self.type = type
-        self.pairTypeSelectedHandler?()
-        HapticsManager.shared.hapticFeedback()
     }
     
     func isCurrentType(index: Int)-> Bool {

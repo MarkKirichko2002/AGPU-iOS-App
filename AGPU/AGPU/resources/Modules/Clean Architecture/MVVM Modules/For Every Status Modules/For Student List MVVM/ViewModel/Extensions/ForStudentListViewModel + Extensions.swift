@@ -37,9 +37,13 @@ extension ForStudentListViewModel: IForStudentListViewModel {
     func restartPosition() {
         
         let numbers = [0,1,2,3,4,5,6,7]
+        let position = UserDefaults.standard.object(forKey: "for student") as? [Int] ?? [0,1,2,3,4,5,6,7]
         
-        UserDefaults.saveArray(array: numbers, key: "for student") {
-            self.getData()
+        if numbers != position {
+            UserDefaults.saveArray(array: numbers, key: "for student") {
+                NotificationCenter.default.post(name: Notification.Name("refreshed"), object: nil)
+                self.getData()
+            }
         }
     }
     

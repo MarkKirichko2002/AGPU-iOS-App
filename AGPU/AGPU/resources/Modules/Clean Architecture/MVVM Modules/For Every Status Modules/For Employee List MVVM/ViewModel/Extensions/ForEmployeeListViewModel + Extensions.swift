@@ -37,9 +37,13 @@ extension ForEmployeeListViewModel: IForEmployeeListViewModel {
     func restartPosition() {
         
         let numbers = [0,1,2,3,4,5,6,7]
+        let position = UserDefaults.standard.object(forKey: "for employee") as? [Int] ?? [0,1,2,3,4,5,6,7]
         
-        UserDefaults.saveArray(array: numbers, key: "for employee") {
-            self.getData()
+        if numbers != position {
+            UserDefaults.saveArray(array: numbers, key: "for employee") {
+                NotificationCenter.default.post(name: Notification.Name("refreshed"), object: nil)
+                self.getData()
+            }
         }
     }
     
