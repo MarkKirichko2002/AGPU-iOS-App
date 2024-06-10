@@ -212,6 +212,7 @@ final class AGPUTabBarController: UITabBarController {
     
      @objc func openRecentMoments() {
         let vc = RecentMomentsListTableViewController()
+        vc.isNotify = true
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         self.updateASPUButton(icon: "time.past")
@@ -334,7 +335,6 @@ final class AGPUTabBarController: UITabBarController {
             self.goToWeb(url: "http://plany.agpu.net/Plans/", image: "student", title: "Учебный план", isSheet: false, isNotify: true)
         }
     }
-    
     
     @objc func openProfile() {
         self.updateASPUButton(icon: "profile icon")

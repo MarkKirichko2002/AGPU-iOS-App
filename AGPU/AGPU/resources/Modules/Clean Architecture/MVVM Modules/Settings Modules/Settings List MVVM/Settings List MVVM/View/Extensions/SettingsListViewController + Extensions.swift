@@ -50,6 +50,7 @@ extension SettingsListViewController: UITableViewDataSource {
         case 1:
             if indexPath.row == 0 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ActionToRecallOptionTableViewCell.identifier, for: indexPath) as? ActionToRecallOptionTableViewCell else {return UITableViewCell()}
+                cell.delegate = self
                 return cell
             } else if indexPath.row == 1 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: VisualChangesOptionTableViewCell.identifier, for: indexPath) as? VisualChangesOptionTableViewCell else {return UITableViewCell()}
@@ -222,6 +223,20 @@ extension SettingsListViewController: UITableViewDelegate {
             }
         default:
             break
+        }
+    }
+}
+
+// MARK: - ActionToRecallOptionTableViewCellDelegate
+extension SettingsListViewController: ActionToRecallOptionTableViewCellDelegate {
+    
+    func iconWasTapped() {
+        let vc = RecentMomentsListTableViewController()
+        vc.isNotify = false
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.present(navVC, animated: true)
         }
     }
 }

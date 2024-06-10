@@ -7,6 +7,11 @@
 
 import UIKit
 
+// MARK: - ActionToRecallOptionTableViewCellDelegate
+protocol ActionToRecallOptionTableViewCellDelegate: AnyObject {
+    func iconWasTapped()
+}
+
 final class ActionToRecallOptionTableViewCell: UITableViewCell {
 
     static let identifier = "ActionToRecallOptionTableViewCell"
@@ -14,8 +19,10 @@ final class ActionToRecallOptionTableViewCell: UITableViewCell {
     var userDefaults = UserDefaults.standard
     var animation = AnimationClass()
     
+    weak var delegate: ActionToRecallOptionTableViewCellDelegate?
+    
     @IBOutlet weak var Switch: UISwitch!
-    @IBOutlet weak var ActionToRecallIcon: UIImageView!
+    @IBOutlet weak var ActionToRecallIcon: SpringImageView!
     @IBOutlet weak var ActionToRecallLabel: UILabel!
     
     @IBAction func switchAction(_ sender: UISwitch) {
@@ -43,6 +50,7 @@ final class ActionToRecallOptionTableViewCell: UITableViewCell {
     
     private func setUpView() {
         ActionToRecallIcon.tintColor = .label
+        ActionToRecallIcon.delegate = self
         backgroundColor = .systemBackground
         ActionToRecallLabel.textColor = .label
         setUpState()
@@ -53,5 +61,13 @@ final class ActionToRecallOptionTableViewCell: UITableViewCell {
         Switch.isOn = isShakeToRecall
         ActionToRecallIcon.tintColor = isShakeToRecall == true ? .label : .systemGray
         ActionToRecallLabel.textColor = isShakeToRecall == true ? .label : .systemGray
+    }
+}
+
+// MARK: - SpringImageViewDelegate
+extension ActionToRecallOptionTableViewCell: SpringImageViewDelegate {
+    
+    func imageWasTapped() {
+        delegate?.iconWasTapped()
     }
 }

@@ -12,6 +12,8 @@ final class RecentMomentsListTableViewController: UITableViewController {
     // MARK: - сервисы
     private let viewModel = RecentMomentsListViewModel()
     
+    var isNotify = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
@@ -28,7 +30,11 @@ final class RecentMomentsListTableViewController: UITableViewController {
     }
     
     @objc private func closeScreen() {
-        sendScreenWasClosedNotification()
+        if isNotify {
+            sendScreenWasClosedNotification()
+        } else {
+            HapticsManager.shared.hapticFeedback()
+        }
         dismiss(animated: true)
     }
     
