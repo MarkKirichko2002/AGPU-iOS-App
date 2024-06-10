@@ -11,7 +11,7 @@ protocol TimeTableFavouriteItemsListTableViewControllerDelegate: AnyObject {
     func WasSelected(result: SearchTimetableModel)
 }
 
-class TimeTableFavouriteItemsListTableViewController: UITableViewController {
+class TimeTableFavouriteItemsListTableViewController: UIViewController {
 
     var isSettings = false
     weak var delegate: TimeTableFavouriteItemsListTableViewControllerDelegate?
@@ -19,10 +19,15 @@ class TimeTableFavouriteItemsListTableViewController: UITableViewController {
     // MARK: - сервисы
     let viewModel = TimeTableFavouriteItemsListViewModel()
     
+    // MARK: - UI
+    let tableView = UITableView()
+    private let noItemsLabel = UILabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
         setUpTable()
+        setUpLabel()
         bindViewModel()
     }
     
@@ -74,44 +79,36 @@ class TimeTableFavouriteItemsListTableViewController: UITableViewController {
     }
     
     private func setUpTable() {
+        view.addSubview(tableView)
+        tableView.frame = view.bounds
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.register(TimeTableFavouriteItemTableViewCell.self, forCellReuseIdentifier: TimeTableFavouriteItemTableViewCell.identifier)
     }
     
+    private func setUpLabel() {
+        view.addSubview(noItemsLabel)
+        noItemsLabel.text = "Список пуст"
+        noItemsLabel.font = .systemFont(ofSize: 18, weight: .medium)
+        noItemsLabel.isHidden = true
+        noItemsLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            noItemsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            noItemsLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    
     private func bindViewModel() {
-        viewModel.getItems()
         viewModel.registerDataChangedHandler {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+            if !self.viewModel.items.isEmpty {
+                self.noItemsLabel.isHidden = true
+            } else {
+                self.noItemsLabel.isHidden = false
+            }
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let item = viewModel.favouriteItem(index: indexPath.row)
-            viewModel.deleteItem(item: item)
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if !isSettings {
-            let item = viewModel.favouriteItem(index: indexPath.row)
-            delegate?.WasSelected(result: item)
-            HapticsManager.shared.hapticFeedback()
-            self.dismiss(animated: true)
-        }
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.itemsCount()
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = viewModel.favouriteItem(index: indexPath.row)
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TimeTableFavouriteItemTableViewCell.identifier, for: indexPath) as? TimeTableFavouriteItemTableViewCell else {return UITableViewCell()}
-        cell.delegate = self
-        cell.configure(item: item)
-        return cell
+        viewModel.getItems()
     }
 }
