@@ -7,10 +7,14 @@
 
 import UIKit
 
+protocol PairTypesListTableViewControllerDelegate: AnyObject {
+    func pairTypeWasSelected(type: PairType)
+}
+
 class PairTypesListTableViewController: UITableViewController {
     
     private var viewModel: PairTypesListViewModel
-    
+    weak var delegate: PairTypesListTableViewControllerDelegate?
     private var type: PairType
     
     // MARK: - Init
@@ -59,6 +63,7 @@ class PairTypesListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.choosePairType(index: indexPath.row)
+        delegate?.pairTypeWasSelected(type: viewModel.typeItem(index: indexPath.row))
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

@@ -15,6 +15,7 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
             switch result {
             case .success(let data):
                 self?.pairs = data.disciplines
+                self?.allDisciplines = data.disciplines
                 if !data.disciplines.isEmpty {
                     self?.getImage(json: data) { image in
                         let model = TimeTableDateModel(id: data.id, date: self?.date ?? "", image: image, description: "\(self?.formattedDate() ?? "") пары: \(self?.getPairsCount() ?? 0)")
@@ -68,9 +69,94 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
         }
     }
     
+    func filterPairs(type: PairType) {
+        
+        self.type = type
+        
+        if type == .all {
+            
+            if self.allDisciplines.isEmpty {
+                self.allDisciplines = pairs
+            }
+            self.pairs = self.allDisciplines
+           
+        } else if type == .leftToday {
+            
+            let filteredDisciplines = self.filterLeftedPairs(pairs: self.allDisciplines)
+            self.pairs = filteredDisciplines
+            
+        } else {
+            
+            if self.allDisciplines.isEmpty {
+                self.allDisciplines = pairs
+            }
+            
+            let filteredDisciplines = self.allDisciplines.filter { $0.type == type }
+            self.pairs = filteredDisciplines
+        }
+        
+        if !pairs.isEmpty {
+            let timetable = TimeTable(id: id, date: date, disciplines: pairs)
+            self.getImage(json: timetable) { image in
+                let model = TimeTableDateModel(id: self.owner, date: self.date, image: image, description: "\(self.formattedDate()) пары: \(self.getPairsCount())")
+                self.image = image
+                self.timeTableHandler?(model)
+            }
+        } else {
+            let timetable = TimeTable(id: id, date: date, disciplines: pairs)
+            self.getImage(json: timetable) { image in
+                let model = TimeTableDateModel(id: self.owner, date: self.date, image: image, description: "\(self.formattedDate()) нет пар")
+                self.image = image
+                self.timeTableHandler?(model)
+            }
+        }
+    }
+    
+    private func filterLeftedPairs(pairs: [Discipline])-> [Discipline] {
+        
+        var disciplines = [Discipline]()
+        
+        let currentDate = dateManager.getCurrentDate()
+        let currentTime = dateManager.getCurrentTime()
+        
+        for pair in pairs {
+            
+            let pairEndTime = "\(pair.time.components(separatedBy: "-")[1]):00"
+            
+            let timetableDate = date
+            
+            let compareDate = dateManager.compareDates(date1: timetableDate, date2: currentDate)
+            let compareTime = dateManager.compareTimes(time1: pairEndTime, time2: currentTime)
+            
+            // прошлый день
+            if compareDate == .orderedAscending {
+                return disciplines
+            }
+            
+            // время больше и тот же день
+            if compareTime == .orderedDescending && compareDate == .orderedSame {
+                disciplines.append(pair)
+            }
+            
+            // следующий день
+            if compareDate == .orderedDescending {
+                return allDisciplines
+            }
+        }
+        
+        return disciplines
+    }
+    
     func formattedDate()-> String {
         let date = "\(dateManager.getCurrentDayOfWeek(date: date)) \(date)"
         return date
+    }
+    
+    func saveImageToList() {
+        let model = ImageModel()
+        model.date = self.date
+        model.image = image?.jpegData(compressionQuality: 1.0) ?? Data()
+        self.realmManager.saveImage(image: model)
     }
     
     func registerTimeTableHandler(block: @escaping (TimeTableDateModel) -> Void) {

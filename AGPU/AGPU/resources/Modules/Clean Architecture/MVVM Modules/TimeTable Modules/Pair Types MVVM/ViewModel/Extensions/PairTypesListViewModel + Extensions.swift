@@ -43,7 +43,6 @@ extension PairTypesListViewModel: PairTypesListViewModelProtocol {
     
     func choosePairType(index: Int) {
         let type = typeItem(index: index)
-        NotificationCenter.default.post(name: Notification.Name("TypeWasSelected"), object: type)
         self.type = type
         self.pairTypeSelectedHandler?()
         HapticsManager.shared.hapticFeedback()

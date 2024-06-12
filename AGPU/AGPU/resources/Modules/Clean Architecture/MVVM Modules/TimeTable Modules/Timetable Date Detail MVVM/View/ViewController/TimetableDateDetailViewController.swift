@@ -27,10 +27,11 @@ class TimetableDateDetailViewController: UIViewController {
         return button
     }()
     
-    private var shareButton: UIButton = {
+    private var optionsList: UIButton = {
         let button = UIButton()
         button.tintColor = .label
-        button.setImage(UIImage(named: "share"), for: .normal)
+        button.showsMenuAsPrimaryAction = true
+        button.setImage(UIImage(named: "sections"), for: .normal)
         return button
     }()
     
@@ -85,18 +86,14 @@ class TimetableDateDetailViewController: UIViewController {
         super.viewDidLoad()
         setUpView()
         setUpConstraints()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         bindViewModel()
     }
     
     private func setUpView() {
         view.backgroundColor = .systemBackground
-        view.addSubviews(closeButton, shareButton, timetableImage, titleLabel, timetableDescription, selectDateButton)
+        view.addSubviews(closeButton, optionsList, timetableImage, titleLabel, timetableDescription, selectDateButton)
         closeButton.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
-        shareButton.addTarget(self, action: #selector(share), for: .touchUpInside)
+        optionsList.menu = setUpMenu()
         selectDateButton.addTarget(self, action: #selector(selectDate), for: .touchUpInside)
         setUpTap()
         setUpPinchZoom()
@@ -105,6 +102,31 @@ class TimetableDateDetailViewController: UIViewController {
     @objc private func closeScreen() {
         HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
+    }
+    
+    private func setUpMenu()-> UIMenu {
+        
+        let filterAction = UIAction(title: "Фильтрация") { _ in
+            let vc = PairTypesListTableViewController(type: self.viewModel.type, disciplines: self.viewModel.allDisciplines)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let saveTimetable = UIAction(title: "Сохранить") { _ in
+            self.showSaveImageAlert()
+        }
+        
+        let shareAction = UIAction(title: "Поделиться") { _ in
+            self.share()
+        }
+        let menu = UIMenu(title: date, children: [
+            filterAction,
+            saveTimetable,
+            shareAction
+        ])
+        return menu
     }
     
     @objc private func share() {
@@ -142,7 +164,7 @@ class TimetableDateDetailViewController: UIViewController {
     
     private func setUpConstraints() {
         
-        shareButton.snp.makeConstraints { maker in
+        optionsList.snp.makeConstraints { maker in
             maker.top.equalToSuperview().inset(60)
             maker.right.equalToSuperview().inset(20)
         }
@@ -153,7 +175,7 @@ class TimetableDateDetailViewController: UIViewController {
         }
         
         timetableImage.snp.makeConstraints { maker in
-            maker.top.equalTo(shareButton.snp.bottom).offset(20)
+            maker.top.equalTo(optionsList.snp.bottom).offset(20)
             maker.centerX.equalToSuperview()
             maker.width.equalTo(250)
             maker.height.equalTo(250)
@@ -176,7 +198,6 @@ class TimetableDateDetailViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.getTimeTableForDay()
         timetableDescription.textColor = viewModel.textColor()
         timetableImage.layer.borderColor = viewModel.textColor().cgColor
         titleLabel.text = id
@@ -184,6 +205,7 @@ class TimetableDateDetailViewController: UIViewController {
             self?.timetableImage.image = timetable.image
             self?.timetableDescription.text = timetable.description
         }
+        viewModel.getTimeTableForDay()
     }
     
     @objc private func selectDate() {
@@ -195,5 +217,31 @@ class TimetableDateDetailViewController: UIViewController {
             self?.dismiss(animated: true)
             self?.delegate?.dateWasSelected(date: self?.date ?? "")
         }
+    }
+}
+
+// MARK: - PairTypesListTableViewControllerDelegate
+extension TimetableDateDetailViewController: PairTypesListTableViewControllerDelegate {
+    
+    func pairTypeWasSelected(type: PairType) {
+        viewModel.filterPairs(type: type)
+    }
+}
+
+extension TimetableDateDetailViewController {
+    
+    func showSaveImageAlert() {
+        let saveAction = UIAlertAction(title: "Сохранить в фото", style: .default) { _ in
+            guard let image = self.viewModel.image else {return}
+            let imageSaver = ImageSaver()
+            imageSaver.writeToPhotoAlbum(image: image)
+        }
+        
+        let saveAction2 = UIAlertAction(title: "Сохранить в \"Важные вещи\"", style: .default) { _ in
+            self.viewModel.saveImageToList()
+        }
+        
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
+        self.showAlert(title: "Сохранить расписание?", message: "Вы хотите сохранить изображение расписания?", actions: [saveAction2, saveAction, cancel])
     }
 }

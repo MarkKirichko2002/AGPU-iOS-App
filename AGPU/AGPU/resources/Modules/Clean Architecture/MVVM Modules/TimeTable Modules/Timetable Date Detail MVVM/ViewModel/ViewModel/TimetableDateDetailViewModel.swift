@@ -11,6 +11,8 @@ class TimetableDateDetailViewModel {
 
     var timeTableHandler: ((TimeTableDateModel)->Void)?
     var pairs = [Discipline]()
+    var allDisciplines: [Discipline] = []
+    var type = PairType.all
     
     var id: String = ""
     var date: String = ""
@@ -20,6 +22,7 @@ class TimetableDateDetailViewModel {
     // MARK: - сервисы
     let timeTableService = TimeTableService()
     let dateManager = DateManager()
+    let realmManager = RealmManager()
     
     // MARK: - Init
     init(id: String, date: String, owner: String) {

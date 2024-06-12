@@ -129,6 +129,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         // фильтрация
         let pairTypesList = UIAction(title: "Фильтрация") { _ in
             let vc = PairTypesListTableViewController(type: self.type, disciplines: self.allDisciplines)
+            vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -315,63 +316,60 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         NotificationCenter.default.addObserver(forName: Notification.Name("TypeWasSelected"), object: nil, queue: .main) { [weak self] notification in
             
-            guard let type = notification.object as? PairType, let self = self, let timetable = self.timetable else { return }
+            guard let type = notification.object as? PairType, let self = self else { return }
+            self.filterPairs(type: type)
+        }
+    }
+    
+    func filterPairs(type: PairType) {
+        
+        self.type = type
+        
+        if type == .all {
             
-            self.type = type
-            
-            if type == .all {
-                
-                if self.allDisciplines.isEmpty {
-                    self.allDisciplines = timetable.disciplines
-                }
-                
-                self.timetable?.disciplines = self.allDisciplines
-                self.subgroup = 0
-                self.tableView.reloadData()
-                
-            } else if type == .leftToday {
-                
-                let filteredDisciplines = self.filterLeftedPairs(pairs: self.allDisciplines)
-                if filteredDisciplines.isEmpty {
-                    self.subgroup = 0
-                }
-                self.timetable?.disciplines = filteredDisciplines
-                
-                if filteredDisciplines.first?.type == .lab {
-                    self.subgroup = 0
-                } else {
-                    self.subgroup = filteredDisciplines.first?.subgroup ?? 0
-                }
-                
-                self.tableView.reloadData()
-                
-            } else {
-                
-                if self.allDisciplines.isEmpty {
-                    self.allDisciplines = timetable.disciplines
-                }
-                
-                if let type = notification.object as? PairType {
-                    
-                    let filteredDisciplines = self.allDisciplines.filter { $0.type == type }
-                    if filteredDisciplines.isEmpty {
-                        self.subgroup = 0
-                    }
-                    self.timetable?.disciplines = filteredDisciplines
-                    
-                    if filteredDisciplines.first?.type == .lab {
-                        self.subgroup = 0
-                    } else {
-                        self.subgroup = filteredDisciplines.first?.subgroup ?? 0
-                    }
-                    
-                    self.tableView.reloadData()
-                    
-                } else {
-                    self.timetable?.disciplines = self.allDisciplines
-                    self.tableView.reloadData()
-                }
+            if self.allDisciplines.isEmpty {
+                self.allDisciplines = timetable?.disciplines ?? []
             }
+            
+            self.timetable?.disciplines = self.allDisciplines
+            self.subgroup = 0
+            self.tableView.reloadData()
+            
+        } else if type == .leftToday {
+            
+            let filteredDisciplines = self.filterLeftedPairs(pairs: self.allDisciplines)
+            if filteredDisciplines.isEmpty {
+                self.subgroup = 0
+            }
+            self.timetable?.disciplines = filteredDisciplines
+            
+            if filteredDisciplines.first?.type == .lab {
+                self.subgroup = 0
+            } else {
+                self.subgroup = filteredDisciplines.first?.subgroup ?? 0
+            }
+            
+            self.tableView.reloadData()
+            
+        } else {
+            
+            if self.allDisciplines.isEmpty {
+                self.allDisciplines = timetable?.disciplines ?? []
+            }
+            
+            let filteredDisciplines = self.allDisciplines.filter { $0.type == type }
+            if filteredDisciplines.isEmpty {
+                self.subgroup = 0
+            }
+            self.timetable?.disciplines = filteredDisciplines
+            
+            if filteredDisciplines.first?.type == .lab {
+                self.subgroup = 0
+            } else {
+                self.subgroup = filteredDisciplines.first?.subgroup ?? 0
+            }
+            
+            self.tableView.reloadData()
         }
     }
     

@@ -138,6 +138,14 @@ extension TimeTableDayListTableViewController: CalendarViewControllerDelegate {
     }
 }
 
+// MARK: - PairTypesListTableViewControllerDelegate
+extension TimeTableDayListTableViewController: PairTypesListTableViewControllerDelegate {
+    
+    func pairTypeWasSelected(type: PairType) {
+        filterPairs(type: type)
+    }
+}
+
 extension TimeTableDayListTableViewController {
     
     func showSaveImageAlert() {
