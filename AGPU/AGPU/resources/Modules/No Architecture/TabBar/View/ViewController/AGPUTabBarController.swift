@@ -180,6 +180,8 @@ final class AGPUTabBarController: UITabBarController {
             ASPUButton.addTarget(self, action: #selector(openSectionsList), for: .touchUpInside)
         case .recent:
             ASPUButton.addTarget(self, action: #selector(openRecentMoments), for: .touchUpInside)
+        case .things:
+            ASPUButton.addTarget(self, action: #selector(openThingsCategoriesList), for: .touchUpInside)
         case .whatsNew:
             ASPUButton.addTarget(self, action: #selector(openWhatsNew), for: .touchUpInside)
         case .favourite:
@@ -372,6 +374,17 @@ final class AGPUTabBarController: UITabBarController {
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         self.updateASPUButton(icon: "star")
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.present(navVC, animated: true)
+        }
+    }
+    
+    @objc func openThingsCategoriesList() {
+        let vc = ThingsCategoriesListTableViewController()
+        vc.isAction = true
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.updateASPUButton(icon: "exclamation")
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
             self.present(navVC, animated: true)
         }

@@ -16,6 +16,7 @@ enum ASPUButtonActions: String, CaseIterable, Codable {
     case manual = "Методические материалы"
     case sections = "Разделы сайта АГПУ"
     case recent = "Недавние моменты"
+    case things = "Важные вещи"
     case whatsNew = "Что нового?"
     case favourite = "Избранное"
 }

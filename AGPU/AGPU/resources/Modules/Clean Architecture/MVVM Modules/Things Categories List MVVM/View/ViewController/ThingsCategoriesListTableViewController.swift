@@ -9,6 +9,8 @@ import UIKit
 
 class ThingsCategoriesListTableViewController: UITableViewController {
     
+    var isAction = false
+    
     // MARK: - сервисы
     private let viewModel = ThingsCategoriesListViewModel()
     
@@ -22,16 +24,29 @@ class ThingsCategoriesListTableViewController: UITableViewController {
     private func setUpNavigation() {
         
         navigationItem.title = "Выберите категорию"
-        let button = UIButton()
-        button.tintColor = .label
-        button.setImage(UIImage(named: "back"), for: .normal)
-        button.addTarget(self, action: #selector(back), for: .touchUpInside)
         
-        let backButton = UIBarButtonItem(customView: button)
-        
-        navigationItem.leftBarButtonItem = nil
-        navigationItem.hidesBackButton = true
-        navigationItem.leftBarButtonItem = backButton
+        if isAction {
+            let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
+            closeButton.tintColor = .label
+            navigationItem.rightBarButtonItem = closeButton
+        } else {
+            let button = UIButton()
+            button.tintColor = .label
+            button.setImage(UIImage(named: "back"), for: .normal)
+            button.addTarget(self, action: #selector(back), for: .touchUpInside)
+            
+            let backButton = UIBarButtonItem(customView: button)
+            backButton.tintColor = .label
+            
+            navigationItem.leftBarButtonItem = nil
+            navigationItem.hidesBackButton = true
+            navigationItem.leftBarButtonItem = backButton
+        }
+    }
+    
+    @objc private func closeScreen() {
+        sendScreenWasClosedNotification()
+        self.dismiss(animated: true)
     }
     
     @objc private func back() {
