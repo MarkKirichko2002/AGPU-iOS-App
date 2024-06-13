@@ -23,8 +23,10 @@ extension PairTypesListViewModel: PairTypesListViewModelProtocol {
         var filteredData = [Discipline]()
         var uniqueTimes: Set<String> = Set()
         
+        allDisciplines = disciplines
+        
         if type != .all {
-            filteredData = disciplines.filter({ $0.type == type })
+            filteredData = type == .leftToday ? filterLeftedPairs(pairs: disciplines) : disciplines.filter({ $0.type == type })
         } else {
             filteredData = disciplines
         }
@@ -39,6 +41,41 @@ extension PairTypesListViewModel: PairTypesListViewModelProtocol {
         
         return uniqueTimes.count
         
+    }
+    
+    func filterLeftedPairs(pairs: [Discipline])-> [Discipline] {
+        
+        var disciplines = [Discipline]()
+        
+        let currentDate = dateManager.getCurrentDate()
+        let currentTime = dateManager.getCurrentTime()
+        
+        for pair in pairs {
+            
+            let pairEndTime = "\(pair.time.components(separatedBy: "-")[1]):00"
+            
+            let timetableDate = date
+            
+            let compareDate = dateManager.compareDates(date1: timetableDate, date2: currentDate)
+            let compareTime = dateManager.compareTimes(time1: pairEndTime, time2: currentTime)
+            
+            // прошлый день
+            if compareDate == .orderedAscending {
+                return disciplines
+            }
+            
+            // время больше и тот же день
+            if compareTime == .orderedDescending && compareDate == .orderedSame {
+                disciplines.append(pair)
+            }
+            
+            // следующий день
+            if compareDate == .orderedDescending {
+                return allDisciplines
+            }
+        }
+        
+        return disciplines
     }
     
     func choosePairType(index: Int) {

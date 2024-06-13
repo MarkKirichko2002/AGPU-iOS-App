@@ -18,9 +18,9 @@ class PairTypesListTableViewController: UITableViewController {
     private var type: PairType
     
     // MARK: - Init
-    init(type: PairType, disciplines: [Discipline]) {
+    init(date: String, type: PairType, disciplines: [Discipline]) {
         self.type = type
-        self.viewModel = PairTypesListViewModel(type: type, disciplines: disciplines)
+        self.viewModel = PairTypesListViewModel(date: date, type: type, disciplines: disciplines)
         super.init(nibName: nil, bundle: nil)
     }
     

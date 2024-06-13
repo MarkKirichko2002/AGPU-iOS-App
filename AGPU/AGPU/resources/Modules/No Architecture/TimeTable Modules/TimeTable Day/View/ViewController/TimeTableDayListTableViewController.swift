@@ -128,7 +128,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         // фильтрация
         let pairTypesList = UIAction(title: "Фильтрация") { _ in
-            let vc = PairTypesListTableViewController(type: self.type, disciplines: self.allDisciplines)
+            let vc = PairTypesListTableViewController(date: self.date, type: self.type, disciplines: self.allDisciplines)
             vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen

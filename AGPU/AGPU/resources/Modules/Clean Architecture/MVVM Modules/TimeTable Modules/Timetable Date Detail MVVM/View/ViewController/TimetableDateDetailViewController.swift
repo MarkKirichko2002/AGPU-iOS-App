@@ -123,7 +123,7 @@ class TimetableDateDetailViewController: UIViewController {
         }
         
         let filterAction = UIAction(title: "Фильтрация") { _ in
-            let vc = PairTypesListTableViewController(type: self.viewModel.type, disciplines: self.viewModel.allDisciplines)
+            let vc = PairTypesListTableViewController(date: self.date, type: self.viewModel.type, disciplines: self.viewModel.allDisciplines)
             vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
