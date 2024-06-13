@@ -106,6 +106,14 @@ class TimetableDateDetailViewController: UIViewController {
     
     private func setUpMenu()-> UIMenu {
         
+        let searchAction = UIAction(title: "Поиск") { _ in
+            let vc = TimeTableSearchListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         let filterAction = UIAction(title: "Фильтрация") { _ in
             let vc = PairTypesListTableViewController(type: self.viewModel.type, disciplines: self.viewModel.allDisciplines)
             vc.delegate = self
@@ -122,6 +130,7 @@ class TimetableDateDetailViewController: UIViewController {
             self.share()
         }
         let menu = UIMenu(title: date, children: [
+            searchAction,
             filterAction,
             saveTimetable,
             shareAction
@@ -198,12 +207,12 @@ class TimetableDateDetailViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        timetableDescription.textColor = viewModel.textColor()
-        timetableImage.layer.borderColor = viewModel.textColor().cgColor
         titleLabel.text = id
         viewModel.registerTimeTableHandler { [weak self] timetable in
             self?.timetableImage.image = timetable.image
             self?.timetableDescription.text = timetable.description
+            self?.timetableDescription.textColor =  self?.viewModel.textColor()
+            self?.timetableImage.layer.borderColor =  self?.viewModel.textColor().cgColor
         }
         viewModel.getTimeTableForDay()
     }
@@ -217,31 +226,5 @@ class TimetableDateDetailViewController: UIViewController {
             self?.dismiss(animated: true)
             self?.delegate?.dateWasSelected(date: self?.date ?? "")
         }
-    }
-}
-
-// MARK: - PairTypesListTableViewControllerDelegate
-extension TimetableDateDetailViewController: PairTypesListTableViewControllerDelegate {
-    
-    func pairTypeWasSelected(type: PairType) {
-        viewModel.filterPairs(type: type)
-    }
-}
-
-extension TimetableDateDetailViewController {
-    
-    func showSaveImageAlert() {
-        let saveAction = UIAlertAction(title: "Сохранить в фото", style: .default) { _ in
-            guard let image = self.viewModel.image else {return}
-            let imageSaver = ImageSaver()
-            imageSaver.writeToPhotoAlbum(image: image)
-        }
-        
-        let saveAction2 = UIAlertAction(title: "Сохранить в \"Важные вещи\"", style: .default) { _ in
-            self.viewModel.saveImageToList()
-        }
-        
-        let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
-        self.showAlert(title: "Сохранить расписание?", message: "Вы хотите сохранить изображение расписания?", actions: [saveAction2, saveAction, cancel])
     }
 }

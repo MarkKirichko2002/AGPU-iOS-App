@@ -546,6 +546,7 @@
 		82D37FD72BEC29FD0035CB57 /* SavedImagesListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D37FD62BEC29FD0035CB57 /* SavedImagesListViewModel + Extensions.swift */; };
 		82D37FDA2BEC2B690035CB57 /* SavedImagesListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D37FD92BEC2B690035CB57 /* SavedImagesListTableViewController + Extensions.swift */; };
 		82D37FDD2BEC2F470035CB57 /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D37FDC2BEC2F470035CB57 /* ImageDetailViewController.swift */; };
+		82D5B2E12C1B302B000C5963 /* TimetableDateDetailViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5B2E02C1B302B000C5963 /* TimetableDateDetailViewController + Extensions.swift */; };
 		82D6C32F2A5E189300FB7F5D /* TimeTableDayListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C32E2A5E189300FB7F5D /* TimeTableDayListTableViewController.swift */; };
 		82D6C3322A5E1DE100FB7F5D /* TimeTableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3312A5E1DE100FB7F5D /* TimeTableService.swift */; };
 		82D6C3342A5E1DEC00FB7F5D /* Discipline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3332A5E1DEC00FB7F5D /* Discipline.swift */; };
@@ -1165,6 +1166,7 @@
 		82D37FD62BEC29FD0035CB57 /* SavedImagesListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedImagesListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82D37FD92BEC2B690035CB57 /* SavedImagesListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedImagesListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		82D37FDC2BEC2F470035CB57 /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
+		82D5B2E02C1B302B000C5963 /* TimetableDateDetailViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimetableDateDetailViewController + Extensions.swift"; sourceTree = "<group>"; };
 		82D6C32E2A5E189300FB7F5D /* TimeTableDayListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableDayListTableViewController.swift; sourceTree = "<group>"; };
 		82D6C3312A5E1DE100FB7F5D /* TimeTableService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableService.swift; sourceTree = "<group>"; };
 		82D6C3332A5E1DEC00FB7F5D /* Discipline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discipline.swift; sourceTree = "<group>"; };
@@ -6424,6 +6426,7 @@
 			isa = PBXGroup;
 			children = (
 				82967C3A2BA24239001059B2 /* ViewController */,
+				82D5B2DF2C1B3017000C5963 /* Extensions */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -8022,6 +8025,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		82D5B2DF2C1B3017000C5963 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82D5B2E02C1B302B000C5963 /* TimetableDateDetailViewController + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		82D6C32D2A5E187400FB7F5D /* TimeTable Day */ = {
 			isa = PBXGroup;
 			children = (
@@ -9558,6 +9569,7 @@
 				82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */,
 				829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */,
 				82AB6D272AF6C0CC00F7B729 /* SavedNewsCategoryTableViewController.swift in Sources */,
+				82D5B2E12C1B302B000C5963 /* TimetableDateDetailViewController + Extensions.swift in Sources */,
 				8226D1912B09704B00B0B9F0 /* SavedPairTypeViewModel + Extensions.swift in Sources */,
 				82A29F452B9BD5D600756F43 /* SelectedFacultySplashScreenViewModel.swift in Sources */,
 				82C5615F2A6B75B700514B00 /* AppFeaturesList.swift in Sources */,
@@ -9944,7 +9956,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.6;
+				MARKETING_VERSION = 2.4.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -9983,7 +9995,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.4.6;
+				MARKETING_VERSION = 2.4.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

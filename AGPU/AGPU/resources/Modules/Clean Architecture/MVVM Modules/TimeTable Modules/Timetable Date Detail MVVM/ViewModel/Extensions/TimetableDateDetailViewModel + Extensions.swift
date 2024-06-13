@@ -34,6 +34,32 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
             }
         }
     }
+    
+    func getTimeTableForSearch(id: String, owner: String) {
+        timeTableService.getTimeTableDay(id: id, date: date, owner: owner) { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.pairs = data.disciplines
+                self?.allDisciplines = data.disciplines
+                if !data.disciplines.isEmpty {
+                    self?.getImage(json: data) { image in
+                        let model = TimeTableDateModel(id: data.id, date: self?.date ?? "", image: image, description: "\(self?.formattedDate() ?? "") пары: \(self?.getPairsCount() ?? 0)")
+                        self?.image = image
+                        self?.timeTableHandler?(model)
+                    }
+                } else {
+                    self?.getImage(json: data) { image in
+                        let model = TimeTableDateModel(id: data.id, date: self?.date ?? "", image: image, description: "\(self?.formattedDate() ?? "") нет пар")
+                        self?.image = image
+                        self?.timeTableHandler?(model)
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
         
     func getImage(json: Codable, completion: @escaping(UIImage)->Void) {
         do {
@@ -112,7 +138,7 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
         }
     }
     
-    private func filterLeftedPairs(pairs: [Discipline])-> [Discipline] {
+    func filterLeftedPairs(pairs: [Discipline])-> [Discipline] {
         
         var disciplines = [Discipline]()
         
