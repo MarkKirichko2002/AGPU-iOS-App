@@ -114,6 +114,14 @@ class TimetableDateDetailViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
+        let favouritesList = UIAction(title: "Избранное") { _ in
+            let vc = TimeTableFavouriteItemsListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         let filterAction = UIAction(title: "Фильтрация") { _ in
             let vc = PairTypesListTableViewController(type: self.viewModel.type, disciplines: self.viewModel.allDisciplines)
             vc.delegate = self
@@ -131,6 +139,7 @@ class TimetableDateDetailViewController: UIViewController {
         }
         let menu = UIMenu(title: date, children: [
             searchAction,
+            favouritesList,
             filterAction,
             saveTimetable,
             shareAction
@@ -207,9 +216,9 @@ class TimetableDateDetailViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        titleLabel.text = id
         viewModel.registerTimeTableHandler { [weak self] timetable in
             self?.timetableImage.image = timetable.image
+            self?.titleLabel.text = timetable.id
             self?.timetableDescription.text = timetable.description
             self?.timetableDescription.textColor =  self?.viewModel.textColor()
             self?.timetableImage.layer.borderColor =  self?.viewModel.textColor().cgColor

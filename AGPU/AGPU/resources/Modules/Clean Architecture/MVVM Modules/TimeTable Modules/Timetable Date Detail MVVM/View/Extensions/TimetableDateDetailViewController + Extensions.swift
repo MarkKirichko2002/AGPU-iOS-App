@@ -15,6 +15,14 @@ extension TimetableDateDetailViewController: TimeTableSearchListTableViewControl
     }
 }
 
+// MARK: - TimeTableFavouriteItemsListTableViewControllerDelegate
+extension TimetableDateDetailViewController: TimeTableFavouriteItemsListTableViewControllerDelegate {
+    
+    func WasSelected(result: SearchTimetableModel) {
+        viewModel.getTimeTableForSearch(id: result.name, owner: result.owner)
+    }
+}
+
 // MARK: - PairTypesListTableViewControllerDelegate
 extension TimetableDateDetailViewController: PairTypesListTableViewControllerDelegate {
     
