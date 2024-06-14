@@ -12,13 +12,14 @@ extension RecentWebPageViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         
+        if let url = webView.url?.absoluteString {
+            self.spinner.image = UIImage(named: viewModel.getCategoryIcon(url: url))
+            self.viewModel.checkWebPage(url: url)
+        }
+        
         DispatchQueue.main.async {
             self.spinner.isHidden = false
             self.animation.startRotateAnimation(view: self.spinner)
-        }
-        
-        if let url = webView.url?.absoluteString {
-            self.viewModel.checkWebPage(url: url)
         }
     }
     

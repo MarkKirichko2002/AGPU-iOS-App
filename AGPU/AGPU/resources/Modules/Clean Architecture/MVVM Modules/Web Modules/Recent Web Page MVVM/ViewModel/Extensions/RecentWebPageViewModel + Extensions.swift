@@ -58,4 +58,14 @@ extension RecentWebPageViewModel: RecentWebPageViewModelProtocol {
             print("NO")
         }
     }
+    
+    func getCategoryIcon(url: String)-> String {
+        let items = url.components(separatedBy: "/")
+        for item in items {
+            if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == item }) {
+                return newsCategory.icon
+            }
+        }
+        return "АГПУ"
+    }
 }

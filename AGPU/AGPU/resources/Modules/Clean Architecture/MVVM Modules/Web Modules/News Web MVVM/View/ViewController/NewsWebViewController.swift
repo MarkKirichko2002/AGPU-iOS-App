@@ -88,7 +88,7 @@ final class NewsWebViewController: UIViewController {
     
     private func setUpIndicatorView() {
         view.addSubview(spinner)
-        spinner.image = UIImage(named: viewModel.getCategoryIcon())
+        spinner.image = UIImage(named: viewModel.getCategoryIcon(url: url))
         NSLayoutConstraint.activate([
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor),

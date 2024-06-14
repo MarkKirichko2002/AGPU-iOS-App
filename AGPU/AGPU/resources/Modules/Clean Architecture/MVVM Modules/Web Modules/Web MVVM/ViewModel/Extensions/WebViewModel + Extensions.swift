@@ -69,6 +69,16 @@ extension WebViewModel: WebViewModelProtocol {
         }
     }
     
+    func getCategoryIcon(url: String)-> String {
+        let items = url.components(separatedBy: "/")
+        for item in items {
+            if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == item }) {
+                return newsCategory.icon
+            }
+        }
+        return "АГПУ"
+    }
+    
     func observeActions(block: @escaping(Actions)->Void) {
         NotificationCenter.default.addObserver(forName: Notification.Name("actions"), object: nil, queue: nil) { notification in
             if let action = notification.object as? Actions {

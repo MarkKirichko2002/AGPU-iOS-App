@@ -33,6 +33,11 @@ extension NewsWebViewController: UIScrollViewDelegate {
 extension NewsWebViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        
+        if let url = webView.url?.absoluteString {
+            self.spinner.image = UIImage(named: viewModel.getCategoryIcon(url: url))
+        }
+        
         DispatchQueue.main.async {
             self.animation.startRotateAnimation(view: self.spinner)
             self.spinner.isHidden = false
