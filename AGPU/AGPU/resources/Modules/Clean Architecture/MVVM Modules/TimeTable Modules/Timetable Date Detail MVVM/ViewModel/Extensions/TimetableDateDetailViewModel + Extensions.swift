@@ -36,6 +36,8 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
     }
     
     func getTimeTableForSearch(id: String, owner: String) {
+        self.type = .all
+        self.id = id
         timeTableService.getTimeTableDay(id: id, date: date, owner: owner) { [weak self] result in
             switch result {
             case .success(let data):
@@ -124,14 +126,14 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
         if !pairs.isEmpty {
             let timetable = TimeTable(id: id, date: date, disciplines: pairs)
             self.getImage(json: timetable) { image in
-                let model = TimeTableDateModel(id: self.owner, date: self.date, image: image, description: "\(self.formattedDate()) пары: \(self.getPairsCount())")
+                let model = TimeTableDateModel(id: self.id, date: self.date, image: image, description: "\(self.formattedDate()) пары: \(self.getPairsCount())")
                 self.image = image
                 self.timeTableHandler?(model)
             }
         } else {
             let timetable = TimeTable(id: id, date: date, disciplines: pairs)
             self.getImage(json: timetable) { image in
-                let model = TimeTableDateModel(id: self.owner, date: self.date, image: image, description: "\(self.formattedDate()) нет пар")
+                let model = TimeTableDateModel(id: self.id, date: self.date, image: image, description: "\(self.formattedDate()) нет пар")
                 self.image = image
                 self.timeTableHandler?(model)
             }

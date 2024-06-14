@@ -94,6 +94,7 @@ extension TimeTableDayListTableViewController: ITimeTableTableViewCell {
 extension TimeTableDayListTableViewController: TimeTableSearchListTableViewControllerDelegate {
     
     func itemWasSelected(result: SearchTimetableModel) {
+        self.type = .all
         self.getTimeTable(id: result.name, date: self.date, owner: result.owner)
         self.id = result.name
         self.owner = result.owner
