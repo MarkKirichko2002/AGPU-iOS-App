@@ -215,12 +215,6 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         }
     }
     
-    func observeVisualChangesOption() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("visual changes option"), object: nil, queue: .main) { _ in
-            self.checkWhatsNew()
-        }
-    }
-    
     func observeFilterOption() {
         NotificationCenter.default.addObserver(forName: Notification.Name("news filter option"), object: nil, queue: .main) { notification in
             if let option = notification.object as? NewsOptionsFilters {
@@ -235,6 +229,18 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                     break
                 }
             }
+        }
+    }
+    
+    func observeVisualChangesOption() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("visual changes option"), object: nil, queue: .main) { _ in
+            self.checkWhatsNew()
+        }
+    }
+    
+    func observePositionOption() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("news options position"), object: nil, queue: .main) { _ in
+            self.dataChangedHandler?(self.abbreviation)
         }
     }
     
@@ -286,7 +292,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         }
     }
     
-    func registerCategoryChangedHandler(block: @escaping(String)->Void) {
+    func registerDataChangedHandler(block: @escaping(String)->Void) {
         self.dataChangedHandler = block
     }
     

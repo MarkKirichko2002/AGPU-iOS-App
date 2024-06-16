@@ -179,6 +179,12 @@ final class NewsListViewController: UIViewController {
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true)
         }
+        let settingsAction = UIAction(title: "Настройки") { _ in
+            let vc = NewsOptionsPositionListTableViewController()
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
         
         var titleView = CustomTitleView(image: "АГПУ", title: "Новости АГПУ", frame: .zero)
         
@@ -188,7 +194,7 @@ final class NewsListViewController: UIViewController {
         
         viewModel.checkSettings()
         
-        viewModel.registerCategoryChangedHandler { [weak self] abbreviation in
+        viewModel.registerDataChangedHandler { [weak self] abbreviation in
             
             guard let self = self else { return }
             
@@ -222,18 +228,30 @@ final class NewsListViewController: UIViewController {
                 }
             }
             
-            menu = UIMenu(title: "Новости", children: [
+            var opt: [UIMenuElement] = [
                 categoriesAction,
                 whatsNewAction,
                 pagesAction,
                 recentNews,
                 displayModes,
                 filterOptions,
-                randomAction
-            ])
+                randomAction,
+                settingsAction
+            ]
+            
+            let position = UserDefaults.standard.object(forKey: "news options position") as? [Int] ?? [0,1,2,3,4,5,6,7]
+            
+            for option in opt {
+                for number in position {
+                    let index = opt.firstIndex(of: option)!
+                    print("индекс: \(index) позиция: \(number)")
+                    opt.swapAt(index, number)
+                }
+            }
+            
+            menu = UIMenu(title: "Новости", children: opt)
             options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
             options.tintColor = .label
-            
             
             switch viewModel.displayMode {
                 
@@ -321,5 +339,6 @@ final class NewsListViewController: UIViewController {
         viewModel.observeStrokeOption()
         viewModel.observeFilterOption()
         viewModel.observeVisualChangesOption()
+        viewModel.observePositionOption()
     }
 }
