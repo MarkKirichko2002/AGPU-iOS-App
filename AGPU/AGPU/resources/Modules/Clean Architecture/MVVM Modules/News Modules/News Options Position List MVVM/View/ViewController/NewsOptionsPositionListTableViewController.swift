@@ -41,14 +41,13 @@ class NewsOptionsPositionListTableViewController: UITableViewController {
     }
     
     func setUpEditButton(title: String) {
-        let moveButton = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(moveTabs))
+        let moveButton = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(moveOptions))
         moveButton.tintColor = .label
         navigationItem.rightBarButtonItem = moveButton
     }
     
-    @objc private func moveTabs() {
+    @objc private func moveOptions() {
         if tableView.isEditing {
-            NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
             setUpEditButton(title: "Править")
             tableView.isEditing = false
         } else {
@@ -67,7 +66,9 @@ class NewsOptionsPositionListTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-        viewModel.getData()
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { _ in
+            self.viewModel.getData()
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -78,6 +79,10 @@ class NewsOptionsPositionListTableViewController: UITableViewController {
         if tableView.isEditing {
             viewModel.saveNewsOptionsPosition(sourceIndexPath.row, destinationIndexPath.row)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

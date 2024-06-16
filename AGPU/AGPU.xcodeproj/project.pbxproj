@@ -4499,14 +4499,14 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		826FB3862C1F6667007EDA25 /* News Options Position List MMV */ = {
+		826FB3862C1F6667007EDA25 /* News Options Position List MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				826FB3892C1F66B4007EDA25 /* Model */,
 				826FB3882C1F66B0007EDA25 /* View */,
 				826FB3872C1F66AE007EDA25 /* ViewModel */,
 			);
-			path = "News Options Position List MMV";
+			path = "News Options Position List MVVM";
 			sourceTree = "<group>";
 		};
 		826FB3872C1F66AE007EDA25 /* ViewModel */ = {
@@ -7405,7 +7405,7 @@
 				82C26C742BD7F0790039D86D /* Display Mode Options List MVVM */,
 				82FC22E02BC01AC2008709DA /* News Options Filter List MVVM */,
 				82967C192BA0816F001059B2 /* Recent News List MVVM */,
-				826FB3862C1F6667007EDA25 /* News Options Position List MMV */,
+				826FB3862C1F6667007EDA25 /* News Options Position List MVVM */,
 			);
 			path = "News Modules";
 			sourceTree = "<group>";
