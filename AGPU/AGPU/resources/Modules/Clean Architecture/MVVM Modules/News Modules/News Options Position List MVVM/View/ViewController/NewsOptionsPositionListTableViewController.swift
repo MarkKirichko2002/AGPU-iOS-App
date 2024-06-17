@@ -9,6 +9,8 @@ import UIKit
 
 class NewsOptionsPositionListTableViewController: UITableViewController {
 
+    var isSettings = false
+    
     // MARK: - сервисы
     private let viewModel = NewsOptionsPositionListViewModel()
     
@@ -21,7 +23,11 @@ class NewsOptionsPositionListTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         setUpNavigationTitle()
-        setUpCloseButton()
+        if isSettings {
+            setUpBackButton()
+        } else {
+            setUpCloseButton()
+        }
         setUpEditButton(title: "Править")
     }
     
@@ -33,6 +39,24 @@ class NewsOptionsPositionListTableViewController: UITableViewController {
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .label
         navigationItem.leftBarButtonItem = closeButton
+    }
+    
+    func setUpBackButton() {
+        
+        let button = UIButton()
+        button.tintColor = .label
+        button.setImage(UIImage(named: "back"), for: .normal)
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        
+        let backButton = UIBarButtonItem(customView: button)
+        
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
+        navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc private func back() {
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func close() {

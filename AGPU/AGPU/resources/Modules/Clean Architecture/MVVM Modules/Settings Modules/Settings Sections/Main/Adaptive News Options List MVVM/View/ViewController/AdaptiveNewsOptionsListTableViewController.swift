@@ -21,6 +21,7 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
     
     private func setUpTable() {
         tableView.register(UINib(nibName: SavedNewsCategoryOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SavedNewsCategoryOptionTableViewCell.identifier)
+        tableView.register(UINib(nibName: NewsOptionsPostionOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: NewsOptionsPostionOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: DisplayModeOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DisplayModeOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: AdaptToWebOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AdaptToWebOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: ShowOnlyDailyNewsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ShowOnlyDailyNewsTableViewCell.identifier)
@@ -56,6 +57,10 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
             let vc = SavedNewsCategoryTableViewController()
             navigationController?.pushViewController(vc, animated: true)
         case 1:
+            let vc = NewsOptionsPositionListTableViewController()
+            vc.isSettings = true
+            navigationController?.pushViewController(vc, animated: true)
+        case 2:
             let vc = SavedDisplayModeTableViewController()
             navigationController?.pushViewController(vc, animated: true)
         default:
@@ -64,7 +69,7 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -73,13 +78,16 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
             cell.configure(category: viewModel.getSavedNewsCategoryInfo())
             return cell
         } else if indexPath.row == 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsOptionsPostionOptionTableViewCell.identifier, for: indexPath) as? NewsOptionsPostionOptionTableViewCell else {return UITableViewCell()}
+            return cell
+        } else if indexPath.row == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DisplayModeOptionTableViewCell.identifier, for: indexPath) as? DisplayModeOptionTableViewCell else {return UITableViewCell()}
             cell.configure(mode: viewModel.getDisplayModeInfo())
             return cell
-        } else if indexPath.row == 2 {
+        } else if indexPath.row == 3 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AdaptToWebOptionTableViewCell.identifier, for: indexPath) as? AdaptToWebOptionTableViewCell else {return UITableViewCell()}
             return cell
-        } else if indexPath.row == 3 {
+        } else if indexPath.row == 4 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ShowOnlyDailyNewsTableViewCell.identifier, for: indexPath) as? ShowOnlyDailyNewsTableViewCell else {return UITableViewCell()}
             return cell
         } else {
