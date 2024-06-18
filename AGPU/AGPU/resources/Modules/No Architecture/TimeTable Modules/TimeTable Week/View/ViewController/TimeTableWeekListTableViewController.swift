@@ -76,6 +76,14 @@ final class TimeTableWeekListTableViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
+        let groupsList = UIAction(title: "Группы") { _ in
+            let vc = AllGroupsListTableViewController(group: self.id)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         // список дней
         let days = UIAction(title: "День") { _ in
             let vc = WeekDaysListTableViewController(id: self.id, owner: self.owner, week: self.week, timetable: self.timetable, currentDate: self.currentDate)
@@ -104,7 +112,14 @@ final class TimeTableWeekListTableViewController: UIViewController {
             self.showSaveImageAlert()
         }
         
-        let menu = UIMenu(title: "Расписание", children: [searchAction, days, favouritesList, saveTimetable, share])
+        let menu = UIMenu(title: "Расписание", children: [
+            searchAction,
+            groupsList,
+            days,
+            favouritesList,
+            saveTimetable,
+            share
+        ])
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         options.tintColor = .label
         navigationItem.leftBarButtonItem = closeButton
