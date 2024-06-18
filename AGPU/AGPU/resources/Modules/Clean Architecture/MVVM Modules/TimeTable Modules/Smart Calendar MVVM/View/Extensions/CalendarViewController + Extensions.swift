@@ -36,8 +36,8 @@ extension CalendarViewController: FSCalendarDelegateAppearance {
 // MARK: - TimetableDateDetailViewControllerDelegate
 extension CalendarViewController: TimetableDateDetailViewControllerDelegate {
     
-    func dateWasSelected(date: String) {
-        delegate?.dateWasSelected(date: date)
+    func dateWasSelected(id: String, date: String, owner: String, type: PairType) {
+        delegate?.dateWasSelected(id: id, date: date, owner: owner, type: type)
         self.dismiss(animated: true)
     }
 }

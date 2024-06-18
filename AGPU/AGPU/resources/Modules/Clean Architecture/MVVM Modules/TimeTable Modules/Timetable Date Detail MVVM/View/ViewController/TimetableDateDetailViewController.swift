@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol TimetableDateDetailViewControllerDelegate: AnyObject {
-    func dateWasSelected(date: String)
+    func dateWasSelected(id: String, date: String, owner: String, type: PairType)
 }
 
 class TimetableDateDetailViewController: UIViewController {
@@ -233,7 +233,7 @@ class TimetableDateDetailViewController: UIViewController {
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
             self?.dismiss(animated: true)
-            self?.delegate?.dateWasSelected(date: self?.date ?? "")
+            self?.delegate?.dateWasSelected(id: self?.viewModel.id ?? "", date: self?.date ?? "", owner: self?.viewModel.owner ?? "", type: self?.viewModel.type ?? .all)
         }
     }
 }

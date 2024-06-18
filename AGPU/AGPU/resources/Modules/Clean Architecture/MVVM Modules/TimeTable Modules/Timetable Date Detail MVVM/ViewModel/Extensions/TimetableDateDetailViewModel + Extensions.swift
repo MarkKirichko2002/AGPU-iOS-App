@@ -38,6 +38,7 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
     func getTimeTableForSearch(id: String, owner: String) {
         self.type = .all
         self.id = id
+        self.owner = owner
         timeTableService.getTimeTableDay(id: id, date: date, owner: owner) { [weak self] result in
             switch result {
             case .success(let data):
