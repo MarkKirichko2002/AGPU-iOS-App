@@ -15,6 +15,14 @@ extension TimetableDateDetailViewController: TimeTableSearchListTableViewControl
     }
 }
 
+// MARK: - AllGroupsListTableViewControllerDelegate
+extension TimetableDateDetailViewController: AllGroupsListTableViewControllerDelegate {
+    
+    func groupWasSelected(group: String) {
+        viewModel.getTimeTableForSearch(id: group, owner: "GROUP")
+    }
+}
+
 // MARK: - TimeTableFavouriteItemsListTableViewControllerDelegate
 extension TimetableDateDetailViewController: TimeTableFavouriteItemsListTableViewControllerDelegate {
     

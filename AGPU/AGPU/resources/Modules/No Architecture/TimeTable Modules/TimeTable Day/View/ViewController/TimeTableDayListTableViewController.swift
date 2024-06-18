@@ -76,8 +76,9 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
         
         // список групп
-        let groupList = UIAction(title: "Группы") { _ in
+        let groupsList = UIAction(title: "Группы") { _ in
             let vc = AllGroupsListTableViewController(group: self.id)
+            vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -156,7 +157,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         let menu = UIMenu(title: "Расписание", children: [
             searchAction,
-            groupList,
+            groupsList,
             subGroupsList,
             favouritesList,
             days,
@@ -272,10 +273,9 @@ final class TimeTableDayListTableViewController: UIViewController {
     private func observeGroupChange() {
         NotificationCenter.default.addObserver(forName: Notification.Name("group changed"), object: nil, queue: .main) { notification in
             let id = notification.object as? String ?? "ВМ-ИВТ-2-1"
-            self.getTimeTable(id: id, date: self.date, owner: "GROUP")
             self.id = id
             self.owner = "GROUP"
-            print(self.id)
+            self.getTimeTable(id: self.id, date: self.date, owner: self.owner)
         }
     }
     

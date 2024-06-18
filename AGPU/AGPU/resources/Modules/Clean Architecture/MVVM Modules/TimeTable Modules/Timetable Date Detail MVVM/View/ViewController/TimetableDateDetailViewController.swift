@@ -114,6 +114,14 @@ class TimetableDateDetailViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
+        let groupsList = UIAction(title: "Группы") { _ in
+            let vc = AllGroupsListTableViewController(group: self.viewModel.id)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         let favouritesList = UIAction(title: "Избранное") { _ in
             let vc = TimeTableFavouriteItemsListTableViewController()
             vc.delegate = self
@@ -139,6 +147,7 @@ class TimetableDateDetailViewController: UIViewController {
         }
         let menu = UIMenu(title: date, children: [
             searchAction,
+            groupsList,
             favouritesList,
             filterAction,
             saveTimetable,

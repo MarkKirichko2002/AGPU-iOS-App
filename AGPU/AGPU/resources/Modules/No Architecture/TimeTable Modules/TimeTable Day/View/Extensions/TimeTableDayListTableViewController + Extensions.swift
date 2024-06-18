@@ -102,6 +102,16 @@ extension TimeTableDayListTableViewController: TimeTableSearchListTableViewContr
     }
 }
 
+// MARK: - AllGroupsListTableViewControllerDelegate
+extension TimeTableDayListTableViewController: AllGroupsListTableViewControllerDelegate {
+    
+    func groupWasSelected(group: String) {
+        self.id = group
+        self.owner = "GROUP"
+        self.getTimeTable(id: self.id, date: self.date, owner: self.owner)
+    }
+}
+
 // MARK: - TimeTableFavouriteItemsListTableViewControllerDelegate
 extension TimeTableDayListTableViewController: TimeTableFavouriteItemsListTableViewControllerDelegate {
     

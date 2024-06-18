@@ -7,12 +7,18 @@
 
 import UIKit
 
+protocol AllGroupsListTableViewControllerDelegate: AnyObject {
+    func groupWasSelected(group: String)
+}
+
 class AllGroupsListTableViewController: UITableViewController {
 
     private var group: String = ""
     
     // MARK: - сервисы
     private var viewModel: AllGroupsListViewModel!
+    
+    weak var delegate: AllGroupsListTableViewControllerDelegate?
     
     // MARK: - Init
     init(group: String) {
@@ -95,6 +101,7 @@ class AllGroupsListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.selectGroup(section: indexPath.section, index: indexPath.row)
+        delegate?.groupWasSelected(group: viewModel.groupItem(section: indexPath.section, index: indexPath.row))
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
