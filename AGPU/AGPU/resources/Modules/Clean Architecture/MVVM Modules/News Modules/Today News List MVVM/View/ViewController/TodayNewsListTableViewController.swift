@@ -15,9 +15,11 @@ class TodayNewsListTableViewController: UIViewController {
     
     // MARK: - UI
     let tableView = UITableView()
+    
     private let noNewsLabel = UILabel()
-    private let spinner: UIImageView = {
-        let imageView = UIImageView()
+    
+    private let spinner: SpringImageView = {
+        let imageView = SpringImageView()
         imageView.image = UIImage(named: "mail icon")
         imageView.tintColor = .label
         imageView.translatesAutoresizingMaskIntoConstraints = false

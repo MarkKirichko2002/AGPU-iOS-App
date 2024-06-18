@@ -20,14 +20,17 @@ class CurrentDateTimeTableDayListTableViewController: UIViewController {
     
     // MARK: - UI
     let tableView = UITableView()
-    private let spinner: UIImageView = {
-        let imageView = UIImageView()
+    
+    private let spinner: SpringImageView = {
+        let imageView = SpringImageView()
         imageView.image = UIImage(named: "clock")
         imageView.tintColor = .label
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    
     private let noTimeTableLabel = UILabel()
+    
     private let refresh = UIRefreshControl()
     
     // MARK: - Init

@@ -19,12 +19,14 @@ final class WebViewController: UIViewController {
     
     // MARK: - UI
     let WVWEBview = WKWebView(frame: .zero)
-    let spinner: UIImageView = {
-        let imageView = UIImageView()
+    
+    let spinner: SpringImageView = {
+        let imageView = SpringImageView()
         imageView.image = UIImage(named: "АГПУ")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    
     var titleView: CustomTitleView!
     
     // MARK: - Init

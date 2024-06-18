@@ -39,9 +39,8 @@ final class NewsListViewController: UIViewController {
     
     private let noNewsLabel = UILabel()
     
-    let spinner: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "mail icon")
+    let spinner: SpringImageView = {
+        let imageView = SpringImageView()
         imageView.tintColor = .label
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -121,10 +120,13 @@ final class NewsListViewController: UIViewController {
     
     private func setUpIndicatorView() {
         view.addSubview(spinner)
+        spinner.image = UIImage(named: viewModel.getCurrentCategoryIcon())
         spinner.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            spinner.widthAnchor.constraint(equalToConstant: 75),
+            spinner.heightAnchor.constraint(equalToConstant: 75)
         ])
         self.spinner.isHidden = false
         self.animation.startRotateAnimation(view: self.spinner)
@@ -202,11 +204,13 @@ final class NewsListViewController: UIViewController {
                 if abbreviation != "-" {
                     if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == abbreviation }) {
                         titleView = CustomTitleView(image: "\(newsCategory.icon)", title: "\(newsCategory.name) новости", frame: .zero)
+                        self.spinner.image = UIImage(named: newsCategory.icon)
                         self.spinner.isHidden = true
                         self.animation.stopRotateAnimation(view: self.spinner)
                     }
                 } else {
                     titleView = CustomTitleView(image: "АГПУ", title: "АГПУ новости", frame: .zero)
+                    self.spinner.image = UIImage(named: "АГПУ")
                     self.spinner.isHidden = true
                     self.animation.stopRotateAnimation(view: self.spinner)
                 }

@@ -18,8 +18,9 @@ final class WordDocumentReaderViewController: UIViewController {
     
     // MARK: - UI
     let WVWEBview = WKWebView(frame: .zero)
-    let spinner: UIImageView = {
-        let imageView = UIImageView()
+    
+    let spinner: SpringImageView = {
+        let imageView = SpringImageView()
         imageView.image = UIImage(named: "word")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView

@@ -27,14 +27,17 @@ final class TimeTableDayListTableViewController: UIViewController {
     
     // MARK: - UI
     let tableView = UITableView()
-    private let spinner: UIImageView = {
-        let imageView = UIImageView()
+    
+    private let spinner: SpringImageView = {
+        let imageView = SpringImageView()
         imageView.image = UIImage(named: "clock")
         imageView.tintColor = .label
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    
     private let infoLabel = UILabel()
+    
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {

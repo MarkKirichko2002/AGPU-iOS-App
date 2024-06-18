@@ -72,6 +72,14 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         return false
     }
     
+    func getCurrentCategoryIcon()-> String {
+        let savedNewsCategory = UserDefaults.standard.object(forKey: "category") as? String ?? "-"
+        if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == savedNewsCategory }) {
+            return newsCategory.icon
+        }
+        return "АГПУ"
+    }
+    
     // получить новости в зависимости от типа
     func getNewsByCurrentType() {
         let savedNewsCategory = UserDefaults.standard.object(forKey: "category") as? String ?? "-"
