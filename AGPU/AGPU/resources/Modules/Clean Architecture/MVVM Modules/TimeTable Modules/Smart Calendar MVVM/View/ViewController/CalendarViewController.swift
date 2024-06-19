@@ -9,7 +9,7 @@ import UIKit
 import FSCalendar
 
 protocol CalendarViewControllerDelegate: AnyObject {
-    func dateWasSelected(id: String, date: String, owner: String, type: PairType)
+    func dateWasSelected(model: TimeTableChangesModel)
 }
 
 final class CalendarViewController: UIViewController {

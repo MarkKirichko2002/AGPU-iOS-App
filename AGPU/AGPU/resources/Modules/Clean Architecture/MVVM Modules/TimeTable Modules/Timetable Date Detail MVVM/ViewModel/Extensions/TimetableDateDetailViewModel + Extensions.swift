@@ -17,17 +17,9 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
                 self?.pairs = data.disciplines
                 self?.allDisciplines = data.disciplines
                 if !data.disciplines.isEmpty {
-                    self?.getImage(json: data) { image in
-                        let model = TimeTableDateModel(id: data.id, date: self?.date ?? "", image: image, description: "\(self?.formattedDate() ?? "") пары: \(self?.getPairsCount() ?? 0)")
-                        self?.image = image
-                        self?.timeTableHandler?(model)
-                    }
+                    self?.createImage()
                 } else {
-                    self?.getImage(json: data) { image in
-                        let model = TimeTableDateModel(id: data.id, date: self?.date ?? "", image: image, description: "\(self?.formattedDate() ?? "") нет пар")
-                        self?.image = image
-                        self?.timeTableHandler?(model)
-                    }
+                    self?.createImage()
                 }
             case .failure(let error):
                 print(error)
@@ -124,21 +116,7 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
             self.pairs = filteredDisciplines
         }
         
-        if !pairs.isEmpty {
-            let timetable = TimeTable(id: id, date: date, disciplines: pairs)
-            self.getImage(json: timetable) { image in
-                let model = TimeTableDateModel(id: self.id, date: self.date, image: image, description: "\(self.formattedDate()) пары: \(self.getPairsCount())")
-                self.image = image
-                self.timeTableHandler?(model)
-            }
-        } else {
-            let timetable = TimeTable(id: id, date: date, disciplines: pairs)
-            self.getImage(json: timetable) { image in
-                let model = TimeTableDateModel(id: self.id, date: self.date, image: image, description: "\(self.formattedDate()) нет пар")
-                self.image = image
-                self.timeTableHandler?(model)
-            }
-        }
+        createImage()
     }
     
     func filterLeftedPairs(pairs: [Discipline])-> [Discipline] {
@@ -174,6 +152,43 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
         }
         
         return disciplines
+    }
+    
+    func filterPairs(by subgroup: Int) {
+        
+        self.subgroup = subgroup
+        
+        if self.allDisciplines.isEmpty {
+            self.allDisciplines = pairs
+        }
+        
+        let filteredDisciplines = self.allDisciplines.filter { $0.subgroup == subgroup }
+        
+        self.type = filteredDisciplines.first?.type ?? .all
+        
+        self.pairs = filteredDisciplines
+        
+        createImage()
+    }
+    
+    func createImage() {
+        if !pairs.isEmpty {
+            let timetable = TimeTable(id: id, date: date, disciplines: pairs)
+            self.getImage(json: timetable) { image in
+                let model = TimeTableDateModel(id: self.id, date: self.date, image: image, description: "\(self.formattedDate()) пары: \(self.getPairsCount())")
+                self.model = TimeTableChangesModel(id: self.id, date: self.date, owner: self.owner, type: self.type, subgroup: self.subgroup, filteredPairs: self.pairs, allPairs: self.allDisciplines)
+                self.image = image
+                self.timeTableHandler?(model)
+            }
+        } else {
+            let timetable = TimeTable(id: id, date: date, disciplines: pairs)
+            self.getImage(json: timetable) { image in
+                let model = TimeTableDateModel(id: self.id, date: self.date, image: image, description: "\(self.formattedDate()) нет пар")
+                self.model = TimeTableChangesModel(id: self.id, date: self.date, owner: self.owner, type: self.type, subgroup: self.subgroup, filteredPairs: self.pairs, allPairs: self.allDisciplines)
+                self.image = image
+                self.timeTableHandler?(model)
+            }
+        }
     }
     
     func formattedDate()-> String {

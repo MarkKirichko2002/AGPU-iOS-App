@@ -15,6 +15,8 @@ protocol ITimetableDateDetailViewModel {
     func textColor()-> UIColor
     func filterPairs(type: PairType)
     func filterLeftedPairs(pairs: [Discipline])-> [Discipline]
+    func filterPairs(by subgroup: Int)
+    func createImage()
     func formattedDate()-> String
     func saveImageToList()
     func registerTimeTableHandler(block: @escaping(TimeTableDateModel)->Void)

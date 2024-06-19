@@ -147,14 +147,16 @@ extension TimeTableDayListTableViewController: DaysListTableViewControllerDelega
 // MARK: - CalendarViewControllerDelegate
 extension TimeTableDayListTableViewController: CalendarViewControllerDelegate {
     
-    func dateWasSelected(id: String, date: String, owner: String, type: PairType) {
+    func dateWasSelected(model: TimeTableChangesModel)  {
         let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: date)
-        self.id = id
-        self.date = date
-        self.owner = owner
-        self.type = type
-        self.subgroup = 0
-        self.getTimeTable(id: self.id, date: self.date, owner: self.owner)
+        self.id = model.id
+        self.date = model.date
+        self.owner = model.owner
+        self.type = model.type
+        self.subgroup = model.subgroup
+        self.allDisciplines = model.allPairs
+        self.timetable?.disciplines = model.filteredPairs
+        self.tableView.reloadData()
         self.navigationItem.title = "\(dayOfWeek) \(date)"
     }
 }

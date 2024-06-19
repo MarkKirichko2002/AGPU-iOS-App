@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol TimetableDateDetailViewControllerDelegate: AnyObject {
-    func dateWasSelected(id: String, date: String, owner: String, type: PairType)
+    func dateWasSelected(model: TimeTableChangesModel)
 }
 
 class TimetableDateDetailViewController: UIViewController {
@@ -122,6 +122,14 @@ class TimetableDateDetailViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
+        let subGroupsList = UIAction(title: "Подгруппы") { _ in
+            let vc = SubGroupsListTableViewController(subgroup: self.viewModel.subgroup, disciplines: self.viewModel.allDisciplines)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         let favouritesList = UIAction(title: "Избранное") { _ in
             let vc = TimeTableFavouriteItemsListTableViewController()
             vc.delegate = self
@@ -148,6 +156,7 @@ class TimetableDateDetailViewController: UIViewController {
         let menu = UIMenu(title: date, children: [
             searchAction,
             groupsList,
+            subGroupsList,
             favouritesList,
             filterAction,
             saveTimetable,
@@ -241,8 +250,9 @@ class TimetableDateDetailViewController: UIViewController {
         selectDateButton.setTitle("Выбрано", for: .normal)
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
+            guard let model = self?.viewModel.model else {return}
             self?.dismiss(animated: true)
-            self?.delegate?.dateWasSelected(id: self?.viewModel.id ?? "", date: self?.date ?? "", owner: self?.viewModel.owner ?? "", type: self?.viewModel.type ?? .all)
+            self?.delegate?.dateWasSelected(model: model)
         }
     }
 }

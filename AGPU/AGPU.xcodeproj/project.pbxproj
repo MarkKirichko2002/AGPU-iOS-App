@@ -263,6 +263,7 @@
 		826FB3992C1F6D69007EDA25 /* NewsOptionsPositionListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826FB3982C1F6D69007EDA25 /* NewsOptionsPositionListViewModel + Extensions.swift */; };
 		826FB39D2C206924007EDA25 /* NewsOptionsPostionOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826FB39B2C206924007EDA25 /* NewsOptionsPostionOptionTableViewCell.swift */; };
 		826FB39E2C206924007EDA25 /* NewsOptionsPostionOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 826FB39C2C206924007EDA25 /* NewsOptionsPostionOptionTableViewCell.xib */; };
+		826FB3A02C22FED1007EDA25 /* TimeTableChangesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826FB39F2C22FED1007EDA25 /* TimeTableChangesModel.swift */; };
 		8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5442A578452008ACADC /* DateManagerProtocol.swift */; };
 		8270A5482A5784A2008ACADC /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8270A5472A5784A2008ACADC /* DateManager.swift */; };
 		82722D432A66462100149D06 /* AGPUBuildingPins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82722D422A66462100149D06 /* AGPUBuildingPins.swift */; };
@@ -888,6 +889,7 @@
 		826FB3982C1F6D69007EDA25 /* NewsOptionsPositionListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsOptionsPositionListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		826FB39B2C206924007EDA25 /* NewsOptionsPostionOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsOptionsPostionOptionTableViewCell.swift; sourceTree = "<group>"; };
 		826FB39C2C206924007EDA25 /* NewsOptionsPostionOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsOptionsPostionOptionTableViewCell.xib; sourceTree = "<group>"; };
+		826FB39F2C22FED1007EDA25 /* TimeTableChangesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableChangesModel.swift; sourceTree = "<group>"; };
 		8270A5442A578452008ACADC /* DateManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerProtocol.swift; sourceTree = "<group>"; };
 		8270A5472A5784A2008ACADC /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		82722D422A66462100149D06 /* AGPUBuildingPins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingPins.swift; sourceTree = "<group>"; };
@@ -4403,6 +4405,7 @@
 		8268886A2A34866D00434219 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				826FB3A12C22FEE9007EDA25 /* Timetable Changes */,
 				82426C6E2A71476D00D5AA57 /* For Every Status */,
 				82377F992B3365C600FF5045 /* Hints */,
 				822245902B28EC1C00DFCFA7 /* Actions */,
@@ -4580,6 +4583,14 @@
 				826FB39C2C206924007EDA25 /* NewsOptionsPostionOptionTableViewCell.xib */,
 			);
 			path = "News Options Postion Option";
+			sourceTree = "<group>";
+		};
+		826FB3A12C22FEE9007EDA25 /* Timetable Changes */ = {
+			isa = PBXGroup;
+			children = (
+				826FB39F2C22FED1007EDA25 /* TimeTableChangesModel.swift */,
+			);
+			path = "Timetable Changes";
 			sourceTree = "<group>";
 		};
 		8270A5462A578491008ACADC /* Date */ = {
@@ -9728,6 +9739,7 @@
 				82768AE22ABE12F30022FBE1 /* AppThemeModel.swift in Sources */,
 				82F5787D2B6FE4B400BC64C1 /* ASPUButtonActions.swift in Sources */,
 				8299E3B62B8A31F800D81472 /* TimetableDateDetailViewModel + Extensions.swift in Sources */,
+				826FB3A02C22FED1007EDA25 /* TimeTableChangesModel.swift in Sources */,
 				821B72942BD2ED0B000460E2 /* RandomSplashScreenViewModel + Extensions.swift in Sources */,
 				82920B882AD8823000352CD8 /* SelectedFacultyListTableViewController.swift in Sources */,
 				82BCB5742AB3AD0E00F3A321 /* PairTypesListViewModel.swift in Sources */,

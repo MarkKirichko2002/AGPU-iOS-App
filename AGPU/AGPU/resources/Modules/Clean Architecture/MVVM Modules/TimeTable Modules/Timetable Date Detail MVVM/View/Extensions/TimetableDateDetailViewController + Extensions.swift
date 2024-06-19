@@ -23,6 +23,14 @@ extension TimetableDateDetailViewController: AllGroupsListTableViewControllerDel
     }
 }
 
+// MARK: - SubGroupsListTableViewControllerDelegate
+extension TimetableDateDetailViewController: SubGroupsListTableViewControllerDelegate {
+    
+    func subGroupWasSelected(subgroup: Int) {
+        viewModel.filterPairs(by: subgroup)
+    }
+}
+
 // MARK: - TimeTableFavouriteItemsListTableViewControllerDelegate
 extension TimetableDateDetailViewController: TimeTableFavouriteItemsListTableViewControllerDelegate {
     

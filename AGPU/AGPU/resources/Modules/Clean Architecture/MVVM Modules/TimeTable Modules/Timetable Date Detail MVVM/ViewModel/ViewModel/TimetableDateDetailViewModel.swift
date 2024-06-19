@@ -17,7 +17,10 @@ class TimetableDateDetailViewModel {
     var id: String = ""
     var date: String = ""
     var owner: String = ""
+    var subgroup: Int = 0
     var image: UIImage?
+    
+    var model = TimeTableChangesModel(id: "", date: "", owner: "", type: .all, subgroup: 0, filteredPairs: [], allPairs: [])
     
     // MARK: - сервисы
     let timeTableService = TimeTableService()
