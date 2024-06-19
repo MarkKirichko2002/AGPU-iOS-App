@@ -21,10 +21,19 @@ class ARViewController: UIViewController {
     }
     
     private func setUpNavigation() {
+        let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refresh))
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
+        refreshButton.tintColor = .label
         closeButton.tintColor = .label
         navigationItem.title = "AR режим"
+        navigationItem.leftBarButtonItem = refreshButton
         navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    @objc private func refresh() {
+        let boxAnchor = createBoxWithImage()
+        arView.scene.anchors.removeAll()
+        arView.scene.anchors.append(boxAnchor)
     }
     
     @objc private func closeScreen() {
@@ -42,7 +51,7 @@ class ARViewController: UIViewController {
         
     }
     
-    func createBoxWithImage() -> AnchorEntity {
+    func createBoxWithImage()-> AnchorEntity {
         
         let boxMesh = MeshResource.generateBox(size: 0.3)
         
@@ -52,7 +61,7 @@ class ARViewController: UIViewController {
             
             let boxModel = ModelEntity(mesh: boxMesh, materials: [material])
             
-            let boxAnchor = AnchorEntity(plane: .horizontal)
+            let boxAnchor = AnchorEntity(plane: .any)
             boxModel.position = SIMD3(0, 0, 0)
             boxAnchor.addChild(boxModel)
             
