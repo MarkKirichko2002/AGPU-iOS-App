@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SubGroupsListTableViewControllerDelegate: AnyObject {
+    func subGroupWasSelected(subgroup: Int)
+}
+
 class SubGroupsListTableViewController: UITableViewController {
 
     var subgroup: Int
@@ -14,6 +18,8 @@ class SubGroupsListTableViewController: UITableViewController {
     
     // MARK: - сервисы
     private let viewModel: SubGroupsListViewModel
+    
+    weak var delegate: SubGroupsListTableViewControllerDelegate?
     
     // MARK: - Init
     init(subgroup: Int, disciplines: [Discipline]) {
@@ -71,8 +77,9 @@ class SubGroupsListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         viewModel.selectSubGroup(index: indexPath.row)
+        delegate?.subGroupWasSelected(subgroup: viewModel.subGroupNumber(index: indexPath.row))
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

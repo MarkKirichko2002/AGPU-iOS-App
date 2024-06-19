@@ -94,11 +94,11 @@ extension TimeTableDayListTableViewController: ITimeTableTableViewCell {
 extension TimeTableDayListTableViewController: TimeTableSearchListTableViewControllerDelegate {
     
     func itemWasSelected(result: SearchTimetableModel) {
-        self.type = .all
-        self.getTimeTable(id: result.name, date: self.date, owner: result.owner)
-        self.id = result.name
-        self.owner = result.owner
-        print(self.owner)
+        type = .all
+        getTimeTable(id: result.name, date: self.date, owner: result.owner)
+        id = result.name
+        owner = result.owner
+        print(owner)
     }
 }
 
@@ -106,9 +106,17 @@ extension TimeTableDayListTableViewController: TimeTableSearchListTableViewContr
 extension TimeTableDayListTableViewController: AllGroupsListTableViewControllerDelegate {
     
     func groupWasSelected(group: String) {
-        self.id = group
-        self.owner = "GROUP"
-        self.getTimeTable(id: self.id, date: self.date, owner: self.owner)
+        id = group
+        owner = "GROUP"
+        getTimeTable(id: self.id, date: self.date, owner: self.owner)
+    }
+}
+
+// MARK: - SubGroupsListTableViewControllerDelegate
+extension TimeTableDayListTableViewController: SubGroupsListTableViewControllerDelegate {
+    
+    func subGroupWasSelected(subgroup: Int) {
+        filterPairs(by: subgroup)
     }
 }
 

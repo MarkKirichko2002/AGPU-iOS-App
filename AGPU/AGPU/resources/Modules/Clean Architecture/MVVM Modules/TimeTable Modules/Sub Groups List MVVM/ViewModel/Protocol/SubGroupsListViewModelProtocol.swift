@@ -9,6 +9,7 @@ import Foundation
 
 protocol SubGroupsListViewModelProtocol {
     func numberOfSubGroups()-> Int
+    func subGroupNumber(index: Int)-> Int
     func subgroupItem(index: Int)-> String
     func getPairsCount(pairs: [Discipline])
     func selectSubGroup(index: Int)

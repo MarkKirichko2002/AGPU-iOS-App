@@ -90,6 +90,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         // список подгрупп
         let subGroupsList = UIAction(title: "Подгруппы") { _ in
             let vc = SubGroupsListTableViewController(subgroup: self.subgroup, disciplines: self.allDisciplines)
+            vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -287,19 +288,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         NotificationCenter.default.addObserver(forName: Notification.Name("subgroup changed"), object: nil, queue: .main) { notification in
             
             if let subgroup = notification.object as? Int {
-                
-                self.subgroup = subgroup
-                
-                if self.allDisciplines.isEmpty {
-                    self.allDisciplines = self.timetable!.disciplines
-                }
-                
-                let filteredDisciplines = self.allDisciplines.filter { $0.subgroup == subgroup }
-                
-                self.type = filteredDisciplines.first?.type ?? .all
-                
-                self.timetable?.disciplines = filteredDisciplines
-                self.tableView.reloadData()
+                self.filterPairs(by: subgroup)
             }
         }
     }
@@ -374,6 +363,22 @@ final class TimeTableDayListTableViewController: UIViewController {
             
             self.tableView.reloadData()
         }
+    }
+    
+    func filterPairs(by subgroup: Int) {
+        
+        self.subgroup = subgroup
+        
+        if self.allDisciplines.isEmpty {
+            self.allDisciplines = self.timetable!.disciplines
+        }
+        
+        let filteredDisciplines = self.allDisciplines.filter { $0.subgroup == subgroup }
+        
+        self.type = filteredDisciplines.first?.type ?? .all
+        
+        self.timetable?.disciplines = filteredDisciplines
+        self.tableView.reloadData()
     }
     
     private func filterLeftedPairs(pairs: [Discipline])-> [Discipline] {

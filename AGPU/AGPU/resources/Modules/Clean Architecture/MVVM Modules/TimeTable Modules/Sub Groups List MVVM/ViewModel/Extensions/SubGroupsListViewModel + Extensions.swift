@@ -14,6 +14,10 @@ extension SubGroupsListViewModel: SubGroupsListViewModelProtocol {
         return SubGroupsList.subgroups.count
     }
     
+    func subGroupNumber(index: Int)-> Int {
+        return SubGroupsList.subgroups[index].number
+    }
+    
     func subgroupItem(index: Int)-> String {
         let subgroup = SubGroupsList.subgroups[index]
         return "\(subgroup.name) (пар: \(subgroup.pairsCount))"
@@ -62,7 +66,6 @@ extension SubGroupsListViewModel: SubGroupsListViewModelProtocol {
     
     func selectSubGroup(index: Int) {
         let subgroupItem = SubGroupsList.subgroups[index]
-        NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: subgroupItem.number)
         subgroup = subgroupItem.number
         subGroupSelectedHandler?()
         HapticsManager.shared.hapticFeedback()
