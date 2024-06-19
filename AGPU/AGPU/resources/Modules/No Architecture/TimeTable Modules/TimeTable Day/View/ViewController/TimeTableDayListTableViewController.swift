@@ -27,6 +27,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     
     // MARK: - UI
     let tableView = UITableView()
+    var image = UIImage()
     
     private let spinner: SpringImageView = {
         let imageView = SpringImageView()
@@ -76,6 +77,16 @@ final class TimeTableDayListTableViewController: UIViewController {
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
+        }
+        
+        let ARAction = UIAction(title: "AR режим") { _ in
+            let vc = ARViewController()
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.createImage {
+                vc.image = self.image
+                self.present(navVC, animated: true)
+            }
         }
         
         // список групп
@@ -161,6 +172,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         let menu = UIMenu(title: "Расписание", children: [
             searchAction,
+            ARAction,
             groupsList,
             subGroupsList,
             favouritesList,
@@ -187,6 +199,19 @@ final class TimeTableDayListTableViewController: UIViewController {
         self.subgroup = 0
         getTimeTable(id: id, date: date, owner: owner)
         NotificationCenter.default.post(name: Notification.Name("refreshed"), object: nil)
+    }
+    
+    private func createImage(completion: @escaping()->Void) {
+        do {
+            let json = try JSONEncoder().encode(self.timetable)
+            self.service.getTimeTableDayImage(json: json) { image in
+                self.image = image
+                HapticsManager.shared.hapticFeedback()
+                completion()
+            }
+        } catch {
+            print(error)
+        }
     }
     
     private func setUpIndicatorView() {
