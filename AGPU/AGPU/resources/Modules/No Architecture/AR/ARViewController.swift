@@ -31,9 +31,12 @@ class ARViewController: UIViewController {
     }
     
     @objc private func refresh() {
-        let boxAnchor = createBoxWithImage()
+        let box = createBox()
+        let anchor = setAnchor(model: box)
+        installGestures(on: box)
         arView.scene.anchors.removeAll()
-        arView.scene.anchors.append(boxAnchor)
+        arView.scene.anchors.append(anchor)
+        HapticsManager.shared.hapticFeedback()
     }
     
     @objc private func closeScreen() {
@@ -42,16 +45,15 @@ class ARViewController: UIViewController {
     }
     
     private func setUpARView() {
-        
-        let boxAnchor = createBoxWithImage()
-        
+        let box = createBox()
+        let anchor = setAnchor(model: box)
+        installGestures(on: box)
         view.addSubview(arView)
         arView.frame = view.bounds
-        arView.scene.anchors.append(boxAnchor)
-        
+        arView.scene.anchors.append(anchor)
     }
     
-    func createBoxWithImage()-> AnchorEntity {
+    func createBox()-> ModelEntity {
         
         let boxMesh = MeshResource.generateBox(size: 0.3)
         
@@ -61,13 +63,22 @@ class ARViewController: UIViewController {
             
             let boxModel = ModelEntity(mesh: boxMesh, materials: [material])
             
-            let boxAnchor = AnchorEntity(plane: .any)
-            boxModel.position = SIMD3(0, 0, 0)
-            boxAnchor.addChild(boxModel)
-            
-            return boxAnchor
+            return boxModel
         }
         
-        return AnchorEntity()
+        return ModelEntity()
+    }
+    
+    func setAnchor(model: ModelEntity)-> AnchorEntity {
+        let boxMesh = MeshResource.generateBox(size: 0.3)
+        let boxAnchor = AnchorEntity(plane: .any)
+        model.position = SIMD3(0, 0, 0)
+        boxAnchor.addChild(model)
+        return boxAnchor
+    }
+    
+    private func installGestures(on object: ModelEntity) {
+        object.generateCollisionShapes(recursive: true)
+        arView.installGestures([.all], for: object)
     }
 }
