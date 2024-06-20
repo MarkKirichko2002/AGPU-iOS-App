@@ -11,6 +11,7 @@ import RealityKit
 class ARViewController: UIViewController {
     
     var image = UIImage()
+    var plane: AnchoringComponent.Target.Alignment?
     
     private let arView = ARView()
     
@@ -21,18 +22,64 @@ class ARViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refresh))
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
-        refreshButton.tintColor = .label
+        let options =  UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpMenu())
+        options.tintColor = .label
         closeButton.tintColor = .label
         navigationItem.title = "AR режим"
-        navigationItem.leftBarButtonItem = refreshButton
-        navigationItem.rightBarButtonItem = closeButton
+        navigationItem.leftBarButtonItem = closeButton
+        navigationItem.rightBarButtonItem = options
     }
     
-    @objc private func refresh() {
+    private func setUpMenu()-> UIMenu {
+        let refreshAction = UIAction(title: "Обновить") { _ in
+            self.refresh()
+        }
+        return UIMenu(title: "", children: [refreshAction, setUpPlaneListMenu()])
+    }
+    
+    private func setUpPlaneListMenu()-> UIMenu {
+        
+        let any = UIAction(title: "Любая", state: .on) { _ in
+            let box = self.createBox()
+            let anchor = self.setAnchor(model: box, plane: .any)
+            self.installGestures(on: box)
+            self.arView.scene.anchors.removeAll()
+            self.arView.scene.anchors.append(anchor)
+            self.plane = .any
+            HapticsManager.shared.hapticFeedback()
+        }
+        
+        let horizontal = UIAction(title: "Горизонтально") { _ in
+            let box = self.createBox()
+            let anchor = self.setAnchor(model: box, plane: .horizontal)
+            self.installGestures(on: box)
+            self.arView.scene.anchors.removeAll()
+            self.arView.scene.anchors.append(anchor)
+            self.plane = .horizontal
+            HapticsManager.shared.hapticFeedback()
+        }
+        
+        let vertical = UIAction(title: "Вертикально") { _ in
+            let box = self.createBox()
+            let anchor = self.setAnchor(model: box, plane: .vertical)
+            self.installGestures(on: box)
+            self.arView.scene.anchors.removeAll()
+            self.arView.scene.anchors.append(anchor)
+            self.plane = .vertical
+            HapticsManager.shared.hapticFeedback()
+        }
+        
+        return UIMenu(title: "Плоскость", options: .singleSelection, children: [
+            any,
+            horizontal,
+            vertical
+        ])
+    }
+    
+    private func refresh() {
         let box = createBox()
-        let anchor = setAnchor(model: box)
+        let anchor = setAnchor(model: box, plane: plane ?? .any)
         installGestures(on: box)
         arView.scene.anchors.removeAll()
         arView.scene.anchors.append(anchor)
@@ -46,7 +93,7 @@ class ARViewController: UIViewController {
     
     private func setUpARView() {
         let box = createBox()
-        let anchor = setAnchor(model: box)
+        let anchor = setAnchor(model: box, plane: .any)
         installGestures(on: box)
         view.addSubview(arView)
         arView.frame = view.bounds
@@ -69,9 +116,9 @@ class ARViewController: UIViewController {
         return ModelEntity()
     }
     
-    func setAnchor(model: ModelEntity)-> AnchorEntity {
+    func setAnchor(model: ModelEntity, plane: AnchoringComponent.Target.Alignment)-> AnchorEntity {
         let boxMesh = MeshResource.generateBox(size: 0.3)
-        let boxAnchor = AnchorEntity(plane: .any)
+        let boxAnchor = AnchorEntity(plane: plane)
         model.position = SIMD3(0, 0, 0)
         boxAnchor.addChild(model)
         return boxAnchor

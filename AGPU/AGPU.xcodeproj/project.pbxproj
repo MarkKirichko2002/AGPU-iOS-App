@@ -328,7 +328,7 @@
 		8286D1592BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8286D1572BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.xib */; };
 		8286D15D2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286D15B2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.swift */; };
 		8286D15E2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8286D15C2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.xib */; };
-		828710232C2320AA00E0DC1D /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828710222C2320AA00E0DC1D /* ARViewController.swift */; };
+		828710252C23919100E0DC1D /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828710242C23919100E0DC1D /* ARViewController.swift */; };
 		82875B002A5A1966007DB925 /* HapticsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875AFF2A5A1966007DB925 /* HapticsManagerProtocol.swift */; };
 		82875B022A5A198A007DB925 /* HapticsManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */; };
 		828CFA372A35F65700C7542D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828CFA362A35F65700C7542D /* WebViewController.swift */; };
@@ -958,7 +958,7 @@
 		8286D1572BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabsPositionOptionTableViewCell.xib; sourceTree = "<group>"; };
 		8286D15B2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsAnimationOptionTableViewCell.swift; sourceTree = "<group>"; };
 		8286D15C2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabsAnimationOptionTableViewCell.xib; sourceTree = "<group>"; };
-		828710222C2320AA00E0DC1D /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		828710242C23919100E0DC1D /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		82875AFF2A5A1966007DB925 /* HapticsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManagerProtocol.swift; sourceTree = "<group>"; };
 		82875B012A5A198A007DB925 /* HapticsManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HapticsManager + Extensions.swift"; sourceTree = "<group>"; };
 		828CFA362A35F65700C7542D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -5301,7 +5301,7 @@
 		828710212C23209900E0DC1D /* AR */ = {
 			isa = PBXGroup;
 			children = (
-				828710222C2320AA00E0DC1D /* ARViewController.swift */,
+				828710242C23919100E0DC1D /* ARViewController.swift */,
 			);
 			path = AR;
 			sourceTree = "<group>";
@@ -9787,7 +9787,7 @@
 				82E030142B2020300068D2B7 /* TimeTableForCurrentBuildingViewController.swift in Sources */,
 				8231B0B92AED693200EB41EA /* SearchResultModel.swift in Sources */,
 				82808E8B2A31F12100DEEB16 /* SceneDelegate.swift in Sources */,
-				828710232C2320AA00E0DC1D /* ARViewController.swift in Sources */,
+				828710252C23919100E0DC1D /* ARViewController.swift in Sources */,
 				82920B652AD86EE600352CD8 /* YourStatusOptionTableViewCell.swift in Sources */,
 				8209A09E2B838AD20013371D /* RealmManager.swift in Sources */,
 				825D56732AE5CBEB004305C7 /* PairInfoTableViewController.swift in Sources */,
@@ -10084,7 +10084,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.0;
+				MARKETING_VERSION = 2.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -10123,7 +10123,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.0;
+				MARKETING_VERSION = 2.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
