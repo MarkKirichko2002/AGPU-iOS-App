@@ -5301,7 +5301,7 @@
 		828710212C23209900E0DC1D /* AR */ = {
 			isa = PBXGroup;
 			children = (
-				828710242C23919100E0DC1D /* ARViewController.swift */,
+				82D005312C24BAA4009D234C /* ViewController */,
 			);
 			path = AR;
 			sourceTree = "<group>";
@@ -7929,6 +7929,14 @@
 				82C5B7942BCEFBE900F907CB /* IASPUButtonAnimationOptionsListViewModel.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		82D005312C24BAA4009D234C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				828710242C23919100E0DC1D /* ARViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		82D0FC072B1B49E10056D94B /* Cathedra Building Detail MVVM */ = {

@@ -40,7 +40,7 @@ class ARViewController: UIViewController {
     
     private func setUpPlaneListMenu()-> UIMenu {
         
-        let any = UIAction(title: "Любая", state: .on) { _ in
+        let any = UIAction(title: "Любая") { _ in
             let box = self.createBox()
             let anchor = self.setAnchor(model: box, plane: .any)
             self.installGestures(on: box)
@@ -60,7 +60,7 @@ class ARViewController: UIViewController {
             HapticsManager.shared.hapticFeedback()
         }
         
-        let vertical = UIAction(title: "Вертикально") { _ in
+        let vertical = UIAction(title: "Вертикально", state: .on) { _ in
             let box = self.createBox()
             let anchor = self.setAnchor(model: box, plane: .vertical)
             self.installGestures(on: box)
@@ -79,7 +79,7 @@ class ARViewController: UIViewController {
     
     private func refresh() {
         let box = createBox()
-        let anchor = setAnchor(model: box, plane: plane ?? .any)
+        let anchor = setAnchor(model: box, plane: plane ?? .vertical)
         installGestures(on: box)
         arView.scene.anchors.removeAll()
         arView.scene.anchors.append(anchor)
@@ -93,7 +93,7 @@ class ARViewController: UIViewController {
     
     private func setUpARView() {
         let box = createBox()
-        let anchor = setAnchor(model: box, plane: .any)
+        let anchor = setAnchor(model: box, plane: .vertical)
         installGestures(on: box)
         view.addSubview(arView)
         arView.frame = view.bounds
@@ -102,7 +102,7 @@ class ARViewController: UIViewController {
     
     func createBox()-> ModelEntity {
         
-        let boxMesh = MeshResource.generateBox(size: 0.3)
+        let boxMesh = MeshResource.generateBox(size: 0.5)
         
         if let texture = try? TextureResource.generate(from: image.cgImage!, options: .init(semantic: .color)) {
             var material = UnlitMaterial(color: .white)
@@ -117,7 +117,6 @@ class ARViewController: UIViewController {
     }
     
     func setAnchor(model: ModelEntity, plane: AnchoringComponent.Target.Alignment)-> AnchorEntity {
-        let boxMesh = MeshResource.generateBox(size: 0.3)
         let boxAnchor = AnchorEntity(plane: plane)
         model.position = SIMD3(0, 0, 0)
         boxAnchor.addChild(model)

@@ -39,6 +39,18 @@ extension AGPUWallpapersListViewController: UICollectionViewDelegate {
                 }
             }
             
+            let ARAction = UIAction(title: "AR режим", image: UIImage(named: "mobile")) { _ in
+                if let cell = collectionView.cellForItem(at: indexPath) as? AGPUWallpaperCollectionViewCell {
+                    if let image = cell.imageView.image {
+                        let vc = ARViewController()
+                        vc.image = image
+                        let navVC = UINavigationController(rootViewController: vc)
+                        navVC.modalPresentationStyle = .fullScreen
+                        self.present(navVC, animated: true)
+                    }
+                }
+            }
+            
             let share = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
                 if let cell = collectionView.cellForItem(at: indexPath) as? AGPUWallpaperCollectionViewCell {
                     if let image = cell.imageView.image {
@@ -46,7 +58,11 @@ extension AGPUWallpapersListViewController: UICollectionViewDelegate {
                     }
                 }
             }
-            return UIMenu(title: "", children: [save, share])
+            return UIMenu(title: "", children: [
+                save,
+                ARAction,
+                share
+            ])
         }
     }
 }

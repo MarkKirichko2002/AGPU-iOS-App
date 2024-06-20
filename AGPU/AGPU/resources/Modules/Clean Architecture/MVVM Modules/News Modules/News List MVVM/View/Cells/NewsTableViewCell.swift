@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import SDWebImage
 
-class NewsTableViewCell: UITableViewCell {
+final class NewsTableViewCell: UITableViewCell {
     
     static let identifier = "NewsTableViewCell"
     
@@ -66,7 +66,7 @@ class NewsTableViewCell: UITableViewCell {
     private func setUpImage() {
         newsImage.clipsToBounds = true
         newsImage.layer.cornerRadius = 10
-        newsImage.isInteraction = false
+        newsImage.isInteraction = true
     }
     
     private func makeConstraints() {
