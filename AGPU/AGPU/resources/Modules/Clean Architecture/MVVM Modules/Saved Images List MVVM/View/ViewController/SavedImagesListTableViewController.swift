@@ -12,6 +12,7 @@ protocol SavedImagesListTableViewControllerDelegate: AnyObject {
 }
 
 protocol SavedImagesListTableViewControllerARDelegate: AnyObject {
+    func screenWasClosed()
     func ARImageWasSelected(image: UIImage)
 }
 
@@ -59,8 +60,9 @@ class SavedImagesListTableViewController: UIViewController {
     }
     
     @objc private func close() {
-        HapticsManager.shared.hapticFeedback()
+        ARDelegate?.screenWasClosed()
         dismiss(animated: true)
+        HapticsManager.shared.hapticFeedback()
     }
     
     func setUpBackButton() {

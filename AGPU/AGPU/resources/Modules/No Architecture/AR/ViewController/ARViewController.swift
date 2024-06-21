@@ -21,12 +21,6 @@ class ARViewController: UIViewController {
         setUpARView()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        guard let configuration = arView.session.configuration else {return}
-        arView.session.run(configuration)
-    }
-    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         arView.session.pause()
@@ -70,7 +64,6 @@ class ARViewController: UIViewController {
             self.installGestures(on: box)
             self.arView.scene.anchors.removeAll()
             self.arView.scene.anchors.append(anchor)
-            self.plane = .any
             HapticsManager.shared.hapticFeedback()
         }
         
@@ -155,6 +148,11 @@ class ARViewController: UIViewController {
 
 // MARK: - SavedImagesListTableViewControllerARDelegate
 extension ARViewController: SavedImagesListTableViewControllerARDelegate {
+    
+    func screenWasClosed() {
+        guard let configuration = arView.session.configuration else {return}
+        arView.session.run(configuration)
+    }
     
     func ARImageWasSelected(image: UIImage) {
         self.image = image
