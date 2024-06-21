@@ -37,7 +37,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         return imageView
     }()
     
-    private let infoLabel = UILabel()
+    let infoLabel = UILabel()
     
     private let refreshControl = UIRefreshControl()
     

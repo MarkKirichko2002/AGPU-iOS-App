@@ -157,6 +157,11 @@ extension TimeTableDayListTableViewController: CalendarViewControllerDelegate {
         self.allDisciplines = model.allPairs
         self.timetable?.disciplines = model.filteredPairs
         self.tableView.reloadData()
+        if timetable?.disciplines.isEmpty ?? false {
+            self.infoLabel.isHidden = false
+        } else {
+            self.infoLabel.isHidden = true
+        }
         self.navigationItem.title = "\(dayOfWeek) \(date)"
     }
 }
