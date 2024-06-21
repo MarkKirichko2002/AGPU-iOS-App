@@ -8,9 +8,17 @@
 import UIKit
 import SnapKit
 
+protocol ImageDetailViewControllerARDelegate: AnyObject {
+    func ARWasSelected(image: UIImage)
+}
+
 class ImageDetailViewController: UIViewController {
 
     var image: ImageModel?
+    
+    weak var delegate: ImageDetailViewControllerARDelegate?
+    
+    var isOption = false
     
     // MARK: - UI
     private var closeButton: UIButton = {
@@ -39,6 +47,17 @@ class ImageDetailViewController: UIViewController {
         return label
     }()
     
+    private let selectARMode: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = 10
+        button.layer.masksToBounds = true
+        button.setTitle("AR режим", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .black)
+        button.setTitleColor(.white, for: .normal)
+        return button
+    }()
+    
     // MARK: - Init
     init(image: ImageModel) {
         self.image = image
@@ -65,7 +84,8 @@ class ImageDetailViewController: UIViewController {
     
     private func setUpView() {
         view.backgroundColor = .systemBackground
-        view.addSubviews(closeButton, shareButton, currentImage, dateLabel)
+        view.addSubviews(closeButton, shareButton, currentImage, dateLabel, selectARMode)
+        selectARMode.addTarget(self, action: #selector(showAR), for: .touchUpInside)
     }
     
     private func setUpImage() {
@@ -90,6 +110,24 @@ class ImageDetailViewController: UIViewController {
         guard let image = UIImage(data: data.image) else {return}
         self.ShareImage(image: image, title: "Изображение", text: data.date)
         HapticsManager.shared.hapticFeedback()
+    }
+    
+    @objc private func showAR() {
+        guard let image = currentImage.image else {return}
+        if isOption {
+            delegate?.ARWasSelected(image: image)
+            self.dismiss(animated: true)
+        } else {
+            showARVC(image: image)
+        }
+    }
+    
+    private func showARVC(image: UIImage) {
+        let vc = ARViewController()
+        vc.image = image
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
     }
     
     private func setUpTap() {
@@ -140,6 +178,11 @@ class ImageDetailViewController: UIViewController {
         
         dateLabel.snp.makeConstraints { maker in
             maker.top.equalTo(currentImage.snp.bottom).offset(60)
+            maker.centerX.equalToSuperview()
+        }
+        
+        selectARMode.snp.makeConstraints { maker in
+            maker.top.equalTo(dateLabel.snp.bottom).offset(50)
             maker.centerX.equalToSuperview()
         }
     }

@@ -14,6 +14,8 @@ extension SavedImagesListTableViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let image = viewModel.imageItem(index: indexPath.row)
         let vc = ImageDetailViewController(image: image)
+        vc.delegate = self
+        vc.isOption = isOption
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
         HapticsManager.shared.hapticFeedback()
@@ -67,5 +69,18 @@ extension SavedImagesListTableViewController: UIImagePickerControllerDelegate, U
         model.date = viewModel.getCurrentDate()
         self.viewModel.saveImage(image: model)
         self.dismiss(animated: true)
+    }
+}
+
+// MARK: - ImageDetailViewControllerDelegate
+extension SavedImagesListTableViewController: ImageDetailViewControllerARDelegate {
+    
+    func ARWasSelected(image: UIImage) {
+        if isOption {
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.ARDelegate?.ARImageWasSelected(image: image)
+                self.dismiss(animated: true)
+            }
+        }
     }
 }

@@ -21,6 +21,17 @@ class ARViewController: UIViewController {
         setUpARView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard let configuration = arView.session.configuration else {return}
+        arView.session.run(configuration)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        arView.session.pause()
+    }
+    
     private func setUpNavigation() {
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         let options =  UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpMenu())
@@ -35,7 +46,19 @@ class ARViewController: UIViewController {
         let refreshAction = UIAction(title: "Обновить") { _ in
             self.refresh()
         }
-        return UIMenu(title: "", children: [refreshAction, setUpPlaneListMenu()])
+        let imagesList = UIAction(title: "Сохраненные изображения") { _ in
+            let vc = SavedImagesListTableViewController()
+            vc.ARDelegate = self
+            vc.isOption = true
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        return UIMenu(title: "", children: [
+            refreshAction,
+            setUpPlaneListMenu(),
+            imagesList,
+        ])
     }
     
     private func setUpPlaneListMenu()-> UIMenu {
@@ -126,5 +149,14 @@ class ARViewController: UIViewController {
     private func installGestures(on object: ModelEntity) {
         object.generateCollisionShapes(recursive: true)
         arView.installGestures([.all], for: object)
+    }
+}
+
+// MARK: - SavedImagesListTableViewControllerARDelegate
+extension ARViewController: SavedImagesListTableViewControllerARDelegate {
+    
+    func ARImageWasSelected(image: UIImage) {
+        self.image = image
+        refresh()
     }
 }

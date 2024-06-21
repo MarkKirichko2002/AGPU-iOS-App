@@ -11,6 +11,10 @@ protocol SavedImagesListTableViewControllerDelegate: AnyObject {
     func dataUpdated()
 }
 
+protocol SavedImagesListTableViewControllerARDelegate: AnyObject {
+    func ARImageWasSelected(image: UIImage)
+}
+
 class SavedImagesListTableViewController: UIViewController {
 
     // MARK: - сервисы
@@ -21,6 +25,9 @@ class SavedImagesListTableViewController: UIViewController {
     private let noImagesLabel = UILabel()
     
     weak var delegate: SavedImagesListTableViewControllerDelegate?
+    weak var ARDelegate: SavedImagesListTableViewControllerARDelegate?
+    
+    var isOption = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +40,31 @@ class SavedImagesListTableViewController: UIViewController {
     private func setUpNavigation() {
         
         let titleView = CustomTitleView(image: "photo icon", title: "Изображения", frame: .zero)
+        
+        navigationItem.titleView = titleView
+        
+        if isOption {
+            setUpCloseButton()
+        } else {
+            setUpBackButton()
+        }
+        
+        setUpAddButton()
+    }
+    
+    func setUpCloseButton() {
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(close))
+        closeButton.tintColor = .label
+        navigationItem.leftBarButtonItem = closeButton
+    }
+    
+    @objc private func close() {
+        HapticsManager.shared.hapticFeedback()
+        dismiss(animated: true)
+    }
+    
+    func setUpBackButton() {
+        
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)
@@ -40,18 +72,19 @@ class SavedImagesListTableViewController: UIViewController {
         
         let backButton = UIBarButtonItem(customView: button)
         
-        let addButton = UIBarButtonItem(image: UIImage(named: "add"), style: .done, target: self, action: #selector(addButtonTapped))
-        addButton.tintColor = .label
-        
-        navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = backButton
-        navigationItem.rightBarButtonItem = addButton
     }
     
     @objc private func back() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    func setUpAddButton() {
+        let addButton = UIBarButtonItem(image: UIImage(named: "add"), style: .done, target: self, action: #selector(addButtonTapped))
+        addButton.tintColor = .label
+        navigationItem.rightBarButtonItem = addButton
     }
     
     @objc private func addButtonTapped() {
