@@ -64,8 +64,9 @@ class ARViewController: UIViewController {
     private func setUpPlaneListMenu()-> UIMenu {
         
         let any = UIAction(title: "Любая") { _ in
+            self.plane = .any
             let box = self.createBox()
-            let anchor = self.setAnchor(model: box, plane: .any)
+            let anchor = self.setAnchor(model: box)
             self.installGestures(on: box)
             self.arView.scene.anchors.removeAll()
             self.arView.scene.anchors.append(anchor)
@@ -74,22 +75,22 @@ class ARViewController: UIViewController {
         }
         
         let horizontal = UIAction(title: "Горизонтально") { _ in
+            self.plane = .horizontal
             let box = self.createBox()
-            let anchor = self.setAnchor(model: box, plane: .horizontal)
+            let anchor = self.setAnchor(model: box)
             self.installGestures(on: box)
             self.arView.scene.anchors.removeAll()
             self.arView.scene.anchors.append(anchor)
-            self.plane = .horizontal
             HapticsManager.shared.hapticFeedback()
         }
         
         let vertical = UIAction(title: "Вертикально", state: .on) { _ in
+            self.plane = .vertical
             let box = self.createBox()
-            let anchor = self.setAnchor(model: box, plane: .vertical)
+            let anchor = self.setAnchor(model: box)
             self.installGestures(on: box)
             self.arView.scene.anchors.removeAll()
             self.arView.scene.anchors.append(anchor)
-            self.plane = .vertical
             HapticsManager.shared.hapticFeedback()
         }
         
@@ -102,7 +103,7 @@ class ARViewController: UIViewController {
     
     private func refresh() {
         let box = createBox()
-        let anchor = setAnchor(model: box, plane: plane ?? .vertical)
+        let anchor = setAnchor(model: box)
         installGestures(on: box)
         arView.scene.anchors.removeAll()
         arView.scene.anchors.append(anchor)
@@ -116,7 +117,7 @@ class ARViewController: UIViewController {
     
     private func setUpARView() {
         let box = createBox()
-        let anchor = setAnchor(model: box, plane: .vertical)
+        let anchor = setAnchor(model: box)
         installGestures(on: box)
         view.addSubview(arView)
         arView.frame = view.bounds
@@ -139,8 +140,8 @@ class ARViewController: UIViewController {
         return ModelEntity()
     }
     
-    func setAnchor(model: ModelEntity, plane: AnchoringComponent.Target.Alignment)-> AnchorEntity {
-        let boxAnchor = AnchorEntity(plane: plane)
+    func setAnchor(model: ModelEntity)-> AnchorEntity {
+        let boxAnchor = AnchorEntity(plane: plane ?? .vertical)
         model.position = SIMD3(0, 0, 0)
         boxAnchor.addChild(model)
         return boxAnchor

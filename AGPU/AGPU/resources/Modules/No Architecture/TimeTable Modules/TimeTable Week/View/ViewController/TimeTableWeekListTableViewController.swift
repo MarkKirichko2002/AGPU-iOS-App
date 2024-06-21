@@ -15,6 +15,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     var week: WeekModel!
     var timetable = [TimeTable]()
     var currentDate = ""
+    var image = UIImage()
     
     // MARK: - сервисы
     let service = TimeTableService()
@@ -79,6 +80,16 @@ final class TimeTableWeekListTableViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
+        let ARAction = UIAction(title: "AR режим") { _ in
+            let vc = ARViewController()
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.createImage {
+                vc.image = self.image
+                self.present(navVC, animated: true)
+            }
+        }
+        
         let groupsList = UIAction(title: "Группы") { _ in
             let vc = AllGroupsListTableViewController(group: self.id)
             vc.delegate = self
@@ -117,6 +128,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         
         let menu = UIMenu(title: "Расписание", children: [
             searchAction,
+            ARAction,
             groupsList,
             days,
             favouritesList,
@@ -133,6 +145,19 @@ final class TimeTableWeekListTableViewController: UIViewController {
     @objc private func closeScreen() {
         HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
+    }
+    
+    private func createImage(completion: @escaping()->Void) {
+        do {
+            let json = try JSONEncoder().encode(self.timetable)
+            self.service.getTimeTableWeekImage(json: json) { image in
+                self.image = image
+                HapticsManager.shared.hapticFeedback()
+                completion()
+            }
+        } catch {
+            print(error)
+        }
     }
         
     private func setUpTable() {
