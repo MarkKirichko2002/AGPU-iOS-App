@@ -10,6 +10,7 @@ import UIKit
 class TimetableOptionTableViewCell: UITableViewCell {
 
     static let identifier = "TimetableOptionTableViewCell"
+    private let animation = AnimationClass()
     
     @IBOutlet var TimetableOptionIcon: SpringImageView!
     @IBOutlet var TitleLabel: UILabel!
@@ -18,5 +19,11 @@ class TimetableOptionTableViewCell: UITableViewCell {
         super.awakeFromNib()
         TimetableOptionIcon.tintColor = .label
         TitleLabel.tintColor = .label
+    }
+    
+    func didTapCell(indexPath: IndexPath) {
+        animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
+            HapticsManager.shared.hapticFeedback()
+        }
     }
 }

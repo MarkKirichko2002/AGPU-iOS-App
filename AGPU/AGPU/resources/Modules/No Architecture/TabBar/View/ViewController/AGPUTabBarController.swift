@@ -113,17 +113,20 @@ final class AGPUTabBarController: UITabBarController {
               
         switch onlyMain {
         case .schedule:
-            setViewControllers([nav3VC, middleButton, nav4VC], animated: false)
+            setViewControllers([nav3VC, nav4VC], animated: false)
+            self.ASPUButton.isHidden = true
             selectedIndex = 0
         case .news:
-            setViewControllers([nav1VC, middleButton, nav4VC], animated: false)
+            setViewControllers([nav1VC, nav4VC], animated: false)
+            self.ASPUButton.isHidden = true
             selectedIndex = 0
         case .sections:
             let vc = ASPUWebsiteSectionsListViewController()
             vc.isMain = true
             vc.tabBarItem = UITabBarItem(title: "Разделы", image: UIImage(named: "sections"), selectedImage: UIImage(named: "sections"))
             let navVC = UINavigationController(rootViewController: vc)
-            setViewControllers([navVC, middleButton, nav4VC], animated: false)
+            setViewControllers([navVC, nav4VC], animated: false)
+            self.ASPUButton.isHidden = true
             selectedIndex = 0
         case .none:
             let position = settingsManager.getTabsPosition()
@@ -139,6 +142,7 @@ final class AGPUTabBarController: UITabBarController {
             }
             tabs.insert(middleButton, at: 2)
             setViewControllers(tabs, animated: false)
+            self.ASPUButton.isHidden = false
             selectedIndex = UserDefaults.standard.integer(forKey: "index")
         }
         

@@ -10,6 +10,7 @@ import UIKit
 class SplashScreenOptionTableViewCell: UITableViewCell {
 
     static let identifier = "SplashScreenOptionTableViewCell"
+    private let animation = AnimationClass()
     
     @IBOutlet var SplashScreenIcon: SpringImageView!
     @IBOutlet var SplashScreenName: UILabel!
@@ -22,5 +23,11 @@ class SplashScreenOptionTableViewCell: UITableViewCell {
         super.awakeFromNib()
         SplashScreenIcon.tintColor = .label
         SplashScreenName.tintColor = .label
+    }
+    
+    func didTapCell(indexPath: IndexPath) {
+        animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
+            HapticsManager.shared.hapticFeedback()
+        }
     }
 }

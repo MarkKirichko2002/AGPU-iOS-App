@@ -10,9 +10,16 @@ import UIKit
 class SelectedFacultyOptionTableViewCell: UITableViewCell {
     
     static let identifier = "SelectedFacultyOptionTableViewCell"
+    private let animation = AnimationClass()
     
     @IBOutlet var SelectedFacultyIcon: SpringImageView!
     @IBOutlet var TitleLabel: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        SelectedFacultyIcon.tintColor = .label
+        TitleLabel.tintColor = .label
+    }
     
     func configure(faculty: AGPUFacultyModel?) {
         if let faculty = faculty {
@@ -22,9 +29,9 @@ class SelectedFacultyOptionTableViewCell: UITableViewCell {
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        SelectedFacultyIcon.tintColor = .label
-        TitleLabel.tintColor = .label
+    func didTapCell(indexPath: IndexPath) {
+        animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
+            HapticsManager.shared.hapticFeedback()
+        }
     }
 }

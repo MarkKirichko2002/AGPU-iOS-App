@@ -12,7 +12,7 @@ final class VisualChangesOptionTableViewCell: UITableViewCell {
     static let identifier = "VisualChangesOptionTableViewCell"
     
     var userDefaults = UserDefaults.standard
-    var animation = AnimationClass()
+    private let animation = AnimationClass()
     
     @IBOutlet weak var VisualChangesIcon: UIImageView!
     @IBOutlet weak var VisualChangesLabel: UILabel!
@@ -29,5 +29,11 @@ final class VisualChangesOptionTableViewCell: UITableViewCell {
     private func setUpView() {
         VisualChangesIcon.tintColor = .label
         VisualChangesLabel.textColor = .label
+    }
+    
+    func didTapCell(indexPath: IndexPath) {
+        animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
+            HapticsManager.shared.hapticFeedback()
+        }
     }
 }

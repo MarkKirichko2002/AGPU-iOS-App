@@ -10,6 +10,7 @@ import UIKit
 class ASPUButtonOptionTableViewCell: UITableViewCell {
 
     static let identifier = "ASPUButtonOptionTableViewCell"
+    private let animation = AnimationClass()
     
     @IBOutlet var OptionIcon: SpringImageView!
     @IBOutlet var TitleLabel: UILabel!
@@ -22,5 +23,11 @@ class ASPUButtonOptionTableViewCell: UITableViewCell {
     
     func configure(action: ASPUButtonActions) {
         TitleLabel.text = action.rawValue
+    }
+    
+    func didTapCell(indexPath: IndexPath) {
+        animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
+            HapticsManager.shared.hapticFeedback()
+        }
     }
 }

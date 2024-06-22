@@ -10,17 +10,24 @@ import UIKit
 class AppThemesTableViewCell: UITableViewCell {
 
     static let identifier = "AppThemesTableViewCell"
+    private let animation = AnimationClass()
     
     @IBOutlet var ThemeIcon: SpringImageView!
     @IBOutlet var TitleLabel: UILabel!
-    
-    func configure(theme: AppThemeModel) {
-        TitleLabel.text = "Текущая тема (\(theme.name))"
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         ThemeIcon.tintColor = .label
         TitleLabel.textColor = .label
+    }
+    
+    func configure(theme: AppThemeModel) {
+        TitleLabel.text = "Текущая тема (\(theme.name))"
+    }
+    
+    func didTapCell(indexPath: IndexPath) {
+        animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
+            HapticsManager.shared.hapticFeedback()
+        }
     }
 }

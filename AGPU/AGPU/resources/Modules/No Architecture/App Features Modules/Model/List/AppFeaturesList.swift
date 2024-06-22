@@ -83,8 +83,8 @@ struct AppFeaturesList {
         
         AppFeatureModel(
             id: 11,
-            name: "Personalized App Icons",
-            description: "Personalized App Icons (персональные иконки приложения) - функция, позволяющая вам установить иконку для приложения, а также выбрать иконку, которая соответствует вашему факультету.",
+            name: "University App Icons",
+            description: "University App Icons (университетские иконки приложения) - функция, позволяющая вам установить иконку для приложения, а также выбрать иконку, которая соответствует вашему факультету.",
             videoURL: "https://youtu.be/RJC2sEhU2IA?si=g0dibHXUmhuH4p_U"
         ),
         

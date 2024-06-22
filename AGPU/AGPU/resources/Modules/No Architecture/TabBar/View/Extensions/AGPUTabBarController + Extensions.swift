@@ -250,30 +250,32 @@ extension AGPUTabBarController: ASPUButtonFavouriteActionsListTableViewControlle
     // изменение ASPU Button
     func updateASPUButton(icon: String) {
         let option = settingsManager.checkASPUButtonAnimationOption()
-        DispatchQueue.main.async {
-            self.ASPUButton.setImage(UIImage(named: icon), for: .normal)
-            switch option {
-            case .spring:
-                self.animation.springAnimation(view: self.ASPUButton)
-                HapticsManager.shared.hapticFeedback()
-            case .flipFromTop:
-                self.animation.flipAnimation(view: self.ASPUButton, option: .transitionFlipFromTop) {
+        if !ASPUButton.isHidden {
+            DispatchQueue.main.async {
+                self.ASPUButton.setImage(UIImage(named: icon), for: .normal)
+                switch option {
+                case .spring:
+                    self.animation.springAnimation(view: self.ASPUButton)
+                    HapticsManager.shared.hapticFeedback()
+                case .flipFromTop:
+                    self.animation.flipAnimation(view: self.ASPUButton, option: .transitionFlipFromTop) {
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                case .flipFromRight:
+                    self.animation.flipAnimation(view: self.ASPUButton, option: .transitionFlipFromRight) {
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                case .flipFromLeft:
+                    self.animation.flipAnimation(view: self.ASPUButton, option: .transitionFlipFromLeft) {
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                case .flipFromBottom:
+                    self.animation.flipAnimation(view: self.ASPUButton, option: .transitionFlipFromBottom) {
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                case .none:
                     HapticsManager.shared.hapticFeedback()
                 }
-            case .flipFromRight:
-                self.animation.flipAnimation(view: self.ASPUButton, option: .transitionFlipFromRight) {
-                    HapticsManager.shared.hapticFeedback()
-                }
-            case .flipFromLeft:
-                self.animation.flipAnimation(view: self.ASPUButton, option: .transitionFlipFromLeft) {
-                    HapticsManager.shared.hapticFeedback()
-                }
-            case .flipFromBottom:
-                self.animation.flipAnimation(view: self.ASPUButton, option: .transitionFlipFromBottom) {
-                    HapticsManager.shared.hapticFeedback()
-                }
-            case .none:
-                HapticsManager.shared.hapticFeedback()
             }
         }
     }

@@ -69,21 +69,29 @@ final class ForEmployeeListTableViewController: UITableViewController {
     
         let item = viewModel.sectionItem(index: indexPath.row)
         
+        if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
+            cell.didTapCell(indexPath: indexPath)
+        }
+        
         switch item.id {
             
         case 1:
             
-            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
-                        
-            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: ForStudentSections.sections[indexPath.row].icon, title: "ЭИОС", isSheet: false, isNotify: true)
+            Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
+            }
+            
+            Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
+                self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: ForEmployeeSections.sections[indexPath.row].icon, title: "ЭИОС", isSheet: false, isNotify: true)
             }
             
         case 2:
             
-            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+            Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
+            }
             
-            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+            Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                 let vc = AGPUBuildingsMapViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -91,9 +99,11 @@ final class ForEmployeeListTableViewController: UITableViewController {
             
         case 3:
             
-            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
+            Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
+            }
             
-            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+            Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                 self.goToWeb(url: "http://vedomosti.agpu.net/", image: ForEmployeeSections.sections[indexPath.row].icon, title: "Ведомости ONLINE", isSheet: false, isNotify: true)
             }
             
@@ -101,9 +111,11 @@ final class ForEmployeeListTableViewController: UITableViewController {
             
             if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
                 
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
+                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
+                }
                 
-                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                     self.goToWeb(url: cathedra.manualUrl, image: ForEmployeeSections.sections[indexPath.row].icon, title: "Метод. материалы", isSheet: false, isNotify: true)
                 }
             } else {
@@ -113,9 +125,11 @@ final class ForEmployeeListTableViewController: UITableViewController {
             
         case 5:
             
-            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+            Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
+            }
             
-            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+            Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                 let vc = ThingsCategoriesListTableViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -123,17 +137,21 @@ final class ForEmployeeListTableViewController: UITableViewController {
             
         case 6:
             
-            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
+            Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
+            }
             
-            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+            Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                 self.goToWeb(url: "http://plany.agpu.net/Plans/", image: ForEmployeeSections.sections[indexPath.row].icon, title: "Учебный план", isSheet: false, isNotify: true)
             }
             
         case 7:
             
-            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
+            Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
+            }
             
-            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+            Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                 let vc = ASPUWebsiteSectionsListViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -141,9 +159,11 @@ final class ForEmployeeListTableViewController: UITableViewController {
             
         case 8:
             
-            NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
+            Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForEmployeeSections.sections[indexPath.row].icon)
+            }
             
-            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+            Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                 let vc = AGPUWallpapersListViewController()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)

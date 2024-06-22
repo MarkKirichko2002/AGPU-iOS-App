@@ -116,33 +116,66 @@ extension SettingsListViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.section {
         case 0:
+            
             if indexPath.row == 0 {
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "profile icon")
-                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                
+                if let cell = tableView.cellForRow(at: indexPath) as? YourStatusOptionTableViewCell {
+                    cell.didTapCell(indexPath: indexPath)
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "profile icon")
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                     let vc = UserStatusListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
             } else if indexPath.row == 1 {
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "university")
-                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                
+                if let cell = tableView.cellForRow(at: indexPath) as? SelectedFacultyOptionTableViewCell {
+                    cell.didTapCell(indexPath: indexPath)
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "university")
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                     let vc = SelectedFacultyListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
             } else if indexPath.row == 2 {
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "news")
-                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                
+                if let cell = tableView.cellForRow(at: indexPath) as? AdaptiveNewsOptionTableViewCell {
+                    cell.didTapCell(indexPath: indexPath)
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "news")
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                     let vc = AdaptiveNewsOptionsListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
             } else if indexPath.row == 3 {
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "clock")
-                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                
+                if let cell = tableView.cellForRow(at: indexPath) as? TimetableOptionTableViewCell {
+                    cell.didTapCell(indexPath: indexPath)
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "clock")
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                     let vc = TimetableOptionsListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
@@ -150,57 +183,114 @@ extension SettingsListViewController: UITableViewDelegate {
                 }
             }
         case 1:
+            
             if indexPath.row == 1 {
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "eye")
-                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                
+                if let cell = tableView.cellForRow(at: indexPath) as? VisualChangesOptionTableViewCell {
+                    cell.didTapCell(indexPath: indexPath)
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "eye")
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                     let vc = ScreenPresentationStylesTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
             } else if indexPath.row == 2 {
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "home icon")
-                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                
+                if let cell = tableView.cellForRow(at: indexPath) as? OnlyMainOptionTableViewCell {
+                    cell.didTapCell(indexPath: indexPath)
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "home icon")
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                     let vc = OnlyMainVariantsListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
             } else if indexPath.row == 3 {
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "mobile")
-                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                
+                if let cell = tableView.cellForRow(at: indexPath) as? SplashScreenOptionTableViewCell {
+                    cell.didTapCell(indexPath: indexPath)
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "mobile")
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                     let vc = SplashScreensListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
             } else if indexPath.row == 4 {
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "photo icon")
-                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                
+                if let cell = tableView.cellForRow(at: indexPath) as? AppIconTableViewCell {
+                    cell.didTapCell(indexPath: indexPath)
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "photo icon")
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                     let vc = AppIconsListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
             } else if indexPath.row == 5 {
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "profile icon")
-                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                
+                if let cell = tableView.cellForRow(at: indexPath) as? CustomTabBarOptionTableViewCell {
+                    cell.didTapCell(indexPath: indexPath)
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "profile icon")
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                     let vc = TabsOptionsListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
             } else if indexPath.row == 6 {
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "button")
-                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                
+                if let cell = tableView.cellForRow(at: indexPath) as? ASPUButtonOptionTableViewCell {
+                    cell.didTapCell(indexPath: indexPath)
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "button")
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                     let vc = ASPUButtonOptionsListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
             } else if indexPath.row == 7 {
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "theme")
-                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                
+                if let cell = tableView.cellForRow(at: indexPath) as? AppThemesTableViewCell {
+                    cell.didTapCell(indexPath: indexPath)
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "theme")
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                     let vc = AppThemesListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
@@ -208,9 +298,18 @@ extension SettingsListViewController: UITableViewDelegate {
                 }
             }
         case 2:
+            
             if indexPath.row == 0 {
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "info icon")
-                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                
+                if let cell = tableView.cellForRow(at: indexPath) as? AppFeaturesTableViewCell {
+                    cell.didTapCell(indexPath: indexPath)
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "info icon")
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                     let vc = AppFeaturesListTableViewController()
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen

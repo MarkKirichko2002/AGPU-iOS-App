@@ -10,6 +10,7 @@ import UIKit
 class CustomTabBarOptionTableViewCell: UITableViewCell {
 
     static let identifier = "CustomTabBarOptionTableViewCell"
+    private let animation = AnimationClass()
     
     @IBOutlet var OptionIcon: SpringImageView!
     @IBOutlet var OptionName: UILabel!
@@ -18,5 +19,11 @@ class CustomTabBarOptionTableViewCell: UITableViewCell {
         super.awakeFromNib()
         OptionIcon.tintColor = .label
         OptionName.tintColor = .label
+    }
+    
+    func didTapCell(indexPath: IndexPath) {
+        animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
+            HapticsManager.shared.hapticFeedback()
+        }
     }
 }

@@ -11,6 +11,7 @@ import SnapKit
 class ForEveryStatusTableViewCell: UITableViewCell {
     
     static let identifier = "ForEveryStatusTableViewCell"
+    private let animation = AnimationClass()
     
     private let sectionIcon: SpringImageView = {
         let icon = SpringImageView()
@@ -57,11 +58,9 @@ class ForEveryStatusTableViewCell: UITableViewCell {
         }
     }
     
-    func sectionSelected(indexPath: IndexPath) {
-        let view = UIView()
-        view.backgroundColor = .clear
-        self.selectedBackgroundView = view
-        self.sectionIcon.tintColor = .systemGreen
-        self.sectionName.textColor = .systemGreen
+    func didTapCell(indexPath: IndexPath) {
+        animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
+            HapticsManager.shared.hapticFeedback()
+        }
     }
 }

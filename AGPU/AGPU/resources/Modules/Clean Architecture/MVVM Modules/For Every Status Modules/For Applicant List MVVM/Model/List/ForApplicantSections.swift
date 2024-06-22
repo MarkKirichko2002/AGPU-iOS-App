@@ -37,7 +37,7 @@ struct ForApplicantSections {
         ),
         ForEveryStatusModel(
             id: 6,
-            icon: "sections",
+            icon: "sections icon",
             name: "Разделы сайта"
         ),
     ]
