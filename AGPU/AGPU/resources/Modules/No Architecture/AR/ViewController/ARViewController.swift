@@ -8,10 +8,16 @@
 import UIKit
 import RealityKit
 
+enum Mesh {
+    case box
+    case sphere
+}
+
 class ARViewController: UIViewController {
     
     var image = UIImage()
-    var plane: AnchoringComponent.Target.Alignment?
+    var plane: AnchoringComponent.Target.Alignment = .horizontal
+    var mesh: Mesh = .box
     
     private let arView = ARView()
     
@@ -50,6 +56,7 @@ class ARViewController: UIViewController {
         }
         return UIMenu(title: "", children: [
             refreshAction,
+            setUpMeshListMenu(),
             setUpPlaneListMenu(),
             imagesList,
         ])
@@ -59,7 +66,7 @@ class ARViewController: UIViewController {
         
         let any = UIAction(title: "Любая") { _ in
             self.plane = .any
-            let box = self.createBox()
+            let box = self.createMesh()
             let anchor = self.setAnchor(model: box)
             self.installGestures(on: box)
             self.arView.scene.anchors.removeAll()
@@ -67,9 +74,9 @@ class ARViewController: UIViewController {
             HapticsManager.shared.hapticFeedback()
         }
         
-        let horizontal = UIAction(title: "Горизонтально") { _ in
+        let horizontal = UIAction(title: "Горизонтально", state: .on) { _ in
             self.plane = .horizontal
-            let box = self.createBox()
+            let box = self.createMesh()
             let anchor = self.setAnchor(model: box)
             self.installGestures(on: box)
             self.arView.scene.anchors.removeAll()
@@ -77,9 +84,9 @@ class ARViewController: UIViewController {
             HapticsManager.shared.hapticFeedback()
         }
         
-        let vertical = UIAction(title: "Вертикально", state: .on) { _ in
+        let vertical = UIAction(title: "Вертикально") { _ in
             self.plane = .vertical
-            let box = self.createBox()
+            let box = self.createMesh()
             let anchor = self.setAnchor(model: box)
             self.installGestures(on: box)
             self.arView.scene.anchors.removeAll()
@@ -94,10 +101,28 @@ class ARViewController: UIViewController {
         ])
     }
     
+    private func setUpMeshListMenu()-> UIMenu {
+        
+        let box = UIAction(title: "Куб", state: .on) { _ in
+            self.mesh = .box
+            self.refresh()
+        }
+        
+        let sphere = UIAction(title: "Сфера") { _ in
+            self.mesh = .sphere
+            self.refresh()
+        }
+        
+        return UIMenu(title: "Форма", options: .singleSelection, children: [
+            box,
+            sphere
+        ])
+    }
+    
     private func refresh() {
-        let box = createBox()
-        let anchor = setAnchor(model: box)
-        installGestures(on: box)
+        let mesh = createMesh()
+        let anchor = setAnchor(model: mesh)
+        installGestures(on: mesh)
         arView.scene.anchors.removeAll()
         arView.scene.anchors.append(anchor)
         HapticsManager.shared.hapticFeedback()
@@ -109,7 +134,7 @@ class ARViewController: UIViewController {
     }
     
     private func setUpARView() {
-        let box = createBox()
+        let box = createMesh()
         let anchor = setAnchor(model: box)
         installGestures(on: box)
         view.addSubview(arView)
@@ -117,15 +142,15 @@ class ARViewController: UIViewController {
         arView.scene.anchors.append(anchor)
     }
     
-    func createBox()-> ModelEntity {
+    func createMesh()-> ModelEntity {
         
-        let boxMesh = MeshResource.generateBox(size: 0.5)
+        let mesh = createMesh(mesh: mesh)
         
         if let texture = try? TextureResource.generate(from: image.cgImage!, options: .init(semantic: .color)) {
             var material = UnlitMaterial(color: .white)
             material.baseColor = MaterialColorParameter.texture(texture)
             
-            let boxModel = ModelEntity(mesh: boxMesh, materials: [material])
+            let boxModel = ModelEntity(mesh: mesh, materials: [material])
             
             return boxModel
         }
@@ -133,8 +158,17 @@ class ARViewController: UIViewController {
         return ModelEntity()
     }
     
+    func createMesh(mesh: Mesh)-> MeshResource {
+        switch mesh {
+        case .box:
+            return MeshResource.generateBox(size: 0.5)
+        case .sphere:
+            return MeshResource.generateSphere(radius: 0.3)
+        }
+    }
+    
     func setAnchor(model: ModelEntity)-> AnchorEntity {
-        let boxAnchor = AnchorEntity(plane: plane ?? .vertical)
+        let boxAnchor = AnchorEntity(plane: plane)
         model.position = SIMD3(0, 0, 0)
         boxAnchor.addChild(model)
         return boxAnchor
