@@ -10,7 +10,6 @@ import RealityKit
 
 enum Mesh {
     case box
-    case sphere
     case plane
 }
 
@@ -109,11 +108,6 @@ class ARViewController: UIViewController {
             self.refresh()
         }
         
-        let sphere = UIAction(title: "Сфера") { _ in
-            self.mesh = .sphere
-            self.refresh()
-        }
-        
         let plane = UIAction(title: "Плоскость") { _ in
             self.mesh = .plane
             self.refresh()
@@ -121,7 +115,6 @@ class ARViewController: UIViewController {
         
         return UIMenu(title: "Форма", options: .singleSelection, children: [
             box,
-            sphere,
             plane
         ])
     }
@@ -169,8 +162,6 @@ class ARViewController: UIViewController {
         switch mesh {
         case .box:
             return MeshResource.generateBox(size: 0.5)
-        case .sphere:
-            return MeshResource.generateSphere(radius: 0.3)
         case .plane:
             return MeshResource.generatePlane(width: 0.6, depth: 0.6)
         }
