@@ -23,7 +23,7 @@ class ARViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        arView.session.pause()
+        stopSession()
     }
     
     private func setUpNavigation() {
@@ -150,12 +150,21 @@ class ARViewController: UIViewController {
 extension ARViewController: SavedImagesListTableViewControllerARDelegate {
     
     func screenWasClosed() {
-        guard let configuration = arView.session.configuration else {return}
-        arView.session.run(configuration)
+        runSession()
     }
     
     func ARImageWasSelected(image: UIImage) {
         self.image = image
+        runSession()
         refresh()
+    }
+    
+    func runSession() {
+        guard let configuration = arView.session.configuration else {return}
+        arView.session.run(configuration)
+    }
+    
+    func stopSession() {
+        arView.session.pause()
     }
 }
