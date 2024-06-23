@@ -5,31 +5,26 @@
 //  Created by Марк Киричко on 12.07.2023.
 //
 
-import FSCalendar
+import UIKit
 
-// MARK: - FSCalendarDelegate
-extension CalendarViewController: FSCalendarDelegate {
+// MARK: - UICalendarSelectionSingleDateDelegate
+extension CalendarViewController: UICalendarSelectionSingleDateDelegate {
     
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let date = DateManager().getFormattedDate(date: date)
+    func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
+        let date = DateManager().getFormattedDate(date: dateComponents?.date ?? Date())
         let vc = TimetableDateDetailViewController(id: self.id, date: date, owner: self.owner)
         vc.modalPresentationStyle = .fullScreen
         vc.delegate = self
-        HapticsManager.shared.hapticFeedback()
         present(vc, animated: true)
+        HapticsManager.shared.hapticFeedback()
     }
 }
 
-// MARK: - FSCalendarDataSource
-extension CalendarViewController: FSCalendarDelegateAppearance {
+// MARK: - UICalendarViewDelegate
+extension CalendarViewController: UICalendarViewDelegate {
     
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
-        let color = viewModel.compareDates(date1: self.date, date2: date)
-        return color
-    }
-    
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {
-        return UIColor.systemGreen
+    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
+        return .default(color: viewModel.compareDates(date1: self.date, date2: dateComponents.date ?? Date()))
     }
 }
 

@@ -15,7 +15,7 @@ extension CalendarViewModel: CalendarViewModelProtocol {
         let date = dateManager.getDateFromString(str: date1, withTime: false)
         
         if let selectedDate = date, Calendar.current.isDate(date2, inSameDayAs: selectedDate) {
-              return UIColor.systemBlue
+              return UIColor.systemGreen
         }
         return nil
     }

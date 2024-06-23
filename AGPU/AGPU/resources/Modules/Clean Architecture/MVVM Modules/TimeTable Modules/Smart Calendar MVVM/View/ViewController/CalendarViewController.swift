@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FSCalendar
 
 protocol CalendarViewControllerDelegate: AnyObject {
     func dateWasSelected(model: TimeTableChangesModel)
@@ -22,15 +21,6 @@ final class CalendarViewController: UIViewController {
     var owner: String = ""
     
     weak var delegate: CalendarViewControllerDelegate?
-    
-    // MARK: - UI
-    private let calendar: FSCalendar = {
-        let calendar = FSCalendar()
-        calendar.appearance.titleDefaultColor = .label
-        calendar.backgroundColor = .systemBackground
-        calendar.translatesAutoresizingMaskIntoConstraints = false
-        return calendar
-    }()
     
     // MARK: - Init
     init(id: String, date: String, owner: String) {
@@ -48,14 +38,13 @@ final class CalendarViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setUpNavigation()
-        setUpCalendar()
+        configureCalendar()
     }
     
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "calendar icon", title: "Календарь", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
-        navigationItem.titleView = titleView
+        navigationItem.title = "Календарь"
         navigationItem.rightBarButtonItem = closeButton
     }
     
@@ -64,18 +53,24 @@ final class CalendarViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
-    private func setUpCalendar() {
-        view.addSubview(calendar)
-        calendar.delegate = self
-        makeConstraints()
-    }
-    
-    private func makeConstraints() {
+    private func configureCalendar() {
+        let calendarView = UICalendarView()
+        
+        let dateSelection = UICalendarSelectionSingleDate(delegate: self)
+        calendarView.selectionBehavior = dateSelection
+        calendarView.delegate = self
+        
+        calendarView.calendar = .current
+        calendarView.locale = .current
+        
+        calendarView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(calendarView)
+        
         NSLayoutConstraint.activate([
-            calendar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            calendar.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-            calendar.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            calendar.heightAnchor.constraint(equalToConstant: 300)
+            calendarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            calendarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            calendarView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            calendarView.heightAnchor.constraint(equalToConstant: view.frame.height / 2)
         ])
     }
 }

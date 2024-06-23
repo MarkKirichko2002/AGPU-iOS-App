@@ -43,10 +43,9 @@ class AllWeeksListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "calendar icon", title: "Недели", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
-        navigationItem.titleView = titleView
+        navigationItem.title = "Недели"
         navigationItem.rightBarButtonItem = closeButton
     }
     
