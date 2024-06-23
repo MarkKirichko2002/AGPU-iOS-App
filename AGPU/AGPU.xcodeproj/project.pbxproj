@@ -539,6 +539,14 @@
 		82C5B7952BCEFBE900F907CB /* IASPUButtonAnimationOptionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C5B7942BCEFBE900F907CB /* IASPUButtonAnimationOptionsListViewModel.swift */; };
 		82C5B7972BCEFC2300F907CB /* ASPUButtonAnimationOptionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C5B7962BCEFC2300F907CB /* ASPUButtonAnimationOptionsListViewModel.swift */; };
 		82C5B7992BCEFC3E00F907CB /* ASPUButtonAnimationOptionsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C5B7982BCEFC3E00F907CB /* ASPUButtonAnimationOptionsListViewModel + Extensions.swift */; };
+		82C752382C2881EF00161AEF /* TabBarIconsStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C752372C2881EF00161AEF /* TabBarIconsStyle.swift */; };
+		82C7523B2C28826300161AEF /* TabIconsStyleListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7523A2C28826300161AEF /* TabIconsStyleListTableViewController.swift */; };
+		82C7523D2C28829400161AEF /* ITabIconsStyleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7523C2C28829400161AEF /* ITabIconsStyleListViewModel.swift */; };
+		82C7523F2C2882F600161AEF /* TabIconsStyleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7523E2C2882F600161AEF /* TabIconsStyleListViewModel.swift */; };
+		82C752412C28831800161AEF /* TabIconsStyleListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C752402C28831800161AEF /* TabIconsStyleListViewModel + Extensions.swift */; };
+		82C752452C28856D00161AEF /* TabsIconStyleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C752432C28856D00161AEF /* TabsIconStyleTableViewCell.swift */; };
+		82C752462C28856D00161AEF /* TabsIconStyleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82C752442C28856D00161AEF /* TabsIconStyleTableViewCell.xib */; };
+		82C752492C28895100161AEF /* TabBarIconModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C752482C28895100161AEF /* TabBarIconModel.swift */; };
 		82C7B8422A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */; };
 		82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8432A50CCB800F9A552 /* AnimationClass + Extensions.swift */; };
 		82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8452A50CD4C00F9A552 /* SettingsManager + Extensions.swift */; };
@@ -1169,6 +1177,14 @@
 		82C5B7942BCEFBE900F907CB /* IASPUButtonAnimationOptionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IASPUButtonAnimationOptionsListViewModel.swift; sourceTree = "<group>"; };
 		82C5B7962BCEFC2300F907CB /* ASPUButtonAnimationOptionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonAnimationOptionsListViewModel.swift; sourceTree = "<group>"; };
 		82C5B7982BCEFC3E00F907CB /* ASPUButtonAnimationOptionsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASPUButtonAnimationOptionsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		82C752372C2881EF00161AEF /* TabBarIconsStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIconsStyle.swift; sourceTree = "<group>"; };
+		82C7523A2C28826300161AEF /* TabIconsStyleListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabIconsStyleListTableViewController.swift; sourceTree = "<group>"; };
+		82C7523C2C28829400161AEF /* ITabIconsStyleListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITabIconsStyleListViewModel.swift; sourceTree = "<group>"; };
+		82C7523E2C2882F600161AEF /* TabIconsStyleListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabIconsStyleListViewModel.swift; sourceTree = "<group>"; };
+		82C752402C28831800161AEF /* TabIconsStyleListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabIconsStyleListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		82C752432C28856D00161AEF /* TabsIconStyleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsIconStyleTableViewCell.swift; sourceTree = "<group>"; };
+		82C752442C28856D00161AEF /* TabsIconStyleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabsIconStyleTableViewCell.xib; sourceTree = "<group>"; };
+		82C752482C28895100161AEF /* TabBarIconModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIconModel.swift; sourceTree = "<group>"; };
 		82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpeechRecognitionManager + Extensions.swift"; sourceTree = "<group>"; };
 		82C7B8432A50CCB800F9A552 /* AnimationClass + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimationClass + Extensions.swift"; sourceTree = "<group>"; };
 		82C7B8452A50CD4C00F9A552 /* SettingsManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsManager + Extensions.swift"; sourceTree = "<group>"; };
@@ -2474,17 +2490,9 @@
 		822527462BA63D0500B66314 /* News Categories Randomizer */ = {
 			isa = PBXGroup;
 			children = (
-				822527482BA63D2C00B66314 /* View */,
-			);
-			path = "News Categories Randomizer";
-			sourceTree = "<group>";
-		};
-		822527482BA63D2C00B66314 /* View */ = {
-			isa = PBXGroup;
-			children = (
 				822527492BA63D3600B66314 /* ViewController */,
 			);
-			path = View;
+			path = "News Categories Randomizer";
 			sourceTree = "<group>";
 		};
 		822527492BA63D3600B66314 /* ViewController */ = {
@@ -4408,6 +4416,7 @@
 		8268886A2A34866D00434219 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				82C752472C28893E00161AEF /* TabBar Icon */,
 				826FB3A12C22FEE9007EDA25 /* Timetable Changes */,
 				82426C6E2A71476D00D5AA57 /* For Every Status */,
 				82377F992B3365C600FF5045 /* Hints */,
@@ -5266,6 +5275,7 @@
 			children = (
 				8286D1552BCDADEA006BB6B3 /* Tabs Position */,
 				828E10302BD1699500ECC5F4 /* Tabs Color */,
+				82C752422C28855800161AEF /* Tabs Icon Style */,
 				8286D15A2BCDB3A8006BB6B3 /* Tabs Animation */,
 				829952742BDEEB58003AFB14 /* Recent Tab */,
 			);
@@ -7931,6 +7941,91 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		82C752302C28819600161AEF /* Tab Icons Style List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82C752332C2881B400161AEF /* Model */,
+				82C752322C2881B200161AEF /* View */,
+				82C752312C2881B000161AEF /* ViewModel */,
+			);
+			path = "Tab Icons Style List MVVM";
+			sourceTree = "<group>";
+		};
+		82C752312C2881B000161AEF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82C752362C2881C700161AEF /* Protocol */,
+				82C752352C2881C500161AEF /* ViewModel */,
+				82C752342C2881C300161AEF /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82C752322C2881B200161AEF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82C752392C28824100161AEF /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82C752332C2881B400161AEF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82C752372C2881EF00161AEF /* TabBarIconsStyle.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82C752342C2881C300161AEF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82C752402C28831800161AEF /* TabIconsStyleListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82C752352C2881C500161AEF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82C7523E2C2882F600161AEF /* TabIconsStyleListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82C752362C2881C700161AEF /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82C7523C2C28829400161AEF /* ITabIconsStyleListViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		82C752392C28824100161AEF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82C7523A2C28826300161AEF /* TabIconsStyleListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82C752422C28855800161AEF /* Tabs Icon Style */ = {
+			isa = PBXGroup;
+			children = (
+				82C752432C28856D00161AEF /* TabsIconStyleTableViewCell.swift */,
+				82C752442C28856D00161AEF /* TabsIconStyleTableViewCell.xib */,
+			);
+			path = "Tabs Icon Style";
+			sourceTree = "<group>";
+		};
+		82C752472C28893E00161AEF /* TabBar Icon */ = {
+			isa = PBXGroup;
+			children = (
+				82C752482C28895100161AEF /* TabBarIconModel.swift */,
+			);
+			path = "TabBar Icon";
+			sourceTree = "<group>";
+		};
 		82D005312C24BAA4009D234C /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -8948,6 +9043,7 @@
 				8286D14E2BCDAD6B006BB6B3 /* Tabs Options List MVVM */,
 				820900742BAF60CD0053F3BD /* Tabs Position List MVVM */,
 				828E102F2BD1697E00ECC5F4 /* Tab Colors List MVVM */,
+				82C752302C28819600161AEF /* Tab Icons Style List MVVM */,
 				82768ADD2ABE12D30022FBE1 /* App Themes List MVVM */,
 				828D51052BB85E4D00848FF8 /* ASPU Button Options List */,
 				828D511F2BB892CE00848FF8 /* ASPU Button Icons List MVVM */,
@@ -9231,6 +9327,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82C752462C28856D00161AEF /* TabsIconStyleTableViewCell.xib in Resources */,
 				82768AF92ABE1CE70022FBE1 /* AppFeaturesTableViewCell.xib in Resources */,
 				826BADB12A64D5D100022B45 /* AGPUBuildingDetailViewController.storyboard in Resources */,
 				82FC881F2BBDFC4D00A2EF59 /* weather.mp4 in Resources */,
@@ -9408,6 +9505,7 @@
 				82FC22EA2BC01BA6008709DA /* NewsOptionsFilterListViewModel.swift in Sources */,
 				8234E6122A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift in Sources */,
 				829CEF802BEF9BE500FA32EF /* IBuildingsListViewModel.swift in Sources */,
+				82C7523B2C28826300161AEF /* TabIconsStyleListTableViewController.swift in Sources */,
 				82989ACD2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift in Sources */,
 				828D51142BB86B2600848FF8 /* ASPUButtonIconOptionTableViewCell.swift in Sources */,
 				82187CA62C04F2840033E6DC /* ScreenPresentationStylesListViewModel.swift in Sources */,
@@ -9421,6 +9519,7 @@
 				82FD79D02B9267F000E0DE61 /* LocationAppsViewController.swift in Sources */,
 				82AB6D252AF6C08A00F7B729 /* SavedNewsCategoryViewModel + Extensions.swift in Sources */,
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
+				82C752452C28856D00161AEF /* TabsIconStyleTableViewCell.swift in Sources */,
 				82967C212BA0821A001059B2 /* RecentNewsListViewController + Extensions.swift in Sources */,
 				822FB20F2AC5DCF20083E016 /* SubGroupsListTableViewController.swift in Sources */,
 				8209A09A2B838A2A0013371D /* IRealmManager.swift in Sources */,
@@ -9455,6 +9554,7 @@
 				82F578842B6FE5A800BC64C1 /* ASPUButtonActionsListViewModelProtocol.swift in Sources */,
 				821B72672BD16D9D000460E2 /* TabColors.swift in Sources */,
 				8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */,
+				82C752492C28895100161AEF /* TabBarIconModel.swift in Sources */,
 				8228E3A62A6C9DB300C1B6AD /* AGPUBuildingsMapViewModel + Extensions.swift in Sources */,
 				82754C5B2BD3D84B0021E76A /* CustomSplashScreenEditorViewController + Extensions.swift in Sources */,
 				82989AD82A6E54AF00F27858 /* AGPUCurrentCathedraMapViewController.swift in Sources */,
@@ -9569,6 +9669,7 @@
 				8263AA2A2C023639001A903B /* TodayNewsListTableViewController + Extensions.swift in Sources */,
 				825634BC2A6222FA0082B7B8 /* FacultyGroupsListViewModel.swift in Sources */,
 				82E4C54C2A6B121900F65A67 /* AGPUFacultiesListViewModel + Extensions.swift in Sources */,
+				82C7523F2C2882F600161AEF /* TabIconsStyleListViewModel.swift in Sources */,
 				8283217E2A7D683F008641A5 /* SearchAGPUBuildingMapViewModel.swift in Sources */,
 				828D511A2BB86CEF00848FF8 /* IASPUButtonOptionsListViewModel.swift in Sources */,
 				826FB38E2C1F6B53007EDA25 /* NewsOptionModel.swift in Sources */,
@@ -9737,6 +9838,7 @@
 				82E4C5452A6B114000F65A67 /* WebViewModel + Extensions.swift in Sources */,
 				822527A62BADAC0500B66314 /* IAdaptiveNewsOptionsListViewModel.swift in Sources */,
 				82AB6D2C2AF6C45700F7B729 /* SavedNewsCategoryTableViewCell.swift in Sources */,
+				82C752382C2881EF00161AEF /* TabBarIconsStyle.swift in Sources */,
 				823F97DE2B9D227500F60F39 /* IWeatherSplashScreenViewModel.swift in Sources */,
 				8234E5FC2A88557400ED354C /* WordDocumenReaderViewModel + Extensions.swift in Sources */,
 				828D511C2BB86CFE00848FF8 /* ASPUButtonOptionsListViewModel.swift in Sources */,
@@ -9850,6 +9952,7 @@
 				82967C262BA0835E001059B2 /* IRecentNewsListViewModel.swift in Sources */,
 				82967C302BA2347B001059B2 /* TimeTableSplashScreenViewController.swift in Sources */,
 				82761A282B463F1800D9976F /* SplashScreensListTableViewController.swift in Sources */,
+				82C7523D2C28829400161AEF /* ITabIconsStyleListViewModel.swift in Sources */,
 				82920B912AD8874100352CD8 /* SelectedFacultyListViewModel + Extensions.swift in Sources */,
 				8234E5FA2A88553700ED354C /* WordDocumenReaderViewModel.swift in Sources */,
 				826FB3902C1F6B9C007EDA25 /* NewsOptions.swift in Sources */,
@@ -9870,6 +9973,7 @@
 				828F479B2C0532E800AF7C3D /* ThingsCategoriesListViewModel + Extensions.swift in Sources */,
 				821B72732BD171A9000460E2 /* TabsOptionsListViewModel + Extensions.swift in Sources */,
 				8299E3B22B8A31CE00D81472 /* ITimetableDateDetailViewModel.swift in Sources */,
+				82C752412C28831800161AEF /* TabIconsStyleListViewModel + Extensions.swift in Sources */,
 				82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */,
 				82BCB53F2AB3528F00F3A321 /* DaysListTableViewController.swift in Sources */,
 				822605F62A8532410055925F /* RecentMomentsListViewModelProtocol.swift in Sources */,
@@ -10092,7 +10196,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.2;
+				MARKETING_VERSION = 2.6.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -10131,7 +10235,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.2;
+				MARKETING_VERSION = 2.6.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -99,12 +99,14 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     private func setUpTabs() {
+        
+        let icons = settingsManager.getTabsIcons()
         // новости
-        newsVC.tabBarItem = UITabBarItem(title: "Новости", image: UIImage(named: "mail"), selectedImage: UIImage(named: "mail selected"))
+        newsVC.tabBarItem = UITabBarItem(title: "Новости", image: icons[0].icon, selectedImage: icons[0].selectedIcon)
         // расписание
-        timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: UIImage(named: "time icon"), selectedImage: UIImage(named: "time icon selected"))
+        timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: icons[1].icon, selectedImage: icons[1].selectedIcon)
         // настройки
-        settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(named: "settings"), selectedImage: UIImage(named: "settings selected"))
+        settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: icons[2].icon, selectedImage: icons[2].selectedIcon)
         let nav1VC = UINavigationController(rootViewController: newsVC)
         let nav3VC = UINavigationController(rootViewController: timetableVC)
         let nav4VC = UINavigationController(rootViewController: settingsVC)

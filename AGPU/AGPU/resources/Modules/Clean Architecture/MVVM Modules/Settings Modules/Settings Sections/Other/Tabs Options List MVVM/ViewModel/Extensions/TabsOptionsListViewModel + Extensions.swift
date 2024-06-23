@@ -15,6 +15,11 @@ extension TabsOptionsListViewModel: ITabsOptionsListViewModel {
         return color
     }
     
+    func getIconsStyle()-> TabBarIconsStyle {
+        let style = settingsManager.getTabsIconStyle()
+        return style
+    }
+    
     func observeOptionSelection() {
         NotificationCenter.default.addObserver(forName: Notification.Name("option was selected"), object: nil, queue: .main) { _ in
             self.dataChangedHandler?()

@@ -22,6 +22,8 @@ final class CalendarViewController: UIViewController {
     
     weak var delegate: CalendarViewControllerDelegate?
     
+    let calendarView = UICalendarView()
+    
     // MARK: - Init
     init(id: String, date: String, owner: String) {
         self.id = id
@@ -54,7 +56,6 @@ final class CalendarViewController: UIViewController {
     }
     
     private func configureCalendar() {
-        let calendarView = UICalendarView()
         
         let dateSelection = UICalendarSelectionSingleDate(delegate: self)
         calendarView.selectionBehavior = dateSelection
@@ -69,8 +70,8 @@ final class CalendarViewController: UIViewController {
         NSLayoutConstraint.activate([
             calendarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             calendarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            calendarView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            calendarView.heightAnchor.constraint(equalToConstant: view.frame.height / 2)
+            calendarView.topAnchor.constraint(equalTo: view.topAnchor),
+            calendarView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }

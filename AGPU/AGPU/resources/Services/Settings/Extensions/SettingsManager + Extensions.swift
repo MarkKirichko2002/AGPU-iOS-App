@@ -83,22 +83,22 @@ extension SettingsManager: SettingsManagerProtocol {
         switch status?.id {
         case 1:
             let vc = ForApplicantListTableViewController()
-            vc.tabBarItem = UITabBarItem(title: "Абитуриенту", image: UIImage(named: "applicant"), selectedImage: UIImage(named: "applicant selected"))
+            vc.tabBarItem = UITabBarItem(title: "Абитуриенту", image: getTabIconForStatus().icon, selectedImage: getTabIconForStatus().selectedIcon)
             let navVC = UINavigationController(rootViewController: vc)
             return navVC
         case 2:
             let vc = ForStudentListTableViewController()
-            vc.tabBarItem = UITabBarItem(title: "Студенту", image: UIImage(named: "student icon"), selectedImage: UIImage(named: "student icon selected"))
+            vc.tabBarItem = UITabBarItem(title: "Студенту", image:  getTabIconForStatus().icon, selectedImage: getTabIconForStatus().selectedIcon)
             let navVC = UINavigationController(rootViewController: vc)
             return navVC
         case 3:
             let vc = ForEmployeeListTableViewController()
-            vc.tabBarItem = UITabBarItem(title: "Сотруднику", image: UIImage(named: "computer"), selectedImage: UIImage(named: "computer selected"))
+            vc.tabBarItem = UITabBarItem(title: "Сотруднику", image: getTabIconForStatus().icon, selectedImage: getTabIconForStatus().selectedIcon)
             let navVC = UINavigationController(rootViewController: vc)
             return navVC
         default:
             let vc = ForApplicantListTableViewController()
-            vc.tabBarItem = UITabBarItem(title: "Абитуриенту", image: UIImage(named: "applicant"), selectedImage: UIImage(named: "applicant selected"))
+            vc.tabBarItem = UITabBarItem(title: "Абитуриенту", image: getTabIconForStatus().icon, selectedImage: getTabIconForStatus().selectedIcon)
             let navVC = UINavigationController(rootViewController: vc)
             return navVC
         }
@@ -127,6 +127,56 @@ extension SettingsManager: SettingsManagerProtocol {
     func getTabsColor()-> TabColors {
         let color = UserDefaults.loadData(type: TabColors.self, key: "tabs color") ?? .system
         return color
+    }
+    
+    func getTabsIconStyle()-> TabBarIconsStyle {
+        let style = UserDefaults.loadData(type: TabBarIconsStyle.self, key: "tabs icon style") ?? .flatIcon
+        return style
+    }
+    
+    func getTabIconForStatus()-> TabBarIconModel {
+        
+        let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status")
+        let style = getTabsIconStyle()
+        
+        switch style {
+            
+        case .flatIcon:
+            
+            if status?.id == 1 {
+                return TabBarIconModel(icon: UIImage(named: "applicant")!, selectedIcon: UIImage(named: "applicant selected")!)
+            } else if status?.id == 2 {
+                return TabBarIconModel(icon: UIImage(named: "student icon")!, selectedIcon: UIImage(named: "student icon selected")!)
+            } else if status?.id == 3 {
+                return TabBarIconModel(icon: UIImage(named: "computer")!, selectedIcon: UIImage(named: "computer selected")!)
+            }
+        case .apple:
+            if status?.id == 1 {
+                return TabBarIconModel(icon: UIImage(systemName: "person")!, selectedIcon: UIImage(systemName: "person.fill")!)
+            } else if status?.id == 2 {
+                return TabBarIconModel(icon: UIImage(systemName: "graduationcap")!, selectedIcon: UIImage(systemName: "graduationcap.fill")!)
+            } else if status?.id == 3 {
+                return TabBarIconModel(icon: UIImage(systemName: "desktopcomputer")!, selectedIcon: UIImage(systemName: "desktopcomputer.fill")!)
+            }
+        }
+        
+        return style == .flatIcon ? TabBarIconModel(icon: UIImage(named: "applicant")!, selectedIcon: UIImage(named: "applicant selected")!) : TabBarIconModel(icon: UIImage(named: "person")!, selectedIcon: UIImage(named: "person.fill")!)
+    }
+    
+    func getTabsIcons()-> [TabBarIconModel] {
+        let style = getTabsIconStyle()
+        switch style {
+        case .flatIcon:
+            let news = TabBarIconModel(icon: UIImage(named: "mail")!, selectedIcon: UIImage(named: "mail selected")!)
+            let timetable = TabBarIconModel(icon: UIImage(named: "time icon")!, selectedIcon: UIImage(named: "time icon selected")!)
+            let settings = TabBarIconModel(icon: UIImage(named: "settings")!, selectedIcon: UIImage(named: "settings selected")!)
+            return [news, timetable, settings]
+        case .apple:
+            let news = TabBarIconModel(icon: UIImage(systemName: "newspaper")!, selectedIcon: UIImage(systemName: "newspaper.fill")!)
+            let timetable = TabBarIconModel(icon: UIImage(systemName: "clock")!, selectedIcon: UIImage(systemName: "clock.fill")!)
+            let settings = TabBarIconModel(icon: UIImage(systemName: "gearshape")!, selectedIcon: UIImage(systemName: "gearshape.fill")!)
+            return [news, timetable, settings]
+        }
     }
     
     func checkTabsAnimationOption()-> Bool {

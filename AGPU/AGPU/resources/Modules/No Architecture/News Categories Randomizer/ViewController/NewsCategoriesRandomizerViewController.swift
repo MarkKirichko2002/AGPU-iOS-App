@@ -107,7 +107,7 @@ class NewsCategoriesRandomizerViewController: UIViewController {
     private func makeConstraints() {
         
         closeButton.snp.makeConstraints { maker in
-            maker.top.equalToSuperview().inset(60)
+            maker.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(10)
             maker.right.equalToSuperview().inset(20)
         }
         

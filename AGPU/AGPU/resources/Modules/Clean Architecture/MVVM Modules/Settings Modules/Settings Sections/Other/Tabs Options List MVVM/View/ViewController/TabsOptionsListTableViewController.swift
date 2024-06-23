@@ -35,6 +35,7 @@ class TabsOptionsListTableViewController: UITableViewController {
     private func setUpTable() {
         tableView.register(UINib(nibName: TabsPositionOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TabsPositionOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: TabsColorOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TabsColorOptionTableViewCell.identifier)
+        tableView.register(UINib(nibName: TabsIconStyleTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TabsIconStyleTableViewCell.identifier)
         tableView.register(UINib(nibName: TabsAnimationOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TabsAnimationOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: RecentTabOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RecentTabOptionTableViewCell.identifier)
     }
@@ -56,6 +57,9 @@ class TabsOptionsListTableViewController: UITableViewController {
         case 1:
             let vc = TabColorsListTableViewController()
             navigationController?.pushViewController(vc, animated: true)
+        case 2:
+            let vc = TabIconsStyleListTableViewController()
+            navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }
@@ -63,7 +67,7 @@ class TabsOptionsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -75,6 +79,10 @@ class TabsOptionsListTableViewController: UITableViewController {
             cell.configure(color: viewModel.getTabsColor())
             return cell
         } else if indexPath.row == 2 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TabsIconStyleTableViewCell.identifier, for: indexPath) as? TabsIconStyleTableViewCell else {return UITableViewCell()}
+            cell.configure(style: viewModel.getIconsStyle())
+            return cell
+        } else if indexPath.row == 3 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TabsAnimationOptionTableViewCell.identifier, for: indexPath) as? TabsAnimationOptionTableViewCell else {return UITableViewCell()}
             return cell
         } else {

@@ -210,12 +210,12 @@ class TimetableDateDetailViewController: UIViewController {
     private func setUpConstraints() {
         
         optionsList.snp.makeConstraints { maker in
-            maker.top.equalToSuperview().inset(60)
+            maker.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(10)
             maker.right.equalToSuperview().inset(20)
         }
         
         closeButton.snp.makeConstraints { maker in
-            maker.top.equalToSuperview().inset(60)
+            maker.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(10)
             maker.left.equalToSuperview().inset(20)
         }
         
