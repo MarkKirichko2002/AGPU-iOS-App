@@ -36,7 +36,7 @@ class TabItemTableViewCell: UITableViewCell {
     }
     
     func configure(tab: TabModel) {
-        tabIcon.image = UIImage(named: tab.icon)
+        tabIcon.image = tab.icon
         tabName.text = tab.name
     }
     

@@ -42,7 +42,7 @@ extension TabsPositionOptionTableViewCell: SpringImageViewDelegate {
         let status = settingsManager.getUserStatus()
         let position = settingsManager.getTabsPosition()
         
-        tabs[index].icon = status.icon
+        tabs[index].icon = settingsManager.getTabIconForStatus().icon
         tabs[index].name = status.name + "у"
         
         for tab in tabs {

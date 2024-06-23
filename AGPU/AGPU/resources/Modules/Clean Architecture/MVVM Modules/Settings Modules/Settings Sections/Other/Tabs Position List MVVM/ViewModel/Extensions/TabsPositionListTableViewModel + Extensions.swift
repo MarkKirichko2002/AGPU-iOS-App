@@ -14,12 +14,21 @@ extension TabsPositionListTableViewModel: ITabsPositionListTableViewModel {
         
         tabs = TabsList.tabs
         
-        let index = tabs.firstIndex { $0.id == 2}!
+        let index1 = tabs.firstIndex { $0.id == 1 }!
+        let index2 = tabs.firstIndex { $0.id == 2 }!
+        let index3 = tabs.firstIndex { $0.id == 3 }!
+        let index4 = tabs.firstIndex { $0.id == 4 }!
+        
+        let icons = settingsManager.getTabsIcons()
+        
         let status = settingsManager.getUserStatus()
         let position = settingsManager.getTabsPosition()
         
-        tabs[index].icon = status.icon
-        tabs[index].name = status.name + "у"
+        tabs[index1].icon = icons[0].icon
+        tabs[index2].icon = settingsManager.getTabIconForStatus().icon
+        tabs[index2].name = status.name + "у"
+        tabs[index3].icon = icons[1].icon
+        tabs[index4].icon = icons[2].icon
         
         for tab in tabs {
             for number in position {
