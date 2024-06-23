@@ -5,7 +5,7 @@
 //  Created by Марк Киричко on 23.03.2024.
 //
 
-import Foundation
+import UIKit
 
 // MARK: - ITabsListTableViewModel
 extension TabsPositionListTableViewModel: ITabsPositionListTableViewModel {
@@ -20,15 +20,21 @@ extension TabsPositionListTableViewModel: ITabsPositionListTableViewModel {
         let index4 = tabs.firstIndex { $0.id == 4 }!
         
         let icons = settingsManager.getTabsIcons()
+        let style = settingsManager.getTabsIconStyle()
         
         let status = settingsManager.getUserStatus()
         let position = settingsManager.getTabsPosition()
         
-        tabs[index1].icon = icons[0].icon
-        tabs[index2].icon = settingsManager.getTabIconForStatus().icon
-        tabs[index2].name = status.name + "у"
-        tabs[index3].icon = icons[1].icon
-        tabs[index4].icon = icons[2].icon
+        if style == .apple {
+            tabs[index1].icon = icons[0].icon
+            tabs[index2].icon = settingsManager.getTabIconForStatus().icon
+            tabs[index2].name = status.name + "у"
+            tabs[index3].icon = icons[1].icon
+            tabs[index4].icon = icons[2].icon
+        } else {
+            tabs[index2].icon = UIImage(named: status.icon)!
+            tabs[index2].name = status.name + "у"
+        }
         
         for tab in tabs {
             for number in position {

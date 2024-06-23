@@ -9,6 +9,8 @@ import UIKit
 
 class AdaptiveNewsOptionsListTableViewController: UITableViewController {
 
+    var isSettings = false
+    
     // MARK: - сервисы
     private let viewModel = AdaptiveNewsOptionsListViewModel()
     
@@ -37,7 +39,9 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
     }
     
     @objc private func closeScreen() {
-        sendScreenWasClosedNotification()
+        if isSettings {
+            sendScreenWasClosedNotification()
+        }
         dismiss(animated: true)
     }
     

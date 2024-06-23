@@ -161,6 +161,7 @@ extension SettingsListViewController: UITableViewDelegate {
                 
                 Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
                     let vc = AdaptiveNewsOptionsListTableViewController()
+                    vc.isSettings = true
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)

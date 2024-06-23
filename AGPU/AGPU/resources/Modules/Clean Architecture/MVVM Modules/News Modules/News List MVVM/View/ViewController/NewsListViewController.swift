@@ -182,7 +182,7 @@ final class NewsListViewController: UIViewController {
             self.present(vc, animated: true)
         }
         let settingsAction = UIAction(title: "Настройки") { _ in
-            let vc = NewsOptionsPositionListTableViewController()
+            let vc = AdaptiveNewsOptionsListTableViewController()
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
