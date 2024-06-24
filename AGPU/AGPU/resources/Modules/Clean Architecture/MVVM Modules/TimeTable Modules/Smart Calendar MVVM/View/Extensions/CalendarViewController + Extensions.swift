@@ -16,7 +16,7 @@ extension CalendarViewController: UICalendarSelectionSingleDateDelegate {
         vc.modalPresentationStyle = .fullScreen
         vc.delegate = self
         present(vc, animated: true)
-        selection.selectedDate = nil
+        self.selection = selection
         HapticsManager.shared.hapticFeedback()
     }
 }

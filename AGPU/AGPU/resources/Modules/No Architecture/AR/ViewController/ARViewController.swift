@@ -38,8 +38,8 @@ class ARViewController: UIViewController {
         options.tintColor = .label
         closeButton.tintColor = .label
         navigationItem.title = "AR режим"
-        navigationItem.leftBarButtonItem = closeButton
-        navigationItem.rightBarButtonItem = options
+        navigationItem.leftBarButtonItem = options
+        navigationItem.rightBarButtonItem = closeButton
     }
     
     private func setUpMenu()-> UIMenu {
@@ -54,7 +54,7 @@ class ARViewController: UIViewController {
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
         }
-        return UIMenu(title: "", children: [
+        return UIMenu(title: "AR", children: [
             refreshAction,
             setUpMeshListMenu(),
             setUpPlaneListMenu(),

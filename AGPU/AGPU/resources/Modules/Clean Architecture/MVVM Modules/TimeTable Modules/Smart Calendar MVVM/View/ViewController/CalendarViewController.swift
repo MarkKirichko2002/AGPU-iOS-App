@@ -20,6 +20,8 @@ final class CalendarViewController: UIViewController {
     var date: String = ""
     var owner: String = ""
     
+    var selection: UICalendarSelectionSingleDate?
+    
     weak var delegate: CalendarViewControllerDelegate?
     
     let calendarView = UICalendarView()
@@ -44,10 +46,20 @@ final class CalendarViewController: UIViewController {
     }
     
     private func setUpNavigation() {
+        let options = UIBarButtonItem(image: UIImage(named: "refresh"), style: .done, target: self, action: #selector(refresh))
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(closeScreen))
+        options.tintColor = .label
         closeButton.tintColor = .label
         navigationItem.title = "Календарь"
+        navigationItem.leftBarButtonItem = options
         navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    @objc private func refresh() {
+        if self.selection?.selectedDate != nil {
+            self.selection?.selectedDate = nil
+            HapticsManager.shared.hapticFeedback()
+        }
     }
     
     @objc private func closeScreen() {
