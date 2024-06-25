@@ -62,6 +62,15 @@ class CustomSplashScreenEditorViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    private func reset() {
+        CustomIcon.image = UIImage(named: "АГПУ")
+        CustomTitleLabel.textColor = .label
+        CustomTitleLabel.text = "Ваш текст"
+        viewModel.colorOption = .system
+        view.backgroundColor = .systemBackground
+        HapticsManager.shared.hapticFeedback()
+    }
+    
     @objc private func saveScreen() {
         let screen = CustomSplashScreenModel()
         screen.id = 1
@@ -69,6 +78,7 @@ class CustomSplashScreenEditorViewController: UIViewController {
         screen.title = CustomTitleLabel.text!
         screen.color = viewModel.colorOption.title
         viewModel.saveCustomSplashScreen(screen: screen)
+        HapticsManager.shared.hapticFeedback()
     }
     
     private func setUpView() {
@@ -107,6 +117,10 @@ class CustomSplashScreenEditorViewController: UIViewController {
             self.showColorsListVC()
         }
         
+        let resetAction = UIAction(title: "Сбросить") { _ in
+            self.reset()
+        }
+        
         let saveAction = UIAction(title: "Сохранить") { _ in
             self.saveScreen()
         }
@@ -115,6 +129,7 @@ class CustomSplashScreenEditorViewController: UIViewController {
             photoAction,
             titleAction,
             colorAction,
+            resetAction,
             saveAction
         ])
     }
@@ -182,7 +197,6 @@ class CustomSplashScreenEditorViewController: UIViewController {
             CustomTitleLabel.heightAnchor.constraint(equalToConstant: 100),
             CustomTitleLabel.topAnchor.constraint(equalTo: CustomIcon.bottomAnchor, constant: 50)
         ])
-        print(UIScreen.main.bounds.width / 4)
     }
     
     private func bindViewModel() {

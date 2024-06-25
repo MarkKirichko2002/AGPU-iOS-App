@@ -160,7 +160,7 @@ extension SettingsManager: SettingsManagerProtocol {
             }
         }
         
-        return style == .flatIcon ? TabBarIconModel(icon: UIImage(named: "applicant")!, selectedIcon: UIImage(named: "applicant selected")!) : TabBarIconModel(icon: UIImage(named: "person")!, selectedIcon: UIImage(named: "person.fill")!)
+        return style == .flatIcon ? TabBarIconModel(icon: UIImage(named: "applicant")!, selectedIcon: UIImage(named: "applicant selected")!) : TabBarIconModel(icon: UIImage(systemName: "person")!, selectedIcon: UIImage(systemName: "person.fill")!)
     }
     
     func getTabsIcons()-> [TabBarIconModel] {
