@@ -38,18 +38,24 @@ class CustomSplashScreenEditorViewController: UIViewController {
     let viewModel = CustomSplashScreenEditorViewModel()
     
     private func setUpNavigation() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemBackground
+        
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
         navigationItem.title = "Экран заставки"
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         let backButton = UIBarButtonItem(customView: button)
-        let saveButton = UIBarButtonItem(title: "Сохранить", style: .done, target: self, action: #selector(saveScreen))
-        saveButton.tintColor = .label
+        let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpMenu())
+        sections.tintColor = .label
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = backButton
-        navigationItem.rightBarButtonItem = saveButton
+        navigationItem.rightBarButtonItem = sections
     }
     
     @objc private func back() {
@@ -85,6 +91,32 @@ class CustomSplashScreenEditorViewController: UIViewController {
     private func setUpViewGesture() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(showColorsListVC))
         view.addGestureRecognizer(tap)
+    }
+    
+    private func setUpMenu()-> UIMenu {
+        
+        let photoAction = UIAction(title: "Фото") { _ in
+            self.showPhotoAlert()
+        }
+        
+        let titleAction = UIAction(title: "Надпись") { _ in
+            self.showTitleAlert()
+        }
+        
+        let colorAction = UIAction(title: "Цвет фона") { _ in
+            self.showColorsListVC()
+        }
+        
+        let saveAction = UIAction(title: "Сохранить") { _ in
+            self.saveScreen()
+        }
+        
+        return UIMenu(title: "Экран заставки", children: [
+            photoAction,
+            titleAction,
+            colorAction,
+            saveAction
+        ])
     }
     
     @objc func showPhotoAlert() {

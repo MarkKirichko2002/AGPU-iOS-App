@@ -62,7 +62,6 @@ final class NewsListViewController: UIViewController {
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .systemBackground
         
-        navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
         navigationItem.leftBarButtonItem = refreshButton
