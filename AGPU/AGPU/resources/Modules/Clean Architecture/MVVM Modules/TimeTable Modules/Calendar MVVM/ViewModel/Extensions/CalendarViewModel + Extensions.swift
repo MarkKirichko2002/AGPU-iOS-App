@@ -20,6 +20,10 @@ extension CalendarViewModel: CalendarViewModelProtocol {
         return nil
     }
     
+    func getFormattedDate(date: Date)-> String {
+        return dateManager.getFormattedDate(date: date)
+    }
+    
     func saveDate(date: String) {
         var dates = UserDefaults.standard.array(forKey: "recent dates") as? [String] ?? []
         if !dates.contains(date) {

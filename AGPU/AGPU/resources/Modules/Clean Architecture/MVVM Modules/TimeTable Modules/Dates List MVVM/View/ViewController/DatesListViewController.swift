@@ -1,5 +1,5 @@
 //
-//  RecentDatesListViewController.swift
+//  DatesListViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 26.06.2024.
@@ -7,23 +7,17 @@
 
 import UIKit
 
-protocol RecentDatesListViewControllerDelegate: AnyObject {
-    func dateSelected(model: TimeTableChangesModel)
-}
-
-class RecentDatesListViewController: UIViewController {
+class DatesListViewController: UIViewController {
 
     // MARK: - UI
     private let noDatesLabel = UILabel()
     private let tableView = UITableView()
     
-    // MARK: - ASPUButtonFavouriteActionsListViewModel
-    let viewModel = RecentDatesListViewModel()
+    // MARK: - сервисы
+    let viewModel = DatesListViewModel()
     
     var id: String = ""
     var owner: String = ""
-    
-    weak var delegate: RecentDatesListViewControllerDelegate?
     
     // MARK: - Init
     init(id: String, owner: String) {
@@ -45,14 +39,13 @@ class RecentDatesListViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        
-        let titleView = CustomTitleView(image: "time", title: "Недавние даты", frame: .zero)
-        
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
-        setUpEditButton(title: "Править")
-        navigationItem.titleView = titleView
+        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpMenu())
+        options.tintColor = .label
+        navigationItem.title = "Даты"
         navigationItem.leftBarButtonItem = closeButton
+        navigationItem.rightBarButtonItem = options
     }
     
     @objc private func closeScreen() {
@@ -60,20 +53,27 @@ class RecentDatesListViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    func setUpEditButton(title: String) {
-        let moveButton = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(moveDates))
-        moveButton.tintColor = .label
-        navigationItem.rightBarButtonItem = moveButton
-    }
-    
-    @objc private func moveDates() {
-        if tableView.isEditing {
-            setUpEditButton(title: "Править")
-            tableView.isEditing = false
-        } else {
-            setUpEditButton(title: "Готово")
-            tableView.isEditing = true
+    private func setUpMenu()-> UIMenu {
+        
+        let addDateAction = UIAction(title: "Календарь") { _ in
+            let vc = CalendarMultipleDatesViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
         }
+        
+        let getTimetable = UIAction(title: "Расписание") { _ in
+            let vc = TimeTableDatesListViewController(id: self.id, owner: self.owner, dates: self.viewModel.dates)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        return UIMenu(title: "Даты", children: [
+            addDateAction,
+            getTimetable
+        ])
     }
     
     private func setUpTable() {

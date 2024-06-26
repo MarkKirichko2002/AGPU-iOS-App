@@ -61,7 +61,14 @@ final class CalendarViewController: UIViewController {
             self.refresh()
         }
         
-        let datesList = UIAction(title: "Недавние даты") { _ in
+        let datesList = UIAction(title: "Даты") { _ in
+            let vc = DatesListViewController(id: self.id, owner: self.owner)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let recentDatesList = UIAction(title: "Недавние даты") { _ in
             let vc = RecentDatesListViewController(id: self.id, owner: self.owner)
             vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
@@ -70,7 +77,8 @@ final class CalendarViewController: UIViewController {
         }
         return UIMenu(title: "Календарь", children: [
             refreshAction,
-            datesList
+            datesList,
+            recentDatesList
         ])
     }
     

@@ -9,5 +9,6 @@ import UIKit
 
 protocol CalendarViewModelProtocol {
     func compareDates(date1: String, date2: Date)-> UIColor?
+    func getFormattedDate(date: Date)-> String
     func saveDate(date: String)
 }

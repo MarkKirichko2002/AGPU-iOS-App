@@ -11,7 +11,7 @@ import UIKit
 extension CalendarViewController: UICalendarSelectionSingleDateDelegate {
     
     func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
-        let date = DateManager().getFormattedDate(date: dateComponents?.date ?? Date())
+        let date = viewModel.getFormattedDate(date: selection.selectedDate?.date ?? Date())
         let vc = TimetableDateDetailViewController(id: self.id, date: date, owner: self.owner)
         vc.modalPresentationStyle = .fullScreen
         vc.delegate = self
