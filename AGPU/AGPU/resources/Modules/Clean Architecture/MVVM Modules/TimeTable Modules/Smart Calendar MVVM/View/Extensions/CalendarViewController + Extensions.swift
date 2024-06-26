@@ -17,6 +17,7 @@ extension CalendarViewController: UICalendarSelectionSingleDateDelegate {
         vc.delegate = self
         present(vc, animated: true)
         self.selection = selection
+        viewModel.saveDate(date: date)
         HapticsManager.shared.hapticFeedback()
     }
 }
@@ -35,5 +36,16 @@ extension CalendarViewController: TimetableDateDetailViewControllerDelegate {
     func dateWasSelected(model: TimeTableChangesModel) {
         delegate?.dateWasSelected(model: model)
         self.dismiss(animated: true)
+    }
+}
+
+// MARK: - RecentDatesListViewControllerDelegate
+extension CalendarViewController: RecentDatesListViewControllerDelegate {
+    
+    func dateSelected(model: TimeTableChangesModel) {
+        delegate?.dateWasSelected(model: model)
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.dismiss(animated: true)
+        }
     }
 }

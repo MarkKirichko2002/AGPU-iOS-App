@@ -46,13 +46,32 @@ final class CalendarViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        let options = UIBarButtonItem(image: UIImage(named: "refresh"), style: .done, target: self, action: #selector(refresh))
+        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpMenu())
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(closeScreen))
         options.tintColor = .label
         closeButton.tintColor = .label
         navigationItem.title = "Календарь"
-        navigationItem.leftBarButtonItem = options
-        navigationItem.rightBarButtonItem = closeButton
+        navigationItem.leftBarButtonItem = closeButton
+        navigationItem.rightBarButtonItem = options
+    }
+    
+    private func setUpMenu()-> UIMenu {
+        
+        let refreshAction = UIAction(title: "Сбросить") { _ in
+            self.refresh()
+        }
+        
+        let datesList = UIAction(title: "Недавние даты") { _ in
+            let vc = RecentDatesListViewController(id: self.id, owner: self.owner)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        return UIMenu(title: "Календарь", children: [
+            refreshAction,
+            datesList
+        ])
     }
     
     @objc private func refresh() {

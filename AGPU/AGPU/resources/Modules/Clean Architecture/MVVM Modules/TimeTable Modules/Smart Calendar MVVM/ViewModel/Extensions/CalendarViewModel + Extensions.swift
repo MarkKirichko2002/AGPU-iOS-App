@@ -19,4 +19,14 @@ extension CalendarViewModel: CalendarViewModelProtocol {
         }
         return nil
     }
+    
+    func saveDate(date: String) {
+        var dates = UserDefaults.standard.array(forKey: "recent dates") as? [String] ?? []
+        if !dates.contains(date) {
+            dates.append(date)
+            UserDefaults.saveArray(array: dates, key: "recent dates") {
+                print("Saved")
+            }
+        }
+    }
 }

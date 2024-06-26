@@ -77,7 +77,7 @@ struct AppFeaturesList {
         AppFeatureModel(
             id: 10,
             name: "Smart Calendar",
-            description: "Smart Calendar (умный календарь) - при выборе даты в календаре отображается информация о расписании.",
+            description: "Smart Calendar (умный календарь) - при выборе даты в календаре отображается информация о расписании. К тому же у вас есть возможность взаимодействовать со списком недавних дат.",
             videoURL: "https://youtu.be/DGWhPXIg1Dk?si=UHWPAddwmmubeNe1"
         ),
         

@@ -45,8 +45,8 @@ class ARViewController: UIViewController {
         options.tintColor = .label
         closeButton.tintColor = .label
         navigationItem.title = "AR режим"
-        navigationItem.leftBarButtonItem = options
-        navigationItem.rightBarButtonItem = closeButton
+        navigationItem.leftBarButtonItem = closeButton
+        navigationItem.rightBarButtonItem = options
     }
     
     private func setUpMenu()-> UIMenu {
