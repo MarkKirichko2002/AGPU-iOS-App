@@ -55,7 +55,7 @@ class DatesListViewController: UIViewController {
     
     private func setUpMenu()-> UIMenu {
         
-        let addDateAction = UIAction(title: "Календарь") { _ in
+        let addDateAction = UIAction(title: "Выбрать даты") { _ in
             let vc = CalendarMultipleDatesViewController()
             vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)

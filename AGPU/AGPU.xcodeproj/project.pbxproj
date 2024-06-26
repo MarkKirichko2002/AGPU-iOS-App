@@ -309,6 +309,7 @@
 		8276E62A2C2CA49200216F28 /* ITimeTableDatesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276E6292C2CA49200216F28 /* ITimeTableDatesListViewModel.swift */; };
 		8276E62C2C2CA4E800216F28 /* TimeTableDatesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276E62B2C2CA4E800216F28 /* TimeTableDatesListViewModel.swift */; };
 		8276E62E2C2CA52700216F28 /* TimeTableDatesListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276E62D2C2CA52700216F28 /* TimeTableDatesListViewModel + Extensions.swift */; };
+		8276E6312C2CCC8F00216F28 /* ZoomImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276E6302C2CCC8F00216F28 /* ZoomImageViewController.swift */; };
 		827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B62C22A425166008D241E /* UserDefaults + Extensions.swift */; };
 		827E907D2BC8788600FD8168 /* AppFeaturesListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E907C2BC8788600FD8168 /* AppFeaturesListTableViewCell.swift */; };
 		82807C712AA0FA5D00E9C884 /* PairTypesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82807C702AA0FA5D00E9C884 /* PairTypesListTableViewController.swift */; };
@@ -965,6 +966,7 @@
 		8276E6292C2CA49200216F28 /* ITimeTableDatesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITimeTableDatesListViewModel.swift; sourceTree = "<group>"; };
 		8276E62B2C2CA4E800216F28 /* TimeTableDatesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableDatesListViewModel.swift; sourceTree = "<group>"; };
 		8276E62D2C2CA52700216F28 /* TimeTableDatesListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableDatesListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		8276E6302C2CCC8F00216F28 /* ZoomImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomImageViewController.swift; sourceTree = "<group>"; };
 		827B62C22A425166008D241E /* UserDefaults + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + Extensions.swift"; sourceTree = "<group>"; };
 		827E907C2BC8788600FD8168 /* AppFeaturesListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeaturesListTableViewCell.swift; sourceTree = "<group>"; };
 		82807C702AA0FA5D00E9C884 /* PairTypesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairTypesListTableViewController.swift; sourceTree = "<group>"; };
@@ -4438,6 +4440,7 @@
 			isa = PBXGroup;
 			children = (
 				828710212C23209900E0DC1D /* AR */,
+				8276E62F2C2CCC7900216F28 /* Zoom Image */,
 				82187CA92C04FD7B0033E6DC /* Hint */,
 				8258198F2C02ADF70022D17F /* App Update */,
 				822527462BA63D0500B66314 /* News Categories Randomizer */,
@@ -5157,6 +5160,14 @@
 				8276E6272C2CA44000216F28 /* TimeTableDayModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		8276E62F2C2CCC7900216F28 /* Zoom Image */ = {
+			isa = PBXGroup;
+			children = (
+				8276E6302C2CCC8F00216F28 /* ZoomImageViewController.swift */,
+			);
+			path = "Zoom Image";
 			sourceTree = "<group>";
 		};
 		827E905A2BC8773000FD8168 /* splash screens */ = {
@@ -9878,6 +9889,7 @@
 				828F47972C0532C300AF7C3D /* IThingsCategoriesListViewModel.swift in Sources */,
 				8209007D2BAF62650053F3BD /* TabsPositionListTableViewController.swift in Sources */,
 				824EBF6C2B29F9890003E7E6 /* AGPUBuildingTypes.swift in Sources */,
+				8276E6312C2CCC8F00216F28 /* ZoomImageViewController.swift in Sources */,
 				82A1CDC72C0CDD72005A3338 /* SavedVideosListTableViewController + Extensions.swift in Sources */,
 				8276E6172C2C9A0900216F28 /* CalendarMultipleDatesViewModel.swift in Sources */,
 				8299525D2BDCB61A003AFB14 /* IASPUButtonFavouriteActionsListViewModel.swift in Sources */,

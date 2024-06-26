@@ -93,7 +93,6 @@ class ImageDetailViewController: UIViewController {
         guard let image = UIImage(data: data.image) else {return}
         currentImage.image = image
         setUpTap()
-        setUpPinchZoom()
     }
     
     private func setUpTitle() {
@@ -131,30 +130,15 @@ class ImageDetailViewController: UIViewController {
     }
     
     private func setUpTap() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(transformToStandard))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(openFullImage))
         currentImage.addGestureRecognizer(tap)
     }
     
-    private func setUpPinchZoom() {
-        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(pinch(_:)))
-        currentImage.addGestureRecognizer(pinch)
-    }
-    
-    @objc func pinch(_ gesture: UIPinchGestureRecognizer) {
-        if gesture.state == .changed {
-            let scale = gesture.scale
-            if scale < 1.3 && scale > 0.9 {
-                UIView.animate(withDuration: 0.5) {
-                    self.currentImage.transform = CGAffineTransform(scaleX: scale, y: scale)
-                }
-            }
-        }
-    }
-    
-    @objc func transformToStandard() {
-        UIView.animate(withDuration: 0.5) {
-            self.currentImage.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-        }
+    @objc func openFullImage() {
+        let vc = ZoomImageViewController(image: currentImage.image ?? UIImage())
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
     }
     
     private func setUpConstraints() {

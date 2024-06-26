@@ -96,7 +96,6 @@ class TimetableDateDetailViewController: UIViewController {
         optionsList.menu = setUpMenu()
         selectDateButton.addTarget(self, action: #selector(selectDate), for: .touchUpInside)
         setUpTap()
-        setUpPinchZoom()
     }
     
     @objc private func closeScreen() {
@@ -181,30 +180,15 @@ class TimetableDateDetailViewController: UIViewController {
     }
     
     private func setUpTap() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(transformToStandard))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(openFullImage))
         timetableImage.addGestureRecognizer(tap)
     }
     
-    private func setUpPinchZoom() {
-        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(pinch(_:)))
-        timetableImage.addGestureRecognizer(pinch)
-    }
-    
-    @objc func pinch(_ gesture: UIPinchGestureRecognizer) {
-        if gesture.state == .changed {
-            let scale = gesture.scale
-            if scale < 1.3 && scale > 0.9 {
-                UIView.animate(withDuration: 0.5) {
-                    self.timetableImage.transform = CGAffineTransform(scaleX: scale, y: scale)
-                }
-            }
-        }
-    }
-    
-    @objc func transformToStandard() {
-        UIView.animate(withDuration: 0.5) {
-            self.timetableImage.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-        }
+    @objc func openFullImage() {
+        let vc = ZoomImageViewController(image: timetableImage.image ?? UIImage())
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
     }
     
     private func setUpConstraints() {
