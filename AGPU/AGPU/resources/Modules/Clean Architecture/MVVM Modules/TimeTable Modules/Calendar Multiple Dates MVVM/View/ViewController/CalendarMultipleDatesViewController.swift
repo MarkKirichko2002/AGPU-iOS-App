@@ -54,8 +54,11 @@ final class CalendarMultipleDatesViewController: UIViewController {
     }
     
     @objc private func selectDates() {
-        guard let selection = selection else {return}
-        viewModel.selectDates(dates: selection)
+        if let selection = selection {
+            viewModel.selectDates(dates: selection)
+        } else {
+            showAlert(title: "Даты не выбраны!", message: "выберите хотя бы одну дату", actions: [UIAlertAction(title: "ОК", style: .default)])
+        }
     }
     
     private func configureCalendar() {
