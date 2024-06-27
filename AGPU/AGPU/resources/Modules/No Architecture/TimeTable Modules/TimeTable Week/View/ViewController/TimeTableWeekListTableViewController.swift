@@ -154,6 +154,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     @objc private func closeScreen() {
+        speechRecognitionManager.cancelSpeechRecognition()
         HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
     }
@@ -317,7 +318,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
             }
         }
         speechRecognitionManager.registerSpeechRecognitionHandler { text in
-            if text.lowercased().contains("закр") {
+            if text.lowercased().contains("закр") || text.lowercased().contains("стоп") {
                 DispatchQueue.main.async {
                     self.dismiss(animated: true)
                 }
@@ -329,13 +330,13 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     private func checkWeekDay(day: String) {
-        
         let _ = week.dayNames.contains { key, value in
             if value.contains(day) {
                 if let index = self.timetable.firstIndex (where: { $0.date == key }) {
                     DispatchQueue.main.async {
                         self.tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
                     }
+                    self.currentDate = key
                     self.resetSpeechRecognition()
                 } else {
                     self.showAlert(title: "День не найден!", message: "в этот день нет расписания", actions: [UIAlertAction(title: "ОК", style: .default)])
@@ -350,7 +351,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     
     private func resetSpeechRecognition() {
         speechRecognitionManager.cancelSpeechRecognition()
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
             self.speechRecognitionManager.startRecognize()
         }
     }

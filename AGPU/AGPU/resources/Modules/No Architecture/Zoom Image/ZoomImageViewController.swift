@@ -7,11 +7,15 @@
 
 import UIKit
 import SnapKit
+import SDWebImage
 
 final class ZoomImageViewController: UIViewController {
 
     let scrollView = UIScrollView()
     let imageView = UIImageView()
+    
+    var isURL = false
+    var url: String = ""
     
     init(image: UIImage) {
         self.imageView.image = image
@@ -63,6 +67,12 @@ final class ZoomImageViewController: UIViewController {
     }
     
     private func setUpImageView() {
+        
+        if isURL {
+            guard let url = URL(string: url) else {return}
+            imageView.sd_setImage(with: url)
+        }
+        
         scrollView.addSubview(imageView)
         imageView.contentMode = .scaleAspectFit
         imageView.frame = scrollView.bounds

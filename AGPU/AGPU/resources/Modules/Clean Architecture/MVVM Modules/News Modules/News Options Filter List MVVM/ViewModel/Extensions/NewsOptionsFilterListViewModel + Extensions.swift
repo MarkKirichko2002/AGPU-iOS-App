@@ -53,9 +53,17 @@ extension NewsOptionsFilterListViewModel: INewsOptionsFilterListViewModel {
             option = item
             optionSelectedHandler?()
             HapticsManager.shared.hapticFeedback()
-            NotificationCenter.default.post(name: Notification.Name("news filter option"), object: item)
+            saveOption(option: item)
         } else {
             print("уже выбрана")
+        }
+    }
+    
+    private func saveOption(option: NewsOptionsFilters) {
+        UserDefaults.saveData(object: option, key: "news filter") {
+            NotificationCenter.default.post(name: Notification.Name("news filter option"), object: option)
+            HapticsManager.shared.hapticFeedback()
+            print("сохранено")
         }
     }
     

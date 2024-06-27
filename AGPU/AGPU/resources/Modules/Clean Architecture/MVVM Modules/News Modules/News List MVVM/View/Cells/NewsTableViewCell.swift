@@ -9,6 +9,10 @@ import UIKit
 import SnapKit
 import SDWebImage
 
+protocol NewsTableViewCellDelegate: AnyObject {
+    func imageWasSelected(url: String)
+}
+
 final class NewsTableViewCell: UITableViewCell {
     
     static let identifier = "NewsTableViewCell"
@@ -17,9 +21,11 @@ final class NewsTableViewCell: UITableViewCell {
     private let animation = AnimationClass()
     private let dateManager = DateManager()
     
-    private let newsImage: SpringImageView = {
-        let image = SpringImageView()
-        image.isInteraction = false
+    weak var delegate: NewsTableViewCellDelegate?
+    var url: String = ""
+    
+    private let newsImage: UIImageView = {
+        let image = UIImageView()
         image.tintColor = .label
         image.contentMode = .scaleAspectFill
         return image
@@ -64,9 +70,16 @@ final class NewsTableViewCell: UITableViewCell {
     }
     
     private func setUpImage() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(imageWasTapped))
+        newsImage.isUserInteractionEnabled = true
+        newsImage.addGestureRecognizer(tap)
         newsImage.clipsToBounds = true
         newsImage.layer.cornerRadius = 10
-        newsImage.isInteraction = true
+    }
+    
+    @objc private func imageWasTapped() {
+        HapticsManager.shared.hapticFeedback()
+        delegate?.imageWasSelected(url: url)
     }
     
     private func makeConstraints() {
@@ -100,6 +113,7 @@ final class NewsTableViewCell: UITableViewCell {
         } else {
             DispatchQueue.main.async {
                 self.newsImage.sd_setImage(with: URL(string: article.previewImage))
+                self.url = article.previewImage
                 self.articleTitle.text = article.title
                 self.articleDate.text = article.date
             }
@@ -115,12 +129,14 @@ final class NewsTableViewCell: UITableViewCell {
             newsImage.layer.borderColor = UIColor.label.cgColor
             DispatchQueue.main.async {
                 self.newsImage.sd_setImage(with: URL(string: news.previewImage))
+                self.url = news.previewImage
                 self.articleTitle.text = news.title
                 self.articleDate.text = "\(news.date) (сегодня!)"
             }
         } else {
             DispatchQueue.main.async {
                 self.newsImage.sd_setImage(with: URL(string: news.previewImage))
+                self.url = news.previewImage
                 self.articleTitle.text = news.title
                 self.articleDate.text = news.date
             }

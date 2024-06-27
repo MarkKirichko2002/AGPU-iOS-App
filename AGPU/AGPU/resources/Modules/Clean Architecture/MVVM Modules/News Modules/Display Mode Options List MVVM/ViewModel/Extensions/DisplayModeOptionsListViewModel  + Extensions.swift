@@ -26,9 +26,18 @@ extension DisplayModeOptionsListViewModel: IDisplayModeOptionsListViewModel {
             option = item
             optionSelectedHandler?()
             HapticsManager.shared.hapticFeedback()
-            NotificationCenter.default.post(name: Notification.Name("display mode option"), object: item)
+            saveOption(option: item)
         } else {
             print("уже выбрана")
+        }
+    }
+    
+    func saveOption(option: DisplayModes) {
+        UserDefaults.saveData(object: option, key: "display mode") {
+            HapticsManager.shared.hapticFeedback()
+            NotificationCenter.default.post(name: Notification.Name("display mode option"), object: option)
+            NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+            self.optionSelectedHandler?()
         }
     }
     

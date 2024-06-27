@@ -118,6 +118,7 @@ extension NewsListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifier, for: indexPath) as? NewsTableViewCell else {fatalError()}
+        cell.delegate = self
         cell.configure(article: viewModel.articleItem(index: indexPath.row))
         return cell
     }
@@ -138,5 +139,18 @@ extension NewsListViewController: WKNavigationDelegate {
             self.spinner.isHidden = true
             self.animation.stopRotateAnimation(view: self.spinner)
         }
+    }
+}
+
+// MARK: - NewsTableViewCellDelegate
+extension NewsListViewController: NewsTableViewCellDelegate {
+    
+    func imageWasSelected(url: String) {
+        let vc = ZoomImageViewController(image: UIImage())
+        vc.isURL = true
+        vc.url = url
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true)
     }
 }
