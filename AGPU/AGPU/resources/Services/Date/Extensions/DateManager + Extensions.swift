@@ -34,6 +34,10 @@ extension DateManager: DateManagerProtocol {
         return ""
     }
     
+    func getDate(from weekDay: String)-> String {
+        return ""
+    }
+    
     func getCurrentDayOfWeek(day: Int)-> String {
         let day = daysOfWeek[day]
         return day

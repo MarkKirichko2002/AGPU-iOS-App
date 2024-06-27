@@ -35,6 +35,7 @@ class TimetableOptionsListTableViewController: UITableViewController {
     private func setUpTable() {
         tableView.register(UINib(nibName: TimetableOptionsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimetableOptionsTableViewCell.identifier)
         tableView.register(UINib(nibName: SaveRecentTimetableItemOptionCell.identifier, bundle: nil), forCellReuseIdentifier: SaveRecentTimetableItemOptionCell.identifier)
+        tableView.register(UINib(nibName: VoiceScrollTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: VoiceScrollTableViewCell.identifier)
     }
     
     private func bindViewModel() {
@@ -77,7 +78,7 @@ class TimetableOptionsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 7
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,8 +87,11 @@ class TimetableOptionsListTableViewController: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TimetableOptionsTableViewCell.identifier, for: indexPath) as? TimetableOptionsTableViewCell else {return UITableViewCell()}
             cell.configure(option: viewModel.options[indexPath.row])
             return cell
-        default:
+        case 5:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SaveRecentTimetableItemOptionCell.identifier, for: indexPath) as? SaveRecentTimetableItemOptionCell else {return UITableViewCell()}
+            return cell
+        default:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: VoiceScrollTableViewCell.identifier, for: indexPath) as? VoiceScrollTableViewCell else {return UITableViewCell()}
             return cell
         }
     }

@@ -22,6 +22,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     let dateManager = DateManager()
     let realmManager = RealmManager()
     let animation = AnimationClass()
+    let speechRecognitionManager = SpeechRecognitionManager()
     
     // MARK: - UI
     let tableView = UITableView()
@@ -56,8 +57,18 @@ final class TimeTableWeekListTableViewController: UIViewController {
         setUpTable()
         setUpLabel()
         setUpIndicatorView()
-        getTimeTable()
         setUpRefreshControl()
+        getTimeTable()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkVoiceControl()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        speechRecognitionManager.cancelSpeechRecognition()
     }
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
@@ -192,6 +203,15 @@ final class TimeTableWeekListTableViewController: UIViewController {
         self.animation.startRotateAnimation(view: self.spinner)
     }
     
+    private func setUpRefreshControl() {
+        tableView.addSubview(refreshControl)
+        refreshControl.addTarget(self, action: #selector(refreshTimetable), for: .valueChanged)
+    }
+    
+    @objc private func refreshTimetable() {
+        getTimeTable()
+    }
+    
     func getTimeTable() {
         self.spinner.isHidden = false
         self.animation.startRotateAnimation(view: self.spinner)
@@ -265,13 +285,65 @@ final class TimeTableWeekListTableViewController: UIViewController {
         }
     }
     
-    private func setUpRefreshControl() {
-        tableView.addSubview(refreshControl)
-        refreshControl.addTarget(self, action: #selector(refreshTimetable), for: .valueChanged)
+    private func checkVoiceControl() {
+        
+        let isOnVoiceScrollTimetable = UserDefaults.standard.object(forKey: "onVoiceScrollTimetable") as? Bool ?? false
+        
+        if isOnVoiceScrollTimetable {
+            startRecognize()
+        }
     }
     
-    @objc private func refreshTimetable() {
-        getTimeTable()
+    private func startRecognize() {
+        speechRecognitionManager.requestSpeechAndMicrophonePermission()
+        speechRecognitionManager.registerSpeechAuthorizationHandler { auth in
+            switch auth {
+            case .notDetermined:
+                print("Разрешение на распознавание речи еще не было получено.")
+            case .denied:
+                let settingsAction = UIAlertAction(title: "Перейти в настройки", style: .default) { _ in
+                    self.openSettings()
+                }
+                let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
+                self.showAlert(title: "Микрофон выключен", message: "Хотите включить в настройках?", actions: [settingsAction, cancel])
+                print("Доступ к распознаванию речи был отклонен.")
+            case .restricted:
+                print("Функциональность распознавания речи ограничена.")
+            case .authorized:
+                print("Разрешение на распознавание речи получено.")
+                self.speechRecognitionManager.startRecognize()
+            @unknown default:
+                print("неизвестно")
+            }
+        }
+        speechRecognitionManager.registerSpeechRecognitionHandler { text in
+            if text.contains("закр") {
+                self.dismiss(animated: true)
+            } else {
+                self.checkWeekDay(day: text)
+            }
+        }
+    }
+    
+    private func checkWeekDay(day: String) {
+        for i in self.week.dayNames {
+            if i.value.contains(day) {
+                if let index = self.timetable.firstIndex (where: { $0.date == i.key }) {
+                    self.tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
+                    self.resetSpeechRecognition()
+                    break
+                } else {
+                    self.resetSpeechRecognition()
+                }
+            }
+        }
+    }
+    
+    private func resetSpeechRecognition() {
+        speechRecognitionManager.cancelSpeechRecognition()
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.speechRecognitionManager.startRecognize()
+        }
     }
     
     func scrollToCurrentDay() {
