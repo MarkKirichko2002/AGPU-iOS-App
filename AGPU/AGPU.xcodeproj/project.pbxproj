@@ -293,11 +293,6 @@
 		82768AF62ABE1B360022FBE1 /* AppThemesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82768AF42ABE1B360022FBE1 /* AppThemesTableViewCell.xib */; };
 		82768AF92ABE1CE70022FBE1 /* AppFeaturesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82768AF72ABE1CE70022FBE1 /* AppFeaturesTableViewCell.xib */; };
 		82768AFA2ABE1CE70022FBE1 /* AppFeaturesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82768AF82ABE1CE70022FBE1 /* AppFeaturesTableViewCell.swift */; };
-		8276E5FF2C2C8ABF00216F28 /* DatesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276E5FE2C2C8ABF00216F28 /* DatesListViewController.swift */; };
-		8276E6012C2C8AE600216F28 /* IDatesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276E6002C2C8AE600216F28 /* IDatesListViewModel.swift */; };
-		8276E6032C2C8B5200216F28 /* DatesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276E6022C2C8B5200216F28 /* DatesListViewModel.swift */; };
-		8276E6052C2C8C3200216F28 /* DatesListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276E6042C2C8C3200216F28 /* DatesListViewModel + Extensions.swift */; };
-		8276E6072C2C8EAA00216F28 /* DatesListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276E6062C2C8EAA00216F28 /* DatesListViewController + Extensions.swift */; };
 		8276E60E2C2C92D500216F28 /* CalendarMultipleDatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276E60D2C2C92D500216F28 /* CalendarMultipleDatesViewController.swift */; };
 		8276E6102C2C93C600216F28 /* CalendarMultipleDatesViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276E60F2C2C93C600216F28 /* CalendarMultipleDatesViewController + Extensions.swift */; };
 		8276E6152C2C99A400216F28 /* ICalendarMultipleDatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276E6142C2C99A400216F28 /* ICalendarMultipleDatesViewModel.swift */; };
@@ -950,11 +945,6 @@
 		82768AF42ABE1B360022FBE1 /* AppThemesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppThemesTableViewCell.xib; sourceTree = "<group>"; };
 		82768AF72ABE1CE70022FBE1 /* AppFeaturesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppFeaturesTableViewCell.xib; sourceTree = "<group>"; };
 		82768AF82ABE1CE70022FBE1 /* AppFeaturesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFeaturesTableViewCell.swift; sourceTree = "<group>"; };
-		8276E5FE2C2C8ABF00216F28 /* DatesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatesListViewController.swift; sourceTree = "<group>"; };
-		8276E6002C2C8AE600216F28 /* IDatesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDatesListViewModel.swift; sourceTree = "<group>"; };
-		8276E6022C2C8B5200216F28 /* DatesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatesListViewModel.swift; sourceTree = "<group>"; };
-		8276E6042C2C8C3200216F28 /* DatesListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatesListViewModel + Extensions.swift"; sourceTree = "<group>"; };
-		8276E6062C2C8EAA00216F28 /* DatesListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatesListViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8276E60D2C2C92D500216F28 /* CalendarMultipleDatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMultipleDatesViewController.swift; sourceTree = "<group>"; };
 		8276E60F2C2C93C600216F28 /* CalendarMultipleDatesViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarMultipleDatesViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8276E6142C2C99A400216F28 /* ICalendarMultipleDatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICalendarMultipleDatesViewModel.swift; sourceTree = "<group>"; };
@@ -4949,74 +4939,6 @@
 			path = "App Themes";
 			sourceTree = "<group>";
 		};
-		8276E5F62C2C893A00216F28 /* Dates List MVVM */ = {
-			isa = PBXGroup;
-			children = (
-				8276E5F82C2C896500216F28 /* View */,
-				8276E5F72C2C896300216F28 /* ViewModel */,
-			);
-			path = "Dates List MVVM";
-			sourceTree = "<group>";
-		};
-		8276E5F72C2C896300216F28 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				8276E5FD2C2C898B00216F28 /* Protocol */,
-				8276E5FC2C2C898900216F28 /* ViewModel */,
-				8276E5FB2C2C898600216F28 /* Extensions */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		8276E5F82C2C896500216F28 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				8276E5FA2C2C897B00216F28 /* ViewController */,
-				8276E5F92C2C897800216F28 /* Extensions */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		8276E5F92C2C897800216F28 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				8276E6062C2C8EAA00216F28 /* DatesListViewController + Extensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		8276E5FA2C2C897B00216F28 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				8276E5FE2C2C8ABF00216F28 /* DatesListViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		8276E5FB2C2C898600216F28 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				8276E6042C2C8C3200216F28 /* DatesListViewModel + Extensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		8276E5FC2C2C898900216F28 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				8276E6022C2C8B5200216F28 /* DatesListViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		8276E5FD2C2C898B00216F28 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				8276E6002C2C8AE600216F28 /* IDatesListViewModel.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
 		8276E6082C2C927E00216F28 /* Calendar Multiple Dates MVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -7861,7 +7783,6 @@
 				82162D822AB5CDF700840D90 /* Calendar MVVM */,
 				8276E6082C2C927E00216F28 /* Calendar Multiple Dates MVVM */,
 				82A41B862C2C2C6800254AE2 /* Recent Dates List MVVM */,
-				8276E5F62C2C893A00216F28 /* Dates List MVVM */,
 				8276E61A2C2CA02000216F28 /* Timetable Dates List MVVM */,
 				8299E3AA2B8A317400D81472 /* Timetable Date Detail MVVM */,
 				82B24A6F2A817D69008B94E4 /* All Weeks MVVM */,
@@ -9876,7 +9797,6 @@
 				820D18E52A68F9EE00BFAA35 /* AGPUBuildingModel.swift in Sources */,
 				82BEAD822A7414C300DD34C2 /* RecentWebPageViewModel.swift in Sources */,
 				8226D17C2B095DF300B0B9F0 /* TimetableOptionsListViewModel.swift in Sources */,
-				8276E6012C2C8AE600216F28 /* IDatesListViewModel.swift in Sources */,
 				82B24A642A816B54008B94E4 /* WeekModel.swift in Sources */,
 				82D0FC152B1B4C1E0056D94B /* CathedraBuildingDetailViewModelProtocol.swift in Sources */,
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
@@ -10023,7 +9943,6 @@
 				8218F5872A688F8C00C94EB4 /* CustomActivityItemSource.swift in Sources */,
 				82761A152B462C6100D9976F /* SelectedFacultySplashScreenViewController.swift in Sources */,
 				82761A2F2B46429200D9976F /* SplashScreensListViewModel.swift in Sources */,
-				8276E6052C2C8C3200216F28 /* DatesListViewModel + Extensions.swift in Sources */,
 				823746EA2BF66398004758CB /* IForEmployeeListViewModel.swift in Sources */,
 				82C44DAE2A591915002A3864 /* HapticsManager.swift in Sources */,
 				8228E3AB2A6C9E3B00C1B6AD /* AGPUCurrentBuildingMapViewModelProtocol.swift in Sources */,
@@ -10100,7 +10019,6 @@
 				8257387C2C108B30000D6CAC /* ContactsListViewModel + Extensions.swift in Sources */,
 				826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */,
 				829952502BDC9A07003AFB14 /* TimeTableFavouriteItemsListViewModel.swift in Sources */,
-				8276E6032C2C8B5200216F28 /* DatesListViewModel.swift in Sources */,
 				823746D32BF64FDF004758CB /* ForApplicantListViewModel.swift in Sources */,
 				8263AA252C0215C0001A903B /* TodayNewsListViewModel.swift in Sources */,
 				821FCF052A87CDB8006FFB26 /* NewsCollectionViewCell.swift in Sources */,
@@ -10243,7 +10161,6 @@
 				82C561672A6B7B0D00514B00 /* AppFeatureDetailViewController.swift in Sources */,
 				82C5B7952BCEFBE900F907CB /* IASPUButtonAnimationOptionsListViewModel.swift in Sources */,
 				829CEF7E2BEF88FB00FA32EF /* BuildingsListTableViewController.swift in Sources */,
-				8276E5FF2C2C8ABF00216F28 /* DatesListViewController.swift in Sources */,
 				8234E60D2A885B6D00ED354C /* WordRecentDocumentViewModel.swift in Sources */,
 				82920B8D2AD8871D00352CD8 /* SelectedFacultyListViewModelProtocol.swift in Sources */,
 				823F97E02B9D228C00F60F39 /* WeatherSplashScreenViewModel.swift in Sources */,
@@ -10317,7 +10234,6 @@
 				82E3C3D12B43715A00F2FFA3 /* AudioPlayerClassProtocol.swift in Sources */,
 				82B266FC2A8D91E400043A6D /* NewsCategoriesListTableViewController.swift in Sources */,
 				821FCF0A2A87CE79006FFB26 /* NewsListViewController + Extensions.swift in Sources */,
-				8276E6072C2C8EAA00216F28 /* DatesListViewController + Extensions.swift in Sources */,
 				82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */,
 				8263AA232C0215A2001A903B /* ITodayNewsListViewModel.swift in Sources */,
 				82768AE82ABE13B80022FBE1 /* AppThemesListTableViewController.swift in Sources */,

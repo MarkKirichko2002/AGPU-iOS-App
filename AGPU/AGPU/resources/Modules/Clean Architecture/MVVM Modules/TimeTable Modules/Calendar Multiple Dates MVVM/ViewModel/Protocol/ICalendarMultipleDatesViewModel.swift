@@ -9,5 +9,8 @@ import UIKit
 
 protocol ICalendarMultipleDatesViewModel {
     func selectDates(dates: UICalendarSelectionMultiDate)
-    func registerAlertHandler(block: @escaping() -> Void)
+    func getDates(from selection: UICalendarSelectionMultiDate)-> [String]
+    func saveDates(from selection: UICalendarSelectionMultiDate)
+    func registerDatesSelectedHandler(block: @escaping() -> Void)
+    func registerAlertHandler(block: @escaping(String, String)-> Void)
 }

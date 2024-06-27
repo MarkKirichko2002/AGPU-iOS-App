@@ -92,7 +92,7 @@ class TimeTableDatesListViewController: UIViewController {
     
     @objc private func shareImage() {
         viewModel.createImage { image in
-            self.ShareImage(image: image, title: self.id, text: "Расписание")
+            self.ShareImage(image: image, title: self.id, text: self.viewModel.datesString())
             HapticsManager.shared.hapticFeedback()
         }
     }

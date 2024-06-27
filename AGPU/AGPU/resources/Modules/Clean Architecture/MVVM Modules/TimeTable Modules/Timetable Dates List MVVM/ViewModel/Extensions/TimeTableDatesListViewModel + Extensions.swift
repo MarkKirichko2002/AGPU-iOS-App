@@ -55,6 +55,18 @@ extension TimeTableDatesListViewModel: ITimeTableDatesListViewModel {
         }
     }
     
+    func datesString()-> String {
+        if dates.count > 1 && dates.count < 5 {
+            return "Расписание на \(dates.count) дня"
+        } else if dates.count >= 5 {
+            return "Расписание на \(dates.count) дней"
+        } else if dates.isEmpty {
+            return "Расписание"
+        } else {
+            return "Расписание на \(dates.count) день"
+        }
+    }
+    
     func saveImage(image: UIImage) {
         if let imageData = image.jpegData(compressionQuality: 1.0) {
             let model = ImageModel()

@@ -7,20 +7,28 @@
 
 import UIKit
 
-protocol CalendarMultipleDatesViewControllerDelegate: AnyObject {
-    func datesWereSelected()
-}
-
 final class CalendarMultipleDatesViewController: UIViewController {
 
     let calendarView = UICalendarView()
     
     var selection: UICalendarSelectionMultiDate?
-    
-    weak var delegate: CalendarMultipleDatesViewControllerDelegate?
-    
+
     // MARK: - сервисы
-    private let viewModel = CalendarMultipleDatesViewModel()
+    let viewModel = CalendarMultipleDatesViewModel()
+    
+    var id: String = ""
+    var owner: String = ""
+    
+    // MARK: - Init
+    init(id: String, owner: String) {
+        self.id = id
+        self.owner = owner
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,12 +79,16 @@ final class CalendarMultipleDatesViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.registerAlertHandler {
-            self.showAlert(title: "Выбрано много дат!", message: "вы выбрали \(self.selection?.selectedDates.count ?? 0) дат выберите не больше 7", actions: [UIAlertAction(title: "ОК", style: .default)])
+        viewModel.registerAlertHandler { title, message in
+            self.showAlert(title: title, message: message, actions: [UIAlertAction(title: "ОК", style: .default)])
         }
         viewModel.registerDatesSelectedHandler {
-            self.delegate?.datesWereSelected()
-            self.dismiss(animated: true)
+            guard let selection = self.selection else {return}
+            let vc = TimeTableDatesListViewController(id: self.id, owner: self.owner, dates: self.viewModel.getDates(from: selection))
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+            HapticsManager.shared.hapticFeedback()
         }
     }
 }

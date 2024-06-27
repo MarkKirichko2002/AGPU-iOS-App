@@ -19,7 +19,7 @@ extension RecentDatesListViewModel: IRecentDatesListViewModel {
     }
     
     func getDates() {
-        dates = loadDates()
+        dates = loadDates().sorted(by: {$0 < $1})
         dataChangedHandler?()
     }
     

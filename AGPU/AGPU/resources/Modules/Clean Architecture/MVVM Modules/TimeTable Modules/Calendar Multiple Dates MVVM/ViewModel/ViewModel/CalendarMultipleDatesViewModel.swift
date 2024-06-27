@@ -13,6 +13,6 @@ class CalendarMultipleDatesViewModel {
     let dateManager = DateManager()
     
     var datesSelectedHandler: (()->Void)?
-    var alertHandler: (()->Void)?
+    var alertHandler: ((String, String)->Void)?
     
 }

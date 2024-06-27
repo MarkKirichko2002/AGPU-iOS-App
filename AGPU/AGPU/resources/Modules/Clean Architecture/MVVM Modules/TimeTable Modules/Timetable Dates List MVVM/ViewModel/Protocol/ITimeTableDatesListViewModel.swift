@@ -13,6 +13,7 @@ protocol ITimeTableDatesListViewModel {
     func numberOfPairsInSection(section: Int)-> Int
     func titleForHeaderInSection(section: Int)-> String
     func getData()
+    func datesString()-> String
     func createImage(completion: @escaping(UIImage)->Void)
     func registerDataChangedHandler(block: @escaping()->Void)
 }
