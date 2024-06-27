@@ -318,7 +318,10 @@ final class TimeTableWeekListTableViewController: UIViewController {
         }
         speechRecognitionManager.registerSpeechRecognitionHandler { text in
             if text.lowercased().contains("закр") {
-                self.dismiss(animated: true)
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true)
+                }
+                self.speechRecognitionManager.cancelSpeechRecognition()
             } else {
                 self.checkWeekDay(day: text)
             }
@@ -326,18 +329,22 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     private func checkWeekDay(day: String) {
-        for i in self.week.dayNames {
-            if i.value.contains(day) {
-                if let index = self.timetable.firstIndex (where: { $0.date == i.key }) {
-                    self.tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
+        
+        let _ = week.dayNames.contains { key, value in
+            if value.contains(day) {
+                if let index = self.timetable.firstIndex (where: { $0.date == key }) {
+                    DispatchQueue.main.async {
+                        self.tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
+                    }
                     self.resetSpeechRecognition()
-                    break
                 } else {
+                    self.showAlert(title: "День не найден!", message: "в этот день нет расписания", actions: [UIAlertAction(title: "ОК", style: .default)])
                     self.resetSpeechRecognition()
                 }
             } else {
                 self.resetSpeechRecognition()
             }
+            return false
         }
     }
     
