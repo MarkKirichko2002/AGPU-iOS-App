@@ -34,7 +34,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-
+    
     private let noTimeTableLabel = UILabel()
     
     private let refreshControl = UIRefreshControl()
@@ -170,7 +170,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
             print(error)
         }
     }
-        
+    
     private func setUpTable() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
@@ -317,7 +317,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
             }
         }
         speechRecognitionManager.registerSpeechRecognitionHandler { text in
-            if text.contains("закр") {
+            if text.lowercased().contains("закр") {
                 self.dismiss(animated: true)
             } else {
                 self.checkWeekDay(day: text)
@@ -335,6 +335,8 @@ final class TimeTableWeekListTableViewController: UIViewController {
                 } else {
                     self.resetSpeechRecognition()
                 }
+            } else {
+                self.resetSpeechRecognition()
             }
         }
     }
