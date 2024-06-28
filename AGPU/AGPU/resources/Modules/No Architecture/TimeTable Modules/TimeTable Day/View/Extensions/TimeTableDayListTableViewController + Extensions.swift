@@ -119,7 +119,7 @@ extension TimeTableDayListTableViewController: UIImagePickerControllerDelegate, 
                 self.getTimeTable(id: self.id, date: self.date, owner: self.owner)
                 self.navigationItem.title = "\(dayOfWeek) \(date)"
             } else {
-                self.showAlert(title: "Неверный формат даты!", message: "сфотографируйте дату еще раз", actions: [UIAlertAction(title: "OK", style: .default)])
+                self.showAlert(title: "Неверный формат даты!", message: "сфотографируйте дату еще раз (формат должен быть дд.мм.гггг).", actions: [UIAlertAction(title: "OK", style: .default)])
             }
             self.dismiss(animated: true)
         }

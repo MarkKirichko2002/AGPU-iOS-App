@@ -135,7 +135,7 @@ class CustomSplashScreenEditorViewController: UIViewController {
     }
     
     @objc func showPhotoAlert() {
-        let alertVC = UIAlertController(title: "Выберите фото", message: "Выберите источник для загрузки фото", preferredStyle: .alert)
+        let alertVC = UIAlertController(title: "Выберите источник", message: "Выберите источник для загрузки фото", preferredStyle: .alert)
         let vc = UIImagePickerController()
         let photo = UIAlertAction(title: "Галерея", style: .default) { _ in
             vc.delegate = self

@@ -80,12 +80,8 @@ final class TimeTableDayListTableViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
-        let cameraAction = UIAction(title: "Камера") { _ in
-            let vc = UIImagePickerController()
-            vc.delegate = self
-            vc.sourceType = .camera
-            vc.allowsEditing = true
-            self.present(vc, animated: true)
+        let textRecognitionAction = UIAction(title: "Фото") { _ in
+            self.showPhotoAlert()
         }
         
         let ARAction = UIAction(title: "AR режим") { _ in
@@ -181,7 +177,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         let menu = UIMenu(title: "Расписание", children: [
             searchAction,
-            cameraAction,
+            textRecognitionAction,
             ARAction,
             groupsList,
             subGroupsList,
@@ -449,5 +445,29 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
         
         return disciplines
+    }
+    
+    private func showPhotoAlert() {
+        let alertVC = UIAlertController(title: "Выберите источник", message: "Выберите источник для распознавания даты по фото", preferredStyle: .alert)
+        let vc = UIImagePickerController()
+        let photo = UIAlertAction(title: "Галерея", style: .default) { _ in
+            vc.delegate = self
+            vc.sourceType = .photoLibrary
+            vc.allowsEditing = true
+            self.present(vc, animated: true)
+        }
+        let camera = UIAlertAction(title: "Камера", style: .default) { _ in
+            vc.delegate = self
+            vc.sourceType = .camera
+            vc.allowsEditing = true
+            self.present(vc, animated: true)
+        }
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+        
+        alertVC.addAction(photo)
+        alertVC.addAction(camera)
+        alertVC.addAction(cancel)
+        HapticsManager.shared.hapticFeedback()
+        present(alertVC, animated: true)
     }
 }
