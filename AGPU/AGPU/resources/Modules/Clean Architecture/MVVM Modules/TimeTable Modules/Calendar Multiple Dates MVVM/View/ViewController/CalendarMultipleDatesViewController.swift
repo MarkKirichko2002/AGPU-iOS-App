@@ -67,6 +67,8 @@ final class CalendarMultipleDatesViewController: UIViewController {
         calendarView.selectionBehavior = dateSelection
         calendarView.delegate = self
         
+        calendarView.tintColor = UIColor(named: "aspu")
+        
         calendarView.calendar = .current
         calendarView.locale = .current
         

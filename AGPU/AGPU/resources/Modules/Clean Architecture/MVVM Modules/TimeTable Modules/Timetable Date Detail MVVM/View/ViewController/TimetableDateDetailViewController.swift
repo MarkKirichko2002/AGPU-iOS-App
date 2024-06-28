@@ -189,6 +189,7 @@ class TimetableDateDetailViewController: UIViewController {
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
+        HapticsManager.shared.hapticFeedback()
     }
     
     private func setUpConstraints() {

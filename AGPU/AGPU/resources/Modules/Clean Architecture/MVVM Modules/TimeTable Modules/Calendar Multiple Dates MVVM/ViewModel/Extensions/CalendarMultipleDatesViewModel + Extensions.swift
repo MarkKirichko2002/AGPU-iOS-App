@@ -11,12 +11,13 @@ import UIKit
 extension CalendarMultipleDatesViewModel: ICalendarMultipleDatesViewModel {
     
     func selectDates(dates: UICalendarSelectionMultiDate) {
-        let dates = dates.selectedDates.map({ dateManager.getFormattedDate(date: $0.date ?? Date())})
-        if dates.count == 0 {
+        let formattedDates = dates.selectedDates.map({ dateManager.getFormattedDate(date: $0.date ?? Date())})
+        if formattedDates.count == 0 {
             self.alertHandler?("Даты не выбраны!", "выберите хотя бы одну дату")
-        } else if dates.count > 7 {
-            self.alertHandler?("Выбрано много дат!", "вы выбрали \(dates.count) дат выберите не больше 7")
+        } else if formattedDates.count > 7 {
+            self.alertHandler?("Выбрано много дат!", "вы выбрали \(formattedDates.count) дат выберите не больше 7")
         } else {
+            self.saveDates(from: dates)
             self.datesSelectedHandler?()
         }
     }
