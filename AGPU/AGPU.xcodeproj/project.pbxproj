@@ -378,8 +378,7 @@
 		828F47992C0532D100AF7C3D /* ThingsCategoriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828F47982C0532D100AF7C3D /* ThingsCategoriesListViewModel.swift */; };
 		828F479B2C0532E800AF7C3D /* ThingsCategoriesListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828F479A2C0532E800AF7C3D /* ThingsCategoriesListViewModel + Extensions.swift */; };
 		828F47A02C05357D00AF7C3D /* ThingCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828F479F2C05357D00AF7C3D /* ThingCategoryTableViewCell.swift */; };
-		828FD5C52C2DAD9D007E7185 /* VoiceScrollTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FD5C32C2DAD9D007E7185 /* VoiceScrollTableViewCell.swift */; };
-		828FD5C62C2DAD9D007E7185 /* VoiceScrollTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 828FD5C42C2DAD9D007E7185 /* VoiceScrollTableViewCell.xib */; };
+		828FD5C92C2F300F007E7185 /* TextRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FD5C82C2F300F007E7185 /* TextRecognitionManager.swift */; };
 		82920B652AD86EE600352CD8 /* YourStatusOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B632AD86EE600352CD8 /* YourStatusOptionTableViewCell.swift */; };
 		82920B662AD86EE600352CD8 /* YourStatusOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82920B642AD86EE600352CD8 /* YourStatusOptionTableViewCell.xib */; };
 		82920B6A2AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B682AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift */; };
@@ -1035,8 +1034,7 @@
 		828F47982C0532D100AF7C3D /* ThingsCategoriesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThingsCategoriesListViewModel.swift; sourceTree = "<group>"; };
 		828F479A2C0532E800AF7C3D /* ThingsCategoriesListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThingsCategoriesListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		828F479F2C05357D00AF7C3D /* ThingCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThingCategoryTableViewCell.swift; sourceTree = "<group>"; };
-		828FD5C32C2DAD9D007E7185 /* VoiceScrollTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceScrollTableViewCell.swift; sourceTree = "<group>"; };
-		828FD5C42C2DAD9D007E7185 /* VoiceScrollTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoiceScrollTableViewCell.xib; sourceTree = "<group>"; };
+		828FD5C82C2F300F007E7185 /* TextRecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionManager.swift; sourceTree = "<group>"; };
 		82920B632AD86EE600352CD8 /* YourStatusOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourStatusOptionTableViewCell.swift; sourceTree = "<group>"; };
 		82920B642AD86EE600352CD8 /* YourStatusOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YourStatusOptionTableViewCell.xib; sourceTree = "<group>"; };
 		82920B682AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFacultyOptionTableViewCell.swift; sourceTree = "<group>"; };
@@ -1366,7 +1364,6 @@
 			isa = PBXGroup;
 			children = (
 				82C449FA2B616F0C0039B0F3 /* Timetable Option */,
-				828FD5C22C2DAD7F007E7185 /* Voice Scroll */,
 				82C449F92B616F0A0039B0F3 /* Recent Timetable Item Option */,
 			);
 			path = Cells;
@@ -3078,6 +3075,7 @@
 			isa = PBXGroup;
 			children = (
 				82D6C3302A5E1DD100FB7F5D /* API */,
+				828FD5C72C2F2FF8007E7185 /* Text Recognition */,
 				82E3C3CC2B43711600F2FFA3 /* Audio Player */,
 				82EF23D12A3DED7F004A7B9C /* Animation */,
 				8270A5462A578491008ACADC /* Date */,
@@ -5903,13 +5901,12 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		828FD5C22C2DAD7F007E7185 /* Voice Scroll */ = {
+		828FD5C72C2F2FF8007E7185 /* Text Recognition */ = {
 			isa = PBXGroup;
 			children = (
-				828FD5C32C2DAD9D007E7185 /* VoiceScrollTableViewCell.swift */,
-				828FD5C42C2DAD9D007E7185 /* VoiceScrollTableViewCell.xib */,
+				828FD5C82C2F300F007E7185 /* TextRecognitionManager.swift */,
 			);
-			path = "Voice Scroll";
+			path = "Text Recognition";
 			sourceTree = "<group>";
 		};
 		82920B602AD86E9800352CD8 /* Sections */ = {
@@ -9627,7 +9624,6 @@
 				828D51152BB86B2600848FF8 /* ASPUButtonIconOptionTableViewCell.xib in Resources */,
 				82C449F72B5F0B5F0039B0F3 /* clock_sound.mp3 in Resources */,
 				82920B662AD86EE600352CD8 /* YourStatusOptionTableViewCell.xib in Resources */,
-				828FD5C62C2DAD9D007E7185 /* VoiceScrollTableViewCell.xib in Resources */,
 				828D51392BB8A3BF00848FF8 /* ASPUButtonIconTableViewCell.xib in Resources */,
 				82FC88192BBDFC3E00A2EF59 /* custom.mp4 in Resources */,
 				821EEAD72AA0B76F00AE517B /* UserStatusTableViewCell.xib in Resources */,
@@ -10214,7 +10210,6 @@
 				82C449FD2B616F650039B0F3 /* SaveRecentTimetableItemOptionCell.swift in Sources */,
 				82320D812A4913FE00ECADEE /* AGPUFaculties.swift in Sources */,
 				822FB2182AC5DFA70083E016 /* SubGroupsListViewModel + Extensions.swift in Sources */,
-				828FD5C52C2DAD9D007E7185 /* VoiceScrollTableViewCell.swift in Sources */,
 				826716C22A5A2AF600CD5C23 /* RecentWebPageModel.swift in Sources */,
 				828F47A02C05357D00AF7C3D /* ThingCategoryTableViewCell.swift in Sources */,
 				82B24A872A81BCE6008B94E4 /* Article.swift in Sources */,
@@ -10224,6 +10219,7 @@
 				82320D872A491F5700ECADEE /* AGPUFacultyTableViewCell.swift in Sources */,
 				820900812BAF62E50053F3BD /* TabItemTableViewCell.swift in Sources */,
 				82FC87FE2BBDF0F000A2EF59 /* SplashScreenTableViewCell.swift in Sources */,
+				828FD5C92C2F300F007E7185 /* TextRecognitionManager.swift in Sources */,
 				822245922B28EC2B00DFCFA7 /* Actions.swift in Sources */,
 				82BC2F4D2A8F0B9500ADB239 /* NewsPagesListTableViewController.swift in Sources */,
 				821B727B2BD17490000460E2 /* ITabColorsListViewModel.swift in Sources */,

@@ -102,6 +102,31 @@ extension TimeTableDayListTableViewController: TimeTableSearchListTableViewContr
     }
 }
 
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
+extension TimeTableDayListTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else {return}
+        textRecognitionManager.recognizeText(image: image) { date in
+            
+            let isCorrectFormat = self.dateManager.isCorrectFormat(str: date)
+            
+            if isCorrectFormat {
+                let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: date)
+                self.date = date
+                self.type = .all
+                self.subgroup = 0
+                self.getTimeTable(id: self.id, date: self.date, owner: self.owner)
+                self.navigationItem.title = "\(dayOfWeek) \(date)"
+            } else {
+                self.showAlert(title: "Неверный формат даты!", message: "сфотографируйте дату еще раз", actions: [UIAlertAction(title: "OK", style: .default)])
+            }
+            self.dismiss(animated: true)
+        }
+    }
+}
+
+
 // MARK: - AllGroupsListTableViewControllerDelegate
 extension TimeTableDayListTableViewController: AllGroupsListTableViewControllerDelegate {
     

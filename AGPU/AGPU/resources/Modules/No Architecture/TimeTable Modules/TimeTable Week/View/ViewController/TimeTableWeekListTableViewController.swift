@@ -60,17 +60,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         setUpRefreshControl()
         getTimeTable()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        checkVoiceControl()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        speechRecognitionManager.cancelSpeechRecognition()
-    }
-    
+        
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         print("прокрутка завершилась")
         HapticsManager.shared.hapticFeedback()
@@ -283,76 +273,6 @@ final class TimeTableWeekListTableViewController: UIViewController {
             } catch {
                 print(error.localizedDescription)
             }
-        }
-    }
-    
-    private func checkVoiceControl() {
-        
-        let isOnVoiceScrollTimetable = UserDefaults.standard.object(forKey: "onVoiceScrollTimetable") as? Bool ?? false
-        
-        if isOnVoiceScrollTimetable {
-            startRecognize()
-        }
-    }
-    
-    private func startRecognize() {
-        speechRecognitionManager.requestSpeechAndMicrophonePermission()
-        speechRecognitionManager.registerSpeechAuthorizationHandler { auth in
-            switch auth {
-            case .notDetermined:
-                print("Разрешение на распознавание речи еще не было получено.")
-            case .denied:
-                let settingsAction = UIAlertAction(title: "Перейти в настройки", style: .default) { _ in
-                    self.openSettings()
-                }
-                let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
-                self.showAlert(title: "Микрофон выключен", message: "Хотите включить в настройках?", actions: [settingsAction, cancel])
-                print("Доступ к распознаванию речи был отклонен.")
-            case .restricted:
-                print("Функциональность распознавания речи ограничена.")
-            case .authorized:
-                print("Разрешение на распознавание речи получено.")
-                self.speechRecognitionManager.startRecognize()
-            @unknown default:
-                print("неизвестно")
-            }
-        }
-        speechRecognitionManager.registerSpeechRecognitionHandler { text in
-            if text.lowercased().contains("закр") || text.lowercased().contains("стоп") {
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true)
-                }
-                self.speechRecognitionManager.cancelSpeechRecognition()
-            } else {
-                self.checkWeekDay(day: text)
-            }
-        }
-    }
-    
-    private func checkWeekDay(day: String) {
-        let _ = week.dayNames.contains { key, value in
-            if value.contains(day) {
-                if let index = self.timetable.firstIndex (where: { $0.date == key }) {
-                    DispatchQueue.main.async {
-                        self.tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
-                    }
-                    self.currentDate = key
-                    self.resetSpeechRecognition()
-                } else {
-                    self.showAlert(title: "День не найден!", message: "в этот день нет расписания", actions: [UIAlertAction(title: "ОК", style: .default)])
-                    self.resetSpeechRecognition()
-                }
-            } else {
-                self.resetSpeechRecognition()
-            }
-            return false
-        }
-    }
-    
-    private func resetSpeechRecognition() {
-        speechRecognitionManager.cancelSpeechRecognition()
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            self.speechRecognitionManager.startRecognize()
         }
     }
     

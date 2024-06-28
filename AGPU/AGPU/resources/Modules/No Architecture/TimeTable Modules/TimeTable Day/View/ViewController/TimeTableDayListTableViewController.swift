@@ -21,6 +21,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     // MARK: - сервисы
     let service = TimeTableService()
     let dateManager = DateManager()
+    let textRecognitionManager = TextRecognitionManager()
     let realmManager = RealmManager()
     let settingsManager = SettingsManager()
     let animation = AnimationClass()
@@ -77,6 +78,14 @@ final class TimeTableDayListTableViewController: UIViewController {
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
+        }
+        
+        let cameraAction = UIAction(title: "Камера") { _ in
+            let vc = UIImagePickerController()
+            vc.delegate = self
+            vc.sourceType = .camera
+            vc.allowsEditing = true
+            self.present(vc, animated: true)
         }
         
         let ARAction = UIAction(title: "AR режим") { _ in
@@ -172,6 +181,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         let menu = UIMenu(title: "Расписание", children: [
             searchAction,
+            cameraAction,
             ARAction,
             groupsList,
             subGroupsList,

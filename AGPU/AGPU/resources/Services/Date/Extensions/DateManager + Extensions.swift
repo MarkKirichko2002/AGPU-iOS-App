@@ -62,6 +62,14 @@ extension DateManager: DateManagerProtocol {
         return nil
     }
     
+    func isCorrectFormat(str: String)-> Bool {
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        if let currentDate = dateFormatter.date(from: str) {
+            return true
+        }
+        return false
+    }
+    
     func nextDay(date: String)-> String {
         
         let dateFormatter = DateFormatter()

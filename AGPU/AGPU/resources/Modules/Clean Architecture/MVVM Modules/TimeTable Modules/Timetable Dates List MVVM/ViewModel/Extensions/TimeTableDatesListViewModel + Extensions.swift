@@ -24,7 +24,7 @@ extension TimeTableDatesListViewModel: ITimeTableDatesListViewModel {
     }
     
     func titleForHeaderInSection(section: Int)-> String {
-        return timetable[section].date
+        return "\(dateManager.getCurrentDayOfWeek(date: timetable[section].date)) \(timetable[section].date)"
     }
     
     func getData() {

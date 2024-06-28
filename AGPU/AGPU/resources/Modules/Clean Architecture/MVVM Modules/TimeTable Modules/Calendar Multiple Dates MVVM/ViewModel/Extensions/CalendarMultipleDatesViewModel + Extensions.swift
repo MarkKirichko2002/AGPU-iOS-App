@@ -20,6 +20,7 @@ extension CalendarMultipleDatesViewModel: ICalendarMultipleDatesViewModel {
             self.saveDates(from: dates)
             self.datesSelectedHandler?()
         }
+        HapticsManager.shared.hapticFeedback()
     }
     
     func getDates(from selection: UICalendarSelectionMultiDate)-> [String] {
