@@ -35,16 +35,16 @@ struct AGPUSubSections {
             ),
             AGPUSubSectionModel(
                 id: 2,
-                name: "Руководство. Педагогический(научно-педагогический состав) состав",
+                name: "Руководство. Педагогический (научно-педагогический состав) состав",
                 icon: "university",
                 url: "http://agpu.net/sveden/employees/index.php",
                 voiceCommand: "руководств"
             ),
             AGPUSubSectionModel(
                 id: 3,
-                name: "Институты и Факультеты",
+                name: "Факультеты",
                 icon: "university",
-                url: "http://agpu.net/struktura-vuza/faculties-institutes/index.php",
+                url: "http://www.agpu.net/struktura-vuza/faculties/index.php",
                 voiceCommand: "факультеты"
             ),
             AGPUSubSectionModel(
@@ -77,13 +77,20 @@ struct AGPUSubSections {
             ),
             AGPUSubSectionModel(
                 id: 8,
+                name: "Логотип, бренд университета",
+                icon: "university",
+                url: "http://www.agpu.net/struktura-vuza/logotip-brend-universiteta/index.php",
+                voiceCommand: "логотип"
+            ),
+            AGPUSubSectionModel(
+                id: 9,
                 name: "Реквизиты",
                 icon: "university",
                 url: "http://agpu.net/contacts/requisites.php",
                 voiceCommand: "реквизиты"
             ),
             AGPUSubSectionModel(
-                id: 9,
+                id: 10,
                 name: "Контакты",
                 icon: "university",
                 url: "http://agpu.net/contacts/index.php",
@@ -106,9 +113,9 @@ struct AGPUSubSections {
             ),
             AGPUSubSectionModel(
                 id: 2,
-                name: "Институты/Факультеты",
+                name: "Факультеты",
                 icon: "user",
-                url: "http://www.agpu.net/abitur/faculties-institutes/index.php",
+                url: "http://www.agpu.net/abitur/faculties/index.php",
                 voiceCommand: "факультеты"
             ),
             AGPUSubSectionModel(
@@ -164,9 +171,9 @@ struct AGPUSubSections {
             ),
             AGPUSubSectionModel(
                 id: 2,
-                name: "Институты/Факультеты и кафедры",
+                name: "Факультеты и кафедры",
                 icon: "student",
-                url: "http://agpu.net/struktura-vuza/faculties-institutes/index.php",
+                url: "http://www.agpu.net/struktura-vuza/faculties/index.php",
                 voiceCommand: "кафедры"
             ),
             AGPUSubSectionModel(
@@ -265,7 +272,7 @@ struct AGPUSubSections {
                 id: 3,
                 name: "Подразделения",
                 icon: "people",
-                url: "http://agpu.net/struktura-vuza/index.php",
+                url: "http://www.agpu.net/struktura-vuza/index.php",
                 voiceCommand: "подразделени"
             ),
             AGPUSubSectionModel(
