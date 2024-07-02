@@ -18,6 +18,7 @@ class AGPUNewsListViewModel {
     var allNews = [Article]()
     
     var dataChangedHandler: ((String)->Void)?
+    var errorHandler: (()->Void)?
     var dislayModeHandler: ((DisplayModes)->Void)?
     var webModeHandler: (()->Void)?
     var whatsNewHandler: (()->Void)?

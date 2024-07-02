@@ -41,6 +41,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                             self.whatsNewHandler?()
                         }
                     case .failure(let error):
+                        self.errorHandler?()
                         print(error)
                     }
                 }
@@ -53,6 +54,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                             self.whatsNewHandler?()
                         }
                     case .failure(let error):
+                        self.errorHandler?()
                         print(error)
                     }
                 }
@@ -111,6 +113,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                     webModeHandler?()
                 }
             case .failure(let error):
+                self.errorHandler?()
                 print(error)
             }
         }
@@ -137,6 +140,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                     webModeHandler?()
                 }
             case .failure(let error):
+                self.errorHandler?()
                 print(error)
             }
         }
@@ -167,6 +171,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                     self.webModeHandler?()
                 }
             case .failure(let error):
+                self.errorHandler?()
                 print(error)
             }
         }
@@ -302,6 +307,10 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     func registerDataChangedHandler(block: @escaping(String)->Void) {
         self.dataChangedHandler = block
+    }
+    
+    func registerErrorHandler(block: @escaping()->Void) {
+        self.errorHandler = block
     }
     
     func registerDislayModeHandler(block: @escaping(DisplayModes)->Void) {
