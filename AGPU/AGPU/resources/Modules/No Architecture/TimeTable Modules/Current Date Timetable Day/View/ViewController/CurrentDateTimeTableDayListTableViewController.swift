@@ -71,15 +71,31 @@ class CurrentDateTimeTableDayListTableViewController: UIViewController {
     }
     
     @objc private func shareImage() {
-        do {
-            let json = try JSONEncoder().encode(self.timetable)
-            let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: self.date)
-            self.service.getTimeTableDayImage(json: json) { image in
-                self.ShareImage(image: image, title: self.id, text: "\(dayOfWeek) \(self.date)")
-                HapticsManager.shared.hapticFeedback()
+        
+        let emptyTimetable = TimeTable(id: id, date: date, disciplines: [])
+        
+        if !timetable.disciplines.isEmpty {
+            do {
+                let json = try JSONEncoder().encode(self.timetable)
+                let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: self.date)
+                self.service.getTimeTableDayImage(json: json) { image in
+                    self.ShareImage(image: image, title: self.id, text: "\(dayOfWeek) \(self.date)")
+                    HapticsManager.shared.hapticFeedback()
+                }
+            } catch {
+                print(error.localizedDescription)
             }
-        } catch {
-            print(error.localizedDescription)
+        } else {
+            do {
+                let json = try JSONEncoder().encode(emptyTimetable)
+                let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: self.date)
+                self.service.getTimeTableDayImage(json: json) { image in
+                    self.ShareImage(image: image, title: self.id, text: "\(dayOfWeek) \(self.date)")
+                    HapticsManager.shared.hapticFeedback()
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
     
