@@ -38,7 +38,7 @@ struct NewsCategories {
         NewsCategoryModel(
             id: 3,
             name: "ИРиИФ",
-            newsAbbreviation: "iriif",
+            newsAbbreviation: "filfak",
             icon: "icon1",
             pagesCount: -1,
             dailyNewsCount: -1
@@ -46,7 +46,7 @@ struct NewsCategories {
         NewsCategoryModel(
             id: 4,
             name: "ИПИМиФ",
-            newsAbbreviation: "ipimif",
+            newsAbbreviation: "fmf",
             icon: "icon2",
             pagesCount: -1,
             dailyNewsCount: -1
@@ -54,7 +54,7 @@ struct NewsCategories {
         NewsCategoryModel(
             id: 5,
             name: "СПФ",
-            newsAbbreviation: "spf",
+            newsAbbreviation: "ppf",
             icon: "icon3",
             pagesCount: -1,
             dailyNewsCount: -1
@@ -70,7 +70,7 @@ struct NewsCategories {
         NewsCategoryModel(
             id: 7,
             name: "ФТЭиД",
-            newsAbbreviation: "fteid",
+            newsAbbreviation: "ftifk",
             icon: "icon5",
             pagesCount: -1,
             dailyNewsCount: -1

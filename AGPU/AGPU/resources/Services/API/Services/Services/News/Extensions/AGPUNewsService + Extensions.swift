@@ -14,7 +14,7 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
     // получить новости
     func getNews(abbreviation: String) async throws -> Result<NewsResponse, Error> {
         
-        let url = URL(string: "http://\(HostName.host)/api/news/\(abbreviation)")!
+        let url = URL(string: "https://\(HostName.host)/api/news/\(abbreviation)")!
         let request = URLRequest(url: url)
         
         let data = try await URLSession.shared.data(for: request)
@@ -30,7 +30,7 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
     // получить новости АГПУ
     func getAGPUNews() async throws -> Result<NewsResponse, Error> {
         
-        let url = URL(string: "http://\(HostName.host)/api/news")!
+        let url = URL(string: "https://\(HostName.host)/api/news")!
         let request = URLRequest(url: url)
         
         let data = try await URLSession.shared.data(for: request)
@@ -70,7 +70,7 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
         } else if abbreviation == "PedagogicalQuantorium"  {
             newsURL = "http://www.agpu.net/struktura-vuza/PedagogicalQuantorium/news/news.php?ELEMENT_ID=\(index)"
         } else {
-            newsURL = "http://agpu.net/struktura-vuza/faculties-institutes/\(abbreviation)/news/news.php?ELEMENT_ID=\(index)"
+            newsURL = "http://agpu.net/struktura-vuza/faculties/\(abbreviation)/news/news.php?ELEMENT_ID=\(index)"
         }
         
         return newsURL
@@ -94,11 +94,11 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
     func urlForPagination(abbreviation: String, page: Int)-> String {
         var url = ""
         if abbreviation != "-" {
-            url = "http://\(HostName.host)/api/news/\(abbreviation)?page=\(page)"
+            url = "https://\(HostName.host)/api/news/\(abbreviation)?page=\(page)"
             print(url)
             return url
         } else {
-            url = "http://\(HostName.host)/api/news?page=\(page)"
+            url = "https://\(HostName.host)/api/news?page=\(page)"
             print(url)
             return url
         }

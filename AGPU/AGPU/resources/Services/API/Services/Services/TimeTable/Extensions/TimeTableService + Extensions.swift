@@ -30,7 +30,7 @@ extension TimeTableService: TimeTableServicerProtocol {
         
         let id = id.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("http://\(HostName.host)/api/v2/timetable/day?id=\(id)&date=\(date)&owner=\(owner)").responseData { response in
+        AF.request("https://\(HostName.host)/api/v2/timetable/day?id=\(id)&date=\(date)&owner=\(owner)").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -48,7 +48,7 @@ extension TimeTableService: TimeTableServicerProtocol {
         
         let id = id.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("http://\(HostName.host)/api/v2/timetable/days?id=\(id)&startDate=\(startDate)&owner=\(owner)&endDate=\(endDate)&removeEmptyDays").responseData { response in
+        AF.request("https://\(HostName.host)/api/v2/timetable/days?id=\(id)&startDate=\(startDate)&owner=\(owner)&endDate=\(endDate)&removeEmptyDays").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -64,7 +64,7 @@ extension TimeTableService: TimeTableServicerProtocol {
     
     func getWeeks(completion: @escaping(Result<[WeekModel],Error>)->Void) {
         
-        AF.request("http://\(HostName.host)/api/v2/timetable/weeks").responseData { response in
+        AF.request("https://\(HostName.host)/api/v2/timetable/weeks").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -80,7 +80,7 @@ extension TimeTableService: TimeTableServicerProtocol {
     
     func getTimeTableDayImage(json: Data, completion: @escaping(UIImage)->Void) {
         
-        let url = "http://\(HostName.host)/api/timetable/image/day?vertical"
+        let url = "https://\(HostName.host)/api/timetable/image/day?vertical"
         
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
@@ -103,7 +103,7 @@ extension TimeTableService: TimeTableServicerProtocol {
     
     func getTimeTableWeekImage(json: Data, completion: @escaping(UIImage)->Void) {
         
-        let url = "http://\(HostName.host)/api/timetable/image/6days?horizontal"
+        let url = "https://\(HostName.host)/api/timetable/image/6days?horizontal"
         
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
