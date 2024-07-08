@@ -30,7 +30,7 @@ final class ASPUWebsiteSectionsListViewController: UIViewController {
     
     private func setUpNavigation() {
         
-        let titleView = CustomTitleView(image: "АГПУ", title: "Разделы сайта", frame: .zero)
+        let titleView = CustomTitleView(image: "online", title: "Разделы сайта", frame: .zero)
         
         if isAction {
             let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))

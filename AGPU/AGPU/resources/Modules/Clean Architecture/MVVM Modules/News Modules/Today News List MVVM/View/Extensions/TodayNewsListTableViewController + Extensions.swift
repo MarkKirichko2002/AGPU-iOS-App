@@ -56,7 +56,21 @@ extension TodayNewsListTableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifier, for: indexPath) as? NewsTableViewCell else {return UITableViewCell()}
+        cell.delegate = self
         cell.configure(article: viewModel.newsItemAtSection(section: indexPath.section, index: indexPath.row))
         return cell
+    }
+}
+
+// MARK: - NewsTableViewCellDelegate
+extension TodayNewsListTableViewController: NewsTableViewCellDelegate {
+    
+    func imageWasSelected(url: String) {
+        let vc = ZoomImageViewController(image: UIImage())
+        vc.isURL = true
+        vc.url = url
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true)
     }
 }
