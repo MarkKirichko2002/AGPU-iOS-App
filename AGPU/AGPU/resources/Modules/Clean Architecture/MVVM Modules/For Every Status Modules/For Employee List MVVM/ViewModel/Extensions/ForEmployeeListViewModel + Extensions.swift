@@ -22,7 +22,7 @@ extension ForEmployeeListViewModel: IForEmployeeListViewModel {
         
         sections = ForEmployeeSections.sections
         
-        let position = UserDefaults.standard.object(forKey: "for employee") as? [Int] ?? [0,1,2,3,4,5,6,7]
+        let position = UserDefaults.standard.object(forKey: "for employee") as? [Int] ?? [0,1,2,3,4,5,6,7,8]
         
         for section in sections {
             for number in position {
@@ -36,8 +36,8 @@ extension ForEmployeeListViewModel: IForEmployeeListViewModel {
     
     func restartPosition() {
         
-        let numbers = [0,1,2,3,4,5,6,7]
-        let position = UserDefaults.standard.object(forKey: "for employee") as? [Int] ?? [0,1,2,3,4,5,6,7]
+        let numbers = [0,1,2,3,4,5,6,7,8]
+        let position = UserDefaults.standard.object(forKey: "for employee") as? [Int] ?? [0,1,2,3,4,5,6,7,8]
         
         if numbers != position {
             UserDefaults.saveArray(array: numbers, key: "for employee") {
@@ -61,8 +61,9 @@ extension ForEmployeeListViewModel: IForEmployeeListViewModel {
         let index6 = arr.firstIndex { $0.id == 6 }
         let index7 = arr.firstIndex { $0.id == 7 }
         let index8 = arr.firstIndex { $0.id == 8 }
+        let index9 = arr.firstIndex { $0.id == 9 }
         
-        let numbers = [index1, index2, index3, index4, index5, index6, index7, index8]
+        let numbers = [index1, index2, index3, index4, index5, index6, index7, index8, index9]
         
         UserDefaults.saveArray(array: numbers, key: "for employee") {
             self.getData()

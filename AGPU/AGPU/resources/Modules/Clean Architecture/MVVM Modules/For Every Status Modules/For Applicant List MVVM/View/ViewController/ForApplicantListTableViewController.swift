@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 final class ForApplicantListTableViewController: UITableViewController {
     
@@ -78,7 +79,7 @@ final class ForApplicantListTableViewController: UITableViewController {
         case 1:
             
             Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: item.icon)
             }
             
             Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
@@ -90,7 +91,23 @@ final class ForApplicantListTableViewController: UITableViewController {
         case 2:
             
             Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: item.icon)
+            }
+            
+            Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
+                let annotation = MKPointAnnotation()
+                annotation.title = "Армавир"
+                annotation.coordinate = CLLocationCoordinate2D(latitude: 44.9892, longitude: 41.1234)
+                let vc = LocationWeatherDetailViewController(annotation: annotation)
+                vc.isSection = true
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+        case 3:
+            
+            Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: item.icon)
             }
             
             Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
@@ -99,40 +116,40 @@ final class ForApplicantListTableViewController: UITableViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-        case 3:
-            
-            Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
-            }
-            
-            Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                self.goToWeb(url: "http://priem.agpu.net/", image: ForApplicantSections.sections[indexPath.row].icon, title: "Информация для поступающих", isSheet: false, isNotify: false)
-            }
-            
         case 4:
             
             Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: item.icon)
             }
             
             Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                self.goToWeb(url: "http://www.agpu.net/abitur/contact-form/Quest.php", image: ForApplicantSections.sections[indexPath.row].icon, title: "Вопросы и ответы", isSheet: false, isNotify: false)
+                self.goToWeb(url: "http://priem.agpu.net/", image: item.icon, title: "Информация для поступающих", isSheet: false, isNotify: false)
             }
             
         case 5:
             
             Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: item.icon)
             }
             
             Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                self.goToWeb(url: "https://niiro-agpu.ru/", image: ForApplicantSections.sections[indexPath.row].icon, title: "Доп. образование", isSheet: false, isNotify: false)
+                self.goToWeb(url: "http://www.agpu.net/abitur/contact-form/Quest.php", image: item.icon, title: "Вопросы и ответы", isSheet: false, isNotify: false)
             }
             
         case 6:
             
             Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForApplicantSections.sections[indexPath.row].icon)
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: item.icon)
+            }
+            
+            Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
+                self.goToWeb(url: "https://niiro-agpu.ru/", image: item.icon, title: "Доп. образование", isSheet: false, isNotify: false)
+            }
+            
+        case 7:
+            
+            Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: item.icon)
             }
             
             Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in

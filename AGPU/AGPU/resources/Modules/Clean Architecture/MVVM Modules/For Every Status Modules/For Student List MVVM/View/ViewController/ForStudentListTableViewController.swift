@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 final class ForStudentListTableViewController: UITableViewController {
     
@@ -66,7 +67,7 @@ final class ForStudentListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
+        
         let item = viewModel.sectionItem(index: indexPath.row)
         
         if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
@@ -78,17 +79,17 @@ final class ForStudentListTableViewController: UITableViewController {
         case 1:
             
             Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: item.icon)
             }
             
             Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: ForStudentSections.sections[indexPath.row].icon, title: "ЭИОС", isSheet: false, isNotify: true)
+                self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: item.icon, title: "ЭИОС", isSheet: false, isNotify: true)
             }
             
         case 2:
             
             Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: item.icon)
             }
             
             Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
@@ -100,7 +101,23 @@ final class ForStudentListTableViewController: UITableViewController {
         case 3:
             
             Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: item.icon)
+            }
+            
+            Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
+                let annotation = MKPointAnnotation()
+                annotation.title = "Армавир"
+                annotation.coordinate = CLLocationCoordinate2D(latitude: 44.9892, longitude: 41.1234)
+                let vc = LocationWeatherDetailViewController(annotation: annotation)
+                vc.isSection = true
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+        case 4:
+            
+            Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: item.icon)
             }
             
             Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
@@ -109,26 +126,26 @@ final class ForStudentListTableViewController: UITableViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-        case 4:
+        case 5:
             
             if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
                 
                 Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: item.icon)
                 }
                 
                 Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                    self.goToWeb(url: cathedra.manualUrl, image: ForStudentSections.sections[indexPath.row].icon, title: "Метод. материалы", isSheet: false, isNotify: true)
+                    self.goToWeb(url: cathedra.manualUrl, image: item.icon, title: "Метод. материалы", isSheet: false, isNotify: true)
                 }
             } else {
                 self.showHintAlert(type: .manuals)
                 HapticsManager.shared.hapticFeedback()
             }
             
-        case 5:
+        case 6:
             
             Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: item.icon)
             }
             
             Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
@@ -137,20 +154,20 @@ final class ForStudentListTableViewController: UITableViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-        case 6:
-            
-            Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
-            }
-            
-            Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                self.goToWeb(url: "http://plany.agpu.net/Plans/", image: ForStudentSections.sections[indexPath.row].icon, title: "Учебный план", isSheet: false, isNotify: true)
-            }
-            
         case 7:
             
             Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: item.icon)
+            }
+            
+            Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
+                self.goToWeb(url: "http://plany.agpu.net/Plans/", image: item.icon, title: "Учебный план", isSheet: false, isNotify: true)
+            }
+            
+        case 8:
+            
+            Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: item.icon)
             }
             
             Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
@@ -159,10 +176,10 @@ final class ForStudentListTableViewController: UITableViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-        case 8:
+        case 9:
             
             Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object:  ForStudentSections.sections[indexPath.row].icon)
+                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: item.icon)
             }
             
             Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in

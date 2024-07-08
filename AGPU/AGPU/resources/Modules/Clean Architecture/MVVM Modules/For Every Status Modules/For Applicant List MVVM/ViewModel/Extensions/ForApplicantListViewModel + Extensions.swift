@@ -22,7 +22,7 @@ extension ForApplicantListViewModel: IForApplicantListViewModel {
         
         sections = ForApplicantSections.sections
         
-        let position = UserDefaults.standard.object(forKey: "for applicant") as? [Int] ?? [0,1,2,3,4,5]
+        let position = UserDefaults.standard.object(forKey: "for applicant") as? [Int] ?? [0,1,2,3,4,5,6]
         
         for section in sections {
             for number in position {
@@ -36,8 +36,8 @@ extension ForApplicantListViewModel: IForApplicantListViewModel {
     
     func restartPosition() {
         
-        let numbers = [0,1,2,3,4,5]
-        let position = UserDefaults.standard.object(forKey: "for applicant") as? [Int] ?? [0,1,2,3,4,5]
+        let numbers = [0,1,2,3,4,5,6]
+        let position = UserDefaults.standard.object(forKey: "for applicant") as? [Int] ?? [0,1,2,3,4,5,6]
         
         if numbers != position {
             UserDefaults.saveArray(array: numbers, key: "for applicant") {
@@ -59,8 +59,9 @@ extension ForApplicantListViewModel: IForApplicantListViewModel {
         let index4 = arr.firstIndex { $0.id == 4 }
         let index5 = arr.firstIndex { $0.id == 5 }
         let index6 = arr.firstIndex { $0.id == 6 }
+        let index7 = arr.firstIndex { $0.id == 7 }
         
-        let numbers = [index1, index2, index3, index4, index5, index6]
+        let numbers = [index1, index2, index3, index4, index5, index6, index7]
         
         UserDefaults.saveArray(array: numbers, key: "for applicant") {
             self.getData()

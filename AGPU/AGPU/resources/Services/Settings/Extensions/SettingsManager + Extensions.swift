@@ -156,7 +156,7 @@ extension SettingsManager: SettingsManagerProtocol {
             } else if status?.id == 2 {
                 return TabBarIconModel(icon: UIImage(systemName: "graduationcap")!, selectedIcon: UIImage(systemName: "graduationcap.fill")!)
             } else if status?.id == 3 {
-                return TabBarIconModel(icon: UIImage(systemName: "desktopcomputer")!, selectedIcon: UIImage(systemName: "desktopcomputer.fill")!)
+                return TabBarIconModel(icon: UIImage(systemName: "desktopcomputer")!, selectedIcon: UIImage(systemName: "desktopcomputer")!)
             }
         }
         
