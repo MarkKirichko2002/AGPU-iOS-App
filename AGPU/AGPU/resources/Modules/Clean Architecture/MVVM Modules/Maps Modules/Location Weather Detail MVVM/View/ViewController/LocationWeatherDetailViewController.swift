@@ -166,8 +166,19 @@ class LocationWeatherDetailViewController: UITableViewController {
         guard let savedWeather = viewModel.getData() else {return}
         let model = WeatherChangesModel(date: viewModel.getCurrentDate(), weather: weather)
         let vc = WeatherChangesViewController(pastWeather: savedWeather, currentWeather: model)
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
+        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
+        switch style {
+        case .fullScreen:
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+        case .sheet:
+            vc.modalPresentationStyle = .pageSheet
+            present(vc, animated: true)
+        case .notShow:
+            let vc = HintViewController(info: "Чтобы увидеть экран, выберите его отображение в настройках опции \"Наглядные изменения\"")
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -127,7 +127,7 @@ class WeatherChangesViewController: UIViewController {
         view.addSubview(closeButton)
         closeButton.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
         closeButton.snp.makeConstraints { maker in
-            maker.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(5)
+            maker.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(10)
             maker.right.equalToSuperview().inset(20)
         }
     }

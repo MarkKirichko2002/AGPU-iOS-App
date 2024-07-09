@@ -35,6 +35,7 @@ class LocationWeatherDetailViewModel: ILocationWeatherDetailViewModel {
     }
     
     func getWeather(location: MKAnnotation) {
+        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
         hourlyWeather = []
         dailyWeather = []
         let location = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
@@ -46,11 +47,13 @@ class LocationWeatherDetailViewModel: ILocationWeatherDetailViewModel {
             // погода на 5 дней
             self.setUpDailyWeather(weather: weather)
             self.weather = weather
-            if self.isChanged() {
-                self.isWeatherChangedHandler?()
-                self.saveWeather()
-            } else {
-                //self.saveWeather()
+            if style != .notShow {
+                if self.isChanged() {
+                    self.isWeatherChangedHandler?()
+                    self.saveWeather()
+                } else {
+                    //self.saveWeather()
+                }
             }
             self.isFetched.toggle()
         }
