@@ -18,7 +18,7 @@ struct ForApplicantSections {
         ),
         ForEveryStatusModel(
             id: 2,
-            icon: "cloud",
+            icon: "sun",
             name: "Погода"
         ),
         ForEveryStatusModel(

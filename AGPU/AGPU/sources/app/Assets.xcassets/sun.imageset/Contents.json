@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "cloud_48pt_1x.png",
+      "filename" : "brightness_48pt_1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "cloud_48pt_2x.png",
+      "filename" : "brightness_48pt_2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "cloud_48pt_3x.png",
+      "filename" : "brightness_48pt_3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

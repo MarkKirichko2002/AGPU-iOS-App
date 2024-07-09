@@ -38,7 +38,6 @@ class WeatherChangesViewController: UIViewController {
     
     private let DateBefore: UILabel = {
         let label = UILabel()
-        label.text = "08.07.2024"
         label.numberOfLines = 0
         label.isUserInteractionEnabled = true
         label.textColor = .label
@@ -50,7 +49,6 @@ class WeatherChangesViewController: UIViewController {
     
     private let WeatherIconBefore: SpringImageView = {
         let icon = SpringImageView()
-        icon.image = UIImage(systemName: "cloud")
         icon.isInteraction = false
         icon.tintColor = .label
         icon.contentMode = .scaleAspectFill
@@ -60,7 +58,6 @@ class WeatherChangesViewController: UIViewController {
     
     private let WeatherDescriptionBefore: UILabel = {
         let label = UILabel()
-        label.text = "Было 27 *"
         label.numberOfLines = 0
         label.isUserInteractionEnabled = true
         label.textColor = .label
@@ -72,7 +69,6 @@ class WeatherChangesViewController: UIViewController {
     
     private let DateNow: UILabel = {
         let label = UILabel()
-        label.text = "08.07.2024"
         label.numberOfLines = 0
         label.isUserInteractionEnabled = true
         label.textColor = .label
@@ -94,7 +90,6 @@ class WeatherChangesViewController: UIViewController {
     
     private let WeatherDescriptionNow: UILabel = {
         let label = UILabel()
-        label.text = "Стало 30 *"
         label.numberOfLines = 0
         label.isUserInteractionEnabled = true
         label.textColor = .label

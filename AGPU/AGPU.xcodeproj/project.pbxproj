@@ -4268,7 +4268,7 @@
 		8260EEAA2C3C737500DFFC4D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8260EEAB2C3C739700DFFC4D /* WeatherChangesViewController.swift */,
+				8260EEB02C3D3CCA00DFFC4D /* ViewController */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4279,6 +4279,14 @@
 				8260EEAE2C3C8A7200DFFC4D /* WeatherChangesModel.swift */,
 			);
 			path = Weather;
+			sourceTree = "<group>";
+		};
+		8260EEB02C3D3CCA00DFFC4D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8260EEAB2C3C739700DFFC4D /* WeatherChangesViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		8263AA162C0212BB001A903B /* Today News List MVVM */ = {

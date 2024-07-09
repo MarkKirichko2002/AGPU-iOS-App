@@ -23,7 +23,7 @@ struct ForEmployeeSections {
         ),
         ForEveryStatusModel(
             id: 3,
-            icon: "cloud",
+            icon: "sun",
             name: "Погода"
         ),
         ForEveryStatusModel(

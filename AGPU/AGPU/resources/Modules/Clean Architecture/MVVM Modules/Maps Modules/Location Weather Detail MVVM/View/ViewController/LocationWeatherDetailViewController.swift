@@ -92,7 +92,7 @@ class LocationWeatherDetailViewController: UITableViewController {
         
         let shareAction = UIAction(title: "Поделиться") { _ in
             guard let weather = self.viewModel.weather else {return}
-            self.shareInfo(image: UIImage(systemName: "cloud")!, title: "Погода", text: self.viewModel.textForMessageToShare())
+            self.shareInfo(image: UIImage(named: "sun")!, title: "Погода", text: self.viewModel.textForMessageToShare())
         }
         
         let other = UIMenu(title: "Другое", children: [openVC, shareAction])

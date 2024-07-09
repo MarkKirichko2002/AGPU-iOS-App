@@ -23,36 +23,31 @@ struct ForStudentSections {
         ),
         ForEveryStatusModel(
             id: 3,
-            icon: "cloud",
+            icon: "sun",
             name: "Погода"
         ),
         ForEveryStatusModel(
             id: 4,
-            icon: "university",
-            name: "Факультеты и кафедры"
-        ),
-        ForEveryStatusModel(
-            id: 5,
             icon: "book",
             name: "Методические материалы"
         ),
         ForEveryStatusModel(
-            id: 6,
+            id: 5,
             icon: "exclamation",
             name: "Важные вещи"
         ),
         ForEveryStatusModel(
-            id: 7,
+            id: 6,
             icon: "student",
             name: "Учебный план"
         ),
         ForEveryStatusModel(
-            id: 8,
+            id: 7,
             icon: "sections icon",
             name: "Разделы сайта"
         ),
         ForEveryStatusModel(
-            id: 9,
+            id: 8,
             icon: "photo icon",
             name: "АГПУ обои"
         )
