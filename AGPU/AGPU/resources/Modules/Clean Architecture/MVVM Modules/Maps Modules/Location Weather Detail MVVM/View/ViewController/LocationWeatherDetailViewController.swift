@@ -73,6 +73,7 @@ class LocationWeatherDetailViewController: UITableViewController {
     }
     
     private func setUpMenu()-> UIMenu {
+        
         let celsiusAction = UIAction(title: String.celsiusActionTitle, state: .on) { _ in
             self.viewModel.convertToCelsius()
         }
@@ -83,7 +84,20 @@ class LocationWeatherDetailViewController: UITableViewController {
             self.viewModel.convertToCalvin()
         }
         
-        let menu = UIMenu(title: String.menuTitle, options: .singleSelection, children: [celsiusAction, fahrenheitAction, calvinAction])
+        let unitsMenu = UIMenu(title: "Единицы", options: .singleSelection, children: [celsiusAction, fahrenheitAction, calvinAction])
+        
+        let openVC = UIAction(title: "Что нового?") { _ in
+            self.showChangesVC()
+        }
+        
+        let shareAction = UIAction(title: "Поделиться") { _ in
+            guard let weather = self.viewModel.weather else {return}
+            self.shareInfo(image: UIImage(systemName: "cloud")!, title: "Погода", text: self.viewModel.textForMessageToShare())
+        }
+        
+        let other = UIMenu(title: "Другое", children: [openVC, shareAction])
+        
+        let menu = UIMenu(title: String.menuTitle, children: [unitsMenu, other])
         return menu
     }
     
@@ -140,6 +154,20 @@ class LocationWeatherDetailViewController: UITableViewController {
                 self?.tableView.reloadData()
             }
         }
+        viewModel.registerIsWeatherChangedHandler {
+            DispatchQueue.main.async {
+                self.showChangesVC()
+            }
+        }
+    }
+    
+    private func showChangesVC() {
+        guard let weather = viewModel.weather else {return}
+        guard let savedWeather = viewModel.getData() else {return}
+        let model = WeatherChangesModel(date: viewModel.getCurrentDate(), weather: weather)
+        let vc = WeatherChangesViewController(pastWeather: savedWeather, currentWeather: model)
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

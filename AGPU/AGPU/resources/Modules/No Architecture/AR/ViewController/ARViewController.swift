@@ -175,7 +175,7 @@ class ARViewController: UIViewController {
     }
     
     func setAnchor(model: ModelEntity)-> AnchorEntity {
-        let boxAnchor = AnchorEntity(plane: plane)
+        let boxAnchor = AnchorEntity()
         model.position = SIMD3(0, 0, 0)
         boxAnchor.addChild(model)
         return boxAnchor

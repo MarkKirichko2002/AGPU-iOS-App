@@ -100,4 +100,8 @@ extension WeatherManager: WeatherManagerProtocol {
         formattedWeather = "\(Int(round(temperature)))\u{00B0} " + condition
         return formattedWeather
     }
+    
+    func formattedTemperature(temperature: Double)-> String {
+        return "\(Int(round(temperature)))\u{00B0}"
+    }
 }

@@ -237,6 +237,8 @@
 		825D567C2AE5CCBF004305C7 /* PairInfoViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D567B2AE5CCBF004305C7 /* PairInfoViewModel + Extensions.swift */; };
 		825D92EA2AF2E80F00B5E9DF /* CurrentDateTimeTableDayListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D92E92AF2E80F00B5E9DF /* CurrentDateTimeTableDayListTableViewController.swift */; };
 		825D92EE2AF2F03000B5E9DF /* RecentTimeTableDayListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D92ED2AF2F03000B5E9DF /* RecentTimeTableDayListTableViewController + Extensions.swift */; };
+		8260EEAC2C3C739700DFFC4D /* WeatherChangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8260EEAB2C3C739700DFFC4D /* WeatherChangesViewController.swift */; };
+		8260EEAF2C3C8A7200DFFC4D /* WeatherChangesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8260EEAE2C3C8A7200DFFC4D /* WeatherChangesModel.swift */; };
 		8263AA1B2C02151A001A903B /* TodayNewsSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8263AA1A2C02151A001A903B /* TodayNewsSectionModel.swift */; };
 		8263AA1E2C021552001A903B /* TodayNewsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8263AA1D2C021552001A903B /* TodayNewsListTableViewController.swift */; };
 		8263AA232C0215A2001A903B /* ITodayNewsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8263AA222C0215A2001A903B /* ITodayNewsListViewModel.swift */; };
@@ -890,6 +892,8 @@
 		825D567B2AE5CCBF004305C7 /* PairInfoViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PairInfoViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		825D92E92AF2E80F00B5E9DF /* CurrentDateTimeTableDayListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDateTimeTableDayListTableViewController.swift; sourceTree = "<group>"; };
 		825D92ED2AF2F03000B5E9DF /* RecentTimeTableDayListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentTimeTableDayListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
+		8260EEAB2C3C739700DFFC4D /* WeatherChangesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherChangesViewController.swift; sourceTree = "<group>"; };
+		8260EEAE2C3C8A7200DFFC4D /* WeatherChangesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherChangesModel.swift; sourceTree = "<group>"; };
 		8263AA1A2C02151A001A903B /* TodayNewsSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayNewsSectionModel.swift; sourceTree = "<group>"; };
 		8263AA1D2C021552001A903B /* TodayNewsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayNewsListTableViewController.swift; sourceTree = "<group>"; };
 		8263AA222C0215A2001A903B /* ITodayNewsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITodayNewsListViewModel.swift; sourceTree = "<group>"; };
@@ -4253,6 +4257,30 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		8260EEA92C3C734600DFFC4D /* Weather Changes MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				8260EEAA2C3C737500DFFC4D /* View */,
+			);
+			path = "Weather Changes MVVM";
+			sourceTree = "<group>";
+		};
+		8260EEAA2C3C737500DFFC4D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8260EEAB2C3C739700DFFC4D /* WeatherChangesViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8260EEAD2C3C8A5900DFFC4D /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				8260EEAE2C3C8A7200DFFC4D /* WeatherChangesModel.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
 		8263AA162C0212BB001A903B /* Today News List MVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -4454,6 +4482,7 @@
 		8268886A2A34866D00434219 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8260EEAD2C3C8A5900DFFC4D /* Weather */,
 				82C752472C28893E00161AEF /* TabBar Icon */,
 				826FB3A12C22FEE9007EDA25 /* Timetable Changes */,
 				82426C6E2A71476D00D5AA57 /* For Every Status */,
@@ -4491,6 +4520,7 @@
 				82BC2F3F2A8EFC5D00ADB239 /* News Modules */,
 				821270572A7921DD0095D68E /* Web Modules */,
 				823746D62BF65CA4004758CB /* For Every Status Modules */,
+				8260EEA92C3C734600DFFC4D /* Weather Changes MVVM */,
 				82D37FB52BEC10D20035CB57 /* Things Categories List MVVM */,
 				8209A0A12B838CC40013371D /* Documents List MVVM */,
 				82D37FBE2BEC17D80035CB57 /* Saved Images List MVVM */,
@@ -9887,6 +9917,7 @@
 				8226D18D2B096FFB00B0B9F0 /* SavedPairTypeViewModelProtocol.swift in Sources */,
 				82D6C3342A5E1DEC00FB7F5D /* Discipline.swift in Sources */,
 				821B726F2BD17160000460E2 /* ITabsOptionsListViewModel.swift in Sources */,
+				8260EEAF2C3C8A7200DFFC4D /* WeatherChangesModel.swift in Sources */,
 				82ECABE52A81524500FE7462 /* SubGroupsList.swift in Sources */,
 				8263AA1B2C02151A001A903B /* TodayNewsSectionModel.swift in Sources */,
 				82426C742A71476D00D5AA57 /* ForEveryStatusModel.swift in Sources */,
@@ -9930,6 +9961,7 @@
 				8228E3992A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift in Sources */,
 				825738812C122499000D6CAC /* ContactModel.swift in Sources */,
 				8234E6082A8858C400ED354C /* WordRecentDocumentViewModelProtocol.swift in Sources */,
+				8260EEAC2C3C739700DFFC4D /* WeatherChangesViewController.swift in Sources */,
 				828F47992C0532D100AF7C3D /* ThingsCategoriesListViewModel.swift in Sources */,
 				82822E2D2BF2672D0060DD43 /* NewsTableViewCell.swift in Sources */,
 				82920B6A2AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift in Sources */,

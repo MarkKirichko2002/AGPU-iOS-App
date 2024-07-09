@@ -12,6 +12,7 @@ import WeatherKit
 class LocationWeatherDetailViewModel: ILocationWeatherDetailViewModel {
     
     @Published var isFetched: Bool = false
+    private var isWeatherChangedHandler: (()->Void)?
     
     private let locationManager = LocationManager()
     private let weatherService = WeatherManager()
@@ -45,6 +46,12 @@ class LocationWeatherDetailViewModel: ILocationWeatherDetailViewModel {
             // погода на 5 дней
             self.setUpDailyWeather(weather: weather)
             self.weather = weather
+            if self.isChanged() {
+                self.isWeatherChangedHandler?()
+                self.saveWeather()
+            } else {
+                //self.saveWeather()
+            }
             self.isFetched.toggle()
         }
     }
@@ -210,5 +217,43 @@ class LocationWeatherDetailViewModel: ILocationWeatherDetailViewModel {
             break
         }
         return condition
+    }
+    
+    func getCurrentDate()-> String {
+        return dateManager.getCurrentDate()
+    }
+    
+    func saveWeather() {
+        guard let weather = weather else {return}
+        let model = WeatherChangesModel(date: dateManager.getCurrentDate(), weather: weather)
+        UserDefaults.saveData(object: model, key: "weather") {
+            print("погода сохранена")
+        }
+    }
+    
+    func getData()-> WeatherChangesModel? {
+        let weather = UserDefaults.loadData(type: WeatherChangesModel.self, key: "weather")
+        return weather
+    }
+    
+    func isChanged()-> Bool {
+        let savedWeather = UserDefaults.loadData(type: WeatherChangesModel.self, key: "weather")
+        if Int(savedWeather?.weather.currentWeather.temperature.value ?? 0) != Int(weather?.currentWeather.temperature.value ?? 0) || savedWeather?.weather.currentWeather.condition != weather?.currentWeather.condition {
+            print("Градусы: \(Int(savedWeather?.weather.currentWeather.temperature.value ?? 0))")
+            print("Градусы: \(Int(weather?.currentWeather.temperature.value ?? 0))")
+            return true
+        }
+        return false
+    }
+    
+    func textForMessageToShare()-> String {
+        if let weather = weather {
+            return "\(annotation.title!!) - \(weatherService.formatWeather(weather: weather))"
+        }
+        return ""
+    }
+    
+    func registerIsWeatherChangedHandler(block: @escaping()->Void) {
+        self.isWeatherChangedHandler = block
     }
 }

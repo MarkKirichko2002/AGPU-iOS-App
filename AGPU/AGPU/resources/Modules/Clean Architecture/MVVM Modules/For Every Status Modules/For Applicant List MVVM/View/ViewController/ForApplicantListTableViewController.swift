@@ -123,7 +123,7 @@ final class ForApplicantListTableViewController: UITableViewController {
             }
             
             Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                self.goToWeb(url: "http://priem.agpu.net/", image: item.icon, title: "Информация для поступающих", isSheet: false, isNotify: false)
+                self.goToWeb(url: "http://www.agpu.net/abitur/contact-form/Quest.php", image: item.icon, title: "Вопросы и ответы", isSheet: false, isNotify: true)
             }
             
         case 5:
@@ -133,20 +133,10 @@ final class ForApplicantListTableViewController: UITableViewController {
             }
             
             Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                self.goToWeb(url: "http://www.agpu.net/abitur/contact-form/Quest.php", image: item.icon, title: "Вопросы и ответы", isSheet: false, isNotify: false)
+                self.goToWeb(url: "https://niiro-agpu.ru/", image: item.icon, title: "Доп. образование", isSheet: false, isNotify: true)
             }
             
         case 6:
-            
-            Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: item.icon)
-            }
-            
-            Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                self.goToWeb(url: "https://niiro-agpu.ru/", image: item.icon, title: "Доп. образование", isSheet: false, isNotify: false)
-            }
-            
-        case 7:
             
             Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
                 NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: item.icon)

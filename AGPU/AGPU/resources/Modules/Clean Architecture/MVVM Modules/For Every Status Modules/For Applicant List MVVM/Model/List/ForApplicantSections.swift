@@ -28,21 +28,16 @@ struct ForApplicantSections {
         ),
         ForEveryStatusModel(
             id: 4,
-            icon: "info icon",
-            name: "Информация для поступающих"
-        ),
-        ForEveryStatusModel(
-            id: 5,
             icon: "question",
             name: "Вопросы и ответы"
         ),
         ForEveryStatusModel(
-            id: 6,
+            id: 5,
             icon: "plus",
             name: "Дополнительное образование"
         ),
         ForEveryStatusModel(
-            id: 7,
+            id: 6,
             icon: "sections icon",
             name: "Разделы сайта"
         )
