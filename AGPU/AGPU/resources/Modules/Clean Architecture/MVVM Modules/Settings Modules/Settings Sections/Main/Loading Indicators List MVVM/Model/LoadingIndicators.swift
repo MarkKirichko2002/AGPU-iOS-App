@@ -10,4 +10,5 @@ import Foundation
 enum LoadingIndicators: String, Codable, CaseIterable {
     case regular = "Обычный"
     case category = "Категория"
+    case label = "Надпись"
 }

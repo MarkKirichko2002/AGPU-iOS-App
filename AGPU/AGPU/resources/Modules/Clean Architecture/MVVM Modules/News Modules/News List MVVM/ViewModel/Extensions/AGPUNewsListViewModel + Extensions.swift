@@ -92,6 +92,24 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             } else {
                 return SpringImageView(image: UIImage(named: "АГПУ")!)
             }
+        case .label:
+            let label = UILabel()
+            label.text = "Загрузка..."
+            label.font = .systemFont(ofSize: 18, weight: .medium)
+            label.textAlignment = .center
+            return label
+        }
+    }
+    
+    func getIndicatorSize()-> CGSize {
+        let indicator = getIndicator()
+        switch indicator {
+        case .regular:
+            return CGSize(width: 100, height: 80)
+        case .category:
+            return CGSize(width: 75, height: 75)
+        case .label:
+            return CGSize(width: 150, height: 80)
         }
     }
     

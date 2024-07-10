@@ -124,8 +124,8 @@ final class NewsListViewController: UIViewController {
         NSLayoutConstraint.activate([
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            spinner.widthAnchor.constraint(equalToConstant: 75),
-            spinner.heightAnchor.constraint(equalToConstant: 75)
+            spinner.widthAnchor.constraint(equalToConstant: viewModel.getIndicatorSize().width),
+            spinner.heightAnchor.constraint(equalToConstant: viewModel.getIndicatorSize().height)
         ])
         startLoading()
     }
@@ -357,6 +357,8 @@ final class NewsListViewController: UIViewController {
         case .category:
             self.spinner.isHidden = false
             self.animation.startRotateAnimation(view: self.spinner)
+        case .label:
+            self.spinner.isHidden = false
         }
     }
     
@@ -368,6 +370,8 @@ final class NewsListViewController: UIViewController {
         case .category:
             self.spinner.isHidden = true
             self.animation.stopRotateAnimation(view: self.spinner)
+        case .label:
+            self.spinner.isHidden = true
         }
     }
 }
