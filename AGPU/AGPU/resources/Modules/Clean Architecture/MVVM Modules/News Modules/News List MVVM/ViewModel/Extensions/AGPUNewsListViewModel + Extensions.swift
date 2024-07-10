@@ -74,23 +74,25 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         return false
     }
     
-    func getCurrentIndicatorIcon()-> UIImage {
+    func getIndicator()-> LoadingIndicators {
+        let indicator = UserDefaults.loadData(type: LoadingIndicators.self, key: "indicator") ?? .regular
+        return indicator
+    }
+    
+    func getCurrentIndicator()-> UIView {
         let savedNewsCategory = UserDefaults.standard.object(forKey: "category") as? String ?? "-"
-        let indicator = UserDefaults.loadData(type: LoadingIndicators.self, key: "indicator")
+        let indicator = getIndicator()
         switch indicator {
-        case .aspu:
-            return UIImage(named: "АГПУ")!
+        case .regular:
+            return UIActivityIndicatorView(style: .large)
         case .category:
             self.abbreviation = savedNewsCategory
             if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == savedNewsCategory }) {
-                return UIImage(named: newsCategory.icon)!
+                return SpringImageView(image: UIImage(named: newsCategory.icon)!)
             } else {
-                return UIImage(named: "АГПУ")!
+                return SpringImageView(image: UIImage(named: "АГПУ")!)
             }
-        case .none:
-            break
         }
-        return UIImage(named: "АГПУ")!
     }
     
     // получить новости в зависимости от типа

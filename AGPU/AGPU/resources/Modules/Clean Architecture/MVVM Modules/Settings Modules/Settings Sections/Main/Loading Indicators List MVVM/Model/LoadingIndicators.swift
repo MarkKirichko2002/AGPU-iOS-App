@@ -8,6 +8,6 @@
 import Foundation
 
 enum LoadingIndicators: String, Codable, CaseIterable {
-    case aspu = "АГПУ"
+    case regular = "Обычный"
     case category = "Категория"
 }

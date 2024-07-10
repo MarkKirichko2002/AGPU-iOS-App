@@ -39,8 +39,8 @@ final class NewsListViewController: UIViewController {
     
     private let noNewsLabel = UILabel()
     
-    let spinner: SpringImageView = {
-        let imageView = SpringImageView()
+    var spinner: UIView = {
+        let imageView = UIView()
         imageView.tintColor = .label
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -68,14 +68,13 @@ final class NewsListViewController: UIViewController {
     }
     
     @objc private func refreshNews() {
+        setUpIndicatorView()
         switch viewModel.displayMode {
         case .grid:
             viewModel.newsResponse.articles = []
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 self.noNewsLabel.isHidden = true
-                self.spinner.isHidden = false
-                self.animation.startRotateAnimation(view: self.spinner)
             }
             viewModel.refreshNews()
         case .table:
@@ -83,8 +82,6 @@ final class NewsListViewController: UIViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.noNewsLabel.isHidden = true
-                self.spinner.isHidden = false
-                self.animation.startRotateAnimation(view: self.spinner)
             }
             viewModel.refreshNews()
         case .webpage:
@@ -118,6 +115,10 @@ final class NewsListViewController: UIViewController {
     }
     
     private func setUpIndicatorView() {
+        if view.contains(spinner) {
+            spinner.removeFromSuperview()
+        } 
+        spinner = viewModel.getCurrentIndicator()
         view.addSubview(spinner)
         spinner.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -349,14 +350,24 @@ final class NewsListViewController: UIViewController {
     }
     
     func startLoading() {
-        spinner.image = viewModel.getCurrentIndicatorIcon()
-        self.spinner.isHidden = false
-        self.animation.startRotateAnimation(view: self.spinner)
+        switch viewModel.getIndicator() {
+        case .regular:
+            self.spinner.isHidden = false
+            (self.spinner as? UIActivityIndicatorView)?.startAnimating()
+        case .category:
+            self.spinner.isHidden = false
+            self.animation.startRotateAnimation(view: self.spinner)
+        }
     }
     
     func stopLoading() {
-        self.spinner.image = viewModel.getCurrentIndicatorIcon()
-        self.spinner.isHidden = true
-        self.animation.stopRotateAnimation(view: self.spinner)
+        switch viewModel.getIndicator() {
+        case .regular:
+            self.spinner.isHidden = true
+            (self.spinner as? UIActivityIndicatorView)?.stopAnimating()
+        case .category:
+            self.spinner.isHidden = true
+            self.animation.stopRotateAnimation(view: self.spinner)
+        }
     }
 }

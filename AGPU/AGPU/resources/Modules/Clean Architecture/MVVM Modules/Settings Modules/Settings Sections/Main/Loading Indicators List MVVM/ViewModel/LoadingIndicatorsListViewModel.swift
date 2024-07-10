@@ -24,7 +24,7 @@ class LoadingIndicatorsListViewModel {
     
     func selectIndicator(index: Int) {
         
-        let savedIndicator = UserDefaults.loadData(type: LoadingIndicators.self, key: "indicator") ?? .aspu
+        let savedIndicator = UserDefaults.loadData(type: LoadingIndicators.self, key: "indicator") ?? .regular
         let indicator = indicatorOptionItem(index: index)
         
         if savedIndicator != indicator {
@@ -38,7 +38,7 @@ class LoadingIndicatorsListViewModel {
     
     func isIndicatorSelected(index: Int)-> Bool {
         
-        let savedIndicator = UserDefaults.loadData(type: LoadingIndicators.self, key: "indicator") ?? .aspu
+        let savedIndicator = UserDefaults.loadData(type: LoadingIndicators.self, key: "indicator") ?? .regular
         let indicator = indicatorOptionItem(index: index)
         
         if savedIndicator == indicator {
