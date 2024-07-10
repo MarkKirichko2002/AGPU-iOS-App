@@ -17,6 +17,12 @@ extension DateManager: DateManagerProtocol {
         return currentDate
     }
     
+    func getCurrentMonth()-> Int {
+        let date = Date()
+        let calendar = Calendar.current
+        return calendar.component(.month, from: date)
+    }
+    
     func getCurrentTime(isFullFormat: Bool)-> String {
         let date = Date()
         if isFullFormat {

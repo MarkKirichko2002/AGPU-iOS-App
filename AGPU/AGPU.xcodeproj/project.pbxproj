@@ -7811,8 +7811,8 @@
 		82BC2F3F2A8EFC5D00ADB239 /* News Modules */ = {
 			isa = PBXGroup;
 			children = (
-				8263AA162C0212BB001A903B /* Today News List MVVM */,
 				82B24A7E2A81BA32008B94E4 /* News List MVVM */,
+				8263AA162C0212BB001A903B /* Today News List MVVM */,
 				82B266F82A8D91B600043A6D /* News Categories MVVM */,
 				82BC2F492A8F0B5B00ADB239 /* News Pages List MVVM */,
 				82C26C742BD7F0790039D86D /* Display Mode Options List MVVM */,

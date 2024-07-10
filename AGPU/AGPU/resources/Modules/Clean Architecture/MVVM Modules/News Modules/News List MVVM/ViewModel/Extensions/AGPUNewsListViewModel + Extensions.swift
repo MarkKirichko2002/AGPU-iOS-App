@@ -102,6 +102,10 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             let imageView = SpringImageView(image: UIImage(named: getIconForDayTime())!)
             imageView.tintColor = .label
             return imageView
+        case .season:
+            let imageView = SpringImageView(image: UIImage(named: getIconForSeason())!)
+            imageView.tintColor = .label
+            return imageView
         }
     }
     
@@ -125,6 +129,22 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         return "sun"
     }
     
+    func getIconForSeason()-> String {
+        let month = dateManager.getCurrentMonth()
+        switch month {
+        case 12,1,2:
+            return "winter"
+        case 3,4,5:
+            return "cloud"
+        case 6,7,8:
+            return "sun"
+        case 9,10,11:
+            return "umbrella"
+        default:
+            return ""
+        }
+    }
+    
     func getIndicatorSize()-> CGSize {
         let indicator = getIndicator()
         switch indicator {
@@ -135,6 +155,8 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         case .label:
             return CGSize(width: 150, height: 80)
         case .timeOfDay:
+            return CGSize(width: 55, height: 55)
+        case .season:
             return CGSize(width: 55, height: 55)
         }
     }
