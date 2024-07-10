@@ -68,6 +68,7 @@ final class NewsListViewController: UIViewController {
     }
     
     @objc private func refreshNews() {
+        self.spinner.image = self.viewModel.getCurrentIndicatorIcon()
         switch viewModel.displayMode {
         case .grid:
             viewModel.newsResponse.articles = []
@@ -119,7 +120,7 @@ final class NewsListViewController: UIViewController {
     
     private func setUpIndicatorView() {
         view.addSubview(spinner)
-        spinner.image = UIImage(named: viewModel.getCurrentCategoryIcon())
+        spinner.image = viewModel.getCurrentIndicatorIcon()
         spinner.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -203,13 +204,13 @@ final class NewsListViewController: UIViewController {
                 if abbreviation != "-" {
                     if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == abbreviation }) {
                         titleView = CustomTitleView(image: "\(newsCategory.icon)", title: "\(newsCategory.name) новости", frame: .zero)
-                        self.spinner.image = UIImage(named: newsCategory.icon)
+                        self.spinner.image = self.viewModel.getCurrentIndicatorIcon()
                         self.spinner.isHidden = true
                         self.animation.stopRotateAnimation(view: self.spinner)
                     }
                 } else {
                     titleView = CustomTitleView(image: "АГПУ", title: "АГПУ новости", frame: .zero)
-                    self.spinner.image = UIImage(named: "АГПУ")
+                    self.spinner.image = self.viewModel.getCurrentIndicatorIcon()
                     self.spinner.isHidden = true
                     self.animation.stopRotateAnimation(view: self.spinner)
                 }

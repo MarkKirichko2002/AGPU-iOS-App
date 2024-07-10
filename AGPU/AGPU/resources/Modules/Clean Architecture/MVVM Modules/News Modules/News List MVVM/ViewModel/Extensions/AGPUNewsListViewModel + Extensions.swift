@@ -5,7 +5,7 @@
 //  Created by Марк Киричко on 08.08.2023.
 //
 
-import Foundation
+import UIKit
 
 // MARK: - AGPUNewsListViewModelProtocol
 extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
@@ -74,12 +74,23 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         return false
     }
     
-    func getCurrentCategoryIcon()-> String {
+    func getCurrentIndicatorIcon()-> UIImage {
         let savedNewsCategory = UserDefaults.standard.object(forKey: "category") as? String ?? "-"
-        if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == savedNewsCategory }) {
-            return newsCategory.icon
+        let indicator = UserDefaults.loadData(type: LoadingIndicators.self, key: "indicator")
+        switch indicator {
+        case .aspu:
+            return UIImage(named: "АГПУ")!
+        case .category:
+            self.abbreviation = savedNewsCategory
+            if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == savedNewsCategory }) {
+                return UIImage(named: newsCategory.icon)!
+            } else {
+                return UIImage(named: "АГПУ")!
+            }
+        case .none:
+            break
         }
-        return "АГПУ"
+        return UIImage(named: "АГПУ")!
     }
     
     // получить новости в зависимости от типа

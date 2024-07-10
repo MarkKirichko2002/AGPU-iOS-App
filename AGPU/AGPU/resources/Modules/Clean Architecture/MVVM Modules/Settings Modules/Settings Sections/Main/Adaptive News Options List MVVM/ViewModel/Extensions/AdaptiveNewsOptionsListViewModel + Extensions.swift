@@ -31,6 +31,11 @@ extension AdaptiveNewsOptionsListViewModel: IAdaptiveNewsOptionsListViewModel {
         return savedDisplayMode.rawValue
     }
     
+    func getLoadingIndicatorInfo()-> String {
+        let savedIndicator = UserDefaults.loadData(type: LoadingIndicators.self, key: "indicator") ?? .aspu
+        return savedIndicator.rawValue
+    }
+    
     func registerDataHandler(block: @escaping()->Void) {
         self.dataChangedHandler = block
     }

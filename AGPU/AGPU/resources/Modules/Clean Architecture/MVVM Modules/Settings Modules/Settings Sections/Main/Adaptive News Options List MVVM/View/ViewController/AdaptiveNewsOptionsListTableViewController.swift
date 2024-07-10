@@ -25,6 +25,7 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
         tableView.register(UINib(nibName: SavedNewsCategoryOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SavedNewsCategoryOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: NewsOptionsPostionOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: NewsOptionsPostionOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: DisplayModeOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DisplayModeOptionTableViewCell.identifier)
+        tableView.register(UINib(nibName: LoadingIndicatorOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: LoadingIndicatorOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: AdaptToWebOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AdaptToWebOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: ShowOnlyDailyNewsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ShowOnlyDailyNewsTableViewCell.identifier)
         tableView.register(UINib(nibName: BorderForDailyNewsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: BorderForDailyNewsTableViewCell.identifier)
@@ -67,13 +68,16 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
         case 2:
             let vc = SavedDisplayModeTableViewController()
             navigationController?.pushViewController(vc, animated: true)
+        case 3:
+            let vc = LoadingIndicatorsListTableViewController()
+            navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 7
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -89,9 +93,14 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
             cell.configure(mode: viewModel.getDisplayModeInfo())
             return cell
         } else if indexPath.row == 3 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: LoadingIndicatorOptionTableViewCell.identifier, for: indexPath) as? LoadingIndicatorOptionTableViewCell else {return UITableViewCell()}
+            cell.configure(indicator: viewModel.getLoadingIndicatorInfo())
+            return cell
+        }
+        else if indexPath.row == 4 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AdaptToWebOptionTableViewCell.identifier, for: indexPath) as? AdaptToWebOptionTableViewCell else {return UITableViewCell()}
             return cell
-        } else if indexPath.row == 4 {
+        } else if indexPath.row == 5 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ShowOnlyDailyNewsTableViewCell.identifier, for: indexPath) as? ShowOnlyDailyNewsTableViewCell else {return UITableViewCell()}
             return cell
         } else {
