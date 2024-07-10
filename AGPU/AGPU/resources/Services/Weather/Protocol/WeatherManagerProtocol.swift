@@ -9,6 +9,6 @@ import CoreLocation
 import WeatherKit
 
 protocol WeatherManagerProtocol {
-    func getWeather(location: CLLocation, completion: @escaping(Weather)->Void)
+    func getWeather(location: CLLocation) async throws -> Result<Weather, Error>
     func formatWeather(weather: Weather)-> String
 }

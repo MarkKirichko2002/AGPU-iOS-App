@@ -13,8 +13,14 @@ extension WeatherSplashScreenViewModel: IWeatherSplashScreenViewModel {
     func getWeather() {
         locationManager.getLocations()
         locationManager.registerLocationHandler { location in
-            self.weatherManager.getWeather(location: location) { weather in
-                self.weatherHandler?(weather)
+            Task {
+                let result = try await WeatherManager.shared.getWeather(location: location)
+                switch result {
+                case .success(let data):
+                    self.weatherHandler?(data)
+                case .failure(let error):
+                    print(error)
+                }
             }
         }
     }

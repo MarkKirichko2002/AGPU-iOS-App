@@ -10,14 +10,12 @@ import WeatherKit
 
 extension WeatherManager: WeatherManagerProtocol {
         
-    func getWeather(location: CLLocation, completion: @escaping(Weather)->Void) {
-        Task {
-            do {
-                let result = try await service.weather(for: location)
-                completion(result)
-            } catch {
-                print(error)
-            }
+    func getWeather(location: CLLocation) async throws -> Result<Weather, Error> {
+        do {
+            let result = try await service.weather(for: location)
+            return .success(result)
+        } catch {
+            return .failure(error)
         }
     }
     

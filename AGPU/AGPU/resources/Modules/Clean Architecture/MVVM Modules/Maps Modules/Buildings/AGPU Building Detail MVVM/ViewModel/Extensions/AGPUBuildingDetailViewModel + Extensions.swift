@@ -30,8 +30,14 @@ extension AGPUBuildingDetailViewModel: AGPUBuildingDetailViewModelProtocol {
     
     func getWeather() {
         let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
-        WeatherManager.shared.getWeather(location: location) { weather in
-            self.weatherHandler?("Погода: \(WeatherManager.shared.formatWeather(weather: weather))")
+        Task {
+            let result = try await WeatherManager.shared.getWeather(location: location)
+            switch result {
+            case .success(let data):
+                self.weatherHandler?("Погода: \(WeatherManager.shared.formatWeather(weather: data))")
+            case .failure(let error):
+                print(error)
+            }
         }
     }
     

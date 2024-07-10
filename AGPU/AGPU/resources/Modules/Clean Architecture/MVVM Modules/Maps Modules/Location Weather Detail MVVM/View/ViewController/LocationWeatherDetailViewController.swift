@@ -66,13 +66,17 @@ class LocationWeatherDetailViewController: UITableViewController {
         } else {
             setUpCloseButton()
         }
-        let options = UIBarButtonItem(image: UIImage(named: String.optionsIcon), menu: setUpMenu())
-        options.tintColor = .label
-        navigationItem.rightBarButtonItem = options
         navigationItem.title = String.navigationTitle
+        setUpMenu()
     }
     
-    private func setUpMenu()-> UIMenu {
+    private func setUpMenu() {
+        let options = UIBarButtonItem(image: UIImage(named: String.optionsIcon), menu: makeMenu())
+        options.tintColor = .label
+        navigationItem.rightBarButtonItem = options
+    }
+    
+    private func makeMenu()-> UIMenu {
         
         let celsiusAction = UIAction(title: String.celsiusActionTitle, state: .on) { _ in
             self.viewModel.convertToCelsius()
@@ -144,6 +148,7 @@ class LocationWeatherDetailViewController: UITableViewController {
     
     @objc private func refreshWeather() {
         viewModel.refresh()
+        setUpMenu()
         refresh.endRefreshing()
     }
     

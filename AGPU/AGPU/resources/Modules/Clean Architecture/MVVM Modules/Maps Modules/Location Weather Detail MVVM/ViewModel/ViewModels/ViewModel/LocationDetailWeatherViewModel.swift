@@ -39,23 +39,29 @@ class LocationWeatherDetailViewModel: ILocationWeatherDetailViewModel {
         hourlyWeather = []
         dailyWeather = []
         let location = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        self.weatherService.getWeather(location: location) { weather in
-            // текущая погода
-            self.setUpCurrentWeather(weather: weather)
-            // погода по часам
-            self.setUpHourlyWeather(weather: weather)
-            // погода на 5 дней
-            self.setUpDailyWeather(weather: weather)
-            self.weather = weather
-            if style != .notShow {
-                if self.isChanged() {
-                    self.isWeatherChangedHandler?()
-                    self.saveWeather()
-                } else {
-                    //self.saveWeather()
+        Task {
+            let result = try await weatherService.getWeather(location: location)
+            switch result {
+            case .success(let weather):
+                // текущая погода
+                self.setUpCurrentWeather(weather: weather)
+                // погода по часам
+                self.setUpHourlyWeather(weather: weather)
+                // погода на 5 дней
+                self.setUpDailyWeather(weather: weather)
+                self.weather = weather
+                if style != .notShow {
+                    if self.isChanged() {
+                        self.isWeatherChangedHandler?()
+                        self.saveWeather()
+                    } else {
+                        //self.saveWeather()
+                    }
                 }
+                self.isFetched.toggle()
+            case .failure(let error):
+                print(error)
             }
-            self.isFetched.toggle()
         }
     }
     
