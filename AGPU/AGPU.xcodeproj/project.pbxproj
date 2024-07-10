@@ -4268,12 +4268,12 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		8260EEA92C3C734600DFFC4D /* Weather Changes MVVM */ = {
+		8260EEA92C3C734600DFFC4D /* Weather Changes */ = {
 			isa = PBXGroup;
 			children = (
 				8260EEAA2C3C737500DFFC4D /* View */,
 			);
-			path = "Weather Changes MVVM";
+			path = "Weather Changes";
 			sourceTree = "<group>";
 		};
 		8260EEAA2C3C737500DFFC4D /* View */ = {
@@ -4486,6 +4486,7 @@
 				822527462BA63D0500B66314 /* News Categories Randomizer */,
 				82D37FDB2BEC2F290035CB57 /* Image Detail */,
 				82B97C0D2B93E14300770F00 /* Share Apps */,
+				8260EEA92C3C734600DFFC4D /* Weather Changes */,
 				82FD79CE2B92678000E0DE61 /* Location Apps */,
 				826888562A33AB3C00434219 /* Splash Screens */,
 				828CFA342A35F62400C7542D /* TabBar */,
@@ -4539,7 +4540,6 @@
 				82BC2F3F2A8EFC5D00ADB239 /* News Modules */,
 				821270572A7921DD0095D68E /* Web Modules */,
 				823746D62BF65CA4004758CB /* For Every Status Modules */,
-				8260EEA92C3C734600DFFC4D /* Weather Changes MVVM */,
 				82D37FB52BEC10D20035CB57 /* Things Categories List MVVM */,
 				8209A0A12B838CC40013371D /* Documents List MVVM */,
 				82D37FBE2BEC17D80035CB57 /* Saved Images List MVVM */,

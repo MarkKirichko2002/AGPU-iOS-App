@@ -129,15 +129,13 @@ extension NewsListViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         DispatchQueue.main.async {
-            self.spinner.isHidden = false
-            self.animation.startRotateAnimation(view: self.spinner)
+            self.startLoading()
         }
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         DispatchQueue.main.async {
-            self.spinner.isHidden = true
-            self.animation.stopRotateAnimation(view: self.spinner)
+            self.stopLoading()
         }
     }
 }
