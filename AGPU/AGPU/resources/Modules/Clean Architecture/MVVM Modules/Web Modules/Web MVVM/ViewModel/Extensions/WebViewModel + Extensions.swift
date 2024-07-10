@@ -13,7 +13,7 @@ extension WebViewModel: WebViewModelProtocol {
     func saveCurrentWebPage(url: String, position: CGPoint) {
         let dateManager = DateManager()
         let date = dateManager.getCurrentDate()
-        let time = dateManager.getCurrentTime()
+        let time = dateManager.getCurrentTime(isFullFormat: true)
         let page = RecentWebPageModel(date: date, time: time, url: url, position: position)
         UserDefaults.saveData(object: page, key: "last page") {
             print("сохранено: \(page)")
@@ -23,7 +23,7 @@ extension WebViewModel: WebViewModelProtocol {
     func saveCurrentWebArticle(url: String, position: CGPoint) {
         let dateManager = DateManager()
         let date = dateManager.getCurrentDate()
-        let time = dateManager.getCurrentTime()
+        let time = dateManager.getCurrentTime(isFullFormat: true)
         let article = RecentWebPageModel(date: date, time: time, url: url, position: position)
         UserDefaults.saveData(object: article, key: "last article") {
             print("сохранено: \(article)")

@@ -11,4 +11,5 @@ enum LoadingIndicators: String, Codable, CaseIterable {
     case regular = "Обычный"
     case category = "Категория"
     case label = "Надпись"
+    case timeOfDay = "Время суток"
 }

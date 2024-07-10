@@ -417,7 +417,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         var disciplines = [Discipline]()
         
         let currentDate = dateManager.getCurrentDate()
-        let currentTime = dateManager.getCurrentTime()
+        let currentTime = dateManager.getCurrentTime(isFullFormat: true)
         
         for pair in pairs {
             

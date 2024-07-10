@@ -91,7 +91,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         // конец пары
         let endTime = getEndTime()
         // текущее время
-        let currentTime = dateManager.getCurrentTime()
+        let currentTime = dateManager.getCurrentTime(isFullFormat: true)
         // сравнение двух дат
         let dateComparisonResult = dateManager.compareDates(date1: currentDate, date2: date)
         // сравнение текущего времени и времени начала пары
@@ -230,7 +230,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             
-            let times = self.dateManager.getCurrentTime()
+            let times = self.dateManager.getCurrentTime(isFullFormat: true)
             
             let startTimes = self.getStartTime().components(separatedBy: ":")
             let startHour = startTimes[0]
@@ -263,7 +263,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             
-            let times = self.dateManager.getCurrentTime()
+            let times = self.dateManager.getCurrentTime(isFullFormat: true)
             
             let startTimes = self.getEndTime().components(separatedBy: ":")
             let startHour = startTimes[0]

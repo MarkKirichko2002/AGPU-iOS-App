@@ -11,7 +11,7 @@ extension TimeTableTableViewCell {
     
     func isEnded(date: String, time: String)-> Bool  {
         
-        let currentTime = DateManager().getCurrentTime()
+        let currentTime = DateManager().getCurrentTime(isFullFormat: true)
         let currentDate = DateManager().getCurrentDate()
         
         let compareTime = DateManager().compareTimes(time1: "\(time):00", time2: currentTime)

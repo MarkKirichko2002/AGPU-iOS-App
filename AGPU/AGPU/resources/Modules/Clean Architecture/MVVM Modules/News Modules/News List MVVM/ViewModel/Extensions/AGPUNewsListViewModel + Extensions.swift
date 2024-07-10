@@ -98,7 +98,31 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             label.font = .systemFont(ofSize: 18, weight: .medium)
             label.textAlignment = .center
             return label
+        case .timeOfDay:
+            let imageView = SpringImageView(image: UIImage(named: getIconForDayTime())!)
+            imageView.tintColor = .label
+            return imageView
         }
+    }
+    
+    func getIconForDayTime()-> String {
+        let time = dateManager.getCurrentTime(isFullFormat: false)
+        print(time)
+        // утро, день
+        if dateManager.timeRange(startTime: "4:00", endTime: "16:59", currentTime: time) {
+            print("утро или день")
+            return "sun"
+        }
+        // вечер, ночь
+        if dateManager.timeRange(startTime: "17:00", endTime: "23:59", currentTime: time) {
+            print("вечер или ночь")
+            return "moon"
+        }
+        if dateManager.timeRange(startTime: "00:00", endTime: "3:59", currentTime: time) {
+            print("вечер или ночь")
+            return "moon"
+        }
+        return "sun"
     }
     
     func getIndicatorSize()-> CGSize {
@@ -110,6 +134,8 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             return CGSize(width: 75, height: 75)
         case .label:
             return CGSize(width: 150, height: 80)
+        case .timeOfDay:
+            return CGSize(width: 55, height: 55)
         }
     }
     

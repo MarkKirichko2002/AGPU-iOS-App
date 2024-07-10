@@ -17,9 +17,13 @@ extension DateManager: DateManagerProtocol {
         return currentDate
     }
     
-    func getCurrentTime()-> String {
+    func getCurrentTime(isFullFormat: Bool)-> String {
         let date = Date()
-        dateFormatter.dateFormat = "HH:mm:ss"
+        if isFullFormat {
+            dateFormatter.dateFormat = "HH:mm:ss"
+        } else {
+            dateFormatter.dateFormat = "HH:mm"
+        }
         let timeString = dateFormatter.string(from: date)
         return timeString
     }
@@ -133,7 +137,7 @@ extension DateManager: DateManagerProtocol {
     func timeRange(startTime: String, endTime: String, currentTime: String)-> Bool {
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "hh:mm"
+        dateFormatter.dateFormat = "HH:mm"
         
         if let startTime = dateFormatter.date(from: startTime),
            let endTime = dateFormatter.date(from: endTime),
