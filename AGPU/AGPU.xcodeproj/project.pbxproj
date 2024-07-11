@@ -239,6 +239,7 @@
 		825D92EE2AF2F03000B5E9DF /* RecentTimeTableDayListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D92ED2AF2F03000B5E9DF /* RecentTimeTableDayListTableViewController + Extensions.swift */; };
 		8260EEAC2C3C739700DFFC4D /* WeatherChangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8260EEAB2C3C739700DFFC4D /* WeatherChangesViewController.swift */; };
 		8260EEAF2C3C8A7200DFFC4D /* WeatherChangesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8260EEAE2C3C8A7200DFFC4D /* WeatherChangesModel.swift */; };
+		826141FE2C3F71DD004D720B /* NewsMultipleSelectionListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826141FD2C3F71DD004D720B /* NewsMultipleSelectionListTableViewController.swift */; };
 		8263AA1B2C02151A001A903B /* TodayNewsSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8263AA1A2C02151A001A903B /* TodayNewsSectionModel.swift */; };
 		8263AA1E2C021552001A903B /* TodayNewsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8263AA1D2C021552001A903B /* TodayNewsListTableViewController.swift */; };
 		8263AA232C0215A2001A903B /* ITodayNewsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8263AA222C0215A2001A903B /* ITodayNewsListViewModel.swift */; };
@@ -899,6 +900,7 @@
 		825D92ED2AF2F03000B5E9DF /* RecentTimeTableDayListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentTimeTableDayListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8260EEAB2C3C739700DFFC4D /* WeatherChangesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherChangesViewController.swift; sourceTree = "<group>"; };
 		8260EEAE2C3C8A7200DFFC4D /* WeatherChangesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherChangesModel.swift; sourceTree = "<group>"; };
+		826141FD2C3F71DD004D720B /* NewsMultipleSelectionListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsMultipleSelectionListTableViewController.swift; sourceTree = "<group>"; };
 		8263AA1A2C02151A001A903B /* TodayNewsSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayNewsSectionModel.swift; sourceTree = "<group>"; };
 		8263AA1D2C021552001A903B /* TodayNewsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayNewsListTableViewController.swift; sourceTree = "<group>"; };
 		8263AA222C0215A2001A903B /* ITodayNewsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITodayNewsListViewModel.swift; sourceTree = "<group>"; };
@@ -4300,6 +4302,22 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		826141FA2C3F7182004D720B /* News Multiple Selection List */ = {
+			isa = PBXGroup;
+			children = (
+				826141FC2C3F719E004D720B /* View */,
+			);
+			path = "News Multiple Selection List";
+			sourceTree = "<group>";
+		};
+		826141FC2C3F719E004D720B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				826141FD2C3F71DD004D720B /* NewsMultipleSelectionListTableViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8263AA162C0212BB001A903B /* Today News List MVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -4480,6 +4498,7 @@
 			isa = PBXGroup;
 			children = (
 				828710212C23209900E0DC1D /* AR */,
+				826141FA2C3F7182004D720B /* News Multiple Selection List */,
 				8276E62F2C2CCC7900216F28 /* Zoom Image */,
 				82187CA92C04FD7B0033E6DC /* Hint */,
 				8258198F2C02ADF70022D17F /* App Update */,
@@ -10244,6 +10263,7 @@
 				82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */,
 				82BCB5422AB35A7E00F3A321 /* DayModel.swift in Sources */,
 				822606082A853D310055925F /* RecentMomentsList.swift in Sources */,
+				826141FE2C3F71DD004D720B /* NewsMultipleSelectionListTableViewController.swift in Sources */,
 				82B24A782A8193B2008B94E4 /* AllWeeksListViewModelProtocol.swift in Sources */,
 				824EBF712B29FA260003E7E6 /* AGPUBuildingTypesListViewModelProtocol.swift in Sources */,
 				82320D832A49167000ECADEE /* AGPUFacultyModel.swift in Sources */,
@@ -10592,7 +10612,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.9;
+				MARKETING_VERSION = 2.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -10631,7 +10651,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.9;
+				MARKETING_VERSION = 2.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

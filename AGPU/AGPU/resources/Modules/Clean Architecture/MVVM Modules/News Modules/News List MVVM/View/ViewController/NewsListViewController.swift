@@ -14,6 +14,8 @@ final class NewsListViewController: UIViewController {
     let viewModel = AGPUNewsListViewModel()
     let animation = AnimationClass()
     
+    var articles = [Article]()
+    
     // MARK: - UI
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -55,19 +57,21 @@ final class NewsListViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshNews))
-        refreshButton.tintColor = .label
-       
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .systemBackground
-        
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        
+        setUpRefreshButton()
+    }
+    
+    private func setUpRefreshButton() {
+        let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshNews))
+        refreshButton.tintColor = .label
         navigationItem.leftBarButtonItem = refreshButton
     }
     
     @objc private func refreshNews() {
+        tableView.isEditing.toggle()
         setUpIndicatorView()
         switch viewModel.displayMode {
         case .grid:
@@ -102,6 +106,7 @@ final class NewsListViewController: UIViewController {
         tableView.frame = view.bounds
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.allowsMultipleSelectionDuringEditing = true
         spinner.tintColor = .label
     }
     
@@ -179,6 +184,14 @@ final class NewsListViewController: UIViewController {
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true)
         }
+        
+        let selectAction = UIAction(title: "Выбрать") { _ in
+            let vc = NewsMultipleSelectionListTableViewController(articles: self.viewModel.allNews, abbreviation: self.viewModel.abbreviation)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         let settingsAction = UIAction(title: "Настройки") { _ in
             let vc = AdaptiveNewsOptionsListTableViewController()
             let navVC = UINavigationController(rootViewController: vc)
@@ -234,10 +247,11 @@ final class NewsListViewController: UIViewController {
                 displayModes,
                 filterOptions,
                 randomAction,
+                selectAction,
                 settingsAction
             ]
             
-            let position = UserDefaults.standard.object(forKey: "news options position") as? [Int] ?? [0,1,2,3,4,5,6,7]
+            let position = UserDefaults.standard.object(forKey: "news options position") as? [Int] ?? [0,1,2,3,4,5,6,7,8]
             
             for option in opt {
                 for number in position {

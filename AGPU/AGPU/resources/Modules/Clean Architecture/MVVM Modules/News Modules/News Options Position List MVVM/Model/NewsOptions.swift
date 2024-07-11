@@ -16,6 +16,7 @@ struct NewsOptions {
         NewsOptionModel(id: 5, name: "Вид"),
         NewsOptionModel(id: 6, name: "Фильтрация"),
         NewsOptionModel(id: 7, name: "Рандомайзер"),
-        NewsOptionModel(id: 8, name: "Настройки"),
+        NewsOptionModel(id: 8, name: "Выбрать"),
+        NewsOptionModel(id: 9, name: "Настройки"),
     ]
 }

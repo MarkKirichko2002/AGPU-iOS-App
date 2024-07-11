@@ -14,7 +14,7 @@ extension NewsOptionsPositionListViewModel: INewsOptionsPositionListViewModel {
         
         options = NewsOptions.list
         
-        let position = UserDefaults.standard.object(forKey: "news options position") as? [Int] ?? [0,1,2,3,4,5,6,7]
+        let position = UserDefaults.standard.object(forKey: "news options position") as? [Int] ?? [0,1,2,3,4,5,6,7,8]
         
         for option in options {
             for number in position {
@@ -41,8 +41,9 @@ extension NewsOptionsPositionListViewModel: INewsOptionsPositionListViewModel {
         let index6 = arr.firstIndex { $0.id == 6 }
         let index7 = arr.firstIndex { $0.id == 7 }
         let index8 = arr.firstIndex { $0.id == 8 }
+        let index9 = arr.firstIndex { $0.id == 9 }
         
-        let numbers = [index1, index2, index3, index4, index5, index6, index7, index8]
+        let numbers = [index1, index2, index3, index4, index5, index6, index7, index8, index9]
         
         UserDefaults.saveArray(array: numbers, key: "news options position") {
             self.getData()
