@@ -38,7 +38,7 @@ class NewsMultipleSelectionListTableViewController: UITableViewController {
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.titleView = titleView
-        setUpShareButton()
+        setUpMenu()
         navigationItem.leftBarButtonItem = closeButton
     }
     
@@ -55,11 +55,41 @@ class NewsMultipleSelectionListTableViewController: UITableViewController {
         }
     }
     
-    private func setUpShareButton() {
-        let shareButton = UIBarButtonItem(image: UIImage(named: "share"), style: .done, target: self, action: #selector(share))
-        shareButton.tintColor = .label
-        navigationItem.rightBarButtonItem = shareButton
+    private func setUpMenu() {
+        
+        let selectAll = UIAction(title: "Выбрать все") { _ in
+            self.selectAllRows()
+        }
+        
+        let cancelAll = UIAction(title: "Отменить все") { _ in
+            self.deSelectAllRows()
+        }
+        
+        let shareAction = UIAction(title: "Поделиться") { _ in
+            self.share()
+        }
+        
+        let menu = UIMenu(title: "Новости", children: [selectAll, cancelAll, shareAction])
+        let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
+        sections.tintColor = .label
+        navigationItem.rightBarButtonItem = sections
+        
     }
+    
+    private func selectAllRows() {
+        for i in 0..<articles.count {
+            tableView.selectRow(at: IndexPath(row: i, section: 0), animated: true, scrollPosition: .none)
+        }
+        self.selectedArticles = self.articles
+    }
+    
+    private func deSelectAllRows() {
+        for i in 0..<articles.count {
+            tableView.deselectRow(at: IndexPath(row: i, section: 0), animated: true)
+        }
+        self.selectedArticles = []
+    }
+    
     
     private func makeMessage()-> String {
         
