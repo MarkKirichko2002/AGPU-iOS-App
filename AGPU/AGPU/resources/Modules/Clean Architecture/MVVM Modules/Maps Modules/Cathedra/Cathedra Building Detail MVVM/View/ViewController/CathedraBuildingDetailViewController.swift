@@ -41,17 +41,31 @@ class CathedraBuildingDetailViewController: UIViewController {
         let info = viewModel.getInfo()
         let titleView = CustomTitleView(image: info.1.icon, title: "Кафедра \(info.1.abbreviation)", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
-        let shareButton = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(showShareVC))
         closeButton.tintColor = .label
-        shareButton.tintColor = .label
         navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = closeButton
-        navigationItem.rightBarButtonItem = shareButton
+        setUpMenu()
     }
     
     @objc private func closeScreen() {
         HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
+    }
+    
+    private func setUpMenu() {
+        
+        let weatherAction = UIAction(title: "Погода") { _ in
+            self.showWeatherDetail()
+        }
+        
+        let shareAction = UIAction(title: "Поделиться") { _ in
+            self.showShareVC()
+        }
+        
+        let menu = UIMenu(title: annotation.title!!, children: [weatherAction, shareAction])
+        let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
+        sections.tintColor = .label
+        navigationItem.rightBarButtonItem = sections
     }
     
     @objc private func showShareVC() {

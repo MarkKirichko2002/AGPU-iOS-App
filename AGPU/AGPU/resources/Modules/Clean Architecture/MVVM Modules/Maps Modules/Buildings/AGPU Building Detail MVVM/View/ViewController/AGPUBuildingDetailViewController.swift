@@ -74,16 +74,34 @@ final class AGPUBuildingDetailViewController: UIViewController {
     private func setUpNavigation() {
         navigationItem.title = "Найти кампус"
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
-        let shareButton = UIBarButtonItem(image: UIImage(named: "share"), style: .plain, target: self, action: #selector(showShareVC))
         closeButton.tintColor = .label
-        shareButton.tintColor = .label
         navigationItem.leftBarButtonItem = closeButton
-        navigationItem.rightBarButtonItem = shareButton
+        setUpMenu()
     }
     
     @objc private func closeScreen() {
         HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
+    }
+    
+    private func setUpMenu() {
+        
+        let timetableAction = UIAction(title: "Расписание") { _ in
+            self.showTimetableDetail()
+        }
+        
+        let weatherAction = UIAction(title: "Погода") { _ in
+            self.showWeatherDetail()
+        }
+        
+        let shareAction = UIAction(title: "Поделиться") { _ in
+            self.showShareVC()
+        }
+        
+        let menu = UIMenu(title: annotation.title!!, children: [timetableAction, weatherAction, shareAction])
+        let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
+        sections.tintColor = .label
+        navigationItem.rightBarButtonItem = sections
     }
     
     @objc private func showShareVC() {
