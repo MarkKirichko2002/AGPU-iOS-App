@@ -71,7 +71,6 @@ final class NewsListViewController: UIViewController {
     }
     
     @objc private func refreshNews() {
-        tableView.isEditing.toggle()
         setUpIndicatorView()
         switch viewModel.displayMode {
         case .grid:
@@ -106,7 +105,6 @@ final class NewsListViewController: UIViewController {
         tableView.frame = view.bounds
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.allowsMultipleSelectionDuringEditing = true
         spinner.tintColor = .label
     }
     

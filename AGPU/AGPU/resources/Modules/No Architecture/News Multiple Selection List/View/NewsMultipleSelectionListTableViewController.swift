@@ -34,9 +34,10 @@ class NewsMultipleSelectionListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
+        let titleView = CustomTitleView(image: getCategory().icon, title: "\(getCategory().name) новости", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
-        navigationItem.title = "Новости"
+        navigationItem.titleView = titleView
         setUpShareButton()
         navigationItem.leftBarButtonItem = closeButton
     }
@@ -44,6 +45,14 @@ class NewsMultipleSelectionListTableViewController: UITableViewController {
     @objc private func closeScreen() {
         HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
+    }
+    
+    private func getCategory()-> NewsCategoryModel {
+        if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == abbreviation }) {
+            return newsCategory
+        } else {
+            return NewsCategories.categories[0]
+        }
     }
     
     private func setUpShareButton() {
