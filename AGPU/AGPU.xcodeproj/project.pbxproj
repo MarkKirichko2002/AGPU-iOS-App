@@ -4530,7 +4530,8 @@
 				82BF4DAE2A5FA50D008B751A /* AGPU Wallpapers */,
 				82808E9C2A31F2D400DEEB16 /* ASPU Website Sections */,
 				821270462A78925D0095D68E /* PDF Modules */,
-				82C561602A6B770800514B00 /* App Features Modules */,
+				82C561602A6B770800514B00 /* Features List  */,
+				82C561642A6B7AE800514B00 /* Feature Detail */,
 				82505F432A7F9A0D001DE24A /* TimeTable Modules */,
 			);
 			path = "No Architecture";
@@ -8243,14 +8244,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		82C561602A6B770800514B00 /* App Features Modules */ = {
+		82C561602A6B770800514B00 /* Features List  */ = {
 			isa = PBXGroup;
 			children = (
 				826F93802A90FECB00DE4FB1 /* Model */,
-				82C561652A6B7AEA00514B00 /* Features List */,
-				82C561642A6B7AE800514B00 /* Feature Detail */,
+				82C561652A6B7AEA00514B00 /* View */,
 			);
-			path = "App Features Modules";
+			path = "Features List ";
 			sourceTree = "<group>";
 		};
 		82C561642A6B7AE800514B00 /* Feature Detail */ = {
@@ -8262,14 +8262,14 @@
 			path = "Feature Detail";
 			sourceTree = "<group>";
 		};
-		82C561652A6B7AEA00514B00 /* Features List */ = {
+		82C561652A6B7AEA00514B00 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				827E907B2BC8786D00FD8168 /* ViewController */,
 				827E907A2BC8786B00FD8168 /* Cell */,
 				829E26C62C0120160093E45C /* Extensions */,
 			);
-			path = "Features List";
+			path = View;
 			sourceTree = "<group>";
 		};
 		82C5B7832BCEF45C00F907CB /* ASPU Button Animation Options List */ = {

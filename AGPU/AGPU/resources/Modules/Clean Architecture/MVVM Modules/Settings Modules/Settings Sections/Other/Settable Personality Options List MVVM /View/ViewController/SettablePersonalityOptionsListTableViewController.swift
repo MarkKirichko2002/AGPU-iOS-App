@@ -33,6 +33,7 @@ class SettablePersonalityOptionsListTableViewController: UITableViewController {
     
     @objc private func closeScreen() {
         HapticsManager.shared.hapticFeedback()
+        sendScreenWasClosedNotification()
         self.dismiss(animated: true)
     }
     

@@ -48,9 +48,9 @@ extension TabIconsStyleListViewModel: ITabIconsStyleListViewModel {
         let style = settingsManager.getSavedCommunicationStyle()
         switch style {
         case .formal:
-            return "Выберите страницу"
+            return "Выберите стиль"
         case .informal:
-            return "Выбери страницу"
+            return "Выбери стиль"
         }
     }
     
