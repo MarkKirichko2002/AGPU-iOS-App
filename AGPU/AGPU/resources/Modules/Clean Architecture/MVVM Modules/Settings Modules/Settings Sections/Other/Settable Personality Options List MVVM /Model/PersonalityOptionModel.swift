@@ -10,4 +10,5 @@ import Foundation
 struct PersonalityOptionModel {
     let id: Int
     var name: String
+    let icon: String
 }

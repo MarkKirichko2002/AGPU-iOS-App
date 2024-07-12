@@ -71,6 +71,7 @@ class DisplayModeOptionsListTableViewController: UITableViewController {
         cell.tintColor = .systemGreen
         cell.textLabel?.text = viewModel.optionItem(index: indexPath.row).rawValue
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
+        cell.textLabel?.textColor = viewModel.isCurrentOption(index: indexPath.row) ? .systemGreen : .label
         cell.accessoryType = viewModel.isCurrentOption(index: indexPath.row) ? .checkmark : .none
         return cell
     }

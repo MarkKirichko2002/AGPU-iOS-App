@@ -7,10 +7,16 @@
 
 import UIKit
 
+protocol CommunicationStyleVariantsListTableViewControllerDelegate: AnyObject {
+    func styleWasSelected()
+}
+
 class CommunicationStyleVariantsListTableViewController: UITableViewController {
 
     // MARK: - сервисы
     private let viewModel = CommunicationStyleVariantsListViewModel()
+    
+    weak var delegate: CommunicationStyleVariantsListTableViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +58,7 @@ class CommunicationStyleVariantsListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.selectStyle(index: indexPath.row)
+        delegate?.styleWasSelected()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

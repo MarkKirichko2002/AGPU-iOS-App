@@ -640,6 +640,7 @@
 		82F315CD2C40CDD500E826F9 /* CommunicationStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315CC2C40CDD500E826F9 /* CommunicationStyles.swift */; };
 		82F315CF2C40CE3100E826F9 /* CommunicationStyleVariantsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315CE2C40CE3100E826F9 /* CommunicationStyleVariantsListTableViewController.swift */; };
 		82F315D32C40CE6E00E826F9 /* CommunicationStyleVariantsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315D22C40CE6E00E826F9 /* CommunicationStyleVariantsListViewModel.swift */; };
+		82F315D92C41AAB900E826F9 /* SettablePersonalityOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315D82C41AAB900E826F9 /* SettablePersonalityOptionTableViewCell.swift */; };
 		82F578772B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F578762B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift */; };
 		82F5787D2B6FE4B400BC64C1 /* ASPUButtonActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F5787C2B6FE4B400BC64C1 /* ASPUButtonActions.swift */; };
 		82F5787F2B6FE57100BC64C1 /* ASPUButtonActionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F5787E2B6FE57100BC64C1 /* ASPUButtonActionsListViewModel.swift */; };
@@ -1313,6 +1314,7 @@
 		82F315CC2C40CDD500E826F9 /* CommunicationStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationStyles.swift; sourceTree = "<group>"; };
 		82F315CE2C40CE3100E826F9 /* CommunicationStyleVariantsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationStyleVariantsListTableViewController.swift; sourceTree = "<group>"; };
 		82F315D22C40CE6E00E826F9 /* CommunicationStyleVariantsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationStyleVariantsListViewModel.swift; sourceTree = "<group>"; };
+		82F315D82C41AAB900E826F9 /* SettablePersonalityOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettablePersonalityOptionTableViewCell.swift; sourceTree = "<group>"; };
 		82F578762B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultyTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		82F5787C2B6FE4B400BC64C1 /* ASPUButtonActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonActions.swift; sourceTree = "<group>"; };
 		82F5787E2B6FE57100BC64C1 /* ASPUButtonActionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonActionsListViewModel.swift; sourceTree = "<group>"; };
@@ -9385,6 +9387,7 @@
 			isa = PBXGroup;
 			children = (
 				82F315D12C40CE4D00E826F9 /* ViewController */,
+				82F315D72C41AA9200E826F9 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -9446,6 +9449,14 @@
 				82F315C42C40C3FE00E826F9 /* SettablePersonalityOptionsListTableViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82F315D72C41AA9200E826F9 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				82F315D82C41AAB900E826F9 /* SettablePersonalityOptionTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		82F578752B6FB83400BC64C1 /* Protocols */ = {
@@ -10230,6 +10241,7 @@
 				8212705B2A792A610095D68E /* RecentPDFModel.swift in Sources */,
 				82B24A732A8180AE008B94E4 /* AllWeeksListViewModel.swift in Sources */,
 				82FC22F12BC01EA0008709DA /* NewsOptionsFilters.swift in Sources */,
+				82F315D92C41AAB900E826F9 /* SettablePersonalityOptionTableViewCell.swift in Sources */,
 				82B24A892A81BD30008B94E4 /* AGPUNewsService.swift in Sources */,
 				82989AF22A6F8CDF00F27858 /* ForEveryStatusTableViewCell.swift in Sources */,
 				8270A5482A5784A2008ACADC /* DateManager.swift in Sources */,

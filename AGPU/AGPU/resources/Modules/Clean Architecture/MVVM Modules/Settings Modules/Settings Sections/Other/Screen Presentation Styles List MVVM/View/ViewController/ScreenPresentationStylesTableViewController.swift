@@ -59,6 +59,7 @@ class ScreenPresentationStylesTableViewController: UITableViewController {
         cell.tintColor = .systemGreen
         cell.textLabel?.text = style.rawValue
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
+        cell.textLabel?.textColor = viewModel.isPresentationStyleSelected(index: indexPath.row) ? .systemGreen : .label
         cell.accessoryType = viewModel.isPresentationStyleSelected(index: indexPath.row) ? .checkmark : .none
         return cell
     }

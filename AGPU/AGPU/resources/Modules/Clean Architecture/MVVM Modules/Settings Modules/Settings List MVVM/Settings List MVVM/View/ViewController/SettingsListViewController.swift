@@ -23,7 +23,7 @@ final class SettingsListViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "settings", title: "Настройки", frame: .zero)
+        let titleView = CustomTitleView(image: "settings icon", title: "Настройки", frame: .zero)
         navigationItem.titleView = titleView
     }
     

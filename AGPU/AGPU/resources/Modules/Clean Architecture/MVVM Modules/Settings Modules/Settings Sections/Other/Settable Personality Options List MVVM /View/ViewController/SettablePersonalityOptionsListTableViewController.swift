@@ -19,15 +19,11 @@ class SettablePersonalityOptionsListTableViewController: UITableViewController {
         bindViewModel()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.getData()
-    }
-    
     private func setUpNavigation() {
+        let titleView = CustomTitleView(image: "gear", title: "Настройки личности", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
-        navigationItem.title = "Настройки личности"
+        navigationItem.titleView = titleView
         navigationItem.rightBarButtonItem = closeButton
     }
     
@@ -38,7 +34,7 @@ class SettablePersonalityOptionsListTableViewController: UITableViewController {
     }
     
     private func setUpTable() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(SettablePersonalityOptionTableViewCell.self, forCellReuseIdentifier: SettablePersonalityOptionTableViewCell.identifier)
     }
     
     private func bindViewModel() {
@@ -47,6 +43,7 @@ class SettablePersonalityOptionsListTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
+        viewModel.getData()
     }
     
     func showAlert() {
@@ -80,10 +77,12 @@ class SettablePersonalityOptionsListTableViewController: UITableViewController {
             showAlert()
         case 2:
             let vc = CommunicationStyleVariantsListTableViewController()
+            vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }
+        HapticsManager.shared.hapticFeedback()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -92,9 +91,16 @@ class SettablePersonalityOptionsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = viewModel.optionItem(index: indexPath.row).name
-        cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettablePersonalityOptionTableViewCell.identifier, for: indexPath) as? SettablePersonalityOptionTableViewCell else {return UITableViewCell()}
+        cell.configure(option: viewModel.optionItem(index: indexPath.row))
         return cell
+    }
+}
+
+// MARK: - CommunicationStyleVariantsListTableViewControllerDelegate
+extension SettablePersonalityOptionsListTableViewController: CommunicationStyleVariantsListTableViewControllerDelegate {
+    
+    func styleWasSelected() {
+        viewModel.getData()
     }
 }

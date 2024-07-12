@@ -56,7 +56,6 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
         case 0:
             let vc = SavedNewsCategoryTableViewController()
@@ -74,6 +73,8 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
         default:
             break
         }
+        HapticsManager.shared.hapticFeedback()
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

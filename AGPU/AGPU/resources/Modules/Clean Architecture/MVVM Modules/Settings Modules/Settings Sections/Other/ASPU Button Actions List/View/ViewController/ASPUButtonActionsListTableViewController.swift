@@ -72,6 +72,7 @@ class ASPUButtonActionsListTableViewController: UITableViewController {
         cell.tintColor = .systemGreen
         cell.textLabel?.text = viewModel.actionItem(index: indexPath.row).rawValue
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
+        cell.textLabel?.textColor = viewModel.isActionSelected(index: indexPath.row) ? .systemGreen : .label
         cell.accessoryType = viewModel.isActionSelected(index: indexPath.row) ? .checkmark : .none
         return cell
     }

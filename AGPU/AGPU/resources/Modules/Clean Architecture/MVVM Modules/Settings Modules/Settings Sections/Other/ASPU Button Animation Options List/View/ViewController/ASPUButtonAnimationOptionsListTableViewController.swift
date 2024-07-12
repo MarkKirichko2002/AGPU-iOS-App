@@ -66,6 +66,7 @@ class ASPUButtonAnimationOptionsListTableViewController: UITableViewController {
         cell.tintColor = .systemGreen
         cell.textLabel?.text = option.rawValue
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
+        cell.textLabel?.textColor = viewModel.isOptionSelected(index: indexPath.row) ? .systemGreen : .label
         cell.accessoryType = viewModel.isOptionSelected(index: indexPath.row) ? .checkmark : .none
         return cell
     }

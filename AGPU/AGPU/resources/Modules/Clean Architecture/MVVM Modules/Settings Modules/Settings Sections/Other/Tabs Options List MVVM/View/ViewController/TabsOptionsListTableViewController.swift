@@ -63,6 +63,7 @@ class TabsOptionsListTableViewController: UITableViewController {
         default:
             break
         }
+        HapticsManager.shared.hapticFeedback()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

@@ -10,7 +10,7 @@ import Foundation
 struct PersonalityOptions {
     
     static let options = [
-        PersonalityOptionModel(id: 1, name: "Имя"),
-        PersonalityOptionModel(id: 2, name: "Стиль общения"),
+        PersonalityOptionModel(id: 1, name: "Имя", icon: "badge"),
+        PersonalityOptionModel(id: 2, name: "Стиль общения", icon: "message"),
     ]
 }
