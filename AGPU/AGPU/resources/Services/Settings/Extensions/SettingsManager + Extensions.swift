@@ -189,4 +189,10 @@ extension SettingsManager: SettingsManagerProtocol {
             completion()
         }
     }
+    
+    // MARK: - Settable Personality
+    func getSavedCommunicationStyle()-> CommunicationStyles {
+        let savedStyle = UserDefaults.loadData(type: CommunicationStyles.self, key: "communication style") ?? .formal
+        return savedStyle
+    }
 }

@@ -23,6 +23,7 @@ class NewsPagesListViewModel {
     
     // MARK: - сервисы
     let newsService = AGPUNewsService()
+    let settingsManager = SettingsManager()
     
     // MARK: - Init
     init(currentPage: Int, countPages: Int, abbreviation: String?) {

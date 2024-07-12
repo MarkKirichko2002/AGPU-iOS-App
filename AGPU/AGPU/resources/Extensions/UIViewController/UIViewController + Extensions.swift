@@ -150,30 +150,56 @@ extension UIViewController {
     
     func showHintAlert(type: Hints) {
         
-        let ok = UIAlertAction(title: "ОК", style: .default) { _ in}
+        let style = SettingsManager().getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
         
         switch type {
             
         case .faculty:
-            let vc = HintViewController(info: "Чтобы вызвать контекстное меню удерживайте ячейку факультета")
+            let message = style == .formal ? "\(name.isEmpty ? "Чтобы" : "\(name) чтобы") вызвать контекстное меню удерживайте ячейку факультета" : "\(name.isEmpty ? "Чтобы" : "\(name) чтобы") вызвать контекстное меню удерживай ячейку факультета"
+            let vc = HintViewController(info: message)
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
         case .cathedra:
-            let vc = HintViewController(info: "Чтобы вызвать контекстное меню удерживайте ячейку кафедры")
+            let message = style == .formal ? "\(name.isEmpty ? "Чтобы" : "\(name) чтобы") вызвать контекстное меню удерживайте ячейку кафедры" : "\(name.isEmpty ? "Чтобы" : "\(name) чтобы") вызвать контекстное меню удерживай ячейку кафедры"
+            let vc = HintViewController(info: message)
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
         case .manuals:
-            let vc = HintViewController(info: "Чтобы посмотреть методические материалы для вашей кафедры выберите ее в настройках")
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true)
-        case .additionalEducation:
-            let vc = HintViewController(info: "Чтобы посмотреть соответствующие материалы для вашей кафедры выберите ее в настройках")
+            let message = style == .formal ? "\(name.isEmpty ? "Чтобы" : "\(name) чтобы") посмотреть методические материалы для вашей кафедры выберите ее в настройках" : "\(name.isEmpty ? "Чтобы" : "\(name) чтобы") посмотреть методические материалы для твоей кафедры выбери ее в настройках"
+            let vc = HintViewController(info: message)
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
         }
     }
     
+    func createImageAlertMessage()-> (String, String) {
+        let style = SettingsManager().getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        switch style {
+        case .formal:
+            return ("Неверный формат даты!", !name.isEmpty ? "\(name) сфотографируйте дату еще раз (формат должен быть дд.мм.гггг)." : "сфотографируйте дату еще раз (формат должен быть дд.мм.гггг).")
+        case .informal:
+            return ("Неверный формат даты!", !name.isEmpty ? "\(name) сфоткай дату еще раз (формат должен быть дд.мм.гггг)." : "сфоткай дату еще раз (формат должен быть дд.мм.гггг).")
+        }
+    }
+    
+    func createSaveImageAlertMessage()-> (String, String) {
+        let style = SettingsManager().getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        switch style {
+        case .formal:
+            return ("Сохранение расписания", !name.isEmpty ? "\(name) вы хотите сохранить изображение расписания?" : "вы хотите сохранить изображение расписания?")
+        case .informal:
+            return ("Сохранение расписания", !name.isEmpty ? "\(name) ты хочешь сохранить изображение расписания?" : "ты хочешь сохранить изображение расписания?")
+        }
+    }
+    
     @objc func showWhatsNewVC() {
+        
+        let communicationStyle = SettingsManager().getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        
         let vc = TodayNewsListTableViewController()
         let navVC = UINavigationController(rootViewController: vc)
         let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
@@ -185,7 +211,8 @@ extension UIViewController {
             navVC.modalPresentationStyle = .pageSheet
             present(navVC, animated: true)
         case .notShow:
-            let vc = HintViewController(info: "Чтобы увидеть экран, выберите его отображение в настройках опции \"Наглядные изменения\"")
+            let message = communicationStyle == .formal ? "\(name.isEmpty ? "Чтобы" : "\(name) чтобы") увидеть экран, выберите его отображение в настройках опции \"Наглядные изменения\"" : "\(name.isEmpty ? "Чтобы" : "\(name) чтобы") увидеть экран, выбери его отображение в настройках опции \"Наглядные изменения\""
+            let vc = HintViewController(info: message)
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
         }

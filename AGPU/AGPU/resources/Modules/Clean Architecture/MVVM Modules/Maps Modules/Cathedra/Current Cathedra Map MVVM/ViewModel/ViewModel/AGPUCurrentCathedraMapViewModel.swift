@@ -9,10 +9,13 @@ import MapKit
 
 class AGPUCurrentCathedraMapViewModel {
     
-    let locationManager = LocationManager()
     var cathedra: FacultyCathedraModel!
     var locationHandler: ((LocationModel)->Void)?
     var alertHandler: ((Bool)->Void)?
+    
+    // MARK: - сервисы
+    let locationManager = LocationManager()
+    let settingsManager = SettingsManager()
     
     // MARK: - Init
     init(cathedra: FacultyCathedraModel) {

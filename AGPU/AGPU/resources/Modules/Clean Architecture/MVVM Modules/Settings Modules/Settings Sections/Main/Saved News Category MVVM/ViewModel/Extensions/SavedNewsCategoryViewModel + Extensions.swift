@@ -44,6 +44,16 @@ extension SavedNewsCategoryViewModel: SavedNewsCategoryViewModelProtocol {
         }
     }
     
+    func titleForNavigation()-> String {
+        let style = settingsManager.getSavedCommunicationStyle()
+        switch style {
+        case .formal:
+            return "Выберите категорию"
+        case .informal:
+            return "Выбери категорию"
+        }
+    }
+    
     func registerChangedHandler(block: @escaping()->Void) {
         self.changedHandler = block
     }

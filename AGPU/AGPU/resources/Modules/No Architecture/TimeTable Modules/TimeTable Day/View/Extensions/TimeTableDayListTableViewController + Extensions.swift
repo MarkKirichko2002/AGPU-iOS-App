@@ -119,7 +119,7 @@ extension TimeTableDayListTableViewController: UIImagePickerControllerDelegate, 
                 self.getTimeTable(id: self.id, date: self.date, owner: self.owner)
                 self.navigationItem.title = "\(dayOfWeek) \(date)"
             } else {
-                self.showAlert(title: "Неверный формат даты!", message: "сфотографируйте дату еще раз (формат должен быть дд.мм.гггг).", actions: [UIAlertAction(title: "OK", style: .default)])
+                self.showAlert(title: self.createImageAlertMessage().0, message: self.createImageAlertMessage().1, actions: [UIAlertAction(title: "OK", style: .default)])
             }
             self.dismiss(animated: true)
         }
@@ -231,6 +231,6 @@ extension TimeTableDayListTableViewController {
         }
         
         let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
-        self.showAlert(title: "Сохранить расписание?", message: "Вы хотите сохранить изображение расписания?", actions: [saveAction2, saveAction, cancel])
+        self.showAlert(title: createSaveImageAlertMessage().0, message: createSaveImageAlertMessage().1, actions: [saveAction2, saveAction, cancel])
     }
 }

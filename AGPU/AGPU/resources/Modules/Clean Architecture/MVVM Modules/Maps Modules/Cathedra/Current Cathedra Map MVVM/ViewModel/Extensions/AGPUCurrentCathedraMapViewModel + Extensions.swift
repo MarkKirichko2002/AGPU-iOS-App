@@ -65,6 +65,16 @@ extension AGPUCurrentCathedraMapViewModel: AGPUCurrentCathedraMapViewModelProtoc
         self.locationHandler = block
     }
     
+    func createAlertMessage()-> (String, String) {
+        let style = settingsManager.getSavedCommunicationStyle()
+        switch style {
+        case .formal:
+            return ("Геопозиция выключена", "Хотите включить в настройках?")
+        case .informal:
+            return ("Геопозиция выключена", "Хочешь включить в настройках?")
+        }
+    }
+    
     func getCurrentFaculty()-> AGPUFacultyModel {
         if let faculty = AGPUFaculties.faculties.first(where: { $0.cathedra.contains { $0.name == self.cathedra.name }}) {
             return faculty

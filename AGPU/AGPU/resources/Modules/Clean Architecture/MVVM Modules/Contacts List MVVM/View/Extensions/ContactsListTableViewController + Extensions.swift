@@ -60,15 +60,15 @@ extension ContactsListTableViewController {
     
     func showEditAlert() {
         
-        let alertVC = UIAlertController(title: "Изменить контакт", message: "Вы точно хотите изменить данные контакта?", preferredStyle: .alert)
+        let alertVC = UIAlertController(title: viewModel.createEditAlertMessage().0, message: viewModel.createEditAlertMessage().1, preferredStyle: .alert)
         
         alertVC.addTextField { (textField) in
-            textField.placeholder = "Введите имя"
+            textField.placeholder =  self.viewModel.createTextForEditAlert().0
             textField.text = self.contact.name
         }
         
         alertVC.addTextField { (textField) in
-            textField.placeholder = "Введите номер"
+            textField.placeholder =  self.viewModel.createTextForEditAlert().1
             textField.text = self.contact.number
         }
         
@@ -90,14 +90,14 @@ extension ContactsListTableViewController {
     
     @objc func showAddContactAlert() {
         
-        let alertVC = UIAlertController(title: "Добавить контакт", message: "Введите данные для контакта", preferredStyle: .alert)
+        let alertVC = UIAlertController(title: viewModel.createAddAlertMessage().0, message: viewModel.createAddAlertMessage().1, preferredStyle: .alert)
         
         alertVC.addTextField { (textField) in
-            textField.placeholder = "Введите имя"
+            textField.placeholder = self.viewModel.createTextForEditAlert().0
         }
         
         alertVC.addTextField { (textField) in
-            textField.placeholder = "Введите номер"
+            textField.placeholder = self.viewModel.createTextForEditAlert().1
         }
         
         let saveAction = UIAlertAction(title: "Сохранить", style: .default) { _ in
@@ -109,7 +109,7 @@ extension ContactsListTableViewController {
                 self.viewModel.saveContact(contact: model)
             } else {
                 let ok = UIAlertAction(title: "ОК", style: .default) { _ in  self.showAddContactAlert()}
-                self.showAlert(title: "Вы не ввели данные!", message: "Введите данные для контакта", actions: [ok])
+                self.showAlert(title: self.viewModel.createAlertMessage().0, message: self.viewModel.createAlertMessage().1, actions: [ok])
             }
         }
         

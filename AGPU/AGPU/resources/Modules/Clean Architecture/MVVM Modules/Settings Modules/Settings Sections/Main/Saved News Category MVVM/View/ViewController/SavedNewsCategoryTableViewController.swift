@@ -20,7 +20,7 @@ class SavedNewsCategoryTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "news", title: "Выберите категорию", frame: .zero)
+        let titleView = CustomTitleView(image: "news", title: viewModel.titleForNavigation(), frame: .zero)
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)

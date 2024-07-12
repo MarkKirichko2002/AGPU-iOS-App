@@ -116,6 +116,6 @@ extension TimeTableDatesListViewController {
         }
         
         let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
-        self.showAlert(title: "Сохранить расписание?", message: "Вы хотите сохранить изображение расписания?", actions: [saveAction2, saveAction, cancel])
+        self.showAlert(title: createSaveImageAlertMessage().0, message: createSaveImageAlertMessage().1, actions: [saveAction2, saveAction, cancel])
     }
 }

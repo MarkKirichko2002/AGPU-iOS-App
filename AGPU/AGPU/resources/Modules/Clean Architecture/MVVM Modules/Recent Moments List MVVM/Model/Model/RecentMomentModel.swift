@@ -8,6 +8,7 @@
 import Foundation
 
 struct RecentMomentModel {
+    let id: Int
     let name: String
     let icon: String
 }

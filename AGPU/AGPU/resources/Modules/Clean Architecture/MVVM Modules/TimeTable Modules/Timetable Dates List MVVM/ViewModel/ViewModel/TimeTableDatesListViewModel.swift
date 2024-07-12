@@ -13,6 +13,7 @@ class TimeTableDatesListViewModel {
     let service = TimeTableService()
     let realmManager = RealmManager()
     let dateManager = DateManager()
+    let settingsManager = SettingsManager()
     
     var timetable = [TimeTableDayModel]()
     var id: String = ""

@@ -30,7 +30,7 @@ class DisplayModeOptionsListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "mobile", title: "Выберите вид", frame: .zero)
+        let titleView = CustomTitleView(image: "mobile", title: viewModel.titleForNavigation(), frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.titleView = titleView

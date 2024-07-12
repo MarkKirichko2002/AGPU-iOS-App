@@ -20,7 +20,7 @@ extension SettingsListViewController: UITableViewDataSource {
         case 0:
             return 4
         case 1:
-            return 8
+            return 9
         case 2:
             return 2
         default:
@@ -73,6 +73,9 @@ extension SettingsListViewController: UITableViewDataSource {
                 return cell
             } else if indexPath.row == 6 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ASPUButtonOptionTableViewCell.identifier, for: indexPath) as? ASPUButtonOptionTableViewCell else {return UITableViewCell()}
+                return cell
+            } else if indexPath.row == 7 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: SettablePersonalityTableViewCell.identifier, for: indexPath) as? SettablePersonalityTableViewCell else {return UITableViewCell()}
                 return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AppThemesTableViewCell.identifier, for: indexPath) as? AppThemesTableViewCell else {return UITableViewCell()}
@@ -282,6 +285,22 @@ extension SettingsListViewController: UITableViewDelegate {
                     self.present(navVC, animated: true)
                 }
             } else if indexPath.row == 7 {
+                
+                if let cell = tableView.cellForRow(at: indexPath) as? SettablePersonalityTableViewCell {
+                    cell.didTapCell(indexPath: indexPath)
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
+                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "gear")
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
+                    let vc = SettablePersonalityOptionsListTableViewController()
+                    let navVC = UINavigationController(rootViewController: vc)
+                    navVC.modalPresentationStyle = .fullScreen
+                    self.present(navVC, animated: true)
+                }
+            } else if indexPath.row == 8 {
                 
                 if let cell = tableView.cellForRow(at: indexPath) as? AppThemesTableViewCell {
                     cell.didTapCell(indexPath: indexPath)

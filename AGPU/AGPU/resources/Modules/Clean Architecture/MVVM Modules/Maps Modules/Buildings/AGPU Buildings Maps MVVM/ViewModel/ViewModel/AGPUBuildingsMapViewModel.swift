@@ -21,5 +21,6 @@ final class AGPUBuildingsMapViewModel {
     
     // MARK: - сервисы
     let locationManager = LocationManager()
- 
+    let settingsManager = SettingsManager()
+    
 }

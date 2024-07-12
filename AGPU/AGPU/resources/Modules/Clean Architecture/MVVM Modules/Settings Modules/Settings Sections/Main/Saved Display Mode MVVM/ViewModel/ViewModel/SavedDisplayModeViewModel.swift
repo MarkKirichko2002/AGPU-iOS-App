@@ -11,4 +11,6 @@ class SavedDisplayModeViewModel {
     
     var optionSelectedHandler: (()->Void)?
     
+    // MARK: - сервисы
+    let settingsManager = SettingsManager()
 }

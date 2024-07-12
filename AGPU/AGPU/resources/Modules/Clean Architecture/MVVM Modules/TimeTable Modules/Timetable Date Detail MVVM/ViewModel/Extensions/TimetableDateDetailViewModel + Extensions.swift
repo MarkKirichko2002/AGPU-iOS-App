@@ -203,6 +203,10 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
         self.realmManager.saveImage(image: model)
     }
     
+    func getCommunicationStyle()-> CommunicationStyles {
+        return settingsManager.getSavedCommunicationStyle()
+    }
+    
     func registerTimeTableHandler(block: @escaping (TimeTableDateModel) -> Void) {
         self.timeTableHandler = block
     }

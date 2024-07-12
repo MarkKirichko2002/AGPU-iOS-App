@@ -14,5 +14,6 @@ class ContactsListViewModel {
     
     // MARK: - сервисы
     let realmManager = RealmManager()
+    let settingsManager = SettingsManager()
     
 }

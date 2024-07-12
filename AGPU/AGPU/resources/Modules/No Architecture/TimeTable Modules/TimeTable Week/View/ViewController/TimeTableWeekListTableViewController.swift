@@ -23,6 +23,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     let realmManager = RealmManager()
     let animation = AnimationClass()
     let speechRecognitionManager = SpeechRecognitionManager()
+    let settingsManager = SettingsManager()
     
     // MARK: - UI
     let tableView = UITableView()
@@ -322,11 +323,6 @@ final class TimeTableWeekListTableViewController: UIViewController {
         }
         
         let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
-        self.showAlert(title: "Сохранить расписание?", message: "Вы хотите сохранить изображение расписания?", actions: [saveAction2, saveAction, cancel])
-    }
-    
-    private func showImageSavedAlert() {
-        let ok = UIAlertAction(title: "ОК", style: .default) { _ in}
-        self.showAlert(title: "Расписание сохранено!", message: "Изображение расписания успешно сохранено в фото", actions: [ok])
+        self.showAlert(title: createSaveImageAlertMessage().0, message: createSaveImageAlertMessage().1, actions: [saveAction2, saveAction, cancel])
     }
 }

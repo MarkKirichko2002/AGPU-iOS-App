@@ -12,6 +12,9 @@ class DisplayModeOptionsListViewModel {
     var option = DisplayModes.grid
     var optionSelectedHandler: (()->Void)?
     
+    // MARK: - сервисы
+    let settingsManager = SettingsManager()
+    
     // MARK: - Init
     init(option: DisplayModes) {
         self.option = option

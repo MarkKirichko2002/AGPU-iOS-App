@@ -11,4 +11,7 @@ class SavedNewsCategoryViewModel {
     
     var changedHandler: (()->Void)?
     
+    // MARK: - сервисы
+    let settingsManager = SettingsManager()
+    
 }

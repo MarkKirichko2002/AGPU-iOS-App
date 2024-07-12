@@ -57,7 +57,7 @@ final class CalendarMultipleDatesViewController: UIViewController {
         if let selection = selection {
             viewModel.selectDates(dates: selection)
         } else {
-            showAlert(title: "Даты не выбраны!", message: "выберите хотя бы одну дату", actions: [UIAlertAction(title: "ОК", style: .default)])
+            showAlert(title: viewModel.createAlertMessage().0, message: viewModel.createAlertMessage().1, actions: [UIAlertAction(title: "ОК", style: .default)])
         }
     }
     

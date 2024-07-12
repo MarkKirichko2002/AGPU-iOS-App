@@ -240,6 +240,16 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
         }
     }
     
+    func createAlertMessage()-> (String, String) {
+        let style = settingsManager.getSavedCommunicationStyle()
+        switch style {
+        case .formal:
+            return ("Геопозиция выключена", "Хотите включить в настройках?")
+        case .informal:
+            return ("Геопозиция выключена", "Хочешь включить в настройках?")
+        }
+    }
+    
     func registerLocationHandler(block: @escaping(LocationModel)->Void) {
         self.locationHandler = block
     }

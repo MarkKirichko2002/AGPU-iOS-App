@@ -9,6 +9,12 @@ import Foundation
 
 class RecentMomentsListViewModel {
     
+    let style = SettingsManager().getSavedCommunicationStyle()
+    let name = UserDefaults.standard.string(forKey: "name") ?? ""
+    
     var alertHandler: ((String, String)->Void)?
+    
+    // MARK: - сервисы
+    let settingsManager = SettingsManager()
     
 }

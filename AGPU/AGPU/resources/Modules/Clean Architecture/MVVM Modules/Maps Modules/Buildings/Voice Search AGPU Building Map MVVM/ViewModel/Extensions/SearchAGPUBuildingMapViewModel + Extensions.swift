@@ -56,6 +56,16 @@ extension SearchAGPUBuildingMapViewModel: SearchAGPUBuildingMapViewModelProtocol
         self.locationHandler = block
     }
     
+    func createAlertMessage()-> (String, String) {
+        let style = settingsManager.getSavedCommunicationStyle()
+        switch style {
+        case .formal:
+            return ("Геопозиция выключена", "Хотите включить в настройках?")
+        case .informal:
+            return ("Геопозиция выключена", "Хочешь включить в настройках?")
+        }
+    }
+    
     func observeActions(block: @escaping(Actions)->Void) {
         NotificationCenter.default.addObserver(forName: Notification.Name("actions"), object: nil, queue: .main) { notification in
             if let action = notification.object as? Actions {

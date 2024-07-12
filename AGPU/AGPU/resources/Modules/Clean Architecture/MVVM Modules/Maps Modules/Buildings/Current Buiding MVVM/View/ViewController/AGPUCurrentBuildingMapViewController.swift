@@ -87,7 +87,7 @@ final class AGPUCurrentBuildingMapViewController: UIViewController {
                 let cancel = UIAlertAction(title: "Отмена", style: .cancel) { _ in
                     self.navigationController?.popViewController(animated: true)
                 }
-                self.showAlert(title: "Геопозиция выключена", message: "Хотите включить в настройках?", actions: [goToSettings, cancel])
+                self.showAlert(title: self.viewModel.createAlertMessage().0, message: self.viewModel.createAlertMessage().1, actions: [goToSettings, cancel])
             } else {
                 fatalError()
             }

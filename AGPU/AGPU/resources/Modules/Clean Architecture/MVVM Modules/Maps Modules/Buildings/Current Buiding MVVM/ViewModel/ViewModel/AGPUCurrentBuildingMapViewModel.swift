@@ -15,6 +15,7 @@ final class AGPUCurrentBuildingMapViewModel {
     
     // MARK: - сервисы
     let locationManager = LocationManager()
+    let settingsManager = SettingsManager()
     
     // MARK: - Init
     init(audienceID: String) {

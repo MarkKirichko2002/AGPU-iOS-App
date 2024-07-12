@@ -100,6 +100,10 @@ extension TimeTableDatesListViewModel: ITimeTableDatesListViewModel {
         }
     }
     
+    func getCommunicationStyle()-> CommunicationStyles {
+        return settingsManager.getSavedCommunicationStyle()
+    }
+    
     func registerDataChangedHandler(block: @escaping()-> Void) {
         self.dataChangedHandler = block
     }

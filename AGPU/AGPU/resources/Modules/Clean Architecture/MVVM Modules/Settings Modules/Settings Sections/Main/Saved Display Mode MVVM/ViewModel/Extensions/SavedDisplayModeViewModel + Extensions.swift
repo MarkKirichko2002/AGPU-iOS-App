@@ -48,6 +48,16 @@ extension SavedDisplayModeViewModel: ISavedDisplayModeViewModel {
         return false
     }
     
+    func titleForNavigation()-> String {
+        let style = settingsManager.getSavedCommunicationStyle()
+        switch style {
+        case .formal:
+            return "Выберите вид"
+        case .informal:
+            return "Выбери вид"
+        }
+    }
+    
     func registerOptionSelectedHandler(block: @escaping(()->Void)) {
         self.optionSelectedHandler = block
     }

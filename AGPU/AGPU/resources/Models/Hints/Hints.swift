@@ -11,5 +11,4 @@ enum Hints {
     case faculty
     case cathedra
     case manuals
-    case additionalEducation
 }

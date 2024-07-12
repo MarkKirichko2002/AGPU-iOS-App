@@ -631,6 +631,15 @@
 		82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */; };
 		82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */; };
 		82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */; };
+		82F315BA2C40BD1B00E826F9 /* SettablePersonalityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315B82C40BD1B00E826F9 /* SettablePersonalityTableViewCell.swift */; };
+		82F315BB2C40BD1B00E826F9 /* SettablePersonalityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82F315B92C40BD1B00E826F9 /* SettablePersonalityTableViewCell.xib */; };
+		82F315C12C40C26500E826F9 /* PersonalityOptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315C02C40C26500E826F9 /* PersonalityOptionModel.swift */; };
+		82F315C32C40C35D00E826F9 /* PersonalityOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315C22C40C35D00E826F9 /* PersonalityOptions.swift */; };
+		82F315C52C40C3FE00E826F9 /* SettablePersonalityOptionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315C42C40C3FE00E826F9 /* SettablePersonalityOptionsListTableViewController.swift */; };
+		82F315C72C40C43200E826F9 /* SettablePersonalityOptionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315C62C40C43200E826F9 /* SettablePersonalityOptionsListViewModel.swift */; };
+		82F315CD2C40CDD500E826F9 /* CommunicationStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315CC2C40CDD500E826F9 /* CommunicationStyles.swift */; };
+		82F315CF2C40CE3100E826F9 /* CommunicationStyleVariantsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315CE2C40CE3100E826F9 /* CommunicationStyleVariantsListTableViewController.swift */; };
+		82F315D32C40CE6E00E826F9 /* CommunicationStyleVariantsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315D22C40CE6E00E826F9 /* CommunicationStyleVariantsListViewModel.swift */; };
 		82F578772B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F578762B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift */; };
 		82F5787D2B6FE4B400BC64C1 /* ASPUButtonActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F5787C2B6FE4B400BC64C1 /* ASPUButtonActions.swift */; };
 		82F5787F2B6FE57100BC64C1 /* ASPUButtonActionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F5787E2B6FE57100BC64C1 /* ASPUButtonActionsListViewModel.swift */; };
@@ -1295,6 +1304,15 @@
 		82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClassProtocol.swift; sourceTree = "<group>"; };
 		82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManagerProtocol.swift; sourceTree = "<group>"; };
 		82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringImageView.swift; sourceTree = "<group>"; };
+		82F315B82C40BD1B00E826F9 /* SettablePersonalityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettablePersonalityTableViewCell.swift; sourceTree = "<group>"; };
+		82F315B92C40BD1B00E826F9 /* SettablePersonalityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettablePersonalityTableViewCell.xib; sourceTree = "<group>"; };
+		82F315C02C40C26500E826F9 /* PersonalityOptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityOptionModel.swift; sourceTree = "<group>"; };
+		82F315C22C40C35D00E826F9 /* PersonalityOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityOptions.swift; sourceTree = "<group>"; };
+		82F315C42C40C3FE00E826F9 /* SettablePersonalityOptionsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettablePersonalityOptionsListTableViewController.swift; sourceTree = "<group>"; };
+		82F315C62C40C43200E826F9 /* SettablePersonalityOptionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettablePersonalityOptionsListViewModel.swift; sourceTree = "<group>"; };
+		82F315CC2C40CDD500E826F9 /* CommunicationStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationStyles.swift; sourceTree = "<group>"; };
+		82F315CE2C40CE3100E826F9 /* CommunicationStyleVariantsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationStyleVariantsListTableViewController.swift; sourceTree = "<group>"; };
+		82F315D22C40CE6E00E826F9 /* CommunicationStyleVariantsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationStyleVariantsListViewModel.swift; sourceTree = "<group>"; };
 		82F578762B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultyTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		82F5787C2B6FE4B400BC64C1 /* ASPUButtonActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonActions.swift; sourceTree = "<group>"; };
 		82F5787E2B6FE57100BC64C1 /* ASPUButtonActionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonActionsListViewModel.swift; sourceTree = "<group>"; };
@@ -6026,6 +6044,7 @@
 				8283975A2AD5BBAD000F355A /* App Icons */,
 				8209008B2BAF89A40053F3BD /* TabBar */,
 				82F5788D2B6FEDD200BC64C1 /* ASPU Button Options */,
+				82F315B72C40BCDE00E826F9 /* Settable Personality */,
 				82768AF22ABE1B0D0022FBE1 /* App Themes */,
 			);
 			path = Other;
@@ -9335,6 +9354,100 @@
 			path = "Spring Image";
 			sourceTree = "<group>";
 		};
+		82F315B72C40BCDE00E826F9 /* Settable Personality */ = {
+			isa = PBXGroup;
+			children = (
+				82F315B82C40BD1B00E826F9 /* SettablePersonalityTableViewCell.swift */,
+				82F315B92C40BD1B00E826F9 /* SettablePersonalityTableViewCell.xib */,
+			);
+			path = "Settable Personality";
+			sourceTree = "<group>";
+		};
+		82F315BC2C40C21000E826F9 /* Settable Personality Options List MVVM  */ = {
+			isa = PBXGroup;
+			children = (
+				82F315BF2C40C24600E826F9 /* Model */,
+				82F315BE2C40C24400E826F9 /* View */,
+				82F315BD2C40C24200E826F9 /* ViewModel */,
+			);
+			path = "Settable Personality Options List MVVM ";
+			sourceTree = "<group>";
+		};
+		82F315BD2C40C24200E826F9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82F315C62C40C43200E826F9 /* SettablePersonalityOptionsListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82F315BE2C40C24400E826F9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82F315D12C40CE4D00E826F9 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82F315BF2C40C24600E826F9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82F315C02C40C26500E826F9 /* PersonalityOptionModel.swift */,
+				82F315C22C40C35D00E826F9 /* PersonalityOptions.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82F315C82C40CD3D00E826F9 /* Communication Style Variants List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82F315CB2C40CD8000E826F9 /* Model */,
+				82F315CA2C40CD7C00E826F9 /* View */,
+				82F315C92C40CD7900E826F9 /* ViewModel */,
+			);
+			path = "Communication Style Variants List MVVM";
+			sourceTree = "<group>";
+		};
+		82F315C92C40CD7900E826F9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82F315D22C40CE6E00E826F9 /* CommunicationStyleVariantsListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82F315CA2C40CD7C00E826F9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82F315D02C40CE3A00E826F9 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82F315CB2C40CD8000E826F9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82F315CC2C40CDD500E826F9 /* CommunicationStyles.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82F315D02C40CE3A00E826F9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82F315CE2C40CE3100E826F9 /* CommunicationStyleVariantsListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82F315D12C40CE4D00E826F9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82F315C42C40C3FE00E826F9 /* SettablePersonalityOptionsListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		82F578752B6FB83400BC64C1 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -9440,6 +9553,8 @@
 				829952532BDCB57F003AFB14 /* ASPU Button Favourite Actions List */,
 				829952622BDCBB5A003AFB14 /* ASPU Button All Actions List MVVM */,
 				82C5B7832BCEF45C00F907CB /* ASPU Button Animation Options List */,
+				82F315BC2C40C21000E826F9 /* Settable Personality Options List MVVM  */,
+				82F315C82C40CD3D00E826F9 /* Communication Style Variants List MVVM */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -9763,6 +9878,7 @@
 				82FC881A2BBDFC4000A2EF59 /* faculty.mp4 in Resources */,
 				822527A42BACE4DA00B66314 /* AdaptToWebOptionTableViewCell.xib in Resources */,
 				82FC881D2BBDFC4700A2EF59 /* regular.mp4 in Resources */,
+				82F315BB2C40BD1B00E826F9 /* SettablePersonalityTableViewCell.xib in Resources */,
 				828E10372BD16AD700ECC5F4 /* TabsColorOptionTableViewCell.xib in Resources */,
 				821365872A94F6A700A20E4E /* LaunchScreen.strings in Resources */,
 				8225279E2BACDCA200B66314 /* SavedNewsCategoryOptionTableViewCell.xib in Resources */,
@@ -9973,6 +10089,7 @@
 				82BA73B62A579B8D006B67DA /* WebViewModel.swift in Sources */,
 				8283216C2A7D090C008641A5 /* AllGroupsListViewModelProtocol.swift in Sources */,
 				826FB38C2C1F675E007EDA25 /* NewsOptionsPositionListTableViewController.swift in Sources */,
+				82F315C12C40C26500E826F9 /* PersonalityOptionModel.swift in Sources */,
 				82A41B912C2C2D0200254AE2 /* IRecentDatesListViewModel.swift in Sources */,
 				82FEA7AE2A7ED5BB00863453 /* AGPUBuildingType.swift in Sources */,
 				823F97E22B9D22A400F60F39 /* WeatherSplashScreenViewModel + Extensions.swift in Sources */,
@@ -9984,6 +10101,7 @@
 				826F93892A91C46A00DE4FB1 /* NewsPagesListViewModel.swift in Sources */,
 				82BCB53B2AB3521300F3A321 /* DaysListViewModel.swift in Sources */,
 				82A29F432B9BD58800756F43 /* ISelectedFacultySplashScreenViewModel.swift in Sources */,
+				82F315CF2C40CE3100E826F9 /* CommunicationStyleVariantsListTableViewController.swift in Sources */,
 				822526C42BA37D7F00B66314 /* NewsSplashScreenViewController.swift in Sources */,
 				8299E3BB2B8A350D00D81472 /* TimeTableDateModel.swift in Sources */,
 				829952612BDCB67C003AFB14 /* ASPUButtonFavouriteActionsListViewModel + Extensions.swift in Sources */,
@@ -9997,6 +10115,7 @@
 				821B728D2BD2ECD4000460E2 /* IRandomSplashScreenViewModel.swift in Sources */,
 				8283977B2AD5CA11000F355A /* AppIconsListViewModel + Extensions.swift in Sources */,
 				82BC2F482A8EFD7C00ADB239 /* NewsCategoriesListViewModel + Extensions.swift in Sources */,
+				82F315D32C40CE6E00E826F9 /* CommunicationStyleVariantsListViewModel.swift in Sources */,
 				82C26C822BD7F14E0039D86D /* DisplayModeOptionsListViewModel  + Extensions.swift in Sources */,
 				82958D9C2C3E177A007ACA24 /* LoadingIndicatorsListTableViewController.swift in Sources */,
 				826F938B2A91C47D00DE4FB1 /* NewsPagesListViewModel + Extensions.swift in Sources */,
@@ -10087,6 +10206,7 @@
 				82061CC22B09A4B70073D727 /* TimetableSettingsOptionModel.swift in Sources */,
 				82A41B932C2C2E9900254AE2 /* RecentDatesListViewModel.swift in Sources */,
 				8276E6282C2CA44000216F28 /* TimeTableDayModel.swift in Sources */,
+				82F315C72C40C43200E826F9 /* SettablePersonalityOptionsListViewModel.swift in Sources */,
 				82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */,
 				822527AA2BADAC8700B66314 /* AdaptiveNewsOptionsListViewModel + Extensions.swift in Sources */,
 				8276E6252C2CA36700216F28 /* TimeTableDatesListViewController + Extensions.swift in Sources */,
@@ -10237,8 +10357,10 @@
 				8263AA1E2C021552001A903B /* TodayNewsListTableViewController.swift in Sources */,
 				82808EA92A32236E00DEEB16 /* AGPUSections.swift in Sources */,
 				82A1CDCD2C0CDE82005A3338 /* SavedVideosListViewModel + Extensions.swift in Sources */,
+				82F315BA2C40BD1B00E826F9 /* SettablePersonalityTableViewCell.swift in Sources */,
 				8231B0BB2AED97ED00EB41EA /* TeacherTimeTable.swift in Sources */,
 				82E4C55F2A6B147900F65A67 /* SettingsListViewModelProtocol.swift in Sources */,
+				82F315CD2C40CDD500E826F9 /* CommunicationStyles.swift in Sources */,
 				8209008E2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.swift in Sources */,
 				828D510E2BB8658000848FF8 /* ASPUButtonActionsOptionTableViewCell.swift in Sources */,
 				82ECCC732B182A1700443ED8 /* AGPUBuildingDetailViewModel.swift in Sources */,
@@ -10321,6 +10443,7 @@
 				82754C692BD3DBB30021E76A /* SplashScreenBackgroundColorsListViewModel.swift in Sources */,
 				82505F502A7FBD7D001DE24A /* TimeTableWeekListTableViewController.swift in Sources */,
 				82162D8A2AB5CE6200840D90 /* CalendarViewModel.swift in Sources */,
+				82F315C32C40C35D00E826F9 /* PersonalityOptions.swift in Sources */,
 				829548992A43AE32007DEBA0 /* SettingsManagerProtocol.swift in Sources */,
 				828D511E2BB86D1700848FF8 /* ASPUButtonOptionsListViewModel + Extensions.swift in Sources */,
 				8299524E2BDC9935003AFB14 /* ITimeTableFavouriteItemsListViewModel.swift in Sources */,
@@ -10392,6 +10515,7 @@
 				82D37FC32BEC18540035CB57 /* ImageModel.swift in Sources */,
 				822158962A422A650088BDE5 /* SettingsListViewController.swift in Sources */,
 				8276E60E2C2C92D500216F28 /* CalendarMultipleDatesViewController.swift in Sources */,
+				82F315C52C40C3FE00E826F9 /* SettablePersonalityOptionsListTableViewController.swift in Sources */,
 				82B97C152B9616FD00770F00 /* DayTableViewCell.swift in Sources */,
 				82958D992C3E1659007ACA24 /* LoadingIndicators.swift in Sources */,
 				82B1C0EE2A8123F800520C14 /* VoiceDirections.swift in Sources */,
@@ -10612,7 +10736,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.7.1;
+				MARKETING_VERSION = 2.8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -10651,7 +10775,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.7.1;
+				MARKETING_VERSION = 2.8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

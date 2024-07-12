@@ -75,7 +75,7 @@ class AGPUCurrentCathedraMapViewController: UIViewController {
                 let cancel = UIAlertAction(title: "Отмена", style: .cancel) { _ in
                     self.dismiss(animated: true)
                 }
-                self.showAlert(title: "Геопозиция выключена", message: "Хотите включить в настройках?", actions: [goToSettings, cancel])
+                self.showAlert(title: self.viewModel.createAlertMessage().0, message: self.viewModel.createAlertMessage().1, actions: [goToSettings, cancel])
             } else {
                 fatalError()
             }

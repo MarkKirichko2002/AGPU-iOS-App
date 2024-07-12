@@ -85,6 +85,16 @@ extension NewsPagesListViewModel: NewsPagesListViewModelProtocol {
         }
     }
     
+    func titleForNavigation()-> String {
+        let style = settingsManager.getSavedCommunicationStyle()
+        switch style {
+        case .formal:
+            return "Выберите страницу"
+        case .informal:
+            return "Выбери страницу"
+        }
+    }
+    
     func registerPageSelectedHandler(block: @escaping((String)->Void)) {
         self.pageSelectedHandler = block
     }

@@ -9,10 +9,11 @@ import Foundation
 
 class CalendarMultipleDatesViewModel {
     
-    // MARK: - сервисы
-    let dateManager = DateManager()
-    
     var datesSelectedHandler: (()->Void)?
     var alertHandler: ((String, String)->Void)?
+    
+    // MARK: - сервисы
+    let dateManager = DateManager()
+    let settingsManager = SettingsManager()
     
 }

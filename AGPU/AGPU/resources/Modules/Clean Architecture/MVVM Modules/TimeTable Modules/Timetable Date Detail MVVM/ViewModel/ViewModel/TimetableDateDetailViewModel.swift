@@ -26,6 +26,7 @@ class TimetableDateDetailViewModel {
     let timeTableService = TimeTableService()
     let dateManager = DateManager()
     let realmManager = RealmManager()
+    let settingsManager = SettingsManager()
     
     // MARK: - Init
     init(id: String, date: String, owner: String) {

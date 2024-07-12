@@ -15,7 +15,8 @@ class SearchAGPUBuildingMapViewModel {
     
     // MARK: - сервисы
     let locationManager = LocationManager()
-
+    let settingsManager = SettingsManager()
+    
     // MARK: - Init
     init(building: AGPUBuildingModel) {
         self.building = building

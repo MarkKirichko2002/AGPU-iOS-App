@@ -15,7 +15,9 @@ class NewsMultipleSelectionListTableViewController: UITableViewController {
     
     var count = 0
     
+    // MARK: - сервисы
     let newsService = AGPUNewsService()
+    let settingsManager = SettingsManager()
     
     init(articles: [Article], abbreviation: String) {
         self.articles = articles
@@ -110,10 +112,22 @@ class NewsMultipleSelectionListTableViewController: UITableViewController {
     }
     
     func checkCount() {
+        let message = createAlertMessage()
         if selectedArticles.isEmpty {
-            self.showAlert(title: "Новости не выбраны!", message: "выберите хотя бы одну новость", actions: [UIAlertAction(title: "ОК", style: .default)])
+            self.showAlert(title: message.0, message: message.1, actions: [UIAlertAction(title: "ОК", style: .default)])
         } else {
             self.shareInfo(image: UIImage(named: "АГПУ")!, title: "Новости", text: makeMessage())
+        }
+    }
+    
+    func createAlertMessage()-> (String, String) {
+        let style = settingsManager.getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        switch style {
+        case .formal:
+            return ("Новости не выбраны!", !name.isEmpty ? "\(name) выберите хотя бы одну новость" : "выберите хотя бы одну новость")
+        case .informal:
+            return ("Новости не выбраны!", !name.isEmpty ? "\(name) выбери хотя бы одну" : "выбери хотя бы одну")
         }
     }
     
