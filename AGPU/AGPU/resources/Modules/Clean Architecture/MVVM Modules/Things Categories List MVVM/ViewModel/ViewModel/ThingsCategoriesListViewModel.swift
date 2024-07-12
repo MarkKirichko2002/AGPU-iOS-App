@@ -9,9 +9,10 @@ import Foundation
 
 class ThingsCategoriesListViewModel {
     
+    var dataChangedHandler: (()->Void)?
+    
     // MARK: - сервисы
     let realmManager = RealmManager()
-    
-    var dataChangedHandler: (()->Void)?
+    let settingsManager = SettingsManager()
     
 }

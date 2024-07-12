@@ -38,21 +38,14 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                     UIApplication.shared.setAlternateIconName("AppIcon 8")
                 }
             } else {}
-            
-            //UserDefaults.standard.setValue(nil, forKey: "icon")
-            //UserDefaults.standard.setValue(nil, forKey: "icon name")
+     
             UserDefaults.standard.setValue(nil, forKey: "cathedra")
             UserDefaults.standard.setValue(nil, forKey: "group")
             UserDefaults.standard.setValue(nil, forKey: "subgroup")
             
             NotificationCenter.default.post(name: Notification.Name("category"), object: faculty.newsAbbreviation)
             
-//            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-//                NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
-//            }
-            
             NotificationCenter.default.post(name: Notification.Name("group changed"), object: nil)
-            //NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: 0)
         }
     }
     
@@ -175,6 +168,11 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
             }
         }
         return false
+    }
+    
+    func titleForNavigation()-> String {
+        let style = settingsManager.getSavedCommunicationStyle()
+        return style == .formal ? "Выберите факультет" : "Выбери факультет"
     }
     
     func createIconAlertMessage(index: Int)-> (String, String) {

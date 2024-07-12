@@ -13,4 +13,6 @@ final class UserStatusListViewModel: NSObject {
     
     var observation: NSKeyValueObservation?
     
+    // MARK: - сервисы
+    let settingsManager = SettingsManager()
 }

@@ -13,6 +13,9 @@ class FacultyCathedraMapListViewModel {
     var dataChangedHandler: (()->Void)?
     var facultySelectedHandler: (()->Void)?
     
+    // MARK: - сервисы
+    let settingsManager = SettingsManager()
+    
     // MARK: - Init
     init(faculty: AGPUFacultyModel?) {
         self.faculty = faculty

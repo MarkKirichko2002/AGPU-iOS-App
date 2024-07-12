@@ -40,6 +40,11 @@ extension FacultyCathedraMapListViewModel: FacultyCathedraMapListViewModelProtoc
         }
     }
     
+    func titleForNavigation()-> String {
+        let style = settingsManager.getSavedCommunicationStyle()
+        return style == .formal ? "Выберите факультет" : "Выбери факультет"
+    }
+    
     func registerFacultySelectedHandler(block: @escaping(()->Void)) {
         self.facultySelectedHandler = block
     }

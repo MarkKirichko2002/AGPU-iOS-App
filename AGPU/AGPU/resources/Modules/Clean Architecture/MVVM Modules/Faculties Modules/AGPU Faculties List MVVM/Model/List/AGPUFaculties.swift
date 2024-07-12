@@ -19,7 +19,7 @@ struct AGPUFaculties {
             AppIcon: "AppIcon 1",
             abbreviation: "ИРиИФ",
             url: "http://agpu.net/struktura-vuza/faculties-institutes/iriif/index.php",
-            newsAbbreviation: "iriif",
+            newsAbbreviation: "filfak",
             contactsURL: "http://www.agpu.net/struktura-vuza/faculties-institutes/iriif/kontakty/index.php",
             email: "markkir123@gmail.com",
             isSelected: false
@@ -32,7 +32,7 @@ struct AGPUFaculties {
             AppIcon: "AppIcon 2",
             abbreviation: "ИПИМиФ",
             url: "http://agpu.net/struktura-vuza/faculties-institutes/ipimif/index.php",
-            newsAbbreviation: "ipimif",
+            newsAbbreviation: "fmf",
             contactsURL: "http://www.agpu.net/struktura-vuza/faculties-institutes/ipimif/kontakty/index.php",
             email: "ipimif2011@mail.ru",
             isSelected: false
@@ -45,7 +45,7 @@ struct AGPUFaculties {
             AppIcon: "AppIcon 3",
             abbreviation: "СПФ",
             url: "http://agpu.net/struktura-vuza/faculties-institutes/spf/index.php",
-            newsAbbreviation: "spf",
+            newsAbbreviation: "ppf",
             contactsURL: "http://www.agpu.net/struktura-vuza/faculties-institutes/spf/kontakty/index.php",
             email: "pedfak_agpu@mail.ru",
             isSelected: false
@@ -71,7 +71,7 @@ struct AGPUFaculties {
             AppIcon: "AppIcon 5",
             abbreviation: "ФТЭиД",
             url: "http://agpu.net/struktura-vuza/faculties-institutes/fteid/index.php",
-            newsAbbreviation: "fteid",
+            newsAbbreviation: "ftifk",
             contactsURL: "http://www.agpu.net/struktura-vuza/faculties-institutes/fteid/kontakty/index.php",
             email: "dekanat.tekhfak@mail.ru",
             isSelected: false
@@ -87,19 +87,6 @@ struct AGPUFaculties {
             newsAbbreviation: "istfak",
             contactsURL: "http://www.agpu.net/struktura-vuza/faculties-institutes/istfak/kontakty/index.php",
             email: "markkir123@gmail.com",
-            isSelected: false
-        ),
-        AGPUFacultyModel(
-            id: 7,
-            name: "Научно-исследовательский институт развития образования",
-            cathedra: [],
-            icon: "АГПУ",
-            AppIcon: "AppIcon",
-            abbreviation: "НИИРО",
-            url: "https://niiro-agpu.ru/",
-            newsAbbreviation: "-",
-            contactsURL: "",
-            email: "NIIRO_AGPU@mail.ru",
             isSelected: false
         )
     ]

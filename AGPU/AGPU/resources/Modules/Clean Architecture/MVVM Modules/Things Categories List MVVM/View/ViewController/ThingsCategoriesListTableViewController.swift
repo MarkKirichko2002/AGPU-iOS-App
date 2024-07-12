@@ -23,7 +23,7 @@ class ThingsCategoriesListTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         
-        navigationItem.title = "Выберите категорию"
+        navigationItem.title = viewModel.titleForNavigation()
         
         if isAction {
             let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))

@@ -41,4 +41,9 @@ extension UserStatusListViewModel: UserStatusListViewModelProtocol {
             return false
         }
     }
+    
+    func titleForNavigation()-> String {
+        let style = settingsManager.getSavedCommunicationStyle()
+        return style == .formal ? "Выберите статус" : "Выбери статус"
+    }
 }

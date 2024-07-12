@@ -26,6 +26,11 @@ extension ThingsCategoriesListViewModel: IThingsCategoriesListViewModel {
         dataChangedHandler?()
     }
     
+    func titleForNavigation()-> String {
+        let style = settingsManager.getSavedCommunicationStyle()
+        return style == .formal ? "Выберите категорию" : "Выбери категорию"
+    }
+    
     func registerDataChangedHandler(block: @escaping()->Void) {
         self.dataChangedHandler = block
     }
