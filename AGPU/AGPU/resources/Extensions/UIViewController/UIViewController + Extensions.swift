@@ -90,7 +90,7 @@ extension UIViewController {
     }
     
     func checkForUpdates() {
-        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style")
+        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
         if let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
            let appStoreURL = URL(string: "https://itunes.apple.com/lookup?id=6458836690")
         {

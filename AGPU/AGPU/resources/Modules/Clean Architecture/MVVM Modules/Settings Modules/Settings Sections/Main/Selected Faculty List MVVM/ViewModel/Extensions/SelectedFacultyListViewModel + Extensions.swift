@@ -176,4 +176,40 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
         }
         return false
     }
+    
+    func createIconAlertMessage(index: Int)-> (String, String) {
+        let style = settingsManager.getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        let faculty = facultyItem(index: index)
+        switch style {
+        case .formal:
+            return ("\(faculty.abbreviation) не ваш факультет!", "\(!name.isEmpty ? "\(name) вы" : "Вы") не можете выбрать иконку факультета \(faculty.abbreviation) поскольку не относитесь к нему.")
+        case .informal:
+            return ("\(faculty.abbreviation) не твой факультет!", "\(!name.isEmpty ? "\(name) ты" : "Ты") не можешь выбрать иконку факультета \(faculty.abbreviation) поскольку не относишься к нему.")
+        }
+    }
+    
+    func createCathedraAlertMessage(index: Int)-> (String, String) {
+        let style = settingsManager.getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        let faculty = facultyItem(index: index)
+        switch style {
+        case .formal:
+            return ("\(faculty.abbreviation) не ваш факультет!", "\(!name.isEmpty ? "\(name) вы" : "Вы") не можете выбрать кафедру факультета \(faculty.abbreviation) поскольку не относитесь к нему.")
+        case .informal:
+            return ("\(faculty.abbreviation) не твой факультет!", "\(!name.isEmpty ? "\(name) ты" : "Ты") не можешь выбрать кафедру факультета \(faculty.abbreviation) поскольку не относишься к нему.")
+        }
+    }
+    
+    func createGroupAlertMessage(index: Int)-> (String, String) {
+        let style = settingsManager.getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        let faculty = facultyItem(index: index)
+        switch style {
+        case .formal:
+            return ("\(faculty.abbreviation) не ваш факультет!", "\(!name.isEmpty ? "\(name) вы" : "Вы") не можете выбрать группу факультета \(faculty.abbreviation) поскольку не относитесь к нему.")
+        case .informal:
+            return ("\(faculty.abbreviation) не твой факультет!", "\(!name.isEmpty ? "\(name) ты" : "Ты") не можешь выбрать группу факультета \(faculty.abbreviation) поскольку не относишься к нему.")
+        }
+    }
 }

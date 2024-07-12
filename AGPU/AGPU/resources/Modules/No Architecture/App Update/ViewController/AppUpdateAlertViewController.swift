@@ -56,6 +56,9 @@ class AppUpdateAlertViewController: UIViewController {
         return button
     }()
     
+    // MARK: - сервисы
+    private let settingsManager = SettingsManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
@@ -68,6 +71,14 @@ class AppUpdateAlertViewController: UIViewController {
         updateButton.addTarget(self, action: #selector(goToAppStore), for: .touchUpInside)
         cancelButton.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
         closeButton.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
+        setUpMessage()
+    }
+    
+    private func setUpMessage() {
+        let style = settingsManager.getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        let message = style == .formal ? "\(name.isEmpty ? "Хотите" : "\(name) хотите") обновить приложение сейчас?" : "\(name.isEmpty ? "Хочешь" : "\(name) хочешь") обновить приложение сейчас?"
+        titleLabel.text = message
     }
     
     @objc private func goToAppStore() {

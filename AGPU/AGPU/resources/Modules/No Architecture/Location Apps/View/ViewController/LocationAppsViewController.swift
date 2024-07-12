@@ -124,6 +124,9 @@ class LocationAppsViewController: UIViewController {
     
     var annotation: MKAnnotation
     
+    // MARK: - сервисы
+    private let settingsManager = SettingsManager()
+    
     // MARK: - Init
     init(annotation: MKAnnotation) {
         self.annotation = annotation
@@ -231,19 +234,31 @@ class LocationAppsViewController: UIViewController {
     }
     
     private func showNoGoogleMapsAlert() {
+        
+        let style = settingsManager.getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        
+        let message = style == .formal ? "\(name.isEmpty ? "Хотите" : "\(name) хотите") установить в App Store?" : "\(name.isEmpty ? "Хочешь" : "\(name) хочешь") установить в App Store?"
+        
         let ok = UIAlertAction(title: "Показать в App Store", style: .default) { _ in
             UIApplication.shared.open(URL(string: "https://apps.apple.com/app/google-maps-transit-food/id585027354")!)
         }
         let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
-        self.showAlert(title: "Google Maps не установлено", message: "Хотите установить в App Store?", actions: [ok, cancel])
+        self.showAlert(title: "Google Maps не установлено", message: message, actions: [ok, cancel])
     }
     
     private func showNoYandexMapsAlert() {
+        
+        let style = settingsManager.getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        
+        let message = style == .formal ? "\(name.isEmpty ? "Хотите" : "\(name) хотите") установить в App Store?" : "\(name.isEmpty ? "Хочешь" : "\(name) хочешь") установить в App Store?"
+        
         let ok = UIAlertAction(title: "Показать в App Store", style: .default) { _ in
             UIApplication.shared.open(URL(string: "https://apps.apple.com/app/apple-store/id313877526?mt=8")!)
         }
         let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
-        self.showAlert(title: "Яндекс карты не установлено", message: "Хотите установить в App Store?", actions: [ok, cancel])
+        self.showAlert(title: "Яндекс карты не установлено", message: message, actions: [ok, cancel])
     }
     
     override func viewDidLoad() {

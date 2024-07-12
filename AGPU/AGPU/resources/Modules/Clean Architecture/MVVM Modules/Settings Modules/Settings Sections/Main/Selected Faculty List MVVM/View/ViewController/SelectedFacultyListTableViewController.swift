@@ -58,8 +58,7 @@ class SelectedFacultyListTableViewController: UITableViewController {
                     self.viewModel.chooseFacultyIcon(index: indexPath.row)
                 } else {
                     NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
-                    let ok = UIAlertAction(title: "ОК", style: .default)
-                    self.showAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать иконку факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
+                    self.showAlert(title: self.viewModel.createIconAlertMessage(index: indexPath.row).0, message: self.viewModel.createIconAlertMessage(index: indexPath.row).1, actions: [UIAlertAction(title: "ОК", style: .default)])
                 }
             }
             
@@ -68,13 +67,9 @@ class SelectedFacultyListTableViewController: UITableViewController {
                     let vc = FacultyCathedraListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row), isSettings: true)
                     vc.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(vc, animated: true)
-                } else if self.viewModel.isFacultySelected(index: indexPath.row) &&  self.viewModel.facultyItem(index: indexPath.row).cathedra.isEmpty {
-                    let ok = UIAlertAction(title: "ОК", style: .default)
-                    self.showAlert(title: "У \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) отсутствуют кафедры", message: "", actions: [ok])
                 } else {
                     NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
-                    let ok = UIAlertAction(title: "ОК", style: .default)
-                    self.showAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать кафедру факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
+                    self.showAlert(title: self.viewModel.createCathedraAlertMessage(index: indexPath.row).0, message: self.viewModel.createCathedraAlertMessage(index: indexPath.row).1, actions: [UIAlertAction(title: "ОК", style: .default)])
                 }
             }
             
@@ -85,20 +80,7 @@ class SelectedFacultyListTableViewController: UITableViewController {
                     self.navigationController?.pushViewController(vc, animated: true)
                 } else {
                     NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
-                    let ok = UIAlertAction(title: "ОК", style: .default)
-                    self.showAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать группу факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
-                }
-            }
-            
-            let checkSubGroupAction = UIAction(title: self.viewModel.isSubGroupSelected(index: indexPath.row) ? "Выбрана подгруппа" : "Выбрать подгруппу", image: self.viewModel.isSubGroupSelected(index: indexPath.row) ? UIImage(named: "check") : nil) { _ in
-                if self.viewModel.isFacultySelected(index: indexPath.row) {
-                    let vc = SavedSubGroupTableViewController()
-                    vc.hidesBottomBarWhenPushed = true
-                    self.navigationController?.pushViewController(vc, animated: true)
-                } else {
-                    NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
-                    let ok = UIAlertAction(title: "ОК", style: .default)
-                    self.showAlert(title: "\(self.viewModel.facultyItem(index: indexPath.row).abbreviation) не ваш факультет!", message: "Вы не можете выбрать подгруппу факультета \(self.viewModel.facultyItem(index: indexPath.row).abbreviation) поскольку не относитесь к нему.", actions: [ok])
+                    self.showAlert(title: self.viewModel.createGroupAlertMessage(index: indexPath.row).0, message: self.viewModel.createGroupAlertMessage(index: indexPath.row).1, actions: [UIAlertAction(title: "ОК", style: .default)])
                 }
             }
             
@@ -115,7 +97,6 @@ class SelectedFacultyListTableViewController: UITableViewController {
                 chooseIconAction,
                 cathedraAction,
                 checkGroupAction,
-                checkSubGroupAction,
                 cancelIconAction,
                 cancelFacultyAction
             ])

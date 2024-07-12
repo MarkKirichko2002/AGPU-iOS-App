@@ -258,6 +258,19 @@ final class AGPUTabBarController: UITabBarController {
         }
     }
     
+    func createAlertMessage()-> (String, String) {
+        let style = settingsManager.getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        switch style {
+        case .formal:
+            return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хотите" : "Хотите") включить в настройках?")
+        case .informal:
+            return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хочешь" : "Хочешь") врубить в настройках?")
+        }
+    }
+    
+    // Хотите включить в настройках?
+    
     @objc func VoiceCommands() {
         isRecording = !isRecording
         if isRecording {
@@ -274,7 +287,7 @@ final class AGPUTabBarController: UITabBarController {
                     let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in
                         self.ASPUButton.sendActions(for: .touchUpInside)
                     }
-                    self.showAlert(title: "Микрофон выключен", message: "Хотите включить в настройках?", actions: [settingsAction, cancel])
+                    self.showAlert(title: self.createAlertMessage().0, message: self.createAlertMessage().1, actions: [settingsAction, cancel])
                     print("Доступ к распознаванию речи был отклонен.")
                 case .restricted:
                     print("Функциональность распознавания речи ограничена.")
