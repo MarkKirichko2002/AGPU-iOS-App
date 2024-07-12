@@ -40,6 +40,16 @@ extension ScreenPresentationStylesListViewModel: IScreenPresentationStylesListVi
         return false
     }
     
+    func titleForNavigation()-> String {
+        let style = settingsManager.getSavedCommunicationStyle()
+        switch style {
+        case .formal:
+            return "Выберите отображение"
+        case .informal:
+            return "Выбери отображение"
+        }
+    }
+    
     func registerDataChangedHandler(block: @escaping()->Void) {
         self.dataChangedHandler = block
     }

@@ -53,7 +53,7 @@ extension WeekDaysListViewModel: IWeekDaysListViewModel {
             
             let times = pair.time.components(separatedBy: "-")
             let startTime = times[0]
-                            
+            
             uniqueTimes.insert(startTime)
         }
         
@@ -70,6 +70,16 @@ extension WeekDaysListViewModel: IWeekDaysListViewModel {
             return .systemRed
         } else {
             return .systemGray
+        }
+    }
+    
+    func titleForNavigation()-> String {
+        let style = settingsManager.getSavedCommunicationStyle()
+        switch style {
+        case .formal:
+            return "Выберите день"
+        case .informal:
+            return "Выбери день"
         }
     }
     

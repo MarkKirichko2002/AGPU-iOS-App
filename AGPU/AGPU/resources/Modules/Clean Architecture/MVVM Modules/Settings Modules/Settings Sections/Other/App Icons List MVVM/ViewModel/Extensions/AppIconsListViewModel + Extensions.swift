@@ -120,6 +120,16 @@ extension AppIconsListViewModel: AppIconsListViewModelProtocol {
         return false
     }
     
+    func titleForNavigation()-> String {
+        let style = settingsManager.getSavedCommunicationStyle()
+        switch style {
+        case .formal:
+            return "Выберите иконку"
+        case .informal:
+            return "Выбери иконку"
+        }
+    }
+    
     func registerDataChangedHandler(block: @escaping()->Void) {
         self.dataChangedHandler = block
     }

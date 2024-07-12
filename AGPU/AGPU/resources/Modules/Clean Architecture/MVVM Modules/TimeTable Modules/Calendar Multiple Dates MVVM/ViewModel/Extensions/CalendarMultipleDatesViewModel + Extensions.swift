@@ -57,7 +57,17 @@ extension CalendarMultipleDatesViewModel: ICalendarMultipleDatesViewModel {
         }
     }
     
-    func registerDatesSelectedHandler(block: @escaping() -> Void) {
+    func titleForNavigation()-> String {
+        let style = settingsManager.getSavedCommunicationStyle()
+        switch style {
+        case .formal:
+            return "Выберите даты"
+        case .informal:
+            return "Выбери даты"
+        }
+    }
+    
+    func registerDatesSelectedHandler(block: @escaping()-> Void) {
         self.datesSelectedHandler = block
     }
     

@@ -43,4 +43,14 @@ extension AppThemesListViewModel: AppThemesListViewModelProtocol {
             return false
         }
     }
+    
+    func titleForNavigation()-> String {
+        let style = settingsManager.getSavedCommunicationStyle()
+        switch style {
+        case .formal:
+            return "Выберите тему"
+        case .informal:
+            return "Выбери тему"
+        }
+    }
 }

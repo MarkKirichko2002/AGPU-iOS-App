@@ -42,10 +42,9 @@ class WeekDaysListTableViewController: UITableViewController {
     }
 
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "calendar icon", title: "Выберите день", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
-        navigationItem.titleView = titleView
+        navigationItem.title = viewModel.titleForNavigation()
         navigationItem.rightBarButtonItem = closeButton
     }
     

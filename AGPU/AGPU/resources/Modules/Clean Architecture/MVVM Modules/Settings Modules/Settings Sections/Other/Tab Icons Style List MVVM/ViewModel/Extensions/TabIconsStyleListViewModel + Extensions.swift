@@ -44,6 +44,16 @@ extension TabIconsStyleListViewModel: ITabIconsStyleListViewModel {
         return false
     }
     
+    func titleForNavigation()-> String {
+        let style = settingsManager.getSavedCommunicationStyle()
+        switch style {
+        case .formal:
+            return "Выберите страницу"
+        case .informal:
+            return "Выбери страницу"
+        }
+    }
+    
     func registerDataChangedHandler(block: @escaping() -> Void) {
         self.dataChangedHandler = block
     }

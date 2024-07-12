@@ -21,7 +21,7 @@ class ASPUButtonIconsListTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         
-        let titleView = CustomTitleView(image: "photo icon", title: "Выберите иконку", frame: .zero)
+        let titleView = CustomTitleView(image: "photo icon", title: viewModel.titleForNavigation(), frame: .zero)
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)

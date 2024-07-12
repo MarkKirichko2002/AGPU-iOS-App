@@ -20,7 +20,7 @@ class OnlyMainVariantsListTableViewController: UITableViewController {
     }
 
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "home icon", title: "Выберите вариант", frame: .zero)
+        let titleView = CustomTitleView(image: "home icon", title: viewModel.titleForNavigation(), frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.titleView = titleView

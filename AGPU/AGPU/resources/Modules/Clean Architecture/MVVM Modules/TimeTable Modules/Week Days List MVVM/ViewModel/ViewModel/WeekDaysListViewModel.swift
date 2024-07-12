@@ -20,6 +20,7 @@ class WeekDaysListViewModel {
     // MARK: - сервисы
     let dateManager = DateManager()
     let service = TimeTableService()
+    let settingsManager = SettingsManager()
     
     // MARK: - Init
     init(id: String, owner: String, week: WeekModel, timetable: [TimeTable]) {

@@ -15,4 +15,7 @@ class AppIconsListViewModel {
     var iconSelectedHandler: (()->Void)?
     var alertHandler: ((String, String)->Void)?
     
+    // MARK: - сервисы
+    let settingsManager = SettingsManager()
+    
 }

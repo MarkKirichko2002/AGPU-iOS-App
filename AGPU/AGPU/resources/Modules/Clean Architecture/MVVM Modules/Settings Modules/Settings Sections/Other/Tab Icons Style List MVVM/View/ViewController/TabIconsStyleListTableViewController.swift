@@ -20,7 +20,7 @@ final class TabIconsStyleListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Выберите стиль"
+        navigationItem.title = viewModel.titleForNavigation()
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)

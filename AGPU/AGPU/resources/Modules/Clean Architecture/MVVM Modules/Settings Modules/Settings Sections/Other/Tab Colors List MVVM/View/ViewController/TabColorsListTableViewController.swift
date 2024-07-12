@@ -20,7 +20,7 @@ final class TabColorsListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Выберите цвет"
+        navigationItem.title = viewModel.titleForNavigation()
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)

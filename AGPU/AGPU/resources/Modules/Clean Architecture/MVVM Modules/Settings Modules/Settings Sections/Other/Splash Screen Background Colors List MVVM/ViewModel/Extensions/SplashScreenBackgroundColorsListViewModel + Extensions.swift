@@ -39,6 +39,16 @@ extension SplashScreenBackgroundColorsListViewModel: ISplashScreenBackgroundColo
         return false
     }
     
+    func titleForNavigation()-> String {
+        let style = settingsManager.getSavedCommunicationStyle()
+        switch style {
+        case .formal:
+            return "Выберите цвет"
+        case .informal:
+            return "Выбери цвет"
+        }
+    }
+    
     func registerColorSelectedHandler(block: @escaping(BackgroundColors)->Void) {
         self.colorSelectedHandler = block
     }

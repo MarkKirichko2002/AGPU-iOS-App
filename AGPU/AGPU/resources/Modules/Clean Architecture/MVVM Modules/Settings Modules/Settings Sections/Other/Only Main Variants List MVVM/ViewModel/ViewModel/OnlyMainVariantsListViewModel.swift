@@ -11,4 +11,7 @@ class OnlyMainVariantsListViewModel {
     
     var onlyMainVariantSelectedHandler: (()->Void)?
     
+    // MARK: - сервисы
+    let settingsManager = SettingsManager()
+    
 }

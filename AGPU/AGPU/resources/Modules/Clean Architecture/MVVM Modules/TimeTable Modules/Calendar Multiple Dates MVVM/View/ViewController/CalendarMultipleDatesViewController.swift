@@ -43,7 +43,7 @@ final class CalendarMultipleDatesViewController: UIViewController {
         let selectDateButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: #selector(selectDates))
         closeButton.tintColor = .label
         selectDateButton.tintColor = .label
-        navigationItem.title = "Выберите даты"
+        navigationItem.title = viewModel.titleForNavigation()
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = selectDateButton
     }

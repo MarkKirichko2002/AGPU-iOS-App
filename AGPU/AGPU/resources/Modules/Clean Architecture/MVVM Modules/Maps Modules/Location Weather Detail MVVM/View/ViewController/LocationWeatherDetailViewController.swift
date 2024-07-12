@@ -179,7 +179,7 @@ class LocationWeatherDetailViewController: UITableViewController {
             vc.modalPresentationStyle = .pageSheet
             present(vc, animated: true)
         case .notShow:
-            let vc = HintViewController(info: "Чтобы увидеть экран, выберите его отображение в настройках опции \"Наглядные изменения\"")
+            let vc = HintViewController(info: "Чтобы увидеть экран, нужно выбрать его отображение в настройках опции \"Наглядные изменения\"")
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
         }

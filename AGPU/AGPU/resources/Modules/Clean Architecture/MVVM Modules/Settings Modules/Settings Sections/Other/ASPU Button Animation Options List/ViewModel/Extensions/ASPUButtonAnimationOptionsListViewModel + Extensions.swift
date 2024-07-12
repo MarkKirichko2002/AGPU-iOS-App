@@ -40,6 +40,16 @@ extension ASPUButtonAnimationOptionsListViewModel: IASPUButtonAnimationOptionsLi
         return false
     }
     
+    func titleForNavigation()-> String {
+        let style = settingsManager.getSavedCommunicationStyle()
+        switch style {
+        case .formal:
+            return "Выберите анимацию"
+        case .informal:
+            return "Выбери анимацию"
+        }
+    }
+    
     func registerDataSelectedHandler(block: @escaping()->Void) {
         self.dataSelectedHandler = block
     }

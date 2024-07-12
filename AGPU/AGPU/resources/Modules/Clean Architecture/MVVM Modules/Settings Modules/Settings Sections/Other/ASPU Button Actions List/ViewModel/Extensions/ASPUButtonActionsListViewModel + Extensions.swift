@@ -32,7 +32,7 @@ extension ASPUButtonActionsListViewModel: ASPUButtonActionsListViewModelProtocol
         }
     }
     
-    func isActionSelected(index: Int) -> Bool {
+    func isActionSelected(index: Int)-> Bool {
         let savedAction = UserDefaults.loadData(type: ASPUButtonActions.self, key: "action") ?? .speechRecognition
         let action = actionItem(index: index)
         if savedAction == action {
@@ -40,6 +40,16 @@ extension ASPUButtonActionsListViewModel: ASPUButtonActionsListViewModelProtocol
         }
         return false
     }
+    
+    func titleForNavigation()-> String {
+            let style = settingsManager.getSavedCommunicationStyle()
+            switch style {
+            case .formal:
+                return "Выберите действие"
+            case .informal:
+                return "Выбери действие"
+            }
+        }
     
     func registerDataSelectedHandler(block: @escaping()->Void) {
         self.dataSelectedHandler = block

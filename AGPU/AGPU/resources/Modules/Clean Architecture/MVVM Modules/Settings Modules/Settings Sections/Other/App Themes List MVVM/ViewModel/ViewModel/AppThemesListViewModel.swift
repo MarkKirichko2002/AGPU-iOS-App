@@ -11,4 +11,7 @@ class AppThemesListViewModel {
     
     var themeSelectedHandler: ((UIUserInterfaceStyle)->Void)?
     
+    // MARK: - сервисы
+    let settingsManager = SettingsManager()
+    
 }

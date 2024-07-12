@@ -210,7 +210,7 @@ final class AGPUTabBarController: UITabBarController {
         } else {
             self.updateASPUButton(icon: "info icon")
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                let vc = HintViewController(info: "Вы отключили фишку Action To Recall! Чтобы дальше пользоваться данной фишкой включите ее в настройках.")
+                let vc = HintViewController(info: "Отключена фишка Action To Recall! Чтобы дальше пользоваться данной фишкой нужно включить ее в настройках.")
                 vc.isNotify = true
                 vc.modalPresentationStyle = .fullScreen
                 self.present(vc, animated: true)
@@ -248,7 +248,7 @@ final class AGPUTabBarController: UITabBarController {
                 self.present(navVC, animated: true)
             }
         case .notShow:
-            let vc = HintViewController(info: "Чтобы увидеть экран, выберите его отображение в настройках опции \"Наглядные изменения\"")
+            let vc = HintViewController(info: "Чтобы увидеть экран, нужно выбрать его отображение в настройках опции \"Наглядные изменения\"")
             vc.isNotify = true
             vc.modalPresentationStyle = .fullScreen
             self.updateASPUButton(icon: "info icon")

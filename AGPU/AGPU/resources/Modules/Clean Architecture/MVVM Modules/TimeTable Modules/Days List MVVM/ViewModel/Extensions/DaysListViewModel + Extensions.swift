@@ -212,6 +212,16 @@ extension DaysListViewModel: DaysListViewModelProtocol {
         }
     }
     
+    func titleForNavigation()-> String {
+        let style = settingsManager.getSavedCommunicationStyle()
+        switch style {
+        case .formal:
+            return "Выберите день"
+        case .informal:
+            return "Выбери день"
+        }
+    }
+    
     func registerDataChangedHandler(block: @escaping()->Void) {
         self.dataChangedHandler = block
     }

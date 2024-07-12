@@ -42,6 +42,16 @@ extension TabColorsListViewModel: ITabColorsListViewModel {
         return false
     }
     
+    func titleForNavigation()-> String {
+        let style = settingsManager.getSavedCommunicationStyle()
+        switch style {
+        case .formal:
+            return "Выберите цвет"
+        case .informal:
+            return "Выбери цвет"
+        }
+    }
+    
     func registerDataChangedHandler(block: @escaping()->Void) {
         self.dataChangedHandler = block
     }

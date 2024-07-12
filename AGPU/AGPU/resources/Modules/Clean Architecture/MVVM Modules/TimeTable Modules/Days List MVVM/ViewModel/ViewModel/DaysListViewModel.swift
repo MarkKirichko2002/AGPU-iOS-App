@@ -18,6 +18,7 @@ class DaysListViewModel {
     // MARK: - сервисы
     let timetableService = TimeTableService()
     let dateManager = DateManager()
+    let settingsManager = SettingsManager()
     
     // MARK: - Init
     init(id: String, currentDate: String, owner: String) {

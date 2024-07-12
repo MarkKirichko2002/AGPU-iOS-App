@@ -11,4 +11,7 @@ class ASPUButtonActionsListViewModel {
     
     var dataSelectedHandler: (()->Void)?
     
+    // MARK: - сервисы
+    let settingsManager = SettingsManager()
+    
 }
