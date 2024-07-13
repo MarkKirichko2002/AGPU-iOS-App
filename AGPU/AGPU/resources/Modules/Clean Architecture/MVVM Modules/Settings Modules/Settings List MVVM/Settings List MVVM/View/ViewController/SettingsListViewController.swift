@@ -54,7 +54,7 @@ final class SettingsListViewController: UIViewController {
         tableView.register(UINib(nibName: CustomTabBarOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CustomTabBarOptionTableViewCell.identifier)
         // ASPU Button
         tableView.register(UINib(nibName: ASPUButtonOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ASPUButtonOptionTableViewCell.identifier)
-        // Settable Personality
+        // Settable Communication
         tableView.register(UINib(nibName: SettablePersonalityTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SettablePersonalityTableViewCell.identifier)
         // Темы приложения
         tableView.register(UINib(nibName: AppThemesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppThemesTableViewCell.identifier)

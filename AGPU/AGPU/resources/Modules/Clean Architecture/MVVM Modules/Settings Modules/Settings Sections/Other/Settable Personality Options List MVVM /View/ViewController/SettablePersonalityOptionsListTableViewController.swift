@@ -20,7 +20,7 @@ class SettablePersonalityOptionsListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "gear", title: "Настройки личности", frame: .zero)
+        let titleView = CustomTitleView(image: "gear", title: "Настройки общения", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.titleView = titleView
