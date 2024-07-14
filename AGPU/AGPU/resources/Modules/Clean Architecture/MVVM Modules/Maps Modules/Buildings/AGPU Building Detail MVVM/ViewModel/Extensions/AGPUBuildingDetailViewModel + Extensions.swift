@@ -86,11 +86,16 @@ extension AGPUBuildingDetailViewModel: AGPUBuildingDetailViewModelProtocol {
     }
     
     func makeAudenciesList()-> [String] {
+        
         var text = annotation.subtitle!!
-        for character in "Аудитории: " {
-            let index = text.startIndex
-            text.remove(at: index)
+        
+        if text.contains("Аудитории: ") {
+            for character in "Аудитории: " {
+                let index = text.startIndex
+                text.remove(at: index)
+            }
         }
+        
         var arr = text.components(separatedBy: ", ")
         return arr
     }

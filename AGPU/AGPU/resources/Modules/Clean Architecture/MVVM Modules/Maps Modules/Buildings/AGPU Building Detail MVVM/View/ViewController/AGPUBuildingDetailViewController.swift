@@ -35,7 +35,7 @@ final class AGPUBuildingDetailViewController: UIViewController {
     
     private func setUpView() {
         LocationName.text = annotation.title!
-        LocationDetail.text = annotation.subtitle!
+        LocationDetail.text = !annotation.subtitle!!.isEmpty ? annotation.subtitle!! : "Нет информации"
         LocationName.textColor = UIColor.label
         LocationDetail.textColor = UIColor.label
         WeatherLabel.textColor = UIColor.label
@@ -65,11 +65,16 @@ final class AGPUBuildingDetailViewController: UIViewController {
     }
     
     @objc private func showAudenciesList() {
-        HapticsManager.shared.hapticFeedback()
-        let vc = AudenciesListTableViewController(name: annotation.title!!, audencies: viewModel.makeAudenciesList())
+        let audencies = viewModel.makeAudenciesList()
+        let vc = AudenciesListTableViewController(name: annotation.title!!, audencies: audencies)
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
-        present(navVC, animated: true)
+        if audencies.count > 1 {
+            present(navVC, animated: true)
+            HapticsManager.shared.hapticFeedback()
+        } else {
+            showAlert(title: "Нет аудиторий!", message: "в корпусе нет аудиторий", actions: [UIAlertAction(title: "ОК", style: .default)])
+        }
     }
     
     private func setUpWeatherLabel() {
