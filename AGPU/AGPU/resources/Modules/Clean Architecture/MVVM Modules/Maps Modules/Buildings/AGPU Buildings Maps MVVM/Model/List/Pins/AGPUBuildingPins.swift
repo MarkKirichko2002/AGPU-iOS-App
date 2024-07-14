@@ -15,7 +15,7 @@ struct AGPUBuildingPins {
         MKPointAnnotation(
             __coordinate: CLLocationCoordinate2D(latitude: 45.001817, longitude: 41.132393),
             title: "Главный корпус",
-            subtitle: "Аудитории: 1, 2, 3, 4, 4а, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14а, 15, 15а, 16, 17, 18, 21, 22, 23"
+            subtitle: "Аудитории: 1, 2, 3, 4, 4а, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14а, 15, 16, 17, 18, 21, 22, 23"
         ),
         
         // Корпус и Общежитие №1

@@ -11,6 +11,7 @@
 		82061CC42B09A4F70073D727 /* TimetableOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82061CC32B09A4F70073D727 /* TimetableOptions.swift */; };
 		82061CCB2B09A5920073D727 /* TimetableOptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82061CC92B09A5920073D727 /* TimetableOptionsTableViewCell.swift */; };
 		82061CCC2B09A5920073D727 /* TimetableOptionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82061CCA2B09A5920073D727 /* TimetableOptionsTableViewCell.xib */; };
+		8207E7602C44762D006312E7 /* AudenciesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8207E75F2C44762D006312E7 /* AudenciesListTableViewController.swift */; };
 		8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8208E7542A63A3D300675EF1 /* AGPUThemes.swift */; };
 		820900792BAF612F0053F3BD /* TabModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820900782BAF612F0053F3BD /* TabModel.swift */; };
 		8209007B2BAF61600053F3BD /* TabsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209007A2BAF61600053F3BD /* TabsList.swift */; };
@@ -236,7 +237,7 @@
 		825D567A2AE5CCAF004305C7 /* PairInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D56792AE5CCAF004305C7 /* PairInfoViewModel.swift */; };
 		825D567C2AE5CCBF004305C7 /* PairInfoViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D567B2AE5CCBF004305C7 /* PairInfoViewModel + Extensions.swift */; };
 		825D92EA2AF2E80F00B5E9DF /* CurrentDateTimeTableDayListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D92E92AF2E80F00B5E9DF /* CurrentDateTimeTableDayListTableViewController.swift */; };
-		825D92EE2AF2F03000B5E9DF /* RecentTimeTableDayListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D92ED2AF2F03000B5E9DF /* RecentTimeTableDayListTableViewController + Extensions.swift */; };
+		825D92EE2AF2F03000B5E9DF /* CurrentDateTimeTableDayListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D92ED2AF2F03000B5E9DF /* CurrentDateTimeTableDayListTableViewController + Extensions.swift */; };
 		8260EEAC2C3C739700DFFC4D /* WeatherChangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8260EEAB2C3C739700DFFC4D /* WeatherChangesViewController.swift */; };
 		8260EEAF2C3C8A7200DFFC4D /* WeatherChangesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8260EEAE2C3C8A7200DFFC4D /* WeatherChangesModel.swift */; };
 		826141FE2C3F71DD004D720B /* NewsMultipleSelectionListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826141FD2C3F71DD004D720B /* NewsMultipleSelectionListTableViewController.swift */; };
@@ -682,6 +683,7 @@
 		82061CC32B09A4F70073D727 /* TimetableOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableOptions.swift; sourceTree = "<group>"; };
 		82061CC92B09A5920073D727 /* TimetableOptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableOptionsTableViewCell.swift; sourceTree = "<group>"; };
 		82061CCA2B09A5920073D727 /* TimetableOptionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimetableOptionsTableViewCell.xib; sourceTree = "<group>"; };
+		8207E75F2C44762D006312E7 /* AudenciesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudenciesListTableViewController.swift; sourceTree = "<group>"; };
 		8208E7542A63A3D300675EF1 /* AGPUThemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUThemes.swift; sourceTree = "<group>"; };
 		820900782BAF612F0053F3BD /* TabModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabModel.swift; sourceTree = "<group>"; };
 		8209007A2BAF61600053F3BD /* TabsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsList.swift; sourceTree = "<group>"; };
@@ -907,7 +909,7 @@
 		825D56792AE5CCAF004305C7 /* PairInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairInfoViewModel.swift; sourceTree = "<group>"; };
 		825D567B2AE5CCBF004305C7 /* PairInfoViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PairInfoViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		825D92E92AF2E80F00B5E9DF /* CurrentDateTimeTableDayListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDateTimeTableDayListTableViewController.swift; sourceTree = "<group>"; };
-		825D92ED2AF2F03000B5E9DF /* RecentTimeTableDayListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentTimeTableDayListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
+		825D92ED2AF2F03000B5E9DF /* CurrentDateTimeTableDayListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrentDateTimeTableDayListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8260EEAB2C3C739700DFFC4D /* WeatherChangesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherChangesViewController.swift; sourceTree = "<group>"; };
 		8260EEAE2C3C8A7200DFFC4D /* WeatherChangesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherChangesModel.swift; sourceTree = "<group>"; };
 		826141FD2C3F71DD004D720B /* NewsMultipleSelectionListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsMultipleSelectionListTableViewController.swift; sourceTree = "<group>"; };
@@ -1411,6 +1413,14 @@
 				8226D1822B09655700B0B9F0 /* TimetableOptionsListTableViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8207E75E2C447601006312E7 /* Audencies List */ = {
+			isa = PBXGroup;
+			children = (
+				8207E75F2C44762D006312E7 /* AudenciesListTableViewController.swift */,
+			);
+			path = "Audencies List";
 			sourceTree = "<group>";
 		};
 		8208E74E2A63A36A00675EF1 /* View */ = {
@@ -4285,7 +4295,7 @@
 		825D92EC2AF2F01A00B5E9DF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				825D92ED2AF2F03000B5E9DF /* RecentTimeTableDayListTableViewController + Extensions.swift */,
+				825D92ED2AF2F03000B5E9DF /* CurrentDateTimeTableDayListTableViewController + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -4518,6 +4528,7 @@
 			isa = PBXGroup;
 			children = (
 				828710212C23209900E0DC1D /* AR */,
+				8207E75E2C447601006312E7 /* Audencies List */,
 				826141FA2C3F7182004D720B /* News Multiple Selection List */,
 				8276E62F2C2CCC7900216F28 /* Zoom Image */,
 				82187CA92C04FD7B0033E6DC /* Hint */,
@@ -10169,7 +10180,7 @@
 				82BCB5392AB351F400F3A321 /* DaysListViewModelProtocol.swift in Sources */,
 				82AC8EB22B76AE13006B29F9 /* YourStatusSplashScreenViewController.swift in Sources */,
 				823746EE2BF663DC004758CB /* ForEmployeeListViewModel + Extensions.swift in Sources */,
-				825D92EE2AF2F03000B5E9DF /* RecentTimeTableDayListTableViewController + Extensions.swift in Sources */,
+				825D92EE2AF2F03000B5E9DF /* CurrentDateTimeTableDayListTableViewController + Extensions.swift in Sources */,
 				82920B8F2AD8872B00352CD8 /* SelectedFacultyListViewModel.swift in Sources */,
 				82967C372BA236FB001059B2 /* TimeTableSplashScreenViewModel.swift in Sources */,
 				8257387A2C108B19000D6CAC /* ContactsListViewModel.swift in Sources */,
@@ -10306,6 +10317,7 @@
 				8241F9932A5F4091007DF628 /* TimeTableServicerProtocol.swift in Sources */,
 				825819922C02AE1C0022D17F /* AppUpdateAlertViewController.swift in Sources */,
 				8217C30D2B8FB6D600A59412 /* CustomSplashScreenModel.swift in Sources */,
+				8207E7602C44762D006312E7 /* AudenciesListTableViewController.swift in Sources */,
 				82AB6D232AF6C07500F7B729 /* SavedNewsCategoryViewModel.swift in Sources */,
 				82BEAD872A7417EC00DD34C2 /* RecentWebPageViewModelProtocol.swift in Sources */,
 				82B1C0CA2A8070A100520C14 /* SavedSubGroupViewModel.swift in Sources */,
@@ -10748,7 +10760,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -10787,7 +10799,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.0;
+				MARKETING_VERSION = 2.8.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

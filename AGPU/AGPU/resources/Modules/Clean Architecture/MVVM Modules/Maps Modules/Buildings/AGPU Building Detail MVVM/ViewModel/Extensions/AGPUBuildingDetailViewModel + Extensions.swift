@@ -85,6 +85,16 @@ extension AGPUBuildingDetailViewModel: AGPUBuildingDetailViewModelProtocol {
         return "нет пар"
     }
     
+    func makeAudenciesList()-> [String] {
+        var text = annotation.subtitle!!
+        for character in "Аудитории: " {
+            let index = text.startIndex
+            text.remove(at: index)
+        }
+        var arr = text.components(separatedBy: ", ")
+        return arr
+    }
+    
     func registerWeatherHandler(block: @escaping(String)->Void) {
         self.weatherHandler = block
     }

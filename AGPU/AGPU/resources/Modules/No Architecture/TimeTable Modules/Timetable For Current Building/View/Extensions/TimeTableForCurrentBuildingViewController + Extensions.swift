@@ -28,19 +28,7 @@ extension TimeTableForCurrentBuildingViewController: UITableViewDelegate {
                     self.present(navVC, animated: true)
                 }
             }
-            
-//            let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
-//                do {
-//                    let json = try JSONEncoder().encode([discipline])
-//                    let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: date)
-//                    self.service.getDisciplineImage(json: json) { image in
-//                        self.ShareImage(image: image, title: group, text: "\(dayOfWeek) \(date)")
-//                    }
-//                } catch {
-//                    print(error.localizedDescription)
-//                }
-//            }
-            
+                        
             return UIMenu(title: self.timetable.disciplines[indexPath.row].name, children: [
                 infoAction
             ])
@@ -66,11 +54,22 @@ extension TimeTableForCurrentBuildingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TimeTableTableViewCell.identifier, for: indexPath) as? TimeTableTableViewCell else {return UITableViewCell()}
-        
+        cell.delegate = self
         let selectedView = UIView()
         selectedView.backgroundColor = UIColor.clear
         cell.selectedBackgroundView = selectedView
         cell.configure(timetable: timetable, index: indexPath.row)
         return cell
+    }
+}
+
+// MARK: - ITimeTableTableViewCell
+extension TimeTableForCurrentBuildingViewController: ITimeTableTableViewCell {
+    
+    func cellTapped(pair: Discipline, id: String, date: String) {
+        let vc = PairInfoTableViewController(pair: pair, id: id, date: date)
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
     }
 }

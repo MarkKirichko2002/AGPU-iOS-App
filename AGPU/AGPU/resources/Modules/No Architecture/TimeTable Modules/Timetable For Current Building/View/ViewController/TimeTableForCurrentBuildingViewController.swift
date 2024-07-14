@@ -23,6 +23,7 @@ class TimeTableForCurrentBuildingViewController: UIViewController {
     
     // MARK: - UI
     let tableView = UITableView()
+    let infoLabel = UILabel()
     
     // MARK: - Init
     init(timetable: TimeTable) {
@@ -38,6 +39,8 @@ class TimeTableForCurrentBuildingViewController: UIViewController {
         super.viewDidLoad()
         setUpNavigation()
         setUpTable()
+        setUpLabel()
+        checkPairs()
     }
     
     private func setUpNavigation() {
@@ -77,5 +80,25 @@ class TimeTableForCurrentBuildingViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: TimeTableTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimeTableTableViewCell.identifier)
         tableView.separatorStyle = .none
+    }
+    
+    private func setUpLabel() {
+        view.addSubview(infoLabel)
+        infoLabel.text = "Нет пар"
+        infoLabel.font = .systemFont(ofSize: 18, weight: .medium)
+        infoLabel.isHidden = true
+        infoLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            infoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            infoLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    
+    func checkPairs() {
+        if !timetable.disciplines.isEmpty {
+            self.infoLabel.isHidden = true
+        } else {
+            self.infoLabel.isHidden = false
+        }
     }
 }

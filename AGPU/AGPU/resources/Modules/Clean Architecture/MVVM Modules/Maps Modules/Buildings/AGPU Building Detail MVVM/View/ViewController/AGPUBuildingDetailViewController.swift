@@ -28,6 +28,7 @@ final class AGPUBuildingDetailViewController: UIViewController {
         setUpView()
         setUpNavigation()
         setUpLabel()
+        setUpLocationDetailLabel()
         setUpWeatherLabel()
         bindViewModel()
     }
@@ -55,6 +56,20 @@ final class AGPUBuildingDetailViewController: UIViewController {
         DispatchQueue.main.async {
             self.present(navVC, animated: true)
         }
+    }
+    
+    private func setUpLocationDetailLabel() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showAudenciesList))
+        LocationDetail.isUserInteractionEnabled = true
+        LocationDetail.addGestureRecognizer(tap)
+    }
+    
+    @objc private func showAudenciesList() {
+        HapticsManager.shared.hapticFeedback()
+        let vc = AudenciesListTableViewController(name: annotation.title!!, audencies: viewModel.makeAudenciesList())
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
     }
     
     private func setUpWeatherLabel() {
@@ -90,6 +105,10 @@ final class AGPUBuildingDetailViewController: UIViewController {
             self.showTimetableDetail()
         }
         
+        let audenciesListAction = UIAction(title: "Аудитории") { _ in
+            self.showAudenciesList()
+        }
+        
         let weatherAction = UIAction(title: "Погода") { _ in
             self.showWeatherDetail()
         }
@@ -98,7 +117,12 @@ final class AGPUBuildingDetailViewController: UIViewController {
             self.showShareVC()
         }
         
-        let menu = UIMenu(title: annotation.title!!, children: [timetableAction, weatherAction, shareAction])
+        let menu = UIMenu(title: annotation.title!!, children: [
+            timetableAction,
+            audenciesListAction,
+            weatherAction,
+            shareAction
+        ])
         let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         sections.tintColor = .label
         navigationItem.rightBarButtonItem = sections

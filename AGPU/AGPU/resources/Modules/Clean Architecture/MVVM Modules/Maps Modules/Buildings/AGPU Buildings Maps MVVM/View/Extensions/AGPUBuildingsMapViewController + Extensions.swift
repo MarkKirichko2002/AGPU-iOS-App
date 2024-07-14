@@ -30,7 +30,7 @@ extension AGPUBuildingsMapViewController: MKMapViewDelegate {
             if let vc = storyboard.instantiateViewController(withIdentifier: "AGPUBuildingDetailViewController") as? AGPUBuildingDetailViewController {
                 vc.annotation = view.annotation!
                 vc.id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-2-1"
-                vc.owner = "GROUP"
+                vc.owner = UserDefaults.standard.string(forKey: "recentOwner") ?? "GROUP"
                 let navVC = UINavigationController(rootViewController: vc)
                 navVC.modalPresentationStyle = .fullScreen
                 DispatchQueue.main.async {
