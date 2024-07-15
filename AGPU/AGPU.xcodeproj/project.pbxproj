@@ -311,7 +311,7 @@
 		8276E6312C2CCC8F00216F28 /* ZoomImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276E6302C2CCC8F00216F28 /* ZoomImageViewController.swift */; };
 		827A74F72C4543FE00208F38 /* WeatherCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827A74F62C4543FE00208F38 /* WeatherCalendarViewController.swift */; };
 		827A74FA2C45446900208F38 /* WeatherCalendarViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827A74F92C45446900208F38 /* WeatherCalendarViewController + Extensions.swift */; };
-		827A74FD2C45467200208F38 /* WeatherCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827A74FC2C45467200208F38 /* WeatherCalendarViewModel.swift */; };
+		827A75102C45960000208F38 /* WeatherCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827A750F2C45960000208F38 /* WeatherCalendarViewModel.swift */; };
 		827B62C32A425166008D241E /* UserDefaults + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827B62C22A425166008D241E /* UserDefaults + Extensions.swift */; };
 		827E907D2BC8788600FD8168 /* AppFeaturesListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E907C2BC8788600FD8168 /* AppFeaturesListTableViewCell.swift */; };
 		82807C712AA0FA5D00E9C884 /* PairTypesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82807C702AA0FA5D00E9C884 /* PairTypesListTableViewController.swift */; };
@@ -986,7 +986,7 @@
 		8276E6302C2CCC8F00216F28 /* ZoomImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomImageViewController.swift; sourceTree = "<group>"; };
 		827A74F62C4543FE00208F38 /* WeatherCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCalendarViewController.swift; sourceTree = "<group>"; };
 		827A74F92C45446900208F38 /* WeatherCalendarViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherCalendarViewController + Extensions.swift"; sourceTree = "<group>"; };
-		827A74FC2C45467200208F38 /* WeatherCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeatherCalendarViewModel.swift; path = ../../../../../../../../../../../Documents/WeatherCalendarViewModel.swift; sourceTree = "<group>"; };
+		827A750F2C45960000208F38 /* WeatherCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeatherCalendarViewModel.swift; path = ../../../../../../../../../../../Documents/WeatherCalendarViewModel.swift; sourceTree = "<group>"; };
 		827B62C22A425166008D241E /* UserDefaults + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + Extensions.swift"; sourceTree = "<group>"; };
 		827E907C2BC8788600FD8168 /* AppFeaturesListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeaturesListTableViewCell.swift; sourceTree = "<group>"; };
 		82807C702AA0FA5D00E9C884 /* PairTypesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairTypesListTableViewController.swift; sourceTree = "<group>"; };
@@ -5213,7 +5213,7 @@
 		827A74F32C4543DE00208F38 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				827A74FC2C45467200208F38 /* WeatherCalendarViewModel.swift */,
+				827A750F2C45960000208F38 /* WeatherCalendarViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -10094,7 +10094,7 @@
 				8234E6122A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift in Sources */,
 				829CEF802BEF9BE500FA32EF /* IBuildingsListViewModel.swift in Sources */,
 				82C7523B2C28826300161AEF /* TabIconsStyleListTableViewController.swift in Sources */,
-				827A74FD2C45467200208F38 /* WeatherCalendarViewModel.swift in Sources */,
+				827A75102C45960000208F38 /* WeatherCalendarViewModel.swift in Sources */,
 				82989ACD2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift in Sources */,
 				828D51142BB86B2600848FF8 /* ASPUButtonIconOptionTableViewCell.swift in Sources */,
 				82187CA62C04F2840033E6DC /* ScreenPresentationStylesListViewModel.swift in Sources */,
