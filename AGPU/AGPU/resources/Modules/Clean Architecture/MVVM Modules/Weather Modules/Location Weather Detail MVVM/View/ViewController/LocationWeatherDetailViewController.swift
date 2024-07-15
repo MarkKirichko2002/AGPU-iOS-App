@@ -94,11 +94,15 @@ class LocationWeatherDetailViewController: UITableViewController {
             self.showChangesVC()
         }
         
+        let calendarAction = UIAction(title: "Календарь") { _ in
+            self.showCalendarVC()
+        }
+        
         let shareAction = UIAction(title: "Поделиться") { _ in
             self.shareInfo(image: UIImage(named: "АГПУ")!, title: "Погода", text: self.viewModel.textForMessageToShare())
         }
         
-        let other = UIMenu(title: "Другое", children: [openVC, shareAction])
+        let other = UIMenu(title: "Другое", children: [openVC, calendarAction, shareAction])
         
         let menu = UIMenu(title: String.menuTitle, children: [unitsMenu, other])
         return menu
@@ -183,6 +187,13 @@ class LocationWeatherDetailViewController: UITableViewController {
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
         }
+    }
+    
+    private func showCalendarVC() {
+        let vc = WeatherCalendarViewController()
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

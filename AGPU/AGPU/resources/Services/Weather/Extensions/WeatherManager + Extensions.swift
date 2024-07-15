@@ -19,6 +19,15 @@ extension WeatherManager: WeatherManagerProtocol {
         }
     }
     
+    func getWeather(location: CLLocation, startDate: Date, endDate: Date) async throws -> Result<Forecast<DayWeather>, Error> {
+        do {
+            let result = try await service.weather(for: location, including: .daily(startDate: startDate, endDate: endDate))
+            return .success(result)
+        } catch {
+            return .failure(error)
+        }
+    }
+    
     func formatWeather(weather: Weather)-> String {
         var formattedWeather = ""
         var condition = ""
