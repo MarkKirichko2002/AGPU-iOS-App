@@ -38,6 +38,7 @@ class LocationWeatherDetailViewController: UITableViewController {
     var cancellable: AnyCancellable?
     
     var isSection = false
+    var annotation: MKAnnotation
     
     // MARK: - UI
     let refresh = UIRefreshControl()
@@ -45,6 +46,7 @@ class LocationWeatherDetailViewController: UITableViewController {
     // MARK: - Init
     init(annotation: MKAnnotation) {
         self.viewModel = LocationWeatherDetailViewModel(annotation: annotation)
+        self.annotation = annotation
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -190,7 +192,7 @@ class LocationWeatherDetailViewController: UITableViewController {
     }
     
     private func showCalendarVC() {
-        let vc = WeatherCalendarViewController()
+        let vc = WeatherCalendarViewController(location: CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude))
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)

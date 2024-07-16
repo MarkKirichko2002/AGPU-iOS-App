@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import MapKit
 
 final class WeatherCalendarViewController: UIViewController {
 
     var selection: UICalendarSelectionSingleDate?
+    var location: CLLocation
     
     weak var delegate: CalendarViewControllerDelegate?
     
@@ -17,6 +19,15 @@ final class WeatherCalendarViewController: UIViewController {
     let viewModel = WeatherCalendarViewModel()
     
     let calendarView = UICalendarView()
+    
+    init(location: CLLocation) {
+        self.location = location
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
