@@ -92,6 +92,16 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             } else {
                 return SpringImageView(image: UIImage(named: "АГПУ")!)
             }
+        case .date:
+            let label = UILabel()
+            label.text = "\(dateManager.getCurrentDayOfWeek(date: dateManager.getCurrentDate())) \(dateManager.getCurrentDate())"
+            label.font = .systemFont(ofSize: 18, weight: .medium)
+            label.textAlignment = .center
+            return label
+        case .status:
+            let imageView = SpringImageView(image: UIImage(named: settingsManager.getUserStatus().icon)!)
+            imageView.tintColor = .label
+            return imageView
         case .label:
             let label = UILabel()
             label.text = "Загрузка..."
@@ -152,6 +162,10 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             return CGSize(width: 100, height: 80)
         case .category:
             return CGSize(width: 75, height: 75)
+        case .date:
+            return CGSize(width: 150, height: 80)
+        case .status:
+            return CGSize(width: 55, height: 55)
         case .label:
             return CGSize(width: 150, height: 80)
         case .timeOfDay:

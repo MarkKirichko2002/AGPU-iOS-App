@@ -369,6 +369,11 @@ final class NewsListViewController: UIViewController {
         case .category:
             self.spinner.isHidden = false
             self.animation.startRotateAnimation(view: self.spinner)
+        case .date:
+            self.spinner.isHidden = false
+        case .status:
+            self.spinner.isHidden = false
+            self.animation.startRotateAnimation(view: self.spinner)
         case .label:
             self.spinner.isHidden = false
         case .timeOfDay:
@@ -386,6 +391,11 @@ final class NewsListViewController: UIViewController {
             self.spinner.isHidden = true
             (self.spinner as? UIActivityIndicatorView)?.stopAnimating()
         case .category:
+            self.spinner.isHidden = true
+            self.animation.stopRotateAnimation(view: self.spinner)
+        case .date:
+            self.spinner.isHidden = true
+        case .status:
             self.spinner.isHidden = true
             self.animation.stopRotateAnimation(view: self.spinner)
         case .label:

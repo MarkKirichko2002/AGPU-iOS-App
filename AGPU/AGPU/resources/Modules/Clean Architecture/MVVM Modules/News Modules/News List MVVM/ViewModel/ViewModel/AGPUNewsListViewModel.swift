@@ -26,5 +26,6 @@ class AGPUNewsListViewModel {
     // MARK: - сервисы
     let newsService = AGPUNewsService()
     let dateManager = DateManager()
+    let settingsManager = SettingsManager()
     
 }

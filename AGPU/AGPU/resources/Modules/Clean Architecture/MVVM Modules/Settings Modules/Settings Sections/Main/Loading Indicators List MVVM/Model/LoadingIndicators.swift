@@ -10,6 +10,8 @@ import Foundation
 enum LoadingIndicators: String, Codable, CaseIterable {
     case regular = "Обычный"
     case category = "Категория"
+    case date = "Дата"
+    case status = "Статус"
     case label = "Надпись"
     case timeOfDay = "Время суток"
     case season = "Сезон"
