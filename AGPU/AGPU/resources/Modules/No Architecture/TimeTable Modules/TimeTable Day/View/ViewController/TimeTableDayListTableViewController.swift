@@ -112,6 +112,15 @@ final class TimeTableDayListTableViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
+        // преподаватели
+        let teachersList = UIAction(title: "Преподаватели") { _ in
+            let vc = DepartmentsListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         // избранное
         let favouritesList = UIAction(title: "Избранное") { _ in
             let vc = TimeTableFavouriteItemsListTableViewController()
@@ -181,6 +190,7 @@ final class TimeTableDayListTableViewController: UIViewController {
             ARAction,
             groupsList,
             subGroupsList,
+            teachersList,
             favouritesList,
             days,
             weeks,

@@ -95,10 +95,9 @@ extension TimeTableDayListTableViewController: TimeTableSearchListTableViewContr
     
     func itemWasSelected(result: SearchTimetableModel) {
         type = .all
-        getTimeTable(id: result.name, date: self.date, owner: result.owner)
         id = result.name
         owner = result.owner
-        print(owner)
+        getTimeTable(id: result.name, date: self.date, owner: result.owner)
     }
 }
 
@@ -142,6 +141,17 @@ extension TimeTableDayListTableViewController: SubGroupsListTableViewControllerD
     
     func subGroupWasSelected(subgroup: Int) {
         filterPairs(by: subgroup)
+    }
+}
+
+// MARK: - DepartmentsListTableViewControllerDelegate
+extension TimeTableDayListTableViewController: DepartmentsListTableViewControllerDelegate {
+    
+    func teacherSelected(teacher: String) {
+        type = .all
+        id = teacher
+        owner = "TEACHER"
+        getTimeTable(id: teacher, date: self.date, owner: "TEACHER")
     }
 }
 

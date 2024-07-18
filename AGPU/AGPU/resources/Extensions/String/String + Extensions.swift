@@ -56,6 +56,14 @@ extension String {
         return result
     }
     
+    func teacherAbbreviation()-> Self {
+        let str = self.components(separatedBy: " ")
+        let firstLetter =  String(str[1].first!)
+        let secondLetter = String(str[2].first!)
+        let result = "\(str[0]) \(firstLetter).\(secondLetter)."
+        return result
+    }
+    
     func lastWord()-> String {
         let size = self.reversed().firstIndex(of: " ") ?? self.count
         let startWord = self.index(self.endIndex, offsetBy: -size)

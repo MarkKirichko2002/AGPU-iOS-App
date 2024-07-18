@@ -287,6 +287,14 @@
 		82761A2D2B46428100D9976F /* SplashScreensListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82761A2C2B46428100D9976F /* SplashScreensListViewModelProtocol.swift */; };
 		82761A2F2B46429200D9976F /* SplashScreensListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82761A2E2B46429200D9976F /* SplashScreensListViewModel.swift */; };
 		82761A312B4642A300D9976F /* SplashScreensListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82761A302B4642A300D9976F /* SplashScreensListViewModel + Extensions.swift */; };
+		827674DE2C48B4710083A849 /* Fluent in Frameworks */ = {isa = PBXBuildFile; productRef = 827674DD2C48B4710083A849 /* Fluent */; };
+		827674E12C48B4A80083A849 /* FluentPostgresDriver in Frameworks */ = {isa = PBXBuildFile; productRef = 827674E02C48B4A80083A849 /* FluentPostgresDriver */; };
+		827674E72C48B5280083A849 /* DBResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827674E62C48B5280083A849 /* DBResponse.swift */; };
+		827674E92C48B5640083A849 /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827674E82C48B5640083A849 /* Department.swift */; };
+		827674EB2C48B58F0083A849 /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827674EA2C48B58F0083A849 /* Teacher.swift */; };
+		827674ED2C48B5C50083A849 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827674EC2C48B5C50083A849 /* DBService.swift */; };
+		827674F12C48B61D0083A849 /* DepartmentsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827674F02C48B61D0083A849 /* DepartmentsListTableViewController.swift */; };
+		827674F52C48B9F90083A849 /* TeachersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827674F42C48B9F90083A849 /* TeachersListTableViewController.swift */; };
 		82768AE22ABE12F30022FBE1 /* AppThemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82768AE12ABE12F30022FBE1 /* AppThemeModel.swift */; };
 		82768AE62ABE13550022FBE1 /* AppThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82768AE52ABE13550022FBE1 /* AppThemes.swift */; };
 		82768AE82ABE13B80022FBE1 /* AppThemesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82768AE72ABE13B80022FBE1 /* AppThemesListTableViewController.swift */; };
@@ -962,6 +970,12 @@
 		82761A2C2B46428100D9976F /* SplashScreensListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreensListViewModelProtocol.swift; sourceTree = "<group>"; };
 		82761A2E2B46429200D9976F /* SplashScreensListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreensListViewModel.swift; sourceTree = "<group>"; };
 		82761A302B4642A300D9976F /* SplashScreensListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SplashScreensListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		827674E62C48B5280083A849 /* DBResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBResponse.swift; sourceTree = "<group>"; };
+		827674E82C48B5640083A849 /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
+		827674EA2C48B58F0083A849 /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
+		827674EC2C48B5C50083A849 /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
+		827674F02C48B61D0083A849 /* DepartmentsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentsListTableViewController.swift; sourceTree = "<group>"; };
+		827674F42C48B9F90083A849 /* TeachersListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersListTableViewController.swift; sourceTree = "<group>"; };
 		82768AE12ABE12F30022FBE1 /* AppThemeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeModel.swift; sourceTree = "<group>"; };
 		82768AE52ABE13550022FBE1 /* AppThemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemes.swift; sourceTree = "<group>"; };
 		82768AE72ABE13B80022FBE1 /* AppThemesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemesListTableViewController.swift; sourceTree = "<group>"; };
@@ -1363,6 +1377,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				827674E12C48B4A80083A849 /* FluentPostgresDriver in Frameworks */,
+				827674DE2C48B4710083A849 /* Fluent in Frameworks */,
 				F1C2042A586A8CE8FF71BB78 /* Pods_AGPU.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3126,6 +3142,7 @@
 		8234B2FE2A3242CC0091810F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				827674E22C48B4B20083A849 /* DB */,
 				82D6C3302A5E1DD100FB7F5D /* API */,
 				828FD5C72C2F2FF8007E7185 /* Text Recognition */,
 				82E3C3CC2B43711600F2FFA3 /* Audio Player */,
@@ -3948,6 +3965,8 @@
 				8231B0B32AED67EF00EB41EA /* TimeTable Search */,
 				825D92E72AF2E7CA00B5E9DF /* Current Date Timetable Day */,
 				82E0300E2B201F0C0068D2B7 /* Timetable For Current Building */,
+				827674EE2C48B5FC0083A849 /* Departments List */,
+				827674F22C48B9D20083A849 /* Teachers List */,
 			);
 			path = "TimeTable Modules";
 			sourceTree = "<group>";
@@ -4960,6 +4979,65 @@
 				82761A2A2B463F9900D9976F /* SplashScreenOptions.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		827674E22C48B4B20083A849 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				827674E42C48B4CF0083A849 /* Models */,
+				827674E52C48B5130083A849 /* Service */,
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
+		827674E42C48B4CF0083A849 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				827674E62C48B5280083A849 /* DBResponse.swift */,
+				827674E82C48B5640083A849 /* Department.swift */,
+				827674EA2C48B58F0083A849 /* Teacher.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		827674E52C48B5130083A849 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				827674EC2C48B5C50083A849 /* DBService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		827674EE2C48B5FC0083A849 /* Departments List */ = {
+			isa = PBXGroup;
+			children = (
+				827674EF2C48B6110083A849 /* View */,
+			);
+			path = "Departments List";
+			sourceTree = "<group>";
+		};
+		827674EF2C48B6110083A849 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				827674F02C48B61D0083A849 /* DepartmentsListTableViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		827674F22C48B9D20083A849 /* Teachers List */ = {
+			isa = PBXGroup;
+			children = (
+				827674F32C48B9DF0083A849 /* View */,
+			);
+			path = "Teachers List";
+			sourceTree = "<group>";
+		};
+		827674F32C48B9DF0083A849 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				827674F42C48B9F90083A849 /* TeachersListTableViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		82768ADD2ABE12D30022FBE1 /* App Themes List MVVM */ = {
@@ -9866,6 +9944,10 @@
 			dependencies = (
 			);
 			name = AGPU;
+			packageProductDependencies = (
+				827674DD2C48B4710083A849 /* Fluent */,
+				827674E02C48B4A80083A849 /* FluentPostgresDriver */,
+			);
 			productName = AGPU;
 			productReference = 82808E852A31F12100DEEB16 /* AGPU.app */;
 			productType = "com.apple.product-type.application";
@@ -9896,6 +9978,8 @@
 			);
 			mainGroup = 82808E7C2A31F12100DEEB16;
 			packageReferences = (
+				827674DC2C48B4710083A849 /* XCRemoteSwiftPackageReference "fluent" */,
+				827674DF2C48B4A80083A849 /* XCRemoteSwiftPackageReference "fluent-postgres-driver" */,
 			);
 			productRefGroup = 82808E862A31F12100DEEB16 /* Products */;
 			projectDirPath = "";
@@ -10033,6 +10117,7 @@
 			files = (
 				82E4C5612A6B14C700F65A67 /* SettingsListViewModel + Extensions.swift in Sources */,
 				82E4C54A2A6B11BB00F65A67 /* AGPUFacultiesListViewModelProtocol.swift in Sources */,
+				827674E92C48B5640083A849 /* Department.swift in Sources */,
 				82B24A7A2A81945D008B94E4 /* AllWeeksListViewModel + Extensions.swift in Sources */,
 				82A41B972C2C34B800254AE2 /* RecentDatesListViewController + Extensions.swift in Sources */,
 				826FB3952C1F6C94007EDA25 /* INewsOptionsPositionListViewModel.swift in Sources */,
@@ -10398,6 +10483,7 @@
 				82C5B78F2BCEF81600F907CB /* ASPUButtonAnimationOptionTableViewCell.swift in Sources */,
 				82ECABE12A81520A00FE7462 /* SubGroupModel.swift in Sources */,
 				82A29F472B9BD5EF00756F43 /* SelectedFacultySplashScreenViewModel + Extensions.swift in Sources */,
+				827674F52C48B9F90083A849 /* TeachersListTableViewController.swift in Sources */,
 				82187CAC2C04FDA20033E6DC /* HintViewController.swift in Sources */,
 				8299E3B82B8A323200D81472 /* TimetableDateDetailViewController.swift in Sources */,
 				821270512A7903930095D68E /* PDFLastPageViewController.swift in Sources */,
@@ -10411,6 +10497,7 @@
 				829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */,
 				8276E6152C2C99A400216F28 /* ICalendarMultipleDatesViewModel.swift in Sources */,
 				82AB6D272AF6C0CC00F7B729 /* SavedNewsCategoryTableViewController.swift in Sources */,
+				827674ED2C48B5C50083A849 /* DBService.swift in Sources */,
 				82D5B2E12C1B302B000C5963 /* TimetableDateDetailViewController + Extensions.swift in Sources */,
 				8226D1912B09704B00B0B9F0 /* SavedPairTypeViewModel + Extensions.swift in Sources */,
 				82A29F452B9BD5D600756F43 /* SelectedFacultySplashScreenViewModel.swift in Sources */,
@@ -10446,6 +10533,7 @@
 				8209008E2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.swift in Sources */,
 				828D510E2BB8658000848FF8 /* ASPUButtonActionsOptionTableViewCell.swift in Sources */,
 				82ECCC732B182A1700443ED8 /* AGPUBuildingDetailViewModel.swift in Sources */,
+				827674EB2C48B58F0083A849 /* Teacher.swift in Sources */,
 				826FB3972C1F6CDF007EDA25 /* NewsOptionsPositionListViewModel.swift in Sources */,
 				8226D17E2B095E0900B0B9F0 /* TimetableOptionsListViewModel + Extensions.swift in Sources */,
 				82E4C5452A6B114000F65A67 /* WebViewModel + Extensions.swift in Sources */,
@@ -10481,6 +10569,7 @@
 				82920B882AD8823000352CD8 /* SelectedFacultyListTableViewController.swift in Sources */,
 				82BCB5742AB3AD0E00F3A321 /* PairTypesListViewModel.swift in Sources */,
 				82C26C802BD7F13D0039D86D /* DisplayModeOptionsListViewModel .swift in Sources */,
+				827674E72C48B5280083A849 /* DBResponse.swift in Sources */,
 				825738782C108AED000D6CAC /* IContactsListViewModel.swift in Sources */,
 				82426C732A71476D00D5AA57 /* ForStudentSections.swift in Sources */,
 				82E4C5662A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift in Sources */,
@@ -10552,6 +10641,7 @@
 				820900812BAF62E50053F3BD /* TabItemTableViewCell.swift in Sources */,
 				82FC87FE2BBDF0F000A2EF59 /* SplashScreenTableViewCell.swift in Sources */,
 				828FD5C92C2F300F007E7185 /* TextRecognitionManager.swift in Sources */,
+				827674F12C48B61D0083A849 /* DepartmentsListTableViewController.swift in Sources */,
 				822245922B28EC2B00DFCFA7 /* Actions.swift in Sources */,
 				82BC2F4D2A8F0B9500ADB239 /* NewsPagesListTableViewController.swift in Sources */,
 				821B727B2BD17490000460E2 /* ITabColorsListViewModel.swift in Sources */,
@@ -10890,6 +10980,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		827674DC2C48B4710083A849 /* XCRemoteSwiftPackageReference "fluent" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vapor/fluent.git";
+			requirement = {
+				kind = exactVersion;
+				version = 4.11.0;
+			};
+		};
+		827674DF2C48B4A80083A849 /* XCRemoteSwiftPackageReference "fluent-postgres-driver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vapor/fluent-postgres-driver";
+			requirement = {
+				kind = exactVersion;
+				version = 2.9.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		827674DD2C48B4710083A849 /* Fluent */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 827674DC2C48B4710083A849 /* XCRemoteSwiftPackageReference "fluent" */;
+			productName = Fluent;
+		};
+		827674E02C48B4A80083A849 /* FluentPostgresDriver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 827674DF2C48B4A80083A849 /* XCRemoteSwiftPackageReference "fluent-postgres-driver" */;
+			productName = FluentPostgresDriver;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 82808E7D2A31F12100DEEB16 /* Project object */;
 }
