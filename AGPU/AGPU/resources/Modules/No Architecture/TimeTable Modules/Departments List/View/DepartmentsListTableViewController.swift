@@ -58,6 +58,7 @@ class DepartmentsListTableViewController: UITableViewController {
         let vc = TeachersListTableViewController(id: departments[indexPath.row].id ?? 1)
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
+        HapticsManager.shared.hapticFeedback()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

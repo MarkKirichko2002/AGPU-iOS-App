@@ -137,6 +137,15 @@ class TimetableDateDetailViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
+        // преподаватели
+        let teachersList = UIAction(title: "Преподаватели") { _ in
+            let vc = DepartmentsListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         let favouritesList = UIAction(title: "Избранное") { _ in
             let vc = TimeTableFavouriteItemsListTableViewController()
             vc.delegate = self
@@ -165,6 +174,7 @@ class TimetableDateDetailViewController: UIViewController {
             ARAction,
             groupsList,
             subGroupsList,
+            teachersList,
             favouritesList,
             filterAction,
             saveTimetable,

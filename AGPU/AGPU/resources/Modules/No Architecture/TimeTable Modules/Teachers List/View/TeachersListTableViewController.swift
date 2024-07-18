@@ -37,7 +37,7 @@ class TeachersListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Кафедры"
+        navigationItem.title = "Преподаватели"
         setUpBackButton()
     }
     
@@ -76,11 +76,17 @@ class TeachersListTableViewController: UITableViewController {
         }
     }
     
+    private func getSavedTeacher()-> String {
+        let id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-2-1"
+        return id
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let teacher = teachers[indexPath.row]
         let abbreviation = "\(teacher.lastName) \(teacher.firstName) \(teacher.fatherName ?? "")".teacherAbbreviation()
         delegate?.teacherWasSelected(teacher: abbreviation)
         navigationController?.popViewController(animated: true)
+        HapticsManager.shared.hapticFeedback()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -90,9 +96,13 @@ class TeachersListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let teacher = teachers[indexPath.row]
+        let abbreviation = "\(teacher.lastName) \(teacher.firstName) \(teacher.fatherName ?? "")".teacherAbbreviation()
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "\(teacher.lastName) \(teacher.firstName) \(teacher.fatherName ?? "")".teacherAbbreviation()
+        cell.tintColor = .systemGreen
+        cell.textLabel?.text = abbreviation
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
+        cell.textLabel?.textColor = abbreviation == getSavedTeacher() ? .systemGreen : .label
+        cell.accessoryType = abbreviation == getSavedTeacher() ? .checkmark : .none
         return cell
     }
 }
