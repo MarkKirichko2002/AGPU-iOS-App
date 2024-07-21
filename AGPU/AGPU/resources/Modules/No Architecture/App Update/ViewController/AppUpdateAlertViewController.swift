@@ -27,7 +27,6 @@ class AppUpdateAlertViewController: UIViewController {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Обнаружено новое обновление! Хотите обновить приложение сейчас?"
         label.textAlignment = .center
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 18, weight: .bold)
@@ -115,6 +114,8 @@ class AppUpdateAlertViewController: UIViewController {
         }
         
         updateButton.snp.makeConstraints { maker in
+            maker.width.equalTo(100)
+            maker.height.equalTo(30)
             maker.top.equalTo(titleLabel.snp.bottom).offset(50)
             maker.centerX.equalToSuperview()
         }

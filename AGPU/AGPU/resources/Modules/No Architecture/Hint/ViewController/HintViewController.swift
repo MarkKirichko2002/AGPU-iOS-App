@@ -101,6 +101,8 @@ class HintViewController: UIViewController {
         }
         
         okButton.snp.makeConstraints { maker in
+            maker.width.equalTo(80)
+            maker.height.equalTo(30)
             maker.top.equalTo(titleLabel.snp.bottom).offset(50)
             maker.centerX.equalToSuperview()
         }
