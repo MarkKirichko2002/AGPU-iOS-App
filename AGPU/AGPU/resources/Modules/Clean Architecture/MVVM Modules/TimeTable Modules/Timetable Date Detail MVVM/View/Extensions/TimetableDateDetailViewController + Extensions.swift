@@ -39,6 +39,14 @@ extension TimetableDateDetailViewController: DepartmentsListTableViewControllerD
     }
 }
 
+// MARK: - CorpsListTableViewControllerDelegate
+extension TimetableDateDetailViewController: CorpsListTableViewControllerDelegate {
+    
+    func audienceWasSelected(audience: String) {
+        viewModel.getTimeTableForSearch(id: audience, owner: "CLASSROOM")
+    }
+}
+
 // MARK: - TimeTableFavouriteItemsListTableViewControllerDelegate
 extension TimetableDateDetailViewController: TimeTableFavouriteItemsListTableViewControllerDelegate {
     

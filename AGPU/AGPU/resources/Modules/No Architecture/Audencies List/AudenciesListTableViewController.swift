@@ -7,10 +7,18 @@
 
 import UIKit
 
-class AudenciesListTableViewController: UITableViewController {
+protocol AudenciesListTableViewControllerDelegate: AnyObject {
+    func audienceSelected(audience: String)
+}
+
+final class AudenciesListTableViewController: UITableViewController {
 
     var name: String = ""
     var audencies = [String]()
+    
+    var isSection = false
+    
+    weak var delegate: AudenciesListTableViewControllerDelegate?
     
     // MARK: - Init
     init(name: String, audencies: [String]) {
@@ -31,9 +39,40 @@ class AudenciesListTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         navigationItem.title = name
-        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
+        if isSection {
+            setUpBackButton()
+        } else {
+            setUpCloseButton()
+        }
+    }
+    
+    func setUpCloseButton() {
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    @objc private func close() {
+        HapticsManager.shared.hapticFeedback()
+        dismiss(animated: true)
+    }
+    
+    func setUpBackButton() {
+        
+        let button = UIButton()
+        button.tintColor = .label
+        button.setImage(UIImage(named: "back"), for: .normal)
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        
+        let backButton = UIBarButtonItem(customView: button)
+        
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
+        navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc private func back() {
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func closeScreen() {
@@ -46,10 +85,8 @@ class AudenciesListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = CurrentDateTimeTableDayListTableViewController(id: audencies[indexPath.row], date: DateManager().getCurrentDate(), owner: "CLASSROOM")
-        let navVC = UINavigationController(rootViewController: vc)
-        navVC.modalPresentationStyle = .fullScreen
-        present(navVC, animated: true)
+        delegate?.audienceSelected(audience: audencies[indexPath.row])
+        navigationController?.popViewController(animated: true)
         HapticsManager.shared.hapticFeedback()
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -61,6 +98,7 @@ class AudenciesListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = audencies[indexPath.row]
+        cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
         return cell
     }
 }

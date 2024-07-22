@@ -155,6 +155,17 @@ extension TimeTableDayListTableViewController: DepartmentsListTableViewControlle
     }
 }
 
+// MARK: - CorpsListTableViewControllerDelegate
+extension TimeTableDayListTableViewController: CorpsListTableViewControllerDelegate {
+    
+    func audienceWasSelected(audience: String) {
+        type = .all
+        id = audience
+        owner = "CLASSROOM"
+        getTimeTable(id: audience, date: self.date, owner: "CLASSROOM")
+    }
+}
+
 // MARK: - TimeTableFavouriteItemsListTableViewControllerDelegate
 extension TimeTableDayListTableViewController: TimeTableFavouriteItemsListTableViewControllerDelegate {
     

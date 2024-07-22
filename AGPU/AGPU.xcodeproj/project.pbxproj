@@ -643,6 +643,7 @@
 		82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */; };
 		82EF23DA2A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */; };
 		82EF23DF2A3DF621004A7B9C /* SpringImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */; };
+		82F297A72C4F18DB007697C6 /* CorpsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F297A62C4F18DB007697C6 /* CorpsListTableViewController.swift */; };
 		82F315BA2C40BD1B00E826F9 /* SettablePersonalityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315B82C40BD1B00E826F9 /* SettablePersonalityTableViewCell.swift */; };
 		82F315BB2C40BD1B00E826F9 /* SettablePersonalityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82F315B92C40BD1B00E826F9 /* SettablePersonalityTableViewCell.xib */; };
 		82F315C12C40C26500E826F9 /* PersonalityOptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315C02C40C26500E826F9 /* PersonalityOptionModel.swift */; };
@@ -1327,6 +1328,7 @@
 		82EF23D62A3DF0B8004A7B9C /* AnimationClassProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClassProtocol.swift; sourceTree = "<group>"; };
 		82EF23D92A3DF24E004A7B9C /* SpeechRecognitionManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManagerProtocol.swift; sourceTree = "<group>"; };
 		82EF23DE2A3DF621004A7B9C /* SpringImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringImageView.swift; sourceTree = "<group>"; };
+		82F297A62C4F18DB007697C6 /* CorpsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorpsListTableViewController.swift; sourceTree = "<group>"; };
 		82F315B82C40BD1B00E826F9 /* SettablePersonalityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettablePersonalityTableViewCell.swift; sourceTree = "<group>"; };
 		82F315B92C40BD1B00E826F9 /* SettablePersonalityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettablePersonalityTableViewCell.xib; sourceTree = "<group>"; };
 		82F315C02C40C26500E826F9 /* PersonalityOptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalityOptionModel.swift; sourceTree = "<group>"; };
@@ -3967,6 +3969,7 @@
 				82E0300E2B201F0C0068D2B7 /* Timetable For Current Building */,
 				827674EE2C48B5FC0083A849 /* Departments List */,
 				827674F22C48B9D20083A849 /* Teachers List */,
+				82F297A22C4F1868007697C6 /* Corps List */,
 			);
 			path = "TimeTable Modules";
 			sourceTree = "<group>";
@@ -5019,7 +5022,7 @@
 		827674EF2C48B6110083A849 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				827674F02C48B61D0083A849 /* DepartmentsListTableViewController.swift */,
+				82F297A52C4F18BF007697C6 /* ViewController */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5035,7 +5038,7 @@
 		827674F32C48B9DF0083A849 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				827674F42C48B9F90083A849 /* TeachersListTableViewController.swift */,
+				82F297A42C4F18B4007697C6 /* ViewController */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -9502,6 +9505,46 @@
 			path = "Spring Image";
 			sourceTree = "<group>";
 		};
+		82F297A22C4F1868007697C6 /* Corps List */ = {
+			isa = PBXGroup;
+			children = (
+				82F297A32C4F18AA007697C6 /* View */,
+			);
+			path = "Corps List";
+			sourceTree = "<group>";
+		};
+		82F297A32C4F18AA007697C6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82F297A82C4F1917007697C6 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82F297A42C4F18B4007697C6 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				827674F42C48B9F90083A849 /* TeachersListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82F297A52C4F18BF007697C6 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				827674F02C48B61D0083A849 /* DepartmentsListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82F297A82C4F1917007697C6 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82F297A62C4F18DB007697C6 /* CorpsListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		82F315B72C40BCDE00E826F9 /* Settable Personality */ = {
 			isa = PBXGroup;
 			children = (
@@ -10118,6 +10161,7 @@
 				82E4C5612A6B14C700F65A67 /* SettingsListViewModel + Extensions.swift in Sources */,
 				82E4C54A2A6B11BB00F65A67 /* AGPUFacultiesListViewModelProtocol.swift in Sources */,
 				827674E92C48B5640083A849 /* Department.swift in Sources */,
+				82F297A72C4F18DB007697C6 /* CorpsListTableViewController.swift in Sources */,
 				82B24A7A2A81945D008B94E4 /* AllWeeksListViewModel + Extensions.swift in Sources */,
 				82A41B972C2C34B800254AE2 /* RecentDatesListViewController + Extensions.swift in Sources */,
 				826FB3952C1F6C94007EDA25 /* INewsOptionsPositionListViewModel.swift in Sources */,
@@ -10910,7 +10954,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.4;
+				MARKETING_VERSION = 2.8.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -10949,7 +10993,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.4;
+				MARKETING_VERSION = 2.8.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

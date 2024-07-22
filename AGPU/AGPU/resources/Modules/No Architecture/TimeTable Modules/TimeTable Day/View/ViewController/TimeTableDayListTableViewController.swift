@@ -121,6 +121,14 @@ final class TimeTableDayListTableViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
+        let audiencesList = UIAction(title: "Аудитории") { _ in
+            let vc = CorpsListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         // избранное
         let favouritesList = UIAction(title: "Избранное") { _ in
             let vc = TimeTableFavouriteItemsListTableViewController()
@@ -191,6 +199,7 @@ final class TimeTableDayListTableViewController: UIViewController {
             groupsList,
             subGroupsList,
             teachersList,
+            audiencesList,
             favouritesList,
             days,
             weeks,
@@ -477,7 +486,6 @@ final class TimeTableDayListTableViewController: UIViewController {
         alertVC.addAction(photo)
         alertVC.addAction(camera)
         alertVC.addAction(cancel)
-        HapticsManager.shared.hapticFeedback()
         present(alertVC, animated: true)
     }
 }

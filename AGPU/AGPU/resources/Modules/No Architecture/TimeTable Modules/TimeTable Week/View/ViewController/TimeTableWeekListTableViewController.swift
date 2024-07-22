@@ -108,6 +108,14 @@ final class TimeTableWeekListTableViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
+        let audiencesList = UIAction(title: "Аудитории") { _ in
+            let vc = CorpsListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         // список дней
         let days = UIAction(title: "День") { _ in
             let vc = WeekDaysListTableViewController(id: self.id, owner: self.owner, week: self.week, timetable: self.timetable, currentDate: self.currentDate)
@@ -141,6 +149,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
             ARAction,
             groupsList,
             teachersList,
+            audiencesList,
             days,
             favouritesList,
             saveTimetable,
