@@ -148,7 +148,7 @@ extension UIViewController {
         self.showAlert(title: "Видео отсутствует", message: "У данного экрана заставки нет видео", actions: [ok])
     }
     
-    func showHintAlert(type: Hints) {
+    func showHintAlert(type: Hints, isNotify: Bool) {
         
         let style = SettingsManager().getSavedCommunicationStyle()
         let name = UserDefaults.standard.string(forKey: "name") ?? ""
@@ -158,16 +158,19 @@ extension UIViewController {
         case .faculty:
             let message = style == .formal ? "\(name.isEmpty ? "Чтобы" : "\(name) чтобы") вызвать контекстное меню удерживайте ячейку факультета" : "\(name.isEmpty ? "Чтобы" : "\(name) чтобы") вызвать контекстное меню удерживай ячейку факультета"
             let vc = HintViewController(info: message)
+            vc.isNotify = isNotify
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
         case .cathedra:
             let message = style == .formal ? "\(name.isEmpty ? "Чтобы" : "\(name) чтобы") вызвать контекстное меню удерживайте ячейку кафедры" : "\(name.isEmpty ? "Чтобы" : "\(name) чтобы") вызвать контекстное меню удерживай ячейку кафедры"
             let vc = HintViewController(info: message)
+            vc.isNotify = isNotify
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
         case .manuals:
             let message = style == .formal ? "\(name.isEmpty ? "Чтобы" : "\(name) чтобы") посмотреть методические материалы для вашей кафедры выберите ее в настройках" : "\(name.isEmpty ? "Чтобы" : "\(name) чтобы") посмотреть методические материалы для твоей кафедры выбери ее в настройках"
             let vc = HintViewController(info: message)
+            vc.isNotify = isNotify
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
         }

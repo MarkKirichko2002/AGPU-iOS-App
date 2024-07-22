@@ -38,6 +38,7 @@ class LocationWeatherDetailViewController: UITableViewController {
     var cancellable: AnyCancellable?
     
     var isSection = false
+    var isNotify = false
     var annotation: MKAnnotation
     
     // MARK: - UI
@@ -116,6 +117,15 @@ class LocationWeatherDetailViewController: UITableViewController {
         navigationItem.leftBarButtonItem = closeButton
     }
     
+    @objc private func close() {
+        if isNotify {
+            sendScreenWasClosedNotification()
+        } else {
+            HapticsManager.shared.hapticFeedback()
+        }
+        dismiss(animated: true)
+    }
+    
     func setUpBackButton() {
         
         let button = UIButton()
@@ -133,11 +143,6 @@ class LocationWeatherDetailViewController: UITableViewController {
     @objc private func back() {
         sendScreenWasClosedNotification()
         navigationController?.popViewController(animated: true)
-    }
-    
-    @objc private func close() {
-        HapticsManager.shared.hapticFeedback()
-        dismiss(animated: true)
     }
     
     private func setUpTable() {

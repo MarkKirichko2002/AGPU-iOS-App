@@ -88,7 +88,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        showHintAlert(type: .faculty)
+        showHintAlert(type: .faculty, isNotify: false)
         HapticsManager.shared.hapticFeedback()
         tableView.deselectRow(at: indexPath, animated: true)
     }

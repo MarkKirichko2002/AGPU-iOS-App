@@ -232,6 +232,11 @@ extension AGPUTabBarController: ASPUButtonFavouriteActionsListTableViewControlle
             ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
             ASPUButton.removeGestureRecognizer(doubleTap)
             openRecentMoments()
+        case .weather:
+            ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
+            ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
+            ASPUButton.removeGestureRecognizer(doubleTap)
+            openWeatherVC()
         case .things:
             ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
             ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)

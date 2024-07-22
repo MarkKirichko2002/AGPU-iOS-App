@@ -117,7 +117,7 @@ class FacultyCathedraListTableViewController: UITableViewController {
         if isSettings {
             viewModel.selectCathedra(index: indexPath.row)
         } else {
-            showHintAlert(type: .cathedra)
+            showHintAlert(type: .cathedra, isNotify: false)
             HapticsManager.shared.hapticFeedback()
         }
         self.tableView.deselectRow(at: indexPath, animated: true)

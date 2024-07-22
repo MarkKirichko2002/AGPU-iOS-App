@@ -126,7 +126,7 @@ final class ForStudentListTableViewController: UITableViewController {
                     self.goToWeb(url: cathedra.manualUrl, image: item.icon, title: "Метод. материалы", isSheet: false, isNotify: true)
                 }
             } else {
-                self.showHintAlert(type: .manuals)
+                self.showHintAlert(type: .manuals, isNotify: false)
                 HapticsManager.shared.hapticFeedback()
             }
             

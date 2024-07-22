@@ -72,10 +72,10 @@ class HintViewController: UIViewController {
     }
     
     @objc private func closeScreen() {
-        HapticsManager.shared.hapticFeedback()
         if isNotify {
             sendScreenWasClosedNotification()
         }
+        HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
     }
             

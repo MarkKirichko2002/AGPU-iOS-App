@@ -114,9 +114,10 @@ final class NewsWebViewController: UIViewController {
     }
     
     @objc private func closeScreen() {
-        HapticsManager.shared.hapticFeedback()
         if isNotify {
             sendScreenWasClosedNotification()
+        } else {
+            HapticsManager.shared.hapticFeedback()
         }
         self.dismiss(animated: true)
     }

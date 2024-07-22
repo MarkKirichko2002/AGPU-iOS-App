@@ -104,7 +104,7 @@ class SelectedFacultyListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.showHintAlert(type: .faculty)
+        self.showHintAlert(type: .faculty, isNotify: false)
         HapticsManager.shared.hapticFeedback()
         tableView.deselectRow(at: indexPath, animated: true)
     }

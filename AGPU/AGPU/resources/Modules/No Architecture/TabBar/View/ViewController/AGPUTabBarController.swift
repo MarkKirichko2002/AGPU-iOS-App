@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 final class AGPUTabBarController: UITabBarController {
     
@@ -186,6 +187,8 @@ final class AGPUTabBarController: UITabBarController {
             ASPUButton.addTarget(self, action: #selector(openSectionsList), for: .touchUpInside)
         case .recent:
             ASPUButton.addTarget(self, action: #selector(openRecentMoments), for: .touchUpInside)
+        case .weather:
+            ASPUButton.addTarget(self, action: #selector(openWeatherVC), for: .touchUpInside)
         case .things:
             ASPUButton.addTarget(self, action: #selector(openThingsCategoriesList), for: .touchUpInside)
         case .whatsNew:
@@ -224,6 +227,20 @@ final class AGPUTabBarController: UITabBarController {
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         self.updateASPUButton(icon: "time.past")
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.present(navVC, animated: true)
+        }
+    }
+    
+    @objc func openWeatherVC() {
+        let annotation = MKPointAnnotation()
+        annotation.title = "Армавир"
+        annotation.coordinate = CLLocationCoordinate2D(latitude: 44.9892, longitude: 41.1234)
+        let vc = LocationWeatherDetailViewController(annotation: annotation)
+        vc.isNotify = true
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.updateASPUButton(icon: "sun")
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
             self.present(navVC, animated: true)
         }
@@ -371,7 +388,7 @@ final class AGPUTabBarController: UITabBarController {
                 self.goToWeb(url: cathedra.manualUrl, image: "book", title: "Метод. материалы", isSheet: false, isNotify: true)
             }
         } else {
-            self.showHintAlert(type: .manuals)
+            self.showHintAlert(type: .manuals, isNotify: true)
             HapticsManager.shared.hapticFeedback()
         }
     }
