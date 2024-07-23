@@ -28,6 +28,10 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
     }
     
     func getTimeTableForSearch(id: String, owner: String) {
+        UserDefaults.standard.setValue(id, forKey: "recentGroup")
+        UserDefaults.standard.setValue(date, forKey: "recentDate")
+        UserDefaults.standard.setValue(owner, forKey: "recentOwner")
+        UserDefaults.standard.setValue(id, forKey: "group")
         self.type = .all
         self.id = id
         self.owner = owner

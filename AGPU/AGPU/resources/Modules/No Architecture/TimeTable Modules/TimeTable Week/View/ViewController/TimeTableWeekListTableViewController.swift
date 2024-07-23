@@ -223,6 +223,10 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     func getTimeTable() {
+        UserDefaults.standard.setValue(id, forKey: "recentGroup")
+        UserDefaults.standard.setValue(date, forKey: "recentDate")
+        UserDefaults.standard.setValue(owner, forKey: "recentOwner")
+        UserDefaults.standard.setValue(id, forKey: "group")
         self.spinner.isHidden = false
         self.animation.startRotateAnimation(view: self.spinner)
         self.noTimeTableLabel.isHidden = true

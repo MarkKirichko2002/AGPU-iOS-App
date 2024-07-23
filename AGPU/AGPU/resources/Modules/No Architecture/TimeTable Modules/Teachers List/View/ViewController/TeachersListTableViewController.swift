@@ -76,7 +76,7 @@ class TeachersListTableViewController: UITableViewController {
         }
     }
     
-    private func getSavedTeacher()-> String {
+    private func getSavedId()-> String {
         let id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-2-1"
         return id
     }
@@ -101,8 +101,8 @@ class TeachersListTableViewController: UITableViewController {
         cell.tintColor = .systemGreen
         cell.textLabel?.text = abbreviation
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
-        cell.textLabel?.textColor = abbreviation == getSavedTeacher() ? .systemGreen : .label
-        cell.accessoryType = abbreviation == getSavedTeacher() ? .checkmark : .none
+        cell.textLabel?.textColor = abbreviation == getSavedId() ? .systemGreen : .label
+        cell.accessoryType = abbreviation == getSavedId() ? .checkmark : .none
         return cell
     }
 }

@@ -83,6 +83,11 @@ final class AudenciesListTableViewController: UITableViewController {
     private func setUpTable() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
+    
+    private func getSavedId()-> String {
+        let id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-2-1"
+        return id
+    }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.audienceSelected(audience: audencies[indexPath.row])
@@ -97,8 +102,11 @@ final class AudenciesListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.tintColor = .systemGreen
         cell.textLabel?.text = audencies[indexPath.row]
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
+        cell.textLabel?.textColor = audencies[indexPath.row] == getSavedId() ? .systemGreen : .label
+        cell.accessoryType =  audencies[indexPath.row] == getSavedId() ? .checkmark : .none
         return cell
     }
 }
