@@ -26,10 +26,23 @@ extension AGPUWallpapersListViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension AGPUWallpapersListViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? AGPUWallpaperCollectionViewCell {
+            if let image = cell.imageView.image {
+                let vc = ZoomImageViewController(image: image)
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                present(navVC, animated: true)
+                HapticsManager.shared.hapticFeedback()
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView,
                                  contextMenuConfigurationForItemAt indexPath: IndexPath,
                                  point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+            
             let save = UIAction(title: "Сохранить", image: UIImage(named: "download")) { _ in
                 if let cell = collectionView.cellForItem(at: indexPath) as? AGPUWallpaperCollectionViewCell {
                     if let image = cell.imageView.image {
