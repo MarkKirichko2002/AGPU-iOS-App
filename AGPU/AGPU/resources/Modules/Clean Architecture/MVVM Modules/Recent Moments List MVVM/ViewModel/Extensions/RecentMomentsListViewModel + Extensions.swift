@@ -97,11 +97,11 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
                 completion(article.url)
             }
         case 3:
-            getLastWordDocument { document in
+            getLastPDFDocument { document in
                 completion(document.url)
             }
         case 4:
-            getLastPDFDocument { document in
+            getLastWordDocument { document in
                 completion(document.url)
             }
         case 5:
