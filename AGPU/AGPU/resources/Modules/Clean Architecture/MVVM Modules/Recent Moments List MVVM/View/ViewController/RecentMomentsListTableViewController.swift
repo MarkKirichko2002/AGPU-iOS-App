@@ -25,7 +25,6 @@ final class RecentMomentsListTableViewController: UITableViewController {
         let titleView = CustomTitleView(image: "time", title: "Недавние моменты", frame: .zero)
         navigationItem.titleView = titleView
         setUpCloseButton()
-        setUpRestartButton()
     }
     
     func setUpCloseButton() {
@@ -41,16 +40,6 @@ final class RecentMomentsListTableViewController: UITableViewController {
             HapticsManager.shared.hapticFeedback()
         }
         dismiss(animated: true)
-    }
-    
-    func setUpRestartButton() {
-        let restartButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .done, target: self, action: #selector(restart))
-        restartButton.tintColor = .label
-        navigationItem.leftBarButtonItem = restartButton
-    }
-    
-    @objc private func restart() {
-        
     }
     
     private func setUpTable() {
@@ -126,6 +115,28 @@ final class RecentMomentsListTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+            let moment = self.viewModel.momentItem(index: indexPath.row)
+            let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
+                if moment.id != 5 {
+                    self.viewModel.contentForShare(index: indexPath.row) { item in
+                        self.shareInfo(image: UIImage(named: "АГПУ")!, title: moment.name, text: item as? String ?? "нет текста")
+                    }
+                } else {
+                    self.viewModel.contentForShare(index: indexPath.row) { image in
+                        let info = self.viewModel.getRecentTimetableInfo()
+                        self.ShareImage(image: image as? UIImage ?? UIImage(), title: info.0, text: info.1)
+                    }
+                }
+            }
+            
+            return UIMenu(title: self.viewModel.momentItem(index: indexPath.row).name, children: [
+                shareAction
+            ])
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
@@ -147,11 +158,11 @@ final class RecentMomentsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return RecentMomentsList.moments.count
+        return viewModel.momentsCount()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let moment = RecentMomentsList.moments[indexPath.row]
+        let moment = viewModel.momentItem(index: indexPath.row)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RecentMomentTableViewCell.identifier, for: indexPath) as? RecentMomentTableViewCell else {return UITableViewCell()}
         cell.configure(moment: moment)
         return cell

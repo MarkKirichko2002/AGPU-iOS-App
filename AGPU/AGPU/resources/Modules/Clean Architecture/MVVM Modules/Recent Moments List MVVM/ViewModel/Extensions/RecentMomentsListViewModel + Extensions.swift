@@ -5,10 +5,18 @@
 //  Created by Марк Киричко on 10.08.2023.
 //
 
-import Foundation
+import UIKit
 
 // MARK: - RecentMomentsViewModelProtocol
 extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
+    
+    func momentItem(index: Int)-> RecentMomentModel {
+        return RecentMomentsList.moments[index]
+    }
+    
+    func momentsCount()-> Int {
+        return RecentMomentsList.moments.count
+    }
     
     func getLastWebPage(completion: @escaping(RecentWebPageModel)->Void) {
         
@@ -76,6 +84,90 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
         } else {
             alertHandler?("Нет недавнего видео", message)
         }
+    }
+    
+    func contentForShare(index: Int, completion: @escaping(Any)->Void) {
+        switch momentItem(index: index).id {
+        case 1:
+            getLastWebPage { page in
+                completion(page.url)
+            }
+        case 2:
+            getLastWebArticle { article in
+                completion(article.url)
+            }
+        case 3:
+            getLastWordDocument { document in
+                completion(document.url)
+            }
+        case 4:
+            getLastPDFDocument { document in
+                completion(document.url)
+            }
+        case 5:
+            getTimeTableForDay { image in
+                completion(image)
+            }
+        case 6:
+            getLastVideo { video in
+                completion(video)
+            }
+        default:
+            break
+        }
+    }
+    
+    func getTimeTableForDay(completion: @escaping(UIImage)->Void) {
+        
+        let recentGroup = UserDefaults.standard.string(forKey: "recentGroup") ?? "ВМ-ИВТ-2-1"
+        let recentDate = UserDefaults.standard.string(forKey: "recentDate") ?? dateManager.getCurrentDate()
+        let recentOwner = UserDefaults.standard.string(forKey: "recentOwner") ?? "GROUP"
+        
+        service.getTimeTableDay(id: recentGroup, date: recentDate, owner: recentOwner) { [weak self] result in
+            switch result {
+            case .success(let data):
+                self?.timetable = TimeTable(id: data.id, date: data.date, disciplines: data.disciplines)
+                self?.createImage { image in
+                    completion(image)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func createImage(completion: @escaping(UIImage)->Void) {
+        
+        let recentGroup = UserDefaults.standard.string(forKey: "recentGroup") ?? "ВМ-ИВТ-2-1"
+        let recentDate = UserDefaults.standard.string(forKey: "recentDate") ?? dateManager.getCurrentDate()
+        
+        let emptyTimetable = TimeTable(id: recentGroup, date: recentDate, disciplines: [])
+        
+        if !self.timetable.disciplines.isEmpty {
+            do {
+                let json = try JSONEncoder().encode(timetable)
+                self.service.getTimeTableDayImage(json: json) { image in
+                    completion(image)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        } else {
+            do {
+                let json = try JSONEncoder().encode(emptyTimetable)
+                self.service.getTimeTableDayImage(json: json) { image in
+                    completion(image)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getRecentTimetableInfo()-> (String, String) {
+        let recentID = UserDefaults.standard.string(forKey: "recentGroup") ?? "ВМ-ИВТ-2-1"
+        let recentDate = UserDefaults.standard.string(forKey: "recentDate") ?? dateManager.getCurrentDate()
+        return (recentID, recentDate)
     }
     
     func registerAlertHandler(block: @escaping(String, String)->Void) {

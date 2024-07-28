@@ -11,6 +11,9 @@ import UIKit
 extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
     
     func getTimeTableForDay() {
+        UserDefaults.standard.setValue(id, forKey: "recentGroup")
+        UserDefaults.standard.setValue(date, forKey: "recentDate")
+        UserDefaults.standard.setValue(owner, forKey: "recentOwner")
         timeTableService.getTimeTableDay(id: id, date: date, owner: owner) { [weak self] result in
             switch result {
             case .success(let data):

@@ -11,10 +11,13 @@ class RecentMomentsListViewModel {
     
     let style = SettingsManager().getSavedCommunicationStyle()
     let name = UserDefaults.standard.string(forKey: "name") ?? ""
+    var timetable = TimeTable(id: "", date: "", disciplines: [])
     
     var alertHandler: ((String, String)->Void)?
     
     // MARK: - сервисы
     let settingsManager = SettingsManager()
+    let service = TimeTableService()
+    let dateManager = DateManager()
     
 }
