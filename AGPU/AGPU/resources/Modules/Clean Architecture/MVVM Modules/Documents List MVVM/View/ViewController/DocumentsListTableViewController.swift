@@ -109,6 +109,12 @@ class DocumentsListTableViewController: UIViewController {
             }
             self.delegate?.dataChanged()
         }
+        viewModel.registerAlertHandler {
+            let ok = UIAlertAction(title: "ОК", style: .default) { _ in
+                self.showAddDocumentAlert()
+            }
+            self.showAlert(title: "Неверные данные!", message: "документ должен быть формата pdf,doc,docx", actions: [ok])
+        }
         viewModel.getDocuments()
     }
 }

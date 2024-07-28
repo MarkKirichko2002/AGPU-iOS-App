@@ -23,19 +23,34 @@ final class RecentMomentsListTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: "time", title: "Недавние моменты", frame: .zero)
-        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
-        closeButton.tintColor = .label
         navigationItem.titleView = titleView
+        setUpCloseButton()
+        setUpRestartButton()
+    }
+    
+    func setUpCloseButton() {
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(close))
+        closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }
     
-    @objc private func closeScreen() {
+    @objc private func close() {
         if isNotify {
             sendScreenWasClosedNotification()
         } else {
             HapticsManager.shared.hapticFeedback()
         }
         dismiss(animated: true)
+    }
+    
+    func setUpRestartButton() {
+        let restartButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .done, target: self, action: #selector(restart))
+        restartButton.tintColor = .label
+        navigationItem.leftBarButtonItem = restartButton
+    }
+    
+    @objc private func restart() {
+        
     }
     
     private func setUpTable() {
@@ -101,9 +116,10 @@ final class RecentMomentsListTableViewController: UITableViewController {
     
     private func checkLastVideo() {
         viewModel.getLastVideo { videoURL in
-            if videoURL.contains("http") {
-                HapticsManager.shared.hapticFeedback()
-                self.playVideo(url: videoURL)
+            guard let video = URL(string: videoURL) else {return}
+            if UIApplication.shared.canOpenURL(video) {
+                UserDefaults.standard.setValue(videoURL, forKey: "last video")
+                UIApplication.shared.open(video)
             } else {
                 self.playLocalVideo(video: videoURL)
             }

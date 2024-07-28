@@ -114,6 +114,11 @@ extension DocumentsListTableViewController {
                     document.format = urlPath.pathExtension
                     document.page = 0
                     self.viewModel.addDocument(document: document)
+                } else {
+                    let ok = UIAlertAction(title: "ОК", style: .default) { _ in
+                        self.showAddDocumentAlert()
+                    }
+                    self.showAlert(title: "Неверные данные!", message: "документ должен быть формата pdf,doc,docx", actions: [ok])
                 }
             }
         }
@@ -135,6 +140,7 @@ extension DocumentsListTableViewController {
             DispatchQueue.main.async {
                 self.present(navVC, animated: true)
             }
+            HapticsManager.shared.hapticFeedback()
         } else {
             let vc = WordDocumentReaderViewController(url: document.url)
             let navVC = UINavigationController(rootViewController: vc)
@@ -142,6 +148,7 @@ extension DocumentsListTableViewController {
             DispatchQueue.main.async {
                 self.present(navVC, animated: true)
             }
+            HapticsManager.shared.hapticFeedback()
         }
     }
 }

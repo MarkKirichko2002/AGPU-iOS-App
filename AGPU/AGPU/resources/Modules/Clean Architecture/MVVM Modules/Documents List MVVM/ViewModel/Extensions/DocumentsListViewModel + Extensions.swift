@@ -24,8 +24,12 @@ extension DocumentsListViewModel: IDocumentsListViewModel {
     }
     
     func addDocument(document: DocumentModel) {
-        realmManager.saveDocument(document: document)
-        getDocuments()
+        if isDocument(document: document) {
+            realmManager.saveDocument(document: document)
+            getDocuments()
+        } else {
+            alertHandler?()
+        }
     }
     
     func editDocument(document: DocumentModel, name: String) {
@@ -43,7 +47,18 @@ extension DocumentsListViewModel: IDocumentsListViewModel {
         getDocuments()
     }
     
-    func registerDataChangedHandler(block: @escaping() -> Void) {
+    func isDocument(document: DocumentModel)-> Bool {
+        if formats.contains(document.format.lowercased()) {
+            return true
+        }
+        return false
+    }
+    
+    func registerAlertHandler(block: @escaping()->Void) {
+        self.alertHandler = block
+    }
+    
+    func registerDataChangedHandler(block: @escaping()-> Void) {
         self.dataChangedHandler = block
     }
 }

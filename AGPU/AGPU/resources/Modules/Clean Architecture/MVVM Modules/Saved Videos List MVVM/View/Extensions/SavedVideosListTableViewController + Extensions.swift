@@ -113,12 +113,10 @@ extension SavedVideosListTableViewController {
     }
     
     func playCurrentVideo(url: String) {
-        if !url.contains("youtube") {
-            playVideo(url: url)
-        } else {
-            guard let url = URL(string: url) else {return}
-            let vc = SFSafariViewController(url: url)
-            self.present(vc, animated: true)
+        guard let videoUrl = URL(string: url) else {return}
+        if UIApplication.shared.canOpenURL(videoUrl) {
+            UserDefaults.standard.setValue(url, forKey: "last video")
+            UIApplication.shared.open(videoUrl)
         }
     }
 }

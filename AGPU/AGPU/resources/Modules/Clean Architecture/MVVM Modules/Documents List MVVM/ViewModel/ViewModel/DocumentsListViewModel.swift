@@ -9,7 +9,9 @@ import Foundation
 
 class DocumentsListViewModel {
     
+    var alertHandler: (()-> Void)?
     var dataChangedHandler:(()-> Void)?
+    var formats = ["pdf", "doc", "docx"]
     var documents = [DocumentModel]()
     
     // MARK: - сервисы
