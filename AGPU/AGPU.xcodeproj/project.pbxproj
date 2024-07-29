@@ -654,6 +654,9 @@
 		82F315CF2C40CE3100E826F9 /* CommunicationStyleVariantsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315CE2C40CE3100E826F9 /* CommunicationStyleVariantsListTableViewController.swift */; };
 		82F315D32C40CE6E00E826F9 /* CommunicationStyleVariantsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315D22C40CE6E00E826F9 /* CommunicationStyleVariantsListViewModel.swift */; };
 		82F315D92C41AAB900E826F9 /* SettablePersonalityOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315D82C41AAB900E826F9 /* SettablePersonalityOptionTableViewCell.swift */; };
+		82F495D72C57291F001D2802 /* HandDrawingGesturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F495D62C57291F001D2802 /* HandDrawingGesturesViewController.swift */; };
+		82F495DA2C57324F001D2802 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F495D92C57324F001D2802 /* CanvasView.swift */; };
+		82F495DC2C57441A001D2802 /* MNIST.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 82F495DB2C57441A001D2802 /* MNIST.mlmodel */; };
 		82F578772B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F578762B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift */; };
 		82F5787D2B6FE4B400BC64C1 /* ASPUButtonActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F5787C2B6FE4B400BC64C1 /* ASPUButtonActions.swift */; };
 		82F5787F2B6FE57100BC64C1 /* ASPUButtonActionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F5787E2B6FE57100BC64C1 /* ASPUButtonActionsListViewModel.swift */; };
@@ -1339,6 +1342,9 @@
 		82F315CE2C40CE3100E826F9 /* CommunicationStyleVariantsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationStyleVariantsListTableViewController.swift; sourceTree = "<group>"; };
 		82F315D22C40CE6E00E826F9 /* CommunicationStyleVariantsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationStyleVariantsListViewModel.swift; sourceTree = "<group>"; };
 		82F315D82C41AAB900E826F9 /* SettablePersonalityOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettablePersonalityOptionTableViewCell.swift; sourceTree = "<group>"; };
+		82F495D62C57291F001D2802 /* HandDrawingGesturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandDrawingGesturesViewController.swift; sourceTree = "<group>"; };
+		82F495D92C57324F001D2802 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		82F495DB2C57441A001D2802 /* MNIST.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MNIST.mlmodel; sourceTree = "<group>"; };
 		82F578762B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultyTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		82F5787C2B6FE4B400BC64C1 /* ASPUButtonActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonActions.swift; sourceTree = "<group>"; };
 		82F5787E2B6FE57100BC64C1 /* ASPUButtonActionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonActionsListViewModel.swift; sourceTree = "<group>"; };
@@ -4616,6 +4622,7 @@
 			children = (
 				82A29F3B2B9BD4E200756F43 /* Splash Screen Modules */,
 				82BC2F3F2A8EFC5D00ADB239 /* News Modules */,
+				82F495D22C5728DB001D2802 /* Hand Drawing Gestures MVVM */,
 				821270572A7921DD0095D68E /* Web Modules */,
 				823746D62BF65CA4004758CB /* For Every Status Modules */,
 				82D37FB52BEC10D20035CB57 /* Things Categories List MVVM */,
@@ -5414,6 +5421,7 @@
 			isa = PBXGroup;
 			children = (
 				82F98B2C2B11973500137D9A /* AGPU.entitlements */,
+				82F495DB2C57441A001D2802 /* MNIST.mlmodel */,
 				8258214C2A4649FE00CF0333 /* resources */,
 				8295489D2A43B0D3007DEBA0 /* sources */,
 			);
@@ -9648,6 +9656,47 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		82F495D22C5728DB001D2802 /* Hand Drawing Gestures MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82F495D42C5728FA001D2802 /* View */,
+				82F495D32C5728F8001D2802 /* ViewModel */,
+			);
+			path = "Hand Drawing Gestures MVVM";
+			sourceTree = "<group>";
+		};
+		82F495D32C5728F8001D2802 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82F495D42C5728FA001D2802 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82F495D82C57323E001D2802 /* View */,
+				82F495D52C572905001D2802 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82F495D52C572905001D2802 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82F495D62C57291F001D2802 /* HandDrawingGesturesViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82F495D82C57323E001D2802 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82F495D92C57324F001D2802 /* CanvasView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		82F578752B6FB83400BC64C1 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -10165,6 +10214,7 @@
 				82B24A7A2A81945D008B94E4 /* AllWeeksListViewModel + Extensions.swift in Sources */,
 				82A41B972C2C34B800254AE2 /* RecentDatesListViewController + Extensions.swift in Sources */,
 				826FB3952C1F6C94007EDA25 /* INewsOptionsPositionListViewModel.swift in Sources */,
+				82F495DC2C57441A001D2802 /* MNIST.mlmodel in Sources */,
 				820D18E72A68FA7D00BFAA35 /* AGPUBuildings.swift in Sources */,
 				82187C9F2C04F2340033E6DC /* ScreenPresentationStylesTableViewController.swift in Sources */,
 				82F578902B6FEDFB00BC64C1 /* ASPUButtonOptionTableViewCell.swift in Sources */,
@@ -10416,6 +10466,7 @@
 				82A41B932C2C2E9900254AE2 /* RecentDatesListViewModel.swift in Sources */,
 				8276E6282C2CA44000216F28 /* TimeTableDayModel.swift in Sources */,
 				82F315C72C40C43200E826F9 /* SettablePersonalityOptionsListViewModel.swift in Sources */,
+				82F495D72C57291F001D2802 /* HandDrawingGesturesViewController.swift in Sources */,
 				82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */,
 				822527AA2BADAC8700B66314 /* AdaptiveNewsOptionsListViewModel + Extensions.swift in Sources */,
 				8276E6252C2CA36700216F28 /* TimeTableDatesListViewController + Extensions.swift in Sources */,
@@ -10719,6 +10770,7 @@
 				828E10332BD169CA00ECC5F4 /* TabsColorOptionTableViewCell.swift in Sources */,
 				828397702AD5C4B7000F355A /* AppIconsListTableViewController.swift in Sources */,
 				82D37FDA2BEC2B690035CB57 /* SavedImagesListTableViewController + Extensions.swift in Sources */,
+				82F495DA2C57324F001D2802 /* CanvasView.swift in Sources */,
 				8234E60F2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift in Sources */,
 				828397682AD5BEC2000F355A /* AppIconModel.swift in Sources */,
 				826FB39D2C206924007EDA25 /* NewsOptionsPostionOptionTableViewCell.swift in Sources */,
@@ -10954,7 +11006,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.7;
+				MARKETING_VERSION = 2.8.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -10993,7 +11045,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.7;
+				MARKETING_VERSION = 2.8.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

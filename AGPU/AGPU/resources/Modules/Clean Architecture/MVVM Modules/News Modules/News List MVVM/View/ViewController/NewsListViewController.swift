@@ -157,6 +157,12 @@ final class NewsListViewController: UIViewController {
             self.showWhatsNewVC()
         }
         
+        let gesturesAction = UIAction(title: "Жесты") { _ in
+            let vc = HandDrawingGesturesViewController(category: self.viewModel.abbreviation, page: self.viewModel.newsResponse.currentPage ?? 0)
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+        }
+        
         var pagesAction = UIAction(title: "Страницы") { _ in}
         let recentNews = UIAction(title: "Недавние") { _ in
             let vc = RecentNewsListViewController()
@@ -240,6 +246,7 @@ final class NewsListViewController: UIViewController {
             var opt: [UIMenuElement] = [
                 categoriesAction,
                 whatsNewAction,
+                gesturesAction,
                 pagesAction,
                 recentNews,
                 displayModes,
@@ -249,7 +256,7 @@ final class NewsListViewController: UIViewController {
                 settingsAction
             ]
             
-            let position = UserDefaults.standard.object(forKey: "news options position") as? [Int] ?? [0,1,2,3,4,5,6,7,8]
+            let position = UserDefaults.standard.object(forKey: "news options position") as? [Int] ?? [0,1,2,3,4,5,6,7,8,9]
             
             for option in opt {
                 for number in position {
