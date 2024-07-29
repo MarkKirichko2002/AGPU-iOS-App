@@ -220,8 +220,8 @@ class HandDrawingGesturesViewController: UIViewController {
         
         canvasView.snp.makeConstraints { maker in
             maker.top.equalTo(pageNumber.snp.bottom).offset(50)
-            maker.width.equalTo(250)
-            maker.height.equalTo(250)
+            maker.width.equalTo(200)
+            maker.height.equalTo(200)
             maker.centerX.equalToSuperview()
         }
     }
