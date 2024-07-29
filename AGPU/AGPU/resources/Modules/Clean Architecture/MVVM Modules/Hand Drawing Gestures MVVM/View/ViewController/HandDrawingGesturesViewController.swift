@@ -145,6 +145,8 @@ class HandDrawingGesturesViewController: UIViewController {
         view.addSubview(recognizeButton)
         recognizeButton.addTarget(self, action: #selector(recognize), for: .touchUpInside)
         recognizeButton.snp.makeConstraints { maker in
+            maker.width.equalTo(120)
+            maker.height.equalTo(30)
             maker.top.equalTo(canvasView.snp.bottom).offset(50)
             maker.centerX.equalToSuperview()
         }
@@ -153,7 +155,7 @@ class HandDrawingGesturesViewController: UIViewController {
     @objc private func recognize() {
         
         let image = UIImage(view: canvasView) // get UIImage from CanvasView
-        let scaledImage = scaleImage(image: image, toSize: CGSize(width: 56, height: 56)) // scale the image to the required size of 28x28 for better recognition results
+        let scaledImage = scaleImage(image: image, toSize: CGSize(width: 28, height: 28)) // scale the image to the required size of 28x28 for better recognition results
         
         let imageRequestHandler = VNImageRequestHandler(cgImage: scaledImage.cgImage!, options: [:]) // create a handler that should perform the vision request
         
@@ -245,7 +247,7 @@ class HandDrawingGesturesViewController: UIViewController {
     }
     
     // scales any UIImage to a desired target size
-    func scaleImage (image: UIImage, toSize size: CGSize) -> UIImage {
+    func scaleImage(image: UIImage, toSize size: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
         image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
