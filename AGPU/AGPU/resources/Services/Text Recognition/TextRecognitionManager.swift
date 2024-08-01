@@ -8,7 +8,7 @@
 import UIKit
 import Vision
 
-class TextRecognitionManager {
+final class TextRecognitionManager {
     
     var requests = [VNRequest]() // holds Image Classification Request
     

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ForEveryStatusTableViewCell: UITableViewCell {
+final class ForEveryStatusTableViewCell: UITableViewCell {
     
     static let identifier = "ForEveryStatusTableViewCell"
     private let animation = AnimationClass()

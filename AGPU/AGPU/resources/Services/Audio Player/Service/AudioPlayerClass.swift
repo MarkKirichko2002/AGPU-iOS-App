@@ -7,7 +7,7 @@
 
 import AVFoundation
 
-class AudioPlayerClass: NSObject {
+final class AudioPlayerClass: NSObject {
     
     var player: AVAudioPlayer?
     var isPlaying = false

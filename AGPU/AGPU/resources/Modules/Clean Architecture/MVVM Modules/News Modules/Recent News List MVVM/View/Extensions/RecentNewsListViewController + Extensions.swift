@@ -19,11 +19,16 @@ extension RecentNewsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
+            let resetAction = UIAction(title: "Сбросить", image: UIImage(named: "refresh")) { _ in
+                self.viewModel.resetProgress(id: indexPath.row)
+            }
+            
             let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
                 self.shareInfo(image: UIImage(named: "АГПУ")!, title: "\(self.viewModel.articleItem(index: indexPath.row).title)", text: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))")
             }
             
             return UIMenu(title: self.viewModel.articleItem(index: indexPath.row).title, children: [
+                resetAction,
                 shareAction
             ])
         }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RecentMomentsListViewModel {
+final class RecentMomentsListViewModel {
     
     let style = SettingsManager().getSavedCommunicationStyle()
     let name = UserDefaults.standard.string(forKey: "name") ?? ""

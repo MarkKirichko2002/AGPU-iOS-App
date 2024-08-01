@@ -12,7 +12,7 @@ protocol IDayTableViewCell: AnyObject {
     func dateWasSelected(date: String)
 }
 
-class DayTableViewCell: UITableViewCell {
+final class DayTableViewCell: UITableViewCell {
     
     static let identifier = "DayTableViewCell"
     

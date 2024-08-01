@@ -23,7 +23,11 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
         let message = style == .formal ? "\(name.isEmpty ? "Вы" : "\(name) вы") еще не открывали не одной веб-страницы" : "\(name.isEmpty ? "У тебя нет" : "\(name) у тебя нет") недавно просмотренной веб-страницы"
         
         if let page = UserDefaults.loadData(type: RecentWebPageModel.self, key: "last page") {
-            completion(page)
+            if !page.url.isEmpty {
+                completion(page)
+            } else {
+                alertHandler?("Нет недавней веб-страницы", message)
+            }
         } else {
             alertHandler?("Нет недавней веб-страницы", message)
         }
@@ -34,20 +38,13 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
         let message = style == .formal ? "\(name.isEmpty ? "Вы" : "\(name) вы") еще не открывали не одной новости" : "\(name.isEmpty ? "У тебя нет" : "\(name) у тебя нет") недавно просмотренной новости"
         
         if let article = UserDefaults.loadData(type: RecentWebPageModel.self, key: "last article") {
-            completion(article)
+            if !article.url.isEmpty {
+                completion(article)
+            } else {
+                alertHandler?("Нет недавней новости", message)
+            }
         } else {
             alertHandler?("Нет недавней новости", message)
-        }
-    }
-    
-    func getLastWordDocument(completion: @escaping(RecentWordDocumentModel)->Void) {
-        
-        let message = style == .formal ? "\(name.isEmpty ? "Вы" : "\(name) вы") еще не открывали не одного Word-документа" : "\(name.isEmpty ? "У тебя нет" : "\(name) у тебя нет") недавно просмотренного Word-документа"
-        
-        if let document = UserDefaults.loadData(type: RecentWordDocumentModel.self, key: "last word document") {
-            completion(document)
-        } else {
-            alertHandler?("Нет недавнего Word-документа", message)
         }
     }
     
@@ -56,9 +53,28 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
         let message = style == .formal ? "\(name.isEmpty ? "Вы" : "\(name) вы") еще не открывали не одного PDF-документа" : "\(name.isEmpty ? "У тебя нет" : "\(name) у тебя нет") недавно просмотренного PDF-документа"
         
         if let pdf = UserDefaults.loadData(type: RecentPDFModel.self, key: "last pdf") {
-            completion(pdf)
+            if !pdf.url.isEmpty {
+                completion(pdf)
+            } else {
+                alertHandler?("Нет недавнего PDF-документа.", message)
+            }
         } else {
             alertHandler?("Нет недавнего PDF-документа.", message)
+        }
+    }
+    
+    func getLastWordDocument(completion: @escaping(RecentWordDocumentModel)->Void) {
+        
+        let message = style == .formal ? "\(name.isEmpty ? "Вы" : "\(name) вы") еще не открывали не одного Word-документа" : "\(name.isEmpty ? "У тебя нет" : "\(name) у тебя нет") недавно просмотренного Word-документа"
+        
+        if let document = UserDefaults.loadData(type: RecentWordDocumentModel.self, key: "last word document") {
+            if !document.url.isEmpty {
+                completion(document)
+            } else {
+                alertHandler?("Нет недавнего Word-документа", message)
+            }
+        } else {
+            alertHandler?("Нет недавнего Word-документа", message)
         }
     }
     
@@ -80,7 +96,11 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
         let message = style == .formal ? "\(name.isEmpty ? "Вы" : "\(name) вы") еще не смотрели не одного видео" : "\(name.isEmpty ? "У тебя нет" : "\(name) у тебя нет") недавно просмотренного видео"
         
         if let videoUrl = UserDefaults.standard.string(forKey: "last video") {
-            completion(videoUrl)
+            if !videoUrl.isEmpty {
+                completion(videoUrl)
+            } else {
+                alertHandler?("Нет недавнего видео", message)
+            }
         } else {
             alertHandler?("Нет недавнего видео", message)
         }
@@ -168,6 +188,27 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
         let recentID = UserDefaults.standard.string(forKey: "recentGroup") ?? "ВМ-ИВТ-2-1"
         let recentDate = UserDefaults.standard.string(forKey: "recentDate") ?? dateManager.getCurrentDate()
         return (recentID, recentDate)
+    }
+    
+    func resetData(index: Int) {
+        switch momentItem(index: index).id {
+        case 1:
+            UserDefaults.saveData(object: RecentWebPageModel(date: "", time: "", url: "", position: CGPoint(x: 0, y: 0)), key: "last page") {}
+        case 2:
+            UserDefaults.saveData(object: RecentWebPageModel(date: "", time: "", url: "", position: CGPoint(x: 0, y: 0)), key: "last article") {}
+        case 3:
+            UserDefaults.saveData(object: RecentPDFModel(url: "", pageNumber: 0), key: "last pdf") {}
+        case 4:
+            UserDefaults.saveData(object: RecentWordDocumentModel(date: "", time: "", url: "", position: CGPoint(x: 0, y: 0)), key: "last word document") {}
+        case 5:
+            UserDefaults.standard.setValue("ВМ-ИВТ-2-1", forKey: "recentGroup")
+            UserDefaults.standard.setValue(dateManager.getCurrentDate(), forKey: "recentDate")
+            UserDefaults.standard.setValue("GROUP", forKey: "recentOwner")
+        case 6:
+            UserDefaults.standard.setValue("", forKey: "last video")
+        default:
+            break
+        }
     }
     
     func registerAlertHandler(block: @escaping(String, String)->Void) {

@@ -7,6 +7,6 @@
 
 import Foundation
 
-class AGPUNewsService {
+final class AGPUNewsService {
     
 }

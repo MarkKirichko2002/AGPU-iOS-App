@@ -10,7 +10,7 @@ import Vapor
 import FluentPostgresDriver
 import Alamofire
 
-class DBService {
+final class DBService {
     
     let app = Application()
     

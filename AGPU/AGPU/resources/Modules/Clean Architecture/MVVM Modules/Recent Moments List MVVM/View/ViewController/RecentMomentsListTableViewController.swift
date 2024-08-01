@@ -118,6 +118,11 @@ final class RecentMomentsListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             let moment = self.viewModel.momentItem(index: indexPath.row)
+            
+            let resetAction = UIAction(title: "Сбросить", image: UIImage(named: "refresh")) { _ in
+                self.viewModel.resetData(index: indexPath.row)
+            }
+            
             let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
                 if moment.id != 5 {
                     self.viewModel.contentForShare(index: indexPath.row) { item in
@@ -132,6 +137,7 @@ final class RecentMomentsListTableViewController: UITableViewController {
             }
             
             return UIMenu(title: self.viewModel.momentItem(index: indexPath.row).name, children: [
+                resetAction,
                 shareAction
             ])
         }
