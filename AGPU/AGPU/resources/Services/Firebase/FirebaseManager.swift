@@ -1,0 +1,26 @@
+//
+//  FirebaseManager.swift
+//  AGPU
+//
+//  Created by Марк Киричко on 05.08.2024.
+//
+
+import FirebaseRemoteConfig
+
+final class FirebaseManager {
+    
+    func getConfig(completion: @escaping(String)->Void) {
+        let remoteConfig = RemoteConfig.remoteConfig()
+        let settings = RemoteConfigSettings()
+        settings.minimumFetchInterval = 0
+        remoteConfig.configSettings = settings
+        
+        remoteConfig.fetch { (status, error) in
+            if status == .success {
+                remoteConfig.activate()
+                let fetchedValue = remoteConfig["api_domain"].stringValue
+                completion(fetchedValue)
+            }
+        }
+    }
+}

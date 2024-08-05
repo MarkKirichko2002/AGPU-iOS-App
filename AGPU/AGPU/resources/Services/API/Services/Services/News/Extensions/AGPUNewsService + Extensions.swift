@@ -14,7 +14,7 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
     // получить новости
     func getNews(abbreviation: String) async throws -> Result<NewsResponse, Error> {
         
-        let url = URL(string: "https://\(HostName.host)/api/news/\(abbreviation)")!
+        let url = URL(string: "https://\(domain)/api/news/\(abbreviation)")!
         let request = URLRequest(url: url)
         
         let data = try await URLSession.shared.data(for: request)
@@ -30,7 +30,7 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
     // получить новости АГПУ
     func getAGPUNews() async throws -> Result<NewsResponse, Error> {
         
-        let url = URL(string: "https://\(HostName.host)/api/news")!
+        let url = URL(string: "https://\(domain)/api/news")!
         let request = URLRequest(url: url)
         
         let data = try await URLSession.shared.data(for: request)
@@ -94,11 +94,11 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
     func urlForPagination(abbreviation: String, page: Int)-> String {
         var url = ""
         if abbreviation != "-" {
-            url = "https://\(HostName.host)/api/news/\(abbreviation)?page=\(page)"
+            url = "https://\(domain)/api/news/\(abbreviation)?page=\(page)"
             print(url)
             return url
         } else {
-            url = "https://\(HostName.host)/api/news?page=\(page)"
+            url = "https://\(domain)/api/news?page=\(page)"
             print(url)
             return url
         }
