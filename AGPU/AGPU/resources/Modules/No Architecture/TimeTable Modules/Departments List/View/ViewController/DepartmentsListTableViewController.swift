@@ -15,7 +15,7 @@ class DepartmentsListTableViewController: UITableViewController {
 
     let service = DBService(response: .departments)
     
-    var departments = [Department]()
+    var departments = Departments.departments
     
     weak var delegate: DepartmentsListTableViewControllerDelegate?
     
@@ -23,7 +23,7 @@ class DepartmentsListTableViewController: UITableViewController {
         super.viewDidLoad()
         setUpNavigation()
         setUpTable()
-        getData()
+        //getData()
     }
     
     private func setUpNavigation() {
@@ -42,17 +42,17 @@ class DepartmentsListTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
-    private func getData() {
-        DispatchQueue.global().async {
-            self.service.getData()
-        }
-        DispatchQueue.main.async {
-            self.service.getDepartments { departments in
-                self.departments = departments
-                self.tableView.reloadData()
-            }
-        }
-    }
+//    private func getData() {
+//        DispatchQueue.global().async {
+//            self.service.getData()
+//        }
+//        DispatchQueue.main.async {
+//            self.service.getDepartments { departments in
+//                self.departments = departments
+//                self.tableView.reloadData()
+//            }
+//        }
+//    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = TeachersListTableViewController(id: departments[indexPath.row].id ?? 1)

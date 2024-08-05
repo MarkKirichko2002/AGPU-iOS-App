@@ -141,6 +141,7 @@
 		8225AA0D2C615DFC00FEFFE1 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 8225AA0C2C615DFC00FEFFE1 /* FirebaseStorageCombine-Community */; };
 		8225AA0F2C615DFC00FEFFE1 /* FirebaseVertexAI-Preview in Frameworks */ = {isa = PBXBuildFile; productRef = 8225AA0E2C615DFC00FEFFE1 /* FirebaseVertexAI-Preview */; };
 		8225AA122C615E7200FEFFE1 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8225AA112C615E7200FEFFE1 /* FirebaseManager.swift */; };
+		8225AA152C61675A00FEFFE1 /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8225AA142C61675A00FEFFE1 /* Department.swift */; };
 		822605EF2A84A0600055925F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82808E912A31F12500DEEB16 /* Assets.xcassets */; };
 		822605F62A8532410055925F /* RecentMomentsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822605F52A8532410055925F /* RecentMomentsListViewModelProtocol.swift */; };
 		822605F82A8532E20055925F /* RecentMomentsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822605F72A8532E20055925F /* RecentMomentsListViewModel.swift */; };
@@ -315,7 +316,7 @@
 		827674DE2C48B4710083A849 /* Fluent in Frameworks */ = {isa = PBXBuildFile; productRef = 827674DD2C48B4710083A849 /* Fluent */; };
 		827674E12C48B4A80083A849 /* FluentPostgresDriver in Frameworks */ = {isa = PBXBuildFile; productRef = 827674E02C48B4A80083A849 /* FluentPostgresDriver */; };
 		827674E72C48B5280083A849 /* DBResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827674E62C48B5280083A849 /* DBResponse.swift */; };
-		827674E92C48B5640083A849 /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827674E82C48B5640083A849 /* Department.swift */; };
+		827674E92C48B5640083A849 /* DepartmentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827674E82C48B5640083A849 /* DepartmentItem.swift */; };
 		827674EB2C48B58F0083A849 /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827674EA2C48B58F0083A849 /* Teacher.swift */; };
 		827674ED2C48B5C50083A849 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827674EC2C48B5C50083A849 /* DBService.swift */; };
 		827674F12C48B61D0083A849 /* DepartmentsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827674F02C48B61D0083A849 /* DepartmentsListTableViewController.swift */; };
@@ -831,6 +832,7 @@
 		822527A92BADAC8700B66314 /* AdaptiveNewsOptionsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdaptiveNewsOptionsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		8225A9DF2C615D2600FEFFE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8225AA112C615E7200FEFFE1 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		8225AA142C61675A00FEFFE1 /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
 		822605F52A8532410055925F /* RecentMomentsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMomentsListViewModelProtocol.swift; sourceTree = "<group>"; };
 		822605F72A8532E20055925F /* RecentMomentsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMomentsListViewModel.swift; sourceTree = "<group>"; };
 		822605F92A8532F30055925F /* RecentMomentsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentMomentsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
@@ -1002,7 +1004,7 @@
 		82761A2E2B46429200D9976F /* SplashScreensListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreensListViewModel.swift; sourceTree = "<group>"; };
 		82761A302B4642A300D9976F /* SplashScreensListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SplashScreensListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		827674E62C48B5280083A849 /* DBResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBResponse.swift; sourceTree = "<group>"; };
-		827674E82C48B5640083A849 /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
+		827674E82C48B5640083A849 /* DepartmentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentItem.swift; sourceTree = "<group>"; };
 		827674EA2C48B58F0083A849 /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
 		827674EC2C48B5C50083A849 /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
 		827674F02C48B61D0083A849 /* DepartmentsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentsListTableViewController.swift; sourceTree = "<group>"; };
@@ -2832,6 +2834,14 @@
 			path = Firebase;
 			sourceTree = "<group>";
 		};
+		8225AA132C61672200FEFFE1 /* Departments */ = {
+			isa = PBXGroup;
+			children = (
+				8225AA142C61675A00FEFFE1 /* Department.swift */,
+			);
+			path = Departments;
+			sourceTree = "<group>";
+		};
 		822605F12A8532050055925F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -4645,6 +4655,7 @@
 		8268886A2A34866D00434219 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8225AA132C61672200FEFFE1 /* Departments */,
 				8260EEAD2C3C8A5900DFFC4D /* Weather */,
 				82C752472C28893E00161AEF /* TabBar Icon */,
 				826FB3A12C22FEE9007EDA25 /* Timetable Changes */,
@@ -5063,7 +5074,7 @@
 			isa = PBXGroup;
 			children = (
 				827674E62C48B5280083A849 /* DBResponse.swift */,
-				827674E82C48B5640083A849 /* Department.swift */,
+				827674E82C48B5640083A849 /* DepartmentItem.swift */,
 				827674EA2C48B58F0083A849 /* Teacher.swift */,
 			);
 			path = Models;
@@ -10294,7 +10305,7 @@
 			files = (
 				82E4C5612A6B14C700F65A67 /* SettingsListViewModel + Extensions.swift in Sources */,
 				82E4C54A2A6B11BB00F65A67 /* AGPUFacultiesListViewModelProtocol.swift in Sources */,
-				827674E92C48B5640083A849 /* Department.swift in Sources */,
+				827674E92C48B5640083A849 /* DepartmentItem.swift in Sources */,
 				82F297A72C4F18DB007697C6 /* CorpsListTableViewController.swift in Sources */,
 				82B24A7A2A81945D008B94E4 /* AllWeeksListViewModel + Extensions.swift in Sources */,
 				82A41B972C2C34B800254AE2 /* RecentDatesListViewController + Extensions.swift in Sources */,
@@ -10794,6 +10805,7 @@
 				822527662BA77ECA00B66314 /* WeekDaysListViewModel + Extensions.swift in Sources */,
 				821B72762BD17358000460E2 /* TabColorsListTableViewController.swift in Sources */,
 				82754C692BD3DBB30021E76A /* SplashScreenBackgroundColorsListViewModel.swift in Sources */,
+				8225AA152C61675A00FEFFE1 /* Department.swift in Sources */,
 				82505F502A7FBD7D001DE24A /* TimeTableWeekListTableViewController.swift in Sources */,
 				82162D8A2AB5CE6200840D90 /* CalendarViewModel.swift in Sources */,
 				82F315C32C40C35D00E826F9 /* PersonalityOptions.swift in Sources */,

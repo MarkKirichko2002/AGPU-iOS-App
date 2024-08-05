@@ -1,5 +1,5 @@
 //
-//  Department.swift
+//  DepartmentItem.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 18.07.2024.
@@ -9,7 +9,7 @@ import Foundation
 import Vapor
 import Fluent
 
-final class Department: Model, Content {
+final class DepartmentItem: Model, Content {
     
     static let schema = "departments"
     

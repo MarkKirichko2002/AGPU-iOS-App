@@ -15,13 +15,12 @@ class TeachersListTableViewController: UITableViewController {
 
     let service = DBService(response: .teachers)
     
-    var teachers = [Teacher]()
-    var id = 1
+    var teachers = [String]()
     
     weak var delegate: TeachersListTableViewControllerDelegate?
     
     init(id: Int) {
-        self.id = id
+        self.teachers = Departments.departments[id - 1].teachers
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -33,7 +32,7 @@ class TeachersListTableViewController: UITableViewController {
         super.viewDidLoad()
         setUpNavigation()
         setUpTable()
-        getData()
+        //getData()
     }
     
     private func setUpNavigation() {
@@ -63,18 +62,18 @@ class TeachersListTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
-    private func getData() {
-        service.id = id
-        DispatchQueue.global().async {
-            self.service.getData()
-        }
-        DispatchQueue.main.async {
-            self.service.getTeachers { teachers in
-                self.teachers = teachers
-                self.tableView.reloadData()
-            }
-        }
-    }
+//    private func getData() {
+//        service.id = id
+//        DispatchQueue.global().async {
+//            self.service.getData()
+//        }
+//        DispatchQueue.main.async {
+//            self.service.getTeachers { teachers in
+//                self.teachers = teachers
+//                self.tableView.reloadData()
+//            }
+//        }
+//    }
     
     private func getSavedId()-> String {
         let id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-2-1"
@@ -83,7 +82,7 @@ class TeachersListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let teacher = teachers[indexPath.row]
-        let abbreviation = "\(teacher.lastName) \(teacher.firstName) \(teacher.fatherName ?? "")".teacherAbbreviation()
+        let abbreviation = teacher.teacherAbbreviation()
         delegate?.teacherWasSelected(teacher: abbreviation)
         navigationController?.popViewController(animated: true)
         HapticsManager.shared.hapticFeedback()
@@ -96,7 +95,7 @@ class TeachersListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let teacher = teachers[indexPath.row]
-        let abbreviation = "\(teacher.lastName) \(teacher.firstName) \(teacher.fatherName ?? "")".teacherAbbreviation()
+        let abbreviation = teacher.teacherAbbreviation()
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.tintColor = .systemGreen
         cell.textLabel?.text = abbreviation

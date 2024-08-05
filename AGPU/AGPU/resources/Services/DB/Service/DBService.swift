@@ -44,8 +44,8 @@ final class DBService {
         switch response {
             
         case .departments:
-            app.routes.get("department") { req async throws -> [Department] in
-                let result = try await Department.query(on: req.db).all()
+            app.routes.get("DepartmentItem") { req async throws -> [DepartmentItem] in
+                let result = try await DepartmentItem.query(on: req.db).all()
                 return result
             }
             
@@ -55,7 +55,7 @@ final class DBService {
             app.routes.get("teachers") { req async throws -> [Teacher] in
                 if let sql = req.db as? SQLDatabase {
                     let number = String(self.id)
-                    let result = try await sql.raw("SELECT * FROM teachers t JOIN lnk_teacher_department ltd ON t.id = ltd.teacher_id WHERE ltd.department_id = \(unsafeRaw: number)").all(decodingFluent: Teacher.self)
+                    let result = try await sql.raw("SELECT * FROM teachers t JOIN lnk_teacher_DepartmentItem ltd ON t.id = ltd.teacher_id WHERE ltd.DepartmentItem_id = \(unsafeRaw: number)").all(decodingFluent: Teacher.self)
                     return result
                 }
                 return []
@@ -80,14 +80,14 @@ final class DBService {
         app.shutdown()
     }
     
-    func getDepartments(completion: @escaping([Department])->Void) {
-        AF.request("http://localhost:8080/department")
+    func getDepartmentItems(completion: @escaping([DepartmentItem])->Void) {
+        AF.request("http://localhost:8080/DepartmentItem")
             .responseData { response in
                 print(response.response?.statusCode)
                 switch response.result {
                 case .success(let data):
                     do {
-                        let result = try JSONDecoder().decode([Department].self, from: data)
+                        let result = try JSONDecoder().decode([DepartmentItem].self, from: data)
                         self.stopServer()
                         completion(result)
                     } catch {
