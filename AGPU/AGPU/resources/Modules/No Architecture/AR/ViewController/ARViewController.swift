@@ -21,6 +21,9 @@ class ARViewController: UIViewController {
     
     private let arView = ARView()
     
+    // MARK: - сервисы
+    private let dateManager = DateManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
@@ -61,11 +64,15 @@ class ARViewController: UIViewController {
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
         }
+        let share = UIAction(title: "Поделиться") { _ in
+            self.makeScreenShot()
+        }
         return UIMenu(title: "AR", children: [
             refreshAction,
             setUpMeshListMenu(),
             setUpPlaneListMenu(),
             imagesList,
+            share
         ])
     }
     
@@ -184,6 +191,12 @@ class ARViewController: UIViewController {
     private func installGestures(on object: ModelEntity) {
         object.generateCollisionShapes(recursive: true)
         arView.installGestures([.all], for: object)
+    }
+    
+    private func makeScreenShot() {
+        arView.snapshot(saveToHDR: true) { result in
+            self.ShareImage(image: UIImage(cgImage: (result?.cgImage!)!), title: "AR-скриншот", text: self.dateManager.getCurrentDate())
+        }
     }
 }
 
