@@ -85,6 +85,7 @@ extension ContactsListTableViewController {
         alertVC.addAction(saveAction)
         alertVC.addAction(cancel)
         
+        SpeechSynthesizerManager.shared.checkIsSaying(text: "\(alertVC.title ?? "") \(alertVC.message ?? "")")
         present(alertVC, animated: true)
     }
     
@@ -118,6 +119,7 @@ extension ContactsListTableViewController {
         alertVC.addAction(saveAction)
         alertVC.addAction(cancel)
         
+        SpeechSynthesizerManager.shared.checkIsSaying(text: "\(alertVC.title ?? "") \(alertVC.message ?? "")")
         present(alertVC, animated: true)
     }
 }

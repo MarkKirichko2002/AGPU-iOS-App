@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DocumentsListViewModel {
+final class DocumentsListViewModel {
     
     var alertHandler: (()-> Void)?
     var dataChangedHandler:(()-> Void)?
@@ -16,5 +16,6 @@ class DocumentsListViewModel {
     
     // MARK: - сервисы
     let realmManager = RealmManager()
+    let speechSynthesizerManager = SpeechSynthesizerManager()
     
 }

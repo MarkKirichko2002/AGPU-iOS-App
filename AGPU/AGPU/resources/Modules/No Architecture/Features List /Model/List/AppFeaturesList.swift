@@ -133,7 +133,7 @@ struct AppFeaturesList {
         AppFeatureModel(
             id: 18,
             name: "Settable Communication",
-            description: "Settable Communication (настраиваемое общение) - вы можете указать свое имя, а также стиль общения формальный или фамильярный.",
+            description: "Settable Communication (настраиваемое общение) - вы можете указать свое имя, а также стиль общения формальный или фамильярный и включить/выключить озвучивание сообщений.",
             videoURL: ""
         ),
     ]

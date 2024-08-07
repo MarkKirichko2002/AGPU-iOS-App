@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SayingOptionTableViewCell" rowHeight="92" id="JxI-7N-OcX" customClass="SayingOptionTableViewCell" customModule="AGPU" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="430" height="92"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JxI-7N-OcX" id="DtH-Rc-qET">
+                <rect key="frame" x="0.0" y="0.0" width="430" height="92"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sound" translatesAutoresizingMaskIntoConstraints="NO" id="ip8-zF-zsS" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
+                        <rect key="frame" x="20" y="15" width="65" height="65"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="65" id="0lW-SN-5OF"/>
+                            <constraint firstAttribute="width" constant="65" id="8X9-0t-JK9"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Озвучивать сообщения" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VhO-PU-b2B">
+                        <rect key="frame" x="95" y="14.999999999999998" width="203" height="20.333333333333329"/>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P0x-nG-dj8">
+                        <rect key="frame" x="95" y="45.333333333333336" width="51" height="31.000000000000007"/>
+                        <connections>
+                            <action selector="switchAction:" destination="JxI-7N-OcX" eventType="touchUpInside" id="vGA-Bh-TkJ"/>
+                        </connections>
+                    </switch>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="ip8-zF-zsS" secondAttribute="bottom" constant="15" id="2gS-Lc-Te9"/>
+                    <constraint firstItem="VhO-PU-b2B" firstAttribute="top" secondItem="ip8-zF-zsS" secondAttribute="top" id="9sV-CI-WvX"/>
+                    <constraint firstItem="P0x-nG-dj8" firstAttribute="top" secondItem="VhO-PU-b2B" secondAttribute="bottom" constant="10" id="G2b-In-J1d"/>
+                    <constraint firstItem="VhO-PU-b2B" firstAttribute="leading" secondItem="ip8-zF-zsS" secondAttribute="trailing" constant="10" id="J94-3v-fPM"/>
+                    <constraint firstItem="ip8-zF-zsS" firstAttribute="top" secondItem="DtH-Rc-qET" secondAttribute="top" constant="15" id="X87-OX-1Ro"/>
+                    <constraint firstItem="ip8-zF-zsS" firstAttribute="leading" secondItem="DtH-Rc-qET" secondAttribute="leading" constant="20" id="dSy-Bq-Lmx"/>
+                    <constraint firstItem="P0x-nG-dj8" firstAttribute="leading" secondItem="VhO-PU-b2B" secondAttribute="leading" id="iE3-Vc-DQw"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="SayingOptionIcon" destination="ip8-zF-zsS" id="SH7-hE-SBa"/>
+                <outlet property="SayingOptionLabel" destination="VhO-PU-b2B" id="XDt-mo-nqQ"/>
+                <outlet property="Switch" destination="P0x-nG-dj8" id="W22-oi-ZTt"/>
+            </connections>
+            <point key="canvasLocation" x="48.854961832061065" y="-19.014084507042256"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="sound" width="24" height="24"/>
+    </resources>
+</document>

@@ -35,6 +35,7 @@ class SettablePersonalityOptionsListTableViewController: UITableViewController {
     
     private func setUpTable() {
         tableView.register(SettablePersonalityOptionTableViewCell.self, forCellReuseIdentifier: SettablePersonalityOptionTableViewCell.identifier)
+        tableView.register(UINib(nibName: SayingOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SayingOptionTableViewCell.identifier)
     }
     
     private func bindViewModel() {
@@ -67,22 +68,24 @@ class SettablePersonalityOptionsListTableViewController: UITableViewController {
         let cancel = UIAlertAction(title: "Отмена", style: .destructive)
         alertController.addAction(save)
         alertController.addAction(cancel)
+        
+        SpeechSynthesizerManager.shared.checkIsSaying(text: "\(alertController.title ?? "") \(alertController.message ?? "")")
         present(alertController, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let option = viewModel.options[indexPath.row]
-        switch option.id {
-        case 1:
+        switch indexPath.row {
+        case 0:
             showAlert()
-        case 2:
+            HapticsManager.shared.hapticFeedback()
+        case 1:
             let vc = CommunicationStyleVariantsListTableViewController()
             vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
+            HapticsManager.shared.hapticFeedback()
         default:
             break
         }
-        HapticsManager.shared.hapticFeedback()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -91,9 +94,14 @@ class SettablePersonalityOptionsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettablePersonalityOptionTableViewCell.identifier, for: indexPath) as? SettablePersonalityOptionTableViewCell else {return UITableViewCell()}
-        cell.configure(option: viewModel.optionItem(index: indexPath.row))
-        return cell
+        if indexPath.row == 2 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SayingOptionTableViewCell.identifier, for: indexPath) as? SayingOptionTableViewCell else {return UITableViewCell()}
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SettablePersonalityOptionTableViewCell.identifier, for: indexPath) as? SettablePersonalityOptionTableViewCell else {return UITableViewCell()}
+            cell.configure(option: viewModel.optionItem(index: indexPath.row))
+            return cell
+        }
     }
 }
 

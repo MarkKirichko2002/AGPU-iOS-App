@@ -154,7 +154,8 @@ class CustomSplashScreenEditorViewController: UIViewController {
         alertVC.addAction(photo)
         alertVC.addAction(camera)
         alertVC.addAction(cancel)
-        HapticsManager.shared.hapticFeedback()
+        
+        SpeechSynthesizerManager.shared.sayComment(text: "\(alertVC.title ?? "") \(alertVC.message ?? "")")
         present(alertVC, animated: true)
     }
     
@@ -170,7 +171,8 @@ class CustomSplashScreenEditorViewController: UIViewController {
         let cancel = UIAlertAction(title: "Отмена", style: .destructive)
         alertVC.addAction(changeAction)
         alertVC.addAction(cancel)
-        HapticsManager.shared.hapticFeedback()
+        
+        SpeechSynthesizerManager.shared.sayComment(text: "\(alertVC.title ?? "") \(alertVC.message ?? "")")
         present(alertVC, animated: true)
     }
     

@@ -21,7 +21,7 @@ class SettablePersonalityOptionsListViewModel {
     }
     
     func optionsCount()-> Int {
-        return options.count
+        return options.count + 1
     }
     
     func getData() {

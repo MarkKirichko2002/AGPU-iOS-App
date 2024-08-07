@@ -45,10 +45,7 @@ class SplashScreensListTableViewController: UITableViewController {
         }
         
         viewModel.registerAlertHandler { title, message in
-            let ok = UIAlertAction(title: "OK", style: .default)
-            let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alertVC.addAction(ok)
-            self.present(alertVC, animated: true)
+            self.showAlert(title: title, message: message, actions: [UIAlertAction(title: "OK", style: .default)])
         }
     }
     

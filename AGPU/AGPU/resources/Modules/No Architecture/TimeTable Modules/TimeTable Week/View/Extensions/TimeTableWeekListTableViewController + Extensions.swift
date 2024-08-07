@@ -41,8 +41,7 @@ extension TimeTableWeekListTableViewController: UITableViewDelegate {
                     }
                 
                 if self.timetable[indexPath.section].disciplines[indexPath.row].audienceID == ""  {
-                    let ok = UIAlertAction(title: "ОК", style: .default)
-                    self.showAlert(title: "Корпус не найден!", message: "К сожалению у данной пары отсутствует аудитория", actions: [ok])
+                    self.showAlert(title: "Корпус не найден!", message: "К сожалению у данной пары отсутствует аудитория", actions: [UIAlertAction(title: "ОК", style: .default)])
                 }
             }
             

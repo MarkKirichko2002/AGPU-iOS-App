@@ -486,6 +486,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         alertVC.addAction(photo)
         alertVC.addAction(camera)
         alertVC.addAction(cancel)
+        SpeechSynthesizerManager.shared.checkIsSaying(text: "\(alertVC.title ?? "") \(alertVC.message ?? "")")
         present(alertVC, animated: true)
     }
 }

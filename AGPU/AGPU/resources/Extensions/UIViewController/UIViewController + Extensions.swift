@@ -55,6 +55,7 @@ extension UIViewController {
         DispatchQueue.main.async {
             self.present(alertController, animated: true)
         }
+        SpeechSynthesizerManager.shared.checkIsSaying(text: "\(title) \(message)")
     }
     
     func ShareImage(image: UIImage, title: String, text: String) {
@@ -141,11 +142,6 @@ extension UIViewController {
         let vc = AppUpdateAlertViewController()
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
-    }
-    
-    func showNoVideoAlert() {
-        let ok = UIAlertAction(title: "ОК", style: .default)
-        self.showAlert(title: "Видео отсутствует", message: "У данного экрана заставки нет видео", actions: [ok])
     }
     
     func showHintAlert(type: Hints, isNotify: Bool) {
@@ -282,7 +278,7 @@ extension UIViewController: AVPlayerViewControllerDelegate {
             }
             UserDefaults.standard.setValue(video, forKey: "last video")
         } else {
-            showNoVideoAlert()
+            self.showAlert(title: "Видео отсутствует", message: "У данного экрана заставки нет видео", actions: [UIAlertAction(title: "ОК", style: .default)])
         }
     }
     

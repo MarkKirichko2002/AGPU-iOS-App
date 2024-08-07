@@ -48,8 +48,7 @@ final class RecentMomentsListTableViewController: UITableViewController {
     
     private func bindViewModel() {
         viewModel.registerAlertHandler { message, description in
-            let ok = UIAlertAction(title: "ОК", style: .default)
-            self.showAlert(title: message, message: description, actions: [ok])
+            self.showAlert(title: message, message: description, actions: [UIAlertAction(title: "ОК", style: .default)])
         }
     }
     

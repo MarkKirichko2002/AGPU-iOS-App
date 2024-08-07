@@ -171,6 +171,9 @@
 		8228E3A62A6C9DB300C1B6AD /* AGPUBuildingsMapViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E3A52A6C9DB300C1B6AD /* AGPUBuildingsMapViewModel + Extensions.swift */; };
 		8228E3AB2A6C9E3B00C1B6AD /* AGPUCurrentBuildingMapViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E3AA2A6C9E3B00C1B6AD /* AGPUCurrentBuildingMapViewModelProtocol.swift */; };
 		8228E3AD2A6C9E9E00C1B6AD /* AGPUCurrentBuildingMapViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E3AC2A6C9E9E00C1B6AD /* AGPUCurrentBuildingMapViewModel + Extensions.swift */; };
+		822B06F72C63F7BA00F54E28 /* SpeechSynthesizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822B06F62C63F7BA00F54E28 /* SpeechSynthesizerManager.swift */; };
+		822B06FC2C63F95700F54E28 /* SayingOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822B06FA2C63F95700F54E28 /* SayingOptionTableViewCell.swift */; };
+		822B06FD2C63F95700F54E28 /* SayingOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822B06FB2C63F95700F54E28 /* SayingOptionTableViewCell.xib */; };
 		822D57842BBC29050026962F /* clock_sound3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 822D57832BBC29050026962F /* clock_sound3.mp3 */; };
 		822DA7172BCACDC000CB4A21 /* quantorium.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 822DA7152BCACDBF00CB4A21 /* quantorium.mp4 */; };
 		822DA7182BCACDC000CB4A21 /* technopark.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 822DA7162BCACDC000CB4A21 /* technopark.mp4 */; };
@@ -861,6 +864,9 @@
 		8228E3A52A6C9DB300C1B6AD /* AGPUBuildingsMapViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUBuildingsMapViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		8228E3AA2A6C9E3B00C1B6AD /* AGPUCurrentBuildingMapViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUCurrentBuildingMapViewModelProtocol.swift; sourceTree = "<group>"; };
 		8228E3AC2A6C9E9E00C1B6AD /* AGPUCurrentBuildingMapViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUCurrentBuildingMapViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		822B06F62C63F7BA00F54E28 /* SpeechSynthesizerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizerManager.swift; sourceTree = "<group>"; };
+		822B06FA2C63F95700F54E28 /* SayingOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SayingOptionTableViewCell.swift; sourceTree = "<group>"; };
+		822B06FB2C63F95700F54E28 /* SayingOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SayingOptionTableViewCell.xib; sourceTree = "<group>"; };
 		822D57832BBC29050026962F /* clock_sound3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = clock_sound3.mp3; sourceTree = "<group>"; };
 		822DA7152BCACDBF00CB4A21 /* quantorium.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = quantorium.mp4; sourceTree = "<group>"; };
 		822DA7162BCACDC000CB4A21 /* technopark.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = technopark.mp4; sourceTree = "<group>"; };
@@ -3124,6 +3130,14 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		822B06F52C63F79600F54E28 /* Speech Synthesizer */ = {
+			isa = PBXGroup;
+			children = (
+				822B06F62C63F7BA00F54E28 /* SpeechSynthesizerManager.swift */,
+			);
+			path = "Speech Synthesizer";
+			sourceTree = "<group>";
+		};
 		822FB20A2AC5DC160083E016 /* Sub Groups List MVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -3218,6 +3232,7 @@
 		8234B2FE2A3242CC0091810F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				822B06F52C63F79600F54E28 /* Speech Synthesizer */,
 				827674E22C48B4B20083A849 /* DB */,
 				8225AA102C615E5500FEFFE1 /* Firebase */,
 				82D6C3302A5E1DD100FB7F5D /* API */,
@@ -9723,6 +9738,8 @@
 			isa = PBXGroup;
 			children = (
 				82F315D82C41AAB900E826F9 /* SettablePersonalityOptionTableViewCell.swift */,
+				822B06FA2C63F95700F54E28 /* SayingOptionTableViewCell.swift */,
+				822B06FB2C63F95700F54E28 /* SayingOptionTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -10245,6 +10262,7 @@
 				82061CCC2B09A5920073D727 /* TimetableOptionsTableViewCell.xib in Resources */,
 				82989AD42A6E36C700F27858 /* FacultyCathedraTableViewCell.xib in Resources */,
 				82FC88202BBDFC5000A2EF59 /* timetable.mp4 in Resources */,
+				822B06FD2C63F95700F54E28 /* SayingOptionTableViewCell.xib in Resources */,
 				828397752AD5C706000F355A /* PersonalizedAppIconTableViewCell.xib in Resources */,
 				82920B6B2AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.xib in Resources */,
 				8225A9E02C615D2700FEFFE1 /* GoogleService-Info.plist in Resources */,
@@ -10762,6 +10780,7 @@
 				82BCB5742AB3AD0E00F3A321 /* PairTypesListViewModel.swift in Sources */,
 				82C26C802BD7F13D0039D86D /* DisplayModeOptionsListViewModel .swift in Sources */,
 				827674E72C48B5280083A849 /* DBResponse.swift in Sources */,
+				822B06FC2C63F95700F54E28 /* SayingOptionTableViewCell.swift in Sources */,
 				825738782C108AED000D6CAC /* IContactsListViewModel.swift in Sources */,
 				82426C732A71476D00D5AA57 /* ForStudentSections.swift in Sources */,
 				82E4C5662A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift in Sources */,
@@ -10825,6 +10844,7 @@
 				82320D812A4913FE00ECADEE /* AGPUFaculties.swift in Sources */,
 				822FB2182AC5DFA70083E016 /* SubGroupsListViewModel + Extensions.swift in Sources */,
 				826716C22A5A2AF600CD5C23 /* RecentWebPageModel.swift in Sources */,
+				822B06F72C63F7BA00F54E28 /* SpeechSynthesizerManager.swift in Sources */,
 				828F47A02C05357D00AF7C3D /* ThingCategoryTableViewCell.swift in Sources */,
 				82B24A872A81BCE6008B94E4 /* Article.swift in Sources */,
 				8286D15D2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.swift in Sources */,
@@ -11104,7 +11124,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.8;
+				MARKETING_VERSION = 2.8.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -11143,7 +11163,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8.8;
+				MARKETING_VERSION = 2.8.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
