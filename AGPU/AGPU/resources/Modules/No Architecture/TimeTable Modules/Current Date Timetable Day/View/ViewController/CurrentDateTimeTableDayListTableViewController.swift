@@ -171,7 +171,7 @@ class CurrentDateTimeTableDayListTableViewController: UIViewController {
                     self?.spinner.isHidden = true
                     self?.animation.stopRotateAnimation(view: self!.spinner)
                     self?.refresh.endRefreshing()
-                    self?.noTimeTableLabel.text = "Ошибка"
+                    self?.noTimeTableLabel.text = "Нет расписания"
                     self?.noTimeTableLabel.isHidden = false
                 }
                 print(error.localizedDescription)

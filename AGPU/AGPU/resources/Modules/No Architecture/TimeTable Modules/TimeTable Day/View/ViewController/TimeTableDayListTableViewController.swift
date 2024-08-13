@@ -314,10 +314,11 @@ final class TimeTableDayListTableViewController: UIViewController {
                     self?.infoLabel.isHidden = false
                 }
             case .failure(let error):
+                self?.timetable = TimeTable(id: id, date: date, disciplines: [])
                 self?.spinner.isHidden = true
                 self?.animation.stopRotateAnimation(view: self!.spinner)
                 self?.refreshControl.endRefreshing()
-                self?.infoLabel.text = "Ошибка"
+                self?.infoLabel.text = "Нет расписания"
                 self?.infoLabel.isHidden = false
                 print(error.localizedDescription)
             }

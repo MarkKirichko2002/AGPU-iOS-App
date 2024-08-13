@@ -308,7 +308,7 @@ final class NewsListViewController: UIViewController {
         
         viewModel.registerErrorHandler {
             DispatchQueue.main.async {
-                self.noNewsLabel.text = "Ошибка"
+                self.noNewsLabel.text = "Нет новостей"
                 self.noNewsLabel.isHidden = false
                 self.spinner.isHidden = true
                 self.animation.stopRotateAnimation(view: self.spinner)

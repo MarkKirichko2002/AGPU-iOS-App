@@ -266,7 +266,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
             case .failure(let error):
                 self?.spinner.isHidden = true
                 self?.animation.stopRotateAnimation(view: self!.spinner)
-                self?.noTimeTableLabel.text = "Ошибка"
+                self?.noTimeTableLabel.text = "Нет расписания"
                 self?.noTimeTableLabel.isHidden = false
                 self?.refreshControl.endRefreshing()
                 self?.setUpNavigation()
