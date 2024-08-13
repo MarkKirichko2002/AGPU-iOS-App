@@ -412,6 +412,7 @@
 		828DD7602C6AF9E6006F15DF /* ISeasonSplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DD75F2C6AF9E6006F15DF /* ISeasonSplashScreenViewModel.swift */; };
 		828DD7622C6AFA28006F15DF /* SeasonSplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DD7612C6AFA28006F15DF /* SeasonSplashScreenViewModel.swift */; };
 		828DD7642C6AFA93006F15DF /* SeasonSplashScreenViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DD7632C6AFA93006F15DF /* SeasonSplashScreenViewModel + Extensions.swift */; };
+		828DD7662C6B8C87006F15DF /* season.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 828DD7652C6B8C87006F15DF /* season.mp4 */; };
 		828E10332BD169CA00ECC5F4 /* TabsColorOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828E10312BD169CA00ECC5F4 /* TabsColorOptionTableViewCell.swift */; };
 		828E10372BD16AD700ECC5F4 /* TabsColorOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 828E10362BD16AD700ECC5F4 /* TabsColorOptionTableViewCell.xib */; };
 		828E691E2BE2DBF80097FAAD /* DisplayModeOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828E691C2BE2DBF80097FAAD /* DisplayModeOptionTableViewCell.swift */; };
@@ -1110,6 +1111,7 @@
 		828DD75F2C6AF9E6006F15DF /* ISeasonSplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISeasonSplashScreenViewModel.swift; sourceTree = "<group>"; };
 		828DD7612C6AFA28006F15DF /* SeasonSplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonSplashScreenViewModel.swift; sourceTree = "<group>"; };
 		828DD7632C6AFA93006F15DF /* SeasonSplashScreenViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SeasonSplashScreenViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		828DD7652C6B8C87006F15DF /* season.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = season.mp4; sourceTree = "<group>"; };
 		828E10312BD169CA00ECC5F4 /* TabsColorOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsColorOptionTableViewCell.swift; sourceTree = "<group>"; };
 		828E10362BD16AD700ECC5F4 /* TabsColorOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabsColorOptionTableViewCell.xib; sourceTree = "<group>"; };
 		828E691C2BE2DBF80097FAAD /* DisplayModeOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayModeOptionTableViewCell.swift; sourceTree = "<group>"; };
@@ -5444,6 +5446,7 @@
 				82FC88132BBDFB5800A2EF59 /* status.mp4 */,
 				82FC88112BBDFB5800A2EF59 /* timetable.mp4 */,
 				822DA7152BCACDBF00CB4A21 /* quantorium.mp4 */,
+				828DD7652C6B8C87006F15DF /* season.mp4 */,
 				822DA7162BCACDC000CB4A21 /* technopark.mp4 */,
 				821B72952BD2F9C9000460E2 /* random.mp4 */,
 				82FC88122BBDFB5800A2EF59 /* weather.mp4 */,
@@ -10324,6 +10327,7 @@
 				82320D892A491FBC00ECADEE /* AGPUFacultyTableViewCell.xib in Resources */,
 				82C449F62B5F0B5F0039B0F3 /* ring.mp3 in Resources */,
 				82519B8B2BEAA35C00F136F8 /* OnlyMainOptionTableViewCell.xib in Resources */,
+				828DD7662C6B8C87006F15DF /* season.mp4 in Resources */,
 				82E4C5972A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib in Resources */,
 				822606012A853C110055925F /* RecentMomentTableViewCell.xib in Resources */,
 				82AB6D192AF6BD5F00F7B729 /* AdaptiveNewsOptionTableViewCell.xib in Resources */,
