@@ -408,6 +408,10 @@
 		828D8E5A2B53648F0022FDB3 /* SearchTimetableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828D8E592B53648F0022FDB3 /* SearchTimetableModel.swift */; };
 		828DC5592A7B3865001EA324 /* FacultyGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DC5582A7B3865001EA324 /* FacultyGroupModel.swift */; };
 		828DC55C2A7B3887001EA324 /* FacultyGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DC55B2A7B3887001EA324 /* FacultyGroups.swift */; };
+		828DD75B2C6AF9B1006F15DF /* SeasonSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DD75A2C6AF9B1006F15DF /* SeasonSplashScreenViewController.swift */; };
+		828DD7602C6AF9E6006F15DF /* ISeasonSplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DD75F2C6AF9E6006F15DF /* ISeasonSplashScreenViewModel.swift */; };
+		828DD7622C6AFA28006F15DF /* SeasonSplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DD7612C6AFA28006F15DF /* SeasonSplashScreenViewModel.swift */; };
+		828DD7642C6AFA93006F15DF /* SeasonSplashScreenViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828DD7632C6AFA93006F15DF /* SeasonSplashScreenViewModel + Extensions.swift */; };
 		828E10332BD169CA00ECC5F4 /* TabsColorOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828E10312BD169CA00ECC5F4 /* TabsColorOptionTableViewCell.swift */; };
 		828E10372BD16AD700ECC5F4 /* TabsColorOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 828E10362BD16AD700ECC5F4 /* TabsColorOptionTableViewCell.xib */; };
 		828E691E2BE2DBF80097FAAD /* DisplayModeOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828E691C2BE2DBF80097FAAD /* DisplayModeOptionTableViewCell.swift */; };
@@ -1102,6 +1106,10 @@
 		828D8E592B53648F0022FDB3 /* SearchTimetableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTimetableModel.swift; sourceTree = "<group>"; };
 		828DC5582A7B3865001EA324 /* FacultyGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupModel.swift; sourceTree = "<group>"; };
 		828DC55B2A7B3887001EA324 /* FacultyGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroups.swift; sourceTree = "<group>"; };
+		828DD75A2C6AF9B1006F15DF /* SeasonSplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonSplashScreenViewController.swift; sourceTree = "<group>"; };
+		828DD75F2C6AF9E6006F15DF /* ISeasonSplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISeasonSplashScreenViewModel.swift; sourceTree = "<group>"; };
+		828DD7612C6AFA28006F15DF /* SeasonSplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonSplashScreenViewModel.swift; sourceTree = "<group>"; };
+		828DD7632C6AFA93006F15DF /* SeasonSplashScreenViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SeasonSplashScreenViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		828E10312BD169CA00ECC5F4 /* TabsColorOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsColorOptionTableViewCell.swift; sourceTree = "<group>"; };
 		828E10362BD16AD700ECC5F4 /* TabsColorOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabsColorOptionTableViewCell.xib; sourceTree = "<group>"; };
 		828E691C2BE2DBF80097FAAD /* DisplayModeOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayModeOptionTableViewCell.swift; sourceTree = "<group>"; };
@@ -6063,6 +6071,65 @@
 			path = List;
 			sourceTree = "<group>";
 		};
+		828DD7562C6AF974006F15DF /* Season */ = {
+			isa = PBXGroup;
+			children = (
+				828DD7582C6AF97B006F15DF /* View */,
+				828DD7572C6AF979006F15DF /* ViewModel */,
+			);
+			path = Season;
+			sourceTree = "<group>";
+		};
+		828DD7572C6AF979006F15DF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				828DD75E2C6AF9CE006F15DF /* Protocol */,
+				828DD75D2C6AF9CC006F15DF /* ViewModel */,
+				828DD75C2C6AF9C9006F15DF /* Extension */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		828DD7582C6AF97B006F15DF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				828DD7592C6AF991006F15DF /* ViewController */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		828DD7592C6AF991006F15DF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				828DD75A2C6AF9B1006F15DF /* SeasonSplashScreenViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		828DD75C2C6AF9C9006F15DF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				828DD7632C6AFA93006F15DF /* SeasonSplashScreenViewModel + Extensions.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		828DD75D2C6AF9CC006F15DF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				828DD7612C6AFA28006F15DF /* SeasonSplashScreenViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		828DD75E2C6AF9CE006F15DF /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				828DD75F2C6AF9E6006F15DF /* ISeasonSplashScreenViewModel.swift */,
+			);
+			name = Protocol;
+			sourceTree = "<group>";
+		};
 		828DE2B02A5E3F4A00985737 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -7370,6 +7437,7 @@
 		82A29F3B2B9BD4E200756F43 /* Splash Screen Modules */ = {
 			isa = PBXGroup;
 			children = (
+				828DD7562C6AF974006F15DF /* Season */,
 				822526BF2BA37D3A00B66314 /* News  */,
 				82967C2B2BA23165001059B2 /* TimeTable */,
 				823F97D42B9D21FD00F60F39 /* Weather */,
@@ -10323,6 +10391,7 @@
 			files = (
 				82E4C5612A6B14C700F65A67 /* SettingsListViewModel + Extensions.swift in Sources */,
 				82E4C54A2A6B11BB00F65A67 /* AGPUFacultiesListViewModelProtocol.swift in Sources */,
+				828DD7602C6AF9E6006F15DF /* ISeasonSplashScreenViewModel.swift in Sources */,
 				827674E92C48B5640083A849 /* DepartmentItem.swift in Sources */,
 				82F297A72C4F18DB007697C6 /* CorpsListTableViewController.swift in Sources */,
 				82B24A7A2A81945D008B94E4 /* AllWeeksListViewModel + Extensions.swift in Sources */,
@@ -10397,10 +10466,12 @@
 				8226D1832B09655700B0B9F0 /* TimetableOptionsListTableViewController.swift in Sources */,
 				8226060A2A853DEE0055925F /* RecentMomentsListTableViewController.swift in Sources */,
 				82061CC42B09A4F70073D727 /* TimetableOptions.swift in Sources */,
+				828DD75B2C6AF9B1006F15DF /* SeasonSplashScreenViewController.swift in Sources */,
 				82768AED2ABE15080022FBE1 /* AppThemesListViewModelProtocol.swift in Sources */,
 				82FD79D02B9267F000E0DE61 /* LocationAppsViewController.swift in Sources */,
 				82AB6D252AF6C08A00F7B729 /* SavedNewsCategoryViewModel + Extensions.swift in Sources */,
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
+				828DD7622C6AFA28006F15DF /* SeasonSplashScreenViewModel.swift in Sources */,
 				82C752452C28856D00161AEF /* TabsIconStyleTableViewCell.swift in Sources */,
 				82967C212BA0821A001059B2 /* RecentNewsListViewController + Extensions.swift in Sources */,
 				822FB20F2AC5DCF20083E016 /* SubGroupsListTableViewController.swift in Sources */,
@@ -10934,6 +11005,7 @@
 				82D37FDD2BEC2F470035CB57 /* ImageDetailViewController.swift in Sources */,
 				8286D1582BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.swift in Sources */,
 				82768AE62ABE13550022FBE1 /* AppThemes.swift in Sources */,
+				828DD7642C6AFA93006F15DF /* SeasonSplashScreenViewModel + Extensions.swift in Sources */,
 				82061CCB2B09A5920073D727 /* TimetableOptionsTableViewCell.swift in Sources */,
 				82754C6B2BD3DBEC0021E76A /* SplashScreenBackgroundColorsListViewModel + Extensions.swift in Sources */,
 			);

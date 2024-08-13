@@ -37,9 +37,11 @@ extension RandomSplashScreenViewModel: IRandomSplashScreenViewModel {
         case .timetable:
             return timetableVC
         case .technopark:
-            return RegularSplashScreenViewController(animation:  AnimationClass(), icon: "technopark", text: "Технопарк", width: 180, height: 180)
+            return RegularSplashScreenViewController(animation: AnimationClass(), icon: "technopark", text: "Технопарк", width: 180, height: 180)
         case .quantorium:
-            return RegularSplashScreenViewController(animation:  AnimationClass(), icon: "кванториум", text: "Кванториум", width: 160, height: 160)
+            return RegularSplashScreenViewController(animation: AnimationClass(), icon: "кванториум", text: "Кванториум", width: 160, height: 160)
+        case .season:
+            return SeasonSplashScreenViewController(animation: AnimationClass())
         case .custom:
             return customVC
         case .random:
