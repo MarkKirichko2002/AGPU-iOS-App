@@ -8,8 +8,6 @@
 import MapKit
 
 protocol AGPUBuildingsMapViewModelProtocol {
-    var locationHandler: ((LocationModel)->Void)? {get set}
-    var choiceHandler: ((Bool, MKAnnotation)->Void)? {get set}
     func checkLocationAuthorizationStatus()
     func getLocation()
     func observeBuildingTypeSelected()

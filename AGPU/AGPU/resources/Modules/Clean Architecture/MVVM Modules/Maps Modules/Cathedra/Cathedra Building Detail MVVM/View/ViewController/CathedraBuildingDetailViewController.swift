@@ -29,6 +29,11 @@ class CathedraBuildingDetailViewController: UIViewController {
         setUpWeatherLabel()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.saveLocation(annotaion: annotation)
+    }
+    
     private func setUpView() {
         LocationName.text = annotation.title!
         LocationDetail.text = annotation.subtitle!

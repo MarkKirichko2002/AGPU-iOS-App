@@ -116,7 +116,6 @@
 		822527A62BADAC0500B66314 /* IAdaptiveNewsOptionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822527A52BADAC0500B66314 /* IAdaptiveNewsOptionsListViewModel.swift */; };
 		822527A82BADAC5F00B66314 /* AdaptiveNewsOptionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822527A72BADAC5F00B66314 /* AdaptiveNewsOptionsListViewModel.swift */; };
 		822527AA2BADAC8700B66314 /* AdaptiveNewsOptionsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822527A92BADAC8700B66314 /* AdaptiveNewsOptionsListViewModel + Extensions.swift */; };
-		8225A9E02C615D2700FEFFE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8225A9DF2C615D2600FEFFE1 /* GoogleService-Info.plist */; };
 		8225A9E32C615DFB00FEFFE1 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8225A9E22C615DFB00FEFFE1 /* FirebaseAnalytics */; };
 		8225A9E52C615DFB00FEFFE1 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 8225A9E42C615DFB00FEFFE1 /* FirebaseAnalyticsOnDeviceConversion */; };
 		8225A9E72C615DFB00FEFFE1 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8225A9E62C615DFB00FEFFE1 /* FirebaseAnalyticsWithoutAdIdSupport */; };
@@ -440,6 +439,13 @@
 		82920B8D2AD8871D00352CD8 /* SelectedFacultyListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B8C2AD8871D00352CD8 /* SelectedFacultyListViewModelProtocol.swift */; };
 		82920B8F2AD8872B00352CD8 /* SelectedFacultyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B8E2AD8872B00352CD8 /* SelectedFacultyListViewModel.swift */; };
 		82920B912AD8874100352CD8 /* SelectedFacultyListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B902AD8874100352CD8 /* SelectedFacultyListViewModel + Extensions.swift */; };
+		8294C3B92C7154E300C9DFBE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8294C3B82C7154E200C9DFBE /* GoogleService-Info.plist */; };
+		8294C3BF2C7155B900C9DFBE /* RecentBuildingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8294C3BE2C7155B900C9DFBE /* RecentBuildingModel.swift */; };
+		8294C3C42C71561600C9DFBE /* IRecentBuildingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8294C3C32C71561600C9DFBE /* IRecentBuildingViewModel.swift */; };
+		8294C3C62C71568300C9DFBE /* RecentBuildingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8294C3C52C71568300C9DFBE /* RecentBuildingViewModel.swift */; };
+		8294C3C82C7156E300C9DFBE /* RecentBuildingViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8294C3C72C7156E300C9DFBE /* RecentBuildingViewModel + Extensions.swift */; };
+		8294C3CC2C715F3000C9DFBE /* RecentBuildingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8294C3CB2C715F3000C9DFBE /* RecentBuildingViewController.swift */; };
+		8294C3CE2C71609100C9DFBE /* RecentBuildingViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8294C3CD2C71609000C9DFBE /* RecentBuildingViewController + Extensions.swift */; };
 		829548862A439D8C007DEBA0 /* ASPUWebsiteSectionsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548852A439D8C007DEBA0 /* ASPUWebsiteSectionsListViewController + Extensions.swift */; };
 		829548922A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548912A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift */; };
 		829548992A43AE32007DEBA0 /* SettingsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829548982A43AE32007DEBA0 /* SettingsManagerProtocol.swift */; };
@@ -838,7 +844,6 @@
 		822527A52BADAC0500B66314 /* IAdaptiveNewsOptionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAdaptiveNewsOptionsListViewModel.swift; sourceTree = "<group>"; };
 		822527A72BADAC5F00B66314 /* AdaptiveNewsOptionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveNewsOptionsListViewModel.swift; sourceTree = "<group>"; };
 		822527A92BADAC8700B66314 /* AdaptiveNewsOptionsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdaptiveNewsOptionsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
-		8225A9DF2C615D2600FEFFE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8225AA112C615E7200FEFFE1 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		8225AA142C61675A00FEFFE1 /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
 		822605F52A8532410055925F /* RecentMomentsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMomentsListViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -1139,6 +1144,13 @@
 		82920B8C2AD8871D00352CD8 /* SelectedFacultyListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFacultyListViewModelProtocol.swift; sourceTree = "<group>"; };
 		82920B8E2AD8872B00352CD8 /* SelectedFacultyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFacultyListViewModel.swift; sourceTree = "<group>"; };
 		82920B902AD8874100352CD8 /* SelectedFacultyListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectedFacultyListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		8294C3B82C7154E200C9DFBE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Firebase/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8294C3BE2C7155B900C9DFBE /* RecentBuildingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentBuildingModel.swift; sourceTree = "<group>"; };
+		8294C3C32C71561600C9DFBE /* IRecentBuildingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRecentBuildingViewModel.swift; sourceTree = "<group>"; };
+		8294C3C52C71568300C9DFBE /* RecentBuildingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentBuildingViewModel.swift; sourceTree = "<group>"; };
+		8294C3C72C7156E300C9DFBE /* RecentBuildingViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentBuildingViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		8294C3CB2C715F3000C9DFBE /* RecentBuildingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentBuildingViewController.swift; sourceTree = "<group>"; };
+		8294C3CD2C71609000C9DFBE /* RecentBuildingViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentBuildingViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829548852A439D8C007DEBA0 /* ASPUWebsiteSectionsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASPUWebsiteSectionsListViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829548912A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AGPUBuildingsMapViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829548982A43AE32007DEBA0 /* SettingsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManagerProtocol.swift; sourceTree = "<group>"; };
@@ -5516,7 +5528,7 @@
 		82808E872A31F12100DEEB16 /* AGPU */ = {
 			isa = PBXGroup;
 			children = (
-				8225A9DF2C615D2600FEFFE1 /* GoogleService-Info.plist */,
+				8294C3B82C7154E200C9DFBE /* GoogleService-Info.plist */,
 				82F98B2C2B11973500137D9A /* AGPU.entitlements */,
 				82F495DB2C57441A001D2802 /* MNIST.mlmodel */,
 				8258214C2A4649FE00CF0333 /* resources */,
@@ -6520,6 +6532,83 @@
 				82920B8C2AD8871D00352CD8 /* SelectedFacultyListViewModelProtocol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		8294C3BA2C71557600C9DFBE /* Recent Building MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				8294C3BD2C71559700C9DFBE /* Model */,
+				8294C3BC2C71559400C9DFBE /* View */,
+				8294C3BB2C71558D00C9DFBE /* ViewModel */,
+			);
+			path = "Recent Building MVVM";
+			sourceTree = "<group>";
+		};
+		8294C3BB2C71558D00C9DFBE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8294C3C22C7155F500C9DFBE /* Protocol */,
+				8294C3C12C7155F300C9DFBE /* ViewModel */,
+				8294C3C02C7155F000C9DFBE /* Extensions */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		8294C3BC2C71559400C9DFBE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8294C3CA2C715F0C00C9DFBE /* ViewController */,
+				8294C3C92C715F0900C9DFBE /* Extensions */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		8294C3BD2C71559700C9DFBE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8294C3BE2C7155B900C9DFBE /* RecentBuildingModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		8294C3C02C7155F000C9DFBE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8294C3C72C7156E300C9DFBE /* RecentBuildingViewModel + Extensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		8294C3C12C7155F300C9DFBE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8294C3C52C71568300C9DFBE /* RecentBuildingViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		8294C3C22C7155F500C9DFBE /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				8294C3C32C71561600C9DFBE /* IRecentBuildingViewModel.swift */,
+			);
+			name = Protocol;
+			sourceTree = "<group>";
+		};
+		8294C3C92C715F0900C9DFBE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8294C3CD2C71609000C9DFBE /* RecentBuildingViewController + Extensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		8294C3CA2C715F0C00C9DFBE /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8294C3CB2C715F3000C9DFBE /* RecentBuildingViewController.swift */,
+			);
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 		8294E6B82B7E8A2F00D68124 /* Cell ViewModels */ = {
@@ -8821,6 +8910,7 @@
 		82D0FC1B2B1B81F90056D94B /* Buildings */ = {
 			isa = PBXGroup;
 			children = (
+				8294C3BA2C71557600C9DFBE /* Recent Building MVVM */,
 				82E4C58C2A6B254200F65A67 /* AGPU Buildings Maps MVVM */,
 				824EBF612B29CF300003E7E6 /* AGPU Building Types */,
 				8210CA022A664D5700D0BEEE /* Current Buiding MVVM */,
@@ -10317,6 +10407,7 @@
 				822527A42BACE4DA00B66314 /* AdaptToWebOptionTableViewCell.xib in Resources */,
 				82FC881D2BBDFC4700A2EF59 /* regular.mp4 in Resources */,
 				82F315BB2C40BD1B00E826F9 /* SettablePersonalityTableViewCell.xib in Resources */,
+				8294C3B92C7154E300C9DFBE /* GoogleService-Info.plist in Resources */,
 				828E10372BD16AD700ECC5F4 /* TabsColorOptionTableViewCell.xib in Resources */,
 				821365872A94F6A700A20E4E /* LaunchScreen.strings in Resources */,
 				8225279E2BACDCA200B66314 /* SavedNewsCategoryOptionTableViewCell.xib in Resources */,
@@ -10337,7 +10428,6 @@
 				822B06FD2C63F95700F54E28 /* SayingOptionTableViewCell.xib in Resources */,
 				828397752AD5C706000F355A /* PersonalizedAppIconTableViewCell.xib in Resources */,
 				82920B6B2AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.xib in Resources */,
-				8225A9E02C615D2700FEFFE1 /* GoogleService-Info.plist in Resources */,
 				82F578912B6FEDFB00BC64C1 /* ASPUButtonOptionTableViewCell.xib in Resources */,
 				82B24A6E2A817BDE008B94E4 /* WeekTableViewCell.xib in Resources */,
 				828D510F2BB8658000848FF8 /* ASPUButtonActionsOptionTableViewCell.xib in Resources */,
@@ -10513,6 +10603,7 @@
 				8299525D2BDCB61A003AFB14 /* IASPUButtonFavouriteActionsListViewModel.swift in Sources */,
 				824302B62BDB0658004F1742 /* TimeTableTableViewCell + Extensions.swift in Sources */,
 				82F578842B6FE5A800BC64C1 /* ASPUButtonActionsListViewModelProtocol.swift in Sources */,
+				8294C3CE2C71609100C9DFBE /* RecentBuildingViewController + Extensions.swift in Sources */,
 				821B72672BD16D9D000460E2 /* TabColors.swift in Sources */,
 				8270A5452A578452008ACADC /* DateManagerProtocol.swift in Sources */,
 				82A41B952C2C2ECD00254AE2 /* RecentDatesListViewModel + Extensions.swift in Sources */,
@@ -10538,6 +10629,7 @@
 				82BA73B62A579B8D006B67DA /* WebViewModel.swift in Sources */,
 				8283216C2A7D090C008641A5 /* AllGroupsListViewModelProtocol.swift in Sources */,
 				826FB38C2C1F675E007EDA25 /* NewsOptionsPositionListTableViewController.swift in Sources */,
+				8294C3C62C71568300C9DFBE /* RecentBuildingViewModel.swift in Sources */,
 				82F315C12C40C26500E826F9 /* PersonalityOptionModel.swift in Sources */,
 				82A41B912C2C2D0200254AE2 /* IRecentDatesListViewModel.swift in Sources */,
 				82FEA7AE2A7ED5BB00863453 /* AGPUBuildingType.swift in Sources */,
@@ -10605,6 +10697,7 @@
 				82C5B7882BCEF4E800F907CB /* ASPUButtonAnimationOptions.swift in Sources */,
 				823746D52BF65013004758CB /* ForApplicantListViewModel + Extensions.swift in Sources */,
 				82BCB5392AB351F400F3A321 /* DaysListViewModelProtocol.swift in Sources */,
+				8294C3BF2C7155B900C9DFBE /* RecentBuildingModel.swift in Sources */,
 				82AC8EB22B76AE13006B29F9 /* YourStatusSplashScreenViewController.swift in Sources */,
 				823746EE2BF663DC004758CB /* ForEmployeeListViewModel + Extensions.swift in Sources */,
 				825D92EE2AF2F03000B5E9DF /* CurrentDateTimeTableDayListTableViewController + Extensions.swift in Sources */,
@@ -10735,6 +10828,7 @@
 				828D51382BB8A3BF00848FF8 /* ASPUButtonIconTableViewCell.swift in Sources */,
 				82761A312B4642A300D9976F /* SplashScreensListViewModel + Extensions.swift in Sources */,
 				828E692E2BE2E4250097FAAD /* SavedDisplayModeViewModel + Extensions.swift in Sources */,
+				8294C3C42C71561600C9DFBE /* IRecentBuildingViewModel.swift in Sources */,
 				82111A002B990138007B61E5 /* INewsWebViewModel.swift in Sources */,
 				8276E6102C2C93C600216F28 /* CalendarMultipleDatesViewController + Extensions.swift in Sources */,
 				82B1C0D62A8071E500520C14 /* SavedSubGroupTableViewController.swift in Sources */,
@@ -10893,6 +10987,7 @@
 				8209A09E2B838AD20013371D /* RealmManager.swift in Sources */,
 				825D56732AE5CBEB004305C7 /* PairInfoTableViewController.swift in Sources */,
 				82989ACF2A6E35B200F27858 /* FacultyCathedraTableViewCell.swift in Sources */,
+				8294C3CC2C715F3000C9DFBE /* RecentBuildingViewController.swift in Sources */,
 				82D37FD52BEC29D90035CB57 /* SavedImagesListViewModel.swift in Sources */,
 				829CEF822BEF9C5D00FA32EF /* BuildingsListViewModel.swift in Sources */,
 				829952672BDCBB9A003AFB14 /* ASPUButtonAllActionsListTableViewController.swift in Sources */,
@@ -10937,6 +11032,7 @@
 				82B2670B2A8DAB4900043A6D /* NewsCategoryModel.swift in Sources */,
 				82A1CDCB2C0CDE4C005A3338 /* SavedVideosListViewModel.swift in Sources */,
 				82187CA42C04F2710033E6DC /* IScreenPresentationStylesListViewModel.swift in Sources */,
+				8294C3C82C7156E300C9DFBE /* RecentBuildingViewModel + Extensions.swift in Sources */,
 				82B24AA32A81C8C3008B94E4 /* AGPUNewsListViewModel + Extensions.swift in Sources */,
 				82B1C0D22A8070FF00520C14 /* SavedSubGroupViewModel + Extensions.swift in Sources */,
 				82184D8F2B7BDA3F00F2588E /* HourlyWeatherCollectionViewCellViewModel.swift in Sources */,
@@ -11200,7 +11296,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.1;
+				MARKETING_VERSION = 2.9.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -11239,7 +11335,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.1;
+				MARKETING_VERSION = 2.9.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

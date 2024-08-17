@@ -33,6 +33,11 @@ final class AGPUBuildingDetailViewController: UIViewController {
         bindViewModel()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.saveLocation(annotaion: annotation)
+    }
+    
     private func setUpView() {
         LocationName.text = annotation.title!
         LocationDetail.text = !annotation.subtitle!!.isEmpty ? annotation.subtitle!! : "Нет информации"

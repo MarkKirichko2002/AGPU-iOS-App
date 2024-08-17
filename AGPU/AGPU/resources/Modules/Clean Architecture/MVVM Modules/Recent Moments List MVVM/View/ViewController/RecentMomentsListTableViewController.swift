@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 final class RecentMomentsListTableViewController: UITableViewController {
     
@@ -114,8 +115,30 @@ final class RecentMomentsListTableViewController: UITableViewController {
         }
     }
     
+    private func checkLastLocation() {
+        viewModel.getLastLocation { location in
+            let vc = RecentBuildingViewController()
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            DispatchQueue.main.async {
+                HapticsManager.shared.hapticFeedback()
+                self.present(navVC, animated: true)
+            }
+        }
+    }
+    
+    func goToShareScreen(annotation: MKAnnotation) {
+        let vc = ShareLocationAppsViewController(annotation: annotation)
+        vc.modalPresentationStyle = .fullScreen
+        DispatchQueue.main.async {
+            HapticsManager.shared.hapticFeedback()
+            self.present(vc, animated: true)
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+            
             let moment = self.viewModel.momentItem(index: indexPath.row)
             
             let resetAction = UIAction(title: "Сбросить", image: UIImage(named: "refresh")) { _ in
@@ -123,14 +146,18 @@ final class RecentMomentsListTableViewController: UITableViewController {
             }
             
             let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
-                if moment.id != 5 {
-                    self.viewModel.contentForShare(index: indexPath.row) { item in
-                        self.shareInfo(image: UIImage(named: "АГПУ")!, title: moment.name, text: item as? String ?? "нет текста")
-                    }
-                } else {
+                if moment.id == 6 {
                     self.viewModel.contentForShare(index: indexPath.row) { image in
                         let info = self.viewModel.getRecentTimetableInfo()
                         self.ShareImage(image: image as? UIImage ?? UIImage(), title: info.0, text: info.1)
+                    }
+                } else if moment.id == 7 {
+                    self.viewModel.contentForShare(index: indexPath.row) { location in
+                        self.goToShareScreen(annotation: location as! MKAnnotation)
+                    }
+                } else {
+                    self.viewModel.contentForShare(index: indexPath.row) { item in
+                        self.shareInfo(image: UIImage(named: "АГПУ")!, title: moment.name, text: item as? String ?? "нет текста")
                     }
                 }
             }
@@ -156,6 +183,8 @@ final class RecentMomentsListTableViewController: UITableViewController {
             checkLastTimetable()
         case 5:
             checkLastVideo()
+        case 6:
+            checkLastLocation()
         default:
             break
         }

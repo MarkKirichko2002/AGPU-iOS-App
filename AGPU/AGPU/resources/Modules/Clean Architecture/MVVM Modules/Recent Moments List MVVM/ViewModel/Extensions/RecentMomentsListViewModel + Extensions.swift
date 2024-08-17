@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 // MARK: - RecentMomentsViewModelProtocol
 extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
@@ -106,6 +107,24 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
         }
     }
     
+    func getLastLocation(completion: @escaping(MKPointAnnotation)->Void) {
+        
+        let message = style == .formal ? "\(name.isEmpty ? "Вы" : "\(name) вы") еще не открывали не одной локации" : "\(name.isEmpty ? "У тебя нет" : "\(name) у тебя нет") недавно просмотренной локации"
+        
+        if let model = UserDefaults.loadData(type: RecentBuildingModel.self, key: "last location") {
+            if !model.coordinates.isEmpty {
+                let location = MKPointAnnotation()
+                location.title = model.name
+                location.coordinate = CLLocationCoordinate2D(latitude: model.coordinates[0], longitude: model.coordinates[1])
+                completion(location)
+            } else {
+                alertHandler?("Нет недавней локации", message)
+            }
+        } else {
+            alertHandler?("Нет недавней локации", message)
+        }
+    }
+    
     func contentForShare(index: Int, completion: @escaping(Any)->Void) {
         switch momentItem(index: index).id {
         case 1:
@@ -131,6 +150,10 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
         case 6:
             getLastVideo { video in
                 completion(video)
+            }
+        case 7:
+            getLastLocation { location in
+                completion(location)
             }
         default:
             break
@@ -206,6 +229,8 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
             UserDefaults.standard.setValue("GROUP", forKey: "recentOwner")
         case 6:
             UserDefaults.standard.setValue("", forKey: "last video")
+        case 7:
+            UserDefaults.saveData(object: RecentBuildingModel(name: "", info: "", coordinates: []), key: "last location") {}
         default:
             break
         }

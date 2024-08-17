@@ -16,5 +16,6 @@ struct RecentMomentsList {
         RecentMomentModel(id: 4, name: "Word-документ", icon: "word"),
         RecentMomentModel(id: 5, name: "Расписание", icon: "clock"),
         RecentMomentModel(id: 6, name: "Видео", icon: "play icon"),
+        RecentMomentModel(id: 7, name: "Локация", icon: "map icon")
     ]
 }

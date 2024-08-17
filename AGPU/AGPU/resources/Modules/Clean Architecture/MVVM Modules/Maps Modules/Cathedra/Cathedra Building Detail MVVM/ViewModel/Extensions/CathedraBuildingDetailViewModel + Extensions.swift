@@ -36,6 +36,11 @@ extension CathedraBuildingDetailViewModel: CathedraBuildingDetailViewModelProtoc
         }
     }
     
+    func saveLocation(annotaion: MKAnnotation) {
+        let model = RecentBuildingModel(name: annotation.title!!, info: annotation.subtitle!!, coordinates: [annotation.coordinate.latitude, annotation.coordinate.longitude])
+        UserDefaults.saveData(object: model, key: "last location") {}
+    }
+    
     func registerWeatherHandler(block: @escaping(String)->Void) {
         self.weatherHandler = block
     }
