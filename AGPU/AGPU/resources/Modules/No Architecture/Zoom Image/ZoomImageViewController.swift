@@ -10,7 +10,7 @@ import SnapKit
 import SDWebImage
 
 final class ZoomImageViewController: UIViewController {
-
+    
     let scrollView = UIScrollView()
     let imageView = UIImageView()
     
@@ -76,6 +76,37 @@ final class ZoomImageViewController: UIViewController {
         scrollView.addSubview(imageView)
         imageView.contentMode = .scaleAspectFit
         imageView.frame = scrollView.bounds
+        
+        setUpLongGesture()
+    }
+    
+    private func setUpLongGesture() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(showAR))
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(gesture)
+    }
+    
+    @objc private func showAR() {
+        let vc = ARViewController()
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.makeImage { image in
+            vc.image = image
+            DispatchQueue.main.async {
+                self.present(navVC, animated: true)
+            }
+        }
+    }
+    
+    private func makeImage(completion: @escaping(UIImage)->Void) {
+        guard let url = URL(string: url) else {return}
+        URLSession.shared.dataTask(with: url) { data, error, _ in
+            guard let data = data else {return}
+            if let image = UIImage(data: data) {
+                HapticsManager.shared.hapticFeedback()
+                completion(image)
+            }
+        }.resume()
     }
 }
 

@@ -17,7 +17,7 @@ class ARViewController: UIViewController {
     
     var image = UIImage()
     var plane: AnchoringComponent.Target.Alignment = .horizontal
-    var mesh: Mesh = .box
+    var mesh: Mesh = .plane
     
     private let arView = ARView()
     
@@ -117,12 +117,12 @@ class ARViewController: UIViewController {
     
     private func setUpMeshListMenu()-> UIMenu {
         
-        let box = UIAction(title: "Куб", state: .on) { _ in
+        let box = UIAction(title: "Куб") { _ in
             self.mesh = .box
             self.refresh()
         }
         
-        let plane = UIAction(title: "Плоскость") { _ in
+        let plane = UIAction(title: "Плоскость", state: .on) { _ in
             self.mesh = .plane
             self.refresh()
         }
