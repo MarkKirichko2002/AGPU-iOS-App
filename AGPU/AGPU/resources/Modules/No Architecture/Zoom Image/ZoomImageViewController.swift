@@ -67,20 +67,18 @@ final class ZoomImageViewController: UIViewController {
     }
     
     private func setUpImageView() {
-        
         if isURL {
             guard let url = URL(string: url) else {return}
             imageView.sd_setImage(with: url)
         }
-        
         scrollView.addSubview(imageView)
         imageView.contentMode = .scaleAspectFit
         imageView.frame = scrollView.bounds
         
-        setUpLongGesture()
+        setUpTapGesture()
     }
     
-    private func setUpLongGesture() {
+    private func setUpTapGesture() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(showAR))
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(gesture)
@@ -90,7 +88,15 @@ final class ZoomImageViewController: UIViewController {
         let vc = ARViewController()
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
-        self.makeImage { image in
+        if isURL {
+            self.makeImage { image in
+                vc.image = image
+                DispatchQueue.main.async {
+                    self.present(navVC, animated: true)
+                }
+            }
+        } else {
+            guard let image = imageView.image else {return}
             vc.image = image
             DispatchQueue.main.async {
                 self.present(navVC, animated: true)
