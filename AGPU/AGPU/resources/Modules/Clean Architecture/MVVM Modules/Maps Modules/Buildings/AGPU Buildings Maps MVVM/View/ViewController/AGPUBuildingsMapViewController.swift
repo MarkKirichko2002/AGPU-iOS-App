@@ -28,13 +28,6 @@ final class AGPUBuildingsMapViewController: UIViewController {
         bindViewModel()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if !viewModel.arr.isEmpty {
-            setRegion(region: viewModel.defaultLocation())
-        }
-    }
-        
     private func setUpNavigation() {
         
         let button = UIButton()
@@ -137,12 +130,16 @@ final class AGPUBuildingsMapViewController: UIViewController {
     
     @objc private func nextLocation() {
         guard let region = viewModel.nextLocation() else {return}
-        setRegion(region: region)
+        if !viewModel.arr.isEmpty {
+            setRegion(region: region)
+        }
     }
     
     @objc private func pastLocation() {
         guard let region = viewModel.pastLocation() else {return}
-        setRegion(region: region)
+        if !viewModel.arr.isEmpty {
+            setRegion(region: region)
+        }
     }
     
     private func bindViewModel() {
@@ -169,6 +166,11 @@ final class AGPUBuildingsMapViewController: UIViewController {
             let titleView = CustomTitleView(image: "marker", title: "Найти кампус", frame: .zero)
             self.navigationItem.titleView = titleView
             self.mapView.showAnnotations(location.pins, animated: true)
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                if !self.viewModel.arr.isEmpty {
+                    self.setRegion(region: self.viewModel.defaultLocation())
+                }
+            }
         }
         viewModel.registerChoiceHandler { isBuildingType, annotation in
             let titleView = CustomTitleView(image: "search", title: "Поиск...", frame: .zero)
@@ -177,6 +179,11 @@ final class AGPUBuildingsMapViewController: UIViewController {
                 self.mapView.addAnnotation(annotation)
             } else {
                 self.mapView.removeAnnotation(annotation)
+            }
+            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
+                if !self.viewModel.arr.isEmpty {
+                    self.setRegion(region: self.viewModel.defaultLocation())
+                }
             }
         }
     }
