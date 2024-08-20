@@ -24,6 +24,7 @@ class NewsARViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fillArray()
         setUpNavigation()
         setUpARView()
     }
@@ -48,6 +49,12 @@ class NewsARViewController: UIViewController {
         navigationItem.title = "AR режим"
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = options
+    }
+    
+    private func fillArray() {
+        for i in 0..<urls.count {
+            images.append(UIImage(named: "АГПУ")!)
+        }
     }
     
     private func setUpMenu()-> UIMenu {
@@ -132,16 +139,17 @@ class NewsARViewController: UIViewController {
     }
     
     func createMesh()-> ModelEntity {
-        if !images.isEmpty {
-            if let texture = try? TextureResource.generate(from: images[index].cgImage!, options: .init(semantic: .color)) {
-                var material = UnlitMaterial(color: .white)
-                material.baseColor = MaterialColorParameter.texture(texture)
-                let mesh = createMesh(mesh: mesh)
-                
-                let boxModel = ModelEntity(mesh: mesh, materials: [material])
-                
-                return boxModel
-            }
+        
+        print(images.count)
+        
+        if let texture = try? TextureResource.generate(from: images[index].cgImage!, options: .init(semantic: .color)) {
+            var material = UnlitMaterial(color: .white)
+            material.baseColor = MaterialColorParameter.texture(texture)
+            let mesh = createMesh(mesh: mesh)
+            
+            let boxModel = ModelEntity(mesh: mesh, materials: [material])
+            
+            return boxModel
         }
         
         return ModelEntity()
@@ -208,7 +216,7 @@ class NewsARViewController: UIViewController {
                 guard let data = data else {return}
                 if let image = UIImage(data: data) {
                     if !self.images.contains(image) {
-                        self.images.append(image)
+                        self.images[self.index] = image
                         DispatchQueue.main.async {
                             self.setUpNavigation()
                             self.refresh()
@@ -243,6 +251,7 @@ class NewsARViewController: UIViewController {
                 self.index = i
                 self.makeImage()
                 self.setUpNavigation()
+                print(self.index)
             }
             items.append(action)
         }
