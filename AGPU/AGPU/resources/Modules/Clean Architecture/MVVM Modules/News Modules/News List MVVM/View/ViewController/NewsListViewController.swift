@@ -306,6 +306,16 @@ final class NewsListViewController: UIViewController {
             }
         }
         
+        viewModel.registerArticleInfoChangedHandler { info in
+            let vc = NewsARViewController()
+            vc.urls = info.images
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            DispatchQueue.main.async {
+                self.present(navVC, animated: true)
+            }
+        }
+        
         viewModel.registerErrorHandler {
             DispatchQueue.main.async {
                 self.noNewsLabel.text = "Нет новостей"

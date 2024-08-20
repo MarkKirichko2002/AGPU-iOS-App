@@ -58,6 +58,28 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
         }
     }
     
+    func getArticleInfo(abbreviation: String, id: Int) async throws -> Result<ArticleInfo, Error> {
+        
+        var url = ""
+        
+        if abbreviation != "-" {
+            url = "https://\(HostName.host)/api/news/\(abbreviation)/\(id)"
+        } else {
+            url = "https://\(HostName.host)/api/news/agpu/\(id)"
+        }
+        
+        let request = URLRequest(url: URL(string: url)!)
+        
+        let data = try await URLSession.shared.data(for: request)
+        
+        do {
+            let news = try JSONDecoder().decode(ArticleInfo.self, from: data.0)
+            return .success(news)
+        } catch {
+            return .failure(error)
+        }
+    }
+    
     // получить URL для конкретной статьи
     func urlForCurrentArticle(abbreviation: String, index: Int)-> String {
         

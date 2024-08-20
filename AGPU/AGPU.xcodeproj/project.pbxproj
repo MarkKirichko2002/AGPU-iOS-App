@@ -675,6 +675,9 @@
 		82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4C5942A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift */; };
 		82E4C5972A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82E4C5952A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib */; };
 		82E4E5592A57699E00314296 /* WKWebView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E4E5582A57699E00314296 /* WKWebView + Extensions.swift */; };
+		82E577622C740A91008B9FC5 /* NewsARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E577612C740A91008B9FC5 /* NewsARViewController.swift */; };
+		82E577652C740AAA008B9FC5 /* Mesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E577642C740AAA008B9FC5 /* Mesh.swift */; };
+		82E577672C740D6D008B9FC5 /* ArticleInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E577662C740D6D008B9FC5 /* ArticleInfo.swift */; };
 		82ECABE12A81520A00FE7462 /* SubGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECABE02A81520A00FE7462 /* SubGroupModel.swift */; };
 		82ECABE52A81524500FE7462 /* SubGroupsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECABE42A81524500FE7462 /* SubGroupsList.swift */; };
 		82ECCC712B18299E00443ED8 /* AGPUBuildingDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECCC702B18299E00443ED8 /* AGPUBuildingDetailViewModelProtocol.swift */; };
@@ -1380,6 +1383,9 @@
 		82E4C5942A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyGroupTableViewCell.swift; sourceTree = "<group>"; };
 		82E4C5952A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FacultyGroupTableViewCell.xib; sourceTree = "<group>"; };
 		82E4E5582A57699E00314296 /* WKWebView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView + Extensions.swift"; sourceTree = "<group>"; };
+		82E577612C740A91008B9FC5 /* NewsARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsARViewController.swift; sourceTree = "<group>"; };
+		82E577642C740AAA008B9FC5 /* Mesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mesh.swift; sourceTree = "<group>"; };
+		82E577662C740D6D008B9FC5 /* ArticleInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleInfo.swift; sourceTree = "<group>"; };
 		82ECABE02A81520A00FE7462 /* SubGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGroupModel.swift; sourceTree = "<group>"; };
 		82ECABE42A81524500FE7462 /* SubGroupsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGroupsList.swift; sourceTree = "<group>"; };
 		82ECCC702B18299E00443ED8 /* AGPUBuildingDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingDetailViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -1528,7 +1534,7 @@
 		8207E75E2C447601006312E7 /* Audencies List */ = {
 			isa = PBXGroup;
 			children = (
-				8207E75F2C44762D006312E7 /* AudenciesListTableViewController.swift */,
+				82E5775E2C740A1B008B9FC5 /* View */,
 			);
 			path = "Audencies List";
 			sourceTree = "<group>";
@@ -5857,7 +5863,9 @@
 		828710212C23209900E0DC1D /* AR */ = {
 			isa = PBXGroup;
 			children = (
-				82D005312C24BAA4009D234C /* ViewController */,
+				82E577632C740A9D008B9FC5 /* Model */,
+				82E5775F2C740A2B008B9FC5 /* News */,
+				82E5775D2C740A06008B9FC5 /* Timetable */,
 			);
 			path = AR;
 			sourceTree = "<group>";
@@ -8107,6 +8115,7 @@
 			isa = PBXGroup;
 			children = (
 				82B24A862A81BCE6008B94E4 /* Article.swift */,
+				82E577662C740D6D008B9FC5 /* ArticleInfo.swift */,
 			);
 			path = Articles;
 			sourceTree = "<group>";
@@ -8839,12 +8848,12 @@
 			path = "TabBar Icon";
 			sourceTree = "<group>";
 		};
-		82D005312C24BAA4009D234C /* ViewController */ = {
+		82D005312C24BAA4009D234C /* View */ = {
 			isa = PBXGroup;
 			children = (
 				828710242C23919100E0DC1D /* ARViewController.swift */,
 			);
-			path = ViewController;
+			path = View;
 			sourceTree = "<group>";
 		};
 		82D0FC072B1B49E10056D94B /* Cathedra Building Detail MVVM */ = {
@@ -9612,6 +9621,46 @@
 				82BC3CFD2A56F37500E49332 /* WebViewController + Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82E5775D2C740A06008B9FC5 /* Timetable */ = {
+			isa = PBXGroup;
+			children = (
+				82D005312C24BAA4009D234C /* View */,
+			);
+			path = Timetable;
+			sourceTree = "<group>";
+		};
+		82E5775E2C740A1B008B9FC5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8207E75F2C44762D006312E7 /* AudenciesListTableViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82E5775F2C740A2B008B9FC5 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				82E577602C740A31008B9FC5 /* View */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		82E577602C740A31008B9FC5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82E577612C740A91008B9FC5 /* NewsARViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82E577632C740A9D008B9FC5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82E577642C740AAA008B9FC5 /* Mesh.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		82EA0D2A2ABB573600262303 /* Model */ = {
@@ -10567,6 +10616,7 @@
 				82E05D4A2A5DD57B0060ADAA /* ForStudentListTableViewController.swift in Sources */,
 				828DD7622C6AFA28006F15DF /* SeasonSplashScreenViewModel.swift in Sources */,
 				82C752452C28856D00161AEF /* TabsIconStyleTableViewCell.swift in Sources */,
+				82E577672C740D6D008B9FC5 /* ArticleInfo.swift in Sources */,
 				82967C212BA0821A001059B2 /* RecentNewsListViewController + Extensions.swift in Sources */,
 				822FB20F2AC5DCF20083E016 /* SubGroupsListTableViewController.swift in Sources */,
 				8209A09A2B838A2A0013371D /* IRealmManager.swift in Sources */,
@@ -10627,6 +10677,7 @@
 				82A1CDC52C0CDCB6005A3338 /* VideoModel.swift in Sources */,
 				82E4C58B2A6B20FF00F65A67 /* LocationManager + Extensions.swift in Sources */,
 				82BA73B62A579B8D006B67DA /* WebViewModel.swift in Sources */,
+				82E577652C740AAA008B9FC5 /* Mesh.swift in Sources */,
 				8283216C2A7D090C008641A5 /* AllGroupsListViewModelProtocol.swift in Sources */,
 				826FB38C2C1F675E007EDA25 /* NewsOptionsPositionListTableViewController.swift in Sources */,
 				8294C3C62C71568300C9DFBE /* RecentBuildingViewModel.swift in Sources */,
@@ -10669,6 +10720,7 @@
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
 				8226D18D2B096FFB00B0B9F0 /* SavedPairTypeViewModelProtocol.swift in Sources */,
 				82D6C3342A5E1DEC00FB7F5D /* Discipline.swift in Sources */,
+				82E577622C740A91008B9FC5 /* NewsARViewController.swift in Sources */,
 				821B726F2BD17160000460E2 /* ITabsOptionsListViewModel.swift in Sources */,
 				8260EEAF2C3C8A7200DFFC4D /* WeatherChangesModel.swift in Sources */,
 				82ECABE52A81524500FE7462 /* SubGroupsList.swift in Sources */,
@@ -11296,7 +11348,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.2;
+				MARKETING_VERSION = 2.9.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -11335,7 +11387,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.2;
+				MARKETING_VERSION = 2.9.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -8,11 +8,6 @@
 import UIKit
 import RealityKit
 
-enum Mesh {
-    case box
-    case plane
-}
-
 class ARViewController: UIViewController {
     
     var image = UIImage()

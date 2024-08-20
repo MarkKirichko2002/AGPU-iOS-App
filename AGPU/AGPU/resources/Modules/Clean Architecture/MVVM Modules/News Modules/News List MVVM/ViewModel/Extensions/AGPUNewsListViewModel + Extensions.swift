@@ -270,6 +270,21 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         }
     }
     
+    func getArticleInfo(id: Int) {
+        let id = articleItem(index: id).id
+        Task {
+            let result = try await newsService.getArticleInfo(abbreviation: abbreviation, id: id)
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    self.articleInfoChangedHandler?(data)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     func refreshNews() {
         if let page = newsResponse.currentPage {
             getNews(by: page)
@@ -400,6 +415,10 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     func registerDataChangedHandler(block: @escaping(String)->Void) {
         self.dataChangedHandler = block
+    }
+    
+    func registerArticleInfoChangedHandler(block: @escaping(ArticleInfo)->Void) {
+        self.articleInfoChangedHandler = block
     }
     
     func registerErrorHandler(block: @escaping()->Void) {
