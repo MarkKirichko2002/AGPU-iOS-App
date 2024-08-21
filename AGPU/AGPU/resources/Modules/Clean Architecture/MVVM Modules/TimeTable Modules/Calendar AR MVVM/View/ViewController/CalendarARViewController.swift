@@ -8,17 +8,15 @@
 import UIKit
 
 protocol CalendarARViewControllerDelegate: AnyObject {
-    func imageWasCreated(image: UIImage, date: String)
+    func dateWasSelected( date: String)
 }
 
 final class CalendarARViewController: UIViewController {
 
     // MARK: - сервисы
-    let viewModel: CalendarARViewModel!
+    let viewModel = CalendarARViewModel()
     
-    var id: String = ""
     var date: String = ""
-    var owner: String = ""
     
     var selection: UICalendarSelectionSingleDate?
     
@@ -27,11 +25,8 @@ final class CalendarARViewController: UIViewController {
     let calendarView = UICalendarView()
     
     // MARK: - Init
-    init(id: String, date: String, owner: String) {
-        self.id = id
+    init(date: String) {
         self.date = date
-        self.owner = owner
-        self.viewModel = CalendarARViewModel(id: id, owner: owner)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -44,7 +39,6 @@ final class CalendarARViewController: UIViewController {
         view.backgroundColor = .systemBackground
         setUpNavigation()
         configureCalendar()
-        bindViewModel()
     }
     
     private func setUpNavigation() {
@@ -77,14 +71,5 @@ final class CalendarARViewController: UIViewController {
             calendarView.topAnchor.constraint(equalTo: view.topAnchor),
             calendarView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-    }
-    
-    private func bindViewModel() {
-        viewModel.registerImageCreatedHandler { image, date in
-            DispatchQueue.main.async {
-                self.dismiss(animated: true)
-                self.delegate?.imageWasCreated(image: image, date: date)
-            }
-        }
     }
 }

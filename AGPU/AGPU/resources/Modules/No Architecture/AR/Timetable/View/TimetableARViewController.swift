@@ -22,6 +22,7 @@ class TimetableARViewController: UIViewController {
     
     // MARK: - сервисы
     private let dateManager = DateManager()
+    private let service = TimeTableService()
     
     // MARK: - Init
     init(id: String, date: String, owner: String) {
@@ -74,8 +75,18 @@ class TimetableARViewController: UIViewController {
             self.refresh()
         }
         
+        let daysListAction = UIAction(title: "День") { _ in
+            let vc = DaysListTableViewController(id: self.id, currentDate: self.date, owner: self.owner)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            DispatchQueue.main.async {
+                self.present(navVC, animated: true)
+            }
+        }
+        
         let calendarAction = UIAction(title: "Календарь") { _ in
-            let vc = CalendarARViewController(id: self.id, date: self.date, owner: self.owner)
+            let vc = CalendarARViewController(date: self.date)
             vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -90,6 +101,7 @@ class TimetableARViewController: UIViewController {
         return UIMenu(title: "AR", children: [
             refreshAction,
             calendarAction,
+            daysListAction,
             setUpMeshListMenu(),
             setUpPlaneListMenu(),
             share
@@ -218,6 +230,44 @@ class TimetableARViewController: UIViewController {
         }
     }
     
+    func getTimetable(date: String) {
+        service.getTimeTableDay(id: id, date: date, owner: owner) { result in
+            switch result {
+            case .success(let data):
+                self.createImage(timetable: data)
+            case .failure(let error):
+                self.createImage(timetable: TimeTable(id: self.id, date: date, disciplines: []))
+            }
+        }
+    }
+    
+    func createImage(timetable: TimeTable) {
+        
+        let emptyTimetable = TimeTable(id: id, date: date, disciplines: [])
+        
+        if !timetable.disciplines.isEmpty {
+            do {
+                let json = try JSONEncoder().encode(timetable)
+                self.service.getTimeTableDayImage(json: json) { image in
+                    self.image = image
+                    self.refresh()
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        } else {
+            do {
+                let json = try JSONEncoder().encode(emptyTimetable)
+                self.service.getTimeTableDayImage(json: json) { image in
+                    self.image = image
+                    self.refresh()
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     func runSession() {
         guard let configuration = arView.session.configuration else {return}
         arView.session.run(configuration)
@@ -231,9 +281,17 @@ class TimetableARViewController: UIViewController {
 // MARK: - CalendarARViewControllerDelegate
 extension TimetableARViewController: CalendarARViewControllerDelegate {
     
-    func imageWasCreated(image: UIImage, date: String) {
-        self.image = image
+    func dateWasSelected(date: String) {
         self.date = date
-        refresh()
+        getTimetable(date: date)
+    }
+}
+
+// MARK: - TimeTableDayListTableViewController
+extension TimetableARViewController: DaysListTableViewControllerDelegate {
+    
+    func dateSelected(date: String) {
+        self.date = date
+        getTimetable(date: date)
     }
 }

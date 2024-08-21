@@ -89,6 +89,10 @@ extension DaysListViewModel: DaysListViewModelProtocol {
                         DaysList.days[index!].info = "нет пар"
                     }
                 case .failure(let error):
+                    let day = DaysList.days.first { $0.name == day.name }
+                    let index = DaysList.days.firstIndex(of: day!)
+                    DaysList.days[index!].info = "нет пар"
+                    self?.dataChangedHandler?()
                     print(error)
                 }
             }

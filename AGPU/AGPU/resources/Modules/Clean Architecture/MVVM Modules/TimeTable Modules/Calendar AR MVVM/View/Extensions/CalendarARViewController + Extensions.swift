@@ -11,7 +11,10 @@ import UIKit
 extension CalendarARViewController: UICalendarSelectionSingleDateDelegate {
     
     func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
-        viewModel.getTimetable(date: dateComponents?.date ?? Date())
+        let formattedDate = viewModel.getFormattedDate(date: dateComponents?.date ?? Date())
+        viewModel.saveDate(date: formattedDate)
+        delegate?.dateWasSelected(date: formattedDate)
+        self.dismiss(animated: true)
     }
 }
 
