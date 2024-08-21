@@ -19,6 +19,7 @@ class TimetableARViewController: UIViewController {
     var owner: String = ""
     
     private let arView = ARView()
+    let loadingLabel = UILabel()
     
     // MARK: - сервисы
     private let dateManager = DateManager()
@@ -40,6 +41,7 @@ class TimetableARViewController: UIViewController {
         super.viewDidLoad()
         setUpNavigation()
         setUpARView()
+        setUpLabel()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -68,7 +70,7 @@ class TimetableARViewController: UIViewController {
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = options
     }
-        
+    
     private func setUpMenu()-> UIMenu {
         
         let refreshAction = UIAction(title: "Обновить") { _ in
@@ -172,6 +174,7 @@ class TimetableARViewController: UIViewController {
         arView.scene.anchors.removeAll()
         arView.scene.anchors.append(anchor)
         HapticsManager.shared.hapticFeedback()
+        self.arView.isUserInteractionEnabled = true
     }
     
     @objc private func closeScreen() {
@@ -186,6 +189,7 @@ class TimetableARViewController: UIViewController {
         view.addSubview(arView)
         arView.frame = view.bounds
         arView.scene.anchors.append(anchor)
+        setUpSwipeGestures()
     }
     
     func createMesh()-> ModelEntity {
@@ -224,19 +228,67 @@ class TimetableARViewController: UIViewController {
         arView.installGestures([.all], for: object)
     }
     
-    private func makeScreenShot() {
+    private func setUpSwipeGestures() {
+        let tap = UITapGestureRecognizer(target: self, action:  #selector(share))
+        let longTap = UILongPressGestureRecognizer(target: self, action: #selector(makeScreenShot))
+        let left = UISwipeGestureRecognizer(target: self, action: #selector(pastDay))
+        left.direction = .left
+        let right = UISwipeGestureRecognizer(target: self, action: #selector(nextDay))
+        right.direction = .right
+        arView.addGestureRecognizer(tap)
+        arView.addGestureRecognizer(longTap)
+        arView.addGestureRecognizer(left)
+        arView.addGestureRecognizer(right)
+    }
+    
+    @objc private func share() {
+        self.ShareImage(image: image, title: id, text: date)
+        HapticsManager.shared.hapticFeedback()
+    }
+    
+    @objc private func pastDay() {
+        print("past day")
+        date = dateManager.previousDay(date: date)
+        self.loadingLabel.isHidden = false
+        getTimetable(date: date)
+    }
+    
+    @objc private func nextDay() {
+        print("next day")
+        date = dateManager.nextDay(date: date)
+        self.loadingLabel.isHidden = false
+        getTimetable(date: date)
+    }
+    
+    @objc private func makeScreenShot() {
         arView.snapshot(saveToHDR: true) { result in
             self.ShareImage(image: UIImage(cgImage: (result?.cgImage!)!), title: "AR-скриншот", text: self.dateManager.getCurrentDate())
+            HapticsManager.shared.hapticFeedback()
         }
     }
     
+    private func setUpLabel() {
+        view.addSubview(loadingLabel)
+        loadingLabel.text = "Загрузка..."
+        loadingLabel.textColor = .white
+        loadingLabel.font = .systemFont(ofSize: 18, weight: .bold)
+        loadingLabel.isHidden = true
+        loadingLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            loadingLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    
     func getTimetable(date: String) {
+        arView.isUserInteractionEnabled = false
         service.getTimeTableDay(id: id, date: date, owner: owner) { result in
             switch result {
             case .success(let data):
                 self.createImage(timetable: data)
             case .failure(let error):
                 self.createImage(timetable: TimeTable(id: self.id, date: date, disciplines: []))
+                print(error)
             }
         }
     }
@@ -249,6 +301,7 @@ class TimetableARViewController: UIViewController {
             do {
                 let json = try JSONEncoder().encode(timetable)
                 self.service.getTimeTableDayImage(json: json) { image in
+                    self.loadingLabel.isHidden = true
                     self.image = image
                     self.refresh()
                 }
@@ -259,6 +312,7 @@ class TimetableARViewController: UIViewController {
             do {
                 let json = try JSONEncoder().encode(emptyTimetable)
                 self.service.getTimeTableDayImage(json: json) { image in
+                    self.loadingLabel.isHidden = true
                     self.image = image
                     self.refresh()
                 }
@@ -283,6 +337,7 @@ extension TimetableARViewController: CalendarARViewControllerDelegate {
     
     func dateWasSelected(date: String) {
         self.date = date
+        self.loadingLabel.isHidden = false
         getTimetable(date: date)
     }
 }
@@ -292,6 +347,7 @@ extension TimetableARViewController: DaysListTableViewControllerDelegate {
     
     func dateSelected(date: String) {
         self.date = date
+        self.loadingLabel.isHidden = false
         getTimetable(date: date)
     }
 }
