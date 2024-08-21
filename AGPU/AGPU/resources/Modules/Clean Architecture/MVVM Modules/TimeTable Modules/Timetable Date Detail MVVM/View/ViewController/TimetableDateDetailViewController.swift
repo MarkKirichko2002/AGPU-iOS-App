@@ -16,8 +16,10 @@ class TimetableDateDetailViewController: UIViewController {
     
     let viewModel: TimetableDateDetailViewModel
     weak var delegate: TimetableDateDetailViewControllerDelegate?
+    
     var id: String = ""
     var date: String = ""
+    var owner: String = ""
     
     // MARK: - UI
     private var closeButton: UIButton = {
@@ -74,6 +76,7 @@ class TimetableDateDetailViewController: UIViewController {
     init(id: String, date: String, owner: String) {
         self.id = id
         self.date = date
+        self.owner = owner
         self.viewModel = TimetableDateDetailViewModel(id: id, date: date, owner: owner)
         super.init(nibName: nil, bundle: nil)
     }
@@ -114,7 +117,7 @@ class TimetableDateDetailViewController: UIViewController {
         }
         
         let ARAction = UIAction(title: "AR режим") { _ in
-            let vc = ARViewController()
+            let vc = TimetableARViewController(id: self.id, date: self.date, owner: self.owner)
             vc.image = self.timetableImage.image ?? UIImage()
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen

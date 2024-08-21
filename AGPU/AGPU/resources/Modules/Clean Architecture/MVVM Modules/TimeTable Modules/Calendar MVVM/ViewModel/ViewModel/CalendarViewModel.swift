@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CalendarViewModel {
+final class CalendarViewModel {
     
     // MARK: - сервисы
     let dateManager = DateManager()

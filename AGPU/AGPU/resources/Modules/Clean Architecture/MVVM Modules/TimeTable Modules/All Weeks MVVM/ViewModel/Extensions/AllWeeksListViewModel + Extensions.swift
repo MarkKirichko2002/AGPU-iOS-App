@@ -30,30 +30,38 @@ extension AllWeeksListViewModel: AllWeeksListViewModelProtocol {
         return weeks[index]
     }
     
-    func registerIsChangedHandler(block: @escaping(()->Void)) {
-        self.isChangedHandler = block
-    }
-    
     func getCurrentWeek() {
         if !weeks.isEmpty {
             for week in weeks {
                 let isRange = dateManager.dateRange(startDate: week.from, endDate: week.to)
                 if isRange {
                     Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                        self.ScrollHandler?(week.id - 1)
+                        self.scrollHandler?(week.id - 1)
                     }
+                    break
+                } else {
+                    self.notScrollHandler?()
+                    break
                 }
             }
         }
-    }
-    
-    func registerScrollHandler(block: @escaping((Int)->Void)) {
-        self.ScrollHandler = block
     }
     
     func isCurrentWeek(index: Int)-> Bool {
         let week = weeks[index]
         let isRange = dateManager.dateRange(startDate: week.from, endDate: week.to)
         return isRange
+    }
+    
+    func registerIsChangedHandler(block: @escaping(()->Void)) {
+        self.isChangedHandler = block
+    }
+    
+    func registerNotScrollHandler(block: @escaping(()->Void)) {
+        self.notScrollHandler = block
+    }
+    
+    func registerScrollHandler(block: @escaping((Int)->Void)) {
+        self.scrollHandler = block
     }
 }

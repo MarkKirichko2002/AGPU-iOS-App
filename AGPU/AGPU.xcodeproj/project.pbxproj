@@ -678,6 +678,12 @@
 		82E577622C740A91008B9FC5 /* NewsARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E577612C740A91008B9FC5 /* NewsARViewController.swift */; };
 		82E577652C740AAA008B9FC5 /* Mesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E577642C740AAA008B9FC5 /* Mesh.swift */; };
 		82E577672C740D6D008B9FC5 /* ArticleInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E577662C740D6D008B9FC5 /* ArticleInfo.swift */; };
+		82E5776B2C7547FF008B9FC5 /* TimetableARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E5776A2C7547FF008B9FC5 /* TimetableARViewController.swift */; };
+		82E577722C754E18008B9FC5 /* CalendarARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E577712C754E18008B9FC5 /* CalendarARViewController.swift */; };
+		82E577742C754EB2008B9FC5 /* CalendarARViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E577732C754EB2008B9FC5 /* CalendarARViewController + Extensions.swift */; };
+		82E577792C754F3F008B9FC5 /* ICalendarARViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E577782C754F3F008B9FC5 /* ICalendarARViewModel.swift */; };
+		82E5777B2C754F8F008B9FC5 /* CalendarARViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E5777A2C754F8F008B9FC5 /* CalendarARViewModel.swift */; };
+		82E5777D2C754FDB008B9FC5 /* CalendarARViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E5777C2C754FDB008B9FC5 /* CalendarARViewModel + Extensions.swift */; };
 		82ECABE12A81520A00FE7462 /* SubGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECABE02A81520A00FE7462 /* SubGroupModel.swift */; };
 		82ECABE52A81524500FE7462 /* SubGroupsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECABE42A81524500FE7462 /* SubGroupsList.swift */; };
 		82ECCC712B18299E00443ED8 /* AGPUBuildingDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECCC702B18299E00443ED8 /* AGPUBuildingDetailViewModelProtocol.swift */; };
@@ -1386,6 +1392,12 @@
 		82E577612C740A91008B9FC5 /* NewsARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsARViewController.swift; sourceTree = "<group>"; };
 		82E577642C740AAA008B9FC5 /* Mesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mesh.swift; sourceTree = "<group>"; };
 		82E577662C740D6D008B9FC5 /* ArticleInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleInfo.swift; sourceTree = "<group>"; };
+		82E5776A2C7547FF008B9FC5 /* TimetableARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableARViewController.swift; sourceTree = "<group>"; };
+		82E577712C754E18008B9FC5 /* CalendarARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarARViewController.swift; sourceTree = "<group>"; };
+		82E577732C754EB2008B9FC5 /* CalendarARViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarARViewController + Extensions.swift"; sourceTree = "<group>"; };
+		82E577782C754F3F008B9FC5 /* ICalendarARViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICalendarARViewModel.swift; sourceTree = "<group>"; };
+		82E5777A2C754F8F008B9FC5 /* CalendarARViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarARViewModel.swift; sourceTree = "<group>"; };
+		82E5777C2C754FDB008B9FC5 /* CalendarARViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarARViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82ECABE02A81520A00FE7462 /* SubGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGroupModel.swift; sourceTree = "<group>"; };
 		82ECABE42A81524500FE7462 /* SubGroupsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGroupsList.swift; sourceTree = "<group>"; };
 		82ECCC702B18299E00443ED8 /* AGPUBuildingDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingDetailViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -5865,7 +5877,8 @@
 			children = (
 				82E577632C740A9D008B9FC5 /* Model */,
 				82E5775F2C740A2B008B9FC5 /* News */,
-				82E5775D2C740A06008B9FC5 /* Timetable */,
+				82E577682C7547AB008B9FC5 /* Timetable */,
+				82E5775D2C740A06008B9FC5 /* Other */,
 			);
 			path = AR;
 			sourceTree = "<group>";
@@ -8346,6 +8359,7 @@
 				822527572BA77D8B00B66314 /* Week Days List MVVM */,
 				82162D822AB5CDF700840D90 /* Calendar MVVM */,
 				8276E6082C2C927E00216F28 /* Calendar Multiple Dates MVVM */,
+				82E5776C2C754D6A008B9FC5 /* Calendar AR MVVM */,
 				82A41B862C2C2C6800254AE2 /* Recent Dates List MVVM */,
 				8276E61A2C2CA02000216F28 /* Timetable Dates List MVVM */,
 				8299E3AA2B8A317400D81472 /* Timetable Date Detail MVVM */,
@@ -9623,12 +9637,12 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		82E5775D2C740A06008B9FC5 /* Timetable */ = {
+		82E5775D2C740A06008B9FC5 /* Other */ = {
 			isa = PBXGroup;
 			children = (
 				82D005312C24BAA4009D234C /* View */,
 			);
-			path = Timetable;
+			path = Other;
 			sourceTree = "<group>";
 		};
 		82E5775E2C740A1B008B9FC5 /* View */ = {
@@ -9661,6 +9675,90 @@
 				82E577642C740AAA008B9FC5 /* Mesh.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		82E577682C7547AB008B9FC5 /* Timetable */ = {
+			isa = PBXGroup;
+			children = (
+				82E577692C7547C0008B9FC5 /* View */,
+			);
+			path = Timetable;
+			sourceTree = "<group>";
+		};
+		82E577692C7547C0008B9FC5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82E5776A2C7547FF008B9FC5 /* TimetableARViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82E5776C2C754D6A008B9FC5 /* Calendar AR MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82E5776E2C754DEB008B9FC5 /* View */,
+				82E5776D2C754DD8008B9FC5 /* ViewModel */,
+			);
+			path = "Calendar AR MVVM";
+			sourceTree = "<group>";
+		};
+		82E5776D2C754DD8008B9FC5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82E577772C754F15008B9FC5 /* Protocol */,
+				82E577762C754F12008B9FC5 /* ViewModel */,
+				82E577752C754F0F008B9FC5 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82E5776E2C754DEB008B9FC5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82E577702C754E00008B9FC5 /* ViewController */,
+				82E5776F2C754DFE008B9FC5 /* Extensions */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82E5776F2C754DFE008B9FC5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82E577732C754EB2008B9FC5 /* CalendarARViewController + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82E577702C754E00008B9FC5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82E577712C754E18008B9FC5 /* CalendarARViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82E577752C754F0F008B9FC5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82E5777C2C754FDB008B9FC5 /* CalendarARViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82E577762C754F12008B9FC5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82E5777A2C754F8F008B9FC5 /* CalendarARViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82E577772C754F15008B9FC5 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82E577782C754F3F008B9FC5 /* ICalendarARViewModel.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		82EA0D2A2ABB573600262303 /* Model */ = {
@@ -10603,6 +10701,7 @@
 				82989ACD2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift in Sources */,
 				828D51142BB86B2600848FF8 /* ASPUButtonIconOptionTableViewCell.swift in Sources */,
 				82187CA62C04F2840033E6DC /* ScreenPresentationStylesListViewModel.swift in Sources */,
+				82E577742C754EB2008B9FC5 /* CalendarARViewController + Extensions.swift in Sources */,
 				82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */,
 				8226D16D2B0948B500B0B9F0 /* AGPUTabBarController + Extensions.swift in Sources */,
 				827E907D2BC8788600FD8168 /* AppFeaturesListTableViewCell.swift in Sources */,
@@ -10625,6 +10724,7 @@
 				826BADAF2A64D5A500022B45 /* AGPUBuildingDetailViewController.swift in Sources */,
 				82B1C0CF2A8070CE00520C14 /* SavedSubGroupViewModelProtocol.swift in Sources */,
 				82958D922C3E1261007ACA24 /* LoadingIndicatorOptionTableViewCell.swift in Sources */,
+				82E577722C754E18008B9FC5 /* CalendarARViewController.swift in Sources */,
 				829D48A62BBC1EF100F6D256 /* TimeTableSoundsListViewModel + Extensions.swift in Sources */,
 				82426C942A71DD0100D5AA57 /* UserStatusList.swift in Sources */,
 				824EBF822B2A0F0D0003E7E6 /* FacultyCathedraMapListViewModel.swift in Sources */,
@@ -10869,6 +10969,7 @@
 				8226D1882B096F5A00B0B9F0 /* SavedPairTypeTableViewController.swift in Sources */,
 				82187C9C2C04F1D90033E6DC /* ScreenPresentationStyles.swift in Sources */,
 				8257387C2C108B30000D6CAC /* ContactsListViewModel + Extensions.swift in Sources */,
+				82E5777B2C754F8F008B9FC5 /* CalendarARViewModel.swift in Sources */,
 				826888612A33ACF500434219 /* UIView + Extensions.swift in Sources */,
 				829952502BDC9A07003AFB14 /* TimeTableFavouriteItemsListViewModel.swift in Sources */,
 				823746D32BF64FDF004758CB /* ForApplicantListViewModel.swift in Sources */,
@@ -10962,6 +11063,7 @@
 				82E4C55F2A6B147900F65A67 /* SettingsListViewModelProtocol.swift in Sources */,
 				82F315CD2C40CDD500E826F9 /* CommunicationStyles.swift in Sources */,
 				8209008E2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.swift in Sources */,
+				82E5777D2C754FDB008B9FC5 /* CalendarARViewModel + Extensions.swift in Sources */,
 				828D510E2BB8658000848FF8 /* ASPUButtonActionsOptionTableViewCell.swift in Sources */,
 				82ECCC732B182A1700443ED8 /* AGPUBuildingDetailViewModel.swift in Sources */,
 				827674EB2C48B58F0083A849 /* Teacher.swift in Sources */,
@@ -11081,6 +11183,7 @@
 				82BC2F4D2A8F0B9500ADB239 /* NewsPagesListTableViewController.swift in Sources */,
 				821B727B2BD17490000460E2 /* ITabColorsListViewModel.swift in Sources */,
 				828E692A2BE2E3CB0097FAAD /* ISavedDisplayModeViewModel.swift in Sources */,
+				82E577792C754F3F008B9FC5 /* ICalendarARViewModel.swift in Sources */,
 				82B2670B2A8DAB4900043A6D /* NewsCategoryModel.swift in Sources */,
 				82A1CDCB2C0CDE4C005A3338 /* SavedVideosListViewModel.swift in Sources */,
 				82187CA42C04F2710033E6DC /* IScreenPresentationStylesListViewModel.swift in Sources */,
@@ -11104,6 +11207,7 @@
 				82ECCC712B18299E00443ED8 /* AGPUBuildingDetailViewModelProtocol.swift in Sources */,
 				82E3C3D12B43715A00F2FFA3 /* AudioPlayerClassProtocol.swift in Sources */,
 				82B266FC2A8D91E400043A6D /* NewsCategoriesListTableViewController.swift in Sources */,
+				82E5776B2C7547FF008B9FC5 /* TimetableARViewController.swift in Sources */,
 				821FCF0A2A87CE79006FFB26 /* NewsListViewController + Extensions.swift in Sources */,
 				82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */,
 				8263AA232C0215A2001A903B /* ITodayNewsListViewModel.swift in Sources */,
@@ -11348,7 +11452,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.3;
+				MARKETING_VERSION = 2.9.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -11387,7 +11491,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.3;
+				MARKETING_VERSION = 2.9.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

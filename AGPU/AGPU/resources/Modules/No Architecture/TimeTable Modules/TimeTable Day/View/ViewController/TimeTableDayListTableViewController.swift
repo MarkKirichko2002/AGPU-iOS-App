@@ -85,7 +85,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
         
         let ARAction = UIAction(title: "AR режим") { _ in
-            let vc = ARViewController()
+            let vc = TimetableARViewController(id: self.id, date: self.date, owner: self.owner)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.createImage {

@@ -27,10 +27,14 @@ class TimeTableDatesListViewController: UIViewController {
     }()
     
     var id: String = ""
+    var owner: String = ""
+    var dates = [String]()
     
     // MARK: - Init
     init(id: String, owner: String, dates: [String]) {
         self.id = id
+        self.owner = owner
+        self.dates = dates
         self.viewModel = TimeTableDatesListViewModel(id: id, owner: owner, dates: dates)
         super.init(nibName: nil, bundle: nil)
     }
@@ -66,7 +70,7 @@ class TimeTableDatesListViewController: UIViewController {
     private func setUpMenu()-> UIMenu {
         
         let ARAction = UIAction(title: "AR режим") { _ in
-            let vc = ARViewController()
+            let vc = TimetableARViewController(id: self.id, date: self.dates[0], owner: self.owner)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.viewModel.createImage { image in

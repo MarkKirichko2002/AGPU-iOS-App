@@ -72,7 +72,6 @@ class AllWeeksListTableViewController: UITableViewController {
     }
     
     private func bindViewModel() {
-        viewModel.GetWeeks()
         viewModel.registerIsChangedHandler {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -82,13 +81,21 @@ class AllWeeksListTableViewController: UITableViewController {
             }
         }
         
-        self.viewModel.registerScrollHandler { row in
+        viewModel.registerNotScrollHandler {
+            DispatchQueue.main.async {
+                self.tableView.isUserInteractionEnabled = true
+            }
+        }
+        
+        viewModel.registerScrollHandler { row in
             DispatchQueue.main.async {
                 let indexPath = IndexPath(row: row, section: 0)
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                 self.navigationItem.title = "Текущая неделя \(row + 1)"
             }
         }
+        
+        viewModel.GetWeeks()
     }
     
     override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
