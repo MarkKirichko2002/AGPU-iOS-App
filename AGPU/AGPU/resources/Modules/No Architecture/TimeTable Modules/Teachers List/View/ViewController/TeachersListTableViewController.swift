@@ -32,7 +32,6 @@ class TeachersListTableViewController: UITableViewController {
         super.viewDidLoad()
         setUpNavigation()
         setUpTable()
-        //getData()
     }
     
     private func setUpNavigation() {
@@ -62,19 +61,6 @@ class TeachersListTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
-//    private func getData() {
-//        service.id = id
-//        DispatchQueue.global().async {
-//            self.service.getData()
-//        }
-//        DispatchQueue.main.async {
-//            self.service.getTeachers { teachers in
-//                self.teachers = teachers
-//                self.tableView.reloadData()
-//            }
-//        }
-//    }
-    
     private func getSavedId()-> String {
         let id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-2-1"
         return id
@@ -84,6 +70,10 @@ class TeachersListTableViewController: UITableViewController {
         let teacher = teachers[indexPath.row]
         let abbreviation = teacher.teacherAbbreviation()
         delegate?.teacherWasSelected(teacher: abbreviation)
+        UserDefaults.saveData(object: UserStatusList.list[2], key: "user status") {
+            NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name("user status"), object: nil)
+        }
         navigationController?.popViewController(animated: true)
         HapticsManager.shared.hapticFeedback()
         tableView.deselectRow(at: indexPath, animated: true)

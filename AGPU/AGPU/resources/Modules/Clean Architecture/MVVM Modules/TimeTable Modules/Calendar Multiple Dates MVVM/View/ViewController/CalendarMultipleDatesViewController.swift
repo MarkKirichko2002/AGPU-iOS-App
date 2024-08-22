@@ -17,11 +17,13 @@ final class CalendarMultipleDatesViewController: UIViewController {
     let viewModel = CalendarMultipleDatesViewModel()
     
     var id: String = ""
+    var subgroup: Int = 0
     var owner: String = ""
     
     // MARK: - Init
-    init(id: String, owner: String) {
+    init(id: String, subgroup: Int, owner: String) {
         self.id = id
+        self.subgroup = subgroup
         self.owner = owner
         super.init(nibName: nil, bundle: nil)
     }
@@ -87,7 +89,7 @@ final class CalendarMultipleDatesViewController: UIViewController {
         }
         viewModel.registerDatesSelectedHandler {
             guard let selection = self.selection else {return}
-            let vc = TimeTableDatesListViewController(id: self.id, owner: self.owner, dates: self.viewModel.getDates(from: selection))
+            let vc = TimeTableDatesListViewController(id: self.id, subgroup: self.subgroup, owner: self.owner, dates: self.viewModel.getDates(from: selection))
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)

@@ -139,6 +139,16 @@ extension TimeTableSearchListTableViewController {
                 self.dismiss(animated: true)
             }
         }
+        checkIsTeacher(owner: result.owner)
         self.tableView.reloadData()
+    }
+    
+    func checkIsTeacher(owner: String) {
+        if owner == "TEACHER" {
+            UserDefaults.saveData(object: UserStatusList.list[2], key: "user status") {
+                NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+                NotificationCenter.default.post(name: Notification.Name("user status"), object: nil)
+            }
+        }
     }
 }

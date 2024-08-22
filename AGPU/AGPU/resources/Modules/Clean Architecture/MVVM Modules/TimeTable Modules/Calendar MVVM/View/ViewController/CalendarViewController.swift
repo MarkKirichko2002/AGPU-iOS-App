@@ -17,6 +17,7 @@ final class CalendarViewController: UIViewController {
     let viewModel = CalendarViewModel()
     
     var id: String = ""
+    var subgroup: Int = 0
     var date: String = ""
     var owner: String = ""
     
@@ -27,8 +28,9 @@ final class CalendarViewController: UIViewController {
     let calendarView = UICalendarView()
     
     // MARK: - Init
-    init(id: String, date: String, owner: String) {
+    init(id: String, subgroup: Int, date: String, owner: String) {
         self.id = id
+        self.subgroup = subgroup
         self.date = date
         self.owner = owner
         super.init(nibName: nil, bundle: nil)
@@ -62,14 +64,14 @@ final class CalendarViewController: UIViewController {
         }
         
         let datesList = UIAction(title: "Несколько дней") { _ in
-            let vc = CalendarMultipleDatesViewController(id: self.id, owner: self.owner)
+            let vc = CalendarMultipleDatesViewController(id: self.id, subgroup: self.subgroup, owner: self.owner)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
         }
         
         let recentDatesList = UIAction(title: "Недавние даты") { _ in
-            let vc = RecentDatesListViewController(id: self.id, owner: self.owner)
+            let vc = RecentDatesListViewController(id: self.id, subgroup: self.subgroup, owner: self.owner)
             vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen

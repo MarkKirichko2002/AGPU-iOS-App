@@ -15,19 +15,33 @@ class TimetableARViewController: UIViewController {
     var mesh: Mesh = .box
     
     var id: String = ""
+    var subgroup: Int = 0
     var date: String = ""
     var owner: String = ""
+    var weeks = [WeekModel]()
+    var currentWeek = WeekModel(id: 0, from: "", to: "", dayNames: ["" : ""])
     
+    // MARK: - UI
     private let arView = ARView()
-    let loadingLabel = UILabel()
+    
+    private let spinner: SpringImageView = {
+        let imageView = SpringImageView()
+        imageView.image = UIImage(named: "clock")
+        imageView.tintColor = .label
+        imageView.isHidden = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     
     // MARK: - сервисы
     private let dateManager = DateManager()
     private let service = TimeTableService()
+    private let animation = AnimationClass()
     
     // MARK: - Init
-    init(id: String, date: String, owner: String) {
+    init(id: String, subgroup: Int, date: String, owner: String) {
         self.id = id
+        self.subgroup = subgroup
         self.date = date
         self.owner = owner
         super.init(nibName: nil, bundle: nil)
@@ -41,7 +55,8 @@ class TimetableARViewController: UIViewController {
         super.viewDidLoad()
         setUpNavigation()
         setUpARView()
-        setUpLabel()
+        setUpIndicatorView()
+        getWeeks()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -87,6 +102,15 @@ class TimetableARViewController: UIViewController {
             }
         }
         
+        let weeks = UIAction(title: "Недели") { _ in
+            let vc = AllWeeksListTableViewController(id: self.id, subgroup: self.subgroup, owner: self.owner)
+            vc.isAR = true
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         let calendarAction = UIAction(title: "Календарь") { _ in
             let vc = CalendarARViewController(date: self.date)
             vc.delegate = self
@@ -102,8 +126,9 @@ class TimetableARViewController: UIViewController {
         }
         return UIMenu(title: "AR", children: [
             refreshAction,
-            calendarAction,
             daysListAction,
+            weeks,
+            calendarAction,
             setUpMeshListMenu(),
             setUpPlaneListMenu(),
             share
@@ -231,9 +256,9 @@ class TimetableARViewController: UIViewController {
     private func setUpSwipeGestures() {
         let tap = UITapGestureRecognizer(target: self, action:  #selector(share))
         let longTap = UILongPressGestureRecognizer(target: self, action: #selector(makeScreenShot))
-        let left = UISwipeGestureRecognizer(target: self, action: #selector(pastDay))
+        let left = UISwipeGestureRecognizer(target: self, action: #selector(pastItem))
         left.direction = .left
-        let right = UISwipeGestureRecognizer(target: self, action: #selector(nextDay))
+        let right = UISwipeGestureRecognizer(target: self, action: #selector(nextItem))
         right.direction = .right
         arView.addGestureRecognizer(tap)
         arView.addGestureRecognizer(longTap)
@@ -242,22 +267,40 @@ class TimetableARViewController: UIViewController {
     }
     
     @objc private func share() {
-        self.ShareImage(image: image, title: id, text: date)
-        HapticsManager.shared.hapticFeedback()
+        if currentWeek.id != 0 {
+            let week = weeks[currentWeek.id - 1]
+            self.ShareImage(image: image, title: id, text: "с \(week.from) по \(week.to)")
+            HapticsManager.shared.hapticFeedback()
+        } else {
+            self.ShareImage(image: image, title: id, text: date)
+            HapticsManager.shared.hapticFeedback()
+        }
     }
     
-    @objc private func pastDay() {
-        print("past day")
-        date = dateManager.previousDay(date: date)
-        self.loadingLabel.isHidden = false
-        getTimetable(date: date)
+    @objc private func pastItem() {
+        if (currentWeek.id > weeks.first?.id ?? 0) && currentWeek.id != 0 {
+            print(currentWeek.id)
+            print(weeks.first?.id ?? 0)
+            let number = currentWeek.id - 1
+            getTimetable(week: weeks[number - 1])
+        } else if currentWeek.id == 0 {
+            print("past day")
+            date = dateManager.previousDay(date: date)
+            getTimetable(date: date)
+        }
     }
     
-    @objc private func nextDay() {
-        print("next day")
-        date = dateManager.nextDay(date: date)
-        self.loadingLabel.isHidden = false
-        getTimetable(date: date)
+    @objc private func nextItem() {
+        if (currentWeek.id < weeks.last?.id ?? 0) && currentWeek.id != 0 {
+            print(currentWeek.id)
+            print(weeks.last?.id ?? 0)
+            let number = currentWeek.id
+            getTimetable(week: weeks[number])
+        } else if currentWeek.id == 0 {
+            print("next day")
+            date = dateManager.nextDay(date: date)
+            getTimetable(date: date)
+        }
     }
     
     @objc private func makeScreenShot() {
@@ -266,28 +309,39 @@ class TimetableARViewController: UIViewController {
             HapticsManager.shared.hapticFeedback()
         }
     }
-    
-    private func setUpLabel() {
-        view.addSubview(loadingLabel)
-        loadingLabel.text = "Загрузка..."
-        loadingLabel.textColor = .white
-        loadingLabel.font = .systemFont(ofSize: 18, weight: .bold)
-        loadingLabel.isHidden = true
-        loadingLabel.translatesAutoresizingMaskIntoConstraints = false
+
+    private func setUpIndicatorView() {
+        view.addSubview(spinner)
         NSLayoutConstraint.activate([
-            loadingLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loadingLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
     func getTimetable(date: String) {
         arView.isUserInteractionEnabled = false
+        startAnimation()
         service.getTimeTableDay(id: id, date: date, owner: owner) { result in
             switch result {
             case .success(let data):
                 self.createImage(timetable: data)
             case .failure(let error):
                 self.createImage(timetable: TimeTable(id: self.id, date: date, disciplines: []))
+                print(error)
+            }
+        }
+    }
+    
+    func getTimetable(week: WeekModel) {
+        arView.isUserInteractionEnabled = false
+        currentWeek = week
+        startAnimation()
+        service.getTimeTableWeek(id: id, startDate: week.from, endDate: week.to, owner: owner) { result in
+            switch result {
+            case .success(let data):
+                self.createImage(timetable: data)
+            case .failure(let error):
+                self.createImage(timetable: [TimeTable(id: self.id, date: self.date, disciplines: [])])
                 print(error)
             }
         }
@@ -301,8 +355,8 @@ class TimetableARViewController: UIViewController {
             do {
                 let json = try JSONEncoder().encode(timetable)
                 self.service.getTimeTableDayImage(json: json) { image in
-                    self.loadingLabel.isHidden = true
                     self.image = image
+                    self.stopAnimation()
                     self.refresh()
                 }
             } catch {
@@ -312,12 +366,52 @@ class TimetableARViewController: UIViewController {
             do {
                 let json = try JSONEncoder().encode(emptyTimetable)
                 self.service.getTimeTableDayImage(json: json) { image in
-                    self.loadingLabel.isHidden = true
                     self.image = image
+                    self.stopAnimation()
                     self.refresh()
                 }
             } catch {
                 print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func createImage(timetable: [TimeTable]) {
+        
+        let emptyTimetable = [TimeTable(id: id, date: currentWeek.from, disciplines: [])]
+        
+        if !timetable.isEmpty {
+            do {
+                let json = try JSONEncoder().encode(timetable)
+                self.service.getTimeTableWeekImage(json: json) { image in
+                    self.image = image
+                    self.stopAnimation()
+                    self.refresh()
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        } else {
+            do {
+                let json = try JSONEncoder().encode(emptyTimetable)
+                self.service.getTimeTableWeekImage(json: json) { image in
+                    self.image = image
+                    self.stopAnimation()
+                    self.refresh()
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getWeeks() {
+        service.getWeeks { result in
+            switch result {
+            case .success(let data):
+                self.weeks = data
+            case .failure(let error):
+                print(error)
             }
         }
     }
@@ -330,6 +424,16 @@ class TimetableARViewController: UIViewController {
     func stopSession() {
         arView.session.pause()
     }
+    
+    func startAnimation() {
+        spinner.isHidden = false
+        animation.startRotateAnimation(view: spinner)
+    }
+    
+    func stopAnimation() {
+        spinner.isHidden = true
+        animation.stopRotateAnimation(view: spinner)
+    }
 }
 
 // MARK: - CalendarARViewControllerDelegate
@@ -337,7 +441,7 @@ extension TimetableARViewController: CalendarARViewControllerDelegate {
     
     func dateWasSelected(date: String) {
         self.date = date
-        self.loadingLabel.isHidden = false
+        self.currentWeek = WeekModel(id: 0, from: "", to: "", dayNames: ["":""])
         getTimetable(date: date)
     }
 }
@@ -347,7 +451,16 @@ extension TimetableARViewController: DaysListTableViewControllerDelegate {
     
     func dateSelected(date: String) {
         self.date = date
-        self.loadingLabel.isHidden = false
+        currentWeek = WeekModel(id: 0, from: "", to: "", dayNames: ["":""])
         getTimetable(date: date)
+    }
+}
+
+// MARK: - AllWeeksListTableViewControllerDelegate
+extension TimetableARViewController: AllWeeksListTableViewControllerDelegate {
+    
+    func weekWasSelected(week: WeekModel) {
+        date = week.from
+        getTimetable(week: week)
     }
 }

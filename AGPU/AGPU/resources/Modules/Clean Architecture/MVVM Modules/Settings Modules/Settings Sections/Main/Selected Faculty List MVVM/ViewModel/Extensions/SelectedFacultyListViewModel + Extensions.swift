@@ -37,13 +37,15 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                 if currentIconName != "AppIcon 8" {
                     UIApplication.shared.setAlternateIconName("AppIcon 8")
                 }
-            } else {}
+            }
      
             UserDefaults.standard.setValue(nil, forKey: "cathedra")
             UserDefaults.standard.setValue(nil, forKey: "group")
             UserDefaults.standard.setValue(nil, forKey: "subgroup")
+            UserDefaults.saveData(object: UserStatusList.list[1], key: "user status") {}
             
             NotificationCenter.default.post(name: Notification.Name("category"), object: faculty.newsAbbreviation)
+            NotificationCenter.default.post(name: Notification.Name("user status"), object: nil)
             
             NotificationCenter.default.post(name: Notification.Name("group changed"), object: nil)
         }
@@ -94,24 +96,24 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                         if currentIconName != "AppIcon 8" {
                             UIApplication.shared.setAlternateIconName("AppIcon 8")
                         }
-                    } else {}
+                    }
                     
                     UserDefaults.standard.setValue(nil, forKey: "icon")
                     UserDefaults.standard.setValue(nil, forKey: "icon name")
                     UserDefaults.standard.setValue(nil, forKey: "group")
                     UserDefaults.standard.setValue(nil, forKey: "subgroup")
                     UserDefaults.standard.setValue(nil, forKey: "cathedra")
+                    UserDefaults.saveData(object: UserStatusList.list[0], key: "user status") {}
                     
                     NotificationCenter.default.post(name: Notification.Name("category"), object: "-")
+                    NotificationCenter.default.post(name: Notification.Name("user status"), object: nil)
                     
                     if icon != faculty?.icon {
                         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                             NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
                         }
                     }
-                    
                     NotificationCenter.default.post(name: Notification.Name("group changed"), object: nil)
-                    //NotificationCenter.default.post(name: Notification.Name("subgroup changed"), object: 0)
                 }
             }
         }

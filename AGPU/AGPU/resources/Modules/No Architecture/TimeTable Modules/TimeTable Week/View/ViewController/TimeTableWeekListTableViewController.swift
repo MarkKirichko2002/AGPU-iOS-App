@@ -83,7 +83,8 @@ final class TimeTableWeekListTableViewController: UIViewController {
         }
         
         let ARAction = UIAction(title: "AR режим") { _ in
-            let vc = TimetableARViewController(id: self.id, date: self.currentDate, owner: self.owner)
+            let vc = TimetableARViewController(id: self.id, subgroup: self.subgroup, date: self.currentDate, owner: self.owner)
+            vc.currentWeek = self.week
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.createImage {

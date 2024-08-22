@@ -21,13 +21,15 @@ class RecentDatesListViewController: UIViewController {
     let viewModel = RecentDatesListViewModel()
     
     var id: String = ""
+    var subgroup: Int = 0
     var owner: String = ""
     
     weak var delegate: RecentDatesListViewControllerDelegate?
     
     // MARK: - Init
-    init(id: String, owner: String) {
+    init(id: String, subgroup: Int, owner: String) {
         self.id = id
+        self.subgroup = subgroup
         self.owner = owner
         super.init(nibName: nil, bundle: nil)
     }

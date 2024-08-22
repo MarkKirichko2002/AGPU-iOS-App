@@ -84,7 +84,6 @@ final class AGPUTabBarController: UITabBarController {
         settingsManager.observeStatusChanged {
             DispatchQueue.main.async {
                 self.setUpTabs()
-                self.selectedIndex = 4
             }
         }
         settingsManager.observeOnlyMainChangedOption {

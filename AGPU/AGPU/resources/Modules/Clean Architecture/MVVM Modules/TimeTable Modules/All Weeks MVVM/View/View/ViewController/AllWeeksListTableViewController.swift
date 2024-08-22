@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol AllWeeksListTableViewControllerDelegate: AnyObject {
+    func weekWasSelected(week: WeekModel)
+}
+
 class AllWeeksListTableViewController: UITableViewController {
     
     private var id: String = ""
@@ -14,6 +18,9 @@ class AllWeeksListTableViewController: UITableViewController {
     private var owner: String = ""
     
     var isNotify = false
+    var isAR = false
+    
+    weak var delegate: AllWeeksListTableViewControllerDelegate?
     
     // MARK: - сервисы
     private let viewModel = AllWeeksListViewModel()
@@ -106,11 +113,16 @@ class AllWeeksListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let week = viewModel.weekItem(index: indexPath.row)
-        let vc = TimeTableWeekListTableViewController(id: id, subgroup: subgroup, week: week, owner: owner)
-        let navVC = UINavigationController(rootViewController: vc)
-        navVC.modalPresentationStyle = .fullScreen
-        present(navVC, animated: true)
-        HapticsManager.shared.hapticFeedback()
+        if isAR {
+            delegate?.weekWasSelected(week: week)
+            dismiss(animated: true)
+        } else {
+            let vc = TimeTableWeekListTableViewController(id: id, subgroup: subgroup, week: week, owner: owner)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            present(navVC, animated: true)
+            HapticsManager.shared.hapticFeedback()
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

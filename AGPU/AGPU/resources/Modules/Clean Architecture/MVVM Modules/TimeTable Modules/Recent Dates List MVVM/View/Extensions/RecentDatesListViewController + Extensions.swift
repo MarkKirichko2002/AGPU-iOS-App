@@ -11,7 +11,7 @@ import UIKit
 extension RecentDatesListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = TimetableDateDetailViewController(id: id, date: viewModel.dateItem(index: indexPath.row), owner: owner)
+        let vc = TimetableDateDetailViewController(id: id, subgroup: subgroup, date: viewModel.dateItem(index: indexPath.row), owner: owner)
         vc.delegate = self
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)

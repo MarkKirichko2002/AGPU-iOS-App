@@ -18,6 +18,7 @@ class TimetableDateDetailViewController: UIViewController {
     weak var delegate: TimetableDateDetailViewControllerDelegate?
     
     var id: String = ""
+    var subgroup: Int = 0
     var date: String = ""
     var owner: String = ""
     
@@ -73,8 +74,9 @@ class TimetableDateDetailViewController: UIViewController {
     }()
     
     // MARK: - Init
-    init(id: String, date: String, owner: String) {
+    init(id: String, subgroup: Int, date: String, owner: String) {
         self.id = id
+        self.subgroup = subgroup
         self.date = date
         self.owner = owner
         self.viewModel = TimetableDateDetailViewModel(id: id, date: date, owner: owner)
@@ -117,7 +119,7 @@ class TimetableDateDetailViewController: UIViewController {
         }
         
         let ARAction = UIAction(title: "AR режим") { _ in
-            let vc = TimetableARViewController(id: self.id, date: self.date, owner: self.owner)
+            let vc = TimetableARViewController(id: self.id, subgroup: self.subgroup, date: self.date, owner: self.owner)
             vc.image = self.timetableImage.image ?? UIImage()
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
