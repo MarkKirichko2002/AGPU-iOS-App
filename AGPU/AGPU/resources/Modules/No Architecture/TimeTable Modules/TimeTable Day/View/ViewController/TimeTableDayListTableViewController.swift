@@ -55,6 +55,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         observeSubGroupChange()
         observeObjectSelected()
         observePairType()
+        observeAdvancedMode()
     }
     
     private func setUpData() {
@@ -70,6 +71,27 @@ final class TimeTableDayListTableViewController: UIViewController {
         let dayOfWeek = dateManager.getCurrentDayOfWeek(date: date)
         
         navigationItem.title = "Сегодня: \(dayOfWeek) \(date) "
+        
+        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: getCurrentMenu())
+        options.tintColor = .label
+        
+        let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshTimetable))
+        refreshButton.tintColor = .label
+        
+        navigationItem.leftBarButtonItem = refreshButton
+        navigationItem.rightBarButtonItem = options
+    }
+    
+    func getCurrentMenu()-> UIMenu {
+        let onAdvancedMode = UserDefaults.standard.object(forKey: "onAdvancedMode") as? Bool ?? false
+        if onAdvancedMode {
+            return makeMenu()
+        } else {
+            return makeSimpleMenu()
+        }
+    }
+    
+    private func makeMenu()-> UIMenu {
         
         let searchAction = UIAction(title: "Поиск") { _ in
             let vc = TimeTableSearchListTableViewController()
@@ -192,7 +214,7 @@ final class TimeTableDayListTableViewController: UIViewController {
             }
         }
         
-        let menu = UIMenu(title: "Расписание", children: [
+        return UIMenu(title: "Расписание", children: [
             searchAction,
             textRecognitionAction,
             ARAction,
@@ -208,15 +230,66 @@ final class TimeTableDayListTableViewController: UIViewController {
             saveTimetable,
             shareTimeTable
         ])
+    }
+    
+    private func makeSimpleMenu()-> UIMenu {
         
-        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
-        options.tintColor = .label
+        let searchAction = UIAction(title: "Поиск") { _ in
+            let vc = TimeTableSearchListTableViewController()
+            vc.isSettings = false
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
         
-        let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshTimetable))
-        refreshButton.tintColor = .label
+        // день
+        let days = UIAction(title: "День") { _ in
+            let vc = DaysListTableViewController(id: self.id, currentDate: self.date, owner: self.owner)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
         
-        navigationItem.leftBarButtonItem = refreshButton
-        navigationItem.rightBarButtonItem = options
+        // недели
+        let weeks = UIAction(title: "Недели") { _ in
+            let vc = AllWeeksListTableViewController(id: self.id, subgroup: self.subgroup, owner: self.owner)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        // календарь
+        let calendar = UIAction(title: "Календарь") { _ in
+            let vc = CalendarViewController(id: self.id, subgroup: self.subgroup, date: self.date, owner: self.owner)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        // поделиться расписанием
+        let shareTimeTable = UIAction(title: "Поделиться") { _ in
+            do {
+                let json = try JSONEncoder().encode(self.timetable)
+                let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: self.date)
+                self.service.getTimeTableDayImage(json: json) { image in
+                    self.ShareImage(image: image, title: self.id, text: "\(dayOfWeek) \(self.date)")
+                    HapticsManager.shared.hapticFeedback()
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        
+        return UIMenu(title: "Расписание", children: [
+            searchAction,
+            days,
+            weeks,
+            calendar,
+            shareTimeTable
+        ])
     }
     
     @objc private func refreshTimetable() {
@@ -361,6 +434,12 @@ final class TimeTableDayListTableViewController: UIViewController {
             
             guard let type = notification.object as? PairType, let self = self else { return }
             self.filterPairs(type: type)
+        }
+    }
+    
+    private func observeAdvancedMode() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("advanced mode"), object: nil, queue: .main) { _ in
+            self.setUpNavigation()
         }
     }
     

@@ -55,6 +55,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpNavigation()
         setUpTable()
         setUpLabel()
         setUpIndicatorView()
@@ -69,9 +70,25 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
+        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: getCurrentMenu())
+        options.tintColor = .label
+        navigationItem.leftBarButtonItem = closeButton
+        navigationItem.rightBarButtonItem = options
+        navigationItem.title = "с \(week.from) до \(week.to)"
+    }
+    
+    func getCurrentMenu()-> UIMenu {
+        let onAdvancedMode = UserDefaults.standard.object(forKey: "onAdvancedMode") as? Bool ?? false
+        if onAdvancedMode {
+            return makeMenu()
+        } else {
+            return makeSimpleMenu()
+        }
+    }
+    
+    private func makeMenu()-> UIMenu {
         
         let searchAction = UIAction(title: "Поиск") { _ in
             let vc = TimeTableSearchListTableViewController()
@@ -145,7 +162,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
             self.showSaveImageAlert()
         }
         
-        let menu = UIMenu(title: "Расписание", children: [
+        return UIMenu(title: "Расписание", children: [
             searchAction,
             ARAction,
             groupsList,
@@ -156,11 +173,38 @@ final class TimeTableWeekListTableViewController: UIViewController {
             saveTimetable,
             share
         ])
-        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
-        options.tintColor = .label
-        navigationItem.leftBarButtonItem = closeButton
-        navigationItem.rightBarButtonItem = options
-        navigationItem.title = "с \(week.from) до \(week.to)"
+    }
+    
+    private func makeSimpleMenu()-> UIMenu {
+        
+        let searchAction = UIAction(title: "Поиск") { _ in
+            let vc = TimeTableSearchListTableViewController()
+            vc.isSettings = false
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        // список дней
+        let days = UIAction(title: "День") { _ in
+            let vc = WeekDaysListTableViewController(id: self.id, owner: self.owner, week: self.week, timetable: self.timetable, currentDate: self.currentDate)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        // поделиться
+        let share = UIAction(title: "Поделиться") { _ in
+            self.shareTimetable()
+        }
+        
+        return UIMenu(title: "Расписание", children: [
+            searchAction,
+            days,
+            share
+        ])
     }
     
     @objc private func closeScreen() {
@@ -252,7 +296,6 @@ final class TimeTableWeekListTableViewController: UIViewController {
                         self?.animation.stopRotateAnimation(view: self!.spinner)
                         self?.refreshControl.endRefreshing()
                         self?.noTimeTableLabel.isHidden = true
-                        self?.setUpNavigation()
                         if !(self?.timetable.isEmpty ?? false) {
                             self?.scrollToCurrentDay()
                         }
@@ -262,7 +305,6 @@ final class TimeTableWeekListTableViewController: UIViewController {
                     self?.spinner.isHidden = true
                     self?.animation.stopRotateAnimation(view: self!.spinner)
                     self?.refreshControl.endRefreshing()
-                    self?.setUpNavigation()
                 }
             case .failure(let error):
                 self?.spinner.isHidden = true
@@ -270,7 +312,6 @@ final class TimeTableWeekListTableViewController: UIViewController {
                 self?.noTimeTableLabel.text = "Нет расписания"
                 self?.noTimeTableLabel.isHidden = false
                 self?.refreshControl.endRefreshing()
-                self?.setUpNavigation()
                 print(error.localizedDescription)
             }
         }
@@ -282,7 +323,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
             do {
                 let json = try JSONEncoder().encode(timetable)
                 service.getTimeTableWeekImage(json: json) { image in
-                    self.ShareImage(image: image, title: self.id, text: "с \(self.week.from) \(self.week.to)")
+                    self.ShareImage(image: image, title: self.id, text: "с \(self.week.from) по \(self.week.to)")
                     HapticsManager.shared.hapticFeedback()
                 }
             } catch {
@@ -292,7 +333,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
             do {
                 let json = try JSONEncoder().encode(emptyTimetable)
                 service.getTimeTableWeekImage(json: json) { image in
-                    self.ShareImage(image: image, title: self.id, text: "с \(self.week.from) \(self.week.to)")
+                    self.ShareImage(image: image, title: self.id, text: "с \(self.week.from) по \(self.week.to)")
                 }
             } catch {
                 print(error.localizedDescription)

@@ -98,7 +98,7 @@ class TimetableDateDetailViewController: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubviews(closeButton, optionsList, timetableImage, titleLabel, timetableDescription, selectDateButton)
         closeButton.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
-        optionsList.menu = setUpMenu()
+        optionsList.menu = getCurrentMenu()
         selectDateButton.addTarget(self, action: #selector(selectDate), for: .touchUpInside)
         setUpTap()
     }
@@ -108,7 +108,16 @@ class TimetableDateDetailViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    private func setUpMenu()-> UIMenu {
+    func getCurrentMenu()-> UIMenu {
+        let onAdvancedMode = UserDefaults.standard.object(forKey: "onAdvancedMode") as? Bool ?? false
+        if onAdvancedMode {
+            return makeMenu()
+        } else {
+            return makeSimpleMenu()
+        }
+    }
+    
+    private func makeMenu()-> UIMenu {
         
         let searchAction = UIAction(title: "Поиск") { _ in
             let vc = TimeTableSearchListTableViewController()
@@ -192,6 +201,27 @@ class TimetableDateDetailViewController: UIViewController {
             favouritesList,
             filterAction,
             saveTimetable,
+            shareAction
+        ])
+        return menu
+    }
+    
+    private func makeSimpleMenu()-> UIMenu {
+        
+        let searchAction = UIAction(title: "Поиск") { _ in
+            let vc = TimeTableSearchListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let shareAction = UIAction(title: "Поделиться") { _ in
+            self.share()
+        }
+        
+        let menu = UIMenu(title: date, children: [
+            searchAction,
             shareAction
         ])
         return menu

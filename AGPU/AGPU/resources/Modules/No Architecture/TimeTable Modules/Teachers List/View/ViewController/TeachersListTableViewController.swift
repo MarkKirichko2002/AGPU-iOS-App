@@ -13,8 +13,6 @@ protocol TeachersListTableViewControllerDelegate: AnyObject {
 
 class TeachersListTableViewController: UITableViewController {
 
-    let service = DBService(response: .teachers)
-    
     var teachers = [String]()
     
     weak var delegate: TeachersListTableViewControllerDelegate?
