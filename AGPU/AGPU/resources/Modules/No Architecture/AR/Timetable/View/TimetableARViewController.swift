@@ -92,6 +92,47 @@ class TimetableARViewController: UIViewController {
             self.refresh()
         }
         
+        let searchAction = UIAction(title: "Поиск") { _ in
+            let vc = TimeTableSearchListTableViewController()
+            vc.isSettings = false
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let groupsList = UIAction(title: "Группы") { _ in
+            let vc = AllGroupsListTableViewController(group: self.id)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let teachersList = UIAction(title: "Преподаватели") { _ in
+            let vc = DepartmentsListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let audiencesList = UIAction(title: "Аудитории") { _ in
+            let vc = CorpsListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let favouritesList = UIAction(title: "Избранное") { _ in
+            let vc = TimeTableFavouriteItemsListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         let daysListAction = UIAction(title: "День") { _ in
             let vc = DaysListTableViewController(id: self.id, currentDate: self.date, owner: self.owner)
             vc.delegate = self
@@ -126,6 +167,11 @@ class TimetableARViewController: UIViewController {
         }
         return UIMenu(title: "AR", children: [
             refreshAction,
+            searchAction,
+            groupsList,
+            teachersList,
+            audiencesList,
+            favouritesList,
             daysListAction,
             weeks,
             calendarAction,
@@ -309,7 +355,7 @@ class TimetableARViewController: UIViewController {
             HapticsManager.shared.hapticFeedback()
         }
     }
-
+    
     private func setUpIndicatorView() {
         view.addSubview(spinner)
         NSLayoutConstraint.activate([
@@ -433,6 +479,76 @@ class TimetableARViewController: UIViewController {
     func stopAnimation() {
         spinner.isHidden = true
         animation.stopRotateAnimation(view: spinner)
+    }
+}
+
+// MARK: - TimeTableSearchListTableViewControllerDelegate
+extension TimetableARViewController: TimeTableSearchListTableViewControllerDelegate {
+    
+    func itemWasSelected(result: SearchTimetableModel) {
+        id = result.name
+        owner = result.owner
+        if currentWeek.id != 0 {
+            getTimetable(week: currentWeek)
+        } else {
+            getTimetable(date: date)
+        }
+    }
+}
+
+// MARK: - AllGroupsListTableViewControllerDelegate
+extension TimetableARViewController: AllGroupsListTableViewControllerDelegate {
+    
+    func groupWasSelected(group: String) {
+        id = group
+        owner = "GROUP"
+        if currentWeek.id != 0 {
+            getTimetable(week: currentWeek)
+        } else {
+            getTimetable(date: date)
+        }
+    }
+}
+
+// MARK: - DepartmentsListTableViewControllerDelegate
+extension TimetableARViewController: DepartmentsListTableViewControllerDelegate {
+    
+    func teacherSelected(teacher: String) {
+        id = teacher
+        owner = "TEACHER"
+        if currentWeek.id != 0 {
+            getTimetable(week: currentWeek)
+        } else {
+            getTimetable(date: date)
+        }
+    }
+}
+
+// MARK: - CorpsListTableViewControllerDelegate
+extension TimetableARViewController: CorpsListTableViewControllerDelegate {
+    
+    func audienceWasSelected(audience: String) {
+        id = audience
+        owner = "CLASSROOM"
+        if currentWeek.id != 0 {
+            getTimetable(week: currentWeek)
+        } else {
+            getTimetable(date: date)
+        }
+    }
+}
+
+// MARK: - TimeTableFavouriteItemsListTableViewControllerDelegate
+extension TimetableARViewController: TimeTableFavouriteItemsListTableViewControllerDelegate {
+    
+    func WasSelected(result: SearchTimetableModel) {
+        id = result.name
+        owner = result.owner
+        if currentWeek.id != 0 {
+            getTimetable(week: currentWeek)
+        } else {
+            getTimetable(date: date)
+        }
     }
 }
 
