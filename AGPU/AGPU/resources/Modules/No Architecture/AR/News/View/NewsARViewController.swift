@@ -7,6 +7,7 @@
 
 import UIKit
 import RealityKit
+import SnapKit
 
 class NewsARViewController: UIViewController {
     
@@ -21,6 +22,8 @@ class NewsARViewController: UIViewController {
     
     // MARK: - сервисы
     private let dateManager = DateManager()
+    private let speechRecognitionManager = SpeechRecognitionManager()
+    private let settingsManager = SettingsManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +34,7 @@ class NewsARViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        speechRecognitionManager.cancelSpeechRecognition()
         stopSession()
     }
     
@@ -46,13 +50,13 @@ class NewsARViewController: UIViewController {
         let options =  UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpMenu())
         options.tintColor = .label
         closeButton.tintColor = .label
-        navigationItem.title = "AR режим"
+        navigationItem.title = navigationTitle()
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = options
     }
     
     private func fillArray() {
-        for i in 0..<urls.count {
+        for _ in 0..<urls.count {
             images.append(UIImage(named: "АГПУ")!)
         }
     }
@@ -136,6 +140,93 @@ class NewsARViewController: UIViewController {
         arView.scene.anchors.append(anchor)
         makeImage()
         setUpSwipeGestures()
+        checkVoiceCommandsOption()
+    }
+    
+    private func checkVoiceCommandsOption() {
+        let isVoiceCommands = UserDefaults.standard.object(forKey: "onVoiceCommands") as? Bool ?? false
+        if isVoiceCommands {
+            startRecognize()
+        } else {
+            navigationItem.title = "AR режим"
+        }
+    }
+    
+    private func navigationTitle()-> String {
+        
+        let style = settingsManager.getSavedCommunicationStyle()
+        
+        let isVoiceCommands = UserDefaults.standard.object(forKey: "onVoiceCommands") as? Bool ?? false
+        if isVoiceCommands {
+            return style == .formal ? "Говорите..." : "Говори..."
+        } else {
+            return "AR режим"
+        }
+    }
+    
+    private func startRecognize() {
+        speechRecognitionManager.requestSpeechAndMicrophonePermission()
+        speechRecognitionManager.registerSpeechAuthorizationHandler { auth in
+            switch auth {
+            case .notDetermined:
+                print("Разрешение на распознавание речи еще не было получено.")
+            case .denied:
+                let settingsAction = UIAlertAction(title: "Перейти в настройки", style: .default) { _ in
+                    self.openSettings()
+                }
+                let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
+                self.showAlert(title: self.createAlertMessage().0, message: self.createAlertMessage().1, actions: [settingsAction, cancel])
+                print("Доступ к распознаванию речи был отклонен.")
+            case .restricted:
+                print("Функциональность распознавания речи ограничена.")
+            case .authorized:
+                print("Разрешение на распознавание речи получено.")
+                self.speechRecognitionManager.startRecognize()
+            @unknown default:
+                print("неизвестно")
+            }
+        }
+        speechRecognitionManager.registerSpeechRecognitionHandler { text in
+            self.voiceCommands(text: text)
+        }
+    }
+    
+    private func voiceCommands(text: String) {
+        
+        if text.lowercased().contains("вперёд") || text.lowercased().contains("след") || text.lowercased().contains("дале")  {
+            speechRecognitionManager.cancelSpeechRecognition()
+            nextImage()
+        }
+        
+        if text.lowercased().contains("назад") || text.lowercased().contains("пред") {
+            speechRecognitionManager.cancelSpeechRecognition()
+            pastImage()
+        }
+    }
+    
+    func resetSpeechRecognition() {
+        speechRecognitionManager.cancelSpeechRecognition()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.speechRecognitionManager.startRecognize()
+        }
+    }
+    
+    func createAlertMessage()-> (String, String) {
+        let style = settingsManager.getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        switch style {
+        case .formal:
+            return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хотите" : "Хотите") включить в настройках?")
+        case .informal:
+            return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хочешь" : "Хочешь") врубить в настройках?")
+        }
+    }
+    
+    func showAlert(title: String) {
+        let alertVC = UIAlertController()
+        alertVC.title = title
+        alertVC.addAction(UIAlertAction(title: "ОК", style: .default))
+        present(alertVC, animated: true)
     }
     
     func createMesh()-> ModelEntity {
@@ -189,7 +280,9 @@ class NewsARViewController: UIViewController {
         if !images.isEmpty && index > 0 {
             index -= 1
             makeImage()
-            print("left")
+        } else {
+            showAlert(title: "Это первое изображение!")
+            resetSpeechRecognition()
         }
     }
     
@@ -197,7 +290,9 @@ class NewsARViewController: UIViewController {
         if index < urls.count - 1 {
             index += 1
             makeImage()
-            print("right")
+        } else {
+            showAlert(title: "Это последнее изображение!")
+            resetSpeechRecognition()
         }
     }
     
@@ -220,6 +315,7 @@ class NewsARViewController: UIViewController {
                         DispatchQueue.main.async {
                             self.setUpNavigation()
                             self.refresh()
+                            self.resetSpeechRecognition()
                         }
                     }
                 } else {

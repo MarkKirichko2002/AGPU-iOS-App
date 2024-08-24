@@ -48,6 +48,7 @@ extension UIViewController {
     }
     
     func showAlert(title: String, message: String, actions: [UIAlertAction]) {
+        let isVoiceCommands = UserDefaults.standard.object(forKey: "onVoiceCommands") as? Bool ?? false
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         for action in actions {
             alertController.addAction(action)

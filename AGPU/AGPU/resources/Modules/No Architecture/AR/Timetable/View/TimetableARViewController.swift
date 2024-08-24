@@ -37,6 +37,8 @@ class TimetableARViewController: UIViewController {
     private let dateManager = DateManager()
     private let service = TimeTableService()
     private let animation = AnimationClass()
+    private let speechRecognitionManager = SpeechRecognitionManager()
+    private let settingsManager = SettingsManager()
     
     // MARK: - Init
     init(id: String, subgroup: Int, date: String, owner: String) {
@@ -66,6 +68,7 @@ class TimetableARViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        speechRecognitionManager.cancelSpeechRecognition()
         stopSession()
     }
     
@@ -81,7 +84,7 @@ class TimetableARViewController: UIViewController {
         let options =  UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpMenu())
         options.tintColor = .label
         closeButton.tintColor = .label
-        navigationItem.title = "AR режим"
+        navigationItem.title = navigationTitle()
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = options
     }
@@ -244,7 +247,6 @@ class TimetableARViewController: UIViewController {
         installGestures(on: mesh)
         arView.scene.anchors.removeAll()
         arView.scene.anchors.append(anchor)
-        HapticsManager.shared.hapticFeedback()
         self.arView.isUserInteractionEnabled = true
     }
     
@@ -261,6 +263,93 @@ class TimetableARViewController: UIViewController {
         arView.frame = view.bounds
         arView.scene.anchors.append(anchor)
         setUpSwipeGestures()
+        checkVoiceCommandsOption()
+    }
+    
+    private func checkVoiceCommandsOption() {
+        let isVoiceCommands = UserDefaults.standard.object(forKey: "onVoiceCommands") as? Bool ?? false
+        if isVoiceCommands {
+            startRecognize()
+        } else {
+            navigationItem.title = "AR режим"
+        }
+    }
+    
+    private func cancelRecognition() {
+        let isVoiceCommands = UserDefaults.standard.object(forKey: "onVoiceCommands") as? Bool ?? false
+        if isVoiceCommands {
+            speechRecognitionManager.cancelSpeechRecognition()
+        }
+    }
+    
+    private func navigationTitle()-> String {
+        
+        let style = settingsManager.getSavedCommunicationStyle()
+        
+        let isVoiceCommands = UserDefaults.standard.object(forKey: "onVoiceCommands") as? Bool ?? false
+        if isVoiceCommands {
+            return style == .formal ? "Говорите..." : "Говори..."
+        } else {
+            return "AR режим"
+        }
+    }
+    
+    private func startRecognize() {
+        speechRecognitionManager.requestSpeechAndMicrophonePermission()
+        speechRecognitionManager.registerSpeechAuthorizationHandler { auth in
+            switch auth {
+            case .notDetermined:
+                print("Разрешение на распознавание речи еще не было получено.")
+            case .denied:
+                let settingsAction = UIAlertAction(title: "Перейти в настройки", style: .default) { _ in
+                    self.openSettings()
+                }
+                let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
+                self.showAlert(title: self.createAlertMessage().0, message: self.createAlertMessage().1, actions: [settingsAction, cancel])
+                print("Доступ к распознаванию речи был отклонен.")
+            case .restricted:
+                print("Функциональность распознавания речи ограничена.")
+            case .authorized:
+                print("Разрешение на распознавание речи получено.")
+                self.speechRecognitionManager.startRecognize()
+            @unknown default:
+                print("неизвестно")
+            }
+        }
+        speechRecognitionManager.registerSpeechRecognitionHandler { text in
+            self.voiceCommands(text: text)
+        }
+    }
+    
+    private func voiceCommands(text: String) {
+        
+        if text.lowercased().contains("вперёд") || text.lowercased().contains("след") || text.lowercased().contains("дале")  {
+            speechRecognitionManager.cancelSpeechRecognition()
+            nextItem()
+        }
+        
+        if text.lowercased().contains("назад") || text.lowercased().contains("пред") {
+            speechRecognitionManager.cancelSpeechRecognition()
+            pastItem()
+        }
+    }
+    
+    private func resetSpeechRecognition() {
+        speechRecognitionManager.cancelSpeechRecognition()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.startRecognize()
+        }
+    }
+    
+    func createAlertMessage()-> (String, String) {
+        let style = settingsManager.getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        switch style {
+        case .formal:
+            return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хотите" : "Хотите") включить в настройках?")
+        case .informal:
+            return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хочешь" : "Хочешь") врубить в настройках?")
+        }
     }
     
     func createMesh()-> ModelEntity {
@@ -367,6 +456,7 @@ class TimetableARViewController: UIViewController {
     func getTimetable(date: String) {
         arView.isUserInteractionEnabled = false
         startAnimation()
+        navigationItem.title = "Загрузка..."
         service.getTimeTableDay(id: id, date: date, owner: owner) { result in
             switch result {
             case .success(let data):
@@ -401,9 +491,14 @@ class TimetableARViewController: UIViewController {
             do {
                 let json = try JSONEncoder().encode(timetable)
                 self.service.getTimeTableDayImage(json: json) { image in
-                    self.image = image
-                    self.stopAnimation()
-                    self.refresh()
+                    DispatchQueue.main.async {
+                        self.image = image
+                        self.stopAnimation()
+                        self.checkVoiceCommandsOption()
+                        self.refresh()
+                        self.navigationItem.title = self.navigationTitle()
+                        HapticsManager.shared.hapticFeedback()
+                    }
                 }
             } catch {
                 print(error.localizedDescription)
@@ -412,9 +507,14 @@ class TimetableARViewController: UIViewController {
             do {
                 let json = try JSONEncoder().encode(emptyTimetable)
                 self.service.getTimeTableDayImage(json: json) { image in
-                    self.image = image
-                    self.stopAnimation()
-                    self.refresh()
+                    DispatchQueue.main.async {
+                        self.image = image
+                        self.stopAnimation()
+                        self.checkVoiceCommandsOption()
+                        self.refresh()
+                        self.navigationItem.title = self.navigationTitle()
+                        HapticsManager.shared.hapticFeedback()
+                    }
                 }
             } catch {
                 print(error.localizedDescription)
@@ -430,9 +530,14 @@ class TimetableARViewController: UIViewController {
             do {
                 let json = try JSONEncoder().encode(timetable)
                 self.service.getTimeTableWeekImage(json: json) { image in
-                    self.image = image
-                    self.stopAnimation()
-                    self.refresh()
+                    DispatchQueue.main.async {
+                        self.image = image
+                        self.stopAnimation()
+                        self.checkVoiceCommandsOption()
+                        self.refresh()
+                        self.navigationItem.title = self.navigationTitle()
+                        HapticsManager.shared.hapticFeedback()
+                    }
                 }
             } catch {
                 print(error.localizedDescription)
@@ -441,9 +546,14 @@ class TimetableARViewController: UIViewController {
             do {
                 let json = try JSONEncoder().encode(emptyTimetable)
                 self.service.getTimeTableWeekImage(json: json) { image in
-                    self.image = image
-                    self.stopAnimation()
-                    self.refresh()
+                    DispatchQueue.main.async {
+                        self.image = image
+                        self.stopAnimation()
+                        self.checkVoiceCommandsOption()
+                        self.refresh()
+                        self.navigationItem.title = self.navigationTitle()
+                        HapticsManager.shared.hapticFeedback()
+                    }
                 }
             } catch {
                 print(error.localizedDescription)

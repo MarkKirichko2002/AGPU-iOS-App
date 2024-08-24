@@ -624,6 +624,8 @@
 		82C7B8422A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */; };
 		82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8432A50CCB800F9A552 /* AnimationClass + Extensions.swift */; };
 		82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7B8452A50CD4C00F9A552 /* SettingsManager + Extensions.swift */; };
+		82C8942A2C7955F700608E81 /* AROptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C894282C7955F700608E81 /* AROptionTableViewCell.swift */; };
+		82C8942B2C7955F700608E81 /* AROptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82C894292C7955F700608E81 /* AROptionTableViewCell.xib */; };
 		82D0FC0D2B1B4A4A0056D94B /* CathedraBuildingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D0FC0B2B1B4A4A0056D94B /* CathedraBuildingDetailViewController.swift */; };
 		82D0FC102B1B4A640056D94B /* CathedraBuildingDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82D0FC0F2B1B4A640056D94B /* CathedraBuildingDetailViewController.storyboard */; };
 		82D0FC152B1B4C1E0056D94B /* CathedraBuildingDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D0FC142B1B4C1E0056D94B /* CathedraBuildingDetailViewModelProtocol.swift */; };
@@ -1336,6 +1338,8 @@
 		82C7B8412A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpeechRecognitionManager + Extensions.swift"; sourceTree = "<group>"; };
 		82C7B8432A50CCB800F9A552 /* AnimationClass + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimationClass + Extensions.swift"; sourceTree = "<group>"; };
 		82C7B8452A50CD4C00F9A552 /* SettingsManager + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsManager + Extensions.swift"; sourceTree = "<group>"; };
+		82C894282C7955F700608E81 /* AROptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AROptionTableViewCell.swift; sourceTree = "<group>"; };
+		82C894292C7955F700608E81 /* AROptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AROptionTableViewCell.xib; sourceTree = "<group>"; };
 		82D0FC0B2B1B4A4A0056D94B /* CathedraBuildingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CathedraBuildingDetailViewController.swift; sourceTree = "<group>"; };
 		82D0FC0F2B1B4A640056D94B /* CathedraBuildingDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CathedraBuildingDetailViewController.storyboard; sourceTree = "<group>"; };
 		82D0FC142B1B4C1E0056D94B /* CathedraBuildingDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CathedraBuildingDetailViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -6351,6 +6355,7 @@
 		82920B6C2AD8776F00352CD8 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				82C894272C7955DE00608E81 /* AR */,
 				82423E3C2A991E11006FA7D2 /* Action To Recall */,
 				8258198A2C02968D0022D17F /* Visual Changes */,
 				82BF39DE2B24837000FADBD4 /* Only Main */,
@@ -8836,6 +8841,15 @@
 			path = "TabBar Icon";
 			sourceTree = "<group>";
 		};
+		82C894272C7955DE00608E81 /* AR */ = {
+			isa = PBXGroup;
+			children = (
+				82C894282C7955F700608E81 /* AROptionTableViewCell.swift */,
+				82C894292C7955F700608E81 /* AROptionTableViewCell.xib */,
+			);
+			path = AR;
+			sourceTree = "<group>";
+		};
 		82D005312C24BAA4009D234C /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -10516,6 +10530,7 @@
 				82AB6D2D2AF6C45700F7B729 /* SavedNewsCategoryTableViewCell.xib in Resources */,
 				8213658E2A94F7B700A20E4E /* InfoPlist.strings in Resources */,
 				8209A0B82B839C0C0013371D /* DocumentTableViewCell.xib in Resources */,
+				82C8942B2C7955F700608E81 /* AROptionTableViewCell.xib in Resources */,
 				82FC881E2BBDFC4A00A2EF59 /* status.mp4 in Resources */,
 				8286D1592BCDADFB006BB6B3 /* TabsPositionOptionTableViewCell.xib in Resources */,
 				829D489A2BBC1E2B00F6D256 /* clock_sound2.mp3 in Resources */,
@@ -10950,6 +10965,7 @@
 				825738742C1089F1000D6CAC /* ContactsListTableViewController.swift in Sources */,
 				828D51382BB8A3BF00848FF8 /* ASPUButtonIconTableViewCell.swift in Sources */,
 				82761A312B4642A300D9976F /* SplashScreensListViewModel + Extensions.swift in Sources */,
+				82C8942A2C7955F700608E81 /* AROptionTableViewCell.swift in Sources */,
 				828E692E2BE2E4250097FAAD /* SavedDisplayModeViewModel + Extensions.swift in Sources */,
 				8294C3C42C71561600C9DFBE /* IRecentBuildingViewModel.swift in Sources */,
 				82111A002B990138007B61E5 /* INewsWebViewModel.swift in Sources */,
@@ -11420,7 +11436,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.6;
+				MARKETING_VERSION = 2.9.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -11459,7 +11475,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.6;
+				MARKETING_VERSION = 2.9.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -20,7 +20,7 @@ extension SettingsListViewController: UITableViewDataSource {
         case 0:
             return 4
         case 1:
-            return 9
+            return 10
         case 2:
             return 2
         default:
@@ -49,32 +49,35 @@ extension SettingsListViewController: UITableViewDataSource {
             }
         case 1:
             if indexPath.row == 0 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: AROptionTableViewCell.identifier, for: indexPath) as? AROptionTableViewCell else {return UITableViewCell()}
+                return cell
+            } else if indexPath.row == 1 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ActionToRecallOptionTableViewCell.identifier, for: indexPath) as? ActionToRecallOptionTableViewCell else {return UITableViewCell()}
                 cell.delegate = self
                 return cell
-            } else if indexPath.row == 1 {
+            } else if indexPath.row == 2 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: VisualChangesOptionTableViewCell.identifier, for: indexPath) as? VisualChangesOptionTableViewCell else {return UITableViewCell()}
                 cell.configure(name: viewModel.getScreenPresentationStyleInfo())
                 return cell
-            } else if indexPath.row == 2 {
+            } else if indexPath.row == 3 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: OnlyMainOptionTableViewCell.identifier, for: indexPath) as? OnlyMainOptionTableViewCell else {return UITableViewCell()}
                 cell.configure(name: viewModel.getOnlyMainVariantInfo())
                 return cell
-            } else if indexPath.row == 3 {
+            } else if indexPath.row == 4 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: SplashScreenOptionTableViewCell.identifier, for: indexPath) as? SplashScreenOptionTableViewCell else {return UITableViewCell()}
                 cell.configure(name: viewModel.getSplashScreenInfo())
                 return cell
-            } else if indexPath.row == 4 {
+            } else if indexPath.row == 5 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AppIconTableViewCell.identifier, for: indexPath) as? AppIconTableViewCell else {return UITableViewCell()}
                 cell.configure(icon: viewModel.getAppIconInfo())
                 return cell
-            } else if indexPath.row == 5 {
+            } else if indexPath.row == 6 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTabBarOptionTableViewCell.identifier, for: indexPath) as? CustomTabBarOptionTableViewCell else {return UITableViewCell()}
                 return cell
-            } else if indexPath.row == 6 {
+            } else if indexPath.row == 7 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ASPUButtonOptionTableViewCell.identifier, for: indexPath) as? ASPUButtonOptionTableViewCell else {return UITableViewCell()}
                 return cell
-            } else if indexPath.row == 7 {
+            } else if indexPath.row == 8 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: SettablePersonalityTableViewCell.identifier, for: indexPath) as? SettablePersonalityTableViewCell else {return UITableViewCell()}
                 return cell
             } else {
@@ -119,7 +122,6 @@ extension SettingsListViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.section {
         case 0:
-            
             if indexPath.row == 0 {
                 
                 if let cell = tableView.cellForRow(at: indexPath) as? YourStatusOptionTableViewCell {
@@ -188,7 +190,7 @@ extension SettingsListViewController: UITableViewDelegate {
             }
         case 1:
             
-            if indexPath.row == 1 {
+            if indexPath.row == 2 {
                 
                 if let cell = tableView.cellForRow(at: indexPath) as? VisualChangesOptionTableViewCell {
                     cell.didTapCell(indexPath: indexPath)
@@ -204,7 +206,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
-            } else if indexPath.row == 2 {
+            } else if indexPath.row == 3 {
                 
                 if let cell = tableView.cellForRow(at: indexPath) as? OnlyMainOptionTableViewCell {
                     cell.didTapCell(indexPath: indexPath)
@@ -220,7 +222,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
-            } else if indexPath.row == 3 {
+            } else if indexPath.row == 4 {
                 
                 if let cell = tableView.cellForRow(at: indexPath) as? SplashScreenOptionTableViewCell {
                     cell.didTapCell(indexPath: indexPath)
@@ -236,7 +238,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
-            } else if indexPath.row == 4 {
+            } else if indexPath.row == 5 {
                 
                 if let cell = tableView.cellForRow(at: indexPath) as? AppIconTableViewCell {
                     cell.didTapCell(indexPath: indexPath)
@@ -252,7 +254,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
-            } else if indexPath.row == 5 {
+            } else if indexPath.row == 6 {
                 
                 if let cell = tableView.cellForRow(at: indexPath) as? CustomTabBarOptionTableViewCell {
                     cell.didTapCell(indexPath: indexPath)
@@ -268,7 +270,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
-            } else if indexPath.row == 6 {
+            } else if indexPath.row == 7 {
                 
                 if let cell = tableView.cellForRow(at: indexPath) as? ASPUButtonOptionTableViewCell {
                     cell.didTapCell(indexPath: indexPath)
@@ -284,7 +286,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
-            } else if indexPath.row == 7 {
+            } else if indexPath.row == 8 {
                 
                 if let cell = tableView.cellForRow(at: indexPath) as? SettablePersonalityTableViewCell {
                     cell.didTapCell(indexPath: indexPath)
@@ -300,7 +302,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
-            } else if indexPath.row == 8 {
+            } else if indexPath.row == 9 {
                 
                 if let cell = tableView.cellForRow(at: indexPath) as? AppThemesTableViewCell {
                     cell.didTapCell(indexPath: indexPath)
@@ -317,6 +319,7 @@ extension SettingsListViewController: UITableViewDelegate {
                     self.present(navVC, animated: true)
                 }
             }
+            
         case 2:
             
             if indexPath.row == 0 {
