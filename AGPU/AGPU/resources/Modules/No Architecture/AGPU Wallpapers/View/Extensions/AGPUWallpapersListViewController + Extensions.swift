@@ -52,7 +52,7 @@ extension AGPUWallpapersListViewController: UICollectionViewDelegate {
                 }
             }
             
-            let ARAction = UIAction(title: "AR режим", image: UIImage(named: "mobile")) { _ in
+            let ARAction = UIAction(title: "AR режим", image: UIImage(named: "cube")) { _ in
                 if let cell = collectionView.cellForItem(at: indexPath) as? AGPUWallpaperCollectionViewCell {
                     if let image = cell.imageView.image {
                         let vc = ARViewController()

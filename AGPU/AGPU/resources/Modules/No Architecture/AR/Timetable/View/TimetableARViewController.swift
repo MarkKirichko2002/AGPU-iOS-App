@@ -269,7 +269,7 @@ class TimetableARViewController: UIViewController {
     private func checkVoiceCommandsOption() {
         let isVoiceCommands = UserDefaults.standard.object(forKey: "onVoiceCommands") as? Bool ?? false
         if isVoiceCommands {
-            startRecognize()
+            resetSpeechRecognition()
         } else {
             navigationItem.title = "AR режим"
         }
@@ -336,7 +336,7 @@ class TimetableARViewController: UIViewController {
     
     private func resetSpeechRecognition() {
         speechRecognitionManager.cancelSpeechRecognition()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
             self.startRecognize()
         }
     }

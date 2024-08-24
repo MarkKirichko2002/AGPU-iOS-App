@@ -16,11 +16,16 @@ extension NewsListViewController: UICollectionViewDelegate {
                                  point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
+            let ARAction = UIAction(title: "AR режим", image: UIImage(named: "cube")) { _ in
+                self.viewModel.getArticleInfo(id: indexPath.row)
+            }
+            
             let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
                 self.shareInfo(image: UIImage(named: "АГПУ")!, title: "\(self.viewModel.articleItem(index: indexPath.row).title)", text: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))")
             }
             
             return UIMenu(title: self.viewModel.articleItem(index: indexPath.row).title, children: [
+                ARAction,
                 shareAction
             ])
         }
@@ -81,7 +86,7 @@ extension NewsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
-            let ARAction = UIAction(title: "AR-режим", image: UIImage(named: "mobile")) { _ in
+            let ARAction = UIAction(title: "AR режим", image: UIImage(named: "cube")) { _ in
                 self.viewModel.getArticleInfo(id: indexPath.row)
             }
             
