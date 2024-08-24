@@ -324,19 +324,19 @@ class TimetableARViewController: UIViewController {
     private func voiceCommands(text: String) {
         
         if text.lowercased().contains("вперёд") || text.lowercased().contains("след") || text.lowercased().contains("дале")  {
-            speechRecognitionManager.cancelSpeechRecognition()
+            cancelRecognition()
             nextItem()
         }
         
         if text.lowercased().contains("назад") || text.lowercased().contains("пред") {
-            speechRecognitionManager.cancelSpeechRecognition()
+            cancelRecognition()
             pastItem()
         }
     }
     
     private func resetSpeechRecognition() {
-        speechRecognitionManager.cancelSpeechRecognition()
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+        cancelRecognition()
+        Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
             self.startRecognize()
         }
     }

@@ -146,7 +146,7 @@ class NewsARViewController: UIViewController {
     private func checkVoiceCommandsOption() {
         let isVoiceCommands = UserDefaults.standard.object(forKey: "onVoiceCommands") as? Bool ?? false
         if isVoiceCommands {
-            startRecognize()
+            resetSpeechRecognition()
         } else {
             navigationItem.title = "AR режим"
         }
@@ -206,8 +206,8 @@ class NewsARViewController: UIViewController {
     
     func resetSpeechRecognition() {
         speechRecognitionManager.cancelSpeechRecognition()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.speechRecognitionManager.startRecognize()
+        Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+            self.startRecognize()
         }
     }
     
@@ -223,7 +223,7 @@ class NewsARViewController: UIViewController {
     }
     
     func showAlert(title: String) {
-        let alertVC = UIAlertController()
+        let alertVC = UIAlertController(title: title, message: "больше нет изображений", preferredStyle: .alert)
         alertVC.title = title
         alertVC.addAction(UIAlertAction(title: "ОК", style: .default))
         present(alertVC, animated: true)
@@ -282,7 +282,7 @@ class NewsARViewController: UIViewController {
             makeImage()
         } else {
             showAlert(title: "Это первое изображение!")
-            resetSpeechRecognition()
+            checkVoiceCommandsOption()
         }
     }
     
@@ -292,7 +292,7 @@ class NewsARViewController: UIViewController {
             makeImage()
         } else {
             showAlert(title: "Это последнее изображение!")
-            resetSpeechRecognition()
+            checkVoiceCommandsOption()
         }
     }
     
@@ -304,6 +304,8 @@ class NewsARViewController: UIViewController {
     
     private func makeImage() {
         
+        arView.isUserInteractionEnabled = false
+        
         guard let url = URL(string: urls[index]) else {return}
         
         if checkURL() {
@@ -312,10 +314,11 @@ class NewsARViewController: UIViewController {
                 if let image = UIImage(data: data) {
                     if !self.images.contains(image) {
                         self.images[self.index] = image
+                        self.checkVoiceCommandsOption()
                         DispatchQueue.main.async {
                             self.setUpNavigation()
                             self.refresh()
-                            self.resetSpeechRecognition()
+                            self.arView.isUserInteractionEnabled = true
                         }
                     }
                 } else {
@@ -323,8 +326,10 @@ class NewsARViewController: UIViewController {
                 }
             }.resume()
         } else {
+            checkVoiceCommandsOption()
             setUpNavigation()
             refresh()
+            arView.isUserInteractionEnabled = true
         }
     }
     
