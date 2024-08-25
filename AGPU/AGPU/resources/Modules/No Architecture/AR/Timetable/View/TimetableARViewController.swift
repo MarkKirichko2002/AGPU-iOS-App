@@ -84,7 +84,7 @@ class TimetableARViewController: UIViewController {
         let options =  UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpMenu())
         options.tintColor = .label
         closeButton.tintColor = .label
-        navigationItem.title = navigationTitle()
+        navigationTitle()
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = options
     }
@@ -271,7 +271,14 @@ class TimetableARViewController: UIViewController {
         if isVoiceCommands {
             resetSpeechRecognition()
         } else {
-            navigationItem.title = "AR режим"
+            makeNavigationView(image: "cube", title: "AR режим")
+        }
+    }
+    
+    private func makeNavigationView(image: String, title: String) {
+        DispatchQueue.main.async {
+            let titleView = CustomTitleView(image: image, title: title, frame: .zero)
+            self.navigationItem.titleView = titleView
         }
     }
     
@@ -282,15 +289,15 @@ class TimetableARViewController: UIViewController {
         }
     }
     
-    private func navigationTitle()-> String {
+    private func navigationTitle() {
         
         let style = settingsManager.getSavedCommunicationStyle()
         
         let isVoiceCommands = UserDefaults.standard.object(forKey: "onVoiceCommands") as? Bool ?? false
         if isVoiceCommands {
-            return style == .formal ? "Говорите..." : "Говори..."
+            style == .formal ? makeNavigationView(image: "microphone", title: "Говорите...") : makeNavigationView(image: "microphone", title: "Говори...")
         } else {
-            return "AR режим"
+           makeNavigationView(image: "cube", title: "AR режим")
         }
     }
     
@@ -323,7 +330,7 @@ class TimetableARViewController: UIViewController {
     
     private func voiceCommands(text: String) {
         
-        if text.lowercased().contains("вперёд") || text.lowercased().contains("след") || text.lowercased().contains("дале")  {
+        if text.lowercased().contains("вперёд") || text.lowercased().contains("вперед") || text.lowercased().contains("след") || text.lowercased().contains("дал") {
             cancelRecognition()
             nextItem()
         }
@@ -496,7 +503,7 @@ class TimetableARViewController: UIViewController {
                         self.stopAnimation()
                         self.checkVoiceCommandsOption()
                         self.refresh()
-                        self.navigationItem.title = self.navigationTitle()
+                        self.navigationTitle()
                         HapticsManager.shared.hapticFeedback()
                     }
                 }
@@ -512,7 +519,7 @@ class TimetableARViewController: UIViewController {
                         self.stopAnimation()
                         self.checkVoiceCommandsOption()
                         self.refresh()
-                        self.navigationItem.title = self.navigationTitle()
+                        self.navigationTitle()
                         HapticsManager.shared.hapticFeedback()
                     }
                 }
@@ -535,7 +542,7 @@ class TimetableARViewController: UIViewController {
                         self.stopAnimation()
                         self.checkVoiceCommandsOption()
                         self.refresh()
-                        self.navigationItem.title = self.navigationTitle()
+                        self.navigationTitle()
                         HapticsManager.shared.hapticFeedback()
                     }
                 }
@@ -551,7 +558,7 @@ class TimetableARViewController: UIViewController {
                         self.stopAnimation()
                         self.checkVoiceCommandsOption()
                         self.refresh()
-                        self.navigationItem.title = self.navigationTitle()
+                        self.navigationTitle()
                         HapticsManager.shared.hapticFeedback()
                     }
                 }

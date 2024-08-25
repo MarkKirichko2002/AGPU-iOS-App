@@ -50,7 +50,7 @@ class NewsARViewController: UIViewController {
         let options =  UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpMenu())
         options.tintColor = .label
         closeButton.tintColor = .label
-        navigationItem.title = navigationTitle()
+        navigationTitle()
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = options
     }
@@ -148,19 +148,26 @@ class NewsARViewController: UIViewController {
         if isVoiceCommands {
             resetSpeechRecognition()
         } else {
-            navigationItem.title = "AR режим"
+            makeNavigationView(image: "cube", title: "AR режим")
         }
     }
     
-    private func navigationTitle()-> String {
+    private func navigationTitle() {
         
         let style = settingsManager.getSavedCommunicationStyle()
         
         let isVoiceCommands = UserDefaults.standard.object(forKey: "onVoiceCommands") as? Bool ?? false
         if isVoiceCommands {
-            return style == .formal ? "Говорите..." : "Говори..."
+            style == .formal ? makeNavigationView(image: "microphone", title: "Говорите...") : makeNavigationView(image: "microphone", title: "Говори...")
         } else {
-            return "AR режим"
+           makeNavigationView(image: "cube", title: "AR режим")
+        }
+    }
+    
+    private func makeNavigationView(image: String, title: String) {
+        DispatchQueue.main.async {
+            let titleView = CustomTitleView(image: image, title: title, frame: .zero)
+            self.navigationItem.titleView = titleView
         }
     }
     
