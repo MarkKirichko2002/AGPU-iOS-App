@@ -306,20 +306,6 @@ final class NewsListViewController: UIViewController {
             }
         }
         
-        viewModel.registerArticleInfoChangedHandler { info in
-            if !info.images.isEmpty {
-                let vc = NewsARViewController()
-                vc.urls = info.images
-                let navVC = UINavigationController(rootViewController: vc)
-                navVC.modalPresentationStyle = .fullScreen
-                DispatchQueue.main.async {
-                    self.present(navVC, animated: true)
-                }
-            } else {
-                self.showAlert(title: "Нет изображений", message: "у данной новости нет изображений", actions: [UIAlertAction(title: "ОК", style: .default)])
-            }
-        }
-        
         viewModel.registerErrorHandler {
             DispatchQueue.main.async {
                 self.noNewsLabel.text = "Нет новостей"

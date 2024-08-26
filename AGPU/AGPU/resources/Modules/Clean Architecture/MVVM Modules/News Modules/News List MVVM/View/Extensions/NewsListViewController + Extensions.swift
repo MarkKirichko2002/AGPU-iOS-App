@@ -17,7 +17,21 @@ extension NewsListViewController: UICollectionViewDelegate {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
             let ARAction = UIAction(title: "AR режим", image: UIImage(named: "cube")) { _ in
-                self.viewModel.getArticleInfo(id: indexPath.row)
+                self.viewModel.getArticleInfo(id: indexPath.row) { info in
+                    self.goToAR(images: info.images)
+                }
+            }
+            
+            let infoAction = UIAction(title: "Подробнее", image: UIImage(named: "info")) { _ in
+                self.viewModel.getArticleInfo(id: indexPath.row) { info in
+                    self.showAlert(title: "Информация о новости", message: "всего предложений: \(info.description.countSentences()) \n всего слов: \(info.description.countWords())", actions: [UIAlertAction(title: "ОК", style: .default)])
+                }
+            }
+            
+            let searchAction = UIAction(title: "Поиск слова", image: UIImage(named: "search")) { _ in
+                self.viewModel.getArticleInfo(id: indexPath.row) { info in
+                    self.showSearchWordAlert(index: indexPath.row, desc: info.description)
+                }
             }
             
             let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
@@ -26,9 +40,46 @@ extension NewsListViewController: UICollectionViewDelegate {
             
             return UIMenu(title: self.viewModel.articleItem(index: indexPath.row).title, children: [
                 ARAction,
+                infoAction,
+                searchAction,
                 shareAction
             ])
         }
+    }
+    
+    @objc func showSearchWordAlert(index: Int, desc: String) {
+        
+        let alertVC = UIAlertController(title: "Поиск слова", message: "Введите слово для поиска", preferredStyle: .alert)
+        
+        alertVC.addTextField { (textField) in
+            textField.placeholder = "Введите слово"
+        }
+        
+        let saveAction = UIAlertAction(title: "Найти", style: .default) { _ in
+            if let word = alertVC.textFields![0].text {
+                if self.viewModel.searchWord(word: word, desc: desc) {
+                    let openArticle = UIAlertAction(title: "Открыть", style: .default) { _ in
+                        Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
+                            let vc = NewsWebViewController(article: self.viewModel.articleItem(index: index), url: self.viewModel.makeUrlForCurrentArticle(index: index), isNotify: true)
+                            let navVC = UINavigationController(rootViewController: vc)
+                            navVC.modalPresentationStyle = .fullScreen
+                            self.present(navVC, animated: true)
+                        }
+                    }
+                    self.showAlert(title: "Найдено слово!", message: "слово \(word) есть в новости", actions: [openArticle, UIAlertAction(title: "Отмена", style: .default)])
+                } else {
+                    self.showAlert(title: "Слово не найдено", message: "слова \(word) нет в новости", actions: [UIAlertAction(title: "ОК", style: .default)])
+                }
+            }
+        }
+        
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+        
+        alertVC.addAction(saveAction)
+        alertVC.addAction(cancel)
+        
+        SpeechSynthesizerManager.shared.checkIsSaying(text: "\(alertVC.title ?? "") \(alertVC.message ?? "")")
+        present(alertVC, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -87,7 +138,21 @@ extension NewsListViewController: UITableViewDelegate {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
             let ARAction = UIAction(title: "AR режим", image: UIImage(named: "cube")) { _ in
-                self.viewModel.getArticleInfo(id: indexPath.row)
+                self.viewModel.getArticleInfo(id: indexPath.row) { info in
+                    self.goToAR(images: info.images)
+                }
+            }
+            
+            let infoAction = UIAction(title: "Подробнее", image: UIImage(named: "info")) { _ in
+                self.viewModel.getArticleInfo(id: indexPath.row) { info in
+                    self.showAlert(title: "Информация о новости", message: "всего предложений: \(info.description.countSentences()) \n всего слов: \(info.description.countWords())", actions: [UIAlertAction(title: "ОК", style: .default)])
+                }
+            }
+            
+            let searchAction = UIAction(title: "Поиск слова", image: UIImage(named: "search")) { _ in
+                self.viewModel.getArticleInfo(id: indexPath.row) { info in
+                    self.showSearchWordAlert(index: indexPath.row, desc: info.description)
+                }
             }
             
             let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
@@ -96,6 +161,8 @@ extension NewsListViewController: UITableViewDelegate {
             
             return UIMenu(title: self.viewModel.articleItem(index: indexPath.row).title, children: [
                 ARAction,
+                infoAction,
+                searchAction,
                 shareAction
             ])
         }
@@ -160,5 +227,22 @@ extension NewsListViewController: NewsTableViewCellDelegate {
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         self.present(navVC, animated: true)
+    }
+}
+
+extension NewsListViewController {
+    
+    func goToAR(images: [String]) {
+        if !images.isEmpty {
+            let vc = NewsARViewController()
+            vc.urls = images
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            DispatchQueue.main.async {
+                self.present(navVC, animated: true)
+            }
+        } else {
+            self.showAlert(title: "Нет изображений", message: "у данной новости нет изображений", actions: [UIAlertAction(title: "ОК", style: .default)])
+        }
     }
 }

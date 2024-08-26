@@ -76,4 +76,28 @@ extension String {
         let slittedString = words.joined()
         return slittedString.lowercased()
     }
+    
+    func countWords()-> Int {
+        let value = self.components(separatedBy: CharacterSet(charactersIn: " "))
+        print(value)
+        return value.count
+    }
+    
+    func countSentences()-> Int {
+        let value = self.components(separatedBy: " ")
+        var counter = 0
+        for i in 0..<value.count {
+            if value[i].contains(".") || value[i].contains("!") || value[i].contains("?") {
+                print(value[i])
+                counter += 1
+            }
+        }
+        
+        if value.last!.contains("") {
+            counter += 1
+        }
+        
+        print(value)
+        return counter
+    }
 }

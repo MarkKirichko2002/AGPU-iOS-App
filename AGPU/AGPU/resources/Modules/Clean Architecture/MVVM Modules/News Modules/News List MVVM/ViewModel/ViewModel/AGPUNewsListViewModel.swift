@@ -19,7 +19,6 @@ class AGPUNewsListViewModel {
     var articleInfo = ArticleInfo(id: 0, title: "", description: "", date: "", images: [])
     
     var dataChangedHandler: ((String)->Void)?
-    var articleInfoChangedHandler: ((ArticleInfo)->Void)?
     var errorHandler: (()->Void)?
     var dislayModeHandler: ((DisplayModes)->Void)?
     var webModeHandler: (()->Void)?
