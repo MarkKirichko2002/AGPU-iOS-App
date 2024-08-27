@@ -94,13 +94,13 @@ final class NewsTableViewCell: UITableViewCell {
             maker.top.equalToSuperview().inset(10)
             maker.left.equalTo(newsImage.snp.right).offset(15)
             maker.right.equalToSuperview().inset(15)
-            maker.bottom.equalToSuperview().inset(15)
+            //maker.bottom.equalToSuperview().inset(15)
         }
         articleDate.snp.makeConstraints { maker in
             maker.top.equalTo(articleTitle.snp.bottom).offset(-10)
             maker.left.equalTo(newsImage.snp.right).offset(15)
             maker.right.equalToSuperview().inset(15)
-            maker.bottom.equalToSuperview().inset(10)
+            maker.bottom.equalToSuperview().inset(15)
         }
     }
     
@@ -143,8 +143,9 @@ final class NewsTableViewCell: UITableViewCell {
         }
     }
     
-    func didTapCell(indexPath: IndexPath) {
+    func didTapCell(indexPath: IndexPath, completion: @escaping()->Void) {
         animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
+            completion()
             HapticsManager.shared.hapticFeedback()
         }
     }

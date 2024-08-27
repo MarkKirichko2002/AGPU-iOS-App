@@ -92,6 +92,28 @@ final class NewsListViewController: UIViewController {
         }
     }
     
+    func getNews(for page: Int) {
+        setUpIndicatorView()
+        switch viewModel.displayMode {
+        case .grid:
+            viewModel.newsResponse.articles = []
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.noNewsLabel.isHidden = true
+            }
+            viewModel.getNews(by: page)
+        case .table:
+            viewModel.newsResponse.articles = []
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.noNewsLabel.isHidden = true
+            }
+            viewModel.getNews(by: page)
+        case .webpage:
+            viewModel.getNews(by: page)
+        }
+    }
+    
     private func setUpCollectionView() {
         view.addSubview(collectionView)
         collectionView.frame = view.bounds

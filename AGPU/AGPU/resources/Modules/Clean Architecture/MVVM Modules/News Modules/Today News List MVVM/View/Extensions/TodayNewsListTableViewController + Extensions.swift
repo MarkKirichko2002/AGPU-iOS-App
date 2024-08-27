@@ -30,14 +30,12 @@ extension TodayNewsListTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let cell = tableView.cellForRow(at: indexPath) as? NewsTableViewCell {
-            cell.didTapCell(indexPath: indexPath)
-        }
-        
-        Timer.scheduledTimer(withTimeInterval: 1.1, repeats: false) { _ in
-            let vc = NewsWebViewController(article: self.viewModel.newsItemAtSection(section: indexPath.section, index: indexPath.row), url: self.viewModel.makeUrlForCurrentArticle(section: indexPath.section, index: indexPath.row), isNotify: false)
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
+            cell.didTapCell(indexPath: indexPath) {
+                let vc = NewsWebViewController(article: self.viewModel.newsItemAtSection(section: indexPath.section, index: indexPath.row), url: self.viewModel.makeUrlForCurrentArticle(section: indexPath.section, index: indexPath.row), isNotify: false)
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                self.present(navVC, animated: true)
+            }
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }

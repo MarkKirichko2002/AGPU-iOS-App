@@ -250,12 +250,14 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                     self.newsResponse = response
                     self.allNews = response.articles ?? []
                     self.option = .all
+                    self.createAdditionalArticle()
                     self.dataChangedHandler?(self.abbreviation)
                     self.dislayModeHandler?(displayMode)
                 case .table:
                     self.newsResponse = response
                     self.allNews = response.articles ?? []
                     self.option = .all
+                    self.createAdditionalArticle()
                     self.dataChangedHandler?(self.abbreviation)
                     self.dislayModeHandler?(displayMode)
                 case .webpage:
@@ -297,6 +299,17 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         if let page = newsResponse.currentPage {
             getNews(by: page)
             NotificationCenter.default.post(name: Notification.Name("refreshed"), object: nil)
+        }
+    }
+    
+    func createAdditionalArticle() {
+        guard let page = newsResponse.currentPage else {return}
+        if !(newsResponse.articles?.isEmpty ?? false) {
+            if (newsResponse.articles?.count ?? 0) % 2 != 0 && page < newsResponse.countPages ?? 0 {
+                newsResponse.articles?.append(Article(id: 0, title: "Чтобы перейти к странице \(page + 1) нужно нажать на ячейку.", description: "", date: "текущая страница: \(page)", previewImage: ""))
+            } else {
+                newsResponse.articles?.append(Article(id: 1, title: "Это последняя страница.", description: "", date: "текущая страница: \(page)", previewImage: ""))
+            }
         }
     }
     
@@ -379,6 +392,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             let date = dateManager.getCurrentDate()
             let filteredNews = allNews.filter({ $0.date == date})
             newsResponse.articles = filteredNews
+            createAdditionalArticle()
             dataChangedHandler?(abbreviation)
             dislayModeHandler?(displayMode)
         case .yesterday:
@@ -386,6 +400,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             let yesterday = dateManager.previousDay(date: date)
             let filteredNews = allNews.filter({ $0.date == yesterday})
             newsResponse.articles = filteredNews
+            createAdditionalArticle()
             dataChangedHandler?(abbreviation)
             dislayModeHandler?(displayMode)
         case .dayBeforeYesterday:
@@ -394,10 +409,12 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             let beforeYesterday = dateManager.previousDay(date: yesterday)
             let filteredNews = allNews.filter({ $0.date == beforeYesterday})
             newsResponse.articles = filteredNews
+            createAdditionalArticle()
             dataChangedHandler?(abbreviation)
             dislayModeHandler?(displayMode)
         case .all:
             newsResponse.articles = allNews
+            createAdditionalArticle()
             dataChangedHandler?(abbreviation)
             dislayModeHandler?(displayMode)
         }
@@ -414,13 +431,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         let url = newsService.urlForCurrentWebPage(abbreviation: abbreviation, currentPage: newsResponse.currentPage ?? 0)
         return url
     }
-    
-    func sendNotificationArticleWasSelected() {
-        Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("article selected"), object: nil)
-        }
-    }
-    
+        
     func registerDataChangedHandler(block: @escaping(String)->Void) {
         self.dataChangedHandler = block
     }

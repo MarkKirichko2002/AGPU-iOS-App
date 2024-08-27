@@ -21,6 +21,5 @@ protocol AGPUNewsListViewModelProtocol {
     func filterNews(option: NewsOptionsFilters)
     func makeUrlForCurrentArticle(index: Int)-> String
     func makeUrlForCurrentWebPage()-> String
-    func sendNotificationArticleWasSelected()
     func registerDataChangedHandler(block: @escaping(String)->Void)
 }
