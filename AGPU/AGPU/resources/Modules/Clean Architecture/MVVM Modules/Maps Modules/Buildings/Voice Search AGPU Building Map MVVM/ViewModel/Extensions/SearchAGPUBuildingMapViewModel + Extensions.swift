@@ -47,9 +47,16 @@ extension SearchAGPUBuildingMapViewModel: SearchAGPUBuildingMapViewModelProtocol
             currentpin.title = "Вы"
             
             let location = LocationModel(region: region, pins: [currentpin, self.building.pin])
-            
+            self.arr.append(currentpin)
+            self.arr.append(self.building.pin)
             self.locationHandler?(location)
         }
+    }
+    
+    func defaultLocation()-> MKCoordinateRegion {
+        let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
+        let region = MKCoordinateRegion(center: arr[0].coordinate, span: span)
+        return region
     }
     
     func registerLocationHandler(block: @escaping(LocationModel)->Void) {

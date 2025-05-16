@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CommunicationStyleVariantsListViewModel {
+final class CommunicationStyleVariantsListViewModel {
     
     var dataChangedHandler: (()->Void)?
     

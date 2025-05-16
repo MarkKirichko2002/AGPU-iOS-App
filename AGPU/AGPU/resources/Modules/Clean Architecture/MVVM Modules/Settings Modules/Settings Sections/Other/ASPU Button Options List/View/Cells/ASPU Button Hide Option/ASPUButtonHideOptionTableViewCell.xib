@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ASPUButtonHideOptionTableViewCell" rowHeight="99" id="ar2-GK-7yA" customClass="ASPUButtonHideOptionTableViewCell" customModule="AGPU" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="430" height="99"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ar2-GK-7yA" id="KrT-al-5Aj">
+                <rect key="frame" x="0.0" y="0.0" width="430" height="99"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eye" translatesAutoresizingMaskIntoConstraints="NO" id="DVt-Ar-S4K" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
+                        <rect key="frame" x="20" y="15" width="65" height="65"/>
+                        <color key="tintColor" red="0.0564979439" green="0.0" blue="0.25830120280000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="65" id="Myd-2Z-1as"/>
+                            <constraint firstAttribute="width" constant="65" id="uIn-an-NCw"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Показ кнопки" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKH-be-0GD">
+                        <rect key="frame" x="95" y="14.999999999999998" width="119.33333333333331" height="20.333333333333329"/>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pGJ-Ak-Rr9">
+                        <rect key="frame" x="95" y="45.333333333333336" width="51" height="31.000000000000007"/>
+                        <connections>
+                            <action selector="switchAction:" destination="ar2-GK-7yA" eventType="touchUpInside" id="efz-OW-XYl"/>
+                        </connections>
+                    </switch>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="pGJ-Ak-Rr9" firstAttribute="leading" secondItem="fKH-be-0GD" secondAttribute="leading" id="96L-S7-08A"/>
+                    <constraint firstItem="pGJ-Ak-Rr9" firstAttribute="top" secondItem="fKH-be-0GD" secondAttribute="bottom" constant="10" id="NF7-Vf-z7c"/>
+                    <constraint firstItem="fKH-be-0GD" firstAttribute="leading" secondItem="DVt-Ar-S4K" secondAttribute="trailing" constant="10" id="Yfb-55-SC6"/>
+                    <constraint firstItem="DVt-Ar-S4K" firstAttribute="top" secondItem="KrT-al-5Aj" secondAttribute="top" constant="15" id="dN0-Hc-G6D"/>
+                    <constraint firstAttribute="bottom" secondItem="DVt-Ar-S4K" secondAttribute="bottom" constant="15" id="fV5-q1-nJ5"/>
+                    <constraint firstItem="DVt-Ar-S4K" firstAttribute="leading" secondItem="KrT-al-5Aj" secondAttribute="leading" constant="20" id="lWm-Z7-fOy"/>
+                    <constraint firstItem="fKH-be-0GD" firstAttribute="top" secondItem="DVt-Ar-S4K" secondAttribute="top" id="mrr-oW-24a"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="OptionIcon" destination="DVt-Ar-S4K" id="uG1-r9-irE"/>
+                <outlet property="Switch" destination="pGJ-Ak-Rr9" id="Vsx-c1-fQk"/>
+                <outlet property="TitleLabel" destination="fKH-be-0GD" id="Niv-Uo-pPk"/>
+            </connections>
+            <point key="canvasLocation" x="48.854961832061065" y="-16.549295774647888"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="eye" width="48" height="48"/>
+    </resources>
+</document>

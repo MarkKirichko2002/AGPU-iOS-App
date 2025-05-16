@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HintViewController: UIViewController {
+final class HintViewController: UIViewController {
     
     // MARK: - UI
     private var closeButton: UIButton = {
@@ -46,6 +46,7 @@ class HintViewController: UIViewController {
         
     var info: String
     var isNotify = false
+    weak var delegate: ScreenClosedDelegate?
     
     // MARK: - Init
     init(info: String) {
@@ -73,7 +74,7 @@ class HintViewController: UIViewController {
     
     @objc private func closeScreen() {
         if isNotify {
-            sendScreenWasClosedNotification()
+            delegate?.screenWasClosed()
         }
         HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
@@ -89,8 +90,8 @@ class HintViewController: UIViewController {
         hintIcon.snp.makeConstraints { maker in
             maker.top.equalTo(closeButton.snp.bottom).offset(20)
             maker.centerX.equalToSuperview()
-            maker.width.equalTo(90)
-            maker.height.equalTo(90)
+            maker.width.equalTo(80)
+            maker.height.equalTo(80)
         }
         
         titleLabel.snp.makeConstraints { maker in

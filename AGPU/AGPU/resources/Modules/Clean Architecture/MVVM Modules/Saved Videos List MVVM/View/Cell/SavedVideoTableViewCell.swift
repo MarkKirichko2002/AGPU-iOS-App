@@ -8,8 +8,8 @@
 import UIKit
 import SnapKit
 
-class SavedVideoTableViewCell: UITableViewCell {
-    
+final class SavedVideoTableViewCell: UITableViewCell {
+
     static let identifier = "SavedImageTableViewCell"
     
     private let savedVideoIcon: SpringImageView = {

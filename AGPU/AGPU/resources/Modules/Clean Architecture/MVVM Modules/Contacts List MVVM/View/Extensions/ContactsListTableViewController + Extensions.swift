@@ -15,6 +15,12 @@ extension ContactsListTableViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        if tableView.isEditing {
+            viewModel.updateContacts(contacts: viewModel.contacts, sourceIndexPath.row, destinationIndexPath.row)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             viewModel.deleteContact(contact: viewModel.contactItem(index: indexPath.row))
@@ -29,12 +35,18 @@ extension ContactsListTableViewController: UITableViewDelegate {
                 self.showEditAlert()
             }
             
+            let positionAction = UIAction(title: "Позиция", image: UIImage(named: "number")) { _ in
+                tableView.isEditing.toggle()
+                self.setUpEditButton()
+            }
+            
             let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
                 self.shareInfo(image: UIImage(named: "contacts icon")!, title: self.viewModel.contactItem(index: indexPath.row).name, text: "\(self.viewModel.contactItem(index: indexPath.row).number)")
             }
             
             return UIMenu(title: self.viewModel.contactItem(index: indexPath.row).name, children: [
                 editAction,
+                positionAction,
                 shareAction
             ])
         }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabsPositionOptionTableViewCell: UITableViewCell {
+final class TabsPositionOptionTableViewCell: UITableViewCell {
 
     static let identifier = "TabsPositionOptionTableViewCell"
     

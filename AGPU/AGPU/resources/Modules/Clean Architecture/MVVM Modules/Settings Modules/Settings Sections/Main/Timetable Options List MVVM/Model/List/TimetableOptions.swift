@@ -13,7 +13,10 @@ struct TimetableOptions {
         TimetableSettingsOptionModel(id: 1, icon: "group icon", name: "", info: ""),
         TimetableSettingsOptionModel(id: 2, icon: "group icon", name: "Подгруппа", info: ""),
         TimetableSettingsOptionModel(id: 3, icon: "filter", name: "Фильтрация", info: ""),
-        TimetableSettingsOptionModel(id: 4, icon: "sound", name: "Звуки", info: ""),
-        TimetableSettingsOptionModel(id: 5, icon: "star", name: "Избранное", info: "")
+        TimetableSettingsOptionModel(id: 4, icon: "star", name: "Избранное", info: "")
+    ]
+    
+    static let pairInfoOptions = [
+        TimetableSettingsOptionModel(id: 1, icon: "sound", name: "Звуки", info: ""),
     ]
 }

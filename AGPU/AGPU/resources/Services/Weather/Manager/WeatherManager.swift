@@ -7,7 +7,7 @@
 
 import WeatherKit
 
-class WeatherManager {
+final class WeatherManager {
     
     let service = WeatherService.shared
     

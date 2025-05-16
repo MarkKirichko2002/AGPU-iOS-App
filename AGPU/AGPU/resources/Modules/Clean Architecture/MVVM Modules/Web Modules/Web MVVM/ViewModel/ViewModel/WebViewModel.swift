@@ -10,8 +10,10 @@ import UIKit
 final class WebViewModel {
         
     var scrollView = UIScrollView()
+    var currentScrollPosition: scrollPositions?
     
     // MARK: - сервисы
     let realmManager = RealmManager()
+    let dateManager = DateManager()
     
 }

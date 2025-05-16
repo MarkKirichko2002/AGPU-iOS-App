@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class SavedImageTableViewCell: UITableViewCell {
+final class SavedImageTableViewCell: UITableViewCell {
     
     static let identifier = "SavedImageTableViewCell"
     

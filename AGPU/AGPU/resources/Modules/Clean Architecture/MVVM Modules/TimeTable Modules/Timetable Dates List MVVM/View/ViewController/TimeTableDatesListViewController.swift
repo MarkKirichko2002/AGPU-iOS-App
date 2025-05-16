@@ -7,9 +7,10 @@
 
 import UIKit
 
-class TimeTableDatesListViewController: UIViewController {
+final class TimeTableDatesListViewController: UIViewController {
     
     // MARK: - сервисы
+    let imageSaver = ImageSaver()
     let viewModel: TimeTableDatesListViewModel
     let animation = AnimationClass()
     
@@ -52,6 +53,9 @@ class TimeTableDatesListViewController: UIViewController {
         setUpIndicatorView()
         setUpLabel()
         bindViewModel()
+        imageSaver.registerImageHandler { title, message in
+            self.showAlert(title: title, message: message, actions: [UIAlertAction(title: "ОК", style: .default)])
+        }
     }
     
     private func setUpNavigation() {

@@ -11,11 +11,14 @@ protocol TeachersListTableViewControllerDelegate: AnyObject {
     func teacherWasSelected(teacher: String)
 }
 
-class TeachersListTableViewController: UITableViewController {
+final class TeachersListTableViewController: UITableViewController {
 
     var teachers = [String]()
-    
+    var selectedTeacher = ""
     weak var delegate: TeachersListTableViewControllerDelegate?
+    
+    // MARK: - сервисы
+    private let settingsManager = SettingsManager()
     
     init(id: Int) {
         self.teachers = Departments.departments[id - 1].teachers
@@ -30,6 +33,7 @@ class TeachersListTableViewController: UITableViewController {
         super.viewDidLoad()
         setUpNavigation()
         setUpTable()
+        setUpData()
     }
     
     private func setUpNavigation() {
@@ -59,22 +63,22 @@ class TeachersListTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
-    private func getSavedId()-> String {
-        let id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-2-1"
-        return id
+    private func setUpData() {
+        selectedTeacher = settingsManager.getSavedID()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let teacher = teachers[indexPath.row]
         let abbreviation = teacher.teacherAbbreviation()
-        delegate?.teacherWasSelected(teacher: abbreviation)
-        UserDefaults.saveData(object: UserStatusList.list[2], key: "user status") {
-            NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-            NotificationCenter.default.post(name: Notification.Name("user status"), object: nil)
+        selectedTeacher = abbreviation
+        NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name("user status"), object: nil)
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.delegate?.teacherWasSelected(teacher: abbreviation)
+            self.navigationController?.popViewController(animated: true)
         }
-        navigationController?.popViewController(animated: true)
+        tableView.reloadData()
         HapticsManager.shared.hapticFeedback()
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,8 +92,8 @@ class TeachersListTableViewController: UITableViewController {
         cell.tintColor = .systemGreen
         cell.textLabel?.text = abbreviation
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
-        cell.textLabel?.textColor = abbreviation == getSavedId() ? .systemGreen : .label
-        cell.accessoryType = abbreviation == getSavedId() ? .checkmark : .none
+        cell.textLabel?.textColor = abbreviation == selectedTeacher ? .systemGreen : .label
+        cell.accessoryType = abbreviation == selectedTeacher ? .checkmark : .none
         return cell
     }
 }

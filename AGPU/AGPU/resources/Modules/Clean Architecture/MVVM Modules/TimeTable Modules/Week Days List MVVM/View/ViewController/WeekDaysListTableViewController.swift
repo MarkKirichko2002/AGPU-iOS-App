@@ -11,7 +11,7 @@ protocol WeekDaysListTableViewControllerDelegate: AnyObject {
     func dateWasSelected(index: Int)
 }
 
-class WeekDaysListTableViewController: UITableViewController {
+final class WeekDaysListTableViewController: UITableViewController {
 
     private var id = ""
     private var owner = ""

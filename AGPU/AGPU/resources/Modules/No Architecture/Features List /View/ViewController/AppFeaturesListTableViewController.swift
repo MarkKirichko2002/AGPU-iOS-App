@@ -28,7 +28,7 @@ final class AppFeaturesListTableViewController: UITableViewController {
     }
     
     @objc private func closeScreen() {
-        sendScreenWasClosedNotification()
+        HapticsManager.shared.hapticFeedback()
         self.dismiss(animated: true)
     }
 

@@ -49,7 +49,7 @@ extension AnimationClass: AnimationClassProtocol {
         
         let timeInterval: TimeInterval = 0.3
         let propertyAnimator = UIViewPropertyAnimator(duration: timeInterval, dampingRatio: 1.5) {
-            barItemView.transform = CGAffineTransform.identity.scaledBy(x: 1.5, y: 1.5)
+            barItemView.transform = CGAffineTransform.identity.scaledBy(x: 1.3, y: 1.3)
         }
         propertyAnimator.addAnimations({ barItemView.transform = .identity }, delayFactor: CGFloat(timeInterval))
         propertyAnimator.startAnimation()

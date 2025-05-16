@@ -9,4 +9,6 @@ import Foundation
 
 final class ImageSaver: NSObject {
     
+    var imageHandler: ((String, String)->Void)?
+    
 }

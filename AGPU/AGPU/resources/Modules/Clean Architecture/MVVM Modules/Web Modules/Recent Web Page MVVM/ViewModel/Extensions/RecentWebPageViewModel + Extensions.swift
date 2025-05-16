@@ -68,4 +68,12 @@ extension RecentWebPageViewModel: RecentWebPageViewModelProtocol {
         }
         return "АГПУ"
     }
+    
+    func saveWebPage(url: String) {
+        let model = WebPageModel()
+        model.id = UUID()
+        model.name = dateManager.getCurrentDate()
+        model.url = url
+        realmManager.saveWebPage(page: model)
+    }
 }

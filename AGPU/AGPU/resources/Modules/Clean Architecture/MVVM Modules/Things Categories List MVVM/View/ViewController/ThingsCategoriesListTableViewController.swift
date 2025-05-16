@@ -7,12 +7,14 @@
 
 import UIKit
 
-class ThingsCategoriesListTableViewController: UITableViewController {
+final class ThingsCategoriesListTableViewController: UITableViewController {
     
     var isAction = false
     
     // MARK: - сервисы
     private let viewModel = ThingsCategoriesListViewModel()
+    
+    weak var delegate: ScreenClosedDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +25,8 @@ class ThingsCategoriesListTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         
-        navigationItem.title = viewModel.titleForNavigation()
+        let titleView = CustomTitleView(image: "box", title: "Категории", frame: .zero)
+        navigationItem.titleView = titleView
         
         if isAction {
             let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
@@ -45,12 +48,11 @@ class ThingsCategoriesListTableViewController: UITableViewController {
     }
     
     @objc private func closeScreen() {
-        sendScreenWasClosedNotification()
+        delegate?.screenWasClosed()
         self.dismiss(animated: true)
     }
     
     @objc private func back() {
-        sendScreenWasClosedNotification()
         navigationController?.popViewController(animated: true)
     }
     
@@ -83,6 +85,15 @@ class ThingsCategoriesListTableViewController: UITableViewController {
             navigationController?.pushViewController(vc, animated: true)
         case 3:
             let vc = ContactsListTableViewController()
+            vc.delegate = self
+            navigationController?.pushViewController(vc, animated: true)
+        case 4:
+            let vc = TimeTableFavouriteItemsListTableViewController()
+            vc.isSettings = true
+            vc.listChangedDelegate = self
+            navigationController?.pushViewController(vc, animated: true)
+        case 5:
+            let vc = SavedWebPagesListTableViewController()
             vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
         default:
@@ -133,6 +144,22 @@ extension ThingsCategoriesListTableViewController: SavedVideosListTableViewContr
 extension ThingsCategoriesListTableViewController: ContactsListTableViewControllerDelegate {
     
     func contactsUpdated() {
+        viewModel.getCategoriesData()
+    }
+}
+
+// MARK: - TimeTableFavouriteItemsListChangedDelegate
+extension ThingsCategoriesListTableViewController: TimeTableFavouriteItemsListChangedDelegate {
+    
+    func listWasChanged() {
+        viewModel.getCategoriesData()
+    }
+}
+
+// MARK: - SavedWebPagesListTableViewControllerDelegate
+extension ThingsCategoriesListTableViewController: SavedWebPagesListTableViewControllerDelegate {
+    
+    func webPagesListUpdated() {
         viewModel.getCategoriesData()
     }
 }

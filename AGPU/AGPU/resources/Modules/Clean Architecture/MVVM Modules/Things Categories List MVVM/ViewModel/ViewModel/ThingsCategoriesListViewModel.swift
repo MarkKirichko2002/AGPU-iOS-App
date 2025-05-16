@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ThingsCategoriesListViewModel {
+final class ThingsCategoriesListViewModel {
     
     var dataChangedHandler: (()->Void)?
     

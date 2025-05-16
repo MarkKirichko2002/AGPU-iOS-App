@@ -83,7 +83,9 @@ extension TimeTableDatesListViewModel: ITimeTableDatesListViewModel {
                 let data = timetable.map {TimeTable(id: $0.id, date: $0.date, disciplines: $0.disciplines)}
                 let json = try JSONEncoder().encode(data)
                 service.getTimeTableWeekImage(json: json) { image in
-                    completion(image)
+                    DispatchQueue.main.async {
+                        completion(image)
+                    }
                 }
             } catch {
                 print(error.localizedDescription)
@@ -92,7 +94,9 @@ extension TimeTableDatesListViewModel: ITimeTableDatesListViewModel {
             do {
                 let json = try JSONEncoder().encode(emptyTimetable)
                 service.getTimeTableWeekImage(json: json) { image in
-                    completion(image)
+                    DispatchQueue.main.async {
+                        completion(image)
+                    }
                 }
             } catch {
                 print(error.localizedDescription)

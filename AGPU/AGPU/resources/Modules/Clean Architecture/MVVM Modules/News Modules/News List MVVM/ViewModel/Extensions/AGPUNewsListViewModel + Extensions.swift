@@ -10,12 +10,36 @@ import UIKit
 // MARK: - AGPUNewsListViewModelProtocol
 extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
+    func getCurrentCategory()-> NewsCategoryModel {
+        let savedNewsCategory = UserDefaults.standard.object(forKey: "category") as? String ?? "-"
+        let category = NewsCategories.categories.first(where: { $0.newsAbbreviation == savedNewsCategory }) ?? NewsCategories.categories[0]
+        return category
+    }
+    
+    func getCurrentCategoryIcon()-> String {
+        let savedNewsCategory = UserDefaults.standard.object(forKey: "category") as? String ?? "-"
+        let category = NewsCategories.categories.first(where: { $0.newsAbbreviation == savedNewsCategory }) ?? NewsCategories.categories[0]
+        if category.id == 0 {
+            return "aspu logo"
+        } else {
+            return category.icon
+        }
+    }
+    
     // вернуть элемент новости
     func articleItem(index: Int)-> Article {
-        if let article = newsResponse.articles?[index] {
-            return article
+        if let news = newsResponse.articles {
+            if !news.isEmpty {
+                if let article = newsResponse.articles?[index] {
+                    return article
+                }
+            }
         }
         return Article(id: 0, title: "", description: "", date: "", previewImage: "")
+    }
+    
+    func stopSaying() {
+        SpeechSynthesizerManager.shared.stopComment()
     }
     
     func checkSettings() {
@@ -23,6 +47,8 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         if style != .notShow {
             checkWhatsNew()
         }
+        abbreviation = UserDefaults.standard.value(forKey: "category") as? String ?? "-"
+        date = dateManager.getCurrentDate()
         option = UserDefaults.loadData(type: NewsOptionsFilters.self, key: "news filter") ?? .all
         displayMode = UserDefaults.loadData(type: DisplayModes.self, key: "display mode") ?? .grid
         getNewsByCurrentType()
@@ -64,7 +90,6 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     func checkTodayNews(news: [Article])-> Bool {
         let currentDate = dateManager.getCurrentDate()
-        var articles = [Article]()
         for article in news {
             if article.date == currentDate {
                 print("есть новости за сегодня!")
@@ -84,7 +109,9 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         let indicator = getIndicator()
         switch indicator {
         case .regular:
-            return UIActivityIndicatorView(style: .large)
+            let indicator = UIActivityIndicatorView(style: .large)
+            indicator.color = colorForIndicator()
+            return indicator
         case .category:
             self.abbreviation = savedNewsCategory
             if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == savedNewsCategory }) {
@@ -98,10 +125,6 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             label.font = .systemFont(ofSize: 18, weight: .medium)
             label.textAlignment = .center
             return label
-        case .status:
-            let imageView = SpringImageView(image: UIImage(named: settingsManager.getUserStatus().icon)!)
-            imageView.tintColor = .label
-            return imageView
         case .label:
             let label = UILabel()
             label.text = "Загрузка..."
@@ -164,8 +187,6 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             return CGSize(width: 75, height: 75)
         case .date:
             return CGSize(width: 150, height: 80)
-        case .status:
-            return CGSize(width: 55, height: 55)
         case .label:
             return CGSize(width: 150, height: 80)
         case .timeOfDay:
@@ -179,7 +200,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     func getNewsByCurrentType() {
         let savedNewsCategory = UserDefaults.standard.object(forKey: "category") as? String ?? "-"
         if savedNewsCategory != "-" {
-           getNews(abbreviation: savedNewsCategory)
+            getNews(abbreviation: savedNewsCategory)
         } else {
             getAGPUNews()
             abbreviation = "-"
@@ -188,6 +209,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     // получить новости АГПУ
     func getAGPUNews() {
+        startLoadingHandler?()
         Task {
             let result = try await newsService.getAGPUNews()
             switch result {
@@ -195,12 +217,15 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                 self.newsResponse = response
                 switch displayMode {
                 case .grid:
+                    date = dateManager.getCurrentDate()
                     allNews = response.articles ?? []
                     filterNews(option: option)
                 case .table:
+                    date = dateManager.getCurrentDate()
                     allNews = response.articles ?? []
                     filterNews(option: option)
                 case .webpage:
+                    date = dateManager.getCurrentDate()
                     dataChangedHandler?("-")
                     dislayModeHandler?(.webpage)
                     webModeHandler?()
@@ -214,6 +239,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     // получить новости
     func getNews(abbreviation: String) {
+        startLoadingHandler?()
         Task {
             let result = try await newsService.getNews(abbreviation: abbreviation)
             switch result {
@@ -222,12 +248,15 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                 self.abbreviation = abbreviation
                 switch displayMode {
                 case .grid:
+                    date = dateManager.getCurrentDate()
                     allNews = response.articles ?? []
                     filterNews(option: option)
                 case .table:
+                    date = dateManager.getCurrentDate()
                     allNews = response.articles ?? []
                     filterNews(option: option)
                 case .webpage:
+                    date = dateManager.getCurrentDate()
                     dataChangedHandler?(abbreviation)
                     dislayModeHandler?(.webpage)
                     webModeHandler?()
@@ -240,13 +269,15 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     }
     
     // получить новость по странице
-    func getNews(by page: Int) {
+    func getNews(by page: Int, completion: @escaping()->Void) {
+        startLoadingHandler?()
         Task {
             let result = try await newsService.getNews(by: page, abbreviation: abbreviation)
             switch result {
             case .success(let response):
                 switch displayMode {
                 case .grid:
+                    self.date = dateManager.getCurrentDate()
                     self.newsResponse = response
                     self.allNews = response.articles ?? []
                     self.option = .all
@@ -254,6 +285,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                     self.dataChangedHandler?(self.abbreviation)
                     self.dislayModeHandler?(displayMode)
                 case .table:
+                    self.date = dateManager.getCurrentDate()
                     self.newsResponse = response
                     self.allNews = response.articles ?? []
                     self.option = .all
@@ -261,13 +293,17 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
                     self.dataChangedHandler?(self.abbreviation)
                     self.dislayModeHandler?(displayMode)
                 case .webpage:
+                    self.date = dateManager.getCurrentDate()
                     self.newsResponse = response
+                    self.dataChangedHandler?(abbreviation)
                     self.dislayModeHandler?(displayMode)
                     self.webModeHandler?()
                 }
+                completion()
             case .failure(let error):
                 self.errorHandler?()
                 print(error)
+                completion()
             }
         }
     }
@@ -288,16 +324,18 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         }
     }
     
-    func searchWord(word: String, desc: String)-> Bool {
-        if desc.contains(word) {
-            return true
-        }
-        return false
-    }
-    
     func refreshNews() {
         if let page = newsResponse.currentPage {
-            getNews(by: page)
+            date = dateManager.getCurrentDate()
+            getNews(by: page) {
+                self.sendNotification()
+            }
+        }
+    }
+    
+    func sendNotification() {
+        let isSimple = UserDefaults.standard.object(forKey: "isSimpleModeOn") as? Bool ?? false
+        if !isSimple {
             NotificationCenter.default.post(name: Notification.Name("refreshed"), object: nil)
         }
     }
@@ -307,7 +345,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         if !(newsResponse.articles?.isEmpty ?? false) {
             if (newsResponse.articles?.count ?? 0) % 2 != 0 && page < newsResponse.countPages ?? 0 {
                 newsResponse.articles?.append(Article(id: 0, title: "Чтобы перейти к странице \(page + 1) нужно нажать на ячейку.", description: "", date: "текущая страница: \(page)", previewImage: ""))
-            } else {
+            } else if page >= newsResponse.countPages ?? 0  {
                 newsResponse.articles?.append(Article(id: 1, title: "Это последняя страница.", description: "", date: "текущая страница: \(page)", previewImage: ""))
             }
         }
@@ -317,19 +355,30 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     func observeCategoryChanges() {
         NotificationCenter.default.addObserver(forName: Notification.Name("category"), object: nil, queue: .main) { notification in
             guard let category = notification.object as? String else {return}
-            if category != self.abbreviation {
-                if category != "-" {
-                    self.getNews(abbreviation: category)
-                    self.option = .all
-                    self.abbreviation = category
-                    UserDefaults.standard.setValue(category, forKey: "category")
-                } else {
-                    self.getAGPUNews()
-                    self.option = .all
-                    self.abbreviation = "-"
-                    UserDefaults.standard.setValue("-", forKey: "category")
-                }
+            self.getNewsFromMenu(category: category)
+        }
+    }
+    
+    func getNewsFromMenu(category: String) {
+        if category != self.abbreviation {
+            if category != "-" {
+                self.getNews(abbreviation: category)
+                self.option = .all
+            } else {
+                self.getAGPUNews()
+                self.option = .all
             }
+        }
+        updateCategory(category: category)
+    }
+    
+    func updateCategory(category: String) {
+        if category != "-" {
+            self.abbreviation = category
+            UserDefaults.standard.setValue(category, forKey: "category")
+        } else {
+            self.abbreviation = "-"
+            UserDefaults.standard.setValue("-", forKey: "category")
         }
     }
     
@@ -337,7 +386,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     func observePageChanges() {
         NotificationCenter.default.addObserver(forName: Notification.Name("page"), object: nil, queue: .main) { notification in
             if let page = notification.object as? Int {
-                self.getNews(by: page)
+                self.pageHandler?(page)
             }
         }
     }
@@ -346,7 +395,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         NotificationCenter.default.addObserver(forName: Notification.Name("display mode option"), object: nil, queue: .main) { notification in
             if let displayMode = notification.object as? DisplayModes {
                 self.displayMode = displayMode
-                self.getNews(by: self.newsResponse.currentPage ?? 0)
+                self.getNews(by: self.newsResponse.currentPage ?? 0) {}
             }
         }
     }
@@ -360,16 +409,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     func observeFilterOption() {
         NotificationCenter.default.addObserver(forName: Notification.Name("news filter option"), object: nil, queue: .main) { notification in
             if let option = notification.object as? NewsOptionsFilters {
-                switch self.displayMode {
-                case .grid:
-                    self.option = option
-                    self.filterNews(option: option)
-                case .table:
-                    self.option = option
-                    self.filterNews(option: option)
-                case .webpage:
-                    break
-                }
+                self.handleNewsFilter(option: option)
             }
         }
     }
@@ -383,6 +423,25 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     func observePositionOption() {
         NotificationCenter.default.addObserver(forName: Notification.Name("news options position"), object: nil, queue: .main) { _ in
             self.dataChangedHandler?(self.abbreviation)
+        }
+    }
+    
+    func observeAdvancedMode() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("news advanced mode"), object: nil, queue: .main) { _ in
+            self.dataChangedHandler?(self.abbreviation)
+        }
+    }
+    
+    func handleNewsFilter(option: NewsOptionsFilters) {
+        switch self.displayMode {
+        case .grid:
+            self.option = option
+            self.filterNews(option: option)
+        case .table:
+            self.option = option
+            self.filterNews(option: option)
+        case .webpage:
+            break
         }
     }
     
@@ -420,6 +479,125 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         }
     }
     
+    func filterNews(by date: String, arr: [Article]) {
+        self.date = date
+        let filteredNews = arr.filter({ $0.date == date})
+        newsResponse.articles = filteredNews
+        dataChangedHandler?(abbreviation)
+        dislayModeHandler?(displayMode)
+    }
+    
+    func filterNewsMonth(by month: String, arr: [Article]) {
+        self.date = date.updateDateMonth(month: month)
+        let filteredNews = arr.filter({ $0.date.components(separatedBy: ".")[1] == month})
+        newsResponse.articles = filteredNews.sorted { dateManager.compareDates(date1: $0.date, date2: $1.date) == .orderedDescending }
+        dataChangedHandler?(abbreviation)
+        dislayModeHandler?(displayMode)
+    }
+    
+    func getNews(date: String, completion: @escaping()->Void) {
+        self.date = date
+        newsDateHandler?()
+        getNewsPagesInfo {
+            completion()
+        }
+    }
+    
+    func getMonthNews(month: Month) {
+        self.month = month
+        self.date = date.updateDateMonth(month: String(month.number))
+        newsDateHandler?()
+        getNewsPagesInfo(month: month)
+    }
+    
+    func getNewsPagesInfo(completion: @escaping()->Void) {
+        
+        let dispatchGroup = DispatchGroup()
+        
+        guard let pages = newsResponse.countPages else {return}
+        
+        var news: Set<Article> = Set()
+        let newsQueue = DispatchQueue(label: "com.yourapp.newsQueue")
+        
+        startLoadingHandler?()
+        
+        for page in 1...pages {
+            dispatchGroup.enter()
+            Task {
+                let result = try await newsService.getNews(by: page, abbreviation: abbreviation)
+                defer { dispatchGroup.leave() }
+                switch result {
+                case .success(let data):
+                    guard let articles = data.articles else {return}
+                    newsQueue.sync {
+                        for article in articles {
+                            news.insert(article)
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            self.filterNews(by: self.date, arr: Array(news))
+            completion()
+        }
+    }
+    
+    func getNewsPagesInfo(month: Month) {
+        
+        let dispatchGroup = DispatchGroup()
+        
+        guard let pages = newsResponse.countPages else {return}
+        
+        var news: Set<Article> = Set()
+        let newsQueue = DispatchQueue(label: "com.yourapp.newsQueue")
+        
+        startLoadingHandler?()
+        
+        for page in 1...pages {
+            dispatchGroup.enter()
+            Task {
+                let result = try await newsService.getNews(by: page, abbreviation: abbreviation)
+                defer { dispatchGroup.leave() }
+                switch result {
+                case .success(let data):
+                    guard let articles = data.articles else {return}
+                    newsQueue.sync {
+                        for article in articles {
+                            news.insert(article)
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            print("Всего новостей: \(news.count)")
+            self.filterNewsMonth(by: month.number, arr: Array(news))
+        }
+    }
+    
+    func refreshMonth(date: String) {
+        if let item = Month.allCases.first(where: { $0.number == date.components(separatedBy: ".")[1] }) {
+            self.month = item
+        }
+    }
+    
+    func makePagesList()-> [Int] {
+        var arr = [Int]()
+        if let countPages = newsResponse.countPages {
+            for i in 1...countPages {
+                arr.append(i)
+            }
+        }
+        return arr
+    }
+    
     // получить URL для конкретной статьи
     func makeUrlForCurrentArticle(index: Int)-> String {
         let url = newsService.urlForCurrentArticle(abbreviation: abbreviation, index: articleItem(index: index).id)
@@ -431,9 +609,174 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         let url = newsService.urlForCurrentWebPage(abbreviation: abbreviation, currentPage: newsResponse.currentPage ?? 0)
         return url
     }
-        
+    
+    func colorForIndicator()-> UIColor {
+        switch displayMode {
+        case .grid:
+            return .label
+        case .table:
+            return .label
+        case .webpage:
+            return .black
+        }
+    }
+    
+    func isRecording()-> Bool {
+        let screens = settingsManager.loadScreens()
+        return screens.contains(SpeechScreens.newsList)
+    }
+    
+    func checkVoiceCommandsOption() {
+        if isRecording() {
+            startRecognize()
+        }
+    }
+    
+    func resetSpeechRecognition() {
+        if isRecording() {
+            cancelRecognition()
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.startRecognize()
+            }
+        }
+    }
+    
+    func cancelRecognition() {
+        if isRecording() {
+            speechRecognitionManager.cancelSpeechRecognition()
+        }
+    }
+    
+    private func startRecognize() {
+        speechRecognitionManager.requestSpeechAndMicrophonePermission()
+        speechRecognitionManager.registerSpeechAuthorizationHandler { auth in
+            switch auth {
+            case .notDetermined:
+                print("Разрешение на распознавание речи еще не было получено.")
+            case .denied:
+                self.alertHandler?(true, self.createMicAlertMessage().0, self.createMicAlertMessage().1)
+                print("Доступ к распознаванию речи был отклонен.")
+            case .restricted:
+                print("Функциональность распознавания речи ограничена.")
+            case .authorized:
+                print("Разрешение на распознавание речи получено.")
+                self.speechRecognitionManager.startRecognize()
+            @unknown default:
+                print("неизвестно")
+            }
+        }
+        speechRecognitionManager.registerSpeechRecognitionHandler { text in
+            self.voiceCommands(text: text)
+        }
+    }
+    
+    private func voiceCommands(text: String) {
+        voiceActions(text: text)
+        voiceNewsDisplay(text: text)
+        voiceNewsFilter(text: text)
+        voiceGetNewsFromDate(text: text)
+        voiceCloseAlert(text: text)
+    }
+    
+    private func voiceActions(text: String) {
+        if text.lowercased().contains("обнови") {
+            resetSpeechRecognition()
+            newsRefreshHandler?()
+            HapticsManager.shared.hapticFeedback()
+        }
+    }
+    
+    private func voiceNewsDisplay(text: String) {
+        for mode in DisplayModes.allCases {
+            if text.lowercased().contains(mode.voiceCommand) {
+                print("выбрано: \(mode.rawValue)")
+                cancelRecognition()
+                displayMode = mode
+                getNews(by: self.newsResponse.currentPage ?? 0) {
+                    DispatchQueue.main.async {
+                        self.startRecognize()
+                    }
+                }
+                HapticsManager.shared.hapticFeedback()
+                break
+            }
+        }
+    }
+    
+    private func voiceNewsFilter(text: String) {
+        for option in NewsOptionsFilters.allCases {
+            if text.lowercased().contains(option.voiceCommand) {
+                cancelRecognition()
+                getNews(by: self.newsResponse.currentPage ?? 0) {
+                    DispatchQueue.main.async {
+                        self.handleNewsFilter(option: option)
+                        self.startRecognize()
+                    }
+                }
+                HapticsManager.shared.hapticFeedback()
+                break
+            }
+        }
+    }
+    
+    func voiceGetNewsFromDate(text: String) {
+        if text.lowercased().contains(text.lowercased().getDateFromString()) {
+            if dateManager.checkDateFromWords(text: text) {
+                cancelRecognition()
+                self.date = dateManager.getDateFromWords(date: text.getDateFromString())
+                getNews(date: date) {
+                    DispatchQueue.main.async {
+                        self.startRecognize()
+                    }
+                }
+            } else {
+                noDateAlertHandler?()
+            }
+            HapticsManager.shared.hapticFeedback()
+        }
+    }
+    
+    func voiceCloseAlert(text: String) {
+        if text.lowercased().contains("закр") {
+            resetSpeechRecognition()
+            closeAlertHandler?()
+            HapticsManager.shared.hapticFeedback()
+        }
+    }
+    
+    func createMicAlertMessage()-> (String, String) {
+        let style = settingsManager.getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        switch style {
+        case .formal:
+            return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хотите" : "Хотите") включить в настройках?")
+        case .informal:
+            return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хочешь" : "Хочешь") врубить в настройках?")
+        }
+    }
+    
+    func registerNoDateAlertHandler(block: @escaping()->Void) {
+        self.noDateAlertHandler = block
+    }
+    
+    func registerCloseAlertHandler(block: @escaping()->Void) {
+        self.closeAlertHandler = block
+    }
+    
+    func registerStartLoadingHandler(block: @escaping()->Void) {
+        self.startLoadingHandler = block
+    }
+    
     func registerDataChangedHandler(block: @escaping(String)->Void) {
         self.dataChangedHandler = block
+    }
+    
+    func registerPageHandler(block: @escaping(Int)->Void) {
+        self.pageHandler = block
+    }
+    
+    func registerNewsDateHandler(block: @escaping()->Void) {
+        self.newsDateHandler = block
     }
     
     func registerErrorHandler(block: @escaping()->Void) {
@@ -446,6 +789,10 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     func registerWebModeHandler(block: @escaping()->Void) {
         self.webModeHandler = block
+    }
+    
+    func registerNewsRefreshHandler(block: @escaping()->Void) {
+        self.newsRefreshHandler = block
     }
     
     func registerWhatsNewHandler(block: @escaping()->Void) {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TodayNewsListTableViewController: UIViewController {
+final class TodayNewsListTableViewController: UIViewController {
 
     // MARK: - сервисы
     let viewModel = TodayNewsListViewModel()
@@ -27,6 +27,7 @@ class TodayNewsListTableViewController: UIViewController {
     }()
     
     var isNotify = false
+    weak var delegate: ScreenClosedDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +43,13 @@ class TodayNewsListTableViewController: UIViewController {
         let titleView = CustomTitleView(image: "question", title: "Что нового?", frame: .zero)
         let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshNews))
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
+        refreshButton.accessibilityIdentifier = "refresh button"
         refreshButton.tintColor = .label
         closeButton.tintColor = .label
         navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = refreshButton
         navigationItem.rightBarButtonItem = closeButton
+        navigationItem.toggleRefreshButtonFromLeft(on: false)
     }
     
     @objc private func refreshNews() {
@@ -55,6 +58,7 @@ class TodayNewsListTableViewController: UIViewController {
             self.tableView.reloadData()
             self.noNewsLabel.isHidden = true
             self.spinner.isHidden = false
+            self.navigationItem.toggleRefreshButtonFromLeft(on: false)
             self.animation.startRotateAnimation(view: self.spinner)
         }
         viewModel.getNews()
@@ -62,7 +66,7 @@ class TodayNewsListTableViewController: UIViewController {
     
     @objc private func closeScreen() {
         if isNotify {
-            sendScreenWasClosedNotification()
+            delegate?.screenWasClosed()
         } else {
             HapticsManager.shared.hapticFeedback()
         }
@@ -104,6 +108,7 @@ class TodayNewsListTableViewController: UIViewController {
             DispatchQueue.main.async {
                 self.spinner.isHidden = true
                 self.animation.stopRotateAnimation(view: self.spinner)
+                self.navigationItem.toggleRefreshButtonFromLeft(on: true)
                 self.tableView.reloadData()
             }
             if !self.viewModel.sections.isEmpty {

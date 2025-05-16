@@ -14,7 +14,7 @@ extension NewsOptionsPositionListViewModel: INewsOptionsPositionListViewModel {
         
         options = NewsOptions.list
         
-        let position = UserDefaults.standard.object(forKey: "news options position") as? [Int] ?? [0,1,2,3,4,5,6,7,8,9]
+        let position = UserDefaults.standard.object(forKey: "news options position") as? [Int] ?? [0,1,2,3,4,5,6,7,8,9,10]
         
         for option in options {
             for number in position {
@@ -29,22 +29,22 @@ extension NewsOptionsPositionListViewModel: INewsOptionsPositionListViewModel {
     
     func saveNewsOptionsPosition(_ index: Int, _ index2: Int) {
         
-        var arr = options
+        let option = options.remove(at: index)
+        options.insert(option, at: index2)
         
-        arr.swapAt(index, index2)
+        let index1 = options.firstIndex { $0.id == 1 }
+        let index2 = options.firstIndex { $0.id == 2 }
+        let index3 = options.firstIndex { $0.id == 3 }
+        let index4 = options.firstIndex { $0.id == 4 }
+        let index5 = options.firstIndex { $0.id == 5 }
+        let index6 = options.firstIndex { $0.id == 6 }
+        let index7 = options.firstIndex { $0.id == 7 }
+        let index8 = options.firstIndex { $0.id == 8 }
+        let index9 = options.firstIndex { $0.id == 9 }
+        let index10 = options.firstIndex { $0.id == 10 }
+        let index11 = options.firstIndex { $0.id == 11 }
         
-        let index1 = arr.firstIndex { $0.id == 1 }
-        let index2 = arr.firstIndex { $0.id == 2 }
-        let index3 = arr.firstIndex { $0.id == 3 }
-        let index4 = arr.firstIndex { $0.id == 4 }
-        let index5 = arr.firstIndex { $0.id == 5 }
-        let index6 = arr.firstIndex { $0.id == 6 }
-        let index7 = arr.firstIndex { $0.id == 7 }
-        let index8 = arr.firstIndex { $0.id == 8 }
-        let index9 = arr.firstIndex { $0.id == 9 }
-        let index10 = arr.firstIndex { $0.id == 10 }
-        
-        let numbers = [index1, index2, index3, index4, index5, index6, index7, index8, index9, index10]
+        let numbers = [index1, index2, index3, index4, index5, index6, index7, index8, index9, index10, index11]
         
         UserDefaults.saveArray(array: numbers, key: "news options position") {
             self.getData()

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecentTabOptionTableViewCell: UITableViewCell {
+final class RecentTabOptionTableViewCell: UITableViewCell {
 
     static let identifier = "RecentTabOptionTableViewCell"
     

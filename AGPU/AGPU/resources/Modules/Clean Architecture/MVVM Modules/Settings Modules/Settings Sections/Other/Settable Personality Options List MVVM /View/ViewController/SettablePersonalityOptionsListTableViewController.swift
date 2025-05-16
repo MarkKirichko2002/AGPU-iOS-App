@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettablePersonalityOptionsListTableViewController: UITableViewController {
+final class SettablePersonalityOptionsListTableViewController: UITableViewController {
 
     // MARK: - сервисы
     private let viewModel = SettablePersonalityOptionsListViewModel()
@@ -29,7 +29,6 @@ class SettablePersonalityOptionsListTableViewController: UITableViewController {
     
     @objc private func closeScreen() {
         HapticsManager.shared.hapticFeedback()
-        sendScreenWasClosedNotification()
         self.dismiss(animated: true)
     }
     

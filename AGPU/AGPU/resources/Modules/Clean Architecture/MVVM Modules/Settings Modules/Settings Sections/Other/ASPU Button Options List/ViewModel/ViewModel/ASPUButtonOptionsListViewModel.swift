@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ASPUButtonOptionsListViewModel {
+final class ASPUButtonOptionsListViewModel {
     
     // MARK: - сервисы
     let settingsManager = SettingsManager()

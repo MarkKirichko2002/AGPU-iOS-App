@@ -7,10 +7,12 @@
 
 import UIKit
 
-class AppThemesListTableViewController: UITableViewController {
+final class AppThemesListTableViewController: UITableViewController {
     
     // MARK: - сервисы
     private let viewModel = AppThemesListViewModel()
+    
+    weak var delegate: ScreenClosedDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +30,8 @@ class AppThemesListTableViewController: UITableViewController {
     }
     
     @objc private func closeScreen() {
-        sendScreenWasClosedNotification()
+        delegate?.screenWasClosed()
+        HapticsManager.shared.hapticFeedback()
         self.dismiss(animated: true)
     }
     

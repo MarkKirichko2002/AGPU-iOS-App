@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="430" height="92"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time.past" translatesAutoresizingMaskIntoConstraints="NO" id="dcC-9d-69c" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="choose" translatesAutoresizingMaskIntoConstraints="NO" id="dcC-9d-69c" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
                         <rect key="frame" x="20" y="15" width="65" height="65"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -24,8 +24,8 @@
                             <constraint firstAttribute="width" constant="65" id="hFs-2s-emp"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Действуйте чтобы вспомнить" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sIE-q8-5mq">
-                        <rect key="frame" x="95" y="14.999999999999998" width="256.66666666666669" height="20.333333333333329"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Действуйте чтобы получить" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sIE-q8-5mq">
+                        <rect key="frame" x="95.000000000000014" y="14.999999999999998" width="243.33333333333337" height="20.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -57,6 +57,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="time.past" width="48" height="48"/>
+        <image name="choose" width="48" height="48"/>
     </resources>
 </document>

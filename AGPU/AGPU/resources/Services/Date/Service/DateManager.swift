@@ -10,7 +10,9 @@ import Foundation
 final class DateManager {
     
     let date = Date()
+    
     let dateFormatter = DateFormatter()
+    let calendar = Calendar.current
     
     var daysOfWeek = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"]
     

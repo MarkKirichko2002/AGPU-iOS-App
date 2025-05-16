@@ -10,6 +10,10 @@ import UIKit
 // MARK: - CalendarViewModelProtocol
 extension CalendarViewModel: CalendarViewModelProtocol {
                 
+    func checkShowDateInfo()-> Bool {
+        return UserDefaults.standard.object(forKey: "onShowDateInfo") as? Bool ?? true
+    }
+    
     func compareDates(date1: String, date2: Date)-> UIColor? {
         
         let date = dateManager.getDateFromString(str: date1, withTime: false)
@@ -24,6 +28,10 @@ extension CalendarViewModel: CalendarViewModelProtocol {
         return dateManager.getFormattedDate(date: date)
     }
     
+    func isSimpleMode()-> Bool {
+        return UserDefaults.standard.object(forKey: "isSimpleModeOn") as? Bool ?? false
+    }
+    
     func saveDate(date: String) {
         var dates = UserDefaults.standard.array(forKey: "recent dates") as? [String] ?? []
         if !dates.contains(date) {
@@ -32,5 +40,9 @@ extension CalendarViewModel: CalendarViewModelProtocol {
                 print("Saved")
             }
         }
+    }
+    
+    func makeDateComponents(date: String)-> DateComponents {
+        return dateManager.makeDateComponents(date: date)
     }
 }

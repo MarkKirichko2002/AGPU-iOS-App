@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class WordRecentDocumentViewController: UIViewController {
+final class WordRecentDocumentViewController: UIViewController {
     
     var document: RecentWordDocumentModel
     
@@ -93,7 +93,10 @@ class WordRecentDocumentViewController: UIViewController {
     
     private func makeMenu()-> UIMenu {
         let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
-            self.shareInfo(image: UIImage(named: "word")!, title: "Word-документ", text: self.document.url)
+            URLSession.shared.loadDocument(url: self.document.url) { docURL in
+                let activityViewController = UIActivityViewController(activityItems: [docURL], applicationActivities: nil)
+                self.present(activityViewController, animated: true)
+            }
         }
         let menu = UIMenu(title: "Word-документ", children: [shareAction])
         return menu

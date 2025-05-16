@@ -11,7 +11,7 @@ protocol SubGroupsListTableViewControllerDelegate: AnyObject {
     func subGroupWasSelected(subgroup: Int)
 }
 
-class SubGroupsListTableViewController: UITableViewController {
+final class SubGroupsListTableViewController: UITableViewController {
 
     var subgroup: Int
     var disciplines: [Discipline] = []

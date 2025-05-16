@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabsPositionListTableViewController: UITableViewController {
+final class TabsPositionListTableViewController: UITableViewController {
     
     // MARK: - сервисы
     private let viewModel = TabsPositionListTableViewModel()
@@ -26,7 +26,8 @@ class TabsPositionListTableViewController: UITableViewController {
     }
     
     func setUpNavigationTitle() {
-        navigationItem.title = "Порядок вкладок"
+        let titleView = CustomTitleView(image: "sections icon", title: "Список вкладок", frame: .zero)
+        navigationItem.titleView = titleView
     }
     
     func setUpBackButton() {
@@ -53,7 +54,6 @@ class TabsPositionListTableViewController: UITableViewController {
     
     @objc private func moveTabs() {
         if tableView.isEditing {
-            NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
             setUpEditButton(title: "Править")
             tableView.isEditing = false
         } else {
@@ -67,16 +67,18 @@ class TabsPositionListTableViewController: UITableViewController {
     }
     
     private func bindViewModel() {
-        viewModel.getData()
         viewModel.registerDataChangedHandler {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
+        viewModel.getData()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        showEditAlert(tab: viewModel.tabItem(index: indexPath.row))
         tableView.deselectRow(at: indexPath, animated: true)
+        HapticsManager.shared.hapticFeedback()
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
@@ -97,5 +99,58 @@ class TabsPositionListTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TabItemTableViewCell.identifier, for: indexPath) as? TabItemTableViewCell else {return UITableViewCell()}
         cell.configure(tab: viewModel.tabs[indexPath.row])
         return cell
+    }
+}
+
+extension TabsPositionListTableViewController {
+    
+    func showEditAlert(tab: TabModel) {
+        let title = viewModel.convertTabName(tab: tab)
+        let editAction = UIAlertAction(title: "Название", style: .default) { _ in
+            self.showEditTabAlert(tab: tab)
+        }
+        let actionsList = UIAlertAction(title: "Действия", style: .default) { _ in
+            let vc = CurrentTabFavouriteOptionsListViewController(title: self.viewModel.getTabName(tab: tab))
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+        self.showAlert(title: "Вкладка \"\(title)\"", message: "что нужно изменить для вкладки?", actions: [editAction, actionsList, cancel])
+    }
+    
+    func showEditTabAlert(tab: TabModel) {
+        
+        let alertVC = UIAlertController(title: viewModel.createEditAlertMessage().0, message: viewModel.createEditAlertMessage().1, preferredStyle: .alert)
+        
+        alertVC.addTextField { (textField) in
+            textField.placeholder = "Название"
+            textField.text = tab.name
+        }
+        
+        let saveAction = UIAlertAction(title: "Сохранить", style: .default) { _ in
+            if let name = alertVC.textFields![0].text {
+                if !name.isEmpty {
+                    if name.count <= 15 {
+                        self.viewModel.editText(tab: tab, text: name)
+                    } else {
+                        self.showAlert(title: "Слишком много текста!", message: "Количество символов не должно превышать 15", actions: [UIAlertAction(title: "ОК", style: .default) { _ in self.showEditTabAlert(tab: tab)}])
+                    }
+                }
+            }
+        }
+        
+        let resetsaveAction = UIAlertAction(title: "Сбросить", style: .destructive) { _ in
+            self.viewModel.resetTitle(tab: tab)
+        }
+        
+        let cancel = UIAlertAction(title: "Отмена", style: .default) { _ in
+            self.showEditAlert(tab: tab)
+        }
+        
+        alertVC.addAction(saveAction)
+        alertVC.addAction(resetsaveAction)
+        alertVC.addAction(cancel)
+        
+        SpeechSynthesizerManager.shared.checkIsSaying(text: "\(alertVC.title ?? "") \(alertVC.message ?? "")")
+        present(alertVC, animated: true)
     }
 }

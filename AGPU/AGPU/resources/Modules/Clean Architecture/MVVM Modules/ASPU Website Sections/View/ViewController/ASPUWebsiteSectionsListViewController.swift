@@ -11,9 +11,11 @@ final class ASPUWebsiteSectionsListViewController: UIViewController {
 
     var isAction = false
     var isMain = false
+    weak var delegate: ScreenClosedDelegate?
+    var selectedSection = AGPUSections.sections[0]
     
     // MARK: - UI
-    private let tableView = UITableView()
+    let tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +58,7 @@ final class ASPUWebsiteSectionsListViewController: UIViewController {
             backButton.tintColor = .label
             
             let sections = UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpMenu())
+            sections.accessibilityIdentifier =  "sections"
             sections.tintColor = .label
             navigationItem.titleView = titleView
             navigationItem.leftBarButtonItem = nil
@@ -65,10 +68,11 @@ final class ASPUWebsiteSectionsListViewController: UIViewController {
         }
     }
     
-    private func setUpMenu()-> UIMenu {
+    func setUpMenu()-> UIMenu {
         let items = AGPUSections.sections.map { section in
-            return UIAction(title: "\(section.id + 1)) \(section.name)") { _ in
+            return UIAction(title: "\(section.id + 1)) \(section.name)", state: section.id == selectedSection.id ? .on : .off) { _ in
                 let indexPath = IndexPath(row: 0, section: section.id)
+                self.selectedSection = section
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                 self.tableView.isUserInteractionEnabled = false
             }
@@ -78,13 +82,12 @@ final class ASPUWebsiteSectionsListViewController: UIViewController {
     }
     
     @objc private func back() {
-        sendScreenWasClosedNotification()
         navigationController?.popViewController(animated: true)
     }
     
     @objc private func closeScreen() {
+        delegate?.screenWasClosed()
         HapticsManager.shared.hapticFeedback()
-        sendScreenWasClosedNotification()
         dismiss(animated: true)
     }
     

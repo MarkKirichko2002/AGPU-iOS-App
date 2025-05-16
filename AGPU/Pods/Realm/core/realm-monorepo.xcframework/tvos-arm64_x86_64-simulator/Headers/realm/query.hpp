@@ -57,6 +57,10 @@ class TableView;
 class Timestamp;
 class Transaction;
 
+namespace metrics {
+class QueryInfo;
+}
+
 struct QueryGroup {
     enum class State {
         Default,
@@ -100,9 +104,6 @@ public:
     Query& links_to(ColKey column_key, ObjLink target_link);
     // Find links that point to specific target objects
     Query& links_to(ColKey column_key, const std::vector<ObjKey>& target_obj);
-
-    // Find links that does not point to specific target objects
-    Query& not_links_to(ColKey column_key, const std::vector<ObjKey>& target_obj);
 
     // Conditions: null
     Query& equal(ColKey column_key, null);
@@ -355,7 +356,7 @@ private:
     void aggregate_internal(ParentNode* pn, QueryStateBase* st, size_t start, size_t end,
                             ArrayPayload* source_column) const;
 
-    void do_find_all(QueryStateBase& st) const;
+    void do_find_all(TableView& tv, size_t limit) const;
     size_t do_count(size_t limit = size_t(-1)) const;
     void delete_nodes() noexcept;
 
@@ -375,6 +376,7 @@ private:
     friend class TableView;
     friend class SubQueryCount;
     friend class PrimitiveListCount;
+    friend class metrics::QueryInfo;
     template <class>
     friend class AggregateHelper;
 

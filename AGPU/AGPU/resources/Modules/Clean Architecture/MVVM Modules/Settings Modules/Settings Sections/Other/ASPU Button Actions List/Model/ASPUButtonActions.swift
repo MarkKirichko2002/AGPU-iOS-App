@@ -8,8 +8,9 @@
 import Foundation
 
 enum ASPUButtonActions: String, CaseIterable, Codable {
-    case speechRecognition = "Распознавание речи"
-    case timetableWeeks = "Расписание на неделю"
+    
+    case speechRecognition = "Голосовые команды"
+    case timetableWeeks = "Список недель"
     case campusMap = "Карта кампуса"
     case studyPlan = "Учебный план"
     case profile = "Личный кабинет ЭИОС"
@@ -19,5 +20,43 @@ enum ASPUButtonActions: String, CaseIterable, Codable {
     case weather = "Погода"
     case things = "Важные вещи"
     case whatsNew = "Что нового?"
+    case nearestBuilding = "Нужное здание"
+    case appThemes = "Темы приложения"
+    case appShortcuts = "Шорткаты приложения"
     case favourite = "Избранное"
+    
+    var icon: String {
+        switch self {
+        case .speechRecognition:
+            return "mic"
+        case .timetableWeeks:
+            return "clock"
+        case .campusMap:
+            return "map icon"
+        case .studyPlan:
+            return "student"
+        case .profile:
+            return "profile icon"
+        case .manual:
+            return "book"
+        case .sections:
+            return "sections icon"
+        case .recent:
+            return "time.past"
+        case .weather:
+            return "sun"
+        case .things:
+            return "exclamation"
+        case .whatsNew:
+            return "question"
+        case .nearestBuilding:
+            return "map icon"
+        case .appThemes:
+            return "theme"
+        case .appShortcuts:
+            return "sections"
+        case .favourite:
+            return "star"
+        }
+    }
 }

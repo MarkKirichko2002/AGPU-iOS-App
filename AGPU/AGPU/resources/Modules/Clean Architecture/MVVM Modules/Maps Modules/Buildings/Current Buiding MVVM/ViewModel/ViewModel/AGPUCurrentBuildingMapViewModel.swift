@@ -9,6 +9,7 @@ import MapKit
 
 final class AGPUCurrentBuildingMapViewModel {
     
+    var arr = [MKAnnotation]()
     var audienceID: String
     var locationHandler: ((LocationModel)->Void)?
     var alertHandler: ((Bool)->Void)?

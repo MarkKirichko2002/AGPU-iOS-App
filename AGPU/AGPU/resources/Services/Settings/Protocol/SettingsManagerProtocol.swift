@@ -8,7 +8,6 @@
 import UIKit
 
 protocol SettingsManagerProtocol {
-    func checkCurrentStatus()-> UIViewController
     func checkCurrentIcon()-> String
     func checkShakeToRecallOption()-> Bool
     func checkOnlyMainOption()-> OnlyMainVariants
@@ -19,9 +18,7 @@ protocol SettingsManagerProtocol {
     func checkASPUButtonAnimationOption()-> ASPUButtonAnimationOptions
     func saveCustomSplashScreen(screen: CustomSplashScreenModel)
     func getCustomSplashScreen()-> CustomSplashScreenModel
-    func getUserStatus()-> UserStatusModel
-    func observeStatusChanged(completion: @escaping()->Void)
-    func getTabsPosition()-> [Int] 
+    func getTabs()-> [TabModel] 
     func getTabsColor()-> TabColors
     func checkTabsAnimationOption()-> Bool
     func observeTabsChanged(completion: @escaping()->Void)

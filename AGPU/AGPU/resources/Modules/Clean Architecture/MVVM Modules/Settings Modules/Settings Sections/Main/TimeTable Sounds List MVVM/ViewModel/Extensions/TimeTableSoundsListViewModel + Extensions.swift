@@ -21,7 +21,6 @@ extension TimeTableSoundsListViewModel: ITimeTableSoundsListViewModel {
     
     func selectSound(index: Int) {
         let item = soundItem(index: index)
-        let savedSound = UserDefaults.standard.object(forKey: "timetable sound") as? String ?? "clock_sound"
         playSound(sound: item.sound)
         saveSound(sound: item.sound)
         dataChangedHandler?()

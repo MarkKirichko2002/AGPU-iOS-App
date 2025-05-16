@@ -29,7 +29,7 @@ class TimeTableFavouriteItemTableViewCell: UITableViewCell {
     let infoButton: UIButton = {
         let button = UIButton()
         button.tintColor = .label
-        button.setImage(UIImage(named: "info"), for: .normal)
+        button.setImage(UIImage(named: "info icon"), for: .normal)
         return button
     }()
     
@@ -61,6 +61,8 @@ class TimeTableFavouriteItemTableViewCell: UITableViewCell {
             maker.top.equalToSuperview().inset(10)
             maker.right.equalToSuperview().inset(10)
             maker.bottom.equalToSuperview().inset(10)
+            maker.width.equalTo(25)
+            maker.height.equalTo(25)
         }
     }
     

@@ -10,59 +10,107 @@ import UIKit
 // MARK: - ITabsListTableViewModel
 extension TabsPositionListTableViewModel: ITabsPositionListTableViewModel {
     
+    func tabItem(index: Int)-> TabModel {
+        return tabs[index]
+    }
+    
     func getData() {
         
-        tabs = TabsList.tabs
+        let icons = settingsManager.getTabsIcons()
+        
+        let position = settingsManager.getTabs()
+        
+        tabs = position
         
         let index1 = tabs.firstIndex { $0.id == 1 }!
         let index2 = tabs.firstIndex { $0.id == 2 }!
         let index3 = tabs.firstIndex { $0.id == 3 }!
         let index4 = tabs.firstIndex { $0.id == 4 }!
         
-        let icons = settingsManager.getTabsIcons()
-        let style = settingsManager.getTabsIconStyle()
+        tabs[index1].icon = icons[0].icon.pngData()
+        tabs[index2].icon = icons[1].icon.pngData()
+        tabs[index3].icon = icons[2].icon.pngData()
+        tabs[index4].icon = icons[4].icon.pngData()
         
-        let status = settingsManager.getUserStatus()
-        let position = settingsManager.getTabsPosition()
-        
-        if style == .apple {
-            tabs[index1].icon = icons[0].icon
-            tabs[index2].icon = settingsManager.getTabIconForStatus().icon
-            tabs[index2].name = status.name + "у"
-            tabs[index3].icon = icons[1].icon
-            tabs[index4].icon = icons[2].icon
-        } else {
-            tabs[index2].icon = UIImage(named: status.icon)!
-            tabs[index2].name = status.name + "у"
-        }
-        
-        for tab in tabs {
-            for number in position {
-                let index = tabs.firstIndex(of: tab)!
-                print("индекс: \(index) позиция: \(number)")
-                tabs.swapAt(index, number)
-            }
-        }
-        NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
         dataChangedHandler?()
+    }
+    
+    func editText(tab: TabModel, text: String) {
+        let index = tabs.firstIndex(of: tab) ?? 0
+        tabs[index].name = text
+        saveTabs(arr: tabs)
+    }
+    
+    func resetTitle(tab: TabModel) {
+        let searchTab = TabsList.tabs.first { $0.id == tab.id }!
+        let index = tabs.firstIndex(of: tab) ?? 0
+        tabs[index].name = searchTab.name
+        saveTabs(arr: tabs)
     }
     
     func saveTabsPosition(_ index: Int, _ index2: Int) {
         
         var arr = tabs
         
-        arr.swapAt(index, index2)
+        let item = arr.remove(at: index)
+        arr.insert(item, at: index2)
         
-        let index1 = arr.firstIndex { $0.id == 1 }
-        let index2 = arr.firstIndex { $0.id == 2 }
-        let index3 = arr.firstIndex { $0.id == 3 }
-        let index4 = arr.firstIndex { $0.id == 4 }
+        let index1 = arr.firstIndex { $0.id == 1 }!
+        let index2 = arr.firstIndex { $0.id == 2 }!
+        let index3 = arr.firstIndex { $0.id == 3 }!
+        let index4 = arr.firstIndex { $0.id == 4 }!
         
-        let numbers = [index1, index2, index3, index4]
+        arr[0].position = index1
+        arr[1].position = index2
+        arr[2].position = index3
+        arr[3].position = index4
         
-        UserDefaults.saveArray(array: numbers as! [Int], key: "tabs") {
-            self.getData()
+        saveTabs(arr: arr)
+    }
+    
+    func saveTabs(arr: [TabModel]) {
+        do {
+            let arr = try JSONEncoder().encode(arr)
+            UserDefaults.standard.setValue(arr, forKey: "tabs")
+            getData()
+            sendNotifications()
+        } catch {
+            print(error)
         }
+    }
+    
+    func sendNotifications() {
+        NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
+    }
+    
+    func createEditAlertMessage()-> (String, String) {
+        let style = settingsManager.getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        switch style {
+        case .formal:
+            return ("Изменить вкладку", "\(!name.isEmpty ? "\(name) Вы точно хотите изменить" : "Вы точно хотите изменить") название вкладки?")
+        case .informal:
+            return ("Изменить вкладку", "\(!name.isEmpty ? "\(name) ты точно хочешь изменить" : "Ты точно хочешь изменить") название вкладки?")
+        }
+    }
+    
+    func getTabName(tab: TabModel)-> String {
+        if tab.id == 1 {
+            return "news"
+        } else if tab.id == 2 {
+            return "favourites"
+        } else if tab.id == 3 {
+            return "timetable"
+        } else if tab.id == 4 {
+            return "settings"
+        } else {
+            return ""
+        }
+    }
+    
+    func convertTabName(tab: TabModel)-> String {
+        return getTabName(tab: tab).getCurrentTabName()
     }
     
     func registerDataChangedHandler(block: @escaping()->Void) {

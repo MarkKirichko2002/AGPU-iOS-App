@@ -64,7 +64,7 @@ struct AGPUSections {
         
         AGPUSectionModel(
             id: 6,
-            name: "МД",
+            name: "Международная деятельность",
             icon: "world",
             url: "http://agpu.net/mezhdunarodnaya-deyatelnost/index.php",
             subsections: AGPUSubSections.subsections["Международная деятельность"]!,

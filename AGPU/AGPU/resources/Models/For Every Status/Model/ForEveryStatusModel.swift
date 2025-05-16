@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct ForEveryStatusModel: Equatable {
+struct ForEveryStatusModel: Codable, Equatable {
     let id: Int
-    let icon: String
-    let name: String
+    var image: Data
+    var name: String
 }

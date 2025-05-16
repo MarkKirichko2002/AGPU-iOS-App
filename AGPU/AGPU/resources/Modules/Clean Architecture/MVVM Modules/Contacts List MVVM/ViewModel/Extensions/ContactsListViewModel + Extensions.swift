@@ -23,13 +23,26 @@ extension ContactsListViewModel: IContactsListViewModel {
         getContacts()
     }
     
+    func getChanges(index: Int) {
+        contacts = realmManager.getContacts()
+        itemChangedHandler?(index)
+    }
+    
     func getContacts() {
         contacts = realmManager.getContacts()
         dataChangedHandler?()
     }
     
     func editContact(contact: ContactModel, name: String, number: String) {
-        realmManager.editContact(contact: contact, name: name, number: number)
+        let index = contacts.firstIndex { $0.id == contact.id }!
+        if contacts[index].name != name || contacts[index].number != number {
+            realmManager.editContact(contact: contact, name: name, number: number)
+            getChanges(index: index)
+        }
+    }
+    
+    func updateContacts(contacts: [ContactModel], _ index: Int, _ index2: Int) {
+        realmManager.updateContacts(contacts: contacts, index, index2)
         getContacts()
     }
     
@@ -60,8 +73,6 @@ extension ContactsListViewModel: IContactsListViewModel {
         }
     }
     
-    // Вы точно хотите изменить данные контакта?
-    
     func createTextForEditAlert()-> (String, String) {
         let style = settingsManager.getSavedCommunicationStyle()
         switch style {
@@ -85,5 +96,9 @@ extension ContactsListViewModel: IContactsListViewModel {
     
     func registerDataChangedHandler(block: @escaping()->Void) {
         self.dataChangedHandler = block
+    }
+    
+    func registerItemChangedHandler(block: @escaping(Int)->Void) {
+        self.itemChangedHandler = block
     }
 }

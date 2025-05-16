@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ASPUButtonIconTableViewCell: UITableViewCell {
+final class ASPUButtonIconTableViewCell: UITableViewCell {
 
     static let identifier = "ASPUButtonIconTableViewCell"
     

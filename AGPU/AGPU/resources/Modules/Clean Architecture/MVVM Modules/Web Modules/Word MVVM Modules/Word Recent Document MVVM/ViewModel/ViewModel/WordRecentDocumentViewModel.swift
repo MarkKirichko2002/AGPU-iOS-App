@@ -7,6 +7,6 @@
 
 import Foundation
 
-class WordRecentDocumentViewModel {
+final class WordRecentDocumentViewModel {
     
 }

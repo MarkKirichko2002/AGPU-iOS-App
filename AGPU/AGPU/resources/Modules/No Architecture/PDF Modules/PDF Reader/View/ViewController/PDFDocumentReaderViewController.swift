@@ -8,7 +8,7 @@
 import UIKit
 import PDFKit
 
-class PDFDocumentReaderViewController: UIViewController {
+final class PDFDocumentReaderViewController: UIViewController {
     
     private var pdfView: PDFView!
     private var document: PDFDocument!
@@ -51,16 +51,22 @@ class PDFDocumentReaderViewController: UIViewController {
     }
     
     private func makeMenu()-> UIMenu {
+        
         let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
-            self.shareInfo(image: UIImage(named: "pdf")!, title: "документ", text: self.url)
+            URLSession.shared.loadDocument(url: self.url) { docURL in
+                let activityViewController = UIActivityViewController(activityItems: [docURL], applicationActivities: nil)
+                self.present(activityViewController, animated: true)
+            }
         }
         let saveAction = UIAction(title: "Сохранить", image: UIImage(named: "download")) { _ in
-            let document = DocumentModel()
-            document.name = URL(string: self.url)?.lastPathComponent ?? ""
-            document.format = URL(string: self.url)?.pathExtension ?? ""
-            document.url = self.url
-            document.page = self.currentPage
-            self.realmManager.saveDocument(document: document)
+            URLSession.shared.loadDocument(url: self.url) { docURL in
+                let document = DocumentModel()
+                document.name = docURL.lastPathComponent
+                document.format = docURL.pathExtension
+                document.url = docURL.absoluteString
+                document.page = self.currentPage
+                self.realmManager.saveDocument(document: document)
+            }
         }
         let menu = UIMenu(title: "Документ", children: [shareAction, saveAction])
         return menu
@@ -76,7 +82,11 @@ class PDFDocumentReaderViewController: UIViewController {
         }
         view.addSubview(pdfView)
         
-        pdfView.go(to: document.page(at: currentPage)!)
+        guard let doc = document else {return}
+        
+        guard let page = doc.page(at: currentPage) else {return}
+        
+        pdfView.go(to: page)
         
         NotificationCenter.default.addObserver(self, selector: #selector(handlePageChange), name: Notification.Name.PDFViewPageChanged, object: nil)
         

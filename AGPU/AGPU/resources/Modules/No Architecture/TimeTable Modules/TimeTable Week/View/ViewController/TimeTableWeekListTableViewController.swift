@@ -6,16 +6,37 @@
 //
 
 import UIKit
+import AVFoundation
+import Combine
+
+protocol TimeTableWeekListTableViewControllerDelegate: AnyObject {
+    func checkWeek(week: WeekModel)
+}
 
 final class TimeTableWeekListTableViewController: UIViewController {
     
     var id: String = ""
-    private var subgroup: Int = 0
+    var currentWeekId: Int = 0
+    var subgroup: Int = 0
     var owner: String = ""
     var week: WeekModel!
-    var timetable = [TimeTable]()
+    var weeks: [WeekModel]
+    var timetable: [TimeTable] = []
+    var allTimetable = [TimeTable]()
+    weak var delegate: TimeTableWeekListTableViewControllerDelegate?
     var currentDate = ""
+    var type = PairType.all
+    var typesDict: [String: PairType] = [:]
+    var buildingsDict: [String: AGPUBuildingModel] = [:]
+    var timesDict: [String: String] = [:]
+    var cancellables = Set<AnyCancellable>()
+    var currentBuilding: AGPUBuildingModel?
     var image = UIImage()
+    var captureSession: AVCaptureSession!
+    var currentGesture: handGestures?
+    var currentCamera = cameraMode.back
+    var currentCameraState = cameraState.off
+    var currentCameraPosition: AVCaptureDevice.Position = .back
     
     // MARK: - сервисы
     let service = TimeTableService()
@@ -24,6 +45,12 @@ final class TimeTableWeekListTableViewController: UIViewController {
     let animation = AnimationClass()
     let speechRecognitionManager = SpeechRecognitionManager()
     let settingsManager = SettingsManager()
+    let imageSaver = ImageSaver()
+    let gestureRecognitionManager = GestureRecognitionManager()
+    
+    // MARK: - флаги
+    var isChanged = false
+    var isRecordingVideo = false
     
     // MARK: - UI
     let tableView = UITableView()
@@ -36,15 +63,17 @@ final class TimeTableWeekListTableViewController: UIViewController {
         return imageView
     }()
     
-    private let noTimeTableLabel = UILabel()
+    let noTimeTableLabel = UILabel()
     
     private let refreshControl = UIRefreshControl()
     
     // MARK: - Init
-    init(id: String, subgroup: Int, week: WeekModel, owner: String) {
+    init(id: String, subgroup: Int, currentWeek: WeekModel, weeks: [WeekModel], owner: String) {
         self.id = id
         self.subgroup = subgroup
-        self.week = week
+        self.week = currentWeek
+        self.currentWeekId = week.id
+        self.weeks = weeks
         self.owner = owner
         super.init(nibName: nil, bundle: nil)
     }
@@ -58,25 +87,46 @@ final class TimeTableWeekListTableViewController: UIViewController {
         setUpNavigation()
         setUpTable()
         setUpLabel()
+        createFloatingButton()
         setUpIndicatorView()
         setUpRefreshControl()
-        getTimeTable()
+        getTimeTable {}
+        createCameraButton()
+        SpeechSynthesizerManager.shared.registerSpeechFinishedHandler {
+            self.resetSpeechRecognition()
+        }
+        imageSaver.registerImageHandler { title, message in
+            self.showAlert(title: title, message: message, actions: [UIAlertAction(title: "ОК", style: .default)])
+        }
+        isRecordingVideo = settingsManager.checkRecordingVideo()
     }
-        
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        print("прокрутка завершилась")
-        HapticsManager.shared.hapticFeedback()
-        tableView.isUserInteractionEnabled = true
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkVoiceCommandsOption()
+        checkGestureOption()
+        checkDeviceOrientationControl()
+        checkVolumeControl()
+        isChanged = false
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        cancelRecognition()
+        cancelGestureRecognition()
+        removeDeviceOrientationObserve()
+        removeVolumeObserve()
     }
     
     private func setUpNavigation() {
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: getCurrentMenu())
+        options.accessibilityIdentifier = "menu"
         options.tintColor = .label
+        updateTitle()
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = options
-        navigationItem.title = "с \(week.from) до \(week.to)"
     }
     
     func getCurrentMenu()-> UIMenu {
@@ -102,12 +152,20 @@ final class TimeTableWeekListTableViewController: UIViewController {
         let ARAction = UIAction(title: "AR режим") { _ in
             let vc = TimetableARViewController(id: self.id, subgroup: self.subgroup, date: self.currentDate, owner: self.owner)
             vc.currentWeek = self.week
+            vc.weekDelegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.createImage {
                 vc.image = self.image
                 self.present(navVC, animated: true)
             }
+        }
+        
+        let nearBuildingAction = UIAction(title: "Нужное здание") { _ in
+            let vc = NearBuildingViewController(info: .audiences)
+            vc.delegate = self
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
         }
         
         let groupsList = UIAction(title: "Группы") { _ in
@@ -152,9 +210,8 @@ final class TimeTableWeekListTableViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
-        // поделиться
-        let share = UIAction(title: "Поделиться") { _ in
-            self.shareTimetable()
+        let filterAction = UIAction(title: "Фильтрация") { _ in
+            self.showFilter()
         }
         
         // сохранить расписание
@@ -162,17 +219,38 @@ final class TimeTableWeekListTableViewController: UIViewController {
             self.showSaveImageAlert()
         }
         
-        return UIMenu(title: "Расписание", children: [
+        // способы навигации
+        let navigationsList = UIAction(title: "Навигация") { _ in
+            let vc = NavigationsListTableViewController(screen: .timetableWeek)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        // поделиться
+        let share = UIAction(title: "Поделиться") { _ in
+            self.shareTimetable()
+        }
+        
+        return UIMenu(title: "Расписание неделя \(week.id)", children: [
             searchAction,
             ARAction,
+            nearBuildingAction,
             groupsList,
             teachersList,
             audiencesList,
             days,
             favouritesList,
+            filterAction,
             saveTimetable,
+            navigationsList,
             share
         ])
+    }
+    
+    func getAllPairs()-> [Discipline] {
+        let currentDay = allTimetable.first { $0.date == currentDate }!
+        return currentDay.disciplines
     }
     
     private func makeSimpleMenu()-> UIMenu {
@@ -195,6 +273,14 @@ final class TimeTableWeekListTableViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
+        // способы навигации
+        let navigationsList = UIAction(title: "Навигация") { _ in
+            let vc = NavigationsListTableViewController(screen: .timetableWeek)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         // поделиться
         let share = UIAction(title: "Поделиться") { _ in
             self.shareTimetable()
@@ -203,6 +289,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         return UIMenu(title: "Расписание", children: [
             searchAction,
             days,
+            navigationsList,
             share
         ])
     }
@@ -210,6 +297,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     @objc private func closeScreen() {
         speechRecognitionManager.cancelSpeechRecognition()
         HapticsManager.shared.hapticFeedback()
+        delegate?.checkWeek(week: week)
         dismiss(animated: true)
     }
     
@@ -219,7 +307,9 @@ final class TimeTableWeekListTableViewController: UIViewController {
             self.service.getTimeTableWeekImage(json: json) { image in
                 self.image = image
                 HapticsManager.shared.hapticFeedback()
-                completion()
+                DispatchQueue.main.async {
+                    completion()
+                }
             }
         } catch {
             print(error)
@@ -260,23 +350,101 @@ final class TimeTableWeekListTableViewController: UIViewController {
     
     private func setUpRefreshControl() {
         tableView.addSubview(refreshControl)
-        refreshControl.addTarget(self, action: #selector(refreshTimetable), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
-    @objc private func refreshTimetable() {
-        getTimeTable()
+    @objc private func refresh() {
+        refreshTimetable {}
     }
     
-    func getTimeTable() {
+    @objc func refreshTimetable(completion: @escaping()->Void) {
+        self.type = .all
+        self.currentBuilding = nil
+        self.subgroup = 0
+        getTimeTable {
+            completion()
+        }
+    }
+    
+    private func createFloatingButton() {
+        let onFloatingButton = UserDefaults.standard.object(forKey: "onFloatingButton timetable") as? Bool ?? true
+        if onFloatingButton {
+            setUpFloatingButton()
+        }
+    }
+    
+    private func setUpFloatingButton() {
+        let navigationButton = UIButton()
+        navigationButton.tintColor = .label
+        navigationButton.setImage(UIImage(named: "aspu logo"), for: .normal)
+        navigationButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(navigationButton)
+        NSLayoutConstraint.activate([
+            navigationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40.0),
+            navigationButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30.0),
+            navigationButton.widthAnchor.constraint(equalToConstant: 70.0),
+            navigationButton.heightAnchor.constraint(equalToConstant: 70.0)
+        ])
+        navigationButton.addTarget(self, action: #selector(toggleNavigation), for: .touchUpInside)
+    }
+    
+    @objc private func toggleNavigation(sender: UIButton) {
+        if sender.imageView?.image == UIImage(named: "aspu logo") {
+            sender.setImage(UIImage(named: "cross icon"), for: .normal)
+            sender.tintColor = .systemRed
+            animation.springAnimation(view: sender)
+            setUpWeeksNavigation()
+        } else if sender.imageView?.image == UIImage(named: "cross icon") {
+            sender.setImage(UIImage(named: "aspu logo"), for: .normal)
+            animation.springAnimation(view: sender)
+            setUpNavigation()
+        }
+        HapticsManager.shared.hapticFeedback()
+    }
+    
+    private func setUpWeeksNavigation() {
+        let past = UIBarButtonItem(image: UIImage(named: "backward"), style: .plain, target: self, action: #selector(pastWeekTapped))
+        past.accessibilityIdentifier = "past"
+        past.tintColor = .label
+        let next = UIBarButtonItem(image: UIImage(named: "forward"), style: .plain, target: self, action: #selector(nextWeekTapped))
+        next.accessibilityIdentifier = "next"
+        next.tintColor = .label
+        navigationItem.leftBarButtonItem = past
+        navigationItem.rightBarButtonItem = next
+    }
+    
+    @objc func pastWeekTapped() {
+        pastWeek {}
+    }
+    
+    @objc func nextWeekTapped() {
+        nextWeek {}
+    }
+    
+    func toggleButtons(on: Bool) {
+        guard let leftItems = navigationItem.leftBarButtonItems else {return}
+        guard let rightItems = navigationItem.rightBarButtonItems else {return}
+        if leftItems.contains(where: { $0.accessibilityIdentifier == "past" }) {
+            let past = leftItems.first(where: { $0.accessibilityIdentifier == "past" })!
+            past.isEnabled = on
+        }
+        if rightItems.contains(where: { $0.accessibilityIdentifier == "next" }) {
+            let next = rightItems.first(where: { $0.accessibilityIdentifier == "next" })!
+            next.isEnabled = on
+        }
+    }
+    
+    func getTimeTable(completion: @escaping()->Void) {
         UserDefaults.standard.setValue(id, forKey: "recentGroup")
         UserDefaults.standard.setValue(week.from, forKey: "recentDate")
         UserDefaults.standard.setValue(owner, forKey: "recentOwner")
         UserDefaults.standard.setValue(id, forKey: "group")
-        self.spinner.isHidden = false
-        self.animation.startRotateAnimation(view: self.spinner)
-        self.noTimeTableLabel.isHidden = true
-        self.timetable = []
-        self.tableView.reloadData()
+        spinner.isHidden = false
+        animation.startRotateAnimation(view: self.spinner)
+        noTimeTableLabel.isHidden = true
+        timetable = []
+        navigationItem.toggleMenuButton(on: false)
+        refreshTable()
         service.getTimeTableWeek(id: id, startDate: week.from, endDate: week.to, owner: owner) { [weak self] result in
             switch result {
             case .success(let timetable):
@@ -284,13 +452,14 @@ final class TimeTableWeekListTableViewController: UIViewController {
                 if !timetable.isEmpty {
                     for timetable in timetable {
                         let data = timetable.disciplines.filter { $0.subgroup == self?.subgroup || $0.subgroup == 0 || (self?.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
-                        let timeTable = TimeTable(id: self?.id ?? "ВМ-ИВТ-2-1", date: timetable.date, disciplines: data)
+                        let timeTable = TimeTable(id: self?.id ?? "ВМ-ИВТ-3-1", date: timetable.date, disciplines: data)
                         if !timetable.disciplines.isEmpty {
                             arr.append(timeTable)
                         }
                     }
                     DispatchQueue.main.async {
                         self?.timetable = arr
+                        self?.allTimetable = arr
                         self?.tableView.reloadData()
                         self?.spinner.isHidden = true
                         self?.animation.stopRotateAnimation(view: self!.spinner)
@@ -299,21 +468,146 @@ final class TimeTableWeekListTableViewController: UIViewController {
                         if !(self?.timetable.isEmpty ?? false) {
                             self?.scrollToCurrentDay()
                         }
+                        self?.navigationItem.toggleMenuButton(on: true)
+                        self?.setUpDict()
                     }
                 } else {
-                    self?.noTimeTableLabel.isHidden = false
+                    DispatchQueue.main.async {
+                        self?.noTimeTableLabel.isHidden = false
+                        self?.spinner.isHidden = true
+                        self?.animation.stopRotateAnimation(view: self!.spinner)
+                        self?.navigationItem.toggleMenuButton(on: true)
+                        self?.refreshControl.endRefreshing()
+                    }
+                }
+                self?.toggleButtons(on: true)
+                completion()
+            case .failure(let error):
+                DispatchQueue.main.async {
                     self?.spinner.isHidden = true
                     self?.animation.stopRotateAnimation(view: self!.spinner)
+                    self?.noTimeTableLabel.text = "Нет расписания"
+                    self?.noTimeTableLabel.isHidden = false
+                    self?.navigationItem.toggleMenuButton(on: true)
                     self?.refreshControl.endRefreshing()
+                    self?.toggleButtons(on: true)
+                    print(error.localizedDescription)
+                    completion()
                 }
-            case .failure(let error):
-                self?.spinner.isHidden = true
-                self?.animation.stopRotateAnimation(view: self!.spinner)
-                self?.noTimeTableLabel.text = "Нет расписания"
-                self?.noTimeTableLabel.isHidden = false
-                self?.refreshControl.endRefreshing()
-                print(error.localizedDescription)
             }
+        }
+    }
+    
+    private func checkDeviceOrientationControl() {
+        if settingsManager.checkDeviceOrientationControl() {
+            NotificationCenter.default.addObserver(self, selector: #selector(checkDeviceOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
+        }
+    }
+    
+    @objc private func checkDeviceOrientation() {
+        let orientation = UIDevice.current.orientation
+        switch orientation {
+        case .unknown:
+            break
+        case .portrait:
+            break
+        case .portraitUpsideDown:
+            break
+        case .landscapeLeft:
+            closeAlert()
+            showActionAlert(
+                title: "Расписание на прошлую неделю (\(pastWeek(week: week).id))", message: "показать расписание?",
+                action: {
+                    self.pastWeek {}
+                }
+            )
+        case .landscapeRight:
+            closeAlert()
+            showActionAlert(
+                title: "Расписание на следующую неделю (\(nextWeek(week: week).id))",
+                message: "показать расписание?",
+                action: {
+                    self.nextWeek {}
+                }
+            )
+        case .faceUp:
+            break
+        case .faceDown:
+            closeAlert()
+            showActionAlert(
+                title: "Расписание на эту неделю (\(currentWeek(week: week).id))",
+                message: "показать расписание?",
+                action: {
+                    self.currentWeek {}
+                }
+            )
+        @unknown default:
+            break
+        }
+    }
+    
+    func removeDeviceOrientationObserve() {
+        if settingsManager.checkDeviceOrientationControl() {
+            NotificationCenter.default.removeObserver(self)
+        }
+    }
+    
+    func checkVolumeControl() {
+        if settingsManager.checkVolumeControl() {
+            AVAudioSession.sharedInstance().publisher(for: \.outputVolume)
+                .removeDuplicates()
+                .filter({ _ in self.isMicOn() || !self.isRecording()})
+                .sink { volume in
+                    self.checkVolume(volume: volume)
+                }
+                .store(in: &cancellables)
+        }
+    }
+    
+    func checkVolume(volume: Float) {
+        if !self.isChanged {
+            self.isChanged = true
+        } else {
+            self.checkVolumeLevel(volume: volume)
+        }
+    }
+    
+    @objc private func checkVolumeLevel(volume: Float) {
+        switch volume {
+        case 0.0:
+            closeAlert()
+            showActionAlert(
+                title: "Расписание на прошлую неделю (\(pastWeek(week: week).id))", message: "показать расписание?",
+                action: {
+                    self.pastWeek {}
+                }
+            )
+        case 0.5:
+            closeAlert()
+            showActionAlert(
+                title: "Расписание на эту неделю (\(currentWeek(week: week).id))",
+                message: "показать расписание?",
+                action: {
+                    self.currentWeek {}
+                }
+            )
+        case 1.0:
+            closeAlert()
+            showActionAlert(
+                title: "Расписание на следующую неделю (\(nextWeek(week: week).id))",
+                message: "показать расписание?",
+                action: {
+                    self.nextWeek {}
+                }
+            )
+        default:
+            break
+        }
+    }
+    
+    func removeVolumeObserve() {
+        if settingsManager.checkVolumeControl() {
+            cancellables.removeAll()
         }
     }
     
@@ -359,13 +653,24 @@ final class TimeTableWeekListTableViewController: UIViewController {
         }
     }
     
+    func scrollToSection(isTimer: Bool) {
+        if let index = timetable.firstIndex(where: { $0.date == currentDate }) {
+            if isTimer {
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self.tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
+                }
+            } else {
+                tableView.scrollToRow(at: IndexPath(row: 0, section: index), at: .top, animated: true)
+            }
+        }
+    }
+    
     private func showSaveImageAlert() {
         let saveAction = UIAlertAction(title: "Сохранить в фото", style: .default) { _ in
             do {
                 let json = try JSONEncoder().encode(self.timetable)
                 self.service.getTimeTableWeekImage(json: json) { image in
-                    let imageSaver = ImageSaver()
-                    imageSaver.writeToPhotoAlbum(image: image)
+                    self.imageSaver.writeToPhotoAlbum(image: image)
                 }
             } catch {
                 print(error.localizedDescription)
@@ -380,7 +685,9 @@ final class TimeTableWeekListTableViewController: UIViewController {
                         let model = ImageModel()
                         model.date = self.dateManager.getCurrentDate()
                         model.image = imageData
-                        self.realmManager.saveImage(image: model)
+                        DispatchQueue.main.async {
+                            self.realmManager.saveImage(image: model)
+                        }
                     }
                 }
             } catch {
@@ -390,5 +697,276 @@ final class TimeTableWeekListTableViewController: UIViewController {
         
         let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
         self.showAlert(title: createSaveImageAlertMessage().0, message: createSaveImageAlertMessage().1, actions: [saveAction2, saveAction, cancel])
+    }
+    
+    func filterPairs(type: PairType) {
+        
+        typesDict[currentDate] = type
+        buildingsDict[currentDate] = nil
+        timesDict[currentDate] = nil
+        
+        if type == .all {
+            
+            let index = allTimetable.firstIndex { $0.date == currentDate }!
+            
+            if allTimetable.isEmpty {
+                allTimetable = timetable
+            }
+            
+            if !timetable.contains(where: { $0.date == allTimetable[index].date }) {
+                if timetable.count < index {
+                    timetable.append(allTimetable[index])
+                } else {
+                    timetable.insert(allTimetable[index], at: index)
+                }
+            } else {
+                timetable.remove(at: index)
+                timetable.append(allTimetable[index])
+            }
+            timetable = timetable.sorted { dateManager.compareDates(date1: $0.date, date2: $1.date) == .orderedAscending }
+            timetable = timetable.filter { !$0.disciplines.isEmpty}
+            subgroup = 0
+            refreshTable()
+            
+        } else if type == .leftToday {
+            
+            let filteredTimetable = filterLeftedPairs()
+            
+            if filteredTimetable.isEmpty {
+                self.subgroup = 0
+            }
+            timetable = filteredTimetable
+            
+            if filteredTimetable.first?.disciplines.first?.type == .lab {
+                subgroup = 0
+            } else {
+                subgroup = filteredTimetable.first?.disciplines.first?.subgroup ?? 0
+            }
+            
+            refreshTable()
+            
+        } else {
+            
+            if allTimetable.isEmpty {
+                allTimetable = timetable
+            }
+            
+            let filteredTimetable = filterTimetable()
+            if filteredTimetable.isEmpty {
+                subgroup = 0
+            }
+            timetable = filteredTimetable
+            
+            if filteredTimetable.first?.disciplines.first?.type == .lab {
+                subgroup = 0
+            } else {
+                subgroup = filteredTimetable.first?.disciplines.first?.subgroup ?? 0
+            }
+            
+            refreshTable()
+        }
+        
+        if timetable.isEmpty {
+            noTimeTableLabel.text = "Нет пар"
+            noTimeTableLabel.isHidden = false
+        } else {
+            scrollToSection(isTimer: true)
+            noTimeTableLabel.isHidden = true
+        }
+    }
+    
+    func checkGestureOption() {
+        let onGestureButton = UserDefaults.standard.object(forKey: "onGestureButton timetable") as? Bool ?? false
+        if onGestureButton {
+            observeGestureRecognition()
+            setUpCaptureSession()
+        }
+    }
+    
+    func createCameraButton() {
+        let onGestureButton = UserDefaults.standard.object(forKey: "onGestureButton timetable") as? Bool ?? false
+        if onGestureButton {
+            setUpCameraButton()
+        }
+    }
+    
+    func updateCameraButtonMenu() {
+        if let button = view.subviews.first(where: { $0.accessibilityIdentifier == "camera button" }) {
+            DispatchQueue.main.async {
+                (button as? UIButton)?.menu = self.setUpCameraMenu()
+            }
+        }
+    }
+    
+    func setUpCameraButton() {
+        let icon = UIButton()
+        icon.accessibilityIdentifier = "camera button"
+        icon.tintColor = .darkGray
+        icon.setImage(UIImage(named: "camera"), for: .normal)
+        icon.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(icon)
+        NSLayoutConstraint.activate([
+            icon.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40.0),
+            icon.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30.0),
+            icon.widthAnchor.constraint(equalToConstant: 60.0),
+            icon.heightAnchor.constraint(equalToConstant: 60.0)
+        ])
+        icon.showsMenuAsPrimaryAction = true
+        icon.menu = setUpCameraMenu()
+    }
+    
+    private func setUpCameraMenu()-> UIMenu {
+        let state = UIMenu(title: "Состояние", children: cameraState.allCases.map({ value in UIAction(title: value.rawValue, state: value == currentCameraState ? .on : .off) { _ in
+            self.currentCameraState = value
+            self.onOffCamera()
+            self.updateCameraButtonMenu()
+        }}).reversed())
+        let modes = UIMenu(title: "Камера", children: cameraMode.allCases.map({ value in UIAction(title: value.rawValue, state: value == currentCamera ? .on : .off) { _ in
+            self.currentCamera = value
+            self.switchCamera()
+            self.updateCameraButtonMenu()
+        }}).reversed())
+        let actions = [modes, state]
+        let camera = [state]
+        return UIMenu(title: "Распознавание жестов", children: currentCameraState == .on ? actions : camera)
+    }
+    
+    @objc func onOffCamera() {
+        switch currentCameraState {
+        case .on:
+            isRecordingVideo = true
+            if !captureSession.isRunning {
+                startSession()
+            }
+        case .off:
+            isRecordingVideo = false
+            if captureSession.isRunning {
+                cancelGestureRecognition()
+            }
+        }
+    }
+    
+    @objc func switchCamera() {
+        
+        cancelGestureRecognition()
+        
+        currentCameraPosition = (currentCameraPosition == .back) ? .front : .back
+        
+        if let currentInput = captureSession.inputs.first {
+            captureSession.removeInput(currentInput)
+        }
+        
+        setUpCaptureSession()
+    }
+    
+    func observeGestureRecognition() {
+        gestureRecognitionManager.registerHandGestureHandler { gesture in
+            DispatchQueue.main.async {
+                self.currentGesture = gesture
+                self.closeCameraButtonMenu()
+                self.cancelGestureRecognition()
+                self.makeDateAlertForWeek(gesture: gesture)
+            }
+        }
+    }
+    
+    func filterTimetable()-> [TimeTable] {
+        var timetables = timetable
+        var allDays = allTimetable
+        let type = typesDict[currentDate]
+        if timetables.contains(where: { $0.date == currentDate }) {
+            if let index = timetables.firstIndex(where: { $0.date == currentDate }) {
+                timetables[index].disciplines = allDays[index].disciplines.filter({ $0.type == type })
+                timetables = timetables.filter { !$0.disciplines.isEmpty }
+            }
+        } else {
+            if let index = allDays.firstIndex(where: { $0.date == currentDate }) {
+                allDays[index].disciplines = allDays[index].disciplines.filter({ $0.type == type })
+                if timetables.count < index {
+                    timetables.append(allDays[index])
+                } else {
+                    timetables.insert(allDays[index], at: index)
+                }
+                timetables = timetables.sorted { dateManager.compareDates(date1: $0.date, date2: $1.date) == .orderedAscending }
+                timetables = timetables.filter { !$0.disciplines.isEmpty }
+            }
+        }
+        return timetables
+    }
+    
+    private func filterLeftedPairs()-> [TimeTable] {
+        
+        var timetables = timetable
+        var allDays = allTimetable
+        
+        let currentDate = dateManager.getCurrentDate()
+        let currentTime = dateManager.getCurrentTime(isFullFormat: true)
+        var pairs = [Discipline]()
+        
+        if timetable.contains(where: { $0.date == self.currentDate }) {
+            
+            let day = timetables.first { $0.date == self.currentDate }!
+            let index = timetables.firstIndex { $0.date == self.currentDate }!
+            
+            for pair in day.disciplines {
+                
+                let pairEndTime = "\(pair.time.components(separatedBy: "-")[1]):00"
+                
+                let timetableDate = self.currentDate
+                
+                let compareDate = dateManager.compareDates(date1: timetableDate, date2: currentDate)
+                let compareTime = dateManager.compareTimes(time1: pairEndTime, time2: currentTime)
+                
+                // прошлый день
+                if compareDate == .orderedAscending {
+                    let index = timetables.firstIndex { $0.date == self.currentDate } ?? 0
+                    timetables[index].disciplines = []
+                    break
+                }
+                
+                // время больше и тот же день
+                if compareTime == .orderedDescending && compareDate == .orderedSame {
+                    pairs.append(pair)
+                }
+                
+                // следующий день
+                if compareDate == .orderedDescending {
+                    return timetables
+                }
+            }
+            
+            if !pairs.isEmpty {
+                timetables[index].disciplines = pairs
+            } else {
+                timetables[index].disciplines = []
+            }
+        } else {
+            if let index = allDays.firstIndex(where: { $0.date == currentDate }) {
+                allDays[index].disciplines = []
+                if timetables.count < index {
+                    timetables.append(allDays[index])
+                } else {
+                    timetables.insert(allDays[index], at: index)
+                }
+                timetables = timetables.sorted { dateManager.compareDates(date1: $0.date, date2: $1.date) == .orderedAscending }
+                timetables = timetables.filter { !$0.disciplines.isEmpty }
+            }
+        }
+        
+        return timetables.filter { !$0.disciplines.isEmpty }
+    }
+    
+    private func setUpDict() {
+        for day in timetable {
+            typesDict[day.date] = PairType.all
+            timesDict[day.date] = nil
+            buildingsDict[day.date] = nil
+        }
+    }
+    
+    func refreshTable() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }

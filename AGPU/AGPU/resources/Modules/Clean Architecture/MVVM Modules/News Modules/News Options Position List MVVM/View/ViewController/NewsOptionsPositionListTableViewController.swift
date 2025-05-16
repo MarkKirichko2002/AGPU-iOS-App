@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsOptionsPositionListTableViewController: UITableViewController {
+final class NewsOptionsPositionListTableViewController: UITableViewController {
 
     var isSettings = false
     
@@ -32,13 +32,19 @@ class NewsOptionsPositionListTableViewController: UITableViewController {
     }
     
     func setUpNavigationTitle() {
-        navigationItem.title = "Порядок опций"
+        let titleView = CustomTitleView(image: "one circle", title: "Порядок опций", frame: .zero)
+        navigationItem.titleView = titleView
     }
     
     func setUpCloseButton() {
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(close))
         closeButton.tintColor = .label
         navigationItem.leftBarButtonItem = closeButton
+    }
+    
+    @objc private func close() {
+        HapticsManager.shared.hapticFeedback()
+        dismiss(animated: true)
     }
     
     func setUpBackButton() {
@@ -57,11 +63,6 @@ class NewsOptionsPositionListTableViewController: UITableViewController {
     
     @objc private func back() {
         navigationController?.popViewController(animated: true)
-    }
-    
-    @objc private func close() {
-        HapticsManager.shared.hapticFeedback()
-        dismiss(animated: true)
     }
     
     func setUpEditButton(title: String) {

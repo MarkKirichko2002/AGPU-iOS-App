@@ -31,8 +31,9 @@ final class VisualChangesOptionTableViewCell: UITableViewCell {
         VisualChangesLabel.textColor = .label
     }
     
-    func didTapCell(indexPath: IndexPath) {
+    func didTapCell(indexPath: IndexPath, completion: @escaping()->Void) {
         animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
+            completion()
             HapticsManager.shared.hapticFeedback()
         }
     }

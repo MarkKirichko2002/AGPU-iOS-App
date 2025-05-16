@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Vision
 
-class HandDrawingGesturesViewController: UIViewController {
+final class HandDrawingGesturesViewController: UIViewController {
 
     // MARK: - UI
     private var closeButton: UIButton = {
@@ -178,13 +178,15 @@ class HandDrawingGesturesViewController: UIViewController {
     }
     
     @objc private func selectValue() {
-        NotificationCenter.default.post(name: Notification.Name("page"), object: newsPage)
+        if newsPage != 0 {
+            NotificationCenter.default.post(name: Notification.Name("page"), object: newsPage)
+        }
         dismiss(animated: true)
     }
     
     private func setUpClearButton() {
         view.addSubview(clearButton)
-        clearButton.addTarget(self, action: #selector(clear), for: .touchUpInside)
+        clearButton.addTarget(self, action: #selector(resetAll), for: .touchUpInside)
         clearButton.snp.makeConstraints { maker in
             maker.top.equalTo(selectButton.snp.bottom).offset(25)
             maker.leading.equalTo(recognizeButton.snp.leading)
@@ -193,8 +195,17 @@ class HandDrawingGesturesViewController: UIViewController {
         }
     }
     
+    @objc private func resetAll() {
+        page = 1
+        newsPage = 0
+        counter = 0
+        canvasView.clearCanvas()
+        pageNumber.text = "Страница: \(page)"
+    }
+    
     @objc private func clear() {
         canvasView.clearCanvas()
+        pageNumber.text = "Страница: \(page)"
     }
     
     private func setUpUI() {
@@ -230,12 +241,7 @@ class HandDrawingGesturesViewController: UIViewController {
     
     private func setUpMenu()-> UIMenu {
         let resetAction = UIAction(title: "Сбросить") { _ in
-            self.newsPage = 0
-            self.counter = 0
-            DispatchQueue.main.async {
-                self.pageNumber.text = "Страница: \(self.newsPage)"
-            }
-            self.clear()
+            self.resetAll()
         }
         return UIMenu(title: "Опции", children: [resetAction])
     }

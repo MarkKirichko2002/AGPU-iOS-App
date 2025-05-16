@@ -162,7 +162,7 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
     
     func getTimeTableForDay(completion: @escaping(UIImage)->Void) {
         
-        let recentGroup = UserDefaults.standard.string(forKey: "recentGroup") ?? "ВМ-ИВТ-2-1"
+        let recentGroup = UserDefaults.standard.string(forKey: "recentGroup") ?? "ВМ-ИВТ-3-1"
         let recentDate = UserDefaults.standard.string(forKey: "recentDate") ?? dateManager.getCurrentDate()
         let recentOwner = UserDefaults.standard.string(forKey: "recentOwner") ?? "GROUP"
         
@@ -181,7 +181,7 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
     
     func createImage(completion: @escaping(UIImage)->Void) {
         
-        let recentGroup = UserDefaults.standard.string(forKey: "recentGroup") ?? "ВМ-ИВТ-2-1"
+        let recentGroup = UserDefaults.standard.string(forKey: "recentGroup") ?? "ВМ-ИВТ-3-1"
         let recentDate = UserDefaults.standard.string(forKey: "recentDate") ?? dateManager.getCurrentDate()
         
         let emptyTimetable = TimeTable(id: recentGroup, date: recentDate, disciplines: [])
@@ -208,7 +208,7 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
     }
     
     func getRecentTimetableInfo()-> (String, String) {
-        let recentID = UserDefaults.standard.string(forKey: "recentGroup") ?? "ВМ-ИВТ-2-1"
+        let recentID = UserDefaults.standard.string(forKey: "recentGroup") ?? "ВМ-ИВТ-3-1"
         let recentDate = UserDefaults.standard.string(forKey: "recentDate") ?? dateManager.getCurrentDate()
         return (recentID, recentDate)
     }
@@ -224,7 +224,7 @@ extension RecentMomentsListViewModel: RecentMomentsListViewModelProtocol {
         case 4:
             UserDefaults.saveData(object: RecentWordDocumentModel(date: "", time: "", url: "", position: CGPoint(x: 0, y: 0)), key: "last word document") {}
         case 5:
-            UserDefaults.standard.setValue("ВМ-ИВТ-2-1", forKey: "recentGroup")
+            UserDefaults.standard.setValue("ВМ-ИВТ-3-1", forKey: "recentGroup")
             UserDefaults.standard.setValue(dateManager.getCurrentDate(), forKey: "recentDate")
             UserDefaults.standard.setValue("GROUP", forKey: "recentOwner")
         case 6:

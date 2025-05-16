@@ -20,7 +20,6 @@
 #define REALM_ARRAY_LIST_HPP
 
 #include <realm/array.hpp>
-#include <realm/mixed.hpp>
 
 namespace realm {
 

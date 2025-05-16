@@ -11,5 +11,6 @@ final class CalendarViewModel {
     
     // MARK: - сервисы
     let dateManager = DateManager()
+    let service = TimeTableService()
     
 }

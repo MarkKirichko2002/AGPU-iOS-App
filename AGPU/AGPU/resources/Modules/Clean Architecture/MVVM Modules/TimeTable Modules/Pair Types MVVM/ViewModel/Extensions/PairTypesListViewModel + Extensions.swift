@@ -81,7 +81,7 @@ extension PairTypesListViewModel: PairTypesListViewModelProtocol {
     func choosePairType(index: Int) {
         let type = typeItem(index: index)
         self.type = type
-        self.pairTypeSelectedHandler?()
+        self.pairTypeSelectedHandler?(type)
         HapticsManager.shared.hapticFeedback()
     }
     
@@ -94,7 +94,16 @@ extension PairTypesListViewModel: PairTypesListViewModelProtocol {
         }
     }
     
-    func registerPairTypeSelectedHandler(block: @escaping(()->Void)) {
+    func textForCell(index: Int)-> String {
+        let type = typeItem(index: index)
+        return "\(type.title) (\(date))"
+    }
+    
+    func textForDetailCell(index: Int)-> String {
+        return "Количество пар: \(countForPairType(index: index))"
+    }
+    
+    func registerPairTypeSelectedHandler(block: @escaping((PairType)->Void)) {
         self.pairTypeSelectedHandler = block
     }
 }

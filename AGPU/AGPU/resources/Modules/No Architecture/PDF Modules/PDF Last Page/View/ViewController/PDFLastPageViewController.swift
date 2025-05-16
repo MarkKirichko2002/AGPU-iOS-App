@@ -8,7 +8,7 @@
 import UIKit
 import PDFKit
 
-class PDFLastPageViewController: UIViewController {
+final class PDFLastPageViewController: UIViewController {
     
     private var pdfView: PDFView!
     private var document: PDFDocument!
@@ -51,7 +51,9 @@ class PDFLastPageViewController: UIViewController {
     
     private func makeMenu()-> UIMenu {
         let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
-            self.shareInfo(image: UIImage(named: "pdf")!, title: "PDF-документ", text: self.pdf.url)
+            guard let currentURL = URL(string: self.pdf.url) else {return}
+            let activityViewController = UIActivityViewController(activityItems: [currentURL], applicationActivities: nil)
+            self.present(activityViewController, animated: true)
         }
         let menu = UIMenu(title: "PDF-документ", children: [shareAction])
         return menu

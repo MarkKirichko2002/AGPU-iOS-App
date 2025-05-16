@@ -53,9 +53,8 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
             for building in AGPUBuildings.buildings {
                 self.index = 0
                 self.arr.append(building.pin)
-                //self.choiceHandler?(true, building.pin)
             }
-            
+            self.checkButton()
             self.locationHandler?(location)
         }
     }
@@ -71,6 +70,11 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
         }
     }
     
+    func currentLocationPin()-> MKAnnotation {
+        let building = arr.first { $0.title == "Вы" }!
+        return building
+    }
+    
     func defaultLocation()-> MKCoordinateRegion {
         let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
         let region = MKCoordinateRegion(center: arr[index].coordinate, span: span)
@@ -82,9 +86,17 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
             index += 1
             let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
             let region = MKCoordinateRegion(center: arr[index].coordinate, span: span)
+            checkRightButton()
             return region
         }
         return nil
+    }
+    
+    func checkRightButton() {
+        buttonHandler?("backward", false)
+        if index == arr.count - 1 {
+            buttonHandler?("forward", true)
+        }
     }
     
     func pastLocation()-> MKCoordinateRegion? {
@@ -92,9 +104,27 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
             index -= 1
             let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
             let region = MKCoordinateRegion(center: arr[index].coordinate, span: span)
+            checkLeftButton()
             return region
         }
         return nil
+    }
+    
+    func checkLeftButton() {
+        buttonHandler?("forward", false)
+        if index == 0 {
+            buttonHandler?("backward", true)
+        }
+    }
+    
+    func checkButton() {
+        buttonHandler?("forward", false)
+        buttonHandler?("backward", false)
+        if index == 0 {
+            buttonHandler?("backward", true)
+        } else if index == arr.count - 1 {
+            buttonHandler?("forward", true)
+        }
     }
     
     func observeBuildingTypeSelected() {
@@ -184,6 +214,7 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                 case .buildingAndHostel:
                     break
                 }
+                self.checkButton()
             }
         }
     }
@@ -236,6 +267,7 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                 for pin in self.arr {
                     self.choiceHandler?(true, pin)
                 }
+                self.checkButton()
             }
         }
     }
@@ -248,6 +280,18 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
         case .informal:
             return ("Геопозиция выключена", "Хочешь включить в настройках?")
         }
+    }
+    
+    func makeNavigationTitle()-> String {
+        if faculty != nil {
+            return "Кафедра \(faculty?.abbreviation ?? "") №\(index)"
+        } else {
+            return "\(arr[index].title! ?? "") (\(index)/\(arr.count - 1))"
+        }
+    }
+    
+    func registerButtonHandler(block: @escaping(String, Bool)->Void) {
+        self.buttonHandler = block
     }
     
     func registerLocationHandler(block: @escaping(LocationModel)->Void) {

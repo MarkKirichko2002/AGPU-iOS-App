@@ -8,9 +8,12 @@
 import UIKit
 import SnapKit
 
-class TabItemTableViewCell: UITableViewCell {
+final class TabItemTableViewCell: UITableViewCell {
     
     static let identifier = "TabItemTableViewCell"
+    
+    // MARK: - сервисы
+    private let settingsManager = SettingsManager()
     
     private let tabIcon: SpringImageView = {
         let icon = SpringImageView()
@@ -28,6 +31,8 @@ class TabItemTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubviews(tabIcon, tabName)
+        customFont()
+        customColor()
         makeConstraints()
     }
     
@@ -36,7 +41,7 @@ class TabItemTableViewCell: UITableViewCell {
     }
     
     func configure(tab: TabModel) {
-        tabIcon.image = tab.icon
+        tabIcon.image = UIImage(data: tab.icon!)?.withRenderingMode(.alwaysTemplate)
         tabName.text = tab.name
     }
     
@@ -51,9 +56,24 @@ class TabItemTableViewCell: UITableViewCell {
         }
         
         tabName.snp.makeConstraints { maker in
-            maker.top.equalToSuperview().inset(30)
+            maker.top.equalToSuperview().inset(10)
             maker.left.equalTo(tabIcon.snp.right).offset(20)
             maker.right.equalToSuperview().inset(30)
+            maker.bottom.equalToSuperview().inset(10)
         }
+    }
+    
+    func customFont() {
+        let savedFont = settingsManager.getTabsFont()
+        if savedFont != .none {
+            let font = UIFont(name: savedFont.rawValue, size: 16)
+            tabName.font = font
+        }
+    }
+    
+    func customColor() {
+        let savedColor = settingsManager.getTabsColor()
+        tabIcon.tintColor = savedColor.color
+        tabName.textColor = savedColor.color
     }
 }

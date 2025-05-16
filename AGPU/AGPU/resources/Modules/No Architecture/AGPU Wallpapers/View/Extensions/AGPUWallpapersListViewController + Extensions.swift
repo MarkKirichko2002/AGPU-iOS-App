@@ -46,8 +46,7 @@ extension AGPUWallpapersListViewController: UICollectionViewDelegate {
             let save = UIAction(title: "Сохранить", image: UIImage(named: "download")) { _ in
                 if let cell = collectionView.cellForItem(at: indexPath) as? AGPUWallpaperCollectionViewCell {
                     if let image = cell.imageView.image {
-                        let imageSaver = ImageSaver()
-                        imageSaver.writeToPhotoAlbum(image: image)
+                        self.imageSaver.writeToPhotoAlbum(image: image)
                     }
                 }
             }

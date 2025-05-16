@@ -6,11 +6,37 @@
 //
 
 import UIKit
+import MapKit
 
 // MARK: - SettingsManagerProtocol
 extension SettingsManager: SettingsManagerProtocol {
    
-    // MARK: - Action To Recall
+    func getSavedID()-> String {
+        return UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-3-1"
+    }
+    
+    func getSavedSubgroup()-> Int {
+        return UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
+    }
+    
+    func getSavedOwner()-> String {
+        return UserDefaults.standard.object(forKey: "recentOwner") as? String ?? "GROUP"
+    }
+    
+    // MARK: - Say Anywhere
+    func loadScreens()-> [SpeechScreens] {
+        var data = [SpeechScreens]()
+        if let result = UserDefaults.standard.object(forKey: "speech screens") as? Data {
+            do {
+                data = try JSONDecoder().decode([SpeechScreens].self, from: result)
+            } catch {
+                print(error)
+            }
+        }
+        return data
+    }
+    
+    // MARK: - Action To Control
     func checkShakeToRecallOption()-> Bool {
         let option = UserDefaults.standard.value(forKey: "onShakeToRecall") as? Bool ?? true
         return option
@@ -18,7 +44,7 @@ extension SettingsManager: SettingsManagerProtocol {
     
     // MARK: - Only Main
     func checkOnlyMainOption()-> OnlyMainVariants {
-        let variant = UserDefaults.loadData(type: OnlyMainVariants.self, key: "variant") ?? .none
+        let variant = UserDefaults.loadData(type: OnlyMainVariants.self, key: "variant") ?? .main
         return variant
     }
     
@@ -28,10 +54,21 @@ extension SettingsManager: SettingsManagerProtocol {
         }
     }
     
-    // MARK: - Advanced Timetable
+    // MARK: - Grounbreaking Timetable
     func checkSaveRecentTimetableItem()-> Bool {
-        let option = UserDefaults.standard.value(forKey: "onSaveRecentTimetableItem") as? Bool ?? true
-        return option
+        return UserDefaults.standard.value(forKey: "onSaveRecentTimetableItem") as? Bool ?? true
+    }
+    
+    func checkDeviceOrientationControl()-> Bool {
+        return UserDefaults.standard.object(forKey: "onDeviceOrientationContol timetable") as? Bool ?? false
+    }
+    
+    func checkVolumeControl()-> Bool {
+        return UserDefaults.standard.object(forKey: "onVolumeContol timetable") as? Bool ?? false
+    }
+    
+    func checkRecordingVideo()-> Bool {
+        return UserDefaults.standard.object(forKey: "onGestureButton timetable") as? Bool ?? false
     }
     
     // MARK: - ASPU Button
@@ -56,6 +93,11 @@ extension SettingsManager: SettingsManagerProtocol {
         return option
     }
     
+    func checkASPUButtonGestureOption()-> ASPUButtonGestureOptions {
+        let option = UserDefaults.loadData(type: ASPUButtonGestureOptions.self, key: "gesture") ?? .tap
+        return option
+    }
+    
     // MARK: - Visual Changes
     func checkScreenPresentationStyleOption()-> ScreenPresentationStyles {
         let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
@@ -77,51 +119,69 @@ extension SettingsManager: SettingsManagerProtocol {
         return color
     }
     
-    // MARK: - Your Status
-    func checkCurrentStatus()-> UIViewController {
-        let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status")
-        switch status?.id {
-        case 1:
-            let vc = ForApplicantListTableViewController()
-            vc.tabBarItem = UITabBarItem(title: "Абитуриенту", image: getTabIconForStatus().icon, selectedImage: getTabIconForStatus().selectedIcon)
-            let navVC = UINavigationController(rootViewController: vc)
-            return navVC
-        case 2:
-            let vc = ForStudentListTableViewController()
-            vc.tabBarItem = UITabBarItem(title: "Студенту", image:  getTabIconForStatus().icon, selectedImage: getTabIconForStatus().selectedIcon)
-            let navVC = UINavigationController(rootViewController: vc)
-            return navVC
-        case 3:
-            let vc = ForEmployeeListTableViewController()
-            vc.tabBarItem = UITabBarItem(title: "Сотруднику", image: getTabIconForStatus().icon, selectedImage: getTabIconForStatus().selectedIcon)
-            let navVC = UINavigationController(rootViewController: vc)
-            return navVC
-        default:
-            let vc = ForApplicantListTableViewController()
-            vc.tabBarItem = UITabBarItem(title: "Абитуриенту", image: getTabIconForStatus().icon, selectedImage: getTabIconForStatus().selectedIcon)
-            let navVC = UINavigationController(rootViewController: vc)
-            return navVC
+    // MARK: - Your TabBar
+    func getTabs()-> [TabModel] {
+        var data = TabsList.tabs
+        if let result = UserDefaults.standard.object(forKey: "tabs") as? Data {
+            do {
+                data = try JSONDecoder().decode([TabModel].self, from: result)
+            } catch {
+                print(error)
+            }
         }
+        return data
     }
     
-    func getUserStatus()-> UserStatusModel {
-        if let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status") {
-            return status
-        } else {
-            return UserStatusList.list[0]
-        }
+    func getAdditionalTabVariant()-> AdditionalTabVariants {
+        let variant = UserDefaults.loadData(type: AdditionalTabVariants.self, key: "additional tab") ?? .button
+        return variant
     }
     
-    func observeStatusChanged(completion: @escaping()->Void) {
-        NotificationCenter.default.addObserver(forName: Notification.Name("user status"), object: nil, queue: .main) { _ in
-            completion()
+    func getAdditionalTab()-> UIViewController {
+        let variant = getAdditionalTabVariant()
+        let style = getTabsIconStyle()
+        switch variant {
+        case .button:
+            return UIViewController()
+        case .weeksList:
+            let vc = AllWeeksListTableViewController(id: getSavedID(), subgroup: getSavedSubgroup(), owner: getSavedOwner())
+            vc.tabBarItem = UITabBarItem(title: "Недели", image: style == .flatIcon ? UIImage(named: "sections") : UIImage(systemName: "list.bullet"), selectedImage:  style == .flatIcon ? UIImage(named: "sections") : UIImage(systemName: "list.bullet"))
+            vc.isTab = true
+            let navVC = UINavigationController(rootViewController: vc)
+            return navVC
+        case .webSections:
+            let vc = ASPUWebsiteSectionsListViewController()
+            vc.tabBarItem = UITabBarItem(title: "Разделы", image: style == .flatIcon ? UIImage(named: "globe") : UIImage(systemName: "globe"), selectedImage:  style == .flatIcon ? UIImage(named: "globe") : UIImage(systemName: "globe"))
+            vc.isMain = true
+            let navVC = UINavigationController(rootViewController: vc)
+            return navVC
+        case .maps:
+            let vc = AGPUBuildingsMapViewController()
+            let icons = getTabsIcons()
+            vc.tabBarItem = UITabBarItem(title: "Карты", image: icons[3].icon, selectedImage: icons[3].selectedIcon)
+            vc.isTab = true
+            let navVC = UINavigationController(rootViewController: vc)
+            return navVC
+        case .weather:
+            let annotation = MKPointAnnotation()
+            annotation.title = "Армавир"
+            annotation.coordinate = CLLocationCoordinate2D(latitude: 44.9892, longitude: 41.1234)
+            let vc = LocationWeatherDetailViewController(annotation: annotation)
+            let icons = getTabsIcons()
+            vc.tabBarItem = UITabBarItem(title: "Погода", image: icons[7].icon, selectedImage: icons[7].selectedIcon)
+            vc.isTab = true
+            let navVC = UINavigationController(rootViewController: vc)
+            return navVC
+        case .building:
+            let vc = NearBuildingViewController(info: .map)
+            let icons = getTabsIcons()
+            vc.tabBarItem = UITabBarItem(title: "Здание", image: icons[8].icon, selectedImage: icons[8].selectedIcon)
+            vc.isTab = true
+            vc.modalPresentationStyle = .fullScreen
+            return vc
+        case .none:
+            return UIViewController()
         }
-    }
-    
-    // MARK: - Custom TabBar
-    func getTabsPosition()-> [Int] {
-        let position = UserDefaults.standard.object(forKey: "tabs") as? [Int] ?? [0,1,2,3]
-        return position
     }
     
     func getTabsColor()-> TabColors {
@@ -129,38 +189,19 @@ extension SettingsManager: SettingsManagerProtocol {
         return color
     }
     
+    func getTabsFont()-> TabFonts {
+        let font = UserDefaults.loadData(type: TabFonts.self, key: "font") ?? .none
+        return font
+    }
+    
     func getTabsIconStyle()-> TabBarIconsStyle {
         let style = UserDefaults.loadData(type: TabBarIconsStyle.self, key: "tabs icon style") ?? .flatIcon
         return style
     }
     
-    func getTabIconForStatus()-> TabBarIconModel {
-        
-        let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status")
-        let style = getTabsIconStyle()
-        
-        switch style {
-            
-        case .flatIcon:
-            
-            if status?.id == 1 {
-                return TabBarIconModel(icon: UIImage(named: "applicant")!, selectedIcon: UIImage(named: "applicant selected")!)
-            } else if status?.id == 2 {
-                return TabBarIconModel(icon: UIImage(named: "student icon")!, selectedIcon: UIImage(named: "student icon selected")!)
-            } else if status?.id == 3 {
-                return TabBarIconModel(icon: UIImage(named: "computer")!, selectedIcon: UIImage(named: "computer selected")!)
-            }
-        case .apple:
-            if status?.id == 1 {
-                return TabBarIconModel(icon: UIImage(systemName: "person")!, selectedIcon: UIImage(systemName: "person.fill")!)
-            } else if status?.id == 2 {
-                return TabBarIconModel(icon: UIImage(systemName: "graduationcap")!, selectedIcon: UIImage(systemName: "graduationcap.fill")!)
-            } else if status?.id == 3 {
-                return TabBarIconModel(icon: UIImage(systemName: "desktopcomputer")!, selectedIcon: UIImage(systemName: "desktopcomputer")!)
-            }
-        }
-        
-        return style == .flatIcon ? TabBarIconModel(icon: UIImage(named: "applicant")!, selectedIcon: UIImage(named: "applicant selected")!) : TabBarIconModel(icon: UIImage(systemName: "person")!, selectedIcon: UIImage(systemName: "person.fill")!)
+    func getTabsSoundsOption()-> TabBarSoundOptions {
+        let option = UserDefaults.loadData(type: TabBarSoundOptions.self, key: "tabs sounds option") ?? .none
+        return option
     }
     
     func getTabsIcons()-> [TabBarIconModel] {
@@ -168,20 +209,44 @@ extension SettingsManager: SettingsManagerProtocol {
         switch style {
         case .flatIcon:
             let news = TabBarIconModel(icon: UIImage(named: "mail")!, selectedIcon: UIImage(named: "mail selected")!)
+            let favourites = TabBarIconModel(icon: UIImage(named: "star icon")!, selectedIcon: UIImage(named: "star icon selected")!)
             let timetable = TabBarIconModel(icon: UIImage(named: "time icon")!, selectedIcon: UIImage(named: "time icon selected")!)
+            let maps = TabBarIconModel(icon: UIImage(named: "map")!, selectedIcon: UIImage(named: "map selected")!)
             let settings = TabBarIconModel(icon: UIImage(named: "settings")!, selectedIcon: UIImage(named: "settings selected")!)
-            return [news, timetable, settings]
+            let sections = TabBarIconModel(icon: UIImage(named: "globe")!, selectedIcon: UIImage(named: "globe")!)
+            let weeks = TabBarIconModel(icon: UIImage(named: "sections")!, selectedIcon: UIImage(named: "sections")!)
+            let weather = TabBarIconModel(icon: UIImage(named: "cloud icon")!, selectedIcon: UIImage(named: "cloud icon selected")!)
+            let marker = TabBarIconModel(icon: UIImage(named: "marker")!, selectedIcon: UIImage(named: "marker selected")!)
+            return [news, favourites, timetable, maps, settings, sections, weeks, weather, marker]
         case .apple:
             let news = TabBarIconModel(icon: UIImage(systemName: "newspaper")!, selectedIcon: UIImage(systemName: "newspaper.fill")!)
+            let favourites = TabBarIconModel(icon: UIImage(systemName: "star")!, selectedIcon: UIImage(systemName: "star.fill")!)
             let timetable = TabBarIconModel(icon: UIImage(systemName: "clock")!, selectedIcon: UIImage(systemName: "clock.fill")!)
+            let maps = TabBarIconModel(icon: UIImage(systemName: "map")!, selectedIcon: UIImage(systemName: "map.fill")!)
             let settings = TabBarIconModel(icon: UIImage(systemName: "gearshape")!, selectedIcon: UIImage(systemName: "gearshape.fill")!)
-            return [news, timetable, settings]
+            let sections = TabBarIconModel(icon: UIImage(systemName: "globe")!, selectedIcon: UIImage(systemName: "globe")!)
+            let weeks = TabBarIconModel(icon: UIImage(systemName: "list.bullet")!, selectedIcon: UIImage(systemName: "list.bullet")!)
+            let weather = TabBarIconModel(icon: UIImage(systemName: "cloud")!, selectedIcon: UIImage(systemName: "cloud.fill")!)
+            let marker = TabBarIconModel(icon: UIImage(systemName: "mappin.circle")!, selectedIcon: UIImage(systemName: "mappin.circle.fill")!)
+            return [news, favourites, timetable, maps, settings, sections, weeks, weather, marker]
         }
     }
     
     func checkTabsAnimationOption()-> Bool {
         let option = UserDefaults.standard.object(forKey: "onTabsAnimation") as? Bool ?? true
         return option
+    }
+    
+    func getTabOptions(title: String)-> [TabOptionModel] {
+        var data = [TabOptionModel]()
+        if let result = UserDefaults.standard.object(forKey: "\(title) options") as? Data {
+            do {
+                data = try JSONDecoder().decode([TabOptionModel].self, from: result)
+            } catch {
+                print(error)
+            }
+        }
+        return data
     }
     
     func observeTabsChanged(completion: @escaping()->Void) {

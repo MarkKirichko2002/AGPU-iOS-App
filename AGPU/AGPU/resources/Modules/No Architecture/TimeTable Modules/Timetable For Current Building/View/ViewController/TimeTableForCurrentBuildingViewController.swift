@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TimeTableForCurrentBuildingViewController: UIViewController {
+final class TimeTableForCurrentBuildingViewController: UIViewController {
     
     var timetable = TimeTable(id: "", date: "", disciplines: []) {
         didSet {

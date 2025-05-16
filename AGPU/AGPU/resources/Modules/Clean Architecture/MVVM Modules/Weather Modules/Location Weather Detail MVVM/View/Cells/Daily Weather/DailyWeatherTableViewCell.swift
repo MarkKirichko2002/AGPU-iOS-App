@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DailyWeatherTableViewCell: UITableViewCell {
+final class DailyWeatherTableViewCell: UITableViewCell {
     
     static var identifier: String {"\(Self.self)"}
     

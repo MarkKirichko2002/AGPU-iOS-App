@@ -18,7 +18,7 @@
 
 #import <Realm/RLMAsyncTask.h>
 
-#import "RLMRealm_Private.h"
+#import <Realm/RLMRealm_Private.h>
 
 RLM_HEADER_AUDIT_BEGIN(nullability)
 
@@ -66,18 +66,6 @@ RLM_SWIFT_SENDABLE
 - (void)complete:(bool)didRefresh;
 - (void)wait:(RLMAsyncRefreshCompletion)completion;
 + (RLMAsyncRefreshTask *)completedRefresh;
-@end
-
-// A cancellable task for refreshing a Realm
-RLM_SWIFT_SENDABLE
-@interface RLMAsyncSubscriptionTask : NSObject
-
-- (instancetype)initWithSubscriptionSet:(RLMSyncSubscriptionSet *)subscriptionSet
-                                  queue:(nullable dispatch_queue_t)queue
-                                timeout:(NSTimeInterval)timeout
-                             completion:(void(^)(NSError *))completion;
-
-- (void)waitForSubscription;
 @end
 
 RLM_HEADER_AUDIT_END(nullability)

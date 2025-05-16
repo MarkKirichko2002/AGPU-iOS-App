@@ -11,7 +11,7 @@ protocol DocumentsListTableViewControllerDelegate: AnyObject {
     func dataChanged()
 }
 
-class DocumentsListTableViewController: UIViewController {
+final class DocumentsListTableViewController: UIViewController {
 
     // MARK: - сервисы
     let viewModel = DocumentsListViewModel()
@@ -63,7 +63,7 @@ class DocumentsListTableViewController: UIViewController {
     }
     
     @objc private func addButtonTapped() {
-        showAddDocumentAlert()
+        showChooseDocumentAlert()
     }
     
     func setUpEditButton() {
@@ -109,11 +109,20 @@ class DocumentsListTableViewController: UIViewController {
             }
             self.delegate?.dataChanged()
         }
-        viewModel.registerAlertHandler {
+        viewModel.registerItemChangedHandler { index in
+            self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .left)
+        }
+        viewModel.registerInvalidFormatAlertHandler {
             let ok = UIAlertAction(title: "ОК", style: .default) { _ in
-                self.showAddDocumentAlert()
+                self.showChooseDocumentAlert()
             }
-            self.showAlert(title: "Неверные данные!", message: "документ должен быть формата pdf,doc,docx", actions: [ok])
+            self.showAlert(title: "Неверные данные!", message: "документ должен быть формата pdf,doc,docx,txt", actions: [ok])
+        }
+        viewModel.registerInvalidURLAlertHandler {
+            let ok = UIAlertAction(title: "ОК", style: .default) { _ in
+                self.showAddDocumentURLAlert()
+            }
+            self.showAlert(title: "Неверные URL!", message: "URL не является валидным", actions: [ok])
         }
         viewModel.getDocuments()
     }

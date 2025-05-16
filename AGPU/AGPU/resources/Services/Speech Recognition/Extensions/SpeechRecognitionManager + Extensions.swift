@@ -17,7 +17,7 @@ extension SpeechRecognitionManager: SpeechRecognitionManagerProtocol {
             audioSession.requestRecordPermission { (granted) in
                 if granted {
                     self.requestSpeechAuthorization()
-                } else {}
+                }
             }
         } else {
             requestSpeechAuthorization()
@@ -70,14 +70,14 @@ extension SpeechRecognitionManager: SpeechRecognitionManagerProtocol {
             self.request.append(buffer)
         }
         
-        tapInstalled = true
-        
         audioEngine.prepare()
         do {
             try audioEngine.start()
         } catch let error {
             print("\(error.localizedDescription)")
         }
+        
+        tapInstalled = true
         
         recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: {
             [weak self] (result, error) in
@@ -92,6 +92,7 @@ extension SpeechRecognitionManager: SpeechRecognitionManagerProtocol {
     }
     
     func cancelSpeechRecognition() {
+        
         guard tapInstalled else { return }
 
         audioEngine.stop()

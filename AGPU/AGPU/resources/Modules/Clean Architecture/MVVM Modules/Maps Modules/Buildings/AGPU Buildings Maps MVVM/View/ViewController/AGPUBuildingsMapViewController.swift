@@ -16,7 +16,12 @@ final class AGPUBuildingsMapViewController: UIViewController {
     // MARK: - UI
     private let mapView = MKMapView()
     
+    weak var delegate: ScreenClosedDelegate?
+    
+    var isSettings = false
     var isAction = false
+    var isNotify = false
+    var isTab = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +29,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
         setUpNavigation()
         setUpMap()
         makeConstraints()
+        setUpFingers()
         setUpButtons()
         bindViewModel()
     }
@@ -42,8 +48,15 @@ final class AGPUBuildingsMapViewController: UIViewController {
         button2.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
         let closeButton = UIBarButtonItem(customView: button2)
         
-        let typeList = UIAction(title: "Фильтрация") { _ in
-            let vc = AGPUBuildingTypesListTableViewController(type: self.viewModel.type)
+        let searchBuilding = UIAction(title: "Нужное здание") { _ in
+            let vc = NearBuildingViewController(info: .map)
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+        }
+        
+        let buidlingsList = UIAction(title: "Корпуса") { _ in
+            let vc = BuildingsListTableViewController(currentLocation: self.viewModel.arr[self.viewModel.index], annotations: self.viewModel.arr)
+            vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -56,15 +69,14 @@ final class AGPUBuildingsMapViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
-        let buidlingsList = UIAction(title: "Здания") { _ in
-            let vc = BuildingsListTableViewController(currentLocation: self.viewModel.arr[self.viewModel.index], annotations: self.viewModel.arr)
-            vc.delegate = self
+        let typeList = UIAction(title: "Фильтрация") { _ in
+            let vc = AGPUBuildingTypesListTableViewController(type: self.viewModel.type)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
         }
         
-        let menu = UIMenu(title: "Карта", children: [typeList, facultiesList, buidlingsList])
+        let menu = UIMenu(title: "Карта", children: [searchBuilding, buidlingsList, facultiesList, typeList])
         
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         options.tintColor = .label
@@ -73,22 +85,25 @@ final class AGPUBuildingsMapViewController: UIViewController {
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
         
-        if isAction {
-            navigationItem.leftBarButtonItem = closeButton
-        } else {
-            navigationItem.leftBarButtonItem = backButton
+        if !isTab {
+            if isAction {
+                navigationItem.leftBarButtonItem = closeButton
+            } else {
+                navigationItem.leftBarButtonItem = backButton
+            }
         }
         navigationItem.rightBarButtonItem = options
     }
     
     @objc private func back() {
-        sendScreenWasClosedNotification()
         navigationController?.popViewController(animated: true)
     }
     
     @objc private func closeScreen() {
+        if isNotify {
+            delegate?.screenWasClosed()
+        }
         HapticsManager.shared.hapticFeedback()
-        sendScreenWasClosedNotification()
         dismiss(animated: true)
     }
     
@@ -107,15 +122,32 @@ final class AGPUBuildingsMapViewController: UIViewController {
         ])
     }
     
+    private func setUpFingers() {
+        let tap = UILongPressGestureRecognizer(target: self, action: #selector(showCurrentLocation))
+        tap.numberOfTouchesRequired = 1
+        mapView.addGestureRecognizer(tap)
+    }
+    
+    @objc private func showCurrentLocation(gesture: UIGestureRecognizer) {
+        if gesture.state == .ended {
+            viewModel.index = 0
+            viewModel.checkButton()
+            setRegion(region: viewModel.defaultLocation())
+        }
+    }
+    
     private func setUpButtons() {
         
         let leftButton = UIBarButtonItem(image: UIImage(named: "backward"), style: .plain, target: self, action: #selector(pastLocation))
+        leftButton.accessibilityIdentifier = "backward"
         leftButton.tintColor = .label
         let rightButton = UIBarButtonItem(image: UIImage(named: "forward"), style: .plain, target: self, action: #selector(nextLocation))
+        rightButton.accessibilityIdentifier = "forward"
         rightButton.tintColor = .label
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
         let toolbar = UIToolbar()
+        toolbar.accessibilityIdentifier = "toolbar"
         toolbar.items = [leftButton, flexibleSpace, rightButton]
         toolbar.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(toolbar)
@@ -151,19 +183,14 @@ final class AGPUBuildingsMapViewController: UIViewController {
                     self.openSettings()
                 }
                 let cancel = UIAlertAction(title: "Отмена", style: .cancel) { _ in
-                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                        self.sendScreenWasClosedNotification()
-                    }
                     self.navigationController?.popViewController(animated: true)
                 }
                 self.showAlert(title: self.viewModel.createAlertMessage().0, message: self.viewModel.createAlertMessage().1, actions: [goToSettings, cancel])
-            } else {
-                fatalError()
             }
         }
         viewModel.checkLocationAuthorizationStatus()
         viewModel.registerLocationHandler { location in
-            let titleView = CustomTitleView(image: "marker", title: "Найти кампус", frame: .zero)
+            let titleView = CustomTitleView(image: "marker icon", title: "Найти кампус", frame: .zero)
             self.navigationItem.titleView = titleView
             self.mapView.showAnnotations(location.pins, animated: true)
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
@@ -171,6 +198,11 @@ final class AGPUBuildingsMapViewController: UIViewController {
                     self.setRegion(region: self.viewModel.defaultLocation())
                 }
             }
+        }
+        viewModel.registerButtonHandler { id, isHidden in
+            let toolbar = self.view.subviews.first { $0.accessibilityIdentifier == "toolbar" }!
+            let button = (toolbar as? UIToolbar)!.items!.first(where: { $0.accessibilityIdentifier == id })!
+            button.isHidden = isHidden
         }
         viewModel.registerChoiceHandler { isBuildingType, annotation in
             let titleView = CustomTitleView(image: "search", title: "Поиск...", frame: .zero)
@@ -193,10 +225,10 @@ final class AGPUBuildingsMapViewController: UIViewController {
             self.mapView.setRegion(region, animated: true)
         } completion: { _ in
             if self.viewModel.index == 0 {
-                let titleView = CustomTitleView(image: "marker", title: "Текущая локация", frame: .zero)
+                let titleView = CustomTitleView(image: "marker icon", title: "Текущая локация", frame: .zero)
                 self.navigationItem.titleView = titleView
             } else {
-                let titleView = CustomTitleView(image: "marker", title: "\(self.viewModel.arr[self.viewModel.index].title! ?? "") (\(self.viewModel.index)/\(self.viewModel.arr.count - 1))", frame: .zero)
+                let titleView = CustomTitleView(image: "marker icon", title: self.viewModel.makeNavigationTitle(), frame: .zero)
                 self.navigationItem.titleView = titleView
             }
             HapticsManager.shared.hapticFeedback()

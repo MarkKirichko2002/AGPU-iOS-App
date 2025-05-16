@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class ShareLocationAppsViewController: UIViewController {
+final class ShareLocationAppsViewController: UIViewController {
     
     // MARK: - UI
     private var closeButton: UIButton = {
@@ -62,7 +62,7 @@ class ShareLocationAppsViewController: UIViewController {
         let label = UILabel()
         label.textColor = .label
         label.text = "Apple Maps"
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: 16, weight: .black)
         label.isUserInteractionEnabled = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -89,7 +89,7 @@ class ShareLocationAppsViewController: UIViewController {
         let label = UILabel()
         label.text = "Google Maps"
         label.textColor = .label
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: 16, weight: .black)
         label.isUserInteractionEnabled = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -116,7 +116,7 @@ class ShareLocationAppsViewController: UIViewController {
         let label = UILabel()
         label.textColor = .label
         label.text = "Яндекс Карты"
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: 16, weight: .black)
         label.isUserInteractionEnabled = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -186,7 +186,7 @@ class ShareLocationAppsViewController: UIViewController {
             locationName.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30),
             locationName.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30),
             
-            AppleMapsStack.topAnchor.constraint(equalTo: locationName.bottomAnchor, constant: 80),
+            AppleMapsStack.topAnchor.constraint(equalTo: locationName.bottomAnchor, constant: 40),
             AppleMapsStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             AppleMapsButton.widthAnchor.constraint(equalToConstant: 70),
             AppleMapsButton.heightAnchor.constraint(equalToConstant: 70),

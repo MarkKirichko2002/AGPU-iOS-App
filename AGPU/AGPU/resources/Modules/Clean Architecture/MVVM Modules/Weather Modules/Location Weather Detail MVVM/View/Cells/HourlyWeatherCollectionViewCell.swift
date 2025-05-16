@@ -8,13 +8,13 @@
 import UIKit
 import SnapKit
 
-class HourlyWeatherCollectionViewCell: UICollectionViewCell {
+final class HourlyWeatherCollectionViewCell: UICollectionViewCell {
     
     static var identifier: String {"\(Self.self)"}
     
     private let hourLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: 16, weight: .black)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -28,7 +28,7 @@ class HourlyWeatherCollectionViewCell: UICollectionViewCell {
     
     private let temperatureLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: 16, weight: .black)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

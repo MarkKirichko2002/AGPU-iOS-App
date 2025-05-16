@@ -54,7 +54,7 @@ final class DayTableViewCell: UITableViewCell {
         
         dayName.snp.makeConstraints { maker in
             maker.left.equalToSuperview().inset(20)
-            maker.right.equalTo(infoButton.snp.left).inset(-10)
+            maker.right.equalTo(contentView.snp.right).inset(10)
             maker.top.equalToSuperview().inset(10)
             maker.bottom.equalToSuperview().inset(10)
         }

@@ -33,4 +33,8 @@ extension CalendarARViewModel: ICalendarARViewModel {
             }
         }
     }
+    
+    func makeDateComponents(date: String)-> DateComponents {
+        return dateManager.makeDateComponents(date: date)
+    }
 }

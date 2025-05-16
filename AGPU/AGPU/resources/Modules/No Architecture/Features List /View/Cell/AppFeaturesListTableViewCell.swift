@@ -12,7 +12,7 @@ protocol IAppFeaturesListTableViewCell: AnyObject {
     func infoWasTapped(url: String)
 }
 
-class AppFeaturesListTableViewCell: UITableViewCell {
+final class AppFeaturesListTableViewCell: UITableViewCell {
     
     static let identifier = "AppFeaturesListTableViewCell"
     

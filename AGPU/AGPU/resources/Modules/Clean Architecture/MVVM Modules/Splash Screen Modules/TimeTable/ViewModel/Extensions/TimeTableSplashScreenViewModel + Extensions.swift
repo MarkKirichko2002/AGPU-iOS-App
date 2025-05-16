@@ -10,7 +10,7 @@ import UIKit
 extension TimeTableSplashScreenViewModel: ITimeTableSplashScreenViewModel {
     
     func getTimeTable() {
-        let id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-2-1"
+        let id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-3-1"
         let date = dateManager.getCurrentDate()
         let owner = UserDefaults.standard.object(forKey: "recentOwner") as? String ?? "GROUP"
         timeTableService.getTimeTableDay(id: id, date: date, owner: owner) { [weak self] result in
@@ -23,23 +23,49 @@ extension TimeTableSplashScreenViewModel: ITimeTableSplashScreenViewModel {
                         self?.timeTableHandler?(model)
                     }
                 } else {
-                    let model = TimeTableDateModel(id: "", date: "", image: UIImage(), description: "\(date) нет пар")
-                    self?.timeTableHandler?(model)
+                    self?.getImage(json: data) { image in
+                        let model = TimeTableDateModel(id: id, date: date, image: image, description: "\(date) нет пар")
+                        self?.timeTableHandler?(model)
+                    }
                 }
             case .failure(let error):
+                let data = TimeTable(id: id, date: date, disciplines: [])
+                self?.getImage(json: data) { image in
+                    let model = TimeTableDateModel(id: id, date: date, image: image, description: "\(date) нет пар")
+                    self?.timeTableHandler?(model)
+                }
                 print(error)
             }
         }
     }
     
     func getImage(json: Codable, completion: @escaping(UIImage)->Void) {
-        do {
-            let json = try JSONEncoder().encode(json)
-            self.timeTableService.getTimeTableDayImage(json: json) { image in
-                completion(image)
+    
+        let id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-3-1"
+        let date = dateManager.getCurrentDate()
+        let owner = UserDefaults.standard.object(forKey: "recentOwner") as? String ?? "GROUP"
+        
+        let emptyTimetable = TimeTable(id: id, date: dateManager.getCurrentDate(), disciplines: [])
+        
+        if !self.pairs.isEmpty {
+            do {
+                let timetable = TimeTable(id: id, date: dateManager.getCurrentDate(), disciplines: pairs)
+                let json = try JSONEncoder().encode(timetable)
+                self.timeTableService.getTimeTableDayImage(json: json) { image in
+                    completion(image)
+                }
+            } catch {
+                print(error.localizedDescription)
             }
-        } catch {
-            print(error.localizedDescription)
+        } else {
+            do {
+                let json = try JSONEncoder().encode(emptyTimetable)
+                self.timeTableService.getTimeTableDayImage(json: json) { image in
+                    completion(image)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
     

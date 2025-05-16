@@ -14,6 +14,7 @@ final class RecentMomentsListTableViewController: UITableViewController {
     private let viewModel = RecentMomentsListViewModel()
     
     var isNotify = false
+    weak var delegate: ScreenClosedDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,7 @@ final class RecentMomentsListTableViewController: UITableViewController {
     
     @objc private func close() {
         if isNotify {
-            sendScreenWasClosedNotification()
+            delegate?.screenWasClosed()
         } else {
             HapticsManager.shared.hapticFeedback()
         }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsPagesListTableViewController: UITableViewController {
+final class NewsPagesListTableViewController: UITableViewController {
     
     private var currentPage: Int = 0
     private var countPages: Int = 0

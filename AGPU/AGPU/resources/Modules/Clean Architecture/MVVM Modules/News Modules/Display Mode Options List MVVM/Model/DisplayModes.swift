@@ -11,4 +11,15 @@ enum DisplayModes: String, CaseIterable, Codable {
     case grid = "Сетка"
     case table = "Таблица"
     case webpage = "Веб-страница"
+    
+    var voiceCommand: String {
+        switch self {
+        case .grid:
+            return "сетк"
+        case .table:
+            return "таблиц"
+        case .webpage:
+            return "веб"
+        }
+    }
 }

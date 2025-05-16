@@ -163,7 +163,7 @@ class CustomSplashScreenEditorViewController: UIViewController {
         let alertVC = UIAlertController(title: "Изменение названия", message: "Хотите изменить название?", preferredStyle: .alert)
         alertVC.addTextField { [weak self] textField in
             textField.text = self?.CustomTitleLabel.text!
-            textField.placeholder = "введите текст..."
+            textField.placeholder = "текст"
         }
         let changeAction = UIAlertAction(title: "Изменить", style: .default) { [weak self] _ in
             self?.CustomTitleLabel.text = alertVC.textFields?[0].text ?? ""

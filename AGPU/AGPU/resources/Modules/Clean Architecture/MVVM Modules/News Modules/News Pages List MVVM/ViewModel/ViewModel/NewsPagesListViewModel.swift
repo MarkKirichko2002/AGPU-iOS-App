@@ -7,7 +7,7 @@
 
 import Foundation
 
-class NewsPagesListViewModel {
+final class NewsPagesListViewModel {
     
     var currentPage: Int = 0
     var countPages: Int = 0

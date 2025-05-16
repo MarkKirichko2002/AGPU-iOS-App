@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FacultyCathedraListViewModel: NSObject {
+final class FacultyCathedraListViewModel: NSObject {
     
     @objc dynamic var isChanged = false
     var observation: NSKeyValueObservation?

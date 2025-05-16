@@ -7,7 +7,7 @@
 
 import Foundation
 
-class WordDocumenReaderViewModel {
+final class WordDocumenReaderViewModel {
     
     let realmManager = RealmManager()
     

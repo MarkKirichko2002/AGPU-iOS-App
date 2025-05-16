@@ -7,7 +7,7 @@
 
 import Foundation
 
-class WeekDaysListViewModel {
+final class WeekDaysListViewModel {
     
     var id: String
     var owner: String

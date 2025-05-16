@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CurrentWeatherTableViewCell: UITableViewCell {
+final class CurrentWeatherTableViewCell: UITableViewCell {
     
     static var identifier: String {"\(Self.self)"}
     

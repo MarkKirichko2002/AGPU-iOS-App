@@ -7,7 +7,7 @@
 
 import WeatherKit
 
-class WeatherSplashScreenViewModel {
+final class WeatherSplashScreenViewModel {
     
     var weatherHandler: ((Weather)->Void)?
     

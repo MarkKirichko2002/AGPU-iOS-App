@@ -7,12 +7,14 @@
 
 import UIKit
 
-class TimetableDateDetailViewModel {
+final class TimetableDateDetailViewModel {
 
     var timeTableHandler: ((TimeTableDateModel)->Void)?
     var pairs = [Discipline]()
     var allDisciplines: [Discipline] = []
     var type = PairType.all
+    var currentBuilding: AGPUBuildingModel?
+    var currentTime: String?
     
     var id: String = ""
     var date: String = ""

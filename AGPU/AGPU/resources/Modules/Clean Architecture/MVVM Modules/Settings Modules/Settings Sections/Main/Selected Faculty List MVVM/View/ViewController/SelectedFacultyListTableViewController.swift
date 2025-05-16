@@ -27,7 +27,7 @@ class SelectedFacultyListTableViewController: UITableViewController {
     }
     
     @objc private func closeScreen() {
-        sendScreenWasClosedNotification()
+        HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
     }
     
@@ -104,7 +104,7 @@ class SelectedFacultyListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.showHintAlert(type: .faculty, isNotify: false)
+        self.showHintAlert(type: .faculty, isNotify: false, delegate: nil)
         HapticsManager.shared.hapticFeedback()
         tableView.deselectRow(at: indexPath, animated: true)
     }

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ContactsListTableViewCell: UITableViewCell {
+final class ContactsListTableViewCell: UITableViewCell {
     
     static let identifier = "ContactsListTableViewCell"
     

@@ -26,15 +26,10 @@ extension ASPUButtonFavouriteActionsListViewModel: IASPUButtonFavouriteActionsLi
     
     func updateActions(actions: [ASPUButtonActions], _ index: Int, _ index2: Int) {
         
-        var arr = [ASPUButtonActions]()
+        var arr = actions
         
-        for action in actions {
-            arr.append(action)
-        }
-        
-        print("\(index) and \(index2)")
-        
-        arr.swapAt(index, index2)
+        let item = arr.remove(at: index)
+        arr.insert(item, at: index2)
         
         saveArray(array: arr)
     }

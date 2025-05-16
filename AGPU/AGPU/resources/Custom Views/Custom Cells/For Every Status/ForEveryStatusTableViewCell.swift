@@ -23,6 +23,7 @@ final class ForEveryStatusTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .black)
         label.textColor = .label
+        label.numberOfLines = 0
         return label
     }()
     
@@ -37,7 +38,7 @@ final class ForEveryStatusTableViewCell: UITableViewCell {
     }
     
     func configure(for section: ForEveryStatusModel) {
-        sectionIcon.image = UIImage(named: section.icon)
+        sectionIcon.image = UIImage(data: section.image)?.withRenderingMode(.alwaysTemplate)
         sectionName.text = section.name
     }
     
@@ -52,15 +53,17 @@ final class ForEveryStatusTableViewCell: UITableViewCell {
         }
         
         sectionName.snp.makeConstraints { maker in
-            maker.top.equalToSuperview().inset(30)
+            maker.top.equalToSuperview().inset(10)
             maker.left.equalTo(sectionIcon.snp.right).offset(20)
             maker.right.equalToSuperview().inset(30)
+            maker.bottom.equalToSuperview().inset(10)
         }
     }
     
-    func didTapCell(indexPath: IndexPath) {
+    func didTapCell(indexPath: IndexPath, completion: @escaping()->Void) {
         animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
             HapticsManager.shared.hapticFeedback()
+            completion()
         }
     }
 }

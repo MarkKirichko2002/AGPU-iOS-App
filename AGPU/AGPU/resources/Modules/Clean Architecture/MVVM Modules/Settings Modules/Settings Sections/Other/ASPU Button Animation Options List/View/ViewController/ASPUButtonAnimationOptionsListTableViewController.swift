@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ASPUButtonAnimationOptionsListTableViewController: UITableViewController {
+final class ASPUButtonAnimationOptionsListTableViewController: UITableViewController {
 
     // MARK: - сервисы
     private let viewModel = ASPUButtonAnimationOptionsListViewModel()

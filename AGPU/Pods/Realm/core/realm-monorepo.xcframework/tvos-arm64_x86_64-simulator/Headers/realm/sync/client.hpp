@@ -23,6 +23,8 @@ class Client {
 public:
     using port_type = sync::port_type;
 
+    using Error = ClientError;
+
     static constexpr milliseconds_type default_connect_timeout = sync::default_connect_timeout;
     static constexpr milliseconds_type default_connection_linger_time = sync::default_connection_linger_time;
     static constexpr milliseconds_type default_ping_keepalive_period = sync::default_ping_keepalive_period;
@@ -38,6 +40,13 @@ public:
     Client(Client&&) noexcept;
     ~Client() noexcept;
 
+    /// Run the internal event-loop of the client. At most one thread may
+    /// execute run() at any given time. The call will not return until somebody
+    /// calls stop().
+    void run() noexcept;
+
+    /// See run().
+    ///
     /// Thread-safe.
     void shutdown() noexcept;
 
@@ -93,9 +102,6 @@ public:
     /// by any thread, and by multiple threads concurrently.
     bool wait_for_session_terminations_or_client_stopped();
 
-    /// Async version of wait_for_session_terminations_or_client_stopped().
-    util::Future<void> notify_session_terminated();
-
     /// Returns false if the specified URL is invalid.
     bool decompose_server_url(const std::string& url, ProtocolEnvelope& protocol, std::string& address,
                               port_type& port, std::string& path) const;
@@ -104,6 +110,9 @@ private:
     std::unique_ptr<ClientImpl> m_impl;
     friend class Session;
 };
+
+
+class BadServerUrl; // Exception
 
 
 /// \brief Client-side representation of a Realm file synchronization session.
@@ -168,7 +177,7 @@ public:
     using ProgressHandler = void(std::uint_fast64_t downloaded_bytes, std::uint_fast64_t downloadable_bytes,
                                  std::uint_fast64_t uploaded_bytes, std::uint_fast64_t uploadable_bytes,
                                  std::uint_fast64_t progress_version, std::uint_fast64_t snapshot_version);
-    using WaitOperCompletionHandler = util::UniqueFunction<void(Status)>;
+    using WaitOperCompletionHandler = util::UniqueFunction<void(std::error_code)>;
     using SSLVerifyCallback = bool(const std::string& server_address, port_type server_port, const char* pem_data,
                                    size_t pem_size, int preverify_ok, int depth);
 
@@ -341,21 +350,13 @@ public:
         bool simulate_integration_error = false;
 
         std::function<SyncClientHookAction(const SyncClientHookData&)> on_sync_client_event_hook;
-
-        /// The reason this synchronization session is used for.
-        ///
-        /// Note: Currently only used in FLX sync.
-        SessionReason session_reason = SessionReason::Sync;
-
-        /// Schema version
-        ///
-        /// Note: Currently set only for FLX sync.
-        uint64_t schema_version = -1; // = ObjectStore::NotVersioned
     };
 
     /// \brief Start a new session for the specified client-side Realm.
     ///
     /// Note that the session is not fully activated until you call bind().
+    /// Also note that if you call set_sync_transact_callback(), it must be
+    /// done before calling bind().
     Session(Client&, std::shared_ptr<DB>, std::shared_ptr<SubscriptionStore>, std::shared_ptr<MigrationStore>,
             Config&& = {});
 
@@ -394,6 +395,32 @@ public:
     /// involving the session object on the left or right-hand side. See move
     /// constructor and assignment operator.
     void detach() noexcept;
+
+    /// \brief Set a function to be called when the local Realm has changed due
+    /// to integration of a downloaded changeset.
+    ///
+    /// Specify the callback function that will be called when one or more
+    /// transactions are performed to integrate downloaded changesets into the
+    /// client-side Realm, that is associated with this session.
+    ///
+    /// The callback function will always be called by the thread that executes
+    /// the event loop (Client::run()), but not until bind() is called. If the
+    /// callback function throws an exception, that exception will "travel" out
+    /// through Client::run().
+    ///
+    /// Note: Any call to this function must have returned before bind() is
+    /// called. If this function is called multiple times, each call overrides
+    /// the previous setting.
+    ///
+    /// Note: This function is **not thread-safe**. That is, it is an error if
+    /// it is called while another thread is executing any member function on
+    /// the same Session object.
+    ///
+    /// CAUTION: The specified callback function may get called before the call
+    /// to bind() returns, and it may get called (or continue to execute) after
+    /// the session object is destroyed. Please see "Callback semantics" section
+    /// under Session for more on this.
+    void set_sync_transact_callback(util::UniqueFunction<SyncTransactCallback>);
 
     /// \brief Set a handler to monitor the state of download and upload
     /// progress.
@@ -519,6 +546,12 @@ public:
     /// session is bound, but as soon as the session becomes bound, the server
     /// will start to push changes to the client, and vice versa.
     ///
+    /// If a callback function was set using set_sync_transact_callback(), then
+    /// that callback function will start to be called as changesets are
+    /// downloaded and integrated locally. It is important to understand that
+    /// callback functions are executed by the event loop thread (Client::run())
+    /// and the callback function may therefore be called before bind() returns.
+    ///
     /// Note: It is an error if this function is called more than once per
     /// Session object.
     ///
@@ -628,10 +661,10 @@ public:
     /// If incomplete wait operations exist when the session is terminated,
     /// those wait operations will be canceled. Session termination is an event
     /// that happens in the context of the client's event loop thread shortly
-    /// after the destruction of the session object. The Status
+    /// after the destruction of the session object. The std::error_code
     /// argument passed to the completion handler of a canceled wait operation
-    /// will be `ErrorCodes::OperationAborted`. For uncanceled wait operations
-    /// it will be `Status::OK()`. Note that as long as the client's event
+    /// will be `util::error::operation_aborted`. For uncanceled wait operations
+    /// it will be `std::error_code{}`. Note that as long as the client's event
     /// loop thread is running, all completion handlers will be called
     /// regardless of whether the operations get canceled or not.
     ///
@@ -697,6 +730,8 @@ public:
     /// thread, and by multiple threads concurrently.
     void cancel_reconnect_delay();
 
+    void on_new_flx_sync_subscription(int64_t new_version);
+
     util::Future<std::string> send_test_command(std::string command_body);
 
     /// Returns the app services connection id if the session is connected, otherwise
@@ -715,6 +750,14 @@ private:
 std::ostream& operator<<(std::ostream& os, SyncConfig::ProxyConfig::Type);
 
 // Implementation
+
+class BadServerUrl : public Exception {
+public:
+    BadServerUrl(std::string_view url)
+        : Exception(ErrorCodes::BadServerUrl, util::format("Unable to parse server URL '%1'", url))
+    {
+    }
+};
 
 inline Session::Session(Session&& sess) noexcept
     : m_impl{sess.m_impl}

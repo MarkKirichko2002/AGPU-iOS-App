@@ -21,8 +21,9 @@
 
 #include <algorithm>
 #include <limits>
+#include <stdexcept>
+#include <iomanip>
 
-#include <realm/array_basic.hpp>
 #include <realm/node.hpp>
 
 namespace realm {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RandomSplashScreenViewController: UIViewController {
+final class RandomSplashScreenViewController: UIViewController {
     
     // MARK: - сервисы
     private let viewModel = RandomSplashScreenViewModel()

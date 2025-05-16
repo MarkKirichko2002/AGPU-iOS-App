@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TimetableOptionsListTableViewController: UITableViewController {
+final class TimetableOptionsListTableViewController: UITableViewController {
     
     // MARK: - сервисы
     private let viewModel = TimetableOptionsListViewModel()
@@ -21,21 +21,36 @@ class TimetableOptionsListTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: "clock", title: "Расписание", frame: .zero)
-        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(closeScreen))
-        closeButton.tintColor = .label
         navigationItem.titleView = titleView
-        navigationItem.rightBarButtonItem = closeButton
+        setUpBackButton()
     }
     
-    @objc private func closeScreen() {
-        sendScreenWasClosedNotification()
-        self.dismiss(animated: true)
+    func setUpBackButton() {
+        
+        let button = UIButton()
+        button.tintColor = .label
+        button.setImage(UIImage(named: "back"), for: .normal)
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        
+        let backButton = UIBarButtonItem(customView: button)
+        
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
+        navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc private func back() {
+        navigationController?.popViewController(animated: true)
     }
     
     private func setUpTable() {
         tableView.register(UINib(nibName: TimetableOptionsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimetableOptionsTableViewCell.identifier)
         tableView.register(UINib(nibName: SaveRecentTimetableItemOptionCell.identifier, bundle: nil), forCellReuseIdentifier: SaveRecentTimetableItemOptionCell.identifier)
         tableView.register(UINib(nibName: AdvancedModeOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AdvancedModeOptionTableViewCell.identifier)
+        tableView.register(UINib(nibName: FloatingButtonTimetableOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FloatingButtonTimetableOptionTableViewCell.identifier)
+        tableView.register(UINib(nibName: VolumeControlOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: VolumeControlOptionTableViewCell.identifier)
+        tableView.register(UINib(nibName: DeviceOrientationControlTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DeviceOrientationControlTableViewCell.identifier)
+        tableView.register(UINib(nibName: GestureRecognitionOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: GestureRecognitionOptionTableViewCell.identifier)
     }
     
     private func bindViewModel() {
@@ -64,10 +79,6 @@ class TimetableOptionsListTableViewController: UITableViewController {
             self.navigationController?.pushViewController(vc, animated: true)
             HapticsManager.shared.hapticFeedback()
         case 3:
-            let vc = TimeTableSoundsListTableViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
-            HapticsManager.shared.hapticFeedback()
-        case 4:
             let vc = TimeTableFavouriteItemsListTableViewController()
             vc.isSettings = true
             self.navigationController?.pushViewController(vc, animated: true)
@@ -78,20 +89,32 @@ class TimetableOptionsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 10
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
-        case 0,1,2,3,4:
+        case 0,1,2,3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TimetableOptionsTableViewCell.identifier, for: indexPath) as? TimetableOptionsTableViewCell else {return UITableViewCell()}
             cell.configure(option: viewModel.options[indexPath.row])
             return cell
-        case 5:
+        case 4:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SaveRecentTimetableItemOptionCell.identifier, for: indexPath) as? SaveRecentTimetableItemOptionCell else {return UITableViewCell()}
             return cell
-        default:
+        case 5:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AdvancedModeOptionTableViewCell.identifier, for: indexPath) as? AdvancedModeOptionTableViewCell else {return UITableViewCell()}
+            return cell
+        case 6:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: FloatingButtonTimetableOptionTableViewCell.identifier, for: indexPath) as? FloatingButtonTimetableOptionTableViewCell else {return UITableViewCell()}
+            return cell
+        case 7:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: VolumeControlOptionTableViewCell.identifier, for: indexPath) as? VolumeControlOptionTableViewCell else {return UITableViewCell()}
+            return cell
+        case 8:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DeviceOrientationControlTableViewCell.identifier, for: indexPath) as? DeviceOrientationControlTableViewCell else {return UITableViewCell()}
+            return cell
+        default:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: GestureRecognitionOptionTableViewCell.identifier, for: indexPath) as? GestureRecognitionOptionTableViewCell else {return UITableViewCell()}
             return cell
         }
     }

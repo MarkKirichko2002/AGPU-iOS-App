@@ -28,7 +28,7 @@ class SplashScreensListTableViewController: UITableViewController {
     }
     
     @objc private func closeScreen() {
-        sendScreenWasClosedNotification()
+        HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
     }
 

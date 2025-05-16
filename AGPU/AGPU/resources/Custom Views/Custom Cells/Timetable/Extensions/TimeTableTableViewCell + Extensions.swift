@@ -14,7 +14,7 @@ extension TimeTableTableViewCell {
         let currentTime = DateManager().getCurrentTime(isFullFormat: true)
         let currentDate = DateManager().getCurrentDate()
         
-        let compareTime = DateManager().compareTimes(time1: "\(time):00", time2: currentTime)
+        let compareTime = DateManager().compareTimes(time1: "\(time)", time2: currentTime)
         let compareDate = DateManager().compareDates(date1: date, date2: currentDate)
         
         // прошлый день

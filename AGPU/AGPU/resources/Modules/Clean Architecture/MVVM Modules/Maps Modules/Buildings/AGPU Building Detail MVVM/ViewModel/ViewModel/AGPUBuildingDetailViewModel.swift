@@ -10,7 +10,7 @@ import Foundation
 import MapKit
 import UIKit
 
-class AGPUBuildingDetailViewModel {
+final class AGPUBuildingDetailViewModel {
     
     var annotation: MKAnnotation!
     var id: String = ""

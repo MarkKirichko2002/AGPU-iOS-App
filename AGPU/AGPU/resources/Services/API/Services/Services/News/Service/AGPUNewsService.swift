@@ -11,6 +11,8 @@ final class AGPUNewsService {
     
     // MARK: - сервисы
     let firebaseManager = FirebaseManager()
+    
+    let session = URLSession(configuration: .default)
     var domain = HostName.host
     
     init() {

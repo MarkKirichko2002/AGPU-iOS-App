@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TabsPositionListTableViewModel {
+final class TabsPositionListTableViewModel {
     
     var tabs = TabsList.tabs
     var dataChangedHandler: (()->Void)?

@@ -63,6 +63,8 @@ final class CalendarARViewController: UIViewController {
         calendarView.locale = .current
         
         calendarView.translatesAutoresizingMaskIntoConstraints = false
+        calendarView.tintColor = .label
+        calendarView.setVisibleDateComponents(viewModel.makeDateComponents(date: date), animated: true)
         view.addSubview(calendarView)
         
         NSLayoutConstraint.activate([

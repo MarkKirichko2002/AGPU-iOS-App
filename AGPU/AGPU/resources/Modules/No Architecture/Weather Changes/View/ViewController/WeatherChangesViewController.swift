@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class WeatherChangesViewController: UIViewController {
+final class WeatherChangesViewController: UIViewController {
     
     var pastWeather: WeatherChangesModel
     var currentWeather: WeatherChangesModel

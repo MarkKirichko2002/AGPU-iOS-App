@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TabColorsListViewModel {
+final class TabColorsListViewModel {
     
     // MARK: - сервисы
     let settingsManager = SettingsManager()

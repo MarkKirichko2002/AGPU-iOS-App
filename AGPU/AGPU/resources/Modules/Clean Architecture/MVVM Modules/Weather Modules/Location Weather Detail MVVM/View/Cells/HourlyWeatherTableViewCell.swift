@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HourlyWeatherTableViewCell: UITableViewCell {
+final class HourlyWeatherTableViewCell: UITableViewCell {
 
     static var identifier: String {"\(Self.self)"}
     

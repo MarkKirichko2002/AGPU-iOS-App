@@ -148,6 +148,7 @@ The Columns class encapsulates all this into a simple class that, for any type T
 #include <realm/list.hpp>
 #include <realm/set.hpp>
 #include <realm/query_value.hpp>
+#include <realm/metrics/query_info.hpp>
 #include <realm/util/optional.hpp>
 #include <realm/util/serializer.hpp>
 
@@ -1627,14 +1628,6 @@ public:
         return !m_link_column_keys.empty();
     }
 
-    ColKey pop_last()
-    {
-        ColKey col = m_link_column_keys.back();
-        m_link_column_keys.pop_back();
-        m_tables.pop_back();
-        return col;
-    }
-
 private:
     bool map_links(size_t column, ObjKey key, LinkMapFunction lm) const;
     void map_links(size_t column, size_t row, LinkMapFunction lm) const;
@@ -2206,14 +2199,10 @@ public:
     LinkCount(const LinkMap& link_map)
         : m_link_map(link_map)
     {
-        if (m_link_map.get_nb_hops() > 1) {
-            m_column_key = m_link_map.pop_last();
-        }
     }
     LinkCount(LinkCount const& other)
         : Subexpr2<Int>(other)
         , m_link_map(other.m_link_map)
-        , m_column_key(other.m_column_key)
     {
     }
 
@@ -2242,13 +2231,19 @@ public:
         m_link_map.collect_dependencies(tables);
     }
 
-    void evaluate(size_t index, ValueBase& destination) override;
+    void evaluate(size_t index, ValueBase& destination) override
+    {
+        size_t count = m_link_map.count_links(index);
+        destination = Value<int64_t>(count);
+    }
 
-    std::string description(util::serializer::SerialisationState& state) const override;
+    std::string description(util::serializer::SerialisationState& state) const override
+    {
+        return state.describe_columns(m_link_map, ColKey()) + util::serializer::value_separator + "@count";
+    }
 
 private:
     LinkMap m_link_map;
-    ColKey m_column_key;
 };
 
 // Gives a count of all backlinks across all columns for the specified row.
@@ -2295,7 +2290,8 @@ public:
             m_link_map.set_cluster(cluster);
         }
         else {
-            m_cluster = cluster;
+            m_keys = cluster->get_key_array();
+            m_offset = cluster->get_offset();
         }
     }
 
@@ -2311,7 +2307,8 @@ public:
             count = m_link_map.count_all_backlinks(index);
         }
         else {
-            const Obj obj = m_link_map.get_base_table()->get_object(m_cluster->get_real_key(index));
+            ObjKey key(m_keys->get(index) + m_offset);
+            const Obj obj = m_link_map.get_base_table()->get_object(key);
             count = obj.get_backlink_count();
         }
         destination = Value<int64_t>(count);
@@ -2328,7 +2325,8 @@ public:
     }
 
 private:
-    const Cluster* m_cluster = nullptr;
+    const ClusterKeyArray* m_keys = nullptr;
+    uint64_t m_offset = 0;
     LinkMap m_link_map;
 };
 

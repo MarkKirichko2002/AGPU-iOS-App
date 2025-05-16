@@ -10,6 +10,28 @@ import UIKit
 // MARK: - UITableViewDelegate
 extension TimeTableFavouriteItemsListTableViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = viewModel.favouriteItem(index: indexPath.row)
+        if !isSettings {
+            delegate?.WasSelected(result: item)
+            HapticsManager.shared.hapticFeedback()
+            self.dismiss(animated: true)
+        } else {
+            let date = DateManager().getCurrentDate()
+            let vc = CurrentDateTimeTableDayListTableViewController(id: item.name, date: date, owner: item.owner)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            present(navVC, animated: true)
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        if tableView.isEditing {
+            viewModel.updateItems(items: viewModel.items, sourceIndexPath.row, destinationIndexPath.row)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let item = viewModel.favouriteItem(index: indexPath.row)
@@ -17,14 +39,18 @@ extension TimeTableFavouriteItemsListTableViewController: UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if !isSettings {
-            let item = viewModel.favouriteItem(index: indexPath.row)
-            delegate?.WasSelected(result: item)
-            HapticsManager.shared.hapticFeedback()
-            self.dismiss(animated: true)
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+            
+            let positionAction = UIAction(title: "Позиция", image: UIImage(named: "number")) { _ in
+                tableView.isEditing.toggle()
+                self.setUpEditButton()
+            }
+            
+            return UIMenu(title: self.viewModel.favouriteItem(index: indexPath.row).name, children: [
+                positionAction
+            ])
         }
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
@@ -34,7 +60,7 @@ extension TimeTableFavouriteItemsListTableViewController: UITableViewDataSource 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.itemsCount()
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = viewModel.favouriteItem(index: indexPath.row)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TimeTableFavouriteItemTableViewCell.identifier, for: indexPath) as? TimeTableFavouriteItemTableViewCell else {return UITableViewCell()}

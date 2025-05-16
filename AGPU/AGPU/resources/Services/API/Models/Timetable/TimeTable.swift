@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TimeTable: Codable {
+struct TimeTable: Hashable, Codable {
     
     let id, date: String
     var disciplines: [Discipline]

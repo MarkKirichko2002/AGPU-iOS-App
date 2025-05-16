@@ -12,4 +12,17 @@ enum NewsOptionsFilters: String, CaseIterable, Codable {
     case yesterday = "Вчера"
     case dayBeforeYesterday = "Позавчера"
     case all = "Все новости"
+    
+    var voiceCommand: String {
+        switch self {
+        case .today:
+            return "сегодн"
+        case .yesterday:
+            return "вчера"
+        case .dayBeforeYesterday:
+            return "позавчера"
+        case .all:
+            return "все новости"
+        }
+    }
 }

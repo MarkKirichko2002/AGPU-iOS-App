@@ -40,5 +40,3 @@ enum TabColors: CaseIterable, Codable {
         }
     }
 }
-
-

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TabIconsStyleListViewModel {
+final class TabIconsStyleListViewModel {
     
     // MARK: - сервисы
     let settingsManager = SettingsManager()

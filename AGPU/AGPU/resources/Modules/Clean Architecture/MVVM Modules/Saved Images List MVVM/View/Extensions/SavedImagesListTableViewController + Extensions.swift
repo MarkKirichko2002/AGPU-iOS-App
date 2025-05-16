@@ -21,6 +21,12 @@ extension SavedImagesListTableViewController: UITableViewDelegate {
         HapticsManager.shared.hapticFeedback()
     }
     
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        if tableView.isEditing {
+            viewModel.updateImages(images: viewModel.images, sourceIndexPath.row, destinationIndexPath.row)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             viewModel.deleteImage(image: viewModel.imageItem(index: indexPath.row))
@@ -30,6 +36,15 @@ extension SavedImagesListTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
+            let editAction = UIAction(title: "Редактировать", image: UIImage(named: "edit")) { _ in
+                self.showEditAlert(image: self.viewModel.imageItem(index: indexPath.row))
+            }
+            
+            let positionAction = UIAction(title: "Позиция", image: UIImage(named: "number")) { _ in
+                tableView.isEditing.toggle()
+                self.setUpEditButton()
+            }
+            
             let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
                 let item = self.viewModel.imageItem(index: indexPath.row)
                 guard let image = UIImage(data: item.image) else {return}
@@ -37,6 +52,8 @@ extension SavedImagesListTableViewController: UITableViewDelegate {
             }
             
             return UIMenu(title: self.viewModel.imageItem(index: indexPath.row).date, children: [
+                editAction,
+                positionAction,
                 shareAction
             ])
         }
@@ -82,5 +99,34 @@ extension SavedImagesListTableViewController: ImageDetailViewControllerARDelegat
                 self.dismiss(animated: true)
             }
         }
+    }
+}
+
+extension SavedImagesListTableViewController {
+    
+    func showEditAlert(image: ImageModel) {
+        
+        let alertVC = UIAlertController(title: viewModel.createEditAlertMessage().0, message: viewModel.createEditAlertMessage().1, preferredStyle: .alert)
+        
+        alertVC.addTextField { (textField) in
+            textField.placeholder = "Название"
+            textField.text = image.date
+        }
+        
+        let saveAction = UIAlertAction(title: "Сохранить", style: .default) { _ in
+            if let name = alertVC.textFields![0].text {
+                if !name.isEmpty {
+                    self.viewModel.editImage(image: image, name: name)
+                }
+            }
+        }
+        
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+        
+        alertVC.addAction(saveAction)
+        alertVC.addAction(cancel)
+        
+        SpeechSynthesizerManager.shared.checkIsSaying(text: "\(alertVC.title ?? "") \(alertVC.message ?? "")")
+        present(alertVC, animated: true)
     }
 }

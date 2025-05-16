@@ -15,70 +15,53 @@ extension SettingsListViewController: UITableViewDataSource {
         return viewModel.sectionsCount()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 4
-        case 1:
-            return 10
-        case 2:
-            return 2
-        default:
-            return 0
-        }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)-> Int {
+        viewModel.numberOfOptions(in: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
             if indexPath.row == 0 {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: YourStatusOptionTableViewCell.identifier, for: indexPath) as? YourStatusOptionTableViewCell else {return UITableViewCell()}
-                cell.configure(status: viewModel.getStatusInfo())
-                return cell
-            } else if indexPath.row == 1 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: SelectedFacultyOptionTableViewCell.identifier, for: indexPath) as? SelectedFacultyOptionTableViewCell else {return UITableViewCell()}
                 let faculty = viewModel.getSelectedFacultyInfo()
                 cell.configure(faculty: faculty)
                 return cell
-            } else if indexPath.row == 2 {
+            } else if indexPath.row == 1 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AdaptiveNewsOptionTableViewCell.identifier, for: indexPath) as? AdaptiveNewsOptionTableViewCell else {return UITableViewCell()}
                 return cell
-            } else if indexPath.row == 3 {
+            } else if indexPath.row == 2 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: TimetableOptionTableViewCell.identifier, for: indexPath) as? TimetableOptionTableViewCell else {return UITableViewCell()}
                 return cell
             }
         case 1:
             if indexPath.row == 0 {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: AROptionTableViewCell.identifier, for: indexPath) as? AROptionTableViewCell else {return UITableViewCell()}
-                return cell
-            } else if indexPath.row == 1 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ActionToRecallOptionTableViewCell.identifier, for: indexPath) as? ActionToRecallOptionTableViewCell else {return UITableViewCell()}
                 cell.delegate = self
+                return cell
+            } else if indexPath.row == 1 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: SayAnyWhereTableViewCell.identifier, for: indexPath) as? SayAnyWhereTableViewCell else {return UITableViewCell()}
                 return cell
             } else if indexPath.row == 2 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: VisualChangesOptionTableViewCell.identifier, for: indexPath) as? VisualChangesOptionTableViewCell else {return UITableViewCell()}
                 cell.configure(name: viewModel.getScreenPresentationStyleInfo())
                 return cell
             } else if indexPath.row == 3 {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: OnlyMainOptionTableViewCell.identifier, for: indexPath) as? OnlyMainOptionTableViewCell else {return UITableViewCell()}
-                cell.configure(name: viewModel.getOnlyMainVariantInfo())
-                return cell
-            } else if indexPath.row == 4 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: SplashScreenOptionTableViewCell.identifier, for: indexPath) as? SplashScreenOptionTableViewCell else {return UITableViewCell()}
                 cell.configure(name: viewModel.getSplashScreenInfo())
                 return cell
-            } else if indexPath.row == 5 {
+            } else if indexPath.row == 4 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AppIconTableViewCell.identifier, for: indexPath) as? AppIconTableViewCell else {return UITableViewCell()}
                 cell.configure(icon: viewModel.getAppIconInfo())
                 return cell
-            } else if indexPath.row == 6 {
+            } else if indexPath.row == 5 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTabBarOptionTableViewCell.identifier, for: indexPath) as? CustomTabBarOptionTableViewCell else {return UITableViewCell()}
                 return cell
-            } else if indexPath.row == 7 {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: ASPUButtonOptionTableViewCell.identifier, for: indexPath) as? ASPUButtonOptionTableViewCell else {return UITableViewCell()}
-                return cell
-            } else if indexPath.row == 8 {
+            } else if indexPath.row == 6 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: SettablePersonalityTableViewCell.identifier, for: indexPath) as? SettablePersonalityTableViewCell else {return UITableViewCell()}
+                return cell
+            } else if indexPath.row == 7 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: ShortcutOptionTableViewCell.identifier, for: indexPath) as? ShortcutOptionTableViewCell else {return UITableViewCell()}
                 return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AppThemesTableViewCell.identifier, for: indexPath) as? AppThemesTableViewCell else {return UITableViewCell()}
@@ -105,17 +88,38 @@ extension SettingsListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension SettingsListViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 25))
+        header.backgroundColor = .systemBackground
+        header.layer.borderWidth = 3
+        header.layer.borderColor = UIColor.label.cgColor
+        header.layer.cornerRadius = 10
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        header.addSubview(label)
         switch section {
         case 0:
-            return "Основное"
+            label.text = "Основное"
         case 1:
-            return "Другие опции"
+            label.text = "Другие опции"
         case 2:
-            return "О приложение (версия: \(viewModel.getAppVersion()))"
+            label.text = "О приложении (версия: \(viewModel.getAppVersion()))"
         default:
-            return ""
+            label.text = ""
         }
+        label.textColor = .label
+        label.font = .systemFont(ofSize: 17, weight: .black)
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: header.topAnchor, constant: 10),
+            label.leftAnchor.constraint(equalTo: header.leftAnchor, constant: 20),
+            label.bottomAnchor.constraint(equalTo: header.bottomAnchor, constant: -10),
+        ])
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 65
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -123,229 +127,97 @@ extension SettingsListViewController: UITableViewDelegate {
         switch indexPath.section {
         case 0:
             if indexPath.row == 0 {
-                
-                if let cell = tableView.cellForRow(at: indexPath) as? YourStatusOptionTableViewCell {
-                    cell.didTapCell(indexPath: indexPath)
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "profile icon")
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                    let vc = UserStatusListTableViewController()
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    self.present(navVC, animated: true)
+                if let cell = tableView.cellForRow(at: indexPath) as? SelectedFacultyOptionTableViewCell {
+                    cell.didTapCell(indexPath: indexPath) {
+                        self.handleButton(icon: "university", vc: SelectedFacultyListTableViewController())
+                    }
                 }
             } else if indexPath.row == 1 {
-                
-                if let cell = tableView.cellForRow(at: indexPath) as? SelectedFacultyOptionTableViewCell {
-                    cell.didTapCell(indexPath: indexPath)
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "university")
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                    let vc = SelectedFacultyListTableViewController()
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    self.present(navVC, animated: true)
+                if let cell = tableView.cellForRow(at: indexPath) as? AdaptiveNewsOptionTableViewCell {
+                    cell.didTapCell(indexPath: indexPath) {
+                        let vc = AdaptiveNewsOptionsListTableViewController()
+                        vc.isSettings = true
+                        self.handleButton(icon: "news", vc: vc)
+                    }
                 }
             } else if indexPath.row == 2 {
-                
-                if let cell = tableView.cellForRow(at: indexPath) as? AdaptiveNewsOptionTableViewCell {
-                    cell.didTapCell(indexPath: indexPath)
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "news")
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                    let vc = AdaptiveNewsOptionsListTableViewController()
-                    vc.isSettings = true
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    self.present(navVC, animated: true)
-                }
-            } else if indexPath.row == 3 {
-                
                 if let cell = tableView.cellForRow(at: indexPath) as? TimetableOptionTableViewCell {
-                    cell.didTapCell(indexPath: indexPath)
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "clock")
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                    let vc = TimetableOptionsListTableViewController()
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    self.present(navVC, animated: true)
+                    cell.didTapCell(indexPath: indexPath) {
+                        self.handleButton(icon: "clock", vc: TimetableFeaturesOptionsListTableViewController())
+                    }
                 }
             }
         case 1:
-            
-            if indexPath.row == 2 {
-                
+            if indexPath.row == 1 {
+                if let cell = tableView.cellForRow(at: indexPath) as? SayAnyWhereTableViewCell {
+                    cell.didTapCell(indexPath: indexPath) {
+                        self.handleButton(icon: "microphone", vc: SpeechScreenVariantsListTableViewController())
+                    }
+                }
+            } else if indexPath.row == 2 {
                 if let cell = tableView.cellForRow(at: indexPath) as? VisualChangesOptionTableViewCell {
-                    cell.didTapCell(indexPath: indexPath)
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "eye")
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                    let vc = ScreenPresentationStylesTableViewController()
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    self.present(navVC, animated: true)
+                    cell.didTapCell(indexPath: indexPath) {
+                        self.handleButton(icon: "eye", vc: ScreenPresentationStylesTableViewController())
+                    }
                 }
             } else if indexPath.row == 3 {
-                
-                if let cell = tableView.cellForRow(at: indexPath) as? OnlyMainOptionTableViewCell {
-                    cell.didTapCell(indexPath: indexPath)
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "home icon")
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                    let vc = OnlyMainVariantsListTableViewController()
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    self.present(navVC, animated: true)
+                if let cell = tableView.cellForRow(at: indexPath) as? SplashScreenOptionTableViewCell {
+                    cell.didTapCell(indexPath: indexPath) {
+                        self.handleButton(icon: "mobile", vc: SplashScreensListTableViewController())
+                    }
                 }
             } else if indexPath.row == 4 {
-                
-                if let cell = tableView.cellForRow(at: indexPath) as? SplashScreenOptionTableViewCell {
-                    cell.didTapCell(indexPath: indexPath)
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "mobile")
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                    let vc = SplashScreensListTableViewController()
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    self.present(navVC, animated: true)
+                if let cell = tableView.cellForRow(at: indexPath) as? AppIconTableViewCell {
+                    cell.didTapCell(indexPath: indexPath) {
+                        self.handleButton(icon: "photo icon", vc: AppIconsListTableViewController())
+                    }
                 }
             } else if indexPath.row == 5 {
-                
-                if let cell = tableView.cellForRow(at: indexPath) as? AppIconTableViewCell {
-                    cell.didTapCell(indexPath: indexPath)
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "photo icon")
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                    let vc = AppIconsListTableViewController()
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    self.present(navVC, animated: true)
+                if let cell = tableView.cellForRow(at: indexPath) as? CustomTabBarOptionTableViewCell {
+                    cell.didTapCell(indexPath: indexPath) {
+                        self.handleButton(icon: "profile icon", vc: OnlyMainVariantsListTableViewController())
+                    }
                 }
             } else if indexPath.row == 6 {
-                
-                if let cell = tableView.cellForRow(at: indexPath) as? CustomTabBarOptionTableViewCell {
-                    cell.didTapCell(indexPath: indexPath)
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "profile icon")
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                    let vc = TabsOptionsListTableViewController()
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    self.present(navVC, animated: true)
+                if let cell = tableView.cellForRow(at: indexPath) as? SettablePersonalityTableViewCell {
+                    cell.didTapCell(indexPath: indexPath) {
+                        self.handleButton(icon: "gear", vc: SettablePersonalityOptionsListTableViewController())
+                    }
                 }
             } else if indexPath.row == 7 {
-                
-                if let cell = tableView.cellForRow(at: indexPath) as? ASPUButtonOptionTableViewCell {
-                    cell.didTapCell(indexPath: indexPath)
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "button")
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                    let vc = ASPUButtonOptionsListTableViewController()
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    self.present(navVC, animated: true)
+                if let cell = tableView.cellForRow(at: indexPath) as? ShortcutOptionTableViewCell {
+                    cell.didTapCell(indexPath: indexPath) {
+                        self.handleButton(icon: "sections icon", vc: FavouriteShortcutsListTableViewController())
+                    }
                 }
             } else if indexPath.row == 8 {
-                
-                if let cell = tableView.cellForRow(at: indexPath) as? SettablePersonalityTableViewCell {
-                    cell.didTapCell(indexPath: indexPath)
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "gear")
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                    let vc = SettablePersonalityOptionsListTableViewController()
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    self.present(navVC, animated: true)
-                }
-            } else if indexPath.row == 9 {
-                
                 if let cell = tableView.cellForRow(at: indexPath) as? AppThemesTableViewCell {
-                    cell.didTapCell(indexPath: indexPath)
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "theme")
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                    let vc = AppThemesListTableViewController()
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    self.present(navVC, animated: true)
+                    cell.didTapCell(indexPath: indexPath) {
+                        self.handleButton(icon: "theme", vc: AppThemesListTableViewController())
+                    }
                 }
             }
-            
         case 2:
-            
             if indexPath.row == 0 {
-                
                 if let cell = tableView.cellForRow(at: indexPath) as? AppFeaturesTableViewCell {
-                    cell.didTapCell(indexPath: indexPath)
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 0.6, repeats: false) { _ in
-                    NotificationCenter.default.post(name: Notification.Name("for every status selected"), object: "info icon")
-                }
-                
-                Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                    let vc = AppFeaturesListTableViewController()
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    self.present(navVC, animated: true)
+                    cell.didTapCell(indexPath: indexPath) {
+                        self.handleButton(icon: "info icon", vc: AppFeaturesListTableViewController())
+                    }
                 }
             } else {
                 HapticsManager.shared.hapticFeedback()
-                let vc = SFSafariViewController(url: URL(string: "https://developer.apple.com/weatherkit/data-source-attribution/")!)
+                let vc = SFSafariViewController(url: URL(string: "https://weatherkit.apple.com/legal-attribution.html")!)
                 present(vc, animated: true)
             }
         default:
             break
         }
+    }
+    
+    func handleButton(icon: String, vc: UIViewController) {
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true)
     }
 }
 
@@ -360,5 +232,54 @@ extension SettingsListViewController: ActionToRecallOptionTableViewCellDelegate 
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
             self.present(navVC, animated: true)
         }
+    }
+}
+
+extension SettingsListViewController {
+    
+    func openNewsSettings() {
+        let vc = AdaptiveNewsOptionsListTableViewController()
+        vc.modalPresentationStyle = .fullScreen
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
+    }
+    
+    func openTimetableSettings() {
+        let vc = TimetableFeaturesOptionsListTableViewController()
+        vc.modalPresentationStyle = .fullScreen
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
+    }
+    
+    func openTabBarSettings() {
+        let vc = OnlyMainVariantsListTableViewController()
+        vc.modalPresentationStyle = .fullScreen
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
+    }
+    
+    func openAppThemes() {
+        let vc = AppThemesListTableViewController()
+        vc.modalPresentationStyle = .fullScreen
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
+    }
+    
+    func openASPUButtonSettings() {
+        let vc = ASPUButtonOptionsListTableViewController()
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
+    }
+    
+    func openAppShortcuts() {
+        let vc = FavouriteShortcutsListTableViewController()
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
     }
 }

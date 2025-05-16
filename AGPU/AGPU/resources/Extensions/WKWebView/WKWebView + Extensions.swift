@@ -17,4 +17,36 @@ extension WKWebView {
             }
         }
     }
+    
+    func scrollToUp() {
+        self.scrollView.setContentOffset(CGPoint(x: 0, y: 535), animated: true)
+    }
+    
+    func scrollToMiddle() {
+        let jsCode = """
+                document.querySelector('main').offsetHeight
+                """
+        self.evaluateJavaScript(jsCode) { result, error in
+            if let height = result as? CGFloat {
+                print("Высота div: \(height) пикселей")
+                let scrollPoint = CGPoint(x: 0, y: (height / 2) + 535)
+                self.scrollView.setContentOffset(scrollPoint, animated: true)
+            } else if let error = error {
+                print("Ошибка JS: \(error)")
+            }
+        }
+    }
+    
+    func scrollToDown() {
+        let jsCode = "document.querySelector('main').offsetHeight"
+        self.evaluateJavaScript(jsCode) { result, error in
+            if let height = result as? CGFloat {
+                print("Высота div: \(height) пикселей")
+                let scrollPoint = CGPoint(x: 0, y: (height - height / 4) + 535)
+                self.scrollView.setContentOffset(scrollPoint, animated: true)
+            } else if let error = error {
+                print("Ошибка JS: \(error)")
+            }
+        }
+    }
 }

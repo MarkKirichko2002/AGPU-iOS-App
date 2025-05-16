@@ -8,9 +8,10 @@
 import UIKit
 import MapKit
 
-class VoiceSearchAGPUBuildingMapViewController: UIViewController {
+final class VoiceSearchAGPUBuildingMapViewController: UIViewController {
     
     private var building: AGPUBuildingModel!
+    weak var delegate: ScreenClosedDelegate?
     
     // MARK: - сервисы
     private var viewModel: SearchAGPUBuildingMapViewModel!
@@ -35,11 +36,12 @@ class VoiceSearchAGPUBuildingMapViewController: UIViewController {
         setUpNavigation()
         setUpMap()
         makeConstraints()
+        setUpFingers()
         bindViewModel()
     }
     
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "marker", title: building.name, frame: .zero)
+        let titleView = CustomTitleView(image: "marker icon", title: building.name, frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.titleView = titleView
@@ -47,7 +49,7 @@ class VoiceSearchAGPUBuildingMapViewController: UIViewController {
     }
     
     @objc private func closeScreen() {
-        sendScreenWasClosedNotification()
+        delegate?.screenWasClosed()
         dismiss(animated: true)
     }
     
@@ -66,6 +68,18 @@ class VoiceSearchAGPUBuildingMapViewController: UIViewController {
         ])
     }
     
+    private func setUpFingers() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showCurrentLocation))
+        tap.numberOfTouchesRequired = 1
+        mapView.addGestureRecognizer(tap)
+    }
+    
+    @objc private func showCurrentLocation(gesture: UIGestureRecognizer) {
+        if gesture.state == .ended {
+            setRegion(region: viewModel.defaultLocation())
+        }
+    }
+    
     private func bindViewModel() {
         viewModel.alertHandler = { bool in
             if bool {
@@ -76,7 +90,7 @@ class VoiceSearchAGPUBuildingMapViewController: UIViewController {
                     self.dismiss(animated: true)
                 }
                 self.showAlert(title: self.viewModel.createAlertMessage().0, message: self.viewModel.createAlertMessage().1, actions: [goToSettings, cancel])
-            } else {}
+            }
         }
         viewModel.checkLocationAuthorizationStatus()
         viewModel.registerLocationHandler { location in
@@ -101,7 +115,7 @@ class VoiceSearchAGPUBuildingMapViewController: UIViewController {
             self.mapView.annotations.forEach { annotation in
                 if annotation.title != "Вы" {
                     DispatchQueue.main.async {
-                        let titleView = CustomTitleView(image: "marker", title: pin.title!!, frame: .zero)
+                        let titleView = CustomTitleView(image: "marker icon", title: pin.title!!, frame: .zero)
                         self.navigationItem.titleView = titleView
                         self.mapView.removeAnnotation(annotation)
                         self.mapView.addAnnotation(pin)

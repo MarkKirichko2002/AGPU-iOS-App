@@ -38,17 +38,12 @@ extension TabsPositionOptionTableViewCell: SpringImageViewDelegate {
         
         tabs = TabsList.tabs
         
-        let index = tabs.firstIndex { $0.id == 2}!
-        let status = settingsManager.getUserStatus()
-        let position = settingsManager.getTabsPosition()
-        
-        tabs[index].icon = settingsManager.getTabIconForStatus().icon
-        tabs[index].name = status.name + "у"
+        let position = settingsManager.getTabs()
         
         for tab in tabs {
-            for number in position {
+            for savedTab in position {
                 let index = tabs.firstIndex(of: tab)!
-                tabs.swapAt(index, number)
+                tabs.swapAt(index, savedTab.position)
             }
         }
     }

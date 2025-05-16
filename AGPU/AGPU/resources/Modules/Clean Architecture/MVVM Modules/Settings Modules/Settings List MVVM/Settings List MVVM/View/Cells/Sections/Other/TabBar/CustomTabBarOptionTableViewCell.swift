@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomTabBarOptionTableViewCell: UITableViewCell {
+final class CustomTabBarOptionTableViewCell: UITableViewCell {
 
     static let identifier = "CustomTabBarOptionTableViewCell"
     private let animation = AnimationClass()
@@ -21,8 +21,9 @@ class CustomTabBarOptionTableViewCell: UITableViewCell {
         OptionName.tintColor = .label
     }
     
-    func didTapCell(indexPath: IndexPath) {
+    func didTapCell(indexPath: IndexPath, completion: @escaping()->Void) {
         animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
+            completion()
             HapticsManager.shared.hapticFeedback()
         }
     }

@@ -7,13 +7,17 @@
 
 import Foundation
 
-class SavedVideosListViewModel {
+final class SavedVideosListViewModel {
     
-    var dataChangedHandler:(()-> Void)?
     var videos = [VideoModel]()
+    
+    var alertHandler: (()-> Void)?
+    var dataChangedHandler: (()-> Void)?
+    var itemChangedHandler: ((Int)->Void)?
     
     // MARK: - сервисы
     let realmManager = RealmManager()
     let dateManager = DateManager()
-
+    let settingsManager = SettingsManager()
+    
 }

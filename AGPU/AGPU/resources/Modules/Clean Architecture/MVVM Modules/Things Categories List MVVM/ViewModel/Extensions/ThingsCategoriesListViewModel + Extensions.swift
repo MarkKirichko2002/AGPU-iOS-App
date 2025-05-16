@@ -23,12 +23,9 @@ extension ThingsCategoriesListViewModel: IThingsCategoriesListViewModel {
         ThingCategories.categories[1].itemsCount = realmManager.getImages().count
         ThingCategories.categories[2].itemsCount = realmManager.getVideos().count
         ThingCategories.categories[3].itemsCount = realmManager.getContacts().count
+        ThingCategories.categories[4].itemsCount = realmManager.getTimetableItems().count
+        ThingCategories.categories[5].itemsCount = realmManager.getWebPages().count
         dataChangedHandler?()
-    }
-    
-    func titleForNavigation()-> String {
-        let style = settingsManager.getSavedCommunicationStyle()
-        return style == .formal ? "Выберите категорию" : "Выбери категорию"
     }
     
     func registerDataChangedHandler(block: @escaping()->Void) {

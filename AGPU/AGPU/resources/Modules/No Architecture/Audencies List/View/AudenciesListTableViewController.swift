@@ -15,8 +15,10 @@ final class AudenciesListTableViewController: UITableViewController {
 
     var name: String = ""
     var audencies = [String]()
+    var selectedAudencie = ""
     
     var isSection = false
+    var isInfo = false
     
     weak var delegate: AudenciesListTableViewControllerDelegate?
     
@@ -31,10 +33,15 @@ final class AudenciesListTableViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - сервисы
+    private let dateManager = DateManager()
+    private let settingsManager = SettingsManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
         setUpTable()
+        setUpData()
     }
     
     private func setUpNavigation() {
@@ -84,14 +91,25 @@ final class AudenciesListTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
-    private func getSavedId()-> String {
-        let id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-2-1"
-        return id
+    private func setUpData() {
+        selectedAudencie = settingsManager.getSavedID()
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.audienceSelected(audience: audencies[indexPath.row])
-        navigationController?.popViewController(animated: true)
+        let audencie = audencies[indexPath.row]
+        if isSection {
+            selectedAudencie = audencie
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.delegate?.audienceSelected(audience: audencie)
+                self.navigationController?.popViewController(animated: true)
+            }
+            tableView.reloadData()
+        } else if isInfo {
+            delegate?.audienceSelected(audience: audencies[indexPath.row])
+            dismiss(animated: true)
+        } else {
+            showTimetable(index: indexPath.row)
+        }
         HapticsManager.shared.hapticFeedback()
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -105,8 +123,15 @@ final class AudenciesListTableViewController: UITableViewController {
         cell.tintColor = .systemGreen
         cell.textLabel?.text = audencies[indexPath.row]
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
-        cell.textLabel?.textColor = audencies[indexPath.row] == getSavedId() ? .systemGreen : .label
-        cell.accessoryType =  audencies[indexPath.row] == getSavedId() ? .checkmark : .none
+        cell.textLabel?.textColor = audencies[indexPath.row] == selectedAudencie ? .systemGreen : .label
+        cell.accessoryType =  audencies[indexPath.row] == selectedAudencie ? .checkmark : .none
         return cell
+    }
+    
+    func showTimetable(index: Int) {
+        let vc = CurrentDateTimeTableDayListTableViewController(id: audencies[index], date: dateManager.getCurrentDate(), owner: "CLASSROOM")
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
     }
 }

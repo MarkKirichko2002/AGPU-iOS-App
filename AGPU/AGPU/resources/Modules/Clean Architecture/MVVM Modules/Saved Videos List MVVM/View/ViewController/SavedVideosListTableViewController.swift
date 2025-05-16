@@ -11,8 +11,8 @@ protocol SavedVideosListTableViewControllerDelegate: AnyObject {
     func contactsUpdated()
 }
 
-class SavedVideosListTableViewController: UIViewController {
-
+final class SavedVideosListTableViewController: UIViewController {
+    
     // MARK: - сервисы
     let viewModel = SavedVideosListViewModel()
     
@@ -55,6 +55,27 @@ class SavedVideosListTableViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    func setUpAddButton() {
+        let addButton = UIBarButtonItem(image: UIImage(named: "add"), style: .done, target: self, action: #selector(addButtonTapped))
+        addButton.tintColor = .label
+        navigationItem.rightBarButtonItem = addButton
+    }
+    
+    @objc private func addButtonTapped() {
+        showAddVideoAlert()
+    }
+    
+    func setUpEditButton() {
+        let moveButton = UIBarButtonItem(title: "Готово", style: .done, target: self, action: #selector(moveVideos))
+        moveButton.tintColor = .label
+        navigationItem.rightBarButtonItem = moveButton
+    }
+    
+    @objc private func moveVideos() {
+        tableView.isEditing.toggle()
+        setUpAddButton()
+    }
+    
     private func setUpTable() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
@@ -86,6 +107,15 @@ class SavedVideosListTableViewController: UIViewController {
                 self.noVideosLabel.isHidden = false
             }
             self.delegate?.contactsUpdated()
+        }
+        viewModel.registerAlertHandler {
+            let ok = UIAlertAction(title: "ОК", style: .default) { _ in
+                self.showAddVideoAlert()
+            }
+            self.showAlert(title: "Неверные URL!", message: "URL не является валидным", actions: [ok])
+        }
+        viewModel.registerItemChangedHandler { index in
+            self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .left)
         }
         viewModel.getVideos()
     }

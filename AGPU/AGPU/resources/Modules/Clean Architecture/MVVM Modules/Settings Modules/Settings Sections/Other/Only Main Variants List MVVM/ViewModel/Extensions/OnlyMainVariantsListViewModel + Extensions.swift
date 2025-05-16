@@ -21,7 +21,7 @@ extension OnlyMainVariantsListViewModel: IOnlyMainVariantsListViewModel {
     }
     
     func chooseOnlyMainVariant(index: Int) {
-        let savedVariant = UserDefaults.loadData(type: OnlyMainVariants.self, key: "variant") ?? .none
+        let savedVariant = settingsManager.checkOnlyMainOption()
         let variant = onlyMainVariantItem(index: index)
         if savedVariant != variant {
             saveVariant(variant: variant)
@@ -38,7 +38,7 @@ extension OnlyMainVariantsListViewModel: IOnlyMainVariantsListViewModel {
     }
     
     func isCurrentOnlyMainVariant(index: Int)-> Bool {
-        let savedVariant = UserDefaults.loadData(type: OnlyMainVariants.self, key: "variant") ?? .none
+        let savedVariant = settingsManager.checkOnlyMainOption()
         let variant = onlyMainVariantItem(index: index)
         if savedVariant == variant {
             return true

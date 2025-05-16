@@ -64,6 +64,35 @@ enum PairType: String, CaseIterable, Codable {
         }
     }
     
+    var voiceCommand: String {
+        switch self {
+        case .lec:
+            return "лекци"
+        case .prac:
+            return "практик"
+        case .exam:
+            return "экзам"
+        case .lab:
+            return "лаб"
+        case .hol:
+            return "каникул"
+        case .cred:
+            return "зачет"
+        case .fepo:
+            return "фэпо"
+        case .cons:
+            return "консульта"
+        case .cours:
+            return "курсов"
+        case .none:
+            return "другое"
+        case .leftToday:
+            return "..."
+        case .all:
+            return "..."
+        }
+    }
+    
     var color: UIColor {
         switch self {
         case .lec:

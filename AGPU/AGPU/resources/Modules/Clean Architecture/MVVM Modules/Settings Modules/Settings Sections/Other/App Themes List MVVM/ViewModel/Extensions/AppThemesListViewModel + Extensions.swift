@@ -17,7 +17,7 @@ extension AppThemesListViewModel: AppThemesListViewModelProtocol {
     
     func selectTheme(index: Int) {
         let themeModel = AppThemes.themes[index]
-        let savedTheme = UserDefaults.loadData(type: AppThemeModel.self, key: "theme") ?? AppThemes.themes[0]
+        let savedTheme = UserDefaults.loadData(type: AppThemeModel.self, key: "theme") ?? AppThemes.themes[1]
         if themeModel.theme != savedTheme.theme {
             UserDefaults.saveData(object: themeModel, key: "theme") {
                 self.themeSelectedHandler?(themeModel.theme)
@@ -36,7 +36,7 @@ extension AppThemesListViewModel: AppThemesListViewModelProtocol {
     
     func isThemeSelected(index: Int)-> Bool {
         let themeModel = AppThemes.themes[index]
-        let savedTheme = UserDefaults.loadData(type: AppThemeModel.self, key: "theme") ?? AppThemes.themes[0]
+        let savedTheme = UserDefaults.loadData(type: AppThemeModel.self, key: "theme") ?? AppThemes.themes[1]
         if savedTheme.name == themeModel.name {
             return true
         } else {

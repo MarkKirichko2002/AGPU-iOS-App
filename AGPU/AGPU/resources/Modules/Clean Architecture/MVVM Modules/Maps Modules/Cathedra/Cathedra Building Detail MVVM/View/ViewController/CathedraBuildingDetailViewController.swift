@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class CathedraBuildingDetailViewController: UIViewController {
+final class CathedraBuildingDetailViewController: UIViewController {
 
     var annotation: MKAnnotation!
     
@@ -77,7 +77,6 @@ class CathedraBuildingDetailViewController: UIViewController {
         let vc = ShareLocationAppsViewController(annotation: annotation)
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
-        HapticsManager.shared.hapticFeedback()
     }
     
     private func setUpTitleLabel() {

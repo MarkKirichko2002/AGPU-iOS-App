@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RecentNewsListViewModel {
+final class RecentNewsListViewModel {
     
     // MARK: - сервисы
     let newsService = AGPUNewsService()

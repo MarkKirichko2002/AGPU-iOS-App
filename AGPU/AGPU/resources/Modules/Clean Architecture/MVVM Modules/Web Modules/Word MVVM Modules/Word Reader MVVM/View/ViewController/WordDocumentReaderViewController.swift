@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 
 final class WordDocumentReaderViewController: UIViewController {
-
+    
     var url: String
     
     // MARK: - сервисы
@@ -88,15 +88,21 @@ final class WordDocumentReaderViewController: UIViewController {
     }
     
     private func makeMenu()-> UIMenu {
+        
         let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
-            self.shareInfo(image: UIImage(named: "word")!, title: "Word-документ", text: self.url)
+            URLSession.shared.loadDocument(url: self.url) { docURL in
+                let activityViewController = UIActivityViewController(activityItems: [docURL], applicationActivities: nil)
+                self.present(activityViewController, animated: true)
+            }
         }
         let saveAction = UIAction(title: "Сохранить", image: UIImage(named: "download")) { _ in
-            let document = DocumentModel()
-            document.name = URL(string: self.url)?.lastPathComponent ?? ""
-            document.format = URL(string: self.url)?.pathExtension ?? ""
-            document.url = self.url
-            self.viewModel.saveCurrentDocument(document: document)
+            URLSession.shared.loadDocument(url: self.url) { docURL in
+                let document = DocumentModel()
+                document.name = docURL.lastPathComponent
+                document.format = docURL.pathExtension
+                document.url = docURL.absoluteString
+                self.viewModel.saveCurrentDocument(document: document)
+            }
         }
         let menu = UIMenu(title: "Word-документ", children: [shareAction, saveAction])
         return menu

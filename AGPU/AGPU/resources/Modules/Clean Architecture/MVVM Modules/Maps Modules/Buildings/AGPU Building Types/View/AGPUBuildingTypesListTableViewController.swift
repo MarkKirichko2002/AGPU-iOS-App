@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AGPUBuildingTypesListTableViewController: UITableViewController {
+final class AGPUBuildingTypesListTableViewController: UITableViewController {
 
     var viewModel: AGPUBuildingTypesListViewModel!
     
@@ -29,7 +29,7 @@ class AGPUBuildingTypesListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "filter", title: "Фильтрация", frame: .zero)
+        let titleView = CustomTitleView(image: "filter icon", title: "Фильтрация", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.titleView = titleView

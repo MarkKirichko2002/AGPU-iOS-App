@@ -9,6 +9,9 @@ import UIKit
 
 final class AGPUWallpapersListViewController: UIViewController {
     
+    // MARK: - сервисы
+    let imageSaver = ImageSaver()
+    
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -23,6 +26,9 @@ final class AGPUWallpapersListViewController: UIViewController {
         super.viewDidLoad()
         setUpNavigation()
         setUpCollectionView()
+        imageSaver.registerImageHandler { title, message in
+            self.showAlert(title: title, message: message, actions: [UIAlertAction(title: "ОК", style: .default)])
+        }
     }
     
     private func setUpNavigation() {
@@ -43,7 +49,6 @@ final class AGPUWallpapersListViewController: UIViewController {
     }
     
     @objc private func back() {
-        sendScreenWasClosedNotification()
         navigationController?.popViewController(animated: true)
     }
     

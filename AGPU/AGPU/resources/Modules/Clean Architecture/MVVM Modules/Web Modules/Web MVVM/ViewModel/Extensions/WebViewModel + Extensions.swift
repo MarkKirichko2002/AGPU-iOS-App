@@ -118,18 +118,20 @@ extension WebViewModel: WebViewModelProtocol {
             print(positionY)
             
             if scrollPosition == "вверх" {
-                positionY -= 50
+                positionY -= 60
             } else if scrollPosition.contains("низ"){
-                positionY += 50
-            }
-            
-            if scrollPosition.contains("лев") {
-                positionX -= 20
-            } else if scrollPosition.contains("прав") {
-                positionX += 20
+                positionY += 60
             }
             
             completion(CGPoint(x: positionX, y: positionY))
         }
+    }
+    
+    func saveWebPage(url: String) {
+        let model = WebPageModel()
+        model.id = UUID()
+        model.name = dateManager.getCurrentDate()
+        model.url = url
+        realmManager.saveWebPage(page: model)
     }
 }

@@ -67,7 +67,7 @@ extension AGPUBuildingDetailViewModel: AGPUBuildingDetailViewModelProtocol {
                 }
             }
         }
-        timetable.disciplines = disciplines
+        timetable.disciplines = disciplines.sorted { dateManager.compareTimes(time1: "\($0.time.components(separatedBy: "-")[0]):00", time2: "\($1.time.components(separatedBy: "-")[0]):00") == .orderedAscending}
         return timetable
     }
     
@@ -96,7 +96,7 @@ extension AGPUBuildingDetailViewModel: AGPUBuildingDetailViewModelProtocol {
             }
         }
         
-        var arr = text.components(separatedBy: ", ")
+        let arr = text.components(separatedBy: ", ")
         return arr
     }
     

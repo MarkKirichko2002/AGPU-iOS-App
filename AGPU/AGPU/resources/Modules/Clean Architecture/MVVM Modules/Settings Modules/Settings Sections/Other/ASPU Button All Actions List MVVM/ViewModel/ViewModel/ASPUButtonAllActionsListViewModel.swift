@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ASPUButtonAllActionsListViewModel {
+final class ASPUButtonAllActionsListViewModel {
     
     var itemSelectedHandler: (()->Void)?
     

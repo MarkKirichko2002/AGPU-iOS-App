@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsCategoriesListTableViewController: UITableViewController {
+final class NewsCategoriesListTableViewController: UITableViewController {
 
     var currentCategory = ""
     

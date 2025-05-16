@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class NewsCategoriesRandomizerViewController: UIViewController {
+final class NewsCategoriesRandomizerViewController: UIViewController {
     
     // MARK: - UI
     private var closeButton: UIButton = {

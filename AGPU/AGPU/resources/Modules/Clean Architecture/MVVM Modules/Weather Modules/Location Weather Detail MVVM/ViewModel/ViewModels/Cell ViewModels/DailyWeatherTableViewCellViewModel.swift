@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DailyWeatherTableViewCellViewModel {
+final class DailyWeatherTableViewCellViewModel {
     
     var dayOfWeek: String
     var weatherIcon: String

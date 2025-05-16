@@ -9,7 +9,7 @@ import MapKit
 import Combine
 import WeatherKit
 
-class LocationWeatherDetailViewModel: ILocationWeatherDetailViewModel {
+final class LocationWeatherDetailViewModel: ILocationWeatherDetailViewModel {
     
     @Published var isFetched: Bool = false
     private var isWeatherChangedHandler: (()->Void)?
@@ -257,7 +257,7 @@ class LocationWeatherDetailViewModel: ILocationWeatherDetailViewModel {
     
     func textForMessageToShare()-> String {
         if let weather = weather {
-            return "\(annotation.title!!) - \(weatherService.formatWeather(weather: weather))"
+            return "\(annotation.title!!): \(weatherService.formatWeather(weather: weather))"
         }
         return ""
     }

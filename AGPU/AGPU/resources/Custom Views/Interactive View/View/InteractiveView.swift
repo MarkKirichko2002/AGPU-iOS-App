@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class InteractiveView: UIView {
+final class InteractiveView: UIImageView {
     
     var tapAction: (() -> Void)?
     

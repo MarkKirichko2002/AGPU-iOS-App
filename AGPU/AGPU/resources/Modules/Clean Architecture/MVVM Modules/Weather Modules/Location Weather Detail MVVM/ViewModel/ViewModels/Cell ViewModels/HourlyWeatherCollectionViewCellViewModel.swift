@@ -7,7 +7,7 @@
 
 import Foundation
 
-class HourlyWeatherCollectionViewCellViewModel {
+final class HourlyWeatherCollectionViewCellViewModel {
     
     var hour: Int
     var icon: String

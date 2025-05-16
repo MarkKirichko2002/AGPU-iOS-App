@@ -55,6 +55,14 @@ extension NewsWebViewModel: INewsWebViewModel {
         return "АГПУ"
     }
     
+    func saveWebPage() {
+        let model = WebPageModel()
+        model.id = UUID()
+        model.name = dateManager.getCurrentDate()
+        model.url = url
+        realmManager.saveWebPage(page: model)
+    }
+    
     func registerScrollPositionHandler(block: @escaping(Double)->Void) {
         self.scrollPositionHandler = block
     }

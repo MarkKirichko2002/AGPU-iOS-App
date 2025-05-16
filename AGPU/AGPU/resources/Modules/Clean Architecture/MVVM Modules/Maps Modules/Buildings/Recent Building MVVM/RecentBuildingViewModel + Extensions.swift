@@ -61,6 +61,12 @@ extension RecentBuildingViewModel: IRecentBuildingViewModel {
         }
     }
     
+    func defaultLocation()-> MKCoordinateRegion {
+        let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
+        let region = MKCoordinateRegion(center: arr[0].coordinate, span: span)
+        return region
+    }
+    
     func getRecentLocation()-> RecentBuildingModel {
         return UserDefaults.loadData(type: RecentBuildingModel.self, key: "last location") ?? RecentBuildingModel(name: "", info: "", coordinates: [])
     }

@@ -12,9 +12,10 @@ protocol TimetableDateDetailViewControllerDelegate: AnyObject {
     func dateWasSelected(model: TimeTableChangesModel)
 }
 
-class TimetableDateDetailViewController: UIViewController {
+final class TimetableDateDetailViewController: UIViewController {
     
     let viewModel: TimetableDateDetailViewModel
+    let imageSaver = ImageSaver()
     weak var delegate: TimetableDateDetailViewControllerDelegate?
     
     var id: String = ""
@@ -68,6 +69,8 @@ class TimetableDateDetailViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = true
         button.setTitle("Выбрать дату", for: .normal)
+        button.layer.opacity = 0.5
+        button.isEnabled = false
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .black)
         button.setTitleColor(.white, for: .normal)
         return button
@@ -92,6 +95,9 @@ class TimetableDateDetailViewController: UIViewController {
         setUpView()
         setUpConstraints()
         bindViewModel()
+        imageSaver.registerImageHandler { title, message in
+            self.showAlert(title: title, message: message, actions: [UIAlertAction(title: "ОК", style: .default)])
+        }
     }
     
     private func setUpView() {
@@ -100,6 +106,7 @@ class TimetableDateDetailViewController: UIViewController {
         closeButton.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
         optionsList.menu = getCurrentMenu()
         selectDateButton.addTarget(self, action: #selector(selectDate), for: .touchUpInside)
+        optionsList.isEnabled = false
         setUpTap()
     }
     
@@ -127,12 +134,24 @@ class TimetableDateDetailViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
+        let refresh = UIAction(title: "Обновить") { _ in
+            self.optionsList.isEnabled = false
+            self.viewModel.refreshTimetable()
+        }
+        
         let ARAction = UIAction(title: "AR режим") { _ in
             let vc = TimetableARViewController(id: self.id, subgroup: self.subgroup, date: self.date, owner: self.owner)
             vc.image = self.timetableImage.image ?? UIImage()
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
+        }
+        
+        let nearBuildingAction = UIAction(title: "Нужное здание") { _ in
+            let vc = NearBuildingViewController(info: .audiences)
+            vc.delegate = self
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
         }
         
         let groupsList = UIAction(title: "Группы") { _ in
@@ -177,7 +196,7 @@ class TimetableDateDetailViewController: UIViewController {
         }
         
         let filterAction = UIAction(title: "Фильтрация") { _ in
-            let vc = PairTypesListTableViewController(date: self.date, type: self.viewModel.type, disciplines: self.viewModel.allDisciplines)
+            let vc = TimetableFilterCategoriesListTableViewController(date: self.date, type: self.viewModel.type, disciplines: self.viewModel.allDisciplines, building: self.viewModel.currentBuilding, time: self.viewModel.currentTime)
             vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -193,7 +212,9 @@ class TimetableDateDetailViewController: UIViewController {
         }
         let menu = UIMenu(title: date, children: [
             searchAction,
+            refresh,
             ARAction,
+            nearBuildingAction,
             groupsList,
             subGroupsList,
             teachersList,
@@ -216,12 +237,18 @@ class TimetableDateDetailViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
+        let refresh = UIAction(title: "Обновить") { _ in
+            self.optionsList.isEnabled = false
+            self.viewModel.refreshTimetable()
+        }
+        
         let shareAction = UIAction(title: "Поделиться") { _ in
             self.share()
         }
         
         let menu = UIMenu(title: date, children: [
             searchAction,
+            refresh,
             shareAction
         ])
         return menu
@@ -230,7 +257,6 @@ class TimetableDateDetailViewController: UIViewController {
     @objc private func share() {
         guard let image = viewModel.image else {return}
         self.ShareImage(image: image, title: id, text: viewModel.formattedDate())
-        HapticsManager.shared.hapticFeedback()
     }
     
     private func setUpTap() {
@@ -277,17 +303,22 @@ class TimetableDateDetailViewController: UIViewController {
         
         selectDateButton.snp.makeConstraints { maker in
             maker.top.equalTo(timetableDescription.snp.bottom).offset(50)
+            maker.width.equalTo(130)
+            maker.height.equalTo(30)
             maker.centerX.equalToSuperview()
         }
     }
     
     private func bindViewModel() {
         viewModel.registerTimeTableHandler { [weak self] timetable in
+            self?.optionsList.isEnabled = true
             self?.timetableImage.image = timetable.image
             self?.titleLabel.text = timetable.id
             self?.timetableDescription.text = timetable.description
             self?.timetableDescription.textColor =  self?.viewModel.textColor()
             self?.timetableImage.layer.borderColor =  self?.viewModel.textColor().cgColor
+            self?.selectDateButton.layer.opacity = 1.0
+            self?.selectDateButton.isEnabled = true
         }
         viewModel.getTimeTableForDay()
     }
@@ -296,11 +327,21 @@ class TimetableDateDetailViewController: UIViewController {
         
         selectDateButton.layer.opacity = 0.5
         selectDateButton.setTitle("Выбрано", for: .normal)
+        optionsList.isEnabled = false
+        closeButton.isEnabled = false
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
             guard let model = self?.viewModel.model else {return}
             self?.dismiss(animated: true)
             self?.delegate?.dateWasSelected(model: model)
         }
+    }
+    
+    func openFilterOptionsList() {
+        let vc = TimetableFilterCategoriesListTableViewController(date: date, type: viewModel.type, disciplines: viewModel.allDisciplines, building: viewModel.currentBuilding, time: nil)
+        vc.delegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true)
     }
 }

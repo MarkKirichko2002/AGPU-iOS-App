@@ -15,7 +15,7 @@ struct AGPUBuildingPins {
         MKPointAnnotation(
             __coordinate: CLLocationCoordinate2D(latitude: 45.001817, longitude: 41.132393),
             title: "Главный корпус",
-            subtitle: "Аудитории: 1, 2, 3, 4, 4а, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14а, 15, 16, 17, 18, 21, 22, 23"
+            subtitle: "Аудитории: 1, 2, 3, 4, 4а, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14а, 15, 16, 17, 18, 19, 20, 21, 22, 23, 23а"
         ),
         
         // Корпус и Общежитие №1
@@ -43,7 +43,7 @@ struct AGPUBuildingPins {
         MKPointAnnotation(
             __coordinate: CLLocationCoordinate2D(latitude: 45.003697, longitude: 41.122763),
             title: "Корпус №4 (ФТЭиД)",
-            subtitle: "Аудитории: 51, 52, 53, 57, 58 а, 58 б, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68"
+            subtitle: "Аудитории: 51, 52, 53, 54, 55, 56, 57, 58 а, 58 б, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68"
         ),
         
         // Корпус №5 (ЕБД)
@@ -57,7 +57,7 @@ struct AGPUBuildingPins {
         MKPointAnnotation(
             __coordinate: CLLocationCoordinate2D(latitude: 45.006374, longitude: 41.128629),
             title: "Корпус №6 (ФОК)",
-            subtitle: "Аудитории: 85, 85а, 86, Спортзал ФОК"
+            subtitle: "Аудитории: 85, 85а, 86, 86а, 89, Спортзал ФОК"
         ),
         
         // ИСТФАК

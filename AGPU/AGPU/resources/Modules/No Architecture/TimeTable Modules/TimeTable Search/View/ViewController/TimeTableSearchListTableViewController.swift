@@ -11,7 +11,7 @@ protocol TimeTableSearchListTableViewControllerDelegate: AnyObject {
     func itemWasSelected(result: SearchTimetableModel)
 }
 
-class TimeTableSearchListTableViewController: UITableViewController, UISearchResultsUpdating {
+final class TimeTableSearchListTableViewController: UITableViewController, UISearchResultsUpdating {
     
     var results = [SearchResultModel]()
     let search = UISearchController(searchResultsController: nil)
@@ -68,7 +68,7 @@ class TimeTableSearchListTableViewController: UITableViewController, UISearchRes
     private func setUpSearchBar() {
         search.searchResultsUpdater = self
         search.obscuresBackgroundDuringPresentation = false
-        search.searchBar.placeholder = "введите текст"
+        search.searchBar.placeholder = "текст"
         navigationItem.searchController = search
     }
     
@@ -145,10 +145,8 @@ extension TimeTableSearchListTableViewController {
     
     func checkIsTeacher(owner: String) {
         if owner == "TEACHER" {
-            UserDefaults.saveData(object: UserStatusList.list[2], key: "user status") {
-                NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-                NotificationCenter.default.post(name: Notification.Name("user status"), object: nil)
-            }
+            NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name("user status"), object: nil)
         }
     }
 }

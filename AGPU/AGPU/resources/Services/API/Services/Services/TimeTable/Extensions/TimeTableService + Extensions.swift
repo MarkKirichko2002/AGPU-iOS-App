@@ -7,13 +7,19 @@
 
 import UIKit
 import Alamofire
+import Foundation
+
+struct TimetableImage: Codable {
+    let url: String
+    let size: Int
+}
 
 // MARK: - TimeTableServicerProtocol
 extension TimeTableService: TimeTableServicerProtocol {
     
     func getSearchResults(searchText: String, completion: @escaping(Result<[SearchResultModel],Error>)->Void) {
         
-        AF.request("https://www.it-institut.ru/SearchString/KeySearch?Id=118&SearchProductName=\(searchText)").responseData { response in
+        AF.request("https://it-institut.ru/SearchString/KeySearch?Id=118&SearchProductName=\(searchText)").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -30,7 +36,7 @@ extension TimeTableService: TimeTableServicerProtocol {
         
         let id = id.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("https://\(domain)/api/v2/timetable/day?id=\(id)&date=\(date)&owner=\(owner)").responseData { response in
+        AF.request("http://\(domain)/api/v2/timetable/day?id=\(id)&date=\(date)&owner=\(owner)").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -48,7 +54,7 @@ extension TimeTableService: TimeTableServicerProtocol {
         
         let id = id.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        AF.request("https://\(domain)/api/v2/timetable/days?id=\(id)&startDate=\(startDate)&owner=\(owner)&endDate=\(endDate)&removeEmptyDays").responseData { response in
+        AF.request("http://\(domain)/api/v2/timetable/days?id=\(id)&startDate=\(startDate)&owner=\(owner)&endDate=\(endDate)&removeEmptyDays").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -62,9 +68,25 @@ extension TimeTableService: TimeTableServicerProtocol {
         }
     }
     
+    func getGroups(completion: @escaping(Result<[FacultyGroupModel],Error>)->Void) {
+        
+        AF.request("http://\(HostName.host)/api/v2/timetable/groups").responseData { response in
+        
+            guard let data = response.data else {return}
+            
+            do {
+                let groups = try JSONDecoder().decode([FacultyGroupModel].self, from: data)
+                print("Группы: \(groups)")
+                completion(.success(groups))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
     func getWeeks(completion: @escaping(Result<[WeekModel],Error>)->Void) {
         
-        AF.request("https://\(domain)/api/v2/timetable/weeks").responseData { response in
+        AF.request("http://\(domain)/api/v2/timetable/weeks").responseData { response in
             
             guard let data = response.data else {return}
             
@@ -80,7 +102,7 @@ extension TimeTableService: TimeTableServicerProtocol {
     
     func getTimeTableDayImage(json: Data, completion: @escaping(UIImage)->Void) {
         
-        let url = "https://\(domain)/api/timetable/image/day?vertical"
+        let url = "http://\(domain):8081/api/v2/timetable/image/day?vertical"
         
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
@@ -91,19 +113,20 @@ extension TimeTableService: TimeTableServicerProtocol {
             
             guard let data = response.data else {return}
             
-            print(response.response?.statusCode)
-            
-            if let image = UIImage(data: data) {
-                completion(image)
-            } else {
-                print("нет")
+            do {
+                let image = try JSONDecoder().decode(TimetableImage.self, from: data)
+                self.getImage(from: "http://\(HostName.host):8081\(image.url)") { image in
+                    completion(image)
+                }
+            } catch {
+                print(error)
             }
         }
     }
     
     func getTimeTableWeekImage(json: Data, completion: @escaping(UIImage)->Void) {
         
-        let url = "https://\(domain)/api/timetable/image/6days?horizontal"
+        let url = "http://\(domain):8081/api/v2/timetable/image/6days?horizontal"
         
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "POST"
@@ -114,13 +137,23 @@ extension TimeTableService: TimeTableServicerProtocol {
             
             guard let data = response.data else {return}
             
-            print(response.response?.statusCode ?? 0)
-            
-            if let image = UIImage(data: data) {
-                completion(image)
-            } else {
-                print("нет")
+            do {
+                let image = try JSONDecoder().decode(TimetableImage.self, from: data)
+                self.getImage(from: "http://\(HostName.host):8081\(image.url)") { image in
+                    completion(image)
+                }
+            } catch {
+                print(error)
             }
         }
+    }
+    
+    func getImage(from url: String, completion: @escaping(UIImage)->Void) {
+        URLSession.shared.dataTask(with: URL(string: url)!) { data, error, _ in
+            guard let data = data else {return}
+            if let image = UIImage(data: data) {
+                completion(image)
+            }
+        }.resume()
     }
 }

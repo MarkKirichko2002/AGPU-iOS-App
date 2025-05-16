@@ -9,6 +9,7 @@ import UIKit
 
 protocol CalendarViewControllerDelegate: AnyObject {
     func dateWasSelected(model: TimeTableChangesModel)
+    func dateWasSelected(date: String)
 }
 
 final class CalendarViewController: UIViewController {
@@ -21,9 +22,11 @@ final class CalendarViewController: UIViewController {
     var date: String = ""
     var owner: String = ""
     
+    var isNotify: Bool = false
     var selection: UICalendarSelectionSingleDate?
     
     weak var delegate: CalendarViewControllerDelegate?
+    weak var screenDelegate: ScreenClosedDelegate?
     
     let calendarView = UICalendarView()
     
@@ -64,7 +67,7 @@ final class CalendarViewController: UIViewController {
         }
         
         let datesList = UIAction(title: "Несколько дней") { _ in
-            let vc = CalendarMultipleDatesViewController(id: self.id, subgroup: self.subgroup, owner: self.owner)
+            let vc = CalendarMultipleDatesViewController(id: self.id, date: self.date, subgroup: self.subgroup, owner: self.owner)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -92,6 +95,9 @@ final class CalendarViewController: UIViewController {
     }
     
     @objc private func closeScreen() {
+        if isNotify {
+            screenDelegate?.screenWasClosed()
+        }
         HapticsManager.shared.hapticFeedback()
         self.dismiss(animated: true)
     }
@@ -106,6 +112,8 @@ final class CalendarViewController: UIViewController {
         calendarView.locale = .current
         
         calendarView.translatesAutoresizingMaskIntoConstraints = false
+        calendarView.tintColor = .label
+        calendarView.setVisibleDateComponents(viewModel.makeDateComponents(date: date), animated: true)
         view.addSubview(calendarView)
         
         NSLayoutConstraint.activate([

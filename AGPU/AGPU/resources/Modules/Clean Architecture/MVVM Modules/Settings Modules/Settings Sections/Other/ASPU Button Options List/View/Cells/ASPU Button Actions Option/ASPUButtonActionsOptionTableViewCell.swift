@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ASPUButtonActionsOptionTableViewCell: UITableViewCell {
+final class ASPUButtonActionsOptionTableViewCell: UITableViewCell {
 
     static let identifier = "ASPUButtonActionsOptionTableViewCell"
     

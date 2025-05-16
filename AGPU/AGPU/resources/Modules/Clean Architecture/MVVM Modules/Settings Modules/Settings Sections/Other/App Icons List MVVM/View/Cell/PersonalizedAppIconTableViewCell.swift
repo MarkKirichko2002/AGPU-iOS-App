@@ -7,14 +7,9 @@
 
 import UIKit
 
-protocol IPersonalizedAppIconTableViewCell: AnyObject {
-    func didIconTapped(icon: AppIconModel)
-}
-
 class PersonalizedAppIconTableViewCell: UITableViewCell {
     
     static let identifier = "PersonalizedAppIconTableViewCell"
-    weak var delegate: IPersonalizedAppIconTableViewCell?
     var icon: AppIconModel?
     
     private let animation = AnimationClass()
@@ -41,20 +36,5 @@ class PersonalizedAppIconTableViewCell: UITableViewCell {
         PersonalizedAppIcon.layer.cornerRadius = 12
         PersonalizedAppIcon.layer.borderWidth = 1
         PersonalizedAppIcon.layer.borderColor = UIColor.label.cgColor
-        setUpTap()
-    }
-    
-    private func setUpTap() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(openInfo))
-        PersonalizedAppIcon.isUserInteractionEnabled = true
-        PersonalizedAppIcon.addGestureRecognizer(tap)
-    }
-    
-    @objc private func openInfo() {
-        animation.flipAnimation(view: self.PersonalizedAppIcon, option: .transitionFlipFromRight) {
-            guard let icon = self.icon else {return}
-            HapticsManager.shared.hapticFeedback()
-            self.delegate?.didIconTapped(icon: icon)
-        }
     }
 }

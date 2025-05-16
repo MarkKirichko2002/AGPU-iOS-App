@@ -7,10 +7,12 @@
 
 import Foundation
 
-class ContactsListViewModel {
+final class ContactsListViewModel {
+    
+    var dataChangedHandler: (()->Void)?
+    var itemChangedHandler: ((Int)->Void)?
     
     var contacts = [ContactModel]()
-    var dataChangedHandler: (()->Void)?
     
     // MARK: - сервисы
     let realmManager = RealmManager()

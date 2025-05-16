@@ -7,8 +7,9 @@
 
 import MapKit
 
-class AGPUCurrentCathedraMapViewModel {
+final class AGPUCurrentCathedraMapViewModel {
     
+    var arr = [MKAnnotation]()
     var cathedra: FacultyCathedraModel!
     var locationHandler: ((LocationModel)->Void)?
     var alertHandler: ((Bool)->Void)?

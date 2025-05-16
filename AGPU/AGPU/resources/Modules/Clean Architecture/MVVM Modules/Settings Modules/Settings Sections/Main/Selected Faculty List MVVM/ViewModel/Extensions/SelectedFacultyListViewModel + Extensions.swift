@@ -42,7 +42,6 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
             UserDefaults.standard.setValue(nil, forKey: "cathedra")
             UserDefaults.standard.setValue(nil, forKey: "group")
             UserDefaults.standard.setValue(nil, forKey: "subgroup")
-            UserDefaults.saveData(object: UserStatusList.list[1], key: "user status") {}
             
             NotificationCenter.default.post(name: Notification.Name("category"), object: faculty.newsAbbreviation)
             NotificationCenter.default.post(name: Notification.Name("user status"), object: nil)
@@ -103,7 +102,6 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
                     UserDefaults.standard.setValue(nil, forKey: "group")
                     UserDefaults.standard.setValue(nil, forKey: "subgroup")
                     UserDefaults.standard.setValue(nil, forKey: "cathedra")
-                    UserDefaults.saveData(object: UserStatusList.list[0], key: "user status") {}
                     
                     NotificationCenter.default.post(name: Notification.Name("category"), object: "-")
                     NotificationCenter.default.post(name: Notification.Name("user status"), object: nil)

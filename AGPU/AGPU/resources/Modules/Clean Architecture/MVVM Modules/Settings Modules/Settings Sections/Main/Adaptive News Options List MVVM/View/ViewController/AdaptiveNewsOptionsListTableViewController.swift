@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AdaptiveNewsOptionsListTableViewController: UITableViewController {
+final class AdaptiveNewsOptionsListTableViewController: UITableViewController {
 
     var isSettings = false
     
@@ -29,6 +29,8 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
         tableView.register(UINib(nibName: AdaptToWebOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AdaptToWebOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: ShowOnlyDailyNewsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ShowOnlyDailyNewsTableViewCell.identifier)
         tableView.register(UINib(nibName: BorderForDailyNewsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: BorderForDailyNewsTableViewCell.identifier)
+        tableView.register(UINib(nibName: NewsAdvancedModeOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: NewsAdvancedModeOptionTableViewCell.identifier)
+        tableView.register(UINib(nibName: FloatingButtonNewsOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FloatingButtonNewsOptionTableViewCell.identifier)
     }
     
     private func setUpNavigation() {
@@ -40,9 +42,7 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
     }
     
     @objc private func closeScreen() {
-        if isSettings {
-            sendScreenWasClosedNotification()
-        }
+        HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
     }
     
@@ -60,25 +60,28 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
         case 0:
             let vc = SavedNewsCategoryTableViewController()
             navigationController?.pushViewController(vc, animated: true)
+            HapticsManager.shared.hapticFeedback()
         case 1:
             let vc = NewsOptionsPositionListTableViewController()
             vc.isSettings = true
             navigationController?.pushViewController(vc, animated: true)
+            HapticsManager.shared.hapticFeedback()
         case 2:
             let vc = SavedDisplayModeTableViewController()
             navigationController?.pushViewController(vc, animated: true)
+            HapticsManager.shared.hapticFeedback()
         case 3:
             let vc = LoadingIndicatorsListTableViewController()
             navigationController?.pushViewController(vc, animated: true)
+            HapticsManager.shared.hapticFeedback()
         default:
             break
         }
-        HapticsManager.shared.hapticFeedback()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 9
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -104,8 +107,14 @@ class AdaptiveNewsOptionsListTableViewController: UITableViewController {
         } else if indexPath.row == 5 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ShowOnlyDailyNewsTableViewCell.identifier, for: indexPath) as? ShowOnlyDailyNewsTableViewCell else {return UITableViewCell()}
             return cell
-        } else {
+        } else if indexPath.row == 6 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BorderForDailyNewsTableViewCell.identifier, for: indexPath) as? BorderForDailyNewsTableViewCell else {return UITableViewCell()}
+            return cell
+        } else if indexPath.row == 7 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsAdvancedModeOptionTableViewCell.identifier, for: indexPath) as? NewsAdvancedModeOptionTableViewCell else {return UITableViewCell()}
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: FloatingButtonNewsOptionTableViewCell.identifier, for: indexPath) as? FloatingButtonNewsOptionTableViewCell else {return UITableViewCell()}
             return cell
         }
     }

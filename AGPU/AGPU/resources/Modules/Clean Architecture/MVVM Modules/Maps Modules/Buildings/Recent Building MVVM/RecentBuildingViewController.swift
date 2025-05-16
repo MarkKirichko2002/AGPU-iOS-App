@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class RecentBuildingViewController: UIViewController {
+final class RecentBuildingViewController: UIViewController {
     
     // MARK: - сервисы
     private var viewModel = RecentBuildingViewModel()
@@ -22,6 +22,7 @@ class RecentBuildingViewController: UIViewController {
         setUpNavigation()
         setUpMap()
         makeConstraints()
+        setUpFingers()
         bindViewModel()
     }
     
@@ -52,6 +53,18 @@ class RecentBuildingViewController: UIViewController {
         ])
     }
     
+    private func setUpFingers() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showCurrentLocation))
+        tap.numberOfTouchesRequired = 1
+        mapView.addGestureRecognizer(tap)
+    }
+    
+    @objc private func showCurrentLocation(gesture: UIGestureRecognizer) {
+        if gesture.state == .ended {
+            setRegion(region: viewModel.defaultLocation())
+        }
+    }
+    
     private func bindViewModel() {
         viewModel.alertHandler = { bool in
             if bool {
@@ -70,6 +83,14 @@ class RecentBuildingViewController: UIViewController {
         viewModel.registerLocationHandler { location in
             self.mapView.setRegion(location.region, animated: true)
             self.mapView.showAnnotations(location.pins, animated: true)
+        }
+    }
+    
+    func setRegion(region: MKCoordinateRegion) {
+        UIView.animate(withDuration: 1) {
+            self.mapView.setRegion(region, animated: true)
+        } completion: { _ in
+            HapticsManager.shared.hapticFeedback()
         }
     }
 }

@@ -29,6 +29,7 @@ final class AppFeatureDetailViewController: UIViewController {
         setUpNavigation()
         FeatureName.text = feature.name
         FeatureDescription.text = feature.description
+        FeatureDescription.font = .systemFont(ofSize: 17, weight: .bold)
         FeatureDescription.isEditable = false
     }
     

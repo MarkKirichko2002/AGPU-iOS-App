@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AdaptiveNewsOptionTableViewCell: UITableViewCell {
+final class AdaptiveNewsOptionTableViewCell: UITableViewCell {
     
     static let identifier = "AdaptiveNewsOptionTableViewCell"
     private let animation = AnimationClass()
@@ -21,8 +21,9 @@ class AdaptiveNewsOptionTableViewCell: UITableViewCell {
         TitleLabel.tintColor = .label
     }
     
-    func didTapCell(indexPath: IndexPath) {
+    func didTapCell(indexPath: IndexPath, completion: @escaping()->Void) {
         animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
+            completion()
             HapticsManager.shared.hapticFeedback()
         }
     }

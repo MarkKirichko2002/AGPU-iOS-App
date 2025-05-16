@@ -224,12 +224,4 @@ import Realm
             return block(subscriptionSet.rlmSyncSubscriptionSet)
         }
     }
-
-    /// Converts a block receiving a `RLMSyncSubscriptionSet`to a swift block receiving a `SyncSubscriptionSet`.
-    @preconcurrency
-    public static func convert(block: @escaping RLMFlexibleSyncInitialSubscriptionsBlock) -> @Sendable (SyncSubscriptionSet) -> Void {
-        return { subscriptionSet in
-            return block(subscriptionSet.rlmSyncSubscriptionSet)
-        }
-    }
 }

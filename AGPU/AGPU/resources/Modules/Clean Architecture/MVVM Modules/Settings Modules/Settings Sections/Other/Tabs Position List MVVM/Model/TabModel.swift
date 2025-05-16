@@ -7,8 +7,9 @@
 
 import UIKit
 
-struct TabModel: Equatable {
+struct TabModel: Codable, Equatable {
     let id: Int
     var name: String
-    var icon: UIImage
+    var icon = UIImage().pngData()
+    var position: Int
 }

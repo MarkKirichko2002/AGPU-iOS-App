@@ -20,7 +20,8 @@ final class TabIconsStyleListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = viewModel.titleForNavigation()
+        let titleView = CustomTitleView(image: "photo icon", title: viewModel.titleForNavigation(), frame: .zero)
+        navigationItem.titleView = titleView
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)

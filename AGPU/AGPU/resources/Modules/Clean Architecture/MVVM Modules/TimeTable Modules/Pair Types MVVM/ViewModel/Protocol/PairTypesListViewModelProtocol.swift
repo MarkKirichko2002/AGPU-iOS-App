@@ -13,5 +13,5 @@ protocol PairTypesListViewModelProtocol {
     func countForPairType(index: Int)-> Int
     func choosePairType(index: Int)
     func isCurrentType(index: Int)-> Bool
-    func registerPairTypeSelectedHandler(block: @escaping(()->Void))
+    func registerPairTypeSelectedHandler(block: @escaping((PairType)->Void))
 }

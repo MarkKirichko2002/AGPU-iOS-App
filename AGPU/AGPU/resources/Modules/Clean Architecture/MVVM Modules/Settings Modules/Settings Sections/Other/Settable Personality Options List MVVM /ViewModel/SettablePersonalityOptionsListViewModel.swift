@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SettablePersonalityOptionsListViewModel {
+final class SettablePersonalityOptionsListViewModel {
     
     private var dataChangedHandler: (()->Void)?
     

@@ -36,6 +36,7 @@ final class RegularSplashScreenViewController: UIViewController {
     private let AGPUIcon: SpringImageView = {
         let icon = SpringImageView()
         icon.isInteraction = false
+        icon.tintColor = .label
         icon.contentMode = .scaleAspectFill
         icon.translatesAutoresizingMaskIntoConstraints = false
         return icon

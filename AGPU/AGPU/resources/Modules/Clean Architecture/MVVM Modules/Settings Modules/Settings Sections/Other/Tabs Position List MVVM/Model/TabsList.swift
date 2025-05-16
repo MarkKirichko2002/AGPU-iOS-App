@@ -8,11 +8,10 @@
 import UIKit
 
 struct TabsList {
-    
     static var tabs = [
-        TabModel(id: 1, name: "Новости", icon: UIImage(named: "mail icon")!),
-        TabModel(id: 2, name: "Абитуриенту", icon: UIImage(named: "profile icon")!),
-        TabModel(id: 3, name: "Расписание", icon: UIImage(named: "clock")!),
-        TabModel(id: 4, name: "Настройки", icon: UIImage(named: "options")!),
+        TabModel(id: 1, name: "Новости", icon: UIImage(named: "mail icon")?.pngData()!, position: 0),
+        TabModel(id: 2, name: "Избранное", icon: UIImage(named: "star")?.pngData()!, position: 1),
+        TabModel(id: 3, name: "Расписание", icon: UIImage(named: "clock")?.pngData()!, position: 2),
+        TabModel(id: 4, name: "Настройки", icon: UIImage(named: "options")?.pngData()!, position: 3),
     ]
 }

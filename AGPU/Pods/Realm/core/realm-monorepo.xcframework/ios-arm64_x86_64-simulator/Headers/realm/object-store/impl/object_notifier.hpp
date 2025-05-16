@@ -27,7 +27,7 @@
 namespace realm::_impl {
 class ObjectNotifier : public CollectionNotifier {
 public:
-    ObjectNotifier(std::shared_ptr<Realm> realm, const Obj&);
+    ObjectNotifier(std::shared_ptr<Realm> realm, TableKey table_key, ObjKey obj_key);
 
 private:
     TableRef m_table;

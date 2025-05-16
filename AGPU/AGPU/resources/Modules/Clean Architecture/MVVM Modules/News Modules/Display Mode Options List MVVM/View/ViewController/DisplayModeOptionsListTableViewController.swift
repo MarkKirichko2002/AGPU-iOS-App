@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DisplayModeOptionsListTableViewController: UITableViewController {
+final class DisplayModeOptionsListTableViewController: UITableViewController {
 
     // MARK: - сервисы
     private let viewModel: DisplayModeOptionsListViewModel

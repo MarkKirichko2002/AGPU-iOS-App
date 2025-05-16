@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsOptionsFilterListTableViewController: UITableViewController {
+final class NewsOptionsFilterListTableViewController: UITableViewController {
 
     // MARK: - сервисы
     private let viewModel: NewsOptionsFilterListViewModel
@@ -30,7 +30,7 @@ class NewsOptionsFilterListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "filter", title: "Фильтрация", frame: .zero)
+        let titleView = CustomTitleView(image: "filter icon", title: "Фильтрация", frame: .zero)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
         navigationItem.titleView = titleView
@@ -70,6 +70,7 @@ class NewsOptionsFilterListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.tintColor = .systemGreen
         cell.textLabel?.text = "\(viewModel.optionItem(index: indexPath.row).rawValue) (\(viewModel.countForOption(index: indexPath.row)))"
+        cell.textLabel?.textColor = viewModel.isCurrentOption(index: indexPath.row) ? .systemGreen : .label
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
         cell.accessoryType = viewModel.isCurrentOption(index: indexPath.row) ? .checkmark : .none
         return cell

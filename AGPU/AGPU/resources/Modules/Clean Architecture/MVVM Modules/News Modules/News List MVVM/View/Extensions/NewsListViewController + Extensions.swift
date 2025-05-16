@@ -10,10 +10,10 @@ import WebKit
 
 // MARK: - UICollectionViewDelegate
 extension NewsListViewController: UICollectionViewDelegate {
-        
+    
     func collectionView(_ collectionView: UICollectionView,
-                                 contextMenuConfigurationForItemAt indexPath: IndexPath,
-                                 point: CGPoint) -> UIContextMenuConfiguration? {
+                        contextMenuConfigurationForItemAt indexPath: IndexPath,
+                        point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
             let item = self.viewModel.articleItem(index: indexPath.row)
@@ -21,34 +21,7 @@ extension NewsListViewController: UICollectionViewDelegate {
             if item.id == 0 || item.id == 1 {
                 return nil
             } else {
-                let ARAction = UIAction(title: "AR режим", image: UIImage(named: "cube")) { _ in
-                    self.viewModel.getArticleInfo(id: indexPath.row) { info in
-                        self.goToAR(images: info.images)
-                    }
-                }
-                
-                let infoAction = UIAction(title: "Подробнее", image: UIImage(named: "info")) { _ in
-                    self.viewModel.getArticleInfo(id: indexPath.row) { info in
-                        self.showAlert(title: "Информация о новости", message: "всего предложений: \(info.description.countSentences()) \n всего слов: \(info.description.countWords())", actions: [UIAlertAction(title: "ОК", style: .default)])
-                    }
-                }
-                
-                let searchAction = UIAction(title: "Поиск слова", image: UIImage(named: "search")) { _ in
-                    self.viewModel.getArticleInfo(id: indexPath.row) { info in
-                        self.showSearchWordAlert(index: indexPath.row, desc: info.description)
-                    }
-                }
-                
-                let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
-                    self.shareInfo(image: UIImage(named: "АГПУ")!, title: "\(self.viewModel.articleItem(index: indexPath.row).title)", text: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))")
-                }
-                
-                return UIMenu(title: self.viewModel.articleItem(index: indexPath.row).title, children: [
-                    ARAction,
-                    infoAction,
-                    searchAction,
-                    shareAction
-                ])
+                return self.makeMenu(index: indexPath.row)
             }
         }
     }
@@ -66,7 +39,7 @@ extension NewsListViewController: UICollectionViewDelegate {
         } else {
             if let cell = collectionView.cellForItem(at: indexPath) as? NewsCollectionViewCell {
                 cell.didTapCell(indexPath: indexPath) {
-                    let vc = NewsWebViewController(article: item, url: self.viewModel.makeUrlForCurrentArticle(index: indexPath.row), isNotify: true)
+                    let vc = NewsWebViewController(article: item, url: self.viewModel.makeUrlForCurrentArticle(index: indexPath.row), isNotify: false)
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
@@ -119,34 +92,7 @@ extension NewsListViewController: UITableViewDelegate {
             if item.id == 0 || item.id == 1 {
                 return nil
             } else {
-                let ARAction = UIAction(title: "AR режим", image: UIImage(named: "cube")) { _ in
-                    self.viewModel.getArticleInfo(id: indexPath.row) { info in
-                        self.goToAR(images: info.images)
-                    }
-                }
-                
-                let infoAction = UIAction(title: "Подробнее", image: UIImage(named: "info")) { _ in
-                    self.viewModel.getArticleInfo(id: indexPath.row) { info in
-                        self.showAlert(title: "Информация о новости", message: "всего предложений: \(info.description.countSentences()) \n всего слов: \(info.description.countWords())", actions: [UIAlertAction(title: "ОК", style: .default)])
-                    }
-                }
-                
-                let searchAction = UIAction(title: "Поиск слова", image: UIImage(named: "search")) { _ in
-                    self.viewModel.getArticleInfo(id: indexPath.row) { info in
-                        self.showSearchWordAlert(index: indexPath.row, desc: info.description)
-                    }
-                }
-                
-                let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
-                    self.shareInfo(image: UIImage(named: "АГПУ")!, title: "\(self.viewModel.articleItem(index: indexPath.row).title)", text: "\(self.viewModel.makeUrlForCurrentArticle(index: indexPath.row))")
-                }
-                
-                return UIMenu(title: self.viewModel.articleItem(index: indexPath.row).title, children: [
-                    ARAction,
-                    infoAction,
-                    searchAction,
-                    shareAction
-                ])
+                return self.makeMenu(index: indexPath.row)
             }
         }
     }
@@ -164,13 +110,14 @@ extension NewsListViewController: UITableViewDelegate {
         } else {
             if let cell = tableView.cellForRow(at: indexPath) as? NewsTableViewCell {
                 cell.didTapCell(indexPath: indexPath) {
-                    let vc = NewsWebViewController(article: item, url: self.viewModel.makeUrlForCurrentArticle(index: indexPath.row), isNotify: true)
+                    let vc = NewsWebViewController(article: item, url: self.viewModel.makeUrlForCurrentArticle(index: indexPath.row), isNotify: false)
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen
                     self.present(navVC, animated: true)
                 }
             }
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
@@ -197,7 +144,7 @@ extension NewsListViewController: WKNavigationDelegate {
             self.startLoading()
         }
     }
-
+    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         DispatchQueue.main.async {
             self.stopLoading()
@@ -218,6 +165,18 @@ extension NewsListViewController: NewsTableViewCellDelegate {
     }
 }
 
+// MARK: - NewsFilterCategoriesListTableViewControllerDelegate
+extension NewsListViewController: NewsFilterCategoriesListTableViewControllerDelegate {
+    
+    func dateFromCalendarWasSelected(date: String) {
+        viewModel.getNews(date: date) {}
+    }
+    
+    func monthWasSelected(month: Month) {
+        viewModel.getMonthNews(month: month)
+    }
+}
+
 extension NewsListViewController {
     
     func goToAR(images: [String]) {
@@ -234,38 +193,65 @@ extension NewsListViewController {
         }
     }
     
-    @objc func showSearchWordAlert(index: Int, desc: String) {
-        
-        let alertVC = UIAlertController(title: "Поиск слова", message: "Введите слово для поиска", preferredStyle: .alert)
-        
-        alertVC.addTextField { (textField) in
-            textField.placeholder = "Введите слово"
+    func makeMenu(index: Int)-> UIMenu {
+        if UserDefaults.standard.object(forKey: "onAdvancedModeNews") as? Bool ?? false {
+            return makeAdvancedMenu(index: index)
+        } else {
+            return makeSimpleMenu(index: index)
         }
+    }
+    
+    func makeAdvancedMenu(index: Int)-> UIMenu {
         
-        let saveAction = UIAlertAction(title: "Найти", style: .default) { _ in
-            if let word = alertVC.textFields![0].text {
-                if self.viewModel.searchWord(word: word, desc: desc) {
-                    let openArticle = UIAlertAction(title: "Открыть", style: .default) { _ in
-                        Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-                            let vc = NewsWebViewController(article: self.viewModel.articleItem(index: index), url: self.viewModel.makeUrlForCurrentArticle(index: index), isNotify: true)
-                            let navVC = UINavigationController(rootViewController: vc)
-                            navVC.modalPresentationStyle = .fullScreen
-                            self.present(navVC, animated: true)
-                        }
-                    }
-                    self.showAlert(title: "Найдено слово!", message: "слово \(word) есть в новости", actions: [openArticle, UIAlertAction(title: "Отмена", style: .default)])
-                } else {
-                    self.showAlert(title: "Слово не найдено", message: "слова \(word) нет в новости", actions: [UIAlertAction(title: "ОК", style: .default)])
-                }
+        let ARAction = UIAction(title: "AR режим", image: UIImage(named: "cube")) { _ in
+            self.viewModel.getArticleInfo(id: index) { info in
+                self.goToAR(images: info.images)
             }
         }
         
-        let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+        let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
+            self.shareInfo(image: UIImage(named: "АГПУ")!, title: "\(self.viewModel.articleItem(index: index).title)", text: "\(self.viewModel.makeUrlForCurrentArticle(index: index))")
+        }
         
-        alertVC.addAction(saveAction)
-        alertVC.addAction(cancel)
+        return UIMenu(title: self.viewModel.articleItem(index: index).title, children: [
+            ARAction,
+            shareAction
+        ])
+    }
+    
+    func blockUI() {
+        updateNavigationTitle()
+        removeFloatingButton()
+        navigationItem.toggleRefreshButtonFromLeft(on: false)
+        navigationItem.toggleMenuButton(on: false)
+    }
+    
+    func makeSimpleMenu(index: Int)-> UIMenu {
         
-        SpeechSynthesizerManager.shared.checkIsSaying(text: "\(alertVC.title ?? "") \(alertVC.message ?? "")")
-        present(alertVC, animated: true)
+        let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
+            self.shareInfo(image: UIImage(named: "АГПУ")!, title: "\(self.viewModel.articleItem(index: index).title)", text: "\(self.viewModel.makeUrlForCurrentArticle(index: index))")
+        }
+        
+        return UIMenu(title: self.viewModel.articleItem(index: index).title, children: [
+            shareAction
+        ])
+    }
+    
+    func showInfoAlert(title: String, message: String, actions: [UIAlertAction]) {
+        let isSaying = UserDefaults.standard.object(forKey: "isSaying") as? Bool ?? false
+        if isSaying {
+            showAlert(title: title, message: message, actions: actions)
+        } else {
+            viewModel.resetSpeechRecognition()
+            showAlert(title: title, message: message, actions: actions)
+        }
+    }
+    
+    func closeFloatingButtonMenu() {
+        if let button = view.subviews.first(where: { $0.accessibilityIdentifier == "floating button" }) {
+            if (button as? UIButton)!.isHeld {
+                self.dismiss(animated: true)
+            }
+        }
     }
 }

@@ -12,9 +12,11 @@ protocol AllGroupsListViewModelProtocol {
     func groupSectionItem(section: Int)-> FacultyGroupModel
     func groupItem(section: Int, index: Int)-> String
     func selectGroup(section: Int, index: Int)
-    func registerGroupSelectedHandler(block: @escaping()->Void)
     func isGroupSelected(section: Int, index: Int)-> Bool
-    func scrollToSelectedGroup(completion: @escaping(Int, Int)->Void)
+    func scrollToSelectedGroup()
     func currentFacultyIcon(section: Int, abbreviation: String)-> String
     func makeGroupsMenu()-> UIMenu
+    func registerDataChangedHandler(block: @escaping()->Void)
+    func registerScrollHandler(block: @escaping(Int, Int)->Void)
+    func registerGroupSelectedHandler(block: @escaping()->Void)
 }

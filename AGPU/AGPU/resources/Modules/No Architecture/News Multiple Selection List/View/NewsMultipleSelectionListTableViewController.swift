@@ -7,13 +7,11 @@
 
 import UIKit
 
-class NewsMultipleSelectionListTableViewController: UITableViewController {
+final class NewsMultipleSelectionListTableViewController: UITableViewController {
 
     var articles = [Article]()
     var abbreviation = ""
     var selectedArticles = [Article]()
-    
-    var count = 0
     
     // MARK: - сервисы
     let newsService = AGPUNewsService()

@@ -14,11 +14,16 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         return 3
     }
     
-    func getStatusInfo()-> UserStatusModel {
-        if let status = UserDefaults.loadData(type: UserStatusModel.self, key: "user status") {
-            return status
-        } else {
-            return UserStatusList.list[0]
+    func numberOfOptions(in section: Int)-> Int {
+        switch section {
+        case 0:
+            return 3
+        case 1:
+            return 9
+        case 2:
+            return 2
+        default:
+            return 0
         }
     }
     
@@ -44,13 +49,6 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
             return savedStyle.rawValue
         }
         return "Не показывать"
-    }
-    
-    func getOnlyMainVariantInfo()-> String {
-        if let variant = UserDefaults.loadData(type: OnlyMainVariants.self, key: "variant") {
-            return "Вариант (\(variant.rawValue))"
-        }
-        return "Вариант (По умолчанию)"
     }
     
     func getSplashScreenInfo()-> String {
@@ -85,7 +83,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         if let status = UserDefaults.loadData(type: AppThemeModel.self, key: "theme") {
             return status
         } else {
-            return AppThemes.themes[0]
+            return AppThemes.themes[1]
         }
     }
     

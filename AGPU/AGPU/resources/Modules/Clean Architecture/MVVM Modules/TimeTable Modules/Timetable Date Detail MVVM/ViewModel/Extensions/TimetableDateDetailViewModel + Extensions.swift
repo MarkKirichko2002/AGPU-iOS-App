@@ -30,6 +30,14 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
         }
     }
     
+    func refreshTimetable() {
+        self.type = .all
+        self.currentBuilding = nil
+        self.currentTime = nil
+        self.subgroup = 0
+        getTimeTableForDay()
+    }
+    
     func getTimeTableForSearch(id: String, owner: String) {
         UserDefaults.standard.setValue(id, forKey: "recentGroup")
         UserDefaults.standard.setValue(date, forKey: "recentDate")
@@ -47,13 +55,17 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
                     self?.getImage(json: data) { image in
                         let model = TimeTableDateModel(id: data.id, date: self?.date ?? "", image: image, description: "\(self?.formattedDate() ?? "") пары: \(self?.getPairsCount() ?? 0)")
                         self?.image = image
-                        self?.timeTableHandler?(model)
+                        DispatchQueue.main.async {
+                            self?.timeTableHandler?(model)
+                        }
                     }
                 } else {
                     self?.getImage(json: data) { image in
                         let model = TimeTableDateModel(id: data.id, date: self?.date ?? "", image: image, description: "\(self?.formattedDate() ?? "") нет пар")
                         self?.image = image
-                        self?.timeTableHandler?(model)
+                        DispatchQueue.main.async {
+                            self?.timeTableHandler?(model)
+                        }
                     }
                 }
             case .failure(let error):
@@ -99,6 +111,8 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
     
     func filterPairs(type: PairType) {
         
+        self.currentBuilding = nil
+        self.currentTime = nil
         self.type = type
         
         if type == .all {
@@ -178,6 +192,31 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
         createImage()
     }
     
+    func filterPairs(by building: AGPUBuildingModel) {
+        self.currentBuilding = building
+        self.currentTime = nil
+        self.type = .all
+        var disciplines = [Discipline]()
+        guard let corp = currentBuilding else {return}
+        for audience in corp.audiences {
+            for pair in allDisciplines {
+                if audience == pair.audienceID {
+                    disciplines.append(pair)
+                }
+            }
+        }
+        self.pairs = disciplines.sorted { self.dateManager.compareTimes(time1: "\($0.time.components(separatedBy: "-")[0]):00", time2: "\($1.time.components(separatedBy: "-")[0]):00") == .orderedAscending}
+        createImage()
+    }
+    
+    func filterPairs(by time: String) {
+        self.currentTime = time
+        self.currentBuilding = nil
+        self.type = .all
+        self.pairs = allDisciplines.filter({ $0.time == time })
+        createImage()
+    }
+    
     func createImage() {
         if !pairs.isEmpty {
             let timetable = TimeTable(id: id, date: date, disciplines: pairs)
@@ -185,7 +224,9 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
                 let model = TimeTableDateModel(id: self.id, date: self.date, image: image, description: "\(self.formattedDate()) пары: \(self.getPairsCount())")
                 self.model = TimeTableChangesModel(id: self.id, date: self.date, owner: self.owner, type: self.type, subgroup: self.subgroup, filteredPairs: self.pairs, allPairs: self.allDisciplines)
                 self.image = image
-                self.timeTableHandler?(model)
+                DispatchQueue.main.async {
+                    self.timeTableHandler?(model)
+                }
             }
         } else {
             let timetable = TimeTable(id: id, date: date, disciplines: pairs)
@@ -193,7 +234,9 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
                 let model = TimeTableDateModel(id: self.id, date: self.date, image: image, description: "\(self.formattedDate()) нет пар")
                 self.model = TimeTableChangesModel(id: self.id, date: self.date, owner: self.owner, type: self.type, subgroup: self.subgroup, filteredPairs: self.pairs, allPairs: self.allDisciplines)
                 self.image = image
-                self.timeTableHandler?(model)
+                DispatchQueue.main.async {
+                    self.timeTableHandler?(model)
+                }
             }
         }
     }

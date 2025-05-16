@@ -7,12 +7,13 @@
 
 import Foundation
 
-class AllWeeksListViewModel {
+final class AllWeeksListViewModel {
     
     var weeks = [WeekModel]()
     
     // MARK: - сервисы
     let service = TimeTableService()
+    var currentWeek = WeekModel(id: 0, from: "", to: "", dayNames: [:])
     let dateManager = DateManager()
     
     var isChangedHandler: (()->Void)?

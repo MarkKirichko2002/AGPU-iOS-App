@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import MobileCoreServices
+import UniformTypeIdentifiers
 
 // MARK: - UITableViewDelegate
 extension DocumentsListTableViewController: UITableViewDelegate {
@@ -42,7 +44,8 @@ extension DocumentsListTableViewController: UITableViewDelegate {
             }
             
             let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
-                self.shareInfo(image: UIImage(named: "document")!, title: "\(self.viewModel.documentItem(index: indexPath.row).name)", text: "\(self.viewModel.documentItem(index: indexPath.row).url)")
+                let activityViewController = UIActivityViewController(activityItems: [URL(string: self.viewModel.documentItem(index: indexPath.row).url)!], applicationActivities: nil)
+                self.present(activityViewController, animated: true)
             }
             
             return UIMenu(title: self.viewModel.documentItem(index: indexPath.row).name, children: [
@@ -69,14 +72,49 @@ extension DocumentsListTableViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UIDocumentPickerDelegate
+extension DocumentsListTableViewController: UIDocumentPickerDelegate {
+    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        
+        guard let selectedFileURL = urls.first else {
+            return
+        }
+        
+        let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let sandboxFileURL = dir.appendingPathComponent(selectedFileURL.lastPathComponent)
+        
+        print(sandboxFileURL)
+        
+        if FileManager.default.fileExists(atPath: sandboxFileURL.path) {
+            do {
+                try FileManager.default.removeItem(at: sandboxFileURL)
+                print("copied file")
+                try FileManager.default.copyItem(at: selectedFileURL, to: sandboxFileURL)
+                self.viewModel.addDocumentFromFiles(url: sandboxFileURL)
+            } catch {
+                print(error)
+            }
+        } else {
+            do {
+                print("copied file")
+                try FileManager.default.copyItem(at: selectedFileURL, to: sandboxFileURL)
+                self.viewModel.addDocumentFromFiles(url: sandboxFileURL)
+            } catch {
+                print(error)
+            }
+        }
+    }
+}
+
 extension DocumentsListTableViewController {
     
     func showEditAlert() {
         
-        let alertVC = UIAlertController(title: "Изменить документ", message: "Вы точно хотите изменить название документа?", preferredStyle: .alert)
+        let alertVC = UIAlertController(title: viewModel.createEditAlertMessage().0, message: viewModel.createEditAlertMessage().1, preferredStyle: .alert)
         
         alertVC.addTextField { (textField) in
-            textField.placeholder = "Введите текст"
+            textField.placeholder = "Название"
             textField.text = self.document.name
         }
         
@@ -97,29 +135,40 @@ extension DocumentsListTableViewController {
         present(alertVC, animated: true)
     }
     
-    func showAddDocumentAlert() {
+    func showChooseDocumentAlert() {
         
-        let alertVC = UIAlertController(title: "Добавить документ", message: "Введите URL для документа", preferredStyle: .alert)
+        let documentsAction = UIAlertAction(title: "Файлы", style: .default) { _ in
+            let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.item], asCopy: true)
+            documentPicker.delegate = self
+            documentPicker.allowsMultipleSelection = false
+            self.present(documentPicker, animated: true)
+        }
+        
+        let URLAction = UIAlertAction(title: "URL", style: .default) { _ in
+            self.showAddDocumentURLAlert()
+        }
+        
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+        
+        self.showAlert(title: "Добавление документа", message: "каким образом добавить документ?", actions: [documentsAction, URLAction, cancel])
+    }
+    
+    func showAddDocumentURLAlert() {
+        
+        let alertVC = UIAlertController(title: viewModel.createTextForEditAlert().0, message: viewModel.createTextForEditAlert().1, preferredStyle: .alert)
         
         alertVC.addTextField { (textField) in
-            textField.placeholder = "Введите URL"
+            textField.placeholder = "URL"
             textField.text = self.document.name
         }
         
         let saveAction = UIAlertAction(title: "Сохранить", style: .default) { _ in
             if let url = alertVC.textFields![0].text {
                 if let urlPath = URL(string: url) {
-                    let document = DocumentModel()
-                    document.url = urlPath.absoluteString
-                    document.name = urlPath.lastPathComponent
-                    document.format = urlPath.pathExtension
-                    document.page = 0
-                    self.viewModel.addDocument(document: document)
+                    self.viewModel.addDocument(by: urlPath)
                 } else {
-                    let ok = UIAlertAction(title: "ОК", style: .default) { _ in
-                        self.showAddDocumentAlert()
-                    }
-                    self.showAlert(title: "Неверные данные!", message: "документ должен быть формата pdf,doc,docx", actions: [ok])
+                    let ok = UIAlertAction(title: "ОК", style: .default) { _ in  self.showAddDocumentURLAlert()}
+                    self.showAlert(title: self.viewModel.createAlertMessage().0, message: self.viewModel.createAlertMessage().1, actions: [ok])
                 }
             }
         }
@@ -141,6 +190,17 @@ extension DocumentsListTableViewController {
             navVC.modalPresentationStyle = .fullScreen
             DispatchQueue.main.async {
                 self.present(navVC, animated: true)
+            }
+            HapticsManager.shared.hapticFeedback()
+        } else if document.format == "txt" {
+            let storyboard = UIStoryboard(name: "TextFileDetailViewController", bundle: nil)
+            if let vc = storyboard.instantiateViewController(withIdentifier: "TextFileDetailViewController") as? TextFileDetailViewController {
+                vc.document = document
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                DispatchQueue.main.async {
+                    self.present(navVC, animated: true)
+                }
             }
             HapticsManager.shared.hapticFeedback()
         } else {

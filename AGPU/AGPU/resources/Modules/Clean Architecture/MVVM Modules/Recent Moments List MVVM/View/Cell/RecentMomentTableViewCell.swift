@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecentMomentTableViewCell: UITableViewCell {
+final class RecentMomentTableViewCell: UITableViewCell {
 
     static let identifier = "RecentMomentTableViewCell"
     

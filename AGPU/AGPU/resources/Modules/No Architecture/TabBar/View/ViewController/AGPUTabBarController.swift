@@ -6,30 +6,30 @@
 //
 
 import UIKit
-import MapKit
 
 final class AGPUTabBarController: UITabBarController {
     
     // MARK: - сервисы
-    let speechRecognitionManager = SpeechRecognitionManager()
     let animation = AnimationClass()
     let settingsManager = SettingsManager()
     
     // MARK: - вкладки
     // новости
     let newsVC = NewsListViewController()
-    // для каждого статуса
-    var forEveryStatusVC = UIViewController()
+    // избранное
+    var favouritesListVC = FavouriteSectionsListViewController()
     // кнопка
     let middleButton = UIViewController()
     // расписание
     let timetableVC = TimeTableDayListTableViewController()
+    // карты
+    let mapsVC = SimpleMapViewController()
     // настройки
     let settingsVC = SettingsListViewController()
+    // разделы
+    let sectionsVC = ASPUWebsiteSectionsListViewController()
     
-    var isRecording = false
-    
-    var isOpened = false
+    var buttonPosition: CGFloat = 0
     
     // MARK: - ASPU Button
     let ASPUButton: UIButton = {
@@ -42,10 +42,8 @@ final class AGPUTabBarController: UITabBarController {
         super.viewDidLoad()
         setUpView()
         setUpTab()
-        setUpTabs()
+        calculateButtonPosition()
         createMiddleButton()
-        observeForEveryStatus()
-        observeScreen()
         observeFaculty()
         observeArticleSelected()
         observeDataRefreshed()
@@ -53,25 +51,38 @@ final class AGPUTabBarController: UITabBarController {
         becomeFirstResponder()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        createMiddleButton()
+    }
+    
     override var selectedViewController: UIViewController? {
         didSet {
-            handleTab(index: selectedIndex)
+            handleTab(item: tabBar.selectedItem!)
         }
     }
     
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+    private func handleTab(item: UITabBarItem) {
+        let isRecentTab = UserDefaults.standard.object(forKey: "onRecentTab") as? Bool ?? true
         let isOnAnimation = settingsManager.checkTabsAnimationOption()
-        if isOnAnimation {
+        let main = settingsManager.checkOnlyMainOption()
+        if main == .custom {
+            if isRecentTab {
+                UserDefaults.standard.setValue(selectedIndex, forKey: "index")
+            }
+            if isOnAnimation {
+                animation.tabBarItemSpringAnimation(item: item)
+            }
+            handleSounds()
+        } else {
             animation.tabBarItemSpringAnimation(item: item)
         }
     }
     
-    private func handleTab(index: Int) {
-        let isRecentTab = UserDefaults.standard.object(forKey: "onRecentTab") as? Bool ?? true
-        if isRecentTab {
-            UserDefaults.standard.setValue(selectedIndex, forKey: "index")
-        } else {
-            print("выключено")
+    private func handleSounds() {
+        let soundOption = settingsManager.getTabsSoundsOption()
+        if soundOption != .none {
+            AudioPlayerClass.shared.playSound(sound: soundOption.sound, isPlaying: false)
         }
     }
     
@@ -81,368 +92,506 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     private func setUpTab() {
-        settingsManager.observeStatusChanged {
-            DispatchQueue.main.async {
-                self.setUpTabs()
-            }
-        }
         settingsManager.observeOnlyMainChangedOption {
-            DispatchQueue.main.async {
-                self.setUpTabs()
-            }
+            self.removeViews()
+            self.setUpTabs()
+            self.resetSavedTab()
         }
         settingsManager.observeTabsChanged {
-            DispatchQueue.main.async {
-                self.setUpTabs()
-            }
+            self.removeViews()
+            self.setUpTabBars()
+            self.setUpTabs()
+            self.resetSavedTab()
         }
+        setUpTabBars()
+        setUpTabs()
+        setUpSavedTab()
+    }
+    
+    private func removeViews() {
+        for view in tabBar.subviews {
+            view.removeFromSuperview()
+        }
+        viewControllers = nil
+    }
+    
+    private func setUpTabBars() {
+        let icons = settingsManager.getTabsIcons()
+        // новости
+        newsVC.tabBarItem = UITabBarItem(title: "Новости", image: icons[0].icon, selectedImage: icons[0].selectedIcon)
+        // избранное
+        favouritesListVC.tabBarItem = UITabBarItem(title: "Избранное", image: icons[1].icon, selectedImage: icons[1].selectedIcon)
+        // расписание
+        timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: icons[2].icon, selectedImage: icons[2].selectedIcon)
+        // кнопка
+        middleButton.tabBarItem = UITabBarItem(title: "", image: UIImage(named: ""), selectedImage: UIImage(named: ""))
+        // карты
+        mapsVC.tabBarItem = UITabBarItem(title: "Карты", image: icons[3].icon, selectedImage: icons[3].selectedIcon)
+        // настройки
+        settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: icons[4].icon, selectedImage: icons[4].selectedIcon)
+        // разделы
+        sectionsVC.tabBarItem = UITabBarItem(title: "Разделы", image: icons[5].icon, selectedImage: icons[5].selectedIcon)
+        sectionsVC.isMain = true
+        viewControllers?.removeAll()
     }
     
     private func setUpTabs() {
         
-        let icons = settingsManager.getTabsIcons()
-        // новости
-        newsVC.tabBarItem = UITabBarItem(title: "Новости", image: icons[0].icon, selectedImage: icons[0].selectedIcon)
-        // расписание
-        timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: icons[1].icon, selectedImage: icons[1].selectedIcon)
-        // настройки
-        settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: icons[2].icon, selectedImage: icons[2].selectedIcon)
         let nav1VC = UINavigationController(rootViewController: newsVC)
+        let nav2VC = UINavigationController(rootViewController: favouritesListVC)
         let nav3VC = UINavigationController(rootViewController: timetableVC)
-        let nav4VC = UINavigationController(rootViewController: settingsVC)
+        let nav4VC = UINavigationController(rootViewController: mapsVC)
+        let nav5VC = UINavigationController(rootViewController: settingsVC)
+        let nav6VC = UINavigationController(rootViewController: sectionsVC)
         
-        let onlyMain = UserDefaults.loadData(type: OnlyMainVariants.self, key: "variant") ?? .none
-              
+        var tabs = [UIViewController]()
+        let onlyMain = settingsManager.checkOnlyMainOption()
+        
         switch onlyMain {
         case .schedule:
-            setViewControllers([nav3VC, nav4VC], animated: false)
-            self.ASPUButton.isHidden = true
+            tabs = [nav3VC, nav5VC]
+            tabs[0].tabBarItem.title = "Расписание"
+            tabs[1].tabBarItem.title = "Настройки"
+            tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
+            tabs.insert(middleButton, at: 1)
+            setViewControllers(tabs, animated: false)
             selectedIndex = 0
+            UITabBar.appearance().tintColor = .label
+            ASPUButton.isHidden = false
+            disableTab()
         case .news:
-            setViewControllers([nav1VC, nav4VC], animated: false)
-            self.ASPUButton.isHidden = true
+            tabs = [nav1VC, nav5VC]
+            tabs[0].tabBarItem.title = "Новости"
+            tabs[1].tabBarItem.title = "Настройки"
+            tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
+            tabs.insert(middleButton, at: 1)
+            setViewControllers(tabs, animated: false)
             selectedIndex = 0
+            UITabBar.appearance().tintColor = .label
+            ASPUButton.isHidden = false
+            disableTab()
         case .sections:
-            let vc = ASPUWebsiteSectionsListViewController()
-            vc.isMain = true
-            vc.tabBarItem = UITabBarItem(title: "Разделы", image: UIImage(named: "sections"), selectedImage: UIImage(named: "sections"))
-            let navVC = UINavigationController(rootViewController: vc)
-            setViewControllers([navVC, nav4VC], animated: false)
-            self.ASPUButton.isHidden = true
+            tabs = [nav6VC, nav5VC]
+            tabs[0].tabBarItem.title = "Разделы"
+            tabs[1].tabBarItem.title = "Настройки"
+            tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
+            tabs.insert(middleButton, at: 1)
+            setViewControllers(tabs, animated: false)
             selectedIndex = 0
-        case .none:
-            let position = settingsManager.getTabsPosition()
-            forEveryStatusVC = settingsManager.checkCurrentStatus()
-            var tabs = [nav1VC, forEveryStatusVC, nav3VC, nav4VC]
-           
-            for tab in tabs {
-                
-                for number in position {
-                    let index = tabs.firstIndex(of: tab)!
-                    tabs.swapAt(index, number)
-                }
-            }
+            UITabBar.appearance().tintColor = .label
+            ASPUButton.isHidden = false
+            disableTab()
+        case .main:
+            tabs = [nav1VC, nav3VC, nav4VC, nav5VC]
+            tabs[0].tabBarItem.title = "Новости"
+            tabs[1].tabBarItem.title = "Расписание"
+            tabs[2].tabBarItem.title = "Карты"
+            tabs[3].tabBarItem.title = "Настройки"
+            tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 2)
             setViewControllers(tabs, animated: false)
-            self.ASPUButton.isHidden = false
+            selectedIndex = 0
+            UITabBar.appearance().tintColor = .label
+            ASPUButton.isHidden = false
+            disableTab()
+        case .custom:
+            let savedTabs = settingsManager.getTabs()
+            let variant = settingsManager.getAdditionalTabVariant()
+            let additionalTab = settingsManager.getAdditionalTab()
+            tabs = [nav1VC, nav2VC, nav3VC, nav5VC]
+            
+            for tab in tabs {
+                for savedTab in savedTabs {
+                    let index = tabs.firstIndex(of: tab)!
+                    tabs.swapAt(index, savedTab.position)
+                }
+            }
+            
+            for i in 0...savedTabs.count - 1 {
+                tabs[i].tabBarItem.title = savedTabs[i].name
+            }
+            
+            if variant != .none {
+                tabs.insert(additionalTab, at: 2)
+            }
+            
+            tabs.forEach { customFont(item: $0.tabBarItem)}
+            
+            setViewControllers(tabs, animated: false)
+            
+            if variant == .button {
+                 ASPUButton.isHidden = false
+                 disableTab()
+            } else {
+                ASPUButton.isHidden = true
+            }
+            
+            UITabBar.appearance().tintColor = settingsManager.getTabsColor().color
+        }
+        setUpContextMenu()
+    }
+    
+    func resetSavedTab() {
+        UserDefaults.standard.set(0, forKey: "index")
+    }
+    
+    func setUpSavedTab() {
+        if settingsManager.checkOnlyMainOption() == .custom {
             selectedIndex = UserDefaults.standard.integer(forKey: "index")
         }
+    }
+    
+    func customFont(item: UITabBarItem) {
+        let savedFont = settingsManager.getTabsFont()
+        let savedColor = settingsManager.getTabsColor()
+        if savedFont != .none {
+            let font = UIFont(name: savedFont.rawValue, size: 11)
+            let attributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: savedColor.color]
+            item.setTitleTextAttributes(attributes, for: .normal)
+        }
+    }
+    
+    func makeStandardFont(item: UITabBarItem) {
+        let font = UIFont.systemFont(ofSize: 11)
+        let attributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: UIColor.label]
+        item.setTitleTextAttributes(attributes, for: .normal)
+    }
+    
+    private func disableTab() {
+        if tabBar.items?.count == 5 {
+            tabBar.items?[2].isEnabled = false
+        } else {
+            tabBar.items?[1].isEnabled = false
+        }
+    }
+    
+    private func setUpContextMenu() {
+        let icons = settingsManager.getTabsIcons()
+        let main = settingsManager.checkOnlyMainOption()
+        switch main {
+        case .schedule:
+            makeForTimetable(icons: icons)
+        case .news:
+            makeForNews(icons: icons)
+        case .sections:
+            makeForSections(icons: icons)
+        case .main:
+            makeForMain(icons: icons)
+        case .custom:
+            makeForCustom(icons: icons)
+        }
+    }
+    
+    func makeForTimetable(icons: [TabBarIconModel]) {
+        let timetableListInteraction = UIContextMenuInteraction(delegate: self)
+        let settingsListInteraction = UIContextMenuInteraction(delegate: self)
         
-        UITabBar.appearance().tintColor = self.settingsManager.getTabsColor().color
+        if let timetableIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[2].icon}) {
+            tabBar.subviews[timetableIndex].addInteraction(timetableListInteraction)
+            tabBar.subviews[timetableIndex].accessibilityIdentifier = "timetable"
+        }
+        
+        if let settingsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[4].icon}) {
+            tabBar.subviews[settingsIndex].addInteraction(settingsListInteraction)
+            tabBar.subviews[settingsIndex].accessibilityIdentifier = "settings"
+        }
+    }
+    
+    func makeForNews(icons: [TabBarIconModel]) {
+        let newsListInteraction = UIContextMenuInteraction(delegate: self)
+        let settingsListInteraction = UIContextMenuInteraction(delegate: self)
+        if let newsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[0].icon}) {
+            tabBar.subviews[newsIndex].addInteraction(newsListInteraction)
+            tabBar.subviews[newsIndex].accessibilityIdentifier = "news"
+        }
+        if let settingsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[4].icon}) {
+            tabBar.subviews[settingsIndex].addInteraction(settingsListInteraction)
+            tabBar.subviews[settingsIndex].accessibilityIdentifier = "settings"
+        }
+    }
+    
+    func makeForSections(icons: [TabBarIconModel]) {
+        let sectionsInteraction = UIContextMenuInteraction(delegate: self)
+        let settingsListInteraction = UIContextMenuInteraction(delegate: self)
+        if let sectionsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[5].icon}) {
+            tabBar.subviews[sectionsIndex].addInteraction(sectionsInteraction)
+            tabBar.subviews[sectionsIndex].accessibilityIdentifier = "sections"
+        }
+        if let settingsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[4].icon}) {
+            tabBar.subviews[settingsIndex].addInteraction(settingsListInteraction)
+            tabBar.subviews[settingsIndex].accessibilityIdentifier = "settings"
+        }
+    }
+    
+    func makeForMain(icons: [TabBarIconModel]) {
+        let newsListInteraction = UIContextMenuInteraction(delegate: self)
+        let timetableListInteraction = UIContextMenuInteraction(delegate: self)
+        let mapsInteraction = UIContextMenuInteraction(delegate: self)
+        let settingsListInteraction = UIContextMenuInteraction(delegate: self)
+        tabBar.subviews[0].addInteraction(newsListInteraction)
+        tabBar.subviews[0].accessibilityIdentifier = "news"
+        tabBar.subviews[1].addInteraction(timetableListInteraction)
+        tabBar.subviews[1].accessibilityIdentifier = "timetable"
+        tabBar.subviews[3].addInteraction(mapsInteraction)
+        tabBar.subviews[3].accessibilityIdentifier = "maps"
+        tabBar.subviews[4].addInteraction(settingsListInteraction)
+        tabBar.subviews[4].accessibilityIdentifier = "settings"
+    }
+    
+    func makeForCustom(icons: [TabBarIconModel]) {
+        let newsListInteraction = UIContextMenuInteraction(delegate: self)
+        let favouriteListInteraction = UIContextMenuInteraction(delegate: self)
+        let timetableListInteraction = UIContextMenuInteraction(delegate: self)
+        let mapsInteraction = UIContextMenuInteraction(delegate: self)
+        let settingsListInteraction = UIContextMenuInteraction(delegate: self)
+        let sectionsInteraction = UIContextMenuInteraction(delegate: self)
+        let weeksInteraction = UIContextMenuInteraction(delegate: self)
+        let weatherInteraction = UIContextMenuInteraction(delegate: self)
+        let buildingInteraction = UIContextMenuInteraction(delegate: self)
+        if let newsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[0].icon}) {
+            tabBar.subviews[newsIndex].addInteraction(newsListInteraction)
+            tabBar.subviews[newsIndex].accessibilityIdentifier = "news"
+        }
+        if let favouriteIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[1].icon}) {
+            tabBar.subviews[favouriteIndex].addInteraction(favouriteListInteraction)
+            tabBar.subviews[favouriteIndex].accessibilityIdentifier = "favourites"
+        }
+        if let timetableIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[2].icon}) {
+            tabBar.subviews[timetableIndex].addInteraction(timetableListInteraction)
+            tabBar.subviews[timetableIndex].accessibilityIdentifier = "timetable"
+        }
+        if let mapsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[3].icon}) {
+            tabBar.subviews[mapsIndex].addInteraction(mapsInteraction)
+            tabBar.subviews[mapsIndex].accessibilityIdentifier = "maps"
+        }
+        if let settingsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[4].icon}) {
+            tabBar.subviews[settingsIndex].addInteraction(settingsListInteraction)
+            tabBar.subviews[settingsIndex].accessibilityIdentifier = "settings"
+        }
+        if let sectionsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[5].icon}) {
+            tabBar.subviews[sectionsIndex].addInteraction(sectionsInteraction)
+            tabBar.subviews[sectionsIndex].accessibilityIdentifier = "sections"
+        }
+        if let weeksIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[6].icon}) {
+            tabBar.subviews[weeksIndex].addInteraction(weeksInteraction)
+            tabBar.subviews[weeksIndex].accessibilityIdentifier = "weeks"
+        }
+        if let weatherIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[7].icon}) {
+            tabBar.subviews[weatherIndex].addInteraction(weatherInteraction)
+            tabBar.subviews[weatherIndex].accessibilityIdentifier = "weather"
+        }
+        
+        if let buildingIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[8].icon}) {
+            tabBar.subviews[buildingIndex].addInteraction(buildingInteraction)
+            tabBar.subviews[buildingIndex].accessibilityIdentifier = "building"
+        }
+    }
+    
+    private func calculateButtonPosition() {
+        if UIDevice.isiPhone {
+            buttonPosition = tabBar.frame.height / 2 - 5
+        } else {
+            buttonPosition = tabBar.frame.height / 2 - 10
+        }
     }
     
     // MARK: - ASPU Button
     private func createMiddleButton() {
         ASPUButton.setImage(UIImage(named: settingsManager.checkCurrentIcon()), for: .normal)
         ASPUButton.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
-        // Устанавливаем положение кнопки по середине TabBar
-        ASPUButton.center = CGPoint(x: tabBar.frame.width / 2, y: tabBar.frame.height / 2 - 5)
-        settingsManager.observeASPUButtonActionChanged {
-            self.currentAction()
+        if UIDevice.isiPhone {
+            ASPUButton.center = CGPoint(x: tabBar.frame.width / 2, y: buttonPosition)
+        } else {
+            ASPUButton.center = CGPoint(x: tabBar.frame.width / 2, y: buttonPosition)
         }
-        // Назначаем действие для кнопки
-        currentAction()
-        // Добавляем кнопку на TabBar
+        setUpButton()
         tabBar.addSubview(ASPUButton)
     }
-     
-    private func currentAction() {
-        let action = settingsManager.checkASPUButtonOption()
-        ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
-        switch action {
-        case .speechRecognition:
-            ASPUButton.addTarget(self, action: #selector(VoiceCommands), for: .touchUpInside)
-        case .timetableWeeks:
-            ASPUButton.addTarget(self, action: #selector(openWeeksTimetable), for: .touchUpInside)
-        case .campusMap:
-            ASPUButton.addTarget(self, action: #selector(openCampusMap), for: .touchUpInside)
-        case .studyPlan:
-            ASPUButton.addTarget(self, action: #selector(openStudyPlan), for: .touchUpInside)
-        case .profile:
-            ASPUButton.addTarget(self, action: #selector(openProfile), for: .touchUpInside)
-        case .manual:
-            ASPUButton.addTarget(self, action: #selector(openManual), for: .touchUpInside)
-        case .sections:
-            ASPUButton.addTarget(self, action: #selector(openSectionsList), for: .touchUpInside)
-        case .recent:
-            ASPUButton.addTarget(self, action: #selector(openRecentMoments), for: .touchUpInside)
-        case .weather:
-            ASPUButton.addTarget(self, action: #selector(openWeatherVC), for: .touchUpInside)
-        case .things:
-            ASPUButton.addTarget(self, action: #selector(openThingsCategoriesList), for: .touchUpInside)
-        case .whatsNew:
-            ASPUButton.addTarget(self, action: #selector(openWhatsNew), for: .touchUpInside)
-        case .favourite:
-            ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
+    
+    private func setUpButton() {
+        settingsManager.observeASPUButtonActionChanged {
+            self.refreshGestures()
+        }
+        setUpGestures()
+    }
+    
+    private func setUpGestures() {
+        let gesture = settingsManager.checkASPUButtonGestureOption().gesture
+        gesture.addTarget(self, action: #selector(handleGestures))
+        ASPUButton.addTarget(self, action: #selector(makeSmth), for: .touchUpInside)
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(openASPUButtonSettings))
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
+        swipeUp.direction = .up
+        swipeLeft.direction = .left
+        swipeRight.direction = .right
+        ASPUButton.addGestureRecognizer(swipeUp)
+        ASPUButton.addGestureRecognizer(swipeLeft)
+        ASPUButton.addGestureRecognizer(swipeRight)
+        ASPUButton.addGestureRecognizer(gesture)
+    }
+    
+    @objc private func makeSmth(sender: UIButton) {
+        handleGestures(gesture: sender.gestureRecognizers!.last!)
+    }
+    
+    private func refreshGestures() {
+        ASPUButton.gestureRecognizers?.removeAll()
+        setUpGestures()
+    }
+    
+    @objc func openASPUButtonSettings() {
+        let vc = ASPUButtonOptionsListTableViewController()
+        vc.isNotify = true
+        vc.delegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.updateASPUButton(icon: "button")
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+            self.present(navVC, animated: true)
         }
     }
     
-    // MARK: - Action To Recall
-    override var canBecomeFirstResponder: Bool {
-        return true
+    @objc private func swipeLeft() {
+        if viewControllers?.count == 5 {
+            handleLeftSideForFourTabs()
+        } else {
+            handleLeftSideForTwoTabs()
+        }
     }
     
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        checkActionToRecall()
+    func handleLeftSideForFourTabs() {
+        if selectedIndex > 0 {
+            if selectedIndex == 3 {
+                selectedIndex = 1
+            } else {
+                selectedIndex -= 1
+            }
+            handleTab(item: tabBar.selectedItem!)
+            updateASPUButton(icon: "left icon")
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
+            }
+        }
+    }
+    
+    func handleLeftSideForTwoTabs() {
+        if selectedIndex > 0 {
+            if selectedIndex == 2 {
+                selectedIndex = 0
+            } else {
+                selectedIndex -= 1
+            }
+            handleTab(item: tabBar.selectedItem!)
+            updateASPUButton(icon: "left icon")
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
+            }
+        }
+        updateASPUButton(icon: "left icon")
+    }
+    
+    @objc private func swipeRight() {
+        if viewControllers?.count == 5 {
+            handleRightSideForFourTabs()
+        } else {
+            handleRightSideForTwoTabs()
+        }
+    }
+    
+    func handleRightSideForFourTabs() {
+        if selectedIndex < 4 {
+            if selectedIndex == 1 {
+                selectedIndex = 3
+            } else {
+                selectedIndex += 1
+            }
+            handleTab(item: tabBar.selectedItem!)
+            updateASPUButton(icon: "right icon")
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
+            }
+        }
+    }
+    
+    func handleRightSideForTwoTabs() {
+        if selectedIndex < 2 {
+            if selectedIndex == 0 {
+                selectedIndex = 2
+            } else {
+                selectedIndex += 1
+            }
+            handleTab(item: tabBar.selectedItem!)
+            updateASPUButton(icon: "right icon")
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
+            }
+        }
+    }
+    
+    @objc private func handleGestures(gesture: UIGestureRecognizer) {
+        let action = settingsManager.checkASPUButtonOption()
+        let savedGesture = settingsManager.checkASPUButtonGestureOption()
+        if gesture.state == .possible {
+            let hintVC = HintViewController(info: "Для активации ASPU Button нужен жест: \(savedGesture.rawValue)")
+            hintVC.isNotify = true
+            hintVC.delegate = self
+            hintVC.modalPresentationStyle = .fullScreen
+            present(hintVC, animated: true)
+            HapticsManager.shared.hapticFeedback()
+        } else if gesture.state == .ended {
+            switch action {
+            case .speechRecognition:
+                openVoiceCommands(isAction: false)
+            case .timetableWeeks:
+                openWeeksTimetable()
+            case .campusMap:
+                openCampusMap()
+            case .studyPlan:
+                openStudyPlan()
+            case .profile:
+                openProfile()
+            case .manual:
+                openManual()
+            case .sections:
+                openSectionsList()
+            case .recent:
+                openRecentMoments()
+            case .weather:
+                openWeatherVC()
+            case .things:
+                openThingsCategoriesList()
+            case .whatsNew:
+                openWhatsNew()
+            case .nearestBuilding:
+                showNearestBuilding(isAction: false)
+            case .appThemes:
+                openAppThemes()
+            case .appShortcuts:
+                openAppShortcuts()
+            case .favourite:
+                openFavouritesList()
+            }
+        }
     }
     
     func checkActionToRecall() {
         if settingsManager.checkShakeToRecallOption() {
             openRecentMoments()
         } else {
-            self.updateASPUButton(icon: "info icon")
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                let vc = HintViewController(info: "Отключена фишка Action To Recall! Чтобы дальше пользоваться данной фишкой нужно включить ее в настройках.")
-                vc.isNotify = true
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true)
-            }
-        }
-    }
-    
-     @objc func openRecentMoments() {
-        let vc = RecentMomentsListTableViewController()
-        vc.isNotify = true
-        let navVC = UINavigationController(rootViewController: vc)
-        navVC.modalPresentationStyle = .fullScreen
-        self.updateASPUButton(icon: "time.past")
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.present(navVC, animated: true)
-        }
-    }
-    
-    @objc func openWeatherVC() {
-        let annotation = MKPointAnnotation()
-        annotation.title = "Армавир"
-        annotation.coordinate = CLLocationCoordinate2D(latitude: 44.9892, longitude: 41.1234)
-        let vc = LocationWeatherDetailViewController(annotation: annotation)
-        vc.isNotify = true
-        let navVC = UINavigationController(rootViewController: vc)
-        navVC.modalPresentationStyle = .fullScreen
-        self.updateASPUButton(icon: "sun")
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.present(navVC, animated: true)
-        }
-    }
-    
-    @objc func openWhatsNew() {
-        let vc = TodayNewsListTableViewController()
-        vc.isNotify = true
-        let navVC = UINavigationController(rootViewController: vc)
-        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
-        switch style {
-        case .fullScreen:
-            navVC.modalPresentationStyle = .fullScreen
-            self.updateASPUButton(icon: "question")
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.present(navVC, animated: true)
-            }
-        case .sheet:
-            navVC.modalPresentationStyle = .pageSheet
-            self.updateASPUButton(icon: "question")
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.present(navVC, animated: true)
-            }
-        case .notShow:
-            let vc = HintViewController(info: "Чтобы увидеть экран, нужно выбрать его отображение в настройках опции \"Наглядные изменения\"")
-            vc.isNotify = true
-            vc.modalPresentationStyle = .fullScreen
-            self.updateASPUButton(icon: "info icon")
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.present(vc, animated: true)
-            }
-        }
-    }
-    
-    func createAlertMessage()-> (String, String) {
-        let style = settingsManager.getSavedCommunicationStyle()
-        let name = UserDefaults.standard.string(forKey: "name") ?? ""
-        switch style {
-        case .formal:
-            return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хотите" : "Хотите") включить в настройках?")
-        case .informal:
-            return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хочешь" : "Хочешь") врубить в настройках?")
-        }
-    }
-    
-    // Хотите включить в настройках?
-    
-    @objc func VoiceCommands() {
-        isRecording = !isRecording
-        if isRecording {
-            self.updateASPUButton(icon: "mic")
-            speechRecognitionManager.requestSpeechAndMicrophonePermission()
-            speechRecognitionManager.registerSpeechAuthorizationHandler { auth in
-                switch auth {
-                case .notDetermined:
-                    print("Разрешение на распознавание речи еще не было получено.")
-                case .denied:
-                    let settingsAction = UIAlertAction(title: "Перейти в настройки", style: .default) { _ in
-                        self.openSettings()
-                    }
-                    let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in
-                        self.ASPUButton.sendActions(for: .touchUpInside)
-                    }
-                    self.showAlert(title: self.createAlertMessage().0, message: self.createAlertMessage().1, actions: [settingsAction, cancel])
-                    print("Доступ к распознаванию речи был отклонен.")
-                case .restricted:
-                    print("Функциональность распознавания речи ограничена.")
-                case .authorized:
-                    print("Разрешение на распознавание речи получено.")
-                    self.speechRecognitionManager.startRecognize()
-                @unknown default:
-                    print("неизвестно")
-                }
-            }
-            speechRecognitionManager.registerSpeechRecognitionHandler { text in
-                self.checkVoiceCommands(text: text)
-            }
-        } else {
-            self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
-            speechRecognitionManager.cancelSpeechRecognition()
-        }
-    }
-    
-    // MARK: - Voice Control
-    private func checkVoiceCommands(text: String) {
-        if isOpened {
-            changeSection(text: text.lowercased())
-            randomSectionOnScreen(text: text.lowercased())
-            changeSubSection(text: text.lowercased())
-            changeBuilding(text: text.lowercased())
-            scrollWebScreen(text: text.lastWord())
-            webActions(text: text.lowercased())
-        } else {
-            searchSection(text: text.lowercased())
-            generateRandomSection(text: text.lowercased())
-            searchSubSection(text: text.lowercased())
-            findBuilding(text: text.lowercased())
-        }
-        turnOfMicrophone(text: text.lowercased())
-    }
-    
-    @objc func openWeeksTimetable() {
-        let id = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-2-1"
-        let subgroup = UserDefaults.standard.integer(forKey: "subgroup")
-        let owner = UserDefaults.standard.string(forKey: "recentOwner") ?? "GROUP"
-        let vc = AllWeeksListTableViewController(id: id, subgroup: subgroup, owner: owner)
-        vc.isNotify = true
-        let navVC = UINavigationController(rootViewController: vc)
-        navVC.modalPresentationStyle = .fullScreen
-        self.updateASPUButton(icon: "clock")
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.present(navVC, animated: true)
-        }
-    }
-    
-    @objc func openCampusMap() {
-        let vc = AGPUBuildingsMapViewController()
-        vc.isAction = true
-        let navVC = UINavigationController(rootViewController: vc)
-        navVC.modalPresentationStyle = .fullScreen
-        self.updateASPUButton(icon: "map icon")
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.present(navVC, animated: true)
-        }
-    }
-    
-    @objc func openStudyPlan() {
-        self.updateASPUButton(icon: "student")
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.goToWeb(url: "http://plany.agpu.net/Plans/", image: "student", title: "Учебный план", isSheet: false, isNotify: true)
-        }
-    }
-    
-    @objc func openProfile() {
-        self.updateASPUButton(icon: "profile icon")
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: "profile icon", title: "ЭИОС", isSheet: false, isNotify: true)
-        }
-    }
-    
-    @objc func openManual() {
-        if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
-            self.updateASPUButton(icon: "book")
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.goToWeb(url: cathedra.manualUrl, image: "book", title: "Метод. материалы", isSheet: false, isNotify: true)
-            }
-        } else {
-            self.showHintAlert(type: .manuals, isNotify: true)
-            HapticsManager.shared.hapticFeedback()
-        }
-    }
-    
-    @objc func openSectionsList() {
-        let vc = ASPUWebsiteSectionsListViewController()
-        vc.isAction = true
-        let navVC = UINavigationController(rootViewController: vc)
-        navVC.modalPresentationStyle = .fullScreen
-        self.updateASPUButton(icon: "sections icon")
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.present(navVC, animated: true)
-        }
-    }
-    
-    @objc func openFavouritesList() {
-        let vc = ASPUButtonFavouriteActionsListTableViewController()
-        vc.delegate = self
-        let navVC = UINavigationController(rootViewController: vc)
-        navVC.modalPresentationStyle = .fullScreen
-        self.updateASPUButton(icon: "star")
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.present(navVC, animated: true)
-        }
-    }
-    
-    @objc func openThingsCategoriesList() {
-        let vc = ThingsCategoriesListTableViewController()
-        vc.isAction = true
-        let navVC = UINavigationController(rootViewController: vc)
-        navVC.modalPresentationStyle = .fullScreen
-        self.updateASPUButton(icon: "exclamation")
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            self.present(navVC, animated: true)
-        }
-    }
-    
-    private func observeForEveryStatus() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("for every status selected"), object: nil, queue: .main) { notification in
-            if let icon = notification.object as? String {
-                self.updateASPUButton(icon: icon)
-            }
-        }
-    }
-    
-    private func observeScreen() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("screen was closed"), object: nil, queue: .main) { _ in
-            if self.isRecording {
-                if !self.tabBar.isHidden {
-                    self.updateASPUButton(icon: "mic")
+            if !ASPUButton.isHidden {
+                self.updateASPUButton(icon: "info icon")
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    let vc = HintViewController(info: "Отключена фишка Action To Control! Чтобы дальше пользоваться данной фишкой нужно включить ее в настройках.")
+                    vc.isNotify = true
+                    vc.delegate = self
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true)
                 }
             } else {
-                if !self.tabBar.isHidden {
-                    self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
-                }
+                let vc = HintViewController(info: "Отключена фишка Action To Control! Чтобы дальше пользоваться данной фишкой нужно включить ее в настройках.")
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
             }
         }
     }

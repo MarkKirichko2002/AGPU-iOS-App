@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CalendarMultipleDatesViewModel {
+final class CalendarMultipleDatesViewModel {
     
     var datesSelectedHandler: (()->Void)?
     var alertHandler: ((String, String)->Void)?

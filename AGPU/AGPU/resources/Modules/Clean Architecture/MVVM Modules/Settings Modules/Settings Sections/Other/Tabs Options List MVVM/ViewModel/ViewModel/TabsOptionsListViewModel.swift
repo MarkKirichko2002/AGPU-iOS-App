@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TabsOptionsListViewModel {
+final class TabsOptionsListViewModel {
     
     // MARK: - сервисы
     let settingsManager = SettingsManager()

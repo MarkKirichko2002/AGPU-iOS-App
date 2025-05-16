@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FacultyCathedraMapListViewModel {
+final class FacultyCathedraMapListViewModel {
     
     var faculty: AGPUFacultyModel?
     var dataChangedHandler: (()->Void)?

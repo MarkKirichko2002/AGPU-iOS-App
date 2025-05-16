@@ -8,8 +8,9 @@
 import UIKit
 import RealityKit
 import SnapKit
+import AVFoundation
 
-class NewsARViewController: UIViewController {
+final class NewsARViewController: UIViewController {
     
     var images = [UIImage]()
     var urls = [String]()
@@ -30,11 +31,12 @@ class NewsARViewController: UIViewController {
         fillArray()
         setUpNavigation()
         setUpARView()
+        setUpButtons()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        speechRecognitionManager.cancelSpeechRecognition()
+        cancelRecognition()
         stopSession()
     }
     
@@ -50,7 +52,6 @@ class NewsARViewController: UIViewController {
         let options =  UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpMenu())
         options.tintColor = .label
         closeButton.tintColor = .label
-        navigationTitle()
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = options
     }
@@ -63,61 +64,25 @@ class NewsARViewController: UIViewController {
     
     private func setUpMenu()-> UIMenu {
         
-        let refreshAction = UIAction(title: "Обновить") { _ in
-            self.refresh()
+        let voiceCommandsList = UIAction(title: "Голосовые команды") { _ in
+            let vc = VoiceCommandsListTableViewController(type: .newsAR)
+            vc.screenDelegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
         }
         
         let share = UIAction(title: "Поделиться") { _ in
             self.makeScreenShot()
         }
         return UIMenu(title: "AR", children: [
-            refreshAction,
             makeImagesListMenu(),
-            setUpPlaneListMenu(),
+            voiceCommandsList,
             share
         ])
     }
     
-    private func setUpPlaneListMenu()-> UIMenu {
-        
-        let any = UIAction(title: "Любая") { _ in
-            self.plane = .any
-            let box = self.createMesh()
-            let anchor = self.setAnchor(model: box)
-            self.installGestures(on: box)
-            self.arView.scene.anchors.removeAll()
-            self.arView.scene.anchors.append(anchor)
-            HapticsManager.shared.hapticFeedback()
-        }
-        
-        let horizontal = UIAction(title: "Горизонтально") { _ in
-            self.plane = .horizontal
-            let box = self.createMesh()
-            let anchor = self.setAnchor(model: box)
-            self.installGestures(on: box)
-            self.arView.scene.anchors.removeAll()
-            self.arView.scene.anchors.append(anchor)
-            HapticsManager.shared.hapticFeedback()
-        }
-        
-        let vertical = UIAction(title: "Вертикально", state: .on) { _ in
-            self.plane = .vertical
-            let box = self.createMesh()
-            let anchor = self.setAnchor(model: box)
-            self.installGestures(on: box)
-            self.arView.scene.anchors.removeAll()
-            self.arView.scene.anchors.append(anchor)
-            HapticsManager.shared.hapticFeedback()
-        }
-        
-        return UIMenu(title: "Плоскость", options: .singleSelection, children: [
-            any,
-            horizontal,
-            vertical
-        ])
-    }
-    
-    private func refresh() {
+    @objc private func refresh() {
         let mesh = createMesh()
         let anchor = setAnchor(model: mesh)
         installGestures(on: mesh)
@@ -132,35 +97,70 @@ class NewsARViewController: UIViewController {
     }
     
     private func setUpARView() {
-        let box = createMesh()
-        let anchor = setAnchor(model: box)
-        installGestures(on: box)
+        view.addSubview(arView)
         view.addSubview(arView)
         arView.frame = view.bounds
-        arView.scene.anchors.append(anchor)
+        refresh()
         makeImage()
         setUpSwipeGestures()
-        checkVoiceCommandsOption()
+    }
+    
+    private func setUpButtons() {
+        let torchButton = UIButton()
+        torchButton.accessibilityIdentifier = "flashlight"
+        torchButton.tintColor = .white
+        torchButton.setImage(UIImage(named: "flashlight"), for: .normal)
+        torchButton.translatesAutoresizingMaskIntoConstraints = false
+        let refreshButton = UIButton()
+        refreshButton.accessibilityIdentifier = "refresh"
+        refreshButton.tintColor = .white
+        refreshButton.setImage(UIImage(named: "refresh icon"), for: .normal)
+        refreshButton.translatesAutoresizingMaskIntoConstraints = false
+        arView.addSubview(torchButton)
+        arView.addSubview(refreshButton)
+        NSLayoutConstraint.activate([
+            refreshButton.bottomAnchor.constraint(equalTo: arView.bottomAnchor, constant: -40.0),
+            refreshButton.leftAnchor.constraint(equalTo: arView.leftAnchor, constant: 30.0),
+            refreshButton.widthAnchor.constraint(equalToConstant: 40.0),
+            refreshButton.heightAnchor.constraint(equalToConstant: 40.0),
+            torchButton.bottomAnchor.constraint(equalTo: arView.bottomAnchor, constant: -40.0),
+            torchButton.rightAnchor.constraint(equalTo: arView.rightAnchor, constant: -30.0),
+            torchButton.widthAnchor.constraint(equalToConstant: 50.0),
+            torchButton.heightAnchor.constraint(equalToConstant: 50.0)
+        ])
+        torchButton.addTarget(self, action: #selector(toggleTorch), for: .touchUpInside)
+        refreshButton.addTarget(self, action: #selector(refresh), for: .touchUpInside)
+    }
+    
+    @objc private func toggleTorch(sender: UIButton) {
+        guard let device = AVCaptureDevice.default(for: .video), device.hasTorch else { return }
+        if sender.imageView?.image == UIImage(named: "flashlight") {
+            sender.setImage(UIImage(named: "flashlight on"), for: .normal)
+            device.onOffTorch(on: true)
+        } else if sender.imageView?.image == UIImage(named: "flashlight on") {
+            sender.setImage(UIImage(named: "flashlight.off"), for: .normal)
+            device.onOffTorch(on: false)
+        }
     }
     
     private func checkVoiceCommandsOption() {
-        let isVoiceCommands = UserDefaults.standard.object(forKey: "onVoiceCommands") as? Bool ?? false
-        if isVoiceCommands {
-            resetSpeechRecognition()
-        } else {
-            makeNavigationView(image: "cube", title: "AR режим")
+        let screens = settingsManager.loadScreens()
+        if screens.contains(SpeechScreens.ARNews) {
+            startRecognize()
         }
+        navigationTitle()
     }
     
     private func navigationTitle() {
         
         let style = settingsManager.getSavedCommunicationStyle()
         
-        let isVoiceCommands = UserDefaults.standard.object(forKey: "onVoiceCommands") as? Bool ?? false
-        if isVoiceCommands {
+        let screens = settingsManager.loadScreens()
+        
+        if screens.contains(SpeechScreens.ARNews) {
             style == .formal ? makeNavigationView(image: "microphone", title: "Говорите...") : makeNavigationView(image: "microphone", title: "Говори...")
         } else {
-           makeNavigationView(image: "cube", title: "AR режим")
+            makeNavigationView(image: "cube", title: "AR режим")
         }
     }
     
@@ -168,6 +168,13 @@ class NewsARViewController: UIViewController {
         DispatchQueue.main.async {
             let titleView = CustomTitleView(image: image, title: title, frame: .zero)
             self.navigationItem.titleView = titleView
+        }
+    }
+    
+    private func cancelRecognition() {
+        let screens = settingsManager.loadScreens()
+        if screens.contains(SpeechScreens.ARNews) {
+            speechRecognitionManager.cancelSpeechRecognition()
         }
     }
     
@@ -200,21 +207,14 @@ class NewsARViewController: UIViewController {
     
     private func voiceCommands(text: String) {
         
-        if text.lowercased().contains("вперёд") || text.lowercased().contains("след") || text.lowercased().contains("дале")  {
-            speechRecognitionManager.cancelSpeechRecognition()
+        if text.lowercased().contains("вперёд") || text.lowercased().contains("вперед") {
+            cancelRecognition()
             nextImage()
         }
         
-        if text.lowercased().contains("назад") || text.lowercased().contains("пред") {
-            speechRecognitionManager.cancelSpeechRecognition()
+        if text.lowercased().contains("назад") || text.lowercased().contains("обратно") {
+            cancelRecognition()
             pastImage()
-        }
-    }
-    
-    func resetSpeechRecognition() {
-        speechRecognitionManager.cancelSpeechRecognition()
-        Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-            self.startRecognize()
         }
     }
     
@@ -367,7 +367,31 @@ class NewsARViewController: UIViewController {
         return UIMenu(title: "Изображения", children: items)
     }
     
+    func runSession() {
+        guard let configuration = arView.session.configuration else {return}
+        arView.session.run(configuration)
+    }
+    
     func stopSession() {
         arView.session.pause()
+    }
+    
+    func resetTorchButton() {
+        if let button = arView.subviews.first(where: { $0.accessibilityIdentifier == "flashlight" }) {
+            print("yes")
+            (button as? UIButton)?.setImage(UIImage(named: "flashlight"), for: .normal)
+        } else {
+            print("no")
+        }
+    }
+}
+
+// MARK: - ScreenClosedDelegate
+extension NewsARViewController: ScreenClosedDelegate {
+    
+    func screenWasClosed() {
+        runSession()
+        checkVoiceCommandsOption()
+        resetTorchButton()
     }
 }

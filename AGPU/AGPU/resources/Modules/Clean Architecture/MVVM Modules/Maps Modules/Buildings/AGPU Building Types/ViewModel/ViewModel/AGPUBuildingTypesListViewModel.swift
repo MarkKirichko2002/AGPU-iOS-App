@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AGPUBuildingTypesListViewModel {
+final class AGPUBuildingTypesListViewModel {
     
     var type: AGPUBuildingType?
     var dataChangedHandler: (()->Void)?

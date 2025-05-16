@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsCategoryTableViewCell: UITableViewCell {
+final class NewsCategoryTableViewCell: UITableViewCell {
     
     static let identifier = "NewsCategoryTableViewCell"
     

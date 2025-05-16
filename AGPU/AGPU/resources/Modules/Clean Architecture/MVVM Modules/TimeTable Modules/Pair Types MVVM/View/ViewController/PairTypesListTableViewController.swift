@@ -16,6 +16,7 @@ class PairTypesListTableViewController: UITableViewController {
     private var viewModel: PairTypesListViewModel
     weak var delegate: PairTypesListTableViewControllerDelegate?
     private var type: PairType
+    var isWeekDay = false
     
     // MARK: - Init
     init(date: String, type: PairType, disciplines: [Discipline]) {
@@ -36,16 +37,46 @@ class PairTypesListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "filter", title: "Фильтрация", frame: .zero)
-        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(closeScreen))
-        closeButton.tintColor = .label
+        setUpNavigationTitle()
+        if isWeekDay {
+            setUpBackButton()
+        } else {
+            setUpCloseButton()
+        }
+    }
+    
+    func setUpNavigationTitle() {
+        let titleView = CustomTitleView(image: "filter icon", title: "Фильтрация", frame: .zero)
         navigationItem.titleView = titleView
+    }
+    
+    func setUpCloseButton() {
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(close))
+        closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }
     
-    @objc private func closeScreen() {
+    @objc private func close() {
         HapticsManager.shared.hapticFeedback()
-        self.dismiss(animated: true)
+        dismiss(animated: true)
+    }
+    
+    func setUpBackButton() {
+        
+        let button = UIButton()
+        button.tintColor = .label
+        button.setImage(UIImage(named: "back"), for: .normal)
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        
+        let backButton = UIBarButtonItem(customView: button)
+        
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
+        navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc private func back() {
+        navigationController?.popViewController(animated: true)
     }
     
     private func setUpTable() {
@@ -53,9 +84,15 @@ class PairTypesListTableViewController: UITableViewController {
     }
     
     private func bindViewModel() {
-        viewModel.registerPairTypeSelectedHandler {
+        viewModel.registerPairTypeSelectedHandler { type in
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.dismiss(animated: true)
+                if self.isWeekDay {
+                    self.delegate?.pairTypeWasSelected(type: type)
+                    self.navigationController?.popViewController(animated: true)
+                } else {
+                    self.delegate?.pairTypeWasSelected(type: type)
+                    self.dismiss(animated: true)
+                }
             }
             self.tableView.reloadData()
         }
@@ -63,7 +100,6 @@ class PairTypesListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.choosePairType(index: indexPath.row)
-        delegate?.pairTypeWasSelected(type: viewModel.typeItem(index: indexPath.row))
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -72,13 +108,16 @@ class PairTypesListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let type = viewModel.typeItem(index: indexPath.row)
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         cell.tintColor = .systemGreen
-        cell.textLabel?.text = "\(type.title) (\(viewModel.countForPairType(index: indexPath.row)))"
+        cell.textLabel?.text = viewModel.textForCell(index: indexPath.row)
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
+        cell.detailTextLabel?.text = viewModel.textForDetailCell(index: indexPath.row)
+        cell.detailTextLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+        cell.detailTextLabel?.numberOfLines = 0
         cell.accessoryType = viewModel.isCurrentType(index: indexPath.row) ? .checkmark : .none
         cell.textLabel?.textColor = viewModel.isCurrentType(index: indexPath.row) ? .systemGreen : .label
+        cell.detailTextLabel?.textColor = viewModel.isCurrentType(index: indexPath.row) ? .systemGreen : .label
         return cell
     }
 }

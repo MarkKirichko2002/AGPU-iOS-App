@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PairInfoTableViewController: UITableViewController {
+final class PairInfoTableViewController: UITableViewController {
 
     private var viewModel: PairInfoViewModel
     
@@ -28,17 +28,30 @@ class PairInfoTableViewController: UITableViewController {
         bindViewModel()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.startTimer()
+        viewModel.checkVoiceCommandsOption()
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         viewModel.stopTimer()
+        viewModel.stopUpdatingLocation()
+        viewModel.cancelRecognition()
     }
-
+    
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: viewModel.getFacultyIcon(group: viewModel.id), title: "Информация о паре", frame: .zero)
+        let menu = UIBarButtonItem(image: UIImage(named: "sections"), menu: createMenu())
+        menu.tintColor = viewModel.currentColor
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
-        closeButton.tintColor = .label
+        closeButton.tintColor = viewModel.currentColor
+        titleView.imageView.tintColor = viewModel.currentColor
+        titleView.label.textColor = viewModel.currentColor
         navigationItem.titleView = titleView
-        navigationItem.rightBarButtonItem = closeButton
+        navigationItem.leftBarButtonItem = closeButton
+        navigationItem.rightBarButtonItem = menu
     }
     
     @objc private func closeScreen() {
@@ -46,21 +59,68 @@ class PairInfoTableViewController: UITableViewController {
         dismiss(animated: true)
     }
     
+    func createMenu()-> UIMenu {
+        let transpotyType = viewModel.createTransportTypeMenu()
+        let voiceCommands = UIAction(title: "Голосовые команды") { _ in
+            let vc = VoiceCommandsListTableViewController(type: .pairInfo)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        return UIMenu(title: "Информация о паре", children: [transpotyType, voiceCommands])
+    }
+    
     private func setUpTable() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
     private func bindViewModel() {
-        viewModel.setUpData()
         viewModel.registerDataChangedHandler {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
+        viewModel.registerColorChangedHandler { color in
+            UIView.animate(withDuration: 0.5) {
+                self.tableView.backgroundColor = color
+                self.setUpNavigation()
+            }
+        }
+        viewModel.registerTransportTypeHandler {
+            DispatchQueue.main.async {
+                self.setUpNavigation()
+            }
+        }
+        viewModel.alertHandler = { isPresent, title, message in
+            if isPresent {
+                let goToSettings = UIAlertAction(title: "Перейти в настройки", style: .default) { _ in
+                    self.openSettings()
+                }
+                let cancel = UIAlertAction(title: "Отмена", style: .cancel) { _ in}
+                self.showAlert(title: title, message: message, actions: [goToSettings, cancel])
+            }
+        }
+        viewModel.setUpData()
+    }
+    
+    private func goToDetail() {
+        let storyboard = UIStoryboard(name: "AGPUBuildingDetailViewController", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "AGPUBuildingDetailViewController") as? AGPUBuildingDetailViewController {
+            vc.annotation = viewModel.currentBuilding().pin
+            vc.id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-3-1"
+            vc.owner = UserDefaults.standard.string(forKey: "recentOwner") ?? "GROUP"
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            DispatchQueue.main.async {
+                self.present(navVC, animated: true)
+            }
+        }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.row == 10 {
+            goToDetail()
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,10 +130,14 @@ class PairInfoTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let info = viewModel.pairInfo
-        cell.textLabel?.text = viewModel.checkIsCurrentGroup(index: indexPath.row) ? "\(info[indexPath.row]) (ваша группа)" : info[indexPath.row]
+        let selectedView = UIView()
+        selectedView.backgroundColor = UIColor.clear
+        cell.selectedBackgroundView = selectedView
+        cell.textLabel?.text = info[indexPath.row]
+        cell.textLabel?.textColor = viewModel.isCurrentWord(index: indexPath.row)
+        cell.backgroundColor = .clear
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
         cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.textColor = viewModel.checkIsCurrentGroup(index: indexPath.row) ? .systemGreen : .label
         return cell
     }
 }

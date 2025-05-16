@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ASPUButtonAnimationOptionTableViewCell: UITableViewCell {
+final class ASPUButtonAnimationOptionTableViewCell: UITableViewCell {
 
     static let identifier = "ASPUButtonAnimationOptionTableViewCell"
     

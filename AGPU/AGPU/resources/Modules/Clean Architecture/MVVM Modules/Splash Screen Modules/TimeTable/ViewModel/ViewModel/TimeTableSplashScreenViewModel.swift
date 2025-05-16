@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TimeTableSplashScreenViewModel {
+final class TimeTableSplashScreenViewModel {
     
     var timeTableHandler: ((TimeTableDateModel)->Void)?
     var pairs = [Discipline]()

@@ -1,0 +1,432 @@
+//
+//  FavouriteSectionsListViewController.swift
+//  AGPU
+//
+//  Created by Марк Киричко on 23.09.2024.
+//
+
+import UIKit
+import MapKit
+
+final class FavouriteSectionsListViewController: UIViewController {
+
+    var sections = [ForEveryStatusModel]()
+    
+    // MARK: - сервисы
+    let settingsManager = SettingsManager()
+    
+    let refreshControl = UIRefreshControl()
+    let noSectionsLabel = UILabel()
+    let tableView = UITableView()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpNavigation()
+        setUpTable()
+        setUpRefreshControl()
+        setUpLabel()
+        setUpFloatingButton()
+        getData()
+    }
+    
+    func setUpNavigation() {
+        let titleView = CustomTitleView(image: "star", title: "Избранное", frame: .zero)
+        navigationItem.titleView = titleView
+        setUpEditButton(title: "Править")
+        setUpAddButton()
+    }
+    
+    func setUpAddButton() {
+        let addButton = UIBarButtonItem(image: UIImage(named: "add"), style: .done, target: self, action: #selector(addButtonTapped))
+        addButton.tintColor = .label
+        navigationItem.rightBarButtonItem = addButton
+    }
+    
+    @objc func addButtonTapped() {
+        let vc = AllSectionsListTableViewController()
+        vc.delegate = self
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func setUpEditButton(title: String) {
+        let moveButton = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(moveActions))
+        moveButton.tintColor = .label
+        navigationItem.leftBarButtonItem = moveButton
+    }
+    
+    func startEdit() {
+        if !sections.isEmpty {
+            tableView.isEditing = true
+            setUpEditButton(title: "Готово")
+        }
+    }
+    
+    @objc func moveActions() {
+        if !sections.isEmpty {
+            if tableView.isEditing {
+                setUpEditButton(title: "Править")
+                tableView.isEditing = false
+            } else {
+                setUpEditButton(title: "Готово")
+                tableView.isEditing = true
+            }
+        }
+    }
+    
+    func setUpTable() {
+        view.addSubview(tableView)
+        tableView.frame = view.bounds
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(ForEveryStatusTableViewCell.self, forCellReuseIdentifier: ForEveryStatusTableViewCell.identifier)
+    }
+    
+    private func setUpLabel() {
+        view.addSubview(noSectionsLabel)
+        noSectionsLabel.text = "Нет разделов"
+        noSectionsLabel.font = .systemFont(ofSize: 18, weight: .medium)
+        noSectionsLabel.isHidden = true
+        noSectionsLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            noSectionsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            noSectionsLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    
+    private func setUpFloatingButton() {
+        let navigationButton = UIButton()
+        navigationButton.tintColor = .label
+        navigationButton.setImage(UIImage(named: "aspu logo"), for: .normal)
+        navigationButton.accessibilityIdentifier = "floating button"
+        navigationButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(navigationButton)
+        NSLayoutConstraint.activate([
+            navigationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -tabBarController!.tabBar.frame.height-17),
+            navigationButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30.0),
+            navigationButton.widthAnchor.constraint(equalToConstant: 70.0),
+            navigationButton.heightAnchor.constraint(equalToConstant: 70.0)
+        ])
+        navigationButton.addTarget(self, action: #selector(openRecentSections), for: .touchUpInside)
+    }
+    
+    @objc private func openRecentSections() {
+        let vc = RecentFavouriteSectionsListViewController()
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
+    }
+    
+    private func setUpRefreshControl() {
+        tableView.addSubview(refreshControl)
+        refreshControl.addTarget(self, action: #selector(getRecentData), for: .valueChanged)
+    }
+    
+    func getData() {
+        DispatchQueue.main.async {
+            self.sections = self.loadSections()
+            self.tableView.reloadData()
+            self.check()
+        }
+    }
+    
+    func updateData(section: ForEveryStatusModel) {
+        let indexPath = IndexPath(row: self.sections.firstIndex(where: { $0.id == section.id })!, section: 0)
+        self.tableView.reloadRows(at: [indexPath], with: .left)
+    }
+    
+    @objc func getRecentData() {
+        let recentItems = loadRecentSections()
+        if !recentItems.isEmpty {
+            DispatchQueue.main.async {
+                self.sections = recentItems
+                self.tableView.reloadData()
+                self.check()
+                self.saveSections(sections: self.sections)
+                self.refreshControl.endRefreshing()
+            }
+        } else {
+            showAlert(title: "Список пуст", message: "нет недавних разделов", actions: [UIAlertAction(title: "ОК", style: .default) { _ in self.refreshControl.endRefreshing()}])
+        }
+    }
+    
+    func check() {
+        if sections.isEmpty {
+            noSectionsLabel.isHidden = false
+        } else {
+            noSectionsLabel.isHidden = true
+        }
+    }
+    
+    func loadSections()-> [ForEveryStatusModel] {
+        var data = [ForEveryStatusModel]()
+        if let result = UserDefaults.standard.object(forKey: "sections") as? Data {
+            do {
+                data = try JSONDecoder().decode([ForEveryStatusModel].self, from: result)
+            } catch {
+                print(error)
+            }
+        }
+        return data
+    }
+    
+    func loadRecentSections()-> [ForEveryStatusModel] {
+        var data = [ForEveryStatusModel]()
+        if let result = UserDefaults.standard.object(forKey: "recent sections") as? Data {
+            do {
+                data = try JSONDecoder().decode([ForEveryStatusModel].self, from: result)
+            } catch {
+                print(error)
+            }
+        }
+        return data
+    }
+    
+    func deleteAction(section: ForEveryStatusModel) {
+        
+        var sections = loadSections()
+        
+        if let index = sections.firstIndex(where: { $0 == section }) {
+            sections.remove(at: index)
+        }
+        
+        if sections.isEmpty {
+            setUpEditButton(title: "Править")
+        }
+        
+        HapticsManager.shared.hapticFeedback()
+        saveSections(sections: sections)
+    }
+    
+    func saveSections(sections: [ForEveryStatusModel]) {
+        do {
+            let arr = try JSONEncoder().encode(sections)
+            UserDefaults.standard.setValue(arr, forKey: "sections")
+            getData()
+        } catch {
+            print(error)
+        }
+    }
+    
+    func saveChanges(section: ForEveryStatusModel) {
+        do {
+            let arr = try JSONEncoder().encode(sections)
+            UserDefaults.standard.setValue(arr, forKey: "sections")
+            updateData(section: section)
+        } catch {
+            print(error)
+        }
+    }
+    
+    func updateSections(_ index: Int, _ index2: Int) {
+        let section = sections.remove(at: index)
+        sections.insert(section, at: index2)
+        saveSections(sections: sections)
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension FavouriteSectionsListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let section = sections[indexPath.row]
+        
+        switch section.id {
+            
+        case 1:
+            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
+                cell.didTapCell(indexPath: indexPath) {
+                    self.goToWeb(url: "http://plany.agpu.net/WebApp/#/", image: "online", title: "ЭИОС", isSheet: false, isNotify: false)
+                }
+            }
+            
+        case 2:
+            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
+                cell.didTapCell(indexPath: indexPath) {
+                    let vc = AGPUBuildingsMapViewController()
+                    vc.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            
+        case 3:
+            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
+                cell.didTapCell(indexPath: indexPath) {
+                    let annotation = MKPointAnnotation()
+                    annotation.title = "Армавир"
+                    annotation.coordinate = CLLocationCoordinate2D(latitude: 44.9892, longitude: 41.1234)
+                    let vc = LocationWeatherDetailViewController(annotation: annotation)
+                    vc.isSection = true
+                    vc.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            
+        case 4:
+            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
+                cell.didTapCell(indexPath: indexPath) {
+                    self.goToWeb(url: "http://www.agpu.net/abitur/faculties/index.php", image: "online", title: "Факультеты", isSheet: false, isNotify: false)
+                }
+            }
+            
+        case 5:
+            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
+                cell.didTapCell(indexPath: indexPath) {
+                    let vc = ASPUWebsiteSectionsListViewController()
+                    vc.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            
+        case 6:
+            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
+                cell.didTapCell(indexPath: indexPath) {
+                    if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
+                        self.goToWeb(url: cathedra.manualUrl, image: "online", title: "Метод. материалы", isSheet: false, isNotify: false)
+                    } else {
+                        self.showHintAlert(type: .manuals, isNotify: false, delegate: nil)
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                }
+            }
+            
+        case 7:
+            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
+                cell.didTapCell(indexPath: indexPath) {
+                    let vc = ThingsCategoriesListTableViewController()
+                    vc.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            
+        case 8:
+            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
+                cell.didTapCell(indexPath: indexPath) {
+                    let vc = AGPUWallpapersListViewController()
+                    vc.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            
+        default:
+            break
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+            
+            let item = self.sections[indexPath.row]
+            
+            let editAction = UIAction(title: "Редактировать", image: UIImage(named: "edit")) { _ in
+                self.showEditAlert(section: item)
+            }
+            
+            let resetAction = UIAction(title: "Сбросить", image: UIImage(named: "refresh")) { _ in
+                self.resetTitle(section: item)
+            }
+            
+            return UIMenu(title: item.name, children: [
+                editAction,
+                resetAction
+            ])
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            deleteAction(section: sections[indexPath.row])
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        if tableView.isEditing {
+            updateSections(sourceIndexPath.row, destinationIndexPath.row)
+        }
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension FavouriteSectionsListViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ForEveryStatusTableViewCell.identifier, for: indexPath) as? ForEveryStatusTableViewCell else {return UITableViewCell()}
+        cell.configure(for: sections[indexPath.row])
+        return cell
+    }
+}
+
+// MARK: - AllSectionsListTableViewControllerDelegate
+extension FavouriteSectionsListViewController: AllSectionsListTableViewControllerDelegate {
+    
+    func sectionWasAdded() {
+        getData()
+        setUpEditButton(title: "Править")
+        tableView.isEditing = false
+    }
+}
+
+extension FavouriteSectionsListViewController {
+    
+    func showEditAlert(section: ForEveryStatusModel) {
+        
+        let alertVC = UIAlertController(title: createEditAlertMessage().0, message: createEditAlertMessage().1, preferredStyle: .alert)
+        
+        alertVC.addTextField { (textField) in
+            textField.placeholder = "Название"
+            textField.text = section.name
+        }
+        
+        let saveAction = UIAlertAction(title: "Сохранить", style: .default) { _ in
+            if let name = alertVC.textFields![0].text {
+                if !name.isEmpty {
+                    self.editText(section: section, text: name)
+                }
+            }
+        }
+        
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+        
+        alertVC.addAction(saveAction)
+        alertVC.addAction(cancel)
+        
+        SpeechSynthesizerManager.shared.checkIsSaying(text: "\(alertVC.title ?? "") \(alertVC.message ?? "")")
+        present(alertVC, animated: true)
+    }
+    
+    func editText(section: ForEveryStatusModel, text: String) {
+        let index = sections.firstIndex(of: section) ?? 0
+        if sections[index].name != text {
+            sections[index].name = text
+            saveChanges(section: section)
+        }
+    }
+    
+    func resetTitle(section: ForEveryStatusModel) {
+        let searchSection = Sections.list.first { $0.id == section.id }!
+        let index = sections.firstIndex(of: section) ?? 0
+        if sections[index].name != searchSection.name {
+            sections[index].name = searchSection.name
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.saveChanges(section: section)
+            }
+        }
+    }
+    
+    func createEditAlertMessage()-> (String, String) {
+        let style = settingsManager.getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        switch style {
+        case .formal:
+            return ("Изменить раздел", "\(!name.isEmpty ? "\(name) Вы точно хотите изменить" : "Вы точно хотите изменить") название раздела?")
+        case .informal:
+            return ("Изменить раздел", "\(!name.isEmpty ? "\(name) ты точно хочешь изменить" : "Ты точно хочешь изменить") название раздела?")
+        }
+    }
+}

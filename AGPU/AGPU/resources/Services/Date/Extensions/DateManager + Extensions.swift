@@ -10,6 +10,15 @@ import Foundation
 // MARK: - DateManagerProtocol
 extension DateManager: DateManagerProtocol {
     
+    func makeDateComponents(date: String)-> DateComponents {
+        var components = DateComponents()
+        let dateParts = date.components(separatedBy: ".")
+        components.day = Int(dateParts[0])
+        components.month = Int(dateParts[1])
+        components.year = Int(dateParts[2])
+        return components
+    }
+    
     func getCurrentDate()-> String {
         var currentDate = ""
         dateFormatter.dateFormat = "dd.MM.yyyy"
@@ -17,9 +26,12 @@ extension DateManager: DateManagerProtocol {
         return currentDate
     }
     
+    func getCurrentYear()-> Int {
+        return calendar.component(.year, from: date)
+    }
+    
     func getCurrentMonth()-> Int {
         let date = Date()
-        let calendar = Calendar.current
         return calendar.component(.month, from: date)
     }
     
@@ -35,7 +47,6 @@ extension DateManager: DateManagerProtocol {
     }
     
     func getCurrentDayOfWeek(date: String)-> String {
-        let calendar = Calendar.current
         dateFormatter.dateFormat = "dd.MM.yyyy"
         if let date = dateFormatter.date(from: date) {
             let dayOfWeek = calendar.component(.weekday, from: date)
@@ -60,6 +71,13 @@ extension DateManager: DateManagerProtocol {
         return currentDate
     }
     
+    func getFormattedDate(from text: String)-> String {
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let currentDate = dateFormatter.date(from: text)
+        let formattedDate = getFormattedDate(date: currentDate!)
+        return formattedDate
+    }
+    
     func getDateFromString(str: String, withTime: Bool)-> Date? {
         if withTime {
             dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
@@ -72,9 +90,39 @@ extension DateManager: DateManagerProtocol {
         return nil
     }
     
+    func getDateFromWords(date: String)-> String {
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+        dateFormatter.dateFormat = "d MMMM"
+        var components = DateComponents()
+        if let result = dateFormatter.date(from: date) {
+            components.day = calendar.component(.day, from: result)
+            components.month = calendar.component(.month, from: result)
+            components.year = getCurrentYear()
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+            return dateFormatter.string(from: calendar.date(from: components)!)
+        }
+        return ""
+    }
+    
+    func checkDateFromWords(text: String)-> Bool {
+        let day = text.getNumberFromString()
+        if text.contains("феврал") {
+            let daysCount = getMonthDaysCount(date: "01.02.2025")
+            if Int(day) ?? 0 <= daysCount {
+                return true
+            }
+        } else {
+            let daysCount = getMonthDaysCount(date: getDateFromWords(date: text))
+            if Int(day) ?? 0 <= daysCount {
+                return true
+            }
+        }
+        return false
+    }
+    
     func isCorrectFormat(str: String)-> Bool {
         dateFormatter.dateFormat = "dd.MM.yyyy"
-        if let currentDate = dateFormatter.date(from: str) {
+        if let _ = dateFormatter.date(from: str) {
             return true
         }
         return false
@@ -87,7 +135,6 @@ extension DateManager: DateManagerProtocol {
         var nextDay = ""
         
         if let date = dateFormatter.date(from: date) {
-            let calendar = Calendar.current
             var dateComponent = DateComponents()
             dateComponent.day = 1
             
@@ -106,7 +153,6 @@ extension DateManager: DateManagerProtocol {
         var previousDay = ""
         
         if let date = dateFormatter.date(from: date) {
-            let calendar = Calendar.current
             var dateComponent = DateComponents()
             dateComponent.day = -1
             
@@ -116,6 +162,25 @@ extension DateManager: DateManagerProtocol {
             }
         }
         return previousDay
+    }
+    
+    func addingTime(addTime: String)-> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        
+        let currentDate = Date()
+        let addingTime = dateFormatter.date(from: addTime) ?? Date()
+        
+        var dateComponent = DateComponents()
+        dateComponent.hour = calendar.component(.hour, from: addingTime)
+        dateComponent.minute = calendar.component(.minute, from: addingTime)
+        
+        if let time = calendar.date(byAdding: dateComponent, to: currentDate) {
+            return dateFormatter.string(from: time)
+        }
+        
+        return ""
     }
     
     func dateRange(startDate: String, endDate: String)-> Bool {
@@ -202,8 +267,6 @@ extension DateManager: DateManagerProtocol {
     
     func compareDaysCount(date: String, date2: String)-> Int {
         
-        let calendar = Calendar.current
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
         
@@ -224,8 +287,6 @@ extension DateManager: DateManagerProtocol {
     }
     
     func getInfoFromDates(date: String, date2: String)-> DateComponents {
-        
-        let calendar = Calendar.current
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy HH:mm:ss"
@@ -250,5 +311,20 @@ extension DateManager: DateManagerProtocol {
             print("Ошибка при создании даты")
         }
         return info
+    }
+    
+    func getMonthDaysCount(date: String)-> Int {
+        var convertedDate = Date()
+        var count = 0
+        let dateitems = date.components(separatedBy: ".")
+        if dateitems.count > 1 {
+            if dateitems[1] == "02" {
+                convertedDate = getDateFromString(str: "01.02.\(dateitems[2])", withTime: false) ?? Date()
+            } else {
+                convertedDate = getDateFromString(str: date, withTime: false) ?? Date()
+            }
+        }
+        count = calendar.range(of: .day, in: .month, for: convertedDate)?.count ?? 0
+        return count
     }
 }

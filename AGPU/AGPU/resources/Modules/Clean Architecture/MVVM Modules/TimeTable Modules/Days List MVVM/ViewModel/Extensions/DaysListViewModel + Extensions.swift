@@ -11,38 +11,58 @@ import UIKit
 extension DaysListViewModel: DaysListViewModelProtocol {
     
     func dayItem(index: Int)-> DayModel {
-        return DaysList.days[index]
+        return days[index]
     }
     
     func dayItemsCount()-> Int {
-        return  DaysList.days.count
+        return days.count
+    }
+    
+    func resetData() {
+        days = []
+        setUpData()
     }
     
     func setUpData() {
-        // даты
-        DaysList.days[0].date = dateManager.getCurrentDate()
-        DaysList.days[1].date = currentDate
-        DaysList.days[2].date = dateManager.nextDay(date: currentDate)
-        DaysList.days[3].date = dateManager.previousDay(date: currentDate)
-        
-        // дни недели
-        DaysList.days[0].dayOfWeek = dateManager.getCurrentDayOfWeek(date: dateManager.getCurrentDate())
-        DaysList.days[1].dayOfWeek = dateManager.getCurrentDayOfWeek(date: currentDate)
-        DaysList.days[2].dayOfWeek = dateManager.getCurrentDayOfWeek(date: dateManager.nextDay(date: currentDate))
-        DaysList.days[3].dayOfWeek = dateManager.getCurrentDayOfWeek(date: dateManager.previousDay(date: currentDate))
-        
-        // информация о количестве пар
-        DaysList.days[0].info = "загрузка..."
-        DaysList.days[1].info = "загрузка..."
-        DaysList.days[2].info = "загрузка..."
-        DaysList.days[3].info = "загрузка..."
-        
+        switch dayType {
+        case .near:
+            setUpNearDays()
+        case .week:
+            setUpWeekData(week: week)
+        case .selected:
+            setUpSelectedDays(dates: dates)
+        }
+    }
+    
+    func setUpNearDays() {
+        let one = DayModel(name: DaysList.days[0].name, date: dateManager.getCurrentDate(), dayOfWeek: dateManager.getCurrentDayOfWeek(date: dateManager.getCurrentDate()), info: "Загрузка...")
+        let two = DayModel(name: DaysList.days[1].name, date: currentDate, dayOfWeek: dateManager.getCurrentDayOfWeek(date: currentDate), info: "Загрузка...")
+        let three = DayModel(name: DaysList.days[2].name, date: dateManager.nextDay(date: currentDate), dayOfWeek: dateManager.getCurrentDayOfWeek(date: dateManager.nextDay(date: currentDate)), info: "Загрузка...")
+        let four = DayModel(name: DaysList.days[3].name, date: dateManager.previousDay(date: currentDate), dayOfWeek: dateManager.getCurrentDayOfWeek(date: dateManager.previousDay(date: currentDate)), info: "Загрузка...")
+        self.days = [one, two, three, four]
+        getTimetableInfo()
+    }
+    
+    func setUpWeekData(week: WeekModel) {
+        var keys = week.dayNames.keys.sorted { dateManager.compareDates(date1: $0, date2: $1) == .orderedAscending }
+        let values =  week.dayNames.values
+        if values.contains("Воскресенье") {
+            if let index = keys.firstIndex(where: { week.dayNames[$0] == "Воскресенье" }) {
+                keys.remove(at: index)
+            }
+        }
+        self.days = keys.map({ DayModel(name: "Неделя \(week.id)", date: $0, dayOfWeek: dateManager.getCurrentDayOfWeek(date: $0), info: "Загрузка...")})
+        getTimetableInfo()
+    }
+    
+    func setUpSelectedDays(dates: [String]) {
+        self.days = dates.map({ DayModel(name: "Календарь", date: $0, dayOfWeek: dateManager.getCurrentDayOfWeek(date: $0), info: "Загрузка...")})
         getTimetableInfo()
     }
     
     func getTimetableInfo() {
         let dispatchGroup = DispatchGroup()
-        for day in DaysList.days {
+        for day in days {
             dispatchGroup.enter()
             timetableService.getTimeTableDay(id: id, date: day.date, owner: owner) { [weak self] result in
                 defer { dispatchGroup.leave() }
@@ -50,8 +70,8 @@ extension DaysListViewModel: DaysListViewModelProtocol {
                 case .success(let timetable):
                     if !timetable.disciplines.isEmpty {
                         // просто расписание
-                        let day = DaysList.days.first { $0.name == day.name }
-                        let index = DaysList.days.firstIndex(of: day!)
+                        let day = self?.days.first { $0.date == day.date }
+                        let index = self?.days.firstIndex(of: day!)
                         let pairsCount = self?.getPairsCount(pairs: timetable.disciplines) ?? 0
                         // особые дни
                         let coursesCount = self?.getCoursesCount(pairs: timetable.disciplines) ?? 0
@@ -61,37 +81,37 @@ extension DaysListViewModel: DaysListViewModelProtocol {
                         let holidaysExisting = self?.checkHolidaysExisting(pairs: timetable.disciplines)
                         
                         if pairsCount > 0 {
-                            DaysList.days[index!].info = "пар: \(self?.getPairsCount(pairs: timetable.disciplines) ?? 0)"
-                        } 
+                            self?.days[index!].info = "пар: \(self?.getPairsCount(pairs: timetable.disciplines) ?? 0)"
+                        }
                         
                         if coursesCount > 0 {
-                            DaysList.days[index!].info = coursesCount > 1 ? "курсовые" : "курсовая!"
-                        } 
+                            self?.days[index!].info = coursesCount > 1 ? "курсовые" : "курсовая!"
+                        }
                         
                         if testsCount > 0 {
-                            DaysList.days[index!].info = testsCount > 1 ? "зачеты" : "зачет"
-                        } 
+                            self?.days[index!].info = testsCount > 1 ? "зачеты" : "зачет"
+                        }
                         
                         if consCount > 0 {
-                            DaysList.days[index!].info = "конс."
+                            self?.days[index!].info = "конс."
                         }
                         
                         if examsCount > 0 {
-                            DaysList.days[index!].info = examsCount > 1 ? "экзамены!" : "экзамен!"
-                        } 
+                            self?.days[index!].info = examsCount > 1 ? "экзамены!" : "экзамен!"
+                        }
                         
                         if holidaysExisting ?? false {
-                            DaysList.days[index!].info = "каникулы!"
+                            self?.days[index!].info = "каникулы!"
                         }
                     } else {
-                        let day = DaysList.days.first { $0.name == day.name }
-                        let index = DaysList.days.firstIndex(of: day!)
-                        DaysList.days[index!].info = "нет пар"
+                        let day = self?.days.first { $0.name == day.name }
+                        let index = self?.days.firstIndex(of: day!)
+                        self?.days[index!].info = "нет пар"
                     }
                 case .failure(let error):
-                    let day = DaysList.days.first { $0.name == day.name }
-                    let index = DaysList.days.firstIndex(of: day!)
-                    DaysList.days[index!].info = "нет пар"
+                    let day = self?.days.first { $0.name == day.name }
+                    let index = self?.days.firstIndex(of: day!)
+                    self?.days[index!].info = "нет пар"
                     self?.dataChangedHandler?()
                     print(error)
                 }
@@ -204,7 +224,7 @@ extension DaysListViewModel: DaysListViewModelProtocol {
     }
     
     func timeTableColor(index: Int)-> UIColor {
-        let day = DaysList.days[index]
+        let day = days[index]
         if day.info.contains("пар:") {
             return .systemGreen
         } else if day.info.contains("зачет") || day.info.contains("конс")  {

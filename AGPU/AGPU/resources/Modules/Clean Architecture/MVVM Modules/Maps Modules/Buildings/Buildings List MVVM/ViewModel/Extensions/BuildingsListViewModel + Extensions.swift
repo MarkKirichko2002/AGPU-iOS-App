@@ -10,7 +10,11 @@ import MapKit
 // MARK: - IBuildingsListViewModel
 extension BuildingsListViewModel: IBuildingsListViewModel {
     
-    func buildingItem(index: Int)-> MKAnnotation {
+    func fillData(annotations: [MKAnnotation]) {
+        self.buildings = annotations.compactMap({ BuildingModel(name: $0.title!!, coordinate: $0.coordinate, annotation: $0, distance: (-1, -1))})
+    }
+    
+    func buildingItem(index: Int)-> BuildingModel {
         return buildings[index]
     }
     
@@ -18,24 +22,36 @@ extension BuildingsListViewModel: IBuildingsListViewModel {
         return buildings.count
     }
     
-    func getInfo(for building: Int)-> String {
-        let item = buildingItem(index: building)
-        let locationA = CLLocation(latitude: currentLocation?.coordinate.latitude ?? 0, longitude: currentLocation?.coordinate.longitude ?? 0)
-        let locationB = CLLocation(latitude: item.coordinate.latitude, longitude: item.coordinate.longitude)
-        let distance = locationA.distance(from: locationB)
-        let kilometers = Int(distance) / 1000
-        let metres = Int(distance.truncatingRemainder(dividingBy: 1000))
+    func getData() {
         
-        if locationA.coordinate.longitude == locationB.coordinate.longitude {
-            return "\(item.title!!) (Выбрано)"
-        } else {
-            return "\(item.title!!) (\(kilometers) км \(metres) м)"
+        let group = DispatchGroup()
+        guard let location = currentLocation else {return}
+        
+        for i in 0..<buildings.count {
+            group.enter()
+            locationManager.getDistance(source: location.coordinate, destination: buildings[i].coordinate) { km, m, _ in
+                self.buildings[i].distance = (km, m)
+                group.leave()
+            } errorHandler: { _ in
+                group.leave()
+            }
         }
+        
+        group.notify(queue: .main) {
+            self.dataChangedHandler?()
+        }
+    }
+    
+    func resetBuildings() {
+        for i in 0..<buildings.count {
+            self.buildings[i].distance = (-1, -1)
+        }
+        dataChangedHandler?()
     }
     
     func selectBuilding(index: Int) {
         let item = buildingItem(index: index)
-        if item.title! != currentLocation?.title! {
+        if item.name != currentLocation?.name {
             currentLocation = item
             self.index = index
             HapticsManager.shared.hapticFeedback()
@@ -45,13 +61,51 @@ extension BuildingsListViewModel: IBuildingsListViewModel {
     
     func isBuildingSelected(index: Int)-> Bool {
         let item = buildingItem(index: index)
-        if item.title! == currentLocation?.title! && item.coordinate.longitude == currentLocation?.coordinate.longitude {
+        if item.name == currentLocation?.name && item.coordinate.longitude == currentLocation?.coordinate.longitude {
             return true
         }
         return false
     }
     
+    func configureItem(index: Int)-> String {
+        let item = buildingItem(index: index)
+        if item.distance == (-1,-1) {
+            return "\(item.name) (Вычисляем расстояние...)"
+        } else if item.distance == (0, 0) {
+            return "\(item.name) (Выбрано)"
+        } else {
+            return "\(item.name) (\(item.distance.0) км \(item.distance.1) м)"
+        }
+    }
+    
+    func createTransportTypeMenu()-> UIMenu {
+        let walking = UIAction(title: "Пешком", state: selectedType == .walking ? .on : .off) { item in
+            self.selectedType = MKDirectionsTransportType.walking
+            self.locationManager.type = self.selectedType
+            self.resetBuildings()
+            self.getData()
+            self.transportTypeHandler?()
+        }
+        let auto = UIAction(title: "Автомобиль", state: selectedType == .automobile ? .on : .off) { _ in
+            self.selectedType = MKDirectionsTransportType.automobile
+            self.locationManager.type = self.selectedType
+            self.resetBuildings()
+            self.getData()
+            self.transportTypeHandler?()
+        }
+        let types = UIMenu(title: "Тип транспорта", children: [walking, auto])
+        return UIMenu(title: "Здания", children: [types])
+    }
+    
+    func registerDataChangedHandler(block: @escaping()->Void) {
+        self.dataChangedHandler = block
+    }
+    
     func registerSelectedHandler(block: @escaping()-> Void) {
         self.selectedHandler = block
+    }
+    
+    func registerTransportTypeHandler(block: @escaping()->Void) {
+        self.transportTypeHandler = block
     }
 }

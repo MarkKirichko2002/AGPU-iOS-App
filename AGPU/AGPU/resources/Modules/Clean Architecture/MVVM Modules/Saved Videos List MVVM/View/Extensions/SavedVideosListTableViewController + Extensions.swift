@@ -16,6 +16,12 @@ extension SavedVideosListTableViewController: UITableViewDelegate {
         playCurrentVideo(url: viewModel.videoItem(index: indexPath.row).url)
     }
     
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        if tableView.isEditing {
+            viewModel.updateVideos(videos: viewModel.videos, sourceIndexPath.row, destinationIndexPath.row)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             viewModel.deleteVideo(video: viewModel.videoItem(index: indexPath.row))
@@ -30,12 +36,18 @@ extension SavedVideosListTableViewController: UITableViewDelegate {
                 self.showEditAlert()
             }
             
+            let positionAction = UIAction(title: "Позиция", image: UIImage(named: "number")) { _ in
+                tableView.isEditing.toggle()
+                self.setUpEditButton()
+            }
+            
             let shareAction = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
                 self.shareInfo(image: UIImage(named: "play icon")!, title: "\(self.viewModel.videoItem(index: indexPath.row).name)", text: "\(self.viewModel.videoItem(index: indexPath.row).url)")
             }
             
             return UIMenu(title: self.viewModel.videoItem(index: indexPath.row).date, children: [
                 editAction,
+                positionAction,
                 shareAction
             ])
         }
@@ -61,10 +73,10 @@ extension SavedVideosListTableViewController {
     
     func showEditAlert() {
         
-        let alertVC = UIAlertController(title: "Изменить видео", message: "Вы точно хотите изменить название видео?", preferredStyle: .alert)
+        let alertVC = UIAlertController(title: viewModel.createEditAlertMessage().0, message: viewModel.createEditAlertMessage().1, preferredStyle: .alert)
         
         alertVC.addTextField { (textField) in
-            textField.placeholder = "Введите текст"
+            textField.placeholder = "Название видео"
             textField.text = self.video.name
         }
         
@@ -87,14 +99,14 @@ extension SavedVideosListTableViewController {
     
     @objc func showAddVideoAlert() {
         
-        let alertVC = UIAlertController(title: "Добавить видео", message: "Введите URL для видео", preferredStyle: .alert)
+        let alertVC = UIAlertController(title: viewModel.createAddAlertMessage().0, message: viewModel.createAddAlertMessage().1, preferredStyle: .alert)
         
         alertVC.addTextField { (textField) in
-            textField.placeholder = "Введите URL"
+            textField.placeholder = "URL"
         }
         
         let saveAction = UIAlertAction(title: "Сохранить", style: .default) { _ in
-            if let url = alertVC.textFields![0].text {
+            if let url = alertVC.textFields![0].text, !url.isEmpty {
                 if let urlPath = URL(string: url) {
                     let video = VideoModel()
                     video.url = urlPath.absoluteString
@@ -102,6 +114,10 @@ extension SavedVideosListTableViewController {
                     video.date = self.viewModel.getCurrentDate()
                     self.viewModel.saveVideo(video: video)
                 }
+            } else {
+                let ok = UIAlertAction(title: "ОК", style: .default) { _ in  self.showAddVideoAlert()
+                }
+                self.showAlert(title: self.viewModel.createAlertMessage().0, message: self.viewModel.createAlertMessage().1, actions: [ok])
             }
         }
         

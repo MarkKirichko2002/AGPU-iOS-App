@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TodayNewsListViewModel {
+final class TodayNewsListViewModel {
     
     // MARK: - сервисы
     let dateManager = DateManager()

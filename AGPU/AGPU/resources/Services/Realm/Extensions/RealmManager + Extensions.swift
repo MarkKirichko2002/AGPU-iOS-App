@@ -11,7 +11,7 @@ import RealmSwift
 // MARK: - IRealmManager
 extension RealmManager: IRealmManager {
     
-    // MARK: - Important Things
+    // MARK: - Important List
     func saveDocument(document: DocumentModel) {
         let doc = realm.object(ofType: DocumentModel.self, forPrimaryKey: document.url)
         if doc == nil {
@@ -55,9 +55,8 @@ extension RealmManager: IRealmManager {
             arr.append(newDocument)
         }
         
-        print("\(index) and \(index2)")
-        
-        arr.swapAt(index, index2)
+        let item = arr.remove(at: index)
+        arr.insert(item, at: index2)
         
         try! realm.write {
             realm.deleteAll()
@@ -94,6 +93,36 @@ extension RealmManager: IRealmManager {
             }
         } else {
             print("уже есть")
+        }
+    }
+    
+    func editImage(image: ImageModel, name: String) {
+        let newImage = realm.object(ofType: ImageModel.self, forPrimaryKey: image.id)
+        try! realm.write {
+            newImage?.date = name
+        }
+    }
+    
+    func updateImages(images: [ImageModel], _ index: Int, _ index2: Int) {
+        
+        var arr = [ImageModel]()
+        
+        for image in images {
+            let newImage = ImageModel()
+            newImage.image = image.image
+            newImage.date = image.date
+            arr.append(newImage)
+        }
+        
+        let item = arr.remove(at: index)
+        arr.insert(item, at: index2)
+        
+        try! realm.write {
+            realm.deleteAll()
+        }
+        
+        try! realm.write {
+            realm.add(arr)
         }
     }
     
@@ -134,6 +163,31 @@ extension RealmManager: IRealmManager {
         }
     }
     
+    func updateVideos(videos: [VideoModel], _ index: Int, _ index2: Int) {
+        
+        var arr = [VideoModel]()
+        
+        for video in videos {
+            let newVideo = VideoModel()
+            newVideo.id = UUID()
+            newVideo.url = video.url
+            newVideo.name = video.name
+            newVideo.date = video.date
+            arr.append(newVideo)
+        }
+        
+        let item = arr.remove(at: index)
+        arr.insert(item, at: index2)
+        
+        try! realm.write {
+            realm.deleteAll()
+        }
+        
+        try! realm.write {
+            realm.add(arr)
+        }
+    }
+    
     func deleteVideo(video: VideoModel) {
         let newVideo = realm.object(ofType: VideoModel.self, forPrimaryKey: video.id)
         guard let newVideo = newVideo else {return}
@@ -164,10 +218,33 @@ extension RealmManager: IRealmManager {
     }
     
     func editContact(contact: ContactModel, name: String, number: String) {
-        let newContact = realm.object(ofType: ContactModel.self, forPrimaryKey: contact.id)
         try! realm.write {
             contact.name = name
             contact.number = number
+        }
+    }
+    
+    func updateContacts(contacts: [ContactModel], _ index: Int, _ index2: Int) {
+        
+        var arr = [ContactModel]()
+        
+        for contact in contacts {
+            let newContact = ContactModel()
+            newContact.id = UUID()
+            newContact.name = contact.name
+            newContact.number = contact.number
+            arr.append(newContact)
+        }
+        
+        let item = arr.remove(at: index)
+        arr.insert(item, at: index2)
+        
+        try! realm.write {
+            realm.deleteAll()
+        }
+        
+        try! realm.write {
+            realm.add(arr)
         }
     }
     
@@ -183,6 +260,65 @@ extension RealmManager: IRealmManager {
     func getContacts()-> [ContactModel] {
         let items = realm.objects(ContactModel.self)
         return Array(items)
+    }
+    
+    func saveWebPage(page: WebPageModel) {
+        let web = realm.object(ofType: WebPageModel.self, forPrimaryKey: page.id)
+        if web == nil {
+            let newPage = WebPageModel()
+            newPage.id = UUID()
+            newPage.name = page.name
+            newPage.url = page.url
+            try! realm.write {
+                realm.add(newPage)
+            }
+        } else {
+            print("уже есть")
+        }
+    }
+    
+    func editWebPage(page: WebPageModel, name: String) {
+        try! realm.write {
+            page.name = name
+        }
+    }
+    
+    func updateWebPages(pages: [WebPageModel], _ index: Int, _ index2: Int) {
+        
+        var arr = [WebPageModel]()
+        
+        for page in pages {
+            let newPage = WebPageModel()
+            newPage.id = UUID()
+            newPage.name = page.name
+            newPage.url = page.url
+            arr.append(newPage)
+        }
+        
+        let item = arr.remove(at: index)
+        arr.insert(item, at: index2)
+        
+        try! realm.write {
+            realm.deleteAll()
+        }
+        
+        try! realm.write {
+            realm.add(arr)
+        }
+    }
+    
+    func deleteWebPage(page: WebPageModel) {
+        let newPage = realm.object(ofType: WebPageModel.self, forPrimaryKey: page.id)
+        guard let newPage = newPage else {return}
+        try! realm.write {
+            realm.delete(newPage)
+            HapticsManager.shared.hapticFeedback()
+        }
+    }
+    
+    func getWebPages()-> [WebPageModel] {
+        let pages = realm.objects(WebPageModel.self)
+        return Array(pages)
     }
     
     // MARK: - Adaptive News
@@ -275,6 +411,30 @@ extension RealmManager: IRealmManager {
             }
         } else {
             print("уже есть")
+        }
+    }
+    
+    func updateTimetableItems(items: [SearchTimetableModel], _ index: Int, _ index2: Int) {
+        
+        var arr = [SearchTimetableModel]()
+        
+        for item in items {
+            let newItem = SearchTimetableModel()
+            newItem.id = item.id
+            newItem.name = item.name
+            newItem.owner = item.owner
+            arr.append(newItem)
+        }
+        
+        let item = arr.remove(at: index)
+        arr.insert(item, at: index2)
+        
+        try! realm.write {
+            realm.deleteAll()
+        }
+        
+        try! realm.write {
+            realm.add(arr)
         }
     }
     

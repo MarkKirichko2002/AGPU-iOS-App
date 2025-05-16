@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabsIconStyleTableViewCell: UITableViewCell {
+final class TabsIconStyleTableViewCell: UITableViewCell {
         
     static let identifier = "TabsIconStyleTableViewCell"
     

@@ -7,8 +7,17 @@
 
 import UIKit
 import RealityKit
+import AVFoundation
 
-class TimetableARViewController: UIViewController {
+protocol TimetableARViewControllerDelegate: AnyObject {
+    func dateWasChanged(date: String)
+}
+
+protocol TimetableWeekARDelegate: AnyObject {
+    func weekWasSelected(week: WeekModel)
+}
+
+final class TimetableARViewController: UIViewController {
     
     var image = UIImage()
     var plane: AnchoringComponent.Target.Alignment = .vertical
@@ -19,7 +28,13 @@ class TimetableARViewController: UIViewController {
     var date: String = ""
     var owner: String = ""
     var weeks = [WeekModel]()
+    var dayType = DayType.near
     var currentWeek = WeekModel(id: 0, from: "", to: "", dayNames: ["" : ""])
+    var dates = [String]()
+    var isDay = false
+    
+    weak var delegate: TimetableARViewControllerDelegate?
+    weak var weekDelegate: TimetableWeekARDelegate?
     
     // MARK: - UI
     private let arView = ARView()
@@ -58,17 +73,23 @@ class TimetableARViewController: UIViewController {
         setUpNavigation()
         setUpARView()
         setUpIndicatorView()
+        setUpButtons()
         getWeeks()
+        SpeechSynthesizerManager.shared.registerSpeechFinishedHandler {
+            self.resetSpeechRecognition()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         runSession()
+        checkVoiceCommandsOption()
+        resetTorchButton()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        speechRecognitionManager.cancelSpeechRecognition()
+        cancelRecognition()
         stopSession()
     }
     
@@ -84,16 +105,11 @@ class TimetableARViewController: UIViewController {
         let options =  UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpMenu())
         options.tintColor = .label
         closeButton.tintColor = .label
-        navigationTitle()
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = options
     }
     
     private func setUpMenu()-> UIMenu {
-        
-        let refreshAction = UIAction(title: "Обновить") { _ in
-            self.refresh()
-        }
         
         let searchAction = UIAction(title: "Поиск") { _ in
             let vc = TimeTableSearchListTableViewController()
@@ -102,6 +118,13 @@ class TimetableARViewController: UIViewController {
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
+        }
+        
+        let nearBuildingAction = UIAction(title: "Нужное здание") { _ in
+            let vc = NearBuildingViewController(info: .audiences)
+            vc.delegate = self
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
         }
         
         let groupsList = UIAction(title: "Группы") { _ in
@@ -136,8 +159,8 @@ class TimetableARViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
-        let daysListAction = UIAction(title: "День") { _ in
-            let vc = DaysListTableViewController(id: self.id, currentDate: self.date, owner: self.owner)
+        let daysListAction = UIAction(title: "Список дней") { _ in
+            let vc = DaysListTableViewController(id: self.id, currentDate: self.date, owner: self.owner, dayType: self.dayType, week: self.currentWeek, dates: self.dates)
             vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -165,12 +188,20 @@ class TimetableARViewController: UIViewController {
             }
         }
         
+        let navigationsList = UIAction(title: "Навигация") { _ in
+            let vc = NavigationsListTableViewController(screen: .timetableAR)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         let share = UIAction(title: "Поделиться") { _ in
             self.makeScreenShot()
         }
         return UIMenu(title: "AR", children: [
-            refreshAction,
             searchAction,
+            nearBuildingAction,
+            nearBuildingAction,
             groupsList,
             teachersList,
             audiencesList,
@@ -178,76 +209,19 @@ class TimetableARViewController: UIViewController {
             daysListAction,
             weeks,
             calendarAction,
-            setUpMeshListMenu(),
-            setUpPlaneListMenu(),
+            navigationsList,
             share
         ])
     }
     
-    private func setUpPlaneListMenu()-> UIMenu {
-        
-        let any = UIAction(title: "Любая") { _ in
-            self.plane = .any
-            let box = self.createMesh()
-            let anchor = self.setAnchor(model: box)
-            self.installGestures(on: box)
-            self.arView.scene.anchors.removeAll()
-            self.arView.scene.anchors.append(anchor)
-            HapticsManager.shared.hapticFeedback()
-        }
-        
-        let horizontal = UIAction(title: "Горизонтально") { _ in
-            self.plane = .horizontal
-            let box = self.createMesh()
-            let anchor = self.setAnchor(model: box)
-            self.installGestures(on: box)
-            self.arView.scene.anchors.removeAll()
-            self.arView.scene.anchors.append(anchor)
-            HapticsManager.shared.hapticFeedback()
-        }
-        
-        let vertical = UIAction(title: "Вертикально", state: .on) { _ in
-            self.plane = .vertical
-            let box = self.createMesh()
-            let anchor = self.setAnchor(model: box)
-            self.installGestures(on: box)
-            self.arView.scene.anchors.removeAll()
-            self.arView.scene.anchors.append(anchor)
-            HapticsManager.shared.hapticFeedback()
-        }
-        
-        return UIMenu(title: "Плоскость", options: .singleSelection, children: [
-            any,
-            horizontal,
-            vertical
-        ])
-    }
-    
-    private func setUpMeshListMenu()-> UIMenu {
-        
-        let box = UIAction(title: "Куб", state: .on) { _ in
-            self.mesh = .box
-            self.refresh()
-        }
-        
-        let plane = UIAction(title: "Плоскость") { _ in
-            self.mesh = .plane
-            self.refresh()
-        }
-        
-        return UIMenu(title: "Форма", options: .singleSelection, children: [
-            box,
-            plane
-        ])
-    }
-    
-    private func refresh() {
+    @objc private func refresh() {
         let mesh = createMesh()
         let anchor = setAnchor(model: mesh)
         installGestures(on: mesh)
         arView.scene.anchors.removeAll()
         arView.scene.anchors.append(anchor)
-        self.arView.isUserInteractionEnabled = true
+        arView.isUserInteractionEnabled = true
+        HapticsManager.shared.hapticFeedback()
     }
     
     @objc private func closeScreen() {
@@ -256,23 +230,20 @@ class TimetableARViewController: UIViewController {
     }
     
     private func setUpARView() {
-        let box = createMesh()
-        let anchor = setAnchor(model: box)
-        installGestures(on: box)
+        view.addSubview(arView)
         view.addSubview(arView)
         arView.frame = view.bounds
-        arView.scene.anchors.append(anchor)
+        refresh()
         setUpSwipeGestures()
         checkVoiceCommandsOption()
     }
     
     private func checkVoiceCommandsOption() {
-        let isVoiceCommands = UserDefaults.standard.object(forKey: "onVoiceCommands") as? Bool ?? false
-        if isVoiceCommands {
-            resetSpeechRecognition()
-        } else {
-            makeNavigationView(image: "cube", title: "AR режим")
+        let screens = settingsManager.loadScreens()
+        if screens.contains(SpeechScreens.ARTimetable) {
+            startRecognize()
         }
+        navigationTitle()
     }
     
     private func makeNavigationView(image: String, title: String) {
@@ -282,22 +253,16 @@ class TimetableARViewController: UIViewController {
         }
     }
     
-    private func cancelRecognition() {
-        let isVoiceCommands = UserDefaults.standard.object(forKey: "onVoiceCommands") as? Bool ?? false
-        if isVoiceCommands {
-            speechRecognitionManager.cancelSpeechRecognition()
-        }
-    }
-    
-    private func navigationTitle() {
+   private func navigationTitle() {
         
         let style = settingsManager.getSavedCommunicationStyle()
         
-        let isVoiceCommands = UserDefaults.standard.object(forKey: "onVoiceCommands") as? Bool ?? false
-        if isVoiceCommands {
+        let screens = settingsManager.loadScreens()
+        
+        if screens.contains(SpeechScreens.ARTimetable) {
             style == .formal ? makeNavigationView(image: "microphone", title: "Говорите...") : makeNavigationView(image: "microphone", title: "Говори...")
         } else {
-           makeNavigationView(image: "cube", title: "AR режим")
+            makeNavigationView(image: "cube", title: "AR режим")
         }
     }
     
@@ -328,23 +293,100 @@ class TimetableARViewController: UIViewController {
         }
     }
     
-    private func voiceCommands(text: String) {
-        
-        if text.lowercased().contains("вперёд") || text.lowercased().contains("вперед") || text.lowercased().contains("след") || text.lowercased().contains("дал") {
-            cancelRecognition()
-            nextItem()
-        }
-        
-        if text.lowercased().contains("назад") || text.lowercased().contains("пред") {
-            cancelRecognition()
-            pastItem()
+    private func cancelRecognition() {
+        let screens = settingsManager.loadScreens()
+        if screens.contains(SpeechScreens.ARTimetable) {
+            speechRecognitionManager.cancelSpeechRecognition()
         }
     }
     
-    private func resetSpeechRecognition() {
-        cancelRecognition()
-        Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-            self.startRecognize()
+    func resetSpeechRecognition() {
+        let screens = settingsManager.loadScreens()
+        if screens.contains(SpeechScreens.ARTimetable) {
+            cancelRecognition()
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.startRecognize()
+            }
+        }
+    }
+    
+    private func voiceCommands(text: String) {
+        voiceRefreshTimetable(text: text)
+        voiceGetCurrentTimetable(text: text)
+        voiceNavigateTimetable(text: text)
+        voiceWeeksList(text: text)
+        voicePairsForDate(text: text)
+        voiceCloseAlert(text: text)
+    }
+    
+    func voiceRefreshTimetable(text: String) {
+        if text.lowercased().contains("обнови") {
+            cancelRecognition()
+            restartItem()
+            closeAlert()
+        }
+    }
+    
+    func voiceGetCurrentTimetable(text: String) {
+        if text.lowercased().contains("сегодн") {
+            cancelRecognition()
+            isDay = true
+            currentWeek = WeekModel(id: 0, from: "", to: "", dayNames: ["":""])
+            date = dateManager.getCurrentDate()
+            delegate?.dateWasChanged(date: date)
+            getTimetable(date: date)
+            closeAlert()
+        }
+    }
+    
+    func voiceNavigateTimetable(text: String) {
+        if text.lowercased().contains("вперёд") || text.lowercased().contains("вперед") {
+            cancelRecognition()
+            nextItem()
+            closeAlert()
+        }
+        if text.lowercased().contains("назад") || text.lowercased().contains("обратно") {
+            cancelRecognition()
+            pastItem()
+            closeAlert()
+        }
+    }
+    
+    func voiceWeeksList(text: String) {
+        if text.lowercased().contains("недел") {
+            let vc = AllWeeksListTableViewController(id: self.id, subgroup: self.subgroup, owner: self.owner)
+            vc.isAR = true
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+            closeAlert()
+        }
+    }
+    
+    func voicePairsForDate(text: String) {
+        let ok = UIAlertAction(title: "ОК", style: .default) { _ in
+            SpeechSynthesizerManager.shared.stopComment()
+        }
+        if text.lowercased().contains(text.lowercased().getDateFromString()) {
+            cancelRecognition()
+            if dateManager.checkDateFromWords(text: text) {
+                isDay = true
+                currentWeek = WeekModel(id: 0, from: "", to: "", dayNames: ["":""])
+                date = dateManager.getDateFromWords(date: text.getDateFromString())
+                delegate?.dateWasChanged(date: date)
+                getTimetable(date: date)
+            } else {
+                self.showInfoAlert(title: "Неверная дата!", message: "не существует такой даты", actions: [ok])
+            }
+            closeAlert()
+        }
+    }
+    
+    func voiceCloseAlert(text: String) {
+        if text.lowercased().contains("закр") {
+            resetSpeechRecognition()
+            closeAlert()
         }
     }
     
@@ -419,29 +461,77 @@ class TimetableARViewController: UIViewController {
         }
     }
     
+    private func restartItem() {
+        switch dayType {
+        case .near:
+            if currentWeek.id == 0 {
+               delegate?.dateWasChanged(date: date)
+               getTimetable(date: date)
+           }
+        case .week:
+            if (currentWeek.id < weeks.last?.id ?? 0) && currentWeek.id != 0 {
+                let number = currentWeek.id
+                getTimetable(week: weeks[number])
+            }
+        case .selected:
+            if currentWeek.id == 0 {
+               delegate?.dateWasChanged(date: date)
+               getTimetable(date: date)
+           }
+        }
+    }
+    
     @objc private func pastItem() {
-        if (currentWeek.id > weeks.first?.id ?? 0) && currentWeek.id != 0 {
-            print(currentWeek.id)
-            print(weeks.first?.id ?? 0)
-            let number = currentWeek.id - 1
-            getTimetable(week: weeks[number - 1])
-        } else if currentWeek.id == 0 {
-            print("past day")
-            date = dateManager.previousDay(date: date)
-            getTimetable(date: date)
+        switch dayType {
+        case .near:
+            if currentWeek.id == 0 {
+                date = dateManager.previousDay(date: date)
+                delegate?.dateWasChanged(date: date)
+                getTimetable(date: date)
+            }
+        case .week:
+            if isDay {
+                date = dateManager.previousDay(date: date)
+                delegate?.dateWasChanged(date: date)
+                getTimetable(date: date)
+            } else if (currentWeek.id > weeks.first?.id ?? 0) && currentWeek.id != 0 {
+                let number = currentWeek.id - 1
+                getTimetable(week: weeks[number - 1])
+                weekDelegate?.weekWasSelected(week: weeks[number - 1])
+            }
+        case .selected:
+            if currentWeek.id == 0 {
+                date = dateManager.previousDay(date: date)
+                delegate?.dateWasChanged(date: date)
+                getTimetable(date: date)
+            }
         }
     }
     
     @objc private func nextItem() {
-        if (currentWeek.id < weeks.last?.id ?? 0) && currentWeek.id != 0 {
-            print(currentWeek.id)
-            print(weeks.last?.id ?? 0)
-            let number = currentWeek.id
-            getTimetable(week: weeks[number])
-        } else if currentWeek.id == 0 {
-            print("next day")
-            date = dateManager.nextDay(date: date)
-            getTimetable(date: date)
+        switch dayType {
+        case .near:
+            if currentWeek.id == 0 {
+                date = dateManager.nextDay(date: date)
+                delegate?.dateWasChanged(date: date)
+                getTimetable(date: date)
+            }
+        case .week:
+            if isDay {
+                date = dateManager.nextDay(date: date)
+                delegate?.dateWasChanged(date: date)
+                getTimetable(date: date)
+            } else if (currentWeek.id < weeks.last?.id ?? 0) && currentWeek.id != 0 {
+                let number = currentWeek.id
+                getTimetable(week: weeks[number])
+                weekDelegate?.weekWasSelected(week: weeks[number])
+            }
+        case .selected:
+            if currentWeek.id == 0 {
+                date = dateManager.nextDay(date: date)
+                delegate?.dateWasChanged(date: date)
+                getTimetable(date: date)
+            }
         }
     }
     
@@ -458,6 +548,44 @@ class TimetableARViewController: UIViewController {
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+    }
+    
+    private func setUpButtons() {
+        let torchButton = UIButton()
+        torchButton.accessibilityIdentifier = "flashlight"
+        torchButton.tintColor = .white
+        torchButton.setImage(UIImage(named: "flashlight"), for: .normal)
+        torchButton.translatesAutoresizingMaskIntoConstraints = false
+        let refreshButton = UIButton()
+        refreshButton.accessibilityIdentifier = "refresh"
+        refreshButton.tintColor = .white
+        refreshButton.setImage(UIImage(named: "refresh icon"), for: .normal)
+        refreshButton.translatesAutoresizingMaskIntoConstraints = false
+        arView.addSubview(torchButton)
+        arView.addSubview(refreshButton)
+        NSLayoutConstraint.activate([
+            refreshButton.bottomAnchor.constraint(equalTo: arView.bottomAnchor, constant: -40.0),
+            refreshButton.leftAnchor.constraint(equalTo: arView.leftAnchor, constant: 30.0),
+            refreshButton.widthAnchor.constraint(equalToConstant: 40.0),
+            refreshButton.heightAnchor.constraint(equalToConstant: 40.0),
+            torchButton.bottomAnchor.constraint(equalTo: arView.bottomAnchor, constant: -40.0),
+            torchButton.rightAnchor.constraint(equalTo: arView.rightAnchor, constant: -30.0),
+            torchButton.widthAnchor.constraint(equalToConstant: 50.0),
+            torchButton.heightAnchor.constraint(equalToConstant: 50.0)
+        ])
+        torchButton.addTarget(self, action: #selector(toggleTorch), for: .touchUpInside)
+        refreshButton.addTarget(self, action: #selector(refresh), for: .touchUpInside)
+    }
+    
+    @objc private func toggleTorch(sender: UIButton) {
+        guard let device = AVCaptureDevice.default(for: .video), device.hasTorch else { return }
+        if sender.imageView?.image == UIImage(named: "flashlight") {
+            sender.setImage(UIImage(named: "flashlight on"), for: .normal)
+            device.onOffTorch(on: true)
+        } else if sender.imageView?.image == UIImage(named: "flashlight on") {
+            sender.setImage(UIImage(named: "flashlight.off"), for: .normal)
+            device.onOffTorch(on: false)
+        }
     }
     
     func getTimetable(date: String) {
@@ -503,7 +631,6 @@ class TimetableARViewController: UIViewController {
                         self.stopAnimation()
                         self.checkVoiceCommandsOption()
                         self.refresh()
-                        self.navigationTitle()
                         HapticsManager.shared.hapticFeedback()
                     }
                 }
@@ -519,7 +646,6 @@ class TimetableARViewController: UIViewController {
                         self.stopAnimation()
                         self.checkVoiceCommandsOption()
                         self.refresh()
-                        self.navigationTitle()
                         HapticsManager.shared.hapticFeedback()
                     }
                 }
@@ -542,7 +668,6 @@ class TimetableARViewController: UIViewController {
                         self.stopAnimation()
                         self.checkVoiceCommandsOption()
                         self.refresh()
-                        self.navigationTitle()
                         HapticsManager.shared.hapticFeedback()
                     }
                 }
@@ -558,7 +683,6 @@ class TimetableARViewController: UIViewController {
                         self.stopAnimation()
                         self.checkVoiceCommandsOption()
                         self.refresh()
-                        self.navigationTitle()
                         HapticsManager.shared.hapticFeedback()
                     }
                 }
@@ -597,103 +721,23 @@ class TimetableARViewController: UIViewController {
         spinner.isHidden = true
         animation.stopRotateAnimation(view: spinner)
     }
-}
-
-// MARK: - TimeTableSearchListTableViewControllerDelegate
-extension TimetableARViewController: TimeTableSearchListTableViewControllerDelegate {
     
-    func itemWasSelected(result: SearchTimetableModel) {
-        id = result.name
-        owner = result.owner
-        if currentWeek.id != 0 {
-            getTimetable(week: currentWeek)
+    func resetTorchButton() {
+        if let button = arView.subviews.first(where: { $0.accessibilityIdentifier == "flashlight" }) {
+            print("yes")
+            (button as? UIButton)?.setImage(UIImage(named: "flashlight"), for: .normal)
         } else {
-            getTimetable(date: date)
+            print("no")
         }
     }
-}
-
-// MARK: - AllGroupsListTableViewControllerDelegate
-extension TimetableARViewController: AllGroupsListTableViewControllerDelegate {
     
-    func groupWasSelected(group: String) {
-        id = group
-        owner = "GROUP"
-        if currentWeek.id != 0 {
-            getTimetable(week: currentWeek)
+    func showInfoAlert(title: String, message: String, actions: [UIAlertAction]) {
+        let isSaying = UserDefaults.standard.object(forKey: "isSaying") as? Bool ?? false
+        if isSaying {
+            showAlert(title: title, message: message, actions: actions)
         } else {
-            getTimetable(date: date)
+            resetSpeechRecognition()
+            showAlert(title: title, message: message, actions: actions)
         }
-    }
-}
-
-// MARK: - DepartmentsListTableViewControllerDelegate
-extension TimetableARViewController: DepartmentsListTableViewControllerDelegate {
-    
-    func teacherSelected(teacher: String) {
-        id = teacher
-        owner = "TEACHER"
-        if currentWeek.id != 0 {
-            getTimetable(week: currentWeek)
-        } else {
-            getTimetable(date: date)
-        }
-    }
-}
-
-// MARK: - CorpsListTableViewControllerDelegate
-extension TimetableARViewController: CorpsListTableViewControllerDelegate {
-    
-    func audienceWasSelected(audience: String) {
-        id = audience
-        owner = "CLASSROOM"
-        if currentWeek.id != 0 {
-            getTimetable(week: currentWeek)
-        } else {
-            getTimetable(date: date)
-        }
-    }
-}
-
-// MARK: - TimeTableFavouriteItemsListTableViewControllerDelegate
-extension TimetableARViewController: TimeTableFavouriteItemsListTableViewControllerDelegate {
-    
-    func WasSelected(result: SearchTimetableModel) {
-        id = result.name
-        owner = result.owner
-        if currentWeek.id != 0 {
-            getTimetable(week: currentWeek)
-        } else {
-            getTimetable(date: date)
-        }
-    }
-}
-
-// MARK: - CalendarARViewControllerDelegate
-extension TimetableARViewController: CalendarARViewControllerDelegate {
-    
-    func dateWasSelected(date: String) {
-        self.date = date
-        self.currentWeek = WeekModel(id: 0, from: "", to: "", dayNames: ["":""])
-        getTimetable(date: date)
-    }
-}
-
-// MARK: - TimeTableDayListTableViewController
-extension TimetableARViewController: DaysListTableViewControllerDelegate {
-    
-    func dateSelected(date: String) {
-        self.date = date
-        currentWeek = WeekModel(id: 0, from: "", to: "", dayNames: ["":""])
-        getTimetable(date: date)
-    }
-}
-
-// MARK: - AllWeeksListTableViewControllerDelegate
-extension TimetableARViewController: AllWeeksListTableViewControllerDelegate {
-    
-    func weekWasSelected(week: WeekModel) {
-        date = week.from
-        getTimetable(week: week)
     }
 }

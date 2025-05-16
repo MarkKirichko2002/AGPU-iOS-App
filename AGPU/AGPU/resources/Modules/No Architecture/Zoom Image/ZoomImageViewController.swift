@@ -64,6 +64,7 @@ final class ZoomImageViewController: UIViewController {
         scrollView.delegate = self
         scrollView.minimumZoomScale = 1.0
         scrollView.maximumZoomScale = 6.0
+        scrollView.zoomScale = 1.0
     }
     
     private func setUpImageView() {
@@ -79,28 +80,18 @@ final class ZoomImageViewController: UIViewController {
     }
     
     private func setUpTapGesture() {
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(showAR))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(zoomImage))
+        tap.numberOfTapsRequired = 2
         imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(gesture)
+        imageView.addGestureRecognizer(tap)
     }
     
-    @objc private func showAR() {
-        let vc = ARViewController()
-        let navVC = UINavigationController(rootViewController: vc)
-        navVC.modalPresentationStyle = .fullScreen
-        if isURL {
-            self.makeImage { image in
-                vc.image = image
-                DispatchQueue.main.async {
-                    self.present(navVC, animated: true)
-                }
-            }
+    @objc private func zoomImage(gesture: UIGestureRecognizer) {
+        let location = gesture.location(in: imageView)
+        if scrollView.zoomScale == 1.0 {
+            scrollView.zoom(to: CGRect(x: location.x - 50, y: location.y - 50, width: 100, height: 100), animated: true)
         } else {
-            guard let image = imageView.image else {return}
-            vc.image = image
-            DispatchQueue.main.async {
-                self.present(navVC, animated: true)
-            }
+            scrollView.zoomScale = 1.0
         }
     }
     
@@ -121,5 +112,9 @@ extension ZoomImageViewController: UIScrollViewDelegate {
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
+    }
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        print("zoom")
     }
 }

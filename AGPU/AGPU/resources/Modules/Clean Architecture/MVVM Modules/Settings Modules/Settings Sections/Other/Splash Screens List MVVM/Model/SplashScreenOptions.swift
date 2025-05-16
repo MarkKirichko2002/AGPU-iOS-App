@@ -9,16 +9,17 @@ import Foundation
 
 enum SplashScreenOptions: String, CaseIterable, Codable {
     case regular = "Обычный"
-    case status = "Статус"
     case faculty = "Факультет"
     case newyear = "Новый год"
     case weather = "Погода"
     case news = "Новости"
     case timetable = "Расписание"
+    case corps = "Корпуса"
     case technopark = "Технопарк"
     case quantorium = "Кванториум"
     case season = "Сезон"
-    case custom = "Свой"
+    case halloween = "Хэллоуин"
+    case custom = "Кастомный"
     case random = "Рандом"
     case none = "Без заставки"
     
@@ -26,8 +27,6 @@ enum SplashScreenOptions: String, CaseIterable, Codable {
         switch self {
         case .regular:
             return "regular"
-        case .status:
-            return "status"
         case .faculty:
             return "faculty"
         case .newyear:
@@ -38,12 +37,16 @@ enum SplashScreenOptions: String, CaseIterable, Codable {
             return "news"
         case .timetable:
             return "timetable"
+        case .corps:
+            return ""
         case .technopark:
             return "technopark"
         case .quantorium:
             return "quantorium"
         case .season:
             return "season"
+        case .halloween:
+            return "pumpkin"
         case .custom:
             return "custom"
         case .random:

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FacultyCathedraListTableViewController: UITableViewController {
+final class FacultyCathedraListTableViewController: UITableViewController {
     
     var faculty: AGPUFacultyModel
     var isSettings = false
@@ -117,7 +117,7 @@ class FacultyCathedraListTableViewController: UITableViewController {
         if isSettings {
             viewModel.selectCathedra(index: indexPath.row)
         } else {
-            showHintAlert(type: .cathedra, isNotify: false)
+            showHintAlert(type: .cathedra, isNotify: false, delegate: nil)
             HapticsManager.shared.hapticFeedback()
         }
         self.tableView.deselectRow(at: indexPath, animated: true)

@@ -10,6 +10,7 @@ target 'AGPU' do
   pod 'FSCalendar'
   pod 'SDWebImage'
   pod 'SnapKit'
-  pod 'RealmSwift'
-
+  pod 'RealmSwift', '~> 10.40.01'
+  pod 'MediaPipeTasksVision'
+  
 end

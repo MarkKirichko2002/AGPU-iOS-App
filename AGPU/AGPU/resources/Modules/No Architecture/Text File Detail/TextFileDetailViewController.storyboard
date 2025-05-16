@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Text File Detail View Controller-->
+        <scene sceneID="xWp-dd-vvV">
+            <objects>
+                <viewController storyboardIdentifier="TextFileDetailViewController" id="ydt-JF-R30" customClass="TextFileDetailViewController" customModule="AGPU" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lKR-th-9Yf">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="example.txt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lJ-s7-6vv">
+                                <rect key="frame" x="10" y="89" width="373" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Aoc-fr-93W">
+                                <rect key="frame" x="30" y="143" width="333" height="645"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Advanced Timetable (продвинутое расписание) - функция, позволяющая получить расписание на основе выбранной группы. Она позволяет выбрать неделю из списка, автоматически прокрутиться до нужной недели, дня недели и группы, а также предоставляет информацию о том, в каком корпусе будут проходить занятия. Кроме того, вы можете отфильтровать пары по типу, чтобы быстро и удобно получить доступ к интересующим вас занятиям. Также вы можете поделиться расписанием на день или неделю в виде изображения. В дополнение к этому, данная функция предоставляет информацию о времени, оставшемся до начала или конца пары. Это позволяет вам легко планировать свое время и не опаздывать на занятия.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="dkR-Vf-nRw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2lJ-s7-6vv" firstAttribute="top" secondItem="dkR-Vf-nRw" secondAttribute="top" constant="30" id="2wU-OS-UWz"/>
+                            <constraint firstItem="Aoc-fr-93W" firstAttribute="leading" secondItem="dkR-Vf-nRw" secondAttribute="leading" constant="30" id="OsL-kR-jQE"/>
+                            <constraint firstItem="Aoc-fr-93W" firstAttribute="top" secondItem="2lJ-s7-6vv" secondAttribute="bottom" constant="30" id="Pgb-XO-y9S"/>
+                            <constraint firstItem="dkR-Vf-nRw" firstAttribute="trailing" secondItem="2lJ-s7-6vv" secondAttribute="trailing" constant="10" id="Utm-to-dKZ"/>
+                            <constraint firstItem="dkR-Vf-nRw" firstAttribute="trailing" secondItem="Aoc-fr-93W" secondAttribute="trailing" constant="30" id="bEM-GN-6X5"/>
+                            <constraint firstItem="2lJ-s7-6vv" firstAttribute="leading" secondItem="dkR-Vf-nRw" secondAttribute="leading" constant="10" id="ftp-0t-dnj"/>
+                            <constraint firstItem="dkR-Vf-nRw" firstAttribute="bottom" secondItem="Aoc-fr-93W" secondAttribute="bottom" constant="30" id="z8c-6o-P6n"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="fileName" destination="2lJ-s7-6vv" id="MXr-jY-Mlq"/>
+                        <outlet property="fileText" destination="Aoc-fr-93W" id="Ivt-7i-bDH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XC1-yh-QOw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.76335877862595414" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

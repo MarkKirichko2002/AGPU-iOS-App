@@ -12,6 +12,7 @@ final class WebViewController: UIViewController {
     
     var url: String
     var isNotify: Bool
+    weak var delegate: ScreenClosedDelegate?
     
     // MARK: - сервисы
     let viewModel = WebViewModel()
@@ -45,6 +46,7 @@ final class WebViewController: UIViewController {
         setUpNavigation()
         setUpWebView()
         setUpIndicatorView()
+        setUpFloatingButton()
         bindViewModel()
     }
     
@@ -102,10 +104,16 @@ final class WebViewController: UIViewController {
             case .closeScreen:
                 if self.navigationController?.viewControllers.first == self {
                     self.dismiss(animated: true)
-                } else {}
+                }
             case .forward:
+                DispatchQueue.main.async {
+                    self.WVWEBview.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+                }
                 self.forwardButtonTapped()
             case .back:
+                DispatchQueue.main.async {
+                    self.WVWEBview.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+                }
                 self.backButtonTapped()
             }
         }
@@ -143,10 +151,59 @@ final class WebViewController: UIViewController {
     
     @objc private func closeScreen() {
         if isNotify {
-            sendScreenWasClosedNotification()
+            delegate?.screenWasClosed()
         } else {
             HapticsManager.shared.hapticFeedback()
         }
         self.dismiss(animated: true)
+    }
+    
+    private func setUpFloatingButton() {
+        let navigationButton = UIButton()
+        navigationButton.showsMenuAsPrimaryAction = true
+        navigationButton.tintColor = .label
+        navigationButton.setImage(UIImage(named: "aspu logo"), for: .normal)
+        navigationButton.accessibilityIdentifier = "floating button"
+        navigationButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(navigationButton)
+        NSLayoutConstraint.activate([
+            navigationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40.0),
+            navigationButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30.0),
+            navigationButton.widthAnchor.constraint(equalToConstant: 70.0),
+            navigationButton.heightAnchor.constraint(equalToConstant: 70.0)
+        ])
+        navigationButton.menu = setUpMenu()
+    }
+    
+    private func setUpMenu()-> UIMenu {
+        let positions = scrollMenu()
+        let saveAction = UIAction(title: "Сохранить") { _ in
+            self.viewModel.saveWebPage(url: self.url)
+        }
+        return UIMenu(title: "Web-страница", children: [saveAction, positions])
+    }
+    
+    private func scrollMenu()-> UIMenu {
+        let actions = scrollPositions.allCases.map { position in UIAction(title: position.rawValue, state: viewModel.currentScrollPosition == position ? .on: .off) { _  in
+            self.viewModel.currentScrollPosition = position
+            switch position {
+            case .top:
+                self.WVWEBview.scrollToUp()
+                self.updateMenuButton()
+            case .middle:
+                self.WVWEBview.scrollToMiddle()
+                self.updateMenuButton()
+            case .end:
+                self.WVWEBview.scrollToDown()
+                self.updateMenuButton()
+            }
+        }
+        }
+        return UIMenu(title: "Позиции", children: actions.reversed())
+    }
+    
+    private func updateMenuButton() {
+        guard let button = view.subviews.first(where: { $0.accessibilityIdentifier == "floating button" }) else {return}
+        (button as? UIButton)?.menu = setUpMenu()
     }
 }

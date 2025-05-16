@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettablePersonalityTableViewCell: UITableViewCell {
+final class SettablePersonalityTableViewCell: UITableViewCell {
     
     static let identifier = "SettablePersonalityTableViewCell"
     private let animation = AnimationClass()
@@ -21,8 +21,9 @@ class SettablePersonalityTableViewCell: UITableViewCell {
         TitleLabel.textColor = .label
     }
     
-    func didTapCell(indexPath: IndexPath) {
+    func didTapCell(indexPath: IndexPath, completion: @escaping()->Void) {
         animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
+            completion()
             HapticsManager.shared.hapticFeedback()
         }
     }

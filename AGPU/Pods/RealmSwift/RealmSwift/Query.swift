@@ -18,7 +18,6 @@
 
 import Foundation
 import Realm
-import Realm.Private
 
 /// Enum representing an option for `String` queries.
 public struct StringOptions: OptionSet {
@@ -219,13 +218,13 @@ public struct Query<T> {
         return Query<T>()
     }
 
-    /// Constructs an NSPredicate compatible string with its accompanying arguments.
+    /// Constructs an NSPredicate compatibe string with its accompanying arguments.
     /// - Note: This is for internal use only and is exposed for testing purposes.
     public func _constructPredicate() -> (String, [Any]) {
         return buildPredicate(node)
     }
 
-    /// Creates an NSPredicate compatible string.
+    /// Creates an NSPredicate compatibe string.
     /// - Returns: A tuple containing the predicate string and an array of arguments.
 
     /// Creates an NSPredicate from the query expression.
@@ -825,22 +824,6 @@ extension Query where T: _HasPersistedType, T.PersistedType: _QueryNumeric {
     }
 }
 
-public extension Query where T: OptionalProtocol, T.Wrapped: EmbeddedObject {
-    /**
-    Use `geoWithin` function to filter objects whose location points lie within a certain area,
-    using a Geospatial shape (`GeoBox`, `GeoPolygon` or `GeoCircle`).
-
-     - note: There is no dedicated type to store Geospatial points, instead points should be stored as
-     [GeoJson-shaped](https://www.mongodb.com/docs/manual/reference/geojson/)
-     embedded object. Geospatial queries (`geoWithin`) can only be executed
-     in such a type of objects and will throw otherwise.
-     - see: `GeoPoint`
-    */
-    func geoWithin<U: RLMGeospatial>(_ value: U) -> Query<Bool> {
-        .init(.geoWithin(node, .constant(value)))
-    }
-}
-
 /// Tag protocol for all numeric types.
 public protocol _QueryNumeric: _RealmSchemaDiscoverable { }
 extension Int: _QueryNumeric { }
@@ -894,7 +877,6 @@ private indirect enum QueryNode {
 
     case subqueryCount(_ child: QueryNode)
     case mapSubscript(_ keyPath: QueryNode, key: Any)
-    case geoWithin(_ keyPath: QueryNode, _ value: QueryNode)
 }
 
 private func buildPredicate(_ root: QueryNode, subqueryCount: Int = 0) -> (String, [Any]) {
@@ -1001,8 +983,6 @@ private func buildPredicate(_ root: QueryNode, subqueryCount: Int = 0) -> (Strin
             build(keyPath)
             formatStr.append("[%@]")
             arguments.add(key)
-        case .geoWithin(let keyPath, let value):
-            buildExpression(keyPath, QueryNode.Operator.in.rawValue, value, prefix: nil)
         }
     }
     build(root, isNewNode: true)
@@ -1045,8 +1025,6 @@ private struct SubqueryRewriter {
             return node
         case .mapSubscript:
             throwRealmException("Subqueries do not support map subscripts.")
-        case .geoWithin(let keyPath, let value):
-            return .geoWithin(keyPath, value)
         }
     }
 

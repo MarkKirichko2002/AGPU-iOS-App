@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class AGPUCurrentCathedraMapViewController: UIViewController {
+final class AGPUCurrentCathedraMapViewController: UIViewController {
     
     var cathedra: FacultyCathedraModel!
     
@@ -35,6 +35,7 @@ class AGPUCurrentCathedraMapViewController: UIViewController {
         setUpNavigation()
         setUpMap()
         makeConstraints()
+        setUpFingers()
         bindViewModel()
     }
     
@@ -66,6 +67,18 @@ class AGPUCurrentCathedraMapViewController: UIViewController {
         ])
     }
     
+    private func setUpFingers() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showCurrentLocation))
+        tap.numberOfTouchesRequired = 1
+        mapView.addGestureRecognizer(tap)
+    }
+    
+    @objc private func showCurrentLocation(gesture: UIGestureRecognizer) {
+        if gesture.state == .ended {
+            setRegion(region: viewModel.defaultLocation())
+        }
+    }
+    
     private func bindViewModel() {
         viewModel.alertHandler = { bool in
             if bool {
@@ -76,14 +89,20 @@ class AGPUCurrentCathedraMapViewController: UIViewController {
                     self.dismiss(animated: true)
                 }
                 self.showAlert(title: self.viewModel.createAlertMessage().0, message: self.viewModel.createAlertMessage().1, actions: [goToSettings, cancel])
-            } else {
-                fatalError()
-            }
+            } 
         }
         viewModel.checkLocationAuthorizationStatus()
         viewModel.registerLocationHandler { location in
             self.mapView.setRegion(location.region, animated: true)
             self.mapView.showAnnotations(location.pins, animated: true)
+        }
+    }
+    
+    private func setRegion(region: MKCoordinateRegion) {
+        UIView.animate(withDuration: 1) {
+            self.mapView.setRegion(region, animated: true)
+        } completion: { _ in
+            HapticsManager.shared.hapticFeedback()
         }
     }
 }

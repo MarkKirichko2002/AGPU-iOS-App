@@ -7,9 +7,11 @@
 
 import UIKit
 
-class ASPUButtonActionsListTableViewController: UITableViewController {
+final class ASPUButtonActionsListTableViewController: UITableViewController {
 
     private let viewModel = ASPUButtonActionsListViewModel()
+    
+    var isOption = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,8 +21,23 @@ class ASPUButtonActionsListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        
         let titleView = CustomTitleView(image: "button", title: viewModel.titleForNavigation(), frame: .zero)
+        if isOption {
+            setUpCloseButton()
+        } else {
+            setUpBackButton()
+        }
+        navigationItem.titleView = titleView
+    }
+    
+    func setUpCloseButton() {
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(close))
+        closeButton.tintColor = .label
+        navigationItem.rightBarButtonItem = closeButton
+    }
+    
+    func setUpBackButton() {
+        
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)
@@ -28,7 +45,6 @@ class ASPUButtonActionsListTableViewController: UITableViewController {
         
         let backButton = UIBarButtonItem(customView: button)
         
-        navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = backButton
@@ -36,6 +52,11 @@ class ASPUButtonActionsListTableViewController: UITableViewController {
     
     @objc private func back() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func close() {
+        HapticsManager.shared.hapticFeedback()
+        dismiss(animated: true)
     }
     
     private func setUpTable() {
@@ -57,10 +78,18 @@ class ASPUButtonActionsListTableViewController: UITableViewController {
             vc.isSettings = true
             navigationController?.pushViewController(vc, animated: true)
             viewModel.selectAction(index: indexPath.row)
+            closeScreen()
         } else {
             viewModel.selectAction(index: indexPath.row)
+            closeScreen()
         }
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func closeScreen() {
+        if isOption {
+            close()
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

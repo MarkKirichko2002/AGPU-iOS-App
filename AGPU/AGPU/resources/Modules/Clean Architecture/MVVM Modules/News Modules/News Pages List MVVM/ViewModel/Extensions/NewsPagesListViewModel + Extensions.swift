@@ -44,7 +44,7 @@ extension NewsPagesListViewModel: NewsPagesListViewModelProtocol {
         
         let dispatchGroup = DispatchGroup()
         
-        for page in 0..<pages.count {
+        for page in 1...pages.count {
             isStartLoading = true
             dispatchGroup.enter()
             Task {
@@ -52,7 +52,7 @@ extension NewsPagesListViewModel: NewsPagesListViewModelProtocol {
                 defer { dispatchGroup.leave() }
                 switch result {
                 case .success(let data):
-                    self.pages[page].newsCount = data.articles?.count ?? 0
+                    self.pages[page - 1].newsCount = data.articles?.count ?? 0
                 case .failure(let error):
                     print(error)
                 }
@@ -73,7 +73,7 @@ extension NewsPagesListViewModel: NewsPagesListViewModelProtocol {
             self.dataChangedHandler?()
             self.pageSelectedHandler?("Выбрана страница \(page.pageNumber)")
             HapticsManager.shared.hapticFeedback()
-        } else {}
+        } 
     }
     
     func isCurrentPage(index: Int)-> Bool {

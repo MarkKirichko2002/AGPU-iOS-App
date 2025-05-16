@@ -11,8 +11,8 @@ protocol ContactsListTableViewControllerDelegate: AnyObject {
     func listUpdated()
 }
 
-class ContactsListTableViewController: UIViewController {
-
+final class ContactsListTableViewController: UIViewController {
+    
     // MARK: - сервисы
     let viewModel = ContactsListViewModel()
     
@@ -56,6 +56,27 @@ class ContactsListTableViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    func setUpAddButton() {
+        let addButton = UIBarButtonItem(image: UIImage(named: "add"), style: .done, target: self, action: #selector(addButtonTapped))
+        addButton.tintColor = .label
+        navigationItem.rightBarButtonItem = addButton
+    }
+    
+    @objc private func addButtonTapped() {
+        showAddContactAlert()
+    }
+    
+    func setUpEditButton() {
+        let moveButton = UIBarButtonItem(title: "Готово", style: .done, target: self, action: #selector(moveContacts))
+        moveButton.tintColor = .label
+        navigationItem.rightBarButtonItem = moveButton
+    }
+    
+    @objc private func moveContacts() {
+        tableView.isEditing.toggle()
+        setUpAddButton()
+    }
+    
     private func setUpTable() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
@@ -87,6 +108,9 @@ class ContactsListTableViewController: UIViewController {
                 self.noContactsLabel.isHidden = false
             }
             self.delegate?.listUpdated()
+        }
+        viewModel.registerItemChangedHandler { index in
+            self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .left)
         }
         viewModel.getContacts()
     }

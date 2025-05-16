@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SavedImagesListViewModel {
+final class SavedImagesListViewModel {
     
     var dataChangedHandler:(()-> Void)?
     var images = [ImageModel]()
@@ -15,4 +15,5 @@ class SavedImagesListViewModel {
     // MARK: - сервисы
     let realmManager = RealmManager()
     let dateManager = DateManager()
+    let settingsManager = SettingsManager()
 }

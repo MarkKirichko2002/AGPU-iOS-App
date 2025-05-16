@@ -7,7 +7,7 @@
 
 import Foundation
 
-class NewsOptionsPositionListViewModel {
+final class NewsOptionsPositionListViewModel {
     
     var options = NewsOptions.list
     var dataChangedHandler: (()->Void)?

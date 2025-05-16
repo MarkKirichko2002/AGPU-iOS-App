@@ -16,6 +16,13 @@ final class SpeechSynthesizerManager: NSObject {
     
     static let shared = SpeechSynthesizerManager()
     
+    var speechFinishedHandler: (()->Void)?
+    
+    override init() {
+        super.init()
+        synthesizer.delegate = self
+    }
+    
     func checkIsSaying(text: String) {
         let isSaying = UserDefaults.standard.object(forKey: "isSaying") as? Bool ?? false
         if isSaying {
@@ -32,5 +39,17 @@ final class SpeechSynthesizerManager: NSObject {
     
     func stopComment() {
         synthesizer.stopSpeaking(at: .immediate)
+    }
+    
+    func registerSpeechFinishedHandler(block: @escaping()->Void) {
+        self.speechFinishedHandler = block
+    }
+}
+
+extension SpeechSynthesizerManager: AVSpeechSynthesizerDelegate {
+    
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        print("Синтезатор закончил говорить: \(utterance.speechString)")
+        speechFinishedHandler?()
     }
 }

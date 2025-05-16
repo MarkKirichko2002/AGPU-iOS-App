@@ -7,16 +7,30 @@
 
 import MapKit
 
-class BuildingsListViewModel {
+struct BuildingModel {
+    let name: String
+    let coordinate: CLLocationCoordinate2D
+    let annotation: MKAnnotation
+    var distance: (Int, Int)
+}
+
+final class BuildingsListViewModel {
     
-    var currentLocation: MKAnnotation?
-    var buildings = [MKAnnotation]()
+    var currentLocation: BuildingModel?
+    var buildings = [BuildingModel]()
     var index = 0
     
+    var selectedType = MKDirectionsTransportType.walking
+    
+    // MARK: - сервисы
+    let locationManager = LocationManager()
+    
+    var dataChangedHandler: (()->Void)?
     var selectedHandler: (()->Void)?
+    var transportTypeHandler: (()->Void)?
     
     init(currentLocation: MKAnnotation, buildings: [MKAnnotation]) {
-        self.currentLocation = currentLocation
-        self.buildings = buildings
+        self.currentLocation = BuildingModel(name: currentLocation.title!!, coordinate: currentLocation.coordinate, annotation: currentLocation, distance: (0, 0))
+        self.fillData(annotations: buildings)
     }
 }

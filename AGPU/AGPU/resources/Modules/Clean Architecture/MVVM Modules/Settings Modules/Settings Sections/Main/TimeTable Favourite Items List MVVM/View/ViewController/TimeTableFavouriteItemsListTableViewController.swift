@@ -11,10 +11,15 @@ protocol TimeTableFavouriteItemsListTableViewControllerDelegate: AnyObject {
     func WasSelected(result: SearchTimetableModel)
 }
 
-class TimeTableFavouriteItemsListTableViewController: UIViewController {
+protocol TimeTableFavouriteItemsListChangedDelegate: AnyObject {
+    func listWasChanged()
+}
 
+final class TimeTableFavouriteItemsListTableViewController: UIViewController {
+    
     var isSettings = false
     weak var delegate: TimeTableFavouriteItemsListTableViewControllerDelegate?
+    weak var listChangedDelegate: TimeTableFavouriteItemsListChangedDelegate?
     
     // MARK: - сервисы
     let viewModel = TimeTableFavouriteItemsListViewModel()
@@ -33,7 +38,7 @@ class TimeTableFavouriteItemsListTableViewController: UIViewController {
     
     private func setUpNavigation() {
         
-        let titleView = CustomTitleView(image: "star", title: "Избранное", frame: .zero)
+        let titleView = CustomTitleView(image: "star", title: "Расписание", frame: .zero)
         
         if isSettings {
             let button = UIButton()
@@ -62,7 +67,6 @@ class TimeTableFavouriteItemsListTableViewController: UIViewController {
     }
     
     @objc private func back() {
-        sendScreenWasClosedNotification()
         navigationController?.popViewController(animated: true)
     }
     
@@ -71,11 +75,28 @@ class TimeTableFavouriteItemsListTableViewController: UIViewController {
         dismiss(animated: true)
     }
     
+    func setUpAddButton() {
+        let addButton = UIBarButtonItem(image: UIImage(named: "add"), style: .done, target: self, action: #selector(addButtonTapped))
+        addButton.tintColor = .label
+        navigationItem.rightBarButtonItem = addButton
+    }
+    
     @objc private func addButtonTapped() {
         let vc = TimeTableSearchListTableViewController()
         vc.delegate = self
         vc.isFavourite = true
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func setUpEditButton() {
+        let moveButton = UIBarButtonItem(title: "Готово", style: .done, target: self, action: #selector(moveItems))
+        moveButton.tintColor = .label
+        navigationItem.rightBarButtonItem = moveButton
+    }
+    
+    @objc private func moveItems() {
+        tableView.isEditing.toggle()
+        setUpAddButton()
     }
     
     private func setUpTable() {
@@ -108,6 +129,7 @@ class TimeTableFavouriteItemsListTableViewController: UIViewController {
             } else {
                 self.noItemsLabel.isHidden = false
             }
+            self.listChangedDelegate?.listWasChanged()
         }
         viewModel.getItems()
     }

@@ -13,7 +13,6 @@ extension RandomSplashScreenViewModel: IRandomSplashScreenViewModel {
     func generateRandomScreen()-> UIViewController {
         let randomScreen = SplashScreenOptions.allCases.randomElement()!
         let regularVC = RegularSplashScreenViewController(animation:  AnimationClass(), icon: "АГПУ", text: "ФГБОУ ВО «АГПУ»", width: 180, height: 180)
-        let statusVC = YourStatusSplashScreenViewController(animation: AnimationClass())
         let facultyVC = SelectedFacultySplashScreenViewController(animation: AnimationClass())
         let newYearVC = RegularSplashScreenViewController(animation:  AnimationClass(), icon: "новый год", text: "ФГБОУ ВО «АГПУ»", width: 180, height: 180)
         let weatherVC = WeatherSplashScreenViewController(animation: AnimationClass())
@@ -24,8 +23,6 @@ extension RandomSplashScreenViewModel: IRandomSplashScreenViewModel {
         switch randomScreen {
         case .regular:
             return regularVC
-        case .status:
-            return statusVC
         case .faculty:
             return facultyVC
         case .newyear:
@@ -36,12 +33,16 @@ extension RandomSplashScreenViewModel: IRandomSplashScreenViewModel {
             return newsVC
         case .timetable:
             return timetableVC
+        case .corps:
+            return BuildingSplashScreenViewController(animation: AnimationClass())
         case .technopark:
             return RegularSplashScreenViewController(animation: AnimationClass(), icon: "technopark", text: "Технопарк", width: 180, height: 180)
         case .quantorium:
             return RegularSplashScreenViewController(animation: AnimationClass(), icon: "кванториум", text: "Кванториум", width: 160, height: 160)
         case .season:
             return SeasonSplashScreenViewController(animation: AnimationClass())
+        case .halloween:
+            return RegularSplashScreenViewController(animation: AnimationClass(), icon: "pumpkin", text: "Хэллоуин", width: 100, height: 100)
         case .custom:
             return customVC
         case .random:

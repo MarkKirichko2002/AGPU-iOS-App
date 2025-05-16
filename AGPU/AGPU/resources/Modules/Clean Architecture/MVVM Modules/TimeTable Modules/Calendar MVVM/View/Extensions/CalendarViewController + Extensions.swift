@@ -12,13 +12,15 @@ extension CalendarViewController: UICalendarSelectionSingleDateDelegate {
     
     func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
         let date = viewModel.getFormattedDate(date: selection.selectedDate?.date ?? Date())
-        let vc = TimetableDateDetailViewController(id: self.id, subgroup: self.subgroup, date: date, owner: self.owner)
-        vc.modalPresentationStyle = .fullScreen
-        vc.delegate = self
-        present(vc, animated: true)
         self.selection = selection
+        if viewModel.isSimpleMode() || !viewModel.checkShowDateInfo() {
+            delegate?.dateWasSelected(date: date)
+            HapticsManager.shared.hapticFeedback()
+            dismiss(animated: true)
+        } else {
+            goToDetail(date: date)
+        }
         viewModel.saveDate(date: date)
-        HapticsManager.shared.hapticFeedback()
     }
 }
 
@@ -47,5 +49,16 @@ extension CalendarViewController: RecentDatesListViewControllerDelegate {
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
             self.dismiss(animated: true)
         }
+    }
+}
+
+extension CalendarViewController {
+    
+    func goToDetail(date: String) {
+        let vc = TimetableDateDetailViewController(id: self.id, subgroup: self.subgroup, date: date, owner: self.owner)
+        vc.modalPresentationStyle = .fullScreen
+        vc.delegate = self
+        present(vc, animated: true)
+        HapticsManager.shared.hapticFeedback()
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SplashScreenOptionTableViewCell: UITableViewCell {
+final class SplashScreenOptionTableViewCell: UITableViewCell {
 
     static let identifier = "SplashScreenOptionTableViewCell"
     private let animation = AnimationClass()
@@ -25,8 +25,9 @@ class SplashScreenOptionTableViewCell: UITableViewCell {
         SplashScreenName.tintColor = .label
     }
     
-    func didTapCell(indexPath: IndexPath) {
+    func didTapCell(indexPath: IndexPath, completion: @escaping()->Void) {
         animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
+            completion()
             HapticsManager.shared.hapticFeedback()
         }
     }

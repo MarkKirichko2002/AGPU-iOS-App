@@ -30,6 +30,20 @@ extension UIViewController {
         }
     }
     
+    func openWeb(url: String, image: String, title: String?, delegate: ScreenClosedDelegate) {
+        let vc = WebViewController(url: url, isNotify: true)
+        vc.delegate = delegate
+        let navVC = UINavigationController(rootViewController: vc)
+        if title != nil {
+            let titleView = CustomTitleView(image: image, title: title ?? "", frame: .zero)
+            vc.navigationItem.titleView = titleView
+        }
+        navVC.modalPresentationStyle = .fullScreen
+        DispatchQueue.main.async {
+            self.present(navVC, animated: true)
+        }
+    }
+    
     func callNumber(number: String) {
         if let phoneURL = URL(string: "tel://\(number)") {
             if UIApplication.shared.canOpenURL(phoneURL) {
@@ -48,7 +62,6 @@ extension UIViewController {
     }
     
     func showAlert(title: String, message: String, actions: [UIAlertAction]) {
-        let isVoiceCommands = UserDefaults.standard.object(forKey: "onVoiceCommands") as? Bool ?? false
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         for action in actions {
             alertController.addAction(action)
@@ -56,7 +69,9 @@ extension UIViewController {
         DispatchQueue.main.async {
             self.present(alertController, animated: true)
         }
-        SpeechSynthesizerManager.shared.checkIsSaying(text: "\(title) \(message)")
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+            SpeechSynthesizerManager.shared.checkIsSaying(text: "\(title) \(message)")
+        }
     }
     
     func ShareImage(image: UIImage, title: String, text: String) {
@@ -82,12 +97,6 @@ extension UIViewController {
     func openSettings() {
         if let settingsURL = URL(string: UIApplication.openSettingsURLString + Bundle.main.bundleIdentifier!) {
             UIApplication.shared.open(settingsURL)
-        }
-    }
-    
-    func sendScreenWasClosedNotification() {
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("screen was closed"), object: nil)
         }
     }
     
@@ -136,7 +145,7 @@ extension UIViewController {
                 print("JSON parsing error: \(error.localizedDescription)")
             }
         }.resume()
-
+        
     }
     
     func showUpdateAlert() {
@@ -145,7 +154,15 @@ extension UIViewController {
         present(vc, animated: true)
     }
     
-    func showHintAlert(type: Hints, isNotify: Bool) {
+    func showActionAlert(title: String, message: String, action: @escaping()->Void) {
+        let act = UIAlertAction(title: "Показать", style: .default) { _ in
+            action()
+        }
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+        self.showAlert(title: title, message: message, actions: [act, cancel])
+    }
+    
+    func showHintAlert(type: Hints, isNotify: Bool, delegate: ScreenClosedDelegate?) {
         
         let style = SettingsManager().getSavedCommunicationStyle()
         let name = UserDefaults.standard.string(forKey: "name") ?? ""
@@ -168,6 +185,7 @@ extension UIViewController {
             let message = style == .formal ? "\(name.isEmpty ? "Чтобы" : "\(name) чтобы") посмотреть методические материалы для вашей кафедры выберите ее в настройках" : "\(name.isEmpty ? "Чтобы" : "\(name) чтобы") посмотреть методические материалы для твоей кафедры выбери ее в настройках"
             let vc = HintViewController(info: message)
             vc.isNotify = isNotify
+            vc.delegate = delegate
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
         }
@@ -215,6 +233,55 @@ extension UIViewController {
             let vc = HintViewController(info: message)
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
+        }
+    }
+    
+    @objc func goToSimpleMode() {
+        let controller = SimpleModeTabBarController()
+        controller.modalPresentationStyle = .fullScreen
+        controller.modalTransitionStyle = .crossDissolve
+        self.present(controller, animated: true, completion: nil)
+        makeSimpleSettings()
+    }
+    
+    private func makeSimpleSettings() {
+        UserDefaults.standard.set(false, forKey: "onAdvancedMode")
+        UserDefaults.standard.set(false, forKey: "onAdvancedModeNews")
+        UserDefaults.saveData(object: ScreenPresentationStyles.notShow, key: "screen presentation style") {}
+        UserDefaults.standard.set(true, forKey: "isSimpleModeOn")
+    }
+    
+    @objc func goBackToAdvancedMode() {
+        let controller = AGPUTabBarController()
+        controller.modalPresentationStyle = .fullScreen
+        controller.modalTransitionStyle = .crossDissolve
+        self.present(controller, animated: true, completion: nil)
+        makeAdvancedSettings()
+    }
+    
+    private func makeAdvancedSettings() {
+        UserDefaults.standard.set(true, forKey: "onAdvancedMode")
+        UserDefaults.standard.set(true, forKey: "onAdvancedModeNews")
+        UserDefaults.saveData(object: ScreenPresentationStyles.fullScreen, key: "screen presentation style") {}
+        UserDefaults.standard.set(false, forKey: "isSimpleModeOn")
+    }
+    
+    func closeModals() {
+        closeAlert()
+        closeCameraButtonMenu()
+    }
+    
+    func closeAlert() {
+        if let _ = self.presentedViewController as? UIAlertController {
+            dismiss(animated: true)
+        }
+    }
+    
+    func closeCameraButtonMenu() {
+        if let button = view.subviews.first(where: { $0.accessibilityIdentifier == "camera button" }) {
+            if (button as? UIButton)!.isHeld {
+                self.dismiss(animated: true)
+            }
         }
     }
 }

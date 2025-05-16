@@ -12,7 +12,7 @@ protocol ImageDetailViewControllerARDelegate: AnyObject {
     func ARWasSelected(image: UIImage)
 }
 
-class ImageDetailViewController: UIViewController {
+final class ImageDetailViewController: UIViewController {
 
     var image: ImageModel?
     
@@ -168,6 +168,8 @@ class ImageDetailViewController: UIViewController {
         
         selectARMode.snp.makeConstraints { maker in
             maker.top.equalTo(dateLabel.snp.bottom).offset(50)
+            maker.width.equalTo(110)
+            maker.height.equalTo(30)
             maker.centerX.equalToSuperview()
         }
     }

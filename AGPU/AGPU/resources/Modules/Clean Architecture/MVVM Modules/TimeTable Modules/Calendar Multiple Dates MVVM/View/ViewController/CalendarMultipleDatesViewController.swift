@@ -7,22 +7,31 @@
 
 import UIKit
 
+protocol CalendarMultipleDatesViewControllerDelegate: AnyObject {
+    func datesWasSelected(dates: [String])
+}
+
 final class CalendarMultipleDatesViewController: UIViewController {
 
     let calendarView = UICalendarView()
     
     var selection: UICalendarSelectionMultiDate?
+    weak var delegate: CalendarMultipleDatesViewControllerDelegate?
+    
+    var isForList = false
 
     // MARK: - сервисы
     let viewModel = CalendarMultipleDatesViewModel()
     
     var id: String = ""
+    var date: String = ""
     var subgroup: Int = 0
     var owner: String = ""
     
     // MARK: - Init
-    init(id: String, subgroup: Int, owner: String) {
+    init(id: String, date: String, subgroup: Int, owner: String) {
         self.id = id
+        self.date = date
         self.subgroup = subgroup
         self.owner = owner
         super.init(nibName: nil, bundle: nil)
@@ -73,6 +82,8 @@ final class CalendarMultipleDatesViewController: UIViewController {
         calendarView.locale = .current
         
         calendarView.translatesAutoresizingMaskIntoConstraints = false
+        calendarView.tintColor = .label
+        calendarView.setVisibleDateComponents(viewModel.makeDateComponents(date: date), animated: true)
         view.addSubview(calendarView)
         
         NSLayoutConstraint.activate([
@@ -88,12 +99,21 @@ final class CalendarMultipleDatesViewController: UIViewController {
             self.showAlert(title: title, message: message, actions: [UIAlertAction(title: "ОК", style: .default)])
         }
         viewModel.registerDatesSelectedHandler {
-            guard let selection = self.selection else {return}
+            self.handleSelection()
+        }
+    }
+    
+    func handleSelection() {
+        guard let selection = self.selection else {return}
+        if isForList {
+            delegate?.datesWasSelected(dates: viewModel.getDates(from: selection))
+            dismiss(animated: true)
+        } else {
             let vc = TimeTableDatesListViewController(id: self.id, subgroup: self.subgroup, owner: self.owner, dates: self.viewModel.getDates(from: selection))
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
-            HapticsManager.shared.hapticFeedback()
         }
+        HapticsManager.shared.hapticFeedback()
     }
 }

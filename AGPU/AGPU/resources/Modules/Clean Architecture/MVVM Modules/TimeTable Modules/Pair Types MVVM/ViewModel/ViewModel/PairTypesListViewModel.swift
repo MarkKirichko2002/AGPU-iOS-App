@@ -7,9 +7,8 @@
 
 import Foundation
 
-class PairTypesListViewModel {
+final class PairTypesListViewModel {
     
-    var pairTypeSelectedHandler: (()->Void)?
     var date: String
     var type: PairType
     var disciplines = [Discipline]()
@@ -17,6 +16,8 @@ class PairTypesListViewModel {
     
     // MARK: - сервисы
     let dateManager = DateManager()
+    
+    var pairTypeSelectedHandler: ((PairType)->Void)?
     
     // MARK: - Init
     init(date: String, type: PairType, disciplines: [Discipline]) {

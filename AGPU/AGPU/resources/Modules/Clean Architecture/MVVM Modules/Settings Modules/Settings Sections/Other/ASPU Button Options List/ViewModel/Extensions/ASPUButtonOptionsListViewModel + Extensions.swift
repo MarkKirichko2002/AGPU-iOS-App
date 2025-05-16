@@ -25,6 +25,11 @@ extension ASPUButtonOptionsListViewModel: IASPUButtonOptionsListViewModel {
         return option
     }
     
+    func getASPUButtonGestureOptionInfo()-> ASPUButtonGestureOptions {
+        let option = settingsManager.checkASPUButtonGestureOption()
+        return option
+    }
+    
     func observeOptionSelected() {
         NotificationCenter.default.addObserver(forName: Notification.Name("option was selected"), object: nil, queue: .main) { _ in
             self.dataChangedHandler?()

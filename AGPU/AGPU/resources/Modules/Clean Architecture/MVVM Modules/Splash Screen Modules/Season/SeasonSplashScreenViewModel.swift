@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SeasonSplashScreenViewModel {
+final class SeasonSplashScreenViewModel {
     
     // MARK: - сервисы
     let dateManager = DateManager()

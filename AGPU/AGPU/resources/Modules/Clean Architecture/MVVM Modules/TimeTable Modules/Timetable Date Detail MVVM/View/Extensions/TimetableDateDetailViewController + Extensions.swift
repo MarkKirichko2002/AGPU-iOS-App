@@ -15,6 +15,14 @@ extension TimetableDateDetailViewController: TimeTableSearchListTableViewControl
     }
 }
 
+// MARK: - NearBuildingViewControllerDelegate
+extension TimetableDateDetailViewController: NearBuildingViewControllerDelegate {
+    
+    func audienceSelected(audience: String) {
+        viewModel.getTimeTableForSearch(id: audience, owner: "CLASSROOM")
+    }
+}
+
 // MARK: - AllGroupsListTableViewControllerDelegate
 extension TimetableDateDetailViewController: AllGroupsListTableViewControllerDelegate {
     
@@ -55,11 +63,19 @@ extension TimetableDateDetailViewController: TimeTableFavouriteItemsListTableVie
     }
 }
 
-// MARK: - PairTypesListTableViewControllerDelegate
-extension TimetableDateDetailViewController: PairTypesListTableViewControllerDelegate {
+// MARK: - TimetableFilterCategoriesListTableViewControllerDelegate
+extension TimetableDateDetailViewController: TimetableFilterCategoriesListTableViewControllerDelegate {
+    
+    func timeWasSelected(time: String) {
+        viewModel.filterPairs(by: time)
+    }
     
     func pairTypeWasSelected(type: PairType) {
         viewModel.filterPairs(type: type)
+    }
+    
+    func buildingWasSelected(building: AGPUBuildingModel) {
+        viewModel.filterPairs(by: building)
     }
 }
 
@@ -68,8 +84,7 @@ extension TimetableDateDetailViewController {
     func showSaveImageAlert() {
         let saveAction = UIAlertAction(title: "Сохранить в фото", style: .default) { _ in
             guard let image = self.viewModel.image else {return}
-            let imageSaver = ImageSaver()
-            imageSaver.writeToPhotoAlbum(image: image)
+            self.imageSaver.writeToPhotoAlbum(image: image)
         }
         
         let saveAction2 = UIAlertAction(title: "Сохранить в \"Важные вещи\"", style: .default) { _ in

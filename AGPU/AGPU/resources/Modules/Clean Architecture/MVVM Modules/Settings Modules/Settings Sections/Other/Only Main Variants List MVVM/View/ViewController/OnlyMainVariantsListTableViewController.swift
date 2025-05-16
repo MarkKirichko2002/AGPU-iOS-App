@@ -20,16 +20,20 @@ class OnlyMainVariantsListTableViewController: UITableViewController {
     }
 
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "home icon", title: viewModel.titleForNavigation(), frame: .zero)
-        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
-        closeButton.tintColor = .label
+        let titleView = CustomTitleView(image: "choose", title: "Варианты вкладок", frame: .zero)
         navigationItem.titleView = titleView
+        setUpCloseButton()
+    }
+    
+    func setUpCloseButton() {
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(close))
+        closeButton.tintColor = .label
         navigationItem.rightBarButtonItem = closeButton
     }
     
-    @objc private func closeScreen() {
-        sendScreenWasClosedNotification()
-        self.dismiss(animated: true)
+    @objc private func close() {
+        HapticsManager.shared.hapticFeedback()
+        dismiss(animated: true)
     }
     
     private func setUpTable() {
@@ -46,6 +50,10 @@ class OnlyMainVariantsListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.chooseOnlyMainVariant(index: indexPath.row)
+        if viewModel.onlyMainVariantItem(index: indexPath.row) == .custom {
+            let vc = TabsOptionsListTableViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -64,3 +72,4 @@ class OnlyMainVariantsListTableViewController: UITableViewController {
         return cell
     }
 }
+

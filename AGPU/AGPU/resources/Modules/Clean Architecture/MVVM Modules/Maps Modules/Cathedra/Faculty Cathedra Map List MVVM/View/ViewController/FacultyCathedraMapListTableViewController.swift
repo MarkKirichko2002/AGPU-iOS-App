@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FacultyCathedraMapListTableViewController: UITableViewController {
+final class FacultyCathedraMapListTableViewController: UITableViewController {
 
     var viewModel: FacultyCathedraMapListViewModel?
     

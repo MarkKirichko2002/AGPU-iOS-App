@@ -7,11 +7,16 @@
 
 import Foundation
 
-class DaysListViewModel {
+final class DaysListViewModel {
     
     var id: String = ""
     var currentDate: String = ""
     var owner: String = ""
+    var dayType: DayType
+    var week: WeekModel
+    var dates: [String]
+    
+    var days = DaysList.days
     
     var dataChangedHandler: (()->Void)?
     
@@ -21,9 +26,12 @@ class DaysListViewModel {
     let settingsManager = SettingsManager()
     
     // MARK: - Init
-    init(id: String, currentDate: String, owner: String) {
+    init(id: String, currentDate: String, owner: String, dayType: DayType, week: WeekModel, dates: [String]) {
         self.id = id
         self.currentDate = currentDate
         self.owner = owner
+        self.dayType = dayType
+        self.week = week
+        self.dates = dates
     }
 }

@@ -11,10 +11,11 @@ protocol ASPUButtonAllActionsListTableViewControllerDelegate: AnyObject {
     func actionWasAdded()
 }
 
-class ASPUButtonAllActionsListTableViewController: UITableViewController {
+final class ASPUButtonAllActionsListTableViewController: UITableViewController {
 
     // MARK: - сервисы
     private let viewModel = ASPUButtonAllActionsListViewModel()
+    var selectedActions = [ASPUButtonActions]()
     
     weak var delegate: ASPUButtonAllActionsListTableViewControllerDelegate?
     
@@ -26,8 +27,13 @@ class ASPUButtonAllActionsListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        
-        let titleView = CustomTitleView(image: "plus", title: "Добавить действие", frame: .zero)
+        let titleView = CustomTitleView(image: "plus", title: "Действия", frame: .zero)
+        navigationItem.titleView = titleView
+        setUpBackButton()
+        setUpEditButton(title: "Выбрать")
+    }
+    
+    func setUpBackButton() {
         
         let button = UIButton()
         button.tintColor = .label
@@ -36,7 +42,6 @@ class ASPUButtonAllActionsListTableViewController: UITableViewController {
         
         let backButton = UIBarButtonItem(customView: button)
         
-        navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = backButton
@@ -46,7 +51,40 @@ class ASPUButtonAllActionsListTableViewController: UITableViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    func setUpEditButton(title: String) {
+        let moveButton = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(choose))
+        moveButton.tintColor = .label
+        navigationItem.rightBarButtonItem = moveButton
+    }
+    
+    @objc private func choose() {
+        if tableView.isEditing {
+            setUpEditButton(title: "Править")
+            tableView.isEditing = false
+        } else {
+            setUpEditButton(title: "Отмена")
+            tableView.isEditing = true
+        }
+    }
+    
+    func setUpCancelButton(title: String) {
+        let moveButton = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(cancel))
+        moveButton.tintColor = .label
+        navigationItem.leftBarButtonItem = moveButton
+    }
+    
+    @objc private func cancel() {
+        for i in 0..<viewModel.actionsCount() {
+            tableView.deselectRow(at: IndexPath(row: i, section: 0), animated: true)
+        }
+        selectedActions = []
+        setUpBackButton()
+        setUpEditButton(title: "Выбрать")
+        tableView.isEditing = false
+    }
+    
     private func setUpTable() {
+        tableView.allowsMultipleSelectionDuringEditing = true
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
@@ -58,10 +96,22 @@ class ASPUButtonAllActionsListTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let id = selectedActions.firstIndex { $0 == viewModel.actionItem(index: indexPath.row) } ?? 0
+        selectedActions.remove(at: id)
+        checkSelection()
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.selectAction(index: indexPath.row)
-        delegate?.actionWasAdded()
-        tableView.deselectRow(at: indexPath, animated: true)
+        if !tableView.isEditing {
+            viewModel.selectAction(index: indexPath.row)
+            delegate?.actionWasAdded()
+            tableView.deselectRow(at: indexPath, animated: true)
+        } else {
+            selectedActions.append(viewModel.actionItem(index: indexPath.row))
+            delegate?.actionWasAdded()
+            checkSelection()
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -74,5 +124,25 @@ class ASPUButtonAllActionsListTableViewController: UITableViewController {
         cell.textLabel?.text = action.rawValue
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
         return cell
+    }
+    
+    func checkSelection() {
+        if selectedActions.isEmpty {
+            setUpEditButton(title: "Отмена")
+        } else {
+            setUpChooseButton()
+            setUpCancelButton(title: "Отмена")
+        }
+    }
+    
+    func setUpChooseButton() {
+        let moveButton = UIBarButtonItem(title: "Выбрать", style: .done, target: self, action: #selector(addActions))
+        moveButton.tintColor = .label
+        navigationItem.rightBarButtonItem = moveButton
+    }
+    
+    @objc private func addActions() {
+        viewModel.saveActions(actions: selectedActions)
+        delegate?.actionWasAdded()
     }
 }

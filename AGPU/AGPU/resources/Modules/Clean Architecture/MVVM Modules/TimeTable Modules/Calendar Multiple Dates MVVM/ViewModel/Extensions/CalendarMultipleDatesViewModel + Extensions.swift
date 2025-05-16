@@ -67,6 +67,10 @@ extension CalendarMultipleDatesViewModel: ICalendarMultipleDatesViewModel {
         }
     }
     
+    func makeDateComponents(date: String)-> DateComponents {
+        return dateManager.makeDateComponents(date: date)
+    }
+    
     func registerDatesSelectedHandler(block: @escaping()-> Void) {
         self.datesSelectedHandler = block
     }

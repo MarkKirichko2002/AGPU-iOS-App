@@ -10,7 +10,7 @@ import Foundation
 import MapKit
 import UIKit
 
-class CathedraBuildingDetailViewModel {
+final class CathedraBuildingDetailViewModel {
     
     var annotation: MKAnnotation!
     

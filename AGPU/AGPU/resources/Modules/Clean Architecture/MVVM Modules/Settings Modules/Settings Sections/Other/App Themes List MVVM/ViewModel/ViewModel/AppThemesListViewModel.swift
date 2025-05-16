@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AppThemesListViewModel {
+final class AppThemesListViewModel {
     
     var themeSelectedHandler: ((UIUserInterfaceStyle)->Void)?
     

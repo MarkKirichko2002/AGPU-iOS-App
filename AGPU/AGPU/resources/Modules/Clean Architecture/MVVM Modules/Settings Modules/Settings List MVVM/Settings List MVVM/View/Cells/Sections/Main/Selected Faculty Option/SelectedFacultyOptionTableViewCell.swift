@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SelectedFacultyOptionTableViewCell: UITableViewCell {
+final class SelectedFacultyOptionTableViewCell: UITableViewCell {
     
     static let identifier = "SelectedFacultyOptionTableViewCell"
     private let animation = AnimationClass()
@@ -29,8 +29,9 @@ class SelectedFacultyOptionTableViewCell: UITableViewCell {
         }
     }
     
-    func didTapCell(indexPath: IndexPath) {
+    func didTapCell(indexPath: IndexPath, completion: @escaping()->Void) {
         animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
+            completion()
             HapticsManager.shared.hapticFeedback()
         }
     }

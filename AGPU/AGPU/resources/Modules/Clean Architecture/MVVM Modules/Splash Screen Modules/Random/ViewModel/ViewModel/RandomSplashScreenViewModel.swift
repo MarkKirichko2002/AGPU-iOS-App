@@ -7,6 +7,6 @@
 
 import Foundation
 
-class RandomSplashScreenViewModel {
+final class RandomSplashScreenViewModel {
     
 }

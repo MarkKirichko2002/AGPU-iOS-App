@@ -28,7 +28,7 @@ class AppIconsListTableViewController: UITableViewController {
     }
     
     @objc private func closeScreen() {
-        sendScreenWasClosedNotification()
+        HapticsManager.shared.hapticFeedback()
         self.dismiss(animated: true)
     }
     
@@ -72,16 +72,7 @@ class AppIconsListTableViewController: UITableViewController {
         cell.PersonalizedAppIcon.layer.borderColor = viewModel.isAppIconSelected(index: indexPath.row) ? UIColor.systemGreen.cgColor : UIColor.label.cgColor
         cell.PersonalizedAppIconName.textColor = viewModel.isAppIconSelected(index: indexPath.row) ? .systemGreen : .label
         cell.accessoryType = viewModel.isAppIconSelected(index: indexPath.row) ? .checkmark : .none
-        cell.delegate = self
         cell.configure(icon: icon)
         return cell
-    }
-}
-
-// MARK: - IPersonalizedAppIconTableViewCell
-extension AppIconsListTableViewController: IPersonalizedAppIconTableViewCell {
-    
-    func didIconTapped(icon: AppIconModel) {
-        goToWeb(url: icon.url, image: "info icon", title: "Информация", isSheet: false, isNotify: false)
     }
 }

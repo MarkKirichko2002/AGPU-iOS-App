@@ -6,183 +6,10 @@
 //
 
 import UIKit
+import MapKit
 
 extension AGPUTabBarController: ASPUButtonFavouriteActionsListTableViewControllerDelegate {
 
-    // поиск раздела
-    func searchSection(text: String) {
-        
-        for section in AGPUSections.sections {
-            
-            if text.lowercased().contains(section.voiceCommand) {
-                
-                self.updateASPUButton(icon: section.icon)
-                
-                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                    self.goToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false, isNotify: true)
-                }
-                isOpened = true
-                resetSpeechRecognition()
-                break
-            }
-        }
-    }
-    
-    // измение раздела сайта
-    func changeSection(text: String) {
-        
-        for section in AGPUSections.sections {
-            
-            if text.lowercased().contains(section.voiceCommand) {
-                resetSpeechRecognition()
-                NotificationCenter.default.post(name: Notification.Name("section selected"), object: section)
-            }
-        }
-    }
-    
-    // случайный раздел
-    func generateRandomSection(text: String) {
-        
-        if text.lowercased().contains("случайный раздел") || text.lowercased().contains("случайно раздел") || text.lowercased().contains("рандомный раздел") || text.lowercased().contains("рандомно раздел") {
-            
-            let section = AGPUSections.sections[Int.random(in: 0..<AGPUSections.sections.count - 1)]
-            
-            self.updateASPUButton(icon: "dice")
-            
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.isOpened = true
-                self.goToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false, isNotify: true)
-            }
-            resetSpeechRecognition()
-        }
-    }
-    
-    func randomSectionOnScreen(text: String) {
-        if text.contains("случайный раздел") || text.contains("случайно раздел") || text.contains("рандомный раздел") || text.contains("рандомно раздел") {
-            let section = AGPUSections.sections[Int.random(in: 0..<AGPUSections.sections.count - 1)]
-            resetSpeechRecognition()
-            NotificationCenter.default.post(name: Notification.Name("section selected"), object: section)
-        }
-    }
-    
-    // поиск подраздела
-    func searchSubSection(text: String) {
-        
-        for section in AGPUSections.sections {
-            
-            for subsection in section.subsections {
-                
-                if text.noWhitespacesWord().contains(subsection.voiceCommand) && subsection.url != "" {
-                    resetSpeechRecognition()
-                    self.updateASPUButton(icon: subsection.icon)
-                    
-                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                        self.isOpened = true
-                        self.goToWeb(url: subsection.url, image: subsection.icon, title: "АГПУ сайт", isSheet: false, isNotify: true)
-                    }
-                    break
-                }
-            }
-        }
-    }
-    
-    // измение подраздела сайта
-    func changeSubSection(text: String) {
-        
-        for section in AGPUSections.sections {
-            
-            for subsection in section.subsections {
-                
-                if text.lowercased().contains(subsection.voiceCommand) {
-                    resetSpeechRecognition()
-                    NotificationCenter.default.post(name: Notification.Name("subsection selected"), object: subsection)
-                }
-            }
-        }
-    }
-    
-    // поиск корпуса
-    func findBuilding(text: String) {
-        
-        for building in AGPUBuildings.buildings {
-            
-            if building.voiceCommands.contains(where: { text.lowercased().range(of: $0.lowercased()) != nil }) {
-                resetSpeechRecognition()
-                self.updateASPUButton(icon: "map icon")
-                let vc = VoiceSearchAGPUBuildingMapViewController(building: building)
-                let navVC = UINavigationController(rootViewController: vc)
-                navVC.modalPresentationStyle = .fullScreen
-                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                    self.isOpened = true
-                    self.present(navVC, animated: true)
-                }
-                break
-            }
-        }
-    }
-    
-    // измение корпуса на карте
-    func changeBuilding(text: String) {
-        
-        for building in AGPUBuildings.buildings {
-            if building.voiceCommands.contains(where: { text.lowercased().range(of: $0.lowercased()) != nil }) {
-                resetSpeechRecognition()
-                NotificationCenter.default.post(name: Notification.Name("building selected"), object: building.pin)
-            }
-        }
-    }
-    
-    func webActions(text: String) {
-        
-        if text.lowercased().lastWord().contains("закр") {
-            self.resetSpeechRecognition()
-            
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.isOpened = false
-                self.updateASPUButton(icon: "mic")
-                NotificationCenter.default.post(name: Notification.Name("actions"), object: Actions.closeScreen)
-            }
-        } 
-        
-        if text.lowercased().lastWord().contains("назад") {
-            NotificationCenter.default.post(name: Notification.Name("actions"), object: Actions.back)
-        } 
-        
-        if text.lowercased().lastWord().contains("вперед") || text.lowercased().lastWord().contains("вперёд")  {
-            NotificationCenter.default.post(name: Notification.Name("actions"), object: Actions.forward)
-        }
-    }
-    
-    func resetSpeechRecognition() {
-        speechRecognitionManager.cancelSpeechRecognition()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.speechRecognitionManager.startRecognize()
-        }
-    }
-    
-    // выключить микрофон
-    func turnOfMicrophone(text: String) {
-        
-        if text.lowercased().contains("стоп") {
-            
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                NotificationCenter.default.post(name: Notification.Name("actions"), object: Actions.closeScreen)
-            }
-            
-            self.ASPUButton.sendActions(for: .touchUpInside)
-            
-        }
-    }
-    
-    // прокрутка веб страницы
-    func scrollWebScreen(text: String) {
-        for direction in VoiceDirections.directions {
-            if direction.name.contains(text.lastWord()) {
-                NotificationCenter.default.post(name: Notification.Name("scroll web page"), object: text.lastWord())
-            }
-        }
-    }
-    
     func actionWasSelected(action: ASPUButtonActions) {
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
             self.handleAction(action: action)
@@ -190,63 +17,63 @@ extension AGPUTabBarController: ASPUButtonFavouriteActionsListTableViewControlle
     }
     
     func handleAction(action: ASPUButtonActions) {
-        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(openFavouritesList))
-        doubleTap.numberOfTapsRequired = 2
         switch action {
         case .speechRecognition:
             ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
-            ASPUButton.addTarget(self, action: #selector(VoiceCommands), for: .touchUpInside)
-            ASPUButton.addGestureRecognizer(doubleTap)
+            ASPUButton.addTarget(self, action: #selector(openVoiceCommands), for: .touchUpInside)
+            openVoiceCommands(isAction: false)
         case .timetableWeeks:
             ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
             ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
-            ASPUButton.removeGestureRecognizer(doubleTap)
             openWeeksTimetable()
         case .campusMap:
             ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
             ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
-            ASPUButton.removeGestureRecognizer(doubleTap)
             openCampusMap()
         case .studyPlan:
             ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
             ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
-            ASPUButton.removeGestureRecognizer(doubleTap)
             openStudyPlan()
         case .profile:
             ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
             ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
-            ASPUButton.removeGestureRecognizer(doubleTap)
             openProfile()
         case .manual:
             ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
             ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
-            ASPUButton.removeGestureRecognizer(doubleTap)
             openManual()
         case .sections:
             ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
             ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
-            ASPUButton.removeGestureRecognizer(doubleTap)
             openSectionsList()
         case .recent:
             ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
             ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
-            ASPUButton.removeGestureRecognizer(doubleTap)
             openRecentMoments()
         case .weather:
             ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
             ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
-            ASPUButton.removeGestureRecognizer(doubleTap)
             openWeatherVC()
         case .things:
             ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
             ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
-            ASPUButton.removeGestureRecognizer(doubleTap)
             openThingsCategoriesList()
         case .whatsNew:
             ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
             ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
-            ASPUButton.removeGestureRecognizer(doubleTap)
             openWhatsNew()
+        case .nearestBuilding:
+            ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
+            ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
+            showNearestBuilding(isAction: false)
+        case .appThemes:
+            ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
+            ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
+            openAppThemes()
+        case .appShortcuts:
+            ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
+            ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
+            openAppShortcuts()
         case .favourite:
             break
         }
@@ -255,8 +82,8 @@ extension AGPUTabBarController: ASPUButtonFavouriteActionsListTableViewControlle
     // изменение ASPU Button
     func updateASPUButton(icon: String) {
         let option = settingsManager.checkASPUButtonAnimationOption()
-        if !ASPUButton.isHidden {
-            DispatchQueue.main.async {
+        DispatchQueue.main.async {
+            if !self.ASPUButton.isHidden {
                 self.ASPUButton.setImage(UIImage(named: icon), for: .normal)
                 switch option {
                 case .spring:
@@ -284,4 +111,598 @@ extension AGPUTabBarController: ASPUButtonFavouriteActionsListTableViewControlle
             }
         }
     }
+}
+
+// MARK: - UIContextMenuInteractionDelegate
+extension AGPUTabBarController: UIContextMenuInteractionDelegate {
+    
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint)-> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil,
+                                          previewProvider: nil,
+                                          actionProvider: {
+                _ in
+            
+            return self.checkTab(view: interaction.view)
+        })
+    }
+    
+    func checkTab(view: UIView?)-> UIMenu? {
+        let title = view?.accessibilityIdentifier
+        let savedActions = settingsManager.getTabOptions(title: title!)
+        let variant = settingsManager.checkOnlyMainOption()
+        if variant == .custom {
+            if !savedActions.isEmpty || title == "sections" || title == "maps" || title == "weeks" || title == "weather" || title == "building" {
+                return makeMenu(view: view)
+            } else {
+                let vc = HintViewController(info: "Нужно добавить действия для вкладки \"\(title!.getCurrentTabName())\" в настройках панели вкладок.")
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
+            }
+        } else {
+            return makeMenu(view: view)
+        }
+        return nil
+    }
+    
+    func makeMenu(view: UIView?)-> UIMenu? {
+        let title = view?.accessibilityIdentifier
+        let main = settingsManager.checkOnlyMainOption()
+        if main == .custom {
+            return makeCustomContextMenu(title: title!)
+        } else {
+            return makeContextMenu(title: title!)
+        }
+    }
+    
+    func makeCustomContextMenu(title: String)-> UIMenu {
+        let savedFont = settingsManager.getTabsFont()
+        let savedActions = settingsManager.getTabOptions(title: title)
+        var actions = [UIAction]()
+        if title == "sections" {
+            actions = makeSectionsOptions()
+        } else if title == "maps" {
+            actions = makeMapsOptions()
+        } else if title == "weeks" {
+            actions = makeWeeksOptions()
+        } else if title == "weather" {
+            actions = makeWeatherOptions()
+        } else if title == "building" {
+            actions = makeBuildingOptions()
+        } else {
+            actions = savedActions.map { findAction(title: $0.title) }
+        }
+        if savedFont != .none {
+            let font = UIFont(name: savedFont.rawValue, size: 15)!
+            actions.forEach { $0.setValue(NSAttributedString(string: $0.title, attributes: [.font: font, .foregroundColor: UIColor.label]), forKey: "attributedTitle") }
+        }
+        return UIMenu(title: title.getCurrentTabName(), children: actions)
+    }
+    
+    func makeContextMenu(title: String)-> UIMenu? {
+        if title == "news" {
+            return UIMenu(title: "Новости", children: makeNewsOptions())
+        } else if title == "timetable" {
+            return UIMenu(title: "Расписание", children: makeTimetableOptions())
+        } else if title == "maps" {
+            return UIMenu(title: "Карты", children: makeMapsOptions())
+        } else if title == "settings" {
+            return UIMenu(title: "Настройки", children: makeSettingsOptions())
+        }
+        return nil
+    }
+}
+
+// MARK: - ScreenClosedDelegate
+extension AGPUTabBarController: ScreenClosedDelegate {
+    
+    func screenWasClosed() {
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+            self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
+        }
+    }
+}
+
+extension AGPUTabBarController {
+    
+    func makeNewsOptions()-> [UIAction] {
+        
+        let todayNews = UIAction(title: "Новости за сегодня", image: UIImage(named: "calendar")) { _ in
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.newsVC.showWhatsNewVC()
+            }
+        }
+        
+        let categoriesAction = UIAction(title: "Список категорий", image: UIImage(named: "mail")) { _ in
+            if let index = self.tabBar.subviews.firstIndex(where: { $0.accessibilityIdentifier == "news"}) {
+                self.selectedIndex = index - 1
+                UserDefaults.standard.setValue(self.selectedIndex, forKey: "index")
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    self.newsVC.openNewsCategoriesList()
+                }
+            }
+        }
+        
+        let pagesAction = UIAction(title: "Список страниц", image: UIImage(named: "number")) { _ in
+            if let index = self.tabBar.subviews.firstIndex(where: { $0.accessibilityIdentifier == "news"}) {
+                self.selectedIndex = index - 1
+                UserDefaults.standard.setValue(self.selectedIndex, forKey: "index")
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    self.newsVC.openNewsPagesList()
+                }
+            }
+        }
+        
+        let randomAction = UIAction(title: "Рандомайзер", image: UIImage(named: "dice")) { _ in
+            if let index = self.tabBar.subviews.firstIndex(where: { $0.accessibilityIdentifier == "news"}) {
+                self.selectedIndex = index - 1
+                UserDefaults.standard.setValue(self.selectedIndex, forKey: "index")
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    self.newsVC.openRandom()
+                }
+            }
+        }
+        
+        let filterAction = UIAction(title: "Фильтрация", image: UIImage(named: "filter")) { _ in
+            if let index = self.tabBar.subviews.firstIndex(where: { $0.accessibilityIdentifier == "news"}) {
+                self.selectedIndex = index - 1
+                UserDefaults.standard.setValue(self.selectedIndex, forKey: "index")
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    self.newsVC.openFilterOptionsList()
+                }
+            }
+        }
+        return [todayNews, categoriesAction, pagesAction, randomAction, filterAction]
+    }
+    
+    func makeFavouriteOptions()-> [UIAction] {
+        
+        let addSection = UIAction(title: "Добавить раздел", image: UIImage(named: "add")) { _ in
+            if let index = self.tabBar.subviews.firstIndex(where: { $0.accessibilityIdentifier == "favourites"}) {
+                self.selectedIndex = index - 1
+                UserDefaults.standard.setValue(self.selectedIndex, forKey: "index")
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    self.favouritesListVC.addButtonTapped()
+                }
+            }
+        }
+        
+        let changeSections = UIAction(title: "Изменить порядок", image: UIImage(named: "number")) { _ in
+            if let index = self.tabBar.subviews.firstIndex(where: { $0.accessibilityIdentifier == "favourites"}) {
+                self.selectedIndex = index - 1
+                UserDefaults.standard.setValue(self.selectedIndex, forKey: "index")
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    self.favouritesListVC.startEdit()
+                }
+            }
+        }
+        return [addSection, changeSections]
+    }
+    
+    func makeTimetableOptions()-> [UIAction] {
+        
+        let calendar = UIAction(title: "Календарь", image: UIImage(named: "calendar")) { _ in
+            if let index = self.tabBar.subviews.firstIndex(where: { $0.accessibilityIdentifier == "timetable"}) {
+                self.selectedIndex = index - 1
+                UserDefaults.standard.setValue(self.selectedIndex, forKey: "index")
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    self.timetableVC.openCalendar()
+                }
+            }
+        }
+        
+        let weeksList = UIAction(title: "Список недель", image: UIImage(named: "clock")) { _ in
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                let vc = AllWeeksListTableViewController(id: self.settingsManager.getSavedID(), subgroup: self.settingsManager.getSavedSubgroup(), owner: self.settingsManager.getSavedOwner())
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                self.present(navVC, animated: true)
+            }
+        }
+        
+        let daysList = UIAction(title: "Список дней", image: UIImage(named: "sections")) { _ in
+            if let index = self.tabBar.subviews.firstIndex(where: { $0.accessibilityIdentifier == "timetable"}) {
+                self.selectedIndex = index - 1
+                UserDefaults.standard.setValue(self.selectedIndex, forKey: "index")
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    self.timetableVC.openDaysList()
+                }
+            }
+        }
+        
+        let favouritesList = UIAction(title: "Избранное", image: UIImage(named: "star")) { _ in
+            if let index = self.tabBar.subviews.firstIndex(where: { $0.accessibilityIdentifier == "timetable"}) {
+                self.selectedIndex = index - 1
+                UserDefaults.standard.setValue(self.selectedIndex, forKey: "index")
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    self.timetableVC.openFavouritesList()
+                }
+            }
+        }
+        
+        let searchAction = UIAction(title: "Поиск", image: UIImage(named: "search")) { _ in
+            if let index = self.tabBar.subviews.firstIndex(where: { $0.accessibilityIdentifier == "timetable"}) {
+                self.selectedIndex = index - 1
+                UserDefaults.standard.setValue(self.selectedIndex, forKey: "index")
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    self.timetableVC.openSearch()
+                }
+            }
+        }
+        
+        return [calendar, weeksList, daysList, favouritesList, searchAction]
+    }
+    
+    func makeMapsOptions()-> [UIAction] {
+        let nearBuilding = UIAction(title: "Нужное здание", image: UIImage(named: "marker")) { _ in
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                let vc = NearBuildingViewController(info: .map)
+                vc.screenDelegate = self
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
+            }
+        }
+        return [nearBuilding]
+    }
+    
+    func makeSettingsOptions()-> [UIAction] {
+        let newsOptions = UIAction(title: "Новости", image: UIImage(named: "mail")) { _ in
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.settingsVC.openNewsSettings()
+            }
+        }
+        let timetableOptions = UIAction(title: "Расписание", image: UIImage(named: "time icon")) { _ in
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.settingsVC.openTimetableSettings()
+            }
+        }
+        let tabsOptions = UIAction(title: "Панель вкладок", image: UIImage(named: "applicant")) { _ in
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.settingsVC.openTabBarSettings()
+            }
+        }
+        let themesAction = UIAction(title: "Темы приложения", image: UIImage(named: "theme")) { _ in
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.settingsVC.openAppThemes()
+            }
+        }
+        let aspuButton = UIAction(title: "АГПУ кнопка", image: UIImage(named: "button")) { _ in
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.settingsVC.openASPUButtonSettings()
+            }
+        }
+        
+        let shortcutAction = UIAction(title: "Шорткаты приложения", image: UIImage(named: "sections")) { _ in
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.settingsVC.openAppShortcuts()
+            }
+        }
+        return [newsOptions, timetableOptions, tabsOptions, themesAction, aspuButton, shortcutAction]
+    }
+    
+    func makeSectionsOptions()-> [UIAction] {
+        let actions = AGPUSections.sections.map { section in
+            UIAction(title: section.name, image: UIImage(named: section.icon)) { _ in
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    self.goToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false, isNotify: false)
+                }
+          }
+        }
+        return actions
+    }
+    
+    func makeWeeksOptions()-> [UIAction] {
+        let refresh = UIAction(title: "Обновить", image: UIImage(named: "refresh")) { _ in
+            if let index = self.tabBar.subviews.firstIndex(where: { $0.accessibilityIdentifier == "weeks"}) {
+                self.selectedIndex = index - 1
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    ((self.viewControllers?[2] as? UINavigationController)?.viewControllers.first as? AllWeeksListTableViewController)?.refreshWeeks()
+                }
+            }
+        }
+        return [refresh]
+    }
+    
+    func makeWeatherOptions()-> [UIAction] {
+        let refresh = UIAction(title: "Обновить", image: UIImage(named: "refresh")) { _ in
+            if let index = self.tabBar.subviews.firstIndex(where: { $0.accessibilityIdentifier == "weather"}) {
+                self.selectedIndex = index - 1
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    ((self.viewControllers?[2] as? UINavigationController)?.viewControllers.first as? LocationWeatherDetailViewController)?.refreshWeather()
+                }
+            }
+        }
+        return [refresh]
+    }
+    
+    func makeBuildingOptions()-> [UIAction] {
+        let refresh = UIAction(title: "Поделиться", image: UIImage(named: "share")) { _ in
+            if let index = self.tabBar.subviews.firstIndex(where: { $0.accessibilityIdentifier == "building"}) {
+                self.selectedIndex = index - 1
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    (self.viewControllers?[2] as? NearBuildingViewController)?.shareBuilding()
+                }
+            }
+        }
+        return [refresh]
+    }
+    
+    func findAction(title: String)-> UIAction  {
+        let allActions = makeNewsOptions() + makeFavouriteOptions() + makeTimetableOptions() + makeSettingsOptions() + makeSectionsOptions()
+        let action = allActions.first { $0.title == title }!
+        return action
+    }
+    
+    // MARK: - Action To Get
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if !self.tabBar.isHidden {
+            checkActionToRecall()
+        }
+    }
+    
+    @objc func openRecentMoments() {
+       let vc = RecentMomentsListTableViewController()
+       if !ASPUButton.isHidden {
+            vc.isNotify = true
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.updateASPUButton(icon: "time.past")
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.present(navVC, animated: true)
+            }
+        } else {
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+   }
+   
+   @objc func openWeatherVC() {
+       let annotation = MKPointAnnotation()
+       annotation.title = "Армавир"
+       annotation.coordinate = CLLocationCoordinate2D(latitude: 44.9892, longitude: 41.1234)
+       let vc = LocationWeatherDetailViewController(annotation: annotation)
+       vc.isNotify = true
+       vc.delegate = self
+       let navVC = UINavigationController(rootViewController: vc)
+       navVC.modalPresentationStyle = .fullScreen
+       if !ASPUButton.isHidden {
+           self.updateASPUButton(icon: "sun")
+           Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+               self.present(navVC, animated: true)
+           }
+       } else {
+           self.present(navVC, animated: true)
+       }
+   }
+   
+   @objc func openWhatsNew() {
+       let vc = TodayNewsListTableViewController()
+       let navVC = UINavigationController(rootViewController: vc)
+       let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
+       switch style {
+       case .fullScreen:
+           navVC.modalPresentationStyle = .fullScreen
+           if !ASPUButton.isHidden {
+               vc.isNotify = true
+               vc.delegate = self
+               self.updateASPUButton(icon: "question")
+               Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                   self.present(navVC, animated: true)
+               }
+           } else {
+               self.present(navVC, animated: true)
+           }
+       case .sheet:
+           navVC.modalPresentationStyle = .pageSheet
+           if !ASPUButton.isHidden {
+               vc.isNotify = true
+               vc.delegate = self
+               self.updateASPUButton(icon: "question")
+               Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                   self.present(navVC, animated: true)
+               }
+           } else {
+               self.present(navVC, animated: true)
+           }
+       case .notShow:
+           let vc = HintViewController(info: "Чтобы увидеть экран, нужно выбрать его отображение в настройках опции \"Наглядные изменения\"")
+           vc.modalPresentationStyle = .fullScreen
+           if !ASPUButton.isHidden {
+               vc.isNotify = true
+               vc.delegate = self
+               self.updateASPUButton(icon: "info icon")
+               Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                   self.present(navVC, animated: true)
+               }
+           } else {
+               self.present(navVC, animated: true)
+           }
+       }
+   }
+   
+   @objc func showNearestBuilding(isAction: Bool) {
+       let vc = NearBuildingViewController(info: .map)
+       vc.isAction = isAction
+       vc.screenDelegate = self
+       vc.modalPresentationStyle = .fullScreen
+       if !ASPUButton.isHidden {
+           self.updateASPUButton(icon: "marker icon")
+           Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+               self.present(vc, animated: true)
+           }
+       } else {
+           self.present(vc, animated: true)
+       }
+   }
+   
+   @objc func openVoiceCommands(isAction: Bool) {
+       let vc = VoiceCommandsViewController()
+       vc.isAction = isAction
+       vc.delegate = self
+       vc.modalPresentationStyle = .fullScreen
+       if !ASPUButton.isHidden {
+           self.updateASPUButton(icon: "microphone")
+           Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+               self.present(vc, animated: true)
+           }
+       } else {
+           self.present(vc, animated: true)
+       }
+   }
+   
+   @objc func openAppThemes() {
+       let vc = AppThemesListTableViewController()
+       vc.modalPresentationStyle = .fullScreen
+       vc.delegate = self
+       let navVC = UINavigationController(rootViewController: vc)
+       navVC.modalPresentationStyle = .fullScreen
+       if !ASPUButton.isHidden {
+           self.updateASPUButton(icon: "theme")
+           Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+               self.present(navVC, animated: true)
+           }
+       } else {
+           self.present(navVC, animated: true)
+       }
+   }
+   
+   @objc func openAppShortcuts() {
+       let vc = FavouriteShortcutsListTableViewController()
+       vc.modalPresentationStyle = .fullScreen
+       vc.screenDelegate = self
+       let navVC = UINavigationController(rootViewController: vc)
+       navVC.modalPresentationStyle = .fullScreen
+       if !ASPUButton.isHidden {
+           self.updateASPUButton(icon: "sections icon")
+           Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+               self.present(navVC, animated: true)
+           }
+       } else {
+           self.present(navVC, animated: true)
+       }
+   }
+   
+   @objc func openWeeksTimetable() {
+       let id = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-3-1"
+       let subgroup = UserDefaults.standard.integer(forKey: "subgroup")
+       let owner = UserDefaults.standard.string(forKey: "recentOwner") ?? "GROUP"
+       let vc = AllWeeksListTableViewController(id: id, subgroup: subgroup, owner: owner)
+       vc.isNotify = true
+       vc.screenDelegate = self
+       let navVC = UINavigationController(rootViewController: vc)
+       navVC.modalPresentationStyle = .fullScreen
+       if !ASPUButton.isHidden {
+           self.updateASPUButton(icon: "clock")
+           Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+               self.present(navVC, animated: true)
+           }
+       } else {
+           self.present(navVC, animated: true)
+       }
+   }
+   
+   @objc func openCampusMap() {
+       let vc = AGPUBuildingsMapViewController()
+       vc.isAction = true
+       vc.isNotify = true
+       vc.delegate = self
+       let navVC = UINavigationController(rootViewController: vc)
+       navVC.modalPresentationStyle = .fullScreen
+       if !ASPUButton.isHidden {
+           self.updateASPUButton(icon: "map icon")
+           Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+               self.present(navVC, animated: true)
+           }
+       } else {
+           self.present(navVC, animated: true)
+       }
+   }
+    
+    func openCalendarVC() {
+        let index = tabBar.subviews.firstIndex { $0.accessibilityIdentifier == "timetable" } ?? 0
+        selectedIndex = index - 1
+        UserDefaults.standard.setValue(selectedIndex, forKey: "index")
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+            self.timetableVC.openCalendar()
+        }
+    }
+   
+   @objc func openStudyPlan() {
+       self.updateASPUButton(icon: "student")
+       Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+           self.openWeb(url: "http://plany.agpu.net/Plans/", image: "student", title: "Учебный план", delegate: self)
+       }
+   }
+   
+   @objc func openProfile() {
+       self.updateASPUButton(icon: "profile icon")
+       Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+           self.openWeb(url: "http://plany.agpu.net/WebApp/#/", image: "profile icon", title: "ЭИОС", delegate: self)
+       }
+   }
+   
+   @objc func openManual() {
+       if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
+           self.updateASPUButton(icon: "book")
+           Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+               self.openWeb(url: cathedra.manualUrl, image: "book", title: "Метод. материалы", delegate: self)
+           }
+       } else {
+           self.showHintAlert(type: .manuals, isNotify: true, delegate: self)
+           HapticsManager.shared.hapticFeedback()
+       }
+   }
+   
+   @objc func openSectionsList() {
+       let vc = ASPUWebsiteSectionsListViewController()
+       vc.isAction = true
+       vc.delegate = self
+       let navVC = UINavigationController(rootViewController: vc)
+       navVC.modalPresentationStyle = .fullScreen
+       if !ASPUButton.isHidden {
+           self.updateASPUButton(icon: "online")
+           Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+               self.present(navVC, animated: true)
+           }
+       } else {
+           present(navVC, animated: true)
+       }
+   }
+   
+   @objc func openFavouritesList() {
+       let vc = ASPUButtonFavouriteActionsListTableViewController()
+       vc.delegate = self
+       vc.screenDelegate = self
+       let navVC = UINavigationController(rootViewController: vc)
+       navVC.modalPresentationStyle = .fullScreen
+       if !ASPUButton.isHidden {
+           self.updateASPUButton(icon: "star")
+           Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+               self.present(navVC, animated: true)
+           }
+       } else {
+           self.present(navVC, animated: true)
+       }
+   }
+   
+   @objc func openThingsCategoriesList() {
+       let vc = ThingsCategoriesListTableViewController()
+       vc.isAction = true
+       vc.delegate = self
+       let navVC = UINavigationController(rootViewController: vc)
+       navVC.modalPresentationStyle = .fullScreen
+       if !ASPUButton.isHidden {
+           self.updateASPUButton(icon: "exclamation")
+           Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+               self.present(navVC, animated: true)
+           }
+       } else {
+           self.present(navVC, animated: true)
+       }
+   }
 }

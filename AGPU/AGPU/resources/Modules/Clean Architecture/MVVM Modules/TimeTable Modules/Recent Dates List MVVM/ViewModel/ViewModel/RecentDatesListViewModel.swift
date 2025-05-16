@@ -7,7 +7,10 @@
 
 import Foundation
 
-class RecentDatesListViewModel {
+final class RecentDatesListViewModel {
+    
+    // MARK: - сервисы
+    let dateManager = DateManager()
     
     var dates = [String]()
     var dataChangedHandler: (()->Void)?

@@ -29,20 +29,18 @@ final class TimeTableTableViewCell: UITableViewCell {
     @IBOutlet var SubGroupId: UILabel!
     
     func configure(timetable: TimeTable, index: Int) {
-        let discipline = timetable.disciplines[index]
+        pair = timetable.disciplines[index]
         layer.borderWidth = 1
-        TimeLabel.text = discipline.time
-        DisciplineName.text = "\(discipline.name) \n\(discipline.teacherName), \(discipline.audienceID) \n (\(discipline.groupName)) \n(\(discipline.type.title))"
-        switch discipline.subgroup {
+        TimeLabel.text = pair.time
+        DisciplineName.text = "\(pair.name) \n\(pair.teacherName), \(pair.audienceID) \n (\(pair.groupName)) \n(\(pair.type.title))"
+        switch pair.subgroup {
         case 0:
-            SubGroupId.text = ""
+            SubGroupId.text = "Общая пара"
         default:
-            SubGroupId.text = "(подгруппа: \(discipline.subgroup))"
+            SubGroupId.text = "(подгруппа: \(pair.subgroup))"
         }
-        let color = isEnded(date: timetable.date, time: discipline.time.components(separatedBy: "-")[1]) ? .gray : discipline.type.color
-        self.backgroundColor = color
-        self.TimeLabel.text = self.isEnded(date: timetable.date, time: discipline.time.components(separatedBy: "-")[1]) ? "(завершено)" : discipline.time
-        self.pair = discipline
+        self.backgroundColor =  pair.type.color
+        TimeLabel.text = pair.time
         self.id = timetable.id
         self.date = timetable.date
     }

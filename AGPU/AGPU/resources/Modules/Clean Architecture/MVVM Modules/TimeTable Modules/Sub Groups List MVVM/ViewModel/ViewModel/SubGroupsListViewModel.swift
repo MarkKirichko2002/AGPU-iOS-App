@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SubGroupsListViewModel {
+final class SubGroupsListViewModel {
     
     var subgroup: Int
     var disciplines: [Discipline]

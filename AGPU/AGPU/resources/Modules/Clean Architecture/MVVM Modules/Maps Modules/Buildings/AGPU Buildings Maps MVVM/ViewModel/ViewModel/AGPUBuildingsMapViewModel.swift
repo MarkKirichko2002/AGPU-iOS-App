@@ -11,11 +11,13 @@ final class AGPUBuildingsMapViewModel {
     
     var arr = [MKAnnotation]()
     var index = 0
+    var typeIndex = 0
     var faculty: AGPUFacultyModel?
     var type: AGPUBuildingType? = .all
     var location = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     
     var locationHandler: ((LocationModel)->Void)?
+    var buttonHandler: ((String, Bool)->Void)?
     var choiceHandler: ((Bool, MKAnnotation)->Void)?
     var alertHandler: ((Bool)->Void)?
     

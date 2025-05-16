@@ -7,6 +7,11 @@
 
 import Foundation
 
-class RecentWebPageViewModel {
+final class RecentWebPageViewModel {
     
+    var currentScrollPosition: scrollPositions?
+    
+    // MARK: - сервисы
+    let realmManager = RealmManager()
+    let dateManager = DateManager()
 }

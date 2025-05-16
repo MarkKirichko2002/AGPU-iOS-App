@@ -41,12 +41,6 @@ variant_for_slice()
   "realm-monorepo.xcframework/watchos-arm64_i386_x86_64-simulator")
     echo "simulator"
     ;;
-  "realm-monorepo.xcframework/xros-arm64")
-    echo ""
-    ;;
-  "realm-monorepo.xcframework/xros-arm64_x86_64-simulator")
-    echo "simulator"
-    ;;
   esac
 }
 
@@ -76,12 +70,6 @@ archs_for_slice()
     ;;
   "realm-monorepo.xcframework/watchos-arm64_i386_x86_64-simulator")
     echo "arm64 i386 x86_64"
-    ;;
-  "realm-monorepo.xcframework/xros-arm64")
-    echo "arm64"
-    ;;
-  "realm-monorepo.xcframework/xros-arm64_x86_64-simulator")
-    echo "arm64 x86_64"
     ;;
   esac
 }

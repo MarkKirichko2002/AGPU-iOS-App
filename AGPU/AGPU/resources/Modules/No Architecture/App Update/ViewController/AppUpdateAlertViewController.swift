@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AppUpdateAlertViewController: UIViewController {
+final class AppUpdateAlertViewController: UIViewController {
     
     // MARK: - UI
     private var closeButton: UIButton = {
@@ -116,12 +116,12 @@ class AppUpdateAlertViewController: UIViewController {
         updateButton.snp.makeConstraints { maker in
             maker.width.equalTo(100)
             maker.height.equalTo(30)
-            maker.top.equalTo(titleLabel.snp.bottom).offset(50)
+            maker.top.equalTo(titleLabel.snp.bottom).offset(75)
             maker.centerX.equalToSuperview()
         }
         
         cancelButton.snp.makeConstraints { maker in
-            maker.top.equalTo(updateButton.snp.bottom).offset(50)
+            maker.top.equalTo(updateButton.snp.bottom).offset(30)
             maker.leading.equalTo(updateButton.snp.leading)
             maker.trailing.equalTo(updateButton.snp.trailing)
             maker.centerX.equalToSuperview()

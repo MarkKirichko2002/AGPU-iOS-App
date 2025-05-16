@@ -10,14 +10,36 @@ import Foundation
 // MARK: - ITabsOptionsListViewModel
 extension TabsOptionsListViewModel: ITabsOptionsListViewModel {
     
+    func getOnlyMainVariantInfo()-> String {
+        if let variant = UserDefaults.loadData(type: OnlyMainVariants.self, key: "variant") {
+            return "Вариант вкладок (\(variant.rawValue))"
+        }
+        return "Вариант вкладок (По умолчанию)"
+    }
+    
+    func getAdditionalTab()-> AdditionalTabVariants {
+        let variant = settingsManager.getAdditionalTabVariant()
+        return variant
+    }
+    
     func getTabsColor()-> TabColors {
         let color = settingsManager.getTabsColor()
         return color
     }
     
+    func getTabsFont()-> TabFonts {
+        let font = settingsManager.getTabsFont()
+        return font
+    }
+    
     func getIconsStyle()-> TabBarIconsStyle {
         let style = settingsManager.getTabsIconStyle()
         return style
+    }
+    
+    func getSoundOption()-> TabBarSoundOptions {
+        let option = settingsManager.getTabsSoundsOption()
+        return option
     }
     
     func observeOptionSelection() {

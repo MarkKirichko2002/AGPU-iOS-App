@@ -32,14 +32,17 @@ private extension Int {
     static let numberOfRowsInSecondSection = 1
 }
 
-class LocationWeatherDetailViewController: UITableViewController {
+final class LocationWeatherDetailViewController: UITableViewController {
     
     private var viewModel: LocationWeatherDetailViewModel
     var cancellable: AnyCancellable?
     
     var isSection = false
     var isNotify = false
+    var isTab = false
     var annotation: MKAnnotation
+    
+    weak var delegate: ScreenClosedDelegate?
     
     // MARK: - UI
     let refresh = UIRefreshControl()
@@ -64,10 +67,12 @@ class LocationWeatherDetailViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        if isSection {
-            setUpBackButton()
-        } else {
-            setUpCloseButton()
+        if !isTab {
+            if isSection {
+                setUpBackButton()
+            } else {
+                setUpCloseButton()
+            }
         }
         navigationItem.title = String.navigationTitle
         setUpMenu()
@@ -97,15 +102,11 @@ class LocationWeatherDetailViewController: UITableViewController {
             self.showChangesVC()
         }
         
-        let calendarAction = UIAction(title: "Календарь") { _ in
-            self.showCalendarVC()
-        }
-        
         let shareAction = UIAction(title: "Поделиться") { _ in
             self.shareInfo(image: UIImage(named: "АГПУ")!, title: "Погода", text: self.viewModel.textForMessageToShare())
         }
         
-        let other = UIMenu(title: "Другое", children: [openVC, calendarAction, shareAction])
+        let other = UIMenu(title: "Другое", children: [openVC, shareAction])
         
         let menu = UIMenu(title: String.menuTitle, children: [unitsMenu, other])
         return menu
@@ -119,7 +120,7 @@ class LocationWeatherDetailViewController: UITableViewController {
     
     @objc private func close() {
         if isNotify {
-            sendScreenWasClosedNotification()
+            delegate?.screenWasClosed()
         } else {
             HapticsManager.shared.hapticFeedback()
         }
@@ -141,7 +142,6 @@ class LocationWeatherDetailViewController: UITableViewController {
     }
     
     @objc private func back() {
-        sendScreenWasClosedNotification()
         navigationController?.popViewController(animated: true)
     }
     
@@ -156,7 +156,8 @@ class LocationWeatherDetailViewController: UITableViewController {
         refresh.addTarget(self, action: #selector(refreshWeather), for: .valueChanged)
     }
     
-    @objc private func refreshWeather() {
+    @objc func refreshWeather() {
+        print("refresh")
         viewModel.refresh()
         setUpMenu()
         refresh.endRefreshing()
@@ -194,13 +195,6 @@ class LocationWeatherDetailViewController: UITableViewController {
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
         }
-    }
-    
-    private func showCalendarVC() {
-        let vc = WeatherCalendarViewController(location: CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude))
-        let navVC = UINavigationController(rootViewController: vc)
-        navVC.modalPresentationStyle = .fullScreen
-        present(navVC, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

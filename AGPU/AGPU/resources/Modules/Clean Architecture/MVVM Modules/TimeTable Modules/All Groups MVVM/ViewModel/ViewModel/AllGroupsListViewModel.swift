@@ -7,11 +7,19 @@
 
 import Foundation
 
-class AllGroupsListViewModel {
+final class AllGroupsListViewModel {
     
     var group: String = ""
+    var groups = [FacultyGroupModel]()
+    
+    var dataChangedHandler: (()->Void)?
     var scrollHandler: ((Int, Int)->Void)?
     var groupSelectedHandler: (()->Void)?
+    
+    var isLoading = true
+    
+    // MARK: - сервисы
+    let service = TimeTableService()
     
     // MARK: - Init
     init(group: String) {

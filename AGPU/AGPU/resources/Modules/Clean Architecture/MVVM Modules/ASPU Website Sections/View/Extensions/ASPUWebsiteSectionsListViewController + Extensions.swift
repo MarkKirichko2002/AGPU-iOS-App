@@ -31,24 +31,45 @@ extension ASPUWebsiteSectionsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = InteractiveView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
         header.backgroundColor = .systemBackground
+        header.layer.borderWidth = 3
+        header.layer.borderColor = UIColor.label.cgColor
+        header.layer.cornerRadius = 10
+        header.backgroundColor = .systemBackground
         header.tapAction = {
             self.sectionSelected(index: section)
         }
         let imageView = SpringImageView(image: UIImage(named: AGPUSections.sections[section].icon))
         imageView.tintColor = .label
         imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         header.addSubview(imageView)
-        imageView.frame = CGRect(x: 20, y: 10, width: 75, height: 75)
         
-        let label = UILabel(frame: CGRect(x: 35 + imageView.frame.size.width, y: 5,
-                                          width: header.frame.size.width - 15 - imageView.frame.size.width,
-                                          height: header.frame.size.height-10))
+        let label = UILabel()
         label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
         header.addSubview(label)
         label.text = AGPUSections.sections[section].name
         label.textColor = .label
         label.font = .systemFont(ofSize: 17, weight: .black)
+        
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: header.topAnchor, constant: 10),
+            imageView.leftAnchor.constraint(equalTo: header.leftAnchor, constant: 20),
+            imageView.bottomAnchor.constraint(equalTo: header.bottomAnchor, constant: -10),
+            imageView.heightAnchor.constraint(equalToConstant: 75),
+            imageView.widthAnchor.constraint(equalToConstant: 75),
+            
+            label.topAnchor.constraint(equalTo: header.topAnchor, constant: 10),
+            label.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 15),
+            label.rightAnchor.constraint(equalTo: header.rightAnchor, constant: 10),
+            label.bottomAnchor.constraint(equalTo: header.bottomAnchor, constant: -10),
+        ])
+        
         return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 100
     }
     
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
@@ -70,10 +91,6 @@ extension ASPUWebsiteSectionsListViewController: UITableViewDelegate {
         })
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 120
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let subsection = AGPUSections.sections[indexPath.section].subsections[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
@@ -90,6 +107,10 @@ extension ASPUWebsiteSectionsListViewController: UITableViewDelegate {
 // MARK: - UIScrollViewDelegate
 extension ASPUWebsiteSectionsListViewController: UIScrollViewDelegate {
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        checkScrollPosition()
+    }
+    
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         print("прокрутка завершилась")
         HapticsManager.shared.hapticFeedback()
@@ -102,5 +123,17 @@ extension ASPUWebsiteSectionsListViewController {
     func sectionSelected(index: Int) {
         let section = AGPUSections.sections[index]
         self.goToWeb(url: section.url, image: section.icon, title: section.name, isSheet: false, isNotify: false)
+    }
+    
+    func checkScrollPosition() {
+        if tableView.contentOffset.y > 0 {
+            if let indexPath = tableView.indexPathForRow(at: CGPoint(x: 0, y: tableView.contentOffset.y + 200)) {
+                selectedSection = AGPUSections.sections[indexPath.section]
+                navigationItem.rightBarButtonItems?.first(where: { $0.accessibilityIdentifier == "sections"})?.menu = setUpMenu()
+            }
+        } else {
+            selectedSection = AGPUSections.sections[0]
+            navigationItem.rightBarButtonItems?.first(where: { $0.accessibilityIdentifier == "sections"})?.menu = setUpMenu()
+        }
     }
 }

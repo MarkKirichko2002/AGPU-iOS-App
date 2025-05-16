@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CurrentDateTimeTableDayListTableViewController: UIViewController {
+final class CurrentDateTimeTableDayListTableViewController: UIViewController {
 
     var timetable = TimeTable(id: "", date: "", disciplines: [])
     private var id: String = ""
@@ -30,7 +30,6 @@ class CurrentDateTimeTableDayListTableViewController: UIViewController {
     }()
     
     private let noTimeTableLabel = UILabel()
-    
     private let refresh = UIRefreshControl()
     
     // MARK: - Init

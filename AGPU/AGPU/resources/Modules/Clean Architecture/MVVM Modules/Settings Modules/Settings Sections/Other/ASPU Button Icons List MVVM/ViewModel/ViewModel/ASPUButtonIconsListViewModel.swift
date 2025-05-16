@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ASPUButtonIconsListViewModel {
+final class ASPUButtonIconsListViewModel {
     
     var faculty: AGPUFacultyModel?
     

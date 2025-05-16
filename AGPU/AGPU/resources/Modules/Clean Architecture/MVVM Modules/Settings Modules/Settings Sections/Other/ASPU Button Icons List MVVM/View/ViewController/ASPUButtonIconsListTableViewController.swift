@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ASPUButtonIconsListTableViewController: UITableViewController {
+final class ASPUButtonIconsListTableViewController: UITableViewController {
 
     // MARK: - сервисы
     private let viewModel = ASPUButtonIconsListViewModel()

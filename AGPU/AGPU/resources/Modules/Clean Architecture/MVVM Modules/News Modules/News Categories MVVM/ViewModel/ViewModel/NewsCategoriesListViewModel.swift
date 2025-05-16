@@ -7,7 +7,7 @@
 
 import Foundation
 
-class NewsCategoriesListViewModel {
+final class NewsCategoriesListViewModel {
     
     var currentCategory = ""
     

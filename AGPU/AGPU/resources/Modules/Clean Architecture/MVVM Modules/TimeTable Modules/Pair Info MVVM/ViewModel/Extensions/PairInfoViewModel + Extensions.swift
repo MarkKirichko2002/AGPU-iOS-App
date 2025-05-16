@@ -5,7 +5,7 @@
 //  Created by Марк Киричко on 23.10.2023.
 //
 
-import Foundation
+import MapKit
 
 // MARK: - PairInfoViewModelProtocol
 extension PairInfoViewModel: PairInfoViewModelProtocol {
@@ -15,18 +15,21 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         let endTime = getEndTime()
         let pairType = pair.type.title
         let subGroup = checkSubGroup(subgroup: pair.subgroup)
-        pairInfo.append("дата: \(date)")
-        pairInfo.append("начало: \(startTime)")
-        pairInfo.append("конец: \(endTime)")
+        pairInfo.append("Дата: \(date)")
+        pairInfo.append("Дисциплина: \(pair.name)")
+        pairInfo.append("Начало: \(startTime)")
+        pairInfo.append("Конец: \(endTime)")
+        pairInfo.append("Преподаватель: \(pair.teacherName)")
+        pairInfo.append("Группа: \(pair.groupName)")
         pairInfo.append(subGroup)
-        pairInfo.append("тип пары: \(pairType)")
-        pairInfo.append("аудитория: \(pair.audienceID)")
-        pairInfo.append("дисциплина: \(pair.name)")
-        pairInfo.append("преподаватель: \(pair.teacherName)")
-        pairInfo.append("группа: \(pair.groupName)")
-        pairInfo.append("вычисляем время...")
+        pairInfo.append("Тип пары: \(pairType)")
+        pairInfo.append("Аудитория: \(pair.audienceID)")
+        pairInfo.append("Вычисляем время...")
+        pairInfo.append("Вычисляем растояние...")
+        pairInfo.append("Вычисляем время прибытия...")
         dataChangedHandler?()
         checkCurrentTime()
+        checkLocationAuthorizationStatus()
     }
     
     func getFacultyIcon(group: String)-> String {
@@ -53,28 +56,19 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
     func checkSubGroup(subgroup: Int)-> String {
         if subgroup == 0 && !pair.name.contains("Дисциплина по выбору") &&
             pair.type != .exam {
-            return "подгруппа: общая пара"
+            return "Подгруппа: общая пара"
         } else if pair.name.contains("Дисциплина по выбору") {
-            return "подгруппа: отсутствует"
+            return "Подгруппа: отсутствует"
         } else if pair.type == .exam {
-            return "какая подгруппа? Это экзамен!"
+            return "Какая подгруппа? Это экзамен!"
         } else {
-            return "подгруппа: \(subgroup)"
-        }
-    }
-    
-    func checkIsCurrentGroup(index: Int)-> Bool {
-        let savedGroup = UserDefaults.standard.string(forKey: "group") ?? ""
-        if pairInfo[index].contains(savedGroup) {
-            return true
-        } else {
-            return false
+            return "Подгруппа: \(subgroup)"
         }
     }
     
     func startTimer() {
-        print("timer fired")
-        timer?.fire()
+        //timer?.fire()
+        checkCurrentTime()
     }
     
     func stopTimer() {
@@ -102,7 +96,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         // если даты равны и текущее время меньше времени начала пары
         if dateComparisonResult == .orderedSame && timeComparisonResult == .orderedAscending {
             getTimeLeftToStart()
-        } 
+        }
         
         // если даты равны и текущее время меньше времени окончания пары
         else if dateComparisonResult == .orderedSame && timeComparisonResult2 == .orderedAscending {
@@ -113,11 +107,11 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         else if dateComparisonResult == .orderedSame && timeComparisonResult2 == .orderedDescending {
             getTimeEnded()
         }
-                
+        
         // если текущая дата меньше другой
         else if dateComparisonResult == .orderedAscending {
             getTimeLeftToStartInFuture()
-        } 
+        }
         
         // если текущая дата больше другой
         else if dateComparisonResult == .orderedDescending {
@@ -142,7 +136,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         components.minute = Int(endHour)
         
         AudioPlayerClass.shared.stopSound()
-        AudioPlayerClass.shared.playSound(sound: sound, isPlaying: true)
+        playTimetableSound(sound: sound, isPlaying: true)
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             
@@ -157,9 +151,10 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
                         self.stopTimer()
                         self.getTimeLeftToEnd()
                         AudioPlayerClass.shared.stopSound()
-                        AudioPlayerClass.shared.playSound(sound: "ring", isPlaying: false)
+                        self.playTimetableSound(sound: "ring", isPlaying: false)
                     } else {
-                        self.pairInfo[9] = "до начала: \(hours) часов \(minutes) минут \(seconds) секунд"
+                        self.pairInfo[9] = "До начала: \(hours) часов \(minutes) минут \(seconds) секунд"
+                        self.checkColor(color: .systemBackground)
                         self.dataChangedHandler?()
                     }
                 } else {
@@ -187,7 +182,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         
         AudioPlayerClass.shared.stopSound()
         Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
-            AudioPlayerClass.shared.playSound(sound: self.sound, isPlaying: true)
+            self.playTimetableSound(sound: self.sound, isPlaying: true)
         }
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
@@ -201,15 +196,17 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
                 if let hours = difference.hour, let minutes = difference.minute, let seconds = difference.second {
                     
                     if hours >= 0 && minutes >= 0 && seconds >= 0 {
-                        self.pairInfo[9] = "до конца пары: \(hours) часов \(minutes) минут \(seconds) секунд"
+                        self.pairInfo[9] = "До конца пары: \(hours) часов \(minutes) минут \(seconds) секунд"
+                        self.checkColor(color: self.pair.type.color)
                         self.dataChangedHandler?()
                     } else if hours <= 0 && minutes <= 0 && seconds <= 0 {
-                        self.pairInfo[9] = "пара закончилась"
+                        self.pairInfo[9] = "Пара закончилась"
+                        self.checkColor(color: .gray)
                         self.dataChangedHandler?()
                         self.stopTimer()
                         self.getTimeEnded()
                         AudioPlayerClass.shared.stopSound()
-                        AudioPlayerClass.shared.playSound(sound: "ring", isPlaying: false)
+                        self.playTimetableSound(sound: "ring", isPlaying: false)
                     }
                 } else {
                     print("Ошибка")
@@ -226,7 +223,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         let calendar = Calendar.current
         
         AudioPlayerClass.shared.stopSound()
-        AudioPlayerClass.shared.playSound(sound: sound, isPlaying: true)
+        playTimetableSound(sound: sound, isPlaying: true)
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             
@@ -251,7 +248,8 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
             
             let info = self.dateManager.getInfoFromDates(date: currentDate, date2: startDateString)
             
-            self.pairInfo[9] = "осталось: \(abs(info.day ?? 0)) дней \(abs(info.hour ?? 0)) часов \(abs(info.minute ?? 0)) минут \(abs(info.second ?? 0)) секунд"
+            self.pairInfo[9] = "Осталось: \(abs(info.day ?? 0)) дней \(abs(info.hour ?? 0)) часов \(abs(info.minute ?? 0)) минут \(abs(info.second ?? 0)) секунд"
+            self.checkColor(color: .systemBackground)
             self.dataChangedHandler?()
         }
     }
@@ -284,12 +282,276 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
             
             let info = self.dateManager.getInfoFromDates(date: currentDate, date2: startDateString)
             
-            self.pairInfo[9] = "прошло с окончания: \(abs(info.day ?? 0)) дней \(abs(info.hour ?? 0)) часов \(abs(info.minute ?? 0)) минут \(abs(info.second ?? 0)) секунд"
+            self.pairInfo[9] = "Прошло с окончания: \(abs(info.day ?? 0)) дней \(abs(info.hour ?? 0)) часов \(abs(info.minute ?? 0)) минут \(abs(info.second ?? 0)) секунд"
+            self.checkColor(color: .gray)
             self.dataChangedHandler?()
         }
     }
+    
+    func checkLocationAuthorizationStatus() {
+        locationManager.checkLocationAuthorization { isAuthorized in
+            if isAuthorized {
+                self.getLocation()
+            } else {
+                self.alertHandler?(true, self.createLocationAlertMessage().0, self.createLocationAlertMessage().1)
+            }
+        }
+    }
+    
+    func playTimetableSound(sound: String, isPlaying: Bool) {
+        if !isRecording() {
+            AudioPlayerClass.shared.playSound(sound: sound, isPlaying: isPlaying)
+        }
+    }
+    
+    func getLocation() {
         
+        pairInfo[10] = "Вычисляем растояние..."
+        pairInfo[11] = "Вычисляем время прибытия..."
+        
+        locationManager.isUpdates = true
+        locationManager.getLocations()
+        
+        locationManager.registerLocationHandler { location in
+            
+            // текущий корпус
+            let currentBuilding = self.currentBuilding()
+            
+            self.locationManager.getDistance(source: location.coordinate, destination: currentBuilding.pin.coordinate) { km, m, time in
+                self.pairInfo[10] = self.convertDistanceToString(km: km, m: m)
+                self.pairInfo[11] = self.convertTimeToString(time: time)
+                self.dataChangedHandler?()
+            } errorHandler: { _ in
+                self.pairInfo[10] = "Не получилось вычислить расстояние"
+                self.pairInfo[11] = "Не получилось вычислить время"
+            }
+        }
+    }
+    
+    func convertDistanceToString(km: Int, m: Int)-> String {
+        if km == 0 && m <= 100 {
+            return "Рядом (\(km) км \(m) м)"
+        } else if km == 0 && m == 0 {
+            return "На месте"
+        } else {
+            return "До корпуса \"\(currentBuilding().name)\" осталось: \(km) км \(m) м"
+        }
+    }
+    
+    func convertTimeToString(time: [Int])-> String {
+        let timeString = "\(time[0]):\(time[1])"
+        return "Время прибытия в корпус: \(time[0]) часов \(time[1]) минут (\(self.dateManager.addingTime(addTime: timeString)))"
+    }
+    
+    func currentBuilding()-> AGPUBuildingModel {
+        for building in AGPUBuildings.buildings {
+            for audience in building.audiences {
+                if audience == pair.audienceID {
+                    return building
+                }
+            }
+        }
+        return AGPUBuildings.buildings[0]
+    }
+    
+    func stopUpdatingLocation() {
+        locationManager.manager.stopUpdatingLocation()
+    }
+    
+    func createLocationAlertMessage()-> (String, String) {
+        let style = settingsManager.getSavedCommunicationStyle()
+        switch style {
+        case .formal:
+            return ("Геопозиция выключена", "Хотите включить в настройках?")
+        case .informal:
+            return ("Геопозиция выключена", "Хочешь включить в настройках?")
+        }
+    }
+    
+    func checkColor(color: UIColor) {
+        if color == UIColor.systemBackground {
+            currentColor = .label
+        } else {
+            currentColor = .black
+        }
+        if backgroundColor != color {
+            backgroundColor = color
+            colorHandler?(color)
+        }
+    }
+    
+    func createTransportTypeMenu()-> UIMenu {
+        let walking = UIAction(title: "Пешком", state: selectedType == .walking ? .on : .off) { item in
+            self.selectedType = MKDirectionsTransportType.walking
+            self.locationManager.type = self.selectedType
+            self.getLocation()
+            self.transportTypeHandler?()
+        }
+        let auto = UIAction(title: "Автомобиль", state: selectedType == .automobile ? .on : .off) { _ in
+            self.selectedType = MKDirectionsTransportType.automobile
+            self.locationManager.type = self.selectedType
+            self.getLocation()
+            self.transportTypeHandler?()
+        }
+        return UIMenu(title: "Тип транспорта", children: [walking, auto])
+    }
+    
+    func isRecording()-> Bool {
+        let screens = settingsManager.loadScreens()
+        return screens.contains(SpeechScreens.pairInfo)
+    }
+    
+    func checkVoiceCommandsOption() {
+        if isRecording() {
+            startRecognize()
+        }
+    }
+    
+    func resetSpeechRecognition() {
+        if isRecording() {
+            cancelRecognition()
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.startRecognize()
+            }
+        }
+    }
+    
+    func cancelRecognition() {
+        if isRecording() {
+            speechRecognitionManager.cancelSpeechRecognition()
+        }
+    }
+    
+    private func startRecognize() {
+        speechRecognitionManager.requestSpeechAndMicrophonePermission()
+        speechRecognitionManager.registerSpeechAuthorizationHandler { auth in
+            switch auth {
+            case .notDetermined:
+                print("Разрешение на распознавание речи еще не было получено.")
+            case .denied:
+                self.alertHandler?(true, self.createMicAlertMessage().0, self.createMicAlertMessage().1)
+                print("Доступ к распознаванию речи был отклонен.")
+            case .restricted:
+                print("Функциональность распознавания речи ограничена.")
+            case .authorized:
+                print("Разрешение на распознавание речи получено.")
+                self.speechRecognitionManager.startRecognize()
+            @unknown default:
+                print("неизвестно")
+            }
+        }
+        speechRecognitionManager.registerSpeechRecognitionHandler { text in
+            self.voiceCommands(text: text)
+        }
+    }
+    
+    private func voiceCommands(text: String) {
+        
+        if text.lowercased().contains("все") || text.lowercased().contains("всё")  {
+            resetSpeechRecognition()
+            currentIndex = -1
+            dataChangedHandler?()
+        }
+        
+        if text.lowercased().contains("дат") || text.lowercased().contains("да т")  {
+            resetSpeechRecognition()
+            currentIndex = 0
+            dataChangedHandler?()
+        }
+        
+        if text.lowercased().contains("название") || text.lowercased().contains("дисциплина")  {
+            resetSpeechRecognition()
+            currentIndex = 1
+            dataChangedHandler?()
+        }
+        
+        if text.lowercased().contains("начало") || text.lowercased().contains("начин") {
+            resetSpeechRecognition()
+            currentIndex = 2
+            dataChangedHandler?()
+        }
+        
+        if text.lowercased().contains("конец") || text.lowercased().contains("заканчи") {
+            resetSpeechRecognition()
+            currentIndex = 3
+            dataChangedHandler?()
+        }
+        
+        if text.lowercased().contains("препод") {
+            resetSpeechRecognition()
+            currentIndex = 4
+            dataChangedHandler?()
+        }
+        
+        if text.lowercased().contains("подгруп") {
+            resetSpeechRecognition()
+            currentIndex = 6
+            dataChangedHandler?()
+        } else if text.lowercased().contains("груп") {
+            resetSpeechRecognition()
+            currentIndex = 5
+            dataChangedHandler?()
+        }
+        
+        if text.lowercased().contains("тип") {
+            resetSpeechRecognition()
+            currentIndex = 7
+            dataChangedHandler?()
+        }
+        
+        if text.lowercased().contains("аудитори") {
+            resetSpeechRecognition()
+            currentIndex = 8
+            dataChangedHandler?()
+        }
+        
+        if text.lowercased().contains("осталось") {
+            resetSpeechRecognition()
+            currentIndex = 9
+            dataChangedHandler?()
+        }
+        
+        if text.lowercased().contains("расстояни") {
+            resetSpeechRecognition()
+            currentIndex = 10
+            dataChangedHandler?()
+        }
+        
+        if text.lowercased().contains("прибыти") {
+            resetSpeechRecognition()
+            currentIndex = 11
+            dataChangedHandler?()
+        }
+    }
+    
+    func isCurrentWord(index: Int)-> UIColor {
+        if currentIndex != -1 {
+            return pairInfo[index] == pairInfo[currentIndex] ? currentColor : backgroundColor
+        } else {
+            return currentColor
+        }
+    }
+    
+    func createMicAlertMessage()-> (String, String) {
+        let style = settingsManager.getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        switch style {
+        case .formal:
+            return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хотите" : "Хотите") включить в настройках?")
+        case .informal:
+            return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хочешь" : "Хочешь") врубить в настройках?")
+        }
+    }
+    
+    func registerColorChangedHandler(block: @escaping(UIColor)->Void) {
+        self.colorHandler = block
+    }
+    
     func registerDataChangedHandler(block: @escaping()->Void) {
         self.dataChangedHandler = block
+    }
+    
+    func registerTransportTypeHandler(block: @escaping()->Void) {
+        self.transportTypeHandler = block
     }
 }

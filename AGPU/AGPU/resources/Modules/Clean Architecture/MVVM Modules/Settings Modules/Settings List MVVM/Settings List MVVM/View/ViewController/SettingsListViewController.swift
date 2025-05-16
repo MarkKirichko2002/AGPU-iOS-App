@@ -31,8 +31,6 @@ final class SettingsListViewController: UIViewController {
         view.addSubview(tableView)
         tableView.frame = view.bounds
         // MARK: - Секция "Основное"
-        // Your Status
-        tableView.register(UINib(nibName: YourStatusOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: YourStatusOptionTableViewCell.identifier)
         // Selected Faculty
         tableView.register(UINib(nibName: SelectedFacultyOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SelectedFacultyOptionTableViewCell.identifier)
         // Adaptive News
@@ -40,24 +38,22 @@ final class SettingsListViewController: UIViewController {
         // Advanced Timetable
         tableView.register(UINib(nibName: TimetableOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimetableOptionTableViewCell.identifier)
         // MARK: - Секция "Другие опции"
-        // AR
-        tableView.register(UINib(nibName: AROptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AROptionTableViewCell.identifier)
-        // Action To Recall
+        // Say Anywhere
+        tableView.register(UINib(nibName: SayAnyWhereTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SayAnyWhereTableViewCell.identifier)
+        // Action To Control
         tableView.register(UINib(nibName: ActionToRecallOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ActionToRecallOptionTableViewCell.identifier)
-        // Visual Changes
+        // Visual Info
         tableView.register(UINib(nibName: VisualChangesOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: VisualChangesOptionTableViewCell.identifier)
-        // Only Main
-        tableView.register(UINib(nibName: OnlyMainOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: OnlyMainOptionTableViewCell.identifier)
         // My Splash Screen
         tableView.register(UINib(nibName: SplashScreenOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SplashScreenOptionTableViewCell.identifier)
         // Personalized App Icons
         tableView.register(UINib(nibName: AppIconTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppIconTableViewCell.identifier)
         // Custom TabBar
         tableView.register(UINib(nibName: CustomTabBarOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CustomTabBarOptionTableViewCell.identifier)
-        // ASPU Button
-        tableView.register(UINib(nibName: ASPUButtonOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ASPUButtonOptionTableViewCell.identifier)
         // Settable Communication
         tableView.register(UINib(nibName: SettablePersonalityTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SettablePersonalityTableViewCell.identifier)
+        // Usefull Shortcuts
+        tableView.register(UINib(nibName: ShortcutOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ShortcutOptionTableViewCell.identifier)
         // Темы приложения
         tableView.register(UINib(nibName: AppThemesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppThemesTableViewCell.identifier)
         // MARK: - О приложении

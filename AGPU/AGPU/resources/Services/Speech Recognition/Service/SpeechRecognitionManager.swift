@@ -6,6 +6,7 @@
 //
 
 import Speech
+import AVFoundation
 
 final class SpeechRecognitionManager {
     
@@ -17,8 +18,21 @@ final class SpeechRecognitionManager {
     
     var tapInstalled = false
 
-    
     var speechAuthorizationHandler: ((SFSpeechRecognizerAuthorizationStatus)->Void)?
+    
+    init() {
+        configureSession()
+    }
+    
+    func configureSession() {
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setCategory(.playback, options: [])
+            try session.setActive(true)
+        } catch {
+            print(error)
+        }
+    }
     
     func registerSpeechAuthorizationHandler(block: @escaping(SFSpeechRecognizerAuthorizationStatus)->Void) {
         self.speechAuthorizationHandler = block

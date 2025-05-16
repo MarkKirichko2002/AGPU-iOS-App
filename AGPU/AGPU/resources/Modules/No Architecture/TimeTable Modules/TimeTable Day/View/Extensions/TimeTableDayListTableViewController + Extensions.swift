@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import AVFoundation
+import MediaPipeTasksVision
 
 // MARK: - UITableViewDelegate
 extension TimeTableDayListTableViewController: UITableViewDelegate {
@@ -17,6 +19,10 @@ extension TimeTableDayListTableViewController: UITableViewDelegate {
             _ in
             
             let discipline = self.timetable?.disciplines[indexPath.row]
+            let ok = UIAlertAction(title: "ОК", style: .default) { _ in
+                self.startSession()
+                SpeechSynthesizerManager.shared.stopComment()
+            }
             
             let infoAction = UIAction(title: "Подробнее", image: UIImage(named: "info")) { _ in
                 let vc = PairInfoTableViewController(pair: discipline!, id: self.id, date: self.date)
@@ -27,6 +33,8 @@ extension TimeTableDayListTableViewController: UITableViewDelegate {
                 }
             }
             
+            let daysMenu = self.findPairDaysMenu(name: discipline?.name ?? "")
+            
             let mapAction = UIAction(title: "Найти корпус", image: UIImage(named: "map icon")) { _ in
                 if let audience = discipline?.audienceID {
                     let vc = AGPUCurrentBuildingMapViewController(audienceID: audience, id: self.id, owner: self.owner)
@@ -35,12 +43,13 @@ extension TimeTableDayListTableViewController: UITableViewDelegate {
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
                 } else if discipline?.audienceID == nil || discipline?.audienceID == ""  {
-                    self.showAlert(title: "Корпус не найден!", message: "К сожалению у данной пары отсутствует аудитория", actions: [UIAlertAction(title: "ОК", style: .default)])
+                    self.showAlert(title: "Корпус не найден!", message: "К сожалению у данной пары отсутствует аудитория", actions: [ok])
                 }
             }
             
             return UIMenu(title: self.timetable?.disciplines[indexPath.row].name ?? "", children: [
                 infoAction,
+                daysMenu,
                 mapAction
             ])
         })
@@ -96,34 +105,20 @@ extension TimeTableDayListTableViewController: TimeTableSearchListTableViewContr
         type = .all
         id = result.name
         owner = result.owner
-        getTimeTable(id: result.name, date: self.date, owner: result.owner)
+        getTimeTable(id: result.name, date: self.date, owner: result.owner) {}
     }
 }
 
-// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
-extension TimeTableDayListTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+// MARK: - NearBuildingViewControllerDelegate
+extension TimeTableDayListTableViewController: NearBuildingViewControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[.editedImage] as? UIImage else {return}
-        textRecognitionManager.recognizeText(image: image) { date in
-            
-            let isCorrectFormat = self.dateManager.isCorrectFormat(str: date)
-            
-            if isCorrectFormat {
-                let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: date)
-                self.date = date
-                self.type = .all
-                self.subgroup = 0
-                self.getTimeTable(id: self.id, date: self.date, owner: self.owner)
-                self.navigationItem.title = "\(dayOfWeek) \(date)"
-            } else {
-                self.showAlert(title: self.createImageAlertMessage().0, message: self.createImageAlertMessage().1, actions: [UIAlertAction(title: "OK", style: .default)])
-            }
-            self.dismiss(animated: true)
-        }
+    func audienceSelected(audience: String) {
+        type = .all
+        id = audience
+        owner = "CLASSROOM"
+        getTimeTable(id: audience, date: self.date, owner: "CLASSROOM") {}
     }
 }
-
 
 // MARK: - AllGroupsListTableViewControllerDelegate
 extension TimeTableDayListTableViewController: AllGroupsListTableViewControllerDelegate {
@@ -131,7 +126,7 @@ extension TimeTableDayListTableViewController: AllGroupsListTableViewControllerD
     func groupWasSelected(group: String) {
         id = group
         owner = "GROUP"
-        getTimeTable(id: self.id, date: self.date, owner: self.owner)
+        getTimeTable(id: self.id, date: self.date, owner: self.owner) {}
     }
 }
 
@@ -150,7 +145,7 @@ extension TimeTableDayListTableViewController: DepartmentsListTableViewControlle
         type = .all
         id = teacher
         owner = "TEACHER"
-        getTimeTable(id: teacher, date: self.date, owner: "TEACHER")
+        getTimeTable(id: teacher, date: self.date, owner: "TEACHER") {}
     }
 }
 
@@ -161,7 +156,7 @@ extension TimeTableDayListTableViewController: CorpsListTableViewControllerDeleg
         type = .all
         id = audience
         owner = "CLASSROOM"
-        getTimeTable(id: audience, date: self.date, owner: "CLASSROOM")
+        getTimeTable(id: audience, date: self.date, owner: "CLASSROOM") {}
     }
 }
 
@@ -169,7 +164,7 @@ extension TimeTableDayListTableViewController: CorpsListTableViewControllerDeleg
 extension TimeTableDayListTableViewController: TimeTableFavouriteItemsListTableViewControllerDelegate {
     
     func WasSelected(result: SearchTimetableModel) {
-        self.getTimeTable(id: result.name, date: self.date, owner: result.owner)
+        self.getTimeTable(id: result.name, date: self.date, owner: result.owner) {}
         self.id = result.name
         self.owner = result.owner
         print(self.owner)
@@ -179,40 +174,80 @@ extension TimeTableDayListTableViewController: TimeTableFavouriteItemsListTableV
 // MARK: - DaysListTableViewControllerDelegate
 extension TimeTableDayListTableViewController: DaysListTableViewControllerDelegate {
     
+    func datesSelected(dates: [String]) {
+        self.dates = dates
+    }
+    
+    func dayTypeSelected(type: DayType) {
+        self.dayType = type
+    }
+    
+    func weekSelected(week: WeekModel) {
+        self.currentWeek = week
+    }
+    
     func dateSelected(date: String) {
-        let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: date)
         self.date = date
         self.type = .all
         self.subgroup = 0
-        self.getTimeTable(id: self.id, date: self.date, owner: self.owner)
-        self.navigationItem.title = "\(dayOfWeek) \(date)"
+        self.getTimeTable(id: self.id, date: self.date, owner: self.owner) {}
     }
 }
 
 // MARK: - CalendarViewControllerDelegate
 extension TimeTableDayListTableViewController: CalendarViewControllerDelegate {
     
+    func dateWasSelected(date: String) {
+        self.date = date
+        self.type = .all
+        self.subgroup = 0
+        self.getTimeTable(id: self.id, date: self.date, owner: self.owner) {}
+    }
+    
     func dateWasSelected(model: TimeTableChangesModel)  {
-        let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: date)
         self.id = model.id
         self.date = model.date
         self.owner = model.owner
         self.type = model.type
         self.subgroup = model.subgroup
         self.allDisciplines = model.allPairs
+        self.timetable?.disciplines = []
         self.timetable?.disciplines = model.filteredPairs
-        self.tableView.reloadData()
-        if timetable?.disciplines.isEmpty ?? false {
-            self.infoLabel.isHidden = false
-        } else {
-            self.infoLabel.isHidden = true
+        DispatchQueue.main.async {
+            if self.timetable?.disciplines.isEmpty ?? false {
+                self.infoLabel.isHidden = false
+            } else {
+                self.infoLabel.isHidden = true
+            }
+            self.navigationItem.title = "\(self.dateManager.getCurrentDayOfWeek(date: self.date)) \(self.date)"
+            self.tableView.reloadData()
         }
-        self.navigationItem.title = "\(dayOfWeek) \(date)"
     }
 }
 
-// MARK: - PairTypesListTableViewControllerDelegate
-extension TimeTableDayListTableViewController: PairTypesListTableViewControllerDelegate {
+// MARK: - CalendarDisciplineNameViewControllerDelegate
+extension TimeTableDayListTableViewController: CalendarDisciplineNameViewControllerDelegate {
+    
+    func dateWasSelected(date: String, name: String) {
+        self.date = date
+        self.type = .all
+        self.subgroup = 0
+        self.getTimeTable(id: self.id, date: self.date, owner: self.owner) {
+            self.filterPairs(name: name)
+        }
+    }
+}
+
+// MARK: - TimetableFilterCategoriesListTableViewControllerDelegate
+extension TimeTableDayListTableViewController: TimetableFilterCategoriesListTableViewControllerDelegate {
+    
+    func timeWasSelected(time: String) {
+        filterPairs(by: time)
+    }
+    
+    func buildingWasSelected(building: AGPUBuildingModel) {
+        filterPairs(by: building)
+    }
     
     func pairTypeWasSelected(type: PairType) {
         filterPairs(type: type)
@@ -226,8 +261,7 @@ extension TimeTableDayListTableViewController {
             do {
                 let json = try JSONEncoder().encode(self.timetable)
                 self.service.getTimeTableDayImage(json: json) { image in
-                    let imageSaver = ImageSaver()
-                    imageSaver.writeToPhotoAlbum(image: image)
+                    self.imageSaver.writeToPhotoAlbum(image: image)
                 }
             } catch {
                 print(error.localizedDescription)
@@ -240,9 +274,11 @@ extension TimeTableDayListTableViewController {
                 self.service.getTimeTableDayImage(json: json) { image in
                     if let imageData = image.jpegData(compressionQuality: 1.0) {
                         let model = ImageModel()
-                        model.date = self.dateManager.getCurrentDate()
+                        model.date = self.date
                         model.image = imageData
-                        self.realmManager.saveImage(image: model)
+                        DispatchQueue.main.async {
+                            self.realmManager.saveImage(image: model)
+                        }
                     }
                 }
             } catch {
@@ -252,5 +288,1064 @@ extension TimeTableDayListTableViewController {
         
         let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
         self.showAlert(title: createSaveImageAlertMessage().0, message: createSaveImageAlertMessage().1, actions: [saveAction2, saveAction, cancel])
+    }
+}
+
+extension TimeTableDayListTableViewController {
+    
+    func openSearch() {
+        let vc = TimeTableSearchListTableViewController()
+        vc.isSettings = false
+        vc.delegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true)
+    }
+    
+    func openDaysList() {
+        let vc = DaysListTableViewController(id: id, currentDate: date, owner: owner, dayType: dayType, week: currentWeek, dates: dates)
+        vc.delegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true)
+    }
+    
+    func openAR() {
+        let vc = TimetableARViewController(id: self.id, subgroup: self.subgroup, date: self.date, owner: self.owner)
+        vc.delegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.createImage {
+            vc.image = self.image
+            self.present(navVC, animated: true)
+        }
+    }
+    
+    func openFavouritesList() {
+        let vc = TimeTableFavouriteItemsListTableViewController()
+        vc.delegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true)
+    }
+    
+    func openFilterOptionsList() {
+        let vc = TimetableFilterCategoriesListTableViewController(date: date, type: type, disciplines: allDisciplines, building: currentBuilding, time: currentTime)
+        vc.delegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true)
+    }
+}
+
+// MARK: - TimetableARViewControllerDelegate
+extension TimeTableDayListTableViewController: TimetableARViewControllerDelegate {
+    
+    func dateWasChanged(date: String) {
+        self.date = date
+        self.type = .all
+        self.subgroup = 0
+        self.getTimeTable(id: self.id, date: self.date, owner: self.owner) {}
+    }
+}
+
+// MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
+extension TimeTableDayListTableViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+    
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        recognizeGesture(sampleBuffer: sampleBuffer)
+    }
+    
+    func recognizeGesture(sampleBuffer: CMSampleBuffer) {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+        let timestamp = Int(CMSampleBufferGetPresentationTimeStamp(sampleBuffer).value)
+        do {
+            let image = try MPImage(pixelBuffer: pixelBuffer, orientation: .right)
+            try gestureRecognitionManager.gestureRecognizer?.recognizeAsync(image: image, timestampInMilliseconds: timestamp)
+        } catch {
+            print("Ошибка обработки кадра: \(error)")
+        }
+    }
+    
+    func getTimetable(gesture: handGestures) {
+        switch gesture {
+        case .fist, .one, .two, .palm:
+            let date = dateForGesture(gesture: gesture)
+            let choose = UIAlertAction(title: "Выбрать", style: .default) { _ in
+                self.date = date
+                self.getTimeTable(id: self.id, date: self.date, owner: self.owner) {
+                    self.startSession()
+                }
+            }
+            let restart = UIAlertAction(title: "Распознать заново", style: .default) { _ in
+                self.startSession()
+            }
+            let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in
+                self.startSession()
+            }
+                    
+            showInfoAlert(title: "Жест \(gesture.rawValue) обнаружен!", message:
+                           gesture == .fist ? "обновить расписание?" : "посмотреть расписание для даты \(date)?", actions: [choose, restart, cancel])
+            HapticsManager.shared.hapticFeedback()
+        case .like:
+            let add = UIAlertAction(title: "Добавить", style: .default) { _ in
+                let item = SearchTimetableModel()
+                item.name = self.id
+                item.owner = self.owner
+                self.realmManager.saveTimetableItem(item: item)
+                self.startSession()
+            }
+            let restart = UIAlertAction(title: "Распознать заново", style: .default) { _ in
+                self.startSession()
+            }
+            let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in
+                self.startSession()
+            }
+            showInfoAlert(title: "Жест \(gesture.rawValue) обнаружен!", message: "добавить \(id) в избранное?", actions: [add, restart, cancel])
+            HapticsManager.shared.hapticFeedback()
+        case .dislike:
+            let remove = UIAlertAction(title: "Убрать", style: .default) { _ in
+                let item = SearchTimetableModel()
+                item.name = self.id
+                item.owner = self.owner
+                self.realmManager.deleteTimetableItem(item: item)
+                self.startSession()
+            }
+            let restart = UIAlertAction(title: "Распознать заново", style: .default) { _ in
+                self.startSession()
+            }
+            let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in
+                self.startSession()
+            }
+            showInfoAlert(title: "Жест \(gesture.rawValue) обнаружен!", message: "убрать \(id) из избранного?", actions: [remove, restart, cancel])
+            HapticsManager.shared.hapticFeedback()
+        }
+    }
+    
+    func dateForGesture(gesture: handGestures)-> String {
+        switch gesture {
+        case .fist:
+            return date
+        case .one:
+            return dateManager.previousDay(date: self.date)
+        case .two:
+            return dateManager.nextDay(date: self.date)
+        case .palm:
+            return dateManager.getCurrentDate()
+        case .like:
+            break
+        case .dislike:
+            break
+        }
+        return ""
+    }
+    
+    func startSession() {
+        if isRecordingVideo {
+            DispatchQueue.global(qos: .background).async {
+                self.captureSession.startRunning()
+            }
+            self.currentCameraState = .on
+            self.updateCameraButtonMenu()
+        }
+    }
+}
+
+extension TimeTableDayListTableViewController {
+    
+    func isMicOn()-> Bool {
+        let isOn = settingsManager.loadScreens().contains(SpeechScreens.timetableDay)
+        if isOn {
+            return speechRecognitionManager.tapInstalled
+        }
+        return false
+    }
+    
+    func isRecording()-> Bool {
+        return settingsManager.loadScreens().contains(SpeechScreens.timetableDay)
+    }
+    
+    func checkVoiceCommandsOption() {
+        let screens = settingsManager.loadScreens()
+        if screens.contains(SpeechScreens.timetableDay) {
+            resetSpeechRecognition()
+        }
+    }
+    
+    func startSpeechRecognition() {
+        let screens = settingsManager.loadScreens()
+        if screens.contains(SpeechScreens.timetableDay) {
+            startRecognize()
+        }
+    }
+    
+    func resetSpeechRecognition() {
+        let screens = settingsManager.loadScreens()
+        if screens.contains(SpeechScreens.timetableDay) {
+            cancelRecognition()
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.startRecognize()
+            }
+        }
+    }
+    
+    func cancelRecognition() {
+        let screens = settingsManager.loadScreens()
+        if screens.contains(SpeechScreens.timetableDay) {
+            speechRecognitionManager.cancelSpeechRecognition()
+        }
+    }
+
+    func startRecognize() {
+        speechRecognitionManager.requestSpeechAndMicrophonePermission()
+        speechRecognitionManager.registerSpeechAuthorizationHandler { auth in
+            switch auth {
+            case .notDetermined:
+                print("Разрешение на распознавание речи еще не было получено.")
+            case .denied:
+                let settingsAction = UIAlertAction(title: "Перейти в настройки", style: .default) { _ in
+                    self.openSettings()
+                }
+                let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in}
+                self.showAlert(title: self.createAlertMessage().0, message: self.createAlertMessage().1, actions: [settingsAction, cancel])
+                print("Доступ к распознаванию речи был отклонен.")
+            case .restricted:
+                print("Функциональность распознавания речи ограничена.")
+            case .authorized:
+                print("Разрешение на распознавание речи получено.")
+                self.speechRecognitionManager.startRecognize()
+            @unknown default:
+                print("неизвестно")
+            }
+        }
+        speechRecognitionManager.registerSpeechRecognitionHandler { text in
+            self.voiceCommands(text: text)
+        }
+    }
+    
+    func voiceCommands(text: String) {
+        showAllPairs(text: text)
+        showPairsForWeekDay(text: text)
+        resetCurrentWeek(text: text)
+        showPairsForDate(text: text)
+        showLeftedPairs(text: text)
+        filterVoice(text: text)
+        filterBuildingVoice(text: text)
+        showCurrentPair(text: text)
+        showNextPair(text: text)
+        showPreviousPair(text: text)
+        showLastPair(text: text)
+        showPairForCount(text: text)
+        timetableNavigation(text: text)
+        closeAlertWithVoice(text: text)
+    }
+    
+    func showAllPairs(text: String) {
+        if text.lowercased().contains("сколько всего пар") || text.lowercased().contains("скоко всего пар") {
+            type = .all
+            subgroup = 0
+            cancelRecognition()
+            cancelGestureRecognition()
+            refreshTimetable {
+                DispatchQueue.main.async {
+                    self.countPairs()
+                }
+            }
+            closeModals()
+            HapticsManager.shared.hapticFeedback()
+        }
+    }
+    
+    func resetCurrentWeek(text: String) {
+        if text.lowercased().contains("текущая неделя") {
+            getCurrentWeek()
+            cancelRecognition()
+            cancelGestureRecognition()
+            date = dateManager.getCurrentDate()
+            getTimeTable(id: id, date: date, owner: owner) {
+                DispatchQueue.main.async {
+                    self.startSpeechRecognition()
+                    self.startSession()
+                }
+            }
+            closeModals()
+            HapticsManager.shared.hapticFeedback()
+        }
+    }
+    
+    func showPairsForWeekDay(text: String) {
+        
+        let ok = UIAlertAction(title: "ОК", style: .default) { _ in
+            self.startSession()
+            SpeechSynthesizerManager.shared.stopComment()
+        }
+        
+        if text.lowercased().contains("понедельник") {
+            if let day = currentWeek.dayNames.first(where: { $1 == "Понедельник" }) {
+                cancelRecognition()
+                cancelGestureRecognition()
+                date = day.key
+                getTimeTable(id: id, date: date, owner: owner) {
+                    DispatchQueue.main.async {
+                        self.startSpeechRecognition()
+                        self.startSession()
+                    }
+                }
+            } else {
+                self.showInfoAlert(title: "День не найден!", message: "у текущей недели нет такого дня", actions: [ok])
+            }
+            closeModals()
+            HapticsManager.shared.hapticFeedback()
+        }
+        
+        if text.lowercased().contains("вторник") {
+            if let day = currentWeek.dayNames.first(where: { $1 == "Вторник" }) {
+                cancelRecognition()
+                cancelGestureRecognition()
+                date = day.key
+                getTimeTable(id: id, date: date, owner: owner) {
+                    DispatchQueue.main.async {
+                        self.startSpeechRecognition()
+                        self.startSession()
+                    }
+                }
+            } else {
+                self.showInfoAlert(title: "День не найден!", message: "у текущей недели нет такого дня", actions: [ok])
+            }
+            closeModals()
+            HapticsManager.shared.hapticFeedback()
+        }
+        
+        if text.lowercased().contains("сред") {
+            if let day = currentWeek.dayNames.first(where: { $1 == "Среда" }) {
+                cancelRecognition()
+                cancelGestureRecognition()
+                date = day.key
+                getTimeTable(id: id, date: date, owner: owner) {
+                    DispatchQueue.main.async {
+                        self.startSpeechRecognition()
+                        self.startSession()
+                    }
+                }
+            } else {
+                self.showInfoAlert(title: "День не найден!", message: "у текущей недели нет такого дня", actions: [ok])
+            }
+            closeModals()
+            HapticsManager.shared.hapticFeedback()
+        }
+        
+        if text.lowercased().contains("четверг") {
+            if let day = currentWeek.dayNames.first(where: { $1 == "Четверг" }) {
+                cancelRecognition()
+                cancelGestureRecognition()
+                date = day.key
+                getTimeTable(id: id, date: date, owner: owner) {
+                    DispatchQueue.main.async {
+                        self.startSpeechRecognition()
+                        self.startSession()
+                    }
+                }
+            } else {
+                self.showInfoAlert(title: "День не найден!", message: "у текущей недели нет такого дня", actions: [ok])
+            }
+            closeModals()
+            HapticsManager.shared.hapticFeedback()
+        }
+        
+        if text.lowercased().contains("пятниц") {
+            if let day = currentWeek.dayNames.first(where: { $1 == "Пятница" }) {
+                cancelRecognition()
+                cancelGestureRecognition()
+                date = day.key
+                getTimeTable(id: id, date: date, owner: owner) {
+                    DispatchQueue.main.async {
+                        self.startSpeechRecognition()
+                        self.startSession()
+                    }
+                }
+            } else {
+                self.showInfoAlert(title: "День не найден!", message: "у текущей недели нет такого дня", actions: [ok])
+            }
+            closeModals()
+            HapticsManager.shared.hapticFeedback()
+        }
+        
+        if text.lowercased().contains("суббот") {
+            if let day = currentWeek.dayNames.first(where: { $1 == "Суббота" }) {
+                cancelRecognition()
+                cancelGestureRecognition()
+                date = day.key
+                getTimeTable(id: id, date: date, owner: owner) {
+                    DispatchQueue.main.async {
+                        self.startSpeechRecognition()
+                        self.startSession()
+                    }
+                }
+            } else {
+                self.showInfoAlert(title: "День не найден!", message: "у текущей недели нет такого дня", actions: [ok])
+            }
+            closeModals()
+            HapticsManager.shared.hapticFeedback()
+        }
+    }
+    
+    func showPairsForDate(text: String) {
+        let ok = UIAlertAction(title: "ОК", style: .default) { _ in
+            self.startSession()
+            SpeechSynthesizerManager.shared.stopComment()
+        }
+        if text.lowercased().contains(text.lowercased().getDateFromString()) {
+            if dateManager.checkDateFromWords(text: text) {
+                cancelRecognition()
+                cancelGestureRecognition()
+                self.date = dateManager.getDateFromWords(date: text.getDateFromString())
+                getTimeTable(id: id, date: date, owner: owner) {
+                    DispatchQueue.main.async {
+                        self.startSpeechRecognition()
+                        self.startSession()
+                    }
+                }
+            } else {
+                self.showInfoAlert(title: "Неверная дата!", message: "не существует такой даты", actions: [ok])
+            }
+            closeModals()
+            HapticsManager.shared.hapticFeedback()
+        }
+    }
+    
+    func showLeftedPairs(text: String) {
+        if text.lowercased().contains("оставшиеся пары") || text.lowercased().contains("сколько осталось пар") || text.lowercased().contains("скоко осталось пар") || text.lowercased().contains("сколько пар осталось") || text.lowercased().contains("скоко пар осталось") {
+            cancelRecognition()
+            cancelGestureRecognition()
+            refreshTimetable {
+                DispatchQueue.main.async {
+                    self.filterPairs(type: .leftToday)
+                    self.countLeftedPairs()
+                }
+            }
+            closeModals()
+            HapticsManager.shared.hapticFeedback()
+        }
+    }
+    
+    func filterVoice(text: String) {
+        for type in PairType.allCases {
+            if text.lowercased().contains(type.voiceCommand) {
+                print("ТИП ПАРЫ: \(type.rawValue)")
+                cancelRecognition()
+                cancelGestureRecognition()
+                getTimeTable(id: id, date: date, owner: owner) {
+                    DispatchQueue.main.async {
+                        self.filterPairs(type: type)
+                        self.startSpeechRecognition()
+                        self.startSession()
+                    }
+                }
+                closeModals()
+                HapticsManager.shared.hapticFeedback()
+                break
+            }
+        }
+    }
+    
+    func filterBuildingVoice(text: String) {
+        for building in AGPUBuildings.buildings {
+            for voiceCommand in building.voiceCommands {
+                if text.lowercased().contains(voiceCommand) {
+                    cancelRecognition()
+                    cancelGestureRecognition()
+                    getTimeTable(id: id, date: date, owner: owner) {
+                        DispatchQueue.main.async {
+                            self.filterPairs(by: building)
+                            self.startSpeechRecognition()
+                            self.startSession()
+                        }
+                    }
+                    closeModals()
+                    HapticsManager.shared.hapticFeedback()
+                    break
+                }
+            }
+        }
+    }
+    
+    func showCurrentPair(text: String) {
+        if text.lowercased().contains("текущая пара") || text.lowercased().contains("сейчас пара") {
+            cancelRecognition()
+            cancelGestureRecognition()
+            refreshTimetable {
+                let leftedPairs = self.filterLeftedPairs()
+                DispatchQueue.main.async {
+                    if leftedPairs.count > 0 {
+                        let time = leftedPairs[0].time
+                        self.timetable?.disciplines = self.allDisciplines.filter({ $0.time == time })
+                        self.tableView.reloadData()
+                    } else {
+                        self.filterPairs(type: .none)
+                    }
+                    self.closeModals()
+                    self.startSpeechRecognition()
+                    self.startSession()
+                    HapticsManager.shared.hapticFeedback()
+                }
+            }
+        }
+    }
+    
+    func showNextPair(text: String) {
+        if text.lowercased().contains("следующая пара") {
+            cancelRecognition()
+            cancelGestureRecognition()
+            refreshTimetable {
+                let leftedPairs = self.filterLeftedPairs()
+                let times = self.countLeftedTimes(pairs: leftedPairs)
+                DispatchQueue.main.async {
+                    if leftedPairs.count > 0 {
+                        if times.count > 1 {
+                            self.timetable?.disciplines = self.allDisciplines.filter({ $0.time == times[1] })
+                            self.tableView.reloadData()
+                        } else {
+                            self.filterPairs(type: .none)
+                        }
+                    } else {
+                        self.filterPairs(type: .none)
+                    }
+                    self.closeModals()
+                    self.startSpeechRecognition()
+                    self.startSession()
+                    HapticsManager.shared.hapticFeedback()
+                }
+            }
+        }
+    }
+    
+    func showPreviousPair(text: String) {
+        if text.lowercased().contains("прошлая пара") || text.lowercased().contains("предыдущая пара") {
+            cancelRecognition()
+            cancelGestureRecognition()
+            refreshTimetable {
+                let leftedPairs = self.filterLeftedPairs()
+                DispatchQueue.main.async {
+                    if leftedPairs.count > 0 {
+                        let time = leftedPairs[0].time
+                        if let index = self.allDisciplines.firstIndex(where: { $0.time == time }) {
+                            if index > 0 {
+                                self.timetable?.disciplines = self.allDisciplines.filter({ $0.time == self.allDisciplines[index - 1].time })
+                                self.tableView.reloadData()
+                            } else {
+                                self.filterPairs(type: .none)
+                            }
+                        }
+                    } else {
+                        self.filterPairs(type: .none)
+                    }
+                    self.closeModals()
+                    self.startSpeechRecognition()
+                    self.startSession()
+                    HapticsManager.shared.hapticFeedback()
+                }
+            }
+        }
+    }
+    
+    func showLastPair(text: String) {
+        if text.lowercased().contains("последняя пара") {
+            cancelRecognition()
+            cancelGestureRecognition()
+            refreshTimetable { DispatchQueue.main.async {
+                if self.allDisciplines.count > 0 {
+                    self.timetable?.disciplines = self.allDisciplines.filter({ $0.time == self.allDisciplines.last?.time})
+                    self.tableView.reloadData()
+                } else {
+                    self.filterPairs(type: .none)
+                }
+                self.closeModals()
+                self.startSpeechRecognition()
+                self.startSession()
+                HapticsManager.shared.hapticFeedback()
+            }
+            }
+        }
+    }
+    
+    func showPairForCount(text: String) {
+        
+        let ok = UIAlertAction(title: "ОК", style: .default) { _ in
+            self.startSession()
+            SpeechSynthesizerManager.shared.stopComment()
+        }
+        
+        if text.lowercased().contains("1-я пара") || text.lowercased().contains("первая пара") || text.lowercased().contains("первую пару") {
+            cancelRecognition()
+            cancelGestureRecognition()
+            refreshTimetable {
+                let times = self.countTimes()
+                if times.count > 0 {
+                    DispatchQueue.main.async {
+                        self.timetable?.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[0]})
+                        self.tableView.reloadData()
+                        self.startSpeechRecognition()
+                        self.startSession()
+                        self.closeModals()
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.showInfoAlert(title: "1-й пары\n нет в списке", message: "", actions: [ok])
+                        self.closeModals()
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                }
+            }
+        }
+        
+        if text.lowercased().contains("2-я пара") || text.lowercased().contains("вторая пара") || text.lowercased().contains("вторую пару") {
+            cancelRecognition()
+            cancelGestureRecognition()
+            refreshTimetable {
+                let times = self.countTimes()
+                if times.count > 1 {
+                    DispatchQueue.main.async {
+                        self.timetable?.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[1]})
+                        self.tableView.reloadData()
+                        self.startSpeechRecognition()
+                        self.startSession()
+                        self.closeModals()
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.showInfoAlert(title: "2-й пары\n нет в списке", message: "", actions: [ok])
+                        self.closeModals()
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                }
+            }
+        }
+        
+        if text.lowercased().contains("3-я пара") || text.lowercased().contains("третья пара") || text.lowercased().contains("третью пару") {
+            cancelRecognition()
+            cancelGestureRecognition()
+            refreshTimetable {
+                let times = self.countTimes()
+                if times.count > 2 {
+                    DispatchQueue.main.async {
+                        self.timetable?.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[2]})
+                        self.tableView.reloadData()
+                        self.startSpeechRecognition()
+                        self.startSession()
+                        self.closeModals()
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.showInfoAlert(title: "3-й пары\n нет в списке", message: "", actions: [ok])
+                        self.closeModals()
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                }
+            }
+        }
+        
+        if text.lowercased().contains("четвертая пара") || text.lowercased().contains("четвёртая пара") {
+            cancelRecognition()
+            cancelGestureRecognition()
+            refreshTimetable {
+                let times = self.countTimes()
+                if times.count > 3 {
+                    DispatchQueue.main.async {
+                        self.timetable?.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[3]})
+                        self.tableView.reloadData()
+                        self.startSpeechRecognition()
+                        self.startSession()
+                        self.closeModals()
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.showInfoAlert(title: "4-й пары\n нет в списке", message: "", actions: [ok])
+                        self.closeModals()
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                }
+            }
+        }
+        
+        if text.lowercased().contains("5-я пара") || text.lowercased().contains("пятая пара") || text.lowercased().contains("пятую пару") {
+            cancelRecognition()
+            cancelGestureRecognition()
+            refreshTimetable {
+                let times = self.countTimes()
+                if times.count > 4 {
+                    DispatchQueue.main.async {
+                        self.timetable?.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[4]})
+                        self.tableView.reloadData()
+                        self.startSpeechRecognition()
+                        self.startSession()
+                        self.closeModals()
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.showInfoAlert(title: "5-й пары\n нет в списке", message: "", actions: [ok])
+                        self.closeModals()
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                }
+            }
+        }
+        
+        if text.lowercased().contains("6-я пара") || text.lowercased().contains("шестая пара") || text.lowercased().contains("шестую пару") {
+            cancelRecognition()
+            cancelGestureRecognition()
+            refreshTimetable {
+                let times = self.countTimes()
+                if times.count > 5 {
+                    DispatchQueue.main.async {
+                        self.timetable?.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[5]})
+                        self.tableView.reloadData()
+                        self.startSpeechRecognition()
+                        self.startSession()
+                        self.closeModals()
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.showInfoAlert(title: "6-й пары\n нет в списке", message: "", actions: [ok])
+                        self.closeModals()
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                }
+            }
+        }
+        
+        if text.lowercased().contains("7-я пара") || text.lowercased().contains("седьмая пара") || text.lowercased().contains("седьмую пару") {
+            cancelRecognition()
+            cancelGestureRecognition()
+            refreshTimetable {
+                let times = self.countTimes()
+                if times.count > 6 {
+                    DispatchQueue.main.async {
+                        self.timetable?.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[6]})
+                        self.tableView.reloadData()
+                        self.startSpeechRecognition()
+                        self.startSession()
+                        self.closeModals()
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.showInfoAlert(title: "7-й пары\n нет в списке", message: "", actions: [ok])
+                        self.closeModals()
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                }
+            }
+        }
+    }
+    
+    func timetableNavigation(text: String) {
+        
+        if text.lowercased().contains("обнови") {
+            cancelRecognition()
+            cancelGestureRecognition()
+            refreshTimetable {
+                DispatchQueue.main.async {
+                    self.startSpeechRecognition()
+                    self.startSession()
+                }
+            }
+            closeModals()
+            HapticsManager.shared.hapticFeedback()
+        }
+        
+        if text.lowercased().contains("сегодн") {
+            cancelRecognition()
+            cancelGestureRecognition()
+            currentDay() {
+                self.startSpeechRecognition()
+                self.startSession()
+            }
+            closeModals()
+            HapticsManager.shared.hapticFeedback()
+        }
+        
+        if text.lowercased().contains("завтр") {
+            cancelRecognition()
+            cancelGestureRecognition()
+            tomorrowDay() {
+                self.startSpeechRecognition()
+                self.startSession()
+            }
+            closeModals()
+            HapticsManager.shared.hapticFeedback()
+        }
+        
+        if text.lowercased().contains("вчер") {
+            cancelRecognition()
+            cancelGestureRecognition()
+            yesterDay() {
+                self.startSpeechRecognition()
+                self.startSession()
+            }
+            closeModals()
+            HapticsManager.shared.hapticFeedback()
+        }
+        
+        if text.lowercased().contains("вперёд") || text.lowercased().contains("вперед") {
+            cancelRecognition()
+            cancelGestureRecognition()
+            nextDay() {
+                self.startSpeechRecognition()
+                self.startSession()
+            }
+            closeModals()
+            HapticsManager.shared.hapticFeedback()
+        }
+        
+        if text.lowercased().contains("назад") || text.lowercased().contains("обратно") {
+            cancelRecognition()
+            cancelGestureRecognition()
+            pastDay() {
+                self.startSpeechRecognition()
+                self.startSession()
+            }
+            closeModals()
+            HapticsManager.shared.hapticFeedback()
+        }
+    }
+    
+    func closeAlertWithVoice(text: String) {
+        if text.lowercased().contains("закр") {
+            resetSpeechRecognition()
+            startSession()
+            closeModals()
+            HapticsManager.shared.hapticFeedback()
+        }
+    }
+    
+    func createAlertMessage()-> (String, String) {
+        let style = settingsManager.getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        switch style {
+        case .formal:
+            return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хотите" : "Хотите") включить в настройках?")
+        case .informal:
+            return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хочешь" : "Хочешь") врубить в настройках?")
+        }
+    }
+    
+    func openCalendar() {
+        let vc = CalendarViewController(id: self.id, subgroup: self.subgroup, date: self.date, owner: self.owner)
+        vc.delegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true)
+    }
+    
+    func openNameCalendar(name: String) {
+        let vc = CalendarDisciplineNameViewController(id: self.id, date: self.date, owner: self.owner, name: name)
+        vc.delegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true)
+    }
+    
+    func openWeeksList() {
+        let vc = AllWeeksListTableViewController(id: self.id, subgroup: self.subgroup, owner: self.owner)
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true)
+    }
+    
+    // навигация
+    func currentDay(completion: @escaping()->Void) {
+        date = dateManager.getCurrentDate()
+        type = .all
+        subgroup = 0
+        getTimeTable(id: id, date: date, owner: owner) {
+            completion()
+        }
+    }
+    
+    @objc func nextDay(completion: @escaping()->Void) {
+        date = dateManager.nextDay(date: date)
+        type = .all
+        subgroup = 0
+        getTimeTable(id: id, date: date, owner: owner) {
+            completion()
+        }
+    }
+    
+    @objc func pastDay(completion: @escaping()->Void) {
+        date = dateManager.previousDay(date: date)
+        type = .all
+        subgroup = 0
+        getTimeTable(id: id, date: date, owner: owner) {
+            completion()
+        }
+    }
+    
+    func tomorrowDay(completion: @escaping()->Void) {
+        let currentDate = dateManager.getCurrentDate()
+        date = dateManager.nextDay(date: currentDate)
+        type = .all
+        subgroup = 0
+        getTimeTable(id: id, date: date, owner: owner) {
+            completion()
+        }
+    }
+    
+    func yesterDay(completion: @escaping()->Void) {
+        let currentDate = dateManager.getCurrentDate()
+        date = dateManager.previousDay(date: currentDate)
+        type = .all
+        subgroup = 0
+        getTimeTable(id: id, date: date, owner: owner) {
+            completion()
+        }
+    }
+    
+    func countLeftedTimes(pairs: [Discipline])-> [String] {
+        
+        var uniqueTimes: Set<String> = Set()
+        
+        for pair in pairs {
+            
+            let time = pair.time
+            
+            uniqueTimes.insert(time)
+        }
+        
+        return Array(uniqueTimes).sorted { dateManager.compareTimes(time1: "\($0.components(separatedBy: "-")[0]):00", time2: "\($1.components(separatedBy: "-")[0]):00") == .orderedAscending}
+    }
+    
+    func countTimes()-> [String] {
+        
+        var uniqueTimes: Set<String> = Set()
+        
+        for pair in allDisciplines {
+            
+            let times = pair.time.components(separatedBy: "-")
+            let startTime = times[0]
+            
+            uniqueTimes.insert(startTime)
+        }
+        
+        return Array(uniqueTimes).sorted { dateManager.compareTimes(time1: "\($0):00", time2: "\($1):00") == .orderedAscending}
+    }
+    
+    func countEndTimes()-> [String] {
+        
+        var uniqueTimes: Set<String> = Set()
+        
+        for pair in allDisciplines {
+            
+            let times = pair.time.components(separatedBy: "-")
+            let startTime = times[1]
+            
+            uniqueTimes.insert(startTime)
+        }
+        
+        return Array(uniqueTimes).sorted { dateManager.compareTimes(time1: "\($0):00", time2: "\($1):00") == .orderedAscending}
+    }
+    
+    func countPairs() {
+        
+        var uniqueTimes: Set<String> = Set()
+        let ok = UIAlertAction(title: "ОК", style: .default) { _ in
+            self.startSession()
+            SpeechSynthesizerManager.shared.stopComment()
+        }
+        
+        for pair in allDisciplines {
+            
+            let times = pair.time.components(separatedBy: "-")
+            let startTime = times[0]
+            
+            uniqueTimes.insert(startTime)
+        }
+        
+        showInfoAlert(title: "\(date)\nвсего пар: \(uniqueTimes.count)", message: "", actions: [ok])
+    }
+    
+    func countLeftedPairs() {
+        
+        var uniqueTimes: Set<String> = Set()
+        let ok = UIAlertAction(title: "ОК", style: .default) { _ in
+            self.startSession()
+            SpeechSynthesizerManager.shared.stopComment()
+        }
+        
+        for pair in timetable?.disciplines ?? [] {
+            
+            let times = pair.time.components(separatedBy: "-")
+            let startTime = times[0]
+            
+            uniqueTimes.insert(startTime)
+        }
+        
+        showInfoAlert(title: "\(date)\nосталось пар: \(uniqueTimes.count)", message: "", actions: [ok])
+    }
+    
+    func showInfoAlert(title: String, message: String, actions: [UIAlertAction]) {
+        let isSaying = UserDefaults.standard.object(forKey: "isSaying") as? Bool ?? false
+        if isSaying {
+            showAlert(title: title, message: message, actions: actions)
+        } else {
+            resetSpeechRecognition()
+            showAlert(title: title, message: message, actions: actions)
+        }
+    }
+    
+    func shareTimetable(completion: @escaping()->Void) {
+        let ok = UIAlertAction(title: "ОК", style: .default) { _ in
+            self.startSession()
+            SpeechSynthesizerManager.shared.stopComment()
+        }
+        do {
+            let json = try JSONEncoder().encode(self.timetable)
+            let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: self.date)
+            self.service.getTimeTableDayImage(json: json) { image in
+                self.ShareImage(image: image, title: self.id, text: "\(dayOfWeek) \(self.date)")
+                HapticsManager.shared.hapticFeedback()
+                completion()
+            }
+        } catch {
+            self.showInfoAlert(title: "Ошибка", message: "не получилось создать картинку", actions: [ok])
+            completion()
+        }
+    }
+    
+    func cancelGestureRecognition() {
+        let onGestureButton = UserDefaults.standard.object(forKey: "onGestureButton timetable") as? Bool ?? false
+        if onGestureButton {
+            if let session = captureSession {
+                session.stopRunning()
+            }
+            self.currentCameraState = .off
+            self.updateCameraButtonMenu()
+        }
+    }
+    
+    func findPairDaysMenu(name: String)-> UIMenu {
+        
+        let calendarAction = UIAction(title: "Календарь", image: UIImage(named: "calendar icon")) { _ in
+            self.openNameCalendar(name: name)
+        }
+        
+        let nextDayAction = UIAction(title: "Следующий день", image: UIImage(named: "forward")) { _ in
+            self.nextDay {
+                self.filterPairs(name: name)
+            }
+        }
+        
+        let pastDayAction = UIAction(title: "Предыдущий день", image: UIImage(named: "backward")) { _ in
+            self.pastDay {
+                self.filterPairs(name: name)
+            }
+        }
+        
+        return UIMenu(title: "Найти пару", image: UIImage(named: "search"), children: [calendarAction, nextDayAction, pastDayAction])
     }
 }

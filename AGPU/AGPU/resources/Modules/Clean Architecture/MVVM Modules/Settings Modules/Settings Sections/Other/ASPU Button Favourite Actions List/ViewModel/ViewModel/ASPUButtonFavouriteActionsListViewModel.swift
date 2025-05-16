@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ASPUButtonFavouriteActionsListViewModel {
+final class ASPUButtonFavouriteActionsListViewModel {
     
     var actions = [ASPUButtonActions]()
     var dataChangedHandler: (()->Void)?

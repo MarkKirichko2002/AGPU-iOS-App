@@ -10,8 +10,29 @@ import UIKit
 // MARK: - UITableViewDelegate
 extension TimeTableDatesListViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return viewModel.titleForHeaderInSection(section: section)
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 25))
+        header.backgroundColor = .systemBackground
+        header.layer.borderWidth = 3
+        header.layer.borderColor = UIColor.label.cgColor
+        header.layer.cornerRadius = 10
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        header.addSubview(label)
+        label.text = viewModel.titleForHeaderInSection(section: section)
+        label.textColor = .label
+        label.font = .systemFont(ofSize: 17, weight: .black)
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: header.topAnchor, constant: 10),
+            label.leftAnchor.constraint(equalTo: header.leftAnchor, constant: 10),
+            label.bottomAnchor.constraint(equalTo: header.bottomAnchor, constant: -10),
+        ])
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 65
     }
     
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
@@ -103,8 +124,7 @@ extension TimeTableDatesListViewController {
     func showSaveImageAlert() {
         let saveAction = UIAlertAction(title: "Сохранить в фото", style: .default) { _ in
             self.viewModel.createImage { image in
-                let imageSaver = ImageSaver()
-                imageSaver.writeToPhotoAlbum(image: image)
+                self.imageSaver.writeToPhotoAlbum(image: image)
             }
         }
         

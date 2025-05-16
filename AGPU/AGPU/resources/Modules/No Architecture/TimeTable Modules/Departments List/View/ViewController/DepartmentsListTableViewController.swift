@@ -11,7 +11,7 @@ protocol DepartmentsListTableViewControllerDelegate: AnyObject {
     func teacherSelected(teacher: String)
 }
 
-class DepartmentsListTableViewController: UITableViewController {
+final class DepartmentsListTableViewController: UITableViewController {
 
     var departments = Departments.departments
     
@@ -40,7 +40,7 @@ class DepartmentsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = TeachersListTableViewController(id: departments[indexPath.row].id ?? 1)
+        let vc = TeachersListTableViewController(id: departments[indexPath.row].id)
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
         HapticsManager.shared.hapticFeedback()

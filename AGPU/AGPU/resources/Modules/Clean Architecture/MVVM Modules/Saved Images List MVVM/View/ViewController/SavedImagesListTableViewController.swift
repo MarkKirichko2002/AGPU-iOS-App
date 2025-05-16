@@ -12,12 +12,11 @@ protocol SavedImagesListTableViewControllerDelegate: AnyObject {
 }
 
 protocol SavedImagesListTableViewControllerARDelegate: AnyObject {
-    func screenWasClosed()
     func ARImageWasSelected(image: UIImage)
 }
 
-class SavedImagesListTableViewController: UIViewController {
-
+final class SavedImagesListTableViewController: UIViewController {
+    
     // MARK: - сервисы
     let viewModel = SavedImagesListViewModel()
     
@@ -60,7 +59,6 @@ class SavedImagesListTableViewController: UIViewController {
     }
     
     @objc private func close() {
-        ARDelegate?.screenWasClosed()
         dismiss(animated: true)
         HapticsManager.shared.hapticFeedback()
     }
@@ -95,6 +93,17 @@ class SavedImagesListTableViewController: UIViewController {
         vc.sourceType = .photoLibrary
         vc.allowsEditing = true
         self.present(vc, animated: true)
+    }
+    
+    func setUpEditButton() {
+        let moveButton = UIBarButtonItem(title: "Готово", style: .done, target: self, action: #selector(moveImages))
+        moveButton.tintColor = .label
+        navigationItem.rightBarButtonItem = moveButton
+    }
+    
+    @objc private func moveImages() {
+        tableView.isEditing.toggle()
+        setUpAddButton()
     }
     
     private func setUpTable() {

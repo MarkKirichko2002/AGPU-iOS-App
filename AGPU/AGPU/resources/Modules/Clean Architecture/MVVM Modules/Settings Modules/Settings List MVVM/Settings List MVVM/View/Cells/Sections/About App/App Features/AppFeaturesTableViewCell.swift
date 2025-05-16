@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AppFeaturesTableViewCell: UITableViewCell {
+final class AppFeaturesTableViewCell: UITableViewCell {
 
     static let identifier = "AppFeaturesTableViewCell"
     private let animation = AnimationClass()
@@ -26,8 +26,9 @@ class AppFeaturesTableViewCell: UITableViewCell {
         TitleLabel.text = "Текущая тема (\(theme.name))"
     }
     
-    func didTapCell(indexPath: IndexPath) {
+    func didTapCell(indexPath: IndexPath, completion: @escaping()->Void) {
         animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
+            completion()
             HapticsManager.shared.hapticFeedback()
         }
     }

@@ -12,7 +12,16 @@ final class CustomTitleView: UIView {
     var image: String = ""
     var title: String = ""
     
-    private let imageView: UIImageView = {
+    private let stack: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .leading
+        stackView.spacing = 12
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    let imageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
         image.tintColor = .label
@@ -20,7 +29,7 @@ final class CustomTitleView: UIView {
         return image
     }()
     
-    private let label: UILabel = {
+    let label: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.textAlignment = .center
@@ -33,7 +42,7 @@ final class CustomTitleView: UIView {
         super.init(frame: frame)
         self.image = image
         self.title = title
-        addSubviews(imageView,label)
+        addSubviews(imageView,label, stack)
         setUpView()
         makeConstraints()
     }
@@ -49,6 +58,9 @@ final class CustomTitleView: UIView {
     
     private func makeConstraints() {
         
+        stack.addArrangedSubview(imageView)
+        stack.addArrangedSubview(label)
+        
         NSLayoutConstraint.activate([
             
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -58,7 +70,7 @@ final class CustomTitleView: UIView {
             
             label.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 5),
             label.trailingAnchor.constraint(equalTo: trailingAnchor),
-            label.centerYAnchor.constraint(equalTo: centerYAnchor)
+            label.centerYAnchor.constraint(equalTo: centerYAnchor),
             
         ])
     }

@@ -111,6 +111,19 @@ final class AGPUBuildingDetailViewController: UIViewController {
     
     private func setUpMenu() {
         
+        let ARAction = UIAction(title: "AR режим") { _ in
+            let vc = ARViewController()
+            guard let building = AGPUBuildings.buildings.first(where: { $0.name == self.annotation.title! }) else {return}
+            if building.image != "img" {
+                vc.image = UIImage(named: building.image)!
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                self.present(navVC, animated: true)
+            } else {
+                self.showAlert(title: "Нет изображений", message: "у данного корпуса нет изображений", actions: [UIAlertAction(title: "ОК", style: .default)])
+            }
+        }
+        
         let timetableAction = UIAction(title: "Расписание") { _ in
             self.showTimetableDetail()
         }
@@ -128,6 +141,7 @@ final class AGPUBuildingDetailViewController: UIViewController {
         }
         
         let menu = UIMenu(title: annotation.title!!, children: [
+            ARAction,
             timetableAction,
             audenciesListAction,
             weatherAction,
@@ -142,7 +156,6 @@ final class AGPUBuildingDetailViewController: UIViewController {
         let vc = ShareLocationAppsViewController(annotation: annotation)
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
-        HapticsManager.shared.hapticFeedback()
     }
     
     private func bindViewModel() {

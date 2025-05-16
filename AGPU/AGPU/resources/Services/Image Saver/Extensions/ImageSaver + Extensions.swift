@@ -15,6 +15,14 @@ extension ImageSaver: ImageSaverProtocol {
     }
 
     @objc func saveCompleted(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        print("Save finished!")
+        if error == nil {
+            imageHandler?("Отлично!", "изображение сохранено")
+        } else {
+            imageHandler?("Ошибка!", "не получилось сохранить")
+        }
+    }
+    
+    func registerImageHandler(block: @escaping(String, String)->Void) {
+        self.imageHandler = block
     }
 }

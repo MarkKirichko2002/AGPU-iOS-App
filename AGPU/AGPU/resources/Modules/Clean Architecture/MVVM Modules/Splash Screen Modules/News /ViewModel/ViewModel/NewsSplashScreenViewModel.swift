@@ -7,7 +7,7 @@
 
 import Foundation
 
-class NewsSplashScreenViewModel {
+final class NewsSplashScreenViewModel {
     
     // MARK: - сервисы
     let dateManager = DateManager()

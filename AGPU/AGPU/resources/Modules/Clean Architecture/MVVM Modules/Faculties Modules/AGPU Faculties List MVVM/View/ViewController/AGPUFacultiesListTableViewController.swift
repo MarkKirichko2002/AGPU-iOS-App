@@ -35,7 +35,6 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
     }
     
     @objc private func back() {
-        sendScreenWasClosedNotification()
         navigationController?.popViewController(animated: true)
     }
     
@@ -88,7 +87,7 @@ final class AGPUFacultiesListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        showHintAlert(type: .faculty, isNotify: false)
+        showHintAlert(type: .faculty, isNotify: false, delegate: nil)
         HapticsManager.shared.hapticFeedback()
         tableView.deselectRow(at: indexPath, animated: true)
     }

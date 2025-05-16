@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FacultyGroupModel {
+struct FacultyGroupModel: Codable {
     let facultyName: String
     let groups: [String]
 }

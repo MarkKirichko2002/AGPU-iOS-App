@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DisplayModeOptionsListViewModel {
+final class DisplayModeOptionsListViewModel {
     
     var option = DisplayModes.grid
     var optionSelectedHandler: (()->Void)?

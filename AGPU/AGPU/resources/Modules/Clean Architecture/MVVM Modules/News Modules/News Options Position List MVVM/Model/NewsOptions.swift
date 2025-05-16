@@ -9,15 +9,16 @@ import Foundation
 
 struct NewsOptions {
     static var list = [
-        NewsOptionModel(id: 1, name: "Категории"),
-        NewsOptionModel(id: 2, name: "Что нового?"),
-        NewsOptionModel(id: 3, name: "Жесты"),
+        NewsOptionModel(id: 1, name: "Поиск"),
+        NewsOptionModel(id: 2, name: "Категории"),
+        NewsOptionModel(id: 3, name: "Что нового?"),
         NewsOptionModel(id: 4, name: "Страницы"),
         NewsOptionModel(id: 5, name: "Недавние"),
         NewsOptionModel(id: 6, name: "Вид"),
         NewsOptionModel(id: 7, name: "Фильтрация"),
         NewsOptionModel(id: 8, name: "Рандомайзер"),
         NewsOptionModel(id: 9, name: "Выбрать"),
-        NewsOptionModel(id: 10, name: "Настройки"),
+        NewsOptionModel(id: 10, name: "Голосовые команды"),
+        NewsOptionModel(id: 11, name: "Настройки"),
     ]
 }

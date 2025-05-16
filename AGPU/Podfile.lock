@@ -1,11 +1,14 @@
 PODS:
   - Alamofire (5.8.1)
   - FSCalendar (2.8.4)
-  - Realm (10.47.0):
-    - Realm/Headers (= 10.47.0)
-  - Realm/Headers (10.47.0)
-  - RealmSwift (10.47.0):
-    - Realm (= 10.47.0)
+  - MediaPipeTasksCommon (0.10.21)
+  - MediaPipeTasksVision (0.10.21):
+    - MediaPipeTasksCommon (= 0.10.21)
+  - Realm (10.40.2):
+    - Realm/Headers (= 10.40.2)
+  - Realm/Headers (10.40.2)
+  - RealmSwift (10.40.2):
+    - Realm (= 10.40.2)
   - SDWebImage (5.18.10):
     - SDWebImage/Core (= 5.18.10)
   - SDWebImage/Core (5.18.10)
@@ -14,7 +17,8 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - FSCalendar
-  - RealmSwift
+  - MediaPipeTasksVision
+  - RealmSwift (~> 10.40.01)
   - SDWebImage
   - SnapKit
 
@@ -22,6 +26,8 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - FSCalendar
+    - MediaPipeTasksCommon
+    - MediaPipeTasksVision
     - Realm
     - RealmSwift
     - SDWebImage
@@ -30,11 +36,13 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
-  Realm: e43fb540ae947497e3ea8a662443256920602060
-  RealmSwift: 8b06ed06b5d16749ae0c4d91c0cba414a9e28189
+  MediaPipeTasksCommon: 6cfa29170d4900f04d250ad95ec058f14a741f38
+  MediaPipeTasksVision: 7b1c0f5a5820e87e9d96926f5e65d8cd3744fac2
+  Realm: 731e86d9388287b18e36b0beb2493fc4845ce8a2
+  RealmSwift: c2a1059ba52e1e08467b1253b1d4ab354ef3177b
   SDWebImage: fc8f2d48bbfd72ef39d70e981bd24a3f3be53fec
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: 8ea9e30c3d4f09c7c9872a4e28013d89416c68c8
+PODFILE CHECKSUM: a29ff6183258dbf9edb69f8e2caee4695042889d
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.16.2

@@ -13,7 +13,6 @@ protocol PairInfoViewModelProtocol {
     func getStartTime()-> String
     func getEndTime()-> String
     func checkSubGroup(subgroup: Int)-> String
-    func checkIsCurrentGroup(index: Int)-> Bool
     func startTimer()
     func stopTimer()
     func checkCurrentTime()

@@ -19,14 +19,18 @@ extension TimeTableFavouriteItemsListViewModel: ITimeTableFavouriteItemsListView
         return item
     }
     
-    func getItems() {
-        items = realmManager.getTimetableItems()
-        dataChangedHandler?()
+    func updateItems(items: [SearchTimetableModel], _ index: Int, _ index2: Int) {
+        realmManager.updateTimetableItems(items: items, index, index2)
+        getItems()
     }
     
     func deleteItem(item: SearchTimetableModel) {
         realmManager.deleteTimetableItem(item: item)
         getItems()
+    }
+    
+    func getItems() {
+        items = realmManager.getTimetableItems()
         dataChangedHandler?()
     }
     

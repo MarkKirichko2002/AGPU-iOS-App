@@ -22,7 +22,6 @@ extension ASPUButtonAllActionsListViewModel: IASPUButtonAllActionsListViewModel 
     func selectAction(index: Int) {
         let action = actionItem(index: index)
         saveAction(action: action)
-        itemSelectedHandler?()
     }
     
     func saveAction(action: ASPUButtonActions) {
@@ -32,6 +31,16 @@ extension ASPUButtonAllActionsListViewModel: IASPUButtonAllActionsListViewModel 
             actions.append(action)
         }
         saveArray(array: actions)
+    }
+    
+    func saveActions(actions: [ASPUButtonActions]) {
+        var savedActions = loadActions()
+        for action in actions {
+            if !savedActions.contains(action) {
+                savedActions.append(action)
+            }
+        }
+        saveArray(array: savedActions)
     }
     
     func loadActions()-> [ASPUButtonActions] {
@@ -53,6 +62,7 @@ extension ASPUButtonAllActionsListViewModel: IASPUButtonAllActionsListViewModel 
         } catch {
             print(error)
         }
+        itemSelectedHandler?()
     }
     
     func registerItemSelectedHandler(block: @escaping()->Void) {

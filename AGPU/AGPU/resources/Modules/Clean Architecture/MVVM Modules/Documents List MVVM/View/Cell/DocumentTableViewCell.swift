@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DocumentTableViewCell: UITableViewCell {
+final class DocumentTableViewCell: UITableViewCell {
 
     static let identifier = "DocumentTableViewCell"
     
@@ -29,6 +29,8 @@ class DocumentTableViewCell: UITableViewCell {
             return "pdf"
         } else if format.contains("doc") {
             return "word"
+        } else if format.contains("txt") {
+            return "document"
         } else {
             return "question"
         }

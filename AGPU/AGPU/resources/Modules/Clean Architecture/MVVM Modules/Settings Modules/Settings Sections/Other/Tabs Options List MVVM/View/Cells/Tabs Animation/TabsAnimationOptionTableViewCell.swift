@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabsAnimationOptionTableViewCell: UITableViewCell {
+final class TabsAnimationOptionTableViewCell: UITableViewCell {
     
     static let identifier = "TabsAnimationOptionTableViewCell"
     

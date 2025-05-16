@@ -43,7 +43,6 @@ final class NewsListViewController: UIViewController {
     
     var spinner: UIView = {
         let imageView = UIView()
-        imageView.tintColor = .label
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -53,7 +52,19 @@ final class NewsListViewController: UIViewController {
         setUpNavigation()
         setUpLabel()
         setUpIndicatorView()
+        setUpRefreshControl()
         bindViewModel()
+        observeFloatingButton()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.checkVoiceCommandsOption()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        viewModel.cancelRecognition()
     }
     
     private func setUpNavigation() {
@@ -62,12 +73,30 @@ final class NewsListViewController: UIViewController {
         appearance.backgroundColor = .systemBackground
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         setUpRefreshButton()
+        setUpMenuButton()
+        updateNavigationTitle()
+        navigationItem.toggleMenuButton(on: false)
+        navigationItem.toggleRefreshButtonFromLeft(on: false)
+    }
+    
+    private func setUpMenuButton() {
+        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: UIMenu())
+        options.accessibilityIdentifier = "menu"
+        options.tintColor = .label
+        navigationItem.rightBarButtonItem = options
     }
     
     private func setUpRefreshButton() {
         let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshNews))
+        refreshButton.accessibilityIdentifier = "refresh button"
         refreshButton.tintColor = .label
         navigationItem.leftBarButtonItem = refreshButton
+    }
+    
+    private func updateMenuButton(menu: UIMenu) {
+        guard let options = navigationItem.rightBarButtonItems?.first(where: { $0.accessibilityIdentifier == "menu" }) else {return}
+        navigationItem.toggleMenuButton(on: true)
+        options.menu = menu
     }
     
     @objc private func refreshNews() {
@@ -101,16 +130,16 @@ final class NewsListViewController: UIViewController {
                 self.collectionView.reloadData()
                 self.noNewsLabel.isHidden = true
             }
-            viewModel.getNews(by: page)
+            viewModel.getNews(by: page) {}
         case .table:
             viewModel.newsResponse.articles = []
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.noNewsLabel.isHidden = true
             }
-            viewModel.getNews(by: page)
+            viewModel.getNews(by: page) {}
         case .webpage:
-            viewModel.getNews(by: page)
+            viewModel.getNews(by: page) {}
         }
     }
     
@@ -119,7 +148,6 @@ final class NewsListViewController: UIViewController {
         collectionView.frame = view.bounds
         collectionView.delegate = self
         collectionView.dataSource = self
-        spinner.tintColor = .label
     }
     
     private func setUpTableView() {
@@ -127,7 +155,6 @@ final class NewsListViewController: UIViewController {
         tableView.frame = view.bounds
         tableView.delegate = self
         tableView.dataSource = self
-        spinner.tintColor = .label
     }
     
     private func setUpWebView() {
@@ -135,14 +162,13 @@ final class NewsListViewController: UIViewController {
         webView.frame = view.bounds
         webView.navigationDelegate = self
         webView.scrollView.delegate = self
-        spinner.tintColor = .black
         webView.load(viewModel.makeUrlForCurrentWebPage())
     }
     
     private func setUpIndicatorView() {
         if view.contains(spinner) {
             spinner.removeFromSuperview()
-        } 
+        }
         spinner = viewModel.getCurrentIndicator()
         view.addSubview(spinner)
         spinner.translatesAutoresizingMaskIntoConstraints = false
@@ -153,6 +179,38 @@ final class NewsListViewController: UIViewController {
             spinner.heightAnchor.constraint(equalToConstant: viewModel.getIndicatorSize().height)
         ])
         startLoading()
+    }
+    
+    private func setUpRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = viewModel.colorForIndicator()
+        refreshControl.accessibilityIdentifier = "refresh control"
+        switch viewModel.displayMode {
+        case .grid:
+            self.collectionView.subviews.first { $0.accessibilityIdentifier == "refresh control"}?.removeFromSuperview()
+            collectionView.addSubview(refreshControl)
+        case .table:
+            self.tableView.subviews.first { $0.accessibilityIdentifier == "refresh control"}?.removeFromSuperview()
+            tableView.addSubview(refreshControl)
+        case .webpage:
+            webView.scrollView.subviews.first { $0.accessibilityIdentifier == "refresh control"}?.removeFromSuperview()
+            webView.scrollView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(refreshNews), for: .valueChanged)
+    }
+    
+    private func stopRefreshControl() {
+        switch viewModel.displayMode {
+        case .grid:
+            let control = collectionView.subviews.first { $0.accessibilityIdentifier == "refresh control" }
+            (control as? UIRefreshControl)?.endRefreshing()
+        case .table:
+            let control = tableView.subviews.first { $0.accessibilityIdentifier == "refresh control" }
+            (control as? UIRefreshControl)?.endRefreshing()
+        case .webpage:
+            let control = webView.scrollView.subviews.first { $0.accessibilityIdentifier == "refresh control" }
+            (control as? UIRefreshControl)?.endRefreshing()
+        }
     }
     
     private func setUpLabel() {
@@ -169,20 +227,20 @@ final class NewsListViewController: UIViewController {
     
     private func bindViewModel() {
         
-        var options = UIBarButtonItem(image: UIImage(named: "sections"), menu: UIMenu())
+        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: UIMenu())
+        options.tintColor = .label
+        options.accessibilityIdentifier = "menu"
         
         var menu = UIMenu()
+        
+        let calendarAction = UIAction(title: "Поиск") { _ in
+            self.openMonthsList()
+        }
         
         var categoriesAction = UIAction(title: "Категории") { _ in}
         
         let whatsNewAction = UIAction(title: "Что нового?") { _ in
             self.showWhatsNewVC()
-        }
-        
-        let gesturesAction = UIAction(title: "Жесты") { _ in
-            let vc = HandDrawingGesturesViewController(category: self.viewModel.abbreviation, page: self.viewModel.newsResponse.currentPage ?? 0)
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
         }
         
         var pagesAction = UIAction(title: "Страницы") { _ in}
@@ -192,27 +250,31 @@ final class NewsListViewController: UIViewController {
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
         }
+        
         let displayModes = UIAction(title: "Вид") { _ in
             let vc = DisplayModeOptionsListTableViewController(option: self.viewModel.displayMode)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
         }
+        
         let filterOptions = UIAction(title: "Фильтрация") { _ in
-            print(self.viewModel.option)
-            let vc = NewsOptionsFilterListTableViewController(option: self.viewModel.option, news: self.viewModel.allNews)
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
+            self.openFilterOptionsList()
         }
+        
         let randomAction = UIAction(title: "Рандомайзер") { _ in
-            let vc = NewsCategoriesRandomizerViewController(category: self.viewModel.abbreviation)
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
+            self.openRandom()
         }
         
         let selectAction = UIAction(title: "Выбрать") { _ in
             let vc = NewsMultipleSelectionListTableViewController(articles: self.viewModel.allNews, abbreviation: self.viewModel.abbreviation)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let voiceCommands = UIAction(title: "Голосовые команды") { _ in
+            let vc = VoiceCommandsListTableViewController(type: .newsList)
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
@@ -225,13 +287,44 @@ final class NewsListViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
-        var titleView = CustomTitleView(image: "АГПУ", title: "Новости АГПУ", frame: .zero)
-        
-        DispatchQueue.main.async {
-            self.navigationItem.title = "Загрузка новостей..."
-        }
+        var titleView = CustomTitleView(image: viewModel.getCurrentCategory().icon, title: "Новости \(viewModel.getCurrentCategory().name)", frame: .zero)
         
         viewModel.checkSettings()
+        
+        viewModel.registerNoDateAlertHandler {
+            let ok = UIAlertAction(title: "ОК", style: .default) { _ in
+                self.viewModel.stopSaying()
+            }
+            self.showInfoAlert(title: "Неверная дата!", message: "не существует такой даты", actions: [ok])
+            self.closeAlert()
+            self.closeFloatingButtonMenu()
+        }
+        
+        viewModel.registerCloseAlertHandler {
+            self.closeAlert()
+            self.closeFloatingButtonMenu()
+        }
+        
+        viewModel.registerStartLoadingHandler {
+            self.setUpIndicatorView()
+            switch self.viewModel.displayMode {
+            case .grid:
+                self.viewModel.newsResponse.articles = []
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.noNewsLabel.isHidden = true
+                }
+            case .table:
+                self.viewModel.newsResponse.articles = []
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.noNewsLabel.isHidden = true
+                }
+            case .webpage:
+                break
+            }
+            self.blockUI()
+        }
         
         viewModel.registerDataChangedHandler { [weak self] abbreviation in
             
@@ -242,43 +335,40 @@ final class NewsListViewController: UIViewController {
                     if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == abbreviation }) {
                         titleView = CustomTitleView(image: "\(newsCategory.icon)", title: "\(newsCategory.name) новости", frame: .zero)
                     }
+                    self.navigationItem.toggleRefreshButtonFromLeft(on: true)
+                    self.stopRefreshControl()
                     self.stopLoading()
                 } else {
                     titleView = CustomTitleView(image: "АГПУ", title: "АГПУ новости", frame: .zero)
+                    self.navigationItem.toggleRefreshButtonFromLeft(on: true)
+                    self.stopRefreshControl()
                     self.stopLoading()
                 }
             }
             
             categoriesAction = UIAction(title: "Категории") { _ in
-                let vc = NewsCategoriesListTableViewController(currentCategory: abbreviation)
-                let navVC = UINavigationController(rootViewController: vc)
-                navVC.modalPresentationStyle = .fullScreen
-                self.present(navVC, animated: true)
+                self.openNewsCategoriesList()
             }
             
             pagesAction = UIAction(title: "Страницы") { _ in
-                if let currentPage = self.viewModel.newsResponse.currentPage, let countPages = self.viewModel.newsResponse.countPages {
-                    let vc = NewsPagesListTableViewController(currentPage: currentPage, countPages: countPages, abbreviation: abbreviation)
-                    let navVC = UINavigationController(rootViewController: vc)
-                    navVC.modalPresentationStyle = .fullScreen
-                    self.present(navVC, animated: true)
-                }
+                self.openNewsPagesList()
             }
             
             var opt: [UIMenuElement] = [
+                calendarAction,
                 categoriesAction,
                 whatsNewAction,
-                gesturesAction,
                 pagesAction,
                 recentNews,
                 displayModes,
                 filterOptions,
                 randomAction,
                 selectAction,
+                voiceCommands,
                 settingsAction
             ]
             
-            let position = UserDefaults.standard.object(forKey: "news options position") as? [Int] ?? [0,1,2,3,4,5,6,7,8,9]
+            let position = UserDefaults.standard.object(forKey: "news options position") as? [Int] ?? [0,1,2,3,4,5,6,7,8,9,10]
             
             for option in opt {
                 for number in position {
@@ -288,30 +378,32 @@ final class NewsListViewController: UIViewController {
                 }
             }
             
-            menu = UIMenu(title: "Новости", children: opt)
-            options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
-            options.tintColor = .label
+            if UserDefaults.standard.object(forKey: "onAdvancedModeNews") as? Bool ?? false {
+                menu = UIMenu(title: "Новости", children: opt)
+            } else {
+                menu = UIMenu(title: "Новости", children: [categoriesAction, pagesAction, filterOptions])
+            }
             
             switch viewModel.displayMode {
                 
             case .grid:
                 DispatchQueue.main.async {
                     self.navigationItem.titleView = titleView
-                    self.navigationItem.rightBarButtonItem = options
+                    self.updateMenuButton(menu: menu)
                     self.collectionView.reloadData()
                 }
                 
             case .table:
                 DispatchQueue.main.async {
                     self.navigationItem.titleView = titleView
-                    self.navigationItem.rightBarButtonItem = options
+                    self.updateMenuButton(menu: menu)
                     self.tableView.reloadData()
                 }
                 
             case .webpage:
                 DispatchQueue.main.async {
                     self.navigationItem.titleView = titleView
-                    self.navigationItem.rightBarButtonItem = options
+                    self.updateMenuButton(menu: menu)
                 }
             }
             
@@ -325,6 +417,48 @@ final class NewsListViewController: UIViewController {
                     self.tableView.isHidden = true
                     self.collectionView.isHidden = true
                 }
+            }
+        }
+        
+        viewModel.registerPageHandler { page in
+            self.setUpIndicatorView()
+            switch self.viewModel.displayMode {
+            case .grid:
+                self.viewModel.newsResponse.articles = []
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.noNewsLabel.isHidden = true
+                }
+                self.viewModel.getNews(by: page) {}
+            case .table:
+                self.viewModel.newsResponse.articles = []
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.noNewsLabel.isHidden = true
+                }
+                self.viewModel.getNews(by: page) {}
+            case .webpage:
+                self.viewModel.getNews(by: page) {}
+            }
+        }
+        
+        viewModel.registerNewsDateHandler {
+            self.setUpIndicatorView()
+            switch self.viewModel.displayMode {
+            case .grid:
+                self.viewModel.newsResponse.articles = []
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.noNewsLabel.isHidden = true
+                }
+            case .table:
+                self.viewModel.newsResponse.articles = []
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.noNewsLabel.isHidden = true
+                }
+            case .webpage:
+                break
             }
         }
         
@@ -346,8 +480,10 @@ final class NewsListViewController: UIViewController {
                     }
                     self.setUpCollectionView()
                     self.setUpIndicatorView()
+                    self.setUpRefreshControl()
                     self.spinner.isHidden = true
                     self.animation.stopRotateAnimation(view: self.spinner)
+                    self.resetFloatingButton()
                 }
             case .table:
                 DispatchQueue.main.async {
@@ -356,8 +492,10 @@ final class NewsListViewController: UIViewController {
                     }
                     self.setUpTableView()
                     self.setUpIndicatorView()
+                    self.setUpRefreshControl()
                     self.spinner.isHidden = true
                     self.animation.stopRotateAnimation(view: self.spinner)
+                    self.resetFloatingButton()
                 }
                 
             case .webpage:
@@ -367,8 +505,14 @@ final class NewsListViewController: UIViewController {
                     }
                     self.setUpWebView()
                     self.setUpIndicatorView()
+                    self.setUpRefreshControl()
+                    self.resetFloatingButton()
                 }
             }
+        }
+        
+        viewModel.registerNewsRefreshHandler {
+            self.refreshNews()
         }
         
         viewModel.registerWebModeHandler {
@@ -381,6 +525,16 @@ final class NewsListViewController: UIViewController {
             }
         }
         
+        viewModel.alertHandler = { isPresent, title, message in
+            if isPresent {
+                let goToSettings = UIAlertAction(title: "Перейти в настройки", style: .default) { _ in
+                    self.openSettings()
+                }
+                let cancel = UIAlertAction(title: "Отмена", style: .cancel) { _ in}
+                self.showAlert(title: title, message: message, actions: [goToSettings, cancel])
+            }
+        }
+        
         viewModel.observeCategoryChanges()
         viewModel.observePageChanges()
         viewModel.observeDisplayMode()
@@ -388,6 +542,7 @@ final class NewsListViewController: UIViewController {
         viewModel.observeFilterOption()
         viewModel.observeVisualChangesOption()
         viewModel.observePositionOption()
+        viewModel.observeAdvancedMode()
     }
     
     func startLoading() {
@@ -400,9 +555,6 @@ final class NewsListViewController: UIViewController {
             self.animation.startRotateAnimation(view: self.spinner)
         case .date:
             self.spinner.isHidden = false
-        case .status:
-            self.spinner.isHidden = false
-            self.animation.startRotateAnimation(view: self.spinner)
         case .label:
             self.spinner.isHidden = false
         case .timeOfDay:
@@ -424,9 +576,6 @@ final class NewsListViewController: UIViewController {
             self.animation.stopRotateAnimation(view: self.spinner)
         case .date:
             self.spinner.isHidden = true
-        case .status:
-            self.spinner.isHidden = true
-            self.animation.stopRotateAnimation(view: self.spinner)
         case .label:
             self.spinner.isHidden = true
         case .timeOfDay:
@@ -436,5 +585,195 @@ final class NewsListViewController: UIViewController {
             self.spinner.isHidden = true
             self.animation.stopRotateAnimation(view: self.spinner)
         }
+    }
+    
+    private func observeFloatingButton() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("floating button news"), object: nil, queue: .main) { _ in
+            self.resetFloatingButton()
+        }
+    }
+    
+    private func resetFloatingButton() {
+        if let button = view.subviews.first(where: { $0.accessibilityIdentifier == "floating button" }) {
+            button.removeFromSuperview()
+            createFloatingButton()
+        } else {
+            createFloatingButton()
+        }
+    }
+    
+    private func createFloatingButton() {
+        let onFloatingButton = UserDefaults.standard.object(forKey: "onFloatingButton news") as? Bool ?? true
+        if onFloatingButton {
+            setUpFloatingButton()
+            animateFloatingButton()
+        }
+    }
+    
+     func removeFloatingButton() {
+        if let button = view.subviews.first(where: { $0.accessibilityIdentifier == "floating button" }) {
+            button.removeFromSuperview()
+        }
+    }
+    
+    private func updateFloatingButton(icon: String) {
+        if let button = view.subviews.first(where: { $0.accessibilityIdentifier == "floating button" }) {
+            (button as? UIButton)?.setImage(UIImage(named: icon), for: .normal)
+        }
+    }
+    
+    private func animateFloatingButton() {
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+            if let button = self.view.subviews.first(where: { $0.accessibilityIdentifier == "floating button" }) {
+                self.animation.springAnimation(view: button)
+            }
+        }
+    }
+    
+    func updateNavigationTitle() {
+        navigationItem.titleView = CustomTitleView(image: "loading", title: "Загрузка...", frame: .zero)
+    }
+    
+    private func setUpFloatingButton() {
+        let navigationButton = UIButton()
+        navigationButton.tintColor = .label
+        navigationButton.setImage(UIImage(named: viewModel.getCurrentCategoryIcon()), for: .normal)
+        navigationButton.showsMenuAsPrimaryAction = true
+        navigationButton.accessibilityIdentifier = "floating button"
+        navigationButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(navigationButton)
+        NSLayoutConstraint.activate([
+            navigationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -tabBarController!.tabBar.frame.height-17),
+            navigationButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30.0),
+            navigationButton.widthAnchor.constraint(equalToConstant: 70.0),
+            navigationButton.heightAnchor.constraint(equalToConstant: 70.0)
+        ])
+        navigationButton.menu = setUpNewsMenu()
+    }
+    
+    func setUpNewsMenu()-> UIMenu {
+        
+        let categories = UIMenu(title: "Категории", children: NewsCategories.categories.map({ category in
+            UIAction(title: category.name, state: category.newsAbbreviation == self.viewModel.abbreviation ? .on : .off) { _ in
+                if category.newsAbbreviation != self.viewModel.abbreviation {
+                    switch self.viewModel.displayMode {
+                    case .grid:
+                        self.viewModel.newsResponse.articles = []
+                        DispatchQueue.main.async {
+                            self.collectionView.reloadData()
+                            self.noNewsLabel.isHidden = true
+                        }
+                        self.updateNavigationTitle()
+                        self.viewModel.getNewsFromMenu(category: category.newsAbbreviation)
+                        self.navigationItem.toggleRefreshButtonFromLeft(on: false)
+                        self.navigationItem.toggleMenuButton(on: false)
+                        self.setUpIndicatorView()
+                        self.removeFloatingButton()
+                    case .table:
+                        self.viewModel.newsResponse.articles = []
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                            self.noNewsLabel.isHidden = true
+                        }
+                        self.updateNavigationTitle()
+                        self.viewModel.getNewsFromMenu(category: category.newsAbbreviation)
+                        self.navigationItem.toggleRefreshButtonFromLeft(on: false)
+                        self.navigationItem.toggleMenuButton(on: false)
+                        self.setUpIndicatorView()
+                        self.removeFloatingButton()
+                    case .webpage:
+                        self.updateNavigationTitle()
+                        self.viewModel.getNewsFromMenu(category: category.newsAbbreviation)
+                        self.navigationItem.toggleRefreshButtonFromLeft(on: false)
+                        self.navigationItem.toggleMenuButton(on: false)
+                        self.setUpIndicatorView()
+                        self.removeFloatingButton()
+                    }
+                }
+            }
+        }).reversed())
+        
+        let pages = UIMenu(title: "Страницы", children: viewModel.makePagesList().map ({ page in
+            UIAction(title: "Страница: \(page)", state: page == self.viewModel.newsResponse.currentPage ? .on : .off) { _ in
+                if page != self.viewModel.newsResponse.currentPage {
+                    switch self.viewModel.displayMode {
+                    case .grid:
+                        self.viewModel.newsResponse.articles = []
+                        DispatchQueue.main.async {
+                            self.collectionView.reloadData()
+                            self.noNewsLabel.isHidden = true
+                        }
+                        self.updateNavigationTitle()
+                        self.viewModel.getNews(by: page) {}
+                        self.navigationItem.toggleRefreshButtonFromLeft(on: false)
+                        self.navigationItem.toggleMenuButton(on: false)
+                        self.setUpIndicatorView()
+                        self.removeFloatingButton()
+                    case .table:
+                        self.viewModel.newsResponse.articles = []
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                            self.noNewsLabel.isHidden = true
+                        }
+                        self.updateNavigationTitle()
+                        self.viewModel.getNews(by: page) {}
+                        self.navigationItem.toggleRefreshButtonFromLeft(on: false)
+                        self.navigationItem.toggleMenuButton(on: false)
+                        self.setUpIndicatorView()
+                        self.removeFloatingButton()
+                    case .webpage:
+                        self.updateNavigationTitle()
+                        self.viewModel.getNews(by: page) {}
+                        self.navigationItem.toggleRefreshButtonFromLeft(on: false)
+                        self.navigationItem.toggleMenuButton(on: false)
+                        self.setUpIndicatorView()
+                        self.removeFloatingButton()
+                    }
+                }
+            }
+        }).reversed())
+        
+        return UIMenu(title: "Новости", children: [pages, categories])
+    }
+    
+    func openNewsCategoriesList() {
+        let vc = NewsCategoriesListTableViewController(currentCategory: viewModel.abbreviation)
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true)
+    }
+    
+    func openNewsPagesList() {
+        if let currentPage = self.viewModel.newsResponse.currentPage, let countPages = self.viewModel.newsResponse.countPages {
+            if countPages > 1 {
+                let vc = NewsPagesListTableViewController(currentPage: currentPage, countPages: countPages, abbreviation: viewModel.abbreviation)
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                self.present(navVC, animated: true)
+            } else {
+                showAlert(title: "Нет страниц", message: "страницы еще не загрузились", actions: [UIAlertAction(title: "ОК", style: .default)])
+            }
+        }
+    }
+    
+    func openMonthsList() {
+        let vc = NewsFilterCategoriesListTableViewController(date: viewModel.date, month: viewModel.month)
+        vc.delegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
+    }
+    
+    func openRandom() {
+        let vc = NewsCategoriesRandomizerViewController(category: self.viewModel.abbreviation)
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+    }
+    
+    func openFilterOptionsList() {
+        let vc = NewsOptionsFilterListTableViewController(option: self.viewModel.option, news: self.viewModel.allNews)
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true)
     }
 }

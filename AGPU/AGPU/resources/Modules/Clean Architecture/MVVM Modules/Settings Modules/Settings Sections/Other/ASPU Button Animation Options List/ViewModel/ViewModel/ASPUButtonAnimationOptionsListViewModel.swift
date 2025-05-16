@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ASPUButtonAnimationOptionsListViewModel {
+final class ASPUButtonAnimationOptionsListViewModel {
     
     var dataSelectedHandler: (()->Void)?
     

@@ -11,12 +11,12 @@ import Foundation
 extension NewsOptionsFilterListViewModel: INewsOptionsFilterListViewModel {
     
     func optionItem(index: Int)-> NewsOptionsFilters {
-        let option = NewsOptionsFilters.allCases[index]
+        let option = options[index]
         return option
     }
     
     func numberOfOptionsInSection()-> Int {
-        let count = NewsOptionsFilters.allCases.count
+        let count = options.count
         return count
     }
     

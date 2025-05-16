@@ -17,7 +17,7 @@ class RecentDatesListViewController: UIViewController {
     private let noDatesLabel = UILabel()
     private let tableView = UITableView()
     
-    // MARK: - ASPUButtonFavouriteActionsListViewModel
+    // MARK: - сервисы
     let viewModel = RecentDatesListViewModel()
     
     var id: String = ""
@@ -69,12 +69,14 @@ class RecentDatesListViewController: UIViewController {
     }
     
     @objc private func moveDates() {
-        if tableView.isEditing {
-            setUpEditButton(title: "Править")
-            tableView.isEditing = false
-        } else {
-            setUpEditButton(title: "Готово")
-            tableView.isEditing = true
+        if !viewModel.dates.isEmpty {
+            if tableView.isEditing {
+                setUpEditButton(title: "Править")
+                tableView.isEditing = false
+            } else {
+                setUpEditButton(title: "Готово")
+                tableView.isEditing = true
+            }
         }
     }
     
@@ -106,6 +108,7 @@ class RecentDatesListViewController: UIViewController {
             if !self.viewModel.dates.isEmpty {
                 self.noDatesLabel.isHidden = true
             } else {
+                self.setUpEditButton(title: "Править")
                 self.noDatesLabel.isHidden = false
             }
         }

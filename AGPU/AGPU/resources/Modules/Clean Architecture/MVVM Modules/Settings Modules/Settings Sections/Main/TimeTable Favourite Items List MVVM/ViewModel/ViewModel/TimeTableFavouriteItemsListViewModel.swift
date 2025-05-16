@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TimeTableFavouriteItemsListViewModel {
+final class TimeTableFavouriteItemsListViewModel {
     
     var items = [SearchTimetableModel]()
     

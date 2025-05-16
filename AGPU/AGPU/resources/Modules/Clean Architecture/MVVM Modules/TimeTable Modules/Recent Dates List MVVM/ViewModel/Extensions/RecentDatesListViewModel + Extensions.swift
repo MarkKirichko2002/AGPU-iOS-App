@@ -25,15 +25,10 @@ extension RecentDatesListViewModel: IRecentDatesListViewModel {
     
     func updateDates(dates: [String], _ index: Int, _ index2: Int) {
         
-        var arr = [String]()
+        var arr = dates
         
-        for date in dates {
-            arr.append(date)
-        }
-        
-        print("\(index) and \(index2)")
-        
-        arr.swapAt(index, index2)
+        let date = arr.remove(at: index)
+        arr.insert(date, at: index2)
         
         UserDefaults.saveArray(array: arr, key: "recent dates") {
             self.getDates()

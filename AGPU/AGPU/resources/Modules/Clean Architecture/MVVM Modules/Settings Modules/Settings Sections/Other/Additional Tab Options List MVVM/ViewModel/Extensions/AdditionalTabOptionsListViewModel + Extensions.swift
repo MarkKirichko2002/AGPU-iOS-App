@@ -1,0 +1,59 @@
+//
+//  AdditionalTabOptionsListViewModel + Extensions.swift
+//  AGPU
+//
+//  Created by Марк Киричко on 25.12.2024.
+//
+
+import Foundation
+
+// MARK: - IAdditionalTabOptionsListViewModel
+extension AdditionalTabOptionsListViewModel: IAdditionalTabOptionsListViewModel {
+    
+    func variantsCount()-> Int {
+        return AdditionalTabVariants.allCases.count
+    }
+    
+    func variantItem(index: Int)-> AdditionalTabVariants {
+        return AdditionalTabVariants.allCases[index]
+    }
+    
+    func selectVariant(index: Int) {
+        
+        let savedVariant = settingsManager.getAdditionalTabVariant()
+        let variant = variantItem(index: index)
+        
+        if savedVariant.rawValue != variant.rawValue {
+            UserDefaults.saveData(object: variant, key: "additional tab") {
+                NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
+                NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+                HapticsManager.shared.hapticFeedback()
+                self.dataChangedHandler?()
+            }
+        }
+    }
+    
+    func isVariantSelected(index: Int)-> Bool {
+        let savedVariant = settingsManager.getAdditionalTabVariant()
+        let variant = variantItem(index: index)
+        
+        if savedVariant.rawValue == variant.rawValue {
+            return true
+        }
+        return false
+    }
+    
+    func titleForNavigation()-> String {
+        let style = settingsManager.getSavedCommunicationStyle()
+        switch style {
+        case .formal:
+            return "Выберите вариант"
+        case .informal:
+            return "Выбери вариант"
+        }
+    }
+    
+    func registerDataChangedHandler(block: @escaping()->Void) {
+        self.dataChangedHandler = block
+    }
+}

@@ -11,7 +11,7 @@ protocol CommunicationStyleVariantsListTableViewControllerDelegate: AnyObject {
     func styleWasSelected()
 }
 
-class CommunicationStyleVariantsListTableViewController: UITableViewController {
+final class CommunicationStyleVariantsListTableViewController: UITableViewController {
 
     // MARK: - сервисы
     private let viewModel = CommunicationStyleVariantsListViewModel()
@@ -34,7 +34,9 @@ class CommunicationStyleVariantsListTableViewController: UITableViewController {
         
         let backButton = UIBarButtonItem(customView: button)
         
-        navigationItem.title = "Стили общения"
+        let titleView = CustomTitleView(image: "message", title: "Стили общения", frame: .zero)
+        
+        navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = backButton

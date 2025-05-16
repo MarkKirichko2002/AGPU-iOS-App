@@ -56,9 +56,16 @@ extension AGPUCurrentCathedraMapViewModel: AGPUCurrentCathedraMapViewModelProtoc
             cathedraPin.subtitle = self.cathedra.address
             
             let location = LocationModel(region: region, pins: [currentpin, cathedraPin])
-            
+            self.arr.append(currentpin)
+            self.arr.append(cathedraPin)
             self.locationHandler?(location)
         }
+    }
+    
+    func defaultLocation()-> MKCoordinateRegion {
+        let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
+        let region = MKCoordinateRegion(center: arr[0].coordinate, span: span)
+        return region
     }
     
     func registerLocationHandler(block: @escaping(LocationModel)->Void) {

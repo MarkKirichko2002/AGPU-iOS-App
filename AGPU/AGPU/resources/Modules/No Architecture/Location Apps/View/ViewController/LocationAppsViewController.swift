@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class LocationAppsViewController: UIViewController {
+final class LocationAppsViewController: UIViewController {
     
     // MARK: - UI
     private var closeButton: UIButton = {
@@ -22,7 +22,7 @@ class LocationAppsViewController: UIViewController {
     private let QuestionLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.text = "В каком приложение открыть локацию?"
+        label.text = "В каком приложении открыть локацию?"
         label.font = .systemFont(ofSize: 18, weight: .black)
         label.textColor = .label
         label.numberOfLines = 0
@@ -62,7 +62,7 @@ class LocationAppsViewController: UIViewController {
         let label = UILabel()
         label.textColor = .label
         label.text = "Apple Maps"
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: 16, weight: .black)
         label.isUserInteractionEnabled = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -89,7 +89,7 @@ class LocationAppsViewController: UIViewController {
         let label = UILabel()
         label.text = "Google Maps"
         label.textColor = .label
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: 16, weight: .black)
         label.isUserInteractionEnabled = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -116,7 +116,7 @@ class LocationAppsViewController: UIViewController {
         let label = UILabel()
         label.textColor = .label
         label.text = "Яндекс Карты"
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: 16, weight: .black)
         label.isUserInteractionEnabled = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -189,7 +189,7 @@ class LocationAppsViewController: UIViewController {
             locationName.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30),
             locationName.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30),
             
-            AppleMapsStack.topAnchor.constraint(equalTo: locationName.bottomAnchor, constant: 80),
+            AppleMapsStack.topAnchor.constraint(equalTo: locationName.bottomAnchor, constant: 40),
             AppleMapsStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             AppleMapsButton.widthAnchor.constraint(equalToConstant: 70),
             AppleMapsButton.heightAnchor.constraint(equalToConstant: 70),

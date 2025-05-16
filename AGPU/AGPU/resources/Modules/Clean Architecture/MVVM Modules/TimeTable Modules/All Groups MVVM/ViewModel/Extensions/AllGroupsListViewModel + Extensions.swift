@@ -11,15 +11,28 @@ import UIKit
 extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
     
     func numberOfGroupSections()-> Int {
-        return FacultyGroups.groups.count
+        return groups.count
     }
     
     func groupSectionItem(section: Int)-> FacultyGroupModel {
-        return FacultyGroups.groups[section]
+        return groups[section]
     }
     
     func groupItem(section: Int, index: Int)-> String {
         return groupSectionItem(section: section).groups[index]
+    }
+    
+    func getGroups() {
+        service.getGroups { result in
+            switch result {
+            case .success(let data):
+                self.groups = data
+                self.isLoading.toggle()
+                self.dataChangedHandler?()
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     func selectGroup(section: Int, index: Int) {
@@ -31,12 +44,8 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
         }
     }
     
-    func registerGroupSelectedHandler(block: @escaping()->Void) {
-        self.groupSelectedHandler = block
-    }
-    
     func isGroupSelected(section: Int, index: Int)-> Bool {
-        let group = FacultyGroups.groups[section].groups[index]
+        let group = groups[section].groups[index]
         let lastGroup = self.group
         if lastGroup == group {
             return true
@@ -45,12 +54,16 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
         }
     }
     
-    func scrollToSelectedGroup(completion: @escaping(Int, Int)->Void) {
-        for (groupIndex, groups) in FacultyGroups.groups.enumerated() {
-            for (elementIndex, group) in groups.groups.enumerated() {
-                if group == self.group {
-                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                        completion(groupIndex, elementIndex)
+    func scrollToSelectedGroup() {
+        if !groups.isEmpty {
+            for (groupIndex, groupItems) in groups.enumerated() {
+                for (elementIndex, group) in groupItems.groups.enumerated() {
+                    if group == self.group {
+                        if !self.isLoading {
+                            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                                self.scrollHandler?(groupIndex, elementIndex)
+                            }
+                        }
                     }
                 }
             }
@@ -58,7 +71,7 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
     }
     
     func currentFacultyIcon(section: Int, abbreviation: String)-> String {
-        let group = FacultyGroups.groups[section]
+        let group = groups[section]
         for faculty in AGPUFaculties.faculties {
             if group.facultyName.abbreviation().contains(faculty.abbreviation) {
                 return faculty.icon
@@ -71,11 +84,11 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
         
         var currentGroup = ""
         
-        if let group = FacultyGroups.groups.first(where: { $0.groups.contains(self.group)}) {
+        if let group = groups.first(where: { $0.groups.contains(self.group)}) {
             currentGroup = group.facultyName
         }
         
-        let items = FacultyGroups.groups.enumerated().map { (index: Int, group: FacultyGroupModel) in
+        let items = groups.enumerated().map { (index: Int, group: FacultyGroupModel) in
             let groupItem = group.facultyName
             let actionHandler: UIActionHandler = { [weak self] _ in
                 DispatchQueue.main.async {
@@ -86,5 +99,17 @@ extension AllGroupsListViewModel: AllGroupsListViewModelProtocol {
         }
         let menu = UIMenu(title: "Группы", options: .singleSelection, children: items)
         return menu
+    }
+    
+    func registerDataChangedHandler(block: @escaping()->Void) {
+        self.dataChangedHandler = block
+    }
+    
+    func registerScrollHandler(block: @escaping(Int, Int)->Void) {
+        self.scrollHandler = block
+    }
+    
+    func registerGroupSelectedHandler(block: @escaping()->Void) {
+        self.groupSelectedHandler = block
     }
 }

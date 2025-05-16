@@ -77,27 +77,135 @@ extension String {
         return slittedString.lowercased()
     }
     
-    func countWords()-> Int {
-        let value = self.components(separatedBy: CharacterSet(charactersIn: " "))
-        print(value)
-        return value.count
+    func getCurrentTabName()-> String {
+        let title = self
+        if title == "news" {
+            return "Новости"
+        } else if title == "favourites" {
+            return "Избранное"
+        } else if title == "timetable" {
+            return "Расписание"
+        } else if title == "settings" {
+            return "Настройки"
+        } else if title == "maps" {
+            return "Карты"
+        } else if title == "sections" {
+            return "Разделы"
+        } else if title == "weeks" {
+            return "Недели"
+        } else if title == "weather" {
+            return "Погода"
+        } else {
+            return ""
+        }
     }
     
-    func countSentences()-> Int {
-        let value = self.components(separatedBy: " ")
-        var counter = 0
-        for i in 0..<value.count {
-            if value[i].contains(".") || value[i].contains("!") || value[i].contains("?") {
-                print(value[i])
-                counter += 1
+    func getDateFromString()-> String {
+        var text = self
+        if text.contains("-е") {
+            text = text.replacingOccurrences(of: "-е", with: "")
+        } else if text.contains("-го") {
+            text = text.replacingOccurrences(of: "-го", with: "")
+        } else if text.contains("-я") {
+            text = text.replacingOccurrences(of: "-я", with: "")
+        }
+        let wordPattern = try! Regex("\\d+\\s+[а-яА-Я]+")
+        if let match = try? wordPattern.firstMatch(in: text) {
+            return String(match.0)
+        }
+        return ""
+    }
+    
+    func getNumberFromString()-> String {
+        
+        var num = ""
+        
+        print(self)
+        
+        if self.contains("нуле") {
+            num = "0"
+        }
+        
+        if self.contains("перво") {
+            num = "1"
+        }
+        
+        if self.contains("второ") {
+            num = "2"
+        }
+        
+        if self.contains("треть") {
+            num = "3"
+        }
+        
+        if self.contains("четв") {
+            num = "4"
+        }
+        
+        if self.contains("пято") {
+            num = "5"
+        }
+        
+        if self.contains("шесто") {
+            num = "6"
+        }
+        
+        if self.contains("седьмо") {
+            num = "7"
+        }
+        
+        if self.contains("восьмо") {
+            num = "8"
+        }
+        
+        if self.contains("девято") {
+            num = "9"
+        }
+        
+        for char in self {
+            if char.isNumber {
+                num += String(char)
             }
         }
+        return num
+    }
+    
+    func updateDateDay(number: String)-> String {
         
-        if value.last!.contains("") {
-            counter += 1
+        var arr = Array(self)
+        
+        if number.count == 2 {
+            arr[0] = number[number.startIndex]
+            arr[1] = number[number.index(after: number.startIndex)]
+        } else if number.count <= 1 {
+            arr[0] = Character("0")
+            arr[1] = Character(number)
         }
         
-        print(value)
-        return counter
+        return String(arr)
+    }
+    
+    func updateDateMonth(month: String)-> String {
+        
+        var arr = Array(self)
+        
+        if month.count == 2 {
+            arr[3] = month[month.startIndex]
+            arr[4] = month[month.index(after: month.startIndex)]
+        } else if month.count <= 1 {
+            arr[3] = Character("0")
+            arr[4] = Character(month)
+        }
+        
+        return String(arr)
+    }
+    
+    func currentBuilding()-> String {
+        for building in AGPUBuildings.buildings {
+            if building.audiences.contains(self) {
+                return building.name
+            }
+        }
+        return ""
     }
 }

@@ -7,8 +7,9 @@
 
 import MapKit
 
-class SearchAGPUBuildingMapViewModel {
+final class SearchAGPUBuildingMapViewModel {
     
+    var arr = [MKAnnotation]()
     var locationHandler: ((LocationModel)->Void)?
     var alertHandler: ((Bool)->Void)?
     var building: AGPUBuildingModel!

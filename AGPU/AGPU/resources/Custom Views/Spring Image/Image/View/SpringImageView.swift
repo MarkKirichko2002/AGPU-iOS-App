@@ -19,14 +19,6 @@ final class SpringImageView: UIImageView {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         self.isUserInteractionEnabled = true
         self.addGestureRecognizer(tap)
-        setUpInteraction()
-    }
-    
-    private func setUpInteraction() {
-        let interaction = UIContextMenuInteraction(delegate: self)
-        if isInteraction {
-            self.addInteraction(interaction)
-        }
     }
     
     @objc private func tapFunction(sender: UITapGestureRecognizer) {

@@ -15,4 +15,5 @@ protocol IContactsListViewModel {
     func editContact(contact: ContactModel, name: String, number: String)
     func deleteContact(contact: ContactModel)
     func registerDataChangedHandler(block: @escaping()->Void)
+    func registerItemChangedHandler(block: @escaping(Int)->Void)
 }

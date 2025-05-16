@@ -11,10 +11,11 @@ protocol ASPUButtonFavouriteActionsListTableViewControllerDelegate: AnyObject {
     func actionWasSelected(action: ASPUButtonActions)
 }
 
-class ASPUButtonFavouriteActionsListTableViewController: UIViewController {
+final class ASPUButtonFavouriteActionsListTableViewController: UIViewController {
     
     var isSettings = false
     weak var delegate: ASPUButtonFavouriteActionsListTableViewControllerDelegate?
+    weak var screenDelegate: ScreenClosedDelegate?
     
     // MARK: - UI
     private let noActionsLabel = UILabel()
@@ -67,7 +68,7 @@ class ASPUButtonFavouriteActionsListTableViewController: UIViewController {
     
     @objc private func closeScreen() {
         HapticsManager.shared.hapticFeedback()
-        sendScreenWasClosedNotification()
+        screenDelegate?.screenWasClosed()
         dismiss(animated: true)
     }
     

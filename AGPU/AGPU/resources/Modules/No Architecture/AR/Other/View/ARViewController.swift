@@ -7,11 +7,12 @@
 
 import UIKit
 import RealityKit
+import AVFoundation
 
-class ARViewController: UIViewController {
+final class ARViewController: UIViewController {
     
     var image = UIImage()
-    var plane: AnchoringComponent.Target.Alignment = .horizontal
+    var plane: AnchoringComponent.Target.Alignment = .vertical
     var mesh: Mesh = .plane
     
     private let arView = ARView()
@@ -23,6 +24,13 @@ class ARViewController: UIViewController {
         super.viewDidLoad()
         setUpNavigation()
         setUpARView()
+        setUpButtons()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        runSession()
+        resetTorchButton()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -48,9 +56,6 @@ class ARViewController: UIViewController {
     }
     
     private func setUpMenu()-> UIMenu {
-        let refreshAction = UIAction(title: "Обновить") { _ in
-            self.refresh()
-        }
         let imagesList = UIAction(title: "Сохраненные изображения") { _ in
             let vc = SavedImagesListTableViewController()
             vc.ARDelegate = self
@@ -63,72 +68,12 @@ class ARViewController: UIViewController {
             self.makeScreenShot()
         }
         return UIMenu(title: "AR", children: [
-            refreshAction,
-            setUpMeshListMenu(),
-            setUpPlaneListMenu(),
             imagesList,
             share
         ])
     }
-    
-    private func setUpPlaneListMenu()-> UIMenu {
         
-        let any = UIAction(title: "Любая") { _ in
-            self.plane = .any
-            let box = self.createMesh()
-            let anchor = self.setAnchor(model: box)
-            self.installGestures(on: box)
-            self.arView.scene.anchors.removeAll()
-            self.arView.scene.anchors.append(anchor)
-            HapticsManager.shared.hapticFeedback()
-        }
-        
-        let horizontal = UIAction(title: "Горизонтально", state: .on) { _ in
-            self.plane = .horizontal
-            let box = self.createMesh()
-            let anchor = self.setAnchor(model: box)
-            self.installGestures(on: box)
-            self.arView.scene.anchors.removeAll()
-            self.arView.scene.anchors.append(anchor)
-            HapticsManager.shared.hapticFeedback()
-        }
-        
-        let vertical = UIAction(title: "Вертикально") { _ in
-            self.plane = .vertical
-            let box = self.createMesh()
-            let anchor = self.setAnchor(model: box)
-            self.installGestures(on: box)
-            self.arView.scene.anchors.removeAll()
-            self.arView.scene.anchors.append(anchor)
-            HapticsManager.shared.hapticFeedback()
-        }
-        
-        return UIMenu(title: "Плоскость", options: .singleSelection, children: [
-            any,
-            horizontal,
-            vertical
-        ])
-    }
-    
-    private func setUpMeshListMenu()-> UIMenu {
-        
-        let box = UIAction(title: "Куб") { _ in
-            self.mesh = .box
-            self.refresh()
-        }
-        
-        let plane = UIAction(title: "Плоскость", state: .on) { _ in
-            self.mesh = .plane
-            self.refresh()
-        }
-        
-        return UIMenu(title: "Форма", options: .singleSelection, children: [
-            box,
-            plane
-        ])
-    }
-    
-    private func refresh() {
+    @objc private func refresh() {
         let mesh = createMesh()
         let anchor = setAnchor(model: mesh)
         installGestures(on: mesh)
@@ -149,6 +94,44 @@ class ARViewController: UIViewController {
         view.addSubview(arView)
         arView.frame = view.bounds
         arView.scene.anchors.append(anchor)
+    }
+    
+    private func setUpButtons() {
+        let torchButton = UIButton()
+        torchButton.accessibilityIdentifier = "flashlight"
+        torchButton.tintColor = .white
+        torchButton.setImage(UIImage(named: "flashlight"), for: .normal)
+        torchButton.translatesAutoresizingMaskIntoConstraints = false
+        let refreshButton = UIButton()
+        refreshButton.accessibilityIdentifier = "refresh"
+        refreshButton.tintColor = .white
+        refreshButton.setImage(UIImage(named: "refresh icon"), for: .normal)
+        refreshButton.translatesAutoresizingMaskIntoConstraints = false
+        arView.addSubview(torchButton)
+        arView.addSubview(refreshButton)
+        NSLayoutConstraint.activate([
+            refreshButton.bottomAnchor.constraint(equalTo: arView.bottomAnchor, constant: -40.0),
+            refreshButton.leftAnchor.constraint(equalTo: arView.leftAnchor, constant: 30.0),
+            refreshButton.widthAnchor.constraint(equalToConstant: 40.0),
+            refreshButton.heightAnchor.constraint(equalToConstant: 40.0),
+            torchButton.bottomAnchor.constraint(equalTo: arView.bottomAnchor, constant: -40.0),
+            torchButton.rightAnchor.constraint(equalTo: arView.rightAnchor, constant: -30.0),
+            torchButton.widthAnchor.constraint(equalToConstant: 50.0),
+            torchButton.heightAnchor.constraint(equalToConstant: 50.0)
+        ])
+        torchButton.addTarget(self, action: #selector(toggleTorch), for: .touchUpInside)
+        refreshButton.addTarget(self, action: #selector(refresh), for: .touchUpInside)
+    }
+    
+    @objc private func toggleTorch(sender: UIButton) {
+        guard let device = AVCaptureDevice.default(for: .video), device.hasTorch else { return }
+        if sender.imageView?.image == UIImage(named: "flashlight") {
+            sender.setImage(UIImage(named: "flashlight on"), for: .normal)
+            device.onOffTorch(on: true)
+        } else if sender.imageView?.image == UIImage(named: "flashlight on") {
+            sender.setImage(UIImage(named: "flashlight.off"), for: .normal)
+            device.onOffTorch(on: false)
+        }
     }
     
     func createMesh()-> ModelEntity {
@@ -197,14 +180,9 @@ class ARViewController: UIViewController {
 
 // MARK: - SavedImagesListTableViewControllerARDelegate
 extension ARViewController: SavedImagesListTableViewControllerARDelegate {
-    
-    func screenWasClosed() {
-        runSession()
-    }
-    
+        
     func ARImageWasSelected(image: UIImage) {
         self.image = image
-        runSession()
         refresh()
     }
     
@@ -215,5 +193,14 @@ extension ARViewController: SavedImagesListTableViewControllerARDelegate {
     
     func stopSession() {
         arView.session.pause()
+    }
+    
+    func resetTorchButton() {
+        if let button = arView.subviews.first(where: { $0.accessibilityIdentifier == "flashlight" }) {
+            print("yes")
+            (button as? UIButton)?.setImage(UIImage(named: "flashlight"), for: .normal)
+        } else {
+            print("no")
+        }
     }
 }

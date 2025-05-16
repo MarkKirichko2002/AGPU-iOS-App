@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AppIconTableViewCell: UITableViewCell {
+final class AppIconTableViewCell: UITableViewCell {
 
     static let identifier = "AppIconTableViewCell"
     private let animation = AnimationClass()
@@ -25,8 +25,9 @@ class AppIconTableViewCell: UITableViewCell {
         AppIconName.text = "Текущая иконка (\(icon))"
     }
     
-    func didTapCell(indexPath: IndexPath) {
+    func didTapCell(indexPath: IndexPath, completion: @escaping()->Void) {
         animation.flipAnimation(view: self, option: .transitionFlipFromLeft) {
+            completion()
             HapticsManager.shared.hapticFeedback()
         }
     }

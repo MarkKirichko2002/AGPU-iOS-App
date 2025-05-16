@@ -38,7 +38,10 @@
 #import <realm/object-store/object_schema.hpp>
 #import <realm/object-store/shared_realm.hpp>
 
+using namespace realm;
+
 const NSUInteger RLMDescriptionMaxDepth = 5;
+
 
 static bool isManagedAccessorClass(Class cls) {
     const char *className = class_getName(cls);
@@ -422,7 +425,7 @@ id RLMCreateManagedAccessor(Class cls, RLMClassInfo *info) {
 #pragma mark - Thread Confined Protocol Conformance
 
 - (realm::ThreadSafeReference)makeThreadSafeReference {
-    return realm::Object(_realm->_realm, *_info->objectSchema, _row);
+    return Object(_realm->_realm, *_info->objectSchema, _row);
 }
 
 - (id)objectiveCMetadata {
@@ -432,12 +435,12 @@ id RLMCreateManagedAccessor(Class cls, RLMClassInfo *info) {
 + (instancetype)objectWithThreadSafeReference:(realm::ThreadSafeReference)reference
                                      metadata:(__unused id)metadata
                                         realm:(RLMRealm *)realm {
-    auto object = reference.resolve<realm::Object>(realm->_realm);
+    Object object = reference.resolve<Object>(realm->_realm);
     if (!object.is_valid()) {
         return nil;
     }
     NSString *objectClassName = @(object.get_object_schema().name.c_str());
-    return RLMCreateObjectAccessor(realm->_info[objectClassName], object.get_obj());
+    return RLMCreateObjectAccessor(realm->_info[objectClassName], object.obj());
 }
 
 @end
@@ -752,13 +755,8 @@ RLM_DIRECT_MEMBERS
             completion();
         }
     };
-    try {
-        _token = _object.add_notification_callback(ObjectChangeCallbackWrapper{block, obj, completion},
-                                                   obj->_info->keyPathArrayFromStringArray(keyPaths));
-    }
-    catch (const realm::Exception& e) {
-        @throw RLMException(e);
-    }
+    _token = _object.add_notification_callback(ObjectChangeCallbackWrapper{block, obj, completion},
+                                               obj->_info->keyPathArrayFromStringArray(keyPaths));
 }
 
 - (void)registrationComplete:(void (^)())completion {

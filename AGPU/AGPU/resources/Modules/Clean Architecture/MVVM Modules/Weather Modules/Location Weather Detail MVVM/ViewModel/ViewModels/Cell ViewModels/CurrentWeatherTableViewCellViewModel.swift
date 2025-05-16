@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CurrentWeatherTableViewCellViewModel {
+final class CurrentWeatherTableViewCellViewModel {
     
     var icon: String
     var location: String
