@@ -427,7 +427,6 @@
 		82822B292DB321540071C191 /* Plup.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82822B282DB321540071C191 /* Plup.ttf */; };
 		82822B312DB329B60071C191 /* Monocraft.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82822B302DB329B60071C191 /* Monocraft.ttf */; };
 		82822B392DB3C0A40071C191 /* TOYZ.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82822B382DB3C0A40071C191 /* TOYZ.ttf */; };
-		82822B3B2DB41E810071C191 /* Assets 2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82822B3A2DB41E810071C191 /* Assets 2.xcassets */; };
 		82822E2D2BF2672D0060DD43 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82822E2C2BF2672D0060DD43 /* NewsTableViewCell.swift */; };
 		828321642A7C6A48008641A5 /* AllGroupsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828321632A7C6A48008641A5 /* AllGroupsListTableViewController.swift */; };
 		828321672A7D02E6008641A5 /* AllGroupsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828321662A7D02E6008641A5 /* AllGroupsListViewModel.swift */; };
@@ -498,7 +497,6 @@
 		828F47992C0532D100AF7C3D /* ThingsCategoriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828F47982C0532D100AF7C3D /* ThingsCategoriesListViewModel.swift */; };
 		828F479B2C0532E800AF7C3D /* ThingsCategoriesListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828F479A2C0532E800AF7C3D /* ThingsCategoriesListViewModel + Extensions.swift */; };
 		828F47A02C05357D00AF7C3D /* ThingCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828F479F2C05357D00AF7C3D /* ThingCategoryTableViewCell.swift */; };
-		828F7D8B2C9E0DB100C27210 /* QRScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 828F7D8A2C9E0DB100C27210 /* QRScanner */; };
 		828FD5C92C2F300F007E7185 /* TextRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FD5C82C2F300F007E7185 /* TextRecognitionManager.swift */; };
 		82920B6A2AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B682AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift */; };
 		82920B6B2AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82920B692AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.xib */; };
@@ -794,6 +792,8 @@
 		82E6C8842CFE4DAF00D42D60 /* ASPUButtonGestureOptionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E6C8832CFE4DAF00D42D60 /* ASPUButtonGestureOptionsListViewModel.swift */; };
 		82E6C8862CFE4E0400D42D60 /* ASPUButtonGestureOptionsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E6C8852CFE4E0400D42D60 /* ASPUButtonGestureOptionsListViewModel + Extensions.swift */; };
 		82E6C8882CFE4EE100D42D60 /* ASPUButtonGestureOptionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E6C8872CFE4EE100D42D60 /* ASPUButtonGestureOptionsListTableViewController.swift */; };
+		82E9B10C2DD808B000BB110F /* TimetableDayInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B10B2DD808B000BB110F /* TimetableDayInfoViewModel.swift */; };
+		82E9B10E2DD80A6B00BB110F /* TimetableDayInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B10D2DD80A6B00BB110F /* TimetableDayInfoViewController.swift */; };
 		82EAC9982D4AEC28000B6990 /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAC9972D4AEC28000B6990 /* NavigationModel.swift */; };
 		82EAC99B2D4AEFD8000B6990 /* NavigationsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAC99A2D4AEFD8000B6990 /* NavigationsListTableViewController.swift */; };
 		82ECABE12A81520A00FE7462 /* SubGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECABE02A81520A00FE7462 /* SubGroupModel.swift */; };
@@ -1255,7 +1255,6 @@
 		82822B282DB321540071C191 /* Plup.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Plup.ttf; sourceTree = "<group>"; };
 		82822B302DB329B60071C191 /* Monocraft.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Monocraft.ttf; sourceTree = "<group>"; };
 		82822B382DB3C0A40071C191 /* TOYZ.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TOYZ.ttf; sourceTree = "<group>"; };
-		82822B3A2DB41E810071C191 /* Assets 2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets 2.xcassets"; sourceTree = "<group>"; };
 		82822E2C2BF2672D0060DD43 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		828321632A7C6A48008641A5 /* AllGroupsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsListTableViewController.swift; sourceTree = "<group>"; };
 		828321662A7D02E6008641A5 /* AllGroupsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsListViewModel.swift; sourceTree = "<group>"; };
@@ -1621,6 +1620,8 @@
 		82E6C8832CFE4DAF00D42D60 /* ASPUButtonGestureOptionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonGestureOptionsListViewModel.swift; sourceTree = "<group>"; };
 		82E6C8852CFE4E0400D42D60 /* ASPUButtonGestureOptionsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASPUButtonGestureOptionsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82E6C8872CFE4EE100D42D60 /* ASPUButtonGestureOptionsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonGestureOptionsListTableViewController.swift; sourceTree = "<group>"; };
+		82E9B10B2DD808B000BB110F /* TimetableDayInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDayInfoViewModel.swift; sourceTree = "<group>"; };
+		82E9B10D2DD80A6B00BB110F /* TimetableDayInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDayInfoViewController.swift; sourceTree = "<group>"; };
 		82EAC9972D4AEC28000B6990 /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
 		82EAC99A2D4AEFD8000B6990 /* NavigationsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationsListTableViewController.swift; sourceTree = "<group>"; };
 		82ECABE02A81520A00FE7462 /* SubGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGroupModel.swift; sourceTree = "<group>"; };
@@ -1690,7 +1691,6 @@
 				8225A9E72C615DFB00FEFFE1 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				8225AA0B2C615DFC00FEFFE1 /* FirebaseStorage in Frameworks */,
 				8225A9F92C615DFC00FEFFE1 /* FirebaseFirestoreCombine-Community in Frameworks */,
-				828F7D8B2C9E0DB100C27210 /* QRScanner in Frameworks */,
 				8225A9E52C615DFB00FEFFE1 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				8225A9ED2C615DFB00FEFFE1 /* FirebaseAuth in Frameworks */,
 				8225AA032C615DFC00FEFFE1 /* FirebaseMLModelDownloader in Frameworks */,
@@ -4792,7 +4792,6 @@
 				82808E882A31F12100DEEB16 /* AppDelegate.swift */,
 				82808E8A2A31F12100DEEB16 /* SceneDelegate.swift */,
 				82808E912A31F12500DEEB16 /* Assets.xcassets */,
-				82822B3A2DB41E810071C191 /* Assets 2.xcassets */,
 				82808E932A31F12500DEEB16 /* LaunchScreen.storyboard */,
 				82808E962A31F12500DEEB16 /* Info.plist */,
 			);
@@ -9338,6 +9337,7 @@
 		82BCB5302AB34F9E00F3A321 /* TimeTable Modules */ = {
 			isa = PBXGroup;
 			children = (
+				82E9B1072DD8086000BB110F /* Timetable Day Info MVVM */,
 				825D566E2AE5CB96004305C7 /* Pair Info MVVM */,
 				828321602A7C6A25008641A5 /* All Groups MVVM */,
 				822FB20A2AC5DC160083E016 /* Sub Groups List MVVM */,
@@ -11061,6 +11061,39 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		82E9B1072DD8086000BB110F /* Timetable Day Info MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82E9B1092DD8089000BB110F /* View */,
+				82E9B1082DD8088E00BB110F /* ViewModel */,
+			);
+			path = "Timetable Day Info MVVM";
+			sourceTree = "<group>";
+		};
+		82E9B1082DD8088E00BB110F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82E9B10B2DD808B000BB110F /* TimetableDayInfoViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82E9B1092DD8089000BB110F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82E9B10A2DD8089D00BB110F /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82E9B10A2DD8089D00BB110F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82E9B10D2DD80A6B00BB110F /* TimetableDayInfoViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		82EA0D2A2ABB573600262303 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -11833,7 +11866,6 @@
 				8225AA0A2C615DFC00FEFFE1 /* FirebaseStorage */,
 				8225AA0C2C615DFC00FEFFE1 /* FirebaseStorageCombine-Community */,
 				8225AA0E2C615DFC00FEFFE1 /* FirebaseVertexAI-Preview */,
-				828F7D8A2C9E0DB100C27210 /* QRScanner */,
 			);
 			productName = AGPU;
 			productReference = 82808E852A31F12100DEEB16 /* AGPU.app */;
@@ -11866,7 +11898,6 @@
 			mainGroup = 82808E7C2A31F12100DEEB16;
 			packageReferences = (
 				8225A9E12C615DFB00FEFFE1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				828F7D892C9E0DB100C27210 /* XCRemoteSwiftPackageReference "QRScanner" */,
 			);
 			productRefGroup = 82808E862A31F12100DEEB16 /* Products */;
 			projectDirPath = "";
@@ -11966,7 +11997,6 @@
 				82D2996E2CF10B0B00E3A53B /* GoogleService-Info.plist in Resources */,
 				822606012A853C110055925F /* RecentMomentTableViewCell.xib in Resources */,
 				82AB6D192AF6BD5F00F7B729 /* AdaptiveNewsOptionTableViewCell.xib in Resources */,
-				82822B3B2DB41E810071C191 /* Assets 2.xcassets in Resources */,
 				82061CCC2B09A5920073D727 /* TimetableOptionsTableViewCell.xib in Resources */,
 				82822B292DB321540071C191 /* Plup.ttf in Resources */,
 				829A562A2C77E30100E707E4 /* AdvancedModeOptionTableViewCell.xib in Resources */,
@@ -12090,6 +12120,7 @@
 				82B1C0F12A8125E400520C14 /* VoiceDirectionModel.swift in Sources */,
 				8225275D2BA77E2C00B66314 /* WeekDaysListTableViewController.swift in Sources */,
 				82B97C112B93E17200770F00 /* ShareLocationAppsViewController.swift in Sources */,
+				82E9B10E2DD80A6B00BB110F /* TimetableDayInfoViewController.swift in Sources */,
 				82989ADE2A6E59BC00F27858 /* AGPUCurrentCathedraMapViewController + Extensions.swift in Sources */,
 				82BCB5462AB35AF300F3A321 /* DaysList.swift in Sources */,
 				82D0FC0D2B1B4A4A0056D94B /* CathedraBuildingDetailViewController.swift in Sources */,
@@ -12376,6 +12407,7 @@
 				82B5FE122D7EB4190023A0D9 /* PairTimeFilterListListViewController.swift in Sources */,
 				82E05D592A5DF1580060ADAA /* AGPUFacultiesListViewModel.swift in Sources */,
 				82D0FC192B1B4C8B0056D94B /* CathedraBuildingDetailViewModel + Extensions.swift in Sources */,
+				82E9B10C2DD808B000BB110F /* TimetableDayInfoViewModel.swift in Sources */,
 				82E6C43A2CF8F6EE00D42D60 /* NearBuildingViewModel.swift in Sources */,
 				822FB2142AC5DECC0083E016 /* SubGroupsListViewModelProtocol.swift in Sources */,
 				8226D17A2B095DA400B0B9F0 /* ITimetableOptionsListViewModel.swift in Sources */,
@@ -12943,7 +12975,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.1.2;
+				MARKETING_VERSION = 4.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -12986,7 +13018,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.1.2;
+				MARKETING_VERSION = 4.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -13026,14 +13058,6 @@
 			requirement = {
 				kind = exactVersion;
 				version = 11.0.0;
-			};
-		};
-		828F7D892C9E0DB100C27210 /* XCRemoteSwiftPackageReference "QRScanner" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mercari/QRScanner.git";
-			requirement = {
-				kind = exactVersion;
-				version = 1.9.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -13153,11 +13177,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8225A9E12C615DFB00FEFFE1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseVertexAI-Preview";
-		};
-		828F7D8A2C9E0DB100C27210 /* QRScanner */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 828F7D892C9E0DB100C27210 /* XCRemoteSwiftPackageReference "QRScanner" */;
-			productName = QRScanner;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

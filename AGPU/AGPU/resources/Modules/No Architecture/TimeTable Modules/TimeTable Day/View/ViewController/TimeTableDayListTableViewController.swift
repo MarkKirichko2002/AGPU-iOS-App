@@ -66,6 +66,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpData()
+        checkTimetableShowVC()
         setUpNavigation()
         setUpTable()
         setUpRefreshControl()

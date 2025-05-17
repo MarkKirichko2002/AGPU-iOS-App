@@ -383,9 +383,9 @@ extension TimeTableDayListTableViewController: AVCaptureVideoDataOutputSampleBuf
             let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in
                 self.startSession()
             }
-                    
+            
             showInfoAlert(title: "Жест \(gesture.rawValue) обнаружен!", message:
-                           gesture == .fist ? "обновить расписание?" : "посмотреть расписание для даты \(date)?", actions: [choose, restart, cancel])
+                            gesture == .fist ? "обновить расписание?" : "посмотреть расписание для даты \(date)?", actions: [choose, restart, cancel])
             HapticsManager.shared.hapticFeedback()
         case .like:
             let add = UIAlertAction(title: "Добавить", style: .default) { _ in
@@ -453,6 +453,23 @@ extension TimeTableDayListTableViewController: AVCaptureVideoDataOutputSampleBuf
 
 extension TimeTableDayListTableViewController {
     
+    func checkTimetableShowVC() {
+        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
+        if style != .notShow {
+            let vc = TimetableDayInfoViewController()
+            switch style {
+            case .fullScreen:
+                vc.modalPresentationStyle = .fullScreen
+                present(vc, animated: true)
+            case .sheet:
+                vc.modalPresentationStyle = .pageSheet
+                present(vc, animated: true)
+            case .notShow:
+                break
+            }
+        }
+    }
+    
     func isMicOn()-> Bool {
         let isOn = settingsManager.loadScreens().contains(SpeechScreens.timetableDay)
         if isOn {
@@ -495,7 +512,7 @@ extension TimeTableDayListTableViewController {
             speechRecognitionManager.cancelSpeechRecognition()
         }
     }
-
+    
     func startRecognize() {
         speechRecognitionManager.requestSpeechAndMicrophonePermission()
         speechRecognitionManager.registerSpeechAuthorizationHandler { auth in

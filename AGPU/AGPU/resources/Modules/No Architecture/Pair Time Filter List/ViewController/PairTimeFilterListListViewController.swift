@@ -44,7 +44,7 @@ final class PairTimeFilterListListViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Список времен"
+        navigationItem.title = "Список времени"
         setUpBackButton()
     }
     
