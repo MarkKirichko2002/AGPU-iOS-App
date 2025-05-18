@@ -178,16 +178,20 @@ final class LocationWeatherDetailViewController: UITableViewController {
     }
     
     private func showChangesVC() {
-        guard let weather = viewModel.weather else {return}
-        guard let savedWeather = viewModel.getData() else {return}
-        let model = WeatherChangesModel(date: viewModel.getCurrentDate(), weather: weather)
-        let vc = WeatherChangesViewController(pastWeather: savedWeather, currentWeather: model)
         let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
         switch style {
         case .fullScreen:
+            guard let weather = viewModel.weather else {return}
+            guard let savedWeather = viewModel.getData() else {return}
+            let model = WeatherChangesModel(date: viewModel.getCurrentDate(), weather: weather)
+            let vc = WeatherChangesViewController(pastWeather: savedWeather, currentWeather: model)
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
         case .sheet:
+            guard let weather = viewModel.weather else {return}
+            guard let savedWeather = viewModel.getData() else {return}
+            let model = WeatherChangesModel(date: viewModel.getCurrentDate(), weather: weather)
+            let vc = WeatherChangesViewController(pastWeather: savedWeather, currentWeather: model)
             vc.modalPresentationStyle = .pageSheet
             present(vc, animated: true)
         case .notShow:

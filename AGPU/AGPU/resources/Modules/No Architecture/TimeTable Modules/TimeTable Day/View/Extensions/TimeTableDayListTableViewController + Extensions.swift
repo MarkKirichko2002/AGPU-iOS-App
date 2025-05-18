@@ -370,22 +370,12 @@ extension TimeTableDayListTableViewController: AVCaptureVideoDataOutputSampleBuf
     func getTimetable(gesture: handGestures) {
         switch gesture {
         case .fist, .one, .two, .palm:
-            let date = dateForGesture(gesture: gesture)
-            let choose = UIAlertAction(title: "Выбрать", style: .default) { _ in
-                self.date = date
-                self.getTimeTable(id: self.id, date: self.date, owner: self.owner) {
+            self.date = self.dateForGesture(gesture: gesture)
+            self.getTimeTable(id: self.id, date: self.date, owner: self.owner) {
+                Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
                     self.startSession()
                 }
             }
-            let restart = UIAlertAction(title: "Распознать заново", style: .default) { _ in
-                self.startSession()
-            }
-            let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in
-                self.startSession()
-            }
-            
-            showInfoAlert(title: "Жест \(gesture.rawValue) обнаружен!", message:
-                            gesture == .fist ? "обновить расписание?" : "посмотреть расписание для даты \(date)?", actions: [choose, restart, cancel])
             HapticsManager.shared.hapticFeedback()
         case .like:
             let add = UIAlertAction(title: "Добавить", style: .default) { _ in
@@ -451,22 +441,60 @@ extension TimeTableDayListTableViewController: AVCaptureVideoDataOutputSampleBuf
     }
 }
 
+// MARK: - UIContextMenuInteractionDelegate
+extension TimeTableDayListTableViewController: UIContextMenuInteractionDelegate {
+    
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
+                                configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil,
+                                          previewProvider: nil,
+                                          actionProvider: {
+                suggestedActions in
+           
+            return self.dateNavigationMenu()
+        })
+    }
+}
+
 extension TimeTableDayListTableViewController {
     
     func checkTimetableShowVC() {
         let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
         if style != .notShow {
-            let vc = TimetableDayInfoViewController()
-            switch style {
-            case .fullScreen:
-                vc.modalPresentationStyle = .fullScreen
-                present(vc, animated: true)
-            case .sheet:
-                vc.modalPresentationStyle = .pageSheet
-                present(vc, animated: true)
-            case .notShow:
-                break
+            checkTimeRange()
+        }
+    }
+    
+    func checkTimeRange() {
+        let currentTime = dateManager.getCurrentTime(isFullFormat: false)
+        let dayTimeRange = dateManager.timeRange(startTime: "00:00", endTime: "19:59", currentTime: currentTime)
+        let eveningTimeRange = dateManager.timeRange(startTime: "20:00", endTime: "23:59", currentTime: currentTime)
+        if dayTimeRange {
+            showTimetableInfo()
+        } else if eveningTimeRange {
+            let show = UIAlertAction(title: "Показать", style: .default) { _ in
+                self.date = self.dateManager.nextDay(date: self.date)
+                self.getTimeTable(id: self.id, date: self.date, owner: self.owner) {}
             }
+            let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+            self.showInfoAlert(title: "Показать расписание на завтра?", message: "", actions: [show, cancel])
+        }
+    }
+    
+    func showTimetableInfo() {
+        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
+        let vc = TimetableDayInfoViewController()
+        switch style {
+        case .fullScreen:
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+        case .sheet:
+            vc.modalPresentationStyle = .pageSheet
+            present(vc, animated: true)
+        case .notShow:
+            let vc = HintViewController(info: "Чтобы увидеть экран, нужно выбрать его отображение в настройках опции \"Наглядные изменения\"")
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
         }
     }
     
@@ -1223,6 +1251,42 @@ extension TimeTableDayListTableViewController {
         }
     }
     
+    @objc func nextMonth(completion: @escaping()->Void) {
+        date = dateManager.nextMonth(date: date)
+        type = .all
+        subgroup = 0
+        getTimeTable(id: id, date: date, owner: owner) {
+            completion()
+        }
+    }
+    
+    @objc func pastMonth(completion: @escaping()->Void) {
+        date = dateManager.pastMonth(date: date)
+        type = .all
+        subgroup = 0
+        getTimeTable(id: id, date: date, owner: owner) {
+            completion()
+        }
+    }
+    
+    @objc func nextYear(completion: @escaping()->Void) {
+        date = dateManager.nextYear(date: date)
+        type = .all
+        subgroup = 0
+        getTimeTable(id: id, date: date, owner: owner) {
+            completion()
+        }
+    }
+    
+    @objc func pastYear(completion: @escaping()->Void) {
+        date = dateManager.pastYear(date: date)
+        type = .all
+        subgroup = 0
+        getTimeTable(id: id, date: date, owner: owner) {
+            completion()
+        }
+    }
+    
     func countLeftedTimes(pairs: [Discipline])-> [String] {
         
         var uniqueTimes: Set<String> = Set()
@@ -1364,5 +1428,13 @@ extension TimeTableDayListTableViewController {
         }
         
         return UIMenu(title: "Найти пару", image: UIImage(named: "search"), children: [calendarAction, nextDayAction, pastDayAction])
+    }
+    
+    func dateNavigationMenu()-> UIMenu {
+        let types = DateNavigationTypes.allCases.map { type in
+            UIAction(title: type.rawValue, state: currentNavigationType == type ? .on : .off) { _ in
+            self.currentNavigationType = type
+        }}
+        return UIMenu(title: "Типы навигации", children: types)
     }
 }

@@ -100,10 +100,9 @@ final class AppUpdateAlertViewController: UIViewController {
         }
         
         warningIcon.snp.makeConstraints { maker in
-            maker.top.equalTo(closeButton.snp.bottom).offset(20)
             maker.centerX.equalToSuperview()
-            maker.width.equalTo(90)
-            maker.height.equalTo(90)
+            maker.width.equalTo(70)
+            maker.height.equalTo(70)
         }
         
         titleLabel.snp.makeConstraints { maker in
@@ -111,6 +110,7 @@ final class AppUpdateAlertViewController: UIViewController {
             maker.left.equalToSuperview().inset(30)
             maker.right.equalToSuperview().inset(30)
             maker.centerX.equalToSuperview()
+            maker.centerY.equalToSuperview()
         }
         
         updateButton.snp.makeConstraints { maker in
@@ -121,7 +121,7 @@ final class AppUpdateAlertViewController: UIViewController {
         }
         
         cancelButton.snp.makeConstraints { maker in
-            maker.top.equalTo(updateButton.snp.bottom).offset(30)
+            maker.top.equalTo(updateButton.snp.bottom).offset(20)
             maker.leading.equalTo(updateButton.snp.leading)
             maker.trailing.equalTo(updateButton.snp.trailing)
             maker.centerX.equalToSuperview()

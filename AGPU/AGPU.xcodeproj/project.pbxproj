@@ -794,6 +794,7 @@
 		82E6C8882CFE4EE100D42D60 /* ASPUButtonGestureOptionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E6C8872CFE4EE100D42D60 /* ASPUButtonGestureOptionsListTableViewController.swift */; };
 		82E9B10C2DD808B000BB110F /* TimetableDayInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B10B2DD808B000BB110F /* TimetableDayInfoViewModel.swift */; };
 		82E9B10E2DD80A6B00BB110F /* TimetableDayInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B10D2DD80A6B00BB110F /* TimetableDayInfoViewController.swift */; };
+		82E9B1112DD9561000BB110F /* DateNavigationTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B1102DD9561000BB110F /* DateNavigationTypes.swift */; };
 		82EAC9982D4AEC28000B6990 /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAC9972D4AEC28000B6990 /* NavigationModel.swift */; };
 		82EAC99B2D4AEFD8000B6990 /* NavigationsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAC99A2D4AEFD8000B6990 /* NavigationsListTableViewController.swift */; };
 		82ECABE12A81520A00FE7462 /* SubGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ECABE02A81520A00FE7462 /* SubGroupModel.swift */; };
@@ -1622,6 +1623,7 @@
 		82E6C8872CFE4EE100D42D60 /* ASPUButtonGestureOptionsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonGestureOptionsListTableViewController.swift; sourceTree = "<group>"; };
 		82E9B10B2DD808B000BB110F /* TimetableDayInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDayInfoViewModel.swift; sourceTree = "<group>"; };
 		82E9B10D2DD80A6B00BB110F /* TimetableDayInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDayInfoViewController.swift; sourceTree = "<group>"; };
+		82E9B1102DD9561000BB110F /* DateNavigationTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateNavigationTypes.swift; sourceTree = "<group>"; };
 		82EAC9972D4AEC28000B6990 /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
 		82EAC99A2D4AEFD8000B6990 /* NavigationsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationsListTableViewController.swift; sourceTree = "<group>"; };
 		82ECABE02A81520A00FE7462 /* SubGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGroupModel.swift; sourceTree = "<group>"; };
@@ -5395,6 +5397,7 @@
 		8268886A2A34866D00434219 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				82E9B10F2DD955F400BB110F /* Date Navigation Types */,
 				82822B022DAAC6B90071C191 /* Scroll Positions */,
 				82AB827D2D8E378300B95CD6 /* Camera */,
 				82E6C43D2CF9094F00D42D60 /* Building Info */,
@@ -11094,6 +11097,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		82E9B10F2DD955F400BB110F /* Date Navigation Types */ = {
+			isa = PBXGroup;
+			children = (
+				82E9B1102DD9561000BB110F /* DateNavigationTypes.swift */,
+			);
+			path = "Date Navigation Types";
+			sourceTree = "<group>";
+		};
 		82EA0D2A2ABB573600262303 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -12496,6 +12507,7 @@
 				82A41B8F2C2C2CC700254AE2 /* RecentDatesListViewController.swift in Sources */,
 				8234E5EF2A88506400ED354C /* WordDocumentReaderViewController.swift in Sources */,
 				8210CA052A664EB700D0BEEE /* AGPUCurrentBuildingMapViewController.swift in Sources */,
+				82E9B1112DD9561000BB110F /* DateNavigationTypes.swift in Sources */,
 				82989ACA2A6E2D4500F27858 /* FacultyCathedraModel.swift in Sources */,
 				82FC22EE2BC01BF1008709DA /* NewsOptionsFilterListTableViewController.swift in Sources */,
 				82D37FBD2BEC119D0035CB57 /* ThingsCategoriesListTableViewController.swift in Sources */,

@@ -44,7 +44,8 @@ final class PairTimeFilterListListViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.title = "Список времени"
+        let titleView = CustomTitleView(image: "clock", title: "Время", frame: .zero)
+        navigationItem.titleView = titleView
         setUpBackButton()
     }
     

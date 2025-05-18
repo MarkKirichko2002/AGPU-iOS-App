@@ -164,6 +164,78 @@ extension DateManager: DateManagerProtocol {
         return previousDay
     }
     
+    func nextMonth(date: String)-> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        var nextMonth = ""
+        
+        if let date = dateFormatter.date(from: date) {
+            var dateComponent = DateComponents()
+            dateComponent.month = 1
+            
+            if let month = calendar.date(byAdding: dateComponent, to: date) {
+                let nextMonthString = dateFormatter.string(from: month)
+                nextMonth = nextMonthString
+            }
+        }
+        return nextMonth
+    }
+    
+    func pastMonth(date: String)-> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        var pastMonth = ""
+        
+        if let date = dateFormatter.date(from: date) {
+            var dateComponent = DateComponents()
+            dateComponent.month = -1
+            
+            if let month = calendar.date(byAdding: dateComponent, to: date) {
+                let pastMonthString = dateFormatter.string(from: month)
+                pastMonth = pastMonthString
+            }
+        }
+        return pastMonth
+    }
+    
+    func nextYear(date: String)-> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        var nextYear = ""
+        
+        if let date = dateFormatter.date(from: date) {
+            var dateComponent = DateComponents()
+            dateComponent.year = 1
+            
+            if let year = calendar.date(byAdding: dateComponent, to: date) {
+                let nextYearString = dateFormatter.string(from: year)
+                nextYear = nextYearString
+            }
+        }
+        return nextYear
+    }
+    
+    func pastYear(date: String)-> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        var pastYear = ""
+        
+        if let date = dateFormatter.date(from: date) {
+            var dateComponent = DateComponents()
+            dateComponent.year = -1
+            
+            if let year = calendar.date(byAdding: dateComponent, to: date) {
+                let pastYearString = dateFormatter.string(from: year)
+                pastYear = pastYearString
+            }
+        }
+        return pastYear
+    }
+    
     func addingTime(addTime: String)-> String {
         
         let dateFormatter = DateFormatter()

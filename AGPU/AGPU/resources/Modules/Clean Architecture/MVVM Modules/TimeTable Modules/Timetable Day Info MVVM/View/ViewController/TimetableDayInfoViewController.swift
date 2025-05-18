@@ -17,7 +17,7 @@ final class TimetableDayInfoViewController: UIViewController {
         return button
     }()
     
-    private let warningIcon: SpringImageView = {
+    private let timetableIcon: SpringImageView = {
         let image = SpringImageView()
         image.image = UIImage(named: "clock")
         image.tintColor = .label
@@ -34,12 +34,12 @@ final class TimetableDayInfoViewController: UIViewController {
         return label
     }()
     
-    private let updateButton: UIButton = {
+    private let okButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemGreen
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = true
-        button.setTitle("Понятно", for: .normal)
+        button.setTitle("Хорошо", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .black)
         button.setTitleColor(.white, for: .normal)
         return button
@@ -57,8 +57,8 @@ final class TimetableDayInfoViewController: UIViewController {
         
     private func setUpView() {
         view.backgroundColor = .systemBackground
-        view.addSubviews(closeButton, warningIcon, titleLabel, updateButton)
-        updateButton.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
+        view.addSubviews(closeButton, timetableIcon, titleLabel, okButton)
+        okButton.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
         closeButton.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
     }
     
@@ -74,24 +74,24 @@ final class TimetableDayInfoViewController: UIViewController {
             maker.right.equalToSuperview().inset(20)
         }
         
-        warningIcon.snp.makeConstraints { maker in
-            maker.top.equalTo(closeButton.snp.bottom).offset(20)
+        timetableIcon.snp.makeConstraints { maker in
             maker.centerX.equalToSuperview()
-            maker.width.equalTo(75)
-            maker.height.equalTo(75)
+            maker.width.equalTo(70)
+            maker.height.equalTo(70)
         }
         
         titleLabel.snp.makeConstraints { maker in
-            maker.top.equalTo(warningIcon.snp.bottom).offset(60)
+            maker.top.equalTo(timetableIcon.snp.bottom).offset(60)
             maker.left.equalToSuperview().inset(30)
             maker.right.equalToSuperview().inset(30)
             maker.centerX.equalToSuperview()
+            maker.centerY.equalToSuperview()
         }
         
-        updateButton.snp.makeConstraints { maker in
-            maker.width.equalTo(100)
+        okButton.snp.makeConstraints { maker in
+            maker.width.equalTo(80)
             maker.height.equalTo(30)
-            maker.top.equalTo(titleLabel.snp.bottom).offset(60)
+            maker.top.equalTo(titleLabel.snp.bottom).offset(50)
             maker.centerX.equalToSuperview()
         }
     }
@@ -99,7 +99,7 @@ final class TimetableDayInfoViewController: UIViewController {
     func bindViewModel() {
         viewModel.registerInfoHandler { date, count in
             DispatchQueue.main.async {
-                self.titleLabel.text = "\(date)\n\nвсего пар: \(count)"
+                self.titleLabel.text = "\(date)\n\n\nСегодня пар: \(count)"
             }
         }
         viewModel.getTimetableDayInfo()

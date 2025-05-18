@@ -88,10 +88,9 @@ final class HintViewController: UIViewController {
         }
         
         hintIcon.snp.makeConstraints { maker in
-            maker.top.equalTo(closeButton.snp.bottom).offset(20)
             maker.centerX.equalToSuperview()
-            maker.width.equalTo(80)
-            maker.height.equalTo(80)
+            maker.width.equalTo(70)
+            maker.height.equalTo(70)
         }
         
         titleLabel.snp.makeConstraints { maker in
@@ -99,6 +98,7 @@ final class HintViewController: UIViewController {
             maker.left.equalToSuperview().inset(30)
             maker.right.equalToSuperview().inset(30)
             maker.centerX.equalToSuperview()
+            maker.centerY.equalToSuperview()
         }
         
         okButton.snp.makeConstraints { maker in

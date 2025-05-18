@@ -303,62 +303,67 @@ extension TimeTableWeekListTableViewController: AVCaptureVideoDataOutputSampleBu
     }
     
     func makeDateAlertForWeek(gesture: handGestures) {
-        let choose = UIAlertAction(title: "Выбрать", style: .default) { _ in
-            switch gesture {
-            case .fist:
-                self.refreshTimetable {
+        switch gesture {
+        case .one:
+            pastWeek {
+                Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
                     self.startSession()
                 }
-            case .one:
-                self.pastWeek {
+            }
+            HapticsManager.shared.hapticFeedback()
+        case .two:
+            nextWeek {
+                Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
                     self.startSession()
                 }
-            case .two:
-                self.nextWeek {
+            }
+            HapticsManager.shared.hapticFeedback()
+        case .palm:
+            currentWeek {
+                Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
                     self.startSession()
                 }
-            case .palm:
-                self.currentWeek {
+            }
+            HapticsManager.shared.hapticFeedback()
+        case .fist:
+            refreshTimetable {
+                Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
                     self.startSession()
                 }
-            case .like:
+            }
+            HapticsManager.shared.hapticFeedback()
+        case .like:
+            let add = UIAlertAction(title: "Добавить", style: .default) { _ in
                 let item = SearchTimetableModel()
                 item.name = self.id
                 item.owner = self.owner
                 self.realmManager.saveTimetableItem(item: item)
                 self.startSession()
-            case .dislike:
+            }
+            let restart = UIAlertAction(title: "Распознать заново", style: .default) { _ in
+                self.startSession()
+            }
+            let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in
+                self.startSession()
+            }
+            showInfoAlert(title: "Жест \(gesture.rawValue) обнаружен!", message: "добавить \(id) в избранное?", actions: [add, restart, cancel])
+            HapticsManager.shared.hapticFeedback()
+        case .dislike:
+            let remove = UIAlertAction(title: "Убрать", style: .default) { _ in
                 let item = SearchTimetableModel()
                 item.name = self.id
                 item.owner = self.owner
                 self.realmManager.deleteTimetableItem(item: item)
                 self.startSession()
             }
-        }
-        let restart = UIAlertAction(title: "Распознать заново", style: .default) { _ in
-            self.startSession()
-        }
-        let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in
-            self.startSession()
-        }
-        showInfoAlert(title: "Жест \(gesture.rawValue) обнаружен!", message: messageForAlert(gesture: gesture), actions: [choose, restart, cancel])
-        HapticsManager.shared.hapticFeedback()
-    }
-    
-    func messageForAlert(gesture: handGestures)-> String {
-        switch gesture {
-        case .fist:
-            return "обновить расписание?"
-        case .one:
-            return "посмотреть расписание на прошлую неделю (\(pastWeek(week: week).id))?"
-        case .two:
-            return "посмотреть расписание на следующую неделю (\(nextWeek(week: week).id))?"
-        case .palm:
-            return "посмотреть расписание на эту неделю (\(currentWeek(week: week).id))?"
-        case .like:
-            return "добавить \(id) в избранное?"
-        case .dislike:
-            return "убрать \(id) из избранного?"
+            let restart = UIAlertAction(title: "Распознать заново", style: .default) { _ in
+                self.startSession()
+            }
+            let cancel = UIAlertAction(title: "Отмена", style: .destructive) { _ in
+                self.startSession()
+            }
+            showInfoAlert(title: "Жест \(gesture.rawValue) обнаружен!", message: "убрать \(id) из избранного?", actions: [remove, restart, cancel])
+            HapticsManager.shared.hapticFeedback()
         }
     }
     

@@ -23,11 +23,16 @@ final class TimetableDayInfoViewModel {
         service.getTimeTableDay(id: id, date: date, owner: owner) { result in
             switch result {
             case .success(let data):
-                self.infoHandler?(data.date, self.getPairsCount(pairs: data.disciplines))
+                self.infoHandler?(self.getFormattedDateString(date: data.date), self.getPairsCount(pairs: data.disciplines))
             case .failure(let error):
                 print(error)
             }
         }
+    }
+    
+    func getFormattedDateString(date: String)-> String {
+        let dayOfWeek = dateManager.getCurrentDayOfWeek(date: date)
+        return "\(dayOfWeek) \(date)"
     }
     
     func getPairsCount(pairs: [Discipline])-> Int {

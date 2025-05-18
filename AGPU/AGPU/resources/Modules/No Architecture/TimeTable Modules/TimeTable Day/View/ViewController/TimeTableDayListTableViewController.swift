@@ -24,6 +24,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     var currentPairName = ""
     var currentBuilding: AGPUBuildingModel?
     var currentTime: String?
+    var currentNavigationType = DateNavigationTypes.day
     
     var timetable: TimeTable?
     var image = UIImage()
@@ -66,9 +67,10 @@ final class TimeTableDayListTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpData()
-        checkTimetableShowVC()
         setUpNavigation()
         setUpTable()
+        checkTimetableShowVC()
+        checkTimeRange()
         setUpRefreshControl()
         setUpIndicatorView()
         setUpLabel()
@@ -123,7 +125,12 @@ final class TimeTableDayListTableViewController: UIViewController {
         options.accessibilityIdentifier = "menu"
         options.tintColor = .label
         
-        let refreshButton = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refresh))
+        let button = UIButton()
+        button.tintColor = .label
+        button.setImage(UIImage(named: "refresh"), for: .normal)
+        button.addTarget(self, action: #selector(refresh), for: .touchUpInside)
+        button.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(getCurrentDay)))
+        let refreshButton = UIBarButtonItem(customView: button)
         refreshButton.accessibilityIdentifier = "refresh button"
         refreshButton.tintColor = .label
         
@@ -134,6 +141,12 @@ final class TimeTableDayListTableViewController: UIViewController {
     
     @objc private func refresh() {
         refreshTimetable {}
+    }
+    
+    @objc private func getCurrentDay(gesture: UIGestureRecognizer) {
+        if gesture.state == .ended {
+            currentDay {}
+        }
     }
     
     func getCurrentMenu()-> UIMenu {
@@ -150,6 +163,11 @@ final class TimeTableDayListTableViewController: UIViewController {
         // Поиск
         let searchAction = UIAction(title: "Поиск") { _ in
             self.openSearch()
+        }
+        
+        // Информация о паре
+        let timetableInfoAction = UIAction(title: "Сколько пар?") { _ in
+            self.showTimetableInfo()
         }
         
         // AR
@@ -246,6 +264,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         return UIMenu(title: "Расписание", children: [
             searchAction,
+            timetableInfoAction,
             ARAction,
             nearBuildingAction,
             groupsList,
@@ -393,6 +412,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     private func setUpFloatingButton() {
+        let interaction = UIContextMenuInteraction(delegate: self)
         let navigationButton = UIButton()
         navigationButton.tintColor = .label
         navigationButton.setImage(UIImage(named: "aspu logo"), for: .normal)
@@ -405,6 +425,7 @@ final class TimeTableDayListTableViewController: UIViewController {
             navigationButton.widthAnchor.constraint(equalToConstant: 70.0),
             navigationButton.heightAnchor.constraint(equalToConstant: 70.0)
         ])
+        navigationButton.addInteraction(interaction)
         navigationButton.addTarget(self, action: #selector(toggleNavigation), for: .touchUpInside)
     }
     
@@ -424,22 +445,36 @@ final class TimeTableDayListTableViewController: UIViewController {
     
     private func setUpDaysNavigation() {
         
-        let past = UIBarButtonItem(image: UIImage(named: "backward"), style: .plain, target: self, action: #selector(pastDayTapped))
+        let past = UIBarButtonItem(image: UIImage(named: "backward"), style: .plain, target: self, action: #selector(pastTapped))
         past.tintColor = .label
         
-        let next = UIBarButtonItem(image: UIImage(named: "forward"), style: .plain, target: self, action: #selector(nextDayTapped))
+        let next = UIBarButtonItem(image: UIImage(named: "forward"), style: .plain, target: self, action: #selector(nextTapped))
         next.tintColor = .label
         
         navigationItem.leftBarButtonItem = past
         navigationItem.rightBarButtonItem = next
     }
     
-    @objc private func pastDayTapped() {
-        pastDay { }
+    @objc private func pastTapped() {
+        switch currentNavigationType {
+        case .day:
+            pastDay { }
+        case .month:
+            pastMonth { }
+        case .year:
+            pastYear { }
+        }
     }
     
-    @objc private func nextDayTapped() {
-        nextDay { }
+    @objc private func nextTapped() {
+        switch currentNavigationType {
+        case .day:
+            nextDay { }
+        case .month:
+            nextMonth { }
+        case .year:
+            nextYear { }
+        }
     }
     
     func setUpCaptureSession() {
