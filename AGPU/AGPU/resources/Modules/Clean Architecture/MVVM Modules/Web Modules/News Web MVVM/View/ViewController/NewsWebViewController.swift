@@ -33,7 +33,7 @@ final class NewsWebViewController: UIViewController {
     // MARK: - Init
     init(article: Article, url: String, isNotify: Bool) {
         self.url = url
-        self.viewModel = NewsWebViewModel(article: article, url: url)
+        self.viewModel = NewsWebViewModel(article: article, url: url, scrollView: WVWEBview.scrollView)
         self.isNotify = isNotify
         super.init(nibName: nil, bundle: nil)
     }
@@ -49,6 +49,16 @@ final class NewsWebViewController: UIViewController {
         setUpScroll()
         setUpIndicatorView()
         setUpFloatingButton()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.checkVoiceCommandsOption()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        viewModel.cancelRecognition()
     }
     
     override func didReceiveMemoryWarning() {
@@ -171,5 +181,17 @@ final class NewsWebViewController: UIViewController {
     private func updateMenuButton() {
         guard let button = view.subviews.first(where: { $0.accessibilityIdentifier == "floating button" }) else {return}
         (button as? UIButton)?.menu = setUpMenu()
+    }
+    
+    private func bindViewModel() {
+        viewModel.alertHandler = { isPresent, title, message in
+            if isPresent {
+                let goToSettings = UIAlertAction(title: "Перейти в настройки", style: .default) { _ in
+                    self.openSettings()
+                }
+                let cancel = UIAlertAction(title: "Отмена", style: .cancel) { _ in}
+                self.showAlert(title: title, message: message, actions: [goToSettings, cancel])
+            }
+        }
     }
 }

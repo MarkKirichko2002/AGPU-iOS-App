@@ -117,9 +117,9 @@ extension WebViewModel: WebViewModelProtocol {
             print(positionX)
             print(positionY)
             
-            if scrollPosition == "вверх" {
+            if scrollPosition.contains("вверх") || scrollPosition.contains("верх") {
                 positionY -= 60
-            } else if scrollPosition.contains("низ"){
+            } else if scrollPosition.contains("низ") || scrollPosition.contains("вниз") {
                 positionY += 60
             }
             

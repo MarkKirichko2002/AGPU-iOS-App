@@ -456,6 +456,13 @@ extension TimeTableDayListTableViewController: UIContextMenuInteractionDelegate 
     }
 }
 
+// MARK: - TimetableDayInfoViewControllerDelegate
+extension TimeTableDayListTableViewController: TimetableDayInfoViewControllerDelegate {
+    func buttonWasTapped() {
+        refreshTimetable {}
+    }
+}
+
 extension TimeTableDayListTableViewController {
     
     func checkTimetableShowVC() {
@@ -484,6 +491,7 @@ extension TimeTableDayListTableViewController {
     func showTimetableInfo() {
         let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
         let vc = TimetableDayInfoViewController()
+        vc.delegate = self
         switch style {
         case .fullScreen:
             vc.modalPresentationStyle = .fullScreen

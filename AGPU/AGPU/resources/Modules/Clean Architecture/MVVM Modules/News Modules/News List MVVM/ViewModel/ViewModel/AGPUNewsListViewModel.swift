@@ -5,7 +5,7 @@
 //  Created by Марк Киричко on 08.08.2023.
 //
 
-import Network
+import Foundation
 
 final class AGPUNewsListViewModel {
     
@@ -36,7 +36,6 @@ final class AGPUNewsListViewModel {
     var newsRefreshHandler: (()->Void)?
     var webModeHandler: (()->Void)?
     var whatsNewHandler: (()->Void)?
-    var internetConnectionHandler: ((NWPath)->Void)?
     
     // MARK: - сервисы
     let newsService = AGPUNewsService()

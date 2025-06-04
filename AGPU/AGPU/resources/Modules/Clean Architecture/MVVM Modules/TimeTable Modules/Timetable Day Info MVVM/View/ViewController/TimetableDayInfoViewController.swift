@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol TimetableDayInfoViewControllerDelegate: AnyObject {
+    func buttonWasTapped()
+}
+
 final class TimetableDayInfoViewController: UIViewController {
     
     // MARK: - UI
@@ -48,6 +52,8 @@ final class TimetableDayInfoViewController: UIViewController {
     // MARK: - сервисы
     private let viewModel = TimetableDayInfoViewModel()
     
+    weak var delegate: TimetableDayInfoViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
@@ -63,6 +69,7 @@ final class TimetableDayInfoViewController: UIViewController {
     }
     
     @objc private func closeScreen() {
+        delegate?.buttonWasTapped()
         HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
     }

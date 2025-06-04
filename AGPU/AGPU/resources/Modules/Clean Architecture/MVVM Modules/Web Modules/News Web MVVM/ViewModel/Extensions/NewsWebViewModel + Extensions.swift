@@ -63,6 +63,83 @@ extension NewsWebViewModel: INewsWebViewModel {
         realmManager.saveWebPage(page: model)
     }
     
+    func isRecording()-> Bool {
+        let screens = settingsManager.loadScreens()
+        return screens.contains(SpeechScreens.newsWeb)
+    }
+    
+    func checkVoiceCommandsOption() {
+        if isRecording() {
+            startRecognize()
+        }
+    }
+    
+    func resetSpeechRecognition() {
+        if isRecording() {
+            cancelRecognition()
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.startRecognize()
+            }
+        }
+    }
+    
+    func cancelRecognition() {
+        if isRecording() {
+            speechRecognitionManager.cancelSpeechRecognition()
+        }
+    }
+    
+    private func startRecognize() {
+        speechRecognitionManager.requestSpeechAndMicrophonePermission()
+        speechRecognitionManager.registerSpeechAuthorizationHandler { auth in
+            switch auth {
+            case .notDetermined:
+                print("Разрешение на распознавание речи еще не было получено.")
+            case .denied:
+                self.alertHandler?(true, self.createMicAlertMessage().0, self.createMicAlertMessage().1)
+                print("Доступ к распознаванию речи был отклонен.")
+            case .restricted:
+                print("Функциональность распознавания речи ограничена.")
+            case .authorized:
+                print("Разрешение на распознавание речи получено.")
+                self.speechRecognitionManager.startRecognize()
+            @unknown default:
+                print("неизвестно")
+            }
+        }
+        speechRecognitionManager.registerSpeechRecognitionHandler { text in
+            self.voiceCommands(text: text)
+        }
+    }
+    
+    private func voiceCommands(text: String) {
+        voiceScroll(text: text.lastWord())
+    }
+    
+    func createMicAlertMessage()-> (String, String) {
+        let style = settingsManager.getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        switch style {
+        case .formal:
+            return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хотите" : "Хотите") включить в настройках?")
+        case .informal:
+            return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хочешь" : "Хочешь") врубить в настройках?")
+        }
+    }
+    
+    func voiceScroll(text: String) {
+        
+        var positionY = self.scrollView.contentOffset.y
+        
+        if text.lowercased().contains("вверх") || text.lowercased().contains("верх") {
+            positionY -= 60
+        } else if text.lowercased().contains("низ") || text.lowercased().contains("вниз")  {
+            positionY += 60
+        }
+        
+        scrollPositionHandler?(positionY)
+    }
+    
     func registerScrollPositionHandler(block: @escaping(Double)->Void) {
         self.scrollPositionHandler = block
     }

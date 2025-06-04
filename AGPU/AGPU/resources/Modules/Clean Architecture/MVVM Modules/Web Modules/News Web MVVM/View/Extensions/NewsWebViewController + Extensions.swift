@@ -48,7 +48,6 @@ extension NewsWebViewController: WKNavigationDelegate {
         self.animation.stopRotateAnimation(view: self.spinner)
         self.spinner.isHidden = true
         viewModel.registerScrollPositionHandler{ position in
-            print(position)
             if position > 0 && webView.url?.absoluteString == self.url {
                 DispatchQueue.main.async {
                     webView.scrollView.setContentOffset(CGPoint(x: 0, y: position), animated: true)

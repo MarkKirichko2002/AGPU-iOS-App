@@ -47,7 +47,7 @@ struct VoiceCommands {
         VoiceCommandItem(name: "Название корпуса", description: "Открывает карту с меткой названного корпуса"),
         VoiceCommandItem(name: "Название раздела сайта", description: "Открывает веб-страницу раздела сайта"),
         VoiceCommandItem(name: "Случайный раздел", description: "Открывает случайную веб-страницу раздела сайта"),
-        VoiceCommandItem(name: "Вверх/Вниз", description: "Прокручивает веб-страницу сайт вверх или вниз"),
+        VoiceCommandItem(name: "Вверх/Вниз", description: "Прокручивает веб-страницу сайта вверх или вниз"),
         VoiceCommandItem(name: "Недели", description: "Открывает список недель для расписания"),
         VoiceCommandItem(name: "Закрыть", description: "Закрывает экран"),
         VoiceCommandItem(name: "Стоп", description: "Выключает микрофон"),
@@ -89,6 +89,7 @@ struct VoiceCommands {
         VoiceCommandItem(name: "Название вида новостей", description: "Меняет вид отображения новостей"),
         VoiceCommandItem(name: "Дата (день месяц)", description: "Показывает новости на выбранную дату"),
         VoiceCommandItem(name: "Все новости", description: "Показывает все новости"),
+        VoiceCommandItem(name: "Вверх/Вниз", description: "Прокручивает веб-страницу новости вверх или вниз"),
         VoiceCommandItem(name: "Закрыть", description: "Закрывает сообщение на экране"),
         VoiceCommandItem(name: "Обновить", description: "Обновляет список новостей")
     ]
