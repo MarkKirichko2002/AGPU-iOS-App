@@ -15,6 +15,7 @@ final class NewsWebViewModel {
     
     var alertHandler: ((Bool, String, String)->Void)?
     var scrollPositionHandler: ((Double)->Void)?
+    var scrollPositionStateHandler: ((scrollPositions)->Void)?
     var currentScrollPosition: scrollPositions?
     
     // MARK: - сервисы

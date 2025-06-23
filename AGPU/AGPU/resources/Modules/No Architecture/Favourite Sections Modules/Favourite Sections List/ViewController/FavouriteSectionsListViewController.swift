@@ -9,8 +9,9 @@ import UIKit
 import MapKit
 
 final class FavouriteSectionsListViewController: UIViewController {
-
+    
     var sections = [ForEveryStatusModel]()
+    var buttonSettingsManager: ButtonSettingsManager?
     
     // MARK: - сервисы
     let settingsManager = SettingsManager()
@@ -25,8 +26,20 @@ final class FavouriteSectionsListViewController: UIViewController {
         setUpTable()
         setUpRefreshControl()
         setUpLabel()
-        setUpFloatingButton()
+        createFloatingButton()
+        observeFloatingButton()
         getData()
+        setUpButtonSettings()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        buttonSettingsManager?.checkTimer()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        buttonSettingsManager?.stopTimer()
     }
     
     func setUpNavigation() {
@@ -92,6 +105,27 @@ final class FavouriteSectionsListViewController: UIViewController {
             noSectionsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             noSectionsLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+    }
+    
+    func observeFloatingButton() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("floating button favourites sections"), object: nil, queue: .main) { _ in
+            self.resetFloatingButton()
+        }
+    }
+    
+    private func resetFloatingButton() {
+        if let button = view.subviews.first(where: { $0.accessibilityIdentifier == "floating button" }) {
+            button.removeFromSuperview()
+            createFloatingButton()
+        } else {
+            createFloatingButton()
+        }
+    }
+    
+    private func createFloatingButton() {
+        if settingsManager.loadASPUButtonScreens().contains(ASPUButtonScreens.favouriteSections) {
+            setUpFloatingButton()
+        }
     }
     
     private func setUpFloatingButton() {
@@ -222,6 +256,10 @@ final class FavouriteSectionsListViewController: UIViewController {
         let section = sections.remove(at: index)
         sections.insert(section, at: index2)
         saveSections(sections: sections)
+    }
+    
+    private func setUpButtonSettings() {
+        self.buttonSettingsManager = ButtonSettingsManager(screen: .favouriteSections, view: self.view)
     }
 }
 
@@ -369,6 +407,14 @@ extension FavouriteSectionsListViewController: AllSectionsListTableViewControlle
         getData()
         setUpEditButton(title: "Править")
         tableView.isEditing = false
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+extension FavouriteSectionsListViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        buttonSettingsManager?.handleScroll()
     }
 }
 

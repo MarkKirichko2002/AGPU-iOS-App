@@ -55,6 +55,21 @@ extension DateManager: DateManagerProtocol {
         return ""
     }
     
+    func datesOfCurrentWeek()-> [String] {
+        var date = Date()
+        var dates = [Date]()
+        let calendar = Calendar.current
+        if let weekInterval = calendar.dateInterval(of: .weekOfYear, for: date) {
+            date = weekInterval.start
+            for i in 0...6 {
+                let newDate = calendar.date(byAdding: .day, value: i, to: date) ?? Date()
+                dates.append(newDate)
+            }
+        }
+        let formmatedDates = dates.map { getFormattedDate(date: $0) }
+        return formmatedDates
+    }
+    
     func getDate(from weekDay: String)-> String {
         return ""
     }

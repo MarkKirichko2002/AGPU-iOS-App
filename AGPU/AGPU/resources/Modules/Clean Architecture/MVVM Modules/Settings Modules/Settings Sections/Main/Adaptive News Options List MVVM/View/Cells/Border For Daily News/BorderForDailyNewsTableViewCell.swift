@@ -59,7 +59,7 @@ class BorderForDailyNewsTableViewCell: UITableViewCell {
     }
     
     private func setUpState() {
-        let isBorderForDailyNews = userDefaults.object(forKey: "onBorderForDailyNews") as? Bool ?? true
+        let isBorderForDailyNews = userDefaults.object(forKey: "onBorderForDailyNews") as? Bool ?? false
         Switch.isOn = isBorderForDailyNews
         OptionIcon.tintColor = isBorderForDailyNews == true ? .label : .systemGray
         TitleLabel.textColor = isBorderForDailyNews == true ? .label : .systemGray

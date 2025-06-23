@@ -90,6 +90,7 @@ struct VoiceCommands {
         VoiceCommandItem(name: "Дата (день месяц)", description: "Показывает новости на выбранную дату"),
         VoiceCommandItem(name: "Все новости", description: "Показывает все новости"),
         VoiceCommandItem(name: "Вверх/Вниз", description: "Прокручивает веб-страницу новости вверх или вниз"),
+        VoiceCommandItem(name: "Начало/Середина/Конец", description: "Прокручивает веб-страницу новости до определенной позиции"),
         VoiceCommandItem(name: "Закрыть", description: "Закрывает сообщение на экране"),
         VoiceCommandItem(name: "Обновить", description: "Обновляет список новостей")
     ]

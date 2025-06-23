@@ -1,5 +1,5 @@
 //
-//  VisualChangesOptionTableViewCell.swift
+//  GlanceInfoOptionTableViewCell.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 26.05.2024.
@@ -7,19 +7,15 @@
 
 import UIKit
 
-final class VisualChangesOptionTableViewCell: UITableViewCell {
+final class GlanceInfoOptionTableViewCell: UITableViewCell {
 
-    static let identifier = "VisualChangesOptionTableViewCell"
+    static let identifier = "GlanceInfoOptionTableViewCell"
     
     var userDefaults = UserDefaults.standard
     private let animation = AnimationClass()
     
-    @IBOutlet weak var VisualChangesIcon: UIImageView!
-    @IBOutlet weak var VisualChangesLabel: UILabel!
-    
-    func configure(name: String) {
-        VisualChangesLabel.text = "Отображение (\(name))"
-    }
+    @IBOutlet weak var GlanceInfoIcon: UIImageView!
+    @IBOutlet weak var GlanceInfoLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,8 +23,8 @@ final class VisualChangesOptionTableViewCell: UITableViewCell {
     }
     
     private func setUpView() {
-        VisualChangesIcon.tintColor = .label
-        VisualChangesLabel.textColor = .label
+        GlanceInfoIcon.tintColor = .label
+        GlanceInfoLabel.textColor = .label
     }
     
     func didTapCell(indexPath: IndexPath, completion: @escaping()->Void) {

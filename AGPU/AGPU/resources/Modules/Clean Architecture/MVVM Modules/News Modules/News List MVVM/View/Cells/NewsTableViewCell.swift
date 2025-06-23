@@ -106,7 +106,7 @@ final class NewsTableViewCell: UITableViewCell {
     
     func configure(article: Article) {
         
-        let isStroke = UserDefaults.standard.object(forKey: "onBorderForDailyNews") as? Bool ?? true
+        let isStroke = UserDefaults.standard.object(forKey: "onBorderForDailyNews") as? Bool ?? false
         
         if isStroke {
             setStroke(for: article)

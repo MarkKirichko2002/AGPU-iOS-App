@@ -43,24 +43,26 @@ extension SettingsListViewController: UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: SayAnyWhereTableViewCell.identifier, for: indexPath) as? SayAnyWhereTableViewCell else {return UITableViewCell()}
                 return cell
             } else if indexPath.row == 2 {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: VisualChangesOptionTableViewCell.identifier, for: indexPath) as? VisualChangesOptionTableViewCell else {return UITableViewCell()}
-                cell.configure(name: viewModel.getScreenPresentationStyleInfo())
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: ASPUButtonsScreenVariantsListTableViewCell.identifier, for: indexPath) as? ASPUButtonsScreenVariantsListTableViewCell else {return UITableViewCell()}
                 return cell
             } else if indexPath.row == 3 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: GlanceInfoOptionTableViewCell.identifier, for: indexPath) as? GlanceInfoOptionTableViewCell else {return UITableViewCell()}
+                return cell
+            } else if indexPath.row == 4 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: SplashScreenOptionTableViewCell.identifier, for: indexPath) as? SplashScreenOptionTableViewCell else {return UITableViewCell()}
                 cell.configure(name: viewModel.getSplashScreenInfo())
                 return cell
-            } else if indexPath.row == 4 {
+            } else if indexPath.row == 5 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AppIconTableViewCell.identifier, for: indexPath) as? AppIconTableViewCell else {return UITableViewCell()}
                 cell.configure(icon: viewModel.getAppIconInfo())
                 return cell
-            } else if indexPath.row == 5 {
+            } else if indexPath.row == 6 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTabBarOptionTableViewCell.identifier, for: indexPath) as? CustomTabBarOptionTableViewCell else {return UITableViewCell()}
                 return cell
-            } else if indexPath.row == 6 {
+            } else if indexPath.row == 7 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: SettablePersonalityTableViewCell.identifier, for: indexPath) as? SettablePersonalityTableViewCell else {return UITableViewCell()}
                 return cell
-            } else if indexPath.row == 7 {
+            } else if indexPath.row == 8 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ShortcutOptionTableViewCell.identifier, for: indexPath) as? ShortcutOptionTableViewCell else {return UITableViewCell()}
                 return cell
             } else {
@@ -155,42 +157,48 @@ extension SettingsListViewController: UITableViewDelegate {
                     }
                 }
             } else if indexPath.row == 2 {
-                if let cell = tableView.cellForRow(at: indexPath) as? VisualChangesOptionTableViewCell {
+                if let cell = tableView.cellForRow(at: indexPath) as? ASPUButtonsScreenVariantsListTableViewCell {
                     cell.didTapCell(indexPath: indexPath) {
-                        self.handleButton(icon: "eye", vc: ScreenPresentationStylesTableViewController())
+                        self.handleButton(icon: "button", vc: ASPUButtonsScreenVariantsListTableViewController())
                     }
                 }
             } else if indexPath.row == 3 {
+                if let cell = tableView.cellForRow(at: indexPath) as? GlanceInfoOptionTableViewCell {
+                    cell.didTapCell(indexPath: indexPath) {
+                        self.handleButton(icon: "eye", vc: GlanceInfoOptionsListTableViewController())
+                    }
+                }
+            } else if indexPath.row == 4 {
                 if let cell = tableView.cellForRow(at: indexPath) as? SplashScreenOptionTableViewCell {
                     cell.didTapCell(indexPath: indexPath) {
                         self.handleButton(icon: "mobile", vc: SplashScreensListTableViewController())
                     }
                 }
-            } else if indexPath.row == 4 {
+            } else if indexPath.row == 5 {
                 if let cell = tableView.cellForRow(at: indexPath) as? AppIconTableViewCell {
                     cell.didTapCell(indexPath: indexPath) {
                         self.handleButton(icon: "photo icon", vc: AppIconsListTableViewController())
                     }
                 }
-            } else if indexPath.row == 5 {
+            } else if indexPath.row == 6 {
                 if let cell = tableView.cellForRow(at: indexPath) as? CustomTabBarOptionTableViewCell {
                     cell.didTapCell(indexPath: indexPath) {
                         self.handleButton(icon: "profile icon", vc: OnlyMainVariantsListTableViewController())
                     }
                 }
-            } else if indexPath.row == 6 {
+            } else if indexPath.row == 7 {
                 if let cell = tableView.cellForRow(at: indexPath) as? SettablePersonalityTableViewCell {
                     cell.didTapCell(indexPath: indexPath) {
                         self.handleButton(icon: "gear", vc: SettablePersonalityOptionsListTableViewController())
                     }
                 }
-            } else if indexPath.row == 7 {
+            } else if indexPath.row == 8 {
                 if let cell = tableView.cellForRow(at: indexPath) as? ShortcutOptionTableViewCell {
                     cell.didTapCell(indexPath: indexPath) {
                         self.handleButton(icon: "sections icon", vc: FavouriteShortcutsListTableViewController())
                     }
                 }
-            } else if indexPath.row == 8 {
+            } else if indexPath.row == 9 {
                 if let cell = tableView.cellForRow(at: indexPath) as? AppThemesTableViewCell {
                     cell.didTapCell(indexPath: indexPath) {
                         self.handleButton(icon: "theme", vc: AppThemesListTableViewController())

@@ -258,6 +258,7 @@ extension TimeTableWeekListTableViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if tableView.isUserInteractionEnabled {
             checkScrollPosition()
+            buttonSettingsManager?.handleScroll()
         }
     }
     
@@ -455,7 +456,7 @@ extension TimeTableWeekListTableViewController: AVCaptureVideoDataOutputSampleBu
 extension TimeTableWeekListTableViewController {
     
     func isMicOn()-> Bool {
-        let isOn = settingsManager.loadScreens().contains(SpeechScreens.timetableWeek)
+        let isOn = settingsManager.loadSpeechScreens().contains(SpeechScreens.timetableWeek)
         if isOn {
             return speechRecognitionManager.tapInstalled
         }
@@ -463,25 +464,25 @@ extension TimeTableWeekListTableViewController {
     }
     
     func isRecording()-> Bool {
-        return settingsManager.loadScreens().contains(SpeechScreens.timetableWeek)
+        return settingsManager.loadSpeechScreens().contains(SpeechScreens.timetableWeek)
     }
     
     func checkVoiceCommandsOption() {
-        let screens = settingsManager.loadScreens()
+        let screens = settingsManager.loadSpeechScreens()
         if screens.contains(SpeechScreens.timetableWeek) {
             resetSpeechRecognition()
         }
     }
     
     func startSpeechRecognition() {
-        let screens = settingsManager.loadScreens()
+        let screens = settingsManager.loadSpeechScreens()
         if screens.contains(SpeechScreens.timetableWeek) {
             startRecognize()
         }
     }
     
     func resetSpeechRecognition() {
-        let screens = settingsManager.loadScreens()
+        let screens = settingsManager.loadSpeechScreens()
         if screens.contains(SpeechScreens.timetableWeek) {
             cancelRecognition()
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
@@ -491,7 +492,7 @@ extension TimeTableWeekListTableViewController {
     }
     
     func cancelRecognition() {
-        let screens = settingsManager.loadScreens()
+        let screens = settingsManager.loadSpeechScreens()
         if screens.contains(SpeechScreens.timetableWeek) {
             speechRecognitionManager.cancelSpeechRecognition()
         }

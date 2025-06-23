@@ -49,7 +49,7 @@ class AdaptToWebOptionTableViewCell: UITableViewCell {
     }
     
     private func setUpState() {
-        let isAdaptToWeb = userDefaults.object(forKey: "onAdaptToWeb") as? Bool ?? true
+        let isAdaptToWeb = userDefaults.object(forKey: "onAdaptToWeb") as? Bool ?? false
         Switch.isOn = isAdaptToWeb
         OptionIcon.tintColor = isAdaptToWeb == true ? .label : .systemGray
         TitleLabel.textColor = isAdaptToWeb == true ? .label : .systemGray

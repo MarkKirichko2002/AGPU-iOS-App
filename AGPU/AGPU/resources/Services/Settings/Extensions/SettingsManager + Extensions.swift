@@ -24,7 +24,7 @@ extension SettingsManager: SettingsManagerProtocol {
     }
     
     // MARK: - Say Anywhere
-    func loadScreens()-> [SpeechScreens] {
+    func loadSpeechScreens()-> [SpeechScreens] {
         var data = [SpeechScreens]()
         if let result = UserDefaults.standard.object(forKey: "speech screens") as? Data {
             do {
@@ -98,10 +98,35 @@ extension SettingsManager: SettingsManagerProtocol {
         return option
     }
     
-    // MARK: - Visual Changes
+    func loadASPUButtonScreens()-> [ASPUButtonScreens] {
+        var data = [ASPUButtonScreens]()
+        if let result = UserDefaults.standard.object(forKey: "aspu button screens") as? Data {
+            do {
+                data = try JSONDecoder().decode([ASPUButtonScreens].self, from: result)
+            } catch {
+                print(error)
+            }
+        }
+        return data
+    }
+    
+    func saveASPUButtonTime(title: String, time: Int) {
+        UserDefaults.standard.set(time, forKey: "aspu button \(title) time")
+    }
+    
+    func loadASPUButtonTime(title: String)-> Int {
+        return UserDefaults.standard.object(forKey: "aspu button \(title) time") as? Int ?? 0
+    }
+    
+    // MARK: - Glance Info
     func checkScreenPresentationStyleOption()-> ScreenPresentationStyles {
         let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
         return style
+    }
+    
+    func getSavedDate(screen: String)-> String {
+        let date = UserDefaults.standard.object(forKey: "saved date \(screen)") as? String ?? ""
+        return date
     }
 
     // MARK: - My Splash Screen

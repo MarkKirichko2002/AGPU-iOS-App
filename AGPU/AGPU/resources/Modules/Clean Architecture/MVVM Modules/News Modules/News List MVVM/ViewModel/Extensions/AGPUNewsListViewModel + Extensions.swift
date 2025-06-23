@@ -44,8 +44,12 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     func checkSettings() {
         let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
-        if style != .notShow {
-            checkWhatsNew()
+        let savedDate = settingsManager.getSavedDate(screen: "news list")
+        if savedDate != dateManager.getCurrentDate() {
+            UserDefaults.standard.set(dateManager.getCurrentDate(), forKey: "saved date news list")
+            if style != .notShow {
+                checkWhatsNew()
+            }
         }
         abbreviation = UserDefaults.standard.value(forKey: "category") as? String ?? "-"
         date = dateManager.getCurrentDate()
@@ -471,6 +475,12 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             createAdditionalArticle()
             dataChangedHandler?(abbreviation)
             dislayModeHandler?(displayMode)
+        case .currentWeek:
+            let dates = dateManager.datesOfCurrentWeek()
+            newsResponse.articles = allNews.filter { dates.contains($0.date) }
+            createAdditionalArticle()
+            dataChangedHandler?(abbreviation)
+            dislayModeHandler?(displayMode)
         case .all:
             newsResponse.articles = allNews
             createAdditionalArticle()
@@ -622,7 +632,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     }
     
     func isRecording()-> Bool {
-        let screens = settingsManager.loadScreens()
+        let screens = settingsManager.loadSpeechScreens()
         return screens.contains(SpeechScreens.newsList)
     }
     
@@ -753,6 +763,10 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         case .informal:
             return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хочешь" : "Хочешь") врубить в настройках?")
         }
+    }
+    
+    func checkASPUButtonScreens()-> Bool {
+        return settingsManager.loadASPUButtonScreens().contains(ASPUButtonScreens.newsList)
     }
     
     func registerNoDateAlertHandler(block: @escaping()->Void) {

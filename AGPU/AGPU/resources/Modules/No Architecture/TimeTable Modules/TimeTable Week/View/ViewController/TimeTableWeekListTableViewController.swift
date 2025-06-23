@@ -34,9 +34,11 @@ final class TimeTableWeekListTableViewController: UIViewController {
     var image = UIImage()
     var captureSession: AVCaptureSession!
     var currentGesture: handGestures?
+    var timer: Timer?
     var currentCamera = cameraMode.back
     var currentCameraState = cameraState.off
     var currentCameraPosition: AVCaptureDevice.Position = .back
+    var buttonSettingsManager: ButtonSettingsManager?
     
     // MARK: - сервисы
     let service = TimeTableService()
@@ -107,6 +109,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         checkGestureOption()
         checkDeviceOrientationControl()
         checkVolumeControl()
+        buttonSettingsManager?.checkTimer()
         isChanged = false
     }
     
@@ -116,6 +119,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         cancelGestureRecognition()
         removeDeviceOrientationObserve()
         removeVolumeObserve()
+        buttonSettingsManager?.stopTimer()
     }
     
     private func setUpNavigation() {
@@ -366,9 +370,8 @@ final class TimeTableWeekListTableViewController: UIViewController {
         }
     }
     
-    private func createFloatingButton() {
-        let onFloatingButton = UserDefaults.standard.object(forKey: "onFloatingButton timetable") as? Bool ?? true
-        if onFloatingButton {
+    func createFloatingButton() {
+        if settingsManager.loadASPUButtonScreens().contains(ASPUButtonScreens.timetableWeek) {
             setUpFloatingButton()
         }
     }
@@ -377,6 +380,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         let navigationButton = UIButton()
         navigationButton.tintColor = .label
         navigationButton.setImage(UIImage(named: "aspu logo"), for: .normal)
+        navigationButton.accessibilityIdentifier = "floating button"
         navigationButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(navigationButton)
         NSLayoutConstraint.activate([
@@ -868,6 +872,10 @@ final class TimeTableWeekListTableViewController: UIViewController {
                 self.makeDateAlertForWeek(gesture: gesture)
             }
         }
+    }
+    
+    private func setUpButtonSettings() {
+        self.buttonSettingsManager = ButtonSettingsManager(screen: .timetableWeek, view: self.view)
     }
     
     func filterTimetable()-> [TimeTable] {

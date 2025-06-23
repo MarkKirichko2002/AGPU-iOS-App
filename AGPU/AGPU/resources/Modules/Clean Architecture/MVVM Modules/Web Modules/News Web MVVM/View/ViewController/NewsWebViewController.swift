@@ -16,6 +16,7 @@ final class NewsWebViewController: UIViewController {
     
     // MARK: - сервисы
     let viewModel: NewsWebViewModel
+    var buttonSettingsManager: ButtonSettingsManager?
     let animation = AnimationClass()
     
     // MARK: - UI
@@ -48,17 +49,20 @@ final class NewsWebViewController: UIViewController {
         setUpWebView()
         setUpScroll()
         setUpIndicatorView()
-        setUpFloatingButton()
+        createFloatingButton()
+        setUpButtonSettings()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel.checkVoiceCommandsOption()
+        buttonSettingsManager?.checkTimer()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         viewModel.cancelRecognition()
+        buttonSettingsManager?.stopTimer()
     }
     
     override func didReceiveMemoryWarning() {
@@ -134,6 +138,12 @@ final class NewsWebViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
+    private func createFloatingButton() {
+        if viewModel.checkASPUButtonScreens() {
+            setUpFloatingButton()
+        }
+    }
+    
     private func setUpFloatingButton() {
         let navigationButton = UIButton()
         navigationButton.showsMenuAsPrimaryAction = true
@@ -178,7 +188,7 @@ final class NewsWebViewController: UIViewController {
         return UIMenu(title: "Позиции", children: actions.reversed())
     }
     
-    private func updateMenuButton() {
+    func updateMenuButton() {
         guard let button = view.subviews.first(where: { $0.accessibilityIdentifier == "floating button" }) else {return}
         (button as? UIButton)?.menu = setUpMenu()
     }
@@ -193,5 +203,9 @@ final class NewsWebViewController: UIViewController {
                 self.showAlert(title: title, message: message, actions: [goToSettings, cancel])
             }
         }
+    }
+    
+    private func setUpButtonSettings() {
+        self.buttonSettingsManager = ButtonSettingsManager(screen: .newsWebPage, view: self.view)
     }
 }

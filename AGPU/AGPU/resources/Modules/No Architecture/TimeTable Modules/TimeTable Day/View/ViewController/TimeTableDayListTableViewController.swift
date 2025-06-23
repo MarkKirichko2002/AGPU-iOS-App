@@ -12,6 +12,7 @@ import Combine
 final class TimeTableDayListTableViewController: UIViewController {
     
     var id = ""
+    var timer: Timer?
     var subgroup = 0
     var date = ""
     var owner = ""
@@ -34,6 +35,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     var currentCameraState = cameraState.off
     var currentCameraPosition: AVCaptureDevice.Position = .back
     var captureSession: AVCaptureSession!
+    var buttonSettingsManager: ButtonSettingsManager?
     
     // MARK: - сервисы
     let service = TimeTableService()
@@ -70,7 +72,6 @@ final class TimeTableDayListTableViewController: UIViewController {
         setUpNavigation()
         setUpTable()
         checkTimetableShowVC()
-        checkTimeRange()
         setUpRefreshControl()
         setUpIndicatorView()
         setUpLabel()
@@ -85,6 +86,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         observeAdvancedMode()
         observeFloatingButton()
         observeCameraButton()
+        setUpButtonSettings()
         SpeechSynthesizerManager.shared.registerSpeechFinishedHandler {
             self.resetSpeechRecognition()
         }
@@ -100,6 +102,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         checkGestureOption()
         checkDeviceOrientationControl()
         checkVolumeControl()
+        buttonSettingsManager?.checkTimer()
         isChanged = false
     }
     
@@ -109,6 +112,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         cancelGestureRecognition()
         removeDeviceOrientationObserve()
         removeVolumeObserve()
+        buttonSettingsManager?.stopTimer()
     }
     
     private func setUpData() {
@@ -404,9 +408,8 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
     }
     
-    private func createFloatingButton() {
-        let onFloatingButton = UserDefaults.standard.object(forKey: "onFloatingButton timetable") as? Bool ?? true
-        if onFloatingButton {
+    func createFloatingButton() {
+        if settingsManager.loadASPUButtonScreens().contains(ASPUButtonScreens.timetableDay) {
             setUpFloatingButton()
         }
     }
@@ -866,7 +869,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     func observeFloatingButton() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("floating button timetable"), object: nil, queue: .main) { _ in
+        NotificationCenter.default.addObserver(forName: Notification.Name("floating button timetable day"), object: nil, queue: .main) { _ in
             self.resetFloatingButton()
         }
     }
@@ -897,6 +900,10 @@ final class TimeTableDayListTableViewController: UIViewController {
                 self.getTimetable(gesture: gesture)
             }
         }
+    }
+    
+    private func setUpButtonSettings() {
+        self.buttonSettingsManager = ButtonSettingsManager(screen: .timetableDay, view: self.view)
     }
     
     func filterPairs(type: PairType) {

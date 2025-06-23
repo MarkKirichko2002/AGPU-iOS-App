@@ -30,7 +30,7 @@ extension RecentWebPageViewModel: RecentWebPageViewModelProtocol {
     
     func checkWebPage(url: String) {
         
-        let isAdapt = UserDefaults.standard.object(forKey: "onAdaptToWeb") as? Bool ?? true
+        let isAdapt = UserDefaults.standard.object(forKey: "onAdaptToWeb") as? Bool ?? false
         
         if isAdapt {
             let items = url.components(separatedBy: "/")

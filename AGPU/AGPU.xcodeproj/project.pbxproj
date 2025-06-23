@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		82056BE12DF851860007D524 /* ASPUButtonsScreenVariantsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82056BE02DF851860007D524 /* ASPUButtonsScreenVariantsListTableViewController.swift */; };
+		82056BE32DF851FD0007D524 /* ASPUButtonScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82056BE22DF851FD0007D524 /* ASPUButtonScreens.swift */; };
+		82056BE72DF8528D0007D524 /* ASPUButtonsScreenVariantsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82056BE62DF8528D0007D524 /* ASPUButtonsScreenVariantsListViewModel.swift */; };
+		82056BEB2DF8554F0007D524 /* ASPUButtonsScreenVariantsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82056BE92DF8554F0007D524 /* ASPUButtonsScreenVariantsListTableViewCell.swift */; };
+		82056BEC2DF8554F0007D524 /* ASPUButtonsScreenVariantsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82056BEA2DF8554F0007D524 /* ASPUButtonsScreenVariantsListTableViewCell.xib */; };
+		82056BF12DFA38710007D524 /* ASPUButtonTimeSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82056BF02DFA38710007D524 /* ASPUButtonTimeSettingsViewModel.swift */; };
+		82056BF32DFA3A370007D524 /* ASPUButtonTimeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82056BF22DFA3A370007D524 /* ASPUButtonTimeSettingsViewController.swift */; };
+		82056BF62DFAD7660007D524 /* ButtonSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82056BF52DFAD7660007D524 /* ButtonSettingsViewController.swift */; };
 		82061CC22B09A4B70073D727 /* TimetableSettingsOptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82061CC12B09A4B70073D727 /* TimetableSettingsOptionModel.swift */; };
 		82061CC42B09A4F70073D727 /* TimetableOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82061CC32B09A4F70073D727 /* TimetableOptions.swift */; };
 		82061CCB2B09A5920073D727 /* TimetableOptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82061CC92B09A5920073D727 /* TimetableOptionsTableViewCell.swift */; };
@@ -266,10 +274,6 @@
 		82505F532A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82505F522A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift */; };
 		8250B7A52D577E8E00ADE903 /* PairsCountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8250B7A42D577E8E00ADE903 /* PairsCountViewController.swift */; };
 		8250B7AA2D579C5100ADE903 /* DeviceOrientationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8250B7A92D579C5100ADE903 /* DeviceOrientationViewController.swift */; };
-		8250B7AE2D5D22EF00ADE903 /* FloatingButtonTimetableOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8250B7AC2D5D22EF00ADE903 /* FloatingButtonTimetableOptionTableViewCell.swift */; };
-		8250B7AF2D5D22EF00ADE903 /* FloatingButtonTimetableOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8250B7AD2D5D22EF00ADE903 /* FloatingButtonTimetableOptionTableViewCell.xib */; };
-		8250B7B32D5F109D00ADE903 /* FloatingButtonNewsOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8250B7B12D5F109D00ADE903 /* FloatingButtonNewsOptionTableViewCell.swift */; };
-		8250B7B42D5F109D00ADE903 /* FloatingButtonNewsOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8250B7B22D5F109D00ADE903 /* FloatingButtonNewsOptionTableViewCell.xib */; };
 		82519B912BEAA56B00F136F8 /* OnlyMainVariants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82519B902BEAA56B00F136F8 /* OnlyMainVariants.swift */; };
 		82519B942BEAA63F00F136F8 /* OnlyMainVariantsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82519B932BEAA63F00F136F8 /* OnlyMainVariantsListTableViewController.swift */; };
 		82519B992BEAA86600F136F8 /* IOnlyMainVariantsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82519B982BEAA86600F136F8 /* IOnlyMainVariantsListViewModel.swift */; };
@@ -285,8 +289,8 @@
 		8257387C2C108B30000D6CAC /* ContactsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8257387B2C108B30000D6CAC /* ContactsListViewModel + Extensions.swift */; };
 		8257387E2C108E25000D6CAC /* ContactsListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8257387D2C108E25000D6CAC /* ContactsListTableViewController + Extensions.swift */; };
 		825738812C122499000D6CAC /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825738802C122499000D6CAC /* ContactModel.swift */; };
-		8258198D2C0297090022D17F /* VisualChangesOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8258198B2C0297090022D17F /* VisualChangesOptionTableViewCell.swift */; };
-		8258198E2C0297090022D17F /* VisualChangesOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8258198C2C0297090022D17F /* VisualChangesOptionTableViewCell.xib */; };
+		8258198D2C0297090022D17F /* GlanceInfoOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8258198B2C0297090022D17F /* GlanceInfoOptionTableViewCell.swift */; };
+		8258198E2C0297090022D17F /* GlanceInfoOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8258198C2C0297090022D17F /* GlanceInfoOptionTableViewCell.xib */; };
 		825819922C02AE1C0022D17F /* AppUpdateAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825819912C02AE1C0022D17F /* AppUpdateAlertViewController.swift */; };
 		825D56732AE5CBEB004305C7 /* PairInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D56722AE5CBEB004305C7 /* PairInfoTableViewController.swift */; };
 		825D56782AE5CC5F004305C7 /* PairInfoViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D56772AE5CC5F004305C7 /* PairInfoViewModelProtocol.swift */; };
@@ -719,6 +723,14 @@
 		82C7E0AD2D0CD84800739BCF /* CurrentTabOptionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7E0AC2D0CD84800739BCF /* CurrentTabOptionsListViewModel.swift */; };
 		82C7E0B52D0DDBB500739BCF /* ScreenClosedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7E0B42D0DDBB500739BCF /* ScreenClosedDelegate.swift */; };
 		82C894342C802BE300608E81 /* BuildingSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C894332C802BE300608E81 /* BuildingSplashScreenViewController.swift */; };
+		82D0EA6B2E01819000BE9C90 /* GlanceInfoOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D0EA6A2E01819000BE9C90 /* GlanceInfoOptions.swift */; };
+		82D0EA6F2E0181DC00BE9C90 /* GlanceInfoOptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D0EA6E2E0181DC00BE9C90 /* GlanceInfoOptionModel.swift */; };
+		82D0EA722E01833800BE9C90 /* GlanceInfoOptionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D0EA712E01833800BE9C90 /* GlanceInfoOptionsListTableViewController.swift */; };
+		82D0EA772E0185DA00BE9C90 /* GlanceInfoOptionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82D0EA762E0185DA00BE9C90 /* GlanceInfoOptionsTableViewCell.xib */; };
+		82D0EA782E0185DA00BE9C90 /* GlanceInfoOptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D0EA752E0185DA00BE9C90 /* GlanceInfoOptionsTableViewCell.swift */; };
+		82D0EA7D2E0186FB00BE9C90 /* IGlanceInfoOptionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D0EA7C2E0186FB00BE9C90 /* IGlanceInfoOptionsListViewModel.swift */; };
+		82D0EA7F2E01871B00BE9C90 /* GlanceInfoOptionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D0EA7E2E01871B00BE9C90 /* GlanceInfoOptionsListViewModel.swift */; };
+		82D0EA812E01874100BE9C90 /* GlanceInfoOptionsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D0EA802E01874100BE9C90 /* GlanceInfoOptionsListViewModel + Extensions.swift */; };
 		82D0FC0D2B1B4A4A0056D94B /* CathedraBuildingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D0FC0B2B1B4A4A0056D94B /* CathedraBuildingDetailViewController.swift */; };
 		82D0FC102B1B4A640056D94B /* CathedraBuildingDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82D0FC0F2B1B4A640056D94B /* CathedraBuildingDetailViewController.storyboard */; };
 		82D0FC152B1B4C1E0056D94B /* CathedraBuildingDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D0FC142B1B4C1E0056D94B /* CathedraBuildingDetailViewModelProtocol.swift */; };
@@ -856,6 +868,14 @@
 /* Begin PBXFileReference section */
 		6C962D9D3FE3FF11454B0DAD /* Pods-AGPU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AGPU.debug.xcconfig"; path = "Target Support Files/Pods-AGPU/Pods-AGPU.debug.xcconfig"; sourceTree = "<group>"; };
 		79F775A79D4E984CDD58C0A1 /* Pods-AGPU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AGPU.release.xcconfig"; path = "Target Support Files/Pods-AGPU/Pods-AGPU.release.xcconfig"; sourceTree = "<group>"; };
+		82056BE02DF851860007D524 /* ASPUButtonsScreenVariantsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonsScreenVariantsListTableViewController.swift; sourceTree = "<group>"; };
+		82056BE22DF851FD0007D524 /* ASPUButtonScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonScreens.swift; sourceTree = "<group>"; };
+		82056BE62DF8528D0007D524 /* ASPUButtonsScreenVariantsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonsScreenVariantsListViewModel.swift; sourceTree = "<group>"; };
+		82056BE92DF8554F0007D524 /* ASPUButtonsScreenVariantsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonsScreenVariantsListTableViewCell.swift; sourceTree = "<group>"; };
+		82056BEA2DF8554F0007D524 /* ASPUButtonsScreenVariantsListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ASPUButtonsScreenVariantsListTableViewCell.xib; sourceTree = "<group>"; };
+		82056BF02DFA38710007D524 /* ASPUButtonTimeSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonTimeSettingsViewModel.swift; sourceTree = "<group>"; };
+		82056BF22DFA3A370007D524 /* ASPUButtonTimeSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonTimeSettingsViewController.swift; sourceTree = "<group>"; };
+		82056BF52DFAD7660007D524 /* ButtonSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSettingsViewController.swift; sourceTree = "<group>"; };
 		82061CC12B09A4B70073D727 /* TimetableSettingsOptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableSettingsOptionModel.swift; sourceTree = "<group>"; };
 		82061CC32B09A4F70073D727 /* TimetableOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableOptions.swift; sourceTree = "<group>"; };
 		82061CC92B09A5920073D727 /* TimetableOptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableOptionsTableViewCell.swift; sourceTree = "<group>"; };
@@ -1092,10 +1112,6 @@
 		82505F522A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableWeekListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8250B7A42D577E8E00ADE903 /* PairsCountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairsCountViewController.swift; sourceTree = "<group>"; };
 		8250B7A92D579C5100ADE903 /* DeviceOrientationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceOrientationViewController.swift; sourceTree = "<group>"; };
-		8250B7AC2D5D22EF00ADE903 /* FloatingButtonTimetableOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButtonTimetableOptionTableViewCell.swift; sourceTree = "<group>"; };
-		8250B7AD2D5D22EF00ADE903 /* FloatingButtonTimetableOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FloatingButtonTimetableOptionTableViewCell.xib; sourceTree = "<group>"; };
-		8250B7B12D5F109D00ADE903 /* FloatingButtonNewsOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButtonNewsOptionTableViewCell.swift; sourceTree = "<group>"; };
-		8250B7B22D5F109D00ADE903 /* FloatingButtonNewsOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FloatingButtonNewsOptionTableViewCell.xib; sourceTree = "<group>"; };
 		82519B902BEAA56B00F136F8 /* OnlyMainVariants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyMainVariants.swift; sourceTree = "<group>"; };
 		82519B932BEAA63F00F136F8 /* OnlyMainVariantsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyMainVariantsListTableViewController.swift; sourceTree = "<group>"; };
 		82519B982BEAA86600F136F8 /* IOnlyMainVariantsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOnlyMainVariantsListViewModel.swift; sourceTree = "<group>"; };
@@ -1111,8 +1127,8 @@
 		8257387B2C108B30000D6CAC /* ContactsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContactsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		8257387D2C108E25000D6CAC /* ContactsListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContactsListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		825738802C122499000D6CAC /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
-		8258198B2C0297090022D17F /* VisualChangesOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualChangesOptionTableViewCell.swift; sourceTree = "<group>"; };
-		8258198C2C0297090022D17F /* VisualChangesOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisualChangesOptionTableViewCell.xib; sourceTree = "<group>"; };
+		8258198B2C0297090022D17F /* GlanceInfoOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceInfoOptionTableViewCell.swift; sourceTree = "<group>"; };
+		8258198C2C0297090022D17F /* GlanceInfoOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GlanceInfoOptionTableViewCell.xib; sourceTree = "<group>"; };
 		825819912C02AE1C0022D17F /* AppUpdateAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateAlertViewController.swift; sourceTree = "<group>"; };
 		825D56722AE5CBEB004305C7 /* PairInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairInfoTableViewController.swift; sourceTree = "<group>"; };
 		825D56772AE5CC5F004305C7 /* PairInfoViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairInfoViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -1548,6 +1564,14 @@
 		82C7E0AC2D0CD84800739BCF /* CurrentTabOptionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTabOptionsListViewModel.swift; sourceTree = "<group>"; };
 		82C7E0B42D0DDBB500739BCF /* ScreenClosedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenClosedDelegate.swift; sourceTree = "<group>"; };
 		82C894332C802BE300608E81 /* BuildingSplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingSplashScreenViewController.swift; sourceTree = "<group>"; };
+		82D0EA6A2E01819000BE9C90 /* GlanceInfoOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceInfoOptions.swift; sourceTree = "<group>"; };
+		82D0EA6E2E0181DC00BE9C90 /* GlanceInfoOptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceInfoOptionModel.swift; sourceTree = "<group>"; };
+		82D0EA712E01833800BE9C90 /* GlanceInfoOptionsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceInfoOptionsListTableViewController.swift; sourceTree = "<group>"; };
+		82D0EA752E0185DA00BE9C90 /* GlanceInfoOptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceInfoOptionsTableViewCell.swift; sourceTree = "<group>"; };
+		82D0EA762E0185DA00BE9C90 /* GlanceInfoOptionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GlanceInfoOptionsTableViewCell.xib; sourceTree = "<group>"; };
+		82D0EA7C2E0186FB00BE9C90 /* IGlanceInfoOptionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGlanceInfoOptionsListViewModel.swift; sourceTree = "<group>"; };
+		82D0EA7E2E01871B00BE9C90 /* GlanceInfoOptionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceInfoOptionsListViewModel.swift; sourceTree = "<group>"; };
+		82D0EA802E01874100BE9C90 /* GlanceInfoOptionsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GlanceInfoOptionsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82D0FC0B2B1B4A4A0056D94B /* CathedraBuildingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CathedraBuildingDetailViewController.swift; sourceTree = "<group>"; };
 		82D0FC0F2B1B4A640056D94B /* CathedraBuildingDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CathedraBuildingDetailViewController.storyboard; sourceTree = "<group>"; };
 		82D0FC142B1B4C1E0056D94B /* CathedraBuildingDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CathedraBuildingDetailViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -1727,6 +1751,90 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		82056BD92DF850870007D524 /* ASPU Buttons Screen Variants List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82056BDD2DF850DA0007D524 /* Model */,
+				82056BDB2DF850BD0007D524 /* View */,
+				82056BDA2DF850B80007D524 /* ViewModel */,
+			);
+			path = "ASPU Buttons Screen Variants List MVVM";
+			sourceTree = "<group>";
+		};
+		82056BDA2DF850B80007D524 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82056BE62DF8528D0007D524 /* ASPUButtonsScreenVariantsListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82056BDB2DF850BD0007D524 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82056BDF2DF8514F0007D524 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82056BDD2DF850DA0007D524 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82056BE22DF851FD0007D524 /* ASPUButtonScreens.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82056BDF2DF8514F0007D524 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82056BE02DF851860007D524 /* ASPUButtonsScreenVariantsListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82056BE82DF8551C0007D524 /* ASPU Buttons Screen */ = {
+			isa = PBXGroup;
+			children = (
+				82056BE92DF8554F0007D524 /* ASPUButtonsScreenVariantsListTableViewCell.swift */,
+				82056BEA2DF8554F0007D524 /* ASPUButtonsScreenVariantsListTableViewCell.xib */,
+			);
+			path = "ASPU Buttons Screen";
+			sourceTree = "<group>";
+		};
+		82056BED2DFA38230007D524 /* ASPU Button Time Settings */ = {
+			isa = PBXGroup;
+			children = (
+				82056BEF2DFA38480007D524 /* View */,
+				82056BEE2DFA38450007D524 /* ViewModel */,
+			);
+			path = "ASPU Button Time Settings";
+			sourceTree = "<group>";
+		};
+		82056BEE2DFA38450007D524 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82056BF02DFA38710007D524 /* ASPUButtonTimeSettingsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82056BEF2DFA38480007D524 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82056BF22DFA3A370007D524 /* ASPUButtonTimeSettingsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82056BF42DFAD7440007D524 /* Button Settings */ = {
+			isa = PBXGroup;
+			children = (
+				82056BF52DFAD7660007D524 /* ButtonSettingsViewController.swift */,
+			);
+			path = "Button Settings";
+			sourceTree = "<group>";
+		};
 		82061CC02B09A49A0073D727 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1758,7 +1866,6 @@
 				82C449FA2B616F0C0039B0F3 /* Timetable Option */,
 				82C449F92B616F0A0039B0F3 /* Recent Timetable Item Option */,
 				829A56262C77E2CA00E707E4 /* Advanced Mode Option */,
-				8250B7AB2D5D22A900ADE903 /* Floating Button */,
 				820745062DBE568B00E4C505 /* Volume Control Option */,
 				8207450B2DBE604700E4C505 /* Device Orientation Control */,
 				82B5FE772D84E7BE0023A0D9 /* Gesture Recognition Option */,
@@ -3275,7 +3382,6 @@
 				822527A02BACE4A400B66314 /* Adapt To Web */,
 				82FC22F22BC036D7008709DA /* Daily News */,
 				82754C702BD45BCC0021E76A /* Border For Daily News */,
-				8250B7B02D5F106300ADE903 /* Floating Button */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -4558,24 +4664,6 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		8250B7AB2D5D22A900ADE903 /* Floating Button */ = {
-			isa = PBXGroup;
-			children = (
-				8250B7AC2D5D22EF00ADE903 /* FloatingButtonTimetableOptionTableViewCell.swift */,
-				8250B7AD2D5D22EF00ADE903 /* FloatingButtonTimetableOptionTableViewCell.xib */,
-			);
-			path = "Floating Button";
-			sourceTree = "<group>";
-		};
-		8250B7B02D5F106300ADE903 /* Floating Button */ = {
-			isa = PBXGroup;
-			children = (
-				8250B7B12D5F109D00ADE903 /* FloatingButtonNewsOptionTableViewCell.swift */,
-				8250B7B22D5F109D00ADE903 /* FloatingButtonNewsOptionTableViewCell.xib */,
-			);
-			path = "Floating Button";
-			sourceTree = "<group>";
-		};
 		82519B8C2BEAA53E00F136F8 /* Only Main Variants List MVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -4758,13 +4846,13 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		8258198A2C02968D0022D17F /* Visual Changes */ = {
+		8258198A2C02968D0022D17F /* Glance Info */ = {
 			isa = PBXGroup;
 			children = (
-				8258198B2C0297090022D17F /* VisualChangesOptionTableViewCell.swift */,
-				8258198C2C0297090022D17F /* VisualChangesOptionTableViewCell.xib */,
+				8258198B2C0297090022D17F /* GlanceInfoOptionTableViewCell.swift */,
+				8258198C2C0297090022D17F /* GlanceInfoOptionTableViewCell.xib */,
 			);
-			path = "Visual Changes";
+			path = "Glance Info";
 			sourceTree = "<group>";
 		};
 		8258198F2C02ADF70022D17F /* App Update */ = {
@@ -5358,6 +5446,7 @@
 		826888672A33B87A00434219 /* No Architecture */ = {
 			isa = PBXGroup;
 			children = (
+				82056BF42DFAD7440007D524 /* Button Settings */,
 				822B283C2DCABD9600CC1C73 /* News Filter Categories List */,
 				822B28372DCA8F0D00CC1C73 /* Months List */,
 				82B5FE0F2D7EB3C70023A0D9 /* Pair Time Filter List */,
@@ -7345,8 +7434,9 @@
 			isa = PBXGroup;
 			children = (
 				8275B50D2D2329710051FA5B /* Speech */,
+				82056BE82DF8551C0007D524 /* ASPU Buttons Screen */,
 				82423E3C2A991E11006FA7D2 /* Action To Recall */,
-				8258198A2C02968D0022D17F /* Visual Changes */,
+				8258198A2C02968D0022D17F /* Glance Info */,
 				82761A1A2B4637DE00D9976F /* Splash Screens */,
 				8283975A2AD5BBAD000F355A /* App Icons */,
 				8209008B2BAF89A40053F3BD /* TabBar */,
@@ -10020,6 +10110,109 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		82D0EA662E01814800BE9C90 /* Glance Info Options List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82D0EA692E01817100BE9C90 /* Model */,
+				82D0EA682E01816F00BE9C90 /* View */,
+				82D0EA672E01816D00BE9C90 /* ViewModel */,
+			);
+			path = "Glance Info Options List MVVM";
+			sourceTree = "<group>";
+		};
+		82D0EA672E01816D00BE9C90 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82D0EA7B2E0186D800BE9C90 /* Protocol */,
+				82D0EA7A2E0186D500BE9C90 /* ViewModel */,
+				82D0EA792E0186D300BE9C90 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82D0EA682E01816F00BE9C90 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82D0EA702E01829D00BE9C90 /* ViewController */,
+				82D0EA732E01859300BE9C90 /* Cells */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82D0EA692E01817100BE9C90 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82D0EA6D2E0181A900BE9C90 /* Model */,
+				82D0EA6C2E0181A600BE9C90 /* List */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82D0EA6C2E0181A600BE9C90 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				82D0EA6A2E01819000BE9C90 /* GlanceInfoOptions.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		82D0EA6D2E0181A900BE9C90 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82D0EA6E2E0181DC00BE9C90 /* GlanceInfoOptionModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		82D0EA702E01829D00BE9C90 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82D0EA712E01833800BE9C90 /* GlanceInfoOptionsListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82D0EA732E01859300BE9C90 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				82D0EA742E0185AD00BE9C90 /* Glance Info Option */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		82D0EA742E0185AD00BE9C90 /* Glance Info Option */ = {
+			isa = PBXGroup;
+			children = (
+				82D0EA752E0185DA00BE9C90 /* GlanceInfoOptionsTableViewCell.swift */,
+				82D0EA762E0185DA00BE9C90 /* GlanceInfoOptionsTableViewCell.xib */,
+			);
+			path = "Glance Info Option";
+			sourceTree = "<group>";
+		};
+		82D0EA792E0186D300BE9C90 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82D0EA802E01874100BE9C90 /* GlanceInfoOptionsListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82D0EA7A2E0186D500BE9C90 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82D0EA7E2E01871B00BE9C90 /* GlanceInfoOptionsListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82D0EA7B2E0186D800BE9C90 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82D0EA7C2E0186FB00BE9C90 /* IGlanceInfoOptionsListViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		82D0FC072B1B49E10056D94B /* Cathedra Building Detail MVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -11575,7 +11768,10 @@
 		82F5788B2B6FED2300BC64C1 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				82056BD92DF850870007D524 /* ASPU Buttons Screen Variants List MVVM */,
+				82056BED2DFA38230007D524 /* ASPU Button Time Settings */,
 				8275B5122D232F8D0051FA5B /* Speech Screen Variants List MVVM */,
+				82D0EA662E01814800BE9C90 /* Glance Info Options List MVVM */,
 				82187C972C04F0E70033E6DC /* Screen Presentation Styles List MVVM */,
 				82519B8C2BEAA53E00F136F8 /* Only Main Variants List MVVM */,
 				82761A1F2B463E9F00D9976F /* Splash Screens List MVVM */,
@@ -11930,7 +12126,6 @@
 				826BADB12A64D5D100022B45 /* AGPUBuildingDetailViewController.storyboard in Resources */,
 				82FC881F2BBDFC4D00A2EF59 /* weather.mp4 in Resources */,
 				82D0FC102B1B4A640056D94B /* CathedraBuildingDetailViewController.storyboard in Resources */,
-				8250B7B42D5F109D00ADE903 /* FloatingButtonNewsOptionTableViewCell.xib in Resources */,
 				82E6C5992CFBBAA300D42D60 /* фейерверк.mp3 in Resources */,
 				82768AF62ABE1B360022FBE1 /* AppThemesTableViewCell.xib in Resources */,
 				82D6C33B2A5E282A00FB7F5D /* TimeTableTableViewCell.xib in Resources */,
@@ -11944,6 +12139,7 @@
 				82754C742BD45C1B0021E76A /* BorderForDailyNewsTableViewCell.xib in Resources */,
 				825D65B32D1B511400A84EE7 /* AdditionalTabOptionTableViewCell.xib in Resources */,
 				82C561692A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard in Resources */,
+				82056BEC2DF8554F0007D524 /* ASPUButtonsScreenVariantsListTableViewCell.xib in Resources */,
 				822DA7182BCACDC000CB4A21 /* technopark.mp4 in Resources */,
 				82822B392DB3C0A40071C191 /* TOYZ.ttf in Resources */,
 				826FB39E2C206924007EDA25 /* NewsOptionsPostionOptionTableViewCell.xib in Resources */,
@@ -11969,7 +12165,7 @@
 				8228623C2CC70F1A00EE5FED /* SoundOptionsTableViewCell.xib in Resources */,
 				82822B312DB329B60071C191 /* Monocraft.ttf in Resources */,
 				828397602AD5BBF4000F355A /* AppIconTableViewCell.xib in Resources */,
-				8258198E2C0297090022D17F /* VisualChangesOptionTableViewCell.xib in Resources */,
+				8258198E2C0297090022D17F /* GlanceInfoOptionTableViewCell.xib in Resources */,
 				82761A1E2B46381500D9976F /* SplashScreenOptionTableViewCell.xib in Resources */,
 				822D57842BBC29050026962F /* clock_sound3.mp3 in Resources */,
 				820745092DBE56BB00E4C505 /* VolumeControlOptionTableViewCell.xib in Resources */,
@@ -11989,7 +12185,6 @@
 				822CC6512CCE466E0093A120 /* TimetableFeatureOptionTableViewCell.xib in Resources */,
 				82F315BB2C40BD1B00E826F9 /* SettablePersonalityTableViewCell.xib in Resources */,
 				828E10372BD16AD700ECC5F4 /* TabsColorOptionTableViewCell.xib in Resources */,
-				8250B7AF2D5D22EF00ADE903 /* FloatingButtonTimetableOptionTableViewCell.xib in Resources */,
 				821365872A94F6A700A20E4E /* LaunchScreen.strings in Resources */,
 				8225279E2BACDCA200B66314 /* SavedNewsCategoryOptionTableViewCell.xib in Resources */,
 				82E6C59F2CFBC5E900D42D60 /* тост.mp3 in Resources */,
@@ -12007,6 +12202,7 @@
 				82E4C5972A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib in Resources */,
 				82D2996E2CF10B0B00E3A53B /* GoogleService-Info.plist in Resources */,
 				822606012A853C110055925F /* RecentMomentTableViewCell.xib in Resources */,
+				82D0EA772E0185DA00BE9C90 /* GlanceInfoOptionsTableViewCell.xib in Resources */,
 				82AB6D192AF6BD5F00F7B729 /* AdaptiveNewsOptionTableViewCell.xib in Resources */,
 				82061CCC2B09A5920073D727 /* TimetableOptionsTableViewCell.xib in Resources */,
 				82822B292DB321540071C191 /* Plup.ttf in Resources */,
@@ -12126,6 +12322,7 @@
 				82D37FD72BEC29FD0035CB57 /* SavedImagesListViewModel + Extensions.swift in Sources */,
 				82B24A692A817AEC008B94E4 /* AllWeeksListTableViewController.swift in Sources */,
 				826AF7DF2D038CE400CF64EA /* ShortcutOptionTableViewCell.swift in Sources */,
+				82D0EA6B2E01819000BE9C90 /* GlanceInfoOptions.swift in Sources */,
 				82BF4DB42A5FA60D008B751A /* AGPUWallpapersListViewController + Extensions.swift in Sources */,
 				82ACD1FC2CA2030800A2CC36 /* FavouriteSectionsListViewController.swift in Sources */,
 				82B1C0F12A8125E400520C14 /* VoiceDirectionModel.swift in Sources */,
@@ -12146,9 +12343,11 @@
 				82F5787F2B6FE57100BC64C1 /* ASPUButtonActionsListViewModel.swift in Sources */,
 				824EBF732B29FA380003E7E6 /* AGPUBuildingTypesListViewModel.swift in Sources */,
 				82FC22EA2BC01BA6008709DA /* NewsOptionsFilterListViewModel.swift in Sources */,
+				82056BEB2DF8554F0007D524 /* ASPUButtonsScreenVariantsListTableViewCell.swift in Sources */,
 				8234E6122A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift in Sources */,
 				829CEF802BEF9BE500FA32EF /* IBuildingsListViewModel.swift in Sources */,
 				822B28402DCABDD000CC1C73 /* NewsFilterCategoriesListTableViewController.swift in Sources */,
+				82056BF12DFA38710007D524 /* ASPUButtonTimeSettingsViewModel.swift in Sources */,
 				82C7523B2C28826300161AEF /* TabIconsStyleListTableViewController.swift in Sources */,
 				82989ACD2A6E30E200F27858 /* FacultyCathedraListTableViewController.swift in Sources */,
 				828D51142BB86B2600848FF8 /* ASPUButtonIconOptionTableViewCell.swift in Sources */,
@@ -12191,6 +12390,7 @@
 				82C26C7E2BD7F12E0039D86D /* IDisplayModeOptionsListViewModel.swift in Sources */,
 				826558A42C972D1D00E52D0D /* SimpleMapViewController + Extensions.swift in Sources */,
 				8217C3172B8FB7CD00A59412 /* CustomSplashScreenEditorViewModel.swift in Sources */,
+				82056BE72DF8528D0007D524 /* ASPUButtonsScreenVariantsListViewModel.swift in Sources */,
 				820D18E52A68F9EE00BFAA35 /* AGPUBuildingModel.swift in Sources */,
 				82BEAD822A7414C300DD34C2 /* RecentWebPageViewModel.swift in Sources */,
 				8226D17C2B095DF300B0B9F0 /* TimetableOptionsListViewModel.swift in Sources */,
@@ -12253,7 +12453,7 @@
 				82989AEE2A6F6EB600F27858 /* FacultyCathedraListViewModel + Extensions.swift in Sources */,
 				82FC22E82BC01B7F008709DA /* INewsOptionsFilterListViewModel.swift in Sources */,
 				826558A02C972CEB00E52D0D /* SimpleMapViewController.swift in Sources */,
-				8258198D2C0297090022D17F /* VisualChangesOptionTableViewCell.swift in Sources */,
+				8258198D2C0297090022D17F /* GlanceInfoOptionTableViewCell.swift in Sources */,
 				8299E3B42B8A31E600D81472 /* TimetableDateDetailViewModel.swift in Sources */,
 				822632412A6CB37E0000E14C /* ActionToRecallOptionTableViewCell.swift in Sources */,
 				82C7E0862D08AFA800739BCF /* ASPUButtonHideOptionTableViewCell.swift in Sources */,
@@ -12312,6 +12512,7 @@
 				82E4C5172A6B0D0200F65A67 /* ImageSaver + Extensions.swift in Sources */,
 				8241F9812A5F3C4D007DF628 /* TimeTableDayListTableViewController + Extensions.swift in Sources */,
 				829632C72BBC1857007CAB65 /* TimeTableSoundModel.swift in Sources */,
+				82D0EA722E01833800BE9C90 /* GlanceInfoOptionsListTableViewController.swift in Sources */,
 				828397742AD5C706000F355A /* PersonalizedAppIconTableViewCell.swift in Sources */,
 				8226D18F2B09703700B0B9F0 /* SavedPairTypeViewModel.swift in Sources */,
 				828D510A2BB85EAD00848FF8 /* ASPUButtonOptionsListTableViewController.swift in Sources */,
@@ -12392,6 +12593,7 @@
 				82E6C43F2CF9097300D42D60 /* BuildingInfo.swift in Sources */,
 				82989AE02A6E5B4F00F27858 /* AGPUCurrentCathedraMapViewModel.swift in Sources */,
 				8212704C2A7892910095D68E /* PDFDocumentReaderViewController.swift in Sources */,
+				82D0EA6F2E0181DC00BE9C90 /* GlanceInfoOptionModel.swift in Sources */,
 				824C56D92A6FE98F0074ADB7 /* FacultyCathedraList.swift in Sources */,
 				82B24A6D2A817BDE008B94E4 /* WeekTableViewCell.swift in Sources */,
 				82B5FE7A2D84E7E70023A0D9 /* GestureRecognitionOptionTableViewCell.swift in Sources */,
@@ -12430,6 +12632,7 @@
 				829952772BDEEB7D003AFB14 /* RecentTabOptionTableViewCell.swift in Sources */,
 				82C26C792BD7F0D20039D86D /* DisplayModes.swift in Sources */,
 				8234E5F32A88514600ED354C /* WordDocumentReaderViewController + Extensions.swift in Sources */,
+				82D0EA782E0185DA00BE9C90 /* GlanceInfoOptionsTableViewCell.swift in Sources */,
 				8214932A2D0F845800F543BA /* TabFontOptionsListTableViewController.swift in Sources */,
 				82F98B322B11998E00137D9A /* WeatherManagerProtocol.swift in Sources */,
 				829952712BDCBF32003AFB14 /* ASPUButtonAllActionsListViewModel.swift in Sources */,
@@ -12482,10 +12685,12 @@
 				82989AEB2A6F6E1B00F27858 /* FacultyCathedraListViewModelProtocol.swift in Sources */,
 				826AF7E52D0392A600CF64EA /* ShortcutModel.swift in Sources */,
 				82E6C4382CF8F65B00D42D60 /* INearBuildingViewModel.swift in Sources */,
+				82D0EA7D2E0186FB00BE9C90 /* IGlanceInfoOptionsListViewModel.swift in Sources */,
 				829952462BDC95D1003AFB14 /* TimeTableFavouriteItemTableViewCell.swift in Sources */,
 				82E4C5682A6B154300F65A67 /* FacultyGroupsListViewModelProtocol.swift in Sources */,
 				828D512F2BB8A08B00848FF8 /* IASPUButtonIconsListViewModel.swift in Sources */,
 				82C7E0A92D0CD7D700739BCF /* ICurrentTabOptionsListViewModel.swift in Sources */,
+				82056BF62DFAD7660007D524 /* ButtonSettingsViewController.swift in Sources */,
 				8241F9932A5F4091007DF628 /* TimeTableServicerProtocol.swift in Sources */,
 				825819922C02AE1C0022D17F /* AppUpdateAlertViewController.swift in Sources */,
 				822862332CC70C3100EE5FED /* TabBarSoundOptionsListViewModel.swift in Sources */,
@@ -12502,6 +12707,7 @@
 				82D6C3322A5E1DE100FB7F5D /* TimeTableService.swift in Sources */,
 				82C7E08E2D0CC9D100739BCF /* CurrentTabFavouriteOptionsListViewController.swift in Sources */,
 				82C7B8422A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift in Sources */,
+				82D0EA7F2E01871B00BE9C90 /* GlanceInfoOptionsListViewModel.swift in Sources */,
 				82E6C8842CFE4DAF00D42D60 /* ASPUButtonGestureOptionsListViewModel.swift in Sources */,
 				828CFA3C2A3680C700C7542D /* String + Extensions.swift in Sources */,
 				82A41B8F2C2C2CC700254AE2 /* RecentDatesListViewController.swift in Sources */,
@@ -12516,6 +12722,8 @@
 				82A29F472B9BD5EF00756F43 /* SelectedFacultySplashScreenViewModel + Extensions.swift in Sources */,
 				827674F52C48B9F90083A849 /* TeachersListTableViewController.swift in Sources */,
 				82187CAC2C04FDA20033E6DC /* HintViewController.swift in Sources */,
+				82056BE32DF851FD0007D524 /* ASPUButtonScreens.swift in Sources */,
+				82D0EA812E01874100BE9C90 /* GlanceInfoOptionsListViewModel + Extensions.swift in Sources */,
 				8299E3B82B8A323200D81472 /* TimetableDateDetailViewController.swift in Sources */,
 				821270512A7903930095D68E /* PDFLastPageViewController.swift in Sources */,
 				8225279D2BACDCA200B66314 /* SavedNewsCategoryOptionTableViewCell.swift in Sources */,
@@ -12543,6 +12751,7 @@
 				822527562BA64D0100B66314 /* NewsCategoriesRandomizerViewController.swift in Sources */,
 				822862372CC70EB800EE5FED /* TabBarSoundOptions.swift in Sources */,
 				825D65C42D1B5A8100A84EE7 /* AdditionalTabOptionsListViewModel.swift in Sources */,
+				82056BF32DFA3A370007D524 /* ASPUButtonTimeSettingsViewController.swift in Sources */,
 				8217C3152B8FB7AF00A59412 /* ICustomSplashScreenEditorViewModel.swift in Sources */,
 				82808EA02A31F44500DEEB16 /* AGPUSubSectionModel.swift in Sources */,
 				8226D1712B0958F600B0B9F0 /* TimetableOptionTableViewCell.swift in Sources */,
@@ -12680,6 +12889,7 @@
 				8299524E2BDC9935003AFB14 /* ITimeTableFavouriteItemsListViewModel.swift in Sources */,
 				82C7B8462A50CD4C00F9A552 /* SettingsManager + Extensions.swift in Sources */,
 				8275B5112D23299A0051FA5B /* SayEveryWhereTableViewCell.swift in Sources */,
+				82056BE12DF851860007D524 /* ASPUButtonsScreenVariantsListTableViewController.swift in Sources */,
 				82875B002A5A1966007DB925 /* HapticsManagerProtocol.swift in Sources */,
 				82519B9B2BEAA87A00F136F8 /* OnlyMainVariantsListViewModel.swift in Sources */,
 				82754C732BD45C1B0021E76A /* BorderForDailyNewsTableViewCell.swift in Sources */,
@@ -12762,8 +12972,6 @@
 				82B97C152B9616FD00770F00 /* DayTableViewCell.swift in Sources */,
 				82958D992C3E1659007ACA24 /* LoadingIndicators.swift in Sources */,
 				82B1C0EE2A8123F800520C14 /* VoiceDirections.swift in Sources */,
-				8250B7AE2D5D22EF00ADE903 /* FloatingButtonTimetableOptionTableViewCell.swift in Sources */,
-				8250B7B32D5F109D00ADE903 /* FloatingButtonNewsOptionTableViewCell.swift in Sources */,
 				8295489C2A43AE7E007DEBA0 /* SettingsManager.swift in Sources */,
 				828CFA372A35F65700C7542D /* WebViewController.swift in Sources */,
 				82E4C5842A6B201600F65A67 /* LocationManagerProtocol.swift in Sources */,
@@ -12987,7 +13195,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.1.4;
+				MARKETING_VERSION = 4.1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -13030,7 +13238,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.1.4;
+				MARKETING_VERSION = 4.1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -25,7 +25,7 @@ extension TimeTableDayListTableViewController: UITableViewDelegate {
             }
             
             let infoAction = UIAction(title: "Подробнее", image: UIImage(named: "info")) { _ in
-                let vc = PairInfoTableViewController(pair: discipline!, id: self.id, date: self.date)
+                let vc = PairInfoTableViewController(pair: discipline!, id: self.id, date: self.timetable?.date ?? "")
                 let navVC = UINavigationController(rootViewController: vc)
                 navVC.modalPresentationStyle = .fullScreen
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
@@ -463,12 +463,24 @@ extension TimeTableDayListTableViewController: TimetableDayInfoViewControllerDel
     }
 }
 
+// MARK: - UIScrollViewDelegate
+extension TimeTableDayListTableViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        buttonSettingsManager?.handleScroll()
+    }
+}
+
 extension TimeTableDayListTableViewController {
     
     func checkTimetableShowVC() {
-        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
-        if style != .notShow {
-            checkTimeRange()
+        let style = settingsManager.checkScreenPresentationStyleOption()
+        let savedDate = settingsManager.getSavedDate(screen: "timetable day")
+        if savedDate != dateManager.getCurrentDate() {
+            UserDefaults.standard.set(dateManager.getCurrentDate(), forKey: "saved date timetable day")
+            if style != .notShow {
+                checkTimeRange()
+            }
         }
     }
     
@@ -484,7 +496,7 @@ extension TimeTableDayListTableViewController {
                 self.getTimeTable(id: self.id, date: self.date, owner: self.owner) {}
             }
             let cancel = UIAlertAction(title: "Отмена", style: .destructive)
-            self.showInfoAlert(title: "Показать расписание на завтра?", message: "", actions: [show, cancel])
+            self.showAlert(title: "Показать расписание на завтра?", message: "", actions: [show, cancel])
         }
     }
     
@@ -507,7 +519,7 @@ extension TimeTableDayListTableViewController {
     }
     
     func isMicOn()-> Bool {
-        let isOn = settingsManager.loadScreens().contains(SpeechScreens.timetableDay)
+        let isOn = settingsManager.loadSpeechScreens().contains(SpeechScreens.timetableDay)
         if isOn {
             return speechRecognitionManager.tapInstalled
         }
@@ -515,25 +527,25 @@ extension TimeTableDayListTableViewController {
     }
     
     func isRecording()-> Bool {
-        return settingsManager.loadScreens().contains(SpeechScreens.timetableDay)
+        return settingsManager.loadSpeechScreens().contains(SpeechScreens.timetableDay)
     }
     
     func checkVoiceCommandsOption() {
-        let screens = settingsManager.loadScreens()
+        let screens = settingsManager.loadSpeechScreens()
         if screens.contains(SpeechScreens.timetableDay) {
             resetSpeechRecognition()
         }
     }
     
     func startSpeechRecognition() {
-        let screens = settingsManager.loadScreens()
+        let screens = settingsManager.loadSpeechScreens()
         if screens.contains(SpeechScreens.timetableDay) {
             startRecognize()
         }
     }
     
     func resetSpeechRecognition() {
-        let screens = settingsManager.loadScreens()
+        let screens = settingsManager.loadSpeechScreens()
         if screens.contains(SpeechScreens.timetableDay) {
             cancelRecognition()
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
@@ -543,7 +555,7 @@ extension TimeTableDayListTableViewController {
     }
     
     func cancelRecognition() {
-        let screens = settingsManager.loadScreens()
+        let screens = settingsManager.loadSpeechScreens()
         if screens.contains(SpeechScreens.timetableDay) {
             speechRecognitionManager.cancelSpeechRecognition()
         }

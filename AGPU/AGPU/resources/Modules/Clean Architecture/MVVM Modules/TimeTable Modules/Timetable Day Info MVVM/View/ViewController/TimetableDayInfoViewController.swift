@@ -70,6 +70,7 @@ final class TimetableDayInfoViewController: UIViewController {
     
     @objc private func closeScreen() {
         delegate?.buttonWasTapped()
+        viewModel.saveCurrentDate()
         HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
     }

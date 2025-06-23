@@ -30,6 +30,10 @@ final class TimetableDayInfoViewModel {
         }
     }
     
+    func saveCurrentDate() {
+        UserDefaults.standard.set(dateManager.getCurrentDate(), forKey: "saved date timetable day")
+    }
+    
     func getFormattedDateString(date: String)-> String {
         let dayOfWeek = dateManager.getCurrentDayOfWeek(date: date)
         return "\(dayOfWeek) \(date)"

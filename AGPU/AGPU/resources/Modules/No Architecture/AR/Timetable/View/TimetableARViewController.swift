@@ -239,7 +239,7 @@ final class TimetableARViewController: UIViewController {
     }
     
     private func checkVoiceCommandsOption() {
-        let screens = settingsManager.loadScreens()
+        let screens = settingsManager.loadSpeechScreens()
         if screens.contains(SpeechScreens.ARTimetable) {
             startRecognize()
         }
@@ -257,7 +257,7 @@ final class TimetableARViewController: UIViewController {
         
         let style = settingsManager.getSavedCommunicationStyle()
         
-        let screens = settingsManager.loadScreens()
+        let screens = settingsManager.loadSpeechScreens()
         
         if screens.contains(SpeechScreens.ARTimetable) {
             style == .formal ? makeNavigationView(image: "microphone", title: "Говорите...") : makeNavigationView(image: "microphone", title: "Говори...")
@@ -294,14 +294,14 @@ final class TimetableARViewController: UIViewController {
     }
     
     private func cancelRecognition() {
-        let screens = settingsManager.loadScreens()
+        let screens = settingsManager.loadSpeechScreens()
         if screens.contains(SpeechScreens.ARTimetable) {
             speechRecognitionManager.cancelSpeechRecognition()
         }
     }
     
     func resetSpeechRecognition() {
-        let screens = settingsManager.loadScreens()
+        let screens = settingsManager.loadSpeechScreens()
         if screens.contains(SpeechScreens.ARTimetable) {
             cancelRecognition()
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in

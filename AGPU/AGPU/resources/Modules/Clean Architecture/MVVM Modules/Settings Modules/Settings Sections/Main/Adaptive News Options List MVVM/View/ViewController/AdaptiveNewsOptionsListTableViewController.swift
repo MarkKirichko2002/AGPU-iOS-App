@@ -30,7 +30,6 @@ final class AdaptiveNewsOptionsListTableViewController: UITableViewController {
         tableView.register(UINib(nibName: ShowOnlyDailyNewsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ShowOnlyDailyNewsTableViewCell.identifier)
         tableView.register(UINib(nibName: BorderForDailyNewsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: BorderForDailyNewsTableViewCell.identifier)
         tableView.register(UINib(nibName: NewsAdvancedModeOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: NewsAdvancedModeOptionTableViewCell.identifier)
-        tableView.register(UINib(nibName: FloatingButtonNewsOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FloatingButtonNewsOptionTableViewCell.identifier)
     }
     
     private func setUpNavigation() {
@@ -81,7 +80,7 @@ final class AdaptiveNewsOptionsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 9
+        return 8
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -114,8 +113,7 @@ final class AdaptiveNewsOptionsListTableViewController: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsAdvancedModeOptionTableViewCell.identifier, for: indexPath) as? NewsAdvancedModeOptionTableViewCell else {return UITableViewCell()}
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: FloatingButtonNewsOptionTableViewCell.identifier, for: indexPath) as? FloatingButtonNewsOptionTableViewCell else {return UITableViewCell()}
-            return cell
+            return UITableViewCell()
         }
     }
 }

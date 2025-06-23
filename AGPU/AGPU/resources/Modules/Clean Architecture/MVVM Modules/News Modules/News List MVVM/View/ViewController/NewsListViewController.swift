@@ -13,6 +13,7 @@ final class NewsListViewController: UIViewController {
     // MARK: - сервисы
     let viewModel = AGPUNewsListViewModel()
     let animation = AnimationClass()
+    var buttonSettingsManager: ButtonSettingsManager?
     
     var articles = [Article]()
     
@@ -55,6 +56,7 @@ final class NewsListViewController: UIViewController {
         setUpRefreshControl()
         bindViewModel()
         observeFloatingButton()
+        setUpButtonSettings()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -65,6 +67,7 @@ final class NewsListViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         viewModel.cancelRecognition()
+        buttonSettingsManager?.stopTimer()
     }
     
     private func setUpNavigation() {
@@ -484,6 +487,7 @@ final class NewsListViewController: UIViewController {
                     self.spinner.isHidden = true
                     self.animation.stopRotateAnimation(view: self.spinner)
                     self.resetFloatingButton()
+                    self.buttonSettingsManager?.checkTimer()
                 }
             case .table:
                 DispatchQueue.main.async {
@@ -496,6 +500,7 @@ final class NewsListViewController: UIViewController {
                     self.spinner.isHidden = true
                     self.animation.stopRotateAnimation(view: self.spinner)
                     self.resetFloatingButton()
+                    self.buttonSettingsManager?.checkTimer()
                 }
                 
             case .webpage:
@@ -507,6 +512,7 @@ final class NewsListViewController: UIViewController {
                     self.setUpIndicatorView()
                     self.setUpRefreshControl()
                     self.resetFloatingButton()
+                    self.buttonSettingsManager?.checkTimer()
                 }
             }
         }
@@ -588,7 +594,7 @@ final class NewsListViewController: UIViewController {
     }
     
     private func observeFloatingButton() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("floating button news"), object: nil, queue: .main) { _ in
+        NotificationCenter.default.addObserver(forName: Notification.Name("floating button news list"), object: nil, queue: .main) { _ in
             self.resetFloatingButton()
         }
     }
@@ -603,14 +609,13 @@ final class NewsListViewController: UIViewController {
     }
     
     private func createFloatingButton() {
-        let onFloatingButton = UserDefaults.standard.object(forKey: "onFloatingButton news") as? Bool ?? true
-        if onFloatingButton {
+        if viewModel.checkASPUButtonScreens() {
             setUpFloatingButton()
             animateFloatingButton()
         }
     }
     
-     func removeFloatingButton() {
+    func removeFloatingButton() {
         if let button = view.subviews.first(where: { $0.accessibilityIdentifier == "floating button" }) {
             button.removeFromSuperview()
         }
@@ -775,5 +780,9 @@ final class NewsListViewController: UIViewController {
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         self.present(navVC, animated: true)
+    }
+    
+    private func setUpButtonSettings() {
+        self.buttonSettingsManager = ButtonSettingsManager(screen: .newsList, view: self.view)
     }
 }

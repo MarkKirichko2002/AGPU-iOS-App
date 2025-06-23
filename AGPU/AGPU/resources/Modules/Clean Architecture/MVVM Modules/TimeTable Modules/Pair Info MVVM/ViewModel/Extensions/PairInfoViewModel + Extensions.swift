@@ -397,7 +397,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
     }
     
     func isRecording()-> Bool {
-        let screens = settingsManager.loadScreens()
+        let screens = settingsManager.loadSpeechScreens()
         return screens.contains(SpeechScreens.pairInfo)
     }
     

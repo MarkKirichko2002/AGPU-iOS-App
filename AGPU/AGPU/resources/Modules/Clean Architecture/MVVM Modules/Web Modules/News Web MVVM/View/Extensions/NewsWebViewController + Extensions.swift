@@ -22,6 +22,10 @@ extension NewsWebViewController: UIScrollViewDelegate {
         }
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        buttonSettingsManager?.handleScroll()
+    }
+    
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         print("прокрутка завершилась")
         HapticsManager.shared.hapticFeedback()
@@ -48,12 +52,25 @@ extension NewsWebViewController: WKNavigationDelegate {
         self.animation.stopRotateAnimation(view: self.spinner)
         self.spinner.isHidden = true
         viewModel.registerScrollPositionHandler{ position in
-            if position > 0 && webView.url?.absoluteString == self.url {
+            if webView.url?.absoluteString == self.url {
                 DispatchQueue.main.async {
                     webView.scrollView.setContentOffset(CGPoint(x: 0, y: position), animated: true)
                 }
             } else {
                 webView.scrollView.isUserInteractionEnabled = true
+            }
+        }
+        viewModel.registerScrollPositionStateHandler { position in
+            switch position {
+            case .top:
+                self.WVWEBview.scrollToUp()
+                self.updateMenuButton()
+            case .middle:
+                self.WVWEBview.scrollToMiddle()
+                self.updateMenuButton()
+            case .end:
+                self.WVWEBview.scrollToDown()
+                self.updateMenuButton()
             }
         }
         viewModel.getPosition()

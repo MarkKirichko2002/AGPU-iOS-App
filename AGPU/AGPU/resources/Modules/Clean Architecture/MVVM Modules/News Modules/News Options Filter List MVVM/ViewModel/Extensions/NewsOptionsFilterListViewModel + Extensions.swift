@@ -42,6 +42,10 @@ extension NewsOptionsFilterListViewModel: INewsOptionsFilterListViewModel {
             let beforeYesterday = dateManager.previousDay(date: yesterday)
             let filteredData = news.filter({ $0.date == beforeYesterday })
             return filteredData.count
+        case .currentWeek:
+            let dates = dateManager.datesOfCurrentWeek()
+            let filteredData = news.filter { dates.contains($0.date) }
+            return filteredData.count
         case .all:
             return news.count
         }

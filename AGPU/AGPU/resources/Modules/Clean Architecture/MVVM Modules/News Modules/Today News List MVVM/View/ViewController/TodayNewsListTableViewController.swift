@@ -70,6 +70,7 @@ final class TodayNewsListTableViewController: UIViewController {
         } else {
             HapticsManager.shared.hapticFeedback()
         }
+        viewModel.saveCurrentDate()
         dismiss(animated: true)
     }
     

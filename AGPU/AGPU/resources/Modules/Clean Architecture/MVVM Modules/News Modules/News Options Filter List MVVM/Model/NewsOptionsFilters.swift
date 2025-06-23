@@ -11,6 +11,7 @@ enum NewsOptionsFilters: String, CaseIterable, Codable {
     case today = "Сегодня"
     case yesterday = "Вчера"
     case dayBeforeYesterday = "Позавчера"
+    case currentWeek = "Текущая неделя"
     case all = "Все новости"
     
     var voiceCommand: String {
@@ -21,6 +22,8 @@ enum NewsOptionsFilters: String, CaseIterable, Codable {
             return "вчера"
         case .dayBeforeYesterday:
             return "позавчера"
+        case .currentWeek:
+            return "недел"
         case .all:
             return "все новости"
         }

@@ -577,7 +577,9 @@ final class AGPUTabBarController: UITabBarController {
     
     func checkActionToRecall() {
         if settingsManager.checkShakeToRecallOption() {
+        if !self.hidesBottomBarWhenPushed && (self.presentedViewController == nil) {
             openRecentMoments()
+        }
         } else {
             if !ASPUButton.isHidden {
                 self.updateASPUButton(icon: "info icon")

@@ -21,15 +21,26 @@ class ScreenPresentationStylesTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: "eye", title: viewModel.titleForNavigation(), frame: .zero)
-        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
-        closeButton.tintColor = .label
         navigationItem.titleView = titleView
-        navigationItem.rightBarButtonItem = closeButton
+        setUpBackButton()
     }
     
-    @objc private func closeScreen() {
-        HapticsManager.shared.hapticFeedback()
-        self.dismiss(animated: true)
+    func setUpBackButton() {
+        
+        let button = UIButton()
+        button.tintColor = .label
+        button.setImage(UIImage(named: "back"), for: .normal)
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        
+        let backButton = UIBarButtonItem(customView: button)
+        
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
+        navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc private func back() {
+        navigationController?.popViewController(animated: true)
     }
     
     private func setUpTable() {

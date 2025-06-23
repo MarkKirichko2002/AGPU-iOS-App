@@ -177,6 +177,14 @@ extension NewsListViewController: NewsFilterCategoriesListTableViewControllerDel
     }
 }
 
+// MARK: - UIScrollViewDelegate
+extension NewsListViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        buttonSettingsManager?.handleScroll()
+    }
+}
+
 extension NewsListViewController {
     
     func goToAR(images: [String]) {

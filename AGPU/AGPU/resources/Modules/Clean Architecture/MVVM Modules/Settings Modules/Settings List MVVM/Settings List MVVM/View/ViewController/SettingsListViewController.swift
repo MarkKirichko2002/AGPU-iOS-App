@@ -40,10 +40,11 @@ final class SettingsListViewController: UIViewController {
         // MARK: - Секция "Другие опции"
         // Say Anywhere
         tableView.register(UINib(nibName: SayAnyWhereTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SayAnyWhereTableViewCell.identifier)
+        tableView.register(UINib(nibName: ASPUButtonsScreenVariantsListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ASPUButtonsScreenVariantsListTableViewCell.identifier)
         // Action To Control
         tableView.register(UINib(nibName: ActionToRecallOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ActionToRecallOptionTableViewCell.identifier)
-        // Visual Info
-        tableView.register(UINib(nibName: VisualChangesOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: VisualChangesOptionTableViewCell.identifier)
+        // Glance Info
+        tableView.register(UINib(nibName: GlanceInfoOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: GlanceInfoOptionTableViewCell.identifier)
         // My Splash Screen
         tableView.register(UINib(nibName: SplashScreenOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SplashScreenOptionTableViewCell.identifier)
         // Personalized App Icons

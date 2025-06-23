@@ -64,7 +64,7 @@ extension NewsWebViewModel: INewsWebViewModel {
     }
     
     func isRecording()-> Bool {
-        let screens = settingsManager.loadScreens()
+        let screens = settingsManager.loadSpeechScreens()
         return screens.contains(SpeechScreens.newsWeb)
     }
     
@@ -133,11 +133,30 @@ extension NewsWebViewModel: INewsWebViewModel {
         
         if text.lowercased().contains("вверх") || text.lowercased().contains("верх") {
             positionY -= 60
+            scrollPositionHandler?(positionY)
         } else if text.lowercased().contains("низ") || text.lowercased().contains("вниз")  {
             positionY += 60
+            scrollPositionHandler?(positionY)
         }
         
-        scrollPositionHandler?(positionY)
+        if text.lowercased().contains("начал") {
+            self.currentScrollPosition = .top
+            scrollPositionStateHandler?(.top)
+        } else if text.lowercased().contains("середин") {
+            self.currentScrollPosition = .middle
+            scrollPositionStateHandler?(.middle)
+        } else if text.lowercased().contains("конец") {
+            self.currentScrollPosition = .end
+            scrollPositionStateHandler?(.end)
+        }
+    }
+    
+    func checkASPUButtonScreens()-> Bool {
+        return settingsManager.loadASPUButtonScreens().contains(ASPUButtonScreens.newsWebPage)
+    }
+    
+    func registerScrollPositionStateHandler(block: @escaping(scrollPositions)->Void) {
+        self.scrollPositionStateHandler = block
     }
     
     func registerScrollPositionHandler(block: @escaping(Double)->Void) {

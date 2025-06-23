@@ -144,7 +144,7 @@ final class NewsARViewController: UIViewController {
     }
     
     private func checkVoiceCommandsOption() {
-        let screens = settingsManager.loadScreens()
+        let screens = settingsManager.loadSpeechScreens()
         if screens.contains(SpeechScreens.ARNews) {
             startRecognize()
         }
@@ -155,7 +155,7 @@ final class NewsARViewController: UIViewController {
         
         let style = settingsManager.getSavedCommunicationStyle()
         
-        let screens = settingsManager.loadScreens()
+        let screens = settingsManager.loadSpeechScreens()
         
         if screens.contains(SpeechScreens.ARNews) {
             style == .formal ? makeNavigationView(image: "microphone", title: "Говорите...") : makeNavigationView(image: "microphone", title: "Говори...")
@@ -172,7 +172,7 @@ final class NewsARViewController: UIViewController {
     }
     
     private func cancelRecognition() {
-        let screens = settingsManager.loadScreens()
+        let screens = settingsManager.loadSpeechScreens()
         if screens.contains(SpeechScreens.ARNews) {
             speechRecognitionManager.cancelSpeechRecognition()
         }

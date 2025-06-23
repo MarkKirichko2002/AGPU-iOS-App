@@ -18,7 +18,7 @@ final class SpeechScreenVariantsListViewModel {
     private let settingsManager = SettingsManager()
     
     func getScreens() {
-        selectedScreens = settingsManager.loadScreens()
+        selectedScreens = settingsManager.loadSpeechScreens()
         dataChangedHandler?()
     }
     

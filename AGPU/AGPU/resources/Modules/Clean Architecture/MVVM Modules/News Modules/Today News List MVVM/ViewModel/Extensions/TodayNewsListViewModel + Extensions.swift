@@ -10,22 +10,6 @@ import Foundation
 // MARK: - ITodayNewsListViewModel
 extension TodayNewsListViewModel: ITodayNewsListViewModel {
     
-    func newsItemAtSection(section: Int, index: Int)-> Article {
-        return sections[section].news[index]
-    }
-    
-    func numberOfNewsSections()-> Int {
-        return sections.count
-    }
-    
-    func numberOfNewsInSection(section: Int)-> Int {
-        return sections[section].news.count
-    }
-    
-    func titleForHeaderInSection(section: Int)-> String {
-        return sections[section].name
-    }
-    
     func getNews() {
         
         let dispatchGroup = DispatchGroup()
@@ -70,6 +54,10 @@ extension TodayNewsListViewModel: ITodayNewsListViewModel {
         }
     }
     
+    func saveCurrentDate() {
+        UserDefaults.standard.set(dateManager.getCurrentDate(), forKey: "saved date news list")
+    }
+    
     func checkTodayNews(news: [Article])-> [Article] {
         let currentDate = dateManager.getCurrentDate()
         var articles = [Article]()
@@ -80,6 +68,23 @@ extension TodayNewsListViewModel: ITodayNewsListViewModel {
         }
         return articles
     }
+    
+    func newsItemAtSection(section: Int, index: Int)-> Article {
+        return sections[section].news[index]
+    }
+    
+    func numberOfNewsSections()-> Int {
+        return sections.count
+    }
+    
+    func numberOfNewsInSection(section: Int)-> Int {
+        return sections[section].news.count
+    }
+    
+    func titleForHeaderInSection(section: Int)-> String {
+        return sections[section].name
+    }
+    
     
     func makeUrlForCurrentArticle(section: Int, index: Int)-> String {
         let url = newsService.urlForCurrentArticle(abbreviation: sections[section].abbreviation, index: newsItemAtSection(section: section, index: index).id)
