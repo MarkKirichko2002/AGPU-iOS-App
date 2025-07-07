@@ -439,7 +439,7 @@ extension AGPUTabBarController {
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if !self.tabBar.isHidden {
-            checkActionToRecall()
+            checkActionToControl()
         }
     }
     
@@ -622,6 +622,24 @@ extension AGPUTabBarController {
            self.present(navVC, animated: true)
        }
    }
+    
+    func openTimetableSearch() {
+        let index = tabBar.subviews.firstIndex { $0.accessibilityIdentifier == "timetable" } ?? 0
+        selectedIndex = index - 1
+        UserDefaults.standard.setValue(selectedIndex, forKey: "index")
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+            self.timetableVC.openSearch()
+        }
+    }
+    
+    func openScheduleDaysVC() {
+        let index = tabBar.subviews.firstIndex { $0.accessibilityIdentifier == "timetable" } ?? 0
+        selectedIndex = index - 1
+        UserDefaults.standard.setValue(selectedIndex, forKey: "index")
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+            self.timetableVC.openDaysList()
+        }
+    }
     
     func openCalendarVC() {
         let index = tabBar.subviews.firstIndex { $0.accessibilityIdentifier == "timetable" } ?? 0

@@ -31,6 +31,8 @@ extension DaysListViewModel: DaysListViewModelProtocol {
             setUpWeekData(week: week)
         case .selected:
             setUpSelectedDays(dates: dates)
+        case .recent:
+            setUpRecentDays()
         }
     }
     
@@ -56,6 +58,12 @@ extension DaysListViewModel: DaysListViewModelProtocol {
     }
     
     func setUpSelectedDays(dates: [String]) {
+        self.days = dates.map({ DayModel(name: "Календарь", date: $0, dayOfWeek: dateManager.getCurrentDayOfWeek(date: $0), info: "Загрузка...")})
+        getTimetableInfo()
+    }
+    
+    func setUpRecentDays() {
+        let dates = UserDefaults.standard.array(forKey: "recent dates") as? [String] ?? []
         self.days = dates.map({ DayModel(name: "Календарь", date: $0, dayOfWeek: dateManager.getCurrentDayOfWeek(date: $0), info: "Загрузка...")})
         getTimetableInfo()
     }

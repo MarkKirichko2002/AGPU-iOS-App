@@ -87,13 +87,13 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
         var newsURL = ""
         
         if abbreviation == "-"  {
-            newsURL = "http://agpu.net/news.php?ELEMENT_ID=\(index)"
+            newsURL = "https://agpu.net/news.php?ELEMENT_ID=\(index)"
         } else if abbreviation == "educationaltechnopark" {
-            newsURL = "http://www.agpu.net/struktura-vuza/educationaltechnopark/news/news.php?ELEMENT_ID=\(index)"
+            newsURL = "https://www.agpu.net/struktura-vuza/educationaltechnopark/news/news.php?ELEMENT_ID=\(index)"
         } else if abbreviation == "PedagogicalQuantorium"  {
-            newsURL = "http://www.agpu.net/struktura-vuza/PedagogicalQuantorium/news/news.php?ELEMENT_ID=\(index)"
+            newsURL = "https://www.agpu.net/struktura-vuza/PedagogicalQuantorium/news/news.php?ELEMENT_ID=\(index)"
         } else {
-            newsURL = "http://agpu.net/struktura-vuza/faculties/\(abbreviation)/news/news.php?ELEMENT_ID=\(index)"
+            newsURL = "https://agpu.net/struktura-vuza/faculties/\(abbreviation)/news/news.php?ELEMENT_ID=\(index)"
         }
         
         return newsURL
@@ -102,15 +102,15 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
     // получить URL для конкретной веб-страницы
     func urlForCurrentWebPage(abbreviation: String, currentPage: Int)-> String {
         if abbreviation == "-" {
-            return "http://www.agpu.net/news.php?PAGEN_1=\(currentPage)"
+            return "https://www.agpu.net/news.php?PAGEN_1=\(currentPage)"
         } else if abbreviation == "PedagogicalQuantorium" {
-            return "http://www.agpu.net/struktura-vuza/PedagogicalQuantorium/news/news.php?PAGEN_1=\(currentPage)"
+            return "https://www.agpu.net/struktura-vuza/PedagogicalQuantorium/news/news.php?PAGEN_1=\(currentPage)"
         } else if abbreviation == "educationaltechnopark" {
-            return "http://www.agpu.net/struktura-vuza/educationaltechnopark/news/news.php?PAGEN_1=\(currentPage)"
+            return "https://www.agpu.net/struktura-vuza/educationaltechnopark/news/news.php?PAGEN_1=\(currentPage)"
         } else if abbreviation != "-" {
-            return "http://www.agpu.net/struktura-vuza/faculties-institutes/\(abbreviation)/news/news.php?PAGEN_1=\(currentPage)"
+            return "https://www.agpu.net/struktura-vuza/faculties-institutes/\(abbreviation)/news/news.php?PAGEN_1=\(currentPage)"
         }
-        return "http://www.agpu.net/news.php?PAGEN_1=\(currentPage)"
+        return "https://www.agpu.net/news.php?PAGEN_1=\(currentPage)"
     }
     
     // получить URL для пагинации
@@ -125,9 +125,5 @@ extension AGPUNewsService: AGPUNewsServiceProtocol {
             print(url)
             return url
         }
-    }
-    
-    func stopFetching() {
-        session.invalidateAndCancel()
     }
 }

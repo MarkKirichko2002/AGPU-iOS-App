@@ -75,10 +75,29 @@ final class TabsPositionListTableViewController: UITableViewController {
         viewModel.getData()
     }
     
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+            
+            let tab = self.viewModel.tabItem(index: indexPath.row)
+            
+            let editName = UIAction(title: "Изменить имя", image: UIImage(named: "text")) { _ in
+                self.showEditTabAlert(tab: tab)
+            }
+            
+            let editActions = UIAction(title: "Изменить действия", image: UIImage(named: "sections")) { _ in
+                let vc = CurrentTabFavouriteOptionsListViewController(title: self.viewModel.getTabName(tab: tab))
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+            return UIMenu(title: tab.name, children: [
+                editName,
+                editActions
+            ])
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        showEditAlert(tab: viewModel.tabItem(index: indexPath.row))
         tableView.deselectRow(at: indexPath, animated: true)
-        HapticsManager.shared.hapticFeedback()
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
@@ -103,19 +122,6 @@ final class TabsPositionListTableViewController: UITableViewController {
 }
 
 extension TabsPositionListTableViewController {
-    
-    func showEditAlert(tab: TabModel) {
-        let title = viewModel.convertTabName(tab: tab)
-        let editAction = UIAlertAction(title: "Название", style: .default) { _ in
-            self.showEditTabAlert(tab: tab)
-        }
-        let actionsList = UIAlertAction(title: "Действия", style: .default) { _ in
-            let vc = CurrentTabFavouriteOptionsListViewController(title: self.viewModel.getTabName(tab: tab))
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        let cancel = UIAlertAction(title: "Отмена", style: .destructive)
-        self.showAlert(title: "Вкладка \"\(title)\"", message: "что нужно изменить для вкладки?", actions: [editAction, actionsList, cancel])
-    }
     
     func showEditTabAlert(tab: TabModel) {
         
@@ -142,9 +148,7 @@ extension TabsPositionListTableViewController {
             self.viewModel.resetTitle(tab: tab)
         }
         
-        let cancel = UIAlertAction(title: "Отмена", style: .default) { _ in
-            self.showEditAlert(tab: tab)
-        }
+        let cancel = UIAlertAction(title: "Отмена", style: .default) { _ in}
         
         alertVC.addAction(saveAction)
         alertVC.addAction(resetsaveAction)

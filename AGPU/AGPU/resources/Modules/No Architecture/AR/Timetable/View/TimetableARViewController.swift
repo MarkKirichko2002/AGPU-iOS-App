@@ -478,6 +478,11 @@ final class TimetableARViewController: UIViewController {
                delegate?.dateWasChanged(date: date)
                getTimetable(date: date)
            }
+        case .recent:
+            if currentWeek.id == 0 {
+               delegate?.dateWasChanged(date: date)
+               getTimetable(date: date)
+           }
         }
     }
     
@@ -505,6 +510,12 @@ final class TimetableARViewController: UIViewController {
                 delegate?.dateWasChanged(date: date)
                 getTimetable(date: date)
             }
+        case .recent:
+            if currentWeek.id == 0 {
+                date = dateManager.previousDay(date: date)
+                delegate?.dateWasChanged(date: date)
+                getTimetable(date: date)
+            }
         }
     }
     
@@ -527,6 +538,12 @@ final class TimetableARViewController: UIViewController {
                 weekDelegate?.weekWasSelected(week: weeks[number])
             }
         case .selected:
+            if currentWeek.id == 0 {
+                date = dateManager.nextDay(date: date)
+                delegate?.dateWasChanged(date: date)
+                getTimetable(date: date)
+            }
+        case .recent:
             if currentWeek.id == 0 {
                 date = dateManager.nextDay(date: date)
                 delegate?.dateWasChanged(date: date)

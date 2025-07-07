@@ -228,6 +228,7 @@ final class AGPUTabBarController: UITabBarController {
             
             UITabBar.appearance().tintColor = settingsManager.getTabsColor().color
         }
+        setUpTabBarGestures()
         setUpContextMenu()
     }
     
@@ -412,10 +413,10 @@ final class AGPUTabBarController: UITabBarController {
         settingsManager.observeASPUButtonActionChanged {
             self.refreshGestures()
         }
-        setUpGestures()
+        setUpButtonGestures()
     }
     
-    private func setUpGestures() {
+    private func setUpButtonGestures() {
         let gesture = settingsManager.checkASPUButtonGestureOption().gesture
         gesture.addTarget(self, action: #selector(handleGestures))
         ASPUButton.addTarget(self, action: #selector(makeSmth), for: .touchUpInside)
@@ -431,13 +432,34 @@ final class AGPUTabBarController: UITabBarController {
         ASPUButton.addGestureRecognizer(gesture)
     }
     
+    private func setUpTabBarGestures() {
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(hideTabBar))
+        swipeLeft.direction = .left
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(showTabBar))
+        swipeRight.direction = .right
+        tabBar.addGestureRecognizer(swipeLeft)
+        tabBar.addGestureRecognizer(swipeRight)
+    }
+    
+    @objc private func hideTabBar() {
+        UIView.animate(withDuration: 0.3) {
+            self.tabBar.alpha = 0.1
+        }
+    }
+    
+    @objc private func showTabBar() {
+        UIView.animate(withDuration: 0.3) {
+            self.tabBar.alpha = 1
+        }
+    }
+    
     @objc private func makeSmth(sender: UIButton) {
         handleGestures(gesture: sender.gestureRecognizers!.last!)
     }
     
     private func refreshGestures() {
         ASPUButton.gestureRecognizers?.removeAll()
-        setUpGestures()
+        setUpButtonGestures()
     }
     
     @objc func openASPUButtonSettings() {
@@ -575,8 +597,8 @@ final class AGPUTabBarController: UITabBarController {
         }
     }
     
-    func checkActionToRecall() {
-        if settingsManager.checkShakeToRecallOption() {
+    func checkActionToControl() {
+        if settingsManager.checkActionToControlOption() {
         if !self.hidesBottomBarWhenPushed && (self.presentedViewController == nil) {
             openRecentMoments()
         }

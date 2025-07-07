@@ -277,6 +277,12 @@ extension UIViewController {
         }
     }
     
+    func closeVC() {
+        if self.presentedViewController != nil {
+            dismiss(animated: true)
+        }
+    }
+    
     func closeCameraButtonMenu() {
         if let button = view.subviews.first(where: { $0.accessibilityIdentifier == "camera button" }) {
             if (button as? UIButton)!.isHeld {

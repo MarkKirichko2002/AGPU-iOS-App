@@ -9,7 +9,7 @@ import UIKit
 
 protocol SettingsManagerProtocol {
     func checkCurrentIcon()-> String
-    func checkShakeToRecallOption()-> Bool
+    func checkActionToControlOption()-> Bool
     func checkOnlyMainOption()-> OnlyMainVariants
     func observeOnlyMainChangedOption(completion: @escaping()->Void)
     func checkSaveRecentTimetableItem()-> Bool

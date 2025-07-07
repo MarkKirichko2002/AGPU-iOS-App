@@ -58,13 +58,13 @@ final class ASPUButtonsScreenVariantsListTableViewController: UITableViewControl
             
             let screen = self.viewModel.screenItem(index: indexPath.row)
             
-            let timerAction = UIAction(title: "Время исчезновения", image: UIImage(named: "time icon")) {
-                _ in
-                let vc = ASPUButtonTimeSettingsViewController(screen: screen)
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-            
             if self.viewModel.checkScreen(screen: screen) {
+                let timerAction = UIAction(title: "Время исчезновения", image: UIImage(named: "time icon")) {
+                    _ in
+                    let vc = ASPUButtonTimeSettingsViewController(screen: screen)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+                
                 return UIMenu(title: screen.rawValue, children: [
                     timerAction
                 ])

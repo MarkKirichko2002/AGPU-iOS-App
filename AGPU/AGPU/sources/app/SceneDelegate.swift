@@ -37,12 +37,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func openScreen(tabBarController: AGPUTabBarController, title: String) {
-        print("НАЗВАНИЕ: \(title)")
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
             if title == "building" {
                 tabBarController.showNearestBuilding(isAction: true)
             } else if title == "maps" {
                 tabBarController.openCampusMap()
+            } else if title == "timetable search" {
+                tabBarController.openTimetableSearch()
+            } else if title == "schedule days" {
+                tabBarController.openScheduleDaysVC()
             } else if title == "weeks" {
                 tabBarController.openWeeksTimetable()
             } else if title == "calendar" {
@@ -53,10 +56,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 tabBarController.openWhatsNew()
             } else if title == "voice commands" {
                 tabBarController.openVoiceCommands(isAction: true)
-            } else if title == "app themes" {
-                tabBarController.openAppThemes()
-            } else if title == "app shortcuts" {
-                tabBarController.openAppShortcuts()
             }
         }
     }

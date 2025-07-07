@@ -37,8 +37,8 @@ extension SettingsManager: SettingsManagerProtocol {
     }
     
     // MARK: - Action To Control
-    func checkShakeToRecallOption()-> Bool {
-        let option = UserDefaults.standard.value(forKey: "onShakeToRecall") as? Bool ?? true
+    func checkActionToControlOption()-> Bool {
+        let option = UserDefaults.standard.value(forKey: "onActionToControl") as? Bool ?? true
         return option
     }
     
@@ -162,28 +162,38 @@ extension SettingsManager: SettingsManagerProtocol {
         return variant
     }
     
+    func saveAdditionalTabName(variant: AdditionalTabVariants, title: String) {
+        UserDefaults.standard.set(title, forKey: "\(variant.rawValue) title")
+    }
+    
+    func getAdditionalTabName(title: String)-> String {
+        let title = UserDefaults.standard.object(forKey: "\(title) title") as? String ?? ""
+        return title
+    }
+    
     func getAdditionalTab()-> UIViewController {
         let variant = getAdditionalTabVariant()
         let style = getTabsIconStyle()
+        let name = getAdditionalTabName(title: variant.rawValue)
         switch variant {
         case .button:
             return UIViewController()
         case .weeksList:
             let vc = AllWeeksListTableViewController(id: getSavedID(), subgroup: getSavedSubgroup(), owner: getSavedOwner())
-            vc.tabBarItem = UITabBarItem(title: "Недели", image: style == .flatIcon ? UIImage(named: "sections") : UIImage(systemName: "list.bullet"), selectedImage:  style == .flatIcon ? UIImage(named: "sections") : UIImage(systemName: "list.bullet"))
+            vc.tabBarItem = UITabBarItem(title: name, image: style == .flatIcon ? UIImage(named: "sections") : UIImage(systemName: "list.bullet"), selectedImage:  style == .flatIcon ? UIImage(named: "sections") : UIImage(systemName: "list.bullet"))
             vc.isTab = true
             let navVC = UINavigationController(rootViewController: vc)
             return navVC
         case .webSections:
             let vc = ASPUWebsiteSectionsListViewController()
-            vc.tabBarItem = UITabBarItem(title: "Разделы", image: style == .flatIcon ? UIImage(named: "globe") : UIImage(systemName: "globe"), selectedImage:  style == .flatIcon ? UIImage(named: "globe") : UIImage(systemName: "globe"))
+            vc.tabBarItem = UITabBarItem(title: name, image: style == .flatIcon ? UIImage(named: "globe") : UIImage(systemName: "globe"), selectedImage:  style == .flatIcon ? UIImage(named: "globe") : UIImage(systemName: "globe"))
             vc.isMain = true
             let navVC = UINavigationController(rootViewController: vc)
             return navVC
         case .maps:
             let vc = AGPUBuildingsMapViewController()
             let icons = getTabsIcons()
-            vc.tabBarItem = UITabBarItem(title: "Карты", image: icons[3].icon, selectedImage: icons[3].selectedIcon)
+            vc.tabBarItem = UITabBarItem(title: name, image: icons[3].icon, selectedImage: icons[3].selectedIcon)
             vc.isTab = true
             let navVC = UINavigationController(rootViewController: vc)
             return navVC
@@ -193,14 +203,14 @@ extension SettingsManager: SettingsManagerProtocol {
             annotation.coordinate = CLLocationCoordinate2D(latitude: 44.9892, longitude: 41.1234)
             let vc = LocationWeatherDetailViewController(annotation: annotation)
             let icons = getTabsIcons()
-            vc.tabBarItem = UITabBarItem(title: "Погода", image: icons[7].icon, selectedImage: icons[7].selectedIcon)
+            vc.tabBarItem = UITabBarItem(title: name, image: icons[7].icon, selectedImage: icons[7].selectedIcon)
             vc.isTab = true
             let navVC = UINavigationController(rootViewController: vc)
             return navVC
         case .building:
             let vc = NearBuildingViewController(info: .map)
             let icons = getTabsIcons()
-            vc.tabBarItem = UITabBarItem(title: "Здание", image: icons[8].icon, selectedImage: icons[8].selectedIcon)
+            vc.tabBarItem = UITabBarItem(title: name, image: icons[8].icon, selectedImage: icons[8].selectedIcon)
             vc.isTab = true
             vc.modalPresentationStyle = .fullScreen
             return vc

@@ -117,6 +117,9 @@ extension TimetableARViewController: DaysListTableViewControllerDelegate {
         case .selected:
             currentWeek = WeekModel(id: 0, from: "", to: "", dayNames: ["":""])
             isDay = true
+        case .recent:
+            currentWeek = WeekModel(id: 0, from: "", to: "", dayNames: ["":""])
+            isDay = true
         }
     }
     
@@ -144,6 +147,9 @@ extension TimetableARViewController: DaysListTableViewControllerDelegate {
         case .week:
             getTimetable(date: date)
         case .selected:
+            currentWeek = WeekModel(id: 0, from: "", to: "", dayNames: ["":""])
+            getTimetable(date: date)
+        case .recent:
             currentWeek = WeekModel(id: 0, from: "", to: "", dayNames: ["":""])
             getTimetable(date: date)
         }

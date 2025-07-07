@@ -18,9 +18,13 @@ enum DayType: String, CaseIterable {
     case near = "Ближайшие"
     case week = "Недели"
     case selected = "Выбранные"
+    case recent = "Недавние"
 }
 
-final class DaysListTableViewController: UITableViewController {
+final class DaysListTableViewController: UIViewController {
+    
+    private let tableView = UITableView()
+    private let noDatesLabel = UILabel()
     
     private var id = ""
     private var currentDate = ""
@@ -46,6 +50,7 @@ final class DaysListTableViewController: UITableViewController {
         super.viewDidLoad()
         setUpNavigation()
         setUpTable()
+        setUpLabel()
         bindViewModel()
     }
     
@@ -87,6 +92,11 @@ final class DaysListTableViewController: UITableViewController {
                 let navVC = UINavigationController(rootViewController: vc)
                 navVC.modalPresentationStyle = .fullScreen
                 self.present(navVC, animated: true)
+            case .recent:
+                self.viewModel.dayType = type
+                self.viewModel.resetData()
+                self.delegate?.dayTypeSelected(type: .recent)
+                self.updateMenu()
             }
         }
         }
@@ -99,30 +109,59 @@ final class DaysListTableViewController: UITableViewController {
     }
     
     private func setUpTable() {
+        view.addSubview(tableView)
+        tableView.frame = view.bounds
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.register(DayTableViewCell.self, forCellReuseIdentifier: DayTableViewCell.identifier)
     }
     
+    private func setUpLabel() {
+        view.addSubview(noDatesLabel)
+        noDatesLabel.text = "Список дат пуст"
+        noDatesLabel.font = .systemFont(ofSize: 18, weight: .medium)
+        noDatesLabel.isHidden = true
+        noDatesLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            noDatesLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            noDatesLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    
     private func bindViewModel() {
-        viewModel.setUpData()
         viewModel.registerDataChangedHandler {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+            if !self.viewModel.days.isEmpty {
+                self.noDatesLabel.isHidden = true
+            } else {
+                self.noDatesLabel.isHidden = false
+            }
         }
+        viewModel.setUpData()
     }
+}
+
+// MARK: - UITableViewDelegate
+extension DaysListTableViewController: UITableViewDelegate {
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.chooseDay(index: indexPath.row)
         delegate?.dateSelected(date: viewModel.dayItem(index: indexPath.row).date)
         dismiss(animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+}
+
+// MARK: - UITableViewDataSource
+extension DaysListTableViewController: UITableViewDataSource {
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.dayItemsCount()
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let day = viewModel.dayItem(index: indexPath.row)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DayTableViewCell.identifier, for: indexPath) as? DayTableViewCell else {return UITableViewCell()}
         cell.delegate = self

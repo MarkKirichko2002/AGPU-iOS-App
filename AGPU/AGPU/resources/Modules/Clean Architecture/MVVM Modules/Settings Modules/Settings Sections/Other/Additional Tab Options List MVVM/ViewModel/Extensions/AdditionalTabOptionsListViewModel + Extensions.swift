@@ -33,14 +33,46 @@ extension AdditionalTabOptionsListViewModel: IAdditionalTabOptionsListViewModel 
         }
     }
     
+    func editText(variant: AdditionalTabVariants, text: String) {
+        let index = AdditionalTabVariants.allCases.firstIndex(of: variant) ?? 0
+        settingsManager.saveAdditionalTabName(variant: AdditionalTabVariants.allCases[index], title: text)
+        NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
+        self.dataChangedHandler?()
+    }
+    
+    func resetTitle(variant: AdditionalTabVariants) {
+        let index = AdditionalTabVariants.allCases.firstIndex(of: variant) ?? 0
+        settingsManager.saveAdditionalTabName(variant: AdditionalTabVariants.allCases[index], title: AdditionalTabVariants.allCases[index].rawValue)
+        NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
+        self.dataChangedHandler?()
+    }
+    
     func isVariantSelected(index: Int)-> Bool {
         let savedVariant = settingsManager.getAdditionalTabVariant()
         let variant = variantItem(index: index)
-        
         if savedVariant.rawValue == variant.rawValue {
             return true
         }
         return false
+    }
+    
+    func textForVariant(variant: AdditionalTabVariants)-> String {
+        if !settingsManager.getAdditionalTabName(title: variant.rawValue).isEmpty {
+            return settingsManager.getAdditionalTabName(title: variant.rawValue)
+        } else {
+            return variant.rawValue
+        }
+    }
+    
+    func createEditAlertMessage()-> (String, String) {
+        let style = settingsManager.getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        switch style {
+        case .formal:
+            return ("Изменить вкладку", "\(!name.isEmpty ? "\(name) Вы точно хотите изменить" : "Вы точно хотите изменить") название вкладки?")
+        case .informal:
+            return ("Изменить вкладку", "\(!name.isEmpty ? "\(name) ты точно хочешь изменить" : "Ты точно хочешь изменить") название вкладки?")
+        }
     }
     
     func titleForNavigation()-> String {
