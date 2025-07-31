@@ -9,6 +9,17 @@ import UIKit
 import AVFoundation
 import Combine
 
+enum MenuState {
+    case opened
+    case closed
+}
+
+protocol TimeTableDayListTableViewControllerDelegate: AnyObject {
+    func didSwipeLeftEdge()
+    func didSwipeRightEdge()
+    func weekWasChanged(week: WeekModel)
+}
+
 final class TimeTableDayListTableViewController: UIViewController {
     
     var id = ""
@@ -18,7 +29,11 @@ final class TimeTableDayListTableViewController: UIViewController {
     var owner = ""
     var weeks = [WeekModel]()
     var dayType = DayType.week
-    var currentWeek = WeekModel(id: 0, from: "", to: "", dayNames: ["" : ""])
+    var currentWeek = WeekModel(id: 0, from: "", to: "", dayNames: ["" : ""]) {
+        didSet {
+            delegate?.weekWasChanged(week: currentWeek)
+        }
+    }
     var dates = [String]()
     var allDisciplines: [Discipline] = []
     var type: PairType = .all
@@ -36,6 +51,10 @@ final class TimeTableDayListTableViewController: UIViewController {
     var currentCameraPosition: AVCaptureDevice.Position = .back
     var captureSession: AVCaptureSession!
     var buttonSettingsManager: ButtonSettingsManager?
+    
+    private var menuState: MenuState = .closed
+    
+    weak var delegate: TimeTableDayListTableViewControllerDelegate?
     
     // MARK: - сервисы
     let service = TimeTableService()
@@ -75,6 +94,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         setUpRefreshControl()
         setUpIndicatorView()
         setUpLabel()
+        setUpSideMenu()
         getTimeTable(id: id, date: date, owner: owner) {}
         setUpCurrentWeek()
         createFloatingButton()
@@ -397,6 +417,28 @@ final class TimeTableDayListTableViewController: UIViewController {
             infoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             infoLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+    }
+    
+    private func setUpSideMenu() {
+        let swipeEdgeLeft = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(screenEdgeSwiped))
+        swipeEdgeLeft.edges = .left
+        let swipeEdgeRight = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(screenEdgeSwiped))
+        swipeEdgeRight.edges = .right
+        view.addGestureRecognizer(swipeEdgeLeft)
+        view.addGestureRecognizer(swipeEdgeRight)
+    }
+    
+    @objc func screenEdgeSwiped(_ recognizer: UIScreenEdgePanGestureRecognizer) {
+        if recognizer.state == .recognized {
+            switch recognizer.edges {
+            case .left:
+                delegate?.didSwipeLeftEdge()
+            case .right:
+                delegate?.didSwipeRightEdge()
+            default:
+                break
+            }
+        }
     }
     
     private func resetFloatingButton() {

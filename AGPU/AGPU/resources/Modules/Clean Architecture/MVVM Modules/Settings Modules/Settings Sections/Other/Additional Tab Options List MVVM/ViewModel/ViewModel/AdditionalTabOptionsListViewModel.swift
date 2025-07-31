@@ -13,5 +13,5 @@ final class AdditionalTabOptionsListViewModel {
     let settingsManager = SettingsManager()
     
     var dataChangedHandler: (()->Void)?
-    
+    var itemChangedHandler: ((Int)->Void)?
 }

@@ -15,6 +15,11 @@ extension TabsPositionListTableViewModel: ITabsPositionListTableViewModel {
     }
     
     func getData() {
+        getTabsPosition()
+        dataChangedHandler?()
+    }
+    
+    func getTabsPosition() {
         
         let icons = settingsManager.getTabsIcons()
         
@@ -31,21 +36,23 @@ extension TabsPositionListTableViewModel: ITabsPositionListTableViewModel {
         tabs[index2].icon = icons[1].icon.pngData()
         tabs[index3].icon = icons[2].icon.pngData()
         tabs[index4].icon = icons[4].icon.pngData()
-        
-        dataChangedHandler?()
     }
     
     func editText(tab: TabModel, text: String) {
         let index = tabs.firstIndex(of: tab) ?? 0
-        tabs[index].name = text
-        saveTabs(arr: tabs)
+        if tabs[index].name != text {
+            tabs[index].name = text
+            saveChanges(tab: tab)
+        }
     }
     
     func resetTitle(tab: TabModel) {
         let searchTab = TabsList.tabs.first { $0.id == tab.id }!
         let index = tabs.firstIndex(of: tab) ?? 0
-        tabs[index].name = searchTab.name
-        saveTabs(arr: tabs)
+        if tabs[index].name != searchTab.name {
+            tabs[index].name = searchTab.name
+            saveChanges(tab: tab)
+        }
     }
     
     func saveTabsPosition(_ index: Int, _ index2: Int) {
@@ -79,6 +86,22 @@ extension TabsPositionListTableViewModel: ITabsPositionListTableViewModel {
         }
     }
     
+    func saveChanges(tab: TabModel) {
+        do {
+            let arr = try JSONEncoder().encode(tabs)
+            UserDefaults.standard.setValue(arr, forKey: "tabs")
+            getChanges(index: tabs.firstIndex(where: { $0.id == tab.id })!)
+            sendNotifications()
+        } catch {
+            print(error)
+        }
+    }
+    
+    func getChanges(index: Int) {
+        getTabsPosition()
+        itemChangedHandler?(index)
+    }
+    
     func sendNotifications() {
         NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
         NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
@@ -99,7 +122,7 @@ extension TabsPositionListTableViewModel: ITabsPositionListTableViewModel {
         if tab.id == 1 {
             return "news"
         } else if tab.id == 2 {
-            return "favourites"
+            return "sections"
         } else if tab.id == 3 {
             return "timetable"
         } else if tab.id == 4 {
@@ -115,5 +138,9 @@ extension TabsPositionListTableViewModel: ITabsPositionListTableViewModel {
     
     func registerDataChangedHandler(block: @escaping()->Void) {
         self.dataChangedHandler = block
+    }
+    
+    func registerItemChangedHandler(block: @escaping(Int)->Void) {
+        self.itemChangedHandler = block
     }
 }

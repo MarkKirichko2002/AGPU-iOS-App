@@ -87,13 +87,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         case .corps:
             return BuildingSplashScreenViewController(animation: AnimationClass())
         case .technopark:
-            return RegularSplashScreenViewController(animation: AnimationClass(), icon: "technopark", text: "Технопарк", width: 180, height: 180)
+            return RegularSplashScreenViewController(animation: AnimationClass(), icon: "technopark", text: "Технопарк", width: 160, height: 160)
         case .quantorium:
             return RegularSplashScreenViewController(animation: AnimationClass(), icon: "кванториум", text: "Кванториум", width: 160, height: 160)
         case .season:
             return SeasonSplashScreenViewController(animation: AnimationClass())
         case .halloween:
-            return RegularSplashScreenViewController(animation: AnimationClass(), icon: "pumpkin", text: "Хэллоуин", width: 100, height: 100)
+            return RegularSplashScreenViewController(animation: AnimationClass(), icon: "pumpkin", text: "Хэллоуин", width: 90, height: 90)
+        case .additionalTab:
+            return AdditionalTabSplashScreenViewController(animation: AnimationClass())
         case .custom:
             return customVC
         case .random:

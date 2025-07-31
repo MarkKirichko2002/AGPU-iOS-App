@@ -33,18 +33,19 @@ extension AllWeeksListViewModel: AllWeeksListViewModelProtocol {
     func getCurrentWeek() {
         if !weeks.isEmpty {
             for week in weeks {
-                if currentWeek.id == 0 {
-                    if isCurrentWeek(index: week.id - 1) {
+                if isCurrentWeek(index: week.id - 1) {
+                    if week.id != 1 {
                         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
                             self.scrollHandler?(week.id - 1)
                         }
                         currentWeek = week
                         break
+                    } else {
+                        currentWeek = week
+                        notScrollHandler?()
                     }
                 } else {
-                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                        self.scrollHandler?(self.currentWeek.id - 1)
-                    }
+                    notScrollHandler?()
                 }
             }
         }

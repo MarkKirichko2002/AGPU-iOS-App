@@ -10,9 +10,11 @@ import Foundation
 final class TabsPositionListTableViewModel {
     
     var tabs = TabsList.tabs
-    var dataChangedHandler: (()->Void)?
     
     // MARK: - сервисы
     let settingsManager = SettingsManager()
+    
+    var dataChangedHandler: (()->Void)?
+    var itemChangedHandler: ((Int)->Void)?
     
 }

@@ -43,10 +43,10 @@ final class RandomSplashScreenViewController: UIViewController {
     private let RandomDescription: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "Нажмите на дайс или встряхните ваш \(UIDevice.name) для случайного выбора экрана заставки."
+        label.text = "Нажать на дайс или встряхнуть \(UIDevice.name) для случайного выбора экрана заставки."
         label.textColor = .label
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 18, weight: .black)
+        label.font = .systemFont(ofSize: 20, weight: .black)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

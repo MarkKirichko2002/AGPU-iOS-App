@@ -11,6 +11,9 @@ import UIKit
 extension CurrentTabFavouriteOptionsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let info = viewModel.createTextInfoForOption(option: viewModel.optionItem(index: indexPath.row))
+        self.showAlert(title: info.0, message: info.1, actions: [UIAlertAction(title: "ОК", style: .default)])
+        HapticsManager.shared.hapticFeedback()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -28,8 +31,13 @@ extension CurrentTabFavouriteOptionsListViewController: UITableViewDelegate {
                 self.setUpEditButton(title: "Готово")
             }
             
+            let editName = UIAction(title: "Редактировать", image: UIImage(named: "edit")) { _ in
+                self.showEditOptionAlert(option: self.viewModel.optionItem(index: indexPath.row))
+            }
+            
             return UIMenu(title: self.viewModel.optionItem(index: indexPath.row).title, children: [
-                positionAction
+                positionAction,
+                editName
             ])
         }
     }
@@ -62,5 +70,43 @@ extension CurrentTabFavouriteOptionsListViewController: UITableViewDataSource {
 extension CurrentTabFavouriteOptionsListViewController: CurrentTabOptionsListTableViewControllerDelegate {
     func optionWasAdded() {
         viewModel.getOptions()
+    }
+}
+
+extension CurrentTabFavouriteOptionsListViewController {
+    
+    func showEditOptionAlert(option: TabOptionModel) {
+        
+        let alertVC = UIAlertController(title: viewModel.createEditAlertMessage().0, message: viewModel.createEditAlertMessage().1, preferredStyle: .alert)
+        
+        alertVC.addTextField { (textField) in
+            textField.placeholder = "Название"
+            textField.text = option.title
+        }
+        
+        let saveAction = UIAlertAction(title: "Сохранить", style: .default) { _ in
+            if let name = alertVC.textFields![0].text {
+                if !name.isEmpty {
+                    if name.count <= 15 {
+                        self.viewModel.editText(option: option, text: name)
+                    } else {
+                        self.showAlert(title: "Слишком много текста!", message: "Количество символов не должно превышать 15", actions: [UIAlertAction(title: "ОК", style: .default) { _ in self.showEditOptionAlert(option: option)}])
+                    }
+                }
+            }
+        }
+        
+        let resetsaveAction = UIAlertAction(title: "Сбросить", style: .destructive) { _ in
+            self.viewModel.resetTitle(option: option)
+        }
+        
+        let cancel = UIAlertAction(title: "Отмена", style: .default) { _ in}
+        
+        alertVC.addAction(saveAction)
+        alertVC.addAction(resetsaveAction)
+        alertVC.addAction(cancel)
+        
+        SpeechSynthesizerManager.shared.checkIsSaying(text: "\(alertVC.title ?? "") \(alertVC.message ?? "")")
+        present(alertVC, animated: true)
     }
 }

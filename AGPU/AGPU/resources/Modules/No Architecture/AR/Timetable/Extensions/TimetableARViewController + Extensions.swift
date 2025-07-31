@@ -103,7 +103,7 @@ extension TimetableARViewController: CalendarARViewControllerDelegate {
     }
 }
 
-// MARK: - TimeTableDayListTableViewController
+// MARK: - DaysListTableViewControllerDelegate
 extension TimetableARViewController: DaysListTableViewControllerDelegate {
     
     func dayTypeSelected(type: DayType) {

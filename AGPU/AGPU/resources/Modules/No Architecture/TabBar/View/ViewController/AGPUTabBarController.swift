@@ -16,12 +16,12 @@ final class AGPUTabBarController: UITabBarController {
     // MARK: - вкладки
     // новости
     let newsVC = NewsListViewController()
-    // избранное
-    var favouritesListVC = FavouriteSectionsListViewController()
+    // разделы
+    var sectionsListVC = FavouriteSectionsListViewController()
     // кнопка
     let middleButton = UIViewController()
     // расписание
-    let timetableVC = TimeTableDayListTableViewController()
+    let timetableContainerVC = TimeTableContainerViewController()
     // карты
     let mapsVC = SimpleMapViewController()
     // настройки
@@ -94,18 +94,17 @@ final class AGPUTabBarController: UITabBarController {
     private func setUpTab() {
         settingsManager.observeOnlyMainChangedOption {
             self.removeViews()
-            self.setUpTabs()
             self.resetSavedTab()
+            self.setUpTabs()
         }
         settingsManager.observeTabsChanged {
             self.removeViews()
+            self.resetSavedTab()
             self.setUpTabBars()
             self.setUpTabs()
-            self.resetSavedTab()
         }
         setUpTabBars()
         setUpTabs()
-        setUpSavedTab()
     }
     
     private func removeViews() {
@@ -120,9 +119,9 @@ final class AGPUTabBarController: UITabBarController {
         // новости
         newsVC.tabBarItem = UITabBarItem(title: "Новости", image: icons[0].icon, selectedImage: icons[0].selectedIcon)
         // избранное
-        favouritesListVC.tabBarItem = UITabBarItem(title: "Избранное", image: icons[1].icon, selectedImage: icons[1].selectedIcon)
+        sectionsListVC.tabBarItem = UITabBarItem(title: "Разделы", image: icons[1].icon, selectedImage: icons[1].selectedIcon)
         // расписание
-        timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: icons[2].icon, selectedImage: icons[2].selectedIcon)
+        self.timetableContainerVC.tabBarItem = UITabBarItem(title: "Расписание", image: icons[2].icon, selectedImage: icons[2].selectedIcon)
         // кнопка
         middleButton.tabBarItem = UITabBarItem(title: "", image: UIImage(named: ""), selectedImage: UIImage(named: ""))
         // карты
@@ -138,8 +137,8 @@ final class AGPUTabBarController: UITabBarController {
     private func setUpTabs() {
         
         let nav1VC = UINavigationController(rootViewController: newsVC)
-        let nav2VC = UINavigationController(rootViewController: favouritesListVC)
-        let nav3VC = UINavigationController(rootViewController: timetableVC)
+        let nav2VC = UINavigationController(rootViewController: sectionsListVC)
+        let nav3VC = timetableContainerVC
         let nav4VC = UINavigationController(rootViewController: mapsVC)
         let nav5VC = UINavigationController(rootViewController: settingsVC)
         let nav6VC = UINavigationController(rootViewController: sectionsVC)
@@ -219,9 +218,11 @@ final class AGPUTabBarController: UITabBarController {
             
             setViewControllers(tabs, animated: false)
             
+            setUpSavedTab()
+            
             if variant == .button {
-                 ASPUButton.isHidden = false
-                 disableTab()
+                ASPUButton.isHidden = false
+                disableTab()
             } else {
                 ASPUButton.isHidden = true
             }
@@ -316,7 +317,7 @@ final class AGPUTabBarController: UITabBarController {
         let settingsListInteraction = UIContextMenuInteraction(delegate: self)
         if let sectionsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[5].icon}) {
             tabBar.subviews[sectionsIndex].addInteraction(sectionsInteraction)
-            tabBar.subviews[sectionsIndex].accessibilityIdentifier = "sections"
+            tabBar.subviews[sectionsIndex].accessibilityIdentifier = "web sections"
         }
         if let settingsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[4].icon}) {
             tabBar.subviews[settingsIndex].addInteraction(settingsListInteraction)
@@ -355,7 +356,7 @@ final class AGPUTabBarController: UITabBarController {
         }
         if let favouriteIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[1].icon}) {
             tabBar.subviews[favouriteIndex].addInteraction(favouriteListInteraction)
-            tabBar.subviews[favouriteIndex].accessibilityIdentifier = "favourites"
+            tabBar.subviews[favouriteIndex].accessibilityIdentifier = "sections"
         }
         if let timetableIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[2].icon}) {
             tabBar.subviews[timetableIndex].addInteraction(timetableListInteraction)
@@ -371,7 +372,7 @@ final class AGPUTabBarController: UITabBarController {
         }
         if let sectionsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[5].icon}) {
             tabBar.subviews[sectionsIndex].addInteraction(sectionsInteraction)
-            tabBar.subviews[sectionsIndex].accessibilityIdentifier = "sections"
+            tabBar.subviews[sectionsIndex].accessibilityIdentifier = "web sections"
         }
         if let weeksIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[6].icon}) {
             tabBar.subviews[weeksIndex].addInteraction(weeksInteraction)
@@ -433,24 +434,48 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     private func setUpTabBarGestures() {
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(hideTabBar))
-        swipeLeft.direction = .left
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(showTabBar))
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(showTabBarSettings))
         swipeRight.direction = .right
-        tabBar.addGestureRecognizer(swipeLeft)
         tabBar.addGestureRecognizer(swipeRight)
+        setUpGestureForTabs()
     }
     
-    @objc private func hideTabBar() {
-        UIView.animate(withDuration: 0.3) {
-            self.tabBar.alpha = 0.1
+    private func setUpGestureForTabs() {
+        if settingsManager.checkOnlyMainOption() == .custom {
+            for view in tabBar.subviews {
+                let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+                swipeUp.direction = .up
+                let index = tabBar.subviews.firstIndex(of: view) ?? 0
+                if settingsManager.getAdditionalTabVariant() == .none {
+                    tabBar.subviews[index].addGestureRecognizer(swipeUp)
+                } else {
+                    if index != 2 {
+                        tabBar.subviews[index].addGestureRecognizer(swipeUp)
+                    }
+                }
+            }
         }
     }
     
-    @objc private func showTabBar() {
-        UIView.animate(withDuration: 0.3) {
-            self.tabBar.alpha = 1
+    @objc private func handleSwipe(_ gesture: UITapGestureRecognizer) {
+        if let view = gesture.view {
+            let vc = CurrentTabFavouriteOptionsListViewController(title: view.accessibilityIdentifier ?? "")
+            vc.isSettings = true
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+            HapticsManager.shared.hapticFeedback()
+        } else {
+            print("хз братан")
         }
+    }
+    
+    @objc private func showTabBarSettings() {
+        let vc = OnlyMainVariantsListTableViewController()
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true)
+        HapticsManager.shared.hapticFeedback()
     }
     
     @objc private func makeSmth(sender: UIButton) {
@@ -599,9 +624,9 @@ final class AGPUTabBarController: UITabBarController {
     
     func checkActionToControl() {
         if settingsManager.checkActionToControlOption() {
-        if !self.hidesBottomBarWhenPushed && (self.presentedViewController == nil) {
-            openRecentMoments()
-        }
+            if !self.hidesBottomBarWhenPushed && (self.presentedViewController == nil) {
+                openRecentMoments()
+            }
         } else {
             if !ASPUButton.isHidden {
                 self.updateASPUButton(icon: "info icon")

@@ -49,7 +49,6 @@ final class TabsOptionsListTableViewController: UITableViewController {
         tableView.register(UINib(nibName: TabsColorOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TabsColorOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: FontOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FontOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: TabsIconStyleTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TabsIconStyleTableViewCell.identifier)
-        tableView.register(UINib(nibName: SoundOptionsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SoundOptionsTableViewCell.identifier)
         tableView.register(UINib(nibName: TabsAnimationOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TabsAnimationOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: RecentTabOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RecentTabOptionTableViewCell.identifier)
     }
@@ -85,10 +84,6 @@ final class TabsOptionsListTableViewController: UITableViewController {
             let vc = TabIconsStyleListTableViewController()
             navigationController?.pushViewController(vc, animated: true)
             HapticsManager.shared.hapticFeedback()
-        case 5:
-            let vc = TabBarSoundOptionsListTableViewController()
-            navigationController?.pushViewController(vc, animated: true)
-            HapticsManager.shared.hapticFeedback()
         default:
             break
         }
@@ -96,7 +91,7 @@ final class TabsOptionsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return 7
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -120,10 +115,6 @@ final class TabsOptionsListTableViewController: UITableViewController {
             cell.configure(style: viewModel.getIconsStyle())
             return cell
         } else if indexPath.row == 5 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: SoundOptionsTableViewCell.identifier, for: indexPath) as? SoundOptionsTableViewCell else {return UITableViewCell()}
-            cell.configure(option: viewModel.getSoundOption())
-            return cell
-        } else if indexPath.row == 6 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TabsAnimationOptionTableViewCell.identifier, for: indexPath) as? TabsAnimationOptionTableViewCell else {return UITableViewCell()}
             return cell
         } else {

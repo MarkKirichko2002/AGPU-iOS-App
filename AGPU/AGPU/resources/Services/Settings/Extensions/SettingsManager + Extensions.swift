@@ -173,27 +173,27 @@ extension SettingsManager: SettingsManagerProtocol {
     
     func getAdditionalTab()-> UIViewController {
         let variant = getAdditionalTabVariant()
-        let style = getTabsIconStyle()
+        let icons = getTabsIcons()
         let name = getAdditionalTabName(title: variant.rawValue)
+        let title = !name.isEmpty ? name : variant.rawValue
         switch variant {
         case .button:
             return UIViewController()
         case .weeksList:
             let vc = AllWeeksListTableViewController(id: getSavedID(), subgroup: getSavedSubgroup(), owner: getSavedOwner())
-            vc.tabBarItem = UITabBarItem(title: name, image: style == .flatIcon ? UIImage(named: "sections") : UIImage(systemName: "list.bullet"), selectedImage:  style == .flatIcon ? UIImage(named: "sections") : UIImage(systemName: "list.bullet"))
+            vc.tabBarItem = UITabBarItem(title: title, image: icons[6].icon, selectedImage: icons[6].selectedIcon)
             vc.isTab = true
             let navVC = UINavigationController(rootViewController: vc)
             return navVC
         case .webSections:
             let vc = ASPUWebsiteSectionsListViewController()
-            vc.tabBarItem = UITabBarItem(title: name, image: style == .flatIcon ? UIImage(named: "globe") : UIImage(systemName: "globe"), selectedImage:  style == .flatIcon ? UIImage(named: "globe") : UIImage(systemName: "globe"))
+            vc.tabBarItem = UITabBarItem(title: title, image: icons[5].icon, selectedImage: icons[5].selectedIcon)
             vc.isMain = true
             let navVC = UINavigationController(rootViewController: vc)
             return navVC
         case .maps:
             let vc = AGPUBuildingsMapViewController()
-            let icons = getTabsIcons()
-            vc.tabBarItem = UITabBarItem(title: name, image: icons[3].icon, selectedImage: icons[3].selectedIcon)
+            vc.tabBarItem = UITabBarItem(title: title, image: icons[3].icon, selectedImage: icons[3].selectedIcon)
             vc.isTab = true
             let navVC = UINavigationController(rootViewController: vc)
             return navVC
@@ -202,15 +202,13 @@ extension SettingsManager: SettingsManagerProtocol {
             annotation.title = "Армавир"
             annotation.coordinate = CLLocationCoordinate2D(latitude: 44.9892, longitude: 41.1234)
             let vc = LocationWeatherDetailViewController(annotation: annotation)
-            let icons = getTabsIcons()
-            vc.tabBarItem = UITabBarItem(title: name, image: icons[7].icon, selectedImage: icons[7].selectedIcon)
+            vc.tabBarItem = UITabBarItem(title: title, image: icons[7].icon, selectedImage: icons[7].selectedIcon)
             vc.isTab = true
             let navVC = UINavigationController(rootViewController: vc)
             return navVC
         case .building:
             let vc = NearBuildingViewController(info: .map)
-            let icons = getTabsIcons()
-            vc.tabBarItem = UITabBarItem(title: name, image: icons[8].icon, selectedImage: icons[8].selectedIcon)
+            vc.tabBarItem = UITabBarItem(title: title, image: icons[8].icon, selectedImage: icons[8].selectedIcon)
             vc.isTab = true
             vc.modalPresentationStyle = .fullScreen
             return vc
@@ -244,18 +242,18 @@ extension SettingsManager: SettingsManagerProtocol {
         switch style {
         case .flatIcon:
             let news = TabBarIconModel(icon: UIImage(named: "mail")!, selectedIcon: UIImage(named: "mail selected")!)
-            let favourites = TabBarIconModel(icon: UIImage(named: "star icon")!, selectedIcon: UIImage(named: "star icon selected")!)
+            let favourites = TabBarIconModel(icon: UIImage(named: "sections")!, selectedIcon: UIImage(named: "sections")!)
             let timetable = TabBarIconModel(icon: UIImage(named: "time icon")!, selectedIcon: UIImage(named: "time icon selected")!)
             let maps = TabBarIconModel(icon: UIImage(named: "map")!, selectedIcon: UIImage(named: "map selected")!)
             let settings = TabBarIconModel(icon: UIImage(named: "settings")!, selectedIcon: UIImage(named: "settings selected")!)
             let sections = TabBarIconModel(icon: UIImage(named: "globe")!, selectedIcon: UIImage(named: "globe")!)
-            let weeks = TabBarIconModel(icon: UIImage(named: "sections")!, selectedIcon: UIImage(named: "sections")!)
+            let weeks = TabBarIconModel(icon: UIImage(named: "calendar icon")!, selectedIcon: UIImage(named: "calendar icon selected")!)
             let weather = TabBarIconModel(icon: UIImage(named: "cloud icon")!, selectedIcon: UIImage(named: "cloud icon selected")!)
             let marker = TabBarIconModel(icon: UIImage(named: "marker")!, selectedIcon: UIImage(named: "marker selected")!)
             return [news, favourites, timetable, maps, settings, sections, weeks, weather, marker]
         case .apple:
             let news = TabBarIconModel(icon: UIImage(systemName: "newspaper")!, selectedIcon: UIImage(systemName: "newspaper.fill")!)
-            let favourites = TabBarIconModel(icon: UIImage(systemName: "star")!, selectedIcon: UIImage(systemName: "star.fill")!)
+            let favourites = TabBarIconModel(icon: UIImage(systemName: "calendar")!, selectedIcon: UIImage(systemName: "calendar")!)
             let timetable = TabBarIconModel(icon: UIImage(systemName: "clock")!, selectedIcon: UIImage(systemName: "clock.fill")!)
             let maps = TabBarIconModel(icon: UIImage(systemName: "map")!, selectedIcon: UIImage(systemName: "map.fill")!)
             let settings = TabBarIconModel(icon: UIImage(systemName: "gearshape")!, selectedIcon: UIImage(systemName: "gearshape.fill")!)

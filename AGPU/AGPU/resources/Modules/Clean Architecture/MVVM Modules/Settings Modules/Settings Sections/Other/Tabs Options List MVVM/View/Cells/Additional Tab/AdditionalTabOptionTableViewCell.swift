@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AdditionalTabOptionTableViewCell: UITableViewCell {
+final class AdditionalTabOptionTableViewCell: UITableViewCell {
 
     static let identifier = "AdditionalTabOptionTableViewCell"
     

@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct TabOptionModel: Codable {
-    let title: String
+struct TabOptionModel: Codable, Equatable {
+    let id: Int
+    var title: String
 }
 
 struct TabOptionsSectionModel {
@@ -19,30 +20,30 @@ struct TabOptionsSectionModel {
 struct TabOptionsSections {
     static let sections = [
         TabOptionsSectionModel(title: "news", options: [
-            TabOptionModel(title: "Новости за сегодня"),
-            TabOptionModel(title: "Список категорий"),
-            TabOptionModel(title: "Список страниц"),
-            TabOptionModel(title: "Рандомайзер"),
-            TabOptionModel(title: "Фильтрация")
+            TabOptionModel(id: 1, title: "Новости за сегодня"),
+            TabOptionModel(id: 2, title: "Список категорий"),
+            TabOptionModel(id: 3, title: "Список страниц"),
+            TabOptionModel(id: 4, title: "Рандомайзер"),
+            TabOptionModel(id: 5, title: "Фильтрация")
         ]),
-        TabOptionsSectionModel(title: "favourites", options: [
-            TabOptionModel(title: "Добавить раздел"),
-            TabOptionModel(title: "Изменить порядок"),
+        TabOptionsSectionModel(title: "sections", options: [
+            TabOptionModel(id: 1, title: "Добавить раздел"),
+            TabOptionModel(id: 2, title: "Изменить порядок"),
         ]),
         TabOptionsSectionModel(title: "timetable", options: [
-            TabOptionModel(title: "Календарь"),
-            TabOptionModel(title: "Список недель"),
-            TabOptionModel(title: "Список дней"),
-            TabOptionModel(title: "Избранное"),
-            TabOptionModel(title: "Поиск")
+            TabOptionModel(id: 1, title: "Календарь"),
+            TabOptionModel(id: 2, title: "Список недель"),
+            TabOptionModel(id: 3, title: "Список дней"),
+            TabOptionModel(id: 4, title: "Избранное"),
+            TabOptionModel(id: 5, title: "Поиск")
         ]),
         TabOptionsSectionModel(title: "settings", options: [
-            TabOptionModel(title: "Новости"),
-            TabOptionModel(title: "Расписание"),
-            TabOptionModel(title: "Панель вкладок"),
-            TabOptionModel(title: "Темы приложения"),
-            TabOptionModel(title: "АГПУ кнопка"),
-            TabOptionModel(title: "Шорткаты приложения"),
+            TabOptionModel(id: 1, title: "Новости"),
+            TabOptionModel(id: 2, title: "Расписание"),
+            TabOptionModel(id: 3, title: "Панель вкладок"),
+            TabOptionModel(id: 4, title: "Темы приложения"),
+            TabOptionModel(id: 5, title: "АГПУ кнопка"),
+            TabOptionModel(id: 6, title: "Шорткаты приложения"),
         ]),
     ]
 }

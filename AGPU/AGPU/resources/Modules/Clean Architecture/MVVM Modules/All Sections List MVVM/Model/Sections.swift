@@ -28,7 +28,7 @@ struct Sections {
         ForEveryStatusModel(
             id: 4,
             image: UIImage(named: "university")!.pngData()!,
-            name: "Институты/факультета"
+            name: "Институты/факультеты"
         ),
         ForEveryStatusModel(
             id: 5,
@@ -42,13 +42,38 @@ struct Sections {
         ),
         ForEveryStatusModel(
             id: 7,
-            image: UIImage(named: "box")!.pngData()!,
-            name: "Важные вещи"
+            image: UIImage(named: "wallpaper")!.pngData()!,
+            name: "АГПУ обои"
         ),
         ForEveryStatusModel(
             id: 8,
+            image: UIImage(named: "document")!.pngData()!,
+            name: "Документы"
+        ),
+        ForEveryStatusModel(
+            id: 9,
             image: UIImage(named: "photo icon")!.pngData()!,
-            name: "АГПУ обои"
+            name: "Изображения"
+        ),
+        ForEveryStatusModel(
+            id: 10,
+            image: UIImage(named: "play icon")!.pngData()!,
+            name: "Видео"
+        ),
+        ForEveryStatusModel(
+            id: 11,
+            image: UIImage(named: "contacts icon")!.pngData()!,
+            name: "Контакты"
+        ),
+        ForEveryStatusModel(
+            id: 12,
+            image: UIImage(named: "clock")!.pngData()!,
+            name: "Расписание"
+        ),
+        ForEveryStatusModel(
+            id: 13,
+            image: UIImage(named: "online")!.pngData()!,
+            name: "Web-страницы"
         )
     ]
 }

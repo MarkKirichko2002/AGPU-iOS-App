@@ -11,6 +11,7 @@ import MapKit
 final class FavouriteSectionsListViewController: UIViewController {
     
     var sections = [ForEveryStatusModel]()
+    var currentSection = ForEveryStatusModel(id: 0, image: Data(), name: "")
     var buttonSettingsManager: ButtonSettingsManager?
     
     // MARK: - сервисы
@@ -43,7 +44,7 @@ final class FavouriteSectionsListViewController: UIViewController {
     }
     
     func setUpNavigation() {
-        let titleView = CustomTitleView(image: "star", title: "Избранное", frame: .zero)
+        let titleView = CustomTitleView(image: "sections icon", title: "Разделы", frame: .zero)
         navigationItem.titleView = titleView
         setUpEditButton(title: "Править")
         setUpAddButton()
@@ -332,7 +333,7 @@ extension FavouriteSectionsListViewController: UITableViewDelegate {
         case 7:
             if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
                 cell.didTapCell(indexPath: indexPath) {
-                    let vc = ThingsCategoriesListTableViewController()
+                    let vc = AGPUWallpapersListViewController()
                     vc.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
@@ -341,7 +342,53 @@ extension FavouriteSectionsListViewController: UITableViewDelegate {
         case 8:
             if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
                 cell.didTapCell(indexPath: indexPath) {
-                    let vc = AGPUWallpapersListViewController()
+                    let vc = DocumentsListTableViewController()
+                    vc.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            
+        case 9:
+            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
+                cell.didTapCell(indexPath: indexPath) {
+                    let vc = SavedImagesListTableViewController()
+                    vc.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            
+        case 10:
+            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
+                cell.didTapCell(indexPath: indexPath) {
+                    let vc = SavedVideosListTableViewController()
+                    vc.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            
+        case 11:
+            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
+                cell.didTapCell(indexPath: indexPath) {
+                    let vc = ContactsListTableViewController()
+                    vc.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            
+        case 12:
+            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
+                cell.didTapCell(indexPath: indexPath) {
+                    let vc = TimeTableFavouriteItemsListTableViewController()
+                    vc.isSettings = true
+                    vc.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            
+        case 13:
+            if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
+                cell.didTapCell(indexPath: indexPath) {
+                    let vc = SavedWebPagesListTableViewController()
                     vc.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
@@ -362,13 +409,8 @@ extension FavouriteSectionsListViewController: UITableViewDelegate {
                 self.showEditAlert(section: item)
             }
             
-            let resetAction = UIAction(title: "Сбросить", image: UIImage(named: "refresh")) { _ in
-                self.resetTitle(section: item)
-            }
-            
-            return UIMenu(title: item.name, children: [
-                editAction,
-                resetAction
+            return UIMenu(title: self.templateName(section: item), children: [
+                editAction
             ])
         }
     }
@@ -418,11 +460,47 @@ extension FavouriteSectionsListViewController: UIScrollViewDelegate {
     }
 }
 
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
+extension FavouriteSectionsListViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else {return}
+        guard let imageData = image.jpegData(compressionQuality: 1.0) else {return}
+        print("фотка выбрана")
+        editImage(section: currentSection, image: imageData)
+        self.dismiss(animated: true)
+    }
+}
+
+
 extension FavouriteSectionsListViewController {
     
     func showEditAlert(section: ForEveryStatusModel) {
+        let alertVC = UIAlertController(title: "Раздел \"\(templateName(section: section))\"", message: "Что изменить?", preferredStyle: .alert)
+        let editTitle = UIAlertAction(title: "Название", style: .default) { _ in
+            self.showEditTitleAlert(section: section)
+        }
+        let editImage = UIAlertAction(title: "Изображение", style: .default) { _ in
+            self.currentSection = section
+            self.showEditImageAlert(section: section)
+        }
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive)
         
-        let alertVC = UIAlertController(title: createEditAlertMessage().0, message: createEditAlertMessage().1, preferredStyle: .alert)
+        alertVC.addAction(editTitle)
+        alertVC.addAction(editImage)
+        alertVC.addAction(cancel)
+        
+        SpeechSynthesizerManager.shared.checkIsSaying(text: "\(alertVC.title ?? "") \(alertVC.message ?? "")")
+        present(alertVC, animated: true)
+    }
+    
+    func templateName(section: ForEveryStatusModel)-> String {
+        return Sections.list.first { $0.id == section.id }!.name
+    }
+    
+    func showEditTitleAlert(section: ForEveryStatusModel) {
+        
+        let alertVC = UIAlertController(title: createEditTitleAlertMessage().0, message: createEditTitleAlertMessage().1, preferredStyle: .alert)
         
         alertVC.addTextField { (textField) in
             textField.placeholder = "Название"
@@ -437,13 +515,32 @@ extension FavouriteSectionsListViewController {
             }
         }
         
-        let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+        let reset = UIAlertAction(title: "Сбросить", style: .destructive) { _ in
+            self.resetTitle(section: section)
+        }
+        
+        let cancel = UIAlertAction(title: "Отмена", style: .default)
         
         alertVC.addAction(saveAction)
+        alertVC.addAction(reset)
         alertVC.addAction(cancel)
         
         SpeechSynthesizerManager.shared.checkIsSaying(text: "\(alertVC.title ?? "") \(alertVC.message ?? "")")
         present(alertVC, animated: true)
+    }
+    
+    func showEditImageAlert(section: ForEveryStatusModel) {
+        let vc = UIImagePickerController()
+        vc.delegate = self
+        vc.sourceType = .photoLibrary
+        vc.allowsEditing = true
+        self.present(vc, animated: true)
+    }
+    
+    func editImage(section: ForEveryStatusModel, image: Data) {
+        let index = sections.firstIndex(of: section) ?? 0
+        sections[index].image = image
+        saveChanges(section: section)
     }
     
     func editText(section: ForEveryStatusModel, text: String) {
@@ -465,14 +562,14 @@ extension FavouriteSectionsListViewController {
         }
     }
     
-    func createEditAlertMessage()-> (String, String) {
+    func createEditTitleAlertMessage()-> (String, String) {
         let style = settingsManager.getSavedCommunicationStyle()
         let name = UserDefaults.standard.string(forKey: "name") ?? ""
         switch style {
         case .formal:
-            return ("Изменить раздел", "\(!name.isEmpty ? "\(name) Вы точно хотите изменить" : "Вы точно хотите изменить") название раздела?")
+            return ("Изменить название", "\(!name.isEmpty ? "\(name) Вы точно хотите изменить" : "Вы точно хотите изменить") название раздела?")
         case .informal:
-            return ("Изменить раздел", "\(!name.isEmpty ? "\(name) ты точно хочешь изменить" : "Ты точно хочешь изменить") название раздела?")
+            return ("Изменить название", "\(!name.isEmpty ? "\(name) ты точно хочешь изменить" : "Ты точно хочешь изменить") название раздела?")
         }
     }
 }

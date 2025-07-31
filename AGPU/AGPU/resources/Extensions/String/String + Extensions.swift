@@ -81,16 +81,16 @@ extension String {
         let title = self
         if title == "news" {
             return "Новости"
-        } else if title == "favourites" {
-            return "Избранное"
+        } else if title == "sections" {
+            return "Разделы"
         } else if title == "timetable" {
             return "Расписание"
         } else if title == "settings" {
             return "Настройки"
         } else if title == "maps" {
             return "Карты"
-        } else if title == "sections" {
-            return "Разделы"
+        } else if title == "web sections" {
+            return "Разделы сайта"
         } else if title == "weeks" {
             return "Недели"
         } else if title == "weather" {

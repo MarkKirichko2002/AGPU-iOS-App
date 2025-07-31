@@ -72,6 +72,11 @@ final class TabsPositionListTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
+        viewModel.registerItemChangedHandler { index in
+            DispatchQueue.main.async {
+                self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .left)
+            }
+        }
         viewModel.getData()
     }
     
@@ -80,7 +85,7 @@ final class TabsPositionListTableViewController: UITableViewController {
             
             let tab = self.viewModel.tabItem(index: indexPath.row)
             
-            let editName = UIAction(title: "Изменить имя", image: UIImage(named: "text")) { _ in
+            let editName = UIAction(title: "Редактировать", image: UIImage(named: "edit")) { _ in
                 self.showEditTabAlert(tab: tab)
             }
             
@@ -97,6 +102,9 @@ final class TabsPositionListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let info = viewModel.convertTabName(tab: viewModel.tabItem(index: indexPath.row))
+        self.showAlert(title: info, message: "", actions: [UIAlertAction(title: "ОК", style: .default)])
+        HapticsManager.shared.hapticFeedback()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

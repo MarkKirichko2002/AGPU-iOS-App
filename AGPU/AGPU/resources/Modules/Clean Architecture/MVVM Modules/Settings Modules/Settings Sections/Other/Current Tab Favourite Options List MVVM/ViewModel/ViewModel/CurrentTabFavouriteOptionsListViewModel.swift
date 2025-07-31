@@ -11,10 +11,12 @@ final class CurrentTabFavouriteOptionsListViewModel {
     
     var options = [TabOptionModel]()
     var title: String
-    var dataChangedHandler: (()->Void)?
     
     // MARK: - сервисы
     let settingsManager = SettingsManager()
+    
+    var dataChangedHandler: (()->Void)?
+    var itemChangedHandler: ((Int)->Void)?
     
     init(title: String) {
         self.title = title

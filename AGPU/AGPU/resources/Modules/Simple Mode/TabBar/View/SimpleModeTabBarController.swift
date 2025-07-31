@@ -17,7 +17,7 @@ final class SimpleModeTabBarController: UITabBarController {
     private func setUpTabs() {
         let newsListVC = UINavigationController(rootViewController: NewsListViewController())
         newsListVC.tabBarItem = UITabBarItem(title: "Новости", image: UIImage(named: "mail"), selectedImage: UIImage(named: "mail selected"))
-        let timetableVC = UINavigationController(rootViewController: TimeTableDayListTableViewController())
+        let timetableVC = UINavigationController(rootViewController: TimeTableContainerViewController())
         timetableVC.tabBarItem = UITabBarItem(title: "Расписание", image: UIImage(named: "time icon"), selectedImage: UIImage(named: "time icon selected"))
         let mapVC = UINavigationController(rootViewController: SimpleMapViewController())
         mapVC.tabBarItem = UITabBarItem(title: "Карты", image: UIImage(named: "map"), selectedImage: UIImage(named: "map selected"))

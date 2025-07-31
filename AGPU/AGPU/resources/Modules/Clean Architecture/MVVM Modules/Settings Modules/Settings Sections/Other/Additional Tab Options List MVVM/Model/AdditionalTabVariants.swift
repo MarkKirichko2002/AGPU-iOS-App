@@ -15,4 +15,23 @@ enum AdditionalTabVariants: String, CaseIterable, Codable {
     case weather = "Погода"
     case building = "Нужное здание"
     case none = "Ничего"
+    
+    var icon: String {
+        switch self {
+        case .button:
+            return "button"
+        case .weeksList:
+            return "calendar"
+        case .webSections:
+            return "online"
+        case .maps:
+            return "map icon"
+        case .weather:
+            return "sun"
+        case .building:
+            return "pin"
+        case .none:
+            return ""
+        }
+    }
 }

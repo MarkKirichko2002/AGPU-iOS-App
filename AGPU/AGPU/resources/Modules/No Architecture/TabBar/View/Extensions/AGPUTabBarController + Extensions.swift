@@ -131,7 +131,7 @@ extension AGPUTabBarController: UIContextMenuInteractionDelegate {
         let savedActions = settingsManager.getTabOptions(title: title!)
         let variant = settingsManager.checkOnlyMainOption()
         if variant == .custom {
-            if !savedActions.isEmpty || title == "sections" || title == "maps" || title == "weeks" || title == "weather" || title == "building" {
+            if !savedActions.isEmpty || title == "web sections" || title == "maps" || title == "weeks" || title == "weather" || title == "building" {
                 return makeMenu(view: view)
             } else {
                 let vc = HintViewController(info: "Нужно добавить действия для вкладки \"\(title!.getCurrentTabName())\" в настройках панели вкладок.")
@@ -158,7 +158,7 @@ extension AGPUTabBarController: UIContextMenuInteractionDelegate {
         let savedFont = settingsManager.getTabsFont()
         let savedActions = settingsManager.getTabOptions(title: title)
         var actions = [UIAction]()
-        if title == "sections" {
+        if title == "web sections" {
             actions = makeSectionsOptions()
         } else if title == "maps" {
             actions = makeMapsOptions()
@@ -169,7 +169,7 @@ extension AGPUTabBarController: UIContextMenuInteractionDelegate {
         } else if title == "building" {
             actions = makeBuildingOptions()
         } else {
-            actions = savedActions.map { findAction(title: $0.title) }
+            actions = savedActions.map { findAction(category: title, action: $0) }
         }
         if savedFont != .none {
             let font = UIFont(name: savedFont.rawValue, size: 15)!
@@ -257,21 +257,21 @@ extension AGPUTabBarController {
     func makeFavouriteOptions()-> [UIAction] {
         
         let addSection = UIAction(title: "Добавить раздел", image: UIImage(named: "add")) { _ in
-            if let index = self.tabBar.subviews.firstIndex(where: { $0.accessibilityIdentifier == "favourites"}) {
+            if let index = self.tabBar.subviews.firstIndex(where: { $0.accessibilityIdentifier == "sections"}) {
                 self.selectedIndex = index - 1
                 UserDefaults.standard.setValue(self.selectedIndex, forKey: "index")
                 Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                    self.favouritesListVC.addButtonTapped()
+                    self.sectionsListVC.addButtonTapped()
                 }
             }
         }
         
         let changeSections = UIAction(title: "Изменить порядок", image: UIImage(named: "number")) { _ in
-            if let index = self.tabBar.subviews.firstIndex(where: { $0.accessibilityIdentifier == "favourites"}) {
+            if let index = self.tabBar.subviews.firstIndex(where: { $0.accessibilityIdentifier == "sections"}) {
                 self.selectedIndex = index - 1
                 UserDefaults.standard.setValue(self.selectedIndex, forKey: "index")
                 Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                    self.favouritesListVC.startEdit()
+                    self.sectionsListVC.startEdit()
                 }
             }
         }
@@ -285,7 +285,7 @@ extension AGPUTabBarController {
                 self.selectedIndex = index - 1
                 UserDefaults.standard.setValue(self.selectedIndex, forKey: "index")
                 Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                    self.timetableVC.openCalendar()
+                    self.timetableContainerVC.timetableDayVC.openCalendar()
                 }
             }
         }
@@ -304,7 +304,7 @@ extension AGPUTabBarController {
                 self.selectedIndex = index - 1
                 UserDefaults.standard.setValue(self.selectedIndex, forKey: "index")
                 Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                    self.timetableVC.openDaysList()
+                    self.timetableContainerVC.timetableDayVC.openDaysList()
                 }
             }
         }
@@ -314,7 +314,7 @@ extension AGPUTabBarController {
                 self.selectedIndex = index - 1
                 UserDefaults.standard.setValue(self.selectedIndex, forKey: "index")
                 Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                    self.timetableVC.openFavouritesList()
+                    self.timetableContainerVC.timetableDayVC.openFavouritesList()
                 }
             }
         }
@@ -324,7 +324,7 @@ extension AGPUTabBarController {
                 self.selectedIndex = index - 1
                 UserDefaults.standard.setValue(self.selectedIndex, forKey: "index")
                 Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                    self.timetableVC.openSearch()
+                    self.timetableContainerVC.timetableDayVC.openSearch()
                 }
             }
         }
@@ -426,10 +426,13 @@ extension AGPUTabBarController {
         return [refresh]
     }
     
-    func findAction(title: String)-> UIAction  {
+    func findAction(category: String, action: TabOptionModel)-> UIAction  {
+        let originalActions = TabOptionsSections.sections.first { $0.title == category }!
+        let searchAction = originalActions.options.first(where: { $0.id == action.id })!
         let allActions = makeNewsOptions() + makeFavouriteOptions() + makeTimetableOptions() + makeSettingsOptions() + makeSectionsOptions()
-        let action = allActions.first { $0.title == title }!
-        return action
+        let item = allActions.first { $0.title == searchAction.title }!
+        item.title = action.title
+        return item
     }
     
     // MARK: - Action To Get
@@ -628,7 +631,7 @@ extension AGPUTabBarController {
         selectedIndex = index - 1
         UserDefaults.standard.setValue(selectedIndex, forKey: "index")
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            self.timetableVC.openSearch()
+            self.timetableContainerVC.timetableDayVC.openSearch()
         }
     }
     
@@ -637,7 +640,7 @@ extension AGPUTabBarController {
         selectedIndex = index - 1
         UserDefaults.standard.setValue(selectedIndex, forKey: "index")
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            self.timetableVC.openDaysList()
+            self.timetableContainerVC.timetableDayVC.openDaysList()
         }
     }
     
@@ -646,7 +649,7 @@ extension AGPUTabBarController {
         selectedIndex = index - 1
         UserDefaults.standard.setValue(selectedIndex, forKey: "index")
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            self.timetableVC.openCalendar()
+            self.timetableContainerVC.timetableDayVC.openCalendar()
         }
     }
    

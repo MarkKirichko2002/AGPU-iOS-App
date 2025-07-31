@@ -26,7 +26,7 @@ extension AllShortcutsListViewModel: IAllShortcutsListViewModel {
     func saveShortcut(shortcut: ShortcutModel) {
         var shortcuts = loadActions()
         if shortcuts.count < 4 {
-            if !shortcuts.contains(where: { $0.title == shortcut.title }) {
+            if !shortcuts.contains(where: { $0.id == shortcut.id }) {
                 HapticsManager.shared.hapticFeedback()
                 shortcuts.append(shortcut)
             }

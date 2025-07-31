@@ -30,10 +30,6 @@ extension FavouriteShortcutsListTableViewController: UITableViewDelegate {
                 self.showEditAlert(shortcut: self.viewModel.shortcutItem(index: indexPath.row))
             }
             
-            let resetAction = UIAction(title: "Сбросить", image: UIImage(named: "refresh")) { _ in
-                self.viewModel.resetShortcut(shortcut: self.viewModel.shortcutItem(index: indexPath.row))
-            }
-            
             let positionAction = UIAction(title: "Позиция", image: UIImage(named: "number")) { _ in
                 tableView.isEditing.toggle()
                 self.setUpEditButton(title: "Готово")
@@ -41,7 +37,6 @@ extension FavouriteShortcutsListTableViewController: UITableViewDelegate {
             
             return UIMenu(title: self.viewModel.shortcutItem(index: indexPath.row).title, children: [
                 editAction,
-                resetAction,
                 positionAction
             ])
         }
@@ -122,9 +117,14 @@ extension FavouriteShortcutsListTableViewController {
             }
         }
         
-        let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+        let reset = UIAlertAction(title: "Сбросить", style: .destructive) { _ in
+            self.viewModel.resetShortcut(shortcut: shortcut)
+        }
+        
+        let cancel = UIAlertAction(title: "Отмена", style: .default)
         
         alertVC.addAction(saveAction)
+        alertVC.addAction(reset)
         alertVC.addAction(cancel)
         
         SpeechSynthesizerManager.shared.checkIsSaying(text: "\(alertVC.title ?? "") \(alertVC.message ?? "")")

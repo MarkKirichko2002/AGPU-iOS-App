@@ -1457,4 +1457,11 @@ extension TimeTableDayListTableViewController {
         }}
         return UIMenu(title: "Типы навигации", children: types)
     }
+    
+    func nextWeek()-> WeekModel {
+        if (currentWeek.id < weeks.last?.id ?? 0) && currentWeek.id != 0 {
+            return weeks[currentWeek.id]
+        }
+        return WeekModel(id: 0, from: "", to: "", dayNames: ["":""])
+    }
 }

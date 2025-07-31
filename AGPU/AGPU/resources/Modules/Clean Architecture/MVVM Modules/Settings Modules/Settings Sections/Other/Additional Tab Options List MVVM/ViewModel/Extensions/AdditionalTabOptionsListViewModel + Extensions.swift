@@ -35,16 +35,22 @@ extension AdditionalTabOptionsListViewModel: IAdditionalTabOptionsListViewModel 
     
     func editText(variant: AdditionalTabVariants, text: String) {
         let index = AdditionalTabVariants.allCases.firstIndex(of: variant) ?? 0
-        settingsManager.saveAdditionalTabName(variant: AdditionalTabVariants.allCases[index], title: text)
-        NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
-        self.dataChangedHandler?()
+        if textForVariant(variant: variant) != text {
+            saveChanges(title: text, index: index)
+        }
     }
     
     func resetTitle(variant: AdditionalTabVariants) {
         let index = AdditionalTabVariants.allCases.firstIndex(of: variant) ?? 0
-        settingsManager.saveAdditionalTabName(variant: AdditionalTabVariants.allCases[index], title: AdditionalTabVariants.allCases[index].rawValue)
+        if AdditionalTabVariants.allCases[index].rawValue != textForVariant(variant: variant) {
+            saveChanges(title: AdditionalTabVariants.allCases[index].rawValue, index: index)
+        }
+    }
+    
+    func saveChanges(title: String, index: Int) {
+        settingsManager.saveAdditionalTabName(variant: AdditionalTabVariants.allCases[index], title: title)
         NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
-        self.dataChangedHandler?()
+        self.itemChangedHandler?(index)
     }
     
     func isVariantSelected(index: Int)-> Bool {
@@ -87,5 +93,9 @@ extension AdditionalTabOptionsListViewModel: IAdditionalTabOptionsListViewModel 
     
     func registerDataChangedHandler(block: @escaping()->Void) {
         self.dataChangedHandler = block
+    }
+    
+    func registerItemChangedHandler(block: @escaping(Int)->Void) {
+        self.itemChangedHandler = block
     }
 }

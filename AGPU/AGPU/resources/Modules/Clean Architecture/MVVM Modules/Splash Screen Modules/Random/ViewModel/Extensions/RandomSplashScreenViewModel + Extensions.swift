@@ -12,9 +12,9 @@ extension RandomSplashScreenViewModel: IRandomSplashScreenViewModel {
     
     func generateRandomScreen()-> UIViewController {
         let randomScreen = SplashScreenOptions.allCases.randomElement()!
-        let regularVC = RegularSplashScreenViewController(animation:  AnimationClass(), icon: "АГПУ", text: "ФГБОУ ВО «АГПУ»", width: 180, height: 180)
+        let regularVC = RegularSplashScreenViewController(animation:  AnimationClass(), icon: "АГПУ", text: "ФГБОУ ВО «АГПУ»", width: 160, height: 160)
         let facultyVC = SelectedFacultySplashScreenViewController(animation: AnimationClass())
-        let newYearVC = RegularSplashScreenViewController(animation:  AnimationClass(), icon: "новый год", text: "ФГБОУ ВО «АГПУ»", width: 180, height: 180)
+        let newYearVC = RegularSplashScreenViewController(animation:  AnimationClass(), icon: "новый год", text: "ФГБОУ ВО «АГПУ»", width: 160, height: 160)
         let weatherVC = WeatherSplashScreenViewController(animation: AnimationClass())
         let newsVC = NewsSplashScreenViewController(animation: AnimationClass())
         let timetableVC = TimeTableSplashScreenViewController(animation: AnimationClass())
@@ -36,13 +36,15 @@ extension RandomSplashScreenViewModel: IRandomSplashScreenViewModel {
         case .corps:
             return BuildingSplashScreenViewController(animation: AnimationClass())
         case .technopark:
-            return RegularSplashScreenViewController(animation: AnimationClass(), icon: "technopark", text: "Технопарк", width: 180, height: 180)
+            return RegularSplashScreenViewController(animation: AnimationClass(), icon: "technopark", text: "Технопарк", width: 160, height: 160)
         case .quantorium:
             return RegularSplashScreenViewController(animation: AnimationClass(), icon: "кванториум", text: "Кванториум", width: 160, height: 160)
         case .season:
             return SeasonSplashScreenViewController(animation: AnimationClass())
         case .halloween:
-            return RegularSplashScreenViewController(animation: AnimationClass(), icon: "pumpkin", text: "Хэллоуин", width: 100, height: 100)
+            return RegularSplashScreenViewController(animation: AnimationClass(), icon: "pumpkin", text: "Хэллоуин", width: 90, height: 90)
+        case .additionalTab:
+            return AdditionalTabSplashScreenViewController(animation: AnimationClass())
         case .custom:
             return customVC
         case .random:

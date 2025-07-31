@@ -135,6 +135,7 @@ final class AllWeeksListTableViewController: UIViewController {
         
         viewModel.registerNotScrollHandler {
             DispatchQueue.main.async {
+                self.navigationItem.title = "Текущая неделя \(self.viewModel.currentWeek.id)"
                 self.tableView.isUserInteractionEnabled = true
             }
         }
@@ -143,7 +144,7 @@ final class AllWeeksListTableViewController: UIViewController {
             DispatchQueue.main.async {
                 let indexPath = IndexPath(row: row, section: 0)
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-                self.navigationItem.title = "Текущая неделя \(row + 1)"
+                self.navigationItem.title = "Текущая неделя \(self.viewModel.currentWeek.id)"
             }
         }
         startLoadingAnimation()

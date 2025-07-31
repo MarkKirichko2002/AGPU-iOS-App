@@ -120,6 +120,11 @@
 		821B72922BD2ECFB000460E2 /* RandomSplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B72912BD2ECFB000460E2 /* RandomSplashScreenViewModel.swift */; };
 		821B72942BD2ED0B000460E2 /* RandomSplashScreenViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B72932BD2ED0B000460E2 /* RandomSplashScreenViewModel + Extensions.swift */; };
 		821B72962BD2F9C9000460E2 /* random.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 821B72952BD2F9C9000460E2 /* random.mp4 */; };
+		821F0A682E305C5A00CF31B2 /* AdditionalTabSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F0A672E305C5A00CF31B2 /* AdditionalTabSplashScreenViewController.swift */; };
+		821F0A6D2E305C9600CF31B2 /* IAdditionalTabSplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F0A6C2E305C9600CF31B2 /* IAdditionalTabSplashScreenViewModel.swift */; };
+		821F0A6F2E305CA400CF31B2 /* AdditionalTabSplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F0A6E2E305CA400CF31B2 /* AdditionalTabSplashScreenViewModel.swift */; };
+		821F0A712E305CD600CF31B2 /* AdditionalTabSplashScreenViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821F0A702E305CD600CF31B2 /* AdditionalTabSplashScreenViewModel + Extensions.swift */; };
+		821F0A752E3069DF00CF31B2 /* additional tab.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 821F0A742E3069DF00CF31B2 /* additional tab.mp4 */; };
 		821FCF052A87CDB8006FFB26 /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FCF042A87CDB8006FFB26 /* NewsCollectionViewCell.swift */; };
 		821FCF072A87CE30006FFB26 /* NewsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FCF062A87CE30006FFB26 /* NewsListViewController.swift */; };
 		821FCF0A2A87CE79006FFB26 /* NewsListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FCF092A87CE79006FFB26 /* NewsListViewController + Extensions.swift */; };
@@ -190,15 +195,6 @@
 		8226D18D2B096FFB00B0B9F0 /* SavedPairTypeViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8226D18C2B096FFB00B0B9F0 /* SavedPairTypeViewModelProtocol.swift */; };
 		8226D18F2B09703700B0B9F0 /* SavedPairTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8226D18E2B09703700B0B9F0 /* SavedPairTypeViewModel.swift */; };
 		8226D1912B09704B00B0B9F0 /* SavedPairTypeViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8226D1902B09704B00B0B9F0 /* SavedPairTypeViewModel + Extensions.swift */; };
-		822862262CC70A8100EE5FED /* смех ведьмы.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 822862252CC70A8100EE5FED /* смех ведьмы.mp3 */; };
-		822862272CC70A8100EE5FED /* зомби.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 822862232CC70A8100EE5FED /* зомби.mp3 */; };
-		822862282CC70A8100EE5FED /* скелет.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 822862242CC70A8100EE5FED /* скелет.mp3 */; };
-		822862332CC70C3100EE5FED /* TabBarSoundOptionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822862322CC70C3100EE5FED /* TabBarSoundOptionsListViewModel.swift */; };
-		822862352CC70DE700EE5FED /* TabBarSoundOptionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822862342CC70DE700EE5FED /* TabBarSoundOptionsListTableViewController.swift */; };
-		822862372CC70EB800EE5FED /* TabBarSoundOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822862362CC70EB800EE5FED /* TabBarSoundOptions.swift */; };
-		8228623C2CC70F1A00EE5FED /* SoundOptionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8228623B2CC70F1A00EE5FED /* SoundOptionsTableViewCell.xib */; };
-		8228623D2CC70F1A00EE5FED /* SoundOptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228623A2CC70F1A00EE5FED /* SoundOptionsTableViewCell.swift */; };
-		8228623F2CC718E100EE5FED /* волк.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8228623E2CC718E100EE5FED /* волк.mp3 */; };
 		8228E3992A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E3982A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift */; };
 		8228E39C2A6C920D00C1B6AD /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E39B2A6C920D00C1B6AD /* LocationModel.swift */; };
 		8228E39F2A6C994D00C1B6AD /* AGPUBuildingsMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228E39E2A6C994D00C1B6AD /* AGPUBuildingsMapViewModel.swift */; };
@@ -599,6 +595,11 @@
 		82A41B932C2C2E9900254AE2 /* RecentDatesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A41B922C2C2E9900254AE2 /* RecentDatesListViewModel.swift */; };
 		82A41B952C2C2ECD00254AE2 /* RecentDatesListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A41B942C2C2ECD00254AE2 /* RecentDatesListViewModel + Extensions.swift */; };
 		82A41B972C2C34B800254AE2 /* RecentDatesListViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A41B962C2C34B800254AE2 /* RecentDatesListViewController + Extensions.swift */; };
+		82A7CC3F2E1D483E00C10C24 /* TimetableMenuWeekDaysListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7CC3E2E1D483E00C10C24 /* TimetableMenuWeekDaysListViewController.swift */; };
+		82A7CC412E1D48A200C10C24 /* TimetableMenuWeekDaysListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7CC402E1D48A200C10C24 /* TimetableMenuWeekDaysListViewModel.swift */; };
+		82A7CC462E1D498200C10C24 /* ITimetableMenuWeekDaysListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7CC452E1D498200C10C24 /* ITimetableMenuWeekDaysListViewModel.swift */; };
+		82A7CC482E1D49D600C10C24 /* TimetableMenuWeekDaysListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7CC472E1D49D600C10C24 /* TimetableMenuWeekDaysListViewModel + Extensions.swift */; };
+		82A7CC5F2E1D526A00C10C24 /* TimeTableContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7CC5E2E1D526A00C10C24 /* TimeTableContainerViewController.swift */; };
 		82AB6D182AF6BD5F00F7B729 /* AdaptiveNewsOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AB6D162AF6BD5F00F7B729 /* AdaptiveNewsOptionTableViewCell.swift */; };
 		82AB6D192AF6BD5F00F7B729 /* AdaptiveNewsOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82AB6D172AF6BD5F00F7B729 /* AdaptiveNewsOptionTableViewCell.xib */; };
 		82AB6D212AF6C06800F7B729 /* SavedNewsCategoryViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AB6D202AF6C06800F7B729 /* SavedNewsCategoryViewModelProtocol.swift */; };
@@ -793,10 +794,6 @@
 		82E6C43A2CF8F6EE00D42D60 /* NearBuildingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E6C4392CF8F6EE00D42D60 /* NearBuildingViewModel.swift */; };
 		82E6C43C2CF8F74000D42D60 /* NearBuildingViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E6C43B2CF8F73F00D42D60 /* NearBuildingViewModel + Extensions.swift */; };
 		82E6C43F2CF9097300D42D60 /* BuildingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E6C43E2CF9097300D42D60 /* BuildingInfo.swift */; };
-		82E6C5992CFBBAA300D42D60 /* фейерверк.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82E6C5982CFBBAA300D42D60 /* фейерверк.mp3 */; };
-		82E6C59B2CFBBDF400D42D60 /* куранты.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82E6C59A2CFBBDF400D42D60 /* куранты.mp3 */; };
-		82E6C59F2CFBC5E900D42D60 /* тост.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82E6C59E2CFBC5E900D42D60 /* тост.mp3 */; };
-		82E6C5A12CFBC6F600D42D60 /* шампанское.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82E6C5A02CFBC6F600D42D60 /* шампанское.mp3 */; };
 		82E6C8752CFE463400D42D60 /* ASPUButtonGesturesOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82E6C8742CFE463400D42D60 /* ASPUButtonGesturesOptionTableViewCell.xib */; };
 		82E6C8762CFE463400D42D60 /* ASPUButtonGesturesOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E6C8732CFE463400D42D60 /* ASPUButtonGesturesOptionTableViewCell.swift */; };
 		82E6C87C2CFE4C2000D42D60 /* ASPUButtonGestureOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E6C87B2CFE4C2000D42D60 /* ASPUButtonGestureOptions.swift */; };
@@ -828,8 +825,6 @@
 		82F315CF2C40CE3100E826F9 /* CommunicationStyleVariantsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315CE2C40CE3100E826F9 /* CommunicationStyleVariantsListTableViewController.swift */; };
 		82F315D32C40CE6E00E826F9 /* CommunicationStyleVariantsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315D22C40CE6E00E826F9 /* CommunicationStyleVariantsListViewModel.swift */; };
 		82F315D92C41AAB900E826F9 /* SettablePersonalityOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315D82C41AAB900E826F9 /* SettablePersonalityOptionTableViewCell.swift */; };
-		82F495D72C57291F001D2802 /* HandDrawingGesturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F495D62C57291F001D2802 /* HandDrawingGesturesViewController.swift */; };
-		82F495DA2C57324F001D2802 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F495D92C57324F001D2802 /* CanvasView.swift */; };
 		82F495DC2C57441A001D2802 /* MNIST.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 82F495DB2C57441A001D2802 /* MNIST.mlmodel */; };
 		82F578772B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F578762B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift */; };
 		82F5787D2B6FE4B400BC64C1 /* ASPUButtonActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F5787C2B6FE4B400BC64C1 /* ASPUButtonActions.swift */; };
@@ -839,6 +834,7 @@
 		82F578892B6FE90A00BC64C1 /* ASPUButtonActionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F578882B6FE90A00BC64C1 /* ASPUButtonActionsListTableViewController.swift */; };
 		82F60B2D2D12F5240035E416 /* VoiceCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F60B2C2D12F5240035E416 /* VoiceCommands.swift */; };
 		82F60B2F2D12F72A0035E416 /* VoiceCommandsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F60B2E2D12F72A0035E416 /* VoiceCommandsListTableViewController.swift */; };
+		82F6493F2E209550008551CC /* MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F6493E2E209550008551CC /* MKMapView.swift */; };
 		82F98B322B11998E00137D9A /* WeatherManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F98B312B11998E00137D9A /* WeatherManagerProtocol.swift */; };
 		82F98B342B1199B300137D9A /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F98B332B1199B300137D9A /* WeatherManager.swift */; };
 		82F98B362B119A0200137D9A /* WeatherManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F98B352B119A0200137D9A /* WeatherManager + Extensions.swift */; };
@@ -982,6 +978,11 @@
 		821B72932BD2ED0B000460E2 /* RandomSplashScreenViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RandomSplashScreenViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		821B72952BD2F9C9000460E2 /* random.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = random.mp4; sourceTree = "<group>"; };
 		821C892F2A510F5600BD756D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		821F0A672E305C5A00CF31B2 /* AdditionalTabSplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalTabSplashScreenViewController.swift; sourceTree = "<group>"; };
+		821F0A6C2E305C9600CF31B2 /* IAdditionalTabSplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAdditionalTabSplashScreenViewModel.swift; sourceTree = "<group>"; };
+		821F0A6E2E305CA400CF31B2 /* AdditionalTabSplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalTabSplashScreenViewModel.swift; sourceTree = "<group>"; };
+		821F0A702E305CD600CF31B2 /* AdditionalTabSplashScreenViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdditionalTabSplashScreenViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		821F0A742E3069DF00CF31B2 /* additional tab.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "additional tab.mp4"; sourceTree = "<group>"; };
 		821FCF042A87CDB8006FFB26 /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		821FCF062A87CE30006FFB26 /* NewsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewController.swift; sourceTree = "<group>"; };
 		821FCF092A87CE79006FFB26 /* NewsListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsListViewController + Extensions.swift"; sourceTree = "<group>"; };
@@ -1028,15 +1029,6 @@
 		8226D18C2B096FFB00B0B9F0 /* SavedPairTypeViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPairTypeViewModelProtocol.swift; sourceTree = "<group>"; };
 		8226D18E2B09703700B0B9F0 /* SavedPairTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPairTypeViewModel.swift; sourceTree = "<group>"; };
 		8226D1902B09704B00B0B9F0 /* SavedPairTypeViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedPairTypeViewModel + Extensions.swift"; sourceTree = "<group>"; };
-		822862232CC70A8100EE5FED /* зомби.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "зомби.mp3"; sourceTree = "<group>"; };
-		822862242CC70A8100EE5FED /* скелет.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "скелет.mp3"; sourceTree = "<group>"; };
-		822862252CC70A8100EE5FED /* смех ведьмы.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "смех ведьмы.mp3"; sourceTree = "<group>"; };
-		822862322CC70C3100EE5FED /* TabBarSoundOptionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSoundOptionsListViewModel.swift; sourceTree = "<group>"; };
-		822862342CC70DE700EE5FED /* TabBarSoundOptionsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSoundOptionsListTableViewController.swift; sourceTree = "<group>"; };
-		822862362CC70EB800EE5FED /* TabBarSoundOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSoundOptions.swift; sourceTree = "<group>"; };
-		8228623A2CC70F1A00EE5FED /* SoundOptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundOptionsTableViewCell.swift; sourceTree = "<group>"; };
-		8228623B2CC70F1A00EE5FED /* SoundOptionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SoundOptionsTableViewCell.xib; sourceTree = "<group>"; };
-		8228623E2CC718E100EE5FED /* волк.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "волк.mp3"; sourceTree = "<group>"; };
 		8228E3982A6C8F5000C1B6AD /* AGPUCurrentBuildingMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUCurrentBuildingMapViewModel.swift; sourceTree = "<group>"; };
 		8228E39B2A6C920D00C1B6AD /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		8228E39E2A6C994D00C1B6AD /* AGPUBuildingsMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUBuildingsMapViewModel.swift; sourceTree = "<group>"; };
@@ -1440,6 +1432,11 @@
 		82A41B922C2C2E9900254AE2 /* RecentDatesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentDatesListViewModel.swift; sourceTree = "<group>"; };
 		82A41B942C2C2ECD00254AE2 /* RecentDatesListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentDatesListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82A41B962C2C34B800254AE2 /* RecentDatesListViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentDatesListViewController + Extensions.swift"; sourceTree = "<group>"; };
+		82A7CC3E2E1D483E00C10C24 /* TimetableMenuWeekDaysListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableMenuWeekDaysListViewController.swift; sourceTree = "<group>"; };
+		82A7CC402E1D48A200C10C24 /* TimetableMenuWeekDaysListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableMenuWeekDaysListViewModel.swift; sourceTree = "<group>"; };
+		82A7CC452E1D498200C10C24 /* ITimetableMenuWeekDaysListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITimetableMenuWeekDaysListViewModel.swift; sourceTree = "<group>"; };
+		82A7CC472E1D49D600C10C24 /* TimetableMenuWeekDaysListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimetableMenuWeekDaysListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		82A7CC5E2E1D526A00C10C24 /* TimeTableContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableContainerViewController.swift; sourceTree = "<group>"; };
 		82AB6D162AF6BD5F00F7B729 /* AdaptiveNewsOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveNewsOptionTableViewCell.swift; sourceTree = "<group>"; };
 		82AB6D172AF6BD5F00F7B729 /* AdaptiveNewsOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdaptiveNewsOptionTableViewCell.xib; sourceTree = "<group>"; };
 		82AB6D202AF6C06800F7B729 /* SavedNewsCategoryViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedNewsCategoryViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -1634,10 +1631,6 @@
 		82E6C4392CF8F6EE00D42D60 /* NearBuildingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearBuildingViewModel.swift; sourceTree = "<group>"; };
 		82E6C43B2CF8F73F00D42D60 /* NearBuildingViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NearBuildingViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		82E6C43E2CF9097300D42D60 /* BuildingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingInfo.swift; sourceTree = "<group>"; };
-		82E6C5982CFBBAA300D42D60 /* фейерверк.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "фейерверк.mp3"; sourceTree = "<group>"; };
-		82E6C59A2CFBBDF400D42D60 /* куранты.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "куранты.mp3"; sourceTree = "<group>"; };
-		82E6C59E2CFBC5E900D42D60 /* тост.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "тост.mp3"; sourceTree = "<group>"; };
-		82E6C5A02CFBC6F600D42D60 /* шампанское.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "шампанское.mp3"; sourceTree = "<group>"; };
 		82E6C8732CFE463400D42D60 /* ASPUButtonGesturesOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonGesturesOptionTableViewCell.swift; sourceTree = "<group>"; };
 		82E6C8742CFE463400D42D60 /* ASPUButtonGesturesOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ASPUButtonGesturesOptionTableViewCell.xib; sourceTree = "<group>"; };
 		82E6C87B2CFE4C2000D42D60 /* ASPUButtonGestureOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonGestureOptions.swift; sourceTree = "<group>"; };
@@ -1669,8 +1662,6 @@
 		82F315CE2C40CE3100E826F9 /* CommunicationStyleVariantsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationStyleVariantsListTableViewController.swift; sourceTree = "<group>"; };
 		82F315D22C40CE6E00E826F9 /* CommunicationStyleVariantsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationStyleVariantsListViewModel.swift; sourceTree = "<group>"; };
 		82F315D82C41AAB900E826F9 /* SettablePersonalityOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettablePersonalityOptionTableViewCell.swift; sourceTree = "<group>"; };
-		82F495D62C57291F001D2802 /* HandDrawingGesturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandDrawingGesturesViewController.swift; sourceTree = "<group>"; };
-		82F495D92C57324F001D2802 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		82F495DB2C57441A001D2802 /* MNIST.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MNIST.mlmodel; sourceTree = "<group>"; };
 		82F578762B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultyTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		82F5787C2B6FE4B400BC64C1 /* ASPUButtonActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonActions.swift; sourceTree = "<group>"; };
@@ -1680,6 +1671,7 @@
 		82F578882B6FE90A00BC64C1 /* ASPUButtonActionsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonActionsListTableViewController.swift; sourceTree = "<group>"; };
 		82F60B2C2D12F5240035E416 /* VoiceCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCommands.swift; sourceTree = "<group>"; };
 		82F60B2E2D12F72A0035E416 /* VoiceCommandsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCommandsListTableViewController.swift; sourceTree = "<group>"; };
+		82F6493E2E209550008551CC /* MKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapView.swift; sourceTree = "<group>"; };
 		82F98B2C2B11973500137D9A /* AGPU.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AGPU.entitlements; sourceTree = "<group>"; };
 		82F98B312B11998E00137D9A /* WeatherManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManagerProtocol.swift; sourceTree = "<group>"; };
 		82F98B332B1199B300137D9A /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
@@ -3098,6 +3090,65 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		821F0A632E305C1700CF31B2 /* Additional Tab */ = {
+			isa = PBXGroup;
+			children = (
+				821F0A652E305C2600CF31B2 /* View */,
+				821F0A642E305C2400CF31B2 /* ViewModel */,
+			);
+			path = "Additional Tab";
+			sourceTree = "<group>";
+		};
+		821F0A642E305C2400CF31B2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				821F0A6B2E305C7800CF31B2 /* Protocol */,
+				821F0A6A2E305C7500CF31B2 /* ViewModel */,
+				821F0A692E305C7300CF31B2 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		821F0A652E305C2600CF31B2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				821F0A662E305C3B00CF31B2 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		821F0A662E305C3B00CF31B2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				821F0A672E305C5A00CF31B2 /* AdditionalTabSplashScreenViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		821F0A692E305C7300CF31B2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				821F0A702E305CD600CF31B2 /* AdditionalTabSplashScreenViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		821F0A6A2E305C7500CF31B2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				821F0A6E2E305CA400CF31B2 /* AdditionalTabSplashScreenViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		821F0A6B2E305C7800CF31B2 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				821F0A6C2E305C9600CF31B2 /* IAdditionalTabSplashScreenViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		821FCF002A87CD65006FFB26 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -3615,49 +3666,6 @@
 				8226D18C2B096FFB00B0B9F0 /* SavedPairTypeViewModelProtocol.swift */,
 			);
 			path = Protocol;
-			sourceTree = "<group>";
-		};
-		8228622C2CC70B4800EE5FED /* Tab Bar Sound Options List MVVM */ = {
-			isa = PBXGroup;
-			children = (
-				8228622F2CC70B6F00EE5FED /* Model */,
-				8228622E2CC70B6C00EE5FED /* View */,
-				8228622D2CC70B6A00EE5FED /* ViewModel */,
-			);
-			path = "Tab Bar Sound Options List MVVM";
-			sourceTree = "<group>";
-		};
-		8228622D2CC70B6A00EE5FED /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				822862322CC70C3100EE5FED /* TabBarSoundOptionsListViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		8228622E2CC70B6C00EE5FED /* View */ = {
-			isa = PBXGroup;
-			children = (
-				822862342CC70DE700EE5FED /* TabBarSoundOptionsListTableViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		8228622F2CC70B6F00EE5FED /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				822862362CC70EB800EE5FED /* TabBarSoundOptions.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		822862392CC70EEB00EE5FED /* Sounds */ = {
-			isa = PBXGroup;
-			children = (
-				8228623A2CC70F1A00EE5FED /* SoundOptionsTableViewCell.swift */,
-				8228623B2CC70F1A00EE5FED /* SoundOptionsTableViewCell.xib */,
-			);
-			path = Sounds;
 			sourceTree = "<group>";
 		};
 		8228E3962A6C8EFD00C1B6AD /* Maps Modules */ = {
@@ -4587,6 +4595,7 @@
 		82505F432A7F9A0D001DE24A /* TimeTable Modules */ = {
 			isa = PBXGroup;
 			children = (
+				82A7CC5D2E1D524600C10C24 /* TimeTable Container */,
 				82D6C32D2A5E187400FB7F5D /* TimeTable Day */,
 				82505F4C2A7FBD48001DE24A /* TimeTable Week */,
 				8231B0B32AED67EF00EB41EA /* TimeTable Search */,
@@ -5427,6 +5436,7 @@
 		8268885F2A33ACE800434219 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				82F6493D2E20953B008551CC /* MKMapView */,
 				82822B1D2DAB8FB80071C191 /* UIApplication */,
 				827359732D74D75C00C96F40 /* NavigationItem */,
 				824472922CCA77EC00114870 /* TimeInterval */,
@@ -5673,7 +5683,6 @@
 				82ACD1FD2CA2083B00A2CC36 /* All Sections List MVVM */,
 				82A29F3B2B9BD4E200756F43 /* Splash Screen Modules */,
 				82BC2F3F2A8EFC5D00ADB239 /* News Modules */,
-				82F495D22C5728DB001D2802 /* Hand Drawing Gestures MVVM */,
 				821270572A7921DD0095D68E /* Web Modules */,
 				82D37FB52BEC10D20035CB57 /* Things Categories List MVVM */,
 				8209A0A12B838CC40013371D /* Documents List MVVM */,
@@ -6410,6 +6419,7 @@
 			isa = PBXGroup;
 			children = (
 				82FC88162BBDFB5800A2EF59 /* custom.mp4 */,
+				821F0A742E3069DF00CF31B2 /* additional tab.mp4 */,
 				82FC88152BBDFB5800A2EF59 /* faculty.mp4 */,
 				82FC88142BBDFB5800A2EF59 /* new year.mp4 */,
 				82FC88172BBDFB5800A2EF59 /* news.mp4 */,
@@ -6877,7 +6887,6 @@
 				828E10302BD1699500ECC5F4 /* Tabs Color */,
 				821493122D0F7D5C00F543BA /* Font */,
 				82C752422C28855800161AEF /* Tabs Icon Style */,
-				822862392CC70EEB00EE5FED /* Sounds */,
 				8286D15A2BCDB3A8006BB6B3 /* Tabs Animation */,
 				829952742BDEEB58003AFB14 /* Recent Tab */,
 			);
@@ -8537,6 +8546,7 @@
 		82A29F3B2B9BD4E200756F43 /* Splash Screen Modules */ = {
 			isa = PBXGroup;
 			children = (
+				821F0A632E305C1700CF31B2 /* Additional Tab */,
 				828DD7562C6AF974006F15DF /* Season */,
 				822526BF2BA37D3A00B66314 /* News  */,
 				82967C2B2BA23165001059B2 /* TimeTable */,
@@ -8656,6 +8666,73 @@
 				82A41B902C2C2D0200254AE2 /* IRecentDatesListViewModel.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		82A7CC3A2E1D477400C10C24 /* Timetable Menu Week Days List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				82A7CC3C2E1D47A700C10C24 /* View */,
+				82A7CC3B2E1D47A400C10C24 /* ViewModel */,
+			);
+			path = "Timetable Menu Week Days List MVVM";
+			sourceTree = "<group>";
+		};
+		82A7CC3B2E1D47A400C10C24 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82A7CC442E1D496900C10C24 /* Protocol */,
+				82A7CC432E1D496700C10C24 /* ViewModel */,
+				82A7CC422E1D496500C10C24 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82A7CC3C2E1D47A700C10C24 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82A7CC3D2E1D482300C10C24 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82A7CC3D2E1D482300C10C24 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				82A7CC3E2E1D483E00C10C24 /* TimetableMenuWeekDaysListViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82A7CC422E1D496500C10C24 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				82A7CC472E1D49D600C10C24 /* TimetableMenuWeekDaysListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		82A7CC432E1D496700C10C24 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				82A7CC402E1D48A200C10C24 /* TimetableMenuWeekDaysListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		82A7CC442E1D496900C10C24 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				82A7CC452E1D498200C10C24 /* ITimetableMenuWeekDaysListViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		82A7CC5D2E1D524600C10C24 /* TimeTable Container */ = {
+			isa = PBXGroup;
+			children = (
+				82A7CC5E2E1D526A00C10C24 /* TimeTableContainerViewController.swift */,
+			);
+			path = "TimeTable Container";
 			sourceTree = "<group>";
 		};
 		82AB6D152AF6BD3300F7B729 /* Adaptive News Option */ = {
@@ -9430,6 +9507,7 @@
 		82BCB5302AB34F9E00F3A321 /* TimeTable Modules */ = {
 			isa = PBXGroup;
 			children = (
+				82A7CC3A2E1D477400C10C24 /* Timetable Menu Week Days List MVVM */,
 				82E9B1072DD8086000BB110F /* Timetable Day Info MVVM */,
 				825D566E2AE5CB96004305C7 /* Pair Info MVVM */,
 				828321602A7C6A25008641A5 /* All Groups MVVM */,
@@ -10561,14 +10639,6 @@
 		82E3C3C92B4370EF00F2FFA3 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
-				82E6C59A2CFBBDF400D42D60 /* куранты.mp3 */,
-				82E6C59E2CFBC5E900D42D60 /* тост.mp3 */,
-				82E6C5982CFBBAA300D42D60 /* фейерверк.mp3 */,
-				822862232CC70A8100EE5FED /* зомби.mp3 */,
-				8228623E2CC718E100EE5FED /* волк.mp3 */,
-				82E6C5A02CFBC6F600D42D60 /* шампанское.mp3 */,
-				822862242CC70A8100EE5FED /* скелет.mp3 */,
-				822862252CC70A8100EE5FED /* смех ведьмы.mp3 */,
 				82C449F32B5F0B5F0039B0F3 /* clock_sound.mp3 */,
 				829D48992BBC1E2B00F6D256 /* clock_sound2.mp3 */,
 				822D57832BBC29050026962F /* clock_sound3.mp3 */,
@@ -11638,47 +11708,6 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		82F495D22C5728DB001D2802 /* Hand Drawing Gestures MVVM */ = {
-			isa = PBXGroup;
-			children = (
-				82F495D42C5728FA001D2802 /* View */,
-				82F495D32C5728F8001D2802 /* ViewModel */,
-			);
-			path = "Hand Drawing Gestures MVVM";
-			sourceTree = "<group>";
-		};
-		82F495D32C5728F8001D2802 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		82F495D42C5728FA001D2802 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				82F495D82C57323E001D2802 /* View */,
-				82F495D52C572905001D2802 /* ViewController */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		82F495D52C572905001D2802 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				82F495D62C57291F001D2802 /* HandDrawingGesturesViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		82F495D82C57323E001D2802 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				82F495D92C57324F001D2802 /* CanvasView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		82F578752B6FB83400BC64C1 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -11784,7 +11813,6 @@
 				828E102F2BD1697E00ECC5F4 /* Tab Colors List MVVM */,
 				821493172D0F807600F543BA /* Tab Font Options List MVVM */,
 				82C752302C28819600161AEF /* Tab Icons Style List MVVM */,
-				8228622C2CC70B4800EE5FED /* Tab Bar Sound Options List MVVM */,
 				82768ADD2ABE12D30022FBE1 /* App Themes List MVVM */,
 				828D51052BB85E4D00848FF8 /* ASPU Button Options List */,
 				828D511F2BB892CE00848FF8 /* ASPU Button Icons List MVVM */,
@@ -11846,6 +11874,14 @@
 				82F60B2E2D12F72A0035E416 /* VoiceCommandsListTableViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		82F6493D2E20953B008551CC /* MKMapView */ = {
+			isa = PBXGroup;
+			children = (
+				82F6493E2E209550008551CC /* MKMapView.swift */,
+			);
+			path = MKMapView;
 			sourceTree = "<group>";
 		};
 		82F98B2D2B1198EA00137D9A /* Weather */ = {
@@ -12126,7 +12162,6 @@
 				826BADB12A64D5D100022B45 /* AGPUBuildingDetailViewController.storyboard in Resources */,
 				82FC881F2BBDFC4D00A2EF59 /* weather.mp4 in Resources */,
 				82D0FC102B1B4A640056D94B /* CathedraBuildingDetailViewController.storyboard in Resources */,
-				82E6C5992CFBBAA300D42D60 /* фейерверк.mp3 in Resources */,
 				82768AF62ABE1B360022FBE1 /* AppThemesTableViewCell.xib in Resources */,
 				82D6C33B2A5E282A00FB7F5D /* TimeTableTableViewCell.xib in Resources */,
 				82FC881C2BBDFC4500A2EF59 /* news.mp4 in Resources */,
@@ -12136,6 +12171,7 @@
 				822632422A6CB37E0000E14C /* ActionToRecallOptionTableViewCell.xib in Resources */,
 				82C5B7902BCEF81600F907CB /* ASPUButtonAnimationOptionTableViewCell.xib in Resources */,
 				82C449F82B5F0B5F0039B0F3 /* danger.mp3 in Resources */,
+				821F0A752E3069DF00CF31B2 /* additional tab.mp4 in Resources */,
 				82754C742BD45C1B0021E76A /* BorderForDailyNewsTableViewCell.xib in Resources */,
 				825D65B32D1B511400A84EE7 /* AdditionalTabOptionTableViewCell.xib in Resources */,
 				82C561692A6B7B2300514B00 /* AppFeatureDetailViewController.storyboard in Resources */,
@@ -12146,23 +12182,17 @@
 				822605EF2A84A0600055925F /* Assets.xcassets in Resources */,
 				8213658B2A94F73100A20E4E /* InfoPlist.strings in Resources */,
 				828E691F2BE2DBF80097FAAD /* DisplayModeOptionTableViewCell.xib in Resources */,
-				82E6C5A12CFBC6F600D42D60 /* шампанское.mp3 in Resources */,
 				82C449FE2B616F660039B0F3 /* SaveRecentTimetableItemOptionCell.xib in Resources */,
 				82E6C8752CFE463400D42D60 /* ASPUButtonGesturesOptionTableViewCell.xib in Resources */,
 				82FC22F62BC03722008709DA /* ShowOnlyDailyNewsTableViewCell.xib in Resources */,
 				822DA7172BCACDC000CB4A21 /* quantorium.mp4 in Resources */,
 				82B5FE4E2D8300A90023A0D9 /* gesture_recognizer.task in Resources */,
-				8228623F2CC718E100EE5FED /* волк.mp3 in Resources */,
 				828D51152BB86B2600848FF8 /* ASPUButtonIconOptionTableViewCell.xib in Resources */,
 				82C449F72B5F0B5F0039B0F3 /* clock_sound.mp3 in Resources */,
 				828D51392BB8A3BF00848FF8 /* ASPUButtonIconTableViewCell.xib in Resources */,
-				822862262CC70A8100EE5FED /* смех ведьмы.mp3 in Resources */,
-				822862272CC70A8100EE5FED /* зомби.mp3 in Resources */,
-				822862282CC70A8100EE5FED /* скелет.mp3 in Resources */,
 				821493462D10967700F543BA /* Capture it.ttf in Resources */,
 				82FC88192BBDFC3E00A2EF59 /* custom.mp4 in Resources */,
 				8209008F2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.xib in Resources */,
-				8228623C2CC70F1A00EE5FED /* SoundOptionsTableViewCell.xib in Resources */,
 				82822B312DB329B60071C191 /* Monocraft.ttf in Resources */,
 				828397602AD5BBF4000F355A /* AppIconTableViewCell.xib in Resources */,
 				8258198E2C0297090022D17F /* GlanceInfoOptionTableViewCell.xib in Resources */,
@@ -12187,7 +12217,6 @@
 				828E10372BD16AD700ECC5F4 /* TabsColorOptionTableViewCell.xib in Resources */,
 				821365872A94F6A700A20E4E /* LaunchScreen.strings in Resources */,
 				8225279E2BACDCA200B66314 /* SavedNewsCategoryOptionTableViewCell.xib in Resources */,
-				82E6C59F2CFBC5E900D42D60 /* тост.mp3 in Resources */,
 				82808E952A31F12500DEEB16 /* LaunchScreen.storyboard in Resources */,
 				82B5FE7B2D84E7E70023A0D9 /* GestureRecognitionOptionTableViewCell.xib in Resources */,
 				821B72962BD2F9C9000460E2 /* random.mp4 in Resources */,
@@ -12198,7 +12227,6 @@
 				82C449F62B5F0B5F0039B0F3 /* ring.mp3 in Resources */,
 				828DD7662C6B8C87006F15DF /* season.mp4 in Resources */,
 				821493152D0F7D9D00F543BA /* FontOptionTableViewCell.xib in Resources */,
-				82E6C59B2CFBBDF400D42D60 /* куранты.mp3 in Resources */,
 				82E4C5972A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib in Resources */,
 				82D2996E2CF10B0B00E3A53B /* GoogleService-Info.plist in Resources */,
 				822606012A853C110055925F /* RecentMomentTableViewCell.xib in Resources */,
@@ -12287,7 +12315,6 @@
 				821B726A2BD1707A000460E2 /* UIColor + Extensions.swift in Sources */,
 				8286D1542BCDADC9006BB6B3 /* TabsOptionsListTableViewController.swift in Sources */,
 				82B267032A8D926400043A6D /* NewsCategories.swift in Sources */,
-				8228623D2CC70F1A00EE5FED /* SoundOptionsTableViewCell.swift in Sources */,
 				828D51282BB89FE200848FF8 /* ASPUButtonIconModel.swift in Sources */,
 				828397792AD5C9F8000F355A /* AppIconsListViewModel.swift in Sources */,
 				825D567A2AE5CCAF004305C7 /* PairInfoViewModel.swift in Sources */,
@@ -12354,6 +12381,7 @@
 				82187CA62C04F2840033E6DC /* ScreenPresentationStylesListViewModel.swift in Sources */,
 				82E577742C754EB2008B9FC5 /* CalendarARViewController + Extensions.swift in Sources */,
 				82E4C5962A6B2CBE00F65A67 /* FacultyGroupTableViewCell.swift in Sources */,
+				82A7CC412E1D48A200C10C24 /* TimetableMenuWeekDaysListViewModel.swift in Sources */,
 				8226D16D2B0948B500B0B9F0 /* AGPUTabBarController + Extensions.swift in Sources */,
 				825D65B22D1B511400A84EE7 /* AdditionalTabOptionTableViewCell.swift in Sources */,
 				827E907D2BC8788600FD8168 /* AppFeaturesListTableViewCell.swift in Sources */,
@@ -12367,7 +12395,6 @@
 				82EAC99B2D4AEFD8000B6990 /* NavigationsListTableViewController.swift in Sources */,
 				828DD7622C6AFA28006F15DF /* SeasonSplashScreenViewModel.swift in Sources */,
 				82C752452C28856D00161AEF /* TabsIconStyleTableViewCell.swift in Sources */,
-				822862352CC70DE700EE5FED /* TabBarSoundOptionsListTableViewController.swift in Sources */,
 				82E577672C740D6D008B9FC5 /* ArticleInfo.swift in Sources */,
 				82967C212BA0821A001059B2 /* RecentNewsListViewController + Extensions.swift in Sources */,
 				822FB20F2AC5DCF20083E016 /* SubGroupsListTableViewController.swift in Sources */,
@@ -12457,6 +12484,7 @@
 				8299E3B42B8A31E600D81472 /* TimetableDateDetailViewModel.swift in Sources */,
 				822632412A6CB37E0000E14C /* ActionToRecallOptionTableViewCell.swift in Sources */,
 				82C7E0862D08AFA800739BCF /* ASPUButtonHideOptionTableViewCell.swift in Sources */,
+				82A7CC462E1D498200C10C24 /* ITimetableMenuWeekDaysListViewModel.swift in Sources */,
 				826F93892A91C46A00DE4FB1 /* NewsPagesListViewModel.swift in Sources */,
 				82BCB53B2AB3521300F3A321 /* DaysListViewModel.swift in Sources */,
 				82A29F432B9BD58800756F43 /* ISelectedFacultySplashScreenViewModel.swift in Sources */,
@@ -12509,6 +12537,7 @@
 				82754C672BD3DB900021E76A /* ISplashScreenBackgroundColorsListViewModel.swift in Sources */,
 				822526CC2BA37FF700B66314 /* NewsDescriptionModel.swift in Sources */,
 				82184D842B7BD90100F2588E /* DailyWeatherTableViewCell.swift in Sources */,
+				821F0A682E305C5A00CF31B2 /* AdditionalTabSplashScreenViewController.swift in Sources */,
 				82E4C5172A6B0D0200F65A67 /* ImageSaver + Extensions.swift in Sources */,
 				8241F9812A5F3C4D007DF628 /* TimeTableDayListTableViewController + Extensions.swift in Sources */,
 				829632C72BBC1857007CAB65 /* TimeTableSoundModel.swift in Sources */,
@@ -12548,6 +12577,7 @@
 				82920B6A2AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift in Sources */,
 				829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */,
 				8234B3002A3242E10091810F /* SpeechRecognitionManager.swift in Sources */,
+				821F0A6D2E305C9600CF31B2 /* IAdditionalTabSplashScreenViewModel.swift in Sources */,
 				82967C1F2BA081F9001059B2 /* RecentNewsListViewController.swift in Sources */,
 				828E69242BE2E2FF0097FAAD /* SavedDisplayModeTableViewController.swift in Sources */,
 				822FB2162AC5DF580083E016 /* SubGroupsListViewModel.swift in Sources */,
@@ -12577,7 +12607,6 @@
 				8276E6282C2CA44000216F28 /* TimeTableDayModel.swift in Sources */,
 				82F315C72C40C43200E826F9 /* SettablePersonalityOptionsListViewModel.swift in Sources */,
 				8275B51C2D233BD40051FA5B /* SpeechScreenVariantsListViewModel.swift in Sources */,
-				82F495D72C57291F001D2802 /* HandDrawingGesturesViewController.swift in Sources */,
 				82C7B8442A50CCB800F9A552 /* AnimationClass + Extensions.swift in Sources */,
 				822527AA2BADAC8700B66314 /* AdaptiveNewsOptionsListViewModel + Extensions.swift in Sources */,
 				8276E6252C2CA36700216F28 /* TimeTableDatesListViewController + Extensions.swift in Sources */,
@@ -12693,7 +12722,6 @@
 				82056BF62DFAD7660007D524 /* ButtonSettingsViewController.swift in Sources */,
 				8241F9932A5F4091007DF628 /* TimeTableServicerProtocol.swift in Sources */,
 				825819922C02AE1C0022D17F /* AppUpdateAlertViewController.swift in Sources */,
-				822862332CC70C3100EE5FED /* TabBarSoundOptionsListViewModel.swift in Sources */,
 				8217C30D2B8FB6D600A59412 /* CustomSplashScreenModel.swift in Sources */,
 				8207E7602C44762D006312E7 /* AudenciesListTableViewController.swift in Sources */,
 				82AB6D232AF6C07500F7B729 /* SavedNewsCategoryViewModel.swift in Sources */,
@@ -12730,6 +12758,7 @@
 				821B72922BD2ECFB000460E2 /* RandomSplashScreenViewModel.swift in Sources */,
 				82184D8D2B7BDA2100F2588E /* DailyWeatherTableViewCellViewModel.swift in Sources */,
 				82808E8D2A31F12100DEEB16 /* ASPUWebsiteSectionsListViewController.swift in Sources */,
+				82A7CC482E1D49D600C10C24 /* TimetableMenuWeekDaysListViewModel + Extensions.swift in Sources */,
 				8217C30F2B8FB74100A59412 /* CustomSplashScreenViewController.swift in Sources */,
 				82C26C852BD7F2060039D86D /* DisplayModeOptionsListTableViewController.swift in Sources */,
 				82808E892A31F12100DEEB16 /* AppDelegate.swift in Sources */,
@@ -12749,7 +12778,6 @@
 				826AF8002D03AA3500CF64EA /* AllShortcutsListViewModel.swift in Sources */,
 				8234E5F52A8854DF00ED354C /* WordDocumenReaderViewModelProtocol.swift in Sources */,
 				822527562BA64D0100B66314 /* NewsCategoriesRandomizerViewController.swift in Sources */,
-				822862372CC70EB800EE5FED /* TabBarSoundOptions.swift in Sources */,
 				825D65C42D1B5A8100A84EE7 /* AdditionalTabOptionsListViewModel.swift in Sources */,
 				82056BF32DFA3A370007D524 /* ASPUButtonTimeSettingsViewController.swift in Sources */,
 				8217C3152B8FB7AF00A59412 /* ICustomSplashScreenEditorViewModel.swift in Sources */,
@@ -12762,6 +12790,7 @@
 				82BEAD892A74180D00DD34C2 /* RecentWebPageViewModel + Extensions.swift in Sources */,
 				82D37FCB2BEC25B10035CB57 /* SavedImageTableViewCell.swift in Sources */,
 				82BCB5722AB3ACFF00F3A321 /* PairTypesListViewModelProtocol.swift in Sources */,
+				821F0A6F2E305CA400CF31B2 /* AdditionalTabSplashScreenViewModel.swift in Sources */,
 				8250B7A52D577E8E00ADE903 /* PairsCountViewController.swift in Sources */,
 				820E40932A7C365B007A1E0A /* AGPUCurrentCathedraMapViewModelProtocol.swift in Sources */,
 				828D51332BB8A0B300848FF8 /* ASPUButtonIconsListViewModel + Extensions.swift in Sources */,
@@ -12830,6 +12859,7 @@
 				822B06FC2C63F95700F54E28 /* SayingOptionTableViewCell.swift in Sources */,
 				825738782C108AED000D6CAC /* IContactsListViewModel.swift in Sources */,
 				825D65C92D1B5C1B00A84EE7 /* AdditionalTabOptionsListTableViewController.swift in Sources */,
+				82A7CC5F2E1D526A00C10C24 /* TimeTableContainerViewController.swift in Sources */,
 				82E4C5662A6B153800F65A67 /* FacultyGroupsListViewModel + Extensions.swift in Sources */,
 				829952522BDC9A2C003AFB14 /* TimeTableFavouriteItemsListViewModel + Extensions.swift in Sources */,
 				82162D8C2AB5CE7700840D90 /* CalendarViewModel + Extensions.swift in Sources */,
@@ -12903,6 +12933,7 @@
 				82ACD2042CA2097600A2CC36 /* AllSectionsListTableViewController.swift in Sources */,
 				826716C22A5A2AF600CD5C23 /* RecentWebPageModel.swift in Sources */,
 				822B06F72C63F7BA00F54E28 /* SpeechSynthesizerManager.swift in Sources */,
+				82F6493F2E209550008551CC /* MKMapView.swift in Sources */,
 				828F47A02C05357D00AF7C3D /* ThingCategoryTableViewCell.swift in Sources */,
 				82B24A872A81BCE6008B94E4 /* Article.swift in Sources */,
 				8286D15D2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.swift in Sources */,
@@ -12911,6 +12942,7 @@
 				82184D802B7BD8D700F2588E /* HourlyWeatherTableViewCell.swift in Sources */,
 				82320D872A491F5700ECADEE /* AGPUFacultyTableViewCell.swift in Sources */,
 				820900812BAF62E50053F3BD /* TabItemTableViewCell.swift in Sources */,
+				82A7CC3F2E1D483E00C10C24 /* TimetableMenuWeekDaysListViewController.swift in Sources */,
 				82FC87FE2BBDF0F000A2EF59 /* SplashScreenTableViewCell.swift in Sources */,
 				828FD5C92C2F300F007E7185 /* TextRecognitionManager.swift in Sources */,
 				827674F12C48B61D0083A849 /* DepartmentsListTableViewController.swift in Sources */,
@@ -12950,7 +12982,6 @@
 				828E10332BD169CA00ECC5F4 /* TabsColorOptionTableViewCell.swift in Sources */,
 				828397702AD5C4B7000F355A /* AppIconsListTableViewController.swift in Sources */,
 				82D37FDA2BEC2B690035CB57 /* SavedImagesListTableViewController + Extensions.swift in Sources */,
-				82F495DA2C57324F001D2802 /* CanvasView.swift in Sources */,
 				8234E60F2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift in Sources */,
 				82822B182DAAD0CA0071C191 /* ISavedWebPagesListViewModel.swift in Sources */,
 				828397682AD5BEC2000F355A /* AppIconModel.swift in Sources */,
@@ -12971,6 +13002,7 @@
 				82F315C52C40C3FE00E826F9 /* SettablePersonalityOptionsListTableViewController.swift in Sources */,
 				82B97C152B9616FD00770F00 /* DayTableViewCell.swift in Sources */,
 				82958D992C3E1659007ACA24 /* LoadingIndicators.swift in Sources */,
+				821F0A712E305CD600CF31B2 /* AdditionalTabSplashScreenViewModel + Extensions.swift in Sources */,
 				82B1C0EE2A8123F800520C14 /* VoiceDirections.swift in Sources */,
 				8295489C2A43AE7E007DEBA0 /* SettingsManager.swift in Sources */,
 				828CFA372A35F65700C7542D /* WebViewController.swift in Sources */,
@@ -13195,7 +13227,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.2.3;
+				MARKETING_VERSION = 4.3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -13238,7 +13270,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.2.3;
+				MARKETING_VERSION = 4.3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

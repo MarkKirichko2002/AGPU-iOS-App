@@ -10,6 +10,17 @@ import MapKit
 // MARK: - MKMapViewDelegate
 extension AGPUBuildingsMapViewController: MKMapViewDelegate {
     
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        let heading = Int(mapView.camera.heading)
+        if (45..<135).contains(heading) {
+            mapView.camera.heading = 0
+            pastLocation()
+        } else if (225..<315).contains(heading) {
+            mapView.camera.heading = 0
+            nextLocation()
+        }
+    }
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let title = view.annotation?.title!
         if title!.contains("Кафедра") {

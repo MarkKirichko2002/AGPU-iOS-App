@@ -8,9 +8,10 @@
 import UIKit
 
 final class CurrentTabFavouriteOptionsListViewController: UIViewController {
-
+    
     weak var delegate: ASPUButtonFavouriteActionsListTableViewControllerDelegate?
     var currentTitle: String
+    var isSettings = false
     
     // MARK: - UI
     private let noActionsLabel = UILabel()
@@ -39,6 +40,30 @@ final class CurrentTabFavouriteOptionsListViewController: UIViewController {
     
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: "star", title: currentTitle.getCurrentTabName(), frame: .zero)
+        let addButton = UIBarButtonItem(image: UIImage(named: "add"), style: .done, target: self, action: #selector(addButtonTapped))
+        addButton.tintColor = .label
+        navigationItem.titleView = titleView
+        navigationItem.rightBarButtonItem = addButton
+        if isSettings {
+            setUpCloseButton()
+        } else {
+            setUpBackButton()
+        }
+    }
+    
+    func setUpCloseButton() {
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(close))
+        closeButton.tintColor = .label
+        navigationItem.leftBarButtonItem = closeButton
+    }
+    
+    @objc private func close() {
+        HapticsManager.shared.hapticFeedback()
+        dismiss(animated: true)
+    }
+    
+    func setUpBackButton() {
+        
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(named: "back"), for: .normal)
@@ -46,13 +71,9 @@ final class CurrentTabFavouriteOptionsListViewController: UIViewController {
         
         let backButton = UIBarButtonItem(customView: button)
         
-        let addButton = UIBarButtonItem(image: UIImage(named: "add"), style: .done, target: self, action: #selector(addButtonTapped))
-        addButton.tintColor = .label
-        navigationItem.titleView = titleView
         navigationItem.leftBarButtonItem = nil
         navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = backButton
-        navigationItem.rightBarButtonItem = addButton
     }
     
     @objc private func back() {
@@ -111,6 +132,11 @@ final class CurrentTabFavouriteOptionsListViewController: UIViewController {
                 self.noActionsLabel.isHidden = true
             } else {
                 self.noActionsLabel.isHidden = false
+            }
+        }
+        viewModel.registerItemChangedHandler { index in
+            DispatchQueue.main.async {
+                self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .left)
             }
         }
         viewModel.getOptions()

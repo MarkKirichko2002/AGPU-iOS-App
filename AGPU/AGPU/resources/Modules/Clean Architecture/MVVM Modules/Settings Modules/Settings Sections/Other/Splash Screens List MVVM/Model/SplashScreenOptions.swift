@@ -19,6 +19,7 @@ enum SplashScreenOptions: String, CaseIterable, Codable {
     case quantorium = "Кванториум"
     case season = "Сезон"
     case halloween = "Хэллоуин"
+    case additionalTab = "Дополнительная вкладка"
     case custom = "Кастомный"
     case random = "Рандом"
     case none = "Без заставки"
@@ -47,6 +48,8 @@ enum SplashScreenOptions: String, CaseIterable, Codable {
             return "season"
         case .halloween:
             return "pumpkin"
+        case .additionalTab:
+            return "additional tab"
         case .custom:
             return "custom"
         case .random:

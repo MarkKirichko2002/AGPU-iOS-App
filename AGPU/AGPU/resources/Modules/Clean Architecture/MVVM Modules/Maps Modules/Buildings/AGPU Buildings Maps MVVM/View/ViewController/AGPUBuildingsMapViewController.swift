@@ -160,14 +160,14 @@ final class AGPUBuildingsMapViewController: UIViewController {
         ])
     }
     
-    @objc private func nextLocation() {
+    @objc func nextLocation() {
         guard let region = viewModel.nextLocation() else {return}
         if !viewModel.arr.isEmpty {
             setRegion(region: region)
         }
     }
     
-    @objc private func pastLocation() {
+    @objc func pastLocation() {
         guard let region = viewModel.pastLocation() else {return}
         if !viewModel.arr.isEmpty {
             setRegion(region: region)

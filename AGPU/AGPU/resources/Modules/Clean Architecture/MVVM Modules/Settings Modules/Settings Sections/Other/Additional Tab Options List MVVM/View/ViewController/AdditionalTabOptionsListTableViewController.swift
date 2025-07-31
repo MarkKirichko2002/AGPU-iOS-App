@@ -47,6 +47,11 @@ final class AdditionalTabOptionsListTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
+        viewModel.registerItemChangedHandler { index in
+            DispatchQueue.main.async {
+                self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .left)
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
@@ -56,7 +61,7 @@ final class AdditionalTabOptionsListTableViewController: UITableViewController {
             let variant = self.viewModel.variantItem(index: indexPath.row)
             
             if self.viewModel.isVariantSelected(index: indexPath.row) && variant != .button {
-                let editName = UIAction(title: "Изменить имя", image: UIImage(named: "text")) { _ in
+                let editName = UIAction(title: "Редактировать", image: UIImage(named: "edit")) { _ in
                     self.showEditTabAlert(variant: variant)
                 }
                 return UIMenu(title: variant.rawValue, children: [

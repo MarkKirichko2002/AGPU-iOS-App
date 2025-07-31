@@ -38,8 +38,31 @@ final class ForEveryStatusTableViewCell: UITableViewCell {
     }
     
     func configure(for section: ForEveryStatusModel) {
-        sectionIcon.image = UIImage(data: section.image)?.withRenderingMode(.alwaysTemplate)
+        configureImage(section: section)
         sectionName.text = section.name
+    }
+    
+    private func configureImage(section: ForEveryStatusModel) {
+        if isTemplateImage(section: section) {
+            updateImageSize(width: 65, height: 65)
+            sectionIcon.image = UIImage(data: section.image)?.withRenderingMode(.alwaysTemplate)
+        } else {
+            updateImageSize(width: 90, height: 90)
+            sectionIcon.image = UIImage(data: section.image)?.withRenderingMode(.alwaysOriginal)
+        }
+        sectionIcon.tintColor = .label
+    }
+    
+    private func updateImageSize(width: CGFloat, height: CGFloat) {
+        sectionIcon.snp.updateConstraints { maker in
+            maker.width.equalTo(width)
+            maker.height.equalTo(height)
+        }
+    }
+    
+    private func isTemplateImage(section: ForEveryStatusModel)-> Bool {
+        let index = Sections.list.firstIndex { $0.id == section.id }!
+        return Sections.list[index].image == section.image
     }
     
     private func makeConstraints() {
