@@ -136,6 +136,12 @@ extension TabsPositionListTableViewModel: ITabsPositionListTableViewModel {
         return getTabName(tab: tab).getCurrentTabName()
     }
     
+    func observeOptionSelection() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("option was selected"), object: nil, queue: .main) { _ in
+            self.dataChangedHandler?()
+        }
+    }
+    
     func registerDataChangedHandler(block: @escaping()->Void) {
         self.dataChangedHandler = block
     }

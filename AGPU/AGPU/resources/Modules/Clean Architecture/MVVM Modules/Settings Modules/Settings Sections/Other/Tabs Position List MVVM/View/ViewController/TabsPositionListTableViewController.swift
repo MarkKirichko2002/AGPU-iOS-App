@@ -78,6 +78,7 @@ final class TabsPositionListTableViewController: UITableViewController {
             }
         }
         viewModel.getData()
+        viewModel.observeOptionSelection()
     }
     
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
@@ -86,17 +87,11 @@ final class TabsPositionListTableViewController: UITableViewController {
             let tab = self.viewModel.tabItem(index: indexPath.row)
             
             let editName = UIAction(title: "Редактировать", image: UIImage(named: "edit")) { _ in
-                self.showEditTabAlert(tab: tab)
-            }
-            
-            let editActions = UIAction(title: "Изменить действия", image: UIImage(named: "sections")) { _ in
-                let vc = CurrentTabFavouriteOptionsListViewController(title: self.viewModel.getTabName(tab: tab))
-                self.navigationController?.pushViewController(vc, animated: true)
+                self.showEditAlert(tab: tab)
             }
             
             return UIMenu(title: tab.name, children: [
-                editName,
-                editActions
+                editName
             ])
         }
     }
@@ -131,7 +126,33 @@ final class TabsPositionListTableViewController: UITableViewController {
 
 extension TabsPositionListTableViewController {
     
-    func showEditTabAlert(tab: TabModel) {
+    func showEditAlert(tab: TabModel) {
+        let alertVC = UIAlertController(title: "Вкладка \"\(viewModel.convertTabName(tab: tab))\"", message: "Что нужно изменить?", preferredStyle: .alert)
+        let editTitle = UIAlertAction(title: "Название", style: .default) { _ in
+            self.showEditTabTitleAlert(tab: tab)
+        }
+        let editActions = UIAlertAction(title: "Действия", style: .default) { _ in
+            let vc = CurrentTabFavouriteOptionsListViewController(title: self.viewModel.getTabName(tab: tab))
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        let fontAction = UIAlertAction(title: "Шрифт", style: .default) { _ in
+            let vc = CurrentTabFontOptionsListTableViewController(title: self.viewModel.getTabName(tab: tab))
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+        
+        alertVC.addAction(editTitle)
+        alertVC.addAction(editActions)
+        alertVC.addAction(fontAction)
+        alertVC.addAction(cancel)
+        
+        SpeechSynthesizerManager.shared.checkIsSaying(text: "\(alertVC.title ?? "") \(alertVC.message ?? "")")
+        present(alertVC, animated: true)
+    }
+    
+    func showEditTabTitleAlert(tab: TabModel) {
         
         let alertVC = UIAlertController(title: viewModel.createEditAlertMessage().0, message: viewModel.createEditAlertMessage().1, preferredStyle: .alert)
         
@@ -146,7 +167,7 @@ extension TabsPositionListTableViewController {
                     if name.count <= 15 {
                         self.viewModel.editText(tab: tab, text: name)
                     } else {
-                        self.showAlert(title: "Слишком много текста!", message: "Количество символов не должно превышать 15", actions: [UIAlertAction(title: "ОК", style: .default) { _ in self.showEditTabAlert(tab: tab)}])
+                        self.showAlert(title: "Слишком много текста!", message: "Количество символов не должно превышать 15", actions: [UIAlertAction(title: "ОК", style: .default) { _ in self.showEditTabTitleAlert(tab: tab)}])
                     }
                 }
             }

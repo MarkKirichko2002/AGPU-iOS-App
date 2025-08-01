@@ -59,7 +59,6 @@ final class TimeTableDayListTableViewController: UIViewController {
     // MARK: - сервисы
     let service = TimeTableService()
     let dateManager = DateManager()
-    let textRecognitionManager = TextRecognitionManager()
     let realmManager = RealmManager()
     let settingsManager = SettingsManager()
     let animation = AnimationClass()

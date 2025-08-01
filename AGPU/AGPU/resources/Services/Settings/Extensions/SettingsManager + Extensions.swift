@@ -222,19 +222,18 @@ extension SettingsManager: SettingsManagerProtocol {
         return color
     }
     
-    func getTabsFont()-> TabFonts {
-        let font = UserDefaults.loadData(type: TabFonts.self, key: "font") ?? .none
+    func saveTabFont(font: TabFonts, title: String) {
+        UserDefaults.saveData(object: font, key: "\(title) tab font") {}
+    }
+    
+    func getTabFont(title: String)-> TabFonts {
+        let font = UserDefaults.loadData(type: TabFonts.self, key: "\(title) tab font") ?? .none
         return font
     }
     
     func getTabsIconStyle()-> TabBarIconsStyle {
         let style = UserDefaults.loadData(type: TabBarIconsStyle.self, key: "tabs icon style") ?? .flatIcon
         return style
-    }
-    
-    func getTabsSoundsOption()-> TabBarSoundOptions {
-        let option = UserDefaults.loadData(type: TabBarSoundOptions.self, key: "tabs sounds option") ?? .none
-        return option
     }
     
     func getTabsIcons()-> [TabBarIconModel] {

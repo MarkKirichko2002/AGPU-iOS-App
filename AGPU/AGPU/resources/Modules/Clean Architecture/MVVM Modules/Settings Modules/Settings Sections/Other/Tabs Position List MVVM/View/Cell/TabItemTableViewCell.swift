@@ -31,7 +31,6 @@ final class TabItemTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubviews(tabIcon, tabName)
-        customFont()
         customColor()
         makeConstraints()
     }
@@ -43,6 +42,7 @@ final class TabItemTableViewCell: UITableViewCell {
     func configure(tab: TabModel) {
         tabIcon.image = UIImage(data: tab.icon!)?.withRenderingMode(.alwaysTemplate)
         tabName.text = tab.name
+        customFont(tab: tab)
     }
     
     private func makeConstraints() {
@@ -63,11 +63,26 @@ final class TabItemTableViewCell: UITableViewCell {
         }
     }
     
-    func customFont() {
-        let savedFont = settingsManager.getTabsFont()
+    func customFont(tab: TabModel) {
+        let savedFont = settingsManager.getTabFont(title: getTabName(tab: tab))
         if savedFont != .none {
-            let font = UIFont(name: savedFont.rawValue, size: 16)
-            tabName.font = font
+            tabName.font = UIFont(name: savedFont.rawValue, size: 16)
+        } else {
+            tabName.font = UIFont.systemFont(ofSize: 16)
+        }
+    }
+    
+    func getTabName(tab: TabModel)-> String {
+        if tab.id == 1 {
+            return "news"
+        } else if tab.id == 2 {
+            return "sections"
+        } else if tab.id == 3 {
+            return "timetable"
+        } else if tab.id == 4 {
+            return "settings"
+        } else {
+            return ""
         }
     }
     

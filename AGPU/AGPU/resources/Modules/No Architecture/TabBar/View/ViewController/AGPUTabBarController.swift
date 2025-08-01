@@ -73,16 +73,8 @@ final class AGPUTabBarController: UITabBarController {
             if isOnAnimation {
                 animation.tabBarItemSpringAnimation(item: item)
             }
-            handleSounds()
         } else {
             animation.tabBarItemSpringAnimation(item: item)
-        }
-    }
-    
-    private func handleSounds() {
-        let soundOption = settingsManager.getTabsSoundsOption()
-        if soundOption != .none {
-            AudioPlayerClass.shared.playSound(sound: soundOption.sound, isPlaying: false)
         }
     }
     
@@ -214,7 +206,7 @@ final class AGPUTabBarController: UITabBarController {
                 tabs.insert(additionalTab, at: 2)
             }
             
-            tabs.forEach { customFont(item: $0.tabBarItem)}
+            setUpFontForTabs(tabs: tabs)
             
             setViewControllers(tabs, animated: false)
             
@@ -243,13 +235,38 @@ final class AGPUTabBarController: UITabBarController {
         }
     }
     
-    func customFont(item: UITabBarItem) {
-        let savedFont = settingsManager.getTabsFont()
+    func setUpFontForTabs(tabs: [UIViewController]) {
+        let savedTabs = settingsManager.getTabs()
         let savedColor = settingsManager.getTabsColor()
-        if savedFont != .none {
-            let font = UIFont(name: savedFont.rawValue, size: 11)
-            let attributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: savedColor.color]
-            item.setTitleTextAttributes(attributes, for: .normal)
+        if settingsManager.getAdditionalTabVariant() == .none {
+            for i in 0...3 {
+                let title = savedTabs[i].tabName
+                let savedFont = settingsManager.getTabFont(title: title)
+                if savedFont != .none {
+                    let font = UIFont(name: savedFont.rawValue, size: 11)
+                    let attributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: savedColor.color]
+                    tabs[i].tabBarItem.setTitleTextAttributes(attributes, for: .normal)
+                }
+            }
+        } else {
+            for i in 0...1 {
+                let title = savedTabs[i].tabName
+                let savedFont = settingsManager.getTabFont(title: title)
+                if savedFont != .none {
+                    let font = UIFont(name: savedFont.rawValue, size: 11)
+                    let attributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: savedColor.color]
+                    tabs[i].tabBarItem.setTitleTextAttributes(attributes, for: .normal)
+                }
+            }
+            for i in 3...4 {
+                let title = savedTabs[i - 1].tabName
+                let savedFont = settingsManager.getTabFont(title: title)
+                if savedFont != .none {
+                    let font = UIFont(name: savedFont.rawValue, size: 11)
+                    let attributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: savedColor.color]
+                    tabs[i].tabBarItem.setTitleTextAttributes(attributes, for: .normal)
+                }
+            }
         }
     }
     

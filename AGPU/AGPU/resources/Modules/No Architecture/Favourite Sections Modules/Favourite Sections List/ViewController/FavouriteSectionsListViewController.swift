@@ -476,7 +476,7 @@ extension FavouriteSectionsListViewController: UIImagePickerControllerDelegate, 
 extension FavouriteSectionsListViewController {
     
     func showEditAlert(section: ForEveryStatusModel) {
-        let alertVC = UIAlertController(title: "Раздел \"\(templateName(section: section))\"", message: "Что изменить?", preferredStyle: .alert)
+        let alertVC = UIAlertController(title: "Раздел \"\(templateName(section: section))\"", message: "Что нужно изменить?", preferredStyle: .alert)
         let editTitle = UIAlertAction(title: "Название", style: .default) { _ in
             self.showEditTitleAlert(section: section)
         }

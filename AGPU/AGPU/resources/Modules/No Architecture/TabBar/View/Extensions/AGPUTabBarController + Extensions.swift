@@ -155,7 +155,8 @@ extension AGPUTabBarController: UIContextMenuInteractionDelegate {
     }
     
     func makeCustomContextMenu(title: String)-> UIMenu {
-        let savedFont = settingsManager.getTabsFont()
+        let savedFont = settingsManager.getTabFont(title: title)
+        let savedColor = settingsManager.getTabsColor()
         let savedActions = settingsManager.getTabOptions(title: title)
         var actions = [UIAction]()
         if title == "web sections" {
@@ -173,7 +174,8 @@ extension AGPUTabBarController: UIContextMenuInteractionDelegate {
         }
         if savedFont != .none {
             let font = UIFont(name: savedFont.rawValue, size: 15)!
-            actions.forEach { $0.setValue(NSAttributedString(string: $0.title, attributes: [.font: font, .foregroundColor: UIColor.label]), forKey: "attributedTitle") }
+            actions.forEach { $0.setValue(NSAttributedString(string: $0.title, attributes: [.font: font, .foregroundColor: savedColor.color]), forKey: "attributedTitle") }
+            actions.forEach { $0.image = $0.image?.withTintColor(savedColor.color, renderingMode: .automatic)}
         }
         return UIMenu(title: title.getCurrentTabName(), children: actions)
     }

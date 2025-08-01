@@ -47,7 +47,6 @@ final class TabsOptionsListTableViewController: UITableViewController {
         tableView.register(UINib(nibName: TabsPositionOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TabsPositionOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: AdditionalTabOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AdditionalTabOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: TabsColorOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TabsColorOptionTableViewCell.identifier)
-        tableView.register(UINib(nibName: FontOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FontOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: TabsIconStyleTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TabsIconStyleTableViewCell.identifier)
         tableView.register(UINib(nibName: TabsAnimationOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TabsAnimationOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: RecentTabOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RecentTabOptionTableViewCell.identifier)
@@ -77,10 +76,6 @@ final class TabsOptionsListTableViewController: UITableViewController {
             navigationController?.pushViewController(vc, animated: true)
             HapticsManager.shared.hapticFeedback()
         case 3:
-            let vc = TabFontOptionsListTableViewController()
-            navigationController?.pushViewController(vc, animated: true)
-            HapticsManager.shared.hapticFeedback()
-        case 4:
             let vc = TabIconsStyleListTableViewController()
             navigationController?.pushViewController(vc, animated: true)
             HapticsManager.shared.hapticFeedback()
@@ -91,7 +86,7 @@ final class TabsOptionsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 6
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -107,14 +102,10 @@ final class TabsOptionsListTableViewController: UITableViewController {
             cell.configure(color: viewModel.getTabsColor())
             return cell
         } else if indexPath.row == 3 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: FontOptionTableViewCell.identifier, for: indexPath) as? FontOptionTableViewCell else {return UITableViewCell()}
-            cell.configure(font: viewModel.getTabsFont())
-            return cell
-        } else if indexPath.row == 4 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TabsIconStyleTableViewCell.identifier, for: indexPath) as? TabsIconStyleTableViewCell else {return UITableViewCell()}
             cell.configure(style: viewModel.getIconsStyle())
             return cell
-        } else if indexPath.row == 5 {
+        } else if indexPath.row == 4 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TabsAnimationOptionTableViewCell.identifier, for: indexPath) as? TabsAnimationOptionTableViewCell else {return UITableViewCell()}
             return cell
         } else {

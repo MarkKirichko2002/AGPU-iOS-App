@@ -71,13 +71,11 @@
 		8213658B2A94F73100A20E4E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 821365892A94F73100A20E4E /* InfoPlist.strings */; };
 		8213658E2A94F7B700A20E4E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 821365902A94F7B700A20E4E /* InfoPlist.strings */; };
 		8214930F2D0F79F000F543BA /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8214930E2D0F79F000F543BA /* Impact.ttf */; };
-		821493152D0F7D9D00F543BA /* FontOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821493142D0F7D9D00F543BA /* FontOptionTableViewCell.xib */; };
-		821493162D0F7D9D00F543BA /* FontOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821493132D0F7D9D00F543BA /* FontOptionTableViewCell.swift */; };
 		8214931C2D0F80CB00F543BA /* TabFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214931B2D0F80C300F543BA /* TabFonts.swift */; };
-		821493242D0F827A00F543BA /* ITabFontOptionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821493232D0F827A00F543BA /* ITabFontOptionsListViewModel.swift */; };
-		821493262D0F82AC00F543BA /* TabFontOptionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821493252D0F82AC00F543BA /* TabFontOptionsListViewModel.swift */; };
-		821493282D0F82DD00F543BA /* TabFontOptionsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821493272D0F82DD00F543BA /* TabFontOptionsListViewModel + Extensions.swift */; };
-		8214932A2D0F845800F543BA /* TabFontOptionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821493292D0F845800F543BA /* TabFontOptionsListTableViewController.swift */; };
+		821493242D0F827A00F543BA /* ICurrentTabFontOptionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821493232D0F827A00F543BA /* ICurrentTabFontOptionsListViewModel.swift */; };
+		821493262D0F82AC00F543BA /* CurrentTabFontOptionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821493252D0F82AC00F543BA /* CurrentTabFontOptionsListViewModel.swift */; };
+		821493282D0F82DD00F543BA /* CurrentTabFontOptionsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821493272D0F82DD00F543BA /* CurrentTabFontOptionsListViewModel + Extensions.swift */; };
+		8214932A2D0F845800F543BA /* CurrentTabFontOptionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821493292D0F845800F543BA /* CurrentTabFontOptionsListTableViewController.swift */; };
 		821493462D10967700F543BA /* Capture it.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 821493452D10967600F543BA /* Capture it.ttf */; };
 		82162D882AB5CE5300840D90 /* CalendarViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82162D872AB5CE5300840D90 /* CalendarViewModelProtocol.swift */; };
 		82162D8A2AB5CE6200840D90 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82162D892AB5CE6200840D90 /* CalendarViewModel.swift */; };
@@ -497,7 +495,6 @@
 		828F47992C0532D100AF7C3D /* ThingsCategoriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828F47982C0532D100AF7C3D /* ThingsCategoriesListViewModel.swift */; };
 		828F479B2C0532E800AF7C3D /* ThingsCategoriesListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828F479A2C0532E800AF7C3D /* ThingsCategoriesListViewModel + Extensions.swift */; };
 		828F47A02C05357D00AF7C3D /* ThingCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828F479F2C05357D00AF7C3D /* ThingCategoryTableViewCell.swift */; };
-		828FD5C92C2F300F007E7185 /* TextRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FD5C82C2F300F007E7185 /* TextRecognitionManager.swift */; };
 		82920B6A2AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B682AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift */; };
 		82920B6B2AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82920B692AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.xib */; };
 		82920B882AD8823000352CD8 /* SelectedFacultyListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B872AD8823000352CD8 /* SelectedFacultyListTableViewController.swift */; };
@@ -825,7 +822,6 @@
 		82F315CF2C40CE3100E826F9 /* CommunicationStyleVariantsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315CE2C40CE3100E826F9 /* CommunicationStyleVariantsListTableViewController.swift */; };
 		82F315D32C40CE6E00E826F9 /* CommunicationStyleVariantsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315D22C40CE6E00E826F9 /* CommunicationStyleVariantsListViewModel.swift */; };
 		82F315D92C41AAB900E826F9 /* SettablePersonalityOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F315D82C41AAB900E826F9 /* SettablePersonalityOptionTableViewCell.swift */; };
-		82F495DC2C57441A001D2802 /* MNIST.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 82F495DB2C57441A001D2802 /* MNIST.mlmodel */; };
 		82F578772B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F578762B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift */; };
 		82F5787D2B6FE4B400BC64C1 /* ASPUButtonActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F5787C2B6FE4B400BC64C1 /* ASPUButtonActions.swift */; };
 		82F5787F2B6FE57100BC64C1 /* ASPUButtonActionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F5787E2B6FE57100BC64C1 /* ASPUButtonActionsListViewModel.swift */; };
@@ -834,7 +830,6 @@
 		82F578892B6FE90A00BC64C1 /* ASPUButtonActionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F578882B6FE90A00BC64C1 /* ASPUButtonActionsListTableViewController.swift */; };
 		82F60B2D2D12F5240035E416 /* VoiceCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F60B2C2D12F5240035E416 /* VoiceCommands.swift */; };
 		82F60B2F2D12F72A0035E416 /* VoiceCommandsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F60B2E2D12F72A0035E416 /* VoiceCommandsListTableViewController.swift */; };
-		82F6493F2E209550008551CC /* MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F6493E2E209550008551CC /* MKMapView.swift */; };
 		82F98B322B11998E00137D9A /* WeatherManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F98B312B11998E00137D9A /* WeatherManagerProtocol.swift */; };
 		82F98B342B1199B300137D9A /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F98B332B1199B300137D9A /* WeatherManager.swift */; };
 		82F98B362B119A0200137D9A /* WeatherManager + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F98B352B119A0200137D9A /* WeatherManager + Extensions.swift */; };
@@ -928,13 +923,11 @@
 		8213658A2A94F73100A20E4E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = InfoPlist.strings; sourceTree = "<group>"; };
 		8213658F2A94F7B700A20E4E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8214930E2D0F79F000F543BA /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
-		821493132D0F7D9D00F543BA /* FontOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontOptionTableViewCell.swift; sourceTree = "<group>"; };
-		821493142D0F7D9D00F543BA /* FontOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FontOptionTableViewCell.xib; sourceTree = "<group>"; };
 		8214931B2D0F80C300F543BA /* TabFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabFonts.swift; sourceTree = "<group>"; };
-		821493232D0F827A00F543BA /* ITabFontOptionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITabFontOptionsListViewModel.swift; sourceTree = "<group>"; };
-		821493252D0F82AC00F543BA /* TabFontOptionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabFontOptionsListViewModel.swift; sourceTree = "<group>"; };
-		821493272D0F82DD00F543BA /* TabFontOptionsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabFontOptionsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
-		821493292D0F845800F543BA /* TabFontOptionsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabFontOptionsListTableViewController.swift; sourceTree = "<group>"; };
+		821493232D0F827A00F543BA /* ICurrentTabFontOptionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICurrentTabFontOptionsListViewModel.swift; sourceTree = "<group>"; };
+		821493252D0F82AC00F543BA /* CurrentTabFontOptionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTabFontOptionsListViewModel.swift; sourceTree = "<group>"; };
+		821493272D0F82DD00F543BA /* CurrentTabFontOptionsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrentTabFontOptionsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		821493292D0F845800F543BA /* CurrentTabFontOptionsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTabFontOptionsListTableViewController.swift; sourceTree = "<group>"; };
 		821493452D10967600F543BA /* Capture it.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Capture it.ttf"; sourceTree = "<group>"; };
 		82162D872AB5CE5300840D90 /* CalendarViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModelProtocol.swift; sourceTree = "<group>"; };
 		82162D892AB5CE6200840D90 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
@@ -1334,7 +1327,6 @@
 		828F47982C0532D100AF7C3D /* ThingsCategoriesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThingsCategoriesListViewModel.swift; sourceTree = "<group>"; };
 		828F479A2C0532E800AF7C3D /* ThingsCategoriesListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ThingsCategoriesListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		828F479F2C05357D00AF7C3D /* ThingCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThingCategoryTableViewCell.swift; sourceTree = "<group>"; };
-		828FD5C82C2F300F007E7185 /* TextRecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognitionManager.swift; sourceTree = "<group>"; };
 		82920B682AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFacultyOptionTableViewCell.swift; sourceTree = "<group>"; };
 		82920B692AD872FF00352CD8 /* SelectedFacultyOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedFacultyOptionTableViewCell.xib; sourceTree = "<group>"; };
 		82920B872AD8823000352CD8 /* SelectedFacultyListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFacultyListTableViewController.swift; sourceTree = "<group>"; };
@@ -1662,7 +1654,6 @@
 		82F315CE2C40CE3100E826F9 /* CommunicationStyleVariantsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationStyleVariantsListTableViewController.swift; sourceTree = "<group>"; };
 		82F315D22C40CE6E00E826F9 /* CommunicationStyleVariantsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationStyleVariantsListViewModel.swift; sourceTree = "<group>"; };
 		82F315D82C41AAB900E826F9 /* SettablePersonalityOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettablePersonalityOptionTableViewCell.swift; sourceTree = "<group>"; };
-		82F495DB2C57441A001D2802 /* MNIST.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MNIST.mlmodel; sourceTree = "<group>"; };
 		82F578762B6FB89900BC64C1 /* AGPUFacultyTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUFacultyTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		82F5787C2B6FE4B400BC64C1 /* ASPUButtonActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonActions.swift; sourceTree = "<group>"; };
 		82F5787E2B6FE57100BC64C1 /* ASPUButtonActionsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonActionsListViewModel.swift; sourceTree = "<group>"; };
@@ -1671,7 +1662,6 @@
 		82F578882B6FE90A00BC64C1 /* ASPUButtonActionsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPUButtonActionsListTableViewController.swift; sourceTree = "<group>"; };
 		82F60B2C2D12F5240035E416 /* VoiceCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCommands.swift; sourceTree = "<group>"; };
 		82F60B2E2D12F72A0035E416 /* VoiceCommandsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCommandsListTableViewController.swift; sourceTree = "<group>"; };
-		82F6493E2E209550008551CC /* MKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapView.swift; sourceTree = "<group>"; };
 		82F98B2C2B11973500137D9A /* AGPU.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AGPU.entitlements; sourceTree = "<group>"; };
 		82F98B312B11998E00137D9A /* WeatherManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManagerProtocol.swift; sourceTree = "<group>"; };
 		82F98B332B1199B300137D9A /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
@@ -2565,23 +2555,14 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
-		821493122D0F7D5C00F543BA /* Font */ = {
-			isa = PBXGroup;
-			children = (
-				821493132D0F7D9D00F543BA /* FontOptionTableViewCell.swift */,
-				821493142D0F7D9D00F543BA /* FontOptionTableViewCell.xib */,
-			);
-			path = Font;
-			sourceTree = "<group>";
-		};
-		821493172D0F807600F543BA /* Tab Font Options List MVVM */ = {
+		821493172D0F807600F543BA /* Current Tab Font Options List MVVM */ = {
 			isa = PBXGroup;
 			children = (
 				8214931A2D0F80B300F543BA /* Model */,
 				821493192D0F80B000F543BA /* View */,
 				8214931E2D0F81FB00F543BA /* ViewModel */,
 			);
-			path = "Tab Font Options List MVVM";
+			path = "Current Tab Font Options List MVVM";
 			sourceTree = "<group>";
 		};
 		821493192D0F80B000F543BA /* View */ = {
@@ -2613,7 +2594,7 @@
 		8214931F2D0F821600F543BA /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				821493292D0F845800F543BA /* TabFontOptionsListTableViewController.swift */,
+				821493292D0F845800F543BA /* CurrentTabFontOptionsListTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2621,7 +2602,7 @@
 		821493202D0F822700F543BA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				821493272D0F82DD00F543BA /* TabFontOptionsListViewModel + Extensions.swift */,
+				821493272D0F82DD00F543BA /* CurrentTabFontOptionsListViewModel + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2629,7 +2610,7 @@
 		821493212D0F822A00F543BA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				821493252D0F82AC00F543BA /* TabFontOptionsListViewModel.swift */,
+				821493252D0F82AC00F543BA /* CurrentTabFontOptionsListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2637,7 +2618,7 @@
 		821493222D0F822D00F543BA /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				821493232D0F827A00F543BA /* ITabFontOptionsListViewModel.swift */,
+				821493232D0F827A00F543BA /* ICurrentTabFontOptionsListViewModel.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -3975,7 +3956,6 @@
 				822B06F52C63F79600F54E28 /* Speech Synthesizer */,
 				8225AA102C615E5500FEFFE1 /* Firebase */,
 				82D6C3302A5E1DD100FB7F5D /* API */,
-				828FD5C72C2F2FF8007E7185 /* Text Recognition */,
 				82E3C3CC2B43711600F2FFA3 /* Audio Player */,
 				82EF23D12A3DED7F004A7B9C /* Animation */,
 				8270A5462A578491008ACADC /* Date */,
@@ -5436,7 +5416,6 @@
 		8268885F2A33ACE800434219 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				82F6493D2E20953B008551CC /* MKMapView */,
 				82822B1D2DAB8FB80071C191 /* UIApplication */,
 				827359732D74D75C00C96F40 /* NavigationItem */,
 				824472922CCA77EC00114870 /* TimeInterval */,
@@ -6499,7 +6478,6 @@
 			children = (
 				82D2996D2CF10B0A00E3A53B /* GoogleService-Info.plist */,
 				82F98B2C2B11973500137D9A /* AGPU.entitlements */,
-				82F495DB2C57441A001D2802 /* MNIST.mlmodel */,
 				82B5FE4D2D8300A90023A0D9 /* gesture_recognizer.task */,
 				8258214C2A4649FE00CF0333 /* resources */,
 				8295489D2A43B0D3007DEBA0 /* sources */,
@@ -6885,7 +6863,6 @@
 				8286D1552BCDADEA006BB6B3 /* Tabs Position */,
 				825D65AF2D1B50D200A84EE7 /* Additional Tab */,
 				828E10302BD1699500ECC5F4 /* Tabs Color */,
-				821493122D0F7D5C00F543BA /* Font */,
 				82C752422C28855800161AEF /* Tabs Icon Style */,
 				8286D15A2BCDB3A8006BB6B3 /* Tabs Animation */,
 				829952742BDEEB58003AFB14 /* Recent Tab */,
@@ -7400,14 +7377,6 @@
 				828F479F2C05357D00AF7C3D /* ThingCategoryTableViewCell.swift */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		828FD5C72C2F2FF8007E7185 /* Text Recognition */ = {
-			isa = PBXGroup;
-			children = (
-				828FD5C82C2F300F007E7185 /* TextRecognitionManager.swift */,
-			);
-			path = "Text Recognition";
 			sourceTree = "<group>";
 		};
 		82920B602AD86E9800352CD8 /* Sections */ = {
@@ -11811,7 +11780,7 @@
 				820900742BAF60CD0053F3BD /* Tabs Position List MVVM */,
 				825D65B62D1B57F800A84EE7 /* Additional Tab Options List MVVM */,
 				828E102F2BD1697E00ECC5F4 /* Tab Colors List MVVM */,
-				821493172D0F807600F543BA /* Tab Font Options List MVVM */,
+				821493172D0F807600F543BA /* Current Tab Font Options List MVVM */,
 				82C752302C28819600161AEF /* Tab Icons Style List MVVM */,
 				82768ADD2ABE12D30022FBE1 /* App Themes List MVVM */,
 				828D51052BB85E4D00848FF8 /* ASPU Button Options List */,
@@ -11874,14 +11843,6 @@
 				82F60B2E2D12F72A0035E416 /* VoiceCommandsListTableViewController.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		82F6493D2E20953B008551CC /* MKMapView */ = {
-			isa = PBXGroup;
-			children = (
-				82F6493E2E209550008551CC /* MKMapView.swift */,
-			);
-			path = MKMapView;
 			sourceTree = "<group>";
 		};
 		82F98B2D2B1198EA00137D9A /* Weather */ = {
@@ -12226,7 +12187,6 @@
 				82320D892A491FBC00ECADEE /* AGPUFacultyTableViewCell.xib in Resources */,
 				82C449F62B5F0B5F0039B0F3 /* ring.mp3 in Resources */,
 				828DD7662C6B8C87006F15DF /* season.mp4 in Resources */,
-				821493152D0F7D9D00F543BA /* FontOptionTableViewCell.xib in Resources */,
 				82E4C5972A6B2CBE00F65A67 /* FacultyGroupTableViewCell.xib in Resources */,
 				82D2996E2CF10B0B00E3A53B /* GoogleService-Info.plist in Resources */,
 				822606012A853C110055925F /* RecentMomentTableViewCell.xib in Resources */,
@@ -12306,7 +12266,6 @@
 				82B24A7A2A81945D008B94E4 /* AllWeeksListViewModel + Extensions.swift in Sources */,
 				82A41B972C2C34B800254AE2 /* RecentDatesListViewController + Extensions.swift in Sources */,
 				826FB3952C1F6C94007EDA25 /* INewsOptionsPositionListViewModel.swift in Sources */,
-				82F495DC2C57441A001D2802 /* MNIST.mlmodel in Sources */,
 				820D18E72A68FA7D00BFAA35 /* AGPUBuildings.swift in Sources */,
 				82187C9F2C04F2340033E6DC /* ScreenPresentationStylesTableViewController.swift in Sources */,
 				82ACD2012CA2086800A2CC36 /* Sections.swift in Sources */,
@@ -12406,7 +12365,7 @@
 				82958D922C3E1261007ACA24 /* LoadingIndicatorOptionTableViewCell.swift in Sources */,
 				82E577722C754E18008B9FC5 /* CalendarARViewController.swift in Sources */,
 				822B283B2DCA8F3700CC1C73 /* MonthsListTableViewController.swift in Sources */,
-				821493242D0F827A00F543BA /* ITabFontOptionsListViewModel.swift in Sources */,
+				821493242D0F827A00F543BA /* ICurrentTabFontOptionsListViewModel.swift in Sources */,
 				827359792D74F24C00C96F40 /* NewsAdvancedModeOptionTableViewCell.swift in Sources */,
 				829D48A62BBC1EF100F6D256 /* TimeTableSoundsListViewModel + Extensions.swift in Sources */,
 				824EBF822B2A0F0D0003E7E6 /* FacultyCathedraMapListViewModel.swift in Sources */,
@@ -12662,7 +12621,7 @@
 				82C26C792BD7F0D20039D86D /* DisplayModes.swift in Sources */,
 				8234E5F32A88514600ED354C /* WordDocumentReaderViewController + Extensions.swift in Sources */,
 				82D0EA782E0185DA00BE9C90 /* GlanceInfoOptionsTableViewCell.swift in Sources */,
-				8214932A2D0F845800F543BA /* TabFontOptionsListTableViewController.swift in Sources */,
+				8214932A2D0F845800F543BA /* CurrentTabFontOptionsListTableViewController.swift in Sources */,
 				82F98B322B11998E00137D9A /* WeatherManagerProtocol.swift in Sources */,
 				829952712BDCBF32003AFB14 /* ASPUButtonAllActionsListViewModel.swift in Sources */,
 				829548922A439FF7007DEBA0 /* AGPUBuildingsMapViewController + Extensions.swift in Sources */,
@@ -12872,7 +12831,7 @@
 				82BC2F462A8EFD6400ADB239 /* NewsCategoriesListViewModel.swift in Sources */,
 				829952492BDC97D9003AFB14 /* TimeTableFavouriteItemsListTableViewController + Extensions.swift in Sources */,
 				824472942CCA780600114870 /* TimeInterval + Extensions.swift in Sources */,
-				821493262D0F82AC00F543BA /* TabFontOptionsListViewModel.swift in Sources */,
+				821493262D0F82AC00F543BA /* CurrentTabFontOptionsListViewModel.swift in Sources */,
 				823B32942CF4CC330097996B /* VoiceCommandsViewController.swift in Sources */,
 				825D65C22D1B5A1800A84EE7 /* IAdditionalTabOptionsListViewModel.swift in Sources */,
 				824EBF802B2A0EFC0003E7E6 /* FacultyCathedraMapListViewModelProtocol.swift in Sources */,
@@ -12901,7 +12860,6 @@
 				82989ACF2A6E35B200F27858 /* FacultyCathedraTableViewCell.swift in Sources */,
 				825D65BD2D1B591000A84EE7 /* AdditionalTabVariants.swift in Sources */,
 				8294C3CC2C715F3000C9DFBE /* RecentBuildingViewController.swift in Sources */,
-				821493162D0F7D9D00F543BA /* FontOptionTableViewCell.swift in Sources */,
 				82D37FD52BEC29D90035CB57 /* SavedImagesListViewModel.swift in Sources */,
 				829CEF822BEF9C5D00FA32EF /* BuildingsListViewModel.swift in Sources */,
 				829952672BDCBB9A003AFB14 /* ASPUButtonAllActionsListTableViewController.swift in Sources */,
@@ -12933,7 +12891,6 @@
 				82ACD2042CA2097600A2CC36 /* AllSectionsListTableViewController.swift in Sources */,
 				826716C22A5A2AF600CD5C23 /* RecentWebPageModel.swift in Sources */,
 				822B06F72C63F7BA00F54E28 /* SpeechSynthesizerManager.swift in Sources */,
-				82F6493F2E209550008551CC /* MKMapView.swift in Sources */,
 				828F47A02C05357D00AF7C3D /* ThingCategoryTableViewCell.swift in Sources */,
 				82B24A872A81BCE6008B94E4 /* Article.swift in Sources */,
 				8286D15D2BCDB3C8006BB6B3 /* TabsAnimationOptionTableViewCell.swift in Sources */,
@@ -12944,7 +12901,6 @@
 				820900812BAF62E50053F3BD /* TabItemTableViewCell.swift in Sources */,
 				82A7CC3F2E1D483E00C10C24 /* TimetableMenuWeekDaysListViewController.swift in Sources */,
 				82FC87FE2BBDF0F000A2EF59 /* SplashScreenTableViewCell.swift in Sources */,
-				828FD5C92C2F300F007E7185 /* TextRecognitionManager.swift in Sources */,
 				827674F12C48B61D0083A849 /* DepartmentsListTableViewController.swift in Sources */,
 				822245922B28EC2B00DFCFA7 /* Actions.swift in Sources */,
 				82BC2F4D2A8F0B9500ADB239 /* NewsPagesListTableViewController.swift in Sources */,
@@ -12956,7 +12912,7 @@
 				82187CA42C04F2710033E6DC /* IScreenPresentationStylesListViewModel.swift in Sources */,
 				8294C3C82C7156E300C9DFBE /* RecentBuildingViewModel + Extensions.swift in Sources */,
 				82B24AA32A81C8C3008B94E4 /* AGPUNewsListViewModel + Extensions.swift in Sources */,
-				821493282D0F82DD00F543BA /* TabFontOptionsListViewModel + Extensions.swift in Sources */,
+				821493282D0F82DD00F543BA /* CurrentTabFontOptionsListViewModel + Extensions.swift in Sources */,
 				82B1C0D22A8070FF00520C14 /* SavedSubGroupViewModel + Extensions.swift in Sources */,
 				82184D8F2B7BDA3F00F2588E /* HourlyWeatherCollectionViewCellViewModel.swift in Sources */,
 				82DB22C32AACD05D00F8F664 /* TimeTable.swift in Sources */,

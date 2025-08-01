@@ -1,5 +1,5 @@
 //
-//  TabFontOptionsListTableViewController.swift
+//  CurrentTabFontOptionsListTableViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 16.12.2024.
@@ -7,10 +7,19 @@
 
 import UIKit
 
-final class TabFontOptionsListTableViewController: UITableViewController {
+final class CurrentTabFontOptionsListTableViewController: UITableViewController {
 
     // MARK: - сервисы
-    private let viewModel = TabFontOptionsListViewModel()
+    private let viewModel: CurrentTabFontOptionsListViewModel
+    
+    init(title: String) {
+        self.viewModel = CurrentTabFontOptionsListViewModel(title: title)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +29,7 @@ final class TabFontOptionsListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "font", title: viewModel.titleForNavigation(), frame: .zero)
+        let titleView = CustomTitleView(image: "font", title: viewModel.getCurrentTabName(), frame: .zero)
         navigationItem.titleView = titleView
         let button = UIButton()
         button.tintColor = .label

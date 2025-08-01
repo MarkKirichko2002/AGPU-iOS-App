@@ -27,19 +27,9 @@ extension TabsOptionsListViewModel: ITabsOptionsListViewModel {
         return color
     }
     
-    func getTabsFont()-> TabFonts {
-        let font = settingsManager.getTabsFont()
-        return font
-    }
-    
     func getIconsStyle()-> TabBarIconsStyle {
         let style = settingsManager.getTabsIconStyle()
         return style
-    }
-    
-    func getSoundOption()-> TabBarSoundOptions {
-        let option = settingsManager.getTabsSoundsOption()
-        return option
     }
     
     func observeOptionSelection() {

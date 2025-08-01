@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ITabFontOptionsListViewModel {
+protocol ICurrentTabFontOptionsListViewModel {
     func fontsCount()-> Int
     func fontOptionItem(index: Int)-> TabFonts
     func selectFont(index: Int)

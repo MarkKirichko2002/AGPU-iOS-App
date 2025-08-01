@@ -12,4 +12,18 @@ struct TabModel: Codable, Equatable {
     var name: String
     var icon = UIImage().pngData()
     var position: Int
+    
+    var tabName: String {
+        if id == 1 {
+            return "news"
+        } else if id == 2 {
+            return "sections"
+        } else if id == 3 {
+            return "timetable"
+        } else if id == 4 {
+            return "settings"
+        } else {
+            return ""
+        }
+    }
 }
