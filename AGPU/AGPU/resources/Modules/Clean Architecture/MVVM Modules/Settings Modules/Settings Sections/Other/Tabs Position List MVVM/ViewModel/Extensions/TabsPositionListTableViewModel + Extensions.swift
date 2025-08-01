@@ -21,8 +21,6 @@ extension TabsPositionListTableViewModel: ITabsPositionListTableViewModel {
     
     func getTabsPosition() {
         
-        let icons = settingsManager.getTabsIcons()
-        
         let position = settingsManager.getTabs()
         
         tabs = position
@@ -32,10 +30,6 @@ extension TabsPositionListTableViewModel: ITabsPositionListTableViewModel {
         let index3 = tabs.firstIndex { $0.id == 3 }!
         let index4 = tabs.firstIndex { $0.id == 4 }!
         
-        tabs[index1].icon = icons[0].icon.pngData()
-        tabs[index2].icon = icons[1].icon.pngData()
-        tabs[index3].icon = icons[2].icon.pngData()
-        tabs[index4].icon = icons[4].icon.pngData()
     }
     
     func editText(tab: TabModel, text: String) {

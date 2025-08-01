@@ -107,21 +107,20 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     private func setUpTabBars() {
-        let icons = settingsManager.getTabsIcons()
         // новости
-        newsVC.tabBarItem = UITabBarItem(title: "Новости", image: icons[0].icon, selectedImage: icons[0].selectedIcon)
+        newsVC.tabBarItem = UITabBarItem(title: "Новости", image: UIImage(named: "mail")!, selectedImage: UIImage(named: "mail selected")!)
         // избранное
-        sectionsListVC.tabBarItem = UITabBarItem(title: "Разделы", image: icons[1].icon, selectedImage: icons[1].selectedIcon)
+        sectionsListVC.tabBarItem = UITabBarItem(title: "Разделы", image: UIImage(named: "sections")!, selectedImage: UIImage(named: "sections")!)
         // расписание
-        self.timetableContainerVC.tabBarItem = UITabBarItem(title: "Расписание", image: icons[2].icon, selectedImage: icons[2].selectedIcon)
+        self.timetableContainerVC.tabBarItem = UITabBarItem(title: "Расписание", image: UIImage(named: "time icon")!, selectedImage: UIImage(named: "time icon selected")!)
         // кнопка
         middleButton.tabBarItem = UITabBarItem(title: "", image: UIImage(named: ""), selectedImage: UIImage(named: ""))
         // карты
-        mapsVC.tabBarItem = UITabBarItem(title: "Карты", image: icons[3].icon, selectedImage: icons[3].selectedIcon)
+        mapsVC.tabBarItem = UITabBarItem(title: "Карты", image: UIImage(named: "map")!, selectedImage: UIImage(named: "map selected")!)
         // настройки
-        settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: icons[4].icon, selectedImage: icons[4].selectedIcon)
+        settingsVC.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(named: "settings")!, selectedImage: UIImage(named: "settings selected")!)
         // разделы
-        sectionsVC.tabBarItem = UITabBarItem(title: "Разделы", image: icons[5].icon, selectedImage: icons[5].selectedIcon)
+        sectionsVC.tabBarItem = UITabBarItem(title: "Разделы", image: UIImage(named: "globe")!, selectedImage: UIImage(named: "globe")!)
         sectionsVC.isMain = true
         viewControllers?.removeAll()
     }
@@ -146,7 +145,6 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 1)
             setViewControllers(tabs, animated: false)
-            selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -157,7 +155,6 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 1)
             setViewControllers(tabs, animated: false)
-            selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -168,7 +165,6 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 1)
             setViewControllers(tabs, animated: false)
-            selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -181,7 +177,6 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 2)
             setViewControllers(tabs, animated: false)
-            selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -227,6 +222,7 @@ final class AGPUTabBarController: UITabBarController {
     
     func resetSavedTab() {
         UserDefaults.standard.set(0, forKey: "index")
+        selectedIndex = 0
     }
     
     func setUpSavedTab() {
@@ -285,64 +281,63 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     private func setUpContextMenu() {
-        let icons = settingsManager.getTabsIcons()
         let main = settingsManager.checkOnlyMainOption()
         switch main {
         case .schedule:
-            makeForTimetable(icons: icons)
+            makeForTimetable()
         case .news:
-            makeForNews(icons: icons)
+            makeForNews()
         case .sections:
-            makeForSections(icons: icons)
+            makeForSections()
         case .main:
-            makeForMain(icons: icons)
+            makeForMain()
         case .custom:
-            makeForCustom(icons: icons)
+            makeForCustom()
         }
     }
     
-    func makeForTimetable(icons: [TabBarIconModel]) {
+    func makeForTimetable() {
         let timetableListInteraction = UIContextMenuInteraction(delegate: self)
         let settingsListInteraction = UIContextMenuInteraction(delegate: self)
         
-        if let timetableIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[2].icon}) {
+        if let timetableIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == UIImage(named: "time icon")}) {
             tabBar.subviews[timetableIndex].addInteraction(timetableListInteraction)
             tabBar.subviews[timetableIndex].accessibilityIdentifier = "timetable"
         }
         
-        if let settingsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[4].icon}) {
+        if let settingsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == UIImage(named: "settings")!}) {
             tabBar.subviews[settingsIndex].addInteraction(settingsListInteraction)
             tabBar.subviews[settingsIndex].accessibilityIdentifier = "settings"
         }
     }
     
-    func makeForNews(icons: [TabBarIconModel]) {
+    func makeForNews() {
         let newsListInteraction = UIContextMenuInteraction(delegate: self)
         let settingsListInteraction = UIContextMenuInteraction(delegate: self)
-        if let newsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[0].icon}) {
+        if let newsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == UIImage(named: "mail")!}) {
             tabBar.subviews[newsIndex].addInteraction(newsListInteraction)
             tabBar.subviews[newsIndex].accessibilityIdentifier = "news"
         }
-        if let settingsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[4].icon}) {
+        if let settingsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == UIImage(named: "settings")!}) {
             tabBar.subviews[settingsIndex].addInteraction(settingsListInteraction)
             tabBar.subviews[settingsIndex].accessibilityIdentifier = "settings"
         }
     }
     
-    func makeForSections(icons: [TabBarIconModel]) {
+    func makeForSections() {
         let sectionsInteraction = UIContextMenuInteraction(delegate: self)
         let settingsListInteraction = UIContextMenuInteraction(delegate: self)
-        if let sectionsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[5].icon}) {
+        if let sectionsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == UIImage(named: "globe")!}) {
             tabBar.subviews[sectionsIndex].addInteraction(sectionsInteraction)
             tabBar.subviews[sectionsIndex].accessibilityIdentifier = "web sections"
         }
-        if let settingsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[4].icon}) {
+        if let settingsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == UIImage(named: "settings")!}) {
             tabBar.subviews[settingsIndex].addInteraction(settingsListInteraction)
             tabBar.subviews[settingsIndex].accessibilityIdentifier = "settings"
         }
     }
     
-    func makeForMain(icons: [TabBarIconModel]) {
+    func makeForMain() {
         let newsListInteraction = UIContextMenuInteraction(delegate: self)
         let timetableListInteraction = UIContextMenuInteraction(delegate: self)
         let mapsInteraction = UIContextMenuInteraction(delegate: self)
@@ -357,7 +352,7 @@ final class AGPUTabBarController: UITabBarController {
         tabBar.subviews[4].accessibilityIdentifier = "settings"
     }
     
-    func makeForCustom(icons: [TabBarIconModel]) {
+    func makeForCustom() {
         let newsListInteraction = UIContextMenuInteraction(delegate: self)
         let favouriteListInteraction = UIContextMenuInteraction(delegate: self)
         let timetableListInteraction = UIContextMenuInteraction(delegate: self)
@@ -367,40 +362,40 @@ final class AGPUTabBarController: UITabBarController {
         let weeksInteraction = UIContextMenuInteraction(delegate: self)
         let weatherInteraction = UIContextMenuInteraction(delegate: self)
         let buildingInteraction = UIContextMenuInteraction(delegate: self)
-        if let newsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[0].icon}) {
+        if let newsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == UIImage(named: "mail")!}) {
             tabBar.subviews[newsIndex].addInteraction(newsListInteraction)
             tabBar.subviews[newsIndex].accessibilityIdentifier = "news"
         }
-        if let favouriteIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[1].icon}) {
+        if let favouriteIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == UIImage(named: "sections")!}) {
             tabBar.subviews[favouriteIndex].addInteraction(favouriteListInteraction)
             tabBar.subviews[favouriteIndex].accessibilityIdentifier = "sections"
         }
-        if let timetableIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[2].icon}) {
+        if let timetableIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == UIImage(named: "time icon")!}) {
             tabBar.subviews[timetableIndex].addInteraction(timetableListInteraction)
             tabBar.subviews[timetableIndex].accessibilityIdentifier = "timetable"
         }
-        if let mapsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[3].icon}) {
+        if let mapsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == UIImage(named: "map")!}) {
             tabBar.subviews[mapsIndex].addInteraction(mapsInteraction)
             tabBar.subviews[mapsIndex].accessibilityIdentifier = "maps"
         }
-        if let settingsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[4].icon}) {
+        if let settingsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == UIImage(named: "settings")!}) {
             tabBar.subviews[settingsIndex].addInteraction(settingsListInteraction)
             tabBar.subviews[settingsIndex].accessibilityIdentifier = "settings"
         }
-        if let sectionsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[5].icon}) {
+        if let sectionsIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == UIImage(named: "globe")!}) {
             tabBar.subviews[sectionsIndex].addInteraction(sectionsInteraction)
             tabBar.subviews[sectionsIndex].accessibilityIdentifier = "web sections"
         }
-        if let weeksIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[6].icon}) {
+        if let weeksIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == UIImage(named: "calendar icon")!}) {
             tabBar.subviews[weeksIndex].addInteraction(weeksInteraction)
             tabBar.subviews[weeksIndex].accessibilityIdentifier = "weeks"
         }
-        if let weatherIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[7].icon}) {
+        if let weatherIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == UIImage(named: "cloud icon")!}) {
             tabBar.subviews[weatherIndex].addInteraction(weatherInteraction)
             tabBar.subviews[weatherIndex].accessibilityIdentifier = "weather"
         }
         
-        if let buildingIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image == icons[8].icon}) {
+        if let buildingIndex = viewControllers?.firstIndex(where: { $0.tabBarItem.image ==  UIImage(named: "marker")!}) {
             tabBar.subviews[buildingIndex].addInteraction(buildingInteraction)
             tabBar.subviews[buildingIndex].accessibilityIdentifier = "building"
         }

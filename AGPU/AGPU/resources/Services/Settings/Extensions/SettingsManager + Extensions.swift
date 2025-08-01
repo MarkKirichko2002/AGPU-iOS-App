@@ -173,7 +173,6 @@ extension SettingsManager: SettingsManagerProtocol {
     
     func getAdditionalTab()-> UIViewController {
         let variant = getAdditionalTabVariant()
-        let icons = getTabsIcons()
         let name = getAdditionalTabName(title: variant.rawValue)
         let title = !name.isEmpty ? name : variant.rawValue
         switch variant {
@@ -181,19 +180,19 @@ extension SettingsManager: SettingsManagerProtocol {
             return UIViewController()
         case .weeksList:
             let vc = AllWeeksListTableViewController(id: getSavedID(), subgroup: getSavedSubgroup(), owner: getSavedOwner())
-            vc.tabBarItem = UITabBarItem(title: title, image: icons[6].icon, selectedImage: icons[6].selectedIcon)
+            vc.tabBarItem = UITabBarItem(title: title, image: UIImage(named: "calendar icon")!, selectedImage: UIImage(named: "calendar icon selected")!)
             vc.isTab = true
             let navVC = UINavigationController(rootViewController: vc)
             return navVC
         case .webSections:
             let vc = ASPUWebsiteSectionsListViewController()
-            vc.tabBarItem = UITabBarItem(title: title, image: icons[5].icon, selectedImage: icons[5].selectedIcon)
+            vc.tabBarItem = UITabBarItem(title: title, image: UIImage(named: "globe")!, selectedImage: UIImage(named: "globe")!)
             vc.isMain = true
             let navVC = UINavigationController(rootViewController: vc)
             return navVC
         case .maps:
             let vc = AGPUBuildingsMapViewController()
-            vc.tabBarItem = UITabBarItem(title: title, image: icons[3].icon, selectedImage: icons[3].selectedIcon)
+            vc.tabBarItem = UITabBarItem(title: title, image: UIImage(named: "map")!, selectedImage: UIImage(named: "map selected")!)
             vc.isTab = true
             let navVC = UINavigationController(rootViewController: vc)
             return navVC
@@ -202,13 +201,13 @@ extension SettingsManager: SettingsManagerProtocol {
             annotation.title = "Армавир"
             annotation.coordinate = CLLocationCoordinate2D(latitude: 44.9892, longitude: 41.1234)
             let vc = LocationWeatherDetailViewController(annotation: annotation)
-            vc.tabBarItem = UITabBarItem(title: title, image: icons[7].icon, selectedImage: icons[7].selectedIcon)
+            vc.tabBarItem = UITabBarItem(title: title, image: UIImage(named: "cloud icon")!, selectedImage: UIImage(named: "cloud icon selected")!)
             vc.isTab = true
             let navVC = UINavigationController(rootViewController: vc)
             return navVC
         case .building:
             let vc = NearBuildingViewController(info: .map)
-            vc.tabBarItem = UITabBarItem(title: title, image: icons[8].icon, selectedImage: icons[8].selectedIcon)
+            vc.tabBarItem = UITabBarItem(title: title, image: UIImage(named: "marker")!, selectedImage: UIImage(named: "marker selected")!)
             vc.isTab = true
             vc.modalPresentationStyle = .fullScreen
             return vc
@@ -231,38 +230,6 @@ extension SettingsManager: SettingsManagerProtocol {
         return font
     }
     
-    func getTabsIconStyle()-> TabBarIconsStyle {
-        let style = UserDefaults.loadData(type: TabBarIconsStyle.self, key: "tabs icon style") ?? .flatIcon
-        return style
-    }
-    
-    func getTabsIcons()-> [TabBarIconModel] {
-        let style = getTabsIconStyle()
-        switch style {
-        case .flatIcon:
-            let news = TabBarIconModel(icon: UIImage(named: "mail")!, selectedIcon: UIImage(named: "mail selected")!)
-            let favourites = TabBarIconModel(icon: UIImage(named: "sections")!, selectedIcon: UIImage(named: "sections")!)
-            let timetable = TabBarIconModel(icon: UIImage(named: "time icon")!, selectedIcon: UIImage(named: "time icon selected")!)
-            let maps = TabBarIconModel(icon: UIImage(named: "map")!, selectedIcon: UIImage(named: "map selected")!)
-            let settings = TabBarIconModel(icon: UIImage(named: "settings")!, selectedIcon: UIImage(named: "settings selected")!)
-            let sections = TabBarIconModel(icon: UIImage(named: "globe")!, selectedIcon: UIImage(named: "globe")!)
-            let weeks = TabBarIconModel(icon: UIImage(named: "calendar icon")!, selectedIcon: UIImage(named: "calendar icon selected")!)
-            let weather = TabBarIconModel(icon: UIImage(named: "cloud icon")!, selectedIcon: UIImage(named: "cloud icon selected")!)
-            let marker = TabBarIconModel(icon: UIImage(named: "marker")!, selectedIcon: UIImage(named: "marker selected")!)
-            return [news, favourites, timetable, maps, settings, sections, weeks, weather, marker]
-        case .apple:
-            let news = TabBarIconModel(icon: UIImage(systemName: "newspaper")!, selectedIcon: UIImage(systemName: "newspaper.fill")!)
-            let favourites = TabBarIconModel(icon: UIImage(systemName: "calendar")!, selectedIcon: UIImage(systemName: "calendar")!)
-            let timetable = TabBarIconModel(icon: UIImage(systemName: "clock")!, selectedIcon: UIImage(systemName: "clock.fill")!)
-            let maps = TabBarIconModel(icon: UIImage(systemName: "map")!, selectedIcon: UIImage(systemName: "map.fill")!)
-            let settings = TabBarIconModel(icon: UIImage(systemName: "gearshape")!, selectedIcon: UIImage(systemName: "gearshape.fill")!)
-            let sections = TabBarIconModel(icon: UIImage(systemName: "globe")!, selectedIcon: UIImage(systemName: "globe")!)
-            let weeks = TabBarIconModel(icon: UIImage(systemName: "list.bullet")!, selectedIcon: UIImage(systemName: "list.bullet")!)
-            let weather = TabBarIconModel(icon: UIImage(systemName: "cloud")!, selectedIcon: UIImage(systemName: "cloud.fill")!)
-            let marker = TabBarIconModel(icon: UIImage(systemName: "mappin.circle")!, selectedIcon: UIImage(systemName: "mappin.circle.fill")!)
-            return [news, favourites, timetable, maps, settings, sections, weeks, weather, marker]
-        }
-    }
     
     func checkTabsAnimationOption()-> Bool {
         let option = UserDefaults.standard.object(forKey: "onTabsAnimation") as? Bool ?? true

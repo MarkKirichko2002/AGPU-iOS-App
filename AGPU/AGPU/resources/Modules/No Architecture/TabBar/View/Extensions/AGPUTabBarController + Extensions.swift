@@ -189,6 +189,8 @@ extension AGPUTabBarController: UIContextMenuInteractionDelegate {
             return UIMenu(title: "Карты", children: makeMapsOptions())
         } else if title == "settings" {
             return UIMenu(title: "Настройки", children: makeSettingsOptions())
+        } else if title == "web sections" {
+            return UIMenu(title: "Разделы сайта", children: makeSectionsOptions())
         }
         return nil
     }
