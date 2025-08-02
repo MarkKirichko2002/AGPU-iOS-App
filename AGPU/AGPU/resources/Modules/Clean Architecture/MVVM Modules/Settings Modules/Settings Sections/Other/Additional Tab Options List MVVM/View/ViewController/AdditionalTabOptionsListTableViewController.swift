@@ -52,6 +52,7 @@ final class AdditionalTabOptionsListTableViewController: UITableViewController {
                 self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .left)
             }
         }
+        viewModel.observeOptionSelection()
     }
     
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
@@ -94,7 +95,7 @@ final class AdditionalTabOptionsListTableViewController: UITableViewController {
         cell.tintColor = .systemGreen
         cell.textLabel?.text = viewModel.textForVariant(variant: variant)
         cell.textLabel?.textColor = viewModel.isVariantSelected(index: indexPath.row) ? .systemGreen : .label
-        cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
+        cell.textLabel?.font = viewModel.fontForVariant(variant: variant)
         cell.accessoryType = viewModel.isVariantSelected(index: indexPath.row) ? .checkmark : .none
         return cell
     }
@@ -103,6 +104,26 @@ final class AdditionalTabOptionsListTableViewController: UITableViewController {
 extension AdditionalTabOptionsListTableViewController {
     
     func showEditTabAlert(variant: AdditionalTabVariants) {
+        let alertVC = UIAlertController(title: "Вкладка \"\(variant.rawValue)\"", message: "Что нужно изменить?", preferredStyle: .alert)
+        let editTitle = UIAlertAction(title: "Название", style: .default) { _ in
+            self.showEditTabTitleAlert(variant: variant)
+        }
+        let fontAction = UIAlertAction(title: "Шрифт", style: .default) { _ in
+            let vc = CurrentTabFontOptionsListTableViewController(title: variant.rawValue)
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+        
+        alertVC.addAction(editTitle)
+        alertVC.addAction(fontAction)
+        alertVC.addAction(cancel)
+        
+        SpeechSynthesizerManager.shared.checkIsSaying(text: "\(alertVC.title ?? "") \(alertVC.message ?? "")")
+        present(alertVC, animated: true)
+    }
+    
+    func showEditTabTitleAlert(variant: AdditionalTabVariants) {
         
         let alertVC = UIAlertController(title: viewModel.createEditAlertMessage().0, message: viewModel.createEditAlertMessage().1, preferredStyle: .alert)
         

@@ -145,6 +145,7 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 1)
             setViewControllers(tabs, animated: false)
+            selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -155,6 +156,7 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 1)
             setViewControllers(tabs, animated: false)
+            selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -165,6 +167,7 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 1)
             setViewControllers(tabs, animated: false)
+            selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -177,6 +180,7 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 2)
             setViewControllers(tabs, animated: false)
+            selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -222,7 +226,6 @@ final class AGPUTabBarController: UITabBarController {
     
     func resetSavedTab() {
         UserDefaults.standard.set(0, forKey: "index")
-        selectedIndex = 0
     }
     
     func setUpSavedTab() {
@@ -237,32 +240,32 @@ final class AGPUTabBarController: UITabBarController {
         if settingsManager.getAdditionalTabVariant() == .none {
             for i in 0...3 {
                 let title = savedTabs[i].tabName
-                let savedFont = settingsManager.getTabFont(title: title)
-                if savedFont != .none {
-                    let font = UIFont(name: savedFont.rawValue, size: 11)
-                    let attributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: savedColor.color]
-                    tabs[i].tabBarItem.setTitleTextAttributes(attributes, for: .normal)
-                }
+                setUpFontForTab(tab: tabs[i].tabBarItem, title: title)
             }
         } else {
+            // первые две вкладки
             for i in 0...1 {
                 let title = savedTabs[i].tabName
-                let savedFont = settingsManager.getTabFont(title: title)
-                if savedFont != .none {
-                    let font = UIFont(name: savedFont.rawValue, size: 11)
-                    let attributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: savedColor.color]
-                    tabs[i].tabBarItem.setTitleTextAttributes(attributes, for: .normal)
-                }
+                setUpFontForTab(tab: tabs[i].tabBarItem, title: title)
             }
+            // дополнительная вкладка
+            let title = settingsManager.getAdditionalTabVariant().rawValue
+            setUpFontForTab(tab: tabs[2].tabBarItem, title: title)
+            // другие две вкладки
             for i in 3...4 {
                 let title = savedTabs[i - 1].tabName
-                let savedFont = settingsManager.getTabFont(title: title)
-                if savedFont != .none {
-                    let font = UIFont(name: savedFont.rawValue, size: 11)
-                    let attributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: savedColor.color]
-                    tabs[i].tabBarItem.setTitleTextAttributes(attributes, for: .normal)
-                }
+                setUpFontForTab(tab: tabs[i].tabBarItem, title: title)
             }
+        }
+    }
+    
+    func setUpFontForTab(tab: UITabBarItem, title: String) {
+        let savedColor = settingsManager.getTabsColor()
+        let savedFont = settingsManager.getTabFont(title: title)
+        if savedFont != .none {
+            let font = UIFont(name: savedFont.rawValue, size: 11)
+            let attributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: savedColor.color]
+            tab.setTitleTextAttributes(attributes, for: .normal)
         }
     }
     

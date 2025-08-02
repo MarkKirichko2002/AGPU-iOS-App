@@ -42,7 +42,11 @@ extension CurrentTabFontOptionsListViewModel: ICurrentTabFontOptionsListViewMode
     }
     
     func getCurrentTabName()-> String {
-        return title.getCurrentTabName()
+        if !title.getCurrentTabName().isEmpty {
+            return title.getCurrentTabName()
+        } else {
+            return "Доп. вкладка"
+        }
     }
     
     func registerDataChangedHandler(block: @escaping()->Void) {

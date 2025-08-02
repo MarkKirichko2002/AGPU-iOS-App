@@ -5,7 +5,7 @@
 //  Created by Марк Киричко on 25.12.2024.
 //
 
-import Foundation
+import UIKit
 
 // MARK: - IAdditionalTabOptionsListViewModel
 extension AdditionalTabOptionsListViewModel: IAdditionalTabOptionsListViewModel {
@@ -70,6 +70,15 @@ extension AdditionalTabOptionsListViewModel: IAdditionalTabOptionsListViewModel 
         }
     }
     
+    func fontForVariant(variant: AdditionalTabVariants)-> UIFont {
+        let savedFont = settingsManager.getTabFont(title: variant.rawValue)
+        if savedFont != .none {
+            return UIFont(name: savedFont.rawValue, size: 16) ?? UIFont.systemFont(ofSize: 16)
+        } else {
+            return UIFont.systemFont(ofSize: 16)
+        }
+    }
+    
     func createEditAlertMessage()-> (String, String) {
         let style = settingsManager.getSavedCommunicationStyle()
         let name = UserDefaults.standard.string(forKey: "name") ?? ""
@@ -88,6 +97,12 @@ extension AdditionalTabOptionsListViewModel: IAdditionalTabOptionsListViewModel 
             return "Выберите вариант"
         case .informal:
             return "Выбери вариант"
+        }
+    }
+    
+    func observeOptionSelection() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("option was selected"), object: nil, queue: .main) { _ in
+            self.dataChangedHandler?()
         }
     }
     

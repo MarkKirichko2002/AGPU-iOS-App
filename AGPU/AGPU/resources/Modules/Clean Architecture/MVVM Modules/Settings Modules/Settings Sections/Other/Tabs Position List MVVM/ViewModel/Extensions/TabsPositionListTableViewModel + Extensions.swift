@@ -20,16 +20,7 @@ extension TabsPositionListTableViewModel: ITabsPositionListTableViewModel {
     }
     
     func getTabsPosition() {
-        
-        let position = settingsManager.getTabs()
-        
-        tabs = position
-        
-        let index1 = tabs.firstIndex { $0.id == 1 }!
-        let index2 = tabs.firstIndex { $0.id == 2 }!
-        let index3 = tabs.firstIndex { $0.id == 3 }!
-        let index4 = tabs.firstIndex { $0.id == 4 }!
-        
+        tabs = settingsManager.getTabs()
     }
     
     func editText(tab: TabModel, text: String) {
