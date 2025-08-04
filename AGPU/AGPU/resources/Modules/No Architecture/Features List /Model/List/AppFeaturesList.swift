@@ -55,8 +55,8 @@ struct AppFeaturesList {
         
         AppFeatureModel(
             id: 7,
-            name: "ASPU Wallpapers",
-            description: "ASPU Wallpapers (АГПУ обои) - раздел с обоями ВУЗа.",
+            name: "University Backgrounds",
+            description: "University Backgrounds (университетские фоны) - раздел с обоями ВУЗа.",
             videoURL: "https://youtu.be/eY4_nsl4_g0?si=VrkY3d-MAjdANHNm"
         ),
         

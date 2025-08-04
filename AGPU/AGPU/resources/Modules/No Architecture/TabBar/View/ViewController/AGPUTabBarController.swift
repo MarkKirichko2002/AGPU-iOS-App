@@ -145,7 +145,7 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 1)
             setViewControllers(tabs, animated: false)
-            selectedIndex = 0
+            //selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -156,7 +156,7 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 1)
             setViewControllers(tabs, animated: false)
-            selectedIndex = 0
+            //selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -167,7 +167,7 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 1)
             setViewControllers(tabs, animated: false)
-            selectedIndex = 0
+            //selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -180,7 +180,7 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 2)
             setViewControllers(tabs, animated: false)
-            selectedIndex = 0
+            //selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -209,8 +209,6 @@ final class AGPUTabBarController: UITabBarController {
             
             setViewControllers(tabs, animated: false)
             
-            setUpSavedTab()
-            
             if variant == .button {
                 ASPUButton.isHidden = false
                 disableTab()
@@ -218,6 +216,7 @@ final class AGPUTabBarController: UITabBarController {
                 ASPUButton.isHidden = true
             }
             
+            setUpSavedTab()
             UITabBar.appearance().tintColor = settingsManager.getTabsColor().color
         }
         setUpTabBarGestures()
@@ -226,6 +225,7 @@ final class AGPUTabBarController: UITabBarController {
     
     func resetSavedTab() {
         UserDefaults.standard.set(0, forKey: "index")
+        selectedIndex = 0
     }
     
     func setUpSavedTab() {
