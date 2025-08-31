@@ -28,6 +28,11 @@ extension FavouriteShortcutsListViewModel: IFavouriteShortcutsListViewModel {
         itemChangedHandler?(index)
     }
     
+    func updateShortcutTitle(title: String) {
+        currentShortCut.title = title
+        updateShortcutInfo(shortcut: currentShortCut)
+    }
+    
     func updateShortcutInfo(shortcut: ShortcutModel) {
         let index = shortcuts.firstIndex { $0.id == shortcut.id }!
         if shortcuts[index].title != shortcut.title || shortcuts[index].subtitle != shortcut.subtitle {

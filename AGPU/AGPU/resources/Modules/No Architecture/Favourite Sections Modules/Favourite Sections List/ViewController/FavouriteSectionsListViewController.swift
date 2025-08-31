@@ -167,7 +167,9 @@ final class FavouriteSectionsListViewController: UIViewController {
     
     func updateData(section: ForEveryStatusModel) {
         let indexPath = IndexPath(row: self.sections.firstIndex(where: { $0.id == section.id })!, section: 0)
-        self.tableView.reloadRows(at: [indexPath], with: .left)
+        DispatchQueue.main.async {
+            self.tableView.reloadRows(at: [indexPath], with: .left)
+        }
     }
     
     @objc func getRecentData() {
@@ -409,8 +411,20 @@ extension FavouriteSectionsListViewController: UITableViewDelegate {
                 self.showEditAlert(section: item)
             }
             
+            let switchName =  UIAction(title: "Заменить", image: UIImage(named: "replace")) { _ in
+                let vc = FavouriteTitlesListTableViewController(name: self.templateName(section: item))
+                vc.delegate = self
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                self.currentSection = item
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    self.present(navVC, animated: true)
+                }
+            }
+            
             return UIMenu(title: self.templateName(section: item), children: [
-                editAction
+                editAction,
+                switchName
             ])
         }
     }
@@ -425,6 +439,15 @@ extension FavouriteSectionsListViewController: UITableViewDelegate {
         if tableView.isEditing {
             updateSections(sourceIndexPath.row, destinationIndexPath.row)
         }
+    }
+}
+
+extension FavouriteSectionsListViewController: FavouriteTitlesListTableViewControllerDelegate {
+    
+    func titleWasSelected(title: String) {
+        print(currentSection)
+        print(title)
+        editText(section: currentSection, text: title)
     }
 }
 

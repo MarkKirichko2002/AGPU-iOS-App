@@ -9,6 +9,7 @@ import Foundation
 
 final class FavouriteShortcutsListViewModel {
     
+    var currentShortCut = ShortcutModel(id: "", title: "", subtitle: "", icon: "")
     var shortcuts = [ShortcutModel]()
     var dataChangedHandler: (()->Void)?
     var itemChangedHandler: ((Int)->Void)?

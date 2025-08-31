@@ -110,7 +110,9 @@ final class ContactsListTableViewController: UIViewController {
             self.delegate?.listUpdated()
         }
         viewModel.registerItemChangedHandler { index in
-            self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .left)
+            DispatchQueue.main.async {
+                self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .left)
+            }
         }
         viewModel.getContacts()
     }

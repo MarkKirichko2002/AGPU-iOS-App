@@ -142,6 +142,13 @@ struct AppFeaturesList {
             name: "Useful Shortcuts",
             description: "Useful Shortcuts (полезные шорткаты) - позволяет настроить список шорткатов для приложения.",
             videoURL: ""
+        ),
+        
+        AppFeatureModel(
+            id: 20,
+            name: "Switch List",
+            description: "Switch List (список переключений) - создайте список названий для каждой надписи, чтобы переключаться между ними и менять текст у надписи.",
+            videoURL: ""
         )
     ]
 }

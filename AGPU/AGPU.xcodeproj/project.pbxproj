@@ -251,6 +251,11 @@
 		82426C742A71476D00D5AA57 /* ForEveryStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82426C722A71476D00D5AA57 /* ForEveryStatusModel.swift */; };
 		824302B62BDB0658004F1742 /* TimeTableTableViewCell + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824302B52BDB0658004F1742 /* TimeTableTableViewCell + Extensions.swift */; };
 		824472942CCA780600114870 /* TimeInterval + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824472932CCA77FB00114870 /* TimeInterval + Extensions.swift */; };
+		8244ED512E4BD4D1003F2E9E /* IFavouriteTitlesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8244ED502E4BD4D1003F2E9E /* IFavouriteTitlesListViewModel.swift */; };
+		8244ED562E4BD5DF003F2E9E /* FavouriteTitlesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8244ED552E4BD5DF003F2E9E /* FavouriteTitlesListViewModel.swift */; };
+		8244ED582E4BD60B003F2E9E /* FavouriteTitlesListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8244ED572E4BD60B003F2E9E /* FavouriteTitlesListViewModel + Extensions.swift */; };
+		8244ED5C2E4BD7F5003F2E9E /* FavouriteTitlesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8244ED5B2E4BD7F5003F2E9E /* FavouriteTitlesListTableViewController.swift */; };
+		8244ED5E2E4BD883003F2E9E /* FavouriteTitlesListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8244ED5D2E4BD883003F2E9E /* FavouriteTitlesListTableViewController + Extensions.swift */; };
 		824741AB2D33F3B600CF289E /* DateDaysListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824741AA2D33F3B600CF289E /* DateDaysListViewController.swift */; };
 		824997E22CAC147400E3D55F /* SimpleCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824997E12CAC147400E3D55F /* SimpleCalendarViewController.swift */; };
 		824C56D92A6FE98F0074ADB7 /* FacultyCathedraList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */; };
@@ -1073,6 +1078,11 @@
 		82426C722A71476D00D5AA57 /* ForEveryStatusModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForEveryStatusModel.swift; sourceTree = "<group>"; };
 		824302B52BDB0658004F1742 /* TimeTableTableViewCell + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableTableViewCell + Extensions.swift"; sourceTree = "<group>"; };
 		824472932CCA77FB00114870 /* TimeInterval + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval + Extensions.swift"; sourceTree = "<group>"; };
+		8244ED502E4BD4D1003F2E9E /* IFavouriteTitlesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFavouriteTitlesListViewModel.swift; sourceTree = "<group>"; };
+		8244ED552E4BD5DF003F2E9E /* FavouriteTitlesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteTitlesListViewModel.swift; sourceTree = "<group>"; };
+		8244ED572E4BD60B003F2E9E /* FavouriteTitlesListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouriteTitlesListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		8244ED5B2E4BD7F5003F2E9E /* FavouriteTitlesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteTitlesListTableViewController.swift; sourceTree = "<group>"; };
+		8244ED5D2E4BD883003F2E9E /* FavouriteTitlesListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouriteTitlesListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		824741AA2D33F3B600CF289E /* DateDaysListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDaysListViewController.swift; sourceTree = "<group>"; };
 		824997E12CAC147400E3D55F /* SimpleCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCalendarViewController.swift; sourceTree = "<group>"; };
 		824C56D82A6FE98F0074ADB7 /* FacultyCathedraList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyCathedraList.swift; sourceTree = "<group>"; };
@@ -4381,6 +4391,74 @@
 			path = TimeInterval;
 			sourceTree = "<group>";
 		};
+		8244ED4C2E4BD43C003F2E9E /* Favourite Titles List MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				8244ED4E2E4BD47E003F2E9E /* View */,
+				8244ED4D2E4BD47A003F2E9E /* ViewModel */,
+			);
+			path = "Favourite Titles List MVVM";
+			sourceTree = "<group>";
+		};
+		8244ED4D2E4BD47A003F2E9E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8244ED4F2E4BD481003F2E9E /* Protocol */,
+				8244ED532E4BD5C5003F2E9E /* ViewModel */,
+				8244ED522E4BD5C3003F2E9E /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8244ED4E2E4BD47E003F2E9E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8244ED5A2E4BD7D6003F2E9E /* ViewController */,
+				8244ED592E4BD7D4003F2E9E /* Extensions */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8244ED4F2E4BD481003F2E9E /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				8244ED502E4BD4D1003F2E9E /* IFavouriteTitlesListViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		8244ED522E4BD5C3003F2E9E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8244ED572E4BD60B003F2E9E /* FavouriteTitlesListViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8244ED532E4BD5C5003F2E9E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8244ED552E4BD5DF003F2E9E /* FavouriteTitlesListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8244ED592E4BD7D4003F2E9E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8244ED5D2E4BD883003F2E9E /* FavouriteTitlesListTableViewController + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8244ED5A2E4BD7D6003F2E9E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8244ED5B2E4BD7F5003F2E9E /* FavouriteTitlesListTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		824741A92D33F38600CF289E /* Date Days List */ = {
 			isa = PBXGroup;
 			children = (
@@ -5645,6 +5723,7 @@
 		826E6E992A65EFCB007A3C13 /* MVVM Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8244ED4C2E4BD43C003F2E9E /* Favourite Titles List MVVM */,
 				82ACD1FD2CA2083B00A2CC36 /* All Sections List MVVM */,
 				82A29F3B2B9BD4E200756F43 /* Splash Screen Modules */,
 				82BC2F3F2A8EFC5D00ADB239 /* News Modules */,
@@ -12287,6 +12366,7 @@
 				82B24A642A816B54008B94E4 /* WeekModel.swift in Sources */,
 				82D0FC152B1B4C1E0056D94B /* CathedraBuildingDetailViewModelProtocol.swift in Sources */,
 				82EF23D72A3DF0B8004A7B9C /* AnimationClassProtocol.swift in Sources */,
+				8244ED562E4BD5DF003F2E9E /* FavouriteTitlesListViewModel.swift in Sources */,
 				82AB6D212AF6C06800F7B729 /* SavedNewsCategoryViewModelProtocol.swift in Sources */,
 				82754C612BD3D9940021E76A /* SplashScreenBackgroundColorsListTableViewController.swift in Sources */,
 				82F578862B6FE64F00BC64C1 /* ASPUButtonActionsListViewModel + Extensions.swift in Sources */,
@@ -12378,6 +12458,7 @@
 				822526D02BA380AC00B66314 /* NewsSplashScreenViewModel + Extensions.swift in Sources */,
 				821B72712BD17196000460E2 /* TabsOptionsListViewModel.swift in Sources */,
 				826888542A33A91200434219 /* AGPUSubSectionTableViewCell.swift in Sources */,
+				8244ED5C2E4BD7F5003F2E9E /* FavouriteTitlesListTableViewController.swift in Sources */,
 				82822B1F2DAB8FD10071C191 /* UIApplication + Extensions.swift in Sources */,
 				8226D18D2B096FFB00B0B9F0 /* SavedPairTypeViewModelProtocol.swift in Sources */,
 				820745032DBD75B900E4C505 /* CalendarDisciplineNameViewController.swift in Sources */,
@@ -12589,6 +12670,7 @@
 				82AB6D232AF6C07500F7B729 /* SavedNewsCategoryViewModel.swift in Sources */,
 				82BEAD872A7417EC00DD34C2 /* RecentWebPageViewModelProtocol.swift in Sources */,
 				82E6C4332CF8F2A100D42D60 /* NearBuildingViewController.swift in Sources */,
+				8244ED5E2E4BD883003F2E9E /* FavouriteTitlesListTableViewController + Extensions.swift in Sources */,
 				82B1C0CA2A8070A100520C14 /* SavedSubGroupViewModel.swift in Sources */,
 				82ECCC752B182A3200443ED8 /* AGPUBuildingDetailViewModel + Extensions.swift in Sources */,
 				828321642A7C6A48008641A5 /* AllGroupsListTableViewController.swift in Sources */,
@@ -12607,6 +12689,7 @@
 				82989ACA2A6E2D4500F27858 /* FacultyCathedraModel.swift in Sources */,
 				82FC22EE2BC01BF1008709DA /* NewsOptionsFilterListTableViewController.swift in Sources */,
 				82D37FBD2BEC119D0035CB57 /* ThingsCategoriesListTableViewController.swift in Sources */,
+				8244ED512E4BD4D1003F2E9E /* IFavouriteTitlesListViewModel.swift in Sources */,
 				82C5B78F2BCEF81600F907CB /* ASPUButtonAnimationOptionTableViewCell.swift in Sources */,
 				82ECABE12A81520A00FE7462 /* SubGroupModel.swift in Sources */,
 				82A29F472B9BD5EF00756F43 /* SelectedFacultySplashScreenViewModel + Extensions.swift in Sources */,
@@ -12882,6 +12965,7 @@
 				82519B942BEAA63F00F136F8 /* OnlyMainVariantsListTableViewController.swift in Sources */,
 				826888582A33AB5600434219 /* RegularSplashScreenViewController.swift in Sources */,
 				82E4C5892A6B20DE00F65A67 /* LocationManager.swift in Sources */,
+				8244ED582E4BD60B003F2E9E /* FavouriteTitlesListViewModel + Extensions.swift in Sources */,
 				823F97D92B9D224100F60F39 /* WeatherSplashScreenViewController.swift in Sources */,
 				821B728B2BD2ECB5000460E2 /* RandomSplashScreenViewController.swift in Sources */,
 				8276E62C2C2CA4E800216F28 /* TimeTableDatesListViewModel.swift in Sources */,
@@ -13083,7 +13167,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.3.4;
+				MARKETING_VERSION = 4.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -13126,7 +13210,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.3.4;
+				MARKETING_VERSION = 4.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

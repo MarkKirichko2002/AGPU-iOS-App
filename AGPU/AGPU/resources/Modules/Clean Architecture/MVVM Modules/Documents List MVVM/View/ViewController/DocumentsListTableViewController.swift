@@ -110,7 +110,9 @@ final class DocumentsListTableViewController: UIViewController {
             self.delegate?.dataChanged()
         }
         viewModel.registerItemChangedHandler { index in
-            self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .left)
+            DispatchQueue.main.async {
+                self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .left)
+            }
         }
         viewModel.registerInvalidFormatAlertHandler {
             let ok = UIAlertAction(title: "ОК", style: .default) { _ in

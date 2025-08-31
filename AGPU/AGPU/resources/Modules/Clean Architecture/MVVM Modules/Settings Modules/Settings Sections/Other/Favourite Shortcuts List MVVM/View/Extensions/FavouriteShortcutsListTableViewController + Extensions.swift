@@ -26,8 +26,21 @@ extension FavouriteShortcutsListTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
+            let info = self.viewModel.createTextInfoForShortcut(shortcut: self.viewModel.shortcutItem(index: indexPath.row))
+            
             let editAction = UIAction(title: "Редактировать", image: UIImage(named: "edit")) { _ in
                 self.showEditAlert(shortcut: self.viewModel.shortcutItem(index: indexPath.row))
+            }
+            
+            let switchName =  UIAction(title: "Заменить", image: UIImage(named: "replace")) { _ in
+                let vc = FavouriteTitlesListTableViewController(name: info.0)
+                vc.delegate = self
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                self.viewModel.currentShortCut = self.viewModel.shortcutItem(index: indexPath.row)
+                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    self.present(navVC, animated: true)
+                }
             }
             
             let positionAction = UIAction(title: "Позиция", image: UIImage(named: "number")) { _ in
@@ -35,8 +48,9 @@ extension FavouriteShortcutsListTableViewController: UITableViewDelegate {
                 self.setUpEditButton(title: "Готово")
             }
             
-            return UIMenu(title: self.viewModel.shortcutItem(index: indexPath.row).title, children: [
+            return UIMenu(title: info.0, children: [
                 editAction,
+                switchName,
                 positionAction
             ])
         }
@@ -75,6 +89,13 @@ extension FavouriteShortcutsListTableViewController: AllShortcutsListTableViewCo
     
     func shortcutWasAdded() {
         viewModel.getShortcuts()
+    }
+}
+
+extension FavouriteShortcutsListTableViewController: FavouriteTitlesListTableViewControllerDelegate {
+    
+    func titleWasSelected(title: String) {
+        viewModel.updateShortcutTitle(title: title)
     }
 }
 
