@@ -386,15 +386,6 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         }
     }
     
-    // следить за изменением страницы
-    func observePageChanges() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("page"), object: nil, queue: .main) { notification in
-            if let page = notification.object as? Int {
-                self.pageHandler?(page)
-            }
-        }
-    }
-    
     func observeDisplayMode() {
         NotificationCenter.default.addObserver(forName: Notification.Name("display mode option"), object: nil, queue: .main) { notification in
             if let displayMode = notification.object as? DisplayModes {
@@ -783,10 +774,6 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     func registerDataChangedHandler(block: @escaping(String)->Void) {
         self.dataChangedHandler = block
-    }
-    
-    func registerPageHandler(block: @escaping(Int)->Void) {
-        self.pageHandler = block
     }
     
     func registerNewsDateHandler(block: @escaping()->Void) {

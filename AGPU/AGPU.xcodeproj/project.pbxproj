@@ -506,6 +506,7 @@
 		82920B8D2AD8871D00352CD8 /* SelectedFacultyListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B8C2AD8871D00352CD8 /* SelectedFacultyListViewModelProtocol.swift */; };
 		82920B8F2AD8872B00352CD8 /* SelectedFacultyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B8E2AD8872B00352CD8 /* SelectedFacultyListViewModel.swift */; };
 		82920B912AD8874100352CD8 /* SelectedFacultyListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82920B902AD8874100352CD8 /* SelectedFacultyListViewModel + Extensions.swift */; };
+		8293D1862E6F858A0035A2E9 /* WeekParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8293D1852E6F85890035A2E9 /* WeekParser.swift */; };
 		8294C3BF2C7155B900C9DFBE /* RecentBuildingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8294C3BE2C7155B900C9DFBE /* RecentBuildingModel.swift */; };
 		8294C3C42C71561600C9DFBE /* IRecentBuildingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8294C3C32C71561600C9DFBE /* IRecentBuildingViewModel.swift */; };
 		8294C3C62C71568300C9DFBE /* RecentBuildingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8294C3C52C71568300C9DFBE /* RecentBuildingViewModel.swift */; };
@@ -582,6 +583,7 @@
 		829D48A42BBC1EE300F6D256 /* TimeTableSoundsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829D48A32BBC1EE300F6D256 /* TimeTableSoundsListViewModel.swift */; };
 		829D48A62BBC1EF100F6D256 /* TimeTableSoundsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829D48A52BBC1EF100F6D256 /* TimeTableSoundsListViewModel + Extensions.swift */; };
 		829E26C82C01202F0093E45C /* AppFeaturesListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E26C72C01202F0093E45C /* AppFeaturesListTableViewController + Extensions.swift */; };
+		82A1AC332E6CD4A400593283 /* NewsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A1AC322E6CD4A400593283 /* NewsParser.swift */; };
 		82A1CDC02C0CDBDF005A3338 /* SavedVideosListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A1CDBF2C0CDBDF005A3338 /* SavedVideosListTableViewController.swift */; };
 		82A1CDC22C0CDC30005A3338 /* SavedVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A1CDC12C0CDC30005A3338 /* SavedVideoTableViewCell.swift */; };
 		82A1CDC52C0CDCB6005A3338 /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A1CDC42C0CDCB6005A3338 /* VideoModel.swift */; };
@@ -749,6 +751,10 @@
 		82D6C33A2A5E282A00FB7F5D /* TimeTableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3382A5E282A00FB7F5D /* TimeTableTableViewCell.swift */; };
 		82D6C33B2A5E282A00FB7F5D /* TimeTableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82D6C3392A5E282A00FB7F5D /* TimeTableTableViewCell.xib */; };
 		82D6C3442A5E340300FB7F5D /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C3432A5E340300FB7F5D /* CalendarViewController.swift */; };
+		82D730112E6F5FEC0079A512 /* TimetableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D730102E6F5FEC0079A512 /* TimetableParser.swift */; };
+		82D730132E6F62170079A512 /* GetSearchIdService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D730122E6F62170079A512 /* GetSearchIdService.swift */; };
+		82D730152E6F625A0079A512 /* WeekIdService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D730142E6F625A0079A512 /* WeekIdService.swift */; };
+		82D730172E6F62FA0079A512 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D730162E6F62F50079A512 /* AppConfig.swift */; };
 		82DB22C32AACD05D00F8F664 /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DB22C22AACD05D00F8F664 /* TimeTable.swift */; };
 		82DD8DBE2B0EA104000863FF /* UIDevice + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DD8DBD2B0EA104000863FF /* UIDevice + Extensions.swift */; };
 		82E030142B2020300068D2B7 /* TimeTableForCurrentBuildingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E030132B2020300068D2B7 /* TimeTableForCurrentBuildingViewController.swift */; };
@@ -796,6 +802,7 @@
 		82E6C8842CFE4DAF00D42D60 /* ASPUButtonGestureOptionsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E6C8832CFE4DAF00D42D60 /* ASPUButtonGestureOptionsListViewModel.swift */; };
 		82E6C8862CFE4E0400D42D60 /* ASPUButtonGestureOptionsListViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E6C8852CFE4E0400D42D60 /* ASPUButtonGestureOptionsListViewModel + Extensions.swift */; };
 		82E6C8882CFE4EE100D42D60 /* ASPUButtonGestureOptionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E6C8872CFE4EE100D42D60 /* ASPUButtonGestureOptionsListTableViewController.swift */; };
+		82E75DE22E64E48A00AE1A0F /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 82E75DE12E64E48A00AE1A0F /* SwiftSoup */; };
 		82E9B10C2DD808B000BB110F /* TimetableDayInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B10B2DD808B000BB110F /* TimetableDayInfoViewModel.swift */; };
 		82E9B10E2DD80A6B00BB110F /* TimetableDayInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B10D2DD80A6B00BB110F /* TimetableDayInfoViewController.swift */; };
 		82E9B1112DD9561000BB110F /* DateNavigationTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B1102DD9561000BB110F /* DateNavigationTypes.swift */; };
@@ -1336,6 +1343,7 @@
 		82920B8C2AD8871D00352CD8 /* SelectedFacultyListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFacultyListViewModelProtocol.swift; sourceTree = "<group>"; };
 		82920B8E2AD8872B00352CD8 /* SelectedFacultyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedFacultyListViewModel.swift; sourceTree = "<group>"; };
 		82920B902AD8874100352CD8 /* SelectedFacultyListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectedFacultyListViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		8293D1852E6F85890035A2E9 /* WeekParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekParser.swift; sourceTree = "<group>"; };
 		8294C3BE2C7155B900C9DFBE /* RecentBuildingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentBuildingModel.swift; sourceTree = "<group>"; };
 		8294C3C32C71561600C9DFBE /* IRecentBuildingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRecentBuildingViewModel.swift; sourceTree = "<group>"; };
 		8294C3C52C71568300C9DFBE /* RecentBuildingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentBuildingViewModel.swift; sourceTree = "<group>"; };
@@ -1412,6 +1420,7 @@
 		829D48A32BBC1EE300F6D256 /* TimeTableSoundsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableSoundsListViewModel.swift; sourceTree = "<group>"; };
 		829D48A52BBC1EF100F6D256 /* TimeTableSoundsListViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableSoundsListViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		829E26C72C01202F0093E45C /* AppFeaturesListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppFeaturesListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
+		82A1AC322E6CD4A400593283 /* NewsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsParser.swift; sourceTree = "<group>"; };
 		82A1CDBF2C0CDBDF005A3338 /* SavedVideosListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVideosListTableViewController.swift; sourceTree = "<group>"; };
 		82A1CDC12C0CDC30005A3338 /* SavedVideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVideoTableViewCell.swift; sourceTree = "<group>"; };
 		82A1CDC42C0CDCB6005A3338 /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
@@ -1579,6 +1588,10 @@
 		82D6C3382A5E282A00FB7F5D /* TimeTableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableTableViewCell.swift; sourceTree = "<group>"; };
 		82D6C3392A5E282A00FB7F5D /* TimeTableTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeTableTableViewCell.xib; sourceTree = "<group>"; };
 		82D6C3432A5E340300FB7F5D /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		82D730102E6F5FEC0079A512 /* TimetableParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableParser.swift; sourceTree = "<group>"; };
+		82D730122E6F62170079A512 /* GetSearchIdService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSearchIdService.swift; sourceTree = "<group>"; };
+		82D730142E6F625A0079A512 /* WeekIdService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekIdService.swift; sourceTree = "<group>"; };
+		82D730162E6F62F50079A512 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		82DB22C22AACD05D00F8F664 /* TimeTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
 		82DD8DBD2B0EA104000863FF /* UIDevice + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice + Extensions.swift"; sourceTree = "<group>"; };
 		82E030132B2020300068D2B7 /* TimeTableForCurrentBuildingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableForCurrentBuildingViewController.swift; sourceTree = "<group>"; };
@@ -1699,6 +1712,7 @@
 				8225A9ED2C615DFB00FEFFE1 /* FirebaseAuth in Frameworks */,
 				8225AA032C615DFC00FEFFE1 /* FirebaseMLModelDownloader in Frameworks */,
 				8225A9F12C615DFB00FEFFE1 /* FirebaseCrashlytics in Frameworks */,
+				82E75DE22E64E48A00AE1A0F /* SwiftSoup in Frameworks */,
 				8225AA052C615DFC00FEFFE1 /* FirebaseMessaging in Frameworks */,
 				8225AA012C615DFC00FEFFE1 /* FirebaseInstallations in Frameworks */,
 				8225A9F32C615DFC00FEFFE1 /* FirebaseDatabase in Frameworks */,
@@ -3947,6 +3961,7 @@
 		8234B2FE2A3242CC0091810F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				82A1AC302E6CD47F00593283 /* HTML Parser */,
 				820744EF2DBC156E00E4C505 /* Network Manager */,
 				82B5FE4A2D82FF3C0023A0D9 /* Gesture Recognition */,
 				822B06F52C63F79600F54E28 /* Speech Synthesizer */,
@@ -8499,6 +8514,23 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		82A1AC302E6CD47F00593283 /* HTML Parser */ = {
+			isa = PBXGroup;
+			children = (
+				82D7300F2E6F5F590079A512 /* Timetable */,
+				82A1AC312E6CD48D00593283 /* News */,
+			);
+			path = "HTML Parser";
+			sourceTree = "<group>";
+		};
+		82A1AC312E6CD48D00593283 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				82A1AC322E6CD4A400593283 /* NewsParser.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
 		82A1CDB62C0CDB7C005A3338 /* Saved Videos List MVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -10514,6 +10546,18 @@
 			path = Timetable;
 			sourceTree = "<group>";
 		};
+		82D7300F2E6F5F590079A512 /* Timetable */ = {
+			isa = PBXGroup;
+			children = (
+				82D730162E6F62F50079A512 /* AppConfig.swift */,
+				82D730102E6F5FEC0079A512 /* TimetableParser.swift */,
+				82D730122E6F62170079A512 /* GetSearchIdService.swift */,
+				82D730142E6F625A0079A512 /* WeekIdService.swift */,
+				8293D1852E6F85890035A2E9 /* WeekParser.swift */,
+			);
+			path = Timetable;
+			sourceTree = "<group>";
+		};
 		82DD8DBC2B0EA0F1000863FF /* UIDevice */ = {
 			isa = PBXGroup;
 			children = (
@@ -12056,6 +12100,7 @@
 				8225AA0A2C615DFC00FEFFE1 /* FirebaseStorage */,
 				8225AA0C2C615DFC00FEFFE1 /* FirebaseStorageCombine-Community */,
 				8225AA0E2C615DFC00FEFFE1 /* FirebaseVertexAI-Preview */,
+				82E75DE12E64E48A00AE1A0F /* SwiftSoup */,
 			);
 			productName = AGPU;
 			productReference = 82808E852A31F12100DEEB16 /* AGPU.app */;
@@ -12088,6 +12133,7 @@
 			mainGroup = 82808E7C2A31F12100DEEB16;
 			packageReferences = (
 				8225A9E12C615DFB00FEFFE1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				82E75DE02E64E48A00AE1A0F /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = 82808E862A31F12100DEEB16 /* Products */;
 			projectDirPath = "";
@@ -12273,6 +12319,7 @@
 				82BF4DB02A5FA52B008B751A /* AGPUWallpapersListViewController.swift in Sources */,
 				82D6C33A2A5E282A00FB7F5D /* TimeTableTableViewCell.swift in Sources */,
 				828D512A2BB8A00500848FF8 /* ASPUButtonIcons.swift in Sources */,
+				82D730172E6F62FA0079A512 /* AppConfig.swift in Sources */,
 				822606002A853C110055925F /* RecentMomentTableViewCell.swift in Sources */,
 				829952732BDCBF71003AFB14 /* ASPUButtonAllActionsListViewModel + Extensions.swift in Sources */,
 				8276E62E2C2CA52700216F28 /* TimeTableDatesListViewModel + Extensions.swift in Sources */,
@@ -12284,6 +12331,7 @@
 				8241F9852A5F3F73007DF628 /* CalendarViewController + Extensions.swift in Sources */,
 				82C561622A6B772600514B00 /* AppFeaturesListTableViewController.swift in Sources */,
 				8217C3192B8FB7EA00A59412 /* CustomSplashScreenEditorViewModel + Extensions.swift in Sources */,
+				82D730112E6F5FEC0079A512 /* TimetableParser.swift in Sources */,
 				82E05D542A5DEE8D0060ADAA /* AGPUFacultiesListTableViewController.swift in Sources */,
 				8263AA272C0215D7001A903B /* TodayNewsListViewModel + Extensions.swift in Sources */,
 				8209A0A02B838AE90013371D /* RealmManager + Extensions.swift in Sources */,
@@ -12569,6 +12617,7 @@
 				824C56D92A6FE98F0074ADB7 /* FacultyCathedraList.swift in Sources */,
 				82B24A6D2A817BDE008B94E4 /* WeekTableViewCell.swift in Sources */,
 				82B5FE7A2D84E7E70023A0D9 /* GestureRecognitionOptionTableViewCell.swift in Sources */,
+				82D730132E6F62170079A512 /* GetSearchIdService.swift in Sources */,
 				82BC3D002A56F5C400E49332 /* RecentWebPageViewController + Extensions.swift in Sources */,
 				821119F92B990049007B61E5 /* NewsWebViewController.swift in Sources */,
 				82C5615D2A6B757C00514B00 /* AppFeatureModel.swift in Sources */,
@@ -12580,6 +12629,7 @@
 				82FC22F12BC01EA0008709DA /* NewsOptionsFilters.swift in Sources */,
 				82F315D92C41AAB900E826F9 /* SettablePersonalityOptionTableViewCell.swift in Sources */,
 				82B24A892A81BD30008B94E4 /* AGPUNewsService.swift in Sources */,
+				8293D1862E6F858A0035A2E9 /* WeekParser.swift in Sources */,
 				82989AF22A6F8CDF00F27858 /* ForEveryStatusTableViewCell.swift in Sources */,
 				8270A5482A5784A2008ACADC /* DateManager.swift in Sources */,
 				820900862BAF68990053F3BD /* ITabsPositionListTableViewModel.swift in Sources */,
@@ -12923,6 +12973,7 @@
 				828397702AD5C4B7000F355A /* AppIconsListTableViewController.swift in Sources */,
 				82D37FDA2BEC2B690035CB57 /* SavedImagesListTableViewController + Extensions.swift in Sources */,
 				8234E60F2A885B7B00ED354C /* WordRecentDocumentViewModel + Extensions.swift in Sources */,
+				82D730152E6F625A0079A512 /* WeekIdService.swift in Sources */,
 				82822B182DAAD0CA0071C191 /* ISavedWebPagesListViewModel.swift in Sources */,
 				828397682AD5BEC2000F355A /* AppIconModel.swift in Sources */,
 				82E6C8862CFE4E0400D42D60 /* ASPUButtonGestureOptionsListViewModel + Extensions.swift in Sources */,
@@ -12944,6 +12995,7 @@
 				821F0A712E305CD600CF31B2 /* AdditionalTabSplashScreenViewModel + Extensions.swift in Sources */,
 				82B1C0EE2A8123F800520C14 /* VoiceDirections.swift in Sources */,
 				8295489C2A43AE7E007DEBA0 /* SettingsManager.swift in Sources */,
+				82A1AC332E6CD4A400593283 /* NewsParser.swift in Sources */,
 				828CFA372A35F65700C7542D /* WebViewController.swift in Sources */,
 				82E4C5842A6B201600F65A67 /* LocationManagerProtocol.swift in Sources */,
 				829CEF842BEF9CBB00FA32EF /* BuildingsListViewModel + Extensions.swift in Sources */,
@@ -13167,7 +13219,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.4.1;
+				MARKETING_VERSION = 4.4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -13210,7 +13262,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.4.1;
+				MARKETING_VERSION = 4.4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -13250,6 +13302,14 @@
 			requirement = {
 				kind = exactVersion;
 				version = 11.0.0;
+			};
+		};
+		82E75DE02E64E48A00AE1A0F /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = exactVersion;
+				version = 2.11.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -13369,6 +13429,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8225A9E12C615DFB00FEFFE1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseVertexAI-Preview";
+		};
+		82E75DE12E64E48A00AE1A0F /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 82E75DE02E64E48A00AE1A0F /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -185,6 +185,32 @@ extension NewsListViewController: UIScrollViewDelegate {
     }
 }
 
+// MARK: - NewsPagesListTableViewControllerDelegate
+extension NewsListViewController: NewsPagesListTableViewControllerDelegate {
+    
+    func newsPageWasSelected(page: Int) {
+        self.setUpIndicatorView()
+        switch self.viewModel.displayMode {
+        case .grid:
+            self.viewModel.newsResponse.articles = []
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.noNewsLabel.isHidden = true
+            }
+            self.viewModel.getNews(by: page) {}
+        case .table:
+            self.viewModel.newsResponse.articles = []
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.noNewsLabel.isHidden = true
+            }
+            self.viewModel.getNews(by: page) {}
+        case .webpage:
+            self.viewModel.getNews(by: page) {}
+        }
+    }
+}
+
 extension NewsListViewController {
     
     func goToAR(images: [String]) {

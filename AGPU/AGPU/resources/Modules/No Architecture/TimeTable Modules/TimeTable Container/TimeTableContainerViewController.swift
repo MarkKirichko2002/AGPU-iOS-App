@@ -75,23 +75,27 @@ extension TimeTableContainerViewController: TimeTableDayListTableViewControllerD
         case .closed:
             self.navVC?.view.frame.origin.x = 0
             
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut) {
-                
-                self.navVC?.view.frame.origin.x = self.position
-                
-            } completion: { [weak self] done in
-                if done {
-                    self?.menuState = .opened
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut) {
+                    
+                    self.navVC?.view.frame.origin.x = self.position
+                    
+                } completion: { [weak self] done in
+                    if done {
+                        self?.menuState = .opened
+                    }
                 }
             }
         case .opened:
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut) {
-                
-                self.navVC?.view.frame.origin.x = 0
-                
-            } completion: { [weak self] done in
-                if done {
-                    self?.menuState = .closed
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseOut) {
+                    
+                    self.navVC?.view.frame.origin.x = 0
+                    
+                } completion: { [weak self] done in
+                    if done {
+                        self?.menuState = .closed
+                    }
                 }
             }
         }

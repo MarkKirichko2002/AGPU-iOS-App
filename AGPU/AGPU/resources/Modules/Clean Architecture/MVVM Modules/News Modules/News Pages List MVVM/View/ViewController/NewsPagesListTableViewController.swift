@@ -7,13 +7,19 @@
 
 import UIKit
 
+protocol NewsPagesListTableViewControllerDelegate: AnyObject {
+    func newsPageWasSelected(page: Int)
+}
+
 final class NewsPagesListTableViewController: UITableViewController {
     
     private var currentPage: Int = 0
     private var countPages: Int = 0
     private var abbreviation: String?
     
-    // MARK: - сервисы
+    weak var delegate: NewsPagesListTableViewControllerDelegate?
+    
+    // MARK: - сервисы 
     private var viewModel: NewsPagesListViewModel!
     
     // MARK: - Init
@@ -77,6 +83,7 @@ final class NewsPagesListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.chooseNewsPage(index: indexPath.row)
+        delegate?.newsPageWasSelected(page: viewModel.pageNumberItem(index: indexPath.row))
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

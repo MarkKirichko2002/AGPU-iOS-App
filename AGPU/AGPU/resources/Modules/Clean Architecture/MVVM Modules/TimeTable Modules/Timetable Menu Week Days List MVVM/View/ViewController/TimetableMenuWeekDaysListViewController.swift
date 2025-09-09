@@ -58,6 +58,11 @@ final class TimetableMenuWeekDaysListViewController: UIViewController {
         bindViewModel()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.resetData()
+    }
+    
     private func setUpNavigation() {
         navigationItem.title = viewModel.titleForNavigation()
         setUpCloseButton()
@@ -120,11 +125,11 @@ final class TimetableMenuWeekDaysListViewController: UIViewController {
         viewModel.registerDataChangedHandler {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-            }
-            if !self.viewModel.days.isEmpty {
-                self.noDatesLabel.isHidden = true
-            } else {
-                self.noDatesLabel.isHidden = false
+                if !self.viewModel.days.isEmpty {
+                    self.noDatesLabel.isHidden = true
+                } else {
+                    self.noDatesLabel.isHidden = false
+                }
             }
         }
     }

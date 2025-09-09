@@ -674,10 +674,14 @@ final class TimeTableDayListTableViewController: UIViewController {
                     }
                     
                     if self?.timetable?.disciplines.isEmpty ?? false {
-                        self?.infoLabel.text = "Нет пар"
-                        self?.infoLabel.isHidden = false
+                        DispatchQueue.main.async {
+                            self?.infoLabel.text = "Нет пар"
+                            self?.infoLabel.isHidden = false
+                        }
                     } else {
-                        self?.infoLabel.isHidden = true
+                        DispatchQueue.main.async {
+                            self?.infoLabel.isHidden = true
+                        }
                     }
                     DispatchQueue.main.async {
                         self?.tableView.reloadData()
@@ -688,12 +692,14 @@ final class TimeTableDayListTableViewController: UIViewController {
                         self?.refreshControl.endRefreshing()
                     }
                 } else {
-                    self?.spinner.isHidden = true
-                    self?.navigationItem.toggleRefreshButtonFromLeft(on: true)
-                    self?.navigationItem.toggleMenuButton(on: true)
-                    self?.animation.stopRotateAnimation(view: self!.spinner)
-                    self?.refreshControl.endRefreshing()
-                    self?.infoLabel.isHidden = false
+                    DispatchQueue.main.async {
+                        self?.spinner.isHidden = true
+                        self?.navigationItem.toggleRefreshButtonFromLeft(on: true)
+                        self?.navigationItem.toggleMenuButton(on: true)
+                        self?.animation.stopRotateAnimation(view: self!.spinner)
+                        self?.refreshControl.endRefreshing()
+                        self?.infoLabel.isHidden = false
+                    }
                 }
                 completion()
             case .failure(let error):

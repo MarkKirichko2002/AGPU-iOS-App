@@ -18,7 +18,7 @@ final class NewsListViewController: UIViewController {
     var articles = [Article]()
     
     // MARK: - UI
-    private let collectionView: UICollectionView = {
+    let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
@@ -27,20 +27,20 @@ final class NewsListViewController: UIViewController {
         return collectionView
     }()
     
-    private let tableView: UITableView = {
+    let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.identifier)
         return tableView
     }()
     
-    private let webView: WKWebView = {
+    let webView: WKWebView = {
         let webView = WKWebView()
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.allowsBackForwardNavigationGestures = true
         return webView
     }()
     
-    private let noNewsLabel = UILabel()
+    let noNewsLabel = UILabel()
     
     var spinner: UIView = {
         let imageView = UIView()
@@ -168,7 +168,7 @@ final class NewsListViewController: UIViewController {
         webView.load(viewModel.makeUrlForCurrentWebPage())
     }
     
-    private func setUpIndicatorView() {
+    func setUpIndicatorView() {
         if view.contains(spinner) {
             spinner.removeFromSuperview()
         }
@@ -423,28 +423,6 @@ final class NewsListViewController: UIViewController {
             }
         }
         
-        viewModel.registerPageHandler { page in
-            self.setUpIndicatorView()
-            switch self.viewModel.displayMode {
-            case .grid:
-                self.viewModel.newsResponse.articles = []
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                    self.noNewsLabel.isHidden = true
-                }
-                self.viewModel.getNews(by: page) {}
-            case .table:
-                self.viewModel.newsResponse.articles = []
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.noNewsLabel.isHidden = true
-                }
-                self.viewModel.getNews(by: page) {}
-            case .webpage:
-                self.viewModel.getNews(by: page) {}
-            }
-        }
-        
         viewModel.registerNewsDateHandler {
             self.setUpIndicatorView()
             switch self.viewModel.displayMode {
@@ -542,7 +520,6 @@ final class NewsListViewController: UIViewController {
         }
         
         viewModel.observeCategoryChanges()
-        viewModel.observePageChanges()
         viewModel.observeDisplayMode()
         viewModel.observeStrokeOption()
         viewModel.observeFilterOption()
@@ -752,6 +729,7 @@ final class NewsListViewController: UIViewController {
         if let currentPage = self.viewModel.newsResponse.currentPage, let countPages = self.viewModel.newsResponse.countPages {
             if countPages > 1 {
                 let vc = NewsPagesListTableViewController(currentPage: currentPage, countPages: countPages, abbreviation: viewModel.abbreviation)
+                vc.delegate = self
                 let navVC = UINavigationController(rootViewController: vc)
                 navVC.modalPresentationStyle = .fullScreen
                 self.present(navVC, animated: true)

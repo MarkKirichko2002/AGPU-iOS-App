@@ -36,13 +36,7 @@ extension TimetableMenuWeekDaysListViewModel: ITimetableMenuWeekDaysListViewMode
     }
     
     func setUpWeekData(week: WeekModel) {
-        var keys = week.dayNames.keys.sorted { dateManager.compareDates(date1: $0, date2: $1) == .orderedAscending }
-        let values =  week.dayNames.values
-        if values.contains("Воскресенье") {
-            if let index = keys.firstIndex(where: { week.dayNames[$0] == "Воскресенье" }) {
-                keys.remove(at: index)
-            }
-        }
+        let keys = week.dayNames.keys.sorted { dateManager.compareDates(date1: $0, date2: $1) == .orderedAscending }
         self.days = keys.map({ DayModel(name: "Неделя \(week.id)", date: $0, dayOfWeek: dateManager.getCurrentDayOfWeek(date: $0), info: "Загрузка...")})
         getTimetableInfo()
     }
@@ -91,9 +85,11 @@ extension TimetableMenuWeekDaysListViewModel: ITimetableMenuWeekDaysListViewMode
                             self?.days[index!].info = "каникулы!"
                         }
                     } else {
-                        let day = self?.days.first { $0.name == day.name }
-                        let index = self?.days.firstIndex(of: day!)
-                        self?.days[index!].info = "нет пар"
+                        if let day = self?.days.first(where: { $0.name == day.name }) {
+                            if let index = self?.days.firstIndex(of: day) {
+                                self?.days[index].info = "нет пар"
+                            }
+                        }
                     }
                 case .failure(let error):
                     let day = self?.days.first { $0.name == day.name }

@@ -15,7 +15,6 @@ protocol AGPUNewsListViewModelProtocol {
     func getNews(by page: Int, completion: @escaping()->Void)
     func refreshNews()
     func observeCategoryChanges()
-    func observePageChanges()
     func observeFilterOption()
     func observeStrokeOption()
     func filterNews(option: NewsOptionsFilters)

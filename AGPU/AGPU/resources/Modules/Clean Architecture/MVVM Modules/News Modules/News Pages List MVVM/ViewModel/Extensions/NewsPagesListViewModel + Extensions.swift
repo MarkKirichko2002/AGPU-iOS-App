@@ -15,15 +15,13 @@ extension NewsPagesListViewModel: NewsPagesListViewModelProtocol {
         return category?.icon ?? ""
     }
     
+    func pageNumberItem(index: Int)-> Int {
+        return pages[index].pageNumber
+    }
+    
     func pageItem(index: Int)-> String {
         let page = pages[index]
-        var pageItem = ""
-        if isStartLoading {
-            pageItem = "Страница \(page.pageNumber) (загрузка...)"
-        } else {
-            pageItem = "Страница \(page.pageNumber) (новостей: \(pages[index].newsCount))"
-        }
-        return pageItem
+        return "Страница \(page.pageNumber)"
     }
     
     func numberOfPagesInSection()-> Int {
@@ -31,13 +29,10 @@ extension NewsPagesListViewModel: NewsPagesListViewModelProtocol {
     }
     
     func setUpData() {
-        
-        let countPages = self.countPages
-
         for i in 1...countPages {
             pages.append(NewsPageModel(pageNumber: i, newsCount: 0))
         }
-        getNewsPagesInfo()
+        self.dataChangedHandler?()
     }
     
     func getNewsPagesInfo() {

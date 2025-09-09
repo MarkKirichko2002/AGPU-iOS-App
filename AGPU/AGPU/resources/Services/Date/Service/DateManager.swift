@@ -15,5 +15,5 @@ final class DateManager {
     let calendar = Calendar.current
     
     var daysOfWeek = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"]
-    
+    var fullDaysOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"]
 }
