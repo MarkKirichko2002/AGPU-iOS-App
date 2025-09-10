@@ -39,43 +39,58 @@ final class NewsParser {
         return try parseNewsResponse(page: page, doc: doc)
     }
     
-    // MARK: - Get Article by ID
     func getArticleById(faculty: String, id: Int) async throws -> ArticleInfo {
-            let url: URL
-            if faculty == "-" {
-                guard let validUrl = URL(string: "\(urlAgpuNews)?ELEMENT_ID=\(id)") else {
-                    throw URLError(.badURL)
-                }
-                url = validUrl
-            } else {
-                let category = nonStandardCategories.contains(faculty) ? faculty : "\(facultyHeader)\(faculty)"
-                guard let validUrl = URL(string: String(format: urlForArticle, category, id)) else {
-                    throw URLError(.badURL)
-                }
-                url = validUrl
+        let url: URL
+        if faculty == "-" {
+            guard let validUrl = URL(string: "\(urlAgpuNews)\(id)/") else {
+                throw URLError(.badURL)
             }
-            
-            do {
-                let (data, response) = try await URLSession.shared.data(from: url)
-                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                    var errorArticle = ArticleInfo(id: 0, title: "", description: "", date: "", images: [])
-                    return errorArticle
-                }
-                
-                let html = String(data: data, encoding: .utf8) ?? ""
-                let doc = try SwiftSoup.parse(html)
-                
-                if let mainContent = try doc.getElementsByClass("mb-3").first() {
-                    return try parseArticlePage(element: mainContent, id: id)
-                } else {
-                    var errorArticle = ArticleInfo(id: 0, title: "", description: "", date: "", images: [])
-                    return errorArticle
-                }
-            } catch {
-                var errorArticle = ArticleInfo(id: 0, title: "", description: "", date: "", images: [])
+            url = validUrl
+        } else {
+            let category = nonStandardCategories.contains(faculty) ? faculty : "\(facultyHeader)\(faculty)"
+            guard let validUrl = URL(string: String(format: urlForArticle, category, id)) else {
+                throw URLError(.badURL)
+            }
+            url = validUrl
+        }
+        
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                let errorArticle = ArticleInfo(id: 0, title: "", description: "", date: "", images: [])
                 return errorArticle
             }
+            
+            let html = String(data: data, encoding: .utf8) ?? ""
+            let doc = try SwiftSoup.parse(html)
+            
+            if let mainContent = try doc.getElementsByClass("mb-3").first() {
+                let date = try mainContent.getElementsByClass("news-detail-date").first()?.text() ?? ""
+                let title = try mainContent.getElementsByClass("news-detail-title").first()?.text() ?? "No title"
+                
+                let content = try mainContent.getElementsByClass("news-detail-content").first()
+                let description = try recursiveParseText(element: content)
+                
+                var images: [String] = []
+                if let imgElements = try? content?.getElementsByTag("img") {
+                    for img in imgElements {
+                        if let src = try? img.attr("src"), !src.isEmpty {
+                            let fullSrc = src.starts(with: "/") ? hostSite + src : src
+                            images.append(fullSrc)
+                        }
+                    }
+                }
+                
+                return ArticleInfo(id: id, title: title, description: description, date: date, images: images)
+            } else {
+                let errorArticle = ArticleInfo(id: 0, title: "", description: "", date: "", images: [])
+                return errorArticle
+            }
+        } catch {
+            let errorArticle = ArticleInfo(id: 0, title: "", description: "", date: "", images: [])
+            return errorArticle
         }
+    }
     
     // MARK: - Get AGPU News
     func getAgpuNews(page: Int) async throws -> NewsResponse {
@@ -205,8 +220,6 @@ final class NewsParser {
         let href = try link?.attr("href") ?? ""
         let idStr = href.components(separatedBy: "/")
         let id = Int(idStr[2]) ?? -1
-        
-        print("ХУИТА: \(idStr)")
         
         let title = try el.getElementsByTag("h4").first()?.text() ?? "No title"
         let desc = try el.getElementsByAttributeValue("style", "text-align: justify;").first()?.text() ?? ""
