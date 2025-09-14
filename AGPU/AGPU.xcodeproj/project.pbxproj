@@ -273,6 +273,11 @@
 		82505F532A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82505F522A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift */; };
 		8250B7A52D577E8E00ADE903 /* PairsCountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8250B7A42D577E8E00ADE903 /* PairsCountViewController.swift */; };
 		8250B7AA2D579C5100ADE903 /* DeviceOrientationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8250B7A92D579C5100ADE903 /* DeviceOrientationViewController.swift */; };
+		825185682E77182D008EBE72 /* SpeechRecognitionSplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825185672E77182D008EBE72 /* SpeechRecognitionSplashScreenViewController.swift */; };
+		8251856D2E7719FC008EBE72 /* ISpeechRecognitionSplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8251856C2E7719FC008EBE72 /* ISpeechRecognitionSplashScreenViewModel.swift */; };
+		825185732E771CBB008EBE72 /* SpeechRecognitionSplashScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825185722E771CBB008EBE72 /* SpeechRecognitionSplashScreenViewModel.swift */; };
+		825185752E771D66008EBE72 /* SpeechRecognitionSplashScreenViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825185742E771D66008EBE72 /* SpeechRecognitionSplashScreenViewModel + Extensions.swift */; };
+		825185782E772667008EBE72 /* SplashScreenStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825185772E772667008EBE72 /* SplashScreenStorageManager.swift */; };
 		82519B912BEAA56B00F136F8 /* OnlyMainVariants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82519B902BEAA56B00F136F8 /* OnlyMainVariants.swift */; };
 		82519B942BEAA63F00F136F8 /* OnlyMainVariantsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82519B932BEAA63F00F136F8 /* OnlyMainVariantsListTableViewController.swift */; };
 		82519B992BEAA86600F136F8 /* IOnlyMainVariantsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82519B982BEAA86600F136F8 /* IOnlyMainVariantsListViewModel.swift */; };
@@ -1107,6 +1112,11 @@
 		82505F522A7FBDE9001DE24A /* TimeTableWeekListTableViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeTableWeekListTableViewController + Extensions.swift"; sourceTree = "<group>"; };
 		8250B7A42D577E8E00ADE903 /* PairsCountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairsCountViewController.swift; sourceTree = "<group>"; };
 		8250B7A92D579C5100ADE903 /* DeviceOrientationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceOrientationViewController.swift; sourceTree = "<group>"; };
+		825185672E77182D008EBE72 /* SpeechRecognitionSplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionSplashScreenViewController.swift; sourceTree = "<group>"; };
+		8251856C2E7719FC008EBE72 /* ISpeechRecognitionSplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISpeechRecognitionSplashScreenViewModel.swift; sourceTree = "<group>"; };
+		825185722E771CBB008EBE72 /* SpeechRecognitionSplashScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionSplashScreenViewModel.swift; sourceTree = "<group>"; };
+		825185742E771D66008EBE72 /* SpeechRecognitionSplashScreenViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpeechRecognitionSplashScreenViewModel + Extensions.swift"; sourceTree = "<group>"; };
+		825185772E772667008EBE72 /* SplashScreenStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenStorageManager.swift; sourceTree = "<group>"; };
 		82519B902BEAA56B00F136F8 /* OnlyMainVariants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyMainVariants.swift; sourceTree = "<group>"; };
 		82519B932BEAA63F00F136F8 /* OnlyMainVariantsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyMainVariantsListTableViewController.swift; sourceTree = "<group>"; };
 		82519B982BEAA86600F136F8 /* IOnlyMainVariantsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOnlyMainVariantsListViewModel.swift; sourceTree = "<group>"; };
@@ -3961,6 +3971,7 @@
 		8234B2FE2A3242CC0091810F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				825185762E772619008EBE72 /* Splash Screen Storage */,
 				82A1AC302E6CD47F00593283 /* HTML Parser */,
 				820744EF2DBC156E00E4C505 /* Network Manager */,
 				82B5FE4A2D82FF3C0023A0D9 /* Gesture Recognition */,
@@ -4730,6 +4741,73 @@
 				8250B7A92D579C5100ADE903 /* DeviceOrientationViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		825185632E7717C3008EBE72 /* Speech Recognition  */ = {
+			isa = PBXGroup;
+			children = (
+				825185652E7717DC008EBE72 /* View */,
+				825185642E7717DA008EBE72 /* ViewModel */,
+			);
+			path = "Speech Recognition ";
+			sourceTree = "<group>";
+		};
+		825185642E7717DA008EBE72 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8251856B2E7719B6008EBE72 /* Protocol */,
+				825185712E771B89008EBE72 /* ViewModel */,
+				825185702E771B4D008EBE72 /* Extensions */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		825185652E7717DC008EBE72 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				825185662E771808008EBE72 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		825185662E771808008EBE72 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				825185672E77182D008EBE72 /* SpeechRecognitionSplashScreenViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8251856B2E7719B6008EBE72 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				8251856C2E7719FC008EBE72 /* ISpeechRecognitionSplashScreenViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		825185702E771B4D008EBE72 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				825185742E771D66008EBE72 /* SpeechRecognitionSplashScreenViewModel + Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		825185712E771B89008EBE72 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				825185722E771CBB008EBE72 /* SpeechRecognitionSplashScreenViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		825185762E772619008EBE72 /* Splash Screen Storage */ = {
+			isa = PBXGroup;
+			children = (
+				825185772E772667008EBE72 /* SplashScreenStorageManager.swift */,
+			);
+			path = "Splash Screen Storage";
 			sourceTree = "<group>";
 		};
 		82519B8C2BEAA53E00F136F8 /* Only Main Variants List MVVM */ = {
@@ -8611,6 +8689,7 @@
 		82A29F3B2B9BD4E200756F43 /* Splash Screen Modules */ = {
 			isa = PBXGroup;
 			children = (
+				825185632E7717C3008EBE72 /* Speech Recognition  */,
 				821F0A632E305C1700CF31B2 /* Additional Tab */,
 				828DD7562C6AF974006F15DF /* Season */,
 				822526BF2BA37D3A00B66314 /* News  */,
@@ -12293,6 +12372,7 @@
 				82E4C54A2A6B11BB00F65A67 /* AGPUFacultiesListViewModelProtocol.swift in Sources */,
 				828DD7602C6AF9E6006F15DF /* ISeasonSplashScreenViewModel.swift in Sources */,
 				82F297A72C4F18DB007697C6 /* CorpsListTableViewController.swift in Sources */,
+				825185782E772667008EBE72 /* SplashScreenStorageManager.swift in Sources */,
 				82ACD2082CA20EB500A2CC36 /* AllSectionsListViewModel.swift in Sources */,
 				82B24A7A2A81945D008B94E4 /* AllWeeksListViewModel + Extensions.swift in Sources */,
 				82A41B972C2C34B800254AE2 /* RecentDatesListViewController + Extensions.swift in Sources */,
@@ -12349,6 +12429,7 @@
 				82B97C112B93E17200770F00 /* ShareLocationAppsViewController.swift in Sources */,
 				82E9B10E2DD80A6B00BB110F /* TimetableDayInfoViewController.swift in Sources */,
 				82989ADE2A6E59BC00F27858 /* AGPUCurrentCathedraMapViewController + Extensions.swift in Sources */,
+				825185682E77182D008EBE72 /* SpeechRecognitionSplashScreenViewController.swift in Sources */,
 				82BCB5462AB35AF300F3A321 /* DaysList.swift in Sources */,
 				82D0FC0D2B1B4A4A0056D94B /* CathedraBuildingDetailViewController.swift in Sources */,
 				828DC55C2A7B3887001EA324 /* FacultyGroups.swift in Sources */,
@@ -12363,6 +12444,7 @@
 				824EBF732B29FA380003E7E6 /* AGPUBuildingTypesListViewModel.swift in Sources */,
 				82FC22EA2BC01BA6008709DA /* NewsOptionsFilterListViewModel.swift in Sources */,
 				82056BEB2DF8554F0007D524 /* ASPUButtonsScreenVariantsListTableViewCell.swift in Sources */,
+				825185752E771D66008EBE72 /* SpeechRecognitionSplashScreenViewModel + Extensions.swift in Sources */,
 				8234E6122A885C5100ED354C /* RecentWordDocumentViewController + Extensions.swift in Sources */,
 				829CEF802BEF9BE500FA32EF /* IBuildingsListViewModel.swift in Sources */,
 				822B28402DCABDD000CC1C73 /* NewsFilterCategoriesListTableViewController.swift in Sources */,
@@ -12871,6 +12953,7 @@
 				825D65C22D1B5A1800A84EE7 /* IAdditionalTabOptionsListViewModel.swift in Sources */,
 				824EBF802B2A0EFC0003E7E6 /* FacultyCathedraMapListViewModelProtocol.swift in Sources */,
 				82B24AAB2A82E45A008B94E4 /* NewsResponse.swift in Sources */,
+				8251856D2E7719FC008EBE72 /* ISpeechRecognitionSplashScreenViewModel.swift in Sources */,
 				820900882BAF68AF0053F3BD /* TabsListTableViewModel.swift in Sources */,
 				8283975F2AD5BBF4000F355A /* AppIconTableViewCell.swift in Sources */,
 				829D489D2BBC1E8C00F6D256 /* TimeTableSoundsListTableViewController.swift in Sources */,
@@ -12914,6 +12997,7 @@
 				8275B5112D23299A0051FA5B /* SayEveryWhereTableViewCell.swift in Sources */,
 				82056BE12DF851860007D524 /* ASPUButtonsScreenVariantsListTableViewController.swift in Sources */,
 				82875B002A5A1966007DB925 /* HapticsManagerProtocol.swift in Sources */,
+				825185732E771CBB008EBE72 /* SpeechRecognitionSplashScreenViewModel.swift in Sources */,
 				82519B9B2BEAA87A00F136F8 /* OnlyMainVariantsListViewModel.swift in Sources */,
 				82754C732BD45C1B0021E76A /* BorderForDailyNewsTableViewCell.swift in Sources */,
 				824EBF7B2B2A0B630003E7E6 /* FacultyCathedraMapListTableViewController.swift in Sources */,
@@ -13219,7 +13303,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.4.2;
+				MARKETING_VERSION = 4.4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -13262,7 +13346,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.4.2;
+				MARKETING_VERSION = 4.4.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

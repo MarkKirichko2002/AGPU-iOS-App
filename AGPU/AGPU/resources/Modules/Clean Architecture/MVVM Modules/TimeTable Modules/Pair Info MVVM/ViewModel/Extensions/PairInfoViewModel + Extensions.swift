@@ -6,6 +6,7 @@
 //
 
 import MapKit
+import UIKit
 
 // MARK: - PairInfoViewModelProtocol
 extension PairInfoViewModel: PairInfoViewModelProtocol {
@@ -522,6 +523,11 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
             currentIndex = 11
             dataChangedHandler?()
         }
+        
+        if text.lowercased().contains("копир") {
+            resetSpeechRecognition()
+            copyPairInfoText()
+        }
     }
     
     func isCurrentWord(index: Int)-> UIColor {
@@ -541,6 +547,18 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         case .informal:
             return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хочешь" : "Хочешь") врубить в настройках?")
         }
+    }
+    
+    func copyPairInfoText() {
+        UIPasteboard.general.string = configurePairInfoText()
+    }
+    
+    func configurePairInfoText()-> String {
+        var str = ""
+        for item in pairInfo {
+            str += "\(item)\n"
+        }
+        return str
     }
     
     func registerColorChangedHandler(block: @escaping(UIColor)->Void) {

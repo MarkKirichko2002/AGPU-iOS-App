@@ -20,6 +20,7 @@ enum VoiceCommandsType {
     case newsList
     case timetableAR
     case newsAR
+    case splashScreen
     
     var commands: [VoiceCommandItem] {
         switch self {
@@ -37,6 +38,8 @@ enum VoiceCommandsType {
             return VoiceCommands.timetableAR
         case .newsAR:
             return VoiceCommands.newsAR
+        case .splashScreen:
+            return VoiceCommands.splashScreen
         }
     }
 }
@@ -82,7 +85,8 @@ struct VoiceCommands {
     ]
     static let pairInfo = [
         VoiceCommandItem(name: "Название ячейки", description: "Выделяет выбранную ячейку"),
-        VoiceCommandItem(name: "Все", description: "Показывает все ячейки")
+        VoiceCommandItem(name: "Все", description: "Показывает все ячейки"),
+        VoiceCommandItem(name: "Копировать", description: "Копирует информацию о паре")
     ]
     static let newsList = [
         VoiceCommandItem(name: "Название типа фильтрации", description: "Показывает отфильтрованный по типу фильтрации список новостей"),
@@ -106,5 +110,9 @@ struct VoiceCommands {
         VoiceCommandItem(name: "Вперед", description: "Показывает следующее изображение новости"),
         VoiceCommandItem(name: "Назад", description: "Показывает предыдущее изображение новости"),
         VoiceCommandItem(name: "Обновить", description: "Обновляет AR-объект")
+    ]
+    static let splashScreen = [
+        VoiceCommandItem(name: "Название экрана заставки", description: "Показывает выбранный экран заставки"),
+        VoiceCommandItem(name: "Пропустить", description: "Пропускает экран заставки")
     ]
 }

@@ -67,7 +67,11 @@ final class PairInfoTableViewController: UITableViewController {
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
         }
-        return UIMenu(title: "Информация о паре", children: [transpotyType, voiceCommands])
+        let copyAction = UIAction(title: "Скопировать") { _ in
+            self.viewModel.copyPairInfoText()
+            self.showAlert(title: "Информация о паре скопирована!", message: "", actions: [UIAlertAction(title: "ОК", style: .default)])
+        }
+        return UIMenu(title: "Информация о паре", children: [transpotyType, voiceCommands, copyAction])
     }
     
     private func setUpTable() {

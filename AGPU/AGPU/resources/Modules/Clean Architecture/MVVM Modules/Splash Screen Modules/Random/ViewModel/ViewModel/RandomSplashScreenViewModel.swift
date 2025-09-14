@@ -9,4 +9,7 @@ import Foundation
 
 final class RandomSplashScreenViewModel {
     
+    // MARK: - сервисы
+    let splashScreenStorageManager = SplashScreenStorageManager()
+    
 }

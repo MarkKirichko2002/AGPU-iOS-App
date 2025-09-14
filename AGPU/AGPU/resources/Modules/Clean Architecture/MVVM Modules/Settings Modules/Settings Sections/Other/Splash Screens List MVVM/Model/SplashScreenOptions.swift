@@ -21,8 +21,46 @@ enum SplashScreenOptions: String, CaseIterable, Codable {
     case halloween = "Хэллоуин"
     case additionalTab = "Дополнительная вкладка"
     case custom = "Кастомный"
+    case speechRecognition = "Распознование речи"
     case random = "Рандом"
     case none = "Без заставки"
+    
+    var voiceCommand: String {
+        switch self {
+        case .regular:
+            return "обычн"
+        case .faculty:
+            return "факульт"
+        case .newyear:
+            return "новый год"
+        case .weather:
+            return "погод"
+        case .news:
+            return "новост"
+        case .timetable:
+            return "расписани"
+        case .corps:
+            return "корпус"
+        case .technopark:
+            return "технопарк"
+        case .quantorium:
+            return "кванториум"
+        case .season:
+            return "время года"
+        case .halloween:
+            return "хэллоуин"
+        case .additionalTab:
+            return "вкладка"
+        case .custom:
+            return "свой"
+        case .speechRecognition:
+            return "голос"
+        case .random:
+            return "рандом"
+        case .none:
+            return ""
+        }
+    }
     
     var video: String {
         switch self {
@@ -52,6 +90,8 @@ enum SplashScreenOptions: String, CaseIterable, Codable {
             return "additional tab"
         case .custom:
             return "custom"
+        case .speechRecognition:
+            return ""
         case .random:
             return "random"
         case .none:
