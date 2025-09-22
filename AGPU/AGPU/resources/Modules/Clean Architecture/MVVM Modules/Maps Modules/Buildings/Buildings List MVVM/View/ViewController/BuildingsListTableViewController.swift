@@ -98,7 +98,7 @@ final class BuildingsListTableViewController: UITableViewController {
                 let storyboard = UIStoryboard(name: "AGPUBuildingDetailViewController", bundle: nil)
                 if let vc = storyboard.instantiateViewController(withIdentifier: "AGPUBuildingDetailViewController") as? AGPUBuildingDetailViewController {
                     vc.annotation = self.viewModel.buildingItem(index: indexPath.row).annotation
-                    vc.id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-3-1"
+                    vc.id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-4-1"
                     vc.owner = "GROUP"
                     let navVC = UINavigationController(rootViewController: vc)
                     navVC.modalPresentationStyle = .fullScreen

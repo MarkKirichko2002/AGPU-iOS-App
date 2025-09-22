@@ -55,7 +55,7 @@ extension TimetableOptionsListViewModel: ITimetableOptionsListViewModel {
     }
     
     func getSavedGroup()-> String {
-        let value = (UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-3-1")
+        let value = (UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-4-1")
         return value
     }
     

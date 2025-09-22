@@ -27,7 +27,6 @@ extension AllShortcutsListViewModel: IAllShortcutsListViewModel {
         var shortcuts = loadActions()
         if shortcuts.count < 4 {
             if !shortcuts.contains(where: { $0.id == shortcut.id }) {
-                HapticsManager.shared.hapticFeedback()
                 shortcuts.append(shortcut)
             }
             saveArray(array: shortcuts)
@@ -66,6 +65,7 @@ extension AllShortcutsListViewModel: IAllShortcutsListViewModel {
         do {
             let arr = try JSONEncoder().encode(array)
             UserDefaults.standard.setValue(arr, forKey: "shortcuts")
+            HapticsManager.shared.hapticFeedback()
         } catch {
             print(error)
         }

@@ -12,7 +12,7 @@ import MapKit
 extension SettingsManager: SettingsManagerProtocol {
    
     func getSavedID()-> String {
-        return UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-3-1"
+        return UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-4-1"
     }
     
     func getSavedSubgroup()-> Int {
@@ -258,5 +258,31 @@ extension SettingsManager: SettingsManagerProtocol {
     func getSavedCommunicationStyle()-> CommunicationStyles {
         let savedStyle = UserDefaults.loadData(type: CommunicationStyles.self, key: "communication style") ?? .formal
         return savedStyle
+    }
+    
+    // MARK: - Adaptive News
+    func saveNewsOptions(news: [NewsOptionModel], completion: @escaping()->Void) {
+        do {
+            let arr = try JSONEncoder().encode(news)
+            UserDefaults.standard.setValue(arr, forKey: "news options")
+            NotificationCenter.default.post(name: Notification.Name("news options changed"), object: nil)
+            completion()
+        } catch {
+            print(error)
+        }
+    }
+    
+    func loadNewsOptions()-> [NewsOptionModel] {
+        var data = [NewsOptionModel]()
+        if let result = UserDefaults.standard.object(forKey: "news options") as? Data {
+            do {
+                data = try JSONDecoder().decode([NewsOptionModel].self, from: result)
+            } catch {
+                print(error)
+            }
+        } else {
+            return NewsOptions.list
+        }
+        return data
     }
 }

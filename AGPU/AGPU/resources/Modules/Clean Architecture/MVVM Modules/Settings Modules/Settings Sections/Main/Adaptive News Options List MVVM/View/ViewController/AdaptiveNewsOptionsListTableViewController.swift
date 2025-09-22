@@ -29,7 +29,6 @@ final class AdaptiveNewsOptionsListTableViewController: UITableViewController {
         tableView.register(UINib(nibName: AdaptToWebOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AdaptToWebOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: ShowOnlyDailyNewsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ShowOnlyDailyNewsTableViewCell.identifier)
         tableView.register(UINib(nibName: BorderForDailyNewsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: BorderForDailyNewsTableViewCell.identifier)
-        tableView.register(UINib(nibName: NewsAdvancedModeOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: NewsAdvancedModeOptionTableViewCell.identifier)
     }
     
     private func setUpNavigation() {
@@ -61,7 +60,7 @@ final class AdaptiveNewsOptionsListTableViewController: UITableViewController {
             navigationController?.pushViewController(vc, animated: true)
             HapticsManager.shared.hapticFeedback()
         case 1:
-            let vc = NewsOptionsPositionListTableViewController()
+            let vc = NewsFavouriteOptionsListTableViewController()
             vc.isSettings = true
             navigationController?.pushViewController(vc, animated: true)
             HapticsManager.shared.hapticFeedback()
@@ -80,7 +79,7 @@ final class AdaptiveNewsOptionsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return 7
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -108,9 +107,6 @@ final class AdaptiveNewsOptionsListTableViewController: UITableViewController {
             return cell
         } else if indexPath.row == 6 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BorderForDailyNewsTableViewCell.identifier, for: indexPath) as? BorderForDailyNewsTableViewCell else {return UITableViewCell()}
-            return cell
-        } else if indexPath.row == 7 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsAdvancedModeOptionTableViewCell.identifier, for: indexPath) as? NewsAdvancedModeOptionTableViewCell else {return UITableViewCell()}
             return cell
         } else {
             return UITableViewCell()

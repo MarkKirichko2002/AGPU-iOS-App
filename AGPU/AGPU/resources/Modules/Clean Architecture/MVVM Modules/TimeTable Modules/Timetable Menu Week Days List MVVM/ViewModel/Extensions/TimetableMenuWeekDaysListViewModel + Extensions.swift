@@ -51,38 +51,40 @@ extension TimetableMenuWeekDaysListViewModel: ITimetableMenuWeekDaysListViewMode
                 case .success(let timetable):
                     if !timetable.disciplines.isEmpty {
                         // просто расписание
-                        let day = self?.days.first { $0.date == day.date }
-                        let index = self?.days.firstIndex(of: day!)
-                        let pairsCount = self?.getPairsCount(pairs: timetable.disciplines) ?? 0
-                        // особые дни
-                        let coursesCount = self?.getCoursesCount(pairs: timetable.disciplines) ?? 0
-                        let testsCount = self?.getTestsCount(pairs: timetable.disciplines) ?? 0
-                        let consCount = self?.getConsCount(pairs: timetable.disciplines) ?? 0
-                        let examsCount = self?.getExamsCount(pairs: timetable.disciplines) ?? 0
-                        let holidaysExisting = self?.checkHolidaysExisting(pairs: timetable.disciplines)
-                        
-                        if pairsCount > 0 {
-                            self?.days[index!].info = "пар: \(self?.getPairsCount(pairs: timetable.disciplines) ?? 0)"
-                        }
-                        
-                        if coursesCount > 0 {
-                            self?.days[index!].info = coursesCount > 1 ? "курсовые" : "курсовая!"
-                        }
-                        
-                        if testsCount > 0 {
-                            self?.days[index!].info = testsCount > 1 ? "зачеты" : "зачет"
-                        }
-                        
-                        if consCount > 0 {
-                            self?.days[index!].info = "конс."
-                        }
-                        
-                        if examsCount > 0 {
-                            self?.days[index!].info = examsCount > 1 ? "экзамены!" : "экзамен!"
-                        }
-                        
-                        if holidaysExisting ?? false {
-                            self?.days[index!].info = "каникулы!"
+                        if let day = self?.days.first(where: { $0.date == day.date }) {
+                            if let index = self?.days.firstIndex(of: day) {
+                                let pairsCount = self?.getPairsCount(pairs: timetable.disciplines) ?? 0
+                                // особые дни
+                                let coursesCount = self?.getCoursesCount(pairs: timetable.disciplines) ?? 0
+                                let testsCount = self?.getTestsCount(pairs: timetable.disciplines) ?? 0
+                                let consCount = self?.getConsCount(pairs: timetable.disciplines) ?? 0
+                                let examsCount = self?.getExamsCount(pairs: timetable.disciplines) ?? 0
+                                let holidaysExisting = self?.checkHolidaysExisting(pairs: timetable.disciplines)
+                                
+                                if pairsCount > 0 {
+                                    self?.days[index].info = "пар: \(self?.getPairsCount(pairs: timetable.disciplines) ?? 0)"
+                                }
+                                
+                                if coursesCount > 0 {
+                                    self?.days[index].info = coursesCount > 1 ? "курсовые" : "курсовая!"
+                                }
+                                
+                                if testsCount > 0 {
+                                    self?.days[index].info = testsCount > 1 ? "зачеты" : "зачет"
+                                }
+                                
+                                if consCount > 0 {
+                                    self?.days[index].info = "конс."
+                                }
+                                
+                                if examsCount > 0 {
+                                    self?.days[index].info = examsCount > 1 ? "экзамены!" : "экзамен!"
+                                }
+                                
+                                if holidaysExisting ?? false {
+                                    self?.days[index].info = "каникулы!"
+                                }
+                            }
                         }
                     } else {
                         if let day = self?.days.first(where: { $0.name == day.name }) {

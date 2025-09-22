@@ -88,6 +88,13 @@ final class GetTimetableService {
         var filteredWeek = week
         for i in filteredWeek.indices {
             filteredWeek[i].lessons.removeAll { $0.name == nil && $0.teacherName == nil && $0.audienceId == nil }
+            // Сортируем уроки по времени
+            filteredWeek[i].lessons.sort { (lhs, rhs) in
+                guard let time1 = lhs.time, let time2 = rhs.time else { return false }
+                let start1 = time1.split(separator: "-").first?.trimmingCharacters(in: .whitespaces) ?? ""
+                let start2 = time2.split(separator: "-").first?.trimmingCharacters(in: .whitespaces) ?? ""
+                return start1 < start2
+            }
         }
         return filteredWeek
     }
@@ -143,7 +150,6 @@ final class GetTimetableService {
             if parts.count > 1 {
                 return parts[1].trimmingCharacters(in: .whitespaces)
             } else {
-                // Пробуем извлечь дату из текста, если <br> отсутствует
                 let text = try $0.text().trimmingCharacters(in: .whitespaces)
                 let regex = try NSRegularExpression(pattern: "\\d{2}\\.\\d{2}\\.\\d{4}")
                 if let match = regex.firstMatch(in: text, range: NSRange(text.startIndex..., in: text)) {
@@ -156,20 +162,30 @@ final class GetTimetableService {
         print("Parsed dates: \(dates)")
         
         var week: [TimetableDay] = dates.map { TimetableDay(date: $0, lessons: [], owner: owner) }
-        let col = parseCol(elements: times)
+        let timeSlots = parseCol(elements: times)
         
         for i in 0..<min(rows.size(), week.count) {
-            try parseDay(el: rows.get(i), day: &week[i], col: col)
+            try parseDay(el: rows.get(i), day: &week[i], timeSlots: timeSlots)
         }
         
         return week
     }
     
-    private func parseCol(elements: Elements) -> [Int] {
-        return elements.array().compactMap { Int(try! $0.attr("colspan")) ?? 1 }
+    private func parseCol(elements: Elements) -> [(time: String, colspan: Int)] {
+        return elements.array().compactMap { element in
+            let text = try? element.text().trimmingCharacters(in: .whitespaces)
+            let colspan = Int(try! element.attr("colspan")) ?? 1
+            // Проверяем, что текст содержит время в формате "HH:mm-HH:mm"
+            let timeRegex = try? NSRegularExpression(pattern: "\\d{1,2}:\\d{2}-\\d{1,2}:\\d{2}")
+            if let text = text, let match = timeRegex?.firstMatch(in: text, range: NSRange(text.startIndex..., in: text)) {
+                let time = String(text[Range(match.range, in: text)!])
+                return (time: time, colspan: colspan)
+            }
+            return nil
+        }
     }
     
-    private func parseDay(el: Element, day: inout TimetableDay, col: [Int]) throws {
+    private func parseDay(el: Element, day: inout TimetableDay, timeSlots: [(time: String, colspan: Int)]) throws {
         guard let nameOfClass = try el.getElementsByTag("th").first() else {
             print("No th element found for day \(day.date)")
             return
@@ -178,13 +194,13 @@ final class GetTimetableService {
         print("Parsing day \(day.date) with \(disciplines.size()) td elements")
         
         for i in 0..<disciplines.size() {
-            try parseLesson(el: disciplines.get(i), day: &day, date: day.date)
+            try parseLesson(el: disciplines.get(i), day: &day, date: day.date, timeSlots: timeSlots)
         }
         
-        assignTimeOfLessons(&day.lessons, col: col)
+        assignTimeOfLessons(&day.lessons, timeSlots: timeSlots)
     }
     
-    private func parseLesson(el: Element, day: inout TimetableDay, date: String) throws {
+    private func parseLesson(el: Element, day: inout TimetableDay, date: String, timeSlots: [(time: String, colspan: Int)]) throws {
         print("Parsing lesson for \(date): \(try el.html())")
         var lesson = Lesson()
         lesson.date = date
@@ -271,41 +287,25 @@ final class GetTimetableService {
         lesson.type = .none
     }
     
-    private func assignTimeOfLessons(_ lessons: inout [Lesson], col: [Int]) {
-        var pairs = lessons.map { $0.colspan }
-        let resolved = resolve(col: col, pairs: pairs)
+    private func assignTimeOfLessons(_ lessons: inout [Lesson], timeSlots: [(time: String, colspan: Int)]) {
+        let resolved = resolve(timeSlots: timeSlots, pairs: lessons.map { $0.colspan })
         for i in 0..<min(lessons.count, resolved.count) {
-            lessons[i].time = timeByIndex(resolved[i])
+            lessons[i].time = resolved[i].time
         }
     }
     
-    private func timeByIndex(_ index: Int) -> String {
-        switch index {
-        case 0: return "8:00-9:30"
-        case 1: return "9:40-11:10"
-        case 2: return "11:40-13:10"
-        case 3: return "13:30-15:00"
-        case 4: return "15:10-16:40"
-        case 5: return "16:50-18:20"
-        case 6: return "18:30-20:00"
-        default: return "-----------"
-        }
-    }
-    
-    private func resolve(col: [Int], pairs: [Int]) -> [Int] {
-        var res: [Int] = []
+    private func resolve(timeSlots: [(time: String, colspan: Int)], pairs: [Int]) -> [(time: String, colspan: Int)] {
+        var res: [(time: String, colspan: Int)] = []
         var currentIndex = 0
-        var remainder = col.count > currentIndex ? col[currentIndex] : 1
+        var remainder = timeSlots.count > currentIndex ? timeSlots[currentIndex].colspan : 1
         
         for pair in pairs {
-            res.append(currentIndex)
-            remainder -= pair
-            if remainder <= 0 {
-                currentIndex += 1
-                if currentIndex < col.count {
-                    remainder = col[currentIndex]
-                } else {
-                    remainder = 1
+            if currentIndex < timeSlots.count {
+                res.append(timeSlots[currentIndex])
+                remainder -= pair
+                if remainder <= 0 {
+                    currentIndex += 1
+                    remainder = currentIndex < timeSlots.count ? timeSlots[currentIndex].colspan : 1
                 }
             }
         }

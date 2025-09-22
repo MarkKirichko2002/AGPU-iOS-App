@@ -80,6 +80,28 @@ final class NewsListViewController: UIViewController {
         updateNavigationTitle()
         navigationItem.toggleMenuButton(on: false)
         navigationItem.toggleRefreshButtonFromLeft(on: false)
+        setUpNavigationBarGestures()
+    }
+    
+    private func setUpNavigationBarGestures() {
+        let longTap = UILongPressGestureRecognizer(target: self, action: #selector(openMenuSettings))
+        let swipeLeft = UISwipeGestureRecognizer(target: viewModel, action: #selector(viewModel.pastNewsPage))
+        swipeLeft.direction = .left
+        let swipeRight = UISwipeGestureRecognizer(target: viewModel, action: #selector(viewModel.nextNewsPage))
+        swipeRight.direction = .right
+        self.navigationController?.navigationBar.addGestureRecognizer(longTap)
+        self.navigationController?.navigationBar.addGestureRecognizer(swipeLeft)
+        self.navigationController?.navigationBar.addGestureRecognizer(swipeRight)
+    }
+    
+    @objc private func openMenuSettings(gesture: UIGestureRecognizer) {
+        if gesture.state == .ended {
+            let vc = NewsFavouriteOptionsListTableViewController()
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            present(navVC, animated: true)
+            HapticsManager.shared.hapticFeedback()
+        }
     }
     
     private func setUpMenuButton() {
@@ -234,62 +256,6 @@ final class NewsListViewController: UIViewController {
         options.tintColor = .label
         options.accessibilityIdentifier = "menu"
         
-        var menu = UIMenu()
-        
-        let calendarAction = UIAction(title: "Поиск") { _ in
-            self.openMonthsList()
-        }
-        
-        var categoriesAction = UIAction(title: "Категории") { _ in}
-        
-        let whatsNewAction = UIAction(title: "Что нового?") { _ in
-            self.showWhatsNewVC()
-        }
-        
-        var pagesAction = UIAction(title: "Страницы") { _ in}
-        let recentNews = UIAction(title: "Недавние") { _ in
-            let vc = RecentNewsListViewController()
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let displayModes = UIAction(title: "Вид") { _ in
-            let vc = DisplayModeOptionsListTableViewController(option: self.viewModel.displayMode)
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let filterOptions = UIAction(title: "Фильтрация") { _ in
-            self.openFilterOptionsList()
-        }
-        
-        let randomAction = UIAction(title: "Рандомайзер") { _ in
-            self.openRandom()
-        }
-        
-        let selectAction = UIAction(title: "Выбрать") { _ in
-            let vc = NewsMultipleSelectionListTableViewController(articles: self.viewModel.allNews, abbreviation: self.viewModel.abbreviation)
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let voiceCommands = UIAction(title: "Голосовые команды") { _ in
-            let vc = VoiceCommandsListTableViewController(type: .newsList)
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let settingsAction = UIAction(title: "Настройки") { _ in
-            let vc = AdaptiveNewsOptionsListTableViewController()
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
         var titleView = CustomTitleView(image: viewModel.getCurrentCategory().icon, title: "Новости \(viewModel.getCurrentCategory().name)", frame: .zero)
         
         viewModel.checkSettings()
@@ -333,6 +299,8 @@ final class NewsListViewController: UIViewController {
             
             guard let self = self else { return }
             
+            let menu = setUpNewsMenu()
+            
             DispatchQueue.main.async {
                 if abbreviation != "-" {
                     if let newsCategory = NewsCategories.categories.first(where: { $0.newsAbbreviation == abbreviation }) {
@@ -349,46 +317,8 @@ final class NewsListViewController: UIViewController {
                 }
             }
             
-            categoriesAction = UIAction(title: "Категории") { _ in
-                self.openNewsCategoriesList()
-            }
-            
-            pagesAction = UIAction(title: "Страницы") { _ in
-                self.openNewsPagesList()
-            }
-            
-            var opt: [UIMenuElement] = [
-                calendarAction,
-                categoriesAction,
-                whatsNewAction,
-                pagesAction,
-                recentNews,
-                displayModes,
-                filterOptions,
-                randomAction,
-                selectAction,
-                voiceCommands,
-                settingsAction
-            ]
-            
-            let position = UserDefaults.standard.object(forKey: "news options position") as? [Int] ?? [0,1,2,3,4,5,6,7,8,9,10]
-            
-            for option in opt {
-                for number in position {
-                    let index = opt.firstIndex(of: option)!
-                    print("индекс: \(index) позиция: \(number)")
-                    opt.swapAt(index, number)
-                }
-            }
-            
-            if UserDefaults.standard.object(forKey: "onAdvancedModeNews") as? Bool ?? false {
-                menu = UIMenu(title: "Новости", children: opt)
-            } else {
-                menu = UIMenu(title: "Новости", children: [categoriesAction, pagesAction, filterOptions])
-            }
-            
             switch viewModel.displayMode {
-                
+            
             case .grid:
                 DispatchQueue.main.async {
                     self.navigationItem.titleView = titleView
@@ -524,8 +454,7 @@ final class NewsListViewController: UIViewController {
         viewModel.observeStrokeOption()
         viewModel.observeFilterOption()
         viewModel.observeVisualChangesOption()
-        viewModel.observePositionOption()
-        viewModel.observeAdvancedMode()
+        viewModel.observeNewsOptionsChanges()
     }
     
     func startLoading() {
@@ -608,6 +537,7 @@ final class NewsListViewController: UIViewController {
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
             if let button = self.view.subviews.first(where: { $0.accessibilityIdentifier == "floating button" }) {
                 self.animation.springAnimation(view: button)
+                HapticsManager.shared.hapticFeedback()
             }
         }
     }
@@ -630,10 +560,10 @@ final class NewsListViewController: UIViewController {
             navigationButton.widthAnchor.constraint(equalToConstant: 70.0),
             navigationButton.heightAnchor.constraint(equalToConstant: 70.0)
         ])
-        navigationButton.menu = setUpNewsMenu()
+        navigationButton.menu = setUpButtonNewsMenu()
     }
     
-    func setUpNewsMenu()-> UIMenu {
+    func setUpButtonNewsMenu()-> UIMenu {
         
         let categories = UIMenu(title: "Категории", children: NewsCategories.categories.map({ category in
             UIAction(title: category.name, state: category.newsAbbreviation == self.viewModel.abbreviation ? .on : .off) { _ in
@@ -716,6 +646,95 @@ final class NewsListViewController: UIViewController {
         }).reversed())
         
         return UIMenu(title: "Новости", children: [pages, categories])
+    }
+    
+    func setUpNewsMenu()-> UIMenu {
+        let savedOptions = viewModel.getSavedNewsOptions()
+        let options = savedOptions.map { findOption(option: $0) }
+        return UIMenu(title: "Новости", children: options)
+    }
+    
+    func getAllOptions()-> [UIAction] {
+        
+        let calendarAction = UIAction(title: "Поиск") { _ in
+            self.openMonthsList()
+        }
+        
+        var categoriesAction = UIAction(title: "Категории") { _ in
+            self.openNewsCategoriesList()
+        }
+        
+        let whatsNewAction = UIAction(title: "Что нового?") { _ in
+            self.showWhatsNewVC()
+        }
+        
+        var pagesAction = UIAction(title: "Страницы") { _ in
+            self.openNewsPagesList()
+        }
+        
+        let recentNews = UIAction(title: "Недавние") { _ in
+            let vc = RecentNewsListViewController()
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let displayModes = UIAction(title: "Вид") { _ in
+            let vc = DisplayModeOptionsListTableViewController(option: self.viewModel.displayMode)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let filterOptions = UIAction(title: "Фильтрация") { _ in
+            self.openFilterOptionsList()
+        }
+        
+        let randomAction = UIAction(title: "Рандомайзер") { _ in
+            self.openRandom()
+        }
+        
+        let selectAction = UIAction(title: "Выбрать") { _ in
+            let vc = NewsMultipleSelectionListTableViewController(articles: self.viewModel.allNews, abbreviation: self.viewModel.abbreviation)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let voiceCommands = UIAction(title: "Голосовые команды") { _ in
+            let vc = VoiceCommandsListTableViewController(type: .newsList)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let settingsAction = UIAction(title: "Настройки") { _ in
+            let vc = AdaptiveNewsOptionsListTableViewController()
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        return [
+            calendarAction,
+            categoriesAction,
+            whatsNewAction,
+            pagesAction,
+            recentNews,
+            displayModes,
+            filterOptions,
+            randomAction,
+            selectAction,
+            voiceCommands,
+            settingsAction
+        ]
+    }
+    
+    func findOption(option: NewsOptionModel)-> UIAction  {
+        let originalOptions = getAllOptions()
+        let searchOption = NewsOptions.list.first(where: { $0.name == option.name })!
+        let item = originalOptions.first { $0.title == searchOption.name }!
+        return item
     }
     
     func openNewsCategoriesList() {

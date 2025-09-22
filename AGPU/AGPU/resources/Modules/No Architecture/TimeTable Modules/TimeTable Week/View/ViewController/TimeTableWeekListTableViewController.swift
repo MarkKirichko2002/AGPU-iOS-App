@@ -131,6 +131,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         updateTitle()
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = options
+        setUpNavigationGestures()
     }
     
     func getCurrentMenu()-> UIMenu {
@@ -250,6 +251,29 @@ final class TimeTableWeekListTableViewController: UIViewController {
             navigationsList,
             share
         ])
+    }
+    
+    private func setUpNavigationGestures() {
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(showPastWeek))
+        swipeLeft.direction = .left
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(showNextWeek))
+        swipeRight.direction = .right
+        navigationController?.navigationBar.addGestureRecognizer(swipeLeft)
+        navigationController?.navigationBar.addGestureRecognizer(swipeRight)
+    }
+    
+    @objc private func showPastWeek() {
+        pastWeek {
+            AudioPlayerClass.shared.playSound(sound: "paper", isPlaying: false)
+            HapticsManager.shared.hapticFeedback()
+        }
+    }
+    
+    @objc private func showNextWeek() {
+        nextWeek {
+            AudioPlayerClass.shared.playSound(sound: "paper", isPlaying: false)
+            HapticsManager.shared.hapticFeedback()
+        }
     }
     
     func getAllPairs()-> [Discipline] {
@@ -456,7 +480,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
                 if !timetable.isEmpty {
                     for timetable in timetable {
                         let data = timetable.disciplines.filter { $0.subgroup == self?.subgroup || $0.subgroup == 0 || (self?.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
-                        let timeTable = TimeTable(id: self?.id ?? "ВМ-ИВТ-3-1", date: timetable.date, disciplines: data)
+                        let timeTable = TimeTable(id: self?.id ?? "ВМ-ИВТ-4-1", date: timetable.date, disciplines: data)
                         if !timetable.disciplines.isEmpty {
                             arr.append(timeTable)
                         }

@@ -10,7 +10,7 @@ import UIKit
 extension TimeTableSplashScreenViewModel: ITimeTableSplashScreenViewModel {
     
     func getTimeTable() {
-        let id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-3-1"
+        let id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-4-1"
         let date = dateManager.getCurrentDate()
         let owner = UserDefaults.standard.object(forKey: "recentOwner") as? String ?? "GROUP"
         timeTableService.getTimeTableDay(id: id, date: date, owner: owner) { [weak self] result in
@@ -41,7 +41,7 @@ extension TimeTableSplashScreenViewModel: ITimeTableSplashScreenViewModel {
     
     func getImage(json: Codable, completion: @escaping(UIImage)->Void) {
     
-        let id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-3-1"
+        let id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-4-1"
         let date = dateManager.getCurrentDate()
         let owner = UserDefaults.standard.object(forKey: "recentOwner") as? String ?? "GROUP"
         

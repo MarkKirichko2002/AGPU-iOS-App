@@ -46,7 +46,6 @@ final class AGPUTabBarController: UITabBarController {
         createMiddleButton()
         observeFaculty()
         observeArticleSelected()
-        observeDataRefreshed()
         checkForUpdates()
         becomeFirstResponder()
     }
@@ -675,15 +674,6 @@ final class AGPUTabBarController: UITabBarController {
     private func observeArticleSelected() {
         NotificationCenter.default.addObserver(forName: Notification.Name("article selected"), object: nil, queue: .main) { _ in
             self.updateASPUButton(icon: "info icon")
-        }
-    }
-    
-    private func observeDataRefreshed() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("refreshed"), object: nil, queue: .main) { _ in
-            self.updateASPUButton(icon: "refresh icon")
-            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
-            }
         }
     }
 }

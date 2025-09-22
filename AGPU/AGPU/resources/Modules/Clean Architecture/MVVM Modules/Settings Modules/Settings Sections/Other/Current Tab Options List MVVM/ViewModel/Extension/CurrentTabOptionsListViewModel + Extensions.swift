@@ -26,7 +26,6 @@ extension CurrentTabOptionsListViewModel: ICurrentTabOptionsListViewModel {
     func saveOption(option: TabOptionModel) {
         var options = settingsManager.getTabOptions(title: title)
         if !options.contains(where: { $0.title == option.title }) {
-            HapticsManager.shared.hapticFeedback()
             options.append(option)
         }
         saveArray(array: options)
@@ -46,6 +45,7 @@ extension CurrentTabOptionsListViewModel: ICurrentTabOptionsListViewModel {
         do {
             let arr = try JSONEncoder().encode(array)
             UserDefaults.standard.setValue(arr, forKey: "\(title) options")
+            HapticsManager.shared.hapticFeedback()
         } catch {
             print(error)
         }

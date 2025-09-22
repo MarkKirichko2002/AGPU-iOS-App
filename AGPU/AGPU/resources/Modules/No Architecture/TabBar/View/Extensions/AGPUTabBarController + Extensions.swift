@@ -595,7 +595,7 @@ extension AGPUTabBarController {
    }
    
    @objc func openWeeksTimetable() {
-       let id = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-3-1"
+       let id = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-4-1"
        let subgroup = UserDefaults.standard.integer(forKey: "subgroup")
        let owner = UserDefaults.standard.string(forKey: "recentOwner") ?? "GROUP"
        let vc = AllWeeksListTableViewController(id: id, subgroup: subgroup, owner: owner)

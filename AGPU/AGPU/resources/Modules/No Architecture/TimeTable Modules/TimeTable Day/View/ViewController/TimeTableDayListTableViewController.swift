@@ -135,7 +135,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     private func setUpData() {
-        id = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-3-1"
+        id = UserDefaults.standard.string(forKey: "group") ?? "ВМ-ИВТ-4-1"
         subgroup = UserDefaults.standard.object(forKey: "subgroup") as? Int ?? 0
         type = UserDefaults.loadData(type: PairType.self, key: "type") ?? .all
         date = dateManager.getCurrentDate()
@@ -143,7 +143,6 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: getCurrentMenu())
         options.accessibilityIdentifier = "menu"
         options.tintColor = .label
@@ -159,7 +158,30 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = refreshButton
         navigationItem.rightBarButtonItem = options
-        
+        setUpNavigationGestures()
+    }
+    
+    private func setUpNavigationGestures() {
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(showPastDay))
+        swipeLeft.direction = .left
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(showNextDay))
+        swipeRight.direction = .right
+        navigationController?.navigationBar.addGestureRecognizer(swipeLeft)
+        navigationController?.navigationBar.addGestureRecognizer(swipeRight)
+    }
+    
+    @objc private func showPastDay() {
+        pastDay {
+            AudioPlayerClass.shared.playSound(sound: "paper", isPlaying: false)
+            HapticsManager.shared.hapticFeedback()
+        }
+    }
+    
+    @objc private func showNextDay() {
+        nextDay {
+            AudioPlayerClass.shared.playSound(sound: "paper", isPlaying: false)
+            HapticsManager.shared.hapticFeedback()
+        }
     }
     
     @objc private func refresh() {
@@ -364,7 +386,6 @@ final class TimeTableDayListTableViewController: UIViewController {
         getTimeTable(id: id, date: date, owner: owner) {
             completion()
         }
-        NotificationCenter.default.post(name: Notification.Name("refreshed"), object: nil)
     }
     
     func createImage(completion: @escaping()->Void) {
@@ -757,7 +778,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     
     private func observeGroupChange() {
         NotificationCenter.default.addObserver(forName: Notification.Name("group changed"), object: nil, queue: .main) { notification in
-            let id = notification.object as? String ?? "ВМ-ИВТ-3-1"
+            let id = notification.object as? String ?? "ВМ-ИВТ-4-1"
             self.id = id
             self.owner = "GROUP"
             self.getTimeTable(id: self.id, date: self.date, owner: self.owner) {}

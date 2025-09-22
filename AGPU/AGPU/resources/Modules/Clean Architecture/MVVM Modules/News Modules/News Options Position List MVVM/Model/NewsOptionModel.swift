@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NewsOptionModel: Equatable {
+struct NewsOptionModel: Equatable, Codable {
     let id: Int
     let name: String
 }

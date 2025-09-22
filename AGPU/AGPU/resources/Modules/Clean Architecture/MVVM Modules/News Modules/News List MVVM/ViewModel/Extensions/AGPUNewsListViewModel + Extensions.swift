@@ -10,6 +10,10 @@ import UIKit
 // MARK: - AGPUNewsListViewModelProtocol
 extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
+    func getSavedNewsOptions()-> [NewsOptionModel] {
+        return settingsManager.loadNewsOptions()
+    }
+    
     func getCurrentCategory()-> NewsCategoryModel {
         let savedNewsCategory = UserDefaults.standard.object(forKey: "category") as? String ?? "-"
         let category = NewsCategories.categories.first(where: { $0.newsAbbreviation == savedNewsCategory }) ?? NewsCategories.categories[0]
@@ -331,16 +335,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     func refreshNews() {
         if let page = newsResponse.currentPage {
             date = dateManager.getCurrentDate()
-            getNews(by: page) {
-                self.sendNotification()
-            }
-        }
-    }
-    
-    func sendNotification() {
-        let isSimple = UserDefaults.standard.object(forKey: "isSimpleModeOn") as? Bool ?? false
-        if !isSimple {
-            NotificationCenter.default.post(name: Notification.Name("refreshed"), object: nil)
+            getNews(by: page) {}
         }
     }
     
@@ -415,14 +410,8 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
         }
     }
     
-    func observePositionOption() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("news options position"), object: nil, queue: .main) { _ in
-            self.dataChangedHandler?(self.abbreviation)
-        }
-    }
-    
-    func observeAdvancedMode() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("news advanced mode"), object: nil, queue: .main) { _ in
+    func observeNewsOptionsChanges() {
+        NotificationCenter.default.addObserver(forName: Notification.Name("news options changed"), object: nil, queue: .main) { _ in
             self.dataChangedHandler?(self.abbreviation)
         }
     }
@@ -753,6 +742,20 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
             return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хотите" : "Хотите") включить в настройках?")
         case .informal:
             return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хочешь" : "Хочешь") врубить в настройках?")
+        }
+    }
+    
+    @objc func pastNewsPage() {
+        guard let currentPage = newsResponse.currentPage else {return}
+        if currentPage > 1 {
+            getNews(by: currentPage - 1) {}
+        }
+    }
+    
+    @objc func nextNewsPage() {
+        guard let currentPage = newsResponse.currentPage, let countPages = newsResponse.countPages else {return}
+        if currentPage < countPages {
+            getNews(by: currentPage + 1) {}
         }
     }
     
