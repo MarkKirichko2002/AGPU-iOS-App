@@ -9,8 +9,8 @@ import UIKit
 
 struct Discipline: Codable, Hashable {
     
-    let time: String
-    let name, groupName, teacherName, audienceID: String
+    var time: String
+    var name, groupName, teacherName, audienceID: String
     let subgroup: Int
     let type: PairType
 
