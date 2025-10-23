@@ -55,6 +55,7 @@ extension AGPUWallpapersListViewController: UICollectionViewDelegate {
                 if let cell = collectionView.cellForItem(at: indexPath) as? AGPUWallpaperCollectionViewCell {
                     if let image = cell.imageView.image {
                         self.ShareImage(image: image, title: "АГПУ", text: "обоя")
+                        HapticsManager.shared.hapticFeedback()
                     }
                 }
             }

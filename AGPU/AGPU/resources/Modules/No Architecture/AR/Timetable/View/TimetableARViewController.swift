@@ -54,6 +54,7 @@ final class TimetableARViewController: UIViewController {
     private let animation = AnimationClass()
     private let speechRecognitionManager = SpeechRecognitionManager()
     private let settingsManager = SettingsManager()
+    private let timetablePseudonymManager = TimetablePseudonymManager()
     
     // MARK: - Init
     init(id: String, subgroup: Int, date: String, owner: String) {
@@ -612,7 +613,9 @@ final class TimetableARViewController: UIViewController {
         service.getTimeTableDay(id: id, date: date, owner: owner) { result in
             switch result {
             case .success(let data):
-                self.createImage(timetable: data)
+                var pairs = data.disciplines
+                let timetable = TimeTable(id: data.id, date: data.date, disciplines: self.timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &pairs))
+                self.createImage(timetable: timetable)
             case .failure(let error):
                 self.createImage(timetable: TimeTable(id: self.id, date: date, disciplines: []))
                 print(error)
@@ -627,7 +630,12 @@ final class TimetableARViewController: UIViewController {
         service.getTimeTableWeek(id: id, startDate: week.from, endDate: week.to, owner: owner) { result in
             switch result {
             case .success(let data):
-                self.createImage(timetable: data)
+                let days = data.map { day in
+                    var modifiedDay = day
+                    modifiedDay.disciplines = self.timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &modifiedDay.disciplines)
+                    return modifiedDay
+                }
+                self.createImage(timetable: days)
             case .failure(let error):
                 self.createImage(timetable: [TimeTable(id: self.id, date: self.date, disciplines: [])])
                 print(error)

@@ -174,6 +174,7 @@ final class ARViewController: UIViewController {
     private func makeScreenShot() {
         arView.snapshot(saveToHDR: true) { result in
             self.ShareImage(image: UIImage(cgImage: (result?.cgImage!)!), title: "AR-скриншот", text: self.dateManager.getCurrentDate())
+            HapticsManager.shared.hapticFeedback()
         }
     }
 }

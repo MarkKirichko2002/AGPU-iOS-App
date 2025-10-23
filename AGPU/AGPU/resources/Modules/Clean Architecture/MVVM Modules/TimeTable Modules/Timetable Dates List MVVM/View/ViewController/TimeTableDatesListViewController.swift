@@ -85,6 +85,14 @@ final class TimeTableDatesListViewController: UIViewController {
             }
         }
         
+        let pseudonymAction = UIAction(title: "Псевдонимы") { _ in
+            let vc = TimetablePseudonymCategoriesListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         let saveTimetable = UIAction(title: "Сохранить") { _ in
             self.showSaveImageAlert()
         }
@@ -95,6 +103,7 @@ final class TimeTableDatesListViewController: UIViewController {
         
         return UIMenu(title: "Расписание", children: [
             ARAction,
+            pseudonymAction,
             saveTimetable,
             share
         ])

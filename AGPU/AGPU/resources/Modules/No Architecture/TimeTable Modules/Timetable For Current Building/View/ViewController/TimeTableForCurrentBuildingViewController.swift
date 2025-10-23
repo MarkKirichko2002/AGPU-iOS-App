@@ -11,6 +11,7 @@ final class TimeTableForCurrentBuildingViewController: UIViewController {
     
     var timetable = TimeTable(id: "", date: "", disciplines: []) {
         didSet {
+            timetable.disciplines = timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &timetable.disciplines)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -20,6 +21,7 @@ final class TimeTableForCurrentBuildingViewController: UIViewController {
     // MARK: - сервисы
     let dateManager = DateManager()
     let service = TimeTableService()
+    let timetablePseudonymManager = TimetablePseudonymManager()
     
     // MARK: - UI
     let tableView = UITableView()
@@ -66,11 +68,11 @@ final class TimeTableForCurrentBuildingViewController: UIViewController {
             let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: self.timetable.date)
             self.service.getTimeTableDayImage(json: json) { image in
                 self.ShareImage(image: image, title: self.timetable.id, text: "\(dayOfWeek) \(self.timetable.date)")
+                HapticsManager.shared.hapticFeedback()
             }
         } catch {
             print(error.localizedDescription)
         }
-        HapticsManager.shared.hapticFeedback()
     }
     
     private func setUpTable() {

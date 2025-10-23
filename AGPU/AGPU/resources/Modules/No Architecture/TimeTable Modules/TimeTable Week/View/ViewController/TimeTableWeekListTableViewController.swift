@@ -21,7 +21,15 @@ final class TimeTableWeekListTableViewController: UIViewController {
     var owner: String = ""
     var week: WeekModel!
     var weeks: [WeekModel]
-    var timetable: [TimeTable] = []
+    var timetable: [TimeTable] = [] {
+        didSet {
+            timetable = timetable.map { day in
+                var modifiedDay = day
+                modifiedDay.disciplines = self.timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &modifiedDay.disciplines)
+                return modifiedDay
+            }
+        }
+    }
     var allTimetable = [TimeTable]()
     weak var delegate: TimeTableWeekListTableViewControllerDelegate?
     var currentDate = ""
@@ -49,6 +57,8 @@ final class TimeTableWeekListTableViewController: UIViewController {
     let settingsManager = SettingsManager()
     let imageSaver = ImageSaver()
     let gestureRecognitionManager = GestureRecognitionManager()
+    let timetablePseudonymManager = TimetablePseudonymManager()
+    let timetableMenuManager = TimetableMenuManager()
     
     // MARK: - флаги
     var isChanged = false
@@ -125,7 +135,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     private func setUpNavigation() {
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
-        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: getCurrentMenu())
+        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())
         options.accessibilityIdentifier = "menu"
         options.tintColor = .label
         updateTitle()
@@ -134,20 +144,19 @@ final class TimeTableWeekListTableViewController: UIViewController {
         setUpNavigationGestures()
     }
     
-    func getCurrentMenu()-> UIMenu {
-        let onAdvancedMode = UserDefaults.standard.object(forKey: "onAdvancedMode") as? Bool ?? false
-        if onAdvancedMode {
-            return makeMenu()
-        } else {
-            return makeSimpleMenu()
-        }
-    }
-    
     private func makeMenu()-> UIMenu {
         
         let searchAction = UIAction(title: "Поиск") { _ in
             let vc = TimeTableSearchListTableViewController()
             vc.isSettings = false
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let abbreviationsAction = UIAction(title: "Псевдонимы") { _ in
+            let vc = TimetablePseudonymCategoriesListTableViewController()
             vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
@@ -239,6 +248,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         
         return UIMenu(title: "Расписание неделя \(week.id)", children: [
             searchAction,
+            abbreviationsAction,
             ARAction,
             nearBuildingAction,
             groupsList,
@@ -463,10 +473,13 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     func getTimeTable(completion: @escaping()->Void) {
-        UserDefaults.standard.setValue(id, forKey: "recentGroup")
-        UserDefaults.standard.setValue(week.from, forKey: "recentDate")
-        UserDefaults.standard.setValue(owner, forKey: "recentOwner")
-        UserDefaults.standard.setValue(id, forKey: "group")
+        let option = settingsManager.checkSaveRecentTimetableItem()
+        if option == true {
+            UserDefaults.standard.setValue(id, forKey: "recentGroup")
+            UserDefaults.standard.setValue(currentDate, forKey: "recentDate")
+            UserDefaults.standard.setValue(owner, forKey: "recentOwner")
+            UserDefaults.standard.setValue(id, forKey: "group")
+        }
         spinner.isHidden = false
         animation.startRotateAnimation(view: self.spinner)
         noTimeTableLabel.isHidden = true
@@ -656,6 +669,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
                 let json = try JSONEncoder().encode(emptyTimetable)
                 service.getTimeTableWeekImage(json: json) { image in
                     self.ShareImage(image: image, title: self.id, text: "с \(self.week.from) по \(self.week.to)")
+                    HapticsManager.shared.hapticFeedback()
                 }
             } catch {
                 print(error.localizedDescription)

@@ -46,7 +46,6 @@ final class TimetableOptionsListTableViewController: UITableViewController {
     private func setUpTable() {
         tableView.register(UINib(nibName: TimetableOptionsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimetableOptionsTableViewCell.identifier)
         tableView.register(UINib(nibName: SaveRecentTimetableItemOptionCell.identifier, bundle: nil), forCellReuseIdentifier: SaveRecentTimetableItemOptionCell.identifier)
-        tableView.register(UINib(nibName: AdvancedModeOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AdvancedModeOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: VolumeControlOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: VolumeControlOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: DeviceOrientationControlTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DeviceOrientationControlTableViewCell.identifier)
         tableView.register(UINib(nibName: GestureRecognitionOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: GestureRecognitionOptionTableViewCell.identifier)
@@ -88,7 +87,7 @@ final class TimetableOptionsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 9
+        return 8
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -101,12 +100,9 @@ final class TimetableOptionsListTableViewController: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SaveRecentTimetableItemOptionCell.identifier, for: indexPath) as? SaveRecentTimetableItemOptionCell else {return UITableViewCell()}
             return cell
         case 5:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: AdvancedModeOptionTableViewCell.identifier, for: indexPath) as? AdvancedModeOptionTableViewCell else {return UITableViewCell()}
-            return cell
-        case 6:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: VolumeControlOptionTableViewCell.identifier, for: indexPath) as? VolumeControlOptionTableViewCell else {return UITableViewCell()}
             return cell
-        case 7:
+        case 6:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DeviceOrientationControlTableViewCell.identifier, for: indexPath) as? DeviceOrientationControlTableViewCell else {return UITableViewCell()}
             return cell
         default:

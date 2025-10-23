@@ -42,8 +42,6 @@ extension TimeTableSplashScreenViewModel: ITimeTableSplashScreenViewModel {
     func getImage(json: Codable, completion: @escaping(UIImage)->Void) {
     
         let id = UserDefaults.standard.object(forKey: "group") as? String ?? "ВМ-ИВТ-4-1"
-        let date = dateManager.getCurrentDate()
-        let owner = UserDefaults.standard.object(forKey: "recentOwner") as? String ?? "GROUP"
         
         let emptyTimetable = TimeTable(id: id, date: dateManager.getCurrentDate(), disciplines: [])
         

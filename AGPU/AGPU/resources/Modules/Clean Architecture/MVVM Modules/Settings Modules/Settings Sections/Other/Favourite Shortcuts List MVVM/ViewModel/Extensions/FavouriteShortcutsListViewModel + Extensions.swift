@@ -33,6 +33,11 @@ extension FavouriteShortcutsListViewModel: IFavouriteShortcutsListViewModel {
         updateShortcutInfo(shortcut: currentShortCut)
     }
     
+    func updateShortcutDescription(description: String) {
+        currentShortCut.subtitle = description
+        updateShortcutInfo(shortcut: currentShortCut)
+    }
+    
     func updateShortcutInfo(shortcut: ShortcutModel) {
         let index = shortcuts.firstIndex { $0.id == shortcut.id }!
         if shortcuts[index].title != shortcut.title || shortcuts[index].subtitle != shortcut.subtitle {
@@ -44,7 +49,7 @@ extension FavouriteShortcutsListViewModel: IFavouriteShortcutsListViewModel {
     func resetShortcut(shortcut: ShortcutModel) {
         let item = AppShortcuts.items.first { $0.id == shortcut.id }!
         let index = shortcuts.firstIndex { $0.id == shortcut.id }!
-        if shortcuts[index].title != item.title || shortcuts[index].subtitle != shortcut.subtitle {
+        if shortcuts[index].title != item.title || shortcuts[index].subtitle != item.subtitle {
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
                 self.shortcuts[index] = item
                 self.saveChanges(shortcut: shortcut)

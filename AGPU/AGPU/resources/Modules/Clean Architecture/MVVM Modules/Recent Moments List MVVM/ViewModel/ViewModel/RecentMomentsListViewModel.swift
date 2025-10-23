@@ -11,7 +11,11 @@ final class RecentMomentsListViewModel {
     
     let style = SettingsManager().getSavedCommunicationStyle()
     let name = UserDefaults.standard.string(forKey: "name") ?? ""
-    var timetable = TimeTable(id: "", date: "", disciplines: [])
+    var timetable = TimeTable(id: "", date: "", disciplines: []) {
+        didSet {
+            timetable.disciplines = timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &timetable.disciplines)
+        }
+    }
     
     var alertHandler: ((String, String)->Void)?
     
@@ -19,5 +23,6 @@ final class RecentMomentsListViewModel {
     let settingsManager = SettingsManager()
     let service = TimeTableService()
     let dateManager = DateManager()
+    let timetablePseudonymManager = TimetablePseudonymManager()
     
 }

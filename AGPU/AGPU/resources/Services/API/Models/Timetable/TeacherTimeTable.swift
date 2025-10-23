@@ -18,4 +18,3 @@ struct TeacherTimeTable: Codable {
         case disciplines = "disciplines"
     }
 }
-

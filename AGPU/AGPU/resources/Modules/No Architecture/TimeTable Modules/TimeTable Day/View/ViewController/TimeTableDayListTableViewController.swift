@@ -35,6 +35,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
     }
     var dates = [String]()
+    var intervals = [String]()
     var allDisciplines: [Discipline] = []
     var type: PairType = .all
     var currentPairName = ""
@@ -42,7 +43,11 @@ final class TimeTableDayListTableViewController: UIViewController {
     var currentTime: String?
     var currentNavigationType = DateNavigationTypes.day
     
-    var timetable: TimeTable?
+    var timetable = TimeTable(id: "", date: "", disciplines: []) {
+        didSet {
+            timetable.disciplines = timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &timetable.disciplines)
+        }
+    }
     var image = UIImage()
     var cancellables = Set<AnyCancellable>()
     var currentGesture: handGestures?
@@ -65,6 +70,8 @@ final class TimeTableDayListTableViewController: UIViewController {
     let speechRecognitionManager = SpeechRecognitionManager()
     let imageSaver = ImageSaver()
     let gestureRecognitionManager = GestureRecognitionManager()
+    let timetablePseudonymManager = TimetablePseudonymManager()
+    let timetableMenuManager = TimetableMenuManager()
     
     // MARK: - флаги
     var isChanged = false
@@ -143,7 +150,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     private func setUpNavigation() {
-        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: getCurrentMenu())
+        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())
         options.accessibilityIdentifier = "menu"
         options.tintColor = .label
         
@@ -194,15 +201,6 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
     }
     
-    func getCurrentMenu()-> UIMenu {
-        let onAdvancedMode = UserDefaults.standard.object(forKey: "onAdvancedMode") as? Bool ?? false
-        if onAdvancedMode {
-            return makeMenu()
-        } else {
-            return makeSimpleMenu()
-        }
-    }
-    
     private func makeMenu()-> UIMenu {
         
         // Поиск
@@ -213,6 +211,14 @@ final class TimeTableDayListTableViewController: UIViewController {
         // Информация о паре
         let timetableInfoAction = UIAction(title: "Сколько пар?") { _ in
             self.showTimetableInfo()
+        }
+        
+        let abbreviationsAction = UIAction(title: "Псевдонимы") { _ in
+            let vc = TimetablePseudonymCategoriesListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
         }
         
         // AR
@@ -310,6 +316,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         return UIMenu(title: "Расписание", children: [
             searchAction,
             timetableInfoAction,
+            abbreviationsAction,
             ARAction,
             nearBuildingAction,
             groupsList,
@@ -322,57 +329,6 @@ final class TimeTableDayListTableViewController: UIViewController {
             calendar,
             pairTypesList,
             saveTimetable,
-            navigationsList,
-            shareTimeTable
-        ])
-    }
-    
-    private func makeSimpleMenu()-> UIMenu {
-        
-        let searchAction = UIAction(title: "Поиск") { _ in
-            self.openSearch()
-        }
-        
-        // день
-        let days = UIAction(title: "Список дней") { _ in
-            self.openDaysList()
-        }
-        
-        // недели
-        let weeks = UIAction(title: "Недели") { _ in
-            let vc = AllWeeksListTableViewController(id: self.id, subgroup: self.subgroup, owner: self.owner)
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        // календарь
-        let calendar = UIAction(title: "Календарь") { _ in
-            let vc = CalendarViewController(id: self.id, subgroup: self.subgroup, date: self.date, owner: self.owner)
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        // способы навигации
-        let navigationsList = UIAction(title: "Навигация") { _ in
-            let vc = NavigationsListTableViewController(screen: .timetableDay)
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        // поделиться расписанием
-        let shareTimeTable = UIAction(title: "Поделиться") { _ in
-            self.shareTimetable {}
-        }
-        
-        return UIMenu(title: "Расписание", children: [
-            searchAction,
-            days,
-            weeks,
-            calendar,
             navigationsList,
             shareTimeTable
         ])
@@ -672,7 +628,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         self.spinner.isHidden = false
         self.animation.startRotateAnimation(view: self.spinner)
         self.infoLabel.isHidden = true
-        self.timetable?.disciplines = []
+        self.timetable.disciplines = []
         self.tableView.reloadData()
         self.navigationItem.title = "\(dayOfWeek) \(date)"
         self.navigationItem.toggleRefreshButtonFromLeft(on: false)
@@ -686,15 +642,15 @@ final class TimeTableDayListTableViewController: UIViewController {
                     let data = schedule.disciplines.filter { $0.subgroup == self?.subgroup || $0.subgroup == 0 || (self?.subgroup == 0 && ($0.subgroup == 1 || $0.subgroup == 2)) }
                     if self?.type != .all {
                         if self?.type == .leftToday {
-                            self?.timetable?.disciplines = self?.filterLeftedPairs() ?? []
+                            self?.timetable.disciplines = self?.filterLeftedPairs() ?? []
                         } else {
-                            self?.timetable?.disciplines = data.filter {$0.type == self?.type}
+                            self?.timetable.disciplines = data.filter {$0.type == self?.type}
                         }
                     } else {
-                        self?.timetable?.disciplines = data
+                        self?.timetable.disciplines = data
                     }
                     
-                    if self?.timetable?.disciplines.isEmpty ?? false {
+                    if self?.timetable.disciplines.isEmpty ?? false {
                         DispatchQueue.main.async {
                             self?.infoLabel.text = "Нет пар"
                             self?.infoLabel.isHidden = false
@@ -738,6 +694,11 @@ final class TimeTableDayListTableViewController: UIViewController {
                 completion()
             }
         }
+    }
+    
+    func setUpTimeIntervals() {
+        intervals = settingsManager.loadTimetableIntervals()
+        filterPairs(by: intervals)
     }
     
     func setUpCurrentWeek() {
@@ -983,10 +944,10 @@ final class TimeTableDayListTableViewController: UIViewController {
         if type == .all {
             
             if self.allDisciplines.isEmpty {
-                self.allDisciplines = timetable?.disciplines ?? []
+                self.allDisciplines = timetable.disciplines
             }
             
-            self.timetable?.disciplines = self.allDisciplines
+            self.timetable.disciplines = self.allDisciplines
             self.subgroup = 0
             self.tableView.reloadData()
             
@@ -996,7 +957,7 @@ final class TimeTableDayListTableViewController: UIViewController {
             if filteredDisciplines.isEmpty {
                 self.subgroup = 0
             }
-            self.timetable?.disciplines = filteredDisciplines
+            self.timetable.disciplines = filteredDisciplines
             
             if filteredDisciplines.first?.type == .lab {
                 self.subgroup = 0
@@ -1009,14 +970,14 @@ final class TimeTableDayListTableViewController: UIViewController {
         } else {
             
             if self.allDisciplines.isEmpty {
-                self.allDisciplines = timetable?.disciplines ?? []
+                self.allDisciplines = timetable.disciplines
             }
             
             let filteredDisciplines = self.allDisciplines.filter { $0.type == type }
             if filteredDisciplines.isEmpty {
                 self.subgroup = 0
             }
-            self.timetable?.disciplines = filteredDisciplines
+            self.timetable.disciplines = filteredDisciplines
             
             if filteredDisciplines.first?.type == .lab {
                 self.subgroup = 0
@@ -1027,7 +988,7 @@ final class TimeTableDayListTableViewController: UIViewController {
             self.tableView.reloadData()
         }
         
-        if self.timetable?.disciplines.isEmpty ?? false {
+        if self.timetable.disciplines.isEmpty {
             self.infoLabel.text = "Нет пар"
             self.infoLabel.isHidden = false
         } else {
@@ -1049,9 +1010,9 @@ final class TimeTableDayListTableViewController: UIViewController {
             }
         }
         DispatchQueue.main.async {
-            self.timetable?.disciplines = disciplines.sorted { self.dateManager.compareTimes(time1: "\($0.time.components(separatedBy: "-")[0]):00", time2: "\($1.time.components(separatedBy: "-")[0]):00") == .orderedAscending}
+            self.timetable.disciplines = disciplines.sorted { self.dateManager.compareTimes(time1: "\($0.time.components(separatedBy: "-")[0]):00", time2: "\($1.time.components(separatedBy: "-")[0]):00") == .orderedAscending}
             self.tableView.reloadData()
-            if self.timetable?.disciplines.isEmpty ?? false {
+            if self.timetable.disciplines.isEmpty {
                 self.infoLabel.isHidden = false
             } else {
                 self.infoLabel.isHidden = true
@@ -1065,9 +1026,9 @@ final class TimeTableDayListTableViewController: UIViewController {
         self.type = .all
         guard let filterTime = currentTime else {return}
         DispatchQueue.main.async {
-            self.timetable?.disciplines = self.allDisciplines.filter { $0.time == filterTime}
+            self.timetable.disciplines = self.allDisciplines.filter { $0.time == filterTime}
             self.tableView.reloadData()
-            if self.timetable?.disciplines.isEmpty ?? false {
+            if self.timetable.disciplines.isEmpty {
                 self.infoLabel.isHidden = false
             } else {
                 self.infoLabel.isHidden = true
@@ -1079,9 +1040,9 @@ final class TimeTableDayListTableViewController: UIViewController {
         self.currentTime = nil
         self.currentBuilding = nil
         DispatchQueue.main.async {
-            self.timetable?.disciplines = self.allDisciplines.filter { $0.name == name}
+            self.timetable.disciplines = self.allDisciplines.filter { $0.name == name}
             self.tableView.reloadData()
-            if self.timetable?.disciplines.isEmpty ?? false {
+            if self.timetable.disciplines.isEmpty {
                 self.infoLabel.isHidden = false
             } else {
                 self.infoLabel.isHidden = true
@@ -1094,14 +1055,14 @@ final class TimeTableDayListTableViewController: UIViewController {
         self.subgroup = subgroup
         
         if self.allDisciplines.isEmpty {
-            self.allDisciplines = self.timetable!.disciplines
+            self.allDisciplines = self.timetable.disciplines
         }
         
         let filteredDisciplines = self.allDisciplines.filter { $0.subgroup == subgroup }
         
         self.type = filteredDisciplines.first?.type ?? .all
         
-        self.timetable?.disciplines = filteredDisciplines
+        self.timetable.disciplines = filteredDisciplines
         self.tableView.reloadData()
     }
     

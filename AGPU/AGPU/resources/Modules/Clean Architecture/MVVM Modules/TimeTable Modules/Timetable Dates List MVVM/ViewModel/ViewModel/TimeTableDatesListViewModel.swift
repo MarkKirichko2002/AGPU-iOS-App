@@ -7,15 +7,25 @@
 
 import Foundation
 
-class TimeTableDatesListViewModel {
+final class TimeTableDatesListViewModel {
     
     // MARK: - сервисы
     let service = TimeTableService()
     let realmManager = RealmManager()
     let dateManager = DateManager()
     let settingsManager = SettingsManager()
+    let timetablePseudonymManager = TimetablePseudonymManager()
+    let timetableMenuManager = TimetableMenuManager()
     
-    var timetable = [TimeTableDayModel]()
+    var timetable = [TimeTableDayModel]() {
+        didSet {
+            timetable = timetable.map { day in
+                var modifiedDay = day
+                modifiedDay.disciplines = self.timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &modifiedDay.disciplines)
+                return modifiedDay
+            }
+        }
+    }
     var id: String = ""
     var owner: String = ""
     var dates = [String]()

@@ -17,6 +17,7 @@ extension TimeTableForCurrentBuildingViewController: UITableViewDelegate {
             _ in
             
             let discipline = self.timetable.disciplines[indexPath.row]
+            let originalName = self.timetablePseudonymManager.returnOriginalDisciplineName(name: discipline.name)
             let group = self.timetable.id
             let date = self.timetable.date
             
@@ -29,7 +30,7 @@ extension TimeTableForCurrentBuildingViewController: UITableViewDelegate {
                 }
             }
                         
-            return UIMenu(title: self.timetable.disciplines[indexPath.row].name, children: [
+            return UIMenu(title: originalName, children: [
                 infoAction
             ])
         })

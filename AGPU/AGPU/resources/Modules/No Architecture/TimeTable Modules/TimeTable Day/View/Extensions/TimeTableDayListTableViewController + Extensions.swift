@@ -18,38 +18,26 @@ extension TimeTableDayListTableViewController: UITableViewDelegate {
                                           actionProvider: {
             _ in
             
-            let discipline = self.timetable?.disciplines[indexPath.row]
-            let ok = UIAlertAction(title: "ОК", style: .default) { _ in
-                self.startSession()
-                SpeechSynthesizerManager.shared.stopComment()
-            }
+            let discipline = self.timetable.disciplines[indexPath.row]
             
-            let infoAction = UIAction(title: "Подробнее", image: UIImage(named: "info")) { _ in
-                let vc = PairInfoTableViewController(pair: discipline!, id: self.id, date: self.timetable?.date ?? "")
-                let navVC = UINavigationController(rootViewController: vc)
-                navVC.modalPresentationStyle = .fullScreen
-                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                    self.present(navVC, animated: true)
-                }
-            }
+            let daysMenu = self.findPairDaysMenu(name: discipline.name)
             
-            let daysMenu = self.findPairDaysMenu(name: discipline?.name ?? "")
+            let addPseyMenu = self.timetableMenuManager.addTimetablePseyMenu(discipline: discipline)
+            
+            let originalName = self.timetablePseudonymManager.returnOriginalDisciplineName(name: discipline.name)
             
             let mapAction = UIAction(title: "Найти корпус", image: UIImage(named: "map icon")) { _ in
-                if let audience = discipline?.audienceID {
-                    let vc = AGPUCurrentBuildingMapViewController(audienceID: audience, id: self.id, owner: self.owner)
-                    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                        vc.hidesBottomBarWhenPushed = true
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                } else if discipline?.audienceID == nil || discipline?.audienceID == ""  {
-                    self.showAlert(title: "Корпус не найден!", message: "К сожалению у данной пары отсутствует аудитория", actions: [ok])
+                let originalRoom = self.timetablePseudonymManager.returnOriginalAudienceName(audience: discipline.audienceID)
+                let vc = AGPUCurrentBuildingMapViewController(audienceID: originalRoom, id: self.id, owner: self.owner)
+                vc.hidesBottomBarWhenPushed = true
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
             
-            return UIMenu(title: self.timetable?.disciplines[indexPath.row].name ?? "", children: [
-                infoAction,
+            return UIMenu(title: originalName, children: [
                 daysMenu,
+                addPseyMenu,
                 mapAction
             ])
         })
@@ -69,7 +57,7 @@ extension TimeTableDayListTableViewController: UITableViewDelegate {
 extension TimeTableDayListTableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return timetable?.disciplines.count ?? 0
+        return timetable.disciplines.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -80,9 +68,7 @@ extension TimeTableDayListTableViewController: UITableViewDataSource {
         selectedView.backgroundColor = UIColor.clear
         cell.selectedBackgroundView = selectedView
         cell.delegate = self
-        if let timetable = timetable {
-            cell.configure(timetable: timetable, index: indexPath.row)
-        }
+        cell.configure(timetable: timetable, index: indexPath.row)
         return cell
     }
 }
@@ -211,10 +197,10 @@ extension TimeTableDayListTableViewController: CalendarViewControllerDelegate {
         self.type = model.type
         self.subgroup = model.subgroup
         self.allDisciplines = model.allPairs
-        self.timetable?.disciplines = []
-        self.timetable?.disciplines = model.filteredPairs
+        self.timetable.disciplines = []
+        self.timetable.disciplines = model.filteredPairs
         DispatchQueue.main.async {
-            if self.timetable?.disciplines.isEmpty ?? false {
+            if self.timetable.disciplines.isEmpty {
                 self.infoLabel.isHidden = false
             } else {
                 self.infoLabel.isHidden = true
@@ -251,6 +237,14 @@ extension TimeTableDayListTableViewController: TimetableFilterCategoriesListTabl
     
     func pairTypeWasSelected(type: PairType) {
         filterPairs(type: type)
+    }
+}
+
+// MARK: - DisciplinesPseudonymListViewControllerDelegate
+extension TimeTableDayListTableViewController: TimetablePseudonymCategoriesListTableViewControllerDelegate {
+    
+    func dataWasChanged() {
+        refreshTimetable {}
     }
 }
 
@@ -463,6 +457,16 @@ extension TimeTableDayListTableViewController: TimetableDayInfoViewControllerDel
     }
 }
 
+// MARK: - TimetableTimeIntervalsListTableViewControllerDelegate
+extension TimeTableDayListTableViewController: TimetableTimeIntervalsListTableViewControllerDelegate {
+    
+    func timeIntervalsSelected(intervals: [String]) {
+        getTimeTable(id: id, date: date, owner: owner) {
+            self.filterPairs(by: intervals)
+        }
+    }
+}
+
 // MARK: - UIScrollViewDelegate
 extension TimeTableDayListTableViewController: UIScrollViewDelegate {
     
@@ -472,6 +476,24 @@ extension TimeTableDayListTableViewController: UIScrollViewDelegate {
 }
 
 extension TimeTableDayListTableViewController {
+    
+    func filterPairs(by intervals: [String]) {
+        if intervals.isEmpty {
+            timetable.disciplines = allDisciplines
+        } else {
+            intervals.forEach { interval in
+                timetable.disciplines = timetable.disciplines.filter({ $0.time != interval })
+            }
+        }
+        DispatchQueue.main.async {
+            if self.timetable.disciplines.isEmpty {
+                self.infoLabel.isHidden = false
+            } else {
+                self.infoLabel.isHidden = true
+            }
+            self.tableView.reloadData()
+        }
+    }
     
     func checkTimetableShowVC() {
         let style = settingsManager.checkScreenPresentationStyleOption()
@@ -516,6 +538,14 @@ extension TimeTableDayListTableViewController {
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
         }
+    }
+    
+    func showTimetableIntervalsVC() {
+        let vc = TimetableTimeIntervalsListTableViewController()
+        vc.delegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true)
     }
     
     func isMicOn()-> Bool {
@@ -843,7 +873,7 @@ extension TimeTableDayListTableViewController {
                 DispatchQueue.main.async {
                     if leftedPairs.count > 0 {
                         let time = leftedPairs[0].time
-                        self.timetable?.disciplines = self.allDisciplines.filter({ $0.time == time })
+                        self.timetable.disciplines = self.allDisciplines.filter({ $0.time == time })
                         self.tableView.reloadData()
                     } else {
                         self.filterPairs(type: .none)
@@ -867,7 +897,7 @@ extension TimeTableDayListTableViewController {
                 DispatchQueue.main.async {
                     if leftedPairs.count > 0 {
                         if times.count > 1 {
-                            self.timetable?.disciplines = self.allDisciplines.filter({ $0.time == times[1] })
+                            self.timetable.disciplines = self.allDisciplines.filter({ $0.time == times[1] })
                             self.tableView.reloadData()
                         } else {
                             self.filterPairs(type: .none)
@@ -895,7 +925,7 @@ extension TimeTableDayListTableViewController {
                         let time = leftedPairs[0].time
                         if let index = self.allDisciplines.firstIndex(where: { $0.time == time }) {
                             if index > 0 {
-                                self.timetable?.disciplines = self.allDisciplines.filter({ $0.time == self.allDisciplines[index - 1].time })
+                                self.timetable.disciplines = self.allDisciplines.filter({ $0.time == self.allDisciplines[index - 1].time })
                                 self.tableView.reloadData()
                             } else {
                                 self.filterPairs(type: .none)
@@ -919,7 +949,7 @@ extension TimeTableDayListTableViewController {
             cancelGestureRecognition()
             refreshTimetable { DispatchQueue.main.async {
                 if self.allDisciplines.count > 0 {
-                    self.timetable?.disciplines = self.allDisciplines.filter({ $0.time == self.allDisciplines.last?.time})
+                    self.timetable.disciplines = self.allDisciplines.filter({ $0.time == self.allDisciplines.last?.time})
                     self.tableView.reloadData()
                 } else {
                     self.filterPairs(type: .none)
@@ -947,7 +977,7 @@ extension TimeTableDayListTableViewController {
                 let times = self.countTimes()
                 if times.count > 0 {
                     DispatchQueue.main.async {
-                        self.timetable?.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[0]})
+                        self.timetable.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[0]})
                         self.tableView.reloadData()
                         self.startSpeechRecognition()
                         self.startSession()
@@ -971,7 +1001,7 @@ extension TimeTableDayListTableViewController {
                 let times = self.countTimes()
                 if times.count > 1 {
                     DispatchQueue.main.async {
-                        self.timetable?.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[1]})
+                        self.timetable.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[1]})
                         self.tableView.reloadData()
                         self.startSpeechRecognition()
                         self.startSession()
@@ -995,7 +1025,7 @@ extension TimeTableDayListTableViewController {
                 let times = self.countTimes()
                 if times.count > 2 {
                     DispatchQueue.main.async {
-                        self.timetable?.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[2]})
+                        self.timetable.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[2]})
                         self.tableView.reloadData()
                         self.startSpeechRecognition()
                         self.startSession()
@@ -1019,7 +1049,7 @@ extension TimeTableDayListTableViewController {
                 let times = self.countTimes()
                 if times.count > 3 {
                     DispatchQueue.main.async {
-                        self.timetable?.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[3]})
+                        self.timetable.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[3]})
                         self.tableView.reloadData()
                         self.startSpeechRecognition()
                         self.startSession()
@@ -1043,7 +1073,7 @@ extension TimeTableDayListTableViewController {
                 let times = self.countTimes()
                 if times.count > 4 {
                     DispatchQueue.main.async {
-                        self.timetable?.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[4]})
+                        self.timetable.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[4]})
                         self.tableView.reloadData()
                         self.startSpeechRecognition()
                         self.startSession()
@@ -1067,7 +1097,7 @@ extension TimeTableDayListTableViewController {
                 let times = self.countTimes()
                 if times.count > 5 {
                     DispatchQueue.main.async {
-                        self.timetable?.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[5]})
+                        self.timetable.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[5]})
                         self.tableView.reloadData()
                         self.startSpeechRecognition()
                         self.startSession()
@@ -1091,7 +1121,7 @@ extension TimeTableDayListTableViewController {
                 let times = self.countTimes()
                 if times.count > 6 {
                     DispatchQueue.main.async {
-                        self.timetable?.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[6]})
+                        self.timetable.disciplines = self.allDisciplines.filter({ $0.time.components(separatedBy: "-")[0] == times[6]})
                         self.tableView.reloadData()
                         self.startSpeechRecognition()
                         self.startSession()
@@ -1378,7 +1408,7 @@ extension TimeTableDayListTableViewController {
             SpeechSynthesizerManager.shared.stopComment()
         }
         
-        for pair in timetable?.disciplines ?? [] {
+        for pair in timetable.disciplines {
             
             let times = pair.time.components(separatedBy: "-")
             let startTime = times[0]
@@ -1405,7 +1435,7 @@ extension TimeTableDayListTableViewController {
             SpeechSynthesizerManager.shared.stopComment()
         }
         do {
-            let json = try JSONEncoder().encode(self.timetable)
+            let json = try JSONEncoder().encode(timetable)
             let dayOfWeek = self.dateManager.getCurrentDayOfWeek(date: self.date)
             self.service.getTimeTableDayImage(json: json) { image in
                 self.ShareImage(image: image, title: self.id, text: "\(dayOfWeek) \(self.date)")
@@ -1431,19 +1461,21 @@ extension TimeTableDayListTableViewController {
     
     func findPairDaysMenu(name: String)-> UIMenu {
         
+        let originalName = timetablePseudonymManager.returnOriginalDisciplineName(name: name)
+        
         let calendarAction = UIAction(title: "Календарь", image: UIImage(named: "calendar icon")) { _ in
-            self.openNameCalendar(name: name)
+            self.openNameCalendar(name: originalName)
         }
         
         let nextDayAction = UIAction(title: "Следующий день", image: UIImage(named: "forward")) { _ in
             self.nextDay {
-                self.filterPairs(name: name)
+                self.filterPairs(name: originalName)
             }
         }
         
         let pastDayAction = UIAction(title: "Предыдущий день", image: UIImage(named: "backward")) { _ in
             self.pastDay {
-                self.filterPairs(name: name)
+                self.filterPairs(name: originalName)
             }
         }
         

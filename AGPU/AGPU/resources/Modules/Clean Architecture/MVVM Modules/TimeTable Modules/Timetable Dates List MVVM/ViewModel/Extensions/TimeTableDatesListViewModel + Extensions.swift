@@ -55,6 +55,15 @@ extension TimeTableDatesListViewModel: ITimeTableDatesListViewModel {
         }
     }
     
+    func refreshData() {
+        timetable = []
+        getData()
+    }
+    
+    func returnOriginalAudienceName(audience: String)-> String {
+        return timetablePseudonymManager.returnOriginalAudienceName(audience: audience)
+    }
+    
     func datesString()-> String {
         if dates.count > 1 && dates.count < 5 {
             return "Расписание на \(dates.count) дня"
@@ -104,8 +113,17 @@ extension TimeTableDatesListViewModel: ITimeTableDatesListViewModel {
         }
     }
     
+    func addTimetablePseyMenu(discipline: Discipline)-> UIMenu {
+        return timetableMenuManager.addTimetablePseyMenu(discipline: discipline)
+    }
+    
     func getCommunicationStyle()-> CommunicationStyles {
         return settingsManager.getSavedCommunicationStyle()
+    }
+    
+    func configureDisciplineName(discipline: Discipline)-> String {
+        let originalName = self.timetablePseudonymManager.returnOriginalDisciplineName(name: discipline.name)
+        return originalName
     }
     
     func registerDataChangedHandler(block: @escaping()-> Void) {

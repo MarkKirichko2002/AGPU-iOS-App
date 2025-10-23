@@ -104,7 +104,7 @@ final class TimetableDateDetailViewController: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubviews(closeButton, optionsList, timetableImage, titleLabel, timetableDescription, selectDateButton)
         closeButton.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
-        optionsList.menu = getCurrentMenu()
+        optionsList.menu = makeMenu()
         selectDateButton.addTarget(self, action: #selector(selectDate), for: .touchUpInside)
         optionsList.isEnabled = false
         setUpTap()
@@ -113,15 +113,6 @@ final class TimetableDateDetailViewController: UIViewController {
     @objc private func closeScreen() {
         HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
-    }
-    
-    func getCurrentMenu()-> UIMenu {
-        let onAdvancedMode = UserDefaults.standard.object(forKey: "onAdvancedMode") as? Bool ?? false
-        if onAdvancedMode {
-            return makeMenu()
-        } else {
-            return makeSimpleMenu()
-        }
     }
     
     private func makeMenu()-> UIMenu {
@@ -227,36 +218,10 @@ final class TimetableDateDetailViewController: UIViewController {
         return menu
     }
     
-    private func makeSimpleMenu()-> UIMenu {
-        
-        let searchAction = UIAction(title: "Поиск") { _ in
-            let vc = TimeTableSearchListTableViewController()
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let refresh = UIAction(title: "Обновить") { _ in
-            self.optionsList.isEnabled = false
-            self.viewModel.refreshTimetable()
-        }
-        
-        let shareAction = UIAction(title: "Поделиться") { _ in
-            self.share()
-        }
-        
-        let menu = UIMenu(title: date, children: [
-            searchAction,
-            refresh,
-            shareAction
-        ])
-        return menu
-    }
-    
     @objc private func share() {
         guard let image = viewModel.image else {return}
         self.ShareImage(image: image, title: id, text: viewModel.formattedDate())
+        HapticsManager.shared.hapticFeedback()
     }
     
     private func setUpTap() {

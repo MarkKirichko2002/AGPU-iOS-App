@@ -151,6 +151,7 @@ final class RecentMomentsListTableViewController: UITableViewController {
                     self.viewModel.contentForShare(index: indexPath.row) { image in
                         let info = self.viewModel.getRecentTimetableInfo()
                         self.ShareImage(image: image as? UIImage ?? UIImage(), title: info.0, text: info.1)
+                        HapticsManager.shared.hapticFeedback()
                     }
                 } else if moment.id == 7 {
                     self.viewModel.contentForShare(index: indexPath.row) { location in

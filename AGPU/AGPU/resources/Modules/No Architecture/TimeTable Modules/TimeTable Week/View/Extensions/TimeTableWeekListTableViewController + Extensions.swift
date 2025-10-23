@@ -79,20 +79,15 @@ extension TimeTableWeekListTableViewController: UITableViewDelegate {
             
             let discipline = self.timetable[indexPath.section].disciplines[indexPath.row]
             
-            let infoAction = UIAction(title: "Подробнее", image: UIImage(named: "info")) { _ in
-                let vc = PairInfoTableViewController(pair: discipline, id: self.id, date: self.timetable[indexPath.section].date)
-                let navVC = UINavigationController(rootViewController: vc)
-                navVC.modalPresentationStyle = .fullScreen
-                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                    self.present(navVC, animated: true)
-                }
-            }
+            let addPseyMenu = self.timetableMenuManager.addTimetablePseyMenu(discipline: discipline)
+            
+            let originalName = self.timetablePseudonymManager.returnOriginalDisciplineName(name: discipline.name)
             
             let mapAction = UIAction(title: "Найти корпус", image: UIImage(named: "map icon")) { _ in
-                let audience = self.timetable[indexPath.section].disciplines[indexPath.row].audienceID
-                let vc = AGPUCurrentBuildingMapViewController(audienceID: audience, id: self.id, owner: self.owner)
+                let originalRoom = self.timetablePseudonymManager.returnOriginalAudienceName(audience: discipline.audienceID)
+                let vc = AGPUCurrentBuildingMapViewController(audienceID: originalRoom, id: self.id, owner: self.owner)
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                    vc.hidesBottomBarWhenPushed = true
+                    self.hidesBottomBarWhenPushed = true
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
                 
@@ -101,8 +96,8 @@ extension TimeTableWeekListTableViewController: UITableViewDelegate {
                 }
             }
             
-            return UIMenu(title: self.timetable[indexPath.section].disciplines[indexPath.row].name, children: [
-                infoAction,
+            return UIMenu(title: originalName, children: [
+                addPseyMenu,
                 mapAction
             ])
         })
@@ -450,6 +445,14 @@ extension TimeTableWeekListTableViewController: AVCaptureVideoDataOutputSampleBu
         }
         
         startSession()
+    }
+}
+
+// MARK: - TimetablePseudonymCategoriesListTableViewControllerDelegate
+extension TimeTableWeekListTableViewController: TimetablePseudonymCategoriesListTableViewControllerDelegate {
+    
+    func dataWasChanged() {
+        refreshTimetable {}
     }
 }
 

@@ -23,6 +23,65 @@ extension SettingsManager: SettingsManagerProtocol {
         return UserDefaults.standard.object(forKey: "recentOwner") as? String ?? "GROUP"
     }
     
+    func saveIntervals(intervals: [String], completion: @escaping()->Void) {
+        do {
+            let arr = try JSONEncoder().encode(intervals)
+            UserDefaults.standard.setValue(arr, forKey: "timetable intervals")
+            completion()
+        } catch {
+            print(error)
+        }
+    }
+    
+    func loadTimetableIntervals()-> [String] {
+        var data = [String]()
+        if let result = UserDefaults.standard.object(forKey: "timetable intervals") as? Data {
+            do {
+                data = try JSONDecoder().decode([String].self, from: result)
+            } catch {
+                print(error)
+            }
+        }
+        return data
+    }
+    
+    // MARK: - псевдонимы
+    func addTimetablePseudonym(model: TimetablePseudonymModel, category: String, completion: @escaping()->Void) {
+        do {
+            var arr = loadTimetablePseudonyms(category: category)
+            if !arr.contains(where: { $0.originalName == model.originalName}) {
+                arr.append(model)
+                let data = try JSONEncoder().encode(arr)
+                UserDefaults.standard.setValue(data, forKey: "\(category) pseudonym")
+                completion()
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    func saveTimetablePseudonyms(pseudonyms: [TimetablePseudonymModel], category: String, completion: @escaping()->Void) {
+        do {
+            let arr = try JSONEncoder().encode(pseudonyms)
+            UserDefaults.standard.setValue(arr, forKey: "\(category) pseudonym")
+            completion()
+        } catch {
+            print(error)
+        }
+    }
+    
+    func loadTimetablePseudonyms(category: String)-> [TimetablePseudonymModel] {
+        var data = [TimetablePseudonymModel]()
+        if let result = UserDefaults.standard.object(forKey: "\(category) pseudonym") as? Data {
+            do {
+                data = try JSONDecoder().decode([TimetablePseudonymModel].self, from: result)
+            } catch {
+                print(error)
+            }
+        }
+        return data
+    }
+    
     // MARK: - Say Anywhere
     func loadSpeechScreens()-> [SpeechScreens] {
         var data = [SpeechScreens]()

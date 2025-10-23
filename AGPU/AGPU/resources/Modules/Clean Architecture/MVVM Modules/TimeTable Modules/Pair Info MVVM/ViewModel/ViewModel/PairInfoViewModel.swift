@@ -42,5 +42,6 @@ final class PairInfoViewModel {
     let locationManager = LocationManager()
     let settingsManager = SettingsManager()
     let speechRecognitionManager = SpeechRecognitionManager()
+    let timetablePseudonymManager = TimetablePseudonymManager()
     
 }

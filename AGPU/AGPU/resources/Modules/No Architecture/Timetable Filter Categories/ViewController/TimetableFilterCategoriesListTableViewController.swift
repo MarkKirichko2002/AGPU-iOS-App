@@ -156,6 +156,8 @@ final class TimetableFilterCategoriesListTableViewController: UITableViewControl
     
     func openTimesList() {
         let vc = PairTimeFilterListListViewController(time: time ?? "", times: disciplines.map {$0.time})
+        vc.disciplines = disciplines
+        vc.isSection = true
         vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: true)
     }

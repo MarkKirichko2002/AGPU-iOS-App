@@ -49,6 +49,7 @@ extension SavedImagesListTableViewController: UITableViewDelegate {
                 let item = self.viewModel.imageItem(index: indexPath.row)
                 guard let image = UIImage(data: item.image) else {return}
                 self.ShareImage(image: image, title: "Изображение", text: item.date)
+                HapticsManager.shared.hapticFeedback()
             }
             
             return UIMenu(title: self.viewModel.imageItem(index: indexPath.row).date, children: [

@@ -100,7 +100,7 @@ extension DateDaysListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let day = days[indexPath.row]
-        let vc = TimetableFilterCategoriesListTableViewController(date: day.date, type:  typesDict[day.date]!, disciplines: day.disciplines, building: buildingsDict[day.date]!, time: timesDict[day.date]!)
+        let vc = TimetableFilterCategoriesListTableViewController(date: day.date, type:  typesDict[day.date]!, disciplines: day.disciplines, building: buildingsDict[day.date], time: timesDict[day.date])
         vc.isSection = true
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)

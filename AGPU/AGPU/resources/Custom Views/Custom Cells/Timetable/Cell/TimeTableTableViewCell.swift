@@ -18,6 +18,7 @@ final class TimeTableTableViewCell: UITableViewCell {
     
     // MARK: - сервисы
     private let animation = AnimationClass()
+    private let settingsManager = SettingsManager()
     
     weak var delegate: ITimeTableTableViewCell?
     private var pair = Discipline(time: "", name: "", groupName: "", teacherName: "", audienceID: "", subgroup: 0, type: .all)
@@ -29,20 +30,39 @@ final class TimeTableTableViewCell: UITableViewCell {
     @IBOutlet var SubGroupId: UILabel!
     
     func configure(timetable: TimeTable, index: Int) {
-        pair = timetable.disciplines[index]
-        layer.borderWidth = 1
-        TimeLabel.text = pair.time
-        DisciplineName.text = "\(pair.name) \n\(pair.teacherName), \(pair.audienceID) \n (\(pair.groupName)) \n(\(pair.type.title))"
-        switch pair.subgroup {
+        setUpDisciplineTime(discipline: timetable.disciplines[index])
+        setUpDisciplineName(discipline: timetable.disciplines[index])
+        setUpSubGroup(discipline: timetable.disciplines[index])
+        setUpCellBackground(discipline: timetable.disciplines[index])
+        setUpTimetable(timetable: timetable, index: index)
+    }
+    
+    private func setUpDisciplineTime(discipline: Discipline) {
+        TimeLabel.text = discipline.time
+    }
+    
+    private func setUpDisciplineName(discipline: Discipline) {
+        DisciplineName.text = "\(discipline.name) \n\(discipline.teacherName), \(discipline.audienceID) \n (\(discipline.groupName)) \n(\(discipline.type.title))"
+    }
+    
+    private func setUpSubGroup(discipline: Discipline) {
+        switch discipline.subgroup {
         case 0:
             SubGroupId.text = "Общая пара"
         default:
-            SubGroupId.text = "(подгруппа: \(pair.subgroup))"
+            SubGroupId.text = "(подгруппа: \(discipline.subgroup))"
         }
-        self.backgroundColor =  pair.type.color
-        TimeLabel.text = pair.time
+    }
+    
+    private func setUpTimetable(timetable: TimeTable, index: Int) {
+        self.pair = timetable.disciplines[index]
         self.id = timetable.id
         self.date = timetable.date
+    }
+    
+    private func setUpCellBackground(discipline: Discipline) {
+        layer.borderWidth = 1
+        backgroundColor = discipline.type.color
     }
     
     override func awakeFromNib() {

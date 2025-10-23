@@ -33,14 +33,7 @@ extension FavouriteShortcutsListTableViewController: UITableViewDelegate {
             }
             
             let switchName =  UIAction(title: "Заменить", image: UIImage(named: "replace")) { _ in
-                let vc = FavouriteTitlesListTableViewController(name: info.0)
-                vc.delegate = self
-                let navVC = UINavigationController(rootViewController: vc)
-                navVC.modalPresentationStyle = .fullScreen
-                self.viewModel.currentShortCut = self.viewModel.shortcutItem(index: indexPath.row)
-                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                    self.present(navVC, animated: true)
-                }
+                self.showSwitchItemAlert(info: info, shortcut: self.viewModel.shortcutItem(index: indexPath.row))
             }
             
             let positionAction = UIAction(title: "Позиция", image: UIImage(named: "number")) { _ in
@@ -92,6 +85,7 @@ extension FavouriteShortcutsListTableViewController: AllShortcutsListTableViewCo
     }
 }
 
+// MARK: - FavouriteTitlesListTableViewControllerDelegate
 extension FavouriteShortcutsListTableViewController: FavouriteTitlesListTableViewControllerDelegate {
     
     func titleWasSelected(title: String) {
@@ -99,7 +93,42 @@ extension FavouriteShortcutsListTableViewController: FavouriteTitlesListTableVie
     }
 }
 
+// MARK: - FavouriteDescriptionsListTableViewControllerDelegate
+extension FavouriteShortcutsListTableViewController: FavouriteDescriptionsListTableViewControllerDelegate {
+    
+    func descriptionWasSelected(description: String) {
+        viewModel.updateShortcutDescription(description: description)
+    }
+}
+
 extension FavouriteShortcutsListTableViewController {
+    
+    func showSwitchItemAlert(info: (String, String), shortcut: ShortcutModel) {
+        
+        let titleAction = UIAlertAction(title: "Название", style: .default) { _ in
+            let vc = FavouriteTitlesListTableViewController(name: info.0)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.viewModel.currentShortCut = shortcut
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.present(navVC, animated: true)
+            }
+        }
+        let descriptionAction = UIAlertAction(title: "Описание", style: .default) { _ in
+            let vc = FavouriteDescriptionsListTableViewController(name: info.0)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.viewModel.currentShortCut = shortcut
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.present(navVC, animated: true)
+            }
+        }
+        let cancel = UIAlertAction(title: "Отмена", style: .destructive)
+        
+        self.showAlert(title: "Что нужно заменить для шортката?", message: "", actions: [titleAction, descriptionAction, cancel])
+    }
     
     func showEditAlert(shortcut: ShortcutModel) {
         
@@ -123,17 +152,18 @@ extension FavouriteShortcutsListTableViewController {
                             self.showEditAlert(shortcut: shortcut)
                         }
                         self.showAlert(title: "Слишком много символов у названия!", message: "можно ввести не более 40 включая пробелы", actions: [ok])
-                    } else if subttile.count > 48 {
+                    } else if subttile.count > 43 {
                         let ok = UIAlertAction(title: "ОК", style: .default) { _ in
                             self.showEditAlert(shortcut: shortcut)
                         }
-                        self.showAlert(title: "Слишком много символов у описания!", message: "можно ввести не более 48 включая пробелы", actions: [ok])
+                        self.showAlert(title: "Слишком много символов у описания!", message: "можно ввести не более 43 включая пробелы", actions: [ok])
                     } else {
                         var model = shortcut
                         model.title = title
                         model.subtitle = subttile
                         self.viewModel.updateShortcutInfo(shortcut: model)
                     }
+                    print(subttile.count)
                 }
             }
         }

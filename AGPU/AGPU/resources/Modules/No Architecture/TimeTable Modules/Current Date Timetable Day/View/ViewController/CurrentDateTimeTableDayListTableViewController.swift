@@ -9,14 +9,20 @@ import UIKit
 
 final class CurrentDateTimeTableDayListTableViewController: UIViewController {
 
-    var timetable = TimeTable(id: "", date: "", disciplines: [])
+    var timetable = TimeTable(id: "", date: "", disciplines: []) {
+        didSet {
+            timetable.disciplines = timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &timetable.disciplines)
+        }
+    }
     private var id: String = ""
     private var date: String = ""
     private var owner: String = ""
-    
+     
+    // MARK: - сервисы
     private let service = TimeTableService()
     private let dateManager = DateManager()
     private let animation = AnimationClass()
+    private let timetablePseudonymManager = TimetablePseudonymManager()
     
     // MARK: - UI
     let tableView = UITableView()

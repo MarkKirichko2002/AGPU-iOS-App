@@ -1,0 +1,113 @@
+//
+//  TimetablePseudonymManager.swift
+//  AGPU
+//
+//  Created by Марк Киричко on 16.10.2025.
+//
+
+import Foundation
+
+final class TimetablePseudonymManager {
+    
+    // MARK: - сервисы
+    private let settingsManager = SettingsManager()
+    
+    func setUpTimetablePseudonyms(pairs: inout [Discipline])-> [Discipline] {
+        pairs = setUpTimesPseudonym(pairs: &pairs)
+        pairs = setUpDisciplinesPseudonym(pairs: &pairs)
+        pairs = setUpTeachersPseudonym(pairs: &pairs)
+        pairs = setUpAudiencePseudonym(pairs: &pairs)
+        pairs = setUpGroupPseudonym(pairs: &pairs)
+        return pairs
+    }
+    
+    func setUpTimesPseudonym(pairs: inout [Discipline])-> [Discipline] {
+        let pseudonyms = settingsManager.loadTimetablePseudonyms(category: "Время")
+        for (i, discipline) in pairs.enumerated() {
+            if let pseudonym = pseudonyms.first(where: { $0.originalName == discipline.time })?.pseudonym {
+                pairs[i].time = pseudonym
+            }
+        }
+        return pairs
+    }
+    
+    func setUpDisciplinesPseudonym(pairs: inout [Discipline])-> [Discipline] {
+        let pseudonyms = settingsManager.loadTimetablePseudonyms(category: "Дисциплины")
+        for (i, discipline) in pairs.enumerated() {
+            if let pseudonym = pseudonyms.first(where: { $0.originalName == discipline.name })?.pseudonym {
+                pairs[i].name = pseudonym
+            }
+        }
+        return pairs
+    }
+    
+    func setUpTeachersPseudonym(pairs: inout [Discipline])-> [Discipline] {
+        let pseudonyms = settingsManager.loadTimetablePseudonyms(category: "Преподаватели")
+        for (i, discipline) in pairs.enumerated() {
+            if let pseudonym = pseudonyms.first(where: { $0.originalName == discipline.teacherName })?.pseudonym {
+                pairs[i].teacherName = pseudonym
+            }
+        }
+        return pairs
+    }
+    
+    func setUpAudiencePseudonym(pairs: inout [Discipline])-> [Discipline] {
+        let pseudonyms = settingsManager.loadTimetablePseudonyms(category: "Аудитории")
+        for (i, discipline) in pairs.enumerated() {
+            if let pseudonym = pseudonyms.first(where: { $0.originalName == discipline.audienceID })?.pseudonym {
+                pairs[i].audienceID = pseudonym
+            }
+        }
+        return pairs
+    }
+    
+    func setUpGroupPseudonym(pairs: inout [Discipline])-> [Discipline] {
+        let pseudonyms = settingsManager.loadTimetablePseudonyms(category: "Группы")
+        for (i, discipline) in pairs.enumerated() {
+            if let pseudonym = pseudonyms.first(where: { $0.originalName == discipline.groupName })?.pseudonym {
+                pairs[i].groupName = pseudonym
+            }
+        }
+        return pairs
+    }
+    
+    func returnOriginalTime(time: String)-> String {
+        let pseudonyms = settingsManager.loadTimetablePseudonyms(category: "Время")
+        if let originalName = pseudonyms.first(where: { $0.pseudonym == time })?.originalName {
+            return originalName
+        }
+        return time
+    }
+    
+    func returnOriginalDisciplineName(name: String)-> String {
+        let pseudonyms = settingsManager.loadTimetablePseudonyms(category: "Дисциплины")
+        if let originalName = pseudonyms.first(where: { $0.pseudonym == name })?.originalName {
+            return originalName
+        }
+        return name
+    }
+    
+    func returnOriginalTeacherName(name: String)-> String {
+        let pseudonyms = settingsManager.loadTimetablePseudonyms(category: "Преподаватели")
+        if let originalName = pseudonyms.first(where: { $0.pseudonym == name })?.originalName {
+            return originalName
+        }
+        return name
+    }
+    
+    func returnOriginalAudienceName(audience: String)-> String {
+        let pseudonyms = settingsManager.loadTimetablePseudonyms(category: "Аудитории")
+        if let originalName = pseudonyms.first(where: { $0.pseudonym == audience })?.originalName {
+            return originalName
+        }
+        return audience
+    }
+    
+    func returnOriginalGroupName(group: String)-> String {
+        let pseudonyms = settingsManager.loadTimetablePseudonyms(category: "Группы")
+        if let originalName = pseudonyms.first(where: { $0.pseudonym == group })?.originalName {
+            return originalName
+        }
+        return group
+    }
+}

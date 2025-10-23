@@ -23,6 +23,8 @@ final class PairTimeFilterListListViewController: UIViewController {
     
     weak var delegate: PairTimeFilterListListViewControllerDelegate?
     var times: [String]
+    var isSection = false
+    var disciplines = [Discipline]()
     var selectedTime = ""
     
     init(time: String, times: [String]) {
@@ -104,6 +106,21 @@ final class PairTimeFilterListListViewController: UIViewController {
         }
         return arr
     }
+    
+    func pairsCount(time: String)-> Int {
+        var disciplines = [Discipline]()
+        var uniqueGroups: Set<String> = Set()
+        
+        disciplines = self.disciplines.filter({ $0.time == time })
+        
+        for pair in disciplines {
+            
+            uniqueGroups.insert(pair.groupName)
+        }
+        
+        return uniqueGroups.count
+        
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -123,10 +140,14 @@ extension PairTimeFilterListListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         cell.tintColor = .systemGreen
         cell.textLabel?.text = times[indexPath.row]
         cell.textLabel?.textColor = isTimeSelected(index: indexPath.row) ? .systemGreen : .label
+        cell.detailTextLabel?.text = isSection ? "Количество пар: \(pairsCount(time: times[indexPath.row]))" : nil
+        cell.detailTextLabel?.textColor = isTimeSelected(index: indexPath.row) ? .systemGreen : .label
+               cell.detailTextLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+               cell.detailTextLabel?.numberOfLines = 0
         cell.accessoryType = isTimeSelected(index: indexPath.row) ? .checkmark : .none
         cell.textLabel?.font = .systemFont(ofSize: 16, weight: .black)
         return cell

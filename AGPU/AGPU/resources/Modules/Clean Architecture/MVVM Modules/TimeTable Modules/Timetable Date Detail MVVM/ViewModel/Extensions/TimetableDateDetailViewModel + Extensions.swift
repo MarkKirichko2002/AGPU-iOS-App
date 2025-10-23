@@ -20,6 +20,7 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
                 self?.pairs = data.disciplines
                 self?.allDisciplines = data.disciplines
                 if !data.disciplines.isEmpty {
+                    self?.setUpDisciplinesPseudonym()
                     self?.createImage()
                 } else {
                     self?.createImage()
@@ -52,21 +53,10 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
                 self?.pairs = data.disciplines
                 self?.allDisciplines = data.disciplines
                 if !data.disciplines.isEmpty {
-                    self?.getImage(json: data) { image in
-                        let model = TimeTableDateModel(id: data.id, date: self?.date ?? "", image: image, description: "\(self?.formattedDate() ?? "") пары: \(self?.getPairsCount() ?? 0)")
-                        self?.image = image
-                        DispatchQueue.main.async {
-                            self?.timeTableHandler?(model)
-                        }
-                    }
+                    self?.setUpDisciplinesPseudonym()
+                    self?.createImage()
                 } else {
-                    self?.getImage(json: data) { image in
-                        let model = TimeTableDateModel(id: data.id, date: self?.date ?? "", image: image, description: "\(self?.formattedDate() ?? "") нет пар")
-                        self?.image = image
-                        DispatchQueue.main.async {
-                            self?.timeTableHandler?(model)
-                        }
-                    }
+                    self?.createImage()
                 }
             case .failure(let error):
                 print(error)
@@ -74,7 +64,6 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
         }
     }
     
-        
     func getImage(json: Codable, completion: @escaping(UIImage)->Void) {
         do {
             let json = try JSONEncoder().encode(json)
@@ -121,7 +110,7 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
                 self.allDisciplines = pairs
             }
             self.pairs = self.allDisciplines
-           
+            
         } else if type == .leftToday {
             
             let filteredDisciplines = self.filterLeftedPairs(pairs: self.allDisciplines)
@@ -136,7 +125,7 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
             let filteredDisciplines = self.allDisciplines.filter { $0.type == type }
             self.pairs = filteredDisciplines
         }
-        
+        setUpDisciplinesPseudonym()
         createImage()
     }
     
@@ -189,6 +178,7 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
         
         self.pairs = filteredDisciplines
         
+        setUpDisciplinesPseudonym()
         createImage()
     }
     
@@ -206,6 +196,7 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
             }
         }
         self.pairs = disciplines.sorted { self.dateManager.compareTimes(time1: "\($0.time.components(separatedBy: "-")[0]):00", time2: "\($1.time.components(separatedBy: "-")[0]):00") == .orderedAscending}
+        setUpDisciplinesPseudonym()
         createImage()
     }
     
@@ -214,7 +205,12 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
         self.currentBuilding = nil
         self.type = .all
         self.pairs = allDisciplines.filter({ $0.time == time })
+        setUpDisciplinesPseudonym()
         createImage()
+    }
+    
+    func setUpDisciplinesPseudonym() {
+        pairs = timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &pairs)
     }
     
     func createImage() {

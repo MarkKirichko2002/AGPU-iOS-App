@@ -12,19 +12,20 @@ import UIKit
 extension PairInfoViewModel: PairInfoViewModelProtocol {
     
     func setUpData() {
+        pair.time = timetablePseudonymManager.returnOriginalTime(time: pair.time)
         let startTime = getStartTime()
         let endTime = getEndTime()
         let pairType = pair.type.title
         let subGroup = checkSubGroup(subgroup: pair.subgroup)
         pairInfo.append("Дата: \(date)")
-        pairInfo.append("Дисциплина: \(pair.name)")
+        pairInfo.append("Дисциплина: \(timetablePseudonymManager.returnOriginalDisciplineName(name: pair.name))")
         pairInfo.append("Начало: \(startTime)")
         pairInfo.append("Конец: \(endTime)")
-        pairInfo.append("Преподаватель: \(pair.teacherName)")
-        pairInfo.append("Группа: \(pair.groupName)")
+        pairInfo.append("Преподаватель: \(timetablePseudonymManager.returnOriginalTeacherName(name: pair.teacherName))")
+        pairInfo.append("Группа: \(timetablePseudonymManager.returnOriginalGroupName(group: pair.groupName))")
         pairInfo.append(subGroup)
         pairInfo.append("Тип пары: \(pairType)")
-        pairInfo.append("Аудитория: \(pair.audienceID)")
+        pairInfo.append("Аудитория: \(timetablePseudonymManager.returnOriginalAudienceName(audience: pair.audienceID))")
         pairInfo.append("Вычисляем время...")
         pairInfo.append("Вычисляем растояние...")
         pairInfo.append("Вычисляем время прибытия...")

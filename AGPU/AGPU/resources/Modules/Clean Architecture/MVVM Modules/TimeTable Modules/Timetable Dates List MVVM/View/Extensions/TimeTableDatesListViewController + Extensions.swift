@@ -42,22 +42,16 @@ extension TimeTableDatesListViewController: UITableViewDelegate {
             _ in
             
             let discipline = self.viewModel.pairAtSection(section: indexPath.section, index: indexPath.row)
+            
+            let addPseyMenu = self.viewModel.addTimetablePseyMenu(discipline: discipline)
+            let originalName = self.viewModel.configureDisciplineName(discipline: discipline)
             let item = self.viewModel.timetable[indexPath.row]
             
-            let infoAction = UIAction(title: "Подробнее", image: UIImage(named: "info")) { _ in
-                let vc = PairInfoTableViewController(pair: discipline, id: item.id, date: item.date)
-                let navVC = UINavigationController(rootViewController: vc)
-                navVC.modalPresentationStyle = .fullScreen
-                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                    self.present(navVC, animated: true)
-                }
-            }
-            
             let mapAction = UIAction(title: "Найти корпус", image: UIImage(named: "map icon")) { _ in
-                let audience = discipline.audienceID
-                let vc = AGPUCurrentBuildingMapViewController(audienceID: audience, id: item.id, owner: item.owner)
+                let originalRoom = self.viewModel.returnOriginalAudienceName(audience: discipline.audienceID)
+                let vc = AGPUCurrentBuildingMapViewController(audienceID: originalRoom, id: item.id, owner: item.owner)
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                        vc.hidesBottomBarWhenPushed = true
+                        self.hidesBottomBarWhenPushed = true
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
                 
@@ -66,8 +60,8 @@ extension TimeTableDatesListViewController: UITableViewDelegate {
                 }
             }
             
-            return UIMenu(title: discipline.name, children: [
-                infoAction,
+            return UIMenu(title: originalName, children: [
+                addPseyMenu,
                 mapAction
             ])
         })
@@ -116,6 +110,14 @@ extension TimeTableDatesListViewController: ITimeTableTableViewCell {
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
+    }
+}
+
+// MARK: - TimetablePseudonymCategoriesListTableViewControllerDelegate
+extension TimeTableDatesListViewController: TimetablePseudonymCategoriesListTableViewControllerDelegate {
+    
+    func dataWasChanged() {
+        viewModel.refreshData()
     }
 }
 
