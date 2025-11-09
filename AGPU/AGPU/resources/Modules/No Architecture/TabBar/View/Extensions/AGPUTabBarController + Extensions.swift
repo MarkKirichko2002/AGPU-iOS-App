@@ -80,11 +80,50 @@ extension AGPUTabBarController: ASPUButtonFavouriteActionsListTableViewControlle
     }
     
     // изменение ASPU Button
-    func updateASPUButton(icon: String) {
+    func updateASPUButton(icon: Data) {
         let option = settingsManager.checkASPUButtonAnimationOption()
         DispatchQueue.main.async {
             if !self.ASPUButton.isHidden {
-                self.ASPUButton.setImage(UIImage(named: icon), for: .normal)
+                let image = UIImage(data: icon, scale: UIScreen.main.scale)?.withRenderingMode(.alwaysTemplate)
+                self.ASPUButton.imageView?.layer.cornerRadius = 0
+                self.ASPUButton.imageView?.clipsToBounds = false
+                self.ASPUButton.imageView?.layer.borderWidth = 0
+                self.ASPUButton.imageView?.layer.borderColor = nil
+                self.ASPUButton.setImage(image, for: .normal)
+                switch option {
+                case .spring:
+                    self.animation.springAnimation(view: self.ASPUButton)
+                    HapticsManager.shared.hapticFeedback()
+                case .flipFromTop:
+                    self.animation.flipAnimation(view: self.ASPUButton, option: .transitionFlipFromTop) {
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                case .flipFromRight:
+                    self.animation.flipAnimation(view: self.ASPUButton, option: .transitionFlipFromRight) {
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                case .flipFromLeft:
+                    self.animation.flipAnimation(view: self.ASPUButton, option: .transitionFlipFromLeft) {
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                case .flipFromBottom:
+                    self.animation.flipAnimation(view: self.ASPUButton, option: .transitionFlipFromBottom) {
+                        HapticsManager.shared.hapticFeedback()
+                    }
+                case .none:
+                    HapticsManager.shared.hapticFeedback()
+                }
+            }
+        }
+    }
+    
+    func updateButtonWithCustomImage(icon: Data) {
+        let option = settingsManager.checkASPUButtonAnimationOption()
+        DispatchQueue.main.async {
+            if !self.ASPUButton.isHidden {
+                let image = UIImage(data: icon, scale: UIScreen.main.scale)?.withRenderingMode(.alwaysOriginal)
+                self.setUpButtonShape()
+                self.ASPUButton.setImage(image, for: .normal)
                 switch option {
                 case .spring:
                     self.animation.springAnimation(view: self.ASPUButton)
@@ -201,7 +240,8 @@ extension AGPUTabBarController: ScreenClosedDelegate {
     
     func screenWasClosed() {
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
+            self.setUpButtonShape()
+            self.updateButtonWithCustomImage(icon: self.settingsManager.checkCurrentIcon().icon)
         }
     }
 }
@@ -457,7 +497,7 @@ extension AGPUTabBarController {
             vc.delegate = self
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
-            self.updateASPUButton(icon: "time.past")
+            self.updateASPUButton(icon: UIImage(named: "time.past")!.pngData()!)
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 self.present(navVC, animated: true)
             }
@@ -479,7 +519,7 @@ extension AGPUTabBarController {
        let navVC = UINavigationController(rootViewController: vc)
        navVC.modalPresentationStyle = .fullScreen
        if !ASPUButton.isHidden {
-           self.updateASPUButton(icon: "sun")
+           self.updateASPUButton(icon:  UIImage(named: "sun")!.pngData()!)
            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                self.present(navVC, animated: true)
            }
@@ -498,7 +538,7 @@ extension AGPUTabBarController {
            if !ASPUButton.isHidden {
                vc.isNotify = true
                vc.delegate = self
-               self.updateASPUButton(icon: "question")
+               self.updateASPUButton(icon: UIImage(named: "question")!.pngData()!)
                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                    self.present(navVC, animated: true)
                }
@@ -510,7 +550,7 @@ extension AGPUTabBarController {
            if !ASPUButton.isHidden {
                vc.isNotify = true
                vc.delegate = self
-               self.updateASPUButton(icon: "question")
+               self.updateASPUButton(icon: UIImage(named: "question")!.pngData()!)
                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                    self.present(navVC, animated: true)
                }
@@ -523,7 +563,7 @@ extension AGPUTabBarController {
            if !ASPUButton.isHidden {
                vc.isNotify = true
                vc.delegate = self
-               self.updateASPUButton(icon: "info icon")
+               self.updateASPUButton(icon: UIImage(named: "info icon")!.pngData()!)
                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                    self.present(navVC, animated: true)
                }
@@ -539,7 +579,7 @@ extension AGPUTabBarController {
        vc.screenDelegate = self
        vc.modalPresentationStyle = .fullScreen
        if !ASPUButton.isHidden {
-           self.updateASPUButton(icon: "marker icon")
+           self.updateASPUButton(icon: UIImage(named: "marker icon")!.pngData()!)
            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                self.present(vc, animated: true)
            }
@@ -554,7 +594,7 @@ extension AGPUTabBarController {
        vc.delegate = self
        vc.modalPresentationStyle = .fullScreen
        if !ASPUButton.isHidden {
-           self.updateASPUButton(icon: "microphone")
+           self.updateASPUButton(icon: UIImage(named: "microphone")!.pngData()!)
            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                self.present(vc, animated: true)
            }
@@ -570,7 +610,7 @@ extension AGPUTabBarController {
        let navVC = UINavigationController(rootViewController: vc)
        navVC.modalPresentationStyle = .fullScreen
        if !ASPUButton.isHidden {
-           self.updateASPUButton(icon: "theme")
+           self.updateASPUButton(icon: UIImage(named: "theme")!.pngData()!)
            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                self.present(navVC, animated: true)
            }
@@ -586,7 +626,7 @@ extension AGPUTabBarController {
        let navVC = UINavigationController(rootViewController: vc)
        navVC.modalPresentationStyle = .fullScreen
        if !ASPUButton.isHidden {
-           self.updateASPUButton(icon: "sections icon")
+           self.updateASPUButton(icon: UIImage(named: "sections icon")!.pngData()!)
            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                self.present(navVC, animated: true)
            }
@@ -605,7 +645,7 @@ extension AGPUTabBarController {
        let navVC = UINavigationController(rootViewController: vc)
        navVC.modalPresentationStyle = .fullScreen
        if !ASPUButton.isHidden {
-           self.updateASPUButton(icon: "clock")
+           self.updateASPUButton(icon: UIImage(named: "clock")!.pngData()!)
            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                self.present(navVC, animated: true)
            }
@@ -622,7 +662,7 @@ extension AGPUTabBarController {
        let navVC = UINavigationController(rootViewController: vc)
        navVC.modalPresentationStyle = .fullScreen
        if !ASPUButton.isHidden {
-           self.updateASPUButton(icon: "map icon")
+           self.updateASPUButton(icon: UIImage(named: "map icon")!.pngData()!)
            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                self.present(navVC, animated: true)
            }
@@ -659,14 +699,14 @@ extension AGPUTabBarController {
     }
    
    @objc func openStudyPlan() {
-       self.updateASPUButton(icon: "student")
+       self.updateASPUButton(icon: UIImage(named: "student")!.pngData()!)
        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
            self.openWeb(url: "http://plany.agpu.net/Plans/", image: "student", title: "Учебный план", delegate: self)
        }
    }
    
    @objc func openProfile() {
-       self.updateASPUButton(icon: "profile icon")
+       self.updateASPUButton(icon: UIImage(named: "profile icon")!.pngData()!)
        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
            self.openWeb(url: "http://plany.agpu.net/WebApp/#/", image: "profile icon", title: "ЭИОС", delegate: self)
        }
@@ -674,7 +714,7 @@ extension AGPUTabBarController {
    
    @objc func openManual() {
        if let cathedra = UserDefaults.loadData(type: FacultyCathedraModel.self, key: "cathedra") {
-           self.updateASPUButton(icon: "book")
+           self.updateASPUButton(icon: UIImage(named: "book")!.pngData()!)
            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                self.openWeb(url: cathedra.manualUrl, image: "book", title: "Метод. материалы", delegate: self)
            }
@@ -691,7 +731,7 @@ extension AGPUTabBarController {
        let navVC = UINavigationController(rootViewController: vc)
        navVC.modalPresentationStyle = .fullScreen
        if !ASPUButton.isHidden {
-           self.updateASPUButton(icon: "online")
+           self.updateASPUButton(icon: UIImage(named: "online")!.pngData()!)
            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                self.present(navVC, animated: true)
            }
@@ -707,7 +747,7 @@ extension AGPUTabBarController {
        let navVC = UINavigationController(rootViewController: vc)
        navVC.modalPresentationStyle = .fullScreen
        if !ASPUButton.isHidden {
-           self.updateASPUButton(icon: "star")
+           self.updateASPUButton(icon: UIImage(named: "star")!.pngData()!)
            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                self.present(navVC, animated: true)
            }
@@ -723,7 +763,7 @@ extension AGPUTabBarController {
        let navVC = UINavigationController(rootViewController: vc)
        navVC.modalPresentationStyle = .fullScreen
        if !ASPUButton.isHidden {
-           self.updateASPUButton(icon: "exclamation")
+           self.updateASPUButton(icon: UIImage(named: "exclamation")!.pngData()!)
            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                self.present(navVC, animated: true)
            }

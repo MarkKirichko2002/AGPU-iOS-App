@@ -9,14 +9,7 @@ import UIKit
 
 final class TimeTableForCurrentBuildingViewController: UIViewController {
     
-    var timetable = TimeTable(id: "", date: "", disciplines: []) {
-        didSet {
-            timetable.disciplines = timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &timetable.disciplines)
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
+    var timetable = TimeTable(id: "", date: "", disciplines: [])
     
     // MARK: - сервисы
     let dateManager = DateManager()
@@ -42,6 +35,7 @@ final class TimeTableForCurrentBuildingViewController: UIViewController {
         setUpNavigation()
         setUpTable()
         setUpLabel()
+        setUpTimetable()
         checkPairs()
     }
     
@@ -52,7 +46,7 @@ final class TimeTableForCurrentBuildingViewController: UIViewController {
         let shareButton = UIBarButtonItem(image: UIImage(named: "share"), style: .done, target: self, action: #selector(shareTimetable))
         closeButton.tintColor = .label
         shareButton.tintColor = .label
-        navigationItem.title = "Сегодня: \(dayOfWeek) \(date)"
+        //navigationItem.title = "Сегодня: \(dayOfWeek) \(date)"
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = shareButton
     }
@@ -94,6 +88,14 @@ final class TimeTableForCurrentBuildingViewController: UIViewController {
             infoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             infoLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+    }
+    
+    private func setUpTimetable() {
+        timetable.disciplines = timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &timetable.disciplines)
+        DispatchQueue.main.async {
+            self.navigationItem.title = self.timetablePseudonymManager.setUpDayOfWeekPseudonym(date: self.timetable.date)
+            self.tableView.reloadData()
+        }
     }
     
     func checkPairs() {

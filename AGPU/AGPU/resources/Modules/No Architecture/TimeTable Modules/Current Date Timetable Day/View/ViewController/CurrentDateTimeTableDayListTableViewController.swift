@@ -12,6 +12,9 @@ final class CurrentDateTimeTableDayListTableViewController: UIViewController {
     var timetable = TimeTable(id: "", date: "", disciplines: []) {
         didSet {
             timetable.disciplines = timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &timetable.disciplines)
+            DispatchQueue.main.async {
+                self.navigationItem.title = self.timetablePseudonymManager.setUpDayOfWeekPseudonym(date: self.date)
+            }
         }
     }
     private var id: String = ""

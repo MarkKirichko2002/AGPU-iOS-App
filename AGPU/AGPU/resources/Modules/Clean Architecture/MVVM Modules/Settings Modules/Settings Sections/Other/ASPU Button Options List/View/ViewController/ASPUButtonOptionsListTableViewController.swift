@@ -70,7 +70,6 @@ final class ASPUButtonOptionsListTableViewController: UITableViewController {
         tableView.register(UINib(nibName: ASPUButtonActionsOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ASPUButtonActionsOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: ASPUButtonAnimationOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ASPUButtonAnimationOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: ASPUButtonGesturesOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ASPUButtonGesturesOptionTableViewCell.identifier)
-        //tableView.register(UINib(nibName: ASPUButtonHideOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ASPUButtonHideOptionTableViewCell.identifier)
     }
     
     private func bindViewModel() {

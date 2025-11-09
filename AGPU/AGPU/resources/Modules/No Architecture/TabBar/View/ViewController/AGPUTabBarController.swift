@@ -235,7 +235,6 @@ final class AGPUTabBarController: UITabBarController {
     
     func setUpFontForTabs(tabs: [UIViewController]) {
         let savedTabs = settingsManager.getTabs()
-        let savedColor = settingsManager.getTabsColor()
         if settingsManager.getAdditionalTabVariant() == .none {
             for i in 0...3 {
                 let title = savedTabs[i].tabName
@@ -413,7 +412,7 @@ final class AGPUTabBarController: UITabBarController {
     
     // MARK: - ASPU Button
     private func createMiddleButton() {
-        ASPUButton.setImage(UIImage(named: settingsManager.checkCurrentIcon()), for: .normal)
+        ASPUButton.setImage(UIImage(data: settingsManager.checkCurrentIcon().icon), for: .normal)
         ASPUButton.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
         if UIDevice.isiPhone {
             ASPUButton.center = CGPoint(x: tabBar.frame.width / 2, y: buttonPosition)
@@ -428,7 +427,22 @@ final class AGPUTabBarController: UITabBarController {
         settingsManager.observeASPUButtonActionChanged {
             self.refreshGestures()
         }
+        setUpButtonShape()
         setUpButtonGestures()
+    }
+    
+    func setUpButtonShape() {
+        if settingsManager.checkCurrentIcon().id == 6 {
+            ASPUButton.imageView?.layer.cornerRadius = ASPUButton.frame.width / 2
+            ASPUButton.imageView?.clipsToBounds = true
+            ASPUButton.imageView?.layer.borderWidth = 2
+            ASPUButton.imageView?.layer.borderColor = UIColor(named: "aspu")?.cgColor
+        } else {
+            ASPUButton.imageView?.layer.cornerRadius = 0
+            ASPUButton.imageView?.clipsToBounds = false
+            ASPUButton.imageView?.layer.borderWidth = 0
+            ASPUButton.imageView?.layer.borderColor = nil
+        }
     }
     
     private func setUpButtonGestures() {
@@ -507,7 +521,7 @@ final class AGPUTabBarController: UITabBarController {
         vc.delegate = self
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
-        self.updateASPUButton(icon: "button")
+        self.updateASPUButton(icon: UIImage(named: "button")!.pngData()!)
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
             self.present(navVC, animated: true)
         }
@@ -529,9 +543,9 @@ final class AGPUTabBarController: UITabBarController {
                 selectedIndex -= 1
             }
             handleTab(item: tabBar.selectedItem!)
-            updateASPUButton(icon: "left icon")
+            updateASPUButton(icon: UIImage(named: "left icon")!.pngData()!)
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
+                self.updateButtonWithCustomImage(icon: self.settingsManager.checkCurrentIcon().icon)
             }
         }
     }
@@ -544,12 +558,12 @@ final class AGPUTabBarController: UITabBarController {
                 selectedIndex -= 1
             }
             handleTab(item: tabBar.selectedItem!)
-            updateASPUButton(icon: "left icon")
+            updateASPUButton(icon: UIImage(named: "left icon")!.pngData()!)
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
+                self.updateButtonWithCustomImage(icon: self.settingsManager.checkCurrentIcon().icon)
             }
         }
-        updateASPUButton(icon: "left icon")
+        updateASPUButton(icon: UIImage(named: "left icon")!.pngData()!)
     }
     
     @objc private func swipeRight() {
@@ -568,9 +582,9 @@ final class AGPUTabBarController: UITabBarController {
                 selectedIndex += 1
             }
             handleTab(item: tabBar.selectedItem!)
-            updateASPUButton(icon: "right icon")
+            updateASPUButton(icon: UIImage(named: "right icon")!.pngData()!)
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
+                self.updateButtonWithCustomImage(icon: self.settingsManager.checkCurrentIcon().icon)
             }
         }
     }
@@ -583,9 +597,9 @@ final class AGPUTabBarController: UITabBarController {
                 selectedIndex += 1
             }
             handleTab(item: tabBar.selectedItem!)
-            updateASPUButton(icon: "right icon")
+            updateASPUButton(icon: UIImage(named: "right icon")!.pngData()!)
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                self.updateASPUButton(icon: self.settingsManager.checkCurrentIcon())
+                self.updateButtonWithCustomImage(icon: self.settingsManager.checkCurrentIcon().icon)
             }
         }
     }
@@ -643,7 +657,7 @@ final class AGPUTabBarController: UITabBarController {
             }
         } else {
             if !ASPUButton.isHidden {
-                self.updateASPUButton(icon: "info icon")
+                self.updateASPUButton(icon: UIImage(named: "info icon")!.pngData()!)
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                     let vc = HintViewController(info: "Отключена фишка Action To Control! Чтобы дальше пользоваться данной фишкой нужно включить ее в настройках.")
                     vc.isNotify = true
@@ -663,9 +677,9 @@ final class AGPUTabBarController: UITabBarController {
     private func observeFaculty() {
         NotificationCenter.default.addObserver(forName: Notification.Name("icon"), object: nil, queue: .main) { notification in
             if let icon = notification.object as? String {
-                self.updateASPUButton(icon: icon)
+                self.updateASPUButton(icon: UIImage(named: icon)!.pngData()!)
             } else {
-                self.updateASPUButton(icon: "АГПУ")
+                self.updateASPUButton(icon: UIImage(named: "АГПУ")!.pngData()!)
             }
         }
     }
@@ -673,7 +687,7 @@ final class AGPUTabBarController: UITabBarController {
     // MARK: - Adaptive News
     private func observeArticleSelected() {
         NotificationCenter.default.addObserver(forName: Notification.Name("article selected"), object: nil, queue: .main) { _ in
-            self.updateASPUButton(icon: "info icon")
+            self.updateASPUButton(icon: UIImage(named: "info icon")!.pngData()!)
         }
     }
 }

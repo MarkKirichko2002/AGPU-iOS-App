@@ -11,6 +11,7 @@ final class TimetablePseudonymManager {
     
     // MARK: - сервисы
     private let settingsManager = SettingsManager()
+    private let dateManager = DateManager()
     
     func setUpTimetablePseudonyms(pairs: inout [Discipline])-> [Discipline] {
         pairs = setUpTimesPseudonym(pairs: &pairs)
@@ -69,6 +70,15 @@ final class TimetablePseudonymManager {
             }
         }
         return pairs
+    }
+    
+    func setUpDayOfWeekPseudonym(date: String)-> String {
+        let pseudonyms = settingsManager.loadTimetablePseudonyms(category: "Дни недели")
+        let dayOfWeek = dateManager.getCurrentDayOfWeek(date: date)
+        if let pseudonym = pseudonyms.first(where: { $0.originalName == dayOfWeek })?.pseudonym {
+            return "\(pseudonym) \(date)"
+        }
+        return "\(dayOfWeek) \(date)"
     }
     
     func returnOriginalTime(time: String)-> String {

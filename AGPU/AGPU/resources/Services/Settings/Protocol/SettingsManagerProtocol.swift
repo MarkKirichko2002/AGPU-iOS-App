@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SettingsManagerProtocol {
-    func checkCurrentIcon()-> String
+    func checkCurrentIcon()-> ASPUButtonIconModel
     func checkActionToControlOption()-> Bool
     func checkOnlyMainOption()-> OnlyMainVariants
     func observeOnlyMainChangedOption(completion: @escaping()->Void)

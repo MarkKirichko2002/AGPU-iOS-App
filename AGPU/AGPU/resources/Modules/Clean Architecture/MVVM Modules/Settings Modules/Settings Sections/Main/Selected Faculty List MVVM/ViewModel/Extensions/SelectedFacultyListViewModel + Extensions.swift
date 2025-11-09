@@ -58,8 +58,9 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 NotificationCenter.default.post(name: Notification.Name("icon"), object: faculty.icon)
             }
-            UserDefaults.standard.setValue(faculty.icon, forKey: "icon")
-            UserDefaults.standard.setValue(faculty.abbreviation, forKey: "icon name")
+            ASPUButtonIcons.icons[4].name = "\(faculty.abbreviation)"
+            ASPUButtonIcons.icons[4].icon = UIImage(named: faculty.icon)!.pngData()!
+            UserDefaults.saveData(object: ASPUButtonIcons.icons[4].name, key: "aspu button icon") {}
         }
     }
     
@@ -69,8 +70,9 @@ extension SelectedFacultyListViewModel: SelectedFacultyListViewModelProtocol {
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 NotificationCenter.default.post(name: Notification.Name("icon"), object: nil)
             }
-            UserDefaults.standard.setValue(nil, forKey: "icon")
-            UserDefaults.standard.setValue(nil, forKey: "icon name")
+            ASPUButtonIcons.icons[4].name = ""
+            ASPUButtonIcons.icons[4].icon = Data()
+            UserDefaults.saveData(object: ASPUButtonIcons.icons[4].name, key: "aspu button icon") {}
         }
     }
     

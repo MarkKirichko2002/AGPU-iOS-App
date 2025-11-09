@@ -6,57 +6,77 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - IASPUButtonIconsListViewModel
 extension ASPUButtonIconsListViewModel: IASPUButtonIconsListViewModel {
     
     func numberOfASPUButtonIcons()-> Int {
-        return ASPUButtonIcons.icons.count
+        return icons.count
     }
     
     func ASPUButtonIconItem(index: Int)-> ASPUButtonIconModel {
-        let icon = ASPUButtonIcons.icons[index]
+        let icon = icons[index]
         return icon
+    }
+    
+    func getIconsData() {
+        getSelectedFacultyData()
+        getCustomIconData()
+        dataChangedHandler?()
     }
     
     func getSelectedFacultyData() {
         if let faculty = UserDefaults.loadData(type: AGPUFacultyModel.self, key: "faculty") {
-            ASPUButtonIcons.icons[4].name = "\(faculty.abbreviation)"
-            ASPUButtonIcons.icons[4].icon = faculty.icon
+            icons[4].name = "\(faculty.abbreviation)"
+            icons[4].icon = UIImage(named: faculty.icon)!.pngData()!
             self.faculty = faculty
-            self.dataChangedHandler?()
         } else {
-            ASPUButtonIcons.icons[4].name = "Нет факультета"
-            ASPUButtonIcons.icons[4].icon = ""
+            icons[4].name = "Нет факультета"
+            icons[4].icon = Data()
             self.faculty = nil
-            self.dataChangedHandler?()
         }
+    }
+    
+    func getCustomIconData() {
+        icons[5].icon = settingsManager.checkCustomButtonImage().icon
     }
     
     func selectASPUButtonIcon(index: Int) {
         
         let icon = ASPUButtonIconItem(index: index)
-        let savedIcon = settingsManager.checkCurrentIcon()
         
-        if savedIcon != icon.icon {
-            if icon.id == 5 {
-                if let faculty = faculty {
-                    self.iconSelectedHandler?()
-                    NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-                    NotificationCenter.default.post(name: Notification.Name("icon"), object: faculty.icon)
-                    UserDefaults.standard.setValue(icon.icon, forKey: "icon")
-                    UserDefaults.standard.setValue(icon.name, forKey: "icon name")
-                    HapticsManager.shared.hapticFeedback()
-                } else {
-                    alertHandler?("Нет факультета", "Выберите свой факультет")
-                }
-            } else {
+        if icon.id == 5 {
+            if let faculty = faculty {
                 self.iconSelectedHandler?()
                 NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-                NotificationCenter.default.post(name: Notification.Name("icon"), object: icon.icon)
-                UserDefaults.standard.setValue(icon.icon, forKey: "icon")
-                UserDefaults.standard.setValue(icon.name, forKey: "icon name")
+                UserDefaults.saveData(object: icon, key: "aspu button icon") {
+                    HapticsManager.shared.hapticFeedback()
+                }
+            } else {
+                alertHandler?("Нет факультета", "Выберите свой факультет")
+            }
+        } else if icon.id == 6 {
+            self.iconSelectedHandler?()
+            NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+            UserDefaults.saveData(object: icon, key: "aspu button icon") {
                 HapticsManager.shared.hapticFeedback()
+            }
+            photoHandler?()
+        } else {
+            self.iconSelectedHandler?()
+            NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
+            UserDefaults.saveData(object: icon, key: "aspu button icon") {
+                HapticsManager.shared.hapticFeedback()
+            }
+        }
+    }
+    
+    func updateCustomIconImage(image: UIImage) {
+        icons[5].icon = image.pngData()!
+        UserDefaults.saveData(object: icons[5], key: "aspu custom button image") {
+            UserDefaults.saveData(object: self.icons[5], key: "aspu button icon") {
+                self.getIconsData()
             }
         }
     }
@@ -66,11 +86,7 @@ extension ASPUButtonIconsListViewModel: IASPUButtonIconsListViewModel {
         let icon = ASPUButtonIconItem(index: index)
         let savedIcon = settingsManager.checkCurrentIcon()
         
-        if savedIcon == icon.icon {
-            return true
-        } else {
-            return false
-        }
+        return savedIcon.id == icon.id
     }
     
     func titleForNavigation()-> String {
@@ -93,5 +109,9 @@ extension ASPUButtonIconsListViewModel: IASPUButtonIconsListViewModel {
     
     func registerAlertHandler(block: @escaping(String, String)->Void) {
         self.alertHandler = block
+    }
+    
+    func registerPhotoHandler(block: @escaping()->Void) {
+        self.photoHandler = block
     }
 }

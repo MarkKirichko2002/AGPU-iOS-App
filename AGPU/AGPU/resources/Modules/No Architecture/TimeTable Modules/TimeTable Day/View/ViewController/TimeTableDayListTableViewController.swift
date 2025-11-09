@@ -46,6 +46,9 @@ final class TimeTableDayListTableViewController: UIViewController {
     var timetable = TimeTable(id: "", date: "", disciplines: []) {
         didSet {
             timetable.disciplines = timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &timetable.disciplines)
+            DispatchQueue.main.async {
+                self.navigationItem.title = self.timetablePseudonymManager.setUpDayOfWeekPseudonym(date: self.date)
+            }
         }
     }
     var image = UIImage()
@@ -618,7 +621,6 @@ final class TimeTableDayListTableViewController: UIViewController {
     
     func getTimeTable(id: String, date: String, owner: String, completion: @escaping()->Void) {
         let option = settingsManager.checkSaveRecentTimetableItem()
-        let dayOfWeek = dateManager.getCurrentDayOfWeek(date: date)
         if option == true {
             UserDefaults.standard.setValue(id, forKey: "recentGroup")
             UserDefaults.standard.setValue(date, forKey: "recentDate")
@@ -630,7 +632,6 @@ final class TimeTableDayListTableViewController: UIViewController {
         self.infoLabel.isHidden = true
         self.timetable.disciplines = []
         self.tableView.reloadData()
-        self.navigationItem.title = "\(dayOfWeek) \(date)"
         self.navigationItem.toggleRefreshButtonFromLeft(on: false)
         self.navigationItem.toggleMenuButton(on: false)
         service.getTimeTableDay(id: id, date: date, owner: owner) { [weak self] result in

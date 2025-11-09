@@ -11,7 +11,7 @@ import Foundation
 extension ASPUButtonOptionsListViewModel: IASPUButtonOptionsListViewModel {
    
     func getASPUButtonIconInfo()-> String {
-        let icon = UserDefaults.standard.object(forKey: "icon name") as? String ?? "АГПУ"
+        let icon = settingsManager.checkCurrentIcon().name
         return icon
     }
     

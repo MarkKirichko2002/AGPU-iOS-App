@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct ASPUButtonIconModel {
+struct ASPUButtonIconModel: Codable {
     let id: Int
     var name: String
-    var icon: String
+    var icon: Data
 }

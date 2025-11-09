@@ -22,7 +22,7 @@ extension TimeTableWeekListTableViewController: UITableViewDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         header.addSubview(label)
-        label.text = "\(week.dayNames[timetable[section].date]!) \(timetable[section].date)"
+        label.text = timetablePseudonymManager.setUpDayOfWeekPseudonym(date: timetable[section].date)
         label.textColor = .label
         label.font = .systemFont(ofSize: 17, weight: .black)
         

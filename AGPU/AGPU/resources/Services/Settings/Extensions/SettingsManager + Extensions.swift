@@ -71,6 +71,19 @@ extension SettingsManager: SettingsManagerProtocol {
     }
     
     func loadTimetablePseudonyms(category: String)-> [TimetablePseudonymModel] {
+        let data = loadTimetablePseudonymsData(category: category)
+        if category == "Дни недели" {
+            if !data.isEmpty {
+                return data
+            } else {
+                return WeekDaysPseudonyms.weekDays
+            }
+        } else {
+            return data
+        }
+    }
+    
+    func loadTimetablePseudonymsData(category: String)-> [TimetablePseudonymModel] {
         var data = [TimetablePseudonymModel]()
         if let result = UserDefaults.standard.object(forKey: "\(category) pseudonym") as? Data {
             do {
@@ -131,9 +144,12 @@ extension SettingsManager: SettingsManagerProtocol {
     }
     
     // MARK: - ASPU Button
-    func checkCurrentIcon()-> String {
-        let icon = UserDefaults.standard.object(forKey: "icon") as? String ?? "АГПУ"
-        return icon
+    func checkCurrentIcon()-> ASPUButtonIconModel {
+        return UserDefaults.loadData(type: ASPUButtonIconModel.self, key: "aspu button icon") ?? ASPUButtonIcons.icons[0]
+    }
+    
+    func checkCustomButtonImage()-> ASPUButtonIconModel {
+        return UserDefaults.loadData(type: ASPUButtonIconModel.self, key: "aspu custom button image") ?? ASPUButtonIcons.icons[0]
     }
     
     func checkASPUButtonOption()-> ASPUButtonActions {

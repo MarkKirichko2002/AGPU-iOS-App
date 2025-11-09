@@ -45,7 +45,7 @@ final class ASPUButtonIconsListTableViewController: UITableViewController {
     
     private func bindViewModel() {
         
-        viewModel.getSelectedFacultyData()
+        viewModel.getIconsData()
         
         viewModel.registerDataChangedHandler {
             DispatchQueue.main.async {
@@ -61,6 +61,14 @@ final class ASPUButtonIconsListTableViewController: UITableViewController {
         
         viewModel.registerAlertHandler { title, message in
             self.showAlert(title: title, message: message, actions: [UIAlertAction(title: "OK", style: .default)])
+        }
+        
+        viewModel.registerPhotoHandler {
+            let vc = UIImagePickerController()
+            vc.delegate = self
+            vc.sourceType = .photoLibrary
+            vc.allowsEditing = true
+            self.present(vc, animated: true)
         }
     }
     
@@ -80,5 +88,15 @@ final class ASPUButtonIconsListTableViewController: UITableViewController {
         cell.accessoryType = viewModel.isASPUButtonIconSelected(index: indexPath.row) ? .checkmark : .none
         cell.configure(icon: icon)
         return cell
+    }
+}
+
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
+extension ASPUButtonIconsListTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else {return}
+        viewModel.updateCustomIconImage(image: image)
+        dismiss(animated: true)
     }
 }

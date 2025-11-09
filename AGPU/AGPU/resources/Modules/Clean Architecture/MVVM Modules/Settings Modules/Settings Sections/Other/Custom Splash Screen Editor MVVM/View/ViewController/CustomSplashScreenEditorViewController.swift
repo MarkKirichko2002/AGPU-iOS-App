@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomSplashScreenEditorViewController: UIViewController {
+final class CustomSplashScreenEditorViewController: UIViewController {
 
     // MARK: - UI
     // иконка
