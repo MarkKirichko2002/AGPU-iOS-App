@@ -25,7 +25,6 @@ extension AdditionalTabOptionsListViewModel: IAdditionalTabOptionsListViewModel 
         
         if savedVariant.rawValue != variant.rawValue {
             UserDefaults.saveData(object: variant, key: "additional tab") {
-                NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
                 NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
                 HapticsManager.shared.hapticFeedback()
                 self.dataChangedHandler?()
@@ -49,7 +48,6 @@ extension AdditionalTabOptionsListViewModel: IAdditionalTabOptionsListViewModel 
     
     func saveChanges(title: String, index: Int) {
         settingsManager.saveAdditionalTabName(variant: AdditionalTabVariants.allCases[index], title: title)
-        NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
         self.itemChangedHandler?(index)
     }
     
@@ -97,12 +95,6 @@ extension AdditionalTabOptionsListViewModel: IAdditionalTabOptionsListViewModel 
             return "Выберите вариант"
         case .informal:
             return "Выбери вариант"
-        }
-    }
-    
-    func observeOptionSelection() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("option was selected"), object: nil, queue: .main) { _ in
-            self.dataChangedHandler?()
         }
     }
     

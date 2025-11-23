@@ -24,7 +24,6 @@ extension CurrentTabFontOptionsListViewModel: ICurrentTabFontOptionsListViewMode
         
         if savedFont.rawValue != font.rawValue {
             settingsManager.saveTabFont(font: font, title: title)
-            NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
             NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
             HapticsManager.shared.hapticFeedback()
             self.dataChangedHandler?()

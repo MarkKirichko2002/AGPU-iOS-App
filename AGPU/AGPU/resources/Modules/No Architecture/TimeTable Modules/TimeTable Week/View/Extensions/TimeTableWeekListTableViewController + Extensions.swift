@@ -456,6 +456,19 @@ extension TimeTableWeekListTableViewController: TimetablePseudonymCategoriesList
     }
 }
 
+// MARK: - MenuOptionsListTableViewControllerDelegate
+extension TimeTableWeekListTableViewController: MenuOptionsListTableViewControllerDelegate {
+    
+    func listWasUpdated() {
+        updateMenu()
+    }
+    
+    func updateMenu() {
+        guard let item = self.navigationItem.rightBarButtonItems?.first(where: { $0.accessibilityIdentifier == "menu" }) else {return}
+        item.menu = setUpTimetableMenu()
+    }
+}
+
 extension TimeTableWeekListTableViewController {
     
     func isMicOn()-> Bool {
@@ -768,5 +781,140 @@ extension TimeTableWeekListTableViewController {
                 }
             }
         }
+    }
+}
+
+extension TimeTableWeekListTableViewController {
+    
+    func setUpTimetableMenu()-> UIMenu {
+        let savedOptions = settingsManager.loadMenuOptions(category: menuOptionCategories.timetableWeek.rawValue)
+        let options = savedOptions.map { findOption(option: $0) }
+        return UIMenu(title: "Расписание", children: options)
+    }
+    
+    func getAllOptions()-> [UIAction] {
+        
+        let searchAction = UIAction(title: "Поиск") { _ in
+            let vc = TimeTableSearchListTableViewController()
+            vc.isSettings = false
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let abbreviationsAction = UIAction(title: "Псевдонимы") { _ in
+            let vc = TimetablePseudonymCategoriesListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let ARAction = UIAction(title: "AR режим") { _ in
+            let vc = TimetableARViewController(id: self.id, subgroup: self.subgroup, date: self.currentDate, owner: self.owner)
+            vc.currentWeek = self.week
+            vc.weekDelegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.createImage {
+                vc.image = self.image
+                self.present(navVC, animated: true)
+            }
+        }
+        
+        let nearBuildingAction = UIAction(title: "Нужное здание") { _ in
+            let vc = NearBuildingViewController(info: .audiences)
+            vc.delegate = self
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+        }
+        
+        let groupsList = UIAction(title: "Группы") { _ in
+            let vc = AllGroupsListTableViewController(group: self.id)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let teachersList = UIAction(title: "Преподаватели") { _ in
+            let vc = DepartmentsListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let audiencesList = UIAction(title: "Аудитории") { _ in
+            let vc = CorpsListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        // список дней
+        let days = UIAction(title: "День") { _ in
+            let vc = WeekDaysListTableViewController(id: self.id, owner: self.owner, week: self.week, timetable: self.timetable, currentDate: self.currentDate)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        // избранное
+        let favouritesList = UIAction(title: "Избранное") { _ in
+            let vc = TimeTableFavouriteItemsListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let filterAction = UIAction(title: "Фильтрация") { _ in
+            self.showFilter()
+        }
+        
+        // сохранить расписание
+        let saveTimetable = UIAction(title: "Сохранить") { _ in
+            self.showSaveImageAlert()
+        }
+        
+        // способы навигации
+        let navigationsList = UIAction(title: "Навигация") { _ in
+            let vc = NavigationsListTableViewController(screen: .timetableWeek)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        // поделиться
+        let share = UIAction(title: "Поделиться") { _ in
+            self.shareTimetable()
+        }
+        
+        return [
+            searchAction,
+            abbreviationsAction,
+            ARAction,
+            nearBuildingAction,
+            groupsList,
+            teachersList,
+            audiencesList,
+            days,
+            favouritesList,
+            filterAction,
+            saveTimetable,
+            navigationsList,
+            share
+        ]
+    }
+    
+    func findOption(option: MenuOptionModel)-> UIAction {
+        let originalOptions = getAllOptions()
+        let searchOption = TimetableWeekOptions.list.first(where: { $0.name == option.name })!
+        let item = originalOptions.first { $0.title == searchOption.name }!
+        return item
     }
 }

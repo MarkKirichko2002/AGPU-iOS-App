@@ -55,6 +55,8 @@ final class SettingsListViewController: UIViewController {
         tableView.register(UINib(nibName: SettablePersonalityTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SettablePersonalityTableViewCell.identifier)
         // Usefull Shortcuts
         tableView.register(UINib(nibName: ShortcutOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ShortcutOptionTableViewCell.identifier)
+        // Comfort Menu
+        tableView.register(UINib(nibName: MenuOptionsOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MenuOptionsOptionTableViewCell.identifier)
         // Темы приложения
         tableView.register(UINib(nibName: AppThemesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AppThemesTableViewCell.identifier)
         // MARK: - О приложении

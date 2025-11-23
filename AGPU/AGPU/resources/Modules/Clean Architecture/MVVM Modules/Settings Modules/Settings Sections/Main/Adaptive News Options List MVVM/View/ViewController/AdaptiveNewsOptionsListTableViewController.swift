@@ -60,7 +60,7 @@ final class AdaptiveNewsOptionsListTableViewController: UITableViewController {
             navigationController?.pushViewController(vc, animated: true)
             HapticsManager.shared.hapticFeedback()
         case 1:
-            let vc = NewsFavouriteOptionsListTableViewController()
+            let vc = MenuOptionsListTableViewController(category: .newsList)
             vc.isSettings = true
             navigationController?.pushViewController(vc, animated: true)
             HapticsManager.shared.hapticFeedback()

@@ -11,7 +11,6 @@ protocol SettingsManagerProtocol {
     func checkCurrentIcon()-> ASPUButtonIconModel
     func checkActionToControlOption()-> Bool
     func checkOnlyMainOption()-> OnlyMainVariants
-    func observeOnlyMainChangedOption(completion: @escaping()->Void)
     func checkSaveRecentTimetableItem()-> Bool
     func checkASPUButtonOption()-> ASPUButtonActions
     func observeASPUButtonActionChanged(completion: @escaping()->Void)
@@ -21,5 +20,4 @@ protocol SettingsManagerProtocol {
     func getTabs()-> [TabModel] 
     func getTabsColor()-> TabColors
     func checkTabsAnimationOption()-> Bool
-    func observeTabsChanged(completion: @escaping()->Void)
 }

@@ -29,6 +29,30 @@ final class AGPUTabBarController: UITabBarController {
     // разделы
     let sectionsVC = ASPUWebsiteSectionsListViewController()
     
+    private lazy var nav1VC: UINavigationController = {
+        UINavigationController(rootViewController: newsVC)
+    }()
+    
+    private lazy var nav2VC: UINavigationController = {
+        UINavigationController(rootViewController: sectionsListVC)
+    }()
+    
+    private lazy var nav3VC: UIViewController = {
+        timetableContainerVC
+    }()
+    
+    private lazy var nav4VC: UINavigationController = {
+        UINavigationController(rootViewController: mapsVC)
+    }()
+    
+    private lazy var nav5VC: UINavigationController = {
+        UINavigationController(rootViewController: settingsVC)
+    }()
+    
+    private lazy var nav6VC: UINavigationController = {
+        UINavigationController(rootViewController: sectionsVC)
+    }()
+    
     var buttonPosition: CGFloat = 0
     
     // MARK: - ASPU Button
@@ -83,29 +107,18 @@ final class AGPUTabBarController: UITabBarController {
     }
     
     private func setUpTab() {
-        settingsManager.observeOnlyMainChangedOption {
-            self.removeViews()
-            self.resetSavedTab()
-            self.setUpTabs()
-        }
-        settingsManager.observeTabsChanged {
-            self.removeViews()
-            self.resetSavedTab()
-            self.setUpTabBars()
-            self.setUpTabs()
-        }
         setUpTabBars()
         setUpTabs()
     }
     
-    private func removeViews() {
+    func removeViews() {
         for view in tabBar.subviews {
             view.removeFromSuperview()
         }
         viewControllers = nil
     }
     
-    private func setUpTabBars() {
+    func setUpTabBars() {
         // новости
         newsVC.tabBarItem = UITabBarItem(title: "Новости", image: UIImage(named: "mail")!, selectedImage: UIImage(named: "mail selected")!)
         // избранное
@@ -124,14 +137,7 @@ final class AGPUTabBarController: UITabBarController {
         viewControllers?.removeAll()
     }
     
-    private func setUpTabs() {
-        
-        let nav1VC = UINavigationController(rootViewController: newsVC)
-        let nav2VC = UINavigationController(rootViewController: sectionsListVC)
-        let nav3VC = timetableContainerVC
-        let nav4VC = UINavigationController(rootViewController: mapsVC)
-        let nav5VC = UINavigationController(rootViewController: settingsVC)
-        let nav6VC = UINavigationController(rootViewController: sectionsVC)
+    func setUpTabs() {
         
         var tabs = [UIViewController]()
         let onlyMain = settingsManager.checkOnlyMainOption()
@@ -144,7 +150,7 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 1)
             setViewControllers(tabs, animated: false)
-            //selectedIndex = 0
+            selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -155,7 +161,7 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 1)
             setViewControllers(tabs, animated: false)
-            //selectedIndex = 0
+            selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -166,7 +172,7 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 1)
             setViewControllers(tabs, animated: false)
-            //selectedIndex = 0
+            selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -179,7 +185,7 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 2)
             setViewControllers(tabs, animated: false)
-            //selectedIndex = 0
+            selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -500,6 +506,7 @@ final class AGPUTabBarController: UITabBarController {
     
     @objc private func showTabBarSettings() {
         let vc = OnlyMainVariantsListTableViewController()
+        vc.delegate = self
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         self.present(navVC, animated: true)

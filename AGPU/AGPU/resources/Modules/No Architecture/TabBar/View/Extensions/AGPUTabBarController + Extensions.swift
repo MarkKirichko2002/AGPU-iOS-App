@@ -246,6 +246,17 @@ extension AGPUTabBarController: ScreenClosedDelegate {
     }
 }
 
+// MARK: - OnlyMainVariantsListTableViewControllerDelegate
+extension AGPUTabBarController: OnlyMainVariantsListTableViewControllerDelegate {
+    
+    func tabsWasChanged() {
+        removeViews()
+        resetSavedTab()
+        setUpTabBars()
+        setUpTabs()
+    }
+}
+
 extension AGPUTabBarController {
     
     func makeNewsOptions()-> [UIAction] {
@@ -415,7 +426,7 @@ extension AGPUTabBarController {
             }
         }
         
-        let shortcutAction = UIAction(title: "Шорткаты приложения", image: UIImage(named: "sections")) { _ in
+        let shortcutAction = UIAction(title: "Шорткаты приложения", image: UIImage(named: "squares")) { _ in
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
                 self.settingsVC.openAppShortcuts()
             }

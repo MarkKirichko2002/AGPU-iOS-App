@@ -30,7 +30,6 @@ extension OnlyMainVariantsListViewModel: IOnlyMainVariantsListViewModel {
     
     func saveVariant(variant: OnlyMainVariants) {
         UserDefaults.saveData(object: variant, key: "variant") {
-            NotificationCenter.default.post(name: Notification.Name("only main"), object: nil)
             NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
             self.onlyMainVariantSelectedHandler?()
             HapticsManager.shared.hapticFeedback()

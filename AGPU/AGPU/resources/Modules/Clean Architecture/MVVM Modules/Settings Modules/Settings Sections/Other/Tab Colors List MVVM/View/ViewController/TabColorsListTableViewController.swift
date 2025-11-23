@@ -12,6 +12,8 @@ final class TabColorsListTableViewController: UITableViewController {
     // MARK: - сервисы
     private let viewModel = TabColorsListViewModel()
     
+    weak var delegate: TabsOptionsDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
@@ -51,6 +53,7 @@ final class TabColorsListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.selectColor(index: indexPath.row)
+        delegate?.optionWasChanged()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

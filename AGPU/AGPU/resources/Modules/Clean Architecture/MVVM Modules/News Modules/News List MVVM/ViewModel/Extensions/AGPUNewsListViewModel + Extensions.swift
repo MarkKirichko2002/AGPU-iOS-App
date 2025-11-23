@@ -10,8 +10,8 @@ import UIKit
 // MARK: - AGPUNewsListViewModelProtocol
 extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
-    func getSavedNewsOptions()-> [NewsOptionModel] {
-        return settingsManager.loadNewsOptions()
+    func getSavedNewsOptions()-> [MenuOptionModel] {
+        return settingsManager.loadMenuOptions(category: menuOptionCategories.newsList.rawValue)
     }
     
     func getCurrentCategory()-> NewsCategoryModel {
@@ -411,7 +411,7 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     }
     
     func observeNewsOptionsChanges() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("news options changed"), object: nil, queue: .main) { _ in
+        NotificationCenter.default.addObserver(forName: Notification.Name("news list options changed"), object: nil, queue: .main) { _ in
             self.dataChangedHandler?(self.abbreviation)
         }
     }

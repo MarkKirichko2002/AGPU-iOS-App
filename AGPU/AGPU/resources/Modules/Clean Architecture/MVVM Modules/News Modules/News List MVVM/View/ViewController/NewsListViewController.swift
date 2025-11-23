@@ -84,24 +84,22 @@ final class NewsListViewController: UIViewController {
     }
     
     private func setUpNavigationBarGestures() {
-        let longTap = UILongPressGestureRecognizer(target: self, action: #selector(openMenuSettings))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(openMenuSettings))
         let swipeLeft = UISwipeGestureRecognizer(target: viewModel, action: #selector(viewModel.pastNewsPage))
         swipeLeft.direction = .left
         let swipeRight = UISwipeGestureRecognizer(target: viewModel, action: #selector(viewModel.nextNewsPage))
         swipeRight.direction = .right
-        self.navigationController?.navigationBar.addGestureRecognizer(longTap)
+        self.navigationController?.navigationBar.addGestureRecognizer(tap)
         self.navigationController?.navigationBar.addGestureRecognizer(swipeLeft)
         self.navigationController?.navigationBar.addGestureRecognizer(swipeRight)
     }
     
     @objc private func openMenuSettings(gesture: UIGestureRecognizer) {
-        if gesture.state == .ended {
-            let vc = NewsFavouriteOptionsListTableViewController()
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            present(navVC, animated: true)
-            HapticsManager.shared.hapticFeedback()
-        }
+        let vc = MenuOptionsListTableViewController(category: .newsList)
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
+        HapticsManager.shared.hapticFeedback()
     }
     
     private func setUpMenuButton() {
@@ -660,7 +658,7 @@ final class NewsListViewController: UIViewController {
             self.openMonthsList()
         }
         
-        var categoriesAction = UIAction(title: "Категории") { _ in
+        let categoriesAction = UIAction(title: "Категории") { _ in
             self.openNewsCategoriesList()
         }
         
@@ -668,7 +666,7 @@ final class NewsListViewController: UIViewController {
             self.showWhatsNewVC()
         }
         
-        var pagesAction = UIAction(title: "Страницы") { _ in
+        let pagesAction = UIAction(title: "Страницы") { _ in
             self.openNewsPagesList()
         }
         
@@ -730,7 +728,7 @@ final class NewsListViewController: UIViewController {
         ]
     }
     
-    func findOption(option: NewsOptionModel)-> UIAction  {
+    func findOption(option: MenuOptionModel)-> UIAction  {
         let originalOptions = getAllOptions()
         let searchOption = NewsOptions.list.first(where: { $0.name == option.name })!
         let item = originalOptions.first { $0.title == searchOption.name }!

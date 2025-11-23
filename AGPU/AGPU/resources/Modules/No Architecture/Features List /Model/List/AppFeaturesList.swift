@@ -63,7 +63,7 @@ struct AppFeaturesList {
         AppFeatureModel(
             id: 8,
             name: "Important Sections",
-            description: "Important Sections (важные разделы) - список нужных разделов. Потяните для восстановления.",
+            description: "Important Sections (важные разделы) - список нужных разделов.",
             videoURL: "https://youtu.be/Qllf8W-Ilxc?si=F1LZYhGefeSQQZHj"
         ),
         
@@ -140,14 +140,21 @@ struct AppFeaturesList {
         AppFeatureModel(
             id: 19,
             name: "Useful Shortcuts",
-            description: "Useful Shortcuts (полезные шорткаты) - позволяет настроить список шорткатов для приложения.",
+            description: "Useful Shortcuts (полезные шорткаты) - добавьте шорткаты которые вам нужны.",
             videoURL: ""
         ),
         
         AppFeatureModel(
             id: 20,
             name: "Switch List",
-            description: "Switch List (список переключений) - создайте список названий или описаний для каждой надписи, чтобы переключаться между ними и менять текст у надписи.",
+            description: "Switch List (список переключений) - создайте список названий или описаний для каждой надписи.",
+            videoURL: ""
+        ),
+        
+        AppFeatureModel(
+            id: 21,
+            name: "Comfort Menu",
+            description: "Comfort Menu (комфортное меню) - настройте список опций в меню.",
             videoURL: ""
         )
     ]

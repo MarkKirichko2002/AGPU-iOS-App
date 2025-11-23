@@ -7,10 +7,16 @@
 
 import UIKit
 
+protocol TabsOptionsListTableViewControllerDelegate: AnyObject {
+    func optionWasChanged()
+}
+
 final class TabsOptionsListTableViewController: UITableViewController {
 
     // MARK: - сервисы
     private let viewModel = TabsOptionsListViewModel()
+    
+    weak var delegate: TabsOptionsListTableViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,14 +70,17 @@ final class TabsOptionsListTableViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             let vc = TabsPositionListTableViewController()
+            vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
             HapticsManager.shared.hapticFeedback()
         case 1:
             let vc = AdditionalTabOptionsListTableViewController()
+            vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
             HapticsManager.shared.hapticFeedback()
         case 2:
             let vc = TabColorsListTableViewController()
+            vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
             HapticsManager.shared.hapticFeedback()
         default:
@@ -103,5 +112,13 @@ final class TabsOptionsListTableViewController: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RecentTabOptionTableViewCell.identifier, for: indexPath) as? RecentTabOptionTableViewCell else {return UITableViewCell()}
             return cell
         }
+    }
+}
+
+// MARK: - TabsOptionsDelegate
+extension TabsOptionsListTableViewController: TabsOptionsDelegate {
+    
+    func optionWasChanged() {
+        delegate?.optionWasChanged()
     }
 }

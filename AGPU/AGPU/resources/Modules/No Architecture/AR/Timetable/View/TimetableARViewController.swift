@@ -103,116 +103,28 @@ final class TimetableARViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
-        let options =  UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpMenu())
+        let options =  UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpTimetableMenu())
+        options.accessibilityIdentifier = "menu"
         options.tintColor = .label
         closeButton.tintColor = .label
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = options
+        
+        setUpNavigationGestures()
     }
     
-    private func setUpMenu()-> UIMenu {
-        
-        let searchAction = UIAction(title: "Поиск") { _ in
-            let vc = TimeTableSearchListTableViewController()
-            vc.isSettings = false
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let nearBuildingAction = UIAction(title: "Нужное здание") { _ in
-            let vc = NearBuildingViewController(info: .audiences)
-            vc.delegate = self
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
-        }
-        
-        let groupsList = UIAction(title: "Группы") { _ in
-            let vc = AllGroupsListTableViewController(group: self.id)
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let teachersList = UIAction(title: "Преподаватели") { _ in
-            let vc = DepartmentsListTableViewController()
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let audiencesList = UIAction(title: "Аудитории") { _ in
-            let vc = CorpsListTableViewController()
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let favouritesList = UIAction(title: "Избранное") { _ in
-            let vc = TimeTableFavouriteItemsListTableViewController()
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let daysListAction = UIAction(title: "Список дней") { _ in
-            let vc = DaysListTableViewController(id: self.id, currentDate: self.date, owner: self.owner, dayType: self.dayType, week: self.currentWeek, dates: self.dates)
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            DispatchQueue.main.async {
-                self.present(navVC, animated: true)
-            }
-        }
-        
-        let weeks = UIAction(title: "Недели") { _ in
-            let vc = AllWeeksListTableViewController(id: self.id, subgroup: self.subgroup, owner: self.owner)
-            vc.isAR = true
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let calendarAction = UIAction(title: "Календарь") { _ in
-            let vc = CalendarARViewController(date: self.date)
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            DispatchQueue.main.async {
-                self.present(navVC, animated: true)
-            }
-        }
-        
-        let navigationsList = UIAction(title: "Навигация") { _ in
-            let vc = NavigationsListTableViewController(screen: .timetableAR)
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let share = UIAction(title: "Поделиться") { _ in
-            self.makeScreenShot()
-        }
-        return UIMenu(title: "AR", children: [
-            searchAction,
-            nearBuildingAction,
-            nearBuildingAction,
-            groupsList,
-            teachersList,
-            audiencesList,
-            favouritesList,
-            daysListAction,
-            weeks,
-            calendarAction,
-            navigationsList,
-            share
-        ])
+    private func setUpNavigationGestures() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(openMenuSettings))
+        self.navigationController?.navigationBar.addGestureRecognizer(tap)
+    }
+    
+    @objc private func openMenuSettings(gesture: UIGestureRecognizer) {
+        let vc = MenuOptionsListTableViewController(category: .timetableAR)
+        vc.delegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
+        HapticsManager.shared.hapticFeedback()
     }
     
     @objc private func refresh() {
@@ -254,7 +166,7 @@ final class TimetableARViewController: UIViewController {
         }
     }
     
-   private func navigationTitle() {
+    private func navigationTitle() {
         
         let style = settingsManager.getSavedCommunicationStyle()
         
@@ -466,9 +378,9 @@ final class TimetableARViewController: UIViewController {
         switch dayType {
         case .near:
             if currentWeek.id == 0 {
-               delegate?.dateWasChanged(date: date)
-               getTimetable(date: date)
-           }
+                delegate?.dateWasChanged(date: date)
+                getTimetable(date: date)
+            }
         case .week:
             if (currentWeek.id < weeks.last?.id ?? 0) && currentWeek.id != 0 {
                 let number = currentWeek.id
@@ -476,14 +388,14 @@ final class TimetableARViewController: UIViewController {
             }
         case .selected:
             if currentWeek.id == 0 {
-               delegate?.dateWasChanged(date: date)
-               getTimetable(date: date)
-           }
+                delegate?.dateWasChanged(date: date)
+                getTimetable(date: date)
+            }
         case .recent:
             if currentWeek.id == 0 {
-               delegate?.dateWasChanged(date: date)
-               getTimetable(date: date)
-           }
+                delegate?.dateWasChanged(date: date)
+                getTimetable(date: date)
+            }
         }
     }
     
@@ -764,5 +676,139 @@ final class TimetableARViewController: UIViewController {
             resetSpeechRecognition()
             showAlert(title: title, message: message, actions: actions)
         }
+    }
+}
+
+// MARK: - MenuOptionsListTableViewController
+extension TimetableARViewController: MenuOptionsListTableViewControllerDelegate {
+    
+    func listWasUpdated() {
+        updateMenu()
+    }
+    
+    func updateMenu() {
+        guard let item = self.navigationItem.rightBarButtonItems?.first(where: { $0.accessibilityIdentifier == "menu" }) else {return}
+        item.menu = setUpTimetableMenu()
+    }
+}
+
+extension TimetableARViewController {
+    
+    func setUpTimetableMenu()-> UIMenu {
+        let savedOptions = settingsManager.loadMenuOptions(category: menuOptionCategories.timetableAR.rawValue)
+        let options = savedOptions.map { findOption(option: $0) }
+        return UIMenu(title: "AR", children: options)
+    }
+    
+    func getAllOptions()-> [UIAction] {
+        
+        let searchAction = UIAction(title: "Поиск") { _ in
+            let vc = TimeTableSearchListTableViewController()
+            vc.isSettings = false
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let nearBuildingAction = UIAction(title: "Нужное здание") { _ in
+            let vc = NearBuildingViewController(info: .audiences)
+            vc.delegate = self
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+        }
+        
+        let groupsList = UIAction(title: "Группы") { _ in
+            let vc = AllGroupsListTableViewController(group: self.id)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let teachersList = UIAction(title: "Преподаватели") { _ in
+            let vc = DepartmentsListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let audiencesList = UIAction(title: "Аудитории") { _ in
+            let vc = CorpsListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let favouritesList = UIAction(title: "Избранное") { _ in
+            let vc = TimeTableFavouriteItemsListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let daysListAction = UIAction(title: "Список дней") { _ in
+            let vc = DaysListTableViewController(id: self.id, currentDate: self.date, owner: self.owner, dayType: self.dayType, week: self.currentWeek, dates: self.dates)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            DispatchQueue.main.async {
+                self.present(navVC, animated: true)
+            }
+        }
+        
+        let weeks = UIAction(title: "Недели") { _ in
+            let vc = AllWeeksListTableViewController(id: self.id, subgroup: self.subgroup, owner: self.owner)
+            vc.isAR = true
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let calendarAction = UIAction(title: "Календарь") { _ in
+            let vc = CalendarARViewController(date: self.date)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            DispatchQueue.main.async {
+                self.present(navVC, animated: true)
+            }
+        }
+        
+        let navigationsList = UIAction(title: "Навигация") { _ in
+            let vc = NavigationsListTableViewController(screen: .timetableAR)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let share = UIAction(title: "Поделиться") { _ in
+            self.makeScreenShot()
+        }
+        return [
+            searchAction,
+            nearBuildingAction,
+            nearBuildingAction,
+            groupsList,
+            teachersList,
+            audiencesList,
+            favouritesList,
+            daysListAction,
+            weeks,
+            calendarAction,
+            navigationsList,
+            share
+        ]
+    }
+    
+    func findOption(option: MenuOptionModel)-> UIAction {
+        let originalOptions = getAllOptions()
+        let searchOption = TimetableAROptions.list.first(where: { $0.name == option.name })!
+        let item = originalOptions.first { $0.title == searchOption.name }!
+        return item
     }
 }

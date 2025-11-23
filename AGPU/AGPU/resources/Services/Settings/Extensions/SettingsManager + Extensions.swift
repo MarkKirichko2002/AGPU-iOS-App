@@ -120,12 +120,6 @@ extension SettingsManager: SettingsManagerProtocol {
         return variant
     }
     
-    func observeOnlyMainChangedOption(completion: @escaping()->Void) {
-        NotificationCenter.default.addObserver(forName: Notification.Name("only main"), object: nil, queue: .main) { _ in
-            completion()
-        }
-    }
-    
     // MARK: - Grounbreaking Timetable
     func checkSaveRecentTimetableItem()-> Bool {
         return UserDefaults.standard.value(forKey: "onSaveRecentTimetableItem") as? Bool ?? true
@@ -323,40 +317,34 @@ extension SettingsManager: SettingsManagerProtocol {
         return data
     }
     
-    func observeTabsChanged(completion: @escaping()->Void) {
-        NotificationCenter.default.addObserver(forName: Notification.Name("tabs changed"), object: nil, queue: .main) { _ in
-            completion()
-        }
-    }
-    
     // MARK: - Settable Communication
     func getSavedCommunicationStyle()-> CommunicationStyles {
         let savedStyle = UserDefaults.loadData(type: CommunicationStyles.self, key: "communication style") ?? .formal
         return savedStyle
     }
     
-    // MARK: - Adaptive News
-    func saveNewsOptions(news: [NewsOptionModel], completion: @escaping()->Void) {
+    // MARK: - Comfort Menu
+    func saveMenuOptions(category: String, options: [MenuOptionModel], completion: @escaping()->Void) {
         do {
-            let arr = try JSONEncoder().encode(news)
-            UserDefaults.standard.setValue(arr, forKey: "news options")
-            NotificationCenter.default.post(name: Notification.Name("news options changed"), object: nil)
+            let arr = try JSONEncoder().encode(options)
+            UserDefaults.standard.setValue(arr, forKey: "\(category) options")
+            NotificationCenter.default.post(name: Notification.Name("\(category) options changed"), object: nil)
             completion()
         } catch {
             print(error)
         }
     }
     
-    func loadNewsOptions()-> [NewsOptionModel] {
-        var data = [NewsOptionModel]()
-        if let result = UserDefaults.standard.object(forKey: "news options") as? Data {
+    func loadMenuOptions(category: String)-> [MenuOptionModel] {
+        var data = [MenuOptionModel]()
+        if let result = UserDefaults.standard.object(forKey: "\(category) options") as? Data {
             do {
-                data = try JSONDecoder().decode([NewsOptionModel].self, from: result)
+                data = try JSONDecoder().decode([MenuOptionModel].self, from: result)
             } catch {
                 print(error)
             }
         } else {
-            return NewsOptions.list
+            return menuOptionCategories.allCases.first { $0.rawValue == category }?.options ?? []
         }
         return data
     }

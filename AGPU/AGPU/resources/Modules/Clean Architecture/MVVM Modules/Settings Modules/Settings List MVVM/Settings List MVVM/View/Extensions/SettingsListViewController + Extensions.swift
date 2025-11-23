@@ -65,6 +65,9 @@ extension SettingsListViewController: UITableViewDataSource {
             } else if indexPath.row == 8 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ShortcutOptionTableViewCell.identifier, for: indexPath) as? ShortcutOptionTableViewCell else {return UITableViewCell()}
                 return cell
+            } else if indexPath.row == 9 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuOptionsOptionTableViewCell.identifier, for: indexPath) as? MenuOptionsOptionTableViewCell else {return UITableViewCell()}
+                return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: AppThemesTableViewCell.identifier, for: indexPath) as? AppThemesTableViewCell else {return UITableViewCell()}
                 cell.configure(theme: viewModel.getAppThemeInfo())
@@ -199,6 +202,12 @@ extension SettingsListViewController: UITableViewDelegate {
                     }
                 }
             } else if indexPath.row == 9 {
+                if let cell = tableView.cellForRow(at: indexPath) as? MenuOptionsOptionTableViewCell {
+                    cell.didTapCell(indexPath: indexPath) {
+                        self.handleButton(icon: "sections icon", vc: MenuOptionCategoriesListTableViewController())
+                    }
+                }
+            } else if indexPath.row == 10 {
                 if let cell = tableView.cellForRow(at: indexPath) as? AppThemesTableViewCell {
                     cell.didTapCell(indexPath: indexPath) {
                         self.handleButton(icon: "theme", vc: AppThemesListTableViewController())

@@ -19,7 +19,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         case 0:
             return 3
         case 1:
-            return 10
+            return 11
         case 2:
             return 2
         default:

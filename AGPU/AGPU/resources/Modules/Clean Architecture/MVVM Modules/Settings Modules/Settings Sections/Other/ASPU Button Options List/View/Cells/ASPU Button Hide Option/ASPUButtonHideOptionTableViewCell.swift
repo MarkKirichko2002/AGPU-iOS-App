@@ -32,8 +32,6 @@ final class ASPUButtonHideOptionTableViewCell: UITableViewCell {
             OptionIcon.tintColor = .systemGray
             TitleLabel.textColor = .systemGray
         }
-        
-        NotificationCenter.default.post(name: Notification.Name("only main"), object: nil)
     }
 
     override func awakeFromNib() {

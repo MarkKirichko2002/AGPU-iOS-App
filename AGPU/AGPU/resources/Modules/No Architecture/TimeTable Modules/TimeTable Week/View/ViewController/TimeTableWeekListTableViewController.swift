@@ -135,7 +135,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     private func setUpNavigation() {
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
         closeButton.tintColor = .label
-        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: makeMenu())
+        let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: setUpTimetableMenu())
         options.accessibilityIdentifier = "menu"
         options.tintColor = .label
         updateTitle()
@@ -144,132 +144,24 @@ final class TimeTableWeekListTableViewController: UIViewController {
         setUpNavigationGestures()
     }
     
-    private func makeMenu()-> UIMenu {
-        
-        let searchAction = UIAction(title: "Поиск") { _ in
-            let vc = TimeTableSearchListTableViewController()
-            vc.isSettings = false
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let abbreviationsAction = UIAction(title: "Псевдонимы") { _ in
-            let vc = TimetablePseudonymCategoriesListTableViewController()
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let ARAction = UIAction(title: "AR режим") { _ in
-            let vc = TimetableARViewController(id: self.id, subgroup: self.subgroup, date: self.currentDate, owner: self.owner)
-            vc.currentWeek = self.week
-            vc.weekDelegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.createImage {
-                vc.image = self.image
-                self.present(navVC, animated: true)
-            }
-        }
-        
-        let nearBuildingAction = UIAction(title: "Нужное здание") { _ in
-            let vc = NearBuildingViewController(info: .audiences)
-            vc.delegate = self
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
-        }
-        
-        let groupsList = UIAction(title: "Группы") { _ in
-            let vc = AllGroupsListTableViewController(group: self.id)
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let teachersList = UIAction(title: "Преподаватели") { _ in
-            let vc = DepartmentsListTableViewController()
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let audiencesList = UIAction(title: "Аудитории") { _ in
-            let vc = CorpsListTableViewController()
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        // список дней
-        let days = UIAction(title: "День") { _ in
-            let vc = WeekDaysListTableViewController(id: self.id, owner: self.owner, week: self.week, timetable: self.timetable, currentDate: self.currentDate)
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        // избранное
-        let favouritesList = UIAction(title: "Избранное") { _ in
-            let vc = TimeTableFavouriteItemsListTableViewController()
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let filterAction = UIAction(title: "Фильтрация") { _ in
-            self.showFilter()
-        }
-        
-        // сохранить расписание
-        let saveTimetable = UIAction(title: "Сохранить") { _ in
-            self.showSaveImageAlert()
-        }
-        
-        // способы навигации
-        let navigationsList = UIAction(title: "Навигация") { _ in
-            let vc = NavigationsListTableViewController(screen: .timetableWeek)
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        // поделиться
-        let share = UIAction(title: "Поделиться") { _ in
-            self.shareTimetable()
-        }
-        
-        return UIMenu(title: "Расписание неделя \(week.id)", children: [
-            searchAction,
-            abbreviationsAction,
-            ARAction,
-            nearBuildingAction,
-            groupsList,
-            teachersList,
-            audiencesList,
-            days,
-            favouritesList,
-            filterAction,
-            saveTimetable,
-            navigationsList,
-            share
-        ])
-    }
-    
     private func setUpNavigationGestures() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(openMenuSettings))
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(showPastWeek))
         swipeLeft.direction = .left
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(showNextWeek))
         swipeRight.direction = .right
+        navigationController?.navigationBar.addGestureRecognizer(tap)
         navigationController?.navigationBar.addGestureRecognizer(swipeLeft)
         navigationController?.navigationBar.addGestureRecognizer(swipeRight)
+    }
+    
+    @objc private func openMenuSettings(gesture: UIGestureRecognizer) {
+        let vc = MenuOptionsListTableViewController(category: .timetableWeek)
+        vc.delegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
+        HapticsManager.shared.hapticFeedback()
     }
     
     @objc private func showPastWeek() {
@@ -339,7 +231,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    private func createImage(completion: @escaping()->Void) {
+    func createImage(completion: @escaping()->Void) {
         do {
             let json = try JSONEncoder().encode(self.timetable)
             self.service.getTimeTableWeekImage(json: json) { image in
@@ -652,7 +544,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         }
     }
     
-    @objc private func shareTimetable() {
+    @objc func shareTimetable() {
         let emptyTimetable = [TimeTable(id: id, date: week.from, disciplines: [])]
         if !self.timetable.isEmpty {
             do {
@@ -707,7 +599,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
         }
     }
     
-    private func showSaveImageAlert() {
+    func showSaveImageAlert() {
         let saveAction = UIAlertAction(title: "Сохранить в фото", style: .default) { _ in
             do {
                 let json = try JSONEncoder().encode(self.timetable)

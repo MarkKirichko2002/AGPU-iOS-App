@@ -12,6 +12,8 @@ final class AdditionalTabOptionsListTableViewController: UITableViewController {
     // MARK: - сервисы
     private let viewModel = AdditionalTabOptionsListViewModel()
     
+    weak var delegate: TabsOptionsDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
@@ -51,8 +53,8 @@ final class AdditionalTabOptionsListTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .left)
             }
+            self.delegate?.optionWasChanged()
         }
-        viewModel.observeOptionSelection()
     }
     
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {

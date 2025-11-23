@@ -65,7 +65,6 @@ extension TabsPositionListTableViewModel: ITabsPositionListTableViewModel {
             let arr = try JSONEncoder().encode(arr)
             UserDefaults.standard.setValue(arr, forKey: "tabs")
             getData()
-            sendNotifications()
         } catch {
             print(error)
         }
@@ -76,7 +75,6 @@ extension TabsPositionListTableViewModel: ITabsPositionListTableViewModel {
             let arr = try JSONEncoder().encode(tabs)
             UserDefaults.standard.setValue(arr, forKey: "tabs")
             getChanges(index: tabs.firstIndex(where: { $0.id == tab.id })!)
-            sendNotifications()
         } catch {
             print(error)
         }
@@ -85,11 +83,6 @@ extension TabsPositionListTableViewModel: ITabsPositionListTableViewModel {
     func getChanges(index: Int) {
         getTabsPosition()
         itemChangedHandler?(index)
-    }
-    
-    func sendNotifications() {
-        NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
-        NotificationCenter.default.post(name: Notification.Name("tabs changed"), object: nil)
     }
     
     func createEditAlertMessage()-> (String, String) {

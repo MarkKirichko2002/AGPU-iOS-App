@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuOptionsOptionTableViewCell" rowHeight="90" id="S6t-gK-P9B" customClass="MenuOptionsOptionTableViewCell" customModule="AGPU" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="412" height="90"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S6t-gK-P9B" id="nx0-3B-Xc9">
+                <rect key="frame" x="0.0" y="0.0" width="412" height="90"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sections icon" translatesAutoresizingMaskIntoConstraints="NO" id="Tqf-Am-aIM" customClass="SpringImageView" customModule="AGPU" customModuleProvider="target">
+                        <rect key="frame" x="20" y="10" width="65" height="65"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="65" id="ZHf-QH-oBj"/>
+                            <constraint firstAttribute="height" constant="65" id="gse-MX-Y4p"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Комфортное меню" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S2L-Vu-i36">
+                        <rect key="frame" x="95" y="15" width="307" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="Gjj-gz-NXL"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="S2L-Vu-i36" secondAttribute="bottom" constant="15" id="ULQ-aw-RET"/>
+                    <constraint firstAttribute="bottom" secondItem="Tqf-Am-aIM" secondAttribute="bottom" constant="10" id="jVa-MX-3U0"/>
+                    <constraint firstItem="S2L-Vu-i36" firstAttribute="leading" secondItem="Tqf-Am-aIM" secondAttribute="trailing" constant="10" id="lDB-IL-Iam"/>
+                    <constraint firstItem="S2L-Vu-i36" firstAttribute="top" secondItem="nx0-3B-Xc9" secondAttribute="top" constant="15" id="muU-m3-yEe"/>
+                    <constraint firstAttribute="trailing" secondItem="S2L-Vu-i36" secondAttribute="trailing" constant="10" id="nC4-Vb-64X"/>
+                    <constraint firstItem="Tqf-Am-aIM" firstAttribute="leading" secondItem="nx0-3B-Xc9" secondAttribute="leading" constant="20" id="tRN-aE-1XP"/>
+                    <constraint firstItem="Tqf-Am-aIM" firstAttribute="top" secondItem="nx0-3B-Xc9" secondAttribute="top" constant="10" id="zga-Pu-5LW"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="OptionImage" destination="Tqf-Am-aIM" id="Mu0-95-fm4"/>
+                <outlet property="OptionName" destination="S2L-Vu-i36" id="Jkf-me-oEJ"/>
+            </connections>
+            <point key="canvasLocation" x="167.93893129770993" y="-2.1126760563380285"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="sections icon" width="48" height="48"/>
+    </resources>
+</document>

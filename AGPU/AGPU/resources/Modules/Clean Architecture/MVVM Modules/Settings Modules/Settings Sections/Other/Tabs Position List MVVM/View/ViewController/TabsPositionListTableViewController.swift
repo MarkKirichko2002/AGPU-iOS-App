@@ -12,6 +12,8 @@ final class TabsPositionListTableViewController: UITableViewController {
     // MARK: - сервисы
     private let viewModel = TabsPositionListTableViewModel()
     
+    weak var delegate: TabsOptionsDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigation()
@@ -76,6 +78,7 @@ final class TabsPositionListTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .left)
             }
+            self.delegate?.optionWasChanged()
         }
         viewModel.getData()
         viewModel.observeOptionSelection()
@@ -106,6 +109,7 @@ final class TabsPositionListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         if tableView.isEditing {
             viewModel.saveTabsPosition(sourceIndexPath.row, destinationIndexPath.row)
+            delegate?.optionWasChanged()
         }
     }
     

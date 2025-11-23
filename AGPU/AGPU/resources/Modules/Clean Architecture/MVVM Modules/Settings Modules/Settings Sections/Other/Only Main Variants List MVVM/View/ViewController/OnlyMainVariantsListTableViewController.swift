@@ -7,10 +7,18 @@
 
 import UIKit
 
-class OnlyMainVariantsListTableViewController: UITableViewController {
+protocol OnlyMainVariantsListTableViewControllerDelegate: AnyObject {
+    func tabsWasChanged()
+}
+
+final class OnlyMainVariantsListTableViewController: UITableViewController {
 
     // MARK: - сервисы
     private let viewModel = OnlyMainVariantsListViewModel()
+    
+    weak var delegate: OnlyMainVariantsListTableViewControllerDelegate?
+    
+    var isChanged = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +40,9 @@ class OnlyMainVariantsListTableViewController: UITableViewController {
     }
     
     @objc private func close() {
+        if isChanged {
+            delegate?.tabsWasChanged()
+        }
         HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
     }
@@ -52,8 +63,10 @@ class OnlyMainVariantsListTableViewController: UITableViewController {
         viewModel.chooseOnlyMainVariant(index: indexPath.row)
         if viewModel.onlyMainVariantItem(index: indexPath.row) == .custom {
             let vc = TabsOptionsListTableViewController()
+            vc.delegate = self
             self.navigationController?.pushViewController(vc, animated: true)
         }
+        isChanged = true
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -73,3 +86,9 @@ class OnlyMainVariantsListTableViewController: UITableViewController {
     }
 }
 
+// MARK: - TabsOptionsListTableViewControllerDelegate
+extension OnlyMainVariantsListTableViewController: TabsOptionsListTableViewControllerDelegate {
+    func optionWasChanged() {
+        isChanged = true
+    }
+}

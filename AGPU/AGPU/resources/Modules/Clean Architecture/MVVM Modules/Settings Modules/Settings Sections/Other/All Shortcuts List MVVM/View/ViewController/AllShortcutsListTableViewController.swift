@@ -27,7 +27,7 @@ final class AllShortcutsListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "sections icon", title: "Шорткаты", frame: .zero)
+        let titleView = CustomTitleView(image: "squares", title: "Шорткаты", frame: .zero)
         navigationItem.titleView = titleView
         setUpBackButton()
         setUpEditButton(title: "Выбрать")
