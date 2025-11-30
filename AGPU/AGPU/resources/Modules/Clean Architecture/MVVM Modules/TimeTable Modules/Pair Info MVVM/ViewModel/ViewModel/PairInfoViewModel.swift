@@ -23,6 +23,8 @@ final class PairInfoViewModel {
     var sound = UserDefaults.standard.object(forKey: "timetable sound") as? String ?? "clock_sound"
     var selectedType = MKDirectionsTransportType.walking
     
+    var selectedInfoParts = [String]()
+    
     var currentIndex: Int = -1
     
     var dataChangedHandler: (()->Void)?

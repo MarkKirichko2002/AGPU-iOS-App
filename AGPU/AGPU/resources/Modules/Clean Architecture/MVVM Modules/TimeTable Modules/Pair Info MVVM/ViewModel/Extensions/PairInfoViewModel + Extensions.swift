@@ -69,7 +69,6 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
     }
     
     func startTimer() {
-        //timer?.fire()
         checkCurrentTime()
     }
     
@@ -531,6 +530,10 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         }
     }
     
+    func resetSelectedInfo() {
+        selectedInfoParts = []
+    }
+    
     func isCurrentWord(index: Int)-> UIColor {
         if currentIndex != -1 {
             return pairInfo[index] == pairInfo[currentIndex] ? currentColor : backgroundColor
@@ -550,13 +553,23 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         }
     }
     
+    func selectPairInfoPart(index: Int) {
+        let id = selectedInfoParts.firstIndex { $0 == pairInfo[index] } ?? 0
+        selectedInfoParts.append(pairInfo[id])
+    }
+    
+    func deSelectPairInfoPart(index: Int) {
+        let id = selectedInfoParts.firstIndex { $0 == pairInfo[index] } ?? 0
+        selectedInfoParts.remove(at: id)
+    }
+    
     func copyPairInfoText() {
         UIPasteboard.general.string = configurePairInfoText()
     }
     
     func configurePairInfoText()-> String {
         var str = ""
-        for item in pairInfo {
+        for item in selectedInfoParts {
             str += "\(item)\n"
         }
         return str

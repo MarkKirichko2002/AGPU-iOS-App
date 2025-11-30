@@ -43,20 +43,28 @@ final class PairInfoTableViewController: UITableViewController {
     
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: viewModel.getFacultyIcon(group: viewModel.id), title: "Информация о паре", frame: .zero)
-        let menu = UIBarButtonItem(image: UIImage(named: "sections"), menu: createMenu())
-        menu.tintColor = viewModel.currentColor
-        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
-        closeButton.tintColor = viewModel.currentColor
         titleView.imageView.tintColor = viewModel.currentColor
         titleView.label.textColor = viewModel.currentColor
         navigationItem.titleView = titleView
-        navigationItem.leftBarButtonItem = closeButton
-        navigationItem.rightBarButtonItem = menu
+        setUpCloseButton()
+        setUpMenu()
     }
     
-    @objc private func closeScreen() {
+    func setUpCloseButton() {
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(close))
+        closeButton.tintColor = viewModel.currentColor
+        navigationItem.leftBarButtonItem = closeButton
+    }
+    
+    @objc private func close() {
         HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
+    }
+    
+    private func setUpMenu() {
+        let menu = UIBarButtonItem(image: UIImage(named: "sections"), menu: createMenu())
+        menu.tintColor = viewModel.currentColor
+        navigationItem.rightBarButtonItem = menu
     }
     
     func createMenu()-> UIMenu {
@@ -67,15 +75,47 @@ final class PairInfoTableViewController: UITableViewController {
             navVC.modalPresentationStyle = .fullScreen
             self.present(navVC, animated: true)
         }
-        let copyAction = UIAction(title: "Скопировать") { _ in
-            self.viewModel.copyPairInfoText()
-            self.showAlert(title: "Информация о паре скопирована!", message: "", actions: [UIAlertAction(title: "ОК", style: .default)])
+        let copyAction = UIAction(title: "Скопировать") { [weak self] _ in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                self.setUpCancelButton()
+                self.setUpCopyButton()
+                self.viewModel.stopTimer()
+                self.tableView.isEditing = true
+            }
         }
         return UIMenu(title: "Информация о паре", children: [transpotyType, voiceCommands, copyAction])
     }
     
     private func setUpTable() {
+        tableView.allowsMultipleSelectionDuringEditing = true
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    }
+    
+    func setUpCopyButton() {
+        let moveButton = UIBarButtonItem(title: "Копировать", style: .done, target: self, action: #selector(copyInfo))
+        moveButton.tintColor = viewModel.currentColor
+        navigationItem.rightBarButtonItem = moveButton
+    }
+    
+    @objc private func copyInfo() {
+        viewModel.copyPairInfoText()
+    }
+    
+    func setUpCancelButton() {
+        let moveButton = UIBarButtonItem(title: "Отмена", style: .done, target: self, action: #selector(cancel))
+        moveButton.tintColor = viewModel.currentColor
+        navigationItem.leftBarButtonItem = moveButton
+    }
+    
+    @objc private func cancel() {
+        for i in 0..<viewModel.pairInfo.count {
+            tableView.deselectRow(at: IndexPath(row: i, section: 0), animated: true)
+        }
+        viewModel.resetSelectedInfo()
+        setUpCloseButton()
+        setUpMenu()
+        tableView.isEditing = false
     }
     
     private func bindViewModel() {
@@ -122,8 +162,16 @@ final class PairInfoTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 10 {
+        if tableView.isEditing {
+            viewModel.selectPairInfoPart(index: indexPath.row)
+        } else if indexPath.row == 10 {
             goToDetail()
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if tableView.isEditing {
+            viewModel.deSelectPairInfoPart(index: indexPath.row)
         }
     }
     

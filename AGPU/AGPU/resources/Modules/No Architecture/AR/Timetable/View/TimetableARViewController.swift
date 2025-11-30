@@ -786,6 +786,13 @@ extension TimetableARViewController {
             self.present(navVC, animated: true)
         }
         
+        let voiceCommandsAction = UIAction(title: "Голосовые команды") { _ in
+            let vc = VoiceCommandsListTableViewController(type: .timetableAR)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         let share = UIAction(title: "Поделиться") { _ in
             self.makeScreenShot()
         }
@@ -801,6 +808,7 @@ extension TimetableARViewController {
             weeks,
             calendarAction,
             navigationsList,
+            voiceCommandsAction,
             share
         ]
     }

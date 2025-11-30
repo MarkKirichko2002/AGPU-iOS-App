@@ -102,6 +102,7 @@ struct VoiceCommands {
         VoiceCommandItem(name: "Сегодня", description: "Показывает расписание на сегодня"),
         VoiceCommandItem(name: "Вперед", description: "Показывает расписание на следующую дату/неделю"),
         VoiceCommandItem(name: "Назад", description: "Показывает расписание на предыдущую дату/неделю"),
+        VoiceCommandItem(name: "Недели", description: "Показывает список недель"),
         VoiceCommandItem(name: "Дата (день месяц)", description: "Показывает расписание на выбранную дату"),
         VoiceCommandItem(name: "Закрыть", description: "Закрывает сообщение на экране"),
         VoiceCommandItem(name: "Обновить", description: "Обновляет расписание")

@@ -1613,6 +1613,13 @@ extension TimeTableDayListTableViewController {
             self.present(navVC, animated: true)
         }
         
+        let voiceCommandsAction = UIAction(title: "Голосовые команды") { _ in
+            let vc = VoiceCommandsListTableViewController(type: .timetableDay)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         // поделиться расписанием
         let shareTimeTable = UIAction(title: "Поделиться") { _ in
             self.shareTimetable() {}
@@ -1635,6 +1642,7 @@ extension TimeTableDayListTableViewController {
             pairTypesList,
             saveTimetable,
             navigationsList,
+            voiceCommandsAction,
             shareTimeTable
         ]
     }

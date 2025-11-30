@@ -889,6 +889,13 @@ extension TimeTableWeekListTableViewController {
             self.present(navVC, animated: true)
         }
         
+        let voiceCommandsAction = UIAction(title: "Голосовые команды") { _ in
+            let vc = VoiceCommandsListTableViewController(type: .timetableWeek)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
         // поделиться
         let share = UIAction(title: "Поделиться") { _ in
             self.shareTimetable()
@@ -907,6 +914,7 @@ extension TimeTableWeekListTableViewController {
             filterAction,
             saveTimetable,
             navigationsList,
+            voiceCommandsAction,
             share
         ]
     }

@@ -30,7 +30,8 @@ struct TimetableDayOptions {
         MenuOptionModel(id: 14, name: "Фильтрация"),
         MenuOptionModel(id: 15, name: "Сохранить"),
         MenuOptionModel(id: 16, name: "Навигация"),
-        MenuOptionModel(id: 17, name: "Поделиться"),
+        MenuOptionModel(id: 17, name: "Голосовые команды"),
+        MenuOptionModel(id: 18, name: "Поделиться")
     ]
 }
 
@@ -48,7 +49,8 @@ struct TimetableWeekOptions {
         MenuOptionModel(id: 10, name: "Фильтрация"),
         MenuOptionModel(id: 11, name: "Сохранить"),
         MenuOptionModel(id: 12, name: "Навигация"),
-        MenuOptionModel(id: 13, name: "Поделиться")
+        MenuOptionModel(id: 13, name: "Голосовые команды"),
+        MenuOptionModel(id: 14, name: "Поделиться")
     ]
 }
 
@@ -65,7 +67,8 @@ struct TimetableAROptions {
         MenuOptionModel(id: 9, name: "Недели"),
         MenuOptionModel(id: 10, name: "Календарь"),
         MenuOptionModel(id: 11, name: "Навигация"),
-        MenuOptionModel(id: 12, name: "Поделиться"),
+        MenuOptionModel(id: 12, name: "Голосовые команды"),
+        MenuOptionModel(id: 13, name: "Поделиться")
     ]
 }
 
