@@ -107,14 +107,12 @@ final class TimeTableDayListTableViewController: UIViewController {
         getTimeTable(id: id, date: date, owner: owner) {}
         setUpCurrentWeek()
         createFloatingButton()
-        createCameraButton()
         observeGroupChange()
         observeSubGroupChange()
         observeObjectSelected()
         observePairType()
         observeAdvancedMode()
         observeFloatingButton()
-        observeCameraButton()
         observeTimetableOptionsChanges()
         setUpButtonSettings()
         SpeechSynthesizerManager.shared.registerSpeechFinishedHandler {
@@ -123,7 +121,6 @@ final class TimeTableDayListTableViewController: UIViewController {
         imageSaver.registerImageHandler { title, message in
             self.showAlert(title: title, message: message, actions: [UIAlertAction(title: "ОК", style: .default)])
         }
-        isRecordingVideo = settingsManager.checkRecordingVideo()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -411,23 +408,6 @@ final class TimeTableDayListTableViewController: UIViewController {
         startSession()
     }
     
-    private func resetCameraButton() {
-        if let button = view.subviews.first(where: { $0.accessibilityIdentifier == "camera button" }) {
-            button.removeFromSuperview()
-            createCameraButton()
-            isRecordingVideo = false
-        } else {
-            createCameraButton()
-        }
-    }
-    
-    func createCameraButton() {
-        let onGestureButton = UserDefaults.standard.object(forKey: "onGestureButton timetable") as? Bool ?? false
-        if onGestureButton {
-            setUpCameraButton()
-        }
-    }
-    
     func updateCameraButtonMenu() {
         if let button = view.subviews.first(where: { $0.accessibilityIdentifier == "camera button" }) {
             DispatchQueue.main.async {
@@ -451,6 +431,12 @@ final class TimeTableDayListTableViewController: UIViewController {
         ])
         icon.showsMenuAsPrimaryAction = true
         icon.menu = setUpCameraMenu()
+    }
+    
+    func removeCameraButton() {
+        if let button = view.subviews.first(where: { $0.accessibilityIdentifier == "camera button" }) {
+            button.removeFromSuperview()
+        }
     }
     
     private func setUpCameraMenu()-> UIMenu {
@@ -509,6 +495,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         self.animation.startRotateAnimation(view: self.spinner)
         self.infoLabel.isHidden = true
         self.timetable.disciplines = []
+        self.date = date
         self.tableView.reloadData()
         self.navigationItem.toggleRefreshButtonFromLeft(on: false)
         self.navigationItem.toggleMenuButton(on: false)
@@ -783,16 +770,21 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     func checkGestureOption() {
-        let onGestureButton = UserDefaults.standard.object(forKey: "onGestureButton timetable") as? Bool ?? false
-        if onGestureButton {
+        let screens = settingsManager.loadScreens(way: futuristicWays.gestureRecognition)
+        let isContains = screens.contains(appScreens.timetableDay)
+        isRecordingVideo = isContains
+        if isContains {
+            makeCameraButton()
             observeGestureRecognition()
             setUpCaptureSession()
+        } else {
+            removeCameraButton()
         }
     }
     
-    func observeCameraButton() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("gesture button timetable"), object: nil, queue: .main) { _ in
-            self.resetCameraButton()
+    private func makeCameraButton() {
+        if !view.subviews.contains(where: { $0.accessibilityIdentifier == "camera button" }) {
+            setUpCameraButton()
         }
     }
     
@@ -808,9 +800,6 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     func observeGestureRecognition() {
-        NotificationCenter.default.addObserver(forName: Notification.Name("gesture button timetable"), object: nil, queue: .main) { _ in
-            self.resetCameraButton()
-        }
         gestureRecognitionManager.registerHandGestureHandler { gesture in
             DispatchQueue.main.async {
                 self.currentGesture = gesture

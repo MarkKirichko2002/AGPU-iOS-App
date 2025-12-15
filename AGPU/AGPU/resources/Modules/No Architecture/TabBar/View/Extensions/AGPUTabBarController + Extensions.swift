@@ -253,6 +253,7 @@ extension AGPUTabBarController: OnlyMainVariantsListTableViewControllerDelegate 
         removeViews()
         resetSavedTab()
         setUpTabBars()
+        
         setUpTabs()
     }
 }

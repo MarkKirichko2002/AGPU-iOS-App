@@ -1,5 +1,5 @@
 //
-//  SpeechScreenVariantsListViewModel.swift
+//  FuturisticWayScreenListViewModel.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 30.12.2024.
@@ -7,22 +7,36 @@
 
 import Foundation
 
-final class SpeechScreenVariantsListViewModel {
+final class FuturisticWayScreenListViewModel {
     
-    var screens = SpeechScreens.allCases
-    var selectedScreens = [SpeechScreens]()
+    var screens = [appScreens]()
+    var selectedScreens = [appScreens]()
+    var way: futuristicWays
     
     var dataChangedHandler: (()->Void)?
     
     // MARK: - сервисы
     private let settingsManager = SettingsManager()
     
+    init(way: futuristicWays) {
+        self.way = way
+    }
+    
+    func setUpScreens() {
+        switch way {
+        case .voiceCommands:
+            screens = appScreens.allCases
+        case .gestureRecognition:
+            screens = [appScreens.timetableDay, appScreens.timetableWeek]
+        }
+    }
+    
     func getScreens() {
-        selectedScreens = settingsManager.loadSpeechScreens()
+        selectedScreens = settingsManager.loadScreens(way: way)
         dataChangedHandler?()
     }
     
-    func screenItem(index: Int)-> SpeechScreens {
+    func screenItem(index: Int)-> appScreens {
         return screens[index]
     }
     
@@ -46,10 +60,10 @@ final class SpeechScreenVariantsListViewModel {
         return selectedScreens.contains(screen)
     }
     
-    func saveScreens(screens: [SpeechScreens]) {
+    func saveScreens(screens: [appScreens]) {
         do {
             let arr = try JSONEncoder().encode(screens)
-            UserDefaults.standard.setValue(arr, forKey: "speech screens")
+            UserDefaults.standard.setValue(arr, forKey: "\(way.rawValue) screens")
             HapticsManager.shared.hapticFeedback()
             getScreens()
         } catch {

@@ -21,6 +21,7 @@ enum VoiceCommandsType {
     case timetableAR
     case newsAR
     case splashScreen
+    case mapCorps
     
     var commands: [VoiceCommandItem] {
         switch self {
@@ -40,6 +41,8 @@ enum VoiceCommandsType {
             return VoiceCommands.newsAR
         case .splashScreen:
             return VoiceCommands.splashScreen
+        case .mapCorps:
+            return VoiceCommands.mapCorps
         }
     }
 }
@@ -115,5 +118,12 @@ struct VoiceCommands {
     static let splashScreen = [
         VoiceCommandItem(name: "Название экрана заставки", description: "Показывает выбранный экран заставки"),
         VoiceCommandItem(name: "Пропустить", description: "Пропускает экран заставки")
+    ]
+    
+    static let mapCorps = [
+        VoiceCommandItem(name: "Текущая", description: "Показывает метку текущей локации"),
+        VoiceCommandItem(name: "Название корпуса", description: "Показывает метку названного корпуса"),
+        VoiceCommandItem(name: "Вперед", description: "Показывает метку следующего корпуса"),
+        VoiceCommandItem(name: "Назад", description: "Показывает метку предыдущего корпуса"),
     ]
 }

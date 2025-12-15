@@ -26,6 +26,13 @@ final class OnlyMainVariantsListTableViewController: UITableViewController {
         setUpTable()
         bindViewModel()
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if isChanged {
+            delegate?.tabsWasChanged()
+        }
+    }
 
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: "choose", title: "Варианты вкладок", frame: .zero)
@@ -40,9 +47,6 @@ final class OnlyMainVariantsListTableViewController: UITableViewController {
     }
     
     @objc private func close() {
-        if isChanged {
-            delegate?.tabsWasChanged()
-        }
         HapticsManager.shared.hapticFeedback()
         dismiss(animated: true)
     }

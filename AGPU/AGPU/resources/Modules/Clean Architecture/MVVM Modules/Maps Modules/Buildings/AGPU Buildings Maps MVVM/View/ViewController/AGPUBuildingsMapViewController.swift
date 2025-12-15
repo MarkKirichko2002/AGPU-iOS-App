@@ -29,9 +29,18 @@ final class AGPUBuildingsMapViewController: UIViewController {
         setUpNavigation()
         setUpMap()
         makeConstraints()
-        setUpFingers()
-        setUpButtons()
+        setUpNavigationBarGestures()
         bindViewModel()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.checkVoiceCommandsOption()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        viewModel.cancelRecognition()
     }
 
     private func setUpNavigation() {
@@ -76,7 +85,14 @@ final class AGPUBuildingsMapViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
-        let menu = UIMenu(title: "Карта", children: [searchBuilding, buidlingsList, facultiesList, typeList])
+        let voiceCommands = UIAction(title: "Голосовые команды") { _ in
+            let vc = VoiceCommandsListTableViewController(type: .mapCorps)
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let menu = UIMenu(title: "Карта", children: [searchBuilding, buidlingsList, facultiesList, typeList, voiceCommands])
         
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         options.tintColor = .label
@@ -122,49 +138,13 @@ final class AGPUBuildingsMapViewController: UIViewController {
         ])
     }
     
-    private func setUpFingers() {
-        let tap = UILongPressGestureRecognizer(target: self, action: #selector(showCurrentLocation))
-        tap.numberOfTouchesRequired = 1
-        mapView.addGestureRecognizer(tap)
-    }
-    
-    @objc private func showCurrentLocation(gesture: UIGestureRecognizer) {
-        if gesture.state == .ended {
-            viewModel.index = 0
-            viewModel.checkButton()
-            setRegion(region: viewModel.defaultLocation())
-        }
-    }
-    
-    private func setUpButtons() {
-        
-        let leftButton = UIBarButtonItem(image: UIImage(named: "backward"), style: .plain, target: self, action: #selector(pastLocation))
-        leftButton.accessibilityIdentifier = "backward"
-        leftButton.tintColor = .label
-        let rightButton = UIBarButtonItem(image: UIImage(named: "forward"), style: .plain, target: self, action: #selector(nextLocation))
-        rightButton.accessibilityIdentifier = "forward"
-        rightButton.tintColor = .label
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        
-        let toolbar = UIToolbar()
-        toolbar.accessibilityIdentifier = "toolbar"
-        toolbar.items = [leftButton, flexibleSpace, rightButton]
-        toolbar.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(toolbar)
-        
-        NSLayoutConstraint.activate([
-            toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            toolbar.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            toolbar.heightAnchor.constraint(equalToConstant: (view.bounds.height / 4) / 2 / 1.5)
-        ])
-    }
-    
-    @objc func nextLocation() {
-        guard let region = viewModel.nextLocation() else {return}
-        if !viewModel.arr.isEmpty {
-            setRegion(region: region)
-        }
+    private func setUpNavigationBarGestures() {
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(pastLocation))
+        swipeLeft.direction = .left
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(nextLocation))
+        swipeRight.direction = .right
+        self.navigationController?.navigationBar.addGestureRecognizer(swipeLeft)
+        self.navigationController?.navigationBar.addGestureRecognizer(swipeRight)
     }
     
     @objc func pastLocation() {
@@ -173,7 +153,14 @@ final class AGPUBuildingsMapViewController: UIViewController {
             setRegion(region: region)
         }
     }
-    
+        
+    @objc func nextLocation() {
+        guard let region = viewModel.nextLocation() else {return}
+        if !viewModel.arr.isEmpty {
+            setRegion(region: region)
+        }
+    }
+
     private func bindViewModel() {
         viewModel.observeBuildingTypeSelected()
         viewModel.observeFacultySelected()
@@ -188,6 +175,15 @@ final class AGPUBuildingsMapViewController: UIViewController {
                 self.showAlert(title: self.viewModel.createAlertMessage().0, message: self.viewModel.createAlertMessage().1, actions: [goToSettings, cancel])
             }
         }
+        viewModel.alertMicHandler = { isPresent, title, message in
+            if isPresent {
+                let goToSettings = UIAlertAction(title: "Перейти в настройки", style: .default) { _ in
+                    self.openSettings()
+                }
+                let cancel = UIAlertAction(title: "Отмена", style: .cancel) { _ in}
+                self.showAlert(title: title, message: message, actions: [goToSettings, cancel])
+            }
+        }
         viewModel.checkLocationAuthorizationStatus()
         viewModel.registerLocationHandler { location in
             let titleView = CustomTitleView(image: "marker icon", title: "Найти кампус", frame: .zero)
@@ -198,11 +194,6 @@ final class AGPUBuildingsMapViewController: UIViewController {
                     self.setRegion(region: self.viewModel.defaultLocation())
                 }
             }
-        }
-        viewModel.registerButtonHandler { id, isHidden in
-            let toolbar = self.view.subviews.first { $0.accessibilityIdentifier == "toolbar" }!
-            let button = (toolbar as? UIToolbar)!.items!.first(where: { $0.accessibilityIdentifier == id })!
-            button.isHidden = isHidden
         }
         viewModel.registerChoiceHandler { isBuildingType, annotation in
             let titleView = CustomTitleView(image: "search", title: "Поиск...", frame: .zero)
@@ -217,6 +208,10 @@ final class AGPUBuildingsMapViewController: UIViewController {
                     self.setRegion(region: self.viewModel.defaultLocation())
                 }
             }
+        }
+        viewModel.registerVoiceChoiceHandler { location in
+            let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001))
+            self.setRegion(region: region)
         }
     }
     

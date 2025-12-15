@@ -48,7 +48,6 @@ final class TimetableOptionsListTableViewController: UITableViewController {
         tableView.register(UINib(nibName: SaveRecentTimetableItemOptionCell.identifier, bundle: nil), forCellReuseIdentifier: SaveRecentTimetableItemOptionCell.identifier)
         tableView.register(UINib(nibName: VolumeControlOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: VolumeControlOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: DeviceOrientationControlTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DeviceOrientationControlTableViewCell.identifier)
-        tableView.register(UINib(nibName: GestureRecognitionOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: GestureRecognitionOptionTableViewCell.identifier)
     }
     
     private func bindViewModel() {
@@ -87,7 +86,7 @@ final class TimetableOptionsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return 7
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -106,8 +105,7 @@ final class TimetableOptionsListTableViewController: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DeviceOrientationControlTableViewCell.identifier, for: indexPath) as? DeviceOrientationControlTableViewCell else {return UITableViewCell()}
             return cell
         default:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: GestureRecognitionOptionTableViewCell.identifier, for: indexPath) as? GestureRecognitionOptionTableViewCell else {return UITableViewCell()}
-            return cell
+            return UITableViewCell()
         }
     }
 }

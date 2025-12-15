@@ -17,12 +17,14 @@ final class AGPUBuildingsMapViewModel {
     var location = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     
     var locationHandler: ((LocationModel)->Void)?
-    var buttonHandler: ((String, Bool)->Void)?
     var choiceHandler: ((Bool, MKAnnotation)->Void)?
+    var voiceChoiceHandler: ((MKAnnotation)->Void)?
     var alertHandler: ((Bool)->Void)?
+    var alertMicHandler: ((Bool, String, String)->Void)?
     
     // MARK: - сервисы
     let locationManager = LocationManager()
     let settingsManager = SettingsManager()
+    let speechRecognitionManager = SpeechRecognitionManager()
     
 }

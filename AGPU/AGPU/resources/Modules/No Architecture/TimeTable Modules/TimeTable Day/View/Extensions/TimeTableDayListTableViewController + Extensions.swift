@@ -366,7 +366,7 @@ extension TimeTableDayListTableViewController: AVCaptureVideoDataOutputSampleBuf
         case .fist, .one, .two, .palm:
             self.date = self.dateForGesture(gesture: gesture)
             self.getTimeTable(id: self.id, date: self.date, owner: self.owner) {
-                Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     self.startSession()
                 }
             }
@@ -549,7 +549,7 @@ extension TimeTableDayListTableViewController {
     }
     
     func isMicOn()-> Bool {
-        let isOn = settingsManager.loadSpeechScreens().contains(SpeechScreens.timetableDay)
+        let isOn = settingsManager.loadScreens(way: futuristicWays.voiceCommands).contains(appScreens.timetableDay)
         if isOn {
             return speechRecognitionManager.tapInstalled
         }
@@ -557,26 +557,26 @@ extension TimeTableDayListTableViewController {
     }
     
     func isRecording()-> Bool {
-        return settingsManager.loadSpeechScreens().contains(SpeechScreens.timetableDay)
+        return settingsManager.loadScreens(way: futuristicWays.voiceCommands).contains(appScreens.timetableDay)
     }
     
     func checkVoiceCommandsOption() {
-        let screens = settingsManager.loadSpeechScreens()
-        if screens.contains(SpeechScreens.timetableDay) {
+        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        if screens.contains(appScreens.timetableDay) {
             resetSpeechRecognition()
         }
     }
     
     func startSpeechRecognition() {
-        let screens = settingsManager.loadSpeechScreens()
-        if screens.contains(SpeechScreens.timetableDay) {
+        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        if screens.contains(appScreens.timetableDay) {
             startRecognize()
         }
     }
     
     func resetSpeechRecognition() {
-        let screens = settingsManager.loadSpeechScreens()
-        if screens.contains(SpeechScreens.timetableDay) {
+        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        if screens.contains(appScreens.timetableDay) {
             cancelRecognition()
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
                 self.startRecognize()
@@ -585,8 +585,8 @@ extension TimeTableDayListTableViewController {
     }
     
     func cancelRecognition() {
-        let screens = settingsManager.loadSpeechScreens()
-        if screens.contains(SpeechScreens.timetableDay) {
+        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        if screens.contains(appScreens.timetableDay) {
             speechRecognitionManager.cancelSpeechRecognition()
         }
     }
@@ -1449,8 +1449,9 @@ extension TimeTableDayListTableViewController {
     }
     
     func cancelGestureRecognition() {
-        let onGestureButton = UserDefaults.standard.object(forKey: "onGestureButton timetable") as? Bool ?? false
-        if onGestureButton {
+        let screens = settingsManager.loadScreens(way: futuristicWays.gestureRecognition)
+        let isContains = screens.contains(appScreens.timetableDay)
+        if isContains {
             if let session = captureSession {
                 session.stopRunning()
             }

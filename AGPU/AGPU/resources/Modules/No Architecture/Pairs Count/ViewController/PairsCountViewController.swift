@@ -170,8 +170,8 @@ final class PairsCountViewController: UIViewController {
     }
     
     func cancelRecognition() {
-        let screens = settingsManager.loadSpeechScreens()
-        if screens.contains(SpeechScreens.timetableDay) {
+        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        if screens.contains(appScreens.timetableDay) {
             speechRecognitionManager.cancelSpeechRecognition()
         }
     }

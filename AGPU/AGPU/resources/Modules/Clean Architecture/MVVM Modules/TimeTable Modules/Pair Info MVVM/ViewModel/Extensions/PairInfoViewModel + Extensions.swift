@@ -73,9 +73,10 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
     }
     
     func stopTimer() {
-        print("timer stopped")
         timer?.invalidate()
+        timer = nil
         AudioPlayerClass.shared.stopSound()
+        print("timer stopped")
     }
     
     func checkCurrentTime() {
@@ -96,28 +97,34 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
         
         // если даты равны и текущее время меньше времени начала пары
         if dateComparisonResult == .orderedSame && timeComparisonResult == .orderedAscending {
+            stopTimer()
             getTimeLeftToStart()
         }
         
         // если даты равны и текущее время меньше времени окончания пары
         else if dateComparisonResult == .orderedSame && timeComparisonResult2 == .orderedAscending {
+            stopTimer()
             getTimeLeftToEnd()
         }
         
         // если даты равны и текущее время больше времени окончания пары
         else if dateComparisonResult == .orderedSame && timeComparisonResult2 == .orderedDescending {
+            stopTimer()
             getTimeEnded()
         }
         
         // если текущая дата меньше другой
         else if dateComparisonResult == .orderedAscending {
+            stopTimer()
             getTimeLeftToStartInFuture()
         }
         
         // если текущая дата больше другой
         else if dateComparisonResult == .orderedDescending {
+            stopTimer()
             getTimeEnded()
         } else {
+            stopTimer()
             getTimeLeftToStart()
         }
     }
@@ -398,8 +405,8 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
     }
     
     func isRecording()-> Bool {
-        let screens = settingsManager.loadSpeechScreens()
-        return screens.contains(SpeechScreens.pairInfo)
+        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        return screens.contains(appScreens.pairInfo)
     }
     
     func checkVoiceCommandsOption() {
@@ -554,13 +561,14 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
     }
     
     func selectPairInfoPart(index: Int) {
-        let id = selectedInfoParts.firstIndex { $0 == pairInfo[index] } ?? 0
-        selectedInfoParts.append(pairInfo[id])
+        selectedInfoParts.append(pairInfo[index])
+        print(selectedInfoParts)
     }
     
     func deSelectPairInfoPart(index: Int) {
         let id = selectedInfoParts.firstIndex { $0 == pairInfo[index] } ?? 0
         selectedInfoParts.remove(at: id)
+        print(selectedInfoParts)
     }
     
     func copyPairInfoText() {

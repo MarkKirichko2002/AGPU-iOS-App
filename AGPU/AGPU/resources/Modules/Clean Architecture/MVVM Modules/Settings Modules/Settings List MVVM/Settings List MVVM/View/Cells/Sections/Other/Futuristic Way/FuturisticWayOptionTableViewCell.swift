@@ -1,15 +1,15 @@
 //
-//  SayAnyWhereTableViewCell.swift
+//  FuturisticWayOptionTableViewCell.swift
 //  AGPU
 //
-//  Created by Марк Киричко on 30.12.2024.
+//  Created by Марк Киричко on 05.12.2025.
 //
 
 import UIKit
 
-final class SayAnyWhereTableViewCell: UITableViewCell {
+final class FuturisticWayOptionTableViewCell: UITableViewCell {
 
-    static let identifier = "SayAnyWhereTableViewCell"
+    static let identifier = "FuturisticWayOptionTableViewCell"
     
     var userDefaults = UserDefaults.standard
     private let animation = AnimationClass()

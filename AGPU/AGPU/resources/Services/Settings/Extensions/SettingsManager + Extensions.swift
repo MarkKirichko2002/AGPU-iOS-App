@@ -95,12 +95,12 @@ extension SettingsManager: SettingsManagerProtocol {
         return data
     }
     
-    // MARK: - Say Anywhere
-    func loadSpeechScreens()-> [SpeechScreens] {
-        var data = [SpeechScreens]()
-        if let result = UserDefaults.standard.object(forKey: "speech screens") as? Data {
+    // MARK: - Futuristic Way
+    func loadScreens(way: futuristicWays)-> [appScreens] {
+        var data = [appScreens]()
+        if let result = UserDefaults.standard.object(forKey: "\(way.rawValue) screens") as? Data {
             do {
-                data = try JSONDecoder().decode([SpeechScreens].self, from: result)
+                data = try JSONDecoder().decode([appScreens].self, from: result)
             } catch {
                 print(error)
             }
@@ -131,10 +131,6 @@ extension SettingsManager: SettingsManagerProtocol {
     
     func checkVolumeControl()-> Bool {
         return UserDefaults.standard.object(forKey: "onVolumeContol timetable") as? Bool ?? false
-    }
-    
-    func checkRecordingVideo()-> Bool {
-        return UserDefaults.standard.object(forKey: "onGestureButton timetable") as? Bool ?? false
     }
     
     // MARK: - ASPU Button

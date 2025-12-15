@@ -152,8 +152,8 @@ final class TimetableARViewController: UIViewController {
     }
     
     private func checkVoiceCommandsOption() {
-        let screens = settingsManager.loadSpeechScreens()
-        if screens.contains(SpeechScreens.ARTimetable) {
+        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        if screens.contains(appScreens.ARTimetable) {
             startRecognize()
         }
         navigationTitle()
@@ -170,9 +170,9 @@ final class TimetableARViewController: UIViewController {
         
         let style = settingsManager.getSavedCommunicationStyle()
         
-        let screens = settingsManager.loadSpeechScreens()
+        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
         
-        if screens.contains(SpeechScreens.ARTimetable) {
+        if screens.contains(appScreens.ARTimetable) {
             style == .formal ? makeNavigationView(image: "microphone", title: "Говорите...") : makeNavigationView(image: "microphone", title: "Говори...")
         } else {
             makeNavigationView(image: "cube", title: "AR режим")
@@ -207,15 +207,15 @@ final class TimetableARViewController: UIViewController {
     }
     
     private func cancelRecognition() {
-        let screens = settingsManager.loadSpeechScreens()
-        if screens.contains(SpeechScreens.ARTimetable) {
+        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        if screens.contains(appScreens.ARTimetable) {
             speechRecognitionManager.cancelSpeechRecognition()
         }
     }
     
     func resetSpeechRecognition() {
-        let screens = settingsManager.loadSpeechScreens()
-        if screens.contains(SpeechScreens.ARTimetable) {
+        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        if screens.contains(appScreens.ARTimetable) {
             cancelRecognition()
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
                 self.startRecognize()

@@ -358,7 +358,6 @@ extension VoiceCommandsViewController {
     
     // измение корпуса на карте
     func changeBuilding(text: String) {
-        
         for building in AGPUBuildings.buildings {
             if building.voiceCommands.contains(where: { text.lowercased().range(of: $0.lowercased()) != nil }) {
                 resetSpeechRecognition()

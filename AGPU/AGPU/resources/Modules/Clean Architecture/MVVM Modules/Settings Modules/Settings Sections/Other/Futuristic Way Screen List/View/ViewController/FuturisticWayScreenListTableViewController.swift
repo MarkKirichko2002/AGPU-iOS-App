@@ -1,5 +1,5 @@
 //
-//  SpeechScreenVariantsListTableViewController.swift
+//  FuturisticWayScreenListTableViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 30.12.2024.
@@ -7,13 +7,19 @@
 
 import UIKit
 
-final class SpeechScreenVariantsListTableViewController: UITableViewController {
+final class FuturisticWayScreenListTableViewController: UITableViewController {
 
-    var screens = SpeechScreens.allCases
-    var selectedScreens = [SpeechScreens]()
-    
     // MARK: - сервисы
-    let viewModel = SpeechScreenVariantsListViewModel()
+    var viewModel: FuturisticWayScreenListViewModel
+    
+    init(way: futuristicWays) {
+        self.viewModel = FuturisticWayScreenListViewModel(way: way)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,16 +29,27 @@ final class SpeechScreenVariantsListTableViewController: UITableViewController {
     }
     
     private func setUpNavigation() {
-        let titleView = CustomTitleView(image: "microphone", title: "Включать микрофон", frame: .zero)
-        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .plain, target: self, action: #selector(closeScreen))
-        closeButton.tintColor = .label
+        let titleView = CustomTitleView(image: viewModel.way.icon, title: viewModel.way.rawValue, frame: .zero)
         navigationItem.titleView = titleView
-        navigationItem.rightBarButtonItem = closeButton
+        setUpBackButton()
     }
     
-    @objc private func closeScreen() {
-        HapticsManager.shared.hapticFeedback()
-        dismiss(animated: true)
+    func setUpBackButton() {
+        
+        let button = UIButton()
+        button.tintColor = .label
+        button.setImage(UIImage(named: "back"), for: .normal)
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        
+        let backButton = UIBarButtonItem(customView: button)
+        
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.hidesBackButton = true
+        navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc private func back() {
+        navigationController?.popViewController(animated: true)
     }
     
     private func setUpTableView() {
@@ -46,6 +63,7 @@ final class SpeechScreenVariantsListTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
+        viewModel.setUpScreens()
         viewModel.getScreens()
     }
 

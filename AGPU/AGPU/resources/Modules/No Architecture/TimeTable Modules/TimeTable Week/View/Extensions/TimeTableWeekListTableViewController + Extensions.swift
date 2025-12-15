@@ -302,28 +302,28 @@ extension TimeTableWeekListTableViewController: AVCaptureVideoDataOutputSampleBu
         switch gesture {
         case .one:
             pastWeek {
-                Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     self.startSession()
                 }
             }
             HapticsManager.shared.hapticFeedback()
         case .two:
             nextWeek {
-                Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     self.startSession()
                 }
             }
             HapticsManager.shared.hapticFeedback()
         case .palm:
             currentWeek {
-                Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     self.startSession()
                 }
             }
             HapticsManager.shared.hapticFeedback()
         case .fist:
             refreshTimetable {
-                Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     self.startSession()
                 }
             }
@@ -405,8 +405,9 @@ extension TimeTableWeekListTableViewController: AVCaptureVideoDataOutputSampleBu
     }
     
     func cancelGestureRecognition() {
-        let onGestureButton = UserDefaults.standard.object(forKey: "onGestureButton timetable") as? Bool ?? false
-        if onGestureButton {
+        let screens = settingsManager.loadScreens(way: futuristicWays.gestureRecognition)
+        let isContains = screens.contains(appScreens.timetableWeek)
+        if isContains {
             if let session = captureSession {
                 session.stopRunning()
             }
@@ -472,7 +473,7 @@ extension TimeTableWeekListTableViewController: MenuOptionsListTableViewControll
 extension TimeTableWeekListTableViewController {
     
     func isMicOn()-> Bool {
-        let isOn = settingsManager.loadSpeechScreens().contains(SpeechScreens.timetableWeek)
+        let isOn = settingsManager.loadScreens(way: futuristicWays.voiceCommands).contains(appScreens.timetableWeek)
         if isOn {
             return speechRecognitionManager.tapInstalled
         }
@@ -480,26 +481,26 @@ extension TimeTableWeekListTableViewController {
     }
     
     func isRecording()-> Bool {
-        return settingsManager.loadSpeechScreens().contains(SpeechScreens.timetableWeek)
+        return settingsManager.loadScreens(way: futuristicWays.voiceCommands).contains(appScreens.timetableWeek)
     }
     
     func checkVoiceCommandsOption() {
-        let screens = settingsManager.loadSpeechScreens()
-        if screens.contains(SpeechScreens.timetableWeek) {
+        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        if screens.contains(appScreens.timetableWeek) {
             resetSpeechRecognition()
         }
     }
     
     func startSpeechRecognition() {
-        let screens = settingsManager.loadSpeechScreens()
-        if screens.contains(SpeechScreens.timetableWeek) {
+        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        if screens.contains(appScreens.timetableWeek) {
             startRecognize()
         }
     }
     
     func resetSpeechRecognition() {
-        let screens = settingsManager.loadSpeechScreens()
-        if screens.contains(SpeechScreens.timetableWeek) {
+        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        if screens.contains(appScreens.timetableWeek) {
             cancelRecognition()
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
                 self.startRecognize()
@@ -508,8 +509,8 @@ extension TimeTableWeekListTableViewController {
     }
     
     func cancelRecognition() {
-        let screens = settingsManager.loadSpeechScreens()
-        if screens.contains(SpeechScreens.timetableWeek) {
+        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        if screens.contains(appScreens.timetableWeek) {
             speechRecognitionManager.cancelSpeechRecognition()
         }
     }

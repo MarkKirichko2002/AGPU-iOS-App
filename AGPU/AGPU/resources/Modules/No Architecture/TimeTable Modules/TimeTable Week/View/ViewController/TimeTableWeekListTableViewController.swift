@@ -103,14 +103,12 @@ final class TimeTableWeekListTableViewController: UIViewController {
         setUpIndicatorView()
         setUpRefreshControl()
         getTimeTable {}
-        createCameraButton()
         SpeechSynthesizerManager.shared.registerSpeechFinishedHandler {
             self.resetSpeechRecognition()
         }
         imageSaver.registerImageHandler { title, message in
             self.showAlert(title: title, message: message, actions: [UIAlertAction(title: "ОК", style: .default)])
         }
-        isRecordingVideo = settingsManager.checkRecordingVideo()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -710,16 +708,18 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     func checkGestureOption() {
-        let onGestureButton = UserDefaults.standard.object(forKey: "onGestureButton timetable") as? Bool ?? false
-        if onGestureButton {
+        let screens = settingsManager.loadScreens(way: futuristicWays.gestureRecognition)
+        let isContains = screens.contains(appScreens.timetableWeek)
+        isRecordingVideo = isContains
+        if isContains {
+            makeCameraButton()
             observeGestureRecognition()
             setUpCaptureSession()
         }
     }
     
-    func createCameraButton() {
-        let onGestureButton = UserDefaults.standard.object(forKey: "onGestureButton timetable") as? Bool ?? false
-        if onGestureButton {
+    private func makeCameraButton() {
+        if !view.subviews.contains(where: { $0.accessibilityIdentifier == "camera button" }) {
             setUpCameraButton()
         }
     }

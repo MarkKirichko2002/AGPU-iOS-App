@@ -14,7 +14,6 @@ enum handGestures: String {
     case palm = "🤚"
     case like = "👍"
     case dislike = "👎"
-    
 }
 
 final class GestureRecognitionManager: NSObject {

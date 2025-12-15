@@ -40,7 +40,7 @@ extension SettingsListViewController: UITableViewDataSource {
                 cell.delegate = self
                 return cell
             } else if indexPath.row == 1 {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: SayAnyWhereTableViewCell.identifier, for: indexPath) as? SayAnyWhereTableViewCell else {return UITableViewCell()}
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: FuturisticWayOptionTableViewCell.identifier, for: indexPath) as? FuturisticWayOptionTableViewCell else {return UITableViewCell()}
                 return cell
             } else if indexPath.row == 2 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: ASPUButtonsScreenVariantsListTableViewCell.identifier, for: indexPath) as? ASPUButtonsScreenVariantsListTableViewCell else {return UITableViewCell()}
@@ -154,9 +154,9 @@ extension SettingsListViewController: UITableViewDelegate {
             }
         case 1:
             if indexPath.row == 1 {
-                if let cell = tableView.cellForRow(at: indexPath) as? SayAnyWhereTableViewCell {
+                if let cell = tableView.cellForRow(at: indexPath) as? FuturisticWayOptionTableViewCell {
                     cell.didTapCell(indexPath: indexPath) {
-                        self.handleButton(icon: "microphone", vc: SpeechScreenVariantsListTableViewController())
+                        self.handleButton(icon: "tech", vc: FuturisticWayOptionsListTableViewController())
                     }
                 }
             } else if indexPath.row == 2 {

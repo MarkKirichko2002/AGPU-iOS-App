@@ -64,8 +64,8 @@ extension NewsWebViewModel: INewsWebViewModel {
     }
     
     func isRecording()-> Bool {
-        let screens = settingsManager.loadSpeechScreens()
-        return screens.contains(SpeechScreens.newsWeb)
+        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        return screens.contains(appScreens.newsWeb)
     }
     
     func checkVoiceCommandsOption() {

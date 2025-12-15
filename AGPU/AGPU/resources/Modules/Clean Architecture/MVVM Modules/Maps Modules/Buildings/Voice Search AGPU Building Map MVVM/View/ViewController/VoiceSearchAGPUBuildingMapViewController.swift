@@ -36,7 +36,6 @@ final class VoiceSearchAGPUBuildingMapViewController: UIViewController {
         setUpNavigation()
         setUpMap()
         makeConstraints()
-        setUpFingers()
         bindViewModel()
     }
     
@@ -66,18 +65,6 @@ final class VoiceSearchAGPUBuildingMapViewController: UIViewController {
             mapView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
-    }
-    
-    private func setUpFingers() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(showCurrentLocation))
-        tap.numberOfTouchesRequired = 1
-        mapView.addGestureRecognizer(tap)
-    }
-    
-    @objc private func showCurrentLocation(gesture: UIGestureRecognizer) {
-        if gesture.state == .ended {
-            setRegion(region: viewModel.defaultLocation())
-        }
     }
     
     private func bindViewModel() {

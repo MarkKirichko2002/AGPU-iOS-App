@@ -38,8 +38,8 @@ final class SettingsListViewController: UIViewController {
         // Advanced Timetable
         tableView.register(UINib(nibName: TimetableOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimetableOptionTableViewCell.identifier)
         // MARK: - Секция "Другие опции"
-        // Say Anywhere
-        tableView.register(UINib(nibName: SayAnyWhereTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SayAnyWhereTableViewCell.identifier)
+        // Futuristic Way
+        tableView.register(UINib(nibName: FuturisticWayOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FuturisticWayOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: ASPUButtonsScreenVariantsListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ASPUButtonsScreenVariantsListTableViewCell.identifier)
         // Action To Control
         tableView.register(UINib(nibName: ActionToRecallOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ActionToRecallOptionTableViewCell.identifier)

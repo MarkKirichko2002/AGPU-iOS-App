@@ -612,8 +612,8 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     }
     
     func isRecording()-> Bool {
-        let screens = settingsManager.loadSpeechScreens()
-        return screens.contains(SpeechScreens.newsList)
+        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        return screens.contains(appScreens.newsList)
     }
     
     func checkVoiceCommandsOption() {

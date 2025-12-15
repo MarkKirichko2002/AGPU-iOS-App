@@ -51,7 +51,7 @@ extension AGPUCurrentCathedraMapViewModel: AGPUCurrentCathedraMapViewModelProtoc
                 latitude: self.cathedra.coordinates[0],
                 longitude: self.cathedra.coordinates[1]
             )
-            let cathedraPin = MKPointAnnotation(__coordinate: cathedraLocation)
+            let cathedraPin = MKPointAnnotation(coordinate: cathedraLocation)
             cathedraPin.title = self.cathedra.name
             cathedraPin.subtitle = self.cathedra.address
             

@@ -77,11 +77,11 @@ final class PairInfoTableViewController: UITableViewController {
         }
         let copyAction = UIAction(title: "Скопировать") { [weak self] _ in
             DispatchQueue.main.async {
-                guard let self = self else { return }
-                self.setUpCancelButton()
-                self.setUpCopyButton()
-                self.viewModel.stopTimer()
-                self.tableView.isEditing = true
+                self?.setUpCancelButton()
+                self?.setUpCopyButton()
+                self?.viewModel.stopTimer()
+                self?.viewModel.stopUpdatingLocation()
+                self?.tableView.isEditing = true
             }
         }
         return UIMenu(title: "Информация о паре", children: [transpotyType, voiceCommands, copyAction])
@@ -100,21 +100,23 @@ final class PairInfoTableViewController: UITableViewController {
     
     @objc private func copyInfo() {
         viewModel.copyPairInfoText()
+        cancelCopying()
     }
     
     func setUpCancelButton() {
-        let moveButton = UIBarButtonItem(title: "Отмена", style: .done, target: self, action: #selector(cancel))
+        let moveButton = UIBarButtonItem(title: "Отмена", style: .done, target: self, action: #selector(cancelCopying))
         moveButton.tintColor = viewModel.currentColor
         navigationItem.leftBarButtonItem = moveButton
     }
     
-    @objc private func cancel() {
+    @objc private func cancelCopying() {
         for i in 0..<viewModel.pairInfo.count {
             tableView.deselectRow(at: IndexPath(row: i, section: 0), animated: true)
         }
         viewModel.resetSelectedInfo()
         setUpCloseButton()
         setUpMenu()
+        viewModel.checkCurrentTime()
         tableView.isEditing = false
     }
     

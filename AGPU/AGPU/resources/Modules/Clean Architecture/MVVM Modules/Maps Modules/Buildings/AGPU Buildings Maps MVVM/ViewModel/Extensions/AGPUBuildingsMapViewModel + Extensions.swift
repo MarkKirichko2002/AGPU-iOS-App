@@ -19,7 +19,7 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
             }
         }
     }
-        
+    
     func getLocation() {
         
         locationManager.getLocations()
@@ -54,7 +54,6 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                 self.index = 0
                 self.arr.append(building.pin)
             }
-            self.checkButton()
             self.locationHandler?(location)
         }
     }
@@ -86,17 +85,9 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
             index += 1
             let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
             let region = MKCoordinateRegion(center: arr[index].coordinate, span: span)
-            checkRightButton()
             return region
         }
         return nil
-    }
-    
-    func checkRightButton() {
-        buttonHandler?("backward", false)
-        if index == arr.count - 1 {
-            buttonHandler?("forward", true)
-        }
     }
     
     func pastLocation()-> MKCoordinateRegion? {
@@ -104,27 +95,9 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
             index -= 1
             let span = MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)
             let region = MKCoordinateRegion(center: arr[index].coordinate, span: span)
-            checkLeftButton()
             return region
         }
         return nil
-    }
-    
-    func checkLeftButton() {
-        buttonHandler?("forward", false)
-        if index == 0 {
-            buttonHandler?("backward", true)
-        }
-    }
-    
-    func checkButton() {
-        buttonHandler?("forward", false)
-        buttonHandler?("backward", false)
-        if index == 0 {
-            buttonHandler?("backward", true)
-        } else if index == arr.count - 1 {
-            buttonHandler?("forward", true)
-        }
     }
     
     func observeBuildingTypeSelected() {
@@ -180,7 +153,7 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                             self.choiceHandler?(false, building.pin)
                         }
                     }
-                   
+                    
                     for pin in self.arr {
                         self.choiceHandler?(true, pin)
                     }
@@ -214,7 +187,6 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                 case .buildingAndHostel:
                     break
                 }
-                self.checkButton()
             }
         }
     }
@@ -245,7 +217,7 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                     latitude: faculty.cathedra[0].coordinates[0],
                     longitude: faculty.cathedra[0].coordinates[1]
                 )
-                let cathedraPin1 = MKPointAnnotation(__coordinate: cathedraLocation1)
+                let cathedraPin1 = MKPointAnnotation(coordinate: cathedraLocation1)
                 cathedraPin1.title = self.faculty?.cathedra[0].name
                 cathedraPin1.subtitle = self.faculty?.cathedra[0].address
                 
@@ -254,7 +226,7 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                     latitude: faculty.cathedra[1].coordinates[0],
                     longitude: faculty.cathedra[1].coordinates[1]
                 )
-                let cathedraPin2 = MKPointAnnotation(__coordinate: cathedraLocation2)
+                let cathedraPin2 = MKPointAnnotation(coordinate: cathedraLocation2)
                 cathedraPin2.title = self.faculty?.cathedra[1].name
                 cathedraPin2.subtitle = self.faculty?.cathedra[1].address
                 
@@ -267,8 +239,111 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
                 for pin in self.arr {
                     self.choiceHandler?(true, pin)
                 }
-                self.checkButton()
             }
+        }
+    }
+    
+    func isRecording()-> Bool {
+        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        return screens.contains(appScreens.mapCorps)
+    }
+    
+    func checkVoiceCommandsOption() {
+        if isRecording() {
+            startRecognize()
+        }
+    }
+    
+    func resetSpeechRecognition() {
+        if isRecording() {
+            cancelRecognition()
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                self.startRecognize()
+            }
+        }
+    }
+    
+    func cancelRecognition() {
+        if isRecording() {
+            speechRecognitionManager.cancelSpeechRecognition()
+        }
+    }
+    
+    private func startRecognize() {
+        speechRecognitionManager.requestSpeechAndMicrophonePermission()
+        speechRecognitionManager.registerSpeechAuthorizationHandler { auth in
+            switch auth {
+            case .notDetermined:
+                print("Разрешение на распознавание речи еще не было получено.")
+            case .denied:
+                self.alertMicHandler?(true, self.createMicAlertMessage().0, self.createMicAlertMessage().1)
+                print("Доступ к распознаванию речи был отклонен.")
+            case .restricted:
+                print("Функциональность распознавания речи ограничена.")
+            case .authorized:
+                print("Разрешение на распознавание речи получено.")
+                self.speechRecognitionManager.startRecognize()
+            @unknown default:
+                print("неизвестно")
+            }
+        }
+        speechRecognitionManager.registerSpeechRecognitionHandler { text in
+            self.voiceCommands(text: text)
+        }
+    }
+    
+    private func voiceCommands(text: String) {
+        getCurrentLocation(text: text)
+        searchBuildindWithVoice(text: text)
+        navigationBetweenBuildings(text: text)
+    }
+    
+    private func getCurrentLocation(text: String) {
+        if text.lowercased().contains("текущ") {
+            resetSpeechRecognition()
+            index = 0
+            self.voiceChoiceHandler?(currentLocationPin())
+        }
+    }
+    
+    private func searchBuildindWithVoice(text: String) {
+        for building in AGPUBuildings.buildings {
+            if building.voiceCommands.contains(where: { text.lowercased().range(of: $0.lowercased()) != nil }) {
+                resetSpeechRecognition()
+                index = arr.firstIndex(where: { $0.title!! == building.name }) ?? 0
+                print(index)
+                self.voiceChoiceHandler?(building.pin)
+            }
+        }
+    }
+    
+    private func navigationBetweenBuildings(text: String) {
+        
+        if text.lowercased().contains("вперёд") || text.lowercased().contains("вперед") {
+            resetSpeechRecognition()
+            guard let region = nextLocation() else {return}
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = region.center
+            self.voiceChoiceHandler?(annotation)
+        }
+        
+        if text.lowercased().contains("назад") || text.lowercased().contains("обратно") {
+            resetSpeechRecognition()
+            guard let region = pastLocation() else {return}
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = region.center
+            self.voiceChoiceHandler?(annotation)
+        }
+    }
+    
+    func createMicAlertMessage()-> (String, String) {
+        let style = settingsManager.getSavedCommunicationStyle()
+        let name = UserDefaults.standard.string(forKey: "name") ?? ""
+        switch style {
+        case .formal:
+            return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хотите" : "Хотите") включить в настройках?")
+        case .informal:
+            return ("Микрофон выключен", "\(!name.isEmpty ? "\(name) хочешь" : "Хочешь") врубить в настройках?")
         }
     }
     
@@ -290,15 +365,15 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
         }
     }
     
-    func registerButtonHandler(block: @escaping(String, Bool)->Void) {
-        self.buttonHandler = block
-    }
-    
     func registerLocationHandler(block: @escaping(LocationModel)->Void) {
         self.locationHandler = block
     }
     
     func registerChoiceHandler(block: @escaping(Bool, MKAnnotation)->Void) {
         self.choiceHandler = block
+    }
+    
+    func registerVoiceChoiceHandler(block: @escaping(MKAnnotation)->Void) {
+        self.voiceChoiceHandler = block
     }
 }
