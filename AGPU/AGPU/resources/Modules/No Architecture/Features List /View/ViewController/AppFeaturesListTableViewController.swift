@@ -51,7 +51,6 @@ final class AppFeaturesListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let feature = AppFeaturesList.features[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AppFeaturesListTableViewCell.identifier, for: indexPath) as? AppFeaturesListTableViewCell else {return UITableViewCell()}
-        cell.delegate = self
         cell.configure(feature: feature)
         return cell
     }

@@ -35,7 +35,7 @@ final class WayTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(way: futuristicWays) {
+    func configure(way: differentWays) {
         optionIcon.image = UIImage(named: way.icon)
         optionName.text = way.rawValue
     }

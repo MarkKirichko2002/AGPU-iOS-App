@@ -11,5 +11,4 @@ struct AppFeatureModel {
     let id: Int
     let name: String
     let description: String
-    let videoURL: String
 }

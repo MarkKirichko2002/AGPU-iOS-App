@@ -50,7 +50,8 @@ struct TimetableWeekOptions {
         MenuOptionModel(id: 11, name: "Сохранить"),
         MenuOptionModel(id: 12, name: "Навигация"),
         MenuOptionModel(id: 13, name: "Голосовые команды"),
-        MenuOptionModel(id: 14, name: "Поделиться")
+        MenuOptionModel(id: 14, name: "Анализ расписания"),
+        MenuOptionModel(id: 15, name: "Поделиться")
     ]
 }
 

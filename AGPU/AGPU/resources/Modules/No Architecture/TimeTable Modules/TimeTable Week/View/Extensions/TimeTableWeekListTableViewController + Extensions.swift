@@ -83,6 +83,15 @@ extension TimeTableWeekListTableViewController: UITableViewDelegate {
             
             let originalName = self.timetablePseudonymManager.returnOriginalDisciplineName(name: discipline.name)
             
+            let infoAction = UIAction(title: "О чем дисциплина?", image: UIImage(named: "info")) { _ in
+                let vc = AIInfoViewController(text: "напиши для чего эта дисциплина: \(self.timetablePseudonymManager.returnOriginalDisciplineName(name: discipline.name))?")
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self.present(navVC, animated: true)
+                }
+            }
+            
             let mapAction = UIAction(title: "Найти корпус", image: UIImage(named: "map icon")) { _ in
                 let originalRoom = self.timetablePseudonymManager.returnOriginalAudienceName(audience: discipline.audienceID)
                 let vc = AGPUCurrentBuildingMapViewController(audienceID: originalRoom, id: self.id, owner: self.owner)
@@ -97,6 +106,7 @@ extension TimeTableWeekListTableViewController: UITableViewDelegate {
             }
             
             return UIMenu(title: originalName, children: [
+                infoAction,
                 addPseyMenu,
                 mapAction
             ])
@@ -405,7 +415,7 @@ extension TimeTableWeekListTableViewController: AVCaptureVideoDataOutputSampleBu
     }
     
     func cancelGestureRecognition() {
-        let screens = settingsManager.loadScreens(way: futuristicWays.gestureRecognition)
+        let screens = settingsManager.loadScreens(way: differentWays.gestureRecognition)
         let isContains = screens.contains(appScreens.timetableWeek)
         if isContains {
             if let session = captureSession {
@@ -473,7 +483,7 @@ extension TimeTableWeekListTableViewController: MenuOptionsListTableViewControll
 extension TimeTableWeekListTableViewController {
     
     func isMicOn()-> Bool {
-        let isOn = settingsManager.loadScreens(way: futuristicWays.voiceCommands).contains(appScreens.timetableWeek)
+        let isOn = settingsManager.loadScreens(way: differentWays.voiceCommands).contains(appScreens.timetableWeek)
         if isOn {
             return speechRecognitionManager.tapInstalled
         }
@@ -481,25 +491,25 @@ extension TimeTableWeekListTableViewController {
     }
     
     func isRecording()-> Bool {
-        return settingsManager.loadScreens(way: futuristicWays.voiceCommands).contains(appScreens.timetableWeek)
+        return settingsManager.loadScreens(way: differentWays.voiceCommands).contains(appScreens.timetableWeek)
     }
     
     func checkVoiceCommandsOption() {
-        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        let screens = settingsManager.loadScreens(way: differentWays.voiceCommands)
         if screens.contains(appScreens.timetableWeek) {
             resetSpeechRecognition()
         }
     }
     
     func startSpeechRecognition() {
-        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        let screens = settingsManager.loadScreens(way: differentWays.voiceCommands)
         if screens.contains(appScreens.timetableWeek) {
             startRecognize()
         }
     }
     
     func resetSpeechRecognition() {
-        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        let screens = settingsManager.loadScreens(way: differentWays.voiceCommands)
         if screens.contains(appScreens.timetableWeek) {
             cancelRecognition()
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
@@ -509,7 +519,7 @@ extension TimeTableWeekListTableViewController {
     }
     
     func cancelRecognition() {
-        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        let screens = settingsManager.loadScreens(way: differentWays.voiceCommands)
         if screens.contains(appScreens.timetableWeek) {
             speechRecognitionManager.cancelSpeechRecognition()
         }
@@ -897,6 +907,15 @@ extension TimeTableWeekListTableViewController {
             self.present(navVC, animated: true)
         }
         
+        let timetableAnalyze = UIAction(title: "Анализ расписания") { _ in
+            let vc = AIInfoViewController(text: "есть расписание \(self.configureOriginTimetable()) \(self.week.dayNames) короткий анализ о раписании")
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            DispatchQueue.main.async {
+                self.present(navVC, animated: true)
+            }
+        }
+        
         // поделиться
         let share = UIAction(title: "Поделиться") { _ in
             self.shareTimetable()
@@ -916,14 +935,26 @@ extension TimeTableWeekListTableViewController {
             saveTimetable,
             navigationsList,
             voiceCommandsAction,
+            timetableAnalyze,
             share
         ]
     }
-    
+        
     func findOption(option: MenuOptionModel)-> UIAction {
         let originalOptions = getAllOptions()
         let searchOption = TimetableWeekOptions.list.first(where: { $0.name == option.name })!
         let item = originalOptions.first { $0.title == searchOption.name }!
         return item
+    }
+    
+    
+    func configureOriginTimetable()-> [TimeTable] {
+        var timetable = timetable
+        timetable = timetable.map({ day in
+            var day = day
+            day.disciplines = timetablePseudonymManager.setUpTimetableOriginal(pairs: &day.disciplines)
+            return day
+        })
+        return timetable
     }
 }

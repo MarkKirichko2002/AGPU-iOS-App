@@ -307,7 +307,9 @@ extension FavouriteSectionsListViewController: UITableViewDelegate {
         case 4:
             if let cell = tableView.cellForRow(at: indexPath) as? ForEveryStatusTableViewCell {
                 cell.didTapCell(indexPath: indexPath) {
-                    self.goToWeb(url: "http://www.agpu.net/abitur/faculties/index.php", image: "online", title: "Факультеты", isSheet: false, isNotify: false)
+                    let vc = AGPUFacultiesListTableViewController()
+                    vc.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
             

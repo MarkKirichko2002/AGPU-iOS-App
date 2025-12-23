@@ -47,6 +47,15 @@ extension TimeTableDatesListViewController: UITableViewDelegate {
             let originalName = self.viewModel.configureDisciplineName(discipline: discipline)
             let item = self.viewModel.timetable[indexPath.row]
             
+            let infoAction = UIAction(title: "О чем дисциплина?", image: UIImage(named: "info")) { _ in
+                let vc = AIInfoViewController(text: "напиши для чего эта дисциплина: \(self.viewModel.returnOriginalDisciplineName(name: discipline.name))?")
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self.present(navVC, animated: true)
+                }
+            }
+            
             let mapAction = UIAction(title: "Найти корпус", image: UIImage(named: "map icon")) { _ in
                 let originalRoom = self.viewModel.returnOriginalAudienceName(audience: discipline.audienceID)
                 let vc = AGPUCurrentBuildingMapViewController(audienceID: originalRoom, id: item.id, owner: item.owner)
@@ -61,6 +70,7 @@ extension TimeTableDatesListViewController: UITableViewDelegate {
             }
             
             return UIMenu(title: originalName, children: [
+                infoAction,
                 addPseyMenu,
                 mapAction
             ])

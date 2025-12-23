@@ -250,6 +250,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     private func setUpTable() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
+        view.backgroundColor = .systemBackground
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: TimeTableTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimeTableTableViewCell.identifier)
@@ -649,7 +650,8 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     private func checkDeviceOrientationControl() {
-        if settingsManager.checkDeviceOrientationControl() {
+        let screens = settingsManager.loadScreens(way: .deviceOrientation)
+        if screens.contains(appScreens.timetableDay) {
             NotificationCenter.default.addObserver(self, selector: #selector(checkDeviceOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
         }
     }
@@ -698,13 +700,15 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     func removeDeviceOrientationObserve() {
-        if settingsManager.checkDeviceOrientationControl() {
+        let screens = settingsManager.loadScreens(way: .deviceOrientation)
+        if screens.contains(appScreens.timetableDay) {
             NotificationCenter.default.removeObserver(self)
         }
     }
     
     func checkVolumeControl() {
-        if settingsManager.checkVolumeControl() {
+        let screens = settingsManager.loadScreens(way: .volume)
+        if screens.contains(appScreens.timetableDay) {
             AVAudioSession.sharedInstance().publisher(for: \.outputVolume)
                 .removeDuplicates()
                 .filter({ _ in self.isMicOn() || !self.isRecording()})
@@ -758,7 +762,8 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     func removeVolumeObserve() {
-        if settingsManager.checkVolumeControl() {
+        let screens = settingsManager.loadScreens(way: .volume)
+        if screens.contains(appScreens.timetableDay) {
             cancellables.removeAll()
         }
     }
@@ -770,7 +775,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     func checkGestureOption() {
-        let screens = settingsManager.loadScreens(way: futuristicWays.gestureRecognition)
+        let screens = settingsManager.loadScreens(way: differentWays.gestureRecognition)
         let isContains = screens.contains(appScreens.timetableDay)
         isRecordingVideo = isContains
         if isContains {

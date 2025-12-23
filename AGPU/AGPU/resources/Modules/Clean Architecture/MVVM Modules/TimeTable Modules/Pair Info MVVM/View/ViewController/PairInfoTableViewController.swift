@@ -8,7 +8,7 @@
 import UIKit
 
 final class PairInfoTableViewController: UITableViewController {
-
+    
     private var viewModel: PairInfoViewModel
     
     // MARK: - Init
@@ -149,7 +149,7 @@ final class PairInfoTableViewController: UITableViewController {
         viewModel.setUpData()
     }
     
-    private func goToDetail() {
+    private func goToCorpDetail() {
         let storyboard = UIStoryboard(name: "AGPUBuildingDetailViewController", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "AGPUBuildingDetailViewController") as? AGPUBuildingDetailViewController {
             vc.annotation = viewModel.currentBuilding().pin
@@ -159,15 +159,31 @@ final class PairInfoTableViewController: UITableViewController {
             navVC.modalPresentationStyle = .fullScreen
             DispatchQueue.main.async {
                 self.present(navVC, animated: true)
+                HapticsManager.shared.hapticFeedback()
             }
         }
     }
-
+    
+    private func goToDisciplineInfo() {
+        let vc = AIInfoViewController(text: "напиши для чего эта дисциплина: \(viewModel.returnOriginalPairName())?")
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true)
+        HapticsManager.shared.hapticFeedback()
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.isEditing {
             viewModel.selectPairInfoPart(index: indexPath.row)
-        } else if indexPath.row == 10 {
-            goToDetail()
+        } else {
+            switch indexPath.row {
+            case 1:
+                goToDisciplineInfo()
+            case 10:
+                goToCorpDetail()
+            default:
+                break
+            }
         }
     }
     
@@ -180,7 +196,7 @@ final class PairInfoTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.pairInfo.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let info = viewModel.pairInfo

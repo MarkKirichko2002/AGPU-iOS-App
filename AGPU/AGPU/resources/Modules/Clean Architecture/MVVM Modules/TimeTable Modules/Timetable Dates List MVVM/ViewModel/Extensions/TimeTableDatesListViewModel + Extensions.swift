@@ -60,6 +60,10 @@ extension TimeTableDatesListViewModel: ITimeTableDatesListViewModel {
         getData()
     }
     
+    func returnOriginalDisciplineName(name: String)-> String {
+        return timetablePseudonymManager.returnOriginalDisciplineName(name: name)
+    }
+    
     func returnOriginalAudienceName(audience: String)-> String {
         return timetablePseudonymManager.returnOriginalAudienceName(audience: audience)
     }

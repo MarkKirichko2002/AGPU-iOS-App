@@ -95,8 +95,8 @@ extension SettingsManager: SettingsManagerProtocol {
         return data
     }
     
-    // MARK: - Futuristic Way
-    func loadScreens(way: futuristicWays)-> [appScreens] {
+    // MARK: - Different Ways
+    func loadScreens(way: differentWays)-> [appScreens] {
         var data = [appScreens]()
         if let result = UserDefaults.standard.object(forKey: "\(way.rawValue) screens") as? Data {
             do {
@@ -123,14 +123,6 @@ extension SettingsManager: SettingsManagerProtocol {
     // MARK: - Grounbreaking Timetable
     func checkSaveRecentTimetableItem()-> Bool {
         return UserDefaults.standard.value(forKey: "onSaveRecentTimetableItem") as? Bool ?? true
-    }
-    
-    func checkDeviceOrientationControl()-> Bool {
-        return UserDefaults.standard.object(forKey: "onDeviceOrientationContol timetable") as? Bool ?? false
-    }
-    
-    func checkVolumeControl()-> Bool {
-        return UserDefaults.standard.object(forKey: "onVolumeContol timetable") as? Bool ?? false
     }
     
     // MARK: - ASPU Button

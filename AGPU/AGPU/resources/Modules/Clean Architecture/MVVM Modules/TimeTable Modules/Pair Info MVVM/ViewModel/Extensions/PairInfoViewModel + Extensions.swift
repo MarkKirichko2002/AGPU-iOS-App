@@ -405,7 +405,7 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
     }
     
     func isRecording()-> Bool {
-        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        let screens = settingsManager.loadScreens(way: differentWays.voiceCommands)
         return screens.contains(appScreens.pairInfo)
     }
     
@@ -581,6 +581,10 @@ extension PairInfoViewModel: PairInfoViewModelProtocol {
             str += "\(item)\n"
         }
         return str
+    }
+    
+    func returnOriginalPairName()-> String {
+        return timetablePseudonymManager.returnOriginalDisciplineName(name: pair.name)
     }
     
     func registerColorChangedHandler(block: @escaping(UIColor)->Void) {

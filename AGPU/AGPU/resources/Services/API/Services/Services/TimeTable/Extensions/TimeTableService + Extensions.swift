@@ -69,7 +69,6 @@ extension TimeTableService: TimeTableServicerProtocol {
             return
         }
         
-        // Вызываем getDisciplines из GetTimetableService
         Task {
             do {
                 let timetableDays = try await GetTimetableService.shared.getDisciplines(

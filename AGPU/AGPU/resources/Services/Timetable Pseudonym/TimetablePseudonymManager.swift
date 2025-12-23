@@ -22,6 +22,16 @@ final class TimetablePseudonymManager {
         return pairs
     }
     
+    func setUpTimetableOriginal(pairs: inout [Discipline])-> [Discipline] {
+        pairs = setUpTimesOriginal(pairs: &pairs)
+        pairs = setUpDisciplinesOriginal(pairs: &pairs)
+        pairs = setUpTeachersOriginal(pairs: &pairs)
+        pairs = setUpAudienceOriginal(pairs: &pairs)
+        pairs = setUpGroupOriginal(pairs: &pairs)
+        return pairs
+    }
+    
+    // MARK: - псевдонимы
     func setUpTimesPseudonym(pairs: inout [Discipline])-> [Discipline] {
         let pseudonyms = settingsManager.loadTimetablePseudonyms(category: "Время")
         for (i, discipline) in pairs.enumerated() {
@@ -81,6 +91,51 @@ final class TimetablePseudonymManager {
         return "\(dayOfWeek) \(date)"
     }
     
+    // MARK: - оригинальные названия
+    func setUpTimesOriginal(pairs: inout [Discipline])-> [Discipline] {
+        for (i, discipline) in pairs.enumerated() {
+            pairs[i].time = returnOriginalTime(time: discipline.time)
+        }
+        return pairs
+    }
+    
+    func setUpDisciplinesOriginal(pairs: inout [Discipline])-> [Discipline] {
+        for (i, discipline) in pairs.enumerated() {
+            pairs[i].name = returnOriginalDisciplineName(name: discipline.name)
+        }
+        return pairs
+    }
+    
+    func setUpTeachersOriginal(pairs: inout [Discipline])-> [Discipline] {
+        for (i, discipline) in pairs.enumerated() {
+            pairs[i].teacherName = returnOriginalTeacherName(name: discipline.teacherName)
+        }
+        return pairs
+    }
+    
+    func setUpAudienceOriginal(pairs: inout [Discipline])-> [Discipline] {
+        for (i, discipline) in pairs.enumerated() {
+            pairs[i].audienceID = returnOriginalAudienceName(audience: discipline.audienceID)
+        }
+        return pairs
+    }
+    
+    func setUpGroupOriginal(pairs: inout [Discipline])-> [Discipline] {
+        for (i, discipline) in pairs.enumerated() {
+            pairs[i].groupName = returnOriginalGroupName(group: discipline.groupName)
+        }
+        return pairs
+    }
+    
+    func setUpDayOfWeekOriginal(date: String)-> String {
+        let pseudonyms = settingsManager.loadTimetablePseudonyms(category: "Дни недели")
+        let dayOfWeek = dateManager.getCurrentDayOfWeek(date: date)
+        if let pseudonym = pseudonyms.first(where: { $0.originalName == dayOfWeek })?.originalName {
+            return "\(pseudonym) \(date)"
+        }
+        return "\(dayOfWeek) \(date)"
+    }
+    
     func returnOriginalTime(time: String)-> String {
         let pseudonyms = settingsManager.loadTimetablePseudonyms(category: "Время")
         if let originalName = pseudonyms.first(where: { $0.pseudonym == time })?.originalName {
@@ -92,7 +147,11 @@ final class TimetablePseudonymManager {
     func returnOriginalDisciplineName(name: String)-> String {
         let pseudonyms = settingsManager.loadTimetablePseudonyms(category: "Дисциплины")
         if let originalName = pseudonyms.first(where: { $0.pseudonym == name })?.originalName {
+            print("ОРИГИНАЛ: \(originalName)")
             return originalName
+        } else {
+            print("НЕТ ТАКОГО")
+            print(name)
         }
         return name
     }

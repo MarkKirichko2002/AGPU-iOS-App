@@ -7,10 +7,10 @@ target 'AGPU' do
 
   # Pods for AGPU
   pod 'Alamofire'
-  pod 'FSCalendar'
   pod 'SDWebImage'
   pod 'SnapKit'
   pod 'RealmSwift', '~> 10.40.01'
   pod 'MediaPipeTasksVision'
+  pod 'FirebaseAILogic'
   
 end

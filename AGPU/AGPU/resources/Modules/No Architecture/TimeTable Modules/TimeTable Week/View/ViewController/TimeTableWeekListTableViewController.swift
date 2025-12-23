@@ -430,7 +430,8 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     private func checkDeviceOrientationControl() {
-        if settingsManager.checkDeviceOrientationControl() {
+        let screens = settingsManager.loadScreens(way: .deviceOrientation)
+        if screens.contains(appScreens.timetableWeek) {
             NotificationCenter.default.addObserver(self, selector: #selector(checkDeviceOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
         }
     }
@@ -478,13 +479,15 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     func removeDeviceOrientationObserve() {
-        if settingsManager.checkDeviceOrientationControl() {
+        let screens = settingsManager.loadScreens(way: .deviceOrientation)
+        if screens.contains(appScreens.timetableWeek) {
             NotificationCenter.default.removeObserver(self)
         }
     }
     
     func checkVolumeControl() {
-        if settingsManager.checkVolumeControl() {
+        let screens = settingsManager.loadScreens(way: .volume)
+        if screens.contains(appScreens.timetableWeek) {
             AVAudioSession.sharedInstance().publisher(for: \.outputVolume)
                 .removeDuplicates()
                 .filter({ _ in self.isMicOn() || !self.isRecording()})
@@ -537,7 +540,8 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     func removeVolumeObserve() {
-        if settingsManager.checkVolumeControl() {
+        let screens = settingsManager.loadScreens(way: .volume)
+        if screens.contains(appScreens.timetableWeek) {
             cancellables.removeAll()
         }
     }
@@ -708,7 +712,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     func checkGestureOption() {
-        let screens = settingsManager.loadScreens(way: futuristicWays.gestureRecognition)
+        let screens = settingsManager.loadScreens(way: differentWays.gestureRecognition)
         let isContains = screens.contains(appScreens.timetableWeek)
         isRecordingVideo = isContains
         if isContains {

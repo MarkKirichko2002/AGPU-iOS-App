@@ -228,18 +228,19 @@ extension NewsListViewController {
     }
     
     func makeMenu(index: Int)-> UIMenu {
-        if UserDefaults.standard.object(forKey: "onAdvancedModeNews") as? Bool ?? false {
-            return makeAdvancedMenu(index: index)
-        } else {
-            return makeSimpleMenu(index: index)
-        }
-    }
-    
-    func makeAdvancedMenu(index: Int)-> UIMenu {
         
         let ARAction = UIAction(title: "AR режим", image: UIImage(named: "cube")) { _ in
             self.viewModel.getArticleInfo(id: index) { info in
                 self.goToAR(images: info.images)
+            }
+        }
+        
+        let articleSummary = UIAction(title: "О чем новость?", image: UIImage(named: "info")) { _ in
+            self.viewModel.getArticleInfo(id: index) { info in
+                let vc = AIInfoViewController(text: "напиши коротко о чем эта новость \(info.description)?")
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                self.present(navVC, animated: true)
             }
         }
         
@@ -249,6 +250,7 @@ extension NewsListViewController {
         
         return UIMenu(title: self.viewModel.articleItem(index: index).title, children: [
             ARAction,
+            articleSummary,
             shareAction
         ])
     }

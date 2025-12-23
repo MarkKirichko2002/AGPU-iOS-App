@@ -20,11 +20,20 @@ extension TimeTableDayListTableViewController: UITableViewDelegate {
             
             let discipline = self.timetable.disciplines[indexPath.row]
             
+            let originalName = self.timetablePseudonymManager.returnOriginalDisciplineName(name: discipline.name)
+            
+            let infoAction = UIAction(title: "О чем дисциплина?", image: UIImage(named: "info")) { _ in
+                let vc = AIInfoViewController(text: "напиши для чего эта дисциплина: \(self.timetablePseudonymManager.returnOriginalDisciplineName(name: discipline.name))?")
+                let navVC = UINavigationController(rootViewController: vc)
+                navVC.modalPresentationStyle = .fullScreen
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                    self.present(navVC, animated: true)
+                }
+            }
+            
             let daysMenu = self.findPairDaysMenu(name: discipline.name)
             
             let addPseyMenu = self.timetableMenuManager.addTimetablePseyMenu(discipline: discipline)
-            
-            let originalName = self.timetablePseudonymManager.returnOriginalDisciplineName(name: discipline.name)
             
             let mapAction = UIAction(title: "Найти корпус", image: UIImage(named: "map icon")) { _ in
                 let originalRoom = self.timetablePseudonymManager.returnOriginalAudienceName(audience: discipline.audienceID)
@@ -36,6 +45,7 @@ extension TimeTableDayListTableViewController: UITableViewDelegate {
             }
             
             return UIMenu(title: originalName, children: [
+                infoAction,
                 daysMenu,
                 addPseyMenu,
                 mapAction
@@ -63,7 +73,6 @@ extension TimeTableDayListTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TimeTableTableViewCell.identifier, for: indexPath) as? TimeTableTableViewCell else {return UITableViewCell()}
-        
         let selectedView = UIView()
         selectedView.backgroundColor = UIColor.clear
         cell.selectedBackgroundView = selectedView
@@ -549,7 +558,7 @@ extension TimeTableDayListTableViewController {
     }
     
     func isMicOn()-> Bool {
-        let isOn = settingsManager.loadScreens(way: futuristicWays.voiceCommands).contains(appScreens.timetableDay)
+        let isOn = settingsManager.loadScreens(way: differentWays.voiceCommands).contains(appScreens.timetableDay)
         if isOn {
             return speechRecognitionManager.tapInstalled
         }
@@ -557,25 +566,25 @@ extension TimeTableDayListTableViewController {
     }
     
     func isRecording()-> Bool {
-        return settingsManager.loadScreens(way: futuristicWays.voiceCommands).contains(appScreens.timetableDay)
+        return settingsManager.loadScreens(way: differentWays.voiceCommands).contains(appScreens.timetableDay)
     }
     
     func checkVoiceCommandsOption() {
-        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        let screens = settingsManager.loadScreens(way: differentWays.voiceCommands)
         if screens.contains(appScreens.timetableDay) {
             resetSpeechRecognition()
         }
     }
     
     func startSpeechRecognition() {
-        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        let screens = settingsManager.loadScreens(way: differentWays.voiceCommands)
         if screens.contains(appScreens.timetableDay) {
             startRecognize()
         }
     }
     
     func resetSpeechRecognition() {
-        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        let screens = settingsManager.loadScreens(way: differentWays.voiceCommands)
         if screens.contains(appScreens.timetableDay) {
             cancelRecognition()
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
@@ -585,7 +594,7 @@ extension TimeTableDayListTableViewController {
     }
     
     func cancelRecognition() {
-        let screens = settingsManager.loadScreens(way: futuristicWays.voiceCommands)
+        let screens = settingsManager.loadScreens(way: differentWays.voiceCommands)
         if screens.contains(appScreens.timetableDay) {
             speechRecognitionManager.cancelSpeechRecognition()
         }
@@ -1449,7 +1458,7 @@ extension TimeTableDayListTableViewController {
     }
     
     func cancelGestureRecognition() {
-        let screens = settingsManager.loadScreens(way: futuristicWays.gestureRecognition)
+        let screens = settingsManager.loadScreens(way: differentWays.gestureRecognition)
         let isContains = screens.contains(appScreens.timetableDay)
         if isContains {
             if let session = captureSession {
