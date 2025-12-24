@@ -251,10 +251,9 @@ extension AGPUTabBarController: OnlyMainVariantsListTableViewControllerDelegate 
     
     func tabsWasChanged() {
         removeViews()
-        resetSavedTab()
         setUpTabBars()
-        
         setUpTabs()
+        resetTabIndex()
     }
 }
 

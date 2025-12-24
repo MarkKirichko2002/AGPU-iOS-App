@@ -150,7 +150,6 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 1)
             setViewControllers(tabs, animated: false)
-            selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -161,7 +160,6 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 1)
             setViewControllers(tabs, animated: false)
-            selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -172,7 +170,6 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 1)
             setViewControllers(tabs, animated: false)
-            selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -185,7 +182,6 @@ final class AGPUTabBarController: UITabBarController {
             tabs.forEach { makeStandardFont(item: $0.tabBarItem)}
             tabs.insert(middleButton, at: 2)
             setViewControllers(tabs, animated: false)
-            selectedIndex = 0
             UITabBar.appearance().tintColor = .label
             ASPUButton.isHidden = false
             disableTab()
@@ -228,9 +224,10 @@ final class AGPUTabBarController: UITabBarController {
         setUpContextMenu()
     }
     
-    func resetSavedTab() {
-        UserDefaults.standard.set(0, forKey: "index")
+    func resetTabIndex() {
+        selectedIndex = 1
         selectedIndex = 0
+        UserDefaults.standard.set(0, forKey: "index")
     }
     
     func setUpSavedTab() {
