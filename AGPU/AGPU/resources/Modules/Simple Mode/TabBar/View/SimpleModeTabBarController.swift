@@ -28,21 +28,4 @@ final class SimpleModeTabBarController: UITabBarController {
         UITabBar.appearance().backgroundColor = .systemBackground
         setViewControllers([newsListVC, timetableVC, mapVC, settingsVC], animated: false)
     }
-    
-    // MARK: - Action To Control
-    override var canBecomeFirstResponder: Bool {
-        return true
-    }
-    
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        showReturnAlert()
-    }
-    
-    func showReturnAlert() {
-        let yes = UIAlertAction(title: "Да", style: .default) { _ in
-            self.goBackToAdvancedMode()
-        }
-        let cancel = UIAlertAction(title: "Нет", style: .destructive)
-        self.showAlert(title: "Вернуться обратно?", message: "хотите вернуться в продвинутый режим?", actions: [yes, cancel])
-    }
 }

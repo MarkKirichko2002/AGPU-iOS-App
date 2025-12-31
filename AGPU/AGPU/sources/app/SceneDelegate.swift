@@ -52,8 +52,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 tabBarController.openCalendarVC()
             } else if title == "website sections" {
                 tabBarController.openSectionsList()
-            } else if title == "today news" {
-                tabBarController.openWhatsNew()
             } else if title == "voice commands" {
                 tabBarController.openVoiceCommands(isAction: true)
             }

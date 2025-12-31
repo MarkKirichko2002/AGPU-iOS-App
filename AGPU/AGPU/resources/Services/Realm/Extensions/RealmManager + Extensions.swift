@@ -321,7 +321,7 @@ extension RealmManager: IRealmManager {
         return Array(pages)
     }
     
-    // MARK: - Adaptive News
+    // MARK: - University News
     func saveArticle(model: NewsModel) {
         let article = realm.object(ofType: NewsModel.self, forPrimaryKey: model.id)
         if article == nil {

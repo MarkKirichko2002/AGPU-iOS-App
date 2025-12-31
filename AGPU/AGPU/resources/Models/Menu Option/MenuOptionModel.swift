@@ -15,23 +15,22 @@ struct MenuOptionModel: Equatable, Codable {
 struct TimetableDayOptions {
     static var list = [
         MenuOptionModel(id: 1, name: "Поиск"),
-        MenuOptionModel(id: 2, name: "Сколько пар?"),
-        MenuOptionModel(id: 3, name: "Псевдонимы"),
-        MenuOptionModel(id: 4, name: "AR режим"),
-        MenuOptionModel(id: 5, name: "Нужное здание"),
-        MenuOptionModel(id: 6, name: "Группы"),
-        MenuOptionModel(id: 7, name: "Подгруппы"),
-        MenuOptionModel(id: 8, name: "Преподаватели"),
-        MenuOptionModel(id: 9, name: "Аудитории"),
-        MenuOptionModel(id: 10, name: "Избранное"),
-        MenuOptionModel(id: 11, name: "Список дней"),
-        MenuOptionModel(id: 12, name: "Недели"),
-        MenuOptionModel(id: 13, name: "Календарь"),
-        MenuOptionModel(id: 14, name: "Фильтрация"),
-        MenuOptionModel(id: 15, name: "Сохранить"),
-        MenuOptionModel(id: 16, name: "Навигация"),
-        MenuOptionModel(id: 17, name: "Голосовые команды"),
-        MenuOptionModel(id: 18, name: "Поделиться")
+        MenuOptionModel(id: 2, name: "Псевдонимы"),
+        MenuOptionModel(id: 3, name: "AR режим"),
+        MenuOptionModel(id: 4, name: "Нужное здание"),
+        MenuOptionModel(id: 5, name: "Группы"),
+        MenuOptionModel(id: 6, name: "Подгруппы"),
+        MenuOptionModel(id: 7, name: "Преподаватели"),
+        MenuOptionModel(id: 8, name: "Аудитории"),
+        MenuOptionModel(id: 9, name: "Избранное"),
+        MenuOptionModel(id: 10, name: "Список дней"),
+        MenuOptionModel(id: 11, name: "Недели"),
+        MenuOptionModel(id: 12, name: "Календарь"),
+        MenuOptionModel(id: 13, name: "Фильтрация"),
+        MenuOptionModel(id: 14, name: "Сохранить"),
+        MenuOptionModel(id: 15, name: "Навигация"),
+        MenuOptionModel(id: 16, name: "Голосовые команды"),
+        MenuOptionModel(id: 17, name: "Поделиться")
     ]
 }
 
@@ -73,6 +72,23 @@ struct TimetableAROptions {
     ]
 }
 
+struct TimetableDateOptions {
+    static var list = [
+        MenuOptionModel(id: 1, name: "Поиск"),
+        MenuOptionModel(id: 2, name: "Обновить"),
+        MenuOptionModel(id: 3, name: "AR режим"),
+        MenuOptionModel(id: 4, name: "Нужное здание"),
+        MenuOptionModel(id: 5, name: "Группы"),
+        MenuOptionModel(id: 6, name: "Подгруппы"),
+        MenuOptionModel(id: 7, name: "Преподаватели"),
+        MenuOptionModel(id: 8, name: "Аудитории"),
+        MenuOptionModel(id: 9, name: "Избранное"),
+        MenuOptionModel(id: 10, name: "Фильтрация"),
+        MenuOptionModel(id: 11, name: "Сохранить"),
+        MenuOptionModel(id: 12, name: "Поделиться")
+    ]
+}
+
 struct NewsOptions {
     static var list = [
         MenuOptionModel(id: 1, name: "Поиск"),
@@ -89,11 +105,38 @@ struct NewsOptions {
     ]
 }
 
-enum menuOptionCategories: String, CaseIterable {
+struct MenuScreensCategoryModel {
+    let icon: String
+    let name: String
+    let screens: [menuCategoryScreens]
+}
+
+struct MenuScreensCategories {
+    static let categories =
+    [
+        MenuScreensCategoryModel(
+            icon: "clock",
+            name: "Расписание", screens:
+            [menuCategoryScreens.timetableDay,
+             menuCategoryScreens.timetableWeek,
+             menuCategoryScreens.timetableAR,
+             menuCategoryScreens.timetableDate
+            ]
+        ),
+        MenuScreensCategoryModel(
+            icon: "news",
+            name: "Новости", screens:
+            [menuCategoryScreens.newsList]
+        )
+    ]
+}
+
+enum menuCategoryScreens: String, CaseIterable {
     
     case timetableDay = "timetable day"
     case timetableWeek = "timetable week"
     case timetableAR = "timetable AR"
+    case timetableDate = "timetable date"
     case newsList = "news list"
     
     var title: String {
@@ -104,6 +147,8 @@ enum menuOptionCategories: String, CaseIterable {
             return "Расписание на неделю"
         case .timetableAR:
             return "AR-расписание"
+        case .timetableDate:
+            return "Расписание на дату"
         case .newsList:
             return "Список новостей"
         }
@@ -117,6 +162,8 @@ enum menuOptionCategories: String, CaseIterable {
             return TimetableWeekOptions.list
         case .timetableAR:
             return TimetableAROptions.list
+        case .timetableDate:
+            return TimetableDateOptions.list
         case .newsList:
             return NewsOptions.list
         }

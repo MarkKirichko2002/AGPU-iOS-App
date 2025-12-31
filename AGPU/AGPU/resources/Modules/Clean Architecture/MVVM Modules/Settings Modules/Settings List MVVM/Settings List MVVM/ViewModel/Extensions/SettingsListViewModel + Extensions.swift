@@ -19,7 +19,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         case 0:
             return 3
         case 1:
-            return 11
+            return 9
         case 2:
             return 2
         default:
@@ -42,13 +42,6 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
         } else {
             return "АГПУ"
         }
-    }
-    
-    func getScreenPresentationStyleInfo()-> String {
-        if let savedStyle = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") {
-            return savedStyle.rawValue
-        }
-        return "Не показывать"
     }
     
     func getSplashScreenInfo()-> String {

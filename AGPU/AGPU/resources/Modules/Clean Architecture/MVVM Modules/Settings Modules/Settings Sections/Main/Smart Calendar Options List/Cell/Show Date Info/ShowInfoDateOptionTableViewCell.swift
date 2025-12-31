@@ -14,8 +14,6 @@ final class ShowInfoDateOptionTableViewCell: UITableViewCell {
     var userDefaults = UserDefaults.standard
     var animation = AnimationClass()
     
-    weak var delegate: ActionToRecallOptionTableViewCellDelegate?
-    
     @IBOutlet weak var Switch: UISwitch!
     @IBOutlet weak var OptionIcon: SpringImageView!
     @IBOutlet weak var OptionTitle: UILabel!

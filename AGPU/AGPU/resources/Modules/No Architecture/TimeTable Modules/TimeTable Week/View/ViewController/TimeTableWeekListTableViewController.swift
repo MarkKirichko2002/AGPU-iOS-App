@@ -154,7 +154,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     }
     
     @objc private func openMenuSettings(gesture: UIGestureRecognizer) {
-        let vc = MenuOptionsListTableViewController(category: .timetableWeek)
+        let vc = ScreenMenuOptionsListTableViewController(screen: .timetableWeek)
         vc.delegate = self
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen

@@ -31,15 +31,16 @@ final class TimetableDateDetailViewController: UIViewController {
         return button
     }()
     
-    private var optionsList: UIButton = {
+    var optionsList: UIButton = {
         let button = UIButton()
+        button.accessibilityIdentifier = "button"
         button.tintColor = .label
         button.showsMenuAsPrimaryAction = true
         button.setImage(UIImage(named: "sections"), for: .normal)
         return button
     }()
     
-    private let timetableImage: UIImageView = {
+    let timetableImage: UIImageView = {
         let image = UIImageView()
         image.isUserInteractionEnabled = true
         image.clipsToBounds = true
@@ -101,13 +102,25 @@ final class TimetableDateDetailViewController: UIViewController {
     }
     
     private func setUpView() {
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(openMenuSettings))
+        swipe.direction = .up
+        self.view.addGestureRecognizer(swipe)
         view.backgroundColor = .systemBackground
         view.addSubviews(closeButton, optionsList, timetableImage, titleLabel, timetableDescription, selectDateButton)
         closeButton.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
-        optionsList.menu = makeMenu()
+        optionsList.menu = setUpTimetableMenu()
         selectDateButton.addTarget(self, action: #selector(selectDate), for: .touchUpInside)
         optionsList.isEnabled = false
         setUpTap()
+    }
+    
+    @objc private func openMenuSettings(gesture: UIGestureRecognizer) {
+        let vc = ScreenMenuOptionsListTableViewController(screen: .timetableDate)
+        vc.delegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
+        HapticsManager.shared.hapticFeedback()
     }
     
     @objc private func closeScreen() {
@@ -115,110 +128,7 @@ final class TimetableDateDetailViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    private func makeMenu()-> UIMenu {
-        
-        let searchAction = UIAction(title: "Поиск") { _ in
-            let vc = TimeTableSearchListTableViewController()
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let refresh = UIAction(title: "Обновить") { _ in
-            self.optionsList.isEnabled = false
-            self.viewModel.refreshTimetable()
-        }
-        
-        let ARAction = UIAction(title: "AR режим") { _ in
-            let vc = TimetableARViewController(id: self.id, subgroup: self.subgroup, date: self.date, owner: self.owner)
-            vc.image = self.timetableImage.image ?? UIImage()
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let nearBuildingAction = UIAction(title: "Нужное здание") { _ in
-            let vc = NearBuildingViewController(info: .audiences)
-            vc.delegate = self
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
-        }
-        
-        let groupsList = UIAction(title: "Группы") { _ in
-            let vc = AllGroupsListTableViewController(group: self.viewModel.id)
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let subGroupsList = UIAction(title: "Подгруппы") { _ in
-            let vc = SubGroupsListTableViewController(subgroup: self.viewModel.subgroup, disciplines: self.viewModel.allDisciplines)
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        // преподаватели
-        let teachersList = UIAction(title: "Преподаватели") { _ in
-            let vc = DepartmentsListTableViewController()
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let audiencesList = UIAction(title: "Аудитории") { _ in
-            let vc = CorpsListTableViewController()
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let favouritesList = UIAction(title: "Избранное") { _ in
-            let vc = TimeTableFavouriteItemsListTableViewController()
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let filterAction = UIAction(title: "Фильтрация") { _ in
-            let vc = TimetableFilterCategoriesListTableViewController(date: self.date, type: self.viewModel.type, disciplines: self.viewModel.allDisciplines, building: self.viewModel.currentBuilding, time: self.viewModel.currentTime)
-            vc.delegate = self
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let saveTimetable = UIAction(title: "Сохранить") { _ in
-            self.showSaveImageAlert()
-        }
-        
-        let shareAction = UIAction(title: "Поделиться") { _ in
-            self.share()
-        }
-        let menu = UIMenu(title: date, children: [
-            searchAction,
-            refresh,
-            ARAction,
-            nearBuildingAction,
-            groupsList,
-            subGroupsList,
-            teachersList,
-            audiencesList,
-            favouritesList,
-            filterAction,
-            saveTimetable,
-            shareAction
-        ])
-        return menu
-    }
-    
-    @objc private func share() {
+    @objc func share() {
         guard let image = viewModel.image else {return}
         self.ShareImage(image: image, title: id, text: viewModel.formattedDate())
         HapticsManager.shared.hapticFeedback()
@@ -310,3 +220,4 @@ final class TimetableDateDetailViewController: UIViewController {
         self.present(navVC, animated: true)
     }
 }
+

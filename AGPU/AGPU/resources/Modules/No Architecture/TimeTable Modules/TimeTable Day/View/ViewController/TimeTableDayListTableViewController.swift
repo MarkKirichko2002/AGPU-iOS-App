@@ -99,7 +99,6 @@ final class TimeTableDayListTableViewController: UIViewController {
         setUpData()
         setUpNavigation()
         setUpTable()
-        checkTimetableShowVC()
         setUpRefreshControl()
         setUpIndicatorView()
         setUpLabel()
@@ -181,7 +180,8 @@ final class TimeTableDayListTableViewController: UIViewController {
     }
     
     @objc private func openMenuSettings(gesture: UIGestureRecognizer) {
-        let vc = MenuOptionsListTableViewController(category: .timetableDay)
+        let vc = ScreenMenuOptionsListTableViewController(screen: .timetableDay)
+        vc.delegate = self
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)

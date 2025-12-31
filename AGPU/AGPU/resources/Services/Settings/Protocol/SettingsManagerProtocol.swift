@@ -9,7 +9,6 @@ import UIKit
 
 protocol SettingsManagerProtocol {
     func checkCurrentIcon()-> ASPUButtonIconModel
-    func checkActionToControlOption()-> Bool
     func checkOnlyMainOption()-> OnlyMainVariants
     func checkSaveRecentTimetableItem()-> Bool
     func checkASPUButtonOption()-> ASPUButtonActions

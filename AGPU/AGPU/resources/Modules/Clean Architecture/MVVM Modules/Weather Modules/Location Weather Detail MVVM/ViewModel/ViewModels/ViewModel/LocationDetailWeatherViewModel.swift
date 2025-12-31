@@ -12,7 +12,6 @@ import WeatherKit
 final class LocationWeatherDetailViewModel: ILocationWeatherDetailViewModel {
     
     @Published var isFetched: Bool = false
-    private var isWeatherChangedHandler: (()->Void)?
     
     private let locationManager = LocationManager()
     private let weatherService = WeatherManager()
@@ -35,7 +34,6 @@ final class LocationWeatherDetailViewModel: ILocationWeatherDetailViewModel {
     }
     
     func getWeather(location: MKAnnotation) {
-        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
         hourlyWeather = []
         dailyWeather = []
         let location = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
@@ -50,14 +48,6 @@ final class LocationWeatherDetailViewModel: ILocationWeatherDetailViewModel {
                 // погода на 5 дней
                 self.setUpDailyWeather(weather: weather)
                 self.weather = weather
-                if style != .notShow {
-                    if self.isChanged() {
-                        self.isWeatherChangedHandler?()
-                        self.saveWeather()
-                    } else {
-                        //self.saveWeather()
-                    }
-                }
                 self.isFetched.toggle()
             case .failure(let error):
                 print(error)
@@ -72,7 +62,7 @@ final class LocationWeatherDetailViewModel: ILocationWeatherDetailViewModel {
     
     func setUpHourlyWeather(weather: Weather) {
         var h = Calendar.current.component(.hour, from: weather.currentWeather.date)
-        for i in 0...24 {
+        for _ in 0...24 {
             h += 1
             let hour = Calendar.current.component(.hour, from: weather.hourlyForecast[h].date)
             let hourlyWeatherModel = HourlyWeatherCollectionViewCellViewModel(hour: hour, icon: weather.hourlyForecast.forecast[hour].symbolName, temperature: Int(weather.hourlyForecast.forecast[hour].temperature.value))
@@ -231,15 +221,7 @@ final class LocationWeatherDetailViewModel: ILocationWeatherDetailViewModel {
     func getCurrentDate()-> String {
         return dateManager.getCurrentDate()
     }
-    
-    func saveWeather() {
-        guard let weather = weather else {return}
-        let model = WeatherChangesModel(date: dateManager.getCurrentDate(), weather: weather)
-        UserDefaults.saveData(object: model, key: "weather") {
-            print("погода сохранена")
-        }
-    }
-    
+        
     func getData()-> WeatherChangesModel? {
         let weather = UserDefaults.loadData(type: WeatherChangesModel.self, key: "weather")
         return weather
@@ -260,9 +242,5 @@ final class LocationWeatherDetailViewModel: ILocationWeatherDetailViewModel {
             return "\(annotation.title!!): \(weatherService.formatWeather(weather: weather))"
         }
         return ""
-    }
-    
-    func registerIsWeatherChangedHandler(block: @escaping()->Void) {
-        self.isWeatherChangedHandler = block
     }
 }

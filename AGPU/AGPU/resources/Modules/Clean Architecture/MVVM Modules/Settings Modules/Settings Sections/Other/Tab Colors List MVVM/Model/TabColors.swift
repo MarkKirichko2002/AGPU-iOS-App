@@ -7,12 +7,15 @@
 
 import UIKit
 
+var customColor = UIColor.label
+
 enum TabColors: CaseIterable, Codable {
     
     case system
     case exam
     case prac
     case aspu
+    case custom
     
     var title: String {
         switch self {
@@ -24,6 +27,8 @@ enum TabColors: CaseIterable, Codable {
             return "Практика"
         case .aspu:
             return "АГПУ"
+        case .custom:
+            return "Кастомный"
         }
     }
     
@@ -37,6 +42,8 @@ enum TabColors: CaseIterable, Codable {
             return UIColor(named: "prac") ?? .label
         case .aspu:
             return UIColor(named: "aspu") ?? .label
+        case .custom:
+            return customColor
         }
     }
 }

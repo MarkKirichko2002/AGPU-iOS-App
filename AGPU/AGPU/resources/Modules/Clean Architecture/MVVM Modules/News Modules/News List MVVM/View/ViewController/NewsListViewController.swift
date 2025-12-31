@@ -95,7 +95,8 @@ final class NewsListViewController: UIViewController {
     }
     
     @objc private func openMenuSettings(gesture: UIGestureRecognizer) {
-        let vc = MenuOptionsListTableViewController(category: .newsList)
+        let vc = ScreenMenuOptionsListTableViewController(screen: .newsList)
+        vc.delegate = self
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
@@ -116,7 +117,7 @@ final class NewsListViewController: UIViewController {
         navigationItem.leftBarButtonItem = refreshButton
     }
     
-    private func updateMenuButton(menu: UIMenu) {
+    func updateMenuButton(menu: UIMenu) {
         guard let options = navigationItem.rightBarButtonItems?.first(where: { $0.accessibilityIdentifier == "menu" }) else {return}
         navigationItem.toggleMenuButton(on: true)
         options.menu = menu
@@ -256,7 +257,7 @@ final class NewsListViewController: UIViewController {
         
         var titleView = CustomTitleView(image: viewModel.getCurrentCategory().icon, title: "Новости \(viewModel.getCurrentCategory().name)", frame: .zero)
         
-        viewModel.checkSettings()
+        viewModel.getNewsByCurrentType()
         
         viewModel.registerNoDateAlertHandler {
             let ok = UIAlertAction(title: "ОК", style: .default) { _ in

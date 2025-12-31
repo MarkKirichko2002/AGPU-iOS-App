@@ -459,13 +459,6 @@ extension TimeTableDayListTableViewController: UIContextMenuInteractionDelegate 
     }
 }
 
-// MARK: - TimetableDayInfoViewControllerDelegate
-extension TimeTableDayListTableViewController: TimetableDayInfoViewControllerDelegate {
-    func buttonWasTapped() {
-        refreshTimetable {}
-    }
-}
-
 // MARK: - TimetableTimeIntervalsListTableViewControllerDelegate
 extension TimeTableDayListTableViewController: TimetableTimeIntervalsListTableViewControllerDelegate {
     
@@ -501,51 +494,6 @@ extension TimeTableDayListTableViewController {
                 self.infoLabel.isHidden = true
             }
             self.tableView.reloadData()
-        }
-    }
-    
-    func checkTimetableShowVC() {
-        let style = settingsManager.checkScreenPresentationStyleOption()
-        let savedDate = settingsManager.getSavedDate(screen: "timetable day")
-        if savedDate != dateManager.getCurrentDate() {
-            UserDefaults.standard.set(dateManager.getCurrentDate(), forKey: "saved date timetable day")
-            if style != .notShow {
-                checkTimeRange()
-            }
-        }
-    }
-    
-    func checkTimeRange() {
-        let currentTime = dateManager.getCurrentTime(isFullFormat: false)
-        let dayTimeRange = dateManager.timeRange(startTime: "00:00", endTime: "19:59", currentTime: currentTime)
-        let eveningTimeRange = dateManager.timeRange(startTime: "20:00", endTime: "23:59", currentTime: currentTime)
-        if dayTimeRange {
-            showTimetableInfo()
-        } else if eveningTimeRange {
-            let show = UIAlertAction(title: "Показать", style: .default) { _ in
-                self.date = self.dateManager.nextDay(date: self.date)
-                self.getTimeTable(id: self.id, date: self.date, owner: self.owner) {}
-            }
-            let cancel = UIAlertAction(title: "Отмена", style: .destructive)
-            self.showAlert(title: "Показать расписание на завтра?", message: "", actions: [show, cancel])
-        }
-    }
-    
-    func showTimetableInfo() {
-        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
-        let vc = TimetableDayInfoViewController()
-        vc.delegate = self
-        switch style {
-        case .fullScreen:
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true)
-        case .sheet:
-            vc.modalPresentationStyle = .pageSheet
-            present(vc, animated: true)
-        case .notShow:
-            let vc = HintViewController(info: "Чтобы увидеть экран, нужно выбрать его отображение в настройках опции \"Наглядные изменения\"")
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true)
         }
     }
     
@@ -1508,10 +1456,18 @@ extension TimeTableDayListTableViewController {
     }
 }
 
+// MARK: - ScreenMenuOptionsListTableViewControllerDelegate
+extension TimeTableDayListTableViewController: ScreenMenuOptionsListTableViewControllerDelegate {
+    
+    func listWasUpdated() {
+        updateMenu()
+    }
+}
+
 extension TimeTableDayListTableViewController {
     
     func setUpTimetableMenu()-> UIMenu {
-        let savedOptions = settingsManager.loadMenuOptions(category: menuOptionCategories.timetableDay.rawValue)
+        let savedOptions = settingsManager.loadMenuOptions(category: menuCategoryScreens.timetableDay.rawValue)
         let options = savedOptions.map { findOption(option: $0) }
         return UIMenu(title: "Расписание", children: options)
     }
@@ -1521,11 +1477,6 @@ extension TimeTableDayListTableViewController {
         // Поиск
         let searchAction = UIAction(title: "Поиск") { _ in
             self.openSearch()
-        }
-        
-        // Информация о паре
-        let timetableInfoAction = UIAction(title: "Сколько пар?") { _ in
-            self.showTimetableInfo()
         }
         
         let abbreviationsAction = UIAction(title: "Псевдонимы") { _ in
@@ -1637,7 +1588,6 @@ extension TimeTableDayListTableViewController {
         
         return [
             searchAction,
-            timetableInfoAction,
             abbreviationsAction,
             ARAction,
             nearBuildingAction,

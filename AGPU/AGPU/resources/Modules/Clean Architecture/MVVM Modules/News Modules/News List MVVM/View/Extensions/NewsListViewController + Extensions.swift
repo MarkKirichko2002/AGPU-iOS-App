@@ -211,6 +211,19 @@ extension NewsListViewController: NewsPagesListTableViewControllerDelegate {
     }
 }
 
+// MARK: - ScreenMenuOptionsListTableViewControllerDelegate
+extension NewsListViewController: ScreenMenuOptionsListTableViewControllerDelegate {
+    
+    func listWasUpdated() {
+        updateMenu()
+    }
+    
+    func updateMenu() {
+        guard let item = self.navigationItem.rightBarButtonItems?.first(where: { $0.accessibilityIdentifier == "menu" }) else {return}
+        item.menu = setUpNewsMenu()
+    }
+}
+
 extension NewsListViewController {
     
     func goToAR(images: [String]) {

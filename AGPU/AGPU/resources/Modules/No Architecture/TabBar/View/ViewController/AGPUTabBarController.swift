@@ -640,8 +640,6 @@ final class AGPUTabBarController: UITabBarController {
                 openWeatherVC()
             case .things:
                 openThingsCategoriesList()
-            case .whatsNew:
-                openWhatsNew()
             case .nearestBuilding:
                 showNearestBuilding(isAction: false)
             case .appThemes:
@@ -650,29 +648,6 @@ final class AGPUTabBarController: UITabBarController {
                 openAppShortcuts()
             case .favourite:
                 openFavouritesList()
-            }
-        }
-    }
-    
-    func checkActionToControl() {
-        if settingsManager.checkActionToControlOption() {
-            if !self.hidesBottomBarWhenPushed && (self.presentedViewController == nil) {
-                openRecentMoments()
-            }
-        } else {
-            if !ASPUButton.isHidden {
-                self.updateASPUButton(icon: UIImage(named: "info icon")!.pngData()!)
-                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                    let vc = HintViewController(info: "Отключена фишка Action To Control! Чтобы дальше пользоваться данной фишкой нужно включить ее в настройках.")
-                    vc.isNotify = true
-                    vc.delegate = self
-                    vc.modalPresentationStyle = .fullScreen
-                    self.present(vc, animated: true)
-                }
-            } else {
-                let vc = HintViewController(info: "Отключена фишка Action To Control! Чтобы дальше пользоваться данной фишкой нужно включить ее в настройках.")
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true)
             }
         }
     }
@@ -688,7 +663,7 @@ final class AGPUTabBarController: UITabBarController {
         }
     }
     
-    // MARK: - Adaptive News
+    // MARK: - University News
     private func observeArticleSelected() {
         NotificationCenter.default.addObserver(forName: Notification.Name("article selected"), object: nil, queue: .main) { _ in
             self.updateASPUButton(icon: UIImage(named: "info icon")!.pngData()!)

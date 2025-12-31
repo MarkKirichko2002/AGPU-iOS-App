@@ -467,8 +467,8 @@ extension TimeTableWeekListTableViewController: TimetablePseudonymCategoriesList
     }
 }
 
-// MARK: - MenuOptionsListTableViewControllerDelegate
-extension TimeTableWeekListTableViewController: MenuOptionsListTableViewControllerDelegate {
+// MARK: - ScreenMenuOptionsListTableViewControllerDelegate
+extension TimeTableWeekListTableViewController: ScreenMenuOptionsListTableViewControllerDelegate {
     
     func listWasUpdated() {
         updateMenu()
@@ -798,7 +798,7 @@ extension TimeTableWeekListTableViewController {
 extension TimeTableWeekListTableViewController {
     
     func setUpTimetableMenu()-> UIMenu {
-        let savedOptions = settingsManager.loadMenuOptions(category: menuOptionCategories.timetableWeek.rawValue)
+        let savedOptions = settingsManager.loadMenuOptions(category: menuCategoryScreens.timetableWeek.rawValue)
         let options = savedOptions.map { findOption(option: $0) }
         return UIMenu(title: "Расписание", children: options)
     }

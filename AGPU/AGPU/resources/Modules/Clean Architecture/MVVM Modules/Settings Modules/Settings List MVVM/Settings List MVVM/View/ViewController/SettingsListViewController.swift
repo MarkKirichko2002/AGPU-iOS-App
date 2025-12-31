@@ -33,7 +33,7 @@ final class SettingsListViewController: UIViewController {
         // MARK: - Секция "Основное"
         // Selected Faculty
         tableView.register(UINib(nibName: SelectedFacultyOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SelectedFacultyOptionTableViewCell.identifier)
-        // Adaptive News
+        // University News
         tableView.register(UINib(nibName: AdaptiveNewsOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AdaptiveNewsOptionTableViewCell.identifier)
         // Advanced Timetable
         tableView.register(UINib(nibName: TimetableOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimetableOptionTableViewCell.identifier)
@@ -41,10 +41,6 @@ final class SettingsListViewController: UIViewController {
         // Different Way
         tableView.register(UINib(nibName: DifferentWayOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DifferentWayOptionTableViewCell.identifier)
         tableView.register(UINib(nibName: ASPUButtonsScreenVariantsListTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ASPUButtonsScreenVariantsListTableViewCell.identifier)
-        // Action To Control
-        tableView.register(UINib(nibName: ActionToRecallOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ActionToRecallOptionTableViewCell.identifier)
-        // Glance Info
-        tableView.register(UINib(nibName: GlanceInfoOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: GlanceInfoOptionTableViewCell.identifier)
         // My Splash Screen
         tableView.register(UINib(nibName: SplashScreenOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: SplashScreenOptionTableViewCell.identifier)
         // Personalized App Icons

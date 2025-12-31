@@ -107,13 +107,7 @@ extension SettingsManager: SettingsManagerProtocol {
         }
         return data
     }
-    
-    // MARK: - Action To Control
-    func checkActionToControlOption()-> Bool {
-        let option = UserDefaults.standard.value(forKey: "onActionToControl") as? Bool ?? true
-        return option
-    }
-    
+        
     // MARK: - Only Main
     func checkOnlyMainOption()-> OnlyMainVariants {
         let variant = UserDefaults.loadData(type: OnlyMainVariants.self, key: "variant") ?? .main
@@ -173,12 +167,6 @@ extension SettingsManager: SettingsManagerProtocol {
     
     func loadASPUButtonTime(title: String)-> Int {
         return UserDefaults.standard.object(forKey: "aspu button \(title) time") as? Int ?? 0
-    }
-    
-    // MARK: - Glance Info
-    func checkScreenPresentationStyleOption()-> ScreenPresentationStyles {
-        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
-        return style
     }
     
     func getSavedDate(screen: String)-> String {
@@ -332,7 +320,7 @@ extension SettingsManager: SettingsManagerProtocol {
                 print(error)
             }
         } else {
-            return menuOptionCategories.allCases.first { $0.rawValue == category }?.options ?? []
+            return menuCategoryScreens.allCases.first { $0.rawValue == category }?.options ?? []
         }
         return data
     }

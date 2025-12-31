@@ -11,7 +11,7 @@ import UIKit
 extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     func getSavedNewsOptions()-> [MenuOptionModel] {
-        return settingsManager.loadMenuOptions(category: menuOptionCategories.newsList.rawValue)
+        return settingsManager.loadMenuOptions(category: menuCategoryScreens.newsList.rawValue)
     }
     
     func getCurrentCategory()-> NewsCategoryModel {
@@ -44,22 +44,6 @@ extension AGPUNewsListViewModel: AGPUNewsListViewModelProtocol {
     
     func stopSaying() {
         SpeechSynthesizerManager.shared.stopComment()
-    }
-    
-    func checkSettings() {
-        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
-        let savedDate = settingsManager.getSavedDate(screen: "news list")
-        if savedDate != dateManager.getCurrentDate() {
-            UserDefaults.standard.set(dateManager.getCurrentDate(), forKey: "saved date news list")
-            if style != .notShow {
-                checkWhatsNew()
-            }
-        }
-        abbreviation = UserDefaults.standard.value(forKey: "category") as? String ?? "-"
-        date = dateManager.getCurrentDate()
-        option = UserDefaults.loadData(type: NewsOptionsFilters.self, key: "news filter") ?? .all
-        displayMode = UserDefaults.loadData(type: DisplayModes.self, key: "display mode") ?? .grid
-        getNewsByCurrentType()
     }
     
     func checkWhatsNew() {

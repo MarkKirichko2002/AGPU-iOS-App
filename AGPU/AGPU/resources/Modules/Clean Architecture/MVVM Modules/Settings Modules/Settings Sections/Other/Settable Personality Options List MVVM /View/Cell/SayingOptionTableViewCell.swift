@@ -14,8 +14,6 @@ final class SayingOptionTableViewCell: UITableViewCell {
     var userDefaults = UserDefaults.standard
     var animation = AnimationClass()
     
-    weak var delegate: ActionToRecallOptionTableViewCellDelegate?
-    
     @IBOutlet weak var Switch: UISwitch!
     @IBOutlet weak var SayingOptionIcon: SpringImageView!
     @IBOutlet weak var SayingOptionLabel: UILabel!

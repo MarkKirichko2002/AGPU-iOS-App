@@ -253,6 +253,10 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
         return settingsManager.getSavedCommunicationStyle()
     }
     
+    func loadSavedMenuOptions()-> [MenuOptionModel] {
+        return settingsManager.loadMenuOptions(category: menuCategoryScreens.timetableDate.rawValue)
+    }
+    
     func registerTimeTableHandler(block: @escaping (TimeTableDateModel) -> Void) {
         self.timeTableHandler = block
     }

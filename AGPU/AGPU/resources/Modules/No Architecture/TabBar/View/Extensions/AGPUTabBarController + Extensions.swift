@@ -58,10 +58,6 @@ extension AGPUTabBarController: ASPUButtonFavouriteActionsListTableViewControlle
             ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
             ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
             openThingsCategoriesList()
-        case .whatsNew:
-            ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
-            ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
-            openWhatsNew()
         case .nearestBuilding:
             ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
             ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
@@ -490,17 +486,6 @@ extension AGPUTabBarController {
         return item
     }
     
-    // MARK: - Action To Get
-    override var canBecomeFirstResponder: Bool {
-        return true
-    }
-    
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if !self.tabBar.isHidden {
-            checkActionToControl()
-        }
-    }
-    
     @objc func openRecentMoments() {
        let vc = RecentMomentsListTableViewController()
        if !ASPUButton.isHidden {
@@ -536,51 +521,6 @@ extension AGPUTabBarController {
            }
        } else {
            self.present(navVC, animated: true)
-       }
-   }
-   
-   @objc func openWhatsNew() {
-       let vc = TodayNewsListTableViewController()
-       let navVC = UINavigationController(rootViewController: vc)
-       let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
-       switch style {
-       case .fullScreen:
-           navVC.modalPresentationStyle = .fullScreen
-           if !ASPUButton.isHidden {
-               vc.isNotify = true
-               vc.delegate = self
-               self.updateASPUButton(icon: UIImage(named: "question")!.pngData()!)
-               Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                   self.present(navVC, animated: true)
-               }
-           } else {
-               self.present(navVC, animated: true)
-           }
-       case .sheet:
-           navVC.modalPresentationStyle = .pageSheet
-           if !ASPUButton.isHidden {
-               vc.isNotify = true
-               vc.delegate = self
-               self.updateASPUButton(icon: UIImage(named: "question")!.pngData()!)
-               Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                   self.present(navVC, animated: true)
-               }
-           } else {
-               self.present(navVC, animated: true)
-           }
-       case .notShow:
-           let vc = HintViewController(info: "Чтобы увидеть экран, нужно выбрать его отображение в настройках опции \"Наглядные изменения\"")
-           vc.modalPresentationStyle = .fullScreen
-           if !ASPUButton.isHidden {
-               vc.isNotify = true
-               vc.delegate = self
-               self.updateASPUButton(icon: UIImage(named: "info icon")!.pngData()!)
-               Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                   self.present(navVC, animated: true)
-               }
-           } else {
-               self.present(navVC, animated: true)
-           }
        }
    }
    

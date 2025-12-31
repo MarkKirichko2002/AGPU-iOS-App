@@ -19,7 +19,6 @@ enum ASPUButtonActions: String, CaseIterable, Codable {
     case recent = "Недавние моменты"
     case weather = "Погода"
     case things = "Важные вещи"
-    case whatsNew = "Что нового?"
     case nearestBuilding = "Нужное здание"
     case appThemes = "Темы приложения"
     case appShortcuts = "Шорткаты приложения"
@@ -47,8 +46,6 @@ enum ASPUButtonActions: String, CaseIterable, Codable {
             return "sun"
         case .things:
             return "exclamation"
-        case .whatsNew:
-            return "question"
         case .nearestBuilding:
             return "map icon"
         case .appThemes:

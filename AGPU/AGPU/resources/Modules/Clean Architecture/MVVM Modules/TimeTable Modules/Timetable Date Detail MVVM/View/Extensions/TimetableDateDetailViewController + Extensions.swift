@@ -79,6 +79,137 @@ extension TimetableDateDetailViewController: TimetableFilterCategoriesListTableV
     }
 }
 
+// MARK: - ScreenMenuOptionsListTableViewControllerDelegate
+extension TimetableDateDetailViewController: ScreenMenuOptionsListTableViewControllerDelegate {
+    
+    func listWasUpdated() {
+        updateMenu()
+    }
+    
+    func updateMenu() {
+        guard let button = view.subviews.first(where: { $0.accessibilityIdentifier == "button" }) else {return}
+        (button as? UIButton)?.menu = setUpTimetableMenu()
+    }
+}
+
+extension TimetableDateDetailViewController {
+    
+    func setUpTimetableMenu()-> UIMenu {
+        let savedOptions = viewModel.loadSavedMenuOptions()
+        let options = savedOptions.map { findOption(option: $0) }
+        return UIMenu(title: "Расписание", children: options)
+    }
+    
+    func getAllOptions()-> [UIAction] {
+        
+        let searchAction = UIAction(title: "Поиск") { _ in
+            let vc = TimeTableSearchListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let refresh = UIAction(title: "Обновить") { _ in
+            self.optionsList.isEnabled = false
+            self.viewModel.refreshTimetable()
+        }
+        
+        let ARAction = UIAction(title: "AR режим") { _ in
+            let vc = TimetableARViewController(id: self.id, subgroup: self.subgroup, date: self.date, owner: self.owner)
+            vc.image = self.timetableImage.image ?? UIImage()
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let nearBuildingAction = UIAction(title: "Нужное здание") { _ in
+            let vc = NearBuildingViewController(info: .audiences)
+            vc.delegate = self
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+        }
+        
+        let groupsList = UIAction(title: "Группы") { _ in
+            let vc = AllGroupsListTableViewController(group: self.viewModel.id)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let subGroupsList = UIAction(title: "Подгруппы") { _ in
+            let vc = SubGroupsListTableViewController(subgroup: self.viewModel.subgroup, disciplines: self.viewModel.allDisciplines)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        // преподаватели
+        let teachersList = UIAction(title: "Преподаватели") { _ in
+            let vc = DepartmentsListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let audiencesList = UIAction(title: "Аудитории") { _ in
+            let vc = CorpsListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let favouritesList = UIAction(title: "Избранное") { _ in
+            let vc = TimeTableFavouriteItemsListTableViewController()
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let filterAction = UIAction(title: "Фильтрация") { _ in
+            let vc = TimetableFilterCategoriesListTableViewController(date: self.date, type: self.viewModel.type, disciplines: self.viewModel.allDisciplines, building: self.viewModel.currentBuilding, time: self.viewModel.currentTime)
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let saveTimetable = UIAction(title: "Сохранить") { _ in
+            self.showSaveImageAlert()
+        }
+        
+        let shareAction = UIAction(title: "Поделиться") { _ in
+            self.share()
+        }
+        return [
+            searchAction,
+            refresh,
+            ARAction,
+            nearBuildingAction,
+            groupsList,
+            subGroupsList,
+            teachersList,
+            audiencesList,
+            favouritesList,
+            filterAction,
+            saveTimetable,
+            shareAction
+        ]
+    }
+    
+    func findOption(option: MenuOptionModel)-> UIAction  {
+        let originalOptions = getAllOptions()
+        let searchOption = TimetableDateOptions.list.first(where: { $0.name == option.name })!
+        let item = originalOptions.first { $0.title == searchOption.name }!
+        return item
+    }
+}
+
 extension TimetableDateDetailViewController {
     
     func showSaveImageAlert() {

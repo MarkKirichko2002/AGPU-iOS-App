@@ -101,7 +101,6 @@ extension UIViewController {
     }
     
     func checkForUpdates() {
-        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
         if let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
            let appStoreURL = URL(string: "https://itunes.apple.com/lookup?id=6458836690")
         {
@@ -109,10 +108,8 @@ extension UIViewController {
                 if let appStoreVersion = appStoreVersion {
                     print(appStoreVersion)
                     if currentVersion != appStoreVersion {
-                        if style == .notShow {
-                            DispatchQueue.main.async {
-                                self.showUpdateAlert()
-                            }
+                        DispatchQueue.main.async {
+                            self.showUpdateAlert()
                         }
                     }
                 }
@@ -214,26 +211,10 @@ extension UIViewController {
     }
     
     @objc func showWhatsNewVC() {
-        
-        let communicationStyle = SettingsManager().getSavedCommunicationStyle()
-        let name = UserDefaults.standard.string(forKey: "name") ?? ""
-        
         let vc = TodayNewsListTableViewController()
         let navVC = UINavigationController(rootViewController: vc)
-        let style = UserDefaults.loadData(type: ScreenPresentationStyles.self, key: "screen presentation style") ?? .notShow
-        switch style {
-        case .fullScreen:
-            navVC.modalPresentationStyle = .fullScreen
-            present(navVC, animated: true)
-        case .sheet:
-            navVC.modalPresentationStyle = .pageSheet
-            present(navVC, animated: true)
-        case .notShow:
-            let message = communicationStyle == .formal ? "\(name.isEmpty ? "Чтобы" : "\(name) чтобы") увидеть экран, выберите его отображение в настройках опции \"Наглядные изменения\"" : "\(name.isEmpty ? "Чтобы" : "\(name) чтобы") увидеть экран, выбери его отображение в настройках опции \"Наглядные изменения\""
-            let vc = HintViewController(info: message)
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true)
-        }
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
     }
     
     @objc func goToSimpleMode() {
@@ -247,7 +228,6 @@ extension UIViewController {
     private func makeSimpleSettings() {
         UserDefaults.standard.set(false, forKey: "onAdvancedMode")
         UserDefaults.standard.set(false, forKey: "onAdvancedModeNews")
-        UserDefaults.saveData(object: ScreenPresentationStyles.notShow, key: "screen presentation style") {}
         UserDefaults.standard.set(true, forKey: "isSimpleModeOn")
     }
     
@@ -262,7 +242,6 @@ extension UIViewController {
     private func makeAdvancedSettings() {
         UserDefaults.standard.set(true, forKey: "onAdvancedMode")
         UserDefaults.standard.set(true, forKey: "onAdvancedModeNews")
-        UserDefaults.saveData(object: ScreenPresentationStyles.fullScreen, key: "screen presentation style") {}
         UserDefaults.standard.set(false, forKey: "isSimpleModeOn")
     }
     

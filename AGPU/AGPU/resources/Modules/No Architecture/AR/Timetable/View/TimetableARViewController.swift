@@ -119,7 +119,7 @@ final class TimetableARViewController: UIViewController {
     }
     
     @objc private func openMenuSettings(gesture: UIGestureRecognizer) {
-        let vc = MenuOptionsListTableViewController(category: .timetableAR)
+        let vc = ScreenMenuOptionsListTableViewController(screen: .timetableAR)
         vc.delegate = self
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
@@ -680,7 +680,7 @@ final class TimetableARViewController: UIViewController {
 }
 
 // MARK: - MenuOptionsListTableViewController
-extension TimetableARViewController: MenuOptionsListTableViewControllerDelegate {
+extension TimetableARViewController: ScreenMenuOptionsListTableViewControllerDelegate {
     
     func listWasUpdated() {
         updateMenu()
@@ -695,7 +695,7 @@ extension TimetableARViewController: MenuOptionsListTableViewControllerDelegate 
 extension TimetableARViewController {
     
     func setUpTimetableMenu()-> UIMenu {
-        let savedOptions = settingsManager.loadMenuOptions(category: menuOptionCategories.timetableAR.rawValue)
+        let savedOptions = settingsManager.loadMenuOptions(category: menuCategoryScreens.timetableAR.rawValue)
         let options = savedOptions.map { findOption(option: $0) }
         return UIMenu(title: "AR", children: options)
     }
