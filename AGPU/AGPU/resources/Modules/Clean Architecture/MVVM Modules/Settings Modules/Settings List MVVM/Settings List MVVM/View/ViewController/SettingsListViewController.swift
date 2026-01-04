@@ -37,6 +37,8 @@ final class SettingsListViewController: UIViewController {
         tableView.register(UINib(nibName: AdaptiveNewsOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: AdaptiveNewsOptionTableViewCell.identifier)
         // Advanced Timetable
         tableView.register(UINib(nibName: TimetableOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimetableOptionTableViewCell.identifier)
+        // Find Campus
+        tableView.register(UINib(nibName: MapsOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MapsOptionTableViewCell.identifier)
         // MARK: - Секция "Другие опции"
         // Different Way
         tableView.register(UINib(nibName: DifferentWayOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DifferentWayOptionTableViewCell.identifier)

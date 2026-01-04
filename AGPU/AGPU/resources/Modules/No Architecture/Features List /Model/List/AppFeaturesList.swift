@@ -25,8 +25,8 @@ struct AppFeaturesList {
         
         AppFeatureModel(
             id: 3,
-            name: "Find Campus",
-            description: "Find Campus (найти кампус) - быстрый поиск корпусов и кафедр на карте. Получайте информацию о погоде и расписании для выбранного места. Делитесь локациями и открывайте их в удобных вам картах (Apple, Google, Яндекс)."
+            name: "Find Building",
+            description: "Find Building (найти здание) - быстрый поиск корпусов на карте, в заданном радиусе или по номеру аудитории. Получайте информацию о погоде и расписании для выбранного места. Делитесь локациями и открывайте их в удобных вам картах (Apple, Google, Яндекс). Выбирайте какие корпуса будут отображаться на карте."
         ),
         
         AppFeatureModel(
@@ -91,36 +91,30 @@ struct AppFeaturesList {
         
         AppFeatureModel(
             id: 14,
-            name: "Needed Building",
-            description: "Needed Building (нужное здание) - находит ближайший корпус в заданном радиусе или по номеру аудитории."
-        ),
-        
-        AppFeatureModel(
-            id: 15,
             name: "Pair Info",
             description: "Pair Info (информация о паре) -  показывает время до начала/конца пары, расстояние до корпуса, время прибытия и позволяет скопировать выбранную информацию о паре."
         ),
         
         AppFeatureModel(
-            id: 16,
+            id: 15,
             name: "Useful Shortcuts",
             description: "Useful Shortcuts (полезные шорткаты) - добавьте шорткаты которые вам нужны."
         ),
         
         AppFeatureModel(
-            id: 17,
+            id: 16,
             name: "Switch List",
             description: "Switch List (список переключений) - создайте список названий или описаний для каждой надписи."
         ),
         
         AppFeatureModel(
-            id: 18,
+            id: 17,
             name: "Comfort Menu",
             description: "Comfort Menu (комфортное меню) - настройте список опций в меню."
         ),
         
         AppFeatureModel(
-            id: 19,
+            id: 18,
             name: "AI Helper",
             description: "AI Helper (ИИ помощник) - ИИ дает короткую информацию о том что вас интересует."
         )

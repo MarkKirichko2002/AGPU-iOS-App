@@ -71,20 +71,6 @@ final class AGPUBuildingsMapViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
-        let facultiesList = UIAction(title: "Кафедры") { _ in
-            let vc = FacultyCathedraMapListTableViewController(faculty: self.viewModel.faculty)
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
-        let typeList = UIAction(title: "Фильтрация") { _ in
-            let vc = AGPUBuildingTypesListTableViewController(type: self.viewModel.type)
-            let navVC = UINavigationController(rootViewController: vc)
-            navVC.modalPresentationStyle = .fullScreen
-            self.present(navVC, animated: true)
-        }
-        
         let voiceCommands = UIAction(title: "Голосовые команды") { _ in
             let vc = VoiceCommandsListTableViewController(type: .mapCorps)
             let navVC = UINavigationController(rootViewController: vc)
@@ -92,7 +78,7 @@ final class AGPUBuildingsMapViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
-        let menu = UIMenu(title: "Карта", children: [searchBuilding, buidlingsList, facultiesList, typeList, voiceCommands])
+        let menu = UIMenu(title: "Карта", children: [searchBuilding, buidlingsList, voiceCommands])
         
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         options.tintColor = .label
@@ -162,8 +148,6 @@ final class AGPUBuildingsMapViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        viewModel.observeBuildingTypeSelected()
-        viewModel.observeFacultySelected()
         viewModel.alertHandler = { bool in
             if bool {
                 let goToSettings = UIAlertAction(title: "Перейти в настройки", style: .default) { _ in

@@ -33,6 +33,9 @@ extension SettingsListViewController: UITableViewDataSource {
             } else if indexPath.row == 2 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: TimetableOptionTableViewCell.identifier, for: indexPath) as? TimetableOptionTableViewCell else {return UITableViewCell()}
                 return cell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: MapsOptionTableViewCell.identifier, for: indexPath) as? MapsOptionTableViewCell else {return UITableViewCell()}
+                return cell
             }
         case 1:
             if indexPath.row == 0 {
@@ -79,7 +82,6 @@ extension SettingsListViewController: UITableViewDataSource {
         default:
             return UITableViewCell()
         }
-        return UITableViewCell()
     }
 }
 
@@ -142,6 +144,12 @@ extension SettingsListViewController: UITableViewDelegate {
                 if let cell = tableView.cellForRow(at: indexPath) as? TimetableOptionTableViewCell {
                     cell.didTapCell(indexPath: indexPath) {
                         self.handleButton(icon: "clock", vc: TimetableFeaturesOptionsListTableViewController())
+                    }
+                }
+            } else {
+                if let cell = tableView.cellForRow(at: indexPath) as? MapsOptionTableViewCell {
+                    cell.didTapCell(indexPath: indexPath) {
+                        self.handleButton(icon: "map icon", vc: SelectedBuildingsListTableViewController())
                     }
                 }
             }

@@ -17,7 +17,7 @@ extension SettingsListViewModel: SettingsListViewModelProtocol {
     func numberOfOptions(in section: Int)-> Int {
         switch section {
         case 0:
-            return 3
+            return 4
         case 1:
             return 9
         case 2:

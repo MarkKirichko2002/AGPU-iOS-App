@@ -32,10 +32,6 @@ extension FavouriteShortcutsListTableViewController: UITableViewDelegate {
                 self.showEditAlert(shortcut: self.viewModel.shortcutItem(index: indexPath.row))
             }
             
-            let switchName =  UIAction(title: "Заменить", image: UIImage(named: "replace")) { _ in
-                self.showSwitchItemAlert(info: info, shortcut: self.viewModel.shortcutItem(index: indexPath.row))
-            }
-            
             let positionAction = UIAction(title: "Позиция", image: UIImage(named: "number")) { _ in
                 tableView.isEditing.toggle()
                 self.setUpEditButton(title: "Готово")
@@ -43,7 +39,6 @@ extension FavouriteShortcutsListTableViewController: UITableViewDelegate {
             
             return UIMenu(title: info.0, children: [
                 editAction,
-                switchName,
                 positionAction
             ])
         }
@@ -111,9 +106,7 @@ extension FavouriteShortcutsListTableViewController {
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.viewModel.currentShortCut = shortcut
-            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                self.present(navVC, animated: true)
-            }
+            self.present(navVC, animated: true)
         }
         let descriptionAction = UIAlertAction(title: "Описание", style: .default) { _ in
             let vc = FavouriteDescriptionsListTableViewController(name: info.0)
@@ -121,9 +114,7 @@ extension FavouriteShortcutsListTableViewController {
             let navVC = UINavigationController(rootViewController: vc)
             navVC.modalPresentationStyle = .fullScreen
             self.viewModel.currentShortCut = shortcut
-            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                self.present(navVC, animated: true)
-            }
+            self.present(navVC, animated: true)
         }
         let cancel = UIAlertAction(title: "Отмена", style: .destructive)
         
@@ -133,6 +124,8 @@ extension FavouriteShortcutsListTableViewController {
     func showEditAlert(shortcut: ShortcutModel) {
         
         let alertVC = UIAlertController(title: viewModel.createEditAlertMessage().0, message: viewModel.createEditAlertMessage().1, preferredStyle: .alert)
+        
+        let info = self.viewModel.createTextInfoForShortcut(shortcut: shortcut)
         
         alertVC.addTextField { (textField) in
             textField.placeholder =  self.viewModel.createTextForEditAlert().0
@@ -168,6 +161,10 @@ extension FavouriteShortcutsListTableViewController {
             }
         }
         
+        let switchAction = UIAlertAction(title: "Заменить", style: .default) { _ in
+            self.showSwitchItemAlert(info: info, shortcut: shortcut)
+        }
+        
         let reset = UIAlertAction(title: "Сбросить", style: .destructive) { _ in
             self.viewModel.resetShortcut(shortcut: shortcut)
         }
@@ -175,6 +172,7 @@ extension FavouriteShortcutsListTableViewController {
         let cancel = UIAlertAction(title: "Отмена", style: .default)
         
         alertVC.addAction(saveAction)
+        alertVC.addAction(switchAction)
         alertVC.addAction(reset)
         alertVC.addAction(cancel)
         

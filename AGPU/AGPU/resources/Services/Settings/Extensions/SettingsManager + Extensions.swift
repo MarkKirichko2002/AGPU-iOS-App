@@ -107,6 +107,19 @@ extension SettingsManager: SettingsManagerProtocol {
         }
         return data
     }
+    
+    // MARK: - Find Campus
+    func loadBuildings()-> [String] {
+        var data = [String]()
+        if let result = UserDefaults.standard.object(forKey: "selected buildings") as? Data {
+            do {
+                data = try JSONDecoder().decode([String].self, from: result)
+            } catch {
+                print(error)
+            }
+        }
+        return data
+    }
         
     // MARK: - Only Main
     func checkOnlyMainOption()-> OnlyMainVariants {

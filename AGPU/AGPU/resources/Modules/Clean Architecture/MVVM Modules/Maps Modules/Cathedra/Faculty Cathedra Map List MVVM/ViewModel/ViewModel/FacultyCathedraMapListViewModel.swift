@@ -10,7 +10,6 @@ import Foundation
 final class FacultyCathedraMapListViewModel {
     
     var faculty: AGPUFacultyModel?
-    var dataChangedHandler: (()->Void)?
     var facultySelectedHandler: (()->Void)?
     
     // MARK: - сервисы

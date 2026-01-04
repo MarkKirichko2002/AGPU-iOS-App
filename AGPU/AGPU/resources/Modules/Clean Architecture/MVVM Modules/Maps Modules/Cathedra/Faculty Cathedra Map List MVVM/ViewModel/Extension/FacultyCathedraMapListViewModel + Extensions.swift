@@ -15,41 +15,13 @@ extension FacultyCathedraMapListViewModel: FacultyCathedraMapListViewModelProtoc
         return faculty
     }
     
-    func numberOfFacultiesInSection()-> Int {
-        let count = AGPUFaculties.faculties.count
+    func numberOfFaculties()-> Int {
+        let count = AGPUFaculties.faculties.count - 1
         return count
-    }
-    
-    func chooseFaculty(index: Int) {
-        let selectedFaculty = AGPUFaculties.faculties[index]
-        if faculty?.id != selectedFaculty.id {
-            NotificationCenter.default.post(name: Notification.Name("faculty selected"), object: selectedFaculty)
-            faculty = selectedFaculty
-            self.dataChangedHandler?()
-            self.facultySelectedHandler?()
-            HapticsManager.shared.hapticFeedback()
-        } else {}
-    }
-    
-    func isCurrentFaculty(index: Int)-> Bool {
-        let currentFaculty = AGPUFaculties.faculties[index]
-        if currentFaculty.id == faculty?.id {
-            return true
-        } else {
-            return false
-        }
     }
     
     func titleForNavigation()-> String {
         let style = settingsManager.getSavedCommunicationStyle()
         return style == .formal ? "Выберите факультет" : "Выбери факультет"
-    }
-    
-    func registerFacultySelectedHandler(block: @escaping(()->Void)) {
-        self.facultySelectedHandler = block
-    }
-    
-    func registerDataChangedHandler(block: @escaping()->Void) {
-        self.dataChangedHandler = block
     }
 }

@@ -413,20 +413,8 @@ extension FavouriteSectionsListViewController: UITableViewDelegate {
                 self.showEditAlert(section: item)
             }
             
-            let switchName =  UIAction(title: "Заменить", image: UIImage(named: "replace")) { _ in
-                let vc = FavouriteTitlesListTableViewController(name: self.templateName(section: item))
-                vc.delegate = self
-                let navVC = UINavigationController(rootViewController: vc)
-                navVC.modalPresentationStyle = .fullScreen
-                self.currentSection = item
-                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                    self.present(navVC, animated: true)
-                }
-            }
-            
             return UIMenu(title: self.templateName(section: item), children: [
-                editAction,
-                switchName
+                editAction
             ])
         }
     }
@@ -532,6 +520,15 @@ extension FavouriteSectionsListViewController {
             textField.text = section.name
         }
         
+        let switchAction = UIAlertAction(title: "Заменить", style: .default) { _ in
+            let vc = FavouriteTitlesListTableViewController(name: self.templateName(section: section))
+            vc.delegate = self
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.currentSection = section
+            self.present(navVC, animated: true)
+        }
+        
         let saveAction = UIAlertAction(title: "Сохранить", style: .default) { _ in
             if let name = alertVC.textFields![0].text {
                 if !name.isEmpty {
@@ -547,6 +544,7 @@ extension FavouriteSectionsListViewController {
         let cancel = UIAlertAction(title: "Отмена", style: .default)
         
         alertVC.addAction(saveAction)
+        alertVC.addAction(switchAction)
         alertVC.addAction(reset)
         alertVC.addAction(cancel)
         
