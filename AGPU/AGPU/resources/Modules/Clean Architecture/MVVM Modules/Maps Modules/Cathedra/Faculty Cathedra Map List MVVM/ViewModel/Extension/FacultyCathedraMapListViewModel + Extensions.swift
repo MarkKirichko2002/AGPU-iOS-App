@@ -16,7 +16,7 @@ extension FacultyCathedraMapListViewModel: FacultyCathedraMapListViewModelProtoc
     }
     
     func numberOfFaculties()-> Int {
-        let count = AGPUFaculties.faculties.count - 1
+        let count = AGPUFaculties.faculties.count
         return count
     }
     

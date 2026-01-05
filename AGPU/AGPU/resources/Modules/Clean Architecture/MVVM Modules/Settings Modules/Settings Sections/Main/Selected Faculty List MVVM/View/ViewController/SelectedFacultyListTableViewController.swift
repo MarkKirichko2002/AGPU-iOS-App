@@ -53,15 +53,6 @@ class SelectedFacultyListTableViewController: UITableViewController {
                 self.viewModel.chooseFaculty(index: indexPath.row)
             }
             
-            let chooseIconAction = UIAction(title: self.viewModel.isFacultyIconSelected(index: indexPath.row) ? "Выбрана иконка" : "Выбрать иконку", image: self.viewModel.isFacultyIconSelected(index: indexPath.row) ? UIImage(named: "check") : nil) { action in
-                if self.viewModel.isFacultySelected(index: indexPath.row) {
-                    self.viewModel.chooseFacultyIcon(index: indexPath.row)
-                } else {
-                    NotificationCenter.default.post(name: Notification.Name("group"), object: nil)
-                    self.showAlert(title: self.viewModel.createIconAlertMessage(index: indexPath.row).0, message: self.viewModel.createIconAlertMessage(index: indexPath.row).1, actions: [UIAlertAction(title: "ОК", style: .default)])
-                }
-            }
-            
             let cathedraAction = UIAction(title: self.viewModel.isCathedraSelected(index: indexPath.row) ? "Выбрана кафедра" : "\(!self.viewModel.facultyItem(index: indexPath.row).cathedra.isEmpty ? "Выбрать кафедру" : "кафедры отсутствуют")", image: self.viewModel.isCathedraSelected(index: indexPath.row) ? UIImage(named: "check") : nil) { action in
                 if self.viewModel.isFacultySelected(index: indexPath.row) && !self.viewModel.facultyItem(index: indexPath.row).cathedra.isEmpty {
                     let vc = FacultyCathedraListTableViewController(faculty: self.viewModel.facultyItem(index: indexPath.row), isSettings: true)
@@ -84,20 +75,14 @@ class SelectedFacultyListTableViewController: UITableViewController {
                 }
             }
             
-            let cancelIconAction = UIAction(title: "Отменить иконку", image: self.viewModel.isFacultySelected(index: indexPath.row) ? UIImage(named: "cancel") : nil) { action in
-                self.viewModel.cancelFacultyIcon(index: indexPath.row)
-            }
-            
             let cancelFacultyAction = UIAction(title: "Отменить факультет", image: self.viewModel.isFacultySelected(index: indexPath.row) ? UIImage(named: "cancel") : nil) { _ in
                 self.viewModel.cancelFaculty(index: indexPath.row)
             }
             
             return UIMenu(title: self.viewModel.facultyItem(index: indexPath.row).name, children: [
                 chooseFacultyAction,
-                chooseIconAction,
                 cathedraAction,
                 checkGroupAction,
-                cancelIconAction,
                 cancelFacultyAction
             ])
         })

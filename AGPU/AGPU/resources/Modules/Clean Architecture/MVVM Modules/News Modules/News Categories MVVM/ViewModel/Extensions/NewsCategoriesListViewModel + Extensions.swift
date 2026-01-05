@@ -77,17 +77,11 @@ extension NewsCategoriesListViewModel: NewsCategoriesListViewModelProtocol {
                     NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
                     self.currentCategory = category.newsAbbreviation
                     HapticsManager.shared.hapticFeedback()
-                    Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                        NotificationCenter.default.post(name: Notification.Name("icon"), object: category.icon)
-                    }
                 } else {
                     NotificationCenter.default.post(name: Notification.Name("category"), object: "-")
                     NotificationCenter.default.post(name: Notification.Name("option was selected"), object: nil)
                     self.currentCategory = category.newsAbbreviation
                     HapticsManager.shared.hapticFeedback()
-                    Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
-                        NotificationCenter.default.post(name: Notification.Name("icon"), object: "АГПУ")
-                    }
                 }
             }
             print(category.newsAbbreviation)

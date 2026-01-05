@@ -98,9 +98,6 @@ final class NewsCategoriesRandomizerViewController: UIViewController {
     @objc private func selectCategory() {
         let newsCategory = NewsCategories.categories.first { $0.newsAbbreviation == category }!
         NotificationCenter.default.post(name: Notification.Name("category"), object: category)
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-            NotificationCenter.default.post(name: Notification.Name("icon"), object: newsCategory.icon)
-        }
         dismiss(animated: true)
     }
     

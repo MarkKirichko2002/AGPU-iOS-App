@@ -30,7 +30,7 @@ final class ASPUButtonIconTableViewCell: UITableViewCell {
         ASPUButtonIcon.layer.cornerRadius = ASPUButtonIcon.frame.width / 2
         ASPUButtonIcon.clipsToBounds = true
         ASPUButtonIcon.layer.borderWidth = 2.0
-        ASPUButtonIcon.layer.borderColor = UIColor.label.cgColor
+        ASPUButtonIcon.layer.borderColor = UIColor(named: "aspu")?.cgColor
     }
     
     override func awakeFromNib() {
