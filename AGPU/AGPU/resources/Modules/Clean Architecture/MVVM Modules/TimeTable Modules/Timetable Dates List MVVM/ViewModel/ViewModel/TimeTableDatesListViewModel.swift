@@ -22,6 +22,7 @@ final class TimeTableDatesListViewModel {
             timetable = timetable.map { day in
                 var modifiedDay = day
                 modifiedDay.disciplines = self.timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &modifiedDay.disciplines)
+                modifiedDay.disciplines = modifiedDay.disciplines.sorted { dateManager.compareTimes(time1: "\($0.time.components(separatedBy: "-")[0]):00", time2: "\($1.time.components(separatedBy: "-")[0]):00") == .orderedAscending}
                 return modifiedDay
             }
         }

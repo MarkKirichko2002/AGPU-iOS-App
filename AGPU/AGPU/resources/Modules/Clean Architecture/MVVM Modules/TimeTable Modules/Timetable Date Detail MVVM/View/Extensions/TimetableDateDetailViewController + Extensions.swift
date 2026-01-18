@@ -218,7 +218,7 @@ extension TimetableDateDetailViewController {
             self.imageSaver.writeToPhotoAlbum(image: image)
         }
         
-        let saveAction2 = UIAlertAction(title: "Сохранить в \"Важные вещи\"", style: .default) { _ in
+        let saveAction2 = UIAlertAction(title: "Сохранить в изображения", style: .default) { _ in
             self.viewModel.saveImageToList()
         }
         

@@ -54,10 +54,6 @@ extension AGPUTabBarController: ASPUButtonFavouriteActionsListTableViewControlle
             ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
             ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
             openWeatherVC()
-        case .things:
-            ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
-            ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)
-            openThingsCategoriesList()
         case .nearestBuilding:
             ASPUButton.removeTarget(nil, action: nil, for: .allEvents)
             ASPUButton.addTarget(self, action: #selector(openFavouritesList), for: .touchUpInside)

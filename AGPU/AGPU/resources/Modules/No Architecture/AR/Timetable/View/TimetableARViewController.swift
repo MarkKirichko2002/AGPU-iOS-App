@@ -526,7 +526,8 @@ final class TimetableARViewController: UIViewController {
             switch result {
             case .success(let data):
                 var pairs = data.disciplines
-                let timetable = TimeTable(id: data.id, date: data.date, disciplines: self.timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &pairs))
+                var timetable = TimeTable(id: data.id, date: data.date, disciplines: self.timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &pairs))
+                timetable.disciplines = timetable.disciplines.sorted { self.dateManager.compareTimes(time1: "\($0.time.components(separatedBy: "-")[0]):00", time2: "\($1.time.components(separatedBy: "-")[0]):00") == .orderedAscending}
                 self.createImage(timetable: timetable)
             case .failure(let error):
                 self.createImage(timetable: TimeTable(id: self.id, date: date, disciplines: []))
@@ -545,6 +546,7 @@ final class TimetableARViewController: UIViewController {
                 let days = data.map { day in
                     var modifiedDay = day
                     modifiedDay.disciplines = self.timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &modifiedDay.disciplines)
+                    modifiedDay.disciplines = modifiedDay.disciplines.sorted { self.dateManager.compareTimes(time1: "\($0.time.components(separatedBy: "-")[0]):00", time2: "\($1.time.components(separatedBy: "-")[0]):00") == .orderedAscending}
                     return modifiedDay
                 }
                 self.createImage(timetable: days)

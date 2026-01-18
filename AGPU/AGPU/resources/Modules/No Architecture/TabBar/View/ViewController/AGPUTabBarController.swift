@@ -638,8 +638,6 @@ final class AGPUTabBarController: UITabBarController {
                 openRecentMoments()
             case .weather:
                 openWeatherVC()
-            case .things:
-                openThingsCategoriesList()
             case .nearestBuilding:
                 showNearestBuilding(isAction: false)
             case .appThemes:

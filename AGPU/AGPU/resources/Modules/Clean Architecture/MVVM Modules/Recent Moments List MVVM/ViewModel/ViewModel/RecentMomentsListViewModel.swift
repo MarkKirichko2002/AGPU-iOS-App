@@ -14,6 +14,7 @@ final class RecentMomentsListViewModel {
     var timetable = TimeTable(id: "", date: "", disciplines: []) {
         didSet {
             timetable.disciplines = timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &timetable.disciplines)
+            timetable.disciplines = timetable.disciplines.sorted { dateManager.compareTimes(time1: "\($0.time.components(separatedBy: "-")[0]):00", time2: "\($1.time.components(separatedBy: "-")[0]):00") == .orderedAscending}
         }
     }
     

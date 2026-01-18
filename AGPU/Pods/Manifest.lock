@@ -23,6 +23,7 @@ PODS:
   - "GoogleUtilities/NSData+zlib (8.1.0)":
     - GoogleUtilities/Privacy
   - GoogleUtilities/Privacy (8.1.0)
+  - MarkdownKit (1.7.1)
   - MediaPipeTasksCommon (0.10.21)
   - MediaPipeTasksVision (0.10.21):
     - MediaPipeTasksCommon (= 0.10.21)
@@ -39,6 +40,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - FirebaseAILogic
+  - MarkdownKit
   - MediaPipeTasksVision
   - RealmSwift (~> 10.40.01)
   - SDWebImage
@@ -54,6 +56,7 @@ SPEC REPOS:
     - FirebaseCoreExtension
     - FirebaseCoreInternal
     - GoogleUtilities
+    - MarkdownKit
     - MediaPipeTasksCommon
     - MediaPipeTasksVision
     - Realm
@@ -70,6 +73,7 @@ SPEC CHECKSUMS:
   FirebaseCoreExtension: 731a5744970bcd73ad95ab2a2b8a1f46353e86dd
   FirebaseCoreInternal: 571a2dd8c975410966199623351db3a3265c874d
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
+  MarkdownKit: 0b15195c63cf3e39387949c4bdeccde0055e252a
   MediaPipeTasksCommon: 6cfa29170d4900f04d250ad95ec058f14a741f38
   MediaPipeTasksVision: 7b1c0f5a5820e87e9d96926f5e65d8cd3744fac2
   Realm: 731e86d9388287b18e36b0beb2493fc4845ce8a2
@@ -77,6 +81,6 @@ SPEC CHECKSUMS:
   SDWebImage: fc8f2d48bbfd72ef39d70e981bd24a3f3be53fec
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: 49eeb511de8631b915e49843aedab7debc94b527
+PODFILE CHECKSUM: ad1cdfcdab60f066f1702a8b1114407ad938add7
 
 COCOAPODS: 1.16.2

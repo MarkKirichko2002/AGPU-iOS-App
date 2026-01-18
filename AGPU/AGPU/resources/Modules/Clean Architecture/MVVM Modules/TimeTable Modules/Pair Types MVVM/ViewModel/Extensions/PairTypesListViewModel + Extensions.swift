@@ -43,6 +43,22 @@ extension PairTypesListViewModel: PairTypesListViewModelProtocol {
         
     }
     
+    func disciplinesForPairType(index: Int)-> [Discipline] {
+        let type = typeItem(index: index)
+        var filteredData = [Discipline]()
+        
+        allDisciplines = disciplines
+        
+        if type != .all {
+            filteredData = type == .leftToday ? filterLeftedPairs(pairs: disciplines) : disciplines.filter({ $0.type == type })
+        } else {
+            filteredData = disciplines
+        }
+        
+        return filteredData
+        
+    }
+    
     func filterLeftedPairs(pairs: [Discipline])-> [Discipline] {
         
         var disciplines = [Discipline]()

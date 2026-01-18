@@ -26,6 +26,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
             timetable = timetable.map { day in
                 var modifiedDay = day
                 modifiedDay.disciplines = self.timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &modifiedDay.disciplines)
+                modifiedDay.disciplines = modifiedDay.disciplines.sorted { dateManager.compareTimes(time1: "\($0.time.components(separatedBy: "-")[0]):00", time2: "\($1.time.components(separatedBy: "-")[0]):00") == .orderedAscending}
                 return modifiedDay
             }
         }
@@ -613,7 +614,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
             }
         }
         
-        let saveAction2 = UIAlertAction(title: "Сохранить в \"Важные вещи\"", style: .default) { _ in
+        let saveAction2 = UIAlertAction(title: "Сохранить в изображения", style: .default) { _ in
             do {
                 let json = try JSONEncoder().encode(self.timetable)
                 self.service.getTimeTableWeekImage(json: json) { image in

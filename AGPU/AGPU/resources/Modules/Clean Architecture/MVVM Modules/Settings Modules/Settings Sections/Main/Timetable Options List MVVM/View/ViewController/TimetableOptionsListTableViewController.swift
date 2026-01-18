@@ -46,8 +46,6 @@ final class TimetableOptionsListTableViewController: UITableViewController {
     private func setUpTable() {
         tableView.register(UINib(nibName: TimetableOptionsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TimetableOptionsTableViewCell.identifier)
         tableView.register(UINib(nibName: SaveRecentTimetableItemOptionCell.identifier, bundle: nil), forCellReuseIdentifier: SaveRecentTimetableItemOptionCell.identifier)
-        tableView.register(UINib(nibName: VolumeControlOptionTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: VolumeControlOptionTableViewCell.identifier)
-        tableView.register(UINib(nibName: DeviceOrientationControlTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: DeviceOrientationControlTableViewCell.identifier)
     }
     
     private func bindViewModel() {
@@ -86,7 +84,7 @@ final class TimetableOptionsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 5
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -97,12 +95,6 @@ final class TimetableOptionsListTableViewController: UITableViewController {
             return cell
         case 4:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SaveRecentTimetableItemOptionCell.identifier, for: indexPath) as? SaveRecentTimetableItemOptionCell else {return UITableViewCell()}
-            return cell
-        case 5:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: VolumeControlOptionTableViewCell.identifier, for: indexPath) as? VolumeControlOptionTableViewCell else {return UITableViewCell()}
-            return cell
-        case 6:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: DeviceOrientationControlTableViewCell.identifier, for: indexPath) as? DeviceOrientationControlTableViewCell else {return UITableViewCell()}
             return cell
         default:
             return UITableViewCell()

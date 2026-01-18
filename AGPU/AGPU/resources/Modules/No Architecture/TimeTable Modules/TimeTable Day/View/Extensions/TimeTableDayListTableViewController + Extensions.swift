@@ -271,7 +271,7 @@ extension TimeTableDayListTableViewController {
             }
         }
         
-        let saveAction2 = UIAlertAction(title: "Сохранить в \"Важные вещи\"", style: .default) { _ in
+        let saveAction2 = UIAlertAction(title: "Сохранить в изображения", style: .default) { _ in
             do {
                 let json = try JSONEncoder().encode(self.timetable)
                 self.service.getTimeTableDayImage(json: json) { image in

@@ -12,5 +12,6 @@ target 'AGPU' do
   pod 'RealmSwift', '~> 10.40.01'
   pod 'MediaPipeTasksVision'
   pod 'FirebaseAILogic'
+  pod 'MarkdownKit'
   
 end

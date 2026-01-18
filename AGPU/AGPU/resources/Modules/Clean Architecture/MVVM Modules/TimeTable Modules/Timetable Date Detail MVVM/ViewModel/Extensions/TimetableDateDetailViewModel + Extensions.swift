@@ -211,6 +211,7 @@ extension TimetableDateDetailViewModel: ITimetableDateDetailViewModel {
     
     func setUpDisciplinesPseudonym() {
         pairs = timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &pairs)
+        pairs = pairs.sorted { dateManager.compareTimes(time1: "\($0.time.components(separatedBy: "-")[0]):00", time2: "\($1.time.components(separatedBy: "-")[0]):00") == .orderedAscending}
     }
     
     func createImage() {

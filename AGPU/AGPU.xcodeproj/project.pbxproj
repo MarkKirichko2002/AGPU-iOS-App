@@ -27,10 +27,6 @@
 		820745012DBD74E500E4C505 /* CalendarDisciplineNameViewModel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820745002DBD74E500E4C505 /* CalendarDisciplineNameViewModel + Extensions.swift */; };
 		820745032DBD75B900E4C505 /* CalendarDisciplineNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820745022DBD75B900E4C505 /* CalendarDisciplineNameViewController.swift */; };
 		820745052DBD762300E4C505 /* CalendarDisciplineNameViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820745042DBD762300E4C505 /* CalendarDisciplineNameViewController + Extensions.swift */; };
-		820745092DBE56BB00E4C505 /* VolumeControlOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820745082DBE56BB00E4C505 /* VolumeControlOptionTableViewCell.xib */; };
-		8207450A2DBE56BB00E4C505 /* VolumeControlOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820745072DBE56BB00E4C505 /* VolumeControlOptionTableViewCell.swift */; };
-		8207450E2DBE607000E4C505 /* DeviceOrientationControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8207450C2DBE607000E4C505 /* DeviceOrientationControlTableViewCell.swift */; };
-		8207450F2DBE607000E4C505 /* DeviceOrientationControlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8207450D2DBE607000E4C505 /* DeviceOrientationControlTableViewCell.xib */; };
 		8207E7602C44762D006312E7 /* AudenciesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8207E75F2C44762D006312E7 /* AudenciesListTableViewController.swift */; };
 		8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8208E7542A63A3D300675EF1 /* AGPUThemes.swift */; };
 		820900792BAF612F0053F3BD /* TabModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820900782BAF612F0053F3BD /* TabModel.swift */; };
@@ -899,10 +895,6 @@
 		820745002DBD74E500E4C505 /* CalendarDisciplineNameViewModel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarDisciplineNameViewModel + Extensions.swift"; sourceTree = "<group>"; };
 		820745022DBD75B900E4C505 /* CalendarDisciplineNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDisciplineNameViewController.swift; sourceTree = "<group>"; };
 		820745042DBD762300E4C505 /* CalendarDisciplineNameViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalendarDisciplineNameViewController + Extensions.swift"; sourceTree = "<group>"; };
-		820745072DBE56BB00E4C505 /* VolumeControlOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeControlOptionTableViewCell.swift; sourceTree = "<group>"; };
-		820745082DBE56BB00E4C505 /* VolumeControlOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VolumeControlOptionTableViewCell.xib; sourceTree = "<group>"; };
-		8207450C2DBE607000E4C505 /* DeviceOrientationControlTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceOrientationControlTableViewCell.swift; sourceTree = "<group>"; };
-		8207450D2DBE607000E4C505 /* DeviceOrientationControlTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceOrientationControlTableViewCell.xib; sourceTree = "<group>"; };
 		8207E75F2C44762D006312E7 /* AudenciesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudenciesListTableViewController.swift; sourceTree = "<group>"; };
 		8208E7542A63A3D300675EF1 /* AGPUThemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPUThemes.swift; sourceTree = "<group>"; };
 		820900782BAF612F0053F3BD /* TabModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabModel.swift; sourceTree = "<group>"; };
@@ -1887,8 +1879,6 @@
 			children = (
 				82C449FA2B616F0C0039B0F3 /* Timetable Option */,
 				82C449F92B616F0A0039B0F3 /* Recent Timetable Item Option */,
-				820745062DBE568B00E4C505 /* Volume Control Option */,
-				8207450B2DBE604700E4C505 /* Device Orientation Control */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1984,24 +1974,6 @@
 				820744FC2DBD747F00E4C505 /* ICalendarDisciplineNameViewModel.swift */,
 			);
 			path = Protocol;
-			sourceTree = "<group>";
-		};
-		820745062DBE568B00E4C505 /* Volume Control Option */ = {
-			isa = PBXGroup;
-			children = (
-				820745072DBE56BB00E4C505 /* VolumeControlOptionTableViewCell.swift */,
-				820745082DBE56BB00E4C505 /* VolumeControlOptionTableViewCell.xib */,
-			);
-			path = "Volume Control Option";
-			sourceTree = "<group>";
-		};
-		8207450B2DBE604700E4C505 /* Device Orientation Control */ = {
-			isa = PBXGroup;
-			children = (
-				8207450C2DBE607000E4C505 /* DeviceOrientationControlTableViewCell.swift */,
-				8207450D2DBE607000E4C505 /* DeviceOrientationControlTableViewCell.xib */,
-			);
-			path = "Device Orientation Control";
 			sourceTree = "<group>";
 		};
 		8207E75E2C447601006312E7 /* Audencies List */ = {
@@ -12506,9 +12478,7 @@
 				828397602AD5BBF4000F355A /* AppIconTableViewCell.xib in Resources */,
 				82761A1E2B46381500D9976F /* SplashScreenOptionTableViewCell.xib in Resources */,
 				822D57842BBC29050026962F /* clock_sound3.mp3 in Resources */,
-				820745092DBE56BB00E4C505 /* VolumeControlOptionTableViewCell.xib in Resources */,
 				82AB6D2D2AF6C45700F7B729 /* SavedNewsCategoryTableViewCell.xib in Resources */,
-				8207450F2DBE607000E4C505 /* DeviceOrientationControlTableViewCell.xib in Resources */,
 				8213658E2A94F7B700A20E4E /* InfoPlist.strings in Resources */,
 				8209A0B82B839C0C0013371D /* DocumentTableViewCell.xib in Resources */,
 				82FC881E2BBDFC4A00A2EF59 /* status.mp4 in Resources */,
@@ -12845,7 +12815,6 @@
 				82426C742A71476D00D5AA57 /* ForEveryStatusModel.swift in Sources */,
 				82BC2F442A8EFD5500ADB239 /* NewsCategoriesListViewModelProtocol.swift in Sources */,
 				82FC87F12BBDDFC600A2EF59 /* DocumentsListTableViewController + Extensions.swift in Sources */,
-				8207450E2DBE607000E4C505 /* DeviceOrientationControlTableViewCell.swift in Sources */,
 				82FC22EC2BC01BC6008709DA /* NewsOptionsFilterListViewModel + Extensions.swift in Sources */,
 				8208E7552A63A3D300675EF1 /* AGPUThemes.swift in Sources */,
 				82184D912B7BDA5A00F2588E /* LocationDetailWeatherViewModel.swift in Sources */,
@@ -13129,7 +13098,6 @@
 				8231B0BB2AED97ED00EB41EA /* TeacherTimeTable.swift in Sources */,
 				82E4C55F2A6B147900F65A67 /* SettingsListViewModelProtocol.swift in Sources */,
 				826AF7F12D03A6D700CF64EA /* FavouriteShortcutsListViewModel.swift in Sources */,
-				8207450A2DBE56BB00E4C505 /* VolumeControlOptionTableViewCell.swift in Sources */,
 				82822B162DAACB960071C191 /* SavedWebPagesListTableViewController + Extensions.swift in Sources */,
 				82F315CD2C40CDD500E826F9 /* CommunicationStyles.swift in Sources */,
 				8209008E2BAF89C80053F3BD /* CustomTabBarOptionTableViewCell.swift in Sources */,
@@ -13556,7 +13524,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.6.1;
+				MARKETING_VERSION = 4.6.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -13600,7 +13568,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.6.1;
+				MARKETING_VERSION = 4.6.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
