@@ -58,6 +58,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     let settingsManager = SettingsManager()
     let imageSaver = ImageSaver()
     let gestureRecognitionManager = GestureRecognitionManager()
+    let visionManager = VisionManager()
     let timetablePseudonymManager = TimetablePseudonymManager()
     let timetableMenuManager = TimetableMenuManager()
     
@@ -115,7 +116,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         checkVoiceCommandsOption()
-        checkGestureOption()
+        checkRecognitionOption()
         checkDeviceOrientationControl()
         checkVolumeControl()
         buttonSettingsManager?.checkTimer()
@@ -124,8 +125,8 @@ final class TimeTableWeekListTableViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        cancelRecognition()
-        cancelGestureRecognition()
+        cancelSpeechRecognition()
+        cancelRecognitionOption()
         removeDeviceOrientationObserve()
         removeVolumeObserve()
         buttonSettingsManager?.stopTimer()
@@ -712,13 +713,33 @@ final class TimeTableWeekListTableViewController: UIViewController {
         }
     }
     
-    func checkGestureOption() {
-        let screens = settingsManager.loadScreens(way: differentWays.gestureRecognition)
+    func checkRecognitionOption() {
+        let gestureScreens = settingsManager.loadScreens(way: .gestureRecognition)
+        let headPoseScreens = settingsManager.loadScreens(way: .headTurns)
+        if !gestureScreens.isEmpty {
+            checkGestureOption(screens: gestureScreens)
+        }
+        if !headPoseScreens.isEmpty {
+            checkHeadPoseOption(screens: headPoseScreens)
+        }
+    }
+    
+    func checkGestureOption(screens: [appScreens]) {
         let isContains = screens.contains(appScreens.timetableWeek)
         isRecordingVideo = isContains
         if isContains {
             makeCameraButton()
             observeGestureRecognition()
+            setUpCaptureSession()
+        }
+    }
+    
+    func checkHeadPoseOption(screens: [appScreens]) {
+        let isContains = screens.contains(appScreens.timetableWeek)
+        isRecordingVideo = isContains
+        if isContains {
+            makeCameraButton()
+            observeHeadPoseRecognition()
             setUpCaptureSession()
         }
     }
@@ -780,14 +801,14 @@ final class TimeTableWeekListTableViewController: UIViewController {
         case .off:
             isRecordingVideo = false
             if captureSession.isRunning {
-                cancelGestureRecognition()
+                cancelRecognitionOption()
             }
         }
     }
     
     @objc func switchCamera() {
         
-        cancelGestureRecognition()
+        cancelRecognitionOption()
         
         currentCameraPosition = (currentCameraPosition == .back) ? .front : .back
         
@@ -803,8 +824,18 @@ final class TimeTableWeekListTableViewController: UIViewController {
             DispatchQueue.main.async {
                 self.currentGesture = gesture
                 self.closeCameraButtonMenu()
-                self.cancelGestureRecognition()
+                self.cancelRecognitionOption()
                 self.makeDateAlertForWeek(gesture: gesture)
+            }
+        }
+    }
+    
+    func observeHeadPoseRecognition() {
+        visionManager.registerHandPoseHandler { pose in
+            DispatchQueue.main.async {
+                self.closeCameraButtonMenu()
+                self.cancelRecognitionOption()
+                self.getTimetable(pose: pose)
             }
         }
     }

@@ -130,8 +130,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         checkVoiceCommandsOption()
-        checkGestureOption()
-        checkHeadPoseOption()
+        checkRecognitionOption()
         checkDeviceOrientationControl()
         checkVolumeControl()
         buttonSettingsManager?.checkTimer()
@@ -140,9 +139,8 @@ final class TimeTableDayListTableViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        cancelRecognition()
-        cancelGestureRecognition()
-        cancelHeadPoseRecognition()
+        cancelSpeechRecognition()
+        cancelRecognitionOption()
         removeDeviceOrientationObserve()
         removeVolumeObserve()
         buttonSettingsManager?.stopTimer()
@@ -473,7 +471,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         case .off:
             isRecordingVideo = false
             if captureSession.isRunning {
-                cancelGestureRecognition()
+                cancelRecognitionOption()
             }
         }
     }
@@ -482,7 +480,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         
         currentCameraPosition = (currentCameraPosition == .back) ? .front : .back
         
-        cancelGestureRecognition()
+        cancelRecognitionOption()
         
         if let currentInput = captureSession.inputs.first {
             captureSession.removeInput(currentInput)
@@ -781,8 +779,18 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
     }
     
-    func checkGestureOption() {
-        let screens = settingsManager.loadScreens(way: differentWays.gestureRecognition)
+    func checkRecognitionOption() {
+        let gestureScreens = settingsManager.loadScreens(way: .gestureRecognition)
+        let headPoseScreens = settingsManager.loadScreens(way: .headTurns)
+        if !gestureScreens.isEmpty {
+            checkGestureOption(screens: gestureScreens)
+        }
+        if !headPoseScreens.isEmpty {
+            checkHeadPoseOption(screens: headPoseScreens)
+        }
+    }
+    
+    func checkGestureOption(screens: [appScreens]) {
         let isContains = screens.contains(appScreens.timetableDay)
         isRecordingVideo = isContains
         if isContains {
@@ -794,8 +802,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
     }
     
-    func checkHeadPoseOption() {
-        let screens = settingsManager.loadScreens(way: differentWays.headTurns)
+    func checkHeadPoseOption(screens: [appScreens]) {
         let isContains = screens.contains(appScreens.timetableDay)
         isRecordingVideo = isContains
         if isContains {
@@ -829,7 +836,7 @@ final class TimeTableDayListTableViewController: UIViewController {
             DispatchQueue.main.async {
                 self.currentGesture = gesture
                 self.closeCameraButtonMenu()
-                self.cancelGestureRecognition()
+                self.cancelRecognitionOption()
                 self.getTimetable(gesture: gesture)
             }
         }
@@ -839,7 +846,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         visionManager.registerHandPoseHandler { pose in
             DispatchQueue.main.async {
                 self.closeCameraButtonMenu()
-                self.cancelHeadPoseRecognition()
+                self.cancelRecognitionOption()
                 self.getTimetable(pose: pose)
             }
         }

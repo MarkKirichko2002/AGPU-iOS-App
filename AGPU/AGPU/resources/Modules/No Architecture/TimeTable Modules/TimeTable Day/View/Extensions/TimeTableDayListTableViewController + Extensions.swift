@@ -573,14 +573,14 @@ extension TimeTableDayListTableViewController {
     func resetSpeechRecognition() {
         let screens = settingsManager.loadScreens(way: differentWays.voiceCommands)
         if screens.contains(appScreens.timetableDay) {
-            cancelRecognition()
+            cancelSpeechRecognition()
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
                 self.startRecognize()
             }
         }
     }
     
-    func cancelRecognition() {
+    func cancelSpeechRecognition() {
         let screens = settingsManager.loadScreens(way: differentWays.voiceCommands)
         if screens.contains(appScreens.timetableDay) {
             speechRecognitionManager.cancelSpeechRecognition()
@@ -635,8 +635,8 @@ extension TimeTableDayListTableViewController {
         if text.lowercased().contains("сколько всего пар") || text.lowercased().contains("скоко всего пар") {
             type = .all
             subgroup = 0
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             refreshTimetable {
                 DispatchQueue.main.async {
                     self.countPairs()
@@ -650,8 +650,8 @@ extension TimeTableDayListTableViewController {
     func resetCurrentWeek(text: String) {
         if text.lowercased().contains("текущая неделя") {
             getCurrentWeek()
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             date = dateManager.getCurrentDate()
             getTimeTable(id: id, date: date, owner: owner) {
                 DispatchQueue.main.async {
@@ -673,8 +673,8 @@ extension TimeTableDayListTableViewController {
         
         if text.lowercased().contains("понедельник") {
             if let day = currentWeek.dayNames.first(where: { $1 == "Понедельник" }) {
-                cancelRecognition()
-                cancelGestureRecognition()
+                cancelSpeechRecognition()
+                cancelRecognitionOption()
                 date = day.key
                 getTimeTable(id: id, date: date, owner: owner) {
                     DispatchQueue.main.async {
@@ -691,8 +691,8 @@ extension TimeTableDayListTableViewController {
         
         if text.lowercased().contains("вторник") {
             if let day = currentWeek.dayNames.first(where: { $1 == "Вторник" }) {
-                cancelRecognition()
-                cancelGestureRecognition()
+                cancelSpeechRecognition()
+                cancelRecognitionOption()
                 date = day.key
                 getTimeTable(id: id, date: date, owner: owner) {
                     DispatchQueue.main.async {
@@ -709,8 +709,8 @@ extension TimeTableDayListTableViewController {
         
         if text.lowercased().contains("сред") {
             if let day = currentWeek.dayNames.first(where: { $1 == "Среда" }) {
-                cancelRecognition()
-                cancelGestureRecognition()
+                cancelSpeechRecognition()
+                cancelRecognitionOption()
                 date = day.key
                 getTimeTable(id: id, date: date, owner: owner) {
                     DispatchQueue.main.async {
@@ -727,8 +727,8 @@ extension TimeTableDayListTableViewController {
         
         if text.lowercased().contains("четверг") {
             if let day = currentWeek.dayNames.first(where: { $1 == "Четверг" }) {
-                cancelRecognition()
-                cancelGestureRecognition()
+                cancelSpeechRecognition()
+                cancelRecognitionOption()
                 date = day.key
                 getTimeTable(id: id, date: date, owner: owner) {
                     DispatchQueue.main.async {
@@ -745,8 +745,8 @@ extension TimeTableDayListTableViewController {
         
         if text.lowercased().contains("пятниц") {
             if let day = currentWeek.dayNames.first(where: { $1 == "Пятница" }) {
-                cancelRecognition()
-                cancelGestureRecognition()
+                cancelSpeechRecognition()
+                cancelRecognitionOption()
                 date = day.key
                 getTimeTable(id: id, date: date, owner: owner) {
                     DispatchQueue.main.async {
@@ -763,8 +763,8 @@ extension TimeTableDayListTableViewController {
         
         if text.lowercased().contains("суббот") {
             if let day = currentWeek.dayNames.first(where: { $1 == "Суббота" }) {
-                cancelRecognition()
-                cancelGestureRecognition()
+                cancelSpeechRecognition()
+                cancelRecognitionOption()
                 date = day.key
                 getTimeTable(id: id, date: date, owner: owner) {
                     DispatchQueue.main.async {
@@ -787,8 +787,8 @@ extension TimeTableDayListTableViewController {
         }
         if text.lowercased().contains(text.lowercased().getDateFromString()) {
             if dateManager.checkDateFromWords(text: text) {
-                cancelRecognition()
-                cancelGestureRecognition()
+                cancelSpeechRecognition()
+                cancelRecognitionOption()
                 self.date = dateManager.getDateFromWords(date: text.getDateFromString())
                 getTimeTable(id: id, date: date, owner: owner) {
                     DispatchQueue.main.async {
@@ -806,8 +806,8 @@ extension TimeTableDayListTableViewController {
     
     func showLeftedPairs(text: String) {
         if text.lowercased().contains("оставшиеся пары") || text.lowercased().contains("сколько осталось пар") || text.lowercased().contains("скоко осталось пар") || text.lowercased().contains("сколько пар осталось") || text.lowercased().contains("скоко пар осталось") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             refreshTimetable {
                 DispatchQueue.main.async {
                     self.filterPairs(type: .leftToday)
@@ -823,8 +823,8 @@ extension TimeTableDayListTableViewController {
         for type in PairType.allCases {
             if text.lowercased().contains(type.voiceCommand) {
                 print("ТИП ПАРЫ: \(type.rawValue)")
-                cancelRecognition()
-                cancelGestureRecognition()
+                cancelSpeechRecognition()
+                cancelRecognitionOption()
                 getTimeTable(id: id, date: date, owner: owner) {
                     DispatchQueue.main.async {
                         self.filterPairs(type: type)
@@ -843,8 +843,8 @@ extension TimeTableDayListTableViewController {
         for building in AGPUBuildings.buildings {
             for voiceCommand in building.voiceCommands {
                 if text.lowercased().contains(voiceCommand) {
-                    cancelRecognition()
-                    cancelGestureRecognition()
+                    cancelSpeechRecognition()
+                    cancelRecognitionOption()
                     getTimeTable(id: id, date: date, owner: owner) {
                         DispatchQueue.main.async {
                             self.filterPairs(by: building)
@@ -862,8 +862,8 @@ extension TimeTableDayListTableViewController {
     
     func showCurrentPair(text: String) {
         if text.lowercased().contains("текущая пара") || text.lowercased().contains("сейчас пара") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             refreshTimetable {
                 let leftedPairs = self.filterLeftedPairs()
                 DispatchQueue.main.async {
@@ -885,8 +885,8 @@ extension TimeTableDayListTableViewController {
     
     func showNextPair(text: String) {
         if text.lowercased().contains("следующая пара") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             refreshTimetable {
                 let leftedPairs = self.filterLeftedPairs()
                 let times = self.countLeftedTimes(pairs: leftedPairs)
@@ -912,8 +912,8 @@ extension TimeTableDayListTableViewController {
     
     func showPreviousPair(text: String) {
         if text.lowercased().contains("прошлая пара") || text.lowercased().contains("предыдущая пара") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             refreshTimetable {
                 let leftedPairs = self.filterLeftedPairs()
                 DispatchQueue.main.async {
@@ -941,8 +941,8 @@ extension TimeTableDayListTableViewController {
     
     func showLastPair(text: String) {
         if text.lowercased().contains("последняя пара") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             refreshTimetable { DispatchQueue.main.async {
                 if self.allDisciplines.count > 0 {
                     self.timetable.disciplines = self.allDisciplines.filter({ $0.time == self.allDisciplines.last?.time})
@@ -967,8 +967,8 @@ extension TimeTableDayListTableViewController {
         }
         
         if text.lowercased().contains("1-я пара") || text.lowercased().contains("первая пара") || text.lowercased().contains("первую пару") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             refreshTimetable {
                 let times = self.countTimes()
                 if times.count > 0 {
@@ -991,8 +991,8 @@ extension TimeTableDayListTableViewController {
         }
         
         if text.lowercased().contains("2-я пара") || text.lowercased().contains("вторая пара") || text.lowercased().contains("вторую пару") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             refreshTimetable {
                 let times = self.countTimes()
                 if times.count > 1 {
@@ -1015,8 +1015,8 @@ extension TimeTableDayListTableViewController {
         }
         
         if text.lowercased().contains("3-я пара") || text.lowercased().contains("третья пара") || text.lowercased().contains("третью пару") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             refreshTimetable {
                 let times = self.countTimes()
                 if times.count > 2 {
@@ -1039,8 +1039,8 @@ extension TimeTableDayListTableViewController {
         }
         
         if text.lowercased().contains("четвертая пара") || text.lowercased().contains("четвёртая пара") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             refreshTimetable {
                 let times = self.countTimes()
                 if times.count > 3 {
@@ -1063,8 +1063,8 @@ extension TimeTableDayListTableViewController {
         }
         
         if text.lowercased().contains("5-я пара") || text.lowercased().contains("пятая пара") || text.lowercased().contains("пятую пару") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             refreshTimetable {
                 let times = self.countTimes()
                 if times.count > 4 {
@@ -1087,8 +1087,8 @@ extension TimeTableDayListTableViewController {
         }
         
         if text.lowercased().contains("6-я пара") || text.lowercased().contains("шестая пара") || text.lowercased().contains("шестую пару") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             refreshTimetable {
                 let times = self.countTimes()
                 if times.count > 5 {
@@ -1111,8 +1111,8 @@ extension TimeTableDayListTableViewController {
         }
         
         if text.lowercased().contains("7-я пара") || text.lowercased().contains("седьмая пара") || text.lowercased().contains("седьмую пару") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             refreshTimetable {
                 let times = self.countTimes()
                 if times.count > 6 {
@@ -1138,8 +1138,8 @@ extension TimeTableDayListTableViewController {
     func timetableNavigation(text: String) {
         
         if text.lowercased().contains("обнови") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             refreshTimetable {
                 DispatchQueue.main.async {
                     self.startSpeechRecognition()
@@ -1151,8 +1151,8 @@ extension TimeTableDayListTableViewController {
         }
         
         if text.lowercased().contains("сегодн") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             currentDay() {
                 self.startSpeechRecognition()
                 self.startSession()
@@ -1162,8 +1162,8 @@ extension TimeTableDayListTableViewController {
         }
         
         if text.lowercased().contains("завтр") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             tomorrowDay() {
                 self.startSpeechRecognition()
                 self.startSession()
@@ -1173,8 +1173,8 @@ extension TimeTableDayListTableViewController {
         }
         
         if text.lowercased().contains("вчер") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             yesterDay() {
                 self.startSpeechRecognition()
                 self.startSession()
@@ -1184,8 +1184,8 @@ extension TimeTableDayListTableViewController {
         }
         
         if text.lowercased().contains("вперёд") || text.lowercased().contains("вперед") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             nextDay() {
                 self.startSpeechRecognition()
                 self.startSession()
@@ -1195,8 +1195,8 @@ extension TimeTableDayListTableViewController {
         }
         
         if text.lowercased().contains("назад") || text.lowercased().contains("обратно") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             pastDay() {
                 self.startSpeechRecognition()
                 self.startSession()
@@ -1444,8 +1444,18 @@ extension TimeTableDayListTableViewController {
         }
     }
     
-    func cancelGestureRecognition() {
-        let screens = settingsManager.loadScreens(way: differentWays.gestureRecognition)
+    func cancelRecognitionOption() {
+        let gestureScreens = settingsManager.loadScreens(way: .gestureRecognition)
+        let headPoseScreens = settingsManager.loadScreens(way: .headTurns)
+        if !gestureScreens.isEmpty {
+            cancelGestureRecognition(screens: gestureScreens)
+        }
+        if !headPoseScreens.isEmpty {
+            cancelHeadPoseRecognition(screens: headPoseScreens)
+        }
+    }
+    
+    func cancelGestureRecognition(screens: [appScreens]) {
         let isContains = screens.contains(appScreens.timetableDay)
         if isContains {
             if let session = captureSession {
@@ -1456,8 +1466,7 @@ extension TimeTableDayListTableViewController {
         }
     }
     
-    func cancelHeadPoseRecognition() {
-        let screens = settingsManager.loadScreens(way: differentWays.headTurns)
+    func cancelHeadPoseRecognition(screens: [appScreens]) {
         let isContains = screens.contains(appScreens.timetableDay)
         if isContains {
             if let session = captureSession {

@@ -294,10 +294,22 @@ extension TimeTableWeekListTableViewController: TimetableFilterCategoriesListTab
 extension TimeTableWeekListTableViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        recognizeGesture(sampleBuffer: sampleBuffer)
+        checkOutputRecognition(sampleBuffer: sampleBuffer)
     }
     
-    func recognizeGesture(sampleBuffer: CMSampleBuffer) {
+    func checkOutputRecognition(sampleBuffer: CMSampleBuffer) {
+        let gestureScreens = settingsManager.loadScreens(way: .gestureRecognition)
+        let headPoseScreens = settingsManager.loadScreens(way: .headTurns)
+        let currentScreen = appScreens.timetableWeek
+        if gestureScreens.contains(currentScreen) {
+            recognizeHandGesture(sampleBuffer: sampleBuffer)
+        }
+        if headPoseScreens.contains(currentScreen) {
+            recognizeHeadPose(sampleBuffer: sampleBuffer)
+        }
+    }
+    
+    func recognizeHandGesture(sampleBuffer: CMSampleBuffer) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         let timestamp = Int(CMSampleBufferGetPresentationTimeStamp(sampleBuffer).value)
         do {
@@ -306,6 +318,11 @@ extension TimeTableWeekListTableViewController: AVCaptureVideoDataOutputSampleBu
         } catch {
             print("Ошибка обработки кадра: \(error)")
         }
+    }
+    
+    func recognizeHeadPose(sampleBuffer: CMSampleBuffer) {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+        visionManager.detectHeadPose(from: pixelBuffer)
     }
     
     func makeDateAlertForWeek(gesture: handGestures) {
@@ -373,6 +390,32 @@ extension TimeTableWeekListTableViewController: AVCaptureVideoDataOutputSampleBu
         }
     }
     
+    func getTimetable(pose: headPoses) {
+        switch pose {
+        case .left:
+            pastWeek {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self.startSession()
+                }
+            }
+            HapticsManager.shared.hapticFeedback()
+        case .right:
+            nextWeek {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self.startSession()
+                }
+            }
+            HapticsManager.shared.hapticFeedback()
+        case .down:
+            currentWeek {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self.startSession()
+                }
+            }
+            HapticsManager.shared.hapticFeedback()
+        }
+    }
+    
     func currentWeek(week: WeekModel)-> WeekModel {
         return weeks[currentWeekId - 1]
     }
@@ -414,8 +457,29 @@ extension TimeTableWeekListTableViewController: AVCaptureVideoDataOutputSampleBu
         }
     }
     
-    func cancelGestureRecognition() {
-        let screens = settingsManager.loadScreens(way: differentWays.gestureRecognition)
+    func cancelRecognitionOption() {
+        let gestureScreens = settingsManager.loadScreens(way: .gestureRecognition)
+        let headPoseScreens = settingsManager.loadScreens(way: .headTurns)
+        if !gestureScreens.isEmpty {
+            cancelGestureRecognition(screens: gestureScreens)
+        }
+        if !headPoseScreens.isEmpty {
+            cancelHeadPoseRecognition(screens: headPoseScreens)
+        }
+    }
+    
+    func cancelGestureRecognition(screens: [appScreens]) {
+        let isContains = screens.contains(appScreens.timetableWeek)
+        if isContains {
+            if let session = captureSession {
+                session.stopRunning()
+            }
+            self.currentCameraState = .off
+            self.updateCameraButtonMenu()
+        }
+    }
+    
+    func cancelHeadPoseRecognition(screens: [appScreens]) {
         let isContains = screens.contains(appScreens.timetableWeek)
         if isContains {
             if let session = captureSession {
@@ -511,14 +575,14 @@ extension TimeTableWeekListTableViewController {
     func resetSpeechRecognition() {
         let screens = settingsManager.loadScreens(way: differentWays.voiceCommands)
         if screens.contains(appScreens.timetableWeek) {
-            cancelRecognition()
+            cancelSpeechRecognition()
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
                 self.startRecognize()
             }
         }
     }
     
-    func cancelRecognition() {
+    func cancelSpeechRecognition() {
         let screens = settingsManager.loadScreens(way: differentWays.voiceCommands)
         if screens.contains(appScreens.timetableWeek) {
             speechRecognitionManager.cancelSpeechRecognition()
@@ -560,8 +624,8 @@ extension TimeTableWeekListTableViewController {
     func timetableNavigation(text: String) {
         
         if text.lowercased().contains("обнови") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             refreshTimetable {
                 self.startSpeechRecognition()
                 self.startSession()
@@ -571,8 +635,8 @@ extension TimeTableWeekListTableViewController {
         }
         
         if text.lowercased().contains("текущ") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             currentWeek {
                 self.startSpeechRecognition()
                 self.startSession()
@@ -582,8 +646,8 @@ extension TimeTableWeekListTableViewController {
         }
         
         if text.lowercased().contains("вперёд") || text.lowercased().contains("вперед") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             nextWeek {
                 self.startSpeechRecognition()
                 self.startSession()
@@ -593,8 +657,8 @@ extension TimeTableWeekListTableViewController {
         }
         
         if text.lowercased().contains("назад") || text.lowercased().contains("обратно") {
-            cancelRecognition()
-            cancelGestureRecognition()
+            cancelSpeechRecognition()
+            cancelRecognitionOption()
             pastWeek {
                 self.startSpeechRecognition()
                 self.startSession()
@@ -939,7 +1003,7 @@ extension TimeTableWeekListTableViewController {
             share
         ]
     }
-        
+    
     func findOption(option: MenuOptionModel)-> UIAction {
         let originalOptions = getAllOptions()
         let searchOption = TimetableWeekOptions.list.first(where: { $0.name == option.name })!
