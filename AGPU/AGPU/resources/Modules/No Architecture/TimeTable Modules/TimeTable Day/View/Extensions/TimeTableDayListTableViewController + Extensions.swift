@@ -1464,7 +1464,33 @@ extension TimeTableDayListTableViewController: ScreenMenuOptionsListTableViewCon
     }
 }
 
+// MARK: - TimetableSortingOptionsListTableViewControllerDelegate
+extension TimeTableDayListTableViewController: TimetableSortingOptionsListTableViewControllerDelegate {
+    
+    func sortingOptionWasSelected(option: sortingOptions) {
+        selectedSortingOption = option
+        refreshTimetable {
+            self.sortTimetable(option: option)
+        }
+    }
+}
+
 extension TimeTableDayListTableViewController {
+    
+    func sortTimetable(option: sortingOptions) {
+        switch option {
+        case .timeAscending:
+            timetable.disciplines = timetable.disciplines.sorted { dateManager.compareTimes(time1: "\($0.time.components(separatedBy: "-")[0]):00", time2: "\($1.time.components(separatedBy: "-")[0]):00") == .orderedAscending}
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        case .timeDescending:
+            timetable.disciplines = timetable.disciplines.sorted { dateManager.compareTimes(time1: "\($0.time.components(separatedBy: "-")[0]):00", time2: "\($1.time.components(separatedBy: "-")[0]):00") == .orderedDescending}
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     func setUpTimetableMenu()-> UIMenu {
         let savedOptions = settingsManager.loadMenuOptions(category: menuCategoryScreens.timetableDay.rawValue)

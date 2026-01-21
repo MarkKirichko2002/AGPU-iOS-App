@@ -25,7 +25,13 @@ final class TimeTableDayListTableViewController: UIViewController {
     var id = ""
     var timer: Timer?
     var subgroup = 0
-    var date = ""
+    var date = "" {
+        didSet {
+            DispatchQueue.main.async {
+                self.navigationItem.title = self.timetablePseudonymManager.setUpDayOfWeekPseudonym(date: self.date)
+            }
+        }
+    }
     var owner = ""
     var weeks = [WeekModel]()
     var dayType = DayType.week
@@ -46,10 +52,6 @@ final class TimeTableDayListTableViewController: UIViewController {
     var timetable = TimeTable(id: "", date: "", disciplines: []) {
         didSet {
             timetable.disciplines = timetablePseudonymManager.setUpTimetablePseudonyms(pairs: &timetable.disciplines)
-            timetable.disciplines = timetable.disciplines.sorted { dateManager.compareTimes(time1: "\($0.time.components(separatedBy: "-")[0]):00", time2: "\($1.time.components(separatedBy: "-")[0]):00") == .orderedAscending}
-            DispatchQueue.main.async {
-                self.navigationItem.title = self.timetablePseudonymManager.setUpDayOfWeekPseudonym(date: self.date)
-            }
         }
     }
     var image = UIImage()
@@ -60,6 +62,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     var currentCameraPosition: AVCaptureDevice.Position = .back
     var captureSession: AVCaptureSession!
     var buttonSettingsManager: ButtonSettingsManager?
+    var selectedSortingOption = sortingOptions.timeAscending
     
     private var menuState: MenuState = .closed
     

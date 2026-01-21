@@ -84,6 +84,7 @@ final class AllWeeksListTableViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
+    
     private func setUpTable() {
         view.addSubview(tableView)
         tableView.rowHeight = 130
@@ -108,7 +109,9 @@ final class AllWeeksListTableViewController: UIViewController {
         }
         startLoadingAnimation()
         navigationItem.toggleRefreshButtonFromRight(on: false)
-        viewModel.GetWeeks()
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+            self.viewModel.GetWeeks()
+        }
     }
     
     private func setUpIndicatorView() {

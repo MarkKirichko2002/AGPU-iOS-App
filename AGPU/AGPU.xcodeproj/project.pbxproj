@@ -583,6 +583,8 @@
 		8299E3BB2B8A350D00D81472 /* TimeTableDateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8299E3BA2B8A350D00D81472 /* TimeTableDateModel.swift */; };
 		829AD6912A4327D40047609B /* UIViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6902A4327D40047609B /* UIViewController + Extensions.swift */; };
 		829AD6992A43818A0047609B /* SettingsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829AD6982A43818A0047609B /* SettingsListViewModel.swift */; };
+		829B66BE2F20659E00CF2110 /* TimetableSortingOptionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829B66BD2F20659E00CF2110 /* TimetableSortingOptionsListTableViewController.swift */; };
+		829B66F82F210C5A00CF2110 /* VisionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829B66F72F210C5A00CF2110 /* VisionManager.swift */; };
 		829C96462D28A3F3002EE55B /* AVCaptureDevice + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C96452D28A3F3002EE55B /* AVCaptureDevice + Extensions.swift */; };
 		829CCEE42EF499AB00F44EE8 /* AIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829CCEE32EF499AA00F44EE8 /* AIManager.swift */; };
 		829CCEE62EF4AF5B00F44EE8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 829CCEE52EF4AF5A00F44EE8 /* GoogleService-Info.plist */; };
@@ -1431,6 +1433,8 @@
 		8299E3BA2B8A350D00D81472 /* TimeTableDateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableDateModel.swift; sourceTree = "<group>"; };
 		829AD6902A4327D40047609B /* UIViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extensions.swift"; sourceTree = "<group>"; };
 		829AD6982A43818A0047609B /* SettingsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListViewModel.swift; sourceTree = "<group>"; };
+		829B66BD2F20659E00CF2110 /* TimetableSortingOptionsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableSortingOptionsListTableViewController.swift; sourceTree = "<group>"; };
+		829B66F72F210C5A00CF2110 /* VisionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionManager.swift; sourceTree = "<group>"; };
 		829C96452D28A3F3002EE55B /* AVCaptureDevice + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVCaptureDevice + Extensions.swift"; sourceTree = "<group>"; };
 		829CCEE32EF499AA00F44EE8 /* AIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIManager.swift; sourceTree = "<group>"; };
 		829CCEE52EF4AF5A00F44EE8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -3892,6 +3896,7 @@
 		8234B2FE2A3242CC0091810F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				829B66F62F210C4900CF2110 /* Vision */,
 				829CCEE22EF4999600F44EE8 /* AI */,
 				826387552EAA661A00ABD1F0 /* Timetable Menu */,
 				82AF37A72EA0D04A003174D2 /* Timetable Pseudonym */,
@@ -5698,6 +5703,7 @@
 		826888672A33B87A00434219 /* No Architecture */ = {
 			isa = PBXGroup;
 			children = (
+				829B66BB2F20655400CF2110 /* Timetable Sorting Options List */,
 				827163FC2EC210AA00206D6E /* Menu Screen Categories List */,
 				8290C7CE2F047F8800B35B6C /* Menu Category Screens List */,
 				82056BF42DFAD7440007D524 /* Button Settings */,
@@ -8687,6 +8693,22 @@
 				826E6E992A65EFCB007A3C13 /* MVVM Modules */,
 			);
 			path = "Clean Architecture";
+			sourceTree = "<group>";
+		};
+		829B66BB2F20655400CF2110 /* Timetable Sorting Options List */ = {
+			isa = PBXGroup;
+			children = (
+				829B66BD2F20659E00CF2110 /* TimetableSortingOptionsListTableViewController.swift */,
+			);
+			path = "Timetable Sorting Options List";
+			sourceTree = "<group>";
+		};
+		829B66F62F210C4900CF2110 /* Vision */ = {
+			isa = PBXGroup;
+			children = (
+				829B66F72F210C5A00CF2110 /* VisionManager.swift */,
+			);
+			path = Vision;
 			sourceTree = "<group>";
 		};
 		829C96442D28A3CC002EE55B /* Capture Device */ = {
@@ -13023,6 +13045,7 @@
 				82C7E08E2D0CC9D100739BCF /* CurrentTabFavouriteOptionsListViewController.swift in Sources */,
 				82C7B8422A50CC1700F9A552 /* SpeechRecognitionManager + Extensions.swift in Sources */,
 				82E6C8842CFE4DAF00D42D60 /* ASPUButtonGestureOptionsListViewModel.swift in Sources */,
+				829B66BE2F20659E00CF2110 /* TimetableSortingOptionsListTableViewController.swift in Sources */,
 				828CFA3C2A3680C700C7542D /* String + Extensions.swift in Sources */,
 				8255C4402E94F3F700A7C0A0 /* TimetableIntervals.swift in Sources */,
 				82A41B8F2C2C2CC700254AE2 /* RecentDatesListViewController.swift in Sources */,
@@ -13124,6 +13147,7 @@
 				821119F22B98BB7A007B61E5 /* NewsModel.swift in Sources */,
 				827359752D74D77B00C96F40 /* UINavigationItem + Extensions.swift in Sources */,
 				825634BA2A6222070082B7B8 /* FacultyGroupsListTableViewController.swift in Sources */,
+				829B66F82F210C5A00CF2110 /* VisionManager.swift in Sources */,
 				8290C7D42F04800500B35B6C /* MenuCategoryScreensListTableViewController.swift in Sources */,
 				82111A042B99016E007B61E5 /* NewsWebViewModel + Extensions.swift in Sources */,
 				8261002F2D4030E900B28FF2 /* ShowInfoDateOptionTableViewCell.swift in Sources */,
@@ -13524,7 +13548,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.6.2;
+				MARKETING_VERSION = 4.6.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -13568,7 +13592,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.6.2;
+				MARKETING_VERSION = 4.6.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AGPU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
