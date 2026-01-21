@@ -32,6 +32,8 @@ final class DifferentWaysScreenListViewModel {
             screens = [appScreens.timetableDay, appScreens.timetableWeek]
         case .deviceOrientation:
             screens = [appScreens.timetableDay, appScreens.timetableWeek]
+        case .headTurns:
+            screens = [appScreens.timetableDay, appScreens.timetableWeek]
         }
     }
     

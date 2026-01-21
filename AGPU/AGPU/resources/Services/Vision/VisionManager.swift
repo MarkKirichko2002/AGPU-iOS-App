@@ -39,17 +39,17 @@ final class VisionManager {
             if let yaw = face.yaw?.doubleValue,
                let pitch = face.pitch?.doubleValue {
                 
-                if yaw > 0.5 {
+                if yaw > 0.6 {
                     print(yaw)
                     self.headPoseHandler?(.left)
                 }
                 
-                if yaw < -0.5 {
+                if yaw < -0.6 {
                     print(yaw)
                     self.headPoseHandler?(.right)
                 }
                 
-                if pitch > 0.3 {
+                if pitch > 0.4 {
                     print(pitch)
                     self.headPoseHandler?(.down)
                 }

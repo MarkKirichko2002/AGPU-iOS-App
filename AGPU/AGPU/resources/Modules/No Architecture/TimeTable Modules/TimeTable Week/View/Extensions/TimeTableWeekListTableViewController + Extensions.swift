@@ -312,28 +312,28 @@ extension TimeTableWeekListTableViewController: AVCaptureVideoDataOutputSampleBu
         switch gesture {
         case .one:
             pastWeek {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self.startSession()
                 }
             }
             HapticsManager.shared.hapticFeedback()
         case .two:
             nextWeek {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self.startSession()
                 }
             }
             HapticsManager.shared.hapticFeedback()
         case .palm:
             currentWeek {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self.startSession()
                 }
             }
             HapticsManager.shared.hapticFeedback()
         case .fist:
             refreshTimetable {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self.startSession()
                 }
             }

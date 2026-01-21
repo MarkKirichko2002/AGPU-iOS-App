@@ -77,6 +77,7 @@ final class TimeTableDayListTableViewController: UIViewController {
     let speechRecognitionManager = SpeechRecognitionManager()
     let imageSaver = ImageSaver()
     let gestureRecognitionManager = GestureRecognitionManager()
+    let visionManager = VisionManager()
     let timetablePseudonymManager = TimetablePseudonymManager()
     let timetableMenuManager = TimetableMenuManager()
     
@@ -130,6 +131,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         super.viewDidAppear(animated)
         checkVoiceCommandsOption()
         checkGestureOption()
+        checkHeadPoseOption()
         checkDeviceOrientationControl()
         checkVolumeControl()
         buttonSettingsManager?.checkTimer()
@@ -140,6 +142,7 @@ final class TimeTableDayListTableViewController: UIViewController {
         super.viewDidDisappear(animated)
         cancelRecognition()
         cancelGestureRecognition()
+        cancelHeadPoseRecognition()
         removeDeviceOrientationObserve()
         removeVolumeObserve()
         buttonSettingsManager?.stopTimer()
@@ -791,6 +794,19 @@ final class TimeTableDayListTableViewController: UIViewController {
         }
     }
     
+    func checkHeadPoseOption() {
+        let screens = settingsManager.loadScreens(way: differentWays.headTurns)
+        let isContains = screens.contains(appScreens.timetableDay)
+        isRecordingVideo = isContains
+        if isContains {
+            makeCameraButton()
+            observeHeadPoseRecognition()
+            setUpCaptureSession()
+        } else {
+            removeCameraButton()
+        }
+    }
+    
     private func makeCameraButton() {
         if !view.subviews.contains(where: { $0.accessibilityIdentifier == "camera button" }) {
             setUpCameraButton()
@@ -815,6 +831,16 @@ final class TimeTableDayListTableViewController: UIViewController {
                 self.closeCameraButtonMenu()
                 self.cancelGestureRecognition()
                 self.getTimetable(gesture: gesture)
+            }
+        }
+    }
+    
+    func observeHeadPoseRecognition() {
+        visionManager.registerHandPoseHandler { pose in
+            DispatchQueue.main.async {
+                self.closeCameraButtonMenu()
+                self.cancelHeadPoseRecognition()
+                self.getTimetable(pose: pose)
             }
         }
     }

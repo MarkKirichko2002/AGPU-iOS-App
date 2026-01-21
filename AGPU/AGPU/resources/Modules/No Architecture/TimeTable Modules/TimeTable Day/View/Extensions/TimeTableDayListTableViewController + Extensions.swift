@@ -356,10 +356,22 @@ extension TimeTableDayListTableViewController: TimetableARViewControllerDelegate
 extension TimeTableDayListTableViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        recognizeGesture(sampleBuffer: sampleBuffer)
+        checkOutputRecognition(sampleBuffer: sampleBuffer)
     }
     
-    func recognizeGesture(sampleBuffer: CMSampleBuffer) {
+    func checkOutputRecognition(sampleBuffer: CMSampleBuffer) {
+        let gestureScreens = settingsManager.loadScreens(way: .gestureRecognition)
+        let headPoseScreens = settingsManager.loadScreens(way: .headTurns)
+        let currentScreen = appScreens.timetableDay
+        if gestureScreens.contains(currentScreen) {
+            recognizeHandGesture(sampleBuffer: sampleBuffer)
+        }
+        if headPoseScreens.contains(currentScreen) {
+            recognizeHeadPose(sampleBuffer: sampleBuffer)
+        }
+    }
+    
+    func recognizeHandGesture(sampleBuffer: CMSampleBuffer) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         let timestamp = Int(CMSampleBufferGetPresentationTimeStamp(sampleBuffer).value)
         do {
@@ -370,12 +382,17 @@ extension TimeTableDayListTableViewController: AVCaptureVideoDataOutputSampleBuf
         }
     }
     
+    func recognizeHeadPose(sampleBuffer: CMSampleBuffer) {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+        visionManager.detectHeadPose(from: pixelBuffer)
+    }
+    
     func getTimetable(gesture: handGestures) {
         switch gesture {
         case .fist, .one, .two, .palm:
             self.date = self.dateForGesture(gesture: gesture)
             self.getTimeTable(id: self.id, date: self.date, owner: self.owner) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self.startSession()
                 }
             }
@@ -433,8 +450,30 @@ extension TimeTableDayListTableViewController: AVCaptureVideoDataOutputSampleBuf
         return ""
     }
     
+    func getTimetable(pose: headPoses) {
+        self.date = self.dateForPose(pose: pose)
+        self.getTimeTable(id: self.id, date: self.date, owner: self.owner) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.startSession()
+            }
+        }
+        HapticsManager.shared.hapticFeedback()
+    }
+    
+    func dateForPose(pose: headPoses)-> String {
+        switch pose {
+        case .left:
+            return dateManager.previousDay(date: date)
+        case .right:
+            return dateManager.nextDay(date: date)
+        case .down:
+            return dateManager.getCurrentDate()
+        }
+    }
+    
     func startSession() {
-        if isRecordingVideo {
+        guard isRecordingVideo else {return}
+        if !captureSession.isRunning {
             DispatchQueue.global(qos: .background).async {
                 self.captureSession.startRunning()
             }
@@ -1407,6 +1446,18 @@ extension TimeTableDayListTableViewController {
     
     func cancelGestureRecognition() {
         let screens = settingsManager.loadScreens(way: differentWays.gestureRecognition)
+        let isContains = screens.contains(appScreens.timetableDay)
+        if isContains {
+            if let session = captureSession {
+                session.stopRunning()
+            }
+            self.currentCameraState = .off
+            self.updateCameraButtonMenu()
+        }
+    }
+    
+    func cancelHeadPoseRecognition() {
+        let screens = settingsManager.loadScreens(way: differentWays.headTurns)
         let isContains = screens.contains(appScreens.timetableDay)
         if isContains {
             if let session = captureSession {

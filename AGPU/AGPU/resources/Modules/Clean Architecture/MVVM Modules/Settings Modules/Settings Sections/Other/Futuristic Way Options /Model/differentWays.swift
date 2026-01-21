@@ -12,6 +12,7 @@ enum differentWays: String, CaseIterable {
     case gestureRecognition = "Распознавание жестов"
     case volume = "Уровень громкости"
     case deviceOrientation = "Ориентация устройства"
+    case headTurns = "Повороты головы"
     
     var icon: String {
         switch self {
@@ -23,6 +24,8 @@ enum differentWays: String, CaseIterable {
             return "sound"
         case .deviceOrientation:
             return "mobile"
+        case .headTurns:
+            return "head"
         }
     }
 }
