@@ -466,7 +466,7 @@ extension TimeTableDayListTableViewController: AVCaptureVideoDataOutputSampleBuf
             return dateManager.previousDay(date: date)
         case .right:
             return dateManager.nextDay(date: date)
-        case .down:
+        case .up:
             return dateManager.getCurrentDate()
         }
     }

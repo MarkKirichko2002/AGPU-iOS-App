@@ -11,7 +11,7 @@ import AVFoundation
 enum headPoses {
     case left
     case right
-    case down
+    case up
 }
 
 final class VisionManager {
@@ -39,19 +39,19 @@ final class VisionManager {
             if let yaw = face.yaw?.doubleValue,
                let pitch = face.pitch?.doubleValue {
                 
-                if yaw > 0.7 {
+                if yaw > 0.6 {
                     print(yaw)
                     self.headPoseHandler?(.left)
                 }
                 
-                if yaw < -0.7 {
+                if yaw < -0.6 {
                     print(yaw)
                     self.headPoseHandler?(.right)
                 }
                 
-                if pitch > 0.4 {
+                if pitch < -0.6 {
                     print(pitch)
-                    self.headPoseHandler?(.down)
+                    self.headPoseHandler?(.up)
                 }
             }
         }

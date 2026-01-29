@@ -406,7 +406,7 @@ extension TimeTableWeekListTableViewController: AVCaptureVideoDataOutputSampleBu
                 }
             }
             HapticsManager.shared.hapticFeedback()
-        case .down:
+        case .up:
             currentWeek {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self.startSession()
