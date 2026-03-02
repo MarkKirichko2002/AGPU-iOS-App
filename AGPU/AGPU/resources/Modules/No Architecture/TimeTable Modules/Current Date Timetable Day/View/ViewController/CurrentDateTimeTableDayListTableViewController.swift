@@ -26,7 +26,7 @@ final class CurrentDateTimeTableDayListTableViewController: UIViewController {
     private let service = TimeTableService()
     private let dateManager = DateManager()
     private let animation = AnimationClass()
-    private let timetablePseudonymManager = TimetablePseudonymManager()
+    private let timetablePseudonymManager = PseudonymManager()
     
     // MARK: - UI
     let tableView = UITableView()

@@ -1,5 +1,5 @@
 //
-//  TimetablePseudonymManager.swift
+//  PseudonymManager.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 16.10.2025.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class TimetablePseudonymManager {
+final class PseudonymManager {
     
     // MARK: - сервисы
     private let settingsManager = SettingsManager()
@@ -178,5 +178,13 @@ final class TimetablePseudonymManager {
             return originalName
         }
         return group
+    }
+    
+    func returnOriginalBuildingName(building: String)-> String {
+        let pseudonyms = settingsManager.loadTimetablePseudonyms(category: "Корпуса")
+        if let originalName = pseudonyms.first(where: { $0.pseudonym == building })?.originalName {
+            return originalName
+        }
+        return building
     }
 }

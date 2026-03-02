@@ -29,7 +29,7 @@ final class TimetableDateDetailViewModel {
     let dateManager = DateManager()
     let realmManager = RealmManager()
     let settingsManager = SettingsManager()
-    let timetablePseudonymManager = TimetablePseudonymManager()
+    let timetablePseudonymManager = PseudonymManager()
     
     // MARK: - Init
     init(id: String, date: String, owner: String) {

@@ -11,7 +11,7 @@ import MapKit
 extension BuildingsListViewModel: IBuildingsListViewModel {
     
     func fillData(annotations: [MKAnnotation]) {
-        self.buildings = annotations.compactMap({ BuildingModel(name: $0.title!!, coordinate: $0.coordinate, annotation: $0, distance: (-1, -1))})
+        self.buildings = annotations.compactMap({ BuildingModel(name: pseudonymManager.returnOriginalBuildingName(building: $0.title!!), coordinate: $0.coordinate, annotation: $0, distance: (-1, -1))})
     }
     
     func buildingItem(index: Int)-> BuildingModel {

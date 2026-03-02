@@ -9,7 +9,7 @@ import MapKit
 
 final class AGPUBuildingsMapViewModel {
     
-    var arr = [MKAnnotation]()
+    var arr = [CustomAnnotation]()
     var index = 0
     var typeIndex = 0
     var faculty: AGPUFacultyModel?

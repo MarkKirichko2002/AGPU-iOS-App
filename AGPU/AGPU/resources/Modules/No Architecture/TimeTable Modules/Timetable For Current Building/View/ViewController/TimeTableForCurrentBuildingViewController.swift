@@ -14,7 +14,7 @@ final class TimeTableForCurrentBuildingViewController: UIViewController {
     // MARK: - сервисы
     let dateManager = DateManager()
     let service = TimeTableService()
-    let timetablePseudonymManager = TimetablePseudonymManager()
+    let timetablePseudonymManager = PseudonymManager()
     
     // MARK: - UI
     let tableView = UITableView()
@@ -41,12 +41,10 @@ final class TimeTableForCurrentBuildingViewController: UIViewController {
     
     private func setUpNavigation() {
         let date = dateManager.getCurrentDate()
-        let dayOfWeek = dateManager.getCurrentDayOfWeek(date: date)
         let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(closeScreen))
         let shareButton = UIBarButtonItem(image: UIImage(named: "share"), style: .done, target: self, action: #selector(shareTimetable))
         closeButton.tintColor = .label
         shareButton.tintColor = .label
-        //navigationItem.title = "Сегодня: \(dayOfWeek) \(date)"
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.rightBarButtonItem = shareButton
     }

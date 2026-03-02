@@ -1,5 +1,5 @@
 //
-//  TimetablePseudonymListViewController + Extensions.swift
+//  PseudonymListViewController + Extensions.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 14.10.2025.
@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: - UITableViewDelegate
-extension TimetablePseudonymListViewController: UITableViewDelegate {
+extension PseudonymListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil,
@@ -48,7 +48,7 @@ extension TimetablePseudonymListViewController: UITableViewDelegate {
 }
 
 // MARK: - UITableViewDataSource
-extension TimetablePseudonymListViewController: UITableViewDataSource {
+extension PseudonymListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfPseudonyms()
@@ -67,9 +67,9 @@ extension TimetablePseudonymListViewController: UITableViewDataSource {
     }
 }
 
-extension TimetablePseudonymListViewController {
+extension PseudonymListViewController {
     
-    func showEditAlert(model: TimetablePseudonymModel) {
+    func showEditAlert(model: PseudonymModel) {
         
         let alertVC = UIAlertController(title: viewModel.createEditAlertMessage().0, message: viewModel.createEditAlertMessage().1, preferredStyle: .alert)
         

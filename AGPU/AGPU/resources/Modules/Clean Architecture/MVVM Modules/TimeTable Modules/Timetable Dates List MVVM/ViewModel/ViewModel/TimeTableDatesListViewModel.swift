@@ -14,7 +14,7 @@ final class TimeTableDatesListViewModel {
     let realmManager = RealmManager()
     let dateManager = DateManager()
     let settingsManager = SettingsManager()
-    let timetablePseudonymManager = TimetablePseudonymManager()
+    let timetablePseudonymManager = PseudonymManager()
     let timetableMenuManager = TimetableMenuManager()
     
     var timetable = [TimeTableDayModel]() {

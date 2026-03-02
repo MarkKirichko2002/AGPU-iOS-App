@@ -72,10 +72,7 @@ final class SimpleMapViewModel {
     
     func currentLocation(coordinate: CLLocationCoordinate2D) {
         // текущая геопозиция
-        let currentpin = MKPointAnnotation()
-        currentpin.coordinate = coordinate
-        currentpin.title = "Вы"
-        
+        let currentpin = CustomAnnotation(coordinate: coordinate, title: "Вы", subtitle: "")
         if !AGPUBuildingPins.pins.contains(where: { $0.title == "Вы" }) {
             AGPUBuildingPins.pins.append(currentpin)
         }

@@ -54,7 +54,7 @@ final class TimetableARViewController: UIViewController {
     private let animation = AnimationClass()
     private let speechRecognitionManager = SpeechRecognitionManager()
     private let settingsManager = SettingsManager()
-    private let timetablePseudonymManager = TimetablePseudonymManager()
+    private let timetablePseudonymManager = PseudonymManager()
     
     // MARK: - Init
     init(id: String, subgroup: Int, date: String, owner: String) {

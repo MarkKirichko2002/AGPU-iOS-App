@@ -1,5 +1,5 @@
 //
-//  TimetablePseudonymListViewController.swift
+//  PseudonymListViewController.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 14.10.2025.
@@ -11,7 +11,7 @@ protocol TimetablePseudonymListViewControllerDelegate: AnyObject {
     func listWasChanged()
 }
 
-final class TimetablePseudonymListViewController: UIViewController {
+final class PseudonymListViewController: UIViewController {
     
     // MARK: - сервисы
     let viewModel: TimetablePseudonymListViewModel
@@ -20,9 +20,11 @@ final class TimetablePseudonymListViewController: UIViewController {
     let tableView = UITableView()
     let noAbbreviationsLabel = UILabel()
     
+    var isModal = false
+    
     weak var delegate: TimetablePseudonymListViewControllerDelegate?
     
-    init(category: TimetablePseudonymCategories) {
+    init(category: PseudonymCategories) {
         self.viewModel = TimetablePseudonymListViewModel(category: category)
         super.init(nibName: nil, bundle: nil)
     }
@@ -42,7 +44,11 @@ final class TimetablePseudonymListViewController: UIViewController {
     private func setUpNavigation() {
         let titleView = CustomTitleView(image: viewModel.category.icon, title: viewModel.category.rawValue, frame: .zero)
         navigationItem.titleView = titleView
-        setUpBackButton()
+        if isModal {
+            setUpCloseButton()
+        } else {
+            setUpBackButton()
+        }
         setUpEditButton(title: "Править")
     }
     
@@ -62,6 +68,17 @@ final class TimetablePseudonymListViewController: UIViewController {
     
     @objc private func back() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    private func setUpCloseButton() {
+        let closeButton = UIBarButtonItem(image: UIImage(named: "cross"), style: .done, target: self, action: #selector(close))
+        closeButton.tintColor = .label
+        navigationItem.leftBarButtonItem = closeButton
+    }
+    
+    @objc private func close() {
+        HapticsManager.shared.hapticFeedback()
+        dismiss(animated: true)
     }
     
     func setUpEditButton(title: String) {

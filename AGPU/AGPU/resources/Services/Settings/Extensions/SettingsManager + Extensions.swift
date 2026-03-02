@@ -46,7 +46,7 @@ extension SettingsManager: SettingsManagerProtocol {
     }
     
     // MARK: - псевдонимы
-    func addTimetablePseudonym(model: TimetablePseudonymModel, category: String, completion: @escaping()->Void) {
+    func addTimetablePseudonym(model: PseudonymModel, category: String, completion: @escaping()->Void) {
         do {
             var arr = loadTimetablePseudonyms(category: category)
             if !arr.contains(where: { $0.originalName == model.originalName}) {
@@ -60,7 +60,7 @@ extension SettingsManager: SettingsManagerProtocol {
         }
     }
     
-    func saveTimetablePseudonyms(pseudonyms: [TimetablePseudonymModel], category: String, completion: @escaping()->Void) {
+    func saveTimetablePseudonyms(pseudonyms: [PseudonymModel], category: String, completion: @escaping()->Void) {
         do {
             let arr = try JSONEncoder().encode(pseudonyms)
             UserDefaults.standard.setValue(arr, forKey: "\(category) pseudonym")
@@ -70,7 +70,7 @@ extension SettingsManager: SettingsManagerProtocol {
         }
     }
     
-    func loadTimetablePseudonyms(category: String)-> [TimetablePseudonymModel] {
+    func loadTimetablePseudonyms(category: String)-> [PseudonymModel] {
         let data = loadTimetablePseudonymsData(category: category)
         if category == "Дни недели" {
             if !data.isEmpty {
@@ -78,16 +78,22 @@ extension SettingsManager: SettingsManagerProtocol {
             } else {
                 return WeekDaysPseudonyms.weekDays
             }
+        } else if category == "Корпуса" {
+            if !data.isEmpty {
+                return data
+            } else {
+                return BuildingPseudonyms.buldings
+            }
         } else {
             return data
         }
     }
     
-    func loadTimetablePseudonymsData(category: String)-> [TimetablePseudonymModel] {
-        var data = [TimetablePseudonymModel]()
+    func loadTimetablePseudonymsData(category: String)-> [PseudonymModel] {
+        var data = [PseudonymModel]()
         if let result = UserDefaults.standard.object(forKey: "\(category) pseudonym") as? Data {
             do {
-                data = try JSONDecoder().decode([TimetablePseudonymModel].self, from: result)
+                data = try JSONDecoder().decode([PseudonymModel].self, from: result)
             } catch {
                 print(error)
             }

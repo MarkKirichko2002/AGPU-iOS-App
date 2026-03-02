@@ -49,7 +49,7 @@ final class VisionManager {
                     self.headPoseHandler?(.right)
                 }
                 
-                if pitch < -0.6 {
+                if pitch < -0.7 {
                     print(pitch)
                     self.headPoseHandler?(.up)
                 }

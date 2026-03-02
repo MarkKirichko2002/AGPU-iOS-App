@@ -9,8 +9,8 @@ import Foundation
 
 final class TimetablePseudonymListViewModel {
     
-    var pseudonyms = [TimetablePseudonymModel]()
-    var category: TimetablePseudonymCategories
+    var pseudonyms = [PseudonymModel]()
+    var category: PseudonymCategories
     
     var dataChangedHandler: (()->Void)?
     var itemChangedHandler: ((Int)->Void)?
@@ -18,7 +18,7 @@ final class TimetablePseudonymListViewModel {
     // MARK: - сервисы
     private let settingsManager = SettingsManager()
     
-    init(category: TimetablePseudonymCategories) {
+    init(category: PseudonymCategories) {
         self.category = category
     }
     
@@ -32,7 +32,7 @@ final class TimetablePseudonymListViewModel {
         itemChangedHandler?(index)
     }
     
-    func editPseudonym(model: TimetablePseudonymModel, pseudonym: String) {
+    func editPseudonym(model: PseudonymModel, pseudonym: String) {
         let index = pseudonyms.firstIndex { $0.originalName == model.originalName } ?? 0
         pseudonyms[index].pseudonym = pseudonym
         settingsManager.saveTimetablePseudonyms(pseudonyms: pseudonyms, category: category.rawValue) {
@@ -40,7 +40,7 @@ final class TimetablePseudonymListViewModel {
         }
     }
     
-    func deletePseudonym(model: TimetablePseudonymModel) {
+    func deletePseudonym(model: PseudonymModel) {
         let index = pseudonyms.firstIndex { $0.originalName == model.originalName } ?? 0
         pseudonyms.remove(at: index)
         settingsManager.saveTimetablePseudonyms(pseudonyms: pseudonyms, category: category.rawValue) {
@@ -61,7 +61,7 @@ final class TimetablePseudonymListViewModel {
         return pseudonyms.count
     }
     
-    func pseudonymItem(index: Int)-> TimetablePseudonymModel {
+    func pseudonymItem(index: Int)-> PseudonymModel {
         return pseudonyms[index]
     }
     

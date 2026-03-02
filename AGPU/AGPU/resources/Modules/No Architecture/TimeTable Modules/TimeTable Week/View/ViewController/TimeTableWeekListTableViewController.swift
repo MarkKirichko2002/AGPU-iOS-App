@@ -59,7 +59,7 @@ final class TimeTableWeekListTableViewController: UIViewController {
     let imageSaver = ImageSaver()
     let gestureRecognitionManager = GestureRecognitionManager()
     let visionManager = VisionManager()
-    let timetablePseudonymManager = TimetablePseudonymManager()
+    let timetablePseudonymManager = PseudonymManager()
     let timetableMenuManager = TimetableMenuManager()
     
     // MARK: - флаги

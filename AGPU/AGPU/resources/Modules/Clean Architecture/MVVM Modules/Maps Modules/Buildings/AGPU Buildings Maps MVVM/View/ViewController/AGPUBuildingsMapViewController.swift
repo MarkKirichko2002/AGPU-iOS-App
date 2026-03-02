@@ -78,7 +78,15 @@ final class AGPUBuildingsMapViewController: UIViewController {
             self.present(navVC, animated: true)
         }
         
-        let menu = UIMenu(title: "Карта", children: [searchBuilding, buidlingsList, voiceCommands])
+        let pseyAction = UIAction(title: "Псевдонимы") { _ in
+            let vc = PseudonymListViewController(category: PseudonymCategories.buildings)
+            vc.isModal = true
+            let navVC = UINavigationController(rootViewController: vc)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        
+        let menu = UIMenu(title: "Карта", children: [searchBuilding, buidlingsList, voiceCommands, pseyAction])
         
         let options = UIBarButtonItem(image: UIImage(named: "sections"), menu: menu)
         options.tintColor = .label

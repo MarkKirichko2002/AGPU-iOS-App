@@ -24,6 +24,7 @@ final class BuildingsListViewModel {
     
     // MARK: - сервисы
     let locationManager = LocationManager()
+    let pseudonymManager = PseudonymManager()
     
     var dataChangedHandler: (()->Void)?
     var selectedHandler: (()->Void)?

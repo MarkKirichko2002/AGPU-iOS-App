@@ -24,6 +24,7 @@ final class AGPUBuildingDetailViewModel {
     // MARK: - сервисы
     let dateManager = DateManager()
     let timetableService = TimeTableService()
+    let pseudonymManager = PseudonymManager()
     
     // MARK: - Init
     init(annotation: MKAnnotation, id: String, owner: String) {

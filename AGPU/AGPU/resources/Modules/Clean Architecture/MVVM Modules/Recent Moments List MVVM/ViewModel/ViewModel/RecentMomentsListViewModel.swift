@@ -24,6 +24,6 @@ final class RecentMomentsListViewModel {
     let settingsManager = SettingsManager()
     let service = TimeTableService()
     let dateManager = DateManager()
-    let timetablePseudonymManager = TimetablePseudonymManager()
+    let timetablePseudonymManager = PseudonymManager()
     
 }

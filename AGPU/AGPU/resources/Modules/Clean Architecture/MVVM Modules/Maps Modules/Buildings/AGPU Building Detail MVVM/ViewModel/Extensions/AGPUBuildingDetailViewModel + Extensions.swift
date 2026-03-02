@@ -13,6 +13,11 @@ import UIKit
 // MARK: - AGPUBuildingDetailViewModelProtocol
 extension AGPUBuildingDetailViewModel: AGPUBuildingDetailViewModelProtocol {
     
+    func setUpBuildingName() {
+        let originalName = pseudonymManager.returnOriginalBuildingName(building: annotation.title!!)
+        (annotation as! CustomAnnotation).title = originalName
+    }
+    
     func getTimetable() {
         let date = dateManager.getCurrentDate()
         timetableService.getTimeTableDay(id: id, date: date, owner: owner) { [weak self] result in
@@ -90,7 +95,7 @@ extension AGPUBuildingDetailViewModel: AGPUBuildingDetailViewModelProtocol {
         var text = annotation.subtitle!!
         
         if text.contains("Аудитории: ") {
-            for character in "Аудитории: " {
+            for _ in "Аудитории: " {
                 let index = text.startIndex
                 text.remove(at: index)
             }

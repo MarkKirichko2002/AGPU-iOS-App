@@ -37,7 +37,7 @@ final class TimetablePseudonymTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(for category: TimetablePseudonymCategories) {
+    func configure(for category: PseudonymCategories) {
         categoryIcon.image = UIImage(named: category.icon)
         categoryName.text = category.rawValue
     }

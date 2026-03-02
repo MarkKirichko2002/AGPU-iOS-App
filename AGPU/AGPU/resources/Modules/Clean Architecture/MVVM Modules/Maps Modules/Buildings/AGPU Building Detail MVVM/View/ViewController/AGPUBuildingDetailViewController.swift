@@ -25,12 +25,9 @@ final class AGPUBuildingDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpView()
         setUpNavigation()
-        setUpLabel()
-        setUpLocationDetailLabel()
-        setUpWeatherLabel()
         bindViewModel()
+        setUpView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,12 +36,20 @@ final class AGPUBuildingDetailViewController: UIViewController {
     }
     
     private func setUpView() {
-        LocationName.text = annotation.title!
         LocationDetail.text = !annotation.subtitle!!.isEmpty ? annotation.subtitle!! : "Нет информации"
-        LocationName.textColor = UIColor.label
         LocationDetail.textColor = UIColor.label
         WeatherLabel.textColor = UIColor.label
         PairsExistence.textColor = UIColor.label
+        setUpTitleLabel()
+        setUpLabel()
+        setUpLocationDetailLabel()
+        setUpWeatherLabel()
+    }
+    
+    private func setUpTitleLabel() {
+        viewModel.setUpBuildingName()
+        LocationName.text = annotation.title!
+        LocationName.textColor = UIColor.label
     }
     
     private func setUpLabel() {
@@ -160,6 +165,7 @@ final class AGPUBuildingDetailViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel = AGPUBuildingDetailViewModel(annotation: annotation, id: id, owner: owner)
+        viewModel.setUpBuildingName()
         viewModel.getTimetable()
         viewModel.getWeather()
         viewModel.registerPairsHandler { pairsInfo in

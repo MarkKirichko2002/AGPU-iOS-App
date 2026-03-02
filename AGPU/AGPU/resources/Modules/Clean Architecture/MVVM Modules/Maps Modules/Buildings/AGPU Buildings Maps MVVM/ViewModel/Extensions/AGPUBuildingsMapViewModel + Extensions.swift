@@ -11,9 +11,25 @@ import MapKit
 extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
     
     func setUpBuildings() {
+        filterBuildings()
+        setUpBuildingsPseudonym()
+    }
+    
+    func filterBuildings() {
         arr = AGPUBuildingPins.pins
         let selectedBuildings = settingsManager.loadBuildings()
-        arr = arr.filter { selectedBuildings.contains($0.title!!) }
+        if !selectedBuildings.isEmpty {
+            arr = arr.filter { selectedBuildings.contains($0.title!) }
+        }
+    }
+    
+    func setUpBuildingsPseudonym() {
+        let data = settingsManager.loadTimetablePseudonyms(category: PseudonymCategories.buildings.rawValue)
+        for i in 0..<arr.count {
+            if let item = data.first(where: { $0.originalName == arr[i].title }) {
+                arr[i].title = item.pseudonym
+            }
+        }
     }
     
     func checkLocationAuthorizationStatus() {
@@ -56,10 +72,7 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
     
     func currentLocation(coordinate: CLLocationCoordinate2D) {
         // текущая геопозиция
-        let currentpin = MKPointAnnotation()
-        currentpin.coordinate = coordinate
-        currentpin.title = "Вы"
-        
+        let currentpin = CustomAnnotation(coordinate: coordinate, title: "Вы", subtitle: "")
         if !arr.contains(where: { $0.title == "Вы" }) {
             arr.insert(currentpin, at: 0)
         }
@@ -163,7 +176,7 @@ extension AGPUBuildingsMapViewModel: AGPUBuildingsMapViewModelProtocol {
         for building in AGPUBuildings.buildings {
             if building.voiceCommands.contains(where: { text.lowercased().range(of: $0.lowercased()) != nil }) {
                 resetSpeechRecognition()
-                index = arr.firstIndex(where: { $0.title!! == building.name }) ?? 0
+                index = arr.firstIndex(where: { $0.title! == building.name }) ?? 0
                 print(index)
                 self.voiceChoiceHandler?(building.pin)
             }

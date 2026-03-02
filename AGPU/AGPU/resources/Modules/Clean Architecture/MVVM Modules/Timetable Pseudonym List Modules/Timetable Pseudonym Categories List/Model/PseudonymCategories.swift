@@ -1,5 +1,5 @@
 //
-//  TimetablePseudonymCategories.swift
+//  PseudonymCategories.swift
 //  AGPU
 //
 //  Created by Марк Киричко on 22.10.2025.
@@ -7,13 +7,14 @@
 
 import Foundation
 
-enum TimetablePseudonymCategories: String, CaseIterable {
+enum PseudonymCategories: String, CaseIterable {
     case weekDay = "Дни недели"
     case time = "Время"
     case discipline = "Дисциплины"
     case teacher = "Преподаватели"
     case audience = "Аудитории"
     case group = "Группы"
+    case buildings = "Корпуса"
     
     var icon: String {
         switch self {
@@ -29,6 +30,8 @@ enum TimetablePseudonymCategories: String, CaseIterable {
             return "door"
         case .group:
             return "group icon"
+        case .buildings:
+            return "building"
         }
     }
 }

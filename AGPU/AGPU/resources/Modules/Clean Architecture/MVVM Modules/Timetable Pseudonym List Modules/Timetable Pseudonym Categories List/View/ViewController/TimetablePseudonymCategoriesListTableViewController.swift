@@ -13,7 +13,7 @@ protocol TimetablePseudonymCategoriesListTableViewControllerDelegate: AnyObject 
 
 final class TimetablePseudonymCategoriesListTableViewController: UITableViewController {
 
-    let categories = TimetablePseudonymCategories.allCases
+    let categories = PseudonymCategories.allCases
     
     weak var delegate: TimetablePseudonymCategoriesListTableViewControllerDelegate?
     
@@ -50,7 +50,7 @@ final class TimetablePseudonymCategoriesListTableViewController: UITableViewCont
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        return categories.count - 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -60,8 +60,8 @@ final class TimetablePseudonymCategoriesListTableViewController: UITableViewCont
         return cell
     }
     
-    private func openCategoryList(category: TimetablePseudonymCategories) {
-        let vc = TimetablePseudonymListViewController(category: category)
+    private func openCategoryList(category: PseudonymCategories) {
+        let vc = PseudonymListViewController(category: category)
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
         HapticsManager.shared.hapticFeedback()
